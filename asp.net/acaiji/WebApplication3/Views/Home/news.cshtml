@@ -1,0 +1,274 @@
+﻿@using WebApplication3.Models;
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>大数据技术与应用_永洪科技</title>
+    <meta name="keywords" content="大数据技术与应用,大数据技术,大数据技应用" />
+    <meta name="description" content="大数据技术与应用栏目包含的是小编收罗关于大数据技术方面的文章以及大数据在各个场景中的应用情况。" />
+    <link rel="stylesheet" type="text/css" href="~/Content/pro_css.css" />
+
+    <link rel="stylesheet" type="text/css" href="~/Content/nr_css.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style_1.css" />
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+    <script type='text/javascript'>
+        var _vds = _vds || [];
+        window._vds = _vds;
+        (function () {
+            _vds.push(['setAccountId', 'ba0fdfca86d2bc68']);
+            (function () {
+                var vds = document.createElement('script');
+                vds.type = 'text/javascript';
+                vds.async = true;
+                vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(vds, s);
+            })();
+        })();</script>
+</head>
+<body>
+    <div class="header" style="height:112px;">
+        <div class="header_top">
+            <div class="header_box con_box" style="width:1200px;">
+                <a href="/" class="logo"></a>
+                <div class="searh_box" style="text-align:left;width:255px;">
+
+
+                    <style>
+                        #parent {
+                            float: right;
+                            width: 100px;
+                            height: 30px;
+                            overflow: hidden;
+                        }
+
+                            #parent select {
+                                color: #FFF;
+                                font-size: 15px;
+                                background: transparent;
+                                /*border: none;*/
+                                padding-left: 10px;
+                                width: 100px;
+                                height: 100%;
+                            }
+
+                        .blue {
+                            background-color: black;
+                            color: #fff;
+                        }
+                    </style>
+                    <p style=" padding-top:15px; text-align:center; color:#FFF; font-size:14px;">服务热线：400-900-2326</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window._pt_lt = new Date().getTime();
+        window._pt_sp_2 = [];
+        _pt_sp_2.push('setAccount,2aa81517');
+        var _protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        (function () {
+            var atag = document.createElement('script'); atag.type = 'text/javascript'; atag.async = true;
+            atag.src = _protocol + 'js.ptengine.cn/2aa81517.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(atag, s);
+        })();</script>
+
+    <div class="wrap">
+        <div class="wrap_left">
+
+            @{
+                foreach (var p in ViewData["datas"] as List<News>)
+                {
+                    <div class="chanTitle">
+                    </div>
+                    <div class="chanDiv">
+                        <dl>
+                            <dt><a href="/Home/showDetail/@(p.Id)"><img src="~/images/10.jpg" width="150px" height="100px" alt="@p.Title" /></a></dt>
+                            <dd>
+                                <div style="height: 84px;"><p><a href="/Home/showDetail/@(p.Id)">@p.Title</a></p></div>
+                                <div class="chanDay"><span>2017年09月17日</span></div>
+                            </dd>
+                        </dl>
+                    </div>
+
+                }
+            }
+            <div class="mainPage">
+                <ul class="pagelist">
+                    <li><a href="/Home/news?pageIndex=1">1</a></li>
+                    <li><a href='/Home/news?pageIndex=2'>2</a></li>
+                    <li><a href='/Home/news?pageIndex=3'>3</a></li>
+                    <li><a href='/Home/news?pageIndex=4'>4</a></li>
+                    <li><a href='/Home/news?pageIndex=5'>5</a></li>
+                    <li><a href='/Home/news?pageIndex=6'>6</a></li>
+                    <li><a href='/Home/news?pageIndex=7'>7</a></li>
+                    <li><a href='/Home/news?pageIndex=8'>8</a></li>
+                    <li><a href='/Home/news?pageIndex=9'>9</a></li>
+                    <li><a href='/Home/news?pageIndex=10'>10</a></li>
+                    <li><a href='/Home/news?pageIndex=11'>11</a></li>
+                    <li><a href='/Home/news?pageIndex=@((int)ViewData["pageIndex"]+1)'>下一页</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="wrap_right">
+            <div class="chanTitle2">
+            </div>
+            <h1><div class="rh3">大数据技术与应用</div></h1>
+            <div class="plk2"></div>
+            <h2>
+                <div class="yiyu">
+                    <p></p>
+                </div>
+            </h2>
+            <div class="rH2 rHM20">看过还想看</div>
+            <ul class="plk">
+                <li><a href="/zx/dashuju/6458424.html" target=_blank>BI在制造业大数据分析领域的潜</a></li>
+                <li><a href="/gy/xwhd/6458422.html" target=_blank>通往亿万美元之路，世界500强</a></li>
+                <li><a href="/gy/xwhd/6458421.html" target=_blank>在找工作？这里是最佳雇主—</a></li>
+                <li><a href="/gy/xwhd/6458420.html" target=_blank>零售巨头亚马逊、百年老店梅</a></li>
+                <li><a href="/gy/xwhd/6458419.html" target=_blank>锦程物流：战略转型，逆势增</a></li>
+                <li><a href="/gy/xwhd/6458418.html" target=_blank>《Gartner 2018 BI与数据分析魔力</a></li>
+                <li><a href="/gy/xwhd/6458417.html" target=_blank>一家年超300%高增长率大数据企</a></li>
+                <li><a href="/gy/xwhd/6458416.html" target=_blank>华夏银行：大数据技术服务业</a></li>
+                <li><a href="/gy/xwhd/6458415.html" target=_blank>从入门到精通，数据分析师必</a></li>
+                <li><a href="/gy/xwhd/6458414.html" target=_blank>学习资料：8大行业，30个大数</a></li>
+
+            </ul>
+            <div class="rH2">可能还想看</div>
+            <ul class="lookElse">
+                <li>
+                    <a href="/zx/dashuju/33285.html" target=_blank>
+                        微博营销大数据
+                    </a>
+                </li>
+                <li>
+                    <a href="/zx/dashuju/33404.html" target=_blank>
+                        大数据时代电商平台
+                    </a>
+                </li>
+                <li>
+                    <a href="/zx/dashuju/5155.html" target=_blank>
+                        Excel自动排序
+                    </a>
+                </li>
+                <li>
+                    <a href="/zx/dashuju/32718.html" target=_blank>
+                        药方大数据
+                    </a>
+                </li>
+                <li>
+                    <a href="/zx/dashuju/33753.html" target=_blank>
+                        IOT设备威胁
+                    </a>
+                </li>
+                <li>
+                    <a href="/zx/dashuju/3244.html" target=_blank>
+                        医疗大数据分析颠覆治疗
+                    </a>
+                </li>
+                <li>
+                    <a href="/zx/dashuju/3236.html" target=_blank>
+                        机器学习资料整理
+                    </a>
+                </li>
+                <li>
+                    <a href="/zx/dashuju/4741.html" target=_blank>
+                        R语言获取和清理球赛数据
+                    </a>
+                </li>
+
+                <li><a href="/zx/dashuju/6458424.html" target=_blank>BI在制造业大数据分析领域</a></li>
+                <li><a href="/zx/dashuju/33724.html" target=_blank>大数据时代该怎么做好淘宝</a></li>
+                <li><a href="/zx/dashuju/32261.html" target=_blank>利用大数据分析解决北京雾</a></li>
+                <li><a href="/zx/dashuju/33430.html" target=_blank>大数据将会让医疗、金融及</a></li>
+                <li><a href="/zx/dashuju/33297.html" target=_blank>一文读懂工业大数据的脉络</a></li>
+                <li><a href="/zx/dashuju/32208.html" target=_blank>互联网+旅游快速发站，大数</a></li>
+                <li><a href="/zx/dashuju/32145.html" target=_blank>企业利用大数据统治了所在</a></li>
+                <li><a href="/zx/dashuju/33698.html" target=_blank>数说“旅游扶贫”那些事儿</a></li>
+
+            </ul>
+            <div class="rH2 rHM10">热点推荐</div>
+            <ul class="plk2">
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =3041 target=_blank>公安大数据平台架构</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =695 target=_blank>数据一致性解决方案</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =1506 target=_blank>环保行业大数据应用</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =867 target=_blank>公安大数据平台</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =1214 target=_blank>高校大数据平台建设</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =2862 target=_blank>农村大数据解决方案</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =443 target=_blank>大数据展示平台技术</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =2964 target=_blank>商业智能方案</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =775 target=_blank>大数据应用</a></li>
+                <li><a href=http://www.yonghongtech.com/dsc.php?s =2483 target=_blank>大数据四大盈利模式</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="hj"></div>
+    <style>
+
+
+        .mainPage {
+            margin: 20px 0;
+        }
+
+            .mainPage ul {
+                width: 680px;
+                height: 32px;
+                display: block;
+                margin: 0 auto;
+            }
+
+                .mainPage ul li {
+                    float: left;
+                    display: inline;
+                    height: 32px;
+                    line-height: 32px;
+                    padding: 0 10px;
+                    color: #000;
+                    font-size: 15px;
+                    margin: 0 5px;
+                    border: 1px solid #dedede;
+                    font-size: 16px;
+                }
+
+                    .mainPage ul li a {
+                        color: #000;
+                        font-size: 16px;
+                    }
+
+                    .mainPage ul li.thisclass {
+                        background: #09f;
+                        border: 1px solid ##218EC1;
+                        color: #fff;
+                        font-size: 16px;
+                    }
+
+                        .mainPage ul li.thisclass a {
+                            color: #fff;
+                        }
+
+                    .mainPage ul li a:hover, a:focus {
+                        color: hsl(209, 93%, 48%);
+                        text-decoration: none;
+                    }
+    </style>
+
+    <div class="hj" style=" height:40px;"></div>
+    <link rel="stylesheet" type="text/css" href="css/gdt-style.css" />
+    <!--<style type="text/css">-->
+    <!--#newBridge{display: none;}-->
+    <!--#topcontrol{display: none;}-->
+    <!--</style>-->
+    <script type="text/javascript" src="js/scrolltopcontrol.js"></script>
+    <div class="headeline"></div>
+    <div class="bg3">
+        <div class="m1">Yonghong的价值观：以卓越的数据技术为客户创造价值，实现客户成功。 <a href="/mfsy/" style="float:right;"><img src="~/images/logo.png" /></a> </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@using WebApplication3.Models;
+
+@{
+    foreach (var p in ViewData["datas"] as List<News>)
+    {
+        <div class="banner text-hide">新闻动态, 获取实时动态, 解读行业新知</div>
+        <div class="wrap-main">
+            <div class="container">
+                <div class="row wrap-main">
+                    <div class="col-md-12 col-xs-12 crumb">
+                        <ol class="breadcrumb">
+                            <li><a href="http://www.dahaiyang.com/">首页</a></li>
+                            <li><a href="/news-cat_id-1.html">企业新闻</a></li>
+                            <li><a href="/news_detail-id-232.html">@p.Time</a></li>
+                        </ol>
+                    </div>
+                   
+                    <h2 align="center">@p.Title</h2>
+                       
+                        <div class="content">
+
+                           @p.Body
+                        </div>
+                        </div>
+                </div>
+            </div>
+        
+        }
+    }
+
+}
+

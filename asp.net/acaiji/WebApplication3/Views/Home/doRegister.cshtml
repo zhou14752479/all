@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "doRegister";
+}
+
+
+<script>
+    window.onload = function () {
+        setTimeout(change, 1000);
+    }
+    function change() {
+        var time = document.getElementById("time").innerHTML;
+        time = parseInt(time);
+        time--;
+        if (time < 1) {
+            window.location.href = "Register";
+        }
+        else {
+            document.getElementById("time").innerHTML = time;
+            setTimeout(change, 1000);
+        }
+    }
+
+</script>
+<div><h3>@ViewBag.Message</h3><span style="font-size:30px;color:red;" id="time">5</span>秒后返回 <a href="/Register" style="color:red" > 主页</a>！</div>
+
+

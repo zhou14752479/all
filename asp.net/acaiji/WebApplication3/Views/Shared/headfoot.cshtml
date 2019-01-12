@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="render" content="webkit">
+    <meta http-equiv="imagetoolbar" content="no">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/js")
+
+    <script>
+        var dhy = window.dhy || {};
+        dhy = {
+            user: {
+                logined: false,
+            },
+        };
+    </script>
+</head>
+<body>
+    <div class="wrap wrap-index">
+        <div class="wrap-header">
+            <div class="container">
+                <div class="row">
+                    <div class="logo"><a href="http://www.acaiji.com/" title="爱采集大数据服务平台" class="text-hide"></a></div>
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="" class="active">首页</a></li>
+                            <li><a href="">数据超市</a></li>
+                            <li><a href="">数据定制</a></li>
+                            <li><a href="">帮助中心</a></li>
+                            <li class="clearfix"></li>
+                        </ul>
+                    </nav>
+                    <form action="/search.html">
+                        <input type="text" name="query" id="" class="nav-search query" placeholder="搜索您想要的数据" data-query="" value="">
+                        <button class="nav-search-btn" type=submit></button>
+                    </form>
+                    <div class="other-container">
+                        <div class="user pull-rigdht">
+                            <ul class="login ">
+
+                                <li><a href="/Home/Register" class="btn-register">注册</a></li>
+                                <li><a href="/Home/Login" class="btn-login">登陆</a></li>
+                            </ul>
+                            <div class="dropdown logined hide">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="user-dropdown" data-toggle="dropdown" aria-expanded="true">
+                                    <i class="fa fa-home"></i> 嗨, <span class="badge hide">1</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="user-dropdown">
+                                    <li role="presentation"><a role="menuitem" href="/user-portal.html">我的个人中心</a></li>
+                                    <li role="presentation"><a role="menuitem" href="/user-order.html">我的订单</a></li>
+                                    <li role="presentation"><a role="menuitem" href="/user-custom.html">我的定制</a></li>
+                                    <li role="presentation"><a role="menuitem" href="/user-bookmark.html">我的收藏</a></li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation"><a role="menuitem" class="logout-btn" data-href="/user-logout.html" data-location="http://www.dahaiyang.com/" href="javascript:void(0);">退出</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        @Scripts.Render("~/bundles/js")
+        @RenderBody()
+
+        
+            <footer class="" id="footer">
+                <div class="container footer">
+                    <div class="row">
+                        <div class="col-md-2 col-xs-2">
+                            <h4>新手帮助</h4>
+                            <ul>
+                                <li><a href="">用户注册</a></li>
+                                <li><a href="">如何购买</a></li>
+                                <li><a href="">支付方式</a></li>
+                                <li><a href="">常见问题</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2">
+                            <h4>需求定制</h4>
+                            <ul>
+                                <li><a href="">资费说明</a></li>
+                                <li><a href="">数据定制</a></li>
+                                <li><a href="/">如何定制</a></li>
+                                <li><a href="/" rel="nofollow">个人中心</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2">
+                            <h4>关于我们</h4>
+                            <ul>
+                                <li><a href="/">新闻动态</a></li>
+                                <li><a href="" data-toggle="modal" data-target="#feedbackModal">意见反馈</a></li>
+                                <li><a href="" data-toggle="modal" data-target="#contact1Modal">联系方式</a></li>
+                                <li><a href="">关于我们</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3  col-xs-3 contact">
+                            <h4>联系方式</h4>
+                            <p class="tel">联系电话：0551-62864156-612</p>
+                            <p class="service_time">服务时间：周一至周六 (09:00-17:30)</p>
+                            <p class="time">邮箱: <a href="mailto:support@dahaiyang.com" title="点击发邮件给大海洋">support@dahaiyang.com</a></p>
+                            <p class="qq">
+                                <a href="" target="_blank"><i class="fa fa-qq"></i>QQ在线服务</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3 col-xs-3 weixin">
+                            <img src="Dhy/images/index/qrcode.png" alt="">
+                            <p>扫描添加</p>
+                            <p>大海洋微信公众号</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="container links">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <p>友情链接：</p>
+                                <a href="http://www.acaiji.com" target="_blank" title="网页抓取工具">网页抓取工具</a><a href="http://board.locoy.com/" target="_blank" title="火车采集器博客">火车采集器博客</a><a href="http://www.shuju.net" target="_blank" title="大数据">大数据</a><a href="http://www.zggjgy.com/" target="_blank" title="中国国家公园">中国国家公园</a><a href="http://www.douco.com/" target="_blank" title="DouPHP">DouPHP</a><a href="http://www.fmc100.com/" target="_blank" title="中国登山赛">中国登山赛</a><a href="http://www.jiuloog.com/" target="_blank" title="九龙军事网">九龙军事网</a><a href="http://www.newmusic365.com" target="_blank" title="声乐培训">声乐培训</a><a href="http://www.qiduowei.com/" target="_blank" title="全国企业查询">全国企业查询</a><a href="http://www.xinwenge.net" target="_blank" title="新文阁">新文阁</a><a href="http://wxlink.jcloud.com/" target="_blank" title="京东万象">京东万象</a><a href="http://www.zounao.com" target="_blank" title="走脑头条">走脑头条</a><a href="http://www.qiduowei.com" target="_blank" title="企多维">企多维</a><a href="http://www.qiyeyan.com" target="_blank" title="企业信息查询">企业信息查询</a><a href="http://zt.qiduowei.com/" target="_blank" title="企多维专题">企多维专题</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid copyright">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 text-center">CopyRight &copy; 2008-2018 , All Rights Reserved. 安徽数洋科技有限公司 版权所有 <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34011102000358" style="display:inline-block;text-decoration:none;color: #4d4d4d;"><span>皖公网安备 34011102000358号</span></a></div>
+                    </div>
+                </div>
+
+            </footer>
+        </div>
+</body>
+</html>
+
