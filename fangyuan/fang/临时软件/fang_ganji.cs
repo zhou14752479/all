@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -136,9 +137,26 @@ namespace fang.临时软件
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
+
+            //读取注册码信息才能运行软件！
+            RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
+            if (rsg!=null && rsg.GetValue("mac") != null)  //如果值不为空
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+                
+            }
+
+            else
+            {
+                MessageBox.Show("请注册软件！");
+                login lg = new login();
+                lg.Show();
+            }
+            
+
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -154,6 +172,11 @@ namespace fang.临时软件
         private void button5_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://sh.ganji.com/ershoufang/36507782718221x.shtml");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.ganji.com/index.htm");
         }
     }
 }
