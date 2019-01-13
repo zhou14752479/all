@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace _58.临时软件
+namespace _58.程序界面
 {
     static class Program
     {
@@ -19,7 +19,7 @@ namespace _58.临时软件
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                Application.Run(new Map());
+                Application.Run(new caiji_58());
 
 
         }

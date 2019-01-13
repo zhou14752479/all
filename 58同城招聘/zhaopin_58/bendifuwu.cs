@@ -92,15 +92,21 @@ namespace zhaopin_58
                             {
                                 string strhtml = method.GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                                string tellHtml = method.GetUrl("http://116.62.62.62/58.php?" + list);
+                                
 
                                 string rxg = @"<title>([\s\S]*?)</title>";
                                 string rxg1 = @"""name"":""([\s\S]*?)""";    //公司                            
                                 string rxg2 = @"linkman:'([\s\S]*?)'";
                                 string rxg3 = @"<div class='nums'>([\s\S]*?)</div>";
                                 string rxg4 = @"pubDate"": ""([\s\S]*?)""";
-                                
-                                
+                                string rxg8 = @"infoid:'([\s\S]*?)'";
+                                Match id = Regex.Match(strhtml, rxg8);
+
+
+
+                                string tellHtml = method.GetUrl("http://app.58.com/api/windex/scandetail/car/" + id.Groups[1].Value.ToString().Trim() + "/?pid=801");
+                               
+
 
 
                                 Match title = Regex.Match(strhtml, rxg);
@@ -117,7 +123,7 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(title.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(company.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(lxr.Groups[1].Value.Trim());                                                          
-                                    lv1.SubItems.Add(tell.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-",""));
                                     lv1.SubItems.Add(time.Groups[1].Value.Trim());
 
                                 }
@@ -142,7 +148,7 @@ namespace zhaopin_58
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
                                 Application.DoEvents();
-                                System.Threading.Thread.Sleep(100);   //内容获取间隔，可变量
+                                System.Threading.Thread.Sleep(3000);   //内容获取间隔，可变量
 
                             }
 

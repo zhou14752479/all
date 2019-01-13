@@ -24,6 +24,7 @@ namespace _58
         public fang_58()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         
@@ -92,16 +93,18 @@ namespace _58
                     string html = Method.GetUrl(Url);
 
 
-                    MatchCollection  TitleMatchs = Regex.Matches(html, @"<li logr=""([\s\S]*?)_0_([\s\S]*?)_([\s\S]*?)_", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
+
+                    ArrayList lists = new ArrayList();
 
                     foreach (Match NextMatch in TitleMatchs)
                     {
 
-                        textBox14.Text += "https://"+city+".58.com/shangpu/"+NextMatch.Groups[3].Value+ "x.shtml"+ "\r\n";
-
-                        textBox14.SelectionStart = textBox14.Text.Length; //设定光标位置
-                        textBox14.ScrollToCaret(); //滚动到光标处
+                        if (!lists.Contains(NextMatch.Groups[0].Value))
+                        {
+                            lists.Add(NextMatch.Groups[0].Value);
+                        }
 
 
                     }
@@ -115,16 +118,13 @@ namespace _58
                     Application.DoEvents();
                     Thread.Sleep(500);  //网址获取时间间隔 固定不变
 
-                    string[] lines = textBox14.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                
 
-
-
-                    for (int j = 0; j < lines.Length - 1; j++)
-
+                    foreach (string list in lists)
                     {
 
-                         this.index = this.skinDataGridView1.Rows.Add();
-                        String Url1 = lines[j];
+                        this.index = this.skinDataGridView1.Rows.Add();
+                        String Url1 =list;
                         string strhtml = Method.GetUrl(Url1);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
@@ -150,7 +150,7 @@ namespace _58
                         string temp = Regex.Replace(region.Groups[1].Value, "<[^>]*>", "");
                         this.skinDataGridView1.Rows[index].Cells[3].Value = temp.Trim().Replace(" ","").Replace("&nbsp;","");
 
-                        this.skinDataGridView1.Rows[index].Cells[4].Value = lines[j];
+                        this.skinDataGridView1.Rows[index].Cells[4].Value = list;
 
 
                         this.skinDataGridView1.CurrentCell = this.skinDataGridView1.Rows[index].Cells[0];  //让datagridview滚动到当前行

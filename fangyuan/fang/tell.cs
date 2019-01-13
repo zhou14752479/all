@@ -50,7 +50,7 @@ namespace fang
 
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
         }
 
@@ -100,7 +100,7 @@ namespace fang
 
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
 
 
@@ -174,7 +174,7 @@ namespace fang
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
         }
 

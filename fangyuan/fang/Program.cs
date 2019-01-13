@@ -20,7 +20,7 @@ namespace fang.临时软件
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new fang_ganji());
+                Application.Run(new tell());
 
             //}
             //catch (Exception ex)

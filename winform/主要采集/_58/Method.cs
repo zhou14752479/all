@@ -56,6 +56,7 @@ namespace _58
             return dt;
         }
         #endregion
+
         #region 获取数据库58城市名称
         /// <summary>
         /// 获取数据库美团城市名称
@@ -82,6 +83,36 @@ namespace _58
                 MessageBox.Show(ee.Message.ToString());
             }
             cob.DataSource = list;
+
+        }
+        #endregion
+
+        #region 获取数据库58城市名称到LIST集合
+        /// <summary>
+        /// 获取数据库美团城市名称
+        /// </summary>
+        /// <param name="cob">数据绑定的下拉框</param>
+        public static ArrayList get58CityNames()
+        {
+            ArrayList list = new ArrayList();
+            try
+            {
+                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string str = "SELECT citycode from city_58 ";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    list.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                MessageBox.Show(ee.Message.ToString());
+            }
+            return list;
 
         }
         #endregion

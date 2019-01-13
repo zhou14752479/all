@@ -90,7 +90,7 @@ namespace zhaopin_58
                             {
                                 string strhtml = method.GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                                string tellHtml = method.GetUrl("http://116.62.62.62/58.php?"+list);
+                                
                                 
                                 string rxg = @"<span class=""pos_title"">([\s\S]*?)</span>";
                                 string rxg1 = @"content='\[([\s\S]*?)\]";    //公司
@@ -101,7 +101,9 @@ namespace zhaopin_58
                                 string rxg3 = @"更新:  <span>([\s\S]*?)</span>";
                                  string rxg7= @"<div class='nums'>([\s\S]*?)</div>";
 
-                              
+                                string rxg8 = @"infoid:'([\s\S]*?)'";
+
+
 
                                 Match job = Regex.Match(strhtml, rxg);
                                 Match company = Regex.Match(strhtml, rxg1);
@@ -110,7 +112,11 @@ namespace zhaopin_58
                                 Match hangye = Regex.Match(strhtml, rxg5);
                                 Match lxr = Regex.Match(strhtml, rxg6);
                                 Match time = Regex.Match(strhtml, rxg3);
+                                Match id = Regex.Match(strhtml, rxg8);
 
+                                
+
+                                string tellHtml = method.GetUrl("http://app.58.com/api/windex/scandetail/car/"+id.Groups[1].Value.ToString().Trim()+"/?pid=801");
                                 Match tell = Regex.Match(tellHtml, rxg7);
 
                                 if (areas.Count > 0)
@@ -131,7 +137,7 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(hangye.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(lxr.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(tell.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-",""));
                                     lv1.SubItems.Add(time.Groups[1].Value.Trim().Replace("<strong>","").Replace("</strong>",""));
 
                                 }
