@@ -312,7 +312,11 @@ namespace _58
                             this.Rxg0 = @"<h1 class=""dealcard-brand"">([\s\S]*?)</h1>";
                             this.Rxg1 = @"data-tele=""([\s\S]*?)""";
                             this.Rxg2 = @"addr:([\s\S]*?)&";
-                            
+                            string rxg4 = @"营业时间</h6><p>([\s\S]*?)</p>";
+                            string rxg5 = @"poi_lng"": ""([\s\S]*?)""";
+                            string rxg6 = @"poi_lat"": ""([\s\S]*?)""";
+
+
 
                             for (int i = 1; i <= page; i++)
 
@@ -355,11 +359,15 @@ namespace _58
                                     String Url1 = list;
                                     string strhtml1 = meituan_GetUrl(Url1, this.cookie);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-
+                                   
 
                                     Match name = Regex.Match(strhtml1, Rxg0);
                                     this.tell = Regex.Match(strhtml1, Rxg1);
                                     Match addr = Regex.Match(strhtml1, Rxg2);
+         
+                                    Match time = Regex.Match(strhtml1, rxg4);
+                                    Match lng = Regex.Match(strhtml1, rxg5);
+                                    Match lat = Regex.Match(strhtml1, rxg6);
 
                                     int a = this.tell.Groups[1].Value.IndexOf("/");   //获取/的索引
 
@@ -381,6 +389,10 @@ namespace _58
                                         this.dataGridView1.Rows[index].Cells[3].Value = addr.Groups[1].Value;
 
                                         this.dataGridView1.Rows[index].Cells[4].Value = city;
+                                        this.dataGridView1.Rows[index].Cells[5].Value = list;
+                                        this.dataGridView1.Rows[index].Cells[6].Value = time.Groups[1].Value.Trim();
+                                        this.dataGridView1.Rows[index].Cells[7].Value = lng.Groups[1].Value.Trim();
+                                        this.dataGridView1.Rows[index].Cells[8].Value = lat.Groups[1].Value.Trim();
 
 
                                         this.dataGridView1.CurrentCell = this.dataGridView1.Rows[index].Cells[0];  //让datagridview滚动到当前行
