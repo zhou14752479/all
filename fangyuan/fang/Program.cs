@@ -20,7 +20,7 @@ namespace fang.临时软件
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new tell());
+                Application.Run(new 百家号());
 
             //}
             //catch (Exception ex)

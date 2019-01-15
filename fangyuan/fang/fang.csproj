@@ -110,12 +110,6 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form4.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form5.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,12 +145,6 @@
     </Compile>
     <Compile Include="tell.Designer.cs">
       <DependentUpon>tell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tianyancha.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="tianyancha.Designer.cs">
-      <DependentUpon>tianyancha.cs</DependentUpon>
     </Compile>
     <Compile Include="wenzigundong.cs">
       <SubType>Form</SubType>
@@ -224,6 +212,12 @@
     <Compile Include="临时软件\quan.Designer.cs">
       <DependentUpon>quan.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\百家号.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\百家号.Designer.cs">
+      <DependentUpon>百家号.cs</DependentUpon>
+    </Compile>
     <Compile Include="直播平台软件\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,9 +275,6 @@
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,9 +292,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="tell.resx">
       <DependentUpon>tell.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="tianyancha.resx">
-      <DependentUpon>tianyancha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="wenzigundong.resx">
       <DependentUpon>wenzigundong.cs</DependentUpon>
@@ -337,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\quan.resx">
       <DependentUpon>quan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\百家号.resx">
+      <DependentUpon>百家号.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="直播平台软件\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -255,14 +255,12 @@ C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form1.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form10.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form2.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form3.resources
-C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form4.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form5.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form6.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form7.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form8.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.jd.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.tell.resources
-C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.tianyancha.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.wenzigundong.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.alibaba.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.anjuke.resources
@@ -287,3 +285,4 @@ C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.csproj.CoreCompi
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.csproj.CopyComplete
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.exe
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.pdb
+C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.百家号.resources
