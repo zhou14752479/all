@@ -115,10 +115,6 @@ namespace zhaopin_58
                                 Match  tell= Regex.Match(tellHtml, rxg3);
                                 Match time = Regex.Match(strhtml, rxg4);
 
-
-
-                                if (company.Groups[1].Value !="")
-                                {
                                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                     lv1.SubItems.Add(title.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(company.Groups[1].Value.Trim());
@@ -126,17 +122,7 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-",""));
                                     lv1.SubItems.Add(time.Groups[1].Value.Trim());
 
-                                }
-
-                                else
-                                {
-                                    this.zanting = false;
-                                    MessageBox.Show("请在浏览器打开的页面中完成验证码验证，然后回到软件界面点击继续采集按钮！");
-                                    System.Diagnostics.Process.Start("https://suqian.58.com/yewu/33805288842284x.shtml");
-                                }
-
-
-
+                               
 
                                 if (listView1.Items.Count - 1 > 1)
                                 {

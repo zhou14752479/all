@@ -141,8 +141,10 @@ namespace zhaopin_58
                             regkey.Close();
 
                         }
-                        main mf = new main();
-                        mf.Show();
+                        //main mf = new main();
+                        //mf.Show();
+                        bendifuwu bd = new bendifuwu();
+                        bd.Show();
                         this.Hide();
 
                     }

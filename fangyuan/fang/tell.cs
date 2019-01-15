@@ -146,9 +146,6 @@ namespace fang
                     for (int j = 0; j < aurls.Count; j++)
                     {
 
-
-
-
                         if (!tells.Contains(aurls[j]))
                         {
                             tells.Add(aurls[j].Groups[0].Value);
@@ -183,8 +180,11 @@ namespace fang
         private void skinButton2_Click(object sender, EventArgs e)
         {
             deleteData();
-            Thread thread = new Thread(new ThreadStart(baidu));
-            thread.Start();
+            for (int i = 0; i < 5; i++)
+            {
+                Thread thread = new Thread(new ThreadStart(baidu));
+                thread.Start();
+            }
 
         }
 
@@ -207,7 +207,7 @@ namespace fang
                 foreach (ListViewItem item in listView1.Items)
                 {
                     string temp = item.SubItems[1].Text;
-                    list.Add(temp);
+                    list.Add(temp+" 0");
                 }
                 Thread thexp = new Thread(() => export(list)) { IsBackground = true };
                 thexp.Start();
