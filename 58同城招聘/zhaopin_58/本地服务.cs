@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,9 @@ using System.Windows.Forms;
 
 namespace zhaopin_58
 {
-    public partial class bendifuwu : Form
+    public partial class 本地服务 : Form
     {
-        public bendifuwu()
+        public 本地服务()
         {
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false; // 设置线程之间可以操作
@@ -26,6 +27,26 @@ namespace zhaopin_58
 
         }
         bool zanting = true;
+
+        public void insertData(string[] values)
+        {
+
+            try
+            {
+                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO wuba_bendi (title,company,contacts,phone,city,addr,time)VALUES('" + values[0] + " ','" + values[1] + " ','" + values[2] + " ','" + values[3] + " ','" + values[4] + " ','" + values[5] + " ','" + values[6] + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+
+            }
+
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+            }
+        }
 
         #region  主程序
 
@@ -99,6 +120,8 @@ namespace zhaopin_58
                                 string rxg2 = @"linkman:'([\s\S]*?)'";
                                 string rxg3 = @"<div class='nums'>([\s\S]*?)</div>";
                                 string rxg4 = @"pubDate"": ""([\s\S]*?)""";
+                                string rxg5 = @"cityName"":""([\s\S]*?)""";
+                                string rxg6 = @"bsName"":""([\s\S]*?)""";
                                 string rxg8 = @"infoid:'([\s\S]*?)'";
                                 Match id = Regex.Match(strhtml, rxg8);
 
@@ -114,15 +137,21 @@ namespace zhaopin_58
                                 Match lxr = Regex.Match(strhtml, rxg2);
                                 Match  tell= Regex.Match(tellHtml, rxg3);
                                 Match time = Regex.Match(strhtml, rxg4);
+                                Match area = Regex.Match(strhtml, rxg5);
+                                Match addr = Regex.Match(strhtml, rxg6);
 
-                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                     lv1.SubItems.Add(title.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(company.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(lxr.Groups[1].Value.Trim());                                                          
-                                    lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-",""));
+                                lv1.SubItems.Add(lxr.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-", ""));
+                                lv1.SubItems.Add(area.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                
                                     lv1.SubItems.Add(time.Groups[1].Value.Trim());
 
-                               
+                                string[] values = { title.Groups[1].Value.Trim(), company.Groups[1].Value.Trim(), lxr.Groups[1].Value.Trim(),  tell.Groups[1].Value.Trim(), area.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), DateTime.Now.ToString(),};
+                                insertData(values);
 
                                 if (listView1.Items.Count - 1 > 1)
                                 {
@@ -190,7 +219,7 @@ namespace zhaopin_58
 
         private void skinTreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            textBox1.Text = e.Node.Name + ",";
+            textBox1.Text += e.Node.Name + ",";
         }
     }
 }

@@ -84,10 +84,8 @@ C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\bin\Debug\Newtonsof
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\bin\Debug\NPOI.xml
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.csprojAssemblyReference.cache
-C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.bendifuwu.resources
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.Form1.resources
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.login.resources
-C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.main.resources
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.Properties.Resources.resources
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.register.resources
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.csproj.GenerateResource.cache
@@ -95,3 +93,5 @@ C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_5
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.csproj.CopyComplete
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.exe
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.pdb
+C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.本地服务.resources
+C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.招聘.resources

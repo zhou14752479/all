@@ -72,11 +72,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bendifuwu.cs">
+    <Compile Include="本地服务.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="bendifuwu.Designer.cs">
-      <DependentUpon>bendifuwu.cs</DependentUpon>
+    <Compile Include="本地服务.Designer.cs">
+      <DependentUpon>本地服务.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -90,11 +90,11 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="main.cs">
+    <Compile Include="招聘.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="main.Designer.cs">
-      <DependentUpon>main.cs</DependentUpon>
+    <Compile Include="招聘.Designer.cs">
+      <DependentUpon>招聘.cs</DependentUpon>
     </Compile>
     <Compile Include="method.cs" />
     <Compile Include="Ocr.cs" />
@@ -106,8 +106,8 @@
     <Compile Include="register.Designer.cs">
       <DependentUpon>register.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="bendifuwu.resx">
-      <DependentUpon>bendifuwu.cs</DependentUpon>
+    <EmbeddedResource Include="本地服务.resx">
+      <DependentUpon>本地服务.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -115,8 +115,8 @@
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="main.resx">
-      <DependentUpon>main.cs</DependentUpon>
+    <EmbeddedResource Include="招聘.resx">
+      <DependentUpon>招聘.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

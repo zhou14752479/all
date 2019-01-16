@@ -141,10 +141,12 @@ namespace zhaopin_58
                             regkey.Close();
 
                         }
-                        //main mf = new main();
-                        //mf.Show();
-                        bendifuwu bd = new bendifuwu();
-                        bd.Show();
+
+                        招聘 zp = new 招聘();
+                        zp.Show();
+
+                        //本地服务 bd = new 本地服务();
+                        //bd.Show();
                         this.Hide();
 
                     }

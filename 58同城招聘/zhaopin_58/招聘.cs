@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,9 @@ using System.Windows.Forms;
 
 namespace zhaopin_58
 {
-    public partial class main : Form
+    public partial class 招聘 : Form
     {
-        public main()
+        public 招聘()
         {
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false; // 设置线程之间可以操作
@@ -27,6 +28,26 @@ namespace zhaopin_58
         }
 
         bool zanting = true;
+
+        public void insertData(string[] values)
+        {
+
+            try
+            {
+                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO wuba_zhaopin (job,company,city,area,addr,industry,contacts,phone,time)VALUES('" + values[0] + " ','" + values[1] + " ','" + values[2] + " ','" + values[3] + " ','" + values[4] + " ','" + values[5] + " ','" + values[6] + " ','" + values[7] + " ','" + values[8] + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+
+            }
+
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+            }
+        }
 
         #region  主程序
 
@@ -60,8 +81,6 @@ namespace zhaopin_58
                             
                             string Url = "https://"+city+".58.com/job/pn"+i+"/?key="+keyword+ "&final=1&jump=1";
                             string html = method.GetUrl(Url);
-
-                            textBox2.Text = Url;
                             // MatchCollection TitleMatchs = Regex.Matches(html, @"addition=""0""><a href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                             MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -125,21 +144,21 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(job.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(company.Groups[1].Value.Trim().Replace("招聘信息", ""));
                                     lv1.SubItems.Add(areas[0].Groups[1].Value.Trim());
-
+                                    string area = "";
                                     if (areas.Count > 1)
                                     {
-                                        lv1.SubItems.Add(areas[1].Groups[1].Value.Trim());
+                                       area= areas[1].Groups[1].Value.Trim();
                                     }
-                                    else
-                                    {
-                                        lv1.SubItems.Add("");
-                                    }
+                                                     
+                                    lv1.SubItems.Add(area);
                                     lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(hangye.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(lxr.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-",""));
                                     lv1.SubItems.Add(time.Groups[1].Value.Trim().Replace("<strong>","").Replace("</strong>",""));
 
+                                    string[] values = { job.Groups[1].Value.Trim(), company.Groups[1].Value.Trim().Replace("招聘信息", ""), areas[0].Groups[1].Value.Trim(), area, addr.Groups[1].Value.Trim(), hangye.Groups[1].Value.Trim(), lxr.Groups[1].Value.Trim(), tell.Groups[1].Value.Trim().Replace("-", ""),DateTime.Now.ToString() };
+                                    insertData(values);
                                 }
 
                                 else
@@ -195,7 +214,7 @@ namespace zhaopin_58
 
         private void skinTreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            textBox1.Text = e.Node.Name + ",";
+            textBox1.Text += e.Node.Name + ",";
         }
 
         private void button2_Click(object sender, EventArgs e)
