@@ -32,10 +32,10 @@ namespace fang
             {
                 
 
-                string COOKIE = "SUV=1802082026070064; CXID=5C23A4E5F51710E335ADF0986E9DCEE4; SUID=695D46313765860A5A93E0D200058935; IPLOC=CN3213; wuid=AAEXiE0rIQAAAAqLK1e9pgEAGwY=; UM_distinctid=1647f5333e1170-0d7a0ed641834a-5e442e19-1fa400-1647f5333e481; sw_uuid=1797710656; ssuid=7043773672; pex=C864C03270DED3DD8A06887A372DA219231FFAC25A9D64AE09E82AED12E416AC; ad=WpjTvZllll2bT$AflllllVsW$aolllllGUBjBkllll9lllllxj7ll5@@@@@@@@@@; pgv_pvi=6644721664; pgv_si=s5490398208; SNUID=3012473001047A5F710CA80702E1C01A; sct=5; ld=Nkllllllll2bMJMTlllllVsc$vklllllGUYyGkllllclllllpllll5@@@@@@@@@@";
+                string COOKIE = "BIDUPSID=6F7A1FB331DE7AD89632403D26928572; PSTM=1546067770; MCITY=-309%3A; BAIDUID=6F7A1FB331DE7AD89632403D26928572:SL=0:NR=10:FG=1; BDORZ=FFFB88E999055A3F8A630C64834BD6D0; __guid=171760688.3766717285699673600.1547615234549.5005; monitor_count=34";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
                 request.AllowAutoRedirect = true;
                request.Headers.Add("Cookie", COOKIE);             
                 request.KeepAlive = false;     

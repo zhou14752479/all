@@ -218,6 +218,12 @@
     <Compile Include="临时软件\百家号.Designer.cs">
       <DependentUpon>百家号.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\百度新闻.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\百度新闻.Designer.cs">
+      <DependentUpon>百度新闻.cs</DependentUpon>
+    </Compile>
     <Compile Include="直播平台软件\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\百家号.resx">
       <DependentUpon>百家号.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\百度新闻.resx">
+      <DependentUpon>百度新闻.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="直播平台软件\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

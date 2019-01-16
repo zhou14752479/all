@@ -286,3 +286,4 @@ C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.csproj.CopyCompl
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.exe
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.pdb
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.百家号.resources
+C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.百度新闻.resources
