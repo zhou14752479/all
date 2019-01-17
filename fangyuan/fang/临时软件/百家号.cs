@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -234,9 +235,22 @@ namespace fang.临时软件
 
         private void skinButton2_Click(object sender, EventArgs e)
         {
+            //读取注册码信息才能运行软件！
+            RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
+            if (rsg != null && rsg.GetValue("mac") != null)  //如果值不为空
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
 
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
+            }
+
+            else
+            {
+                MessageBox.Show("请注册软件！");
+                login lg = new login();
+                lg.Show();
+            }
         }
 
         private void skinButton7_Click(object sender, EventArgs e)
