@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,6 +21,7 @@ namespace fang.临时软件
         private void button1_Click(object sender, EventArgs e)
         {
             textBox2.Text = method.Random(textBox1.Text);
+                    
         }
     }
 }

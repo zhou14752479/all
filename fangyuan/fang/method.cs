@@ -58,6 +58,45 @@ namespace fang
         }
         #endregion
 
+        #region GET使用代理IP请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlwithIP(string Url,string ip)
+        {
+            try
+            {
+
+
+                string COOKIE = "BIDUPSID=6F7A1FB331DE7AD89632403D26928572; PSTM=1546067770; MCITY=-309%3A; BAIDUID=6F7A1FB331DE7AD89632403D26928572:SL=0:NR=10:FG=1; BDORZ=FFFB88E999055A3F8A630C64834BD6D0; __guid=171760688.3766717285699673600.1547615234549.5005; monitor_count=34";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.KeepAlive = false;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
+
         #region ！！！！如果之前的请求获取不到源码就用这个去获取,非常重要！！！！
         public static string GetHtmlSource(string url)
         {
@@ -224,8 +263,6 @@ namespace fang
             return dt;
         }
         #endregion
-
-
 
         #region listview转多个datable
         /// <summary>
@@ -395,67 +432,47 @@ namespace fang
 
 
 
-/// <summary>
-/// 获取字符串的首字母
-/// </summary>
-/// <param name="str"></param>
-/// <returns></returns>
-        public static string GetPYString(string str)
+        /// <summary>
+        /// 获取字符串的首字母
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+
+ 
+     
+
+
+        #region 获取IP地区
+        /// <summary>
+        /// 获取IP地区
+        /// </summary>
+        /// <returns></returns>
+        public static string GetIp()
         {
-            string tempStr = "";
-            foreach (char c in str)
+            try
             {
-                if ((int)c>= 33 &&(int)c <= 126)
-                {//判断输入是否是字母和符号，是则原样保留   
-                    tempStr += c.ToString();
-                }
-                else
-                {//累加拼音声母   
-                    tempStr += GetPYChar(c.ToString());
-                    
-                }
+
+                string html = GetUrl("https://ip.cn/","utf-8");
+
+                MatchCollection match = Regex.Matches(html, @"<code>([\s\S]*?)</code>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+
+                return match[0].Groups[1].Value.Trim();
+
             }
-            return tempStr;
-        }
-        ///    
-        /// 取单个字符的拼音声母   
-        ///    
-        /// 要转换的单个汉字   
-        /// 拼音声母   
-        public static string GetPYChar(string c)
-        {
-            byte[] array = new byte[2];
-            array = System.Text.Encoding.Default.GetBytes(c);
-            int i = (short)(array[0] - '\0') * 256 + ((short)(array[1] - '\0'));
-            if (i < 0xB0A1) return "*";
-            if (i < 0xB0C5) return "a";
-            if (i < 0xB2C1) return "b";
-            if (i < 0xB4EE) return "c";
-            if (i < 0xB6EA) return "d";
-            if (i < 0xB7A2) return "e";
-            if (i < 0xB8C1) return "f";
-            if (i < 0xB9FE) return "g";
-            if (i < 0xBBF7) return "h";
-            if (i < 0xBFA6) return "j";
-            if (i < 0xC0AC) return "k";
-            if (i < 0xC2E8) return "l";
-            if (i < 0xC4C3) return "m";
-            if (i < 0xC5B6) return "n";
-            if (i < 0xC5BE) return "o";
-            if (i < 0xC6DA) return "p";
-            if (i < 0xC8BB) return "q";
-            if (i < 0xC8F6) return "r";
-            if (i < 0xCBFA) return "s";
-            if (i < 0xCDDA) return "t";
-            if (i < 0xCEF4) return "w";
-            if (i < 0xD1B9) return "x";
-            if (i < 0xD4D1) return "y";
-            if (i < 0xD7FA) return "z";
-            return "*";
+
+            catch (Exception ex)
+            {
+                ex.ToString();
+
+                return "获取IP错误";
+            }
+
         }
 
-
-
+        #endregion
+        
+        
 
 
 

@@ -58,15 +58,15 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.skinButton7 = new CCWin.SkinControl.SkinButton();
             this.skinButton6 = new CCWin.SkinControl.SkinButton();
             this.skinButton5 = new CCWin.SkinControl.SkinButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.skinButton7 = new CCWin.SkinControl.SkinButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -81,6 +81,7 @@
             this.splitContainer3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBox2
@@ -107,15 +108,16 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(278, 60);
+            this.textBox4.Location = new System.Drawing.Point(84, 66);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(94, 21);
+            this.textBox4.Size = new System.Drawing.Size(121, 21);
             this.textBox4.TabIndex = 12;
+            this.textBox4.Text = "1000";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(219, 69);
+            this.label6.Location = new System.Drawing.Point(15, 69);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 11;
@@ -147,6 +149,7 @@
             this.skinButton4.TabIndex = 10;
             this.skinButton4.Text = "导出";
             this.skinButton4.UseVisualStyleBackColor = false;
+            this.skinButton4.Click += new System.EventHandler(this.skinButton4_Click);
             // 
             // skinButton3
             // 
@@ -193,7 +196,7 @@
             "48小时内",
             "3天内",
             "1周内"});
-            this.comboBox1.Location = new System.Drawing.Point(81, 61);
+            this.comboBox1.Location = new System.Drawing.Point(84, 33);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 7;
@@ -202,7 +205,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 69);
+            this.label5.Location = new System.Drawing.Point(12, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 6;
@@ -233,8 +236,6 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.skinButton7);
-            this.splitContainer1.Panel2.Controls.Add(this.radioButton2);
-            this.splitContainer1.Panel2.Controls.Add(this.radioButton1);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton6);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton5);
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
@@ -296,7 +297,7 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView1.ContextMenuStrip = this.contextMenuStrip2;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -326,7 +327,7 @@
             // 跳转到文章链接ToolStripMenuItem
             // 
             this.跳转到文章链接ToolStripMenuItem.Name = "跳转到文章链接ToolStripMenuItem";
-            this.跳转到文章链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.跳转到文章链接ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.跳转到文章链接ToolStripMenuItem.Text = "跳转到文章链接";
             this.跳转到文章链接ToolStripMenuItem.Click += new System.EventHandler(this.跳转到文章链接ToolStripMenuItem_Click);
             // 
@@ -421,28 +422,26 @@
             this.columnHeader6.Text = "时间";
             this.columnHeader6.Width = 120;
             // 
-            // radioButton2
+            // columnHeader7
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(127, 24);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(95, 16);
-            this.radioButton2.TabIndex = 22;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "按阅读数获取";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.columnHeader7.Text = "网址";
             // 
-            // radioButton1
+            // skinButton7
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(83, 16);
-            this.radioButton1.TabIndex = 21;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "按时间获取";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.skinButton7.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton7.BaseColor = System.Drawing.Color.Silver;
+            this.skinButton7.BorderColor = System.Drawing.Color.Silver;
+            this.skinButton7.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton7.DownBack = null;
+            this.skinButton7.Location = new System.Drawing.Point(671, 63);
+            this.skinButton7.MouseBack = null;
+            this.skinButton7.Name = "skinButton7";
+            this.skinButton7.NormlBack = null;
+            this.skinButton7.Size = new System.Drawing.Size(92, 24);
+            this.skinButton7.TabIndex = 23;
+            this.skinButton7.Text = "停止";
+            this.skinButton7.UseVisualStyleBackColor = false;
+            this.skinButton7.Click += new System.EventHandler(this.skinButton7_Click_1);
             // 
             // skinButton6
             // 
@@ -491,36 +490,29 @@
             this.toolStrip1.TabIndex = 17;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "网址";
-            // 
-            // skinButton7
-            // 
-            this.skinButton7.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton7.BaseColor = System.Drawing.Color.Silver;
-            this.skinButton7.BorderColor = System.Drawing.Color.Silver;
-            this.skinButton7.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton7.DownBack = null;
-            this.skinButton7.Location = new System.Drawing.Point(671, 63);
-            this.skinButton7.MouseBack = null;
-            this.skinButton7.Name = "skinButton7";
-            this.skinButton7.NormlBack = null;
-            this.skinButton7.Size = new System.Drawing.Size(92, 24);
-            this.skinButton7.TabIndex = 23;
-            this.skinButton7.Text = "停止";
-            this.skinButton7.UseVisualStyleBackColor = false;
-            this.skinButton7.Click += new System.EventHandler(this.skinButton7_Click_1);
-            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(44, 22);
             this.toolStripLabel2.Text = "未开始";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStrip2.Name = "contextMenuStrip1";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(125, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "删除该项";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // 百家号
             // 
@@ -531,6 +523,7 @@
             this.Name = "百家号";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "火蓝百家采集";
+            this.Load += new System.EventHandler(this.百家号_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -548,6 +541,7 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -570,8 +564,6 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 跳转到文章链接ToolStripMenuItem;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private CCWin.SkinControl.SkinButton skinButton6;
         private CCWin.SkinControl.SkinButton skinButton5;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -591,5 +583,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private CCWin.SkinControl.SkinButton skinButton7;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

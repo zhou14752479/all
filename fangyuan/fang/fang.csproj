@@ -212,6 +212,12 @@
     <Compile Include="临时软件\quan.Designer.cs">
       <DependentUpon>quan.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\搜源网.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\搜源网.Designer.cs">
+      <DependentUpon>搜源网.cs</DependentUpon>
+    </Compile>
     <Compile Include="临时软件\注册机.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\quan.resx">
       <DependentUpon>quan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\搜源网.resx">
+      <DependentUpon>搜源网.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\注册机.resx">
       <DependentUpon>注册机.cs</DependentUpon>

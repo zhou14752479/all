@@ -165,7 +165,7 @@ namespace fang.临时软件
         {
             this.status = false;
 
-           textBox1.Text=    method.GetPYString("北京");
+          
         }
 
         private void button4_Click(object sender, EventArgs e)
