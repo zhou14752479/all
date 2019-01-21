@@ -111,10 +111,7 @@ namespace zhaopin_58
                             foreach (string list in lists)
 
                             {
-                                string strhtml = method.GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-                                
-
+                                string strhtml = method.GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
                                 string rxg = @"<title>([\s\S]*?)</title>";
                                 string rxg1 = @"""name"":""([\s\S]*?)""";    //公司                            
                                 string rxg2 = @"linkman:'([\s\S]*?)'";
@@ -130,8 +127,7 @@ namespace zhaopin_58
                                 string tellHtml = method.GetUrl("http://app.58.com/api/windex/scandetail/car/" + id.Groups[1].Value.ToString().Trim() + "/?pid=801");
                                
 
-
-
+                               
                                 Match title = Regex.Match(strhtml, rxg);
                                 Match company = Regex.Match(strhtml, rxg1);
                                 Match lxr = Regex.Match(strhtml, rxg2);
@@ -139,31 +135,43 @@ namespace zhaopin_58
                                 Match time = Regex.Match(strhtml, rxg4);
                                 Match area = Regex.Match(strhtml, rxg5);
                                 Match addr = Regex.Match(strhtml, rxg6);
-
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                if (company.Groups[1].Value != "")
+                                {
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                     lv1.SubItems.Add(title.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(company.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(lxr.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-", ""));
-                                lv1.SubItems.Add(area.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                
+                                    lv1.SubItems.Add(lxr.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-", ""));
+                                    lv1.SubItems.Add(area.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+
                                     lv1.SubItems.Add(time.Groups[1].Value.Trim());
 
-                                string[] values = { title.Groups[1].Value.Trim(), company.Groups[1].Value.Trim(), lxr.Groups[1].Value.Trim(),  tell.Groups[1].Value.Trim(), area.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), DateTime.Now.ToString(),};
-                                insertData(values);
+                                    string[] values = { title.Groups[1].Value.Trim(), company.Groups[1].Value.Trim(), lxr.Groups[1].Value.Trim(), tell.Groups[1].Value.Trim(), area.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), DateTime.Now.ToString(), };
+                                    insertData(values);
 
-                                if (listView1.Items.Count - 1 > 1)
-                                {
-                                    listView1.EnsureVisible(listView1.Items.Count - 1);
-                                }
+                                    if (listView1.Items.Count - 1 > 1)
+                                    {
+                                        listView1.EnsureVisible(listView1.Items.Count - 1);
+                                    }
 
-                                while (this.zanting == false)
-                                {
-                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+                                    Application.DoEvents();
+                                    System.Threading.Thread.Sleep(3000);   //内容获取间隔，可变量
+
                                 }
-                                Application.DoEvents();
-                                System.Threading.Thread.Sleep(3000);   //内容获取间隔，可变量
+                                else
+                                {
+                                    this.zanting = false;
+                                    MessageBox.Show("请在浏览器打开的页面中完成验证码验证，然后回到软件界面点击继续采集按钮！");
+                                    System.Diagnostics.Process.Start("https://suqian.58.com/yewu/33805288842284x.shtml");
+                                    System.Diagnostics.Process.Start("https://suqian.58.com/banjia/29936306153798x.shtml");
+
+                                }
+                                   
 
                             }
 

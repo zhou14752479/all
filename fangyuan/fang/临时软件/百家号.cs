@@ -58,12 +58,13 @@ namespace fang.临时软件
         bool condition=true;
         ArrayList finishes = new ArrayList();
 
+
         #region  主函数
         public void run()
 
         {
             ArrayList lists = getListviewValue1(listView1);
-           
+
 
 
             try
@@ -72,138 +73,136 @@ namespace fang.临时软件
 
                 foreach (string id in lists)
                 {
-                  
-                    string html = method.GetUrl("https://author.baidu.com/pipe?tab=2&app_id="+id+"&num=20&pagelets[]=article&reqID=1&isspeed=0", "utf-8");
+
+                    toolStripLabel2.Text = id.ToString();
+                    string html = method.GetUrl("https://author.baidu.com/pipe?tab=2&app_id=" + id + "&num=20&pagelets[]=article&reqID=1&isspeed=0", "utf-8");
+
+
+                        string rxg = @"data-event-data=\\""news_([\s\S]*?)\\"" data-thread-id=\\""([\s\S]*?)\\"">   <div class=\\""text\\""><h2>([\s\S]*?)</h2> ";
+                        MatchCollection titles = Regex.Matches(html, @"<h2>([\s\S]*?)</h2>");
+                        MatchCollection times = Regex.Matches(html, @"<div class=\\""time\\"">([\s\S]*?)</div>");
+                        MatchCollection urls = Regex.Matches(html, @"<a href=\\""([\s\S]*?)\\""");
+                        MatchCollection matches = Regex.Matches(html, rxg);
+
+
+                        for (int i = 0; i < matches.Count; i++)
+                        {
+                            string url = "https://mbd.baidu.com/webpage?type=homepage&action=interact&format=jsonp&params=[{\"user_type\":\"3\",\"dynamic_id\":\"" + matches[i].Groups[1].Value + "\",\"dynamic_type\":\"2\",\"dynamic_sub_type\":\"2001\",\"thread_id\":" + matches[i].Groups[2].Value + ",\"feed_id\":\"" + matches[i].Groups[1].Value + "\"}]&uk=bYnkwu6b6HSuNmRoc92UbA&_=1547616333196&callback=jsonp1";
+
 
                        
-                    string rxg = @"data-event-data=\\""news_([\s\S]*?)\\"" data-thread-id=\\""([\s\S]*?)\\"">   <div class=\\""text\\""><h2>([\s\S]*?)</h2> ";
-                    MatchCollection titles = Regex.Matches(html, @"<h2>([\s\S]*?)</h2>");
-                    MatchCollection times = Regex.Matches(html, @"<div class=\\""time\\"">([\s\S]*?)</div>");
-                    MatchCollection urls = Regex.Matches(html, @"<a href=\\""([\s\S]*?)\\""");
-                    MatchCollection matches = Regex.Matches(html,rxg);
+                            string readHtml = method.GetUrl(url, "utf-8");
 
-                   
+                            Match reads = Regex.Match(readHtml, @"read_num"":([\s\S]*?),");
 
+                            if (comboBox1.Text == "1小时内")
+                            {
+                                this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                            }
 
-
-
-
-
-                    for (int i = 0; i < matches.Count; i++)
-                    {
-                        string url = "https://mbd.baidu.com/webpage?type=homepage&action=interact&format=jsonp&params=[{\"user_type\":\"3\",\"dynamic_id\":\"" + matches[i].Groups[1].Value + "\",\"dynamic_type\":\"2\",\"dynamic_sub_type\":\"2001\",\"thread_id\":" + matches[i].Groups[2].Value + ",\"feed_id\":\"" + matches[i].Groups[1].Value + "\"}]&uk=bYnkwu6b6HSuNmRoc92UbA&_=1547616333196&callback=jsonp1";
-
-                        string readHtml = method.GetUrl(url, "utf-8");
-
-                        Match reads = Regex.Match(readHtml, @"read_num"":([\s\S]*?),");
-
-                        if ( comboBox1.Text == "1小时内")
-                        {
-                            this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时"))&&Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-                        }
-
-                        else if ( comboBox1.Text == "3小时内")
-                        {
-                            this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时") || times[i].Groups[1].Value.Contains("2小时") || times[i].Groups[1].Value.Contains("3小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-                        }
-                        else if ( comboBox1.Text == "8小时内")
-                        {
-                            this.condition =( times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时") || times[i].Groups[1].Value.Contains("2小时") || times[i].Groups[1].Value.Contains("3小时") || times[i].Groups[1].Value.Contains("4小时") || times[i].Groups[1].Value.Contains("5小时") || times[i].Groups[1].Value.Contains("6小时") || times[i].Groups[1].Value.Contains("7小时") || times[i].Groups[1].Value.Contains("8小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-                        }
-                        else if ( comboBox1.Text == "24小时内")
-                        {
-                            this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-                        }
-                        else if ( comboBox1.Text == "48小时内")
-                        {
-                            this.condition =( times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-                        }
-                        else if ( comboBox1.Text == "3天内")
-                        {
-                            if (!times[i].Groups[1].Value.Contains("-"))
+                            else if (comboBox1.Text == "3小时内")
+                            {
+                                this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时") || times[i].Groups[1].Value.Contains("2小时") || times[i].Groups[1].Value.Contains("3小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                            }
+                            else if (comboBox1.Text == "8小时内")
+                            {
+                                this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时") || times[i].Groups[1].Value.Contains("2小时") || times[i].Groups[1].Value.Contains("3小时") || times[i].Groups[1].Value.Contains("4小时") || times[i].Groups[1].Value.Contains("5小时") || times[i].Groups[1].Value.Contains("6小时") || times[i].Groups[1].Value.Contains("7小时") || times[i].Groups[1].Value.Contains("8小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                            }
+                            else if (comboBox1.Text == "24小时内")
                             {
                                 this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-
                             }
-                            else if (times[i].Groups[1].Value.Contains("-"))
+                            else if (comboBox1.Text == "48小时内")
                             {
-                                string time = "2019," + times[i].Groups[1].Value.Replace("-", ",").Replace(" ", ",").Replace(":", ",");
+                                this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                            }
+                            else if (comboBox1.Text == "3天内")
+                            {
+                                if (!times[i].Groups[1].Value.Contains("-"))
+                                {
+                                    this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
 
-                                string[] utimes = time.Split(',');
+                                }
+                                else if (times[i].Groups[1].Value.Contains("-"))
+                                {
+                                    string time = "2019," + times[i].Groups[1].Value.Replace("-", ",").Replace(" ", ",").Replace(":", ",");
 
-                                DateTime atime = new DateTime(Convert.ToInt32(utimes[0]), Convert.ToInt32(utimes[1]), Convert.ToInt32(utimes[2]));
-                                TimeSpan d3 = DateTime.Now.Subtract(atime);
-                                this.condition = d3.Days < 3 && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                                    string[] utimes = time.Split(',');
+
+                                    DateTime atime = new DateTime(Convert.ToInt32(utimes[0]), Convert.ToInt32(utimes[1]), Convert.ToInt32(utimes[2]));
+                                    TimeSpan d3 = DateTime.Now.Subtract(atime);
+                                    this.condition = d3.Days < 3 && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+
+                                }
+                            }
+                            else if (comboBox1.Text == "1周内")
+                            {
+                                if (!times[i].Groups[1].Value.Contains("-"))
+                                {
+                                    this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+
+                                }
+                                else if (times[i].Groups[1].Value.Contains("-"))
+                                {
+                                    string time = "2019," + times[i].Groups[1].Value.Replace("-", ",").Replace(" ", ",").Replace(":", ",");
+
+                                    string[] utimes = time.Split(',');
+
+                                    DateTime atime = new DateTime(Convert.ToInt32(utimes[0]), Convert.ToInt32(utimes[1]), Convert.ToInt32(utimes[2]));
+                                    TimeSpan d3 = DateTime.Now.Subtract(atime);
+                                    this.condition = d3.Days < 8 && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+
+                                }
 
                             }
+
+
+                            else
+                            {
+                                this.condition = true;
+                            }
+                            
+
+                            if (this.condition)
+                            {
+
+
+                                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv2.SubItems.Add(titles[i].Groups[1].Value);
+
+                                lv2.SubItems.Add(reads.Groups[1].Value);
+                                lv2.SubItems.Add(times[i].Groups[1].Value);
+                                lv2.SubItems.Add(urls[i].Groups[1].Value);
+
+
+
+                                if (listView2.Items.Count - 1 > 1)
+                                {
+                                    listView2.EnsureVisible(listView2.Items.Count - 1);
+                                }
+                                //如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();
+                                }
+                                Thread.Sleep(1000);
+
+
+                            }
+
                         }
-                        else if ( comboBox1.Text == "1周内")
-                        {
-                            if (!times[i].Groups[1].Value.Contains("-"))
-                            {
-                                this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天"))&& Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-
-                            }
-                            else if (times[i].Groups[1].Value.Contains("-"))
-                            {
-                                string time = "2019," + times[i].Groups[1].Value.Replace("-",",").Replace(" ",",").Replace(":",",");
-
-                                string[] utimes = time.Split(',');
-
-                                DateTime atime = new DateTime(Convert.ToInt32(utimes[0]), Convert.ToInt32(utimes[1]), Convert.ToInt32(utimes[2]));
-                                TimeSpan d3 = DateTime.Now.Subtract(atime);
-                                this.condition = d3.Days<8 && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-
-                            }
-
-                        }
-                      
-
-                        else
-                        {
-                            this.condition = true;
-                        }
-                        toolStripLabel2.Text = urls[i].Groups[1].Value;
-
-                        if (this.condition)
-                        {
 
 
-                            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv2.SubItems.Add(titles[i].Groups[1].Value);
-                           
-                            lv2.SubItems.Add(reads.Groups[1].Value);
-                            lv2.SubItems.Add(times[i].Groups[1].Value);
-                            lv2.SubItems.Add(urls[i].Groups[1].Value);
-
-
-
-                            if (listView2.Items.Count - 1 > 1)
-                            {
-                                listView2.EnsureVisible(listView2.Items.Count - 1);
-                            }
-                            //如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();
-                            }
-                            Thread.Sleep(1000);
-                        
-
-                        }
 
                     }
-                    
 
-                    
                 }
-                
-            }
+            
 
             catch (Exception ex)
             {
-                 MessageBox.Show( ex.ToString());
+                ex.ToString();
             }
         }
 
@@ -236,9 +235,12 @@ namespace fang.临时软件
             RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
             if (rsg != null && rsg.GetValue("mac") != null)  //如果值不为空
             {
-                Thread thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
+               
+                    Thread thread = new Thread(new ThreadStart(run));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+               
+                
 
             }
 
@@ -354,7 +356,7 @@ namespace fang.临时软件
 
         private void skinButton4_Click(object sender, EventArgs e)
         {
-
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
         }
     }
 }
