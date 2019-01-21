@@ -44,18 +44,7 @@ namespace fang.临时软件
 
         }
 
-        public class JsonParser
-        {
-            public List<Data> data;
 
-        }
-
-        public class Data
-        {
-            public string source_title;
-            public string anchor;
-            public string target_url;
-        }
 
 
         #region  主函数
@@ -72,23 +61,51 @@ namespace fang.临时软件
                 {
                     string URL = "https://bl.backend.semrush.com/?key=c3e728669724466c097a401ecddaba67&target="+list+"&type=backlinks_overview&method=nojsonp&target_type=root_domain&export_columns=backlinks_anchors%2Cdomains_num%2Chosts_num%2Ctexts_num%2Curls_num%2Cips_num%2Cipclassc_num%2Cgeodomains%2Czones%2Cfollows_num%2Cforms_num%2Cframes_num%2Cimages_num%2Cbacklinks%2Cbacklinks_pages%2Cbacklinks_refdomains";
                     string html = method.GetUrl(URL, "utf-8");
-                    textBox2.Text = html;
-                    JsonParser jsonParser = JsonConvert.DeserializeObject<JsonParser>(html);
-                    foreach (Data content in jsonParser.data)
-                    {
-                 
-                            ListViewItem lv3 = listView3.Items.Add(listView3.Items.Count.ToString()); //使用Listview展示数据
-                            lv3.SubItems.Add(content.source_title);
-                        lv3.SubItems.Add(content.anchor);
-                        lv3.SubItems.Add(content.target_url);
 
-                        if (listView3.Items.Count - 1 > 1)
+                    MatchCollection titles = Regex.Matches(html, @"source_title"":""([\s\S]*?)""");
+                    MatchCollection anchors = Regex.Matches(html, @"anchor"":""([\s\S]*?)""");
+
+                    if (titles.Count > 0)
+                    {
+                        for (int i = 0; i < titles.Count; i++)
+                        {
+
+                            ListViewItem lv3 = listView3.Items.Add(listView3.Items.Count.ToString()); //使用Listview展示数据
+                            lv3.SubItems.Add(list);
+                            lv3.SubItems.Add(titles[i].Groups[1].Value);                          
+
+                            if (listView3.Items.Count - 1 > 1)
+                            {
+                                listView3.EnsureVisible(listView3.Items.Count - 1);                           
+                            }
+
+                        }
+                    }
+
+                    if (anchors.Count > 0)
+                    {
+                        for (int i = 0; i < anchors.Count; i++)
+                        {
+
+                            ListViewItem lv3 = listView3.Items.Add(listView3.Items.Count.ToString()); //使用Listview展示数据
+                            lv3.SubItems.Add(list);
+                            lv3.SubItems.Add(anchors[i].Groups[1].Value);
+
+                            if (listView3.Items.Count - 1 > 1)
                             {
                                 listView3.EnsureVisible(listView3.Items.Count - 1);
                             }
-                        
+
+                        }
+                    }
+                    else
+                    {
+                        ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
+                        lv2.SubItems.Add(list);
+                       
                     }
 
+                    Thread.Sleep(1000);
                 }
 
             }
@@ -139,7 +156,18 @@ namespace fang.临时软件
 
         private void skinButton4_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+        private void skinButton7_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView3), "Sheet1", true);
+        }
+
+        private void skinButton6_Click(object sender, EventArgs e)
+        {
+            this.listView2.Items.Clear();
+            this.listView3.Items.Clear();
         }
     }
 }
