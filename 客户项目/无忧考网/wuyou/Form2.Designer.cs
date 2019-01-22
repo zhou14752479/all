@@ -30,15 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.跳转到文章链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinButton7 = new CCWin.SkinControl.SkinButton();
@@ -46,24 +38,18 @@
             this.skinButton5 = new CCWin.SkinControl.SkinButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.skinButton8 = new CCWin.SkinControl.SkinButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.skinButton4 = new CCWin.SkinControl.SkinButton();
             this.skinButton3 = new CCWin.SkinControl.SkinButton();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label5 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -87,15 +73,6 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.toolStripMenuItem1.Text = "删除该项";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "添加一个：";
-            // 
             // skinButton1
             // 
             this.skinButton1.BackColor = System.Drawing.Color.Transparent;
@@ -103,64 +80,15 @@
             this.skinButton1.BorderColor = System.Drawing.Color.Silver;
             this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton1.DownBack = null;
-            this.skinButton1.Location = new System.Drawing.Point(163, 10);
+            this.skinButton1.Location = new System.Drawing.Point(17, 12);
             this.skinButton1.MouseBack = null;
             this.skinButton1.Name = "skinButton1";
             this.skinButton1.NormlBack = null;
-            this.skinButton1.Size = new System.Drawing.Size(67, 24);
+            this.skinButton1.Size = new System.Drawing.Size(203, 24);
             this.skinButton1.TabIndex = 2;
-            this.skinButton1.Text = "点击添加";
+            this.skinButton1.Text = "打开";
             this.skinButton1.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.textBox1.Location = new System.Drawing.Point(74, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(83, 21);
-            this.textBox1.TabIndex = 1;
-            // 
-            // listView2
-            // 
-            this.listView2.BackColor = System.Drawing.Color.White;
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.listView2.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(0, 0);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(627, 346);
-            this.listView2.TabIndex = 10;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "ID";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "标题";
-            this.columnHeader4.Width = 400;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "阅读量";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "时间";
-            this.columnHeader6.Width = 120;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "网址";
+            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
             // contextMenuStrip1
             // 
@@ -227,9 +155,7 @@
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.toolStripLabel4,
-            this.toolStripLabel2});
+            this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 117);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(867, 25);
@@ -241,35 +167,6 @@
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(0, 22);
             // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(92, 22);
-            this.toolStripLabel4.Text = "当前筛选位置：";
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(44, 22);
-            this.toolStripLabel2.Text = "未开始";
-            // 
-            // skinButton8
-            // 
-            this.skinButton8.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton8.BaseColor = System.Drawing.Color.Silver;
-            this.skinButton8.BorderColor = System.Drawing.Color.Silver;
-            this.skinButton8.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.skinButton8.DownBack = null;
-            this.skinButton8.Location = new System.Drawing.Point(0, 47);
-            this.skinButton8.MouseBack = null;
-            this.skinButton8.Name = "skinButton8";
-            this.skinButton8.NormlBack = null;
-            this.skinButton8.Size = new System.Drawing.Size(236, 24);
-            this.skinButton8.TabIndex = 9;
-            this.skinButton8.Text = "批量添加";
-            this.skinButton8.UseVisualStyleBackColor = false;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -280,23 +177,6 @@
             this.toolStripMenuItem1});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
             this.contextMenuStrip2.Size = new System.Drawing.Size(125, 26);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(84, 66);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(121, 21);
-            this.textBox4.TabIndex = 12;
-            this.textBox4.Text = "1000";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 69);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 12);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "阅读数：";
             // 
             // skinButton4
             // 
@@ -346,23 +226,6 @@
             this.skinButton2.Text = "开始";
             this.skinButton2.UseVisualStyleBackColor = false;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "1小时内",
-            "3小时内",
-            "8小时内",
-            "24小时内",
-            "48小时内",
-            "3天内",
-            "1周内"});
-            this.comboBox1.Location = new System.Drawing.Point(84, 33);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 7;
-            this.comboBox1.Text = "1小时内";
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -380,13 +243,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.skinButton6);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton5);
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
-            this.splitContainer1.Panel2.Controls.Add(this.textBox4);
-            this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton4);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton3);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton2);
-            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Size = new System.Drawing.Size(867, 492);
             this.splitContainer1.SplitterDistance = 346;
             this.splitContainer1.TabIndex = 2;
@@ -403,9 +262,9 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.listView2);
+            this.splitContainer2.Panel2.Controls.Add(this.listView1);
             this.splitContainer2.Size = new System.Drawing.Size(867, 346);
-            this.splitContainer2.SplitterDistance = 236;
+            this.splitContainer2.SplitterDistance = 687;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -417,17 +276,24 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.listView1);
+            this.splitContainer3.Panel1.Controls.Add(this.textBox1);
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.skinButton8);
-            this.splitContainer3.Panel2.Controls.Add(this.label1);
             this.splitContainer3.Panel2.Controls.Add(this.skinButton1);
-            this.splitContainer3.Panel2.Controls.Add(this.textBox1);
-            this.splitContainer3.Size = new System.Drawing.Size(236, 346);
+            this.splitContainer3.Size = new System.Drawing.Size(687, 346);
             this.splitContainer3.SplitterDistance = 271;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // textBox1
+            // 
+            this.textBox1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.textBox1.Location = new System.Drawing.Point(17, 12);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(649, 245);
+            this.textBox1.TabIndex = 2;
             // 
             // listView1
             // 
@@ -441,8 +307,8 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(236, 271);
-            this.listView1.TabIndex = 10;
+            this.listView1.Size = new System.Drawing.Size(176, 346);
+            this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
@@ -455,15 +321,6 @@
             this.columnHeader2.Text = "ID";
             this.columnHeader2.Width = 200;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "时间设置：";
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -471,6 +328,7 @@
             this.ClientSize = new System.Drawing.Size(867, 492);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
@@ -486,8 +344,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
-            this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -497,15 +355,7 @@
         #endregion
 
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.Label label1;
         private CCWin.SkinControl.SkinButton skinButton1;
-        private System.Windows.Forms.TextBox textBox1;
-        internal System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 跳转到文章链接ToolStripMenuItem;
         private CCWin.SkinControl.SkinButton skinButton7;
@@ -513,23 +363,17 @@
         private CCWin.SkinControl.SkinButton skinButton5;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private CCWin.SkinControl.SkinButton skinButton8;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label6;
         private CCWin.SkinControl.SkinButton skinButton4;
         private CCWin.SkinControl.SkinButton skinButton3;
         private CCWin.SkinControl.SkinButton skinButton2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.TextBox textBox1;
         internal System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Label label5;
     }
 }
