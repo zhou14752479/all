@@ -85,82 +85,87 @@ namespace fang.临时软件
                         MatchCollection matches = Regex.Matches(html, rxg);
 
 
-                        for (int i = 0; i < matches.Count; i++)
+                    for (int i = 0; i < matches.Count; i++)
+                    {
+                        string url = "https://mbd.baidu.com/webpage?type=homepage&action=interact&format=jsonp&params=[{\"user_type\":\"3\",\"dynamic_id\":\"" + matches[i].Groups[1].Value + "\",\"dynamic_type\":\"2\",\"dynamic_sub_type\":\"2001\",\"thread_id\":" + matches[i].Groups[2].Value + ",\"feed_id\":\"" + matches[i].Groups[1].Value + "\"}]&uk=bYnkwu6b6HSuNmRoc92UbA&_=1547616333196&callback=jsonp1";
+
+
+
+                        string readHtml = method.GetUrl(url, "utf-8");
+
+                        Match reads = Regex.Match(readHtml, @"read_num"":([\s\S]*?),");
+
+                        if (reads.Groups[1].Value != null && reads.Groups[1].Value != "")
                         {
-                            string url = "https://mbd.baidu.com/webpage?type=homepage&action=interact&format=jsonp&params=[{\"user_type\":\"3\",\"dynamic_id\":\"" + matches[i].Groups[1].Value + "\",\"dynamic_type\":\"2\",\"dynamic_sub_type\":\"2001\",\"thread_id\":" + matches[i].Groups[2].Value + ",\"feed_id\":\"" + matches[i].Groups[1].Value + "\"}]&uk=bYnkwu6b6HSuNmRoc92UbA&_=1547616333196&callback=jsonp1";
-
-
-                       
-                            string readHtml = method.GetUrl(url, "utf-8");
-
-                            Match reads = Regex.Match(readHtml, @"read_num"":([\s\S]*?),");
 
                             if (comboBox1.Text == "1小时内")
-                            {
-                                this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-                            }
+                        {
+                            this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                        }
 
-                            else if (comboBox1.Text == "3小时内")
-                            {
-                                this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时") || times[i].Groups[1].Value.Contains("2小时") || times[i].Groups[1].Value.Contains("3小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-                            }
-                            else if (comboBox1.Text == "8小时内")
-                            {
-                                this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时") || times[i].Groups[1].Value.Contains("2小时") || times[i].Groups[1].Value.Contains("3小时") || times[i].Groups[1].Value.Contains("4小时") || times[i].Groups[1].Value.Contains("5小时") || times[i].Groups[1].Value.Contains("6小时") || times[i].Groups[1].Value.Contains("7小时") || times[i].Groups[1].Value.Contains("8小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-                            }
-                            else if (comboBox1.Text == "24小时内")
+                        else if (comboBox1.Text == "3小时内")
+                        {
+                            this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时") || times[i].Groups[1].Value.Contains("2小时") || times[i].Groups[1].Value.Contains("3小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                        }
+                        else if (comboBox1.Text == "8小时内")
+                        {
+                            this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("1小时") || times[i].Groups[1].Value.Contains("2小时") || times[i].Groups[1].Value.Contains("3小时") || times[i].Groups[1].Value.Contains("4小时") || times[i].Groups[1].Value.Contains("5小时") || times[i].Groups[1].Value.Contains("6小时") || times[i].Groups[1].Value.Contains("7小时") || times[i].Groups[1].Value.Contains("8小时")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                        }
+                        else if (comboBox1.Text == "24小时内")
+                        {
+                            this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                        }
+                        else if (comboBox1.Text == "48小时内")
+                        {
+                            this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                        }
+                        else if (comboBox1.Text == "3天内")
+                        {
+                            if (!times[i].Groups[1].Value.Contains("-"))
                             {
                                 this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+
                             }
-                            else if (comboBox1.Text == "48小时内")
+                            else if (times[i].Groups[1].Value.Contains("-") && !times[i].Groups[1].Value.Contains("2018") && !times[i].Groups[1].Value.Contains("2017"))
+                            {
+                                string time = "2019," + times[i].Groups[1].Value.Replace("-", ",").Replace(" ", ",").Replace(":", ",");
+
+                                string[] utimes = time.Split(',');
+
+                                DateTime atime = new DateTime(Convert.ToInt32(utimes[0]), Convert.ToInt32(utimes[1]), Convert.ToInt32(utimes[2]));
+                                TimeSpan d3 = DateTime.Now.Subtract(atime);
+                                this.condition = d3.Days < 3 && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+
+                            }
+                        }
+                        else if (comboBox1.Text == "1周内")
+                        {
+                            if (!times[i].Groups[1].Value.Contains("-"))
                             {
                                 this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+
                             }
-                            else if (comboBox1.Text == "3天内")
+                            else if (times[i].Groups[1].Value.Contains("-") && !times[i].Groups[1].Value.Contains("2018") && !times[i].Groups[1].Value.Contains("2017"))
                             {
-                                if (!times[i].Groups[1].Value.Contains("-"))
-                                {
-                                    this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
+                                string time = "2019," + times[i].Groups[1].Value.Replace("-", ",").Replace(" ", ",").Replace(":", ",");
 
-                                }
-                                else if (times[i].Groups[1].Value.Contains("-"))
-                                {
-                                    string time = "2019," + times[i].Groups[1].Value.Replace("-", ",").Replace(" ", ",").Replace(":", ",");
+                                string[] utimes = time.Split(',');
 
-                                    string[] utimes = time.Split(',');
 
-                                    DateTime atime = new DateTime(Convert.ToInt32(utimes[0]), Convert.ToInt32(utimes[1]), Convert.ToInt32(utimes[2]));
-                                    TimeSpan d3 = DateTime.Now.Subtract(atime);
-                                    this.condition = d3.Days < 3 && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-
-                                }
-                            }
-                            else if (comboBox1.Text == "1周内")
-                            {
-                                if (!times[i].Groups[1].Value.Contains("-"))
-                                {
-                                    this.condition = (times[i].Groups[1].Value.Contains("分") || times[i].Groups[1].Value.Contains("秒") || times[i].Groups[1].Value.Contains("小时") || times[i].Groups[1].Value.Contains("昨天")) && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-
-                                }
-                                else if (times[i].Groups[1].Value.Contains("-"))
-                                {
-                                    string time = "2019," + times[i].Groups[1].Value.Replace("-", ",").Replace(" ", ",").Replace(":", ",");
-
-                                    string[] utimes = time.Split(',');
-
-                                    DateTime atime = new DateTime(Convert.ToInt32(utimes[0]), Convert.ToInt32(utimes[1]), Convert.ToInt32(utimes[2]));
-                                    TimeSpan d3 = DateTime.Now.Subtract(atime);
-                                    this.condition = d3.Days < 8 && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
-
-                                }
+                                DateTime atime = new DateTime(Convert.ToInt32(utimes[0]), Convert.ToInt32(utimes[1]), Convert.ToInt32(utimes[2]));
+                                TimeSpan d3 = DateTime.Now.Subtract(atime);
+                                this.condition = d3.Days < 8 && Convert.ToInt32(reads.Groups[1].Value) >= Convert.ToInt32(textBox4.Text);
 
                             }
 
+                        }
+                    }
 
-                            else
-                            {
-                                this.condition = true;
-                            }
+
+                        else
+                        {
+                            this.condition = true;
+                        }
                             
 
                             if (this.condition)
@@ -202,7 +207,7 @@ namespace fang.临时软件
 
             catch (Exception ex)
             {
-                ex.ToString();
+              MessageBox.Show(  ex.ToString());
             }
         }
 

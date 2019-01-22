@@ -54,9 +54,9 @@ namespace wuyou
                         lists.Add("http://www.51test.net"+match.Groups[1].Value.Trim());
                     }
 
-                    MessageBox.Show(lists.Count.ToString());
+                   
 
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < lists.Count; i++)
                     {
                         string ahtml = methodClass.GetUrl(lists[i].ToString(), "gb2312", "");
 
@@ -96,37 +96,29 @@ namespace wuyou
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (listView1.Items.Count == 0)
+            foreach (ListViewItem item in listView1.Items)
             {
-                MessageBox.Show("列表为空!");
-            }
-            else
-            {
-                List<string> list = new List<string>();
-                foreach (ListViewItem item in listView1.Items)
+                if (listView1.Items.Count == 0)
                 {
-                    string temp = item.SubItems[0].Text;
-                    list.Add(temp + "\r\n"+item.SubItems[1].Text);
+                    MessageBox.Show("列表为空!");
                 }
-                Thread thexp = new Thread(() => export(list)) { IsBackground = true };
-                thexp.Start();
+                else
+                {
+                    List<string> list = new List<string>();
+
+                    string temp = item.SubItems[0].Text;
+                    string title = item.SubItems[0].Text;
+                    list.Add(temp + "\r\n" + item.SubItems[1].Text);
+
+                    Thread thexp = new Thread(() => export(list, title)) { IsBackground = true };
+                    thexp.Start();
+                }
             }
         }
 
-        private void export(List<string> list)
+        private void export(List<string> list,string name)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + Guid.NewGuid().ToString() + ".docx";
-
-            //删除txt文本
-            string path1 = Environment.CurrentDirectory;
-            string pattern = "*.txt";
-            string[] strFileName = Directory.GetFiles(path1, pattern);
-            foreach (var item in strFileName)
-            {
-                File.Delete(item);
-
-            }
-            //删除txt文本
+            string path = AppDomain.CurrentDomain.BaseDirectory + name + ".docx";
 
             StringBuilder sb = new StringBuilder();
             foreach (string tel in list)
