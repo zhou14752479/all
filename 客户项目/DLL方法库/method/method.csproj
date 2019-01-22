@@ -32,16 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NPOI">
-      <HintPath>..\..\..\..\软件\采集器\NPOI.dll</HintPath>
+      <HintPath>..\..\..\..\58同城招聘软件最新版\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\..\..\软件\采集器\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\..\58同城招聘软件最新版\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\..\..\软件\采集器\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\..\58同城招聘软件最新版\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\..\..\软件\采集器\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\..\58同城招聘软件最新版\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
