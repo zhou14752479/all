@@ -32,7 +32,7 @@ namespace zhaopin_58
             {
                 string COOKIE = "__utmz=253535702.1530623991.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); city=3144; wmda_visited_projects=%3B6333604277682; xxzl_deviceid=DviWvqAxjqBKPKAAQlHF%2Fu3wlwjT0ubNuBl4jjM2ZwOf4nW7LAg%2B3dpGBIRZvLWF; wmda_new_uuid=1; id58=c5/nn1s7d/lRQJdfbXolAg==; ppStore_fingerprint=6B2AABD021069F53E575C77EDC1494CF3247CEC048B37880%EF%BC%BF1536803833803; __utma=253535702.1105287715.1530623991.1530623991.1530623991.1; new_uv=4; wmda_uuid=303945c42e3068567ada1d9e5881ca2f; als=0; 58tj_uuid=c87bfc4e-5928-4f53-bfe2-1b3190aa6606; cookieuid1=mgjwFVtxWKKpblS6A2QYAg==";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-
+                request.Timeout = 10000;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
@@ -270,5 +270,69 @@ namespace zhaopin_58
 
         #endregion
 
+
+
+
+        #region 通过API获取IP
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetIp(string Url)
+        {
+            try
+            {         
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+                request.AllowAutoRedirect = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 10000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  I
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
+
+
+
+        public static string GetUrlWithIp(string URL, string ip,int port)
+        {
+            try
+            {
+                string COOKIE = "__utmz=253535702.1530623991.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); city=3144; wmda_visited_projects=%3B6333604277682; xxzl_deviceid=DviWvqAxjqBKPKAAQlHF%2Fu3wlwjT0ubNuBl4jjM2ZwOf4nW7LAg%2B3dpGBIRZvLWF; wmda_new_uuid=1; id58=c5/nn1s7d/lRQJdfbXolAg==; ppStore_fingerprint=6B2AABD021069F53E575C77EDC1494CF3247CEC048B37880%EF%BC%BF1536803833803; __utma=253535702.1105287715.1530623991.1530623991.1530623991.1; new_uv=4; wmda_uuid=303945c42e3068567ada1d9e5881ca2f; als=0; 58tj_uuid=c87bfc4e-5928-4f53-bfe2-1b3190aa6606; cookieuid1=mgjwFVtxWKKpblS6A2QYAg==";
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);  //创建一个链接
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+                WebProxy proxyObject = new WebProxy(ip, port);//str为IP地址 port为端口号 代理类
+                request.Proxy = proxyObject; //设置代理 
+                request.AllowAutoRedirect = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  I
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+            }
+
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
     }
 }

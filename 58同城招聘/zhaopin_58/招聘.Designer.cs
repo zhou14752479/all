@@ -675,6 +675,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.skinTreeView1 = new CCWin.SkinControl.SkinTreeView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -717,7 +718,8 @@
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader12,
-            this.columnHeader9});
+            this.columnHeader9,
+            this.columnHeader10});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -771,8 +773,8 @@
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "更新时间";
-            this.columnHeader9.Width = 100;
+            this.columnHeader9.Text = "更新";
+            this.columnHeader9.Width = 50;
             // 
             // label4
             // 
@@ -874,6 +876,7 @@
             this.button5.TabIndex = 12;
             this.button5.Text = "清空数据";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button1
             // 
@@ -1606,6 +1609,11 @@
             this.skinTreeView1.TabIndex = 2;
             this.skinTreeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.skinTreeView1_AfterSelect);
             // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "IP";
+            this.columnHeader10.Width = 100;
+            // 
             // 招聘
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1657,5 +1665,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }

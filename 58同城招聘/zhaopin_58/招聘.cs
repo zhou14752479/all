@@ -53,6 +53,11 @@ namespace zhaopin_58
 
         public void zhaopin()
         {
+            string[] Ipvalues = method.GetIp("http://webapi.http.zhimacangku.com/getip?num=1&type=1&pro=&city=0&yys=0&port=1&pack=15167&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=").Split(':');
+
+            string ip = Ipvalues[0];
+            int port = Convert.ToInt32(Ipvalues[1]);
+
 
             try
             {
@@ -118,7 +123,7 @@ namespace zhaopin_58
                                 string rxg5 = @"camp_indus"",""V"":""([\s\S]*?)""";
                                 string rxg6 = @"linkman:'([\s\S]*?)'";
                                 string rxg3 = @"更新:  <span>([\s\S]*?)</span>";
-                                 string rxg7= @"<div class='nums'>([\s\S]*?)</div>";
+                                 string rxg7= @"result"":""([\s\S]*?)""";
 
                                 string rxg8 = @"infoid:'([\s\S]*?)'";
 
@@ -133,9 +138,19 @@ namespace zhaopin_58
                                 Match time = Regex.Match(strhtml, rxg3);
                                 Match id = Regex.Match(strhtml, rxg8);
 
-                                
 
-                                string tellHtml = method.GetUrl("http://app.58.com/api/windex/scandetail/car/"+id.Groups[1].Value.ToString().Trim()+"/?pid=801");
+
+
+                                
+                                string tellHtml = method.GetUrlWithIp("https://link.58.com/api/assign?clientId=2&infoId=" + id.Groups[1].Value.ToString().Trim() + "&platform=2",ip,port);
+
+                                if (tellHtml.Contains("请求命中"))
+                                {
+                                    Ipvalues = method.GetIp("http://webapi.http.zhimacangku.com/getip?num=1&type=1&pro=&city=0&yys=0&port=1&pack=15167&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=").Split(':');
+
+                                    ip = Ipvalues[0];
+                                    port = Convert.ToInt32(Ipvalues[1]);
+                                }
                                 Match tell = Regex.Match(tellHtml, rxg7);
 
                                 if (areas.Count > 0)
@@ -156,6 +171,7 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(lxr.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(tell.Groups[1].Value.Trim().Replace("-",""));
                                     lv1.SubItems.Add(time.Groups[1].Value.Trim().Replace("<strong>","").Replace("</strong>",""));
+                                    lv1.SubItems.Add(ip);
 
                                     string[] values = { job.Groups[1].Value.Trim(), company.Groups[1].Value.Trim().Replace("招聘信息", ""), areas[0].Groups[1].Value.Trim(), area, addr.Groups[1].Value.Trim(), hangye.Groups[1].Value.Trim(), lxr.Groups[1].Value.Trim(), tell.Groups[1].Value.Trim().Replace("-", ""),DateTime.Now.ToString() };
                                     insertData(values);
@@ -181,7 +197,7 @@ namespace zhaopin_58
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
                                 Application.DoEvents();
-                                System.Threading.Thread.Sleep(3000);   //内容获取间隔，可变量
+                                System.Threading.Thread.Sleep(100);   //内容获取间隔，可变量
 
                             }
 
@@ -233,8 +249,13 @@ namespace zhaopin_58
         }
 
         private void button6_Click(object sender, EventArgs e)
+        {            
+         
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://suqian.58.com/yewu/33805288842284x.shtml");
+            this.listView1.Items.Clear();
         }
     }
 }
