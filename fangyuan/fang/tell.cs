@@ -210,7 +210,8 @@ namespace fang
                 foreach (ListViewItem item in listView1.Items)
                 {
                     string temp = item.SubItems[1].Text;
-                    list.Add(temp+"\t0");
+                    string temp1 = item.SubItems[2].Text;
+                    list.Add(temp+"\t"+temp1);
                 }
                 Thread thexp = new Thread(() => export(list)) { IsBackground = true };
                 thexp.Start();
