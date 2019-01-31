@@ -31,7 +31,7 @@ namespace zhaopin_58
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            pictureBox1.Image = Image.FromStream(System.Net.WebRequest.Create("http://m-quan.cn/couponsys/console/util/kaptcha?26").GetResponse().GetResponseStream());
+            pictureBox1.Image = Image.FromStream(System.Net.WebRequest.Create("http://222.187.200.202:8001/ValidateCode/ValidateCode?examid=00181228141531&r=497074510&").GetResponse().GetResponseStream());
 
         }
 
