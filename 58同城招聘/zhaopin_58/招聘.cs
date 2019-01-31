@@ -56,10 +56,24 @@ namespace zhaopin_58
         public void zhaopin()
         {
 
+            string ip = "";
+            int port = 0;
             string[] Ipvalues = method.GetIp("http://webapi.http.zhimacangku.com/getip?num=1&type=1&pro=&city=0&yys=0&port=1&pack=15167&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=").Split(':');
 
-            string ip = Ipvalues[0];
-            int port = Convert.ToInt32(Ipvalues[1]);
+            Match match = Regex.Match(Ipvalues[1], @"\d+", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            if (match.Groups[0].Value != null && match.Groups[0].Value != "")
+            {
+                 ip = Ipvalues[0];
+                port = Convert.ToInt32(Ipvalues[1]);
+
+            }
+
+            else
+            {
+                MessageBox.Show("IP格式错误，请检查代理IP！");
+                return;
+            }
 
             try
             {
