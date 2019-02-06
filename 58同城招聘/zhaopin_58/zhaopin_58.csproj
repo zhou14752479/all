@@ -70,8 +70,17 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="VisualPlus">
+      <HintPath>..\..\winform\主要采集\_58\bin\Debug\VisualPlus.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="meituan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="meituan.Designer.cs">
+      <DependentUpon>meituan.cs</DependentUpon>
+    </Compile>
     <Compile Include="本地服务.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +121,9 @@
     <Compile Include="验证码登陆.Designer.cs">
       <DependentUpon>验证码登陆.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="meituan.resx">
+      <DependentUpon>meituan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="本地服务.resx">
       <DependentUpon>本地服务.cs</DependentUpon>
     </EmbeddedResource>

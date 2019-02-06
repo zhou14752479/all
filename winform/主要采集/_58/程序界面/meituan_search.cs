@@ -133,9 +133,6 @@ namespace _58
 
             try
             {
-
-
-
                 string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
