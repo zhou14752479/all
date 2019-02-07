@@ -71,9 +71,9 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -279,6 +279,7 @@
             textStyle5.Hover = System.Drawing.Color.Empty;
             textStyle5.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.visualButton3.TextStyle = textStyle5;
+            this.visualButton3.Click += new System.EventHandler(this.visualButton3_Click);
             // 
             // visualTrackBar1
             // 
@@ -761,6 +762,20 @@
             this.columnHeader5.Text = "区域";
             this.columnHeader5.Width = 100;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.清空数据ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            // 
+            // 清空数据ToolStripMenuItem
+            // 
+            this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
+            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.清空数据ToolStripMenuItem.Text = "清空数据";
+            this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.清空数据ToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 327);
@@ -768,20 +783,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(887, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.清空数据ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
-            // 
-            // 清空数据ToolStripMenuItem
-            // 
-            this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
-            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.清空数据ToolStripMenuItem.Text = "清空数据";
-            this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.清空数据ToolStripMenuItem_Click);
             // 
             // meituan
             // 
