@@ -32,10 +32,10 @@ namespace fang
             {
                 
 
-                string COOKIE = "BIDUPSID=6F7A1FB331DE7AD89632403D26928572; PSTM=1546067770; MCITY=-309%3A; BAIDUID=6F7A1FB331DE7AD89632403D26928572:SL=0:NR=10:FG=1; BDORZ=FFFB88E999055A3F8A630C64834BD6D0; __guid=171760688.3766717285699673600.1547615234549.5005; monitor_count=34";
+                string COOKIE = "_lxsdk_cuid=16233c680c7c8-081a8e5d136c39-3b60450b-1fa400-16233c680c7c8; _lxsdk=16233c680c7c8-081a8e5d136c39-3b60450b-1fa400-16233c680c7c8; _hc.v=8165c808-5cfd-45a0-0d36-3e7f9d78b4eb.1521287070; s_ViewType=10; switchcityflashtoast=1; _tr.u=jU5PhtbV9q3sLhwV; Hm_lvt_dbeeb675516927da776beeb1d9802bd4=1521289865; __mta=46068251.1521289881671.1521289895545.1521289900801.3; aburl=1; ua=dpuser_5678141658; ctu=90a81cde43e1e0934a456ec54b747c93d0e6b58b8c9732b3ed676c7795f37d7a; CNZZDATA1261883731=1963307737-1524479289-null%7C1534814379; CNZZDATA1261666818=446137579-1535266463-%7C1535414298; cy=1; cye=shanghai; wed_user_path=2784|0; dper=64bac4be18dfd707b0badc079694425dde63784b826f4e704aefe0d1c187dc79e838bd69e917174ab7d77264518419c92caa12d142816bb4d5d36e8201ec9c2035bc713eee679dc0d3b6a4751c22b69ccc58f51360d5195f1821452d31949d50; cityid=100; m_flash2=1; ll=7fd06e815b796be3df069dec7836c3df; msource=default; default_ab=shopreviewlist%3AA%3A1%7Csinglereview%3AA%3A1; _lxsdk_s=168caa4597c-bbf-7c2-9ba%7C%7C94";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
                 request.AllowAutoRedirect = true;
                request.Headers.Add("Cookie", COOKIE);             
                 request.KeepAlive = false;     

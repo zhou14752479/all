@@ -36,18 +36,23 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.删除改项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除所有ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.skinButton6 = new CCWin.SkinControl.SkinButton();
             this.skinButton5 = new CCWin.SkinControl.SkinButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -96,13 +101,13 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "时间";
-            this.columnHeader3.Width = 200;
+            this.columnHeader3.Text = "评论ID";
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "标题";
-            this.columnHeader2.Width = 300;
+            this.columnHeader2.Text = "商家ID";
+            this.columnHeader2.Width = 80;
             // 
             // columnHeader1
             // 
@@ -115,17 +120,25 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(800, 386);
+            this.listView1.Size = new System.Drawing.Size(800, 154);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "总体";
+            this.columnHeader4.Width = 50;
             // 
             // contextMenuStrip1
             // 
@@ -173,11 +186,12 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.listView1);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton6);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton5);
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
@@ -187,6 +201,15 @@
             this.splitContainer1.Size = new System.Drawing.Size(800, 465);
             this.splitContainer1.SplitterDistance = 386;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 160);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(125, 223);
+            this.textBox1.TabIndex = 20;
             // 
             // skinButton6
             // 
@@ -241,17 +264,31 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // columnHeader4
+            // textBox2
             // 
-            this.columnHeader4.Text = "网址";
-            this.columnHeader4.Width = 300;
+            this.textBox2.Location = new System.Drawing.Point(162, 160);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(539, 223);
+            this.textBox2.TabIndex = 21;
             // 
-            // textBox1
+            // columnHeader5
             // 
-            this.textBox1.Location = new System.Drawing.Point(68, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(490, 21);
-            this.textBox1.TabIndex = 20;
+            this.columnHeader5.Text = "环境";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "护理";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "月子餐";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "评语";
+            this.columnHeader8.Width = 500;
             // 
             // 百度新闻
             // 
@@ -261,8 +298,10 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "百度新闻";
             this.Text = "百度新闻";
+            this.Load += new System.EventHandler(this.百度新闻_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -294,5 +333,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }

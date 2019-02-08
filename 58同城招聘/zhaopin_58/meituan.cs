@@ -51,6 +51,32 @@ namespace zhaopin_58
         }
         #endregion
 
+        #region 获取数据库美团城市名称返回集合
+        public ArrayList getCityNames()
+        {
+            ArrayList list = new ArrayList();
+            try
+            {
+                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string str = "SELECT meituan_city_name from meituan_city ";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    list.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                MessageBox.Show(ee.Message.ToString());
+            }
+            return list;
+
+        }
+        #endregion
+
         #region  获取数据库中城市名称对应的拼音
 
         public string Getpinyin(string city)
@@ -125,10 +151,11 @@ namespace zhaopin_58
         #endregion
 
         #region 获取城市名对应的区域ID
-        public ArrayList getAreaId()
+        public ArrayList getAreaId(string city)
         {
+            //visualComboBox1.SelectedItem.ToString()
             ArrayList areas = new ArrayList();
-            string cityPinYin = Getpinyin(visualComboBox1.SelectedItem.ToString());
+            string cityPinYin = Getpinyin(city);
             try
             {
                 string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
@@ -174,94 +201,98 @@ namespace zhaopin_58
                     MessageBox.Show("请选择城市！");
                     return;
                 }
-                string cityId = GetCityId(visualComboBox1.Text);
-                ArrayList areaIds = getAreaId();
 
-                foreach (string keyword in keywords)
 
-                {
+                string city = visualComboBox1.SelectedItem.ToString();
+                    ArrayList areaIds = getAreaId(city);
+                    string cityId = GetCityId(city);
 
-                    if (keyword == "")
-                    {
-                        MessageBox.Show("请输入采集行业或者关键词！");
-                        return;
-                    }
+                    foreach (string keyword in keywords)
 
-                    foreach (string area in areaIds)
                     {
 
-                        string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?limit=9999&q=" + keyword + "&areaId="+ area + "&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F";
-                        string html = method.GetUrl(Url);
-
-                        MatchCollection TitleMatchs = Regex.Matches(html, @"false},{""id"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-                        ArrayList lists = new ArrayList();
-
-                        foreach (Match NextMatch in TitleMatchs)
+                        if (keyword == "")
                         {
-
-                            if (!lists.Contains(NextMatch.Groups[0].Value))
-                            {
-                                lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
-                            }
+                            MessageBox.Show("请输入采集行业或者关键词！");
+                            return;
                         }
 
-                        if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                            break;
-
-                        foreach (string list in lists)
-
+                        foreach (string area in areaIds)
                         {
-                            
-                            string strhtml = method.GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
-                            string rxg1 = @"name"":""([\s\S]*?)""";    //公司                            
-                            string rxg2 = @"addr"":""([\s\S]*?)""";
-                            string rxg3 = @"phone"":""([\s\S]*?)""";
-                            string rxg4 = @"areaName"":""([\s\S]*?)""";
 
+                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?limit=9999&q=" + keyword + "&areaId=" + area + "&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F";
+                            string html = method.GetUrl(Url);
 
-                            Match name = Regex.Match(strhtml, rxg1);
-                            Match addr = Regex.Match(strhtml, rxg2);
-                            Match tel = Regex.Match(strhtml, rxg3);
-                            Match areaName = Regex.Match(strhtml, rxg4);
-                            
-                            
-                            
-                            if (name.Groups[1].Value != "")
+                            MatchCollection TitleMatchs = Regex.Matches(html, @"false},{""id"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                            ArrayList lists = new ArrayList();
+
+                            foreach (Match NextMatch in TitleMatchs)
                             {
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                lv1.SubItems.Add(name.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(list);
-                                
-                                //string[] values = { title.Groups[1].Value.Trim(), company.Groups[1].Value.Trim(), lxr.Groups[1].Value.Trim(), tell.Groups[1].Value.Trim(), area.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), DateTime.Now.ToString(), };
-                                //insertData(values);
 
-                                if (listView1.Items.Count - 1 > 1)
+                                if (!lists.Contains(NextMatch.Groups[0].Value))
                                 {
-                                    listView1.EnsureVisible(listView1.Items.Count - 1);                               
+                                    lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
                                 }
-                                while (this.zanting == false)
+                            }
+
+                            if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                break;
+
+                            foreach (string list in lists)
+
+                            {
+
+                                string strhtml = method.GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
+                                string rxg1 = @"name"":""([\s\S]*?)""";    //公司                            
+                                string rxg2 = @"addr"":""([\s\S]*?)""";
+                                string rxg3 = @"phone"":""([\s\S]*?)""";
+                                string rxg4 = @"areaName"":""([\s\S]*?)""";
+
+
+                                Match name = Regex.Match(strhtml, rxg1);
+                                Match addr = Regex.Match(strhtml, rxg2);
+                                Match tel = Regex.Match(strhtml, rxg3);
+                                Match areaName = Regex.Match(strhtml, rxg4);
+
+
+
+                                if (name.Groups[1].Value != "")
                                 {
-                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                    lv1.SubItems.Add(name.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(city);
+
+                                    //string[] values = { title.Groups[1].Value.Trim(), company.Groups[1].Value.Trim(), lxr.Groups[1].Value.Trim(), tell.Groups[1].Value.Trim(), area.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), DateTime.Now.ToString(), };
+                                    //insertData(values);
+
+                                    if (listView1.Items.Count - 1 > 1)
+                                    {
+                                        listView1.EnsureVisible(listView1.Items.Count - 1);
+                                    }
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+
+                                    //Application.DoEvents();
+                                    //System.Threading.Thread.Sleep(2000 / (visualTrackBar1.Value + 1));   //内容获取间隔，可变量
+
+
+
                                 }
 
-                                Application.DoEvents();
-                                System.Threading.Thread.Sleep(2000 / (visualTrackBar1.Value + 1));   //内容获取间隔，可变量
-
-                                
 
                             }
 
-
                         }
-
                     }
                 }
-            }
+            
 
 
 
@@ -277,7 +308,7 @@ namespace zhaopin_58
         {
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
-            MessageBox.Show(thread.ThreadState.ToString());
+            
         }
 
         private void visualButton2_Click(object sender, EventArgs e)
