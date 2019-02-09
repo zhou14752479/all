@@ -20,7 +20,7 @@ namespace fang.临时软件
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 百度新闻());
+                Application.Run(new LOL());
 
             //}
             //catch (Exception ex)

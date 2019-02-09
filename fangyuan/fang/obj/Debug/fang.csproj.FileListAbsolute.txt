@@ -293,3 +293,4 @@ C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.百家号.re
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.百度新闻.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.头条广告.resources
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.头条广告.resources
+C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.LOL.resources

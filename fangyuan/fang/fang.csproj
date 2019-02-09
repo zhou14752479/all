@@ -200,6 +200,12 @@
     <Compile Include="临时软件\leju.Designer.cs">
       <DependentUpon>leju.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\LOL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\LOL.Designer.cs">
+      <DependentUpon>LOL.cs</DependentUpon>
+    </Compile>
     <Compile Include="临时软件\pdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\leju.resx">
       <DependentUpon>leju.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\LOL.resx">
+      <DependentUpon>LOL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\pdd.resx">
       <DependentUpon>pdd.cs</DependentUpon>
