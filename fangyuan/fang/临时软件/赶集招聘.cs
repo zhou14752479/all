@@ -83,28 +83,30 @@ namespace fang.临时软件
                             Match company = Regex.Match(strhtml, @"content=""【([\s\S]*?)】");
                             Match infos = Regex.Match(strhtml, @"<h1 class=""title"">([\s\S]*?)</h1>");
 
-
-                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                            lv1.SubItems.Add(Regex.Replace(lxr.Groups[1].Value, "<[^>]*>", "").Trim());
-                            lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(Regex.Replace(addr.Groups[1].Value.Trim(), "<[^>]*>", ""));
-                            lv1.SubItems.Add(company.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(Regex.Replace(infos.Groups[1].Value.Trim(), "<[^>]*>", ""));
-
-
-                            Application.DoEvents();
-                            Thread.Sleep(Convert.ToInt32(1000));
-
-
-
-                            if (listView1.Items.Count > 1)
+                            if (tel.Groups[1].Value != "")
                             {
-                                listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
-                            }
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                lv1.SubItems.Add(Regex.Replace(lxr.Groups[1].Value, "<[^>]*>", "").Trim());
+                                lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(Regex.Replace(addr.Groups[1].Value.Trim(), "<[^>]*>", ""));
+                                lv1.SubItems.Add(company.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(Regex.Replace(infos.Groups[1].Value.Trim(), "<[^>]*>", ""));
 
-                            while (this.status == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+
+                                Application.DoEvents();
+                                Thread.Sleep(Convert.ToInt32(100));
+
+
+
+                                if (listView1.Items.Count > 1)
+                                {
+                                    listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                                }
+
+                                while (this.status == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
                             }
 
                         }
