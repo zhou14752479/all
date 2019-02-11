@@ -56,9 +56,15 @@ namespace zhaopin_58
         public void zhaopin()
         {
 
+            if (textBox3.Text=="") {
+                MessageBox.Show("请输入代理IP地址");
+                return;
+            }
+
+  
             string ip = "";
             int port = 0;
-            string[] Ipvalues = method.GetIp("http://webapi.http.zhimacangku.com/getip?num=1&type=1&pro=&city=0&yys=0&port=1&pack=15167&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=").Split(':');
+            string[] Ipvalues = method.GetIp(textBox3.Text.Trim()).Split(':');
 
             Match match = Regex.Match(Ipvalues[1], @"\d+", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
@@ -165,7 +171,7 @@ namespace zhaopin_58
 
                                     if (tellHtml.Contains("请求命中"))
                                     {
-                                        Ipvalues = method.GetIp("http://webapi.http.zhimacangku.com/getip?num=1&type=1&pro=&city=0&yys=0&port=1&pack=15167&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=").Split(':');
+                                        Ipvalues = method.GetIp(textBox3.Text.Trim()).Split(':');
 
                                         ip = Ipvalues[0];
                                         port = Convert.ToInt32(Ipvalues[1]);
@@ -215,8 +221,8 @@ namespace zhaopin_58
                                     {
                                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                     }
-                                    //Application.DoEvents();
-                                    //System.Threading.Thread.Sleep(10);   //内容获取间隔，可变量
+                                    Application.DoEvents();
+                                    System.Threading.Thread.Sleep(100);   //内容获取间隔，可变量
 
                                 }
                             }

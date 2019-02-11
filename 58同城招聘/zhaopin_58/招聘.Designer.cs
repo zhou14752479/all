@@ -660,6 +660,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -675,7 +676,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.skinTreeView1 = new CCWin.SkinControl.SkinTreeView();
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -697,6 +698,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBox3);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
@@ -776,6 +778,11 @@
             this.columnHeader9.Text = "更新";
             this.columnHeader9.Width = 50;
             // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "IP";
+            this.columnHeader10.Width = 100;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -789,12 +796,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(178, 118);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(563, 12);
+            this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 14;
-            this.label3.Text = "请在法律允许的范围内采集，尊重版权，侵权必究，不得倒卖数据！其他软件需求咨询微信：17606117606";
+            this.label3.Text = "代理IP地址：";
             // 
             // groupBox2
             // 
@@ -838,9 +845,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(23, 32);
+            this.textBox1.Location = new System.Drawing.Point(26, 32);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(499, 21);
+            this.textBox1.Size = new System.Drawing.Size(589, 21);
             this.textBox1.TabIndex = 9;
             // 
             // groupBox1
@@ -1609,10 +1616,12 @@
             this.skinTreeView1.TabIndex = 2;
             this.skinTreeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.skinTreeView1_AfterSelect);
             // 
-            // columnHeader10
+            // textBox3
             // 
-            this.columnHeader10.Text = "IP";
-            this.columnHeader10.Width = 100;
+            this.textBox3.Location = new System.Drawing.Point(251, 110);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(518, 21);
+            this.textBox3.TabIndex = 16;
             // 
             // 招聘
             // 
@@ -1666,5 +1675,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

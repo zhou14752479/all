@@ -255,7 +255,6 @@ C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form2.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form3.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form5.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form6.resources
-C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form7.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.Form8.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.jd.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.tell.resources
@@ -294,3 +293,6 @@ C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.百度新闻
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.头条广告.resources
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.头条广告.resources
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.LOL.resources
+C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.赶集本地服务.resources
+C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.LOL.resources
+C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.赶集招聘.resources

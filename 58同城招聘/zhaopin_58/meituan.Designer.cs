@@ -74,6 +74,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -404,7 +405,7 @@
             this.visualCheckBox2.Size = new System.Drawing.Size(79, 23);
             this.visualCheckBox2.TabIndex = 12;
             this.visualCheckBox2.Text = "去掉重复";
-            this.visualCheckBox2.TextSize = new System.Drawing.Size(56, 17);
+            this.visualCheckBox2.TextSize = new System.Drawing.Size(54, 17);
             textStyle8.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             textStyle8.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             textStyle8.Hover = System.Drawing.Color.Empty;
@@ -446,7 +447,7 @@
             this.visualCheckBox1.Size = new System.Drawing.Size(80, 23);
             this.visualCheckBox1.TabIndex = 11;
             this.visualCheckBox1.Text = "去掉固话";
-            this.visualCheckBox1.TextSize = new System.Drawing.Size(56, 17);
+            this.visualCheckBox1.TextSize = new System.Drawing.Size(54, 17);
             textStyle9.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             textStyle9.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             textStyle9.Hover = System.Drawing.Color.Empty;
@@ -571,7 +572,7 @@
             this.visualRadioButton2.Size = new System.Drawing.Size(70, 23);
             this.visualRadioButton2.TabIndex = 6;
             this.visualRadioButton2.Text = "导出文本";
-            this.visualRadioButton2.TextSize = new System.Drawing.Size(56, 17);
+            this.visualRadioButton2.TextSize = new System.Drawing.Size(54, 17);
             textStyle12.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             textStyle12.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             textStyle12.Hover = System.Drawing.Color.Empty;
@@ -614,7 +615,7 @@
             this.visualRadioButton1.Size = new System.Drawing.Size(79, 23);
             this.visualRadioButton1.TabIndex = 5;
             this.visualRadioButton1.Text = "导出表格";
-            this.visualRadioButton1.TextSize = new System.Drawing.Size(56, 17);
+            this.visualRadioButton1.TextSize = new System.Drawing.Size(54, 17);
             textStyle13.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             textStyle13.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             textStyle13.Hover = System.Drawing.Color.Empty;
@@ -726,7 +727,8 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader7});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
@@ -762,6 +764,10 @@
             this.columnHeader5.Text = "区域";
             this.columnHeader5.Width = 100;
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "城市";
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -783,6 +789,10 @@
             this.statusStrip1.Size = new System.Drawing.Size(887, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "分类";
             // 
             // meituan
             // 
@@ -840,5 +850,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 清空数据ToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }
