@@ -142,11 +142,11 @@ namespace zhaopin_58
 
                         }
 
-                        //招聘 zp = new 招聘();
-                        //zp.Show();
+                        招聘 zp = new 招聘();
+                        zp.Show();
 
-                        本地服务 bd = new 本地服务();
-                        bd.Show();
+                        //本地服务 bd = new 本地服务();
+                        //bd.Show();
                         this.Hide();
 
                     }

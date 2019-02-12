@@ -458,7 +458,7 @@ namespace zhaopin_58
 
         private void visualButton1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run1));
+            Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             
         }
