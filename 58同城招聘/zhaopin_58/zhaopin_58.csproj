@@ -81,6 +81,12 @@
     <Compile Include="meituan.Designer.cs">
       <DependentUpon>meituan.cs</DependentUpon>
     </Compile>
+    <Compile Include="城市列表.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="城市列表.Designer.cs">
+      <DependentUpon>城市列表.cs</DependentUpon>
+    </Compile>
     <Compile Include="本地服务.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="meituan.resx">
       <DependentUpon>meituan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="城市列表.resx">
+      <DependentUpon>城市列表.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="本地服务.resx">
       <DependentUpon>本地服务.cs</DependentUpon>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -50,6 +51,7 @@ namespace zhaopin_58
         }
 
         ArrayList finishes = new ArrayList();
+        string[] Ips = { };
 
 
         #region  不通过获取
@@ -62,11 +64,12 @@ namespace zhaopin_58
             try
             {
 
-                string[] citys = textBox1.Text.Trim().Split(',');
-                string[] keywords = textBox2.Text.Trim().Split(',');
+                string[] citys = visualTextBox1.Text.Trim().Split(',');
+                string[] keywords = visualTextBox2.Text.Trim().Split(',');
 
                 foreach (string city in citys)
                 {
+                    string cityPinyin = method.Get58pinyin(city);
                     if (city == "")
                     {
                         MessageBox.Show("请选择城市！");
@@ -84,7 +87,7 @@ namespace zhaopin_58
                         for (int i = 1; i < 71; i++)
                         {
 
-                            string Url = "https://" + city + ".58.com/job/pn" + i + "/?key=" + keyword + "&final=1&jump=1";
+                            string Url = "https://" + cityPinyin + ".58.com/job/pn" + i + "/?key=" + keyword + "&final=1&jump=1";
                             string html = method.GetUrl(Url);
 
                             MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -240,11 +243,12 @@ namespace zhaopin_58
             try
             {
 
-                string[] citys = textBox1.Text.Trim().Split(',');
-                string[] keywords = textBox2.Text.Trim().Split(',');
+                string[] citys = visualTextBox1.Text.Trim().Split(',');
+                string[] keywords = visualTextBox2.Text.Trim().Split(',');
 
                 foreach (string city in citys)
                 {
+                    string cityPinyin = method.Get58pinyin(city);
                     if (city == "")
                     {
                         MessageBox.Show("请选择城市！");
@@ -262,7 +266,7 @@ namespace zhaopin_58
                         for (int i = 1; i < 71; i++)
                         {
                             
-                            string Url = "https://"+city+".58.com/job/pn"+i+"/?key="+keyword+ "&final=1&jump=1";
+                            string Url = "https://"+cityPinyin+".58.com/job/pn"+i+"/?key="+keyword+ "&final=1&jump=1";
                             string html = method.GetUrl(Url);
                           
                             MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -386,46 +390,46 @@ namespace zhaopin_58
 
 
         #endregion
-
+  
         #region  通过获取IP文本获取
 
         public void zhaopin2()
         {
 
-            if (textBox1.Text == "")
-            {
-                MessageBox.Show("请输入代理IP地址");
-                return;
-            }
 
+            string[] Ipvalues = { };
 
             string ip = "";
             int port = 0;
-            string[] Ipvalues = method.GetIp(textBox1.Text.Trim()).Split(':');
+            int z = 0;
+            if (Ips.Length > 0)
+            {
+                Ipvalues = Ips[z].Split(':');
+            }
+            else
+            {
+                MessageBox.Show("请输入IP文本格式一行一个，ip:端口号");
+                return;
+            }
 
-            Match match = Regex.Match(Ipvalues[1], @"\d+", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            if (match.Groups[0].Value != null && match.Groups[0].Value != "")
+            if (Ipvalues.Length>0)
             {
                 ip = Ipvalues[0];
                 port = Convert.ToInt32(Ipvalues[1]);
 
             }
 
-            else
-            {
-                MessageBox.Show("IP格式错误，请检查代理IP！");
-                return;
-            }
+            
 
             try
             {
 
-                string[] citys = textBox1.Text.Trim().Split(',');
-                string[] keywords = textBox2.Text.Trim().Split(',');
+                string[] citys = visualTextBox1.Text.Trim().Split(',');
+                string[] keywords = visualTextBox2.Text.Trim().Split(',');
 
                 foreach (string city in citys)
                 {
+                    string cityPinyin = method.Get58pinyin(city);
                     if (city == "")
                     {
                         MessageBox.Show("请选择城市！");
@@ -443,7 +447,7 @@ namespace zhaopin_58
                         for (int i = 1; i < 71; i++)
                         {
 
-                            string Url = "https://" + city + ".58.com/job/pn" + i + "/?key=" + keyword + "&final=1&jump=1";
+                            string Url = "https://" + cityPinyin+ ".58.com/job/pn" + i + "/?key=" + keyword + "&final=1&jump=1";
                             string html = method.GetUrl(Url);
 
                             MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -496,12 +500,17 @@ namespace zhaopin_58
 
                                     string tellHtml = method.GetUrlWithIp("https://link.58.com/api/assign?clientId=2&infoId=" + id.Groups[1].Value.ToString().Trim() + "&platform=2", ip, port);
                                     Match tell = Regex.Match(tellHtml, rxg7);
-                                    if (tellHtml.Contains("请求命中"))
+                                    if (tell.Groups[1].Value=="")
                                     {
-                                        Ipvalues = method.GetIp(textBox1.Text.Trim()).Split(':');
+                                        if (z < Ips.Length + 1)
+                                        {
+                                            z = z + 1;
+                                            Ipvalues = Ips[z].Split(':');
 
-                                        ip = Ipvalues[0];
-                                        port = Convert.ToInt32(Ipvalues[1]);
+                                            ip = Ipvalues[0];
+                                            port = Convert.ToInt32(Ipvalues[1]);
+                                        }
+                                        
                                     }
 
 
@@ -561,7 +570,7 @@ namespace zhaopin_58
             }
             catch (System.Exception ex)
             {
-                ex.ToString();
+               MessageBox.Show( ex.ToString());
             }
         }
 
@@ -571,16 +580,6 @@ namespace zhaopin_58
         private void skinTreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             textBox1.Text += e.Node.Name + ",";
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.zanting = false;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.zanting = true;
         }
 
 
@@ -623,6 +622,30 @@ namespace zhaopin_58
 
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader sr = new StreamReader(openFileDialog1.FileName);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                Ips = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                
+            }
+           
+        }
+
+        private void visualButton4_Click(object sender, EventArgs e)
+        {
+            this.zanting = true;
+        }
+
+        private void visualButton3_Click(object sender, EventArgs e)
+        {
+            this.zanting = false;
         }
     }
 }
