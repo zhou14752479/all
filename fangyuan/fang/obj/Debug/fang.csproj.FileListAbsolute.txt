@@ -290,9 +290,9 @@ C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.搜源网.re
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.注册机.resources
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.百家号.resources
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.百度新闻.resources
-C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.头条广告.resources
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.头条广告.resources
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.LOL.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.赶集本地服务.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.LOL.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.赶集招聘.resources
+C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.赶集教育培训.resources

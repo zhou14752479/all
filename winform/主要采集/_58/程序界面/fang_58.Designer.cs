@@ -974,6 +974,7 @@
             this.radioButton9.TabStop = true;
             this.radioButton9.Text = "土地租售";
             this.radioButton9.UseVisualStyleBackColor = true;
+            this.radioButton9.Visible = false;
             // 
             // radioButton8
             // 
@@ -985,6 +986,7 @@
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "厂房";
             this.radioButton8.UseVisualStyleBackColor = true;
+            this.radioButton8.Visible = false;
             // 
             // radioButton7
             // 
@@ -996,6 +998,7 @@
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "车位";
             this.radioButton7.UseVisualStyleBackColor = true;
+            this.radioButton7.Visible = false;
             // 
             // radioButton5
             // 
@@ -1007,6 +1010,7 @@
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "二手房";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.Visible = false;
             // 
             // radioButton4
             // 
@@ -1018,6 +1022,7 @@
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "写字楼";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.Visible = false;
             // 
             // radioButton3
             // 
@@ -1029,6 +1034,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "商铺出租";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Visible = false;
             // 
             // radioButton2
             // 
@@ -1040,6 +1046,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "商铺出售";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Visible = false;
             // 
             // radioButton1
             // 
@@ -1630,7 +1637,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "fang_58";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "美团采集器         爱采集官方唯一网址：www.acaiji.com                                           " +
+            this.Text = "58采集器         爱采集官方唯一网址：www.acaiji.com                                           " +
     "             在线咨询QQ：852266010";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fang_58_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
