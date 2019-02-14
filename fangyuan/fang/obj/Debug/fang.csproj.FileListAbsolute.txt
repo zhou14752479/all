@@ -296,3 +296,4 @@ C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.赶集本地服�
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.LOL.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.赶集招聘.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.赶集教育培训.resources
+C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.京东搜索.resources

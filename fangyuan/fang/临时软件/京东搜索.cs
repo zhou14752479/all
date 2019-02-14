@@ -24,7 +24,7 @@ namespace fang.临时软件
         public string[] ReadText()
         {
             string currentDirectory = Environment.CurrentDirectory;
-            StreamReader streamReader = new StreamReader(this.textBox1.Text);
+            StreamReader streamReader = new StreamReader(this.textBox1.Text,Encoding.Default);
             string text = streamReader.ReadToEnd();
             return text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
         }
@@ -46,7 +46,11 @@ namespace fang.临时软件
                     string URL = "https://item.jd.com/" + match.Groups[1].Value.Trim() + ".html";
                     string strhtml = method.GetUrl(URL, "gbk");
 
+                    string commentUrl = "https://club.jd.com/comment/productCommentSummaries.action?referenceIds=" + match.Groups[1].Value.Trim();
+                    string commenthtml = method.GetUrl(commentUrl, "gbk");
+
                     MatchCollection matches = Regex.Matches(strhtml, @"mbNav-([\s\S]*?)"">([\s\S]*?)</a>");
+                    Match commentCount = Regex.Match(commenthtml, @"CommentCountStr"":""([\s\S]*?)""");
                     StringBuilder sb = new StringBuilder();
                     foreach (Match item in matches)
                     {
@@ -57,7 +61,12 @@ namespace fang.临时软件
                     listViewItem.SubItems.Add(keyword);
                     listViewItem.SubItems.Add(count.Groups[1].Value.ToString());
                     listViewItem.SubItems.Add(sb.ToString());
-                    this.listView1.EnsureVisible(this.listView1.Items.Count - 1);
+                    listViewItem.SubItems.Add(commentCount.Groups[1].Value.ToString());
+                    if (this.listView1.Items.Count>2)
+                    {
+                        this.listView1.EnsureVisible(this.listView1.Items.Count - 1);
+                    }
+                   
                     Application.DoEvents();
                     Thread.Sleep(Convert.ToInt32(textBox2.Text));
 
@@ -85,6 +94,13 @@ namespace fang.临时软件
             {
                 this.textBox1.Text = this.openFileDialog1.FileName;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(this.run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
         }
     }
 }
