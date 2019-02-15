@@ -36,44 +36,67 @@ namespace fang.临时软件
                 foreach (string keyword in array)
                 {
 
-                    
+
                     string url = "https://search.jd.com/Search?keyword=" + keyword + "&enc=utf-8";
                     string html = method.GetUrl(url, "utf-8");
-                    Match match = Regex.Match(html, @"data-sku=""([\s\S]*?)""");
-                    Match count = Regex.Match(html, @"result_count:'([\s\S]*?)'");
-
-                    
-                    string URL = "https://item.jd.com/" + match.Groups[1].Value.Trim() + ".html";
-                    string strhtml = method.GetUrl(URL, "gbk");
-
-                    string commentUrl = "https://club.jd.com/comment/productCommentSummaries.action?referenceIds=" + match.Groups[1].Value.Trim();
-                    string commenthtml = method.GetUrl(commentUrl, "gbk");
-
-                    MatchCollection matches = Regex.Matches(strhtml, @"mbNav-([\s\S]*?)"">([\s\S]*?)</a>");
-                    Match commentCount = Regex.Match(commenthtml, @"CommentCountStr"":""([\s\S]*?)""");
-                    StringBuilder sb = new StringBuilder();
-                    foreach (Match item in matches)
+                    if (!html.Contains("没有找到与"))
                     {
-                        sb.Append(item.Groups[2].Value.Trim() + "  ");
+                        Match match = Regex.Match(html, @"data-sku=""([\s\S]*?)""");
+
+                        Match count = Regex.Match(html, @"result_count:'([\s\S]*?)'");
+
+
+                        string URL = "https://item.jd.com/" + match.Groups[1].Value.Trim() + ".html";
+                        string strhtml = method.GetUrl(URL, "gbk");
+
+                        string commentUrl = "https://club.jd.com/comment/productCommentSummaries.action?referenceIds=" + match.Groups[1].Value.Trim();
+                        string commenthtml = method.GetUrl(commentUrl, "gbk");
+
+                        MatchCollection matches = Regex.Matches(strhtml, @"mbNav-([\s\S]*?)"">([\s\S]*?)</a>");
+                        Match commentCount = Regex.Match(commenthtml, @"CommentCountStr"":""([\s\S]*?)""");
+                        StringBuilder sb = new StringBuilder();
+                        foreach (Match item in matches)
+                        {
+                            sb.Append(item.Groups[2].Value.Trim() + "  ");
+                        }
+
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                        listViewItem.SubItems.Add(keyword);
+                        listViewItem.SubItems.Add(count.Groups[1].Value.ToString());
+                        listViewItem.SubItems.Add(sb.ToString());
+                        listViewItem.SubItems.Add(commentCount.Groups[1].Value.ToString());
+                        if (this.listView1.Items.Count > 2)
+                        {
+                            this.listView1.EnsureVisible(this.listView1.Items.Count - 1);
+                        }
+
+                        Application.DoEvents();
+                        Thread.Sleep(Convert.ToInt32(textBox2.Text));
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+
                     }
 
-                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count+1).ToString());
-                    listViewItem.SubItems.Add(keyword);
-                    listViewItem.SubItems.Add(count.Groups[1].Value.ToString());
-                    listViewItem.SubItems.Add(sb.ToString());
-                    listViewItem.SubItems.Add(commentCount.Groups[1].Value.ToString());
-                    if (this.listView1.Items.Count>2)
+                    else
                     {
-                        this.listView1.EnsureVisible(this.listView1.Items.Count - 1);
-                    }
-                   
-                    Application.DoEvents();
-                    Thread.Sleep(Convert.ToInt32(textBox2.Text));
+                        Match tuijian = Regex.Match(html, @"为您推荐“<span class=""key1"">([\s\S]*?)</span>");
 
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        Match shishi = Regex.Match(html, @"或者试试：([\s\S]*?)</div>");
+
+                        ListViewItem listViewItem = this.listView2.Items.Add((listView2.Items.Count + 1).ToString());
+                        listViewItem.SubItems.Add(keyword);
+                        listViewItem.SubItems.Add(tuijian.Groups[1].Value.ToString());
+                        listViewItem.SubItems.Add(Regex.Replace(shishi.Groups[1].Value.Trim(), "<[^>]*>", ""));
+                        if (this.listView2.Items.Count > 2)
+                        {
+                            this.listView2.EnsureVisible(this.listView2.Items.Count - 1);
+                        }
                     }
+
+
 
                 }
             }
@@ -101,6 +124,27 @@ namespace fang.临时软件
             Thread thread = new Thread(new ThreadStart(this.run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.zanting = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.zanting = true;
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
         }
     }
 }

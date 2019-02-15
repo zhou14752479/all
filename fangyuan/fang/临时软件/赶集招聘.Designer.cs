@@ -261,6 +261,7 @@
             this.Name = "赶集招聘";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "赶集招聘";
+            this.Load += new System.EventHandler(this.赶集招聘_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

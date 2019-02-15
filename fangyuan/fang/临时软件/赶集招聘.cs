@@ -150,5 +150,10 @@ namespace fang.临时软件
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
+
+        private void 赶集招聘_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
