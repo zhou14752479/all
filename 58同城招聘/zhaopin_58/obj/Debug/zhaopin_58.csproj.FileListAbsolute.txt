@@ -102,3 +102,4 @@ C:\Users\zhou\Desktop\all\58同城招聘\zhaopin_58\bin\Debug\VisualPlus.dll
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\bin\Debug\VisualPlus.dll
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.meituan.resources
 C:\Users\Administrator\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.城市列表.resources
+C:\Users\zhou\Desktop\all\58同城招聘\zhaopin_58\obj\Debug\zhaopin_58.城市列表.resources
