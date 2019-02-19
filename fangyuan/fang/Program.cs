@@ -20,7 +20,7 @@ namespace fang.临时软件
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 京东搜索());
+                Application.Run(new 物通网());
 
             //}
             //catch (Exception ex)

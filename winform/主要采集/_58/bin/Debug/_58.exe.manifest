@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="_58.exe" size="824312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="_58.exe" size="825848">
       <assemblyIdentity name="_58" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>yqJ1da4YdecfDY1Z4KZlW79ChOyr8ruHiw7RKQO/CU4=</dsig:DigestValue>
+        <dsig:DigestValue>SWj/JPTpudigBAUOQVA1v9i0ES3nFNXXBvAuZ2+sZHM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
