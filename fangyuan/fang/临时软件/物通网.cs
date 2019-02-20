@@ -85,7 +85,7 @@ namespace fang.临时软件
 
                     MatchCollection company_names = Regex.Matches(html, @"company_name"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                    
-                    MatchCollection danweis = Regex.Matches(html, @"danwei"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    
                     MatchCollection times = Regex.Matches(html, @"data_time"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                 MatchCollection from_areas = Regex.Matches(html, @"from_area"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                 MatchCollection to_areas = Regex.Matches(html, @"to_area"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -105,7 +105,7 @@ namespace fang.临时软件
                         {
                             ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
                             lv1.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(zaizhongs[j].Groups[1].Value.Trim() + danweis[j].Groups[1].Value);
+                            lv1.SubItems.Add(zaizhongs[j].Groups[1].Value.Trim() + "公斤");
                             lv1.SubItems.Add(trans_modes[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(huo_phones[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(huo_contacts[j].Groups[1].Value.Trim());
@@ -113,7 +113,7 @@ namespace fang.临时软件
 
                             lv1.SubItems.Add(times[j].Groups[1].Value.Trim());
 
-                            visualProgressIndicator1.Visible = true;
+                           
                             while (this.status == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -142,11 +142,12 @@ namespace fang.临时软件
 
         private void 物通网_Load(object sender, EventArgs e)
         {
-            visualProgressIndicator1.Visible = false;
+           
         }
 
         private void visualButton1_Click(object sender, EventArgs e)
         {
+            listView1.Items.Clear();
             this.status = true;
 
             for (int i = 0; i < 5; i++)
@@ -167,7 +168,7 @@ namespace fang.临时软件
         private void visualButton3_Click(object sender, EventArgs e)
         {
             this.status = false;
-            visualProgressIndicator1.Visible = false;
+            
         }
 
         private void visualButton4_Click(object sender, EventArgs e)

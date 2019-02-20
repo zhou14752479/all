@@ -125,6 +125,12 @@
     <Compile Include="Form6.Designer.cs">
       <DependentUpon>Form6.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\ganji_keywords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\ganji_keywords.Designer.cs">
+      <DependentUpon>ganji_keywords.cs</DependentUpon>
+    </Compile>
     <Compile Include="临时软件\京东搜索.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form6.resx">
       <DependentUpon>Form6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\ganji_keywords.resx">
+      <DependentUpon>ganji_keywords.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\京东搜索.resx">
       <DependentUpon>京东搜索.cs</DependentUpon>

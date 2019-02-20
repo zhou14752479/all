@@ -175,6 +175,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(311, 118);
             this.textBox2.TabIndex = 7;
+            this.textBox2.Text = "http://bj.ganji.com/banjia/";
             // 
             // button2
             // 

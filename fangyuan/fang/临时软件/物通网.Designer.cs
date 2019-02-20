@@ -34,10 +34,7 @@
             VisualPlus.Structure.TextStyle textStyle3 = new VisualPlus.Structure.TextStyle();
             VisualPlus.Structure.TextStyle textStyle4 = new VisualPlus.Structure.TextStyle();
             VisualPlus.Structure.TextStyle textStyle5 = new VisualPlus.Structure.TextStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(物通网));
             VisualPlus.Structure.TextStyle textStyle6 = new VisualPlus.Structure.TextStyle();
-            VisualPlus.Structure.TextStyle textStyle7 = new VisualPlus.Structure.TextStyle();
-            this.visualProgressIndicator1 = new VisualPlus.Toolkit.Controls.DataVisualization.VisualProgressIndicator();
             this.visualComboBox1 = new VisualPlus.Toolkit.Controls.Interactivity.VisualComboBox();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,35 +51,15 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.visualLabel1 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             this.visualButton1 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.visualButton4 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.visualButton3 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // visualProgressIndicator1
-            // 
-            this.visualProgressIndicator1.AnimationColor = System.Drawing.Color.DimGray;
-            this.visualProgressIndicator1.AnimationSpeed = 100;
-            this.visualProgressIndicator1.BaseColor = System.Drawing.Color.DarkGray;
-            this.visualProgressIndicator1.CircleSize = new System.Drawing.Size(15, 15);
-            this.visualProgressIndicator1.Location = new System.Drawing.Point(835, 3);
-            this.visualProgressIndicator1.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.visualProgressIndicator1.Name = "visualProgressIndicator1";
-            this.visualProgressIndicator1.Size = new System.Drawing.Size(80, 80);
-            this.visualProgressIndicator1.TabIndex = 19;
-            this.visualProgressIndicator1.Text = "visualProgressIndicator1";
-            textStyle1.Disabled = System.Drawing.Color.Empty;
-            textStyle1.Enabled = System.Drawing.Color.Empty;
-            textStyle1.Hover = System.Drawing.Color.Empty;
-            textStyle1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualProgressIndicator1.TextStyle = textStyle1;
             // 
             // visualComboBox1
             // 
@@ -102,8 +79,8 @@
             this.visualComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.visualComboBox1.DropDownHeight = 100;
             this.visualComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.visualComboBox1.DropDownWidth = 73;
-            this.visualComboBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.visualComboBox1.DropDownWidth = 85;
+            this.visualComboBox1.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.visualComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.visualComboBox1.FormattingEnabled = true;
             this.visualComboBox1.ImageList = null;
@@ -147,7 +124,7 @@
             "内蒙古区",
             "西藏区",
             "广西区"});
-            this.visualComboBox1.Location = new System.Drawing.Point(296, 13);
+            this.visualComboBox1.Location = new System.Drawing.Point(231, 49);
             this.visualComboBox1.MenuItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(183)))), ((int)(((byte)(230)))));
             this.visualComboBox1.MenuItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.visualComboBox1.MenuTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -162,11 +139,11 @@
             this.visualComboBox1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.visualComboBox1.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.visualComboBox1.TextRendering = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            textStyle2.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle2.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle2.Hover = System.Drawing.Color.Empty;
-            textStyle2.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualComboBox1.TextStyle = textStyle2;
+            textStyle1.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle1.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle1.Hover = System.Drawing.Color.Empty;
+            textStyle1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualComboBox1.TextStyle = textStyle1;
             this.visualComboBox1.Watermark.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.visualComboBox1.Watermark.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.visualComboBox1.Watermark.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
@@ -186,6 +163,7 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "联系人";
+            this.columnHeader7.Width = 100;
             // 
             // contextMenuStrip1
             // 
@@ -214,23 +192,23 @@
             this.visualButton2.Border.Thickness = 1;
             this.visualButton2.Border.Type = VisualPlus.Enumerators.ShapeType.Rounded;
             this.visualButton2.Border.Visible = true;
-            this.visualButton2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.visualButton2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.visualButton2.Image = null;
-            this.visualButton2.Location = new System.Drawing.Point(549, 55);
+            this.visualButton2.Location = new System.Drawing.Point(735, 72);
             this.visualButton2.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualButton2.Name = "visualButton2";
-            this.visualButton2.Size = new System.Drawing.Size(121, 28);
+            this.visualButton2.Size = new System.Drawing.Size(198, 36);
             this.visualButton2.TabIndex = 8;
             this.visualButton2.Text = "导出数据";
             this.visualButton2.TextAlignment = System.Drawing.StringAlignment.Center;
             this.visualButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.visualButton2.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle3.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle3.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle3.Hover = System.Drawing.Color.Empty;
-            textStyle3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualButton2.TextStyle = textStyle3;
+            textStyle2.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle2.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle2.Hover = System.Drawing.Color.Empty;
+            textStyle2.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualButton2.TextStyle = textStyle2;
             this.visualButton2.Click += new System.EventHandler(this.visualButton2_Click);
             // 
             // columnHeader4
@@ -240,9 +218,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 328);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 427);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(927, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1027, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -268,7 +246,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(927, 328);
+            this.listView1.Size = new System.Drawing.Size(1027, 427);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -290,7 +268,7 @@
             // 
             // visualLabel1
             // 
-            this.visualLabel1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.visualLabel1.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.visualLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.visualLabel1.Location = new System.Drawing.Point(231, 20);
             this.visualLabel1.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
@@ -305,16 +283,16 @@
             this.visualLabel1.ShadowDirection = 315;
             this.visualLabel1.ShadowLocation = new System.Drawing.Point(0, 0);
             this.visualLabel1.ShadowOpacity = 100;
-            this.visualLabel1.Size = new System.Drawing.Size(75, 23);
+            this.visualLabel1.Size = new System.Drawing.Size(102, 23);
             this.visualLabel1.TabIndex = 3;
             this.visualLabel1.Text = "选择省份：";
             this.visualLabel1.TextAlignment = System.Drawing.StringAlignment.Near;
             this.visualLabel1.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle4.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle4.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle4.Hover = System.Drawing.Color.Empty;
-            textStyle4.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualLabel1.TextStyle = textStyle4;
+            textStyle3.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle3.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle3.Hover = System.Drawing.Color.Empty;
+            textStyle3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualLabel1.TextStyle = textStyle3;
             // 
             // visualButton1
             // 
@@ -329,33 +307,24 @@
             this.visualButton1.Border.Thickness = 1;
             this.visualButton1.Border.Type = VisualPlus.Enumerators.ShapeType.Rounded;
             this.visualButton1.Border.Visible = true;
-            this.visualButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.visualButton1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.visualButton1.Image = null;
             this.visualButton1.Location = new System.Drawing.Point(494, 12);
             this.visualButton1.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualButton1.Name = "visualButton1";
-            this.visualButton1.Size = new System.Drawing.Size(176, 28);
+            this.visualButton1.Size = new System.Drawing.Size(221, 41);
             this.visualButton1.TabIndex = 2;
             this.visualButton1.Text = "开始/刷新";
             this.visualButton1.TextAlignment = System.Drawing.StringAlignment.Center;
             this.visualButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.visualButton1.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle5.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle5.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle5.Hover = System.Drawing.Color.Empty;
-            textStyle5.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualButton1.TextStyle = textStyle5;
+            textStyle4.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle4.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle4.Hover = System.Drawing.Color.Empty;
+            textStyle4.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualButton1.TextStyle = textStyle4;
             this.visualButton1.Click += new System.EventHandler(this.visualButton1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(205, 83);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // splitContainer1
             // 
@@ -368,19 +337,17 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.visualButton4);
             this.splitContainer1.Panel1.Controls.Add(this.visualButton3);
-            this.splitContainer1.Panel1.Controls.Add(this.visualProgressIndicator1);
             this.splitContainer1.Panel1.Controls.Add(this.visualComboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.visualButton2);
             this.splitContainer1.Panel1.Controls.Add(this.visualLabel1);
             this.splitContainer1.Panel1.Controls.Add(this.visualButton1);
-            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
             this.splitContainer1.Panel2.Controls.Add(this.statusStrip1);
-            this.splitContainer1.Size = new System.Drawing.Size(927, 459);
-            this.splitContainer1.SplitterDistance = 105;
+            this.splitContainer1.Size = new System.Drawing.Size(1027, 587);
+            this.splitContainer1.SplitterDistance = 134;
             this.splitContainer1.TabIndex = 1;
             // 
             // visualButton4
@@ -396,23 +363,23 @@
             this.visualButton4.Border.Thickness = 1;
             this.visualButton4.Border.Type = VisualPlus.Enumerators.ShapeType.Rounded;
             this.visualButton4.Border.Visible = true;
-            this.visualButton4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.visualButton4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualButton4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.visualButton4.Image = null;
-            this.visualButton4.Location = new System.Drawing.Point(387, 55);
+            this.visualButton4.Location = new System.Drawing.Point(494, 72);
             this.visualButton4.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualButton4.Name = "visualButton4";
-            this.visualButton4.Size = new System.Drawing.Size(121, 28);
+            this.visualButton4.Size = new System.Drawing.Size(221, 36);
             this.visualButton4.TabIndex = 21;
             this.visualButton4.Text = "继续";
             this.visualButton4.TextAlignment = System.Drawing.StringAlignment.Center;
             this.visualButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.visualButton4.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle6.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle6.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle6.Hover = System.Drawing.Color.Empty;
-            textStyle6.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualButton4.TextStyle = textStyle6;
+            textStyle5.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle5.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle5.Hover = System.Drawing.Color.Empty;
+            textStyle5.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualButton4.TextStyle = textStyle5;
             this.visualButton4.Click += new System.EventHandler(this.visualButton4_Click);
             // 
             // visualButton3
@@ -428,36 +395,36 @@
             this.visualButton3.Border.Thickness = 1;
             this.visualButton3.Border.Type = VisualPlus.Enumerators.ShapeType.Rounded;
             this.visualButton3.Border.Visible = true;
-            this.visualButton3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.visualButton3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualButton3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.visualButton3.Image = null;
-            this.visualButton3.Location = new System.Drawing.Point(231, 55);
+            this.visualButton3.Location = new System.Drawing.Point(735, 13);
             this.visualButton3.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualButton3.Name = "visualButton3";
-            this.visualButton3.Size = new System.Drawing.Size(121, 28);
+            this.visualButton3.Size = new System.Drawing.Size(198, 40);
             this.visualButton3.TabIndex = 20;
             this.visualButton3.Text = "暂停";
             this.visualButton3.TextAlignment = System.Drawing.StringAlignment.Center;
             this.visualButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.visualButton3.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle7.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle7.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle7.Hover = System.Drawing.Color.Empty;
-            textStyle7.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualButton3.TextStyle = textStyle7;
+            textStyle6.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle6.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle6.Hover = System.Drawing.Color.Empty;
+            textStyle6.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualButton3.TextStyle = textStyle6;
             this.visualButton3.Click += new System.EventHandler(this.visualButton3_Click);
             // 
             // 物通网
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(927, 459);
+            this.ClientSize = new System.Drawing.Size(1027, 587);
             this.Controls.Add(this.splitContainer1);
             this.Name = "物通网";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "物通网";
             this.Load += new System.EventHandler(this.物通网_Load);
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -468,7 +435,6 @@
         }
 
         #endregion
-        private VisualPlus.Toolkit.Controls.DataVisualization.VisualProgressIndicator visualProgressIndicator1;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualComboBox visualComboBox1;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
@@ -483,7 +449,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualLabel visualLabel1;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualButton visualButton1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;

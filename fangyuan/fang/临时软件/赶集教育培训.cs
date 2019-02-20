@@ -100,7 +100,7 @@ namespace fang.临时软件
 
                         string url = "http://"+city+".ganji.com/"+cate+"/o"+i+"/";
 
-                        MessageBox.Show(url);
+                       
                         string html = method.GetUrl(url, "utf-8");
 
                         MatchCollection urls = Regex.Matches(html, @"<p class=""t clearfix"">([\s\S]*?)<a href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -170,11 +170,144 @@ namespace fang.临时软件
 
         #endregion
 
+        #region  赶集本地服务1
+        public void run1()
+        {
+
+
+            ArrayList citys = ganjiCitys();
+
+
+            string cate = "";
+
+
+            switch (comboBox1.SelectedItem.ToString())
+            {
+                case "继续教育":
+                    cate = "jixujiaoyurenzheng";
+                    break;
+                case "学历认证":
+                    cate = "xuelirenzheng";
+                    break;
+                case "成人教育":
+                    cate = "chengrenjiaoyu";
+                    break;
+                case "成人高考":
+                    cate = "chengrengaokao";
+                    break;
+                case "专升本":
+                    cate = "zhuanshengben";
+                    break;
+                case "远程教育":
+                    cate = "yuanchengjiaoyu";
+                    break;
+
+                case "自考":
+                    cate = "zikao";
+                    break;
+
+
+            }
+
+
+
+
+            try
+            {
+                foreach (string city in citys)
+                {
+
+                    for (int i = 1; i < 63; i++)
+                    {
+
+
+                        string url = "http://" + city + ".ganji.com/" + cate + "/o" + i + "/";
+
+                        
+                        string html = method.GetUrl(url, "utf-8");
+
+                        MatchCollection urls = Regex.Matches(html, @"<p class=""t clearfix"">([\s\S]*?)<a href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                        ArrayList lists = new ArrayList();
+
+                        foreach (Match NextMatch in urls)
+                        {
+                            lists.Add(NextMatch.Groups[2].Value);
+
+                        }
+
+                        if (lists.Count == 0)
+
+                            break;
+
+                        foreach (string list in lists)
+                        {
+                            textBox1.Text = list;
+                            string strhtml = method.GetUrl(list, "utf-8");
+
+                            Match title = Regex.Match(strhtml, @"【([\s\S]*?)】");
+                            Match tel = Regex.Match(strhtml, @"@phone=([\s\S]*?)@");
+                            Match lxr = Regex.Match(strhtml, @"联系人：</i>([\s\S]*?)</span>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                            Match company = Regex.Match(strhtml, @"<h1>([\s\S]*?)</h1>");
+
+                            if (title.Groups[1].Value != "" && title.Groups[1].Value.Contains(textBox2.Text))
+                            {
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                lv1.SubItems.Add(title.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(Regex.Replace(lxr.Groups[1].Value, "<[^>]*>", "").Trim());
+                                lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+
+                                lv1.SubItems.Add(company.Groups[1].Value.Trim());
+
+                                Application.DoEvents();
+                                Thread.Sleep(Convert.ToInt32(1000));
+
+                                if (listView1.Items.Count > 1)
+                                {
+                                    listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                                }
+
+                                while (this.status == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+                            }
+
+                        }
+
+
+
+                    }
+
+                }
+            }
+
+
+            catch (System.Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        #endregion
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
+            if (radioButton1.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+            }
+
+            else if (radioButton2.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(run1));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
