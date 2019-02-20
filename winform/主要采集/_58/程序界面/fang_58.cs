@@ -910,13 +910,8 @@ namespace _58
 
                 label8.Text = radioButton4.Text;
             }
-            else if (radioButton6.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(Che));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-                label8.Text = radioButton6.Text;
-            }
+            
+            
             else if (radioButton8.Checked == true)
             {
                 Thread thread = new Thread(new ThreadStart(changfang));

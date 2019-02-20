@@ -77,7 +77,7 @@ namespace fang.临时软件
                         string html = GetUrl(url, "utf-8");
 
                     MatchCollection goods_names = Regex.Matches(html, @"goods_name"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                    MatchCollection goods_types = Regex.Matches(html, @"goods_type"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                   
                     MatchCollection zaizhongs = Regex.Matches(html, @"zaizhong"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                     MatchCollection trans_modes = Regex.Matches(html, @"trans_mode"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                     MatchCollection huo_phones = Regex.Matches(html, @"huo_phone"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -93,9 +93,9 @@ namespace fang.临时软件
                 for (int j = 0; j < goods_names.Count; j++)
                     {
 
-                    if (!finishes.Contains(j))
+                    if (!finishes.Contains(huo_phones[j].Groups[1].Value.Trim()))
                     {
-                        finishes.Add(j);
+                        finishes.Add(huo_phones[j].Groups[1].Value.Trim());
                     string strhtml = GetUrl("http://www.chinawutong.com/203/ab"+ from_areas[j].Groups[1].Value.Trim() + "k"+ from_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
                     string strhtml1 = GetUrl("http://www.chinawutong.com/203/ab" + to_areas[j].Groups[1].Value.Trim() + "k" + to_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
 
@@ -105,7 +105,6 @@ namespace fang.临时软件
                         {
                             ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
                             lv1.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(goods_types[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(zaizhongs[j].Groups[1].Value.Trim() + danweis[j].Groups[1].Value);
                             lv1.SubItems.Add(trans_modes[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(huo_phones[j].Groups[1].Value.Trim());
@@ -119,8 +118,8 @@ namespace fang.临时软件
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
+
                         }
-                       
                          }
 
                        }
@@ -149,14 +148,15 @@ namespace fang.临时软件
         private void visualButton1_Click(object sender, EventArgs e)
         {
             this.status = true;
-            listView1.Items.Clear();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Thread thread = new Thread(new ThreadStart(run));
                 Control.CheckForIllegalCrossThreadCalls = false;
                 thread.Start();
             }
+                
+            
         }
 
         private void visualButton2_Click(object sender, EventArgs e)

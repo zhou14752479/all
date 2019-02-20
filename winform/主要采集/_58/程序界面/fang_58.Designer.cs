@@ -449,7 +449,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton9 = new System.Windows.Forms.RadioButton();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
@@ -1019,7 +1018,6 @@
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox6.Controls.Add(this.radioButton6);
             this.groupBox6.Controls.Add(this.radioButton9);
             this.groupBox6.Controls.Add(this.radioButton8);
             this.groupBox6.Controls.Add(this.radioButton7);
@@ -1036,18 +1034,6 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "选择分类";
             // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(564, 26);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(59, 16);
-            this.radioButton6.TabIndex = 89;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "二手车";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            this.radioButton6.Visible = false;
-            // 
             // radioButton9
             // 
             this.radioButton9.AutoSize = true;
@@ -1058,7 +1044,6 @@
             this.radioButton9.TabStop = true;
             this.radioButton9.Text = "土地租售";
             this.radioButton9.UseVisualStyleBackColor = true;
-            this.radioButton9.Visible = false;
             // 
             // radioButton8
             // 
@@ -1070,7 +1055,6 @@
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "厂房";
             this.radioButton8.UseVisualStyleBackColor = true;
-            this.radioButton8.Visible = false;
             // 
             // radioButton7
             // 
@@ -1082,7 +1066,6 @@
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "车位";
             this.radioButton7.UseVisualStyleBackColor = true;
-            this.radioButton7.Visible = false;
             // 
             // radioButton5
             // 
@@ -1094,7 +1077,6 @@
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "二手房";
             this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.Visible = false;
             // 
             // radioButton4
             // 
@@ -1106,7 +1088,6 @@
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "写字楼";
             this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.Visible = false;
             // 
             // radioButton3
             // 
@@ -1118,7 +1099,6 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "商铺出租";
             this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.Visible = false;
             // 
             // radioButton2
             // 
@@ -1130,7 +1110,6 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "商铺出售";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.Visible = false;
             // 
             // radioButton1
             // 
@@ -1789,7 +1768,6 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox textBox14;
         private CCWin.SkinControl.SkinButton skinButton2;
-        private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 登陆ToolStripMenuItem;

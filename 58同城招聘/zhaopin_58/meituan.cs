@@ -472,10 +472,9 @@ namespace zhaopin_58
 
 
                                     }
-
+                                    Thread.Sleep(1000);
                                 }
-                                Thread.Sleep(1000); 
-
+                               
                             }
 
                         }

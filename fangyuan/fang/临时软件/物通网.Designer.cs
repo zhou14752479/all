@@ -37,7 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(物通网));
             VisualPlus.Structure.TextStyle textStyle6 = new VisualPlus.Structure.TextStyle();
             VisualPlus.Structure.TextStyle textStyle7 = new VisualPlus.Structure.TextStyle();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.visualProgressIndicator1 = new VisualPlus.Toolkit.Controls.DataVisualization.VisualProgressIndicator();
             this.visualComboBox1 = new VisualPlus.Toolkit.Controls.Interactivity.VisualComboBox();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -66,11 +65,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "货物类型";
-            this.columnHeader3.Width = 80;
             // 
             // visualProgressIndicator1
             // 
@@ -262,7 +256,6 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6,
@@ -475,8 +468,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private VisualPlus.Toolkit.Controls.DataVisualization.VisualProgressIndicator visualProgressIndicator1;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualComboBox visualComboBox1;
         private System.Windows.Forms.ColumnHeader columnHeader5;
