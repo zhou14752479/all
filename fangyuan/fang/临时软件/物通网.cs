@@ -59,7 +59,7 @@ namespace fang.临时软件
         #endregion
 
 
-        ArrayList finishes = new ArrayList();
+     //   ArrayList finishes = new ArrayList();
 
         #region  物通网
         public void run()
@@ -72,7 +72,7 @@ namespace fang.临时软件
                 string province = System.Web.HttpUtility.UrlEncode(visualComboBox1.Text); 
 
 
-                        string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=1&condition=1&tsheng=&txian=&chexing=&huiyuan_id=2264195&fsheng="+province+"&type=GetGood_new&fshi=&tshi=&pid=1&fxian=&ver_version=1&r_5062=35924";
+                        string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=1&condition=1&tsheng=&txian=&chexing=&huiyuan_id=2264195&fsheng="+province+"&type=GetGood_new&fshi=&tshi=&pid=1&fxian=&ver_version=1&r_20717=37619";
                       
                         string html = GetUrl(url, "utf-8");
 
@@ -93,18 +93,16 @@ namespace fang.临时软件
                 for (int j = 0; j < goods_names.Count; j++)
                     {
 
-                    if (!finishes.Contains(huo_phones[j].Groups[1].Value.Trim()))
-                    {
-                        finishes.Add(huo_phones[j].Groups[1].Value.Trim());
-                    string strhtml = GetUrl("http://www.chinawutong.com/203/ab"+ from_areas[j].Groups[1].Value.Trim() + "k"+ from_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
-                    string strhtml1 = GetUrl("http://www.chinawutong.com/203/ab" + to_areas[j].Groups[1].Value.Trim() + "k" + to_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
+                    //string strhtml = GetUrl("http://www.chinawutong.com/203/ab"+ from_areas[j].Groups[1].Value.Trim() + "k"+ from_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
+                    //string strhtml1 = GetUrl("http://www.chinawutong.com/203/ab" + to_areas[j].Groups[1].Value.Trim() + "k" + to_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
 
-                    Match from_area = Regex.Match(strhtml, @"<a>-([\s\S]*?)<");
-                    Match to_area = Regex.Match(strhtml1, @"<a>-([\s\S]*?)<");
+                    //Match from_area = Regex.Match(strhtml, @"<a>-([\s\S]*?)<");
+                    //Match to_area = Regex.Match(strhtml1, @"<a>-([\s\S]*?)<");
                         if (goods_names.Count > 0)
                         {
-                            ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
-                            lv1.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
+                        //  ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
+                        ListViewItem lv1 = listView1.Items.Add("");
+                        lv1.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(zaizhongs[j].Groups[1].Value.Trim() + "公斤");
                             lv1.SubItems.Add(trans_modes[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(huo_phones[j].Groups[1].Value.Trim());
@@ -119,7 +117,7 @@ namespace fang.临时软件
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
 
-                        }
+                       
                          }
 
                        }
@@ -150,14 +148,11 @@ namespace fang.临时软件
             listView1.Items.Clear();
             this.status = true;
 
-            for (int i = 0; i < 5; i++)
-            {
-                Thread thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-            }
-                
-            
+            Thread thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
+
+
         }
 
         private void visualButton2_Click(object sender, EventArgs e)
