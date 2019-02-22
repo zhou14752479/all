@@ -65,44 +65,54 @@ namespace fang.临时软件
         public void run()
         {
 
-           
+
             try
             {
 
-                string province = System.Web.HttpUtility.UrlEncode(visualComboBox1.Text); 
+                string province = System.Web.HttpUtility.UrlEncode(visualComboBox1.Text);
 
+                if (visualComboBox1.Text == "全国")
+                {
+                    province = "";
 
-                        string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=1&condition=1&tsheng=&txian=&chexing=&huiyuan_id=2264195&fsheng="+province+"&type=GetGood_new&fshi=&tshi=&pid=1&fxian=&ver_version=1&r_20717=37619";
-                      
-                        string html = GetUrl(url, "utf-8");
+                }
+                for (int i = 1; i < 31; i++)
+                {
+
+                    string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=1&condition=1&tsheng=&txian=&chexing=&huiyuan_id=2264195&fsheng=" + province + "&type=GetGood_new&fshi=&tshi=&pid="+i+"&fxian=&ver_version=1&r_20717=37619";
+
+                    string html = GetUrl(url, "utf-8");
 
                     MatchCollection goods_names = Regex.Matches(html, @"goods_name"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                   
+
                     MatchCollection zaizhongs = Regex.Matches(html, @"zaizhong"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                     MatchCollection trans_modes = Regex.Matches(html, @"trans_mode"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                     MatchCollection huo_phones = Regex.Matches(html, @"huo_phone"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                     MatchCollection huo_contacts = Regex.Matches(html, @"huo_contact"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                     MatchCollection company_names = Regex.Matches(html, @"company_name"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                   
-                    
-                    MatchCollection times = Regex.Matches(html, @"data_time"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                MatchCollection from_areas = Regex.Matches(html, @"from_area"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                MatchCollection to_areas = Regex.Matches(html, @"to_area"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-                for (int j = 0; j < goods_names.Count; j++)
+
+                    MatchCollection times = Regex.Matches(html, @"data_time"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection from_areas = Regex.Matches(html, @"from_area"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection to_areas = Regex.Matches(html, @"to_area"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    if (goods_names.Count == 0)
+                        break;
+
+                    for (int j = 0; j < goods_names.Count; j++)
                     {
 
-                    //string strhtml = GetUrl("http://www.chinawutong.com/203/ab"+ from_areas[j].Groups[1].Value.Trim() + "k"+ from_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
-                    //string strhtml1 = GetUrl("http://www.chinawutong.com/203/ab" + to_areas[j].Groups[1].Value.Trim() + "k" + to_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
+                        //string strhtml = GetUrl("http://www.chinawutong.com/203/ab"+ from_areas[j].Groups[1].Value.Trim() + "k"+ from_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
+                        //string strhtml1 = GetUrl("http://www.chinawutong.com/203/ab" + to_areas[j].Groups[1].Value.Trim() + "k" + to_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
 
-                    //Match from_area = Regex.Match(strhtml, @"<a>-([\s\S]*?)<");
-                    //Match to_area = Regex.Match(strhtml1, @"<a>-([\s\S]*?)<");
+                        //Match from_area = Regex.Match(strhtml, @"<a>-([\s\S]*?)<");
+                        //Match to_area = Regex.Match(strhtml1, @"<a>-([\s\S]*?)<");
                         if (goods_names.Count > 0)
                         {
-                        //  ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
-                        ListViewItem lv1 = listView1.Items.Add("");
-                        lv1.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
+                            //  ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString());
+                            lv1.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(zaizhongs[j].Groups[1].Value.Trim() + "公斤");
                             lv1.SubItems.Add(trans_modes[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(huo_phones[j].Groups[1].Value.Trim());
@@ -111,21 +121,22 @@ namespace fang.临时软件
 
                             lv1.SubItems.Add(times[j].Groups[1].Value.Trim());
 
-                           
+
                             while (this.status == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
 
-                       
-                         }
 
-                       }
+                        }
 
-                   }
+                    }
 
-                
-            
+                }
+            }
+
+
+
 
 
             catch (System.Exception ex)
@@ -175,5 +186,6 @@ namespace fang.临时软件
         {
             listView1.Items.Clear();
         }
+
     }
 }
