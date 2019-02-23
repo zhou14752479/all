@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,8 @@ namespace fang.临时软件
 {
     public partial class 物通网 : Form
     {
+        bool denglu = false;
+
         public 物通网()
         {
             InitializeComponent();
@@ -156,6 +159,13 @@ namespace fang.临时软件
 
         private void visualButton1_Click(object sender, EventArgs e)
         {
+            if (denglu == false)
+            {
+                MessageBox.Show("请先登录您的账号！");
+                return;
+            }
+
+
             listView1.Items.Clear();
             this.status = true;
 
@@ -187,5 +197,70 @@ namespace fang.临时软件
             listView1.Items.Clear();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+          
+
+                try
+                {
+
+
+
+                    string constr = "Host =122.114.13.236;Database=users;Username=admin111;Password=admin111";
+                    MySqlConnection mycon = new MySqlConnection(constr);
+                    mycon.Open();
+
+                    MySqlCommand cmd = new MySqlCommand("select * from zhanghaos where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+                    MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+
+
+                    if (reader.Read())
+                    {
+
+                        string username = reader["username"].ToString().Trim();
+                        string password = reader["password"].ToString().Trim();
+                        
+                    
+
+
+                        //判断密码
+                        if (textBox2.Text.Trim() == password)
+                    {
+
+                        MessageBox.Show("登陆成功！");
+                        denglu = true;
+                    }
+
+
+                    else
+
+                    {
+                            MessageBox.Show("您的密码错误！");
+                            return;
+                        }
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("未查询到您的账户信息！请联系客服开通账号！");
+                        return;
+                    }
+
+
+                }
+
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
+            }
+
+
+        }
     }
-}
+
