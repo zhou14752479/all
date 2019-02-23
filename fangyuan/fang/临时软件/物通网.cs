@@ -72,13 +72,14 @@ namespace fang.临时软件
             try
             {
 
-                string province = System.Web.HttpUtility.UrlEncode(visualComboBox1.Text);
+                //string province = System.Web.HttpUtility.UrlEncode(visualComboBox1.Text);
 
-                if (visualComboBox1.Text == "全国")
-                {
-                    province = "";
+                string province = "";
+                //if (visualComboBox1.Text == "全国")
+                //{
+                //    province = "";
 
-                }
+                //}
                 for (int i = 1; i < 31; i++)
                 {
 
@@ -145,7 +146,7 @@ namespace fang.临时软件
             catch (System.Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+               ex.ToString();
             }
 
         }
@@ -260,7 +261,16 @@ namespace fang.临时软件
 
             }
 
+        private void visualButton4_Click_1(object sender, EventArgs e)
+        {
+            status = false;
+        }
 
+        private void visualButton3_Click_1(object sender, EventArgs e)
+        {
+            status  = true;
         }
     }
+
+}
 
