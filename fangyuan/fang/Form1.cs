@@ -63,7 +63,7 @@ namespace fang
         }
         #endregion
 
-        #region  58二手房
+        #region  58个人二手房
         public void ershoufang()
         {
 
@@ -113,9 +113,9 @@ namespace fang
                         string Rxg3 = @"小区：([\s\S]*?)</h2>";//手机端小区
                         string Rxg4 = @"面积</p>([\s\S]*?)</p>"; //手机端面积去除标签
                         string Rxg5 = @"MinPrice':'([\s\S]*?)'"; 
-                        string Rxg6 = @"户型</p>([\s\S]*?)</p>"; //手机端户型去除标签 
+                       
                         string Rxg7 = @"楼层：<span class=""detail-value"">([\s\S]*?)</span>";
-                        string Rxg8 = @"朝向： <span class=""detail-value"">([\s\S]*?)</span>";
+                        string Rxg8 = @"朝向：<span class=""detail-value"">([\s\S]*?)</span>";
                         string Rxg9 = @"类型：<span class=""detail-value"">([\s\S]*?)</span>";
                         string Rxg10 = @"装修：<span class=""detail-value"">([\s\S]*?)</span>";
                         string Rxg11 = @"产权：([\s\S]*?)</span>";
@@ -123,6 +123,8 @@ namespace fang
                         string Rxg13 = @"发布：<span class=""detail-value"">([\s\S]*?)</span>";
                         string Rxg14 = @"<h3>核心卖点</h3>([\s\S]*?)</p>";
 
+                        string Rxg15 = @"户型</p>([\s\S]*?)室([\s\S]*?)厅([\s\S]*?)卫"; //手机端户型去除标签 
+                        
 
                         Match titles = Regex.Match(strhtml, title);
                             Match contacts = Regex.Match(strhtml2, Rxg);                                                        //手机端正则匹配联系人
@@ -131,7 +133,7 @@ namespace fang
                             Match mianji = Regex.Match(strhtml2, Rxg4);
                             Match price = Regex.Match(strhtml, Rxg5);
 
-                        Match huxing = Regex.Match(strhtml2, Rxg6);
+                       
                         Match louceng = Regex.Match(strhtml2, Rxg7);
                         Match chaoxiang= Regex.Match(strhtml2, Rxg8);
                         Match leiixng = Regex.Match(strhtml2, Rxg9);
@@ -141,8 +143,9 @@ namespace fang
                         Match fabu = Regex.Match(strhtml2, Rxg13);
                         Match xiangqing = Regex.Match(strhtml2, Rxg14);
 
+                        Match huxing = Regex.Match(strhtml2, Rxg15);
 
-
+                       
 
 
 
@@ -157,8 +160,8 @@ namespace fang
                         string temp1 = Regex.Replace(price.Groups[1].Value+"万", "<[^>]*>", "");
                         lv1.SubItems.Add(temp1.Trim());
 
-                        string temp2 = Regex.Replace(huxing.Groups[1].Value, "<[^>]*>", "");
-                        lv1.SubItems.Add(temp2.Trim());
+                        
+                        
                         lv1.SubItems.Add(louceng.Groups[1].Value);
                         lv1.SubItems.Add(chaoxiang.Groups[1].Value);
                         lv1.SubItems.Add(leiixng.Groups[1].Value);
@@ -168,8 +171,13 @@ namespace fang
                         lv1.SubItems.Add(danjia.Groups[1].Value.Replace("</i>","").Trim());
                         lv1.SubItems.Add(fabu.Groups[1].Value);
                         lv1.SubItems.Add(xiangqing.Groups[1].Value.Replace("<p>","").Trim());
-
-
+                        string temp4 = Regex.Replace(huxing.Groups[1].Value, "<[^>]*>", "");
+                        string temp5 = Regex.Replace(huxing.Groups[2].Value, "<[^>]*>", "");
+                        string temp6 = Regex.Replace(huxing.Groups[3].Value, "<[^>]*>", "");
+                        lv1.SubItems.Add(temp4.Trim());
+                        lv1.SubItems.Add(temp5.Trim());
+                        lv1.SubItems.Add(temp6.Trim());
+                        
 
 
 
@@ -194,7 +202,145 @@ namespace fang
 
         #endregion
 
-        #region 邹城房产
+        #region  58中介二手房
+        public void ershoufang1()
+        {
+
+            try
+            {
+                string city = "zoucheng";
+
+
+                for (int i = 1; i < 71; i++)
+                {
+                    String Url = "http://" + city + ".58.com/ershoufang/1/pn" + i + "/";
+
+                    string html = GetUrl(Url, "utf-8");
+
+
+                    MatchCollection TitleMatchs = Regex.Matches(html, @"<li logr=""([\s\S]*?)_2_([\s\S]*?)_([\s\S]*?)_", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    ArrayList lists = new ArrayList();
+                    foreach (Match NextMatch in TitleMatchs)
+                    {
+                        lists.Add("http://" + city + ".58.com/ershoufang/" + NextMatch.Groups[3].Value + "x.shtml");
+
+                    }
+
+                    if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                        break;
+
+
+                    foreach (string list in lists)
+
+                    {
+
+                        textBox1.Text += DateTime.Now.ToString() + list + "\r\n";
+                        if (button2.Text == "已停止")
+                            return;
+
+                        string Url2 = "http://m.58.com/" + city + "/ershoufang/" + list.Substring(list.Length - 21);                       //获取二手房手机端的网址
+
+                        string strhtml = GetUrl(list, "utf-8");                                                                                //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                        string strhtml2 = GetUrl(Url2, "utf-8");                                                                               //请求手机端网址
+
+                        string title = @"<h1 class=""c_333 f20"">([\s\S]*?)</h1>";  //标题
+                        string Rxg = @"<h2 class=""agent-title"">([\s\S]*?)</h2>";  //手机端正则匹配联系人
+                        string Rxg1 = @"<p class='phone-num'>([\s\S]*?)<";   //电话
+                        string Rxg3 = @"小区：([\s\S]*?)</h2>";//手机端小区
+                        string Rxg4 = @"面积</p>([\s\S]*?)</p>"; //手机端面积去除标签
+                        string Rxg5 = @"MinPrice':'([\s\S]*?)'";
+
+                        string Rxg7 = @"楼层：<span class=""detail-value"">([\s\S]*?)</span>";
+                        string Rxg8 = @"朝向：<span class=""detail-value"">([\s\S]*?)</span>";
+                        string Rxg9 = @"类型：<span class=""detail-value"">([\s\S]*?)</span>";
+                        string Rxg10 = @"装修：<span class=""detail-value"">([\s\S]*?)</span>";
+                        string Rxg11 = @"产权：([\s\S]*?)</span>";
+                        string Rxg12 = @"元（([\s\S]*?)）"; //单价
+                        string Rxg13 = @"发布：<span class=""detail-value"">([\s\S]*?)</span>";
+                        string Rxg14 = @"<h3>核心卖点</h3>([\s\S]*?)</p>";
+
+                        string Rxg15 = @"户型</p>([\s\S]*?)室([\s\S]*?)厅([\s\S]*?)卫"; //手机端户型去除标签 
+
+
+                        Match titles = Regex.Match(strhtml, title);
+                        Match contacts = Regex.Match(strhtml2, Rxg);                                                        //手机端正则匹配联系人
+                        Match tell = Regex.Match(strhtml, Rxg1);
+                        Match xiaoqu = Regex.Match(strhtml2, Rxg3);
+                        Match mianji = Regex.Match(strhtml2, Rxg4);
+                        Match price = Regex.Match(strhtml, Rxg5);
+
+
+                        Match louceng = Regex.Match(strhtml2, Rxg7);
+                        Match chaoxiang = Regex.Match(strhtml2, Rxg8);
+                        Match leiixng = Regex.Match(strhtml2, Rxg9);
+                        Match zhuangxiu = Regex.Match(strhtml2, Rxg10);
+                        Match chanquan = Regex.Match(strhtml2, Rxg11);
+                        Match danjia = Regex.Match(strhtml, Rxg12);
+                        Match fabu = Regex.Match(strhtml2, Rxg13);
+                        Match xiangqing = Regex.Match(strhtml2, Rxg14);
+
+                        Match huxing = Regex.Match(strhtml2, Rxg15);
+                        Match gongsi = Regex.Match(strhtml2, @"所属公司：([\s\S]*?)</p>");
+
+
+
+
+
+
+                        ListViewItem lv1 = listView1.Items.Add(titles.Groups[1].Value.Trim()); //使用Listview展示数据
+                        lv1.SubItems.Add(contacts.Groups[1].Value);
+                        lv1.SubItems.Add(tell.Groups[1].Value);
+                        lv1.SubItems.Add(xiaoqu.Groups[1].Value);
+                        string temp = Regex.Replace(mianji.Groups[1].Value, "<[^>]*>", "");
+                        lv1.SubItems.Add(temp.Trim());
+                        string temp1 = Regex.Replace(price.Groups[1].Value + "万", "<[^>]*>", "");
+                        lv1.SubItems.Add(temp1.Trim());
+
+
+
+                        lv1.SubItems.Add(louceng.Groups[1].Value);
+                        lv1.SubItems.Add(chaoxiang.Groups[1].Value);
+                        lv1.SubItems.Add(leiixng.Groups[1].Value);
+                        lv1.SubItems.Add(zhuangxiu.Groups[1].Value);
+                        string temp3 = Regex.Replace(chanquan.Groups[1].Value, "<[^>]*>", "");
+                        lv1.SubItems.Add(temp3);
+                        lv1.SubItems.Add(danjia.Groups[1].Value.Replace("</i>", "").Trim());
+                        lv1.SubItems.Add(fabu.Groups[1].Value);
+                        lv1.SubItems.Add(xiangqing.Groups[1].Value.Replace("<p>", "").Trim());
+                        string temp4 = Regex.Replace(huxing.Groups[1].Value, "<[^>]*>", "");
+                        string temp5 = Regex.Replace(huxing.Groups[2].Value, "<[^>]*>", "");
+                        string temp6 = Regex.Replace(huxing.Groups[3].Value, "<[^>]*>", "");
+                        lv1.SubItems.Add(temp4.Trim());
+                        lv1.SubItems.Add(temp5.Trim());
+                        lv1.SubItems.Add(temp6.Trim());
+                        lv1.SubItems.Add(gongsi.Groups[1].Value.Trim());
+
+
+                        Application.DoEvents();
+                        System.Threading.Thread.Sleep(Convert.ToInt32(1000));   //内容获取间隔，可变量                     
+
+                    }
+
+
+                }
+
+            }
+
+
+            catch (System.Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
+
+        #endregion
+
+        #region 邹城个人房产
         public void zoucheng()
         {
 
@@ -241,7 +387,7 @@ namespace fang
                         string Rxg3 = @"小区地段：([\s\S]*?)&";//手机端小区
                         string Rxg4 = @"建筑面积：([\s\S]*?)</font>";
                         string Rxg5 = @"交易价格：([\s\S]*?)&"; 
-                        string Rxg6 = @"户型结构：([\s\S]*?)&"; 
+                        string Rxg6 = @"户型结构：([\s\S]*?)室([\s\S]*?)厅([\s\S]*?)卫&"; 
                         string Rxg7 = @"楼层总数：([\s\S]*?)&";
                         string Rxg8 = @"房屋朝向：([\s\S]*?)&";
                         string Rxg9 = @"房屋类型：([\s\S]*?)&";
@@ -315,7 +461,7 @@ namespace fang
                         lv2.SubItems.Add(quyu.Groups[1].Value.Replace("</li><li class=li2>", ""));
                         lv2.SubItems.Add(xiaoqu.Groups[1].Value.Replace("</li><li class=li2>", ""));
                         lv2.SubItems.Add(leiixng.Groups[1].Value.Replace("</li><li class=li2>", ""));
-                        lv2.SubItems.Add(huxing.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        
                         lv2.SubItems.Add(suozailc.Groups[1].Value.Replace("</li><li class=li2>", ""));
                         lv2.SubItems.Add(zhuangxiu.Groups[1].Value.Replace("</li><li class=li2>", ""));
                         lv2.SubItems.Add(louceng.Groups[1].Value.Replace("</li><li class=li2>", ""));
@@ -336,7 +482,9 @@ namespace fang
                         lv2.SubItems.Add(tell.Groups[1].Value.Replace("</li><li class=li2><b>", ""));
                         lv2.SubItems.Add(dianhua.Groups[1].Value.Replace("<li class=li2>", ""));
 
-
+                        lv2.SubItems.Add(huxing.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(huxing.Groups[2].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(huxing.Groups[3].Value.Replace("</li><li class=li2>", ""));
 
 
                         Application.DoEvents();
@@ -360,6 +508,181 @@ namespace fang
 
         #endregion
 
+        #region 邹城中介房产
+        public void zoucheng1()
+        {
+
+            try
+            {
+
+
+
+                for (int i = 1; i < 40; i++)
+                {
+                    String Url = "http://www.zcfcw.cn/sale/search/airallpage_ly%e4%b8%ad%e4%bb%8b_qy_fx_jg_mj_hx_zx_lc_dd_page" + i + ".html";
+
+                    string html = GetUrl(Url, "utf-8");
+
+
+                    MatchCollection TitleMatchs = Regex.Matches(html, @"<li class=fylifw0><a href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    ArrayList lists = new ArrayList();
+                    foreach (Match NextMatch in TitleMatchs)
+                    {
+                        lists.Add("http://www.zcfcw.cn" + NextMatch.Groups[1].Value);
+
+                    }
+
+                    if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                        break;
+
+
+                    foreach (string list in lists)
+
+                    {
+                        if (button2.Text == "已停止")
+                            return;
+
+                        textBox1.Text += list + "\r\n";
+
+                        string strhtml = GetUrl(list, "utf-8");                                                                                //定义的GetRul方法 返回 reader.ReadToEnd()
+
+
+                        string Rxg = @"联 系 人：</li><li class=li2_1>([\s\S]*?)&";
+                        string Rxg1 = @"手机号码：</li><li class=li2_1>([\s\S]*?)&";   //电话
+                        string Rxg2 = @"区域方位：([\s\S]*?)&";
+                        string Rxg3 = @"小区地段：([\s\S]*?)&";//手机端小区
+                        string Rxg4 = @"建筑面积：([\s\S]*?)</font>";
+                        string Rxg5 = @"交易价格：([\s\S]*?)&";
+                        string Rxg6 = @"户型结构：([\s\S]*?)室([\s\S]*?)厅([\s\S]*?)卫&";
+                        string Rxg7 = @"楼层总数：([\s\S]*?)&";
+                        string Rxg8 = @"房屋朝向：([\s\S]*?)&";
+                        string Rxg9 = @"房屋类型：([\s\S]*?)&";
+                        string Rxg10 = @"装修程度：([\s\S]*?)&";
+                        string Rxg11 = @"契证年数：([\s\S]*?)&";
+                        string Rxg12 = @"每平单价：([\s\S]*?)&"; //单价
+                        string Rxg13 = @"更新时间：([\s\S]*?)&";
+
+                        string Rxg14 = @"备注说明：</li>([\s\S]*?)</li>";
+                        string Rxg15 = @"浏览：<span>([\s\S]*?)</span>";
+                        string Rxg16 = @"小学学区：([\s\S]*?)&";
+                        string Rxg17 = @"中学学区：([\s\S]*?)&";
+                        string Rxg18 = @"<a href=""http://ip.yimao.com/([\s\S]*?).html";
+                        string Rxg19 = @"来源：([\s\S]*?)</li>";
+                        string Rxg20 = @"所在楼层：([\s\S]*?)&";
+                        string Rxg21 = @"车库情况：([\s\S]*?)&";
+                        string Rxg22 = @"建成年份：([\s\S]*?)&";
+                        string Rxg23 = @"房源编号：([\s\S]*?)&";
+                        string Rxg24 = @"土地性质：([\s\S]*?)&";
+                        string Rxg25 = @"证件情况：([\s\S]*?)&";
+                        string Rxg26 = @"配套设施：([\s\S]*?)&";
+                        string Rxg27 = @"电话/短号：</li><li class=li2_1>([\s\S]*?)&";
+
+                        Match contacts = Regex.Match(strhtml, Rxg);
+                        Match tell = Regex.Match(strhtml, Rxg1);
+                        Match quyu = Regex.Match(strhtml, Rxg2);
+                        Match xiaoqu = Regex.Match(strhtml, Rxg3);
+                        Match mianji = Regex.Match(strhtml, Rxg4);
+                        Match price = Regex.Match(strhtml, Rxg5);
+
+                        Match huxing = Regex.Match(strhtml, Rxg6);
+                        Match louceng = Regex.Match(strhtml, Rxg7);
+                        Match chaoxiang = Regex.Match(strhtml, Rxg8);
+                        Match leiixng = Regex.Match(strhtml, Rxg9);
+                        Match zhuangxiu = Regex.Match(strhtml, Rxg10);
+                        Match chanquan = Regex.Match(strhtml, Rxg11);
+                        Match danjia = Regex.Match(strhtml, Rxg12);
+                        Match time = Regex.Match(strhtml, Rxg13);
+                        Match beizhu = Regex.Match(strhtml, Rxg14);
+                        Match liulan = Regex.Match(strhtml, Rxg15);
+                        Match xiaoxue = Regex.Match(strhtml, Rxg16);
+                        Match zhongxue = Regex.Match(strhtml, Rxg17);
+                        Match ip = Regex.Match(strhtml, Rxg18);
+                        Match laiyuan = Regex.Match(strhtml, Rxg19);
+                        Match suozailc = Regex.Match(strhtml, Rxg20);
+                        Match cheku = Regex.Match(strhtml, Rxg21);
+                        Match nianfen = Regex.Match(strhtml, Rxg22);
+                        Match bianhao = Regex.Match(strhtml, Rxg23);
+                        Match tudi = Regex.Match(strhtml, Rxg24);
+                        Match zhengjian = Regex.Match(strhtml, Rxg25);
+                        Match sheshi = Regex.Match(strhtml, Rxg26);
+                        Match dianhua = Regex.Match(strhtml, Rxg27);
+                        Match qiye= Regex.Match(strhtml, @"企业名称：([\s\S]*?)</font>");
+                        Match dizhi = Regex.Match(strhtml, @"企业地址：</li>([\s\S]*?)</li>");
+
+
+
+                        string temp = Regex.Replace(ip.Groups[1].Value, "<[^>]*>", "");
+                        string temp1 = Regex.Replace(bianhao.Groups[1].Value, "<[^>]*>", "");
+                        string temp2 = Regex.Replace(mianji.Groups[1].Value, "<[^>]*>", "");
+                        string temp3 = Regex.Replace(price.Groups[1].Value, "<[^>]*>", "");
+                        string temp4 = Regex.Replace(beizhu.Groups[1].Value, "<[^>]*>", "");
+
+
+
+
+                        ListViewItem lv2 = listView2.Items.Add(time.Groups[1].Value.Replace("</li><li class=li2>", "")); //使用Listview展示数据
+
+                        lv2.SubItems.Add(temp);
+                        lv2.SubItems.Add(liulan.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(laiyuan.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(temp1);
+                        lv2.SubItems.Add(quyu.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(xiaoqu.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(leiixng.Groups[1].Value.Replace("</li><li class=li2>", ""));
+
+                        lv2.SubItems.Add(suozailc.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(zhuangxiu.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(louceng.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(temp2);
+                        lv2.SubItems.Add(cheku.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(chanquan.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(xiaoxue.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(zhongxue.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(chaoxiang.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(tudi.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(nianfen.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(danjia.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(zhengjian.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(temp3);
+                        lv2.SubItems.Add(sheshi.Groups[1].Value.Replace("</li><li class=li5>", ""));
+                        lv2.SubItems.Add(temp4);
+                        lv2.SubItems.Add(contacts.Groups[1].Value.Replace("<li class=li2>", ""));
+                        lv2.SubItems.Add(tell.Groups[1].Value.Replace("</li><li class=li2><b>", ""));
+                        lv2.SubItems.Add(dianhua.Groups[1].Value.Replace("<li class=li2>", ""));
+
+                        lv2.SubItems.Add(huxing.Groups[1].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(huxing.Groups[2].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(huxing.Groups[3].Value.Replace("</li><li class=li2>", ""));
+                        lv2.SubItems.Add(Regex.Replace(qiye.Groups[1].Value, "<[^>]*>", ""));
+                        lv2.SubItems.Add(Regex.Replace(dizhi.Groups[1].Value, "<[^>]*>", ""));
+
+
+                        
+                        Application.DoEvents();
+                        System.Threading.Thread.Sleep(Convert.ToInt32(500));   //内容获取间隔，可变量                     
+
+                    }
+
+
+                }
+
+            }
+
+
+            catch (System.Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
+
+        #endregion
+
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -371,7 +694,7 @@ namespace fang
             listView1.Items.Clear();
             listView2.Items.Clear();
 
-            if (checkBox1.Checked == true)
+            if (radioButton1.Checked == true)
             {
                 listView1.Visible = false;
                 listView2.Visible = true;
@@ -380,11 +703,29 @@ namespace fang
                 thread.Start();
             }
 
-            else if (checkBox2.Checked == true)
+            else if (radioButton2.Checked == true)
             {
                 listView2.Visible = false;
                 listView1.Visible = true;
                 Thread thread = new Thread(new ThreadStart(ershoufang));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+
+            }
+            else if (radioButton3.Checked == true)
+            {
+                listView1.Visible = false;
+                listView2.Visible = true;
+                Thread thread = new Thread(new ThreadStart(zoucheng1));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+
+            }
+            else if (radioButton4.Checked == true)
+            {
+                listView2.Visible = false;
+                listView1.Visible = true;
+                Thread thread = new Thread(new ThreadStart(ershoufang1));
                 Control.CheckForIllegalCrossThreadCalls = false;
                 thread.Start();
 
@@ -414,11 +755,11 @@ namespace fang
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == true)
+            if (radioButton1.Checked == true)
             {
                 method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
             }
-            if (checkBox2.Checked == true)
+            if (radioButton2.Checked == true)
             {
                 method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
             }

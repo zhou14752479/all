@@ -165,18 +165,19 @@
             this.删除改项ToolStripMenuItem,
             this.删除所有ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
             // 删除改项ToolStripMenuItem
             // 
             this.删除改项ToolStripMenuItem.Name = "删除改项ToolStripMenuItem";
-            this.删除改项ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除改项ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.删除改项ToolStripMenuItem.Text = "删除该项";
+            this.删除改项ToolStripMenuItem.Click += new System.EventHandler(this.删除改项ToolStripMenuItem_Click);
             // 
             // 删除所有ToolStripMenuItem
             // 
             this.删除所有ToolStripMenuItem.Name = "删除所有ToolStripMenuItem";
-            this.删除所有ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除所有ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.删除所有ToolStripMenuItem.Text = "删除所有";
             // 
             // skinButton1

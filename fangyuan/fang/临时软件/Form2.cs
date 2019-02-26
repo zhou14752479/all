@@ -169,5 +169,10 @@ namespace fang.临时软件
         {
             this.status = false;
         }
+
+        private void 删除改项ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

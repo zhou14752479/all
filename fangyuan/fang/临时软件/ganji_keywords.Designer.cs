@@ -159,8 +159,9 @@
             // 删除此行ToolStripMenuItem
             // 
             this.删除此行ToolStripMenuItem.Name = "删除此行ToolStripMenuItem";
-            this.删除此行ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除此行ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.删除此行ToolStripMenuItem.Text = "删除此行";
+            this.删除此行ToolStripMenuItem.Click += new System.EventHandler(this.删除此行ToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -168,12 +169,12 @@
             this.删除此行ToolStripMenuItem,
             this.保存此行ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
             // 保存此行ToolStripMenuItem
             // 
             this.保存此行ToolStripMenuItem.Name = "保存此行ToolStripMenuItem";
-            this.保存此行ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.保存此行ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.保存此行ToolStripMenuItem.Text = "保存此行";
             // 
             // columnHeader2

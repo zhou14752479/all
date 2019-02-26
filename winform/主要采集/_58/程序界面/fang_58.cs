@@ -72,9 +72,9 @@ namespace _58
         #region  生意转让、商铺出租、商铺出售
         public void shangpu(object item)
         {
-            string[] headers = { "标题", "联系人", "电话", "地区", "网址" };
+            string[] headers = { "标题", "联系人", "电话", "地区", "网址" ,"面积","日租金","经度","纬度"};
 
-            setDatagridview(skinDataGridView1, 5, headers);
+            setDatagridview(skinDataGridView1, 9, headers);
 
             try
             {
@@ -132,14 +132,24 @@ namespace _58
                         string Rxg = @"<a class=""c_000 agent-name-txt""([\s\S]*?)>([\s\S]*?)</a>";
                         string Rxg1 = @"<p class='phone-num'>([\s\S]*?)</p>";
                         string Rxg2 = @"详细地址:</span>([\s\S]*?)</span>";
+                        string Rxg3 = @"content_item2"">([\s\S]*?)</span>";
+                        string Rxg4 = @"money_num_chuzu"">([\s\S]*?)</span>";
                         
+                        string Rxg5 = @"baidulon"":""([\s\S]*?)""";
+                        string Rxg6 = @"baidulat"":""([\s\S]*?)""";
+
 
 
                         Match titles = Regex.Match(strhtml, title);
                         Match contacts = Regex.Match(strhtml, Rxg);
                         Match tell = Regex.Match(strhtml, Rxg1);
                         Match region = Regex.Match(strhtml, Rxg2);
-                     
+
+                        Match mianji = Regex.Match(strhtml, Rxg3);
+                        Match zujin = Regex.Match(strhtml, Rxg4);
+                        Match lon = Regex.Match(strhtml, Rxg5);
+                        Match lat = Regex.Match(strhtml, Rxg6);
+
 
 
                         this.skinDataGridView1.Rows[index].Cells[0].Value = titles.Groups[1].Value.Trim();
@@ -151,6 +161,10 @@ namespace _58
                         this.skinDataGridView1.Rows[index].Cells[3].Value = temp.Trim().Replace(" ","").Replace("&nbsp;","");
 
                         this.skinDataGridView1.Rows[index].Cells[4].Value = list;
+                        this.skinDataGridView1.Rows[index].Cells[5].Value = mianji.Groups[1].Value.Trim(); 
+                        this.skinDataGridView1.Rows[index].Cells[6].Value = zujin.Groups[1].Value.Trim(); 
+                        this.skinDataGridView1.Rows[index].Cells[7].Value = lon.Groups[1].Value.Trim(); 
+                        this.skinDataGridView1.Rows[index].Cells[8].Value = lat.Groups[1].Value.Trim(); 
 
 
                         this.skinDataGridView1.CurrentCell = this.skinDataGridView1.Rows[index].Cells[0];  //让datagridview滚动到当前行

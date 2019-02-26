@@ -142,6 +142,7 @@ namespace fang
         }
 
         #endregion
+
         private void button3_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
@@ -151,9 +152,25 @@ namespace fang
         {
             button2.Text = "停止";
 
-            Thread thread = new Thread(new ThreadStart(jingjiren));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
+
+            //读取注册码信息才能运行软件！
+            RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
+            if (rsg != null && rsg.GetValue("mac") != null)  //如果值不为空
+            {
+                Thread thread = new Thread(new ThreadStart(jingjiren));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+
+            }
+
+            else
+            {
+                MessageBox.Show("请注册软件！");
+                login lg = new login();
+                lg.Show();
+            }
+
+           
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -212,9 +212,7 @@ namespace fang.临时软件
                     mycon.Open();
 
                     MySqlCommand cmd = new MySqlCommand("select * from zhanghaos where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-
-                    MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+                    MySqlDataReader reader = cmd.ExecuteReader();  
 
 
 
@@ -223,16 +221,25 @@ namespace fang.临时软件
 
                         string username = reader["username"].ToString().Trim();
                         string password = reader["password"].ToString().Trim();
-                        
-                    
+                    string status = reader["status"].ToString().Trim();
 
 
-                        //判断密码
-                        if (textBox2.Text.Trim() == password)
+                    if (status == "1")
+                    {
+                        MessageBox.Show("您的账号在别处登录！");
+                        return;
+                    }
+                    //判断密码
+                    if (textBox2.Text.Trim() == password)
                     {
 
                         MessageBox.Show("登陆成功！");
+                        textBox2.Visible = false;
                         denglu = true;
+                        reader.Close();
+                        MySqlCommand cmd1 = new MySqlCommand("UPDATE zhanghaos SET status='1' where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                         cmd1.ExecuteReader();
+                        
                     }
 
 
@@ -247,7 +254,7 @@ namespace fang.临时软件
 
                     else
                     {
-                        MessageBox.Show("未查询到您的账户信息！请联系客服开通账号！");
+                        MessageBox.Show("未查询到您的账户信息！");
                         return;
                     }
 
@@ -269,6 +276,16 @@ namespace fang.临时软件
         private void visualButton3_Click_1(object sender, EventArgs e)
         {
             status  = true;
+        }
+
+        private void 物通网_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string constr = "Host =122.114.13.236;Database=users;Username=admin111;Password=admin111";
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+            MySqlCommand cmd1 = new MySqlCommand("UPDATE zhanghaos SET status='0' where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+            cmd1.ExecuteReader();
         }
     }
 

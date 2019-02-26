@@ -114,5 +114,10 @@ namespace fang.临时软件
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
+
+        private void 删除此行ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
