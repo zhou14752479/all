@@ -155,6 +155,12 @@
     <Compile Include="临时软件\赶集教育培训.Designer.cs">
       <DependentUpon>赶集教育培训.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\连续出现.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\连续出现.Designer.cs">
+      <DependentUpon>连续出现.cs</DependentUpon>
+    </Compile>
     <Compile Include="赶集本地服务.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\赶集教育培训.resx">
       <DependentUpon>赶集教育培训.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\连续出现.resx">
+      <DependentUpon>连续出现.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="赶集本地服务.resx">
       <DependentUpon>赶集本地服务.cs</DependentUpon>

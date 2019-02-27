@@ -177,7 +177,7 @@ namespace fang
                         lv1.SubItems.Add(temp4.Trim());
                         lv1.SubItems.Add(temp5.Trim());
                         lv1.SubItems.Add(temp6.Trim());
-                        
+                        lv1.SubItems.Add("个人房源无公司");
 
 
 
@@ -485,7 +485,8 @@ namespace fang
                         lv2.SubItems.Add(huxing.Groups[1].Value.Replace("</li><li class=li2>", ""));
                         lv2.SubItems.Add(huxing.Groups[2].Value.Replace("</li><li class=li2>", ""));
                         lv2.SubItems.Add(huxing.Groups[3].Value.Replace("</li><li class=li2>", ""));
-
+                        lv2.SubItems.Add("个人房源无公司");
+                        lv2.SubItems.Add("个人房源无公司");
 
                         Application.DoEvents();
                         System.Threading.Thread.Sleep(Convert.ToInt32(500));   //内容获取间隔，可变量                     
@@ -755,11 +756,11 @@ namespace fang
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked == true)
+            if (radioButton1.Checked == true || radioButton3.Checked == true)
             {
                 method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
             }
-            if (radioButton2.Checked == true)
+            if (radioButton2.Checked == true || radioButton4.Checked == true)
             {
                 method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
             }
