@@ -70,17 +70,17 @@ namespace fang.临时软件
         public void run()
 
         {
-            StringBuilder sbz = new StringBuilder();
-            for (int i = 0; i <Convert.ToInt32(textBox1.Text); i++)
-            {
-                sbz.Append("中");
-            }
+            //StringBuilder sbz = new StringBuilder();
+            //for (int i = 0; i <Convert.ToInt32(textBox1.Text); i++)
+            //{
+            //    sbz.Append("中");
+            //}
 
-            StringBuilder sbc = new StringBuilder();
-            for (int i = 0; i < Convert.ToInt32(textBox1.Text); i++)
-            {
-                sbc.Append("错");
-            }
+            //StringBuilder sbc = new StringBuilder();
+            //for (int i = 0; i < Convert.ToInt32(textBox1.Text); i++)
+            //{
+            //    sbc.Append("错");
+            //}
 
           
             ArrayList lists = getListviewValue1(listView1);
@@ -112,9 +112,17 @@ namespace fang.临时软件
 
                         }
 
-                        if (sb.ToString().Contains(sbz.ToString()) || sb.ToString().Contains(sbc.ToString()))
+                        string prttern1 = @"中中错错";
+                        MatchCollection matches1 = Regex.Matches(sb.ToString(), prttern1, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern2 = @"错错中中";
+                        MatchCollection matches2 = Regex.Matches(sb.ToString(), prttern2, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+
+                        int a = matches1.Count + matches2.Count + 1;
+                        if (a == Convert.ToInt32(textBox1.Text))
                         {
-                            MessageBox.Show(list+"出现连续"+ textBox1.Text+"次数");
+                            ListViewItem lv1 = listView2.Items.Add(list); //使用Listview展示数据
+                            lv1.SubItems.Add(a.ToString());
                         }
 
 
