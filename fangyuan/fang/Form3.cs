@@ -87,7 +87,7 @@ namespace fang
                         string rxg1 = @"<div class=""user-name"">([\s\S]*?)<";
                         
                         string rxg3 = @"所属公司<span class=""u-msg"">([\s\S]*?)<";
-                        string rxg4 = @"主营小区<span class=""u-msg"">([\s\S]*?)<";
+                        string rxg4 = @"主营小区</h2>([\s\S]*?)</ul>";
                         string rxg5 = @"cityId = ""([\s\S]*?)""";
                         string rxg6 = @"brokerId = ""([\s\S]*?)""";
                        string rxg7 = @"<div class=""user-pic""><img src=""([\s\S]*?)""";
@@ -118,7 +118,8 @@ namespace fang
                         lv1.SubItems.Add(tell.Groups[1].Value.Trim());
                         lv1.SubItems.Add(company.Groups[1].Value.Trim());
                         lv1.SubItems.Add(comboBox1.SelectedItem.ToString());
-                        lv1.SubItems.Add(xiaoqu.Groups[1].Value.Trim().Replace("   ",""));
+                        // lv1.SubItems.Add(Regex.Replace(xiaoqu.Groups[1].Value.Trim(), "<[^>]*>", ""));
+                        lv1.SubItems.Add(xiaoqu.Groups[1].Value);
 
                         listView1.EnsureVisible(listView1.Items.Count-1);  //滚动到指定位置
 

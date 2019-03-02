@@ -169,5 +169,10 @@ namespace fang.临时软件
             this.listView2.Items.Clear();
             this.listView3.Items.Clear();
         }
+
+        private void 搜源网_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

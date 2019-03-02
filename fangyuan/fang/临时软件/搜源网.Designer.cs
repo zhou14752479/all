@@ -387,6 +387,7 @@
             this.Name = "搜源网";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "搜源网";
+            this.Load += new System.EventHandler(this.搜源网_Load);
             this.contextMenuStrip2.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);

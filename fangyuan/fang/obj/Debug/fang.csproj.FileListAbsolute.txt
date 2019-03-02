@@ -306,3 +306,4 @@ C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.赶集教育
 C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.赶集本地服务.resources
 C:\Users\Administrator\Desktop\all\fangyuan\fang\bin\Debug\VisualPlus.dll
 C:\Users\Administrator\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.连续出现.resources
+C:\Users\zhou\Desktop\all\fangyuan\fang\obj\Debug\fang.临时软件.连续出现.resources

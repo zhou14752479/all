@@ -79,7 +79,7 @@
       <HintPath>..\packages\ThoughtWorks.QRCode.1.1.0\lib\ThoughtWorks.QRCode.dll</HintPath>
     </Reference>
     <Reference Include="VisualPlus">
-      <HintPath>..\..\58同城招聘\zhaopin_58\bin\Debug\VisualPlus.dll</HintPath>
+      <HintPath>..\..\..\采集程序1-27\VisualPlus.dll</HintPath>
     </Reference>
     <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.Net.0.16.4\lib\net45\zxing.dll</HintPath>
