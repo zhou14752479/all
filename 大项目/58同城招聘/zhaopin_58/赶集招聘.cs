@@ -40,42 +40,17 @@ namespace zhaopin_58
 
         bool zanting = true;
 
-        #region  通过代理IP  API链接获取
+        #region  获取
 
         public void zhaopin1()
         {
 
-            if (textBox1.Text == "")
-            {
-                MessageBox.Show("请输入代理IP地址");
-                return;
-            }
-
-
-            string ip = "";
-            int port = 0;
-            string[] Ipvalues = method.GetIp(textBox1.Text.Trim()).Split(':');
-
-            Match match = Regex.Match(Ipvalues[1], @"\d+", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            if (match.Groups[0].Value != null && match.Groups[0].Value != "")
-            {
-                ip = Ipvalues[0];
-                port = Convert.ToInt32(Ipvalues[1]);
-
-            }
-
-            else
-            {
-                MessageBox.Show("IP格式错误，请检查代理IP！");
-                return;
-            }
-
-            try
+          
+          try
             {
 
                 //ArrayList citys = ganjiCitys();
-                string[] keywords = { "zpshichangyingxiao","zpdianhuaxiaoshou" };
+                string[] keywords = { "zpshichangyingxiao","zpdianhuaxiaoshou", "zpjigongyibangongren", "zpxingzhenghouqin", "zprenliziyuan", "zpjiudiancanyin", "zpkefu", "zptaobao", "zpjiazhenganbao", "zpfangjingjiren", "zpmeirongmeifazhiwei", "zpmaoyiyunshu", "zpruanjianhulianwang" };
 
                 //foreach (string city in citys)
                 //{
@@ -94,70 +69,56 @@ namespace zhaopin_58
                         {
 
                             string Url = "http://sh.ganji.com/"+keyword+"/o"+i+"/";
-                            string html = method.GetUrl(Url);
+                        string html = method.GetUrl(Url); 
 
-                            MatchCollection TitleMatchs = Regex.Matches(html, @"puid=""3\d{9}", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                            MatchCollection TitleMatchs = Regex.Matches(html, @"post_id=([\s\S]*?)puid=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                             ArrayList lists = new ArrayList();
 
                             foreach (Match NextMatch in TitleMatchs)
                             {
 
-                                lists.Add(NextMatch.Groups[1].Value);
+                                lists.Add(NextMatch.Groups[2].Value);
                             }
                             if (lists.Count == 0)
 
                                 break;
 
-                            
-                            foreach (string list in lists)
 
-                            {
-                                
-                                    string strhtml = method.GetUrl("https://3g.ganji.com/sh_"+keyword+"/"+list+"x");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        foreach (string list in lists)
+
+                        {
+                            string URL = "https://3g.ganji.com/sh_" + keyword + "/" + list + "x";
+                            string strhtml = method.GetUrl(URL); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
-
-                                    string rxg = @"class=""title"">([\s\S]*?)</h1>";
-                                    string rxg1 = @"content=""【([\s\S]*?)】";    //公司                              
-                                    string rxg2 = @"业</th><td><([\s\S]*?)</a>";
-                                    string rxg3 = @"地点</th><td>([\s\S]*?)</td>";
-                                    string rxg4 = @"联系人</th><td>([\s\S]*?)</td>";
+                            string rxg = @"class=""title"">([\s\S]*?)</h1>";
+                            string rxg1 = @"content=""【([\s\S]*?)】";    //公司                              
+                            string rxg2 = @"业</th><td>([\s\S]*?)</a>";
+                            string rxg3 = @"地点</th><td>([\s\S]*?)</td>";
+                            string rxg4 = @"联系人</th><td>([\s\S]*?)</td>";
                             string rxg5 = @"&phone=([\s\S]*?)&";
 
 
-                           
-
-                                    Match name = Regex.Match(strhtml, rxg);
-                                    Match company = Regex.Match(strhtml, rxg1);
-                                    Match hangye = Regex.Match(strhtml, rxg2);
-                                    Match addr = Regex.Match(strhtml, rxg3);
-                                    Match lxr = Regex.Match(strhtml, rxg4);
-                                    Match tel= Regex.Match(strhtml, rxg5);
-                                  
-                                    
 
 
-                                    
-                                    if (name.Groups[1].Value=="")
-                                    {
-                                        Ipvalues = method.GetIp(textBox1.Text.Trim()).Split(':');
-
-                                        ip = Ipvalues[0];
-                                        port = Convert.ToInt32(Ipvalues[1]);
-                                    }
-
+                            Match name = Regex.Match(strhtml, rxg);
+                            Match company = Regex.Match(strhtml, rxg1);
+                            Match hangye = Regex.Match(strhtml, rxg2);
+                            Match addr = Regex.Match(strhtml, rxg3);
+                            Match lxr = Regex.Match(strhtml, rxg4);
+                            Match tel = Regex.Match(strhtml, rxg5);
 
                                         ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                         lv1.SubItems.Add(name.Groups[1].Value.Trim());
                             lv1.SubItems.Add(company.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(hangye.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(Regex.Replace(hangye.Groups[1].Value, "<a.*>", ""));
                             lv1.SubItems.Add(addr.Groups[1].Value.Trim());
 
 
                             lv1.SubItems.Add(lxr.Groups[1].Value.Trim());
                             lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-
+                           
 
                             if (listView1.Items.Count - 1 > 1)
                                     {
@@ -168,9 +129,7 @@ namespace zhaopin_58
                                     {
                                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                     }
-                                    Application.DoEvents();
-                                    System.Threading.Thread.Sleep(100);   //内容获取间隔，可变量
-
+                                    
                                 
                             }
 
@@ -197,6 +156,11 @@ namespace zhaopin_58
         {
             Thread thread = new Thread(new ThreadStart(zhaopin1));
             thread.Start();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }

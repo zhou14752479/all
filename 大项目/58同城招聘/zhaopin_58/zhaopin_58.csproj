@@ -34,28 +34,26 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\main2\main\main\bin\Debug\CSkin.dll</HintPath>
+    <Reference Include="CSkin">
+      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>..\..\fangyuan\fang\bin\Debug\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Downloads\NewtonJson\NewtonJson\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\..\fangyuan\fang\bin\Debug\NPOI.dll</HintPath>
+      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\fangyuan\fang\bin\Debug\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\fangyuan\fang\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\fangyuan\fang\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,7 +69,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="VisualPlus">
-      <HintPath>..\..\winform\主要采集\_58\bin\Debug\VisualPlus.dll</HintPath>
+      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\VisualPlus.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
