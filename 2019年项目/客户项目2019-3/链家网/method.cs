@@ -157,5 +157,46 @@ namespace 链家网
         }
 
         #endregion
+
+        #region POST请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrl(string url, string postData, string COOKIE, string charset)
+        {
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "Post";
+            request.ContentType = "application/x-www-form-urlencoded";
+            //request.ContentLength = postData.Length;
+            request.AllowAutoRedirect = true;
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+            request.Headers.Add("Cookie", COOKIE);
+
+            StreamWriter sw = new StreamWriter(request.GetRequestStream());
+            sw.Write(postData);
+            sw.Flush();
+
+
+            WebResponse response = request.GetResponse();
+            Stream s = response.GetResponseStream();
+            StreamReader sr = new StreamReader(s, Encoding.GetEncoding(charset));
+            string html = sr.ReadToEnd();
+
+            sw.Dispose();
+            sw.Close();
+            sr.Dispose();
+            sr.Close();
+            s.Dispose();
+            s.Close();
+            return html;
+        }
+
+        #endregion
     }
 }

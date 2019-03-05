@@ -103,11 +103,11 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="招聘.cs">
+    <Compile Include="招聘58.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="招聘.Designer.cs">
-      <DependentUpon>招聘.cs</DependentUpon>
+    <Compile Include="招聘58.Designer.cs">
+      <DependentUpon>招聘58.cs</DependentUpon>
     </Compile>
     <Compile Include="method.cs" />
     <Compile Include="Ocr.cs" />
@@ -146,8 +146,8 @@
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="招聘.resx">
-      <DependentUpon>招聘.cs</DependentUpon>
+    <EmbeddedResource Include="招聘58.resx">
+      <DependentUpon>招聘58.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -15,9 +15,9 @@ using System.Windows.Forms;
 
 namespace zhaopin_58
 {
-    public partial class 招聘 : Form
+    public partial class 招聘58 : Form
     {
-        public 招聘()
+        public 招聘58()
         {
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false; // 设置线程之间可以操作

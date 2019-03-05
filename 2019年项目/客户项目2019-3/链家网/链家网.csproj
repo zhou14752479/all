@@ -31,20 +31,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\..\58软件\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\58软件\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\..\采集程序1-27\NPOI.dll</HintPath>
+      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\采集程序1-27\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\采集程序1-27\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\采集程序1-27\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

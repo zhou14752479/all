@@ -20,7 +20,7 @@ namespace fang.临时软件
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 赶集教育培训());
+                Application.Run(new 连续出现());
 
             //}
             //catch (Exception ex)
