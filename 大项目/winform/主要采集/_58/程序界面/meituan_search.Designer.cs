@@ -64,14 +64,6 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,6 +73,14 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -476,6 +476,56 @@
             this.dataGridView1.TabIndex = 256;
             this.dataGridView1.MouseEnter += new System.EventHandler(this.dataGridView1_MouseEnter);
             // 
+            // Column5
+            // 
+            this.Column5.FillWeight = 20F;
+            this.Column5.HeaderText = "ID";
+            this.Column5.Name = "Column5";
+            // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 50F;
+            this.Column1.HeaderText = "商家名称";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 30F;
+            this.Column2.HeaderText = "电话";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 60F;
+            this.Column3.HeaderText = "地址";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 30F;
+            this.Column4.HeaderText = "地区";
+            this.Column4.Name = "Column4";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "UID";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "营业时间";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "经度";
+            this.Column8.Name = "Column8";
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "纬度";
+            this.Column9.Name = "Column9";
+            // 
             // textBox3
             // 
             this.textBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -555,56 +605,6 @@
             this.label1.Size = new System.Drawing.Size(0, 12);
             this.label1.TabIndex = 100;
             // 
-            // Column5
-            // 
-            this.Column5.FillWeight = 20F;
-            this.Column5.HeaderText = "ID";
-            this.Column5.Name = "Column5";
-            // 
-            // Column1
-            // 
-            this.Column1.FillWeight = 50F;
-            this.Column1.HeaderText = "商家名称";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.FillWeight = 30F;
-            this.Column2.HeaderText = "电话";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 60F;
-            this.Column3.HeaderText = "地址";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 30F;
-            this.Column4.HeaderText = "地区";
-            this.Column4.Name = "Column4";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "UID";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "营业时间";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "经度";
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "纬度";
-            this.Column9.Name = "Column9";
-            // 
             // meituan_search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -617,8 +617,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "meituan_search";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "大众点评58同城采集器     爱采集官方唯一网址：www.acaiji.com                                         " +
-    "               在线咨询QQ：852266010";
+            this.Text = "美团点评采集器     爱采集官方唯一网址：www.acaiji.com                                             " +
+    "           在线咨询QQ：852266010";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.meituan_search_FormClosing);
             this.Load += new System.EventHandler(this.meituan_search_Load);
             this.menuStrip1.ResumeLayout(false);

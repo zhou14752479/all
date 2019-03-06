@@ -72,15 +72,15 @@ namespace fang.临时软件
             try
             {
 
-                //string province = System.Web.HttpUtility.UrlEncode(visualComboBox1.Text);
+                string province = System.Web.HttpUtility.UrlEncode(comboBox1.Text);
 
-                string province = "";
-                //if (visualComboBox1.Text == "全国")
-                //{
-                //    province = "";
+                
+                if (comboBox1.Text == "全国")
+                {
+                    province = "";
 
-                //}
-                for (int i = 1; i < 31; i++)
+                }
+                for (int i = 1; i < 3; i++)
                 {
 
                     string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=1&condition=1&tsheng=&txian=&chexing=&huiyuan_id=2264195&fsheng=" + province + "&type=GetGood_new&fshi=&tshi=&pid="+i+"&fxian=&ver_version=1&r_20717=37619";
@@ -107,11 +107,11 @@ namespace fang.临时软件
                     for (int j = 0; j < goods_names.Count; j++)
                     {
 
-                        //string strhtml = GetUrl("http://www.chinawutong.com/203/ab"+ from_areas[j].Groups[1].Value.Trim() + "k"+ from_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
-                        //string strhtml1 = GetUrl("http://www.chinawutong.com/203/ab" + to_areas[j].Groups[1].Value.Trim() + "k" + to_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
+                        string strhtml = GetUrl("http://www.chinawutong.com/203/ab" + from_areas[j].Groups[1].Value.Trim() + "k" + from_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
+                        string strhtml1 = GetUrl("http://www.chinawutong.com/203/ab" + to_areas[j].Groups[1].Value.Trim() + "k" + to_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
 
-                        //Match from_area = Regex.Match(strhtml, @"<a>-([\s\S]*?)<");
-                        //Match to_area = Regex.Match(strhtml1, @"<a>-([\s\S]*?)<");
+                        Match from_area = Regex.Match(strhtml, @"<a>-([\s\S]*?)<");
+                        Match to_area = Regex.Match(strhtml1, @"<a>-([\s\S]*?)<");
                         if (goods_names.Count > 0)
                         {
                             //  ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
@@ -124,6 +124,7 @@ namespace fang.临时软件
                             lv1.SubItems.Add(company_names[j].Groups[1].Value.Trim());
 
                             lv1.SubItems.Add(times[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
 
 
                             while (this.status == false)
@@ -235,6 +236,7 @@ namespace fang.临时软件
 
                         MessageBox.Show("登陆成功！");
                         textBox2.Visible = false;
+                        textBox1.Visible = false;
                         denglu = true;
                         reader.Close();
                         MySqlCommand cmd1 = new MySqlCommand("UPDATE zhanghaos SET status='1' where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'

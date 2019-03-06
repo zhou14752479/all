@@ -33,12 +33,15 @@
             VisualPlus.Structure.TextStyle textStyle2 = new VisualPlus.Structure.TextStyle();
             VisualPlus.Structure.TextStyle textStyle3 = new VisualPlus.Structure.TextStyle();
             VisualPlus.Structure.TextStyle textStyle4 = new VisualPlus.Structure.TextStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(物通网));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualButton2 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.visualButton1 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.visualButton4 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.visualButton3 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.button1 = new System.Windows.Forms.Button();
@@ -55,11 +58,15 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -92,10 +99,10 @@
             this.visualButton2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualButton2.ForeColor = System.Drawing.Color.Blue;
             this.visualButton2.Image = null;
-            this.visualButton2.Location = new System.Drawing.Point(566, 24);
+            this.visualButton2.Location = new System.Drawing.Point(203, 63);
             this.visualButton2.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualButton2.Name = "visualButton2";
-            this.visualButton2.Size = new System.Drawing.Size(147, 41);
+            this.visualButton2.Size = new System.Drawing.Size(147, 36);
             this.visualButton2.TabIndex = 8;
             this.visualButton2.Text = "导出数据";
             this.visualButton2.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -110,9 +117,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 478);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 444);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1027, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(976, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -130,12 +137,12 @@
             this.visualButton1.Border.Type = VisualPlus.Enumerators.ShapeType.Rounded;
             this.visualButton1.Border.Visible = true;
             this.visualButton1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.visualButton1.ForeColor = System.Drawing.Color.Blue;
+            this.visualButton1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.visualButton1.Image = null;
-            this.visualButton1.Location = new System.Drawing.Point(12, 24);
+            this.visualButton1.Location = new System.Drawing.Point(12, 12);
             this.visualButton1.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualButton1.Name = "visualButton1";
-            this.visualButton1.Size = new System.Drawing.Size(167, 41);
+            this.visualButton1.Size = new System.Drawing.Size(167, 36);
             this.visualButton1.TabIndex = 2;
             this.visualButton1.Text = "开始派单";
             this.visualButton1.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -158,6 +165,10 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.visualButton4);
             this.splitContainer1.Panel1.Controls.Add(this.visualButton3);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
@@ -172,9 +183,64 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
             this.splitContainer1.Panel2.Controls.Add(this.statusStrip1);
-            this.splitContainer1.Size = new System.Drawing.Size(1027, 587);
-            this.splitContainer1.SplitterDistance = 83;
+            this.splitContainer1.Size = new System.Drawing.Size(976, 587);
+            this.splitContainer1.SplitterDistance = 117;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Blue;
+            this.label3.Location = new System.Drawing.Point(370, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 20);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "选择省份：";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "全国",
+            "北京市",
+            "天津市",
+            "重庆市",
+            "上海市",
+            "河北省",
+            "山西省",
+            "辽宁省",
+            "江苏省",
+            "浙江省",
+            "福建省",
+            "江西省",
+            "山东省",
+            "河南省",
+            "宁夏区",
+            "云南省",
+            "陕西省",
+            "宁夏省",
+            "甘肃省",
+            "贵州省",
+            "黑龙江省",
+            "湖北省",
+            "湖南省",
+            "吉林省",
+            "青海省",
+            "四川省",
+            "海南省",
+            "广东省",
+            "新疆区",
+            "香港",
+            "澳门",
+            "台湾",
+            "内蒙古区",
+            "西藏区",
+            "广西区"});
+            this.comboBox1.Location = new System.Drawing.Point(374, 41);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 25;
             // 
             // visualButton4
             // 
@@ -192,10 +258,10 @@
             this.visualButton4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualButton4.ForeColor = System.Drawing.Color.Blue;
             this.visualButton4.Image = null;
-            this.visualButton4.Location = new System.Drawing.Point(204, 24);
+            this.visualButton4.Location = new System.Drawing.Point(203, 12);
             this.visualButton4.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualButton4.Name = "visualButton4";
-            this.visualButton4.Size = new System.Drawing.Size(145, 41);
+            this.visualButton4.Size = new System.Drawing.Size(145, 36);
             this.visualButton4.TabIndex = 24;
             this.visualButton4.Text = "暂停";
             this.visualButton4.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -224,10 +290,10 @@
             this.visualButton3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualButton3.ForeColor = System.Drawing.Color.Blue;
             this.visualButton3.Image = null;
-            this.visualButton3.Location = new System.Drawing.Point(394, 24);
+            this.visualButton3.Location = new System.Drawing.Point(12, 63);
             this.visualButton3.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualButton3.Name = "visualButton3";
-            this.visualButton3.Size = new System.Drawing.Size(142, 41);
+            this.visualButton3.Size = new System.Drawing.Size(167, 36);
             this.visualButton3.TabIndex = 23;
             this.visualButton3.Text = "继续";
             this.visualButton3.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -243,9 +309,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 11F);
-            this.button1.Location = new System.Drawing.Point(916, 24);
+            this.button1.Location = new System.Drawing.Point(505, 70);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 48);
+            this.button1.Size = new System.Drawing.Size(204, 39);
             this.button1.TabIndex = 22;
             this.button1.Text = "登陆";
             this.button1.UseVisualStyleBackColor = true;
@@ -254,24 +320,28 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(731, 54);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.Blue;
+            this.label2.Location = new System.Drawing.Point(501, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(57, 20);
             this.label2.TabIndex = 21;
             this.label2.Text = "密码：";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(719, 30);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(498, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 20;
             this.label1.Text = "用户名：";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(778, 51);
+            this.textBox2.Location = new System.Drawing.Point(577, 43);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(132, 21);
@@ -279,7 +349,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(778, 24);
+            this.textBox1.Location = new System.Drawing.Point(577, 11);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(132, 21);
             this.textBox1.TabIndex = 18;
@@ -294,7 +364,8 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader9});
+            this.columnHeader9,
+            this.columnHeader3});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -302,7 +373,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1027, 478);
+            this.listView1.Size = new System.Drawing.Size(976, 444);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -346,12 +417,37 @@
             this.columnHeader9.Text = "发布时间";
             this.columnHeader9.Width = 100;
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "标题";
+            this.columnHeader3.Width = 300;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(864, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.TabIndex = 27;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Blue;
+            this.label4.Location = new System.Drawing.Point(769, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 20);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "技术支持：";
+            // 
             // 物通网
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1027, 587);
+            this.ClientSize = new System.Drawing.Size(976, 587);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -367,6 +463,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -394,5 +491,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualButton visualButton4;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualButton visualButton3;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label4;
     }
 }

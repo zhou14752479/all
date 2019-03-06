@@ -99,7 +99,7 @@ namespace fang.临时软件
 
                         if (url == "")
                             return;
-                         string html = method.GetUrl("https://pk10.17500.cn/exp/results.html?num=30&lotid=pk10&eid=" + url, "utf-8");
+                         string html = method.GetUrl("https://pk10.17500.cn/exp/results.html?num=100&lotid=pk10&eid=" + url, "utf-8");
                         
 
                         string prttern = @"中|错";
@@ -341,7 +341,7 @@ namespace fang.临时软件
 
                         if (url == "")
                             return;
-                        string html = method.GetUrl("https://pk10.17500.cn/exp/results.html?num=30&lotid=pk10&eid=" + url, "utf-8");
+                        string html = method.GetUrl("https://pk10.17500.cn/exp/results.html?num=100&lotid=pk10&eid=" + url, "utf-8");
 
 
                         string prttern = @"中|错";
