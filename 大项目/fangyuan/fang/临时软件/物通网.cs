@@ -80,7 +80,7 @@ namespace fang.临时软件
                     province = "";
 
                 }
-                for (int i = 1; i < 3; i++)
+                for (int i = 1; i < 2; i++)
                 {
 
                     string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=1&condition=1&tsheng=&txian=&chexing=&huiyuan_id=2264195&fsheng=" + province + "&type=GetGood_new&fshi=&tshi=&pid="+i+"&fxian=&ver_version=1&r_20717=37619";
