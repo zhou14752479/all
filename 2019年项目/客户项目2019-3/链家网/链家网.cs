@@ -35,6 +35,7 @@ namespace 链家网
 
         }
         bool status = true;
+        bool denglu = false;
 
         public void run()
         {

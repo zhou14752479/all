@@ -70,6 +70,8 @@
             this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader45 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader46 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader49 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader50 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -89,8 +91,10 @@
             this.columnHeader47 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader48 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader49 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader50 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader51 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader52 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader53 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader54 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -405,6 +409,14 @@
             // 
             this.columnHeader46.Text = "几卫";
             // 
+            // columnHeader49
+            // 
+            this.columnHeader49.Text = "公司";
+            // 
+            // columnHeader50
+            // 
+            this.columnHeader50.Text = "公司地址";
+            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -425,7 +437,11 @@
             this.columnHeader24,
             this.columnHeader47,
             this.columnHeader48,
-            this.columnHeader9});
+            this.columnHeader9,
+            this.columnHeader51,
+            this.columnHeader52,
+            this.columnHeader53,
+            this.columnHeader54});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -512,13 +528,21 @@
             // 
             this.columnHeader9.Text = "公司";
             // 
-            // columnHeader49
+            // columnHeader51
             // 
-            this.columnHeader49.Text = "公司";
+            this.columnHeader51.Text = "建筑年代";
             // 
-            // columnHeader50
+            // columnHeader52
             // 
-            this.columnHeader50.Text = "公司地址";
+            this.columnHeader52.Text = "区域";
+            // 
+            // columnHeader53
+            // 
+            this.columnHeader53.Text = "路段";
+            // 
+            // columnHeader54
+            // 
+            this.columnHeader54.Text = "地址";
             // 
             // Form1
             // 
@@ -609,6 +633,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader49;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader50;
+        private System.Windows.Forms.ColumnHeader columnHeader51;
+        private System.Windows.Forms.ColumnHeader columnHeader52;
+        private System.Windows.Forms.ColumnHeader columnHeader53;
+        private System.Windows.Forms.ColumnHeader columnHeader54;
     }
 }
 

@@ -413,23 +413,14 @@ namespace zhaopin_58
              
                     string citysuoxie = Getsuoxie(city);
 
-                    foreach (string keyword in keywords)
-
-                    {
-
-                        if (keyword == "")
-                        {
-                            MessageBox.Show("请输入采集行业或者关键词！");
-                            return;
-                        }
-
+              
                         foreach (string area in areaIds)
                         {
 
                             for (int i = 1; i < 33; i++)
                             {
 
-                            string Url = "https://"+citysuoxie+".meituan.com/jiankangliren/b"+area+"/pn"+i+"/";
+                            string Url = "https://"+citysuoxie+".meituan.com/jiankangliren/c75b"+area+"/pn"+i+"/";
                               
                                 string html = method.GetUrl(Url);
                      
@@ -443,7 +434,7 @@ namespace zhaopin_58
 
                                 if (!lists.Contains(NextMatch.Groups[1].Value))
                                 {
-                                    lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
+                                    lists.Add(  NextMatch.Groups[1].Value);
                                 }
                             }
 
@@ -456,36 +447,49 @@ namespace zhaopin_58
 
                             {
 
-                                string strhtml = method.GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
-                                string rxg1 = @"name"":""([\s\S]*?)""";    //公司                            
-                                string rxg2 = @"addr"":""([\s\S]*?)""";
+                                string strhtml = method.GetUrl("https://www.meituan.com/jiankangliren/" + list+"/");  //定义的GetRul方法 返回 reader.ReadToEnd()  
+                                    
+                                    string rxg1 = @"<title>([\s\S]*?)_";    //公司                            
+                                string rxg2 = @"address"":""([\s\S]*?)""";
                                 string rxg3 = @"phone"":""([\s\S]*?)""";
-                                string rxg4 = @"areaName"":""([\s\S]*?)""";
-                                string rxg5 = @"cateName"":""([\s\S]*?)""";
+                                //string rxg4 = @"areaName"":""([\s\S]*?)""";
+                                //string rxg5 = @"cateName"":""([\s\S]*?)""";
 
 
                                 Match name = Regex.Match(strhtml, rxg1);
                                 Match addr = Regex.Match(strhtml, rxg2);
                                 Match tel = Regex.Match(strhtml, rxg3);
-                                Match areaName = Regex.Match(strhtml, rxg4);
-                                Match cateName = Regex.Match(strhtml, rxg5);
+                                //Match areaName = Regex.Match(strhtml, rxg4);
+                                //Match cateName = Regex.Match(strhtml, rxg5);
 
+                                    MatchCollection taocans = Regex.Matches(strhtml, @"combo-title-text"">([\s\S]*?)</span>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                                MatchCollection taocans1 = Regex.Matches(strhtml, @"""price"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-
-                                    if (name.Groups[1].Value != "")
+                     
+                                if (name.Groups[1].Value != "")
                                     {
                                         ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                         lv1.SubItems.Add(name.Groups[1].Value.Trim());
                                         lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                                         lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                        lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                                        lv1.SubItems.Add(city);
-                                        lv1.SubItems.Add(cateName.Groups[1].Value.Trim());
+                                    //lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
 
-                                        string[] values = { name.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), tel.Groups[1].Value.Trim(), areaName.Groups[1].Value.Trim(), city, cateName.Groups[1].Value.Trim() };
-                                        insertData(values);
+                                    //lv1.SubItems.Add(cateName.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(city);
 
-                                        if (listView1.Items.Count - 1 > 1)
+                                    StringBuilder sb = new StringBuilder();
+                                    for (int j = 0; j < taocans.Count; j++)
+                                        {
+                                       
+                                        sb.Append(taocans[j].Groups[1].Value + ":" + taocans1[j].Groups[1].Value + "#");
+                                        
+                                        }
+                                    lv1.SubItems.Add(sb.ToString());
+
+                                    //string[] values = { name.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), tel.Groups[1].Value.Trim(), areaName.Groups[1].Value.Trim(), city, cateName.Groups[1].Value.Trim() };
+                                    //insertData(values);
+
+                                    if (listView1.Items.Count - 1 > 1)
                                         {
                                             listView1.EnsureVisible(listView1.Items.Count - 1);
                                         }
@@ -504,7 +508,7 @@ namespace zhaopin_58
                         }
                     }
                 }
-            }
+            
 
 
 
@@ -518,7 +522,7 @@ namespace zhaopin_58
 
         private void visualButton1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
+            Thread thread = new Thread(new ThreadStart(run1));
             thread.Start();
             
         }

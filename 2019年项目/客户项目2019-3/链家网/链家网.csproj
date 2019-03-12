@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="教育视频网.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="教育视频网.Designer.cs">
+      <DependentUpon>教育视频网.cs</DependentUpon>
+    </Compile>
     <Compile Include="链家网.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     <Compile Include="驾校.Designer.cs">
       <DependentUpon>驾校.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="教育视频网.resx">
+      <DependentUpon>教育视频网.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="链家网.resx">
       <DependentUpon>链家网.cs</DependentUpon>
     </EmbeddedResource>

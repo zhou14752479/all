@@ -157,6 +157,8 @@ namespace zhaopin_58
 
         bool zanting = true;
 
+        bool status = true;
+
         #region  获取
 
         public void zhaopin1()
@@ -182,22 +184,22 @@ namespace zhaopin_58
                             return;
                         }
 
-                        for (int i = 1; i < 71; i++)
+                        for (int i = 1; i < 64; i++)
                         {
 
                             string Url = "http://"+city+".ganji.com/" + keyword + "/o" + i + "/";
+                            
                             string html = method.GetUrl(Url);
 
-                            MatchCollection TitleMatchs = Regex.Matches(html, @"post_id=([\s\S]*?)puid=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                            MatchCollection TitleMatchs = Regex.Matches(html, @"post_id=([\s\S]*?)puid=""([\s\S]*?)""([\s\S]*?)com/([\s\S]*?)/", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                             ArrayList lists = new ArrayList();
 
                             foreach (Match NextMatch in TitleMatchs)
-                            {
-
-                                lists.Add(NextMatch.Groups[2].Value);
+                            {                 
+                                 lists.Add(NextMatch.Groups[4].Value + "/" + NextMatch.Groups[2].Value);                                                             
                             }
-                            if (lists.Count == 0)
+                            if (html.Contains("抱歉"))
 
                                 break;
 
@@ -205,10 +207,10 @@ namespace zhaopin_58
                             foreach (string list in lists)
 
                             {
-                                string URL = "https://3g.ganji.com/sh_" + keyword + "/" + list + "x";
+                                string URL = "https://3g.ganji.com/"+city+"_" + list + "x";
                                 string strhtml = method.GetUrl(URL); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-
+                                textBox2.Text = URL;
                                 string rxg = @"class=""title"">([\s\S]*?)</h1>";
                                 string rxg1 = @"content=""【([\s\S]*?)】";    //公司                              
                                 string rxg2 = @"业</th><td>([\s\S]*?)</a>";
@@ -237,6 +239,10 @@ namespace zhaopin_58
                                 lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(city1);
 
+                                if (this.status == false)
+                                {
+                                    return;
+                                }
 
                                 if (listView1.Items.Count - 1 > 1)
                                 {
@@ -246,6 +252,13 @@ namespace zhaopin_58
                                 while (this.zanting == false)
                                 {
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+
+                                 if(name.Groups[1].Value.Trim()==""&& company.Groups[1].Value.Trim()=="")
+                                    {
+                                    this.zanting = false;
+                                    MessageBox.Show("点击确定后，在浏览器打开的页面中完成验证码验证，然后回到软件界面点击继续采集即可！");
+                                    System.Diagnostics.Process.Start("https://3g.ganji.com/suqian_zpjiudiancanyin/3670703759x");
                                 }
 
 
@@ -303,6 +316,16 @@ namespace zhaopin_58
         private void button4_Click(object sender, EventArgs e)
         {
             this.zanting = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.listView1.Items.Clear();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.status = false;
         }
     }
 }

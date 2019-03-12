@@ -145,7 +145,11 @@ namespace fang
 
                         Match huxing = Regex.Match(strhtml2, Rxg15);
 
-                       
+
+                        Match niandai = Regex.Match(strhtml2, @"年代：<span class=""detail-value"">([\s\S]*?)</span>");
+                        Match diduan = Regex.Match(strhtml, @"weizhi_xiaoqu\'\)"">([\s\S]*?)</a>");
+                        Match quyu = Regex.Match(strhtml2, @"<li class=""address-info"">([\s\S]*?)-");
+                        Match addr = Regex.Match(strhtml2, @"<li class=""address-info"">([\s\S]*?)</li>");
 
 
 
@@ -178,6 +182,10 @@ namespace fang
                         lv1.SubItems.Add(temp5.Trim());
                         lv1.SubItems.Add(temp6.Trim());
                         lv1.SubItems.Add("个人房源无公司");
+                        lv1.SubItems.Add(niandai.Groups[1].Value);
+                        lv1.SubItems.Add(Regex.Replace(quyu.Groups[1].Value, "<[^>]*>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(diduan.Groups[1].Value, "<[^>]*>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(addr.Groups[1].Value, "<[^>]*>", "").Trim());
 
 
 

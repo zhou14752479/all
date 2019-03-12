@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            VisualPlus.Structure.TextStyle textStyle2 = new VisualPlus.Structure.TextStyle();
+            VisualPlus.Structure.TextStyle textStyle1 = new VisualPlus.Structure.TextStyle();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.visualLabel3 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
@@ -44,16 +44,18 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -101,11 +103,11 @@
             this.visualLabel3.Text = "请在法律允许的范围内使用，尊重版权，不得销售本软件、转卖本软件。违者必究，其他软件需求，代理，请咨询QQ：852266010；VX：17606117606";
             this.visualLabel3.TextAlignment = System.Drawing.StringAlignment.Near;
             this.visualLabel3.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle2.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle2.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle2.Hover = System.Drawing.Color.Empty;
-            textStyle2.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualLabel3.TextStyle = textStyle2;
+            textStyle1.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle1.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle1.Hover = System.Drawing.Color.Empty;
+            textStyle1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualLabel3.TextStyle = textStyle1;
             // 
             // contextMenuStrip1
             // 
@@ -178,6 +180,10 @@
             this.columnHeader7.Text = "电话";
             this.columnHeader7.Width = 100;
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "城市";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -187,6 +193,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button6);
+            this.splitContainer1.Panel1.Controls.Add(this.button5);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
@@ -206,58 +214,15 @@
             this.splitContainer1.SplitterDistance = 171;
             this.splitContainer1.TabIndex = 2;
             // 
-            // button2
+            // button4
             // 
-            this.button2.Location = new System.Drawing.Point(471, 101);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(144, 23);
-            this.button2.TabIndex = 43;
-            this.button2.Text = "导出";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(59, 48);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 44;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(59, 101);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
-            this.comboBox2.TabIndex = 45;
-            this.comboBox2.TextChanged += new System.EventHandler(this.comboBox2_TextChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(213, 101);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(241, 21);
-            this.textBox2.TabIndex = 46;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(59, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 47;
-            this.label1.Text = "选择城市：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(57, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "选择分类：";
+            this.button4.Location = new System.Drawing.Point(639, 98);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(144, 23);
+            this.button4.TabIndex = 50;
+            this.button4.Text = "继续";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -269,19 +234,78 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // label2
             // 
-            this.button4.Location = new System.Drawing.Point(639, 98);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(144, 23);
-            this.button4.TabIndex = 50;
-            this.button4.Text = "继续";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(57, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "选择分类：";
             // 
-            // columnHeader8
+            // label1
             // 
-            this.columnHeader8.Text = "城市";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(59, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "选择城市：";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(213, 101);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(241, 21);
+            this.textBox2.TabIndex = 46;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(59, 101);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 45;
+            this.comboBox2.TextChanged += new System.EventHandler(this.comboBox2_TextChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(59, 48);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 44;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(471, 101);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(144, 23);
+            this.button2.TabIndex = 43;
+            this.button2.Text = "导出";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(802, 45);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(144, 23);
+            this.button5.TabIndex = 51;
+            this.button5.Text = "清空数据";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(802, 99);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(144, 23);
+            this.button6.TabIndex = 52;
+            this.button6.Text = "停止采集";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // 赶集招聘
             // 
@@ -327,5 +351,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
     }
 }

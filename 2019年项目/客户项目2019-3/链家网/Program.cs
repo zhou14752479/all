@@ -16,7 +16,7 @@ namespace 链家网
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 链家网());
+            Application.Run(new 教育视频网());
         }
     }
 }
