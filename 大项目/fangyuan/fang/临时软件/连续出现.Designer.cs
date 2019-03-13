@@ -39,6 +39,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,7 +47,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +78,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.radioButton5);
+            this.splitContainer1.Panel2.Controls.Add(this.radioButton4);
             this.splitContainer1.Panel2.Controls.Add(this.radioButton3);
             this.splitContainer1.Panel2.Controls.Add(this.radioButton2);
             this.splitContainer1.Panel2.Controls.Add(this.radioButton1);
@@ -83,8 +87,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
-            this.splitContainer1.Size = new System.Drawing.Size(626, 427);
-            this.splitContainer1.SplitterDistance = 377;
+            this.splitContainer1.Size = new System.Drawing.Size(713, 452);
+            this.splitContainer1.SplitterDistance = 361;
             this.splitContainer1.TabIndex = 3;
             // 
             // splitContainer2
@@ -100,8 +104,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listView2);
-            this.splitContainer2.Size = new System.Drawing.Size(626, 354);
-            this.splitContainer2.SplitterDistance = 334;
+            this.splitContainer2.Size = new System.Drawing.Size(713, 338);
+            this.splitContainer2.SplitterDistance = 380;
             this.splitContainer2.TabIndex = 1;
             // 
             // listView1
@@ -115,7 +119,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(334, 354);
+            this.listView1.Size = new System.Drawing.Size(380, 338);
             this.listView1.TabIndex = 13;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -140,7 +144,7 @@
             this.listView2.GridLines = true;
             this.listView2.Location = new System.Drawing.Point(0, 0);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(288, 354);
+            this.listView2.Size = new System.Drawing.Size(329, 338);
             this.listView2.TabIndex = 14;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -159,18 +163,29 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.Location = new System.Drawing.Point(0, 354);
+            this.button1.Location = new System.Drawing.Point(0, 338);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(626, 23);
+            this.button1.Size = new System.Drawing.Size(713, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "添加网址";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(156, 47);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(71, 16);
+            this.radioButton3.TabIndex = 6;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "单独一次";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(431, 14);
+            this.radioButton2.Location = new System.Drawing.Point(79, 47);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(71, 16);
             this.radioButton2.TabIndex = 5;
@@ -182,7 +197,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(366, 14);
+            this.radioButton1.Location = new System.Drawing.Point(14, 47);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(59, 16);
             this.radioButton1.TabIndex = 4;
@@ -231,22 +246,33 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // radioButton3
+            // radioButton4
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(509, 14);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(71, 16);
-            this.radioButton3.TabIndex = 6;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "单独一次";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(242, 47);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(77, 16);
+            this.radioButton4.TabIndex = 7;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "ABB..类型";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(325, 47);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(71, 16);
+            this.radioButton5.TabIndex = 8;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "监测当期";
+            this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // 连续出现
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 427);
+            this.ClientSize = new System.Drawing.Size(713, 452);
             this.Controls.Add(this.splitContainer1);
             this.Name = "连续出现";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -285,5 +311,7 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton4;
     }
 }

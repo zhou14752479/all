@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static fang.临时软件.百家号;
 
 namespace fang.临时软件
 {
@@ -64,7 +65,7 @@ namespace fang.临时软件
 
      //   ArrayList finishes = new ArrayList();
 
-        #region  物通网
+        #region  物通网一手货源
         public void run()
         {
 
@@ -80,7 +81,7 @@ namespace fang.临时软件
                     province = "";
 
                 }
-                for (int i = 1; i < 2; i++)
+                for (int i = 1; i < 3; i++)
                 {
 
                     string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=1&condition=1&tsheng=&txian=&chexing=&huiyuan_id=2264195&fsheng=" + province + "&type=GetGood_new&fshi=&tshi=&pid="+i+"&fxian=&ver_version=1&r_20717=37619";
@@ -154,8 +155,106 @@ namespace fang.临时软件
 
         #endregion
 
-        #region  重运宝
+
+        #region  物通网全部货源
         public void run1()
+        {
+
+
+            try
+            {
+
+                string fprovince = System.Web.HttpUtility.UrlEncode(comboBox1.Text);
+                string tprovince = System.Web.HttpUtility.UrlEncode(comboBox2.Text);
+
+
+                if (comboBox1.Text == "全国")
+                {
+                    fprovince = "";
+
+                }
+
+                if (comboBox2.Text == "全国")
+                {
+                    tprovince = "";
+
+                }
+                for (int i = 1; i < 4; i++)
+                {
+
+                    string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=0&condition=1&tsheng="+tprovince+"&txian=&chexing=&huiyuan_id=2264195&fsheng="+fprovince+"&type=GetGood_new&fshi=&tshi=&pid="+i+"&fxian=&ver_version=1&r_28677=6820";
+
+                    string html = GetUrl(url, "utf-8");
+
+                    MatchCollection goods_names = Regex.Matches(html, @"goods_name"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    MatchCollection zaizhongs = Regex.Matches(html, @"zaizhong"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection trans_modes = Regex.Matches(html, @"trans_mode"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection huo_phones = Regex.Matches(html, @"huo_phone"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection huo_contacts = Regex.Matches(html, @"huo_contact"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    MatchCollection company_names = Regex.Matches(html, @"company_name"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+
+                    MatchCollection times = Regex.Matches(html, @"data_time"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection from_areas = Regex.Matches(html, @"from_area"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection to_areas = Regex.Matches(html, @"to_area"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    if (goods_names.Count == 0)
+                        break;
+
+                    for (int j = 0; j < goods_names.Count; j++)
+                    {
+
+                        string strhtml = GetUrl("http://www.chinawutong.com/203/ab" + from_areas[j].Groups[1].Value.Trim() + "k" + from_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
+                        string strhtml1 = GetUrl("http://www.chinawutong.com/203/ab" + to_areas[j].Groups[1].Value.Trim() + "k" + to_areas[j].Groups[1].Value.Trim() + "l-1m-1n-1j-1/", "gb2312");
+
+                        Match from_area = Regex.Match(strhtml, @"<a>-([\s\S]*?)<");
+                        Match to_area = Regex.Match(strhtml1, @"<a>-([\s\S]*?)<");
+                        if (goods_names.Count > 0)
+                        {
+                            //  ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            lv1.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(zaizhongs[j].Groups[1].Value.Trim() + "公斤");
+                            lv1.SubItems.Add(trans_modes[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(huo_phones[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(huo_contacts[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(company_names[j].Groups[1].Value.Trim());
+
+                            lv1.SubItems.Add(times[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
+
+
+                            while (this.status == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+
+                        }
+
+                    }
+
+                }
+            }
+
+
+
+
+
+            catch (System.Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
+
+        #endregion
+
+        #region  重运宝
+        public void run2()
         {
 
 
@@ -262,9 +361,21 @@ namespace fang.临时软件
             listView1.Items.Clear();
             this.status = true;
 
-            Thread thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
+            if (radioButton1.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(run1));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+            }
+
+            else if (radioButton2.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+            }
+
+            
 
 
         }
@@ -379,6 +490,26 @@ namespace fang.临时软件
 
             MySqlCommand cmd1 = new MySqlCommand("UPDATE zhanghaos SET status='0' where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
             cmd1.ExecuteReader();
+        }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (listView1.Columns[e.Column].Tag == null)
+            {
+                listView1.Columns[e.Column].Tag = true;
+            }
+            bool tabK = (bool)listView1.Columns[e.Column].Tag;
+            if (tabK)
+            {
+                listView1.Columns[e.Column].Tag = false;
+            }
+            else
+            {
+                listView1.Columns[e.Column].Tag = true;
+            }
+            listView1.ListViewItemSorter = new ListViewSort(e.Column, listView1.Columns[e.Column].Tag);
+            //指定排序器并传送列索引与升序降序关键字
+            listView1.Sort();//对列表进行自定义排序
         }
     }
 

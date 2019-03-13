@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace fang
+namespace fang.临时软件
 {
     static class Program
     {
@@ -20,7 +20,7 @@ namespace fang
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+                Application.Run(new 物通网());
 
             //}
             //catch (Exception ex)

@@ -138,6 +138,12 @@
     <Compile Include="临时软件\物通网.Designer.cs">
       <DependentUpon>物通网.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\百家号视频.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\百家号视频.Designer.cs">
+      <DependentUpon>百家号视频.cs</DependentUpon>
+    </Compile>
     <Compile Include="临时软件\赶集招聘.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\物通网.resx">
       <DependentUpon>物通网.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\百家号视频.resx">
+      <DependentUpon>百家号视频.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\赶集招聘.resx">
       <DependentUpon>赶集招聘.cs</DependentUpon>

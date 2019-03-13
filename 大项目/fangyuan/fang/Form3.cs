@@ -30,6 +30,8 @@ namespace fang
           
         }
 
+        int a = 0;
+
 
         #region  58经纪人
         public void jingjiren()
@@ -43,7 +45,7 @@ namespace fang
 
                     string city = method.Get58pinyin(comboBox1.SelectedItem.ToString());
 
-                    for (int i = 1; i <141; i++)
+                    for (int i = 2; i <141; i++)
                     {
                         String Url = "https://broker.58.com/"+city+"/list/pn"+i+"/";
 
@@ -55,7 +57,7 @@ namespace fang
                         ArrayList lists = new ArrayList();
                         foreach (Match NextMatch in TitleMatchs)
                         {
-                            lists.Add("https://broker.58.com/sh/detail/" + NextMatch.Groups[1].Value + ".shtml");
+                            lists.Add("https://broker.58.com/"+city+"/detail/" + NextMatch.Groups[1].Value + ".shtml");
 
                         }
 
@@ -64,10 +66,6 @@ namespace fang
                         if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                             break;
-
-
-
-
 
                         foreach (string list in lists)
 
@@ -87,7 +85,7 @@ namespace fang
                         string rxg1 = @"<div class=""user-name"">([\s\S]*?)<";
                         
                         string rxg3 = @"所属公司<span class=""u-msg"">([\s\S]*?)<";
-                        string rxg4 = @"主营小区</h2>([\s\S]*?)</ul>";
+                        string rxg4 = @"target=""_blank"">([\s\S]*?)</a>";
                         string rxg5 = @"cityId = ""([\s\S]*?)""";
                         string rxg6 = @"brokerId = ""([\s\S]*?)""";
                        string rxg7 = @"<div class=""user-pic""><img src=""([\s\S]*?)""";
@@ -101,8 +99,9 @@ namespace fang
                         Match cityid = Regex.Match(strhtml, rxg5);
                         Match broid = Regex.Match(strhtml, rxg6);
                          Match img = Regex.Match(strhtml, rxg7);
-
-                       method.downloadFile(img.Groups[1].Value, comboBox1.SelectedItem.ToString(),name.Groups[1].Value.Trim()+".jpg");
+                        
+                       a= a+1;
+                       method.downloadFile(img.Groups[1].Value, comboBox1.SelectedItem.ToString(),name.Groups[1].Value.Trim()+a+".jpg");
 
 
                         string Url2 = "https://broker.58.com/api/encphone?brokerId="+broid.Groups[1].Value.Trim()+"&cityId="+cityid.Groups[1].Value.Trim();

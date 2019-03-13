@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            VisualPlus.Structure.TextStyle textStyle1 = new VisualPlus.Structure.TextStyle();
             VisualPlus.Structure.TextStyle textStyle2 = new VisualPlus.Structure.TextStyle();
             VisualPlus.Structure.TextStyle textStyle3 = new VisualPlus.Structure.TextStyle();
-            VisualPlus.Structure.TextStyle textStyle4 = new VisualPlus.Structure.TextStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(物通网));
+            VisualPlus.Structure.TextStyle textStyle4 = new VisualPlus.Structure.TextStyle();
+            VisualPlus.Structure.TextStyle textStyle5 = new VisualPlus.Structure.TextStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualButton2 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.visualButton1 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.visualButton4 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
@@ -59,8 +61,10 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -108,11 +112,11 @@
             this.visualButton2.TextAlignment = System.Drawing.StringAlignment.Center;
             this.visualButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.visualButton2.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle1.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle1.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle1.Hover = System.Drawing.Color.Empty;
-            textStyle1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualButton2.TextStyle = textStyle1;
+            textStyle2.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle2.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle2.Hover = System.Drawing.Color.Empty;
+            textStyle2.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualButton2.TextStyle = textStyle2;
             this.visualButton2.Click += new System.EventHandler(this.visualButton2_Click);
             // 
             // statusStrip1
@@ -148,11 +152,11 @@
             this.visualButton1.TextAlignment = System.Drawing.StringAlignment.Center;
             this.visualButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.visualButton1.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle2.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle2.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle2.Hover = System.Drawing.Color.Empty;
-            textStyle2.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualButton1.TextStyle = textStyle2;
+            textStyle3.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle3.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle3.Hover = System.Drawing.Color.Empty;
+            textStyle3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualButton1.TextStyle = textStyle3;
             this.visualButton1.Click += new System.EventHandler(this.visualButton1_Click);
             // 
             // splitContainer1
@@ -165,6 +169,10 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.splitContainer1.Panel1.Controls.Add(this.comboBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.Controls.Add(this.radioButton2);
+            this.splitContainer1.Panel1.Controls.Add(this.radioButton1);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -187,16 +195,36 @@
             this.splitContainer1.SplitterDistance = 117;
             this.splitContainer1.TabIndex = 1;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Blue;
+            this.label4.Location = new System.Drawing.Point(769, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 20);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "技术支持：";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(864, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.TabIndex = 27;
+            this.pictureBox1.TabStop = false;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(370, 12);
+            this.label3.Location = new System.Drawing.Point(370, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 20);
+            this.label3.Size = new System.Drawing.Size(73, 20);
             this.label3.TabIndex = 26;
-            this.label3.Text = "选择省份：";
+            this.label3.Text = "出发地：";
             // 
             // comboBox1
             // 
@@ -237,7 +265,7 @@
             "内蒙古区",
             "西藏区",
             "广西区"});
-            this.comboBox1.Location = new System.Drawing.Point(374, 41);
+            this.comboBox1.Location = new System.Drawing.Point(457, 45);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 25;
@@ -267,11 +295,11 @@
             this.visualButton4.TextAlignment = System.Drawing.StringAlignment.Center;
             this.visualButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.visualButton4.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle3.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle3.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle3.Hover = System.Drawing.Color.Empty;
-            textStyle3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualButton4.TextStyle = textStyle3;
+            textStyle4.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle4.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle4.Hover = System.Drawing.Color.Empty;
+            textStyle4.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualButton4.TextStyle = textStyle4;
             this.visualButton4.Click += new System.EventHandler(this.visualButton4_Click_1);
             // 
             // visualButton3
@@ -299,19 +327,19 @@
             this.visualButton3.TextAlignment = System.Drawing.StringAlignment.Center;
             this.visualButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.visualButton3.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            textStyle4.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            textStyle4.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            textStyle4.Hover = System.Drawing.Color.Empty;
-            textStyle4.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.visualButton3.TextStyle = textStyle4;
+            textStyle5.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            textStyle5.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            textStyle5.Hover = System.Drawing.Color.Empty;
+            textStyle5.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.visualButton3.TextStyle = textStyle5;
             this.visualButton3.Click += new System.EventHandler(this.visualButton3_Click_1);
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 11F);
-            this.button1.Location = new System.Drawing.Point(505, 70);
+            this.button1.Location = new System.Drawing.Point(651, 86);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(204, 39);
+            this.button1.Size = new System.Drawing.Size(204, 23);
             this.button1.TabIndex = 22;
             this.button1.Text = "登陆";
             this.button1.UseVisualStyleBackColor = true;
@@ -322,7 +350,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(501, 40);
+            this.label2.Location = new System.Drawing.Point(647, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 20);
             this.label2.TabIndex = 21;
@@ -333,7 +361,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(498, 9);
+            this.label1.Location = new System.Drawing.Point(647, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 20;
@@ -341,7 +369,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(577, 43);
+            this.textBox2.Location = new System.Drawing.Point(726, 62);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(132, 21);
@@ -349,7 +377,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(577, 11);
+            this.textBox1.Location = new System.Drawing.Point(726, 35);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(132, 21);
             this.textBox1.TabIndex = 18;
@@ -377,6 +405,7 @@
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             // 
             // columnHeader1
             // 
@@ -422,25 +451,85 @@
             this.columnHeader3.Text = "标题";
             this.columnHeader3.Width = 300;
             // 
-            // pictureBox1
+            // radioButton1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(864, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.radioButton1.Location = new System.Drawing.Point(374, 12);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(91, 24);
+            this.radioButton1.TabIndex = 29;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "全部货源";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // radioButton2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(769, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 20);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "技术支持：";
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.radioButton2.Location = new System.Drawing.Point(487, 12);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(91, 24);
+            this.radioButton2.TabIndex = 30;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "一手货源";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Blue;
+            this.label5.Location = new System.Drawing.Point(370, 79);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 20);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "到达地：";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "全国",
+            "北京市",
+            "天津市",
+            "重庆市",
+            "上海市",
+            "河北省",
+            "山西省",
+            "辽宁省",
+            "江苏省",
+            "浙江省",
+            "福建省",
+            "江西省",
+            "山东省",
+            "河南省",
+            "宁夏区",
+            "云南省",
+            "陕西省",
+            "宁夏省",
+            "甘肃省",
+            "贵州省",
+            "黑龙江省",
+            "湖北省",
+            "湖南省",
+            "吉林省",
+            "青海省",
+            "四川省",
+            "海南省",
+            "广东省",
+            "新疆区",
+            "香港",
+            "澳门",
+            "台湾",
+            "内蒙古区",
+            "西藏区",
+            "广西区"});
+            this.comboBox2.Location = new System.Drawing.Point(457, 79);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 32;
             // 
             // 物通网
             // 
@@ -496,5 +585,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -201,7 +201,7 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "主营小区";
-            this.columnHeader5.Width = 400;
+            this.columnHeader5.Width = 300;
             // 
             // Form3
             // 

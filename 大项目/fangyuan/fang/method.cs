@@ -392,8 +392,13 @@ namespace fang
         public static void downloadFile(string URLAddress,string subPath, string name)
         {
             WebClient client = new WebClient();
-
-            client.DownloadFile(URLAddress, subPath + name);
+           
+            if (false == System.IO.Directory.Exists(subPath))
+            {
+                //创建pic文件夹
+                System.IO.Directory.CreateDirectory(subPath);
+            }
+            client.DownloadFile(URLAddress, subPath +"\\"+ name);
         }
 
         #endregion
