@@ -62,8 +62,15 @@ namespace fang.临时软件
         }
         #endregion
 
+        private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            long lTime = long.Parse(timeStamp + "0000");
+            TimeSpan toNow = new TimeSpan(lTime);
+            return dtStart.Add(toNow);
+        }
 
-     //   ArrayList finishes = new ArrayList();
+        //   ArrayList finishes = new ArrayList();
 
         #region  物通网一手货源
         public void run()
@@ -164,8 +171,8 @@ namespace fang.临时软件
             try
             {
 
-                string fprovince = System.Web.HttpUtility.UrlEncode(comboBox1.Text);
-                string tprovince = System.Web.HttpUtility.UrlEncode(comboBox2.Text);
+                string fprovince = System.Web.HttpUtility.UrlEncode(comboBox3.Text);
+                string tprovince = System.Web.HttpUtility.UrlEncode(comboBox4.Text);
 
 
                 if (comboBox1.Text == "全国")
@@ -213,17 +220,17 @@ namespace fang.临时软件
                         Match to_area = Regex.Match(strhtml1, @"<a>-([\s\S]*?)<");
                         if (goods_names.Count > 0)
                         {
-                            //  ListViewItem lv1 = listView1.Items.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                            lv1.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(zaizhongs[j].Groups[1].Value.Trim() + "公斤");
-                            lv1.SubItems.Add(trans_modes[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(huo_phones[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(huo_contacts[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(company_names[j].Groups[1].Value.Trim());
+                            
+                            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString());
+                            lv2.SubItems.Add(goods_names[j].Groups[1].Value.Trim());
+                            lv2.SubItems.Add(zaizhongs[j].Groups[1].Value.Trim() + "公斤");
+                            lv2.SubItems.Add(trans_modes[j].Groups[1].Value.Trim());
+                            lv2.SubItems.Add(huo_phones[j].Groups[1].Value.Trim());
+                            lv2.SubItems.Add(huo_contacts[j].Groups[1].Value.Trim());
+                            lv2.SubItems.Add(company_names[j].Groups[1].Value.Trim());
 
-                            lv1.SubItems.Add(times[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
+                            lv2.SubItems.Add(times[j].Groups[1].Value.Trim());
+                            lv2.SubItems.Add(from_area.Groups[1].Value + "→" + to_area.Groups[1].Value);
 
 
                             while (this.status == false)
@@ -344,6 +351,95 @@ namespace fang.临时软件
 
         #endregion
 
+        #region  运立方
+        public void yun()
+        {
+
+
+            try
+            {
+
+                string fprovince = System.Web.HttpUtility.UrlEncode(comboBox1.Text);
+                string tprovince = System.Web.HttpUtility.UrlEncode(comboBox2.Text);
+
+
+                if (comboBox1.Text == "全国")
+                {
+                    fprovince = "";
+
+                }
+
+                if (comboBox2.Text == "全国")
+                {
+                    tprovince = "";
+
+                }
+                for (int i = 1; i < 100; i++)
+                {
+
+                    string url = "https://wechat.yunlifang.com/wechat/findCargo/queryCargo";
+
+                    string postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3}";
+                    string html = method.PostUrl(url, postdata, "", "utf-8");
+
+
+                    MatchCollection from_areas = Regex.Matches(html, @"""startAddress"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection to_areas = Regex.Matches(html, @"simpleEndAddress"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    MatchCollection CarTypes = Regex.Matches(html, @"expectCarType"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection remarks = Regex.Matches(html, @"remark"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection phones = Regex.Matches(html, @"""phone"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    MatchCollection times = Regex.Matches(html, @"sendTime"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    if (from_areas.Count == 0)
+                        break;
+
+                    for (int j = 0; j < from_areas.Count; j++)
+                    {
+
+
+                        if (from_areas.Count > 0)
+                        {
+
+                            ListViewItem lv3 = listView3.Items.Add((listView3.Items.Count + 1).ToString());
+                            lv3.SubItems.Add(from_areas[j].Groups[1].Value + "→" + to_areas[j].Groups[1].Value);
+                            lv3.SubItems.Add(CarTypes[j].Groups[1].Value.Trim());
+                            lv3.SubItems.Add(remarks[j].Groups[1].Value.Trim() + "公斤");
+
+                            lv3.SubItems.Add(phones[j].Groups[1].Value.Trim());
+
+                            lv3.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value.Trim()).ToString());
+
+                            
+
+                            while (this.status == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+
+                        }
+
+                    }
+
+                    Thread.Sleep(500);
+                }
+            }
+
+
+
+
+            catch (System.Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        #endregion
+
         private void 物通网_Load(object sender, EventArgs e)
         {
            
@@ -361,22 +457,9 @@ namespace fang.临时软件
             listView1.Items.Clear();
             this.status = true;
 
-            if (radioButton1.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(run1));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-            }
-
-            else if (radioButton2.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-            }
-
-            
-
+            Thread thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
 
         }
 
@@ -387,13 +470,13 @@ namespace fang.临时软件
 
         private void visualButton3_Click(object sender, EventArgs e)
         {
-            this.status = false;
+            this.status = true;
             
         }
 
         private void visualButton4_Click(object sender, EventArgs e)
         {
-            this.status = true;
+            this.status = false;
         }
 
         private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -511,6 +594,68 @@ namespace fang.临时软件
             //指定排序器并传送列索引与升序降序关键字
             listView1.Sort();//对列表进行自定义排序
         }
+
+        private void visualButton8_Click(object sender, EventArgs e)
+        {
+            if (denglu == false)
+            {
+                MessageBox.Show("请先登录您的账号！");
+                return;
+            }
+            listView2.Items.Clear();
+            this.status = true;
+
+            Thread thread = new Thread(new ThreadStart(run1));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
+        }
+
+        private void visualButton12_Click(object sender, EventArgs e)
+        {
+            if (denglu == false)
+            {
+                MessageBox.Show("请先登录您的账号！");
+                return;
+            }
+            listView3.Items.Clear();
+            this.status = true;
+
+            Thread thread = new Thread(new ThreadStart(yun));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
+        }
+
+        private void visualButton11_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+        private void visualButton7_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView3), "Sheet1", true);
+        }
+
+        private void visualButton6_Click(object sender, EventArgs e)
+        {
+            this.status = true;
+        }
+
+        private void visualButton5_Click(object sender, EventArgs e)
+        {
+            this.status = false;
+        }
+
+        private void visualButton9_Click(object sender, EventArgs e)
+        {
+            this.status = false;
+        }
+
+        private void visualButton10_Click(object sender, EventArgs e)
+        {
+            this.status = true;
+        }
+
+      
     }
 
 }
