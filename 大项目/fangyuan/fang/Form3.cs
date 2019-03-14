@@ -100,8 +100,8 @@ namespace fang
                         Match broid = Regex.Match(strhtml, rxg6);
                          Match img = Regex.Match(strhtml, rxg7);
                         
-                       a= a+1;
-                       method.downloadFile(img.Groups[1].Value, comboBox1.SelectedItem.ToString(),name.Groups[1].Value.Trim()+a+".jpg");
+                       
+                       //method.downloadFile(img.Groups[1].Value, comboBox1.SelectedItem.ToString(),name.Groups[1].Value.Trim()+".jpg");
 
 
                         string Url2 = "https://broker.58.com/api/encphone?brokerId="+broid.Groups[1].Value.Trim()+"&cityId="+cityid.Groups[1].Value.Trim();

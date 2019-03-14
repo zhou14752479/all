@@ -391,6 +391,8 @@ namespace fang
         /// <param name="name">图片名称</param>
         public static void downloadFile(string URLAddress,string subPath, string name)
         {
+            string path = System.IO.Directory.GetCurrentDirectory();
+
             WebClient client = new WebClient();
            
             if (false == System.IO.Directory.Exists(subPath))
@@ -398,7 +400,7 @@ namespace fang
                 //创建pic文件夹
                 System.IO.Directory.CreateDirectory(subPath);
             }
-            client.DownloadFile(URLAddress, subPath +"\\"+ name);
+            client.DownloadFile(URLAddress, subPath + "\\"+ name);
         }
 
         #endregion
