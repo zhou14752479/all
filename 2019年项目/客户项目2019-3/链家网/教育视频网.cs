@@ -18,7 +18,7 @@ namespace 链家网
         public 教育视频网()
         {
             InitializeComponent();
-            this.webKitBrowser1 = new WebKit.WebKitBrowser();
+            
         }
 
         private void 教育视频网_Load(object sender, EventArgs e)
@@ -115,7 +115,7 @@ namespace 链家网
 
                 Match value = Regex.Match(html, @"value=""mda-([\s\S]*?)""");
                 // System.Diagnostics.Process.Start("http://1s1k.eduyun.cn/resource/redesign/publishCase/vod_player.jsp?resourceCode=mda-" + value.Groups[1].Value + "&divId=playercontainers1&wid=770&hei=530&sessionKey=KTHObD76L5EyEDjLsWWu");
-                this.webKitBrowser1.Navigate("http://1s1k.eduyun.cn/resource/redesign/publishCase/vod_player.jsp?resourceCode=mda-" + value.Groups[1].Value + "&divId=playercontainers1&wid=770&hei=530&sessionKey=KTHObD76L5EyEDjLsWWu");
+               // this.webKitBrowser1.Navigate("http://1s1k.eduyun.cn/resource/redesign/publishCase/vod_player.jsp?resourceCode=mda-" + value.Groups[1].Value + "&divId=playercontainers1&wid=770&hei=530&sessionKey=KTHObD76L5EyEDjLsWWu");
 
             }
         }
