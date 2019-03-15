@@ -76,23 +76,26 @@ namespace fang.临时软件
                     string html = method.GetUrl(url, "utf-8");
                     
                     Match uk = Regex.Match(html, @"uk\\"":\\""([\s\S]*?)\\""");
-                    string URL = "https://author.baidu.com/list?type=video&tab=9&uk="+uk.Groups[1].Value+"&ctime=15521857294896&_=1552442219250&callback=jsonp3";
+                    
+                    string URL = "https://author.baidu.com/pipe?tab=9&uk="+uk.Groups[1].Value+"&&defaultTab=video&pagelets[]=video&reqID=3&ispeed=1";
                     string strhtml = method.GetUrl(URL, "utf-8");
                     
-                    string rxg = @"{""user_type"":""3"",""dynamic_id"":""([\s\S]*?)"",""dynamic_type"":""2"",""dynamic_sub_type"":""2001"",""thread_id"":([\s\S]*?),""feed_id"":""([\s\S]*?)""";
-                    MatchCollection titles = Regex.Matches(strhtml, @"""title"":""([\s\S]*?)""");
-                    MatchCollection times = Regex.Matches(strhtml, @"updatedAt"":""([\s\S]*?)""");
-                    MatchCollection urls = Regex.Matches(strhtml, @"""url"":""([\s\S]*?)""");
+                    string rxg = @"data-user_type=\\""3\\""  data-dynamic_id=\\""([\s\S]*?)\\""  data-dynamic_type=\\""2\\""  data-dynamic_sub_type=\\""2003\\""  data-thread_id=\\""([\s\S]*?)\\""  data-feed_id=\\""([\s\S]*?)\\""";
+                    MatchCollection titles = Regex.Matches(strhtml, @"data-title=\\""([\s\S]*?)\\""");
+                    MatchCollection times = Regex.Matches(strhtml, @"data-date=\\""([\s\S]*?)\\"">([\s\S]*?)</span>");
+                    MatchCollection urls = Regex.Matches(strhtml, @"data-src=\\""([\s\S]*?)\\""");
                     MatchCollection matches = Regex.Matches(strhtml, rxg);
 
-
-                    for (int i = 0; i < matches.Count; i++)
+                    
+                    for (int i = 0; i < titles.Count; i++)
                     {
                         string url1 = "https://mbd.baidu.com/webpage?type=homepage&action=interact&format=jsonp&params=[{\"user_type\":\"3\",\"dynamic_id\":\"" + matches[i].Groups[1].Value + "\",\"dynamic_type\":\"2\",\"dynamic_sub_type\":\"2001\",\"thread_id\":" + matches[i].Groups[2].Value + ",\"feed_id\":\"" + matches[i].Groups[1].Value + "\"}]&uk="+uk.Groups[1].Value+"&_=1547616333196&callback=jsonp1";
 
-
+                        
 
                         string readHtml = method.GetUrl(url1, "utf-8");
+
+                       
 
                         Match reads = Regex.Match(readHtml, @"read_num"":([\s\S]*?),");
 
@@ -169,7 +172,7 @@ namespace fang.临时软件
                         }
 
 
-                        if (this.condition)
+                        if (true)
                         {
 
 
@@ -177,8 +180,11 @@ namespace fang.临时软件
                             lv2.SubItems.Add(titles[i].Groups[1].Value);
 
                             lv2.SubItems.Add(reads.Groups[1].Value);
-                            lv2.SubItems.Add(times[i].Groups[1].Value);
+                           
+                            lv2.SubItems.Add(times[i].Groups[2].Value);
                             lv2.SubItems.Add(urls[i].Groups[1].Value);
+                            
+                            lv2.SubItems.Add("https://author.baidu.com/home?type=profile&action=profile&mthfr=box_share&context=%7B%22from%22%3A%22ugc_share%22%2C%22app_id%22%3A%22"+id+"%22%7D");
 
 
 
@@ -252,6 +258,11 @@ namespace fang.临时软件
         private void skinButton4_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+        private void 跳转到文章链接ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.listView2.SelectedItems[0].SubItems[5].Text);
         }
     }
 }

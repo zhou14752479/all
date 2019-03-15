@@ -31,9 +31,9 @@ namespace main
         //http://168s.mobile.hc360.com/get168.cgi?fc=0&e=100&n=0&z=%E4%B8%AD%E5%9B%BD:%E6%B1%9F%E8%8B%8F%E7%9C%81%3A%E5%AE%BF%E8%BF%81%E5%B8%82&v=609&s_id=001%3B003&gs=37&w=%E5%A9%9A%E7%BA%B1
         bool zanting = true;
 
-        #region  主程序
+        #region  慧聪
 
-        public void run()
+        public void huicong()
         {
 
             try
@@ -57,8 +57,8 @@ namespace main
 
                         string Url = "http://168s.mobile.hc360.com/get168.cgi?fc=0&e=100&n=" + i + "00&z=" + city + "&v=609&s_id=001%3B003&gs=37&w=" + key;
                        
-                        string strhtml = method.GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
+                        string strhtml = method.GetUrl(Url,"gb2312");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        textBox4.Text = Url;
                         MatchCollection names = Regex.Matches(strhtml, @"searchResultfoTitle"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection tels = Regex.Matches(strhtml, @"searchResultfoText"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection areas = Regex.Matches(strhtml, @"searchResultfoZone"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -112,9 +112,103 @@ namespace main
 
         #endregion
 
+
+        public void sole51()
+        {
+            
+            try
+            {
+               
+                string[] keywords = textBox3.Text.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] citys = { "北京"};
+
+                foreach (string city in citys)
+
+                {
+
+
+                    foreach (string keyword in keywords)
+
+                    {
+
+                        string keywordutf8 = System.Web.HttpUtility.UrlEncode(keyword, System.Text.Encoding.GetEncoding("utf-8"));
+
+                        for (int i = 1; i < 51; i++)
+                        {
+                            String Url = "http://www.51sole.com/shenzhen-textile/p" + i + "/";
+
+                            string strhtml = method.GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                            string Rxg = @"<li><span class=""fl""><a href=""([\s\S]*?)""";
+
+
+                            MatchCollection all = Regex.Matches(strhtml, Rxg);
+
+                            ArrayList lists = new ArrayList();
+                            foreach (Match NextMatch in all)
+                            {
+
+                                lists.Add(NextMatch.Groups[1].Value);
+
+
+                            }
+                            if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                break;
+
+
+
+                            foreach (string list in lists)
+                            {
+                                
+
+
+                                string strhtml1 = method.GetUrl(list,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                            
+                                Match name = Regex.Match(strhtml1, @"<li><b>([\s\S]*?)</b>");
+                                Match contacts = Regex.Match(strhtml1, @"联系人：</i><span>([\s\S]*?)</span>");
+                                Match phone = Regex.Match(strhtml1, @"电话：</i><span>([\s\S]*?)</span>");
+                                Match tell = Regex.Match(strhtml1, @"手机：</i><span>([\s\S]*?)</span>");
+                                Match addr = Regex.Match(strhtml1, @"地址：</i><span>([\s\S]*?)</span>");
+                                Match title = Regex.Match(strhtml1, @"description""  content=""([\s\S]*?)""");
+
+
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                lv1.SubItems.Add(name.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(contacts.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(phone.Groups[1].Value.Trim()+";" + tell.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(title.Groups[1].Value.Trim());
+                                
+
+                           
+                                Application.DoEvents();
+                                System.Threading.Thread.Sleep(100);
+
+
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+
+
+
+            catch (System.Exception ex)
+            {
+               ex.ToString();
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
+            Thread thread = new Thread(new ThreadStart(sole51));
             thread.Start();
         }
 
