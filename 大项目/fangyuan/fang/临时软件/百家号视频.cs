@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -263,6 +264,27 @@ namespace fang.临时软件
         private void 跳转到文章链接ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(this.listView2.SelectedItems[0].SubItems[5].Text);
+        }
+
+        private void skinButton8_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length; i++)
+                {
+
+
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(text[i]);
+
+
+                }
+            }
         }
     }
 }

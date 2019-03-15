@@ -45,18 +45,20 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -94,8 +96,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(713, 452);
-            this.splitContainer1.SplitterDistance = 361;
+            this.splitContainer1.Size = new System.Drawing.Size(797, 470);
+            this.splitContainer1.SplitterDistance = 375;
             this.splitContainer1.TabIndex = 3;
             // 
             // splitContainer2
@@ -111,8 +113,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listView2);
-            this.splitContainer2.Size = new System.Drawing.Size(713, 338);
-            this.splitContainer2.SplitterDistance = 380;
+            this.splitContainer2.Size = new System.Drawing.Size(797, 352);
+            this.splitContainer2.SplitterDistance = 424;
             this.splitContainer2.TabIndex = 1;
             // 
             // listView1
@@ -126,7 +128,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(380, 338);
+            this.listView1.Size = new System.Drawing.Size(424, 352);
             this.listView1.TabIndex = 13;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -151,7 +153,7 @@
             this.listView2.GridLines = true;
             this.listView2.Location = new System.Drawing.Point(0, 0);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(329, 338);
+            this.listView2.Size = new System.Drawing.Size(369, 352);
             this.listView2.TabIndex = 14;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -170,9 +172,9 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.Location = new System.Drawing.Point(0, 338);
+            this.button1.Location = new System.Drawing.Point(0, 352);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(713, 23);
+            this.button1.Size = new System.Drawing.Size(797, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "添加网址";
             this.button1.UseVisualStyleBackColor = true;
@@ -223,11 +225,12 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(498, 87);
+            this.tabControl1.Size = new System.Drawing.Size(498, 91);
             this.tabControl1.TabIndex = 9;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkBox11);
             this.tabPage1.Controls.Add(this.checkBox9);
             this.tabPage1.Controls.Add(this.checkBox4);
             this.tabPage1.Controls.Add(this.checkBox3);
@@ -236,10 +239,21 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(490, 61);
+            this.tabPage1.Size = new System.Drawing.Size(490, 65);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "监测所有";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox9.Location = new System.Drawing.Point(325, 19);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(72, 16);
+            this.checkBox9.TabIndex = 4;
+            this.checkBox9.Text = "三次以上";
+            this.checkBox9.UseVisualStyleBackColor = true;
             // 
             // checkBox4
             // 
@@ -287,6 +301,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.checkBox12);
             this.tabPage2.Controls.Add(this.checkBox10);
             this.tabPage2.Controls.Add(this.checkBox8);
             this.tabPage2.Controls.Add(this.checkBox7);
@@ -295,10 +310,21 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(490, 61);
+            this.tabPage2.Size = new System.Drawing.Size(490, 65);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "监测当期";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox10.Location = new System.Drawing.Point(325, 19);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(72, 16);
+            this.checkBox10.TabIndex = 8;
+            this.checkBox10.Text = "三次以上";
+            this.checkBox10.UseVisualStyleBackColor = true;
             // 
             // checkBox8
             // 
@@ -348,33 +374,33 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // checkBox9
+            // checkBox11
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Font = new System.Drawing.Font("宋体", 9F);
-            this.checkBox9.Location = new System.Drawing.Point(325, 19);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(72, 16);
-            this.checkBox9.TabIndex = 4;
-            this.checkBox9.Text = "三次以上";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox11.Location = new System.Drawing.Point(403, 19);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(72, 16);
+            this.checkBox11.TabIndex = 5;
+            this.checkBox11.Text = "四次以上";
+            this.checkBox11.UseVisualStyleBackColor = true;
             // 
-            // checkBox10
+            // checkBox12
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Font = new System.Drawing.Font("宋体", 9F);
-            this.checkBox10.Location = new System.Drawing.Point(325, 19);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(72, 16);
-            this.checkBox10.TabIndex = 8;
-            this.checkBox10.Text = "三次以上";
-            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox12.Location = new System.Drawing.Point(403, 19);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(72, 16);
+            this.checkBox12.TabIndex = 9;
+            this.checkBox12.Text = "四次以上";
+            this.checkBox12.UseVisualStyleBackColor = true;
             // 
             // 连续出现
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 452);
+            this.ClientSize = new System.Drawing.Size(797, 470);
             this.Controls.Add(this.splitContainer1);
             this.Name = "连续出现";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -428,5 +454,7 @@
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox9;
         private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
     }
 }

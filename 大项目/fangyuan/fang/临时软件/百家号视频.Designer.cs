@@ -39,6 +39,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.跳转到文章链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinButton7 = new CCWin.SkinControl.SkinButton();
@@ -67,7 +68,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label5 = new System.Windows.Forms.Label();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -169,6 +169,10 @@
             this.columnHeader8.Text = "视频地址";
             this.columnHeader8.Width = 200;
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "网址";
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -179,7 +183,7 @@
             // 跳转到文章链接ToolStripMenuItem
             // 
             this.跳转到文章链接ToolStripMenuItem.Name = "跳转到文章链接ToolStripMenuItem";
-            this.跳转到文章链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.跳转到文章链接ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.跳转到文章链接ToolStripMenuItem.Text = "跳转到文章链接";
             this.跳转到文章链接ToolStripMenuItem.Click += new System.EventHandler(this.跳转到文章链接ToolStripMenuItem_Click);
             // 
@@ -278,6 +282,7 @@
             this.skinButton8.TabIndex = 9;
             this.skinButton8.Text = "批量添加";
             this.skinButton8.UseVisualStyleBackColor = false;
+            this.skinButton8.Click += new System.EventHandler(this.skinButton8_Click);
             // 
             // openFileDialog1
             // 
@@ -511,10 +516,6 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "时间设置：";
             // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "网址";
-            // 
             // 百家号视频
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -522,7 +523,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
             this.Name = "百家号视频";
-            this.Text = "百家号视频";
+            this.Text = "火蓝视频采集软件";
             this.Load += new System.EventHandler(this.百家号视频_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
