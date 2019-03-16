@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\58同城招聘\zhaopin_58\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\..\58同城招聘\zhaopin_58\bin\Debug\NPOI.dll</HintPath>
     </Reference>

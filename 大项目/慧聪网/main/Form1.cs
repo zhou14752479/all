@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,8 +21,8 @@ namespace main
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false;
         }
+       bool  denglu=false;
 
-       
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -58,7 +59,7 @@ namespace main
                         string Url = "http://168s.mobile.hc360.com/get168.cgi?fc=0&e=100&n=" + i + "00&z=" + city + "&v=609&s_id=001%3B003&gs=37&w=" + key;
                        
                         string strhtml = method.GetUrl(Url,"gb2312");  //定义的GetRul方法 返回 reader.ReadToEnd()
-                        textBox4.Text = Url;
+                       
                         MatchCollection names = Regex.Matches(strhtml, @"searchResultfoTitle"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection tels = Regex.Matches(strhtml, @"searchResultfoText"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection areas = Regex.Matches(strhtml, @"searchResultfoZone"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -112,20 +113,20 @@ namespace main
 
         #endregion
 
-
+        #region 51搜了网
         public void sole51()
         {
             
             try
             {
+                if (textBox3.Text == "")
+                {
+                    MessageBox.Show("请输入关键词！");
+                }
+
                
                 string[] keywords = textBox3.Text.Split(new string[] { "," }, StringSplitOptions.None);
-                string[] citys = { "北京"};
-
-                foreach (string city in citys)
-
-                {
-
+            
 
                     foreach (string keyword in keywords)
 
@@ -135,34 +136,39 @@ namespace main
 
                         for (int i = 1; i < 51; i++)
                         {
-                            String Url = "http://www.51sole.com/shenzhen-textile/p" + i + "/";
+                            String Url = "https://s.51sole.com/search.aspx?q="+keyword+"&page="+i;
 
                             string strhtml = method.GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                            string Rxg = @"<li><span class=""fl""><a href=""([\s\S]*?)""";
+                            string Rxg = @"<p class=""t1_tit"">([\s\S]*?)<a href=""([\s\S]*?)""";
 
 
                             MatchCollection all = Regex.Matches(strhtml, Rxg);
 
-                            ArrayList lists = new ArrayList();
-                            foreach (Match NextMatch in all)
+
+                        ArrayList lists = new ArrayList();
+                        ArrayList lists1 = new ArrayList();
+                        foreach (Match NextMatch in all)
+                        {
+                            if (NextMatch.Groups[2].Value.Contains("detail"))
                             {
-
-                                lists.Add(NextMatch.Groups[1].Value);
-
-
+                                lists1.Add(NextMatch.Groups[2].Value);
                             }
-                            if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+                            else
+                            {
+                                lists.Add(NextMatch.Groups[2].Value);
+                            }
+
+
+                        }
+                        if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                                 break;
-
 
 
                             foreach (string list in lists)
                             {
                                 
-
-
                                 string strhtml1 = method.GetUrl(list,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
                             
@@ -177,13 +183,19 @@ namespace main
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                 lv1.SubItems.Add(name.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(contacts.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(phone.Groups[1].Value.Trim()+";" + tell.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(phone.Groups[1].Value.Trim()+"  " + tell.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(title.Groups[1].Value.Trim());
-                                
-
-                           
+                            while (this.zanting == false)
+                            {
                                 Application.DoEvents();
+                            }
+                            if (listView1.Items.Count - 1 > 1)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);
+                            }
+
+                            Application.DoEvents();
                                 System.Threading.Thread.Sleep(100);
 
 
@@ -195,7 +207,7 @@ namespace main
                     }
 
                 }
-            }
+            
 
 
 
@@ -205,9 +217,211 @@ namespace main
                ex.ToString();
             }
         }
+        #endregion 
 
+        #region 一呼百应
+        public void yihubaiying()
+        {
+
+            try
+            {
+
+                string[] keywords = textBox3.Text.Split(new string[] { "," }, StringSplitOptions.None);
+
+
+                foreach (string keyword in keywords)
+
+                {
+
+                    string keywordutf8 = System.Web.HttpUtility.UrlEncode(keyword, System.Text.Encoding.GetEncoding("utf-8"));
+
+                    for (int i = 1; i < 51; i++)
+                    {
+                        String Url = "https://s.51sole.com/search.aspx?q=" + keyword + "&page=" + i;
+
+                        string strhtml = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                        string Rxg = @"<p class=""t1_tit"">([\s\S]*?)<a href=""([\s\S]*?)""";
+
+
+                        MatchCollection all = Regex.Matches(strhtml, Rxg);
+
+
+                        ArrayList lists = new ArrayList();
+                        ArrayList lists1 = new ArrayList();
+                        foreach (Match NextMatch in all)
+                        {
+                            if (NextMatch.Groups[2].Value.Contains("detail"))
+                            {
+                                lists1.Add(NextMatch.Groups[2].Value);
+                            }
+                            else
+                            {
+                                lists.Add(NextMatch.Groups[2].Value);
+                            }
+
+
+                        }
+                        if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                            break;
+
+
+                        foreach (string list in lists)
+                        {
+
+                            string strhtml1 = method.GetUrl(list, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+
+                            Match name = Regex.Match(strhtml1, @"<li><b>([\s\S]*?)</b>");
+                            Match contacts = Regex.Match(strhtml1, @"联系人：</i><span>([\s\S]*?)</span>");
+                            Match phone = Regex.Match(strhtml1, @"电话：</i><span>([\s\S]*?)</span>");
+                            Match tell = Regex.Match(strhtml1, @"手机：</i><span>([\s\S]*?)</span>");
+                            Match addr = Regex.Match(strhtml1, @"地址：</i><span>([\s\S]*?)</span>");
+                            Match title = Regex.Match(strhtml1, @"description""  content=""([\s\S]*?)""");
+
+
+                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                            lv1.SubItems.Add(name.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(contacts.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(phone.Groups[1].Value.Trim() + "  " + tell.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(title.Groups[1].Value.Trim());
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();
+                            }
+                            if (listView1.Items.Count - 1 > 1)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);
+                            }
+
+                            Application.DoEvents();
+                            System.Threading.Thread.Sleep(100);
+
+
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+
+
+
+
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+        #endregion 
+
+        #region 黄页88
+        public void hy88()
+        {
+
+            try
+            {
+
+                string[] keywords = textBox3.Text.Split(new string[] { "," }, StringSplitOptions.None);
+
+
+                foreach (string keyword in keywords)
+
+                {
+
+                    string keywordutf8 = System.Web.HttpUtility.UrlEncode(keyword, System.Text.Encoding.GetEncoding("utf-8"));
+
+                    for (int i = 1; i < 51; i++)
+                    {
+                        String Url = "http://www.huangye88.com/search.html?kw="+ keywordutf8 + "&type=company&page="+i+"/";
+
+                        string strhtml = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                       
+                        string Rxg = @"<p class=""p-title"">([\s\S]*?)<a href=""([\s\S]*?)""";
+
+
+                        MatchCollection all = Regex.Matches(strhtml, Rxg);
+
+                        ArrayList lists = new ArrayList();
+                        foreach (Match NextMatch in all)
+                        {
+                          
+                                lists.Add(NextMatch.Groups[2].Value);
+                            
+
+                        }
+
+                        
+                        if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                            break;
+
+
+                        foreach (string list in lists)
+                        {
+
+                            string strhtml1 = method.GetUrl(list, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+
+                            Match name = Regex.Match(strhtml1, @"<h1 class=""big"">([\s\S]*?)</h1>");
+                            Match contacts = Regex.Match(strhtml1, @"联系人：</i><span>([\s\S]*?)</span>");
+                            Match phone = Regex.Match(strhtml1, @"电话：</label>([\s\S]*?)</li>");
+                            Match tell = Regex.Match(strhtml1, @"手机：</label>([\s\S]*?)</li>");
+                            Match addr = Regex.Match(strhtml1, @"地址:([\s\S]*?);");
+                            Match title = Regex.Match(strhtml1, @"description""  content=""([\s\S]*?)""");
+
+
+                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                            lv1.SubItems.Add(name.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(contacts.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(phone.Groups[1].Value.Trim() + "  " + tell.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(title.Groups[1].Value.Trim());
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();
+                            }
+                            if (listView1.Items.Count - 1 > 1)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);
+                            }
+
+                            Application.DoEvents();
+                            System.Threading.Thread.Sleep(100);
+
+
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+
+
+
+
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+        #endregion 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (denglu == false)
+            {
+                MessageBox.Show("请先登录您的账号！");
+                return;
+            }
+
             Thread thread = new Thread(new ThreadStart(sole51));
             thread.Start();
         }
@@ -221,5 +435,76 @@ namespace main
         {
             zanting = true;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+
+                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select * from wuba2019 where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+
+
+                if (reader.Read())
+                {
+
+                    string username = reader["username"].ToString().Trim();
+                    string password = reader["password"].ToString().Trim();
+                   
+                    //判断密码
+                    if (textBox2.Text.Trim() == password)
+                    {
+
+                        MessageBox.Show("登陆成功！");
+                       
+                        denglu = true;
+                        reader.Close();
+                       
+
+                    }
+
+
+                    else
+
+                    {
+                        MessageBox.Show("您的密码错误！");
+                        return;
+                    }
+
+                }
+
+                else
+                {
+                    MessageBox.Show("未查询到您的账户信息！");
+                    return;
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
     }
 }
+
+
