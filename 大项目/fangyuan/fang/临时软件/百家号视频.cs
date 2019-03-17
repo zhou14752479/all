@@ -74,12 +74,16 @@ namespace fang.临时软件
                     toolStripLabel2.Text = id.ToString();
 
                     string url = "https://author.baidu.com/profile?context={%22from%22:%22ugc_share%22,%22app_id%22:%22" + id + "%22}&cmdType=&pagelets[]=root&reqID=0&ispeed=1";
+
                     string html = method.GetUrl(url, "utf-8");
                     
                     Match uk = Regex.Match(html, @"uk\\"":\\""([\s\S]*?)\\""");
                     
                     string URL = "https://author.baidu.com/pipe?tab=9&uk="+uk.Groups[1].Value+"&&defaultTab=video&pagelets[]=video&reqID=3&ispeed=1";
-                    string strhtml = method.GetUrl(URL, "utf-8");
+
+                    string URL1 = "https://author.baidu.com/list?type=video&tab=9&uk=" + uk.Groups[1].Value + "&ctime=15527060331505&callback=jsonp2";
+
+                    string strhtml = method.GetUrl(URL, "utf-8")+method.GetUrl(URL1, "utf-8"); ;
                     
                     string rxg = @"data-user_type=\\""3\\""  data-dynamic_id=\\""([\s\S]*?)\\""  data-dynamic_type=\\""2\\""  data-dynamic_sub_type=\\""2003\\""  data-thread_id=\\""([\s\S]*?)\\""  data-feed_id=\\""([\s\S]*?)\\""";
                     MatchCollection titles = Regex.Matches(strhtml, @"data-title=\\""([\s\S]*?)\\""");
@@ -285,6 +289,11 @@ namespace fang.临时软件
 
                 }
             }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
