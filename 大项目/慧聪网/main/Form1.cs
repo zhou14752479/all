@@ -28,6 +28,8 @@ namespace main
             
         }
 
+        bool status = true;
+
         //http://168s.mobile.hc360.com/get168.cgi?fc=0&e=100&n=0&z=%E4%B8%AD%E5%9B%BD:%E6%B1%9F%E8%8B%8F%E7%9C%81%3A%E5%AE%BF%E8%BF%81%E5%B8%82&v=609&s_id=001%3B003&gs=37&w=%E5%A9%9A%E7%BA%B1
         bool zanting = true;
 
@@ -185,6 +187,12 @@ namespace main
                                 lv1.SubItems.Add(phone.Groups[1].Value.Trim()+"  " + tell.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(title.Groups[1].Value.Trim());
+
+                            if (status == false)
+                            {
+                                return;
+                            }
+
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();
@@ -415,6 +423,7 @@ namespace main
         #endregion 
         private void button2_Click(object sender, EventArgs e)
         {
+            status = true;
             if (denglu == false)
             {
                 MessageBox.Show("请先登录您的账号！");
@@ -423,6 +432,8 @@ namespace main
 
             Thread thread = new Thread(new ThreadStart(sole51));
             thread.Start();
+            Thread thread1 = new Thread(new ThreadStart(sole51));
+            thread1.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -504,6 +515,11 @@ namespace main
         private void button6_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            status = false;
         }
     }
 }
