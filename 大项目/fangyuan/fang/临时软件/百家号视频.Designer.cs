@@ -88,7 +88,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.toolStripMenuItem1.Text = "删除该项";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -203,6 +203,7 @@
             this.skinButton7.TabIndex = 23;
             this.skinButton7.Text = "停止";
             this.skinButton7.UseVisualStyleBackColor = false;
+            this.skinButton7.Click += new System.EventHandler(this.skinButton7_Click);
             // 
             // skinButton6
             // 
@@ -236,6 +237,7 @@
             this.skinButton5.TabIndex = 18;
             this.skinButton5.Text = "继续";
             this.skinButton5.UseVisualStyleBackColor = false;
+            this.skinButton5.Click += new System.EventHandler(this.skinButton5_Click);
             // 
             // toolStrip1
             // 
@@ -294,7 +296,7 @@
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(125, 26);
             // 
             // checkBox3
             // 
@@ -378,6 +380,7 @@
             this.skinButton3.TabIndex = 9;
             this.skinButton3.Text = "暂停";
             this.skinButton3.UseVisualStyleBackColor = false;
+            this.skinButton3.Click += new System.EventHandler(this.skinButton3_Click);
             // 
             // skinButton2
             // 

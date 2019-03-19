@@ -154,5 +154,10 @@ namespace fang.临时软件
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
         }
+
+        private void 域名收录_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

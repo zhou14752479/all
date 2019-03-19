@@ -84,6 +84,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="2019\点评发型师.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019\点评发型师.Designer.cs">
+      <DependentUpon>点评发型师.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,12 @@
     </Compile>
     <Compile Include="临时软件\连续出现.Designer.cs">
       <DependentUpon>连续出现.cs</DependentUpon>
+    </Compile>
+    <Compile Include="登陆.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="登陆.Designer.cs">
+      <DependentUpon>登陆.cs</DependentUpon>
     </Compile>
     <Compile Include="赶集本地服务.cs">
       <SubType>Form</SubType>
@@ -339,6 +351,9 @@
     <Compile Include="直播平台软件\kuaishou.Designer.cs">
       <DependentUpon>kuaishou.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="2019\点评发型师.resx">
+      <DependentUpon>点评发型师.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -383,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\连续出现.resx">
       <DependentUpon>连续出现.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="登陆.resx">
+      <DependentUpon>登陆.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="赶集本地服务.resx">
       <DependentUpon>赶集本地服务.cs</DependentUpon>

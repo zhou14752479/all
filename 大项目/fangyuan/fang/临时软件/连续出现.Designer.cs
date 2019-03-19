@@ -45,20 +45,24 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -230,6 +234,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkBox15);
+            this.tabPage1.Controls.Add(this.checkBox13);
             this.tabPage1.Controls.Add(this.checkBox11);
             this.tabPage1.Controls.Add(this.checkBox9);
             this.tabPage1.Controls.Add(this.checkBox4);
@@ -243,6 +249,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "监测所有";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox11.Location = new System.Drawing.Point(403, 19);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(72, 16);
+            this.checkBox11.TabIndex = 5;
+            this.checkBox11.Text = "四次以上";
+            this.checkBox11.UseVisualStyleBackColor = true;
             // 
             // checkBox9
             // 
@@ -301,6 +318,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.checkBox16);
+            this.tabPage2.Controls.Add(this.checkBox14);
             this.tabPage2.Controls.Add(this.checkBox12);
             this.tabPage2.Controls.Add(this.checkBox10);
             this.tabPage2.Controls.Add(this.checkBox8);
@@ -314,6 +333,17 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "监测当期";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox12.Location = new System.Drawing.Point(403, 19);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(72, 16);
+            this.checkBox12.TabIndex = 9;
+            this.checkBox12.Text = "四次以上";
+            this.checkBox12.UseVisualStyleBackColor = true;
             // 
             // checkBox10
             // 
@@ -374,27 +404,49 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // checkBox11
+            // checkBox13
             // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Font = new System.Drawing.Font("宋体", 9F);
-            this.checkBox11.Location = new System.Drawing.Point(403, 19);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(72, 16);
-            this.checkBox11.TabIndex = 5;
-            this.checkBox11.Text = "四次以上";
-            this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox13.Location = new System.Drawing.Point(19, 41);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(72, 16);
+            this.checkBox13.TabIndex = 6;
+            this.checkBox13.Text = "abababab";
+            this.checkBox13.UseVisualStyleBackColor = true;
             // 
-            // checkBox12
+            // checkBox14
             // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Font = new System.Drawing.Font("宋体", 9F);
-            this.checkBox12.Location = new System.Drawing.Point(403, 19);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(72, 16);
-            this.checkBox12.TabIndex = 9;
-            this.checkBox12.Text = "四次以上";
-            this.checkBox12.UseVisualStyleBackColor = true;
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox14.Location = new System.Drawing.Point(19, 43);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(72, 16);
+            this.checkBox14.TabIndex = 10;
+            this.checkBox14.Text = "abababab";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox15.Location = new System.Drawing.Point(93, 41);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(144, 16);
+            this.checkBox15.TabIndex = 7;
+            this.checkBox15.Text = "a不是一次，b任意次数";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Font = new System.Drawing.Font("宋体", 9F);
+            this.checkBox16.Location = new System.Drawing.Point(93, 46);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(144, 16);
+            this.checkBox16.TabIndex = 11;
+            this.checkBox16.Text = "a不是一次，b任意次数";
+            this.checkBox16.UseVisualStyleBackColor = true;
             // 
             // 连续出现
             // 
@@ -456,5 +508,9 @@
         private System.Windows.Forms.CheckBox checkBox10;
         private System.Windows.Forms.CheckBox checkBox11;
         private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox checkBox15;
+        private System.Windows.Forms.CheckBox checkBox16;
     }
 }

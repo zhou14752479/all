@@ -243,9 +243,9 @@ namespace zhaopin_58
 
         private void meituan_Load(object sender, EventArgs e)
         {
-            //Thread thread = new Thread(new ThreadStart(getCityName));
-            //thread.Start();
-            
+            Thread thread = new Thread(new ThreadStart(getCityName));
+            thread.Start();
+
         }
         bool zanting = true;
 
@@ -262,7 +262,7 @@ namespace zhaopin_58
                 string COOKIE = "abt=1499071937.0%7CADE; _lxsdk_cuid=15d07a688f6c8-0b50ac5c472b18-333f5902-100200-15d07a688f79c; oc=xrmkO2nLZoY_IrhbS451igIl7hYw7IdDK6N_eVitVxW6WMxwN8yqI07hUj0vwzV57Iemuglzh4HS0E77JWewbxs2LOrDkniIWKv_go8Z8i77EVeAUCUejMdsEHZtdIDxMvg4fR4p53MxVNd2YZr8ZNhk_yZNN_hIE2VChkJKOJI; __mta=54360727.1499071941097.1518360971460.1518584371801.7; iuuid=F457EFC99EEB24DD0A17795BB1F8A91129848721BFF3EE82C45EF7C15E7C210E; _lxsdk=F457EFC99EEB24DD0A17795BB1F8A91129848721BFF3EE82C45EF7C15E7C210E; webp=1; __utmz=74597006.1547084235.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _hc.v=125767d7-22b6-b361-e802-854d70351873.1547084296; cityname=%E5%AE%BF%E8%BF%81; __utma=74597006.1002021895.1547084235.1547426995.1547429915.3; i_extend=C145095553688078665527034436504084189858_b2_e4339319119865529162_v1084616022904540227_a%e8%bf%90%e5%8a%a8%e5%81%a5%e8%ba%ab_f179411730E015954189128616476612677712756937264803_e7765034795530822391_v1084625786170336172_a%e8%bf%90%e5%8a%a8%e5%81%a5%e8%ba%abGimthomepagesearchH__a100005__b3; uuid=1542127099cf4e0c8245.1550021213.1.0.0; ci=60; rvct=60%2C1%2C184%2C875%2C55%2C40; __mta=54360727.1499071941097.1518584371801.1550470987575.8; _lxsdk_s=168ff45b4ee-4d2-6f6-965%7C%7C6";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Timeout = 10000;
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16B92 MicroMessenger/7.0.0(0x17000024) NetType/WIFI Language/zh_CN";
+                request.UserAgent = "Mozilla / 5.0(Windows NT 6.1; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 71.0.3578.98 Safari / 537.36";
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -295,17 +295,7 @@ namespace zhaopin_58
                 string[] citys = visualTextBox2.Text.Trim().Split(',');
                 string[] keywords = visualTextBox1.Text.Trim().Split(',');
 
-                if (visualTextBox2.Text == "")
-                {
-                    MessageBox.Show("请选择城市！");
-                    return;
-                }
-
-                if (visualTextBox1.Text == "")
-                {
-                    MessageBox.Show("请输入行业！");
-                    return;
-                }
+             
                 foreach (string city in citys)
                 {
                     
@@ -319,9 +309,8 @@ namespace zhaopin_58
 
                         foreach (string area in areaIds)
                         {
-                            
-                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?limit=9999&q=" + keyword + "&areaId=" + area + "&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F";
 
+                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/184?cateId=-1&sort=defaults&userid=-1&offset=0&limit=15&mypos=33.959478%2C118.27953&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&cityId=184&q=%E5%A5%B6%E8%8C%B6%E5%BA%97";
                             
                             string html = GetUrl(Url);
                             
@@ -332,7 +321,7 @@ namespace zhaopin_58
                             foreach (Match NextMatch in TitleMatchs)
                             {
 
-                                lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
+                                lists.Add("https://apimobile.meituan.com/group/v1/poi/"+ NextMatch.Groups[1].Value + "?fields=areaName,name,addr,phone" );
                             }
 
                             if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
@@ -522,7 +511,7 @@ namespace zhaopin_58
 
         private void visualButton1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run1));
+            Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             
         }

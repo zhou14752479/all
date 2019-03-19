@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,37 @@ namespace fang.临时软件
 
         bool zanting = true;
 
+
+        #region 获取网址
+
+        public static void getUrls(ListBox cob)
+        {
+            ArrayList list = new ArrayList();
+            try
+            {
+                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
+                string str = "SELECT url from jiaoyu ";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    //string html = method.GetHtmlSource(dr[0].ToString().Trim());
+                    //Match title = Regex.Match(html, @"<h1>([\s\S]*?)</h1>");
+
+                    //list.Add(title.Groups[1].Value);
+                    list.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                ee.Message.ToString();
+            }
+            cob.DataSource = list;
+
+        }
+        #endregion
         /// <summary>
         /// 获取第二列
         /// </summary>
@@ -83,6 +115,7 @@ namespace fang.临时软件
             return "";
         }
         #endregion
+
         #region  主函数
         public void run()
 
@@ -166,6 +199,27 @@ namespace fang.临时软件
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
+        }
+
+        private void IC交易网_Load(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                lv1.SubItems.Add("jzic18");
+                lv1.SubItems.Add("XC95");
+            }
+            
+        }
+
+        private void skinButton3_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void skinButton5_Click(object sender, EventArgs e)
+        {
+            zanting = true;
         }
     }
 }

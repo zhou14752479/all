@@ -23,7 +23,7 @@ namespace 链家网
 
         private void 教育视频网_Load(object sender, EventArgs e)
         {
-           
+                      
         }
         #region 获取网址
 
