@@ -138,6 +138,12 @@
     <Compile Include="临时软件\域名收录.Designer.cs">
       <DependentUpon>域名收录.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\数据库管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\数据库管理.Designer.cs">
+      <DependentUpon>数据库管理.cs</DependentUpon>
+    </Compile>
     <Compile Include="临时软件\物通网.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\域名收录.resx">
       <DependentUpon>域名收录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\数据库管理.resx">
+      <DependentUpon>数据库管理.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\物通网.resx">
       <DependentUpon>物通网.cs</DependentUpon>

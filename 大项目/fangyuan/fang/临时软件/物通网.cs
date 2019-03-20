@@ -354,237 +354,124 @@ namespace fang.临时软件
         #region  运立方
         public void yun()
         {
-            int beginAddressCode = 0;
-            int endAddressCode = 0;
+            string postdata = "";
 
             try
             {
-                switch (comboBox1.Text)
+                switch (comboBox5.Text)
                 {
                     case "北京市":
-                        beginAddressCode =101;
+                        postdata= @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1010000000}";
                         break;
                     case "天津市":
-                        beginAddressCode = 102;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1020000000}";
                         break;
                     case "河北省":
-                        beginAddressCode = 103;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1030000000}";
                         break;
                     case "山西省":
-                        beginAddressCode = 104;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1040000000}";
                         break;
                     case "内蒙古区":
-                        beginAddressCode = 105;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1050000000}";
                         break;
                     case "辽宁省":
-                        beginAddressCode = 106;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1060000000}";
                         break;
                     case "吉林省":
-                        beginAddressCode = 107;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1070000000}";
                         break;
                     case "黑龙江省":
-                        beginAddressCode = 108;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1080000000}";
                         break;
                     case "上海市":
-                        beginAddressCode = 109;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1090000000}";
                         break;
                     case "江苏省":
-                        beginAddressCode = 110;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1100000000}";
                         break;
                     case "浙江省":
-                        beginAddressCode = 111;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1110000000}";
                         break;
                     case "安徽省":
-                        beginAddressCode = 112;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1120000000}";
                         break;
                     case "福建省":
-                        beginAddressCode = 113;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1130000000}";
                         break;
                     case "江西省":
-                        beginAddressCode = 114;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1140000000}";
                         break;
                     case "山东省":
-                        beginAddressCode = 115;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1150000000}";
                         break;
                     case "河南省":
-                        beginAddressCode = 116;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1160000000}";
                         break;
                     case "湖北省":
-                        beginAddressCode = 117;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1170000000}";
                         break;
                     case "湖南省":
-                        beginAddressCode = 118;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1180000000}";
                         break;
                     case "广东省":
-                        beginAddressCode = 119;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1190000000}";
                         break;
                     case "广西区":
-                        beginAddressCode = 120;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1200000000}";
                         break;
 
                     case "海南省":
-                        beginAddressCode = 121;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1210000000}";
                         break;
                     case "重庆市":
-                        beginAddressCode = 122;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1220000000}";
                         break;
                     case "四川省":
-                        beginAddressCode = 123;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1230000000}";
                         break;
                     case "贵州省":
-                        beginAddressCode = 124;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1240000000}";
                         break;
                     case "云南省":
-                        beginAddressCode = 125;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1250000000}";
                         break;
                     case "西藏区":
-                        beginAddressCode = 126;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1260000000}";
                         break;
                     case "陕西省":
-                        beginAddressCode = 127;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1270000000}";
                         break;
                     case "甘肃省":
-                        beginAddressCode = 128;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1280000000}";
                         break;
                     case "青海省":
-                        beginAddressCode = 129;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1290000000}";
                         break;
                     case "宁夏区":
-                        beginAddressCode = 130;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1300000000}";
                         break;
                     case "新疆区":
-                        beginAddressCode = 131;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1310000000}";
                         break;
                     case "台湾":
-                        beginAddressCode = 132;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1320000000}";
                         break;
                     case "香港":
-                        beginAddressCode = 133;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1330000000}";
                         break;
                     case "澳门":
-                        beginAddressCode = 134;
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 1340000000}";
                         break;
 
                 }
 
 
 
-                    switch (comboBox2.Text)
-                    {
-                        case "北京市":
-                            endAddressCode = 101;
-                            break;
-                        case "天津市":
-                            endAddressCode = 102;
-                            break;
-                        case "河北省":
-                            endAddressCode = 103;
-                            break;
-                        case "山西省":
-                            endAddressCode = 104;
-                            break;
-                        case "内蒙古区":
-                            endAddressCode = 105;
-                            break;
-                        case "辽宁省":
-                            endAddressCode = 106;
-                            break;
-                        case "吉林省":
-                            endAddressCode = 107;
-                            break;
-                        case "黑龙江省":
-                            endAddressCode = 108;
-                            break;
-                        case "上海市":
-                            endAddressCode = 109;
-                            break;
-                        case "江苏省":
-                            endAddressCode = 110;
-                            break;
-                        case "浙江省":
-                            endAddressCode = 111;
-                            break;
-                        case "安徽省":
-                            endAddressCode = 112;
-                            break;
-                        case "福建省":
-                            endAddressCode = 113;
-                            break;
-                        case "江西省":
-                            endAddressCode = 114;
-                            break;
-                        case "山东省":
-                            endAddressCode = 115;
-                            break;
-                        case "河南省":
-                            endAddressCode = 116;
-                            break;
-                        case "湖北省":
-                            endAddressCode = 117;
-                            break;
-                        case "湖南省":
-                            endAddressCode = 118;
-                            break;
-                        case "广东省":
-                            endAddressCode = 119;
-                            break;
-                        case "广西区":
-                            endAddressCode = 120;
-                            break;
-
-                        case "海南省":
-                            endAddressCode = 121;
-                            break;
-                        case "重庆市":
-                            endAddressCode = 122;
-                            break;
-                        case "四川省":
-                            endAddressCode = 123;
-                            break;
-                        case "贵州省":
-                            endAddressCode = 124;
-                            break;
-                        case "云南省":
-                            endAddressCode = 125;
-                            break;
-                        case "西藏区":
-                            endAddressCode = 126;
-                            break;
-                        case "陕西省":
-                            endAddressCode = 127;
-                            break;
-                        case "甘肃省":
-                            endAddressCode = 128;
-                            break;
-                        case "青海省":
-                            endAddressCode = 129;
-                            break;
-                        case "宁夏区":
-                            endAddressCode = 130;
-                            break;
-                        case "新疆区":
-                            endAddressCode = 131;
-                            break;
-                        case "台湾":
-                            endAddressCode = 132;
-                            break;
-                        case "香港":
-                            endAddressCode = 133;
-                            break;
-                        case "澳门":
-                            endAddressCode = 134;
-                            break;
-
-                    }
-
-
-
-                    for (int i = 1; i < 100; i++)
-                {
-
+                 
                     string url = "https://wechat.yunlifang.com/wechat/findCargo/queryCargo";
 
-                        string postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 0000000,""endAddressCode"" : 0000000}";
+                        
                     string html = method.PostUrl(url, postdata, "", "utf-8");
 
 
@@ -597,9 +484,7 @@ namespace fang.临时软件
 
                     MatchCollection times = Regex.Matches(html, @"sendTime"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-                    if (from_areas.Count == 0)
-                        break;
-
+                   
                     for (int j = 0; j < from_areas.Count; j++)
                     {
 
@@ -630,7 +515,7 @@ namespace fang.临时软件
 
                     Thread.Sleep(500);
                 }
-            }
+            
 
 
 
