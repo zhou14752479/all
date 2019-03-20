@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>miid=820668208002900580; ali_ab=36.149.116.108.1505286515490.3; tg=0; cna=U1okEeUx1X8CAd9E0oJFyU0U; thw=cn; t=943ccf2eb28d097f4ce1fedafe5e772b; enc=GfC3BPfLd%2BjizY5Ei8R33KeHzG3ZcZ5fzsGtucAA32aasAGEGwbZXjz7dwWmRfv1kynuNm%2BvlAB5MS%2BVlv2Tpw%3D%3D; hng=CN%7Czh-CN%7CCNY%7C156; x=e%3D1%26p%3D*%26s%3D0%26c%3D0%26f%3D0%26g%3D0%26t%3D0%26__ll%3D-1%26_ato%3D0; UM_distinctid=167e42e3370207-02262afef8da6c-5d1f3b1c-100200-167e42e337126; cookie2=1adeab36a738cf0a3f359dbcd5552f4f; _tb_token_=57685d3e0586a; _m_h5_tk=376d732b8187bf7c49d660bfb014647b_1553057651980; _m_h5_tk_enc=71f6709a65f6bd189d558c83e8af9478; v=0; mt=ci=0_0&amp;np=; uc2=wuf=https%3A%2F%2Fwww.json.cn%2F; unb=2909643899; sg=%E5%8F%B893; _l_g_=Ug%3D%3D; skt=95a8443a26ee6fa2; cookie1=ACjh52trpbpn7JsYVPyhoxvd9QKQHb0zCUK23NfDxTo%3D; csg=59af3905; uc3=vt3=F8dByErWz61Vjx69kpM%3D&amp;id2=UUGiEqiq2aYTpQ%3D%3D&amp;nk2=1v4qlU13Q1nVX4F0uRLqLTVZQaM%3D&amp;lg2=U%2BGCWk%2F75gdr5Q%3D%3D; existShop=MTU1MzA1NTU2Mg%3D%3D; tracknick=%5Cu5F53%5Cu5F53%5Cu56FE%5Cu4E66%5Cu9500%5Cu552E%5Cu6709%5Cu9650%5Cu516C%5Cu53F8; lgc=%5Cu5F53%5Cu5F53%5Cu56FE%5Cu4E66%5Cu9500%5Cu552E%5Cu6709%5Cu9650%5Cu516C%5Cu53F8; _cc_=UtASsssmfA%3D%3D; dnk=%5Cu5F53%5Cu5F53%5Cu56FE%5Cu4E66%5Cu9500%5Cu552E%5Cu6709%5Cu9650%5Cu516C%5Cu53F8; _nk_=%5Cu5F53%5Cu5F53%5Cu56FE%5Cu4E66%5Cu9500%5Cu552E%5Cu6709%5Cu9650%5Cu516C%5Cu53F8; cookie17=UUGiEqiq2aYTpQ%3D%3D; uc1=cookie16=WqG3DMC9UpAPBHGz5QBErFxlCA%3D%3D&amp;cookie21=UIHiLt3xTwwM1QYTUQ%3D%3D&amp;cookie15=UIHiLt3xD8xYTw%3D%3D&amp;existShop=true&amp;pas=0&amp;cookie14=UoTZ50l6EZHvPw%3D%3D&amp;tag=8&amp;lng=zh_CN; isg=BFdXelMTxz9K8UOzMii22Pj95sur52CwR2K0Z6mEbCaN2HcasG8ZTuL5PjjjMAN2; l=bBTmVYfmvoUsPt5pBOCM-ZNNjZbOQIRAguWjbkXHi_5ap6TsGa7OltiepF96Vj5R_-Tp42mIJ0J9-etkw</value>
+  </data>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>138, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>32</value>
+  </metadata>
 </root>

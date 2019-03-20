@@ -31,14 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -68,7 +67,6 @@
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -105,8 +103,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.label14);
@@ -118,26 +114,6 @@
             this.panel1.Size = new System.Drawing.Size(687, 53);
             this.panel1.TabIndex = 15;
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(541, 9);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(38, 29);
-            this.label18.TabIndex = 8;
-            this.label18.Text = "台";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(482, 9);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(38, 29);
-            this.label17.TabIndex = 7;
-            this.label17.Text = "平";
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -146,7 +122,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(38, 29);
             this.label16.TabIndex = 6;
-            this.label16.Text = "务";
+            this.label16.Text = "据";
             // 
             // label15
             // 
@@ -156,7 +132,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(38, 29);
             this.label15.TabIndex = 5;
-            this.label15.Text = "服";
+            this.label15.Text = "数";
             // 
             // label14
             // 
@@ -166,7 +142,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(38, 29);
             this.label14.TabIndex = 4;
-            this.label14.Text = "据";
+            this.label14.Text = "大";
             // 
             // label13
             // 
@@ -176,7 +152,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(38, 29);
             this.label13.TabIndex = 3;
-            this.label13.Text = "数";
+            this.label13.Text = "客";
             // 
             // label12
             // 
@@ -186,7 +162,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(38, 29);
             this.label12.TabIndex = 2;
-            this.label12.Text = "大";
+            this.label12.Text = "搜";
             // 
             // groupBox3
             // 
@@ -204,6 +180,16 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "参数设置";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(329, 78);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(95, 23);
+            this.button7.TabIndex = 22;
+            this.button7.Text = "停止采集";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -432,9 +418,9 @@
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(396, 17);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(436, 17);
             this.toolStripStatusLabel4.Text = "                                                                                 " +
-    "                ";
+    "                          ";
             // 
             // statusStrip1
             // 
@@ -453,18 +439,8 @@
             // 
             this.toolStripStatusLabel5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel5.Image")));
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(119, 17);
-            this.toolStripStatusLabel5.Text = "QQ：852266010";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(329, 78);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(95, 23);
-            this.button7.TabIndex = 22;
-            this.button7.Text = "停止采集";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(105, 17);
+            this.toolStripStatusLabel5.Text = "QQ：8847695";
             // 
             // Form1
             // 
@@ -527,8 +503,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;

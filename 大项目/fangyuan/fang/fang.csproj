@@ -102,12 +102,6 @@
     <Compile Include="Form10.Designer.cs">
       <DependentUpon>Form10.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,12 +113,6 @@
     </Compile>
     <Compile Include="Form5.Designer.cs">
       <DependentUpon>Form5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form6.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form6.Designer.cs">
-      <DependentUpon>Form6.cs</DependentUpon>
     </Compile>
     <Compile Include="临时软件\ganji_keywords.cs">
       <SubType>Form</SubType>
@@ -258,18 +246,6 @@
     <Compile Include="临时软件\Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
-    <Compile Include="临时软件\leju.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="临时软件\leju.Designer.cs">
-      <DependentUpon>leju.cs</DependentUpon>
-    </Compile>
-    <Compile Include="临时软件\LOL.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="临时软件\LOL.Designer.cs">
-      <DependentUpon>LOL.cs</DependentUpon>
-    </Compile>
     <Compile Include="临时软件\pdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,17 +336,11 @@
     <EmbeddedResource Include="Form10.resx">
       <DependentUpon>Form10.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form6.resx">
-      <DependentUpon>Form6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\ganji_keywords.resx">
       <DependentUpon>ganji_keywords.cs</DependentUpon>
@@ -437,12 +407,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="临时软件\leju.resx">
-      <DependentUpon>leju.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="临时软件\LOL.resx">
-      <DependentUpon>LOL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\pdd.resx">
       <DependentUpon>pdd.cs</DependentUpon>

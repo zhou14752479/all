@@ -24,7 +24,11 @@ namespace 链家网
 
         private void 教育视频网_Load(object sender, EventArgs e)
         {
-            
+            Cef.Initialize(new CefSettings());
+            browser = new ChromiumWebBrowser("www.baidu.com");
+            this.Controls.Add(browser);
+            browser.Dock = DockStyle.Fill;
+
         }
         #region 获取网址
 
@@ -116,8 +120,8 @@ namespace 链家网
                 string html = method.GetHtmlSource("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?date=1552360751106&code=-1&sdResIdCaseId=" + CaseId.Groups[1].Value + "&flags=&guideId=&sk=&sessionKey=A6SXB2v8eURy4yVrbm6O");
 
                 Match value = Regex.Match(html, @"value=""mda-([\s\S]*?)""");
-                 System.Diagnostics.Process.Start("http://1s1k.eduyun.cn/resource/redesign/publishCase/vod_player.jsp?resourceCode=mda-" + value.Groups[1].Value + "&divId=playercontainers1&wid=770&hei=530&sessionKey=KTHObD76L5EyEDjLsWWu");
-               this.webBrowser1.Navigate("http://1s1k.eduyun.cn/resource/redesign/publishCase/vod_player.jsp?resourceCode=mda-" + value.Groups[1].Value + "&divId=playercontainers1&wid=770&hei=530&sessionKey=KTHObD76L5EyEDjLsWWu");
+                // System.Diagnostics.Process.Start("http://1s1k.eduyun.cn/resource/redesign/publishCase/vod_player.jsp?resourceCode=mda-" + value.Groups[1].Value + "&divId=playercontainers1&wid=770&hei=530&sessionKey=KTHObD76L5EyEDjLsWWu");
+               axWebBrowser1.Navigate("http://1s1k.eduyun.cn/resource/redesign/publishCase/vod_player.jsp?resourceCode=mda-" + value.Groups[1].Value + "&divId=playercontainers1&wid=770&hei=530&sessionKey=KTHObD76L5EyEDjLsWWu");
 
             }
         }

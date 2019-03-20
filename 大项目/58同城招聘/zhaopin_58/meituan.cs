@@ -48,7 +48,7 @@ namespace zhaopin_58
             {
                 MessageBox.Show(ee.Message.ToString());
             }
-            visualComboBox1.DataSource = list;
+            comboBox1.DataSource = list;
 
         }
         #endregion
@@ -248,6 +248,7 @@ namespace zhaopin_58
 
         }
         bool zanting = true;
+        bool status = true;
 
         #region GET请求
         /// <summary>
@@ -255,14 +256,15 @@ namespace zhaopin_58
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url)
+        public static string GetUrl(string URL)
         {
             try
             {
-                string COOKIE = "abt=1499071937.0%7CADE; _lxsdk_cuid=15d07a688f6c8-0b50ac5c472b18-333f5902-100200-15d07a688f79c; oc=xrmkO2nLZoY_IrhbS451igIl7hYw7IdDK6N_eVitVxW6WMxwN8yqI07hUj0vwzV57Iemuglzh4HS0E77JWewbxs2LOrDkniIWKv_go8Z8i77EVeAUCUejMdsEHZtdIDxMvg4fR4p53MxVNd2YZr8ZNhk_yZNN_hIE2VChkJKOJI; __mta=54360727.1499071941097.1518360971460.1518584371801.7; iuuid=F457EFC99EEB24DD0A17795BB1F8A91129848721BFF3EE82C45EF7C15E7C210E; _lxsdk=F457EFC99EEB24DD0A17795BB1F8A91129848721BFF3EE82C45EF7C15E7C210E; webp=1; __utmz=74597006.1547084235.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _hc.v=125767d7-22b6-b361-e802-854d70351873.1547084296; cityname=%E5%AE%BF%E8%BF%81; __utma=74597006.1002021895.1547084235.1547426995.1547429915.3; i_extend=C145095553688078665527034436504084189858_b2_e4339319119865529162_v1084616022904540227_a%e8%bf%90%e5%8a%a8%e5%81%a5%e8%ba%ab_f179411730E015954189128616476612677712756937264803_e7765034795530822391_v1084625786170336172_a%e8%bf%90%e5%8a%a8%e5%81%a5%e8%ba%abGimthomepagesearchH__a100005__b3; uuid=1542127099cf4e0c8245.1550021213.1.0.0; ci=60; rvct=60%2C1%2C184%2C875%2C55%2C40; __mta=54360727.1499071941097.1518584371801.1550470987575.8; _lxsdk_s=168ff45b4ee-4d2-6f6-965%7C%7C6";
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+
+                string COOKIE = "abt=1499071937.0%7CADE; _lxsdk_cuid=15d07a688f6c8-0b50ac5c472b18-333f5902-100200-15d07a688f79c; oc=xrmkO2nLZoY_IrhbS451igIl7hYw7IdDK6N_eVitVxW6WMxwN8yqI07hUj0vwzV57Iemuglzh4HS0E77JWewbxs2LOrDkniIWKv_go8Z8i77EVeAUCUejMdsEHZtdIDxMvg4fR4p53MxVNd2YZr8ZNhk_yZNN_hIE2VChkJKOJI; __mta=54360727.1499071941097.1518360971460.1518584371801.7; iuuid=F457EFC99EEB24DD0A17795BB1F8A91129848721BFF3EE82C45EF7C15E7C210E; _lxsdk=F457EFC99EEB24DD0A17795BB1F8A91129848721BFF3EE82C45EF7C15E7C210E; webp=1; __utmz=74597006.1547084235.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _hc.v=125767d7-22b6-b361-e802-854d70351873.1547084296; __utma=74597006.1002021895.1547084235.1547426995.1547429915.3; i_extend=C145095553688078665527034436504084189858_b2_e4339319119865529162_v1084616022904540227_a%e8%bf%90%e5%8a%a8%e5%81%a5%e8%ba%ab_f179411730E015954189128616476612677712756937264803_e7765034795530822391_v1084625786170336172_a%e8%bf%90%e5%8a%a8%e5%81%a5%e8%ba%abGimthomepagesearchH__a100005__b3; uuid=42434825e14e46769143.1552287125.1.0.0; cityname=%E4%B9%8C%E9%B2%81%E6%9C%A8%E9%BD%90; ci=10; rvct=10%2C387%2C105%2C73%2C60%2C1%2C184%2C875%2C55%2C40";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);
                 request.Timeout = 10000;
-                request.UserAgent = "Mozilla / 5.0(Windows NT 6.1; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 71.0.3578.98 Safari / 537.36";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16B92 MicroMessenger/7.0.3(0x17000321) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -292,13 +294,11 @@ namespace zhaopin_58
 
             try
             {
-                string[] citys = visualTextBox2.Text.Trim().Split(',');
-                string[] keywords = visualTextBox1.Text.Trim().Split(',');
+                
+                string[] keywords = textBox1.Text.Trim().Split(',');
 
-             
-                foreach (string city in citys)
-                {
-                    
+                string city = comboBox1.SelectedItem.ToString();
+              
 
                     ArrayList areaIds = getAreaId(city);
                     string cityId = GetCityId(city);
@@ -310,9 +310,10 @@ namespace zhaopin_58
                         foreach (string area in areaIds)
                         {
 
-                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/184?cateId=-1&sort=defaults&userid=-1&offset=0&limit=15&mypos=33.959478%2C118.27953&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&cityId=184&q=%E5%A5%B6%E8%8C%B6%E5%BA%97";
+                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/"+cityId+"?cateId=-1&sort=default&userid=-1&offset=0&limit=1000&mypos=33.959859%2C118.279675&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&q="+keyword+"&requestType=filter&cityId="+cityId+"&areaId="+area;
                             
                             string html = GetUrl(Url);
+                        
                             
                             MatchCollection TitleMatchs = Regex.Matches(html, @"false},{""id"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
@@ -324,29 +325,29 @@ namespace zhaopin_58
                                 lists.Add("https://apimobile.meituan.com/group/v1/poi/"+ NextMatch.Groups[1].Value + "?fields=areaName,name,addr,phone" );
                             }
 
+                        
                             if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                                 break;
                             foreach (string list in lists)
                             {
                                 string strhtml = GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
-                              
-                                Match name = Regex.Match(strhtml, @"name"":""([\s\S]*?)""");
+
+                            
+                                Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
                                 Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
-                                Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
-                                Match cateName = Regex.Match(strhtml, @"cateName"":""([\s\S]*?)""");
-                                if (name.Groups[1].Value != "")
+                                Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");                        
+                                if (name.Groups[2].Value != "")
                                 {
                                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                    lv1.SubItems.Add(name.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(name.Groups[2].Value.Trim());
                                     lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
-                                    lv1.SubItems.Add(cateName.Groups[1].Value.Trim());
-
-                                    string[] values = { name.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), tel.Groups[1].Value.Trim(), areaName.Groups[1].Value.Trim(), city, cateName.Groups[1].Value.Trim() };
+                                   
+                                    string[] values = { name.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), tel.Groups[1].Value.Trim(), areaName.Groups[1].Value.Trim(), city,"" };
                                     insertData(values);
 
                                     if (listView1.Items.Count - 1 > 1)
@@ -358,8 +359,12 @@ namespace zhaopin_58
                                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                     }
 
-                                    //Application.DoEvents();
-                                    //System.Threading.Thread.Sleep(2000 / (visualTrackBar1.Value + 1));   //内容获取间隔，可变量
+                                if (status == false)
+                                {
+                                    return;
+                                }
+                                    
+                                   Thread.Sleep(1000);   //内容获取间隔，可变量
 
                                 }
                                 
@@ -368,172 +373,70 @@ namespace zhaopin_58
                         }
                     }
                 }
-            }
+            
 
 
 
 
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+              MessageBox.Show(  ex.ToString());
             }
         }
 
         #endregion
 
 
-        #region  全部城市单个分类
+        
 
-        public void run1()
-        {
+      
 
-            try
-            {
-
-                string[] keywords = visualTextBox1.Text.Trim().Split(',');
-
-              
-
-                ArrayList citys = getCityNames();
-                foreach (string city in citys)
-                {
-
-                    ArrayList areaIds = getAreaId(city);
-             
-                    string citysuoxie = Getsuoxie(city);
-
-              
-                        foreach (string area in areaIds)
-                        {
-
-                            for (int i = 1; i < 33; i++)
-                            {
-
-                            string Url = "https://"+citysuoxie+".meituan.com/jiankangliren/c75b"+area+"/pn"+i+"/";
-                              
-                                string html = method.GetUrl(Url);
-                     
-
-                                MatchCollection TitleMatchs = Regex.Matches(html, @"grey"" href=""\/\/www\.meituan\.com\/jiankangliren\/([\s\S]*?)\/", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-                            ArrayList lists = new ArrayList();
-
-                            foreach (Match NextMatch in TitleMatchs)
-                            {
-
-                                if (!lists.Contains(NextMatch.Groups[1].Value))
-                                {
-                                    lists.Add(  NextMatch.Groups[1].Value);
-                                }
-                            }
-
-                               
-                            if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                                break;
-
-                            foreach (string list in lists)
-
-                            {
-
-                                string strhtml = method.GetUrl("https://www.meituan.com/jiankangliren/" + list+"/");  //定义的GetRul方法 返回 reader.ReadToEnd()  
-                                    
-                                    string rxg1 = @"<title>([\s\S]*?)_";    //公司                            
-                                string rxg2 = @"address"":""([\s\S]*?)""";
-                                string rxg3 = @"phone"":""([\s\S]*?)""";
-                                //string rxg4 = @"areaName"":""([\s\S]*?)""";
-                                //string rxg5 = @"cateName"":""([\s\S]*?)""";
-
-
-                                Match name = Regex.Match(strhtml, rxg1);
-                                Match addr = Regex.Match(strhtml, rxg2);
-                                Match tel = Regex.Match(strhtml, rxg3);
-                                //Match areaName = Regex.Match(strhtml, rxg4);
-                                //Match cateName = Regex.Match(strhtml, rxg5);
-
-                                    MatchCollection taocans = Regex.Matches(strhtml, @"combo-title-text"">([\s\S]*?)</span>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                                MatchCollection taocans1 = Regex.Matches(strhtml, @"""price"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-                     
-                                if (name.Groups[1].Value != "")
-                                    {
-                                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                        lv1.SubItems.Add(name.Groups[1].Value.Trim());
-                                        lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                        lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                    //lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-
-                                    //lv1.SubItems.Add(cateName.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(city);
-
-                                    StringBuilder sb = new StringBuilder();
-                                    for (int j = 0; j < taocans.Count; j++)
-                                        {
-                                       
-                                        sb.Append(taocans[j].Groups[1].Value + ":" + taocans1[j].Groups[1].Value + "#");
-                                        
-                                        }
-                                    lv1.SubItems.Add(sb.ToString());
-
-                                    //string[] values = { name.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), tel.Groups[1].Value.Trim(), areaName.Groups[1].Value.Trim(), city, cateName.Groups[1].Value.Trim() };
-                                    //insertData(values);
-
-                                    if (listView1.Items.Count - 1 > 1)
-                                        {
-                                            listView1.EnsureVisible(listView1.Items.Count - 1);
-                                        }
-                                        while (this.zanting == false)
-                                        {
-                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                        }
-
-
-                                    }
-                                    Thread.Sleep(1000);
-                                }
-                               
-                            }
-
-                        }
-                    }
-                }
-            
-
-
-
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        #endregion
-
-        private void visualButton1_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            
-        }
-
-        private void visualButton2_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-        }
+      
 
         private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
         }
 
-        private void visualButton3_Click(object sender, EventArgs e)
+      
+     
+
+        private void visualComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
             this.zanting = false;
+
         }
-        private void visualButton4_Click(object sender, EventArgs e)
+
+        private void button3_Click(object sender, EventArgs e)
         {
             this.zanting = true;
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            status = false;
+        }
     }
 }

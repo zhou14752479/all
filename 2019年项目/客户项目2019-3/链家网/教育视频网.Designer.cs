@@ -41,7 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.axWebBrowser1 = new AxSHDocVw.AxWebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,6 +49,7 @@
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -97,7 +98,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.webBrowser1);
+            this.panel1.Controls.Add(this.axWebBrowser1);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -186,14 +187,14 @@
             this.listBox2.Size = new System.Drawing.Size(515, 462);
             this.listBox2.TabIndex = 2;
             // 
-            // webBrowser1
+            // axWebBrowser1
             // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 104);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(515, 358);
-            this.webBrowser1.TabIndex = 1;
+            this.axWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWebBrowser1.Enabled = true;
+            this.axWebBrowser1.Location = new System.Drawing.Point(0, 104);
+            this.axWebBrowser1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser1.OcxState")));
+            this.axWebBrowser1.Size = new System.Drawing.Size(515, 358);
+            this.axWebBrowser1.TabIndex = 2;
             // 
             // 教育视频网
             // 
@@ -213,6 +214,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,6 +233,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.WebBrowser webBrowser1;
+        private AxSHDocVw.AxWebBrowser axWebBrowser1;
     }
 }

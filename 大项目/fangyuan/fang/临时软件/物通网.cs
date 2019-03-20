@@ -354,32 +354,237 @@ namespace fang.临时软件
         #region  运立方
         public void yun()
         {
-
+            int beginAddressCode = 0;
+            int endAddressCode = 0;
 
             try
             {
-
-                string fprovince = System.Web.HttpUtility.UrlEncode(comboBox1.Text);
-                string tprovince = System.Web.HttpUtility.UrlEncode(comboBox2.Text);
-
-
-                if (comboBox1.Text == "全国")
+                switch (comboBox1.Text)
                 {
-                    fprovince = "";
+                    case "北京市":
+                        beginAddressCode =101;
+                        break;
+                    case "天津市":
+                        beginAddressCode = 102;
+                        break;
+                    case "河北省":
+                        beginAddressCode = 103;
+                        break;
+                    case "山西省":
+                        beginAddressCode = 104;
+                        break;
+                    case "内蒙古区":
+                        beginAddressCode = 105;
+                        break;
+                    case "辽宁省":
+                        beginAddressCode = 106;
+                        break;
+                    case "吉林省":
+                        beginAddressCode = 107;
+                        break;
+                    case "黑龙江省":
+                        beginAddressCode = 108;
+                        break;
+                    case "上海市":
+                        beginAddressCode = 109;
+                        break;
+                    case "江苏省":
+                        beginAddressCode = 110;
+                        break;
+                    case "浙江省":
+                        beginAddressCode = 111;
+                        break;
+                    case "安徽省":
+                        beginAddressCode = 112;
+                        break;
+                    case "福建省":
+                        beginAddressCode = 113;
+                        break;
+                    case "江西省":
+                        beginAddressCode = 114;
+                        break;
+                    case "山东省":
+                        beginAddressCode = 115;
+                        break;
+                    case "河南省":
+                        beginAddressCode = 116;
+                        break;
+                    case "湖北省":
+                        beginAddressCode = 117;
+                        break;
+                    case "湖南省":
+                        beginAddressCode = 118;
+                        break;
+                    case "广东省":
+                        beginAddressCode = 119;
+                        break;
+                    case "广西区":
+                        beginAddressCode = 120;
+                        break;
+
+                    case "海南省":
+                        beginAddressCode = 121;
+                        break;
+                    case "重庆市":
+                        beginAddressCode = 122;
+                        break;
+                    case "四川省":
+                        beginAddressCode = 123;
+                        break;
+                    case "贵州省":
+                        beginAddressCode = 124;
+                        break;
+                    case "云南省":
+                        beginAddressCode = 125;
+                        break;
+                    case "西藏区":
+                        beginAddressCode = 126;
+                        break;
+                    case "陕西省":
+                        beginAddressCode = 127;
+                        break;
+                    case "甘肃省":
+                        beginAddressCode = 128;
+                        break;
+                    case "青海省":
+                        beginAddressCode = 129;
+                        break;
+                    case "宁夏区":
+                        beginAddressCode = 130;
+                        break;
+                    case "新疆区":
+                        beginAddressCode = 131;
+                        break;
+                    case "台湾":
+                        beginAddressCode = 132;
+                        break;
+                    case "香港":
+                        beginAddressCode = 133;
+                        break;
+                    case "澳门":
+                        beginAddressCode = 134;
+                        break;
 
                 }
 
-                if (comboBox2.Text == "全国")
-                {
-                    tprovince = "";
 
-                }
-                for (int i = 1; i < 100; i++)
+
+                    switch (comboBox2.Text)
+                    {
+                        case "北京市":
+                            endAddressCode = 101;
+                            break;
+                        case "天津市":
+                            endAddressCode = 102;
+                            break;
+                        case "河北省":
+                            endAddressCode = 103;
+                            break;
+                        case "山西省":
+                            endAddressCode = 104;
+                            break;
+                        case "内蒙古区":
+                            endAddressCode = 105;
+                            break;
+                        case "辽宁省":
+                            endAddressCode = 106;
+                            break;
+                        case "吉林省":
+                            endAddressCode = 107;
+                            break;
+                        case "黑龙江省":
+                            endAddressCode = 108;
+                            break;
+                        case "上海市":
+                            endAddressCode = 109;
+                            break;
+                        case "江苏省":
+                            endAddressCode = 110;
+                            break;
+                        case "浙江省":
+                            endAddressCode = 111;
+                            break;
+                        case "安徽省":
+                            endAddressCode = 112;
+                            break;
+                        case "福建省":
+                            endAddressCode = 113;
+                            break;
+                        case "江西省":
+                            endAddressCode = 114;
+                            break;
+                        case "山东省":
+                            endAddressCode = 115;
+                            break;
+                        case "河南省":
+                            endAddressCode = 116;
+                            break;
+                        case "湖北省":
+                            endAddressCode = 117;
+                            break;
+                        case "湖南省":
+                            endAddressCode = 118;
+                            break;
+                        case "广东省":
+                            endAddressCode = 119;
+                            break;
+                        case "广西区":
+                            endAddressCode = 120;
+                            break;
+
+                        case "海南省":
+                            endAddressCode = 121;
+                            break;
+                        case "重庆市":
+                            endAddressCode = 122;
+                            break;
+                        case "四川省":
+                            endAddressCode = 123;
+                            break;
+                        case "贵州省":
+                            endAddressCode = 124;
+                            break;
+                        case "云南省":
+                            endAddressCode = 125;
+                            break;
+                        case "西藏区":
+                            endAddressCode = 126;
+                            break;
+                        case "陕西省":
+                            endAddressCode = 127;
+                            break;
+                        case "甘肃省":
+                            endAddressCode = 128;
+                            break;
+                        case "青海省":
+                            endAddressCode = 129;
+                            break;
+                        case "宁夏区":
+                            endAddressCode = 130;
+                            break;
+                        case "新疆区":
+                            endAddressCode = 131;
+                            break;
+                        case "台湾":
+                            endAddressCode = 132;
+                            break;
+                        case "香港":
+                            endAddressCode = 133;
+                            break;
+                        case "澳门":
+                            endAddressCode = 134;
+                            break;
+
+                    }
+
+
+
+                    for (int i = 1; i < 100; i++)
                 {
 
                     string url = "https://wechat.yunlifang.com/wechat/findCargo/queryCargo";
 
-                    string postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3}";
+                        string postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 5,""pageNum"" : 3,""beginAddressCode"" : 0000000,""endAddressCode"" : 0000000}";
                     string html = method.PostUrl(url, postdata, "", "utf-8");
 
 

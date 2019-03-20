@@ -142,9 +142,8 @@ namespace zhaopin_58
 
                         }
 
-                        赶集招聘 zp = new 赶集招聘();
-                        zp.Show();
-
+                        meituan mt = new meituan();
+                        mt.Show();
                         this.Hide();
 
                     }

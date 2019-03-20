@@ -30,8 +30,7 @@ namespace fang
           
         }
 
-        int a = 0;
-
+        
 
         #region  58经纪人
         public void jingjiren()

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -325,7 +326,153 @@ namespace main
                 ex.ToString();
             }
         }
-        #endregion 
+        #endregion
+
+
+        public class JsonParser
+        {
+            public List<Content> Content;
+
+        }
+
+        public class Content
+        {
+            public string name;
+            public string tel;
+            public string addr;
+        }
+
+        #region 获取百度citycode
+        public int getcityId(string cityName)
+        {
+            try
+
+            {
+
+                String Url = "https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_par=direct&pcevaname=pc4.1&qt=s&da_src=searchBox.button&wd=" + cityName + "&c=289&src=0&wd2=&pn=0&sug=0&l=12&b=(13461858.87,3636969.979999999;13584738.87,3670185.979999999)&from=webmap&biz_forward={%22scaler%22:1,%22styles%22:%22pl%22}&sug_forward=&tn=B_NORMAL_MAP&nn=0&u_loc=13166533,3998088&ie=utf-8";
+
+                string html = method.GetUrl(Url,"utf-8");
+
+
+                MatchCollection Matchs = Regex.Matches(html, @"""code"":([\s\S]*?),", RegexOptions.IgnoreCase);
+
+
+
+
+                int cityId = Convert.ToInt32(Matchs[0].Groups[1].Value);
+                return cityId;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+                return 1;
+            }
+
+
+
+
+        }
+        #endregion
+        #region  百度地图采集
+
+        public void baidu()
+
+        {
+
+            try
+
+            {
+                // string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string[] citys = { "北京市", "上海市", "天津市", "重庆市", "南京市", "成都市", };
+
+                string[] keywords = textBox3.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                int pages = 200;
+
+
+                foreach (string city in citys)
+
+                {
+                    int cityid = getcityId(city + "市");  //获取 citycode;
+
+                    foreach (string keyword in keywords)
+
+                    {
+
+                        for (int i = 0; i <= pages; i++)
+
+                        {
+
+                            int j = i - 1 > 0 ? i - 1 : 0;
+
+                            String Url = "https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_par=direct&pcevaname=pc4.1&qt=con&from=webmap&c=" + cityid + "&wd=" + keyword + "&wd2=&pn=" + i + "&nn=" + j + "0&db=0&sug=0&addr=0&pl_data_type=cater&pl_price_section=0%2C%2B&pl_sort_type=data_type&pl_sort_rule=0&pl_discount2_section=0%2C%2B&pl_groupon_section=0%2C%2B&pl_cater_book_pc_section=0%2C%2B&pl_hotel_book_pc_section=0%2C%2B&pl_ticket_book_flag_section=0%2C%2B&pl_movie_book_section=0%2C%2B&pl_business_type=cater&pl_business_id=&da_src=pcmappg.poi.page&on_gel=1&src=7&gr=3&l=12";
+
+
+
+                            string html = method.GetUrl(Url,"utf-8");
+
+
+                            MatchCollection TitleMatchs = Regex.Matches(html, @"""primary_uid"":""([\s\S]*?)""", RegexOptions.IgnoreCase);
+
+                            ArrayList lists = new ArrayList();
+
+                            foreach (Match NextMatch in TitleMatchs)
+                            {
+
+
+                                lists.Add(NextMatch.Groups[1].Value);
+
+                            }
+                            if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                break;
+
+                            string tm1 = DateTime.Now.ToString();  //获取系统时间
+
+                          
+
+                            JsonParser jsonParser = JsonConvert.DeserializeObject<JsonParser>(html);
+
+
+
+                            foreach (Content content in jsonParser.Content)
+                            {
+                                
+
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                lv1.SubItems.Add(content.name);
+                                lv1.SubItems.Add(content.name);
+                                lv1.SubItems.Add(content.tel);
+                                
+                                lv1.SubItems.Add(content.addr);
+                                lv1.SubItems.Add(keyword.Trim());
+                                if (listView1.Items.Count - 1 > 1)
+                                {
+                                    listView1.EnsureVisible(listView1.Items.Count - 1);
+                                }
+                                if (status==false)
+                                {
+                                    return;
+                                }
+                            }
+
+                            Application.DoEvents();
+                            Thread.Sleep(10);   //内容获取间隔，可变量
+
+                        }
+
+                    }
+                }
+            }
+
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+            }
+
+        }
+        #endregion
 
         #region 黄页88
         public void hy88()
@@ -346,6 +493,8 @@ namespace main
                     for (int i = 1; i < 51; i++)
                     {
                         String Url = "http://www.huangye88.com/search.html?kw="+ keywordutf8 + "&type=company&page="+i+"/";
+
+                        textBox1.Text = Url;
 
                         string strhtml = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
                        
@@ -368,8 +517,8 @@ namespace main
 
                             break;
 
-
-                        foreach (string list in lists)
+                        MessageBox.Show(lists.Count.ToString());
+                            foreach (string list in lists)
                         {
 
                             string strhtml1 = method.GetUrl(list, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
@@ -417,7 +566,7 @@ namespace main
 
             catch (System.Exception ex)
             {
-                ex.ToString();
+               MessageBox.Show( ex.ToString());
             }
         }
         #endregion 
@@ -432,8 +581,10 @@ namespace main
 
             Thread thread = new Thread(new ThreadStart(sole51));
             thread.Start();
-            Thread thread1 = new Thread(new ThreadStart(sole51));
+
+            Thread thread1 = new Thread(new ThreadStart(baidu));
             thread1.Start();
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -476,26 +627,20 @@ namespace main
                        
                         denglu = true;
                         reader.Close();
-                       
-
+                      
                     }
-
-
                     else
 
                     {
                         MessageBox.Show("您的密码错误！");
                         return;
                     }
-
                 }
-
                 else
                 {
                     MessageBox.Show("未查询到您的账户信息！");
                     return;
                 }
-
 
             }
 
