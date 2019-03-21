@@ -52,6 +52,8 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,7 +152,7 @@
             this.skinButton7.BorderColor = System.Drawing.Color.Silver;
             this.skinButton7.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton7.DownBack = null;
-            this.skinButton7.Location = new System.Drawing.Point(607, 13);
+            this.skinButton7.Location = new System.Drawing.Point(756, 13);
             this.skinButton7.MouseBack = null;
             this.skinButton7.Name = "skinButton7";
             this.skinButton7.NormlBack = null;
@@ -166,7 +168,7 @@
             this.skinButton6.BorderColor = System.Drawing.Color.Silver;
             this.skinButton6.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton6.DownBack = null;
-            this.skinButton6.Location = new System.Drawing.Point(481, 13);
+            this.skinButton6.Location = new System.Drawing.Point(644, 13);
             this.skinButton6.MouseBack = null;
             this.skinButton6.Name = "skinButton6";
             this.skinButton6.NormlBack = null;
@@ -182,7 +184,7 @@
             this.skinButton5.BorderColor = System.Drawing.Color.Silver;
             this.skinButton5.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton5.DownBack = null;
-            this.skinButton5.Location = new System.Drawing.Point(242, 13);
+            this.skinButton5.Location = new System.Drawing.Point(436, 13);
             this.skinButton5.MouseBack = null;
             this.skinButton5.Name = "skinButton5";
             this.skinButton5.NormlBack = null;
@@ -221,7 +223,7 @@
             this.skinButton4.BorderColor = System.Drawing.Color.Silver;
             this.skinButton4.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton4.DownBack = null;
-            this.skinButton4.Location = new System.Drawing.Point(366, 13);
+            this.skinButton4.Location = new System.Drawing.Point(534, 13);
             this.skinButton4.MouseBack = null;
             this.skinButton4.Name = "skinButton4";
             this.skinButton4.NormlBack = null;
@@ -238,7 +240,7 @@
             this.skinButton3.BorderColor = System.Drawing.Color.Silver;
             this.skinButton3.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton3.DownBack = null;
-            this.skinButton3.Location = new System.Drawing.Point(129, 13);
+            this.skinButton3.Location = new System.Drawing.Point(320, 13);
             this.skinButton3.MouseBack = null;
             this.skinButton3.Name = "skinButton3";
             this.skinButton3.NormlBack = null;
@@ -255,7 +257,7 @@
             this.skinButton2.BorderColor = System.Drawing.Color.Silver;
             this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton2.DownBack = null;
-            this.skinButton2.Location = new System.Drawing.Point(12, 13);
+            this.skinButton2.Location = new System.Drawing.Point(212, 13);
             this.skinButton2.MouseBack = null;
             this.skinButton2.Name = "skinButton2";
             this.skinButton2.NormlBack = null;
@@ -278,6 +280,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.checkBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton7);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton6);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton5);
@@ -351,6 +355,30 @@
             this.columnHeader2.Text = "ID";
             this.columnHeader2.Width = 200;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(13, 20);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(90, 16);
+            this.checkBox1.TabIndex = 24;
+            this.checkBox1.Text = "www是否收录";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(116, 21);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(60, 16);
+            this.checkBox2.TabIndex = 25;
+            this.checkBox2.Text = "反链数";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // 域名收录
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -363,6 +391,7 @@
             this.Load += new System.EventHandler(this.域名收录_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -402,5 +431,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

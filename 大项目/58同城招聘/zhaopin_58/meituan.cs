@@ -346,7 +346,15 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
-                                   
+
+                                if (strhtml.Contains("有外卖"))
+                                {
+                                    lv1.SubItems.Add("有外卖");
+                                }
+                                else
+                                {
+                                    lv1.SubItems.Add("无外卖");
+                                }
                                     string[] values = { name.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), tel.Groups[1].Value.Trim(), areaName.Groups[1].Value.Trim(), city,"" };
                                     insertData(values);
 
@@ -408,6 +416,7 @@ namespace zhaopin_58
 
         private void button1_Click(object sender, EventArgs e)
         {
+            status = true;
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
         }
