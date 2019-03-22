@@ -360,6 +360,10 @@ namespace fang.临时软件
             {
                 switch (comboBox5.Text)
                 {
+                    case "全国":
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3}";
+                        break;
+
                     case "北京市":
                         postdata= @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1010000000}";
                         break;
@@ -571,7 +575,22 @@ namespace fang.临时软件
 
         private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
+            if (tabControl1.SelectedIndex == 0)
+            {
+                listView1.Items.Clear();
+            }
+
+            else if(tabControl1.SelectedIndex == 1)
+            {
+                listView2.Items.Clear();
+            }
+
+            else if (tabControl1.SelectedIndex ==2)
+            {
+                listView3.Items.Clear();
+            }
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -181,14 +181,15 @@ namespace main
                                 Match addr = Regex.Match(strhtml1, @"地址：</i><span>([\s\S]*?)</span>");
                                 Match title = Regex.Match(strhtml1, @"description""  content=""([\s\S]*?)""");
 
-
+                            if (phone.Groups[1].Value!="-")
+                            {
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                 lv1.SubItems.Add(name.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(contacts.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(phone.Groups[1].Value.Trim()+"  " + tell.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(phone.Groups[1].Value.Trim() + "  " + tell.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                                 lv1.SubItems.Add(title.Groups[1].Value.Trim());
-
+                            }
                             if (status == false)
                             {
                                 return;
@@ -384,7 +385,7 @@ namespace main
 
             {
                 // string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                string[] citys = { "北京市", "上海市", "天津市", "重庆市", "南京市", "成都市", };
+                string[] citys = { "北京市", "上海市", "天津市", "重庆市", "南京市", "成都市", "广州市", "深圳市", "武汉市", "杭州市", "济南市", "苏州市", "宁波市", };
 
                 string[] keywords = textBox3.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
@@ -438,28 +439,29 @@ namespace main
 
                             foreach (Content content in jsonParser.Content)
                             {
-                                
 
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                lv1.SubItems.Add(content.name);
-                                lv1.SubItems.Add(content.name);
-                                lv1.SubItems.Add(content.tel);
-                                
-                                lv1.SubItems.Add(content.addr);
-                                lv1.SubItems.Add(keyword.Trim());
-                                if (listView1.Items.Count - 1 > 1)
+                                if (content.tel !=null)
                                 {
-                                    listView1.EnsureVisible(listView1.Items.Count - 1);
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                    lv1.SubItems.Add(content.name);
+                                    lv1.SubItems.Add(content.name);
+                                    lv1.SubItems.Add(content.tel);
+
+                                    lv1.SubItems.Add(content.addr);
+                                    lv1.SubItems.Add(keyword.Trim());
+                                    if (listView1.Items.Count - 1 > 1)
+                                    {
+                                        listView1.EnsureVisible(listView1.Items.Count - 1);
+                                    }
+                                    if (status == false)
+                                    {
+                                        return;
+                                    }
                                 }
-                                if (status==false)
-                                {
-                                    return;
-                                }
+
+                                Application.DoEvents();
+                                Thread.Sleep(10);   //内容获取间隔，可变量
                             }
-
-                            Application.DoEvents();
-                            Thread.Sleep(10);   //内容获取间隔，可变量
-
                         }
 
                     }
@@ -559,10 +561,6 @@ namespace main
                 }
 
             }
-
-
-
-
 
             catch (System.Exception ex)
             {
