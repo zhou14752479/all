@@ -172,7 +172,7 @@ namespace fang.临时软件
             {
 
                 string fprovince = System.Web.HttpUtility.UrlEncode(comboBox3.Text);
-                string tprovince = System.Web.HttpUtility.UrlEncode(comboBox4.Text);
+               // string tprovince = System.Web.HttpUtility.UrlEncode(comboBox4.Text);
 
 
                 if (comboBox1.Text == "全国")
@@ -181,15 +181,11 @@ namespace fang.临时软件
 
                 }
 
-                if (comboBox2.Text == "全国")
-                {
-                    tprovince = "";
-
-                }
-                for (int i = 1; i < 4; i++)
+              
+                for (int i = 1; i < 31; i++)
                 {
 
-                    string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=0&condition=1&tsheng="+tprovince+"&txian=&chexing=&huiyuan_id=2264195&fsheng="+fprovince+"&type=GetGood_new&fshi=&tshi=&pid="+i+"&fxian=&ver_version=1&r_28677=6820";
+                    string url = "http://android.chinawutong.com/PostData.ashx?chechang=&infotype=0&condition=1&tsheng=&txian=&chexing=&huiyuan_id=2264195&fsheng="+fprovince+"&type=GetGood_new&fshi=&tshi=&pid="+i+"&fxian=&ver_version=1&r_28677=6820";
 
                     string html = GetUrl(url, "utf-8");
 
@@ -360,112 +356,115 @@ namespace fang.临时软件
             {
                 switch (comboBox5.Text)
                 {
+                    case "":
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3}";
+                        break;
                     case "全国":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3}";
                         break;
 
                     case "北京市":
-                        postdata= @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1010000000}";
+                        postdata= @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1010000000}";
                         break;
                     case "天津市":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1020000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1020000000}";
                         break;
                     case "河北省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1030000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1030000000}";
                         break;
                     case "山西省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1040000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1040000000}";
                         break;
                     case "内蒙古区":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1050000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1050000000}";
                         break;
                     case "辽宁省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1060000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1060000000}";
                         break;
                     case "吉林省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1070000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1070000000}";
                         break;
                     case "黑龙江省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1080000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1080000000}";
                         break;
                     case "上海市":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1090000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1090000000}";
                         break;
                     case "江苏省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1100000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1100000000}";
                         break;
                     case "浙江省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1110000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1110000000}";
                         break;
                     case "安徽省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1120000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1120000000}";
                         break;
                     case "福建省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1130000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1130000000}";
                         break;
                     case "江西省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1140000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1140000000}";
                         break;
                     case "山东省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1150000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1150000000}";
                         break;
                     case "河南省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1160000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1160000000}";
                         break;
                     case "湖北省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1170000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1170000000}";
                         break;
                     case "湖南省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1180000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1180000000}";
                         break;
                     case "广东省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1190000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1190000000}";
                         break;
                     case "广西区":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1200000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1200000000}";
                         break;
 
                     case "海南省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1210000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1210000000}";
                         break;
                     case "重庆市":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1220000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1220000000}";
                         break;
                     case "四川省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1230000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1230000000}";
                         break;
                     case "贵州省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1240000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1240000000}";
                         break;
                     case "云南省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1250000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1250000000}";
                         break;
                     case "西藏区":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1260000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1260000000}";
                         break;
                     case "陕西省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1270000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1270000000}";
                         break;
                     case "甘肃省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1280000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1280000000}";
                         break;
                     case "青海省":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1290000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1290000000}";
                         break;
                     case "宁夏区":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1300000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1300000000}";
                         break;
                     case "新疆区":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1310000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1310000000}";
                         break;
                     case "台湾":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1320000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1320000000}";
                         break;
                     case "香港":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1330000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1330000000}";
                         break;
                     case "澳门":
-                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 30,""pageNum"" : 3,""beginAddressCode"" : 1340000000}";
+                        postdata = @"{""wxUid"" : 74,""expectCarLength"" : """",""expectCarType"" : """",""gfrom"" : """",""pageSize"" : 300,""pageNum"" : 3,""beginAddressCode"" : 1340000000}";
                         break;
 
                 }
@@ -503,7 +502,7 @@ namespace fang.临时软件
 
                             lv3.SubItems.Add(phones[j].Groups[1].Value.Trim());
 
-                            lv3.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value.Trim()).ToString());
+                            lv3.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value.Trim()).ToString().Substring(9));
 
                             
 
@@ -527,7 +526,7 @@ namespace fang.临时软件
             catch (System.Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+               ex.ToString();
             }
 
         }
@@ -764,7 +763,20 @@ namespace fang.临时软件
             this.status = true;
         }
 
-      
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string constr = "Host =122.114.13.236;Database=users;Username=admin111;Password=admin111";
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+            MySqlCommand cmd = new MySqlCommand("update zhanghaos set status='0' where id='" + textBox1.Text + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+            int result = cmd.ExecuteNonQuery();
+            if (result > 0)
+            {
+                MessageBox.Show("修改成功");
+                
+            }
+        }
     }
 
 }
