@@ -43,18 +43,6 @@
     <Compile Include="拼多多商品筛选.Designer.cs">
       <DependentUpon>拼多多商品筛选.cs</DependentUpon>
     </Compile>
-    <Compile Include="教育视频网.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="教育视频网.Designer.cs">
-      <DependentUpon>教育视频网.cs</DependentUpon>
-    </Compile>
-    <Compile Include="淘宝商品管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="淘宝商品管理.Designer.cs">
-      <DependentUpon>淘宝商品管理.cs</DependentUpon>
-    </Compile>
     <Compile Include="链家网.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,20 +52,8 @@
     <Compile Include="method.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="驾校.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="驾校.Designer.cs">
-      <DependentUpon>驾校.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="拼多多商品筛选.resx">
       <DependentUpon>拼多多商品筛选.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="教育视频网.resx">
-      <DependentUpon>教育视频网.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="淘宝商品管理.resx">
-      <DependentUpon>淘宝商品管理.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="链家网.resx">
       <DependentUpon>链家网.cs</DependentUpon>
@@ -92,9 +68,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="驾校.resx">
-      <DependentUpon>驾校.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="libwebview.dylib" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

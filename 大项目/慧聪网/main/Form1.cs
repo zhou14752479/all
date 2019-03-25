@@ -58,7 +58,7 @@ namespace main
                     for (int i = 1; i < 9999; i++)
                     {
 
-                        string Url = "http://168s.mobile.hc360.com/get168.cgi?fc=0&e=100&n=" + i + "00&z=" + city + "&v=609&s_id=001%3B003&gs=37&w=" + key;
+                        string Url = "https://wsmobile.hc360.com/get/searchshop?pageno="+i+"&pagesize=100&w="+keyword+"&area="+city;
                        
                         string strhtml = method.GetUrl(Url,"gb2312");  //定义的GetRul方法 返回 reader.ReadToEnd()
                        
@@ -576,13 +576,8 @@ namespace main
                 MessageBox.Show("请先登录您的账号！");
                 return;
             }
-
             Thread thread = new Thread(new ThreadStart(sole51));
-            thread.Start();
-
-            Thread thread1 = new Thread(new ThreadStart(baidu));
-            thread1.Start();
-
+            thread.Start();      
         }
 
         private void button3_Click(object sender, EventArgs e)
