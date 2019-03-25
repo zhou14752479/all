@@ -19,15 +19,21 @@ namespace main
 
         private void label1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < SystemIconList.Count; i++)
-            {
-                PictureBox pic = new PictureBox();
-                pic.Size = new System.Drawing.Size(32, 32);
-                flowLayoutPanel1.Controls.Add(pic);
+            PictureBox pictureBox1 = new PictureBox();
+           
+            flowLayoutPanel1.Controls.Add(pictureBox1);
+            Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(@"E:\火车头7.6破解\LocoyPlatform.exe");
+            pictureBox1.Image = icon.ToBitmap();
 
-                Bitmap p = SystemIconList[i].ToBitmap();
-                pic.Image = p;
-            }
+            //for (int i = 0; i < SystemIconList.Count; i++)
+            //{
+            //    PictureBox pic = new PictureBox();
+            //    pic.Size = new System.Drawing.Size(32, 32);
+            //    flowLayoutPanel1.Controls.Add(pic);
+
+            //    Bitmap p = SystemIconList[i].ToBitmap();
+            //    pic.Image = p;
+            //}
         }
     }
 }
