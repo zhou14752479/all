@@ -198,6 +198,12 @@
     <Compile Include="登陆.Designer.cs">
       <DependentUpon>登陆.cs</DependentUpon>
     </Compile>
+    <Compile Include="美团酒店.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="美团酒店.Designer.cs">
+      <DependentUpon>美团酒店.cs</DependentUpon>
+    </Compile>
     <Compile Include="赶集本地服务.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -407,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="登陆.resx">
       <DependentUpon>登陆.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="美团酒店.resx">
+      <DependentUpon>美团酒店.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="赶集本地服务.resx">
       <DependentUpon>赶集本地服务.cs</DependentUpon>
