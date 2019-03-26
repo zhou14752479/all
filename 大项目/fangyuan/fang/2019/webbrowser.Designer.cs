@@ -1,4 +1,4 @@
-﻿namespace taobao
+﻿namespace fang._2019
 {
     partial class webbrowser
     {
@@ -53,15 +53,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
-            this.splitContainer1.Size = new System.Drawing.Size(1229, 712);
-            this.splitContainer1.SplitterDistance = 90;
-            this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
+            this.splitContainer1.Size = new System.Drawing.Size(756, 457);
+            this.splitContainer1.SplitterDistance = 73;
+            this.splitContainer1.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(515, 40);
+            this.button1.Location = new System.Drawing.Point(302, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(143, 34);
             this.button1.TabIndex = 1;
@@ -75,9 +74,8 @@
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1229, 21);
+            this.textBox1.Size = new System.Drawing.Size(756, 21);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // webBrowser1
             // 
@@ -85,18 +83,16 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1229, 618);
+            this.webBrowser1.Size = new System.Drawing.Size(756, 380);
             this.webBrowser1.TabIndex = 1;
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // webbrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1229, 712);
+            this.ClientSize = new System.Drawing.Size(756, 457);
             this.Controls.Add(this.splitContainer1);
             this.Name = "webbrowser";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "webbrowser";
             this.Load += new System.EventHandler(this.webbrowser_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -111,8 +107,8 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.Button button1;
     }
 }

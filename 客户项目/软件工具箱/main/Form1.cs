@@ -19,12 +19,7 @@ namespace main
 
         private void label1_Click(object sender, EventArgs e)
         {
-            PictureBox pictureBox1 = new PictureBox();
            
-            flowLayoutPanel1.Controls.Add(pictureBox1);
-            Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(@"E:\火车头7.6破解\LocoyPlatform.exe");
-            pictureBox1.Image = icon.ToBitmap();
-
             //for (int i = 0; i < SystemIconList.Count; i++)
             //{
             //    PictureBox pic = new PictureBox();
@@ -34,6 +29,39 @@ namespace main
             //    Bitmap p = SystemIconList[i].ToBitmap();
             //    pic.Image = p;
             //}
+        }
+
+        private void 添加程序ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                PictureBox pictureBox1 = new PictureBox();
+
+               tableLayoutPanel1.Controls.Add(pictureBox1);
+                Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(openFileDialog1.FileName);
+
+                pictureBox1.Click += new EventHandler(pictureBox1_Click);
+                pictureBox1.Image = icon.ToBitmap();
+                pictureBox1.Dock= DockStyle.Fill; 
+            }
+        }
+
+        public void pictureBox1_Click(object sender, EventArgs e)
+        {
+            PictureBox p = (PictureBox)sender;
+            System.Diagnostics.Process.Start("");
+        }
+
+        private void 删除程序ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            
+            tableLayoutPanel1.Controls.RemoveAt(2);
+        }
+
+        private void flowLayoutPanel1_MouseClick(object sender, MouseEventArgs e)
+        {
+          
         }
     }
 }

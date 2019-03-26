@@ -21,7 +21,7 @@ namespace fang._2019
 
         private void 淘宝商品上下架_Load(object sender, EventArgs e)
         {
-
+            textBox1.Text = webbrowser.cookie;
         }
         bool zanting = true;
         public void run()
@@ -100,5 +100,7 @@ namespace fang._2019
             textBox5.Text = "http://gw.api.taobao.com/router/rest?sign=48EB55380FBD5C0B58E4FD265BE5A36F&timestamp=2019-03-21+15%3A04%3A10&v=2.0&app_key=" + textBox2.Text + "&method=taobao.item.delete&sign_method=hmac&partner_id=top-apitools&session=" + textBox4.Text + "&format=json&num_iid=" + this.listView1.SelectedItems[0].SubItems[1].Text + "&force_sensitive_param_fuzzy=true";
             //textBox5.Text=  method.GetUrl("http://gw.api.taobao.com/router/rest?sign=48EB55380FBD5C0B58E4FD265BE5A36F&timestamp=2019-03-21+15%3A04%3A10&v=2.0&app_key="+textBox2.Text+"&method=taobao.item.delete&sign_method=hmac&partner_id=top-apitools&session="+textBox4.Text+"&format=json&num_iid="+ this.listView1.SelectedItems[0].SubItems[1].Text + "&force_sensitive_param_fuzzy=true", "utf-8");
         }
+
+      
     }
 }
