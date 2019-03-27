@@ -90,6 +90,18 @@
     <Compile Include="2019\webbrowser.Designer.cs">
       <DependentUpon>webbrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019\劲舞团商城.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019\劲舞团商城.Designer.cs">
+      <DependentUpon>劲舞团商城.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019\圣才电子书.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019\圣才电子书.Designer.cs">
+      <DependentUpon>圣才电子书.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019\拼多多搜索.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -359,6 +371,12 @@
     </Compile>
     <EmbeddedResource Include="2019\webbrowser.resx">
       <DependentUpon>webbrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019\劲舞团商城.resx">
+      <DependentUpon>劲舞团商城.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019\圣才电子书.resx">
+      <DependentUpon>圣才电子书.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019\拼多多搜索.resx">
       <DependentUpon>拼多多搜索.cs</DependentUpon>
