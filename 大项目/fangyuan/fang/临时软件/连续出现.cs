@@ -4374,6 +4374,18 @@ namespace fang.临时软件
                     thread.Start();
                 }
 
+                //else if (checkBox17.Checked == true)
+                //{
+                //    Thread thread = new Thread(new ThreadStart(run17));
+                //    thread.Start();
+                //}
+
+                //else if (checkBox18.Checked == true)
+                //{
+                //    Thread thread = new Thread(new ThreadStart(run18));
+                //    thread.Start();
+                //}
+
             }
 
         }
