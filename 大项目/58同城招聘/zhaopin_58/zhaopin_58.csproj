@@ -70,7 +70,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="VisualPlus, Version=0.4.1.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\58软件\VisualPlus.dll</HintPath>
+      <HintPath>..\..\fangyuan\fang\bin\Debug\VisualPlus.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

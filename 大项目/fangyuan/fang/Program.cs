@@ -20,7 +20,7 @@ namespace fang._2019
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 劲舞团商城());
+                Application.Run(new 教育视频网());
 
             //}
             //catch (Exception ex)

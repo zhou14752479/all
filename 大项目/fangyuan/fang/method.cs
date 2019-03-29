@@ -30,9 +30,9 @@ namespace fang
         {
             try
             {
-                
 
-                string COOKIE = "_lxsdk_cuid=16233c680c7c8-081a8e5d136c39-3b60450b-1fa400-16233c680c7c8; _lxsdk=16233c680c7c8-081a8e5d136c39-3b60450b-1fa400-16233c680c7c8; _hc.v=8165c808-5cfd-45a0-0d36-3e7f9d78b4eb.1521287070; s_ViewType=10; switchcityflashtoast=1; _tr.u=jU5PhtbV9q3sLhwV; Hm_lvt_dbeeb675516927da776beeb1d9802bd4=1521289865; __mta=46068251.1521289881671.1521289895545.1521289900801.3; aburl=1; ua=dpuser_5678141658; ctu=90a81cde43e1e0934a456ec54b747c93d0e6b58b8c9732b3ed676c7795f37d7a; CNZZDATA1261883731=1963307737-1524479289-null%7C1534814379; CNZZDATA1261666818=446137579-1535266463-%7C1535414298; cy=1; cye=shanghai; wed_user_path=2784|0; dper=64bac4be18dfd707b0badc079694425dde63784b826f4e704aefe0d1c187dc79e838bd69e917174ab7d77264518419c92caa12d142816bb4d5d36e8201ec9c2035bc713eee679dc0d3b6a4751c22b69ccc58f51360d5195f1821452d31949d50; cityid=100; m_flash2=1; ll=7fd06e815b796be3df069dec7836c3df; msource=default; default_ab=shopreviewlist%3AA%3A1%7Csinglereview%3AA%3A1; _lxsdk_s=168caa4597c-bbf-7c2-9ba%7C%7C94";
+
+                string COOKIE = "api_uid=rBUGYFw76x2onmUyf6+7Ag==; ua=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F71.0.3578.98%20Safari%2F537.36; msec=1800000; webp=1; rec_list_catgoods=rec_list_catgoods_tS1aCi; _nano_fp=XpdYl09Yn59Yl0d8Xo_3OImpoqcCXvWZljWqsB1u; rec_list=rec_list_a5zfaK; rec_list_mall_bottom=rec_list_mall_bottom_BvBfWF; rec_list_index=rec_list_index_57uosz; JSESSIONID=CFC9795F1F6ED86DEA7F9FFF6950FCEE; pdd_user_id=7312500755985; pdd_user_uin=7BT7HSLWTMIXDJYZTOHT4Q45MQ_GEXDA; PDDAccessToken=HM4WB65TFF2ZZBSTYMGVAXE3WQTA47CGOT2ZKRP5S2GVRZFJG74Q102118b; goods_detail=goods_detail_q5vUgt; goods_detail_mall=goods_detail_mall_SpisdW; ab=0; sp=0; gp=0; egrp=5";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";

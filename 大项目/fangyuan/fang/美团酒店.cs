@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +20,72 @@ namespace fang
         {
             InitializeComponent();
         }
+
+
         ArrayList finishes = new ArrayList();
 
+        #region  获取数据库中城市名称对应的拼音
+
+        public string Getpinyin(string id)
+        {
+
+            try
+            {
+                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select pinyin from meituan_province_city where uid='" + id + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                reader.Read();
+
+                string citypinyin = reader["pinyin"].ToString().Trim();
+                mycon.Close();
+                reader.Close();
+                return citypinyin;
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
+        #region 获取城市名对应的区域ID
+        public ArrayList getAreaId(string cityid)
+        {
+            //visualComboBox1.SelectedItem.ToString()
+            ArrayList areas = new ArrayList();
+            string cityPinYin = Getpinyin(cityid);
+            try
+            {
+                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string str = "SELECT meituan_area_id from meituan_area Where meituan_area_citypinyin= '" + cityPinYin + "' ";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    areas.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                ee.Message.ToString();
+            }
+            return areas;
+        }
+
+        #endregion
         #region  主函数
         public void run()
 
@@ -33,7 +98,7 @@ namespace fang
 
                 foreach (string id in ids)
                 {
-                    
+                    ArrayList areaIds = getAreaId(id);
 
                     string html = method.GetUrl("https://apimobile.meituan.com/group/v4/poi/pcsearch/" + id + "?cateId=-1&sort=defaults&userid=-1&offset=0&limit=1000&mypos=33.959478%2C118.27953&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&cityId=184&q=%E9%85%92%E5%BA%97", "utf-8");
 

@@ -11,10 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 链家网
+namespace main
 {
     class method
     {
+
         #region ！！！！如果之前的请求获取不到源码就用这个去获取,非常重要！！！！
         public static string GetHtmlSource(string url)
         {

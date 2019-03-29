@@ -49,17 +49,17 @@ namespace fang._2019
                         Match match = Regex.Match(html, @"""goodsID"":([\s\S]*?),");
 
                       
-                        string URL = "http://mobile.yangkeduo.com/goods.html?goods_id=" + match.Groups[1].Value.Trim();
+                        string URL = "http://mobile.yangkeduo.com/goods.html?goods_id=" + match.Groups[1].Value.Trim()+ "&refer_page_name=search_result&refer_page_id=10015_1553736821291_8KrSI6PtCa&refer_page_sn=10015";
 
                         string strhtml = method.GetUrl(URL, "utf-8");
 
-                        Match counts = Regex.Match(strhtml, @"全网总售([\s\S]*?)<");
+                        Match counts = Regex.Match(strhtml, @"已拼([\s\S]*?)<");
                         Match price = Regex.Match(strhtml, @"""price-range"">([\s\S]*?)<");
                         Match commentCount = Regex.Match(strhtml, @"commentsAmount"":([\s\S]*?),");
                         
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(keyword);
-                        listViewItem.SubItems.Add(counts.Groups[1].Value.ToString());
+                        listViewItem.SubItems.Add(counts.Groups[1].Value.ToString().Replace(":","").Trim());
                         listViewItem.SubItems.Add(price.Groups[1].Value.ToString());
                         listViewItem.SubItems.Add(commentCount.Groups[1].Value.ToString());
 
@@ -136,6 +136,11 @@ namespace fang._2019
             {
                 this.textBox1.Text = this.openFileDialog1.FileName;
             }
+        }
+
+        private void 拼多多搜索_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

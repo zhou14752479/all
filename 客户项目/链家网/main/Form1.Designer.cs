@@ -1,6 +1,6 @@
-﻿namespace 链家网
+﻿namespace main
 {
-    partial class 链家网
+    partial class Form1
     {
         /// <summary>
         /// 必需的设计器变量。

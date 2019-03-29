@@ -13,22 +13,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-namespace 链家网
+namespace main
 {
-   
-
-
-    public partial class 链家网 : Form
+    public partial class Form1 : Form
     {
-        [DllImport("Kernel32.dll")] //引入命名空间 using System.Runtime.InteropServices;  
-        public static extern bool Beep(int frequency, int duration);// 第一个参数是指频率的高低，越大越高，第二个参数是指响的时间多
-
-        public 链家网()
+        public Form1()
         {
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false;
         }
+
+        [DllImport("Kernel32.dll")] //引入命名空间 using System.Runtime.InteropServices;  
+        public static extern bool Beep(int frequency, int duration);// 第一个参数是指频率的高低，越大越高，第二个参数是指响的时间多
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -46,9 +44,9 @@ namespace 链家网
                 for (int i = 1; i < 100; i++)
                 {
                     string url = textBox1.Text + "pg" + i + "/";
-                    
+
                     string html = method.GetHtmlSource(url);
-                   
+
                     MatchCollection matches = Regex.Matches(html, @"data-id=""([\s\S]*?)""");
                     MatchCollection zuixin = Regex.Matches(html, @"<div class=""totalPrice""><span>([\s\S]*?)</span>");
 
@@ -58,7 +56,7 @@ namespace 链家网
                         lists.Add("https://cq.lianjia.com/ershoufang/co41c" + NextMatch.Groups[1].Value + "/");
 
                     }
-                   
+
                     if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                         break;
@@ -72,7 +70,7 @@ namespace 链家网
 
                         Match zaishou = Regex.Match(strhtml, @"count: ([\s\S]*?),");
 
-                        if (zuidi.Count >2)
+                        if (zuidi.Count > 2)
                         {
 
                             ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
@@ -82,21 +80,21 @@ namespace 链家网
                             lv1.SubItems.Add(zuixin[j].Groups[1].Value);
                             lv1.SubItems.Add(zaishou.Groups[1].Value);
 
-                            
+
 
 
 
                             string url1 = "http://www.17gp.com/FangJia/GetCommunityList";
-                            string postdata = "kw="+ xiaoqu.Groups[1].Value + "&num=8&code=";
+                            string postdata = "kw=" + xiaoqu.Groups[1].Value + "&num=8&code=";
                             string cookie = "VerifyToken=a5c6c1e375284296ad8e109365d92cf6; Hm_lvt_1799f23f2766063ed058651d23d7543d=1551768898; UM_distinctid=1694ca2805728-0c9405f52fafef-5d1f3b1c-100200-1694ca28059315; CNZZDATA1263082085=48898473-1551768855-null%7C1551768855; gr_user_id=2eeb5b35-caac-4b7d-b61d-84358dbbf01e; Hm_lpvt_1799f23f2766063ed058651d23d7543d=1551771217; gr_session_id_9d5a50541bffa263=d861bda6-e22b-46c7-9f69-202139bda1fd; gr_session_id_9d5a50541bffa263_d861bda6-e22b-46c7-9f69-202139bda1fd=true";
-                            string ahtml = method.PostUrl(url1,postdata,cookie,"utf-8");
+                            string ahtml = method.PostUrl(url1, postdata, cookie, "utf-8");
 
                             Match aid = Regex.Match(ahtml, @"guid"":""([\s\S]*?)""");
 
 
-                            string bhtml = method.PostUrl("http://www.17gp.com/FangJia/GetRecentlyPrice/"+aid.Groups[1].Value, "", "VerifyToken=a5c6c1e375284296ad8e109365d92cf6; Hm_lvt_1799f23f2766063ed058651d23d7543d=1551768898; UM_distinctid=1694ca2805728-0c9405f52fafef-5d1f3b1c-100200-1694ca28059315; CNZZDATA1263082085=48898473-1551768855-null%7C1551768855; gr_user_id=2eeb5b35-caac-4b7d-b61d-84358dbbf01e; gr_session_id_9d5a50541bffa263=d861bda6-e22b-46c7-9f69-202139bda1fd; gr_session_id_9d5a50541bffa263_d861bda6-e22b-46c7-9f69-202139bda1fd=true; Hm_lpvt_1799f23f2766063ed058651d23d7543d=1551772518", "utf-8");
+                            string bhtml = method.PostUrl("http://www.17gp.com/FangJia/GetRecentlyPrice/" + aid.Groups[1].Value, "", "VerifyToken=a5c6c1e375284296ad8e109365d92cf6; Hm_lvt_1799f23f2766063ed058651d23d7543d=1551768898; UM_distinctid=1694ca2805728-0c9405f52fafef-5d1f3b1c-100200-1694ca28059315; CNZZDATA1263082085=48898473-1551768855-null%7C1551768855; gr_user_id=2eeb5b35-caac-4b7d-b61d-84358dbbf01e; gr_session_id_9d5a50541bffa263=d861bda6-e22b-46c7-9f69-202139bda1fd; gr_session_id_9d5a50541bffa263_d861bda6-e22b-46c7-9f69-202139bda1fd=true; Hm_lpvt_1799f23f2766063ed058651d23d7543d=1551772518", "utf-8");
 
-                            Match pgprice= Regex.Match(bhtml, @"avgPrice"":""([\s\S]*?)""");
+                            Match pgprice = Regex.Match(bhtml, @"avgPrice"":""([\s\S]*?)""");
 
                             lv1.SubItems.Add(pgprice.Groups[1].Value);
 
@@ -106,7 +104,7 @@ namespace 链家网
 
                             if (a < b * Convert.ToDouble(textBox2.Text))
                             {
-                                textBox3.Text += "ID"+listView1.Items.Count.ToString()+ xiaoqu.Groups[1].Value +"出现报警信息"+ "\r\n";
+                                textBox3.Text += "ID" + listView1.Items.Count.ToString() + xiaoqu.Groups[1].Value + "出现报警信息" + "\r\n";
                                 Beep(500, 700);
                                 listView1.Items[listView1.Items.Count - 1].BackColor = Color.Red;
                             }
@@ -116,7 +114,7 @@ namespace 链家网
                             {
                                 textBox4.Text += "ID" + listView1.Items.Count.ToString() + xiaoqu.Groups[1].Value + "出现报警信息" + "\r\n";
                                 Beep(500, 700);
-                                listView1.Items[listView1.Items.Count-1].BackColor = Color.Red;
+                                listView1.Items[listView1.Items.Count - 1].BackColor = Color.Red;
                             }
 
 
@@ -142,7 +140,7 @@ namespace 链家网
             catch (System.Exception ex)
             {
 
-             MessageBox.Show(  ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
 

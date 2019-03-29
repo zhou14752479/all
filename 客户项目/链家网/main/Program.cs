@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 链家网
+namespace main
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 链家网
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 教育视频网());
+            Application.Run(new Form1());
         }
     }
 }
