@@ -18,8 +18,7 @@ namespace fang._2019
         {
             InitializeComponent();
         }
-        bool zanting = true;
-
+        
         #region  主函数
         public void run()
 
@@ -32,29 +31,40 @@ namespace fang._2019
 
                 foreach (string url in urls)
                 {
-                    Match title = Regex.Match(method.GetUrl(url,"utf-8"), @"<title>([\s\S]*?)_");
+                    string html = method.GetUrl(url, "utf-8");
+                    Match title = Regex.Match(html, @"<title>([\s\S]*?)</title>");
 
 
-                    Match ids = Regex.Match(url, @"\d{4,}");
-                    string downUrl = "http://e.100xuexi.com/DigitalLibrary/ajax.aspx?action=Download&id=" + ids.Groups[0].Value;
-                    
-                    method.downloadFile(downUrl, textBox2.Text, title.Groups[1].Value.Trim() + ".exe");
+                    Match path = Regex.Match(html, @"DirPath="" \+ ""([\s\S]*?)""");
 
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(url);
-                    lv1.SubItems.Add("下载完成");
-
-                    if (listView1.Items.Count - 1 > 1)
+                    if (path.Groups[1].Value !="")
                     {
-                        listView1.EnsureVisible(listView1.Items.Count - 1);
-                    }
-                    //如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        string downUrl = "http://e.100xuexi.com/uploads/ebook/" + path.Groups[1].Value + "/mobile/" + path.Groups[1].Value + ".epub";
 
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();
+                        textBox1.Text = downUrl;
+                        //method.downloadFile(downUrl, textBox2.Text, title.Groups[1].Value.Replace("_", "").Trim() + ".epub");
+
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(url);
+                        lv1.SubItems.Add("下载完成");
+
+                        if (listView1.Items.Count - 1 > 1)
+                        {
+                            listView1.EnsureVisible(listView1.Items.Count - 1);
+                        }
+
+                        Thread.Sleep(1000);
+
                     }
-                    Thread.Sleep(1000);
+
+                    else
+                    {
+
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(url);
+                        lv1.SubItems.Add("无epub地址");
+                    }
+                   
 
 
 
@@ -108,5 +118,17 @@ namespace fang._2019
 
             }
         }
+
+        private void 圣才电子书_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

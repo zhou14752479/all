@@ -31,13 +31,20 @@ namespace fang._2019
 
                 foreach (string url in urls)
                 {
-                    Match title = Regex.Match(method.GetUrl(url, "utf-8"), @"<title>([\s\S]*?)_");
+                   
+                    
+                    Match CaseId = Regex.Match(url, @"CaseId=([\s\S]*?)&");
+                    Match sessionKey= Regex.Match(url, @"sessionKey=([\s\S]*?) ");
+                    string Url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?code=-1&sdResIdCaseId="+ CaseId.Groups[1].Value+ "&flags=&guideId=&sk=&sessionKey="+ sessionKey.Groups[1].Value;
 
+                    string html = method.GetUrl(Url, "utf-8");
+                    Match docValue = Regex.Match(html, @"doc-([\s\S]*?)'");
+                    Match videoValue = Regex.Match(html, @"onclick=""getvodStatus\('([\s\S]*?)'");
+                    Match title = Regex.Match(html, @"<h1>([\s\S]*?)</h1>");
+                    string vedioUrl = "http://hknm5s6gzvm5a6wju24.exp.bcevod.com/" + videoValue.Groups[1].Value + "/" + videoValue.Groups[1].Value + ".m3u8.0.ts";
 
-                    Match ids = Regex.Match(url, @"\d{4,}");
-                    string downUrl = "http://e.100xuexi.com/DigitalLibrary/ajax.aspx?action=Download&id=" + ids.Groups[0].Value;
-
-                    method.downloadFile(downUrl, textBox2.Text, title.Groups[1].Value.Trim() + ".exe");
+                    textBox1.Text = vedioUrl;
+                    method.downloadFile(vedioUrl, textBox2.Text, title.Groups[1].Value.Trim() + ".mp4");
 
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(url);
@@ -75,16 +82,16 @@ namespace fang._2019
             //    return;
             //}
 
-            if (textBox2.Text == "")
-            {
-                MessageBox.Show("请选择保存地址!");
-                return;
-            }
-            //Thread thread = new Thread(new ThreadStart(run));
-            //Control.CheckForIllegalCrossThreadCalls = false;
-            //thread.Start();
+            //if (textBox2.Text == "")
+            //{
+            //    MessageBox.Show("请选择保存地址!");
+            //    return;
+            //}
+            Thread thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
 
-            method.downloadFile("http://1s1k.eduyun.cn/resource/redesign/publishCase/vod_player.jsp?resourceCode=mda-jctxr50gb1i0n2ue&yearMark=5&divId=playercontainers1&wid=770&hei=530&date=1553827920563&sessionKey=zk0AHLHG18ma03Vsex0Y", textBox2.Text,   "1.mp4");
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -105,5 +112,12 @@ namespace fang._2019
 
             }
         }
+
+        private void 教育视频网_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
