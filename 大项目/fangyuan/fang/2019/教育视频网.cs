@@ -31,36 +31,34 @@ namespace fang._2019
 
                 foreach (string url in urls)
                 {
-                   
-                    
-                    Match CaseId = Regex.Match(url, @"CaseId=([\s\S]*?)&");
-                    Match sessionKey= Regex.Match(url, @"sessionKey=([\s\S]*?) ");
-                    string Url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?code=-1&sdResIdCaseId="+ CaseId.Groups[1].Value+ "&flags=&guideId=&sk=&sessionKey="+ sessionKey.Groups[1].Value;
-
-                    string html = method.GetUrl(Url, "utf-8");
-                    Match docValue = Regex.Match(html, @"doc-([\s\S]*?)'");
-                    Match videoValue = Regex.Match(html, @"onclick=""getvodStatus\('([\s\S]*?)'");
-                    Match title = Regex.Match(html, @"<h1>([\s\S]*?)</h1>");
-                    string vedioUrl = "http://hknm5s6gzvm5a6wju24.exp.bcevod.com/" + videoValue.Groups[1].Value + "/" + videoValue.Groups[1].Value + ".m3u8.0.ts";
-
-                    textBox1.Text = vedioUrl;
-                    method.downloadFile(vedioUrl, textBox2.Text, title.Groups[1].Value.Trim() + ".mp4");
-
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(url);
-                    lv1.SubItems.Add("下载完成");
+                    lv1.SubItems.Add("下载中");
 
-                    if (listView1.Items.Count - 1 > 1)
+
+                    for (int i = 0; i < 9999; i++)
                     {
-                        listView1.EnsureVisible(listView1.Items.Count - 1);
+
+                        Match CaseId = Regex.Match(url, @"CaseId=([\s\S]*?)&");
+                        Match sessionKey = Regex.Match(url, @"sessionKey=([\s\S]*?) ");
+                        string Url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?code=-1&sdResIdCaseId=" + CaseId.Groups[1].Value + "&flags=&guideId=&sk=&sessionKey=" + sessionKey.Groups[1].Value;
+
+                        string html = method.GetUrl(Url, "utf-8");
+                        Match docValue = Regex.Match(html, @"doc-([\s\S]*?)'");
+                        Match videoValue = Regex.Match(html, @"onclick=""getvodStatus\('([\s\S]*?)'");
+                        Match title = Regex.Match(html, @"<h1>([\s\S]*?)</h1>");
+                        string vedioUrl = "http://hknm5s6gzvm5a6wju24.exp.bcevod.com/" + videoValue.Groups[1].Value + "/" + videoValue.Groups[1].Value + ".m3u8."+i+".ts";
+
+                        textBox1.Text = vedioUrl;
+                        method.downloadFile(vedioUrl, textBox2.Text, title.Groups[1].Value.Trim()+i + ".ts");
+
+                       
+            
                     }
-                    //如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
 
-                   
-                    Thread.Sleep(1000);
-
-
-
+                    ListViewItem lv = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                    lv.SubItems.Add(url);
+                    lv.SubItems.Add("下载完成");
                 }
 
             }

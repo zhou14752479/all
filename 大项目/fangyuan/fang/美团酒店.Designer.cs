@@ -34,11 +34,9 @@
             this.跳转到文章链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinButton7 = new CCWin.SkinControl.SkinButton();
             this.skinButton6 = new CCWin.SkinControl.SkinButton();
-            this.skinButton5 = new CCWin.SkinControl.SkinButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.skinButton4 = new CCWin.SkinControl.SkinButton();
-            this.skinButton3 = new CCWin.SkinControl.SkinButton();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -87,14 +85,15 @@
             this.skinButton7.BorderColor = System.Drawing.Color.Silver;
             this.skinButton7.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton7.DownBack = null;
-            this.skinButton7.Location = new System.Drawing.Point(708, 24);
+            this.skinButton7.Location = new System.Drawing.Point(643, 24);
             this.skinButton7.MouseBack = null;
             this.skinButton7.Name = "skinButton7";
             this.skinButton7.NormlBack = null;
-            this.skinButton7.Size = new System.Drawing.Size(92, 24);
+            this.skinButton7.Size = new System.Drawing.Size(114, 38);
             this.skinButton7.TabIndex = 23;
             this.skinButton7.Text = "停止";
             this.skinButton7.UseVisualStyleBackColor = false;
+            this.skinButton7.Click += new System.EventHandler(this.skinButton7_Click);
             // 
             // skinButton6
             // 
@@ -103,30 +102,15 @@
             this.skinButton6.BorderColor = System.Drawing.Color.Silver;
             this.skinButton6.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton6.DownBack = null;
-            this.skinButton6.Location = new System.Drawing.Point(603, 24);
+            this.skinButton6.Location = new System.Drawing.Point(457, 24);
             this.skinButton6.MouseBack = null;
             this.skinButton6.Name = "skinButton6";
             this.skinButton6.NormlBack = null;
-            this.skinButton6.Size = new System.Drawing.Size(92, 24);
+            this.skinButton6.Size = new System.Drawing.Size(122, 38);
             this.skinButton6.TabIndex = 19;
             this.skinButton6.Text = "清空采集内容";
             this.skinButton6.UseVisualStyleBackColor = false;
-            // 
-            // skinButton5
-            // 
-            this.skinButton5.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton5.BaseColor = System.Drawing.Color.Silver;
-            this.skinButton5.BorderColor = System.Drawing.Color.Silver;
-            this.skinButton5.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton5.DownBack = null;
-            this.skinButton5.Location = new System.Drawing.Point(495, 24);
-            this.skinButton5.MouseBack = null;
-            this.skinButton5.Name = "skinButton5";
-            this.skinButton5.NormlBack = null;
-            this.skinButton5.Size = new System.Drawing.Size(92, 24);
-            this.skinButton5.TabIndex = 18;
-            this.skinButton5.Text = "继续";
-            this.skinButton5.UseVisualStyleBackColor = false;
+            this.skinButton6.Click += new System.EventHandler(this.skinButton6_Click);
             // 
             // openFileDialog1
             // 
@@ -146,31 +130,15 @@
             this.skinButton4.BorderColor = System.Drawing.Color.Silver;
             this.skinButton4.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton4.DownBack = null;
-            this.skinButton4.Location = new System.Drawing.Point(218, 24);
+            this.skinButton4.Location = new System.Drawing.Point(285, 24);
             this.skinButton4.MouseBack = null;
             this.skinButton4.Name = "skinButton4";
             this.skinButton4.NormlBack = null;
-            this.skinButton4.Size = new System.Drawing.Size(92, 24);
+            this.skinButton4.Size = new System.Drawing.Size(140, 38);
             this.skinButton4.TabIndex = 10;
             this.skinButton4.Text = "导出";
             this.skinButton4.UseVisualStyleBackColor = false;
             this.skinButton4.Click += new System.EventHandler(this.skinButton4_Click);
-            // 
-            // skinButton3
-            // 
-            this.skinButton3.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton3.BaseColor = System.Drawing.Color.Silver;
-            this.skinButton3.BorderColor = System.Drawing.Color.Silver;
-            this.skinButton3.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton3.DownBack = null;
-            this.skinButton3.Location = new System.Drawing.Point(365, 24);
-            this.skinButton3.MouseBack = null;
-            this.skinButton3.Name = "skinButton3";
-            this.skinButton3.NormlBack = null;
-            this.skinButton3.Size = new System.Drawing.Size(92, 24);
-            this.skinButton3.TabIndex = 9;
-            this.skinButton3.Text = "暂停";
-            this.skinButton3.UseVisualStyleBackColor = false;
             // 
             // skinButton2
             // 
@@ -179,11 +147,11 @@
             this.skinButton2.BorderColor = System.Drawing.Color.Silver;
             this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton2.DownBack = null;
-            this.skinButton2.Location = new System.Drawing.Point(218, 64);
+            this.skinButton2.Location = new System.Drawing.Point(120, 24);
             this.skinButton2.MouseBack = null;
             this.skinButton2.Name = "skinButton2";
             this.skinButton2.NormlBack = null;
-            this.skinButton2.Size = new System.Drawing.Size(92, 24);
+            this.skinButton2.Size = new System.Drawing.Size(137, 38);
             this.skinButton2.TabIndex = 8;
             this.skinButton2.Text = "开始";
             this.skinButton2.UseVisualStyleBackColor = false;
@@ -205,9 +173,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton7);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton6);
-            this.splitContainer1.Panel2.Controls.Add(this.skinButton5);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton4);
-            this.splitContainer1.Panel2.Controls.Add(this.skinButton3);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton2);
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 317;
@@ -297,6 +263,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "美团酒店";
             this.Text = "美团酒店";
+            this.Load += new System.EventHandler(this.美团酒店_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -315,11 +282,9 @@
         private System.Windows.Forms.ToolStripMenuItem 跳转到文章链接ToolStripMenuItem;
         private CCWin.SkinControl.SkinButton skinButton7;
         private CCWin.SkinControl.SkinButton skinButton6;
-        private CCWin.SkinControl.SkinButton skinButton5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private CCWin.SkinControl.SkinButton skinButton4;
-        private CCWin.SkinControl.SkinButton skinButton3;
         private CCWin.SkinControl.SkinButton skinButton2;
         private System.Windows.Forms.SplitContainer splitContainer1;
         internal System.Windows.Forms.ListView listView1;

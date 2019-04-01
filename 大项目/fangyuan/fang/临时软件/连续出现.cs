@@ -4249,7 +4249,507 @@ namespace fang.临时软件
 
         #endregion
 
-        
+        #region  主函数17
+        public void run17()
+
+        {
+            //StringBuilder sbz = new StringBuilder();
+            //for (int i = 0; i <Convert.ToInt32(textBox1.Text); i++)
+            //{
+            //    sbz.Append("中");
+            //}
+
+            //StringBuilder sbc = new StringBuilder();
+            //for (int i = 0; i < Convert.ToInt32(textBox1.Text); i++)
+            //{
+            //    sbc.Append("错");
+            //}
+
+
+            ArrayList lists = getListviewValue1(listView1);
+
+            try
+
+            {
+
+                foreach (string list in lists)
+                {
+                    if (!finishes.Contains(list))
+                    {
+
+                        finishes.Add(list);
+                        string url = list.Replace("https://pk10.17500.cn/exp/index/eid/", "").Replace(".html", ""); ;
+
+                        if (url == "")
+                            return;
+                        string html = method.GetUrl("https://pk10.17500.cn/exp/results.html?num=100&lotid=pk10&eid=" + url, "utf-8");
+
+
+                        string prttern = @"中|错";
+                        MatchCollection matches = Regex.Matches(html, prttern, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                       
+                        StringBuilder sb = new StringBuilder();
+                        foreach (Match NextMatch in matches)
+                        {
+
+                            sb.Append(NextMatch.Groups[0].Value);
+
+                        }
+                        
+                        int a = 0;
+
+                        string prttern2 = @"中错";
+                        MatchCollection matches2 = Regex.Matches(sb.ToString(), prttern2, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern3 = @"中错中";
+                        MatchCollection matches3 = Regex.Matches(sb.ToString(), prttern3, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern4 = @"中错中中";
+                        MatchCollection matches4 = Regex.Matches(sb.ToString(), prttern4, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern5 = @"中错中中错";
+                        MatchCollection matches5 = Regex.Matches(sb.ToString(), prttern5, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern6 = @"中错中中错中";
+                        MatchCollection matches6 = Regex.Matches(sb.ToString(), prttern6, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern7 = @"中错中中错中错";
+                        MatchCollection matches7 = Regex.Matches(sb.ToString(), prttern7, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern8 = @"中错中中错中错错";
+                        MatchCollection matches8 = Regex.Matches(sb.ToString(), prttern8, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern9 = @"中错中中错中错错中";
+                        MatchCollection matches9 = Regex.Matches(sb.ToString(), prttern9, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern10= @"中错中中错中错错中错";
+                        MatchCollection matches10 = Regex.Matches(sb.ToString(), prttern10, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern11= @"中错中中错中错错中错中";
+                        MatchCollection matches11 = Regex.Matches(sb.ToString(), prttern11, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern12= @"中错中中错中错错中错中中";
+                        MatchCollection matches12 = Regex.Matches(sb.ToString(), prttern12, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern13= @"中错中中错中错错中错中中错";
+                        MatchCollection matches13 = Regex.Matches(sb.ToString(), prttern13, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern14= @"中错中中错中错错中错中中错中}";
+                        MatchCollection matches14 = Regex.Matches(sb.ToString(), prttern14, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern15= @"中错中中错中错错中错中中错中错";
+                        MatchCollection matches15 = Regex.Matches(sb.ToString(), prttern15, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern16= @"中错中中错中错错中错中中错中错错";
+                        MatchCollection matches16 = Regex.Matches(sb.ToString(), prttern16, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                        if (matches2.Count > 0 && matches3.Count == 0)
+                        {
+                            a = 2;
+                        }
+                        else if (matches3.Count > 0 && matches4.Count == 0)
+                        {
+                            a = 3;
+                        }
+                        else if (matches4.Count > 0 && matches5.Count == 0)
+                        {
+                            a = 4;
+                        }
+                        else if (matches5.Count > 0 && matches6.Count == 0)
+                        {
+                            a = 5;
+                        }
+                        else if (matches6.Count > 0 && matches7.Count == 0)
+                        {
+                            a = 6;
+                        }
+                        else if (matches7.Count > 0 && matches8.Count == 0)
+                        {
+                            a = 7;
+                        }
+                        else if (matches8.Count > 0 && matches9.Count == 0)
+                        {
+                            a = 8;
+                        }
+                        else if (matches9.Count > 0 && matches10.Count == 0)
+                        {
+                            a = 9;
+                        }
+                        else if (matches10.Count > 0 && matches11.Count == 0)
+                        {
+                            a = 10;
+                        }
+                        else if (matches11.Count > 0 && matches12.Count == 0)
+                        {
+                            a = 11;
+                        }
+                        else if (matches12.Count > 0 && matches13.Count == 0)
+                        {
+                            a = 12;
+                        }
+                        else if (matches13.Count > 0 && matches14.Count == 0)
+                        {
+                            a = 13;
+                        }
+                        else if (matches14.Count > 0 && matches15.Count == 0)
+                        {
+                            a = 14;
+                        }
+                        else if (matches15.Count > 0 && matches16.Count == 0)
+                        {
+                            a = 15;
+                        }
+
+
+                        int b = 0;
+
+                        string p2 = @"错中";
+                        MatchCollection amatches2 = Regex.Matches(sb.ToString(), p2, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p3 = @"错中错";
+                        MatchCollection amatches3 = Regex.Matches(sb.ToString(), p3, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p4 = @"错中错错";
+                        MatchCollection amatches4 = Regex.Matches(sb.ToString(), p4, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p5 = @"错中错错中";
+                        MatchCollection amatches5 = Regex.Matches(sb.ToString(), p5, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p6 = @"错中错错中错";
+                        MatchCollection amatches6 = Regex.Matches(sb.ToString(), p6, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p7 = @"错中错错中错中";
+                        MatchCollection amatches7 = Regex.Matches(sb.ToString(), p7, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p8 = @"错中错错中错中中";
+                        MatchCollection amatches8 = Regex.Matches(sb.ToString(), p8, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p9 = @"错中错错中错中中错";
+                        MatchCollection amatches9 = Regex.Matches(sb.ToString(), p9, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p10 = @"错中错错中错中中错中";
+                        MatchCollection amatches10 = Regex.Matches(sb.ToString(), p10, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p11 = @"错中错错中错中中错中错";
+                        MatchCollection amatches11 = Regex.Matches(sb.ToString(), p11, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p12 = @"错中错错中错中中错中错错";
+                        MatchCollection amatches12 = Regex.Matches(sb.ToString(), p12, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p13 = @"错中错错中错中中错中错错中";
+                        MatchCollection amatches13 = Regex.Matches(sb.ToString(), p13, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p14 = @"错中错错中错中中错中错错中错";
+                        MatchCollection amatches14 = Regex.Matches(sb.ToString(), p14, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p15 = @"错中错错中错中中错中错错中错中";
+                        MatchCollection amatches15 = Regex.Matches(sb.ToString(), p15, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p16 = @"错中错错中错中中错中错错中错中中";
+                        MatchCollection amatches16 = Regex.Matches(sb.ToString(), p16, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                        if (amatches2.Count > 0 && amatches3.Count == 0)
+                        {
+                            b = 2;
+                        }
+                        else if (amatches3.Count > 0 && amatches4.Count == 0)
+                        {
+                            b = 3;
+                        }
+                        else if (amatches4.Count > 0 && amatches5.Count == 0)
+                        {
+                            b = 4;
+                        }
+                        else if (amatches5.Count > 0 && amatches6.Count == 0)
+                        {
+                            b = 5;
+                        }
+                        else if (amatches6.Count > 0 && amatches7.Count == 0)
+                        {
+                            b = 6;
+                        }
+                        else if (amatches7.Count > 0 && amatches8.Count == 0)
+                        {
+                            b = 7;
+                        }
+                        else if (amatches8.Count > 0 && amatches9.Count == 0)
+                        {
+                            b = 8;
+                        }
+                        else if (amatches9.Count > 0 && amatches10.Count == 0)
+                        {
+                            b = 9;
+                        }
+                        else if (amatches10.Count > 0 && amatches11.Count == 0)
+                        {
+                            b = 10;
+                        }
+                        else if (amatches11.Count > 0 && amatches12.Count == 0)
+                        {
+                            b = 11;
+                        }
+                        else if (amatches12.Count > 0 && amatches13.Count == 0)
+                        {
+                            b = 12;
+                        }
+                        else if (amatches13.Count > 0 && amatches14.Count == 0)
+                        {
+                            b = 13;
+                        }
+                        else if (amatches14.Count > 0 && amatches15.Count == 0)
+                        {
+                            b = 14;
+                        }
+                        else if (amatches15.Count > 0 && amatches16.Count == 0)
+                        {
+                            b = 15;
+                        }
+
+                        int c = a > b ? a : b;
+
+                        
+                        if (c >= Convert.ToInt32(textBox1.Text))
+                        {
+                            ListViewItem lv1 = listView2.Items.Add(list); //使用Listview展示数据
+                            lv1.SubItems.Add(c.ToString());
+                        }
+
+
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        #endregion
+
+        #region  主函数18
+        public void run18()
+
+        {
+            //StringBuilder sbz = new StringBuilder();
+            //for (int i = 0; i <Convert.ToInt32(textBox1.Text); i++)
+            //{
+            //    sbz.Append("中");
+            //}
+
+            //StringBuilder sbc = new StringBuilder();
+            //for (int i = 0; i < Convert.ToInt32(textBox1.Text); i++)
+            //{
+            //    sbc.Append("错");
+            //}
+
+
+            ArrayList lists = getListviewValue1(listView1);
+
+            try
+
+            {
+
+                foreach (string list in lists)
+                {
+                    if (!finishes.Contains(list))
+                    {
+
+                        finishes.Add(list);
+                        string url = list.Replace("https://pk10.17500.cn/exp/index/eid/", "").Replace(".html", ""); ;
+
+                        if (url == "")
+                            return;
+                        string html = method.GetUrl("https://pk10.17500.cn/exp/results.html?num=100&lotid=pk10&eid=" + url, "utf-8");
+
+
+                        string prttern = @"中|错";
+                        MatchCollection matches = Regex.Matches(html, prttern, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+
+                        StringBuilder sb = new StringBuilder();
+                        foreach (Match NextMatch in matches)
+                        {
+
+                            sb.Append(NextMatch.Groups[0].Value);
+
+                        }
+
+                        int a = 0;
+
+                        string prttern2 = @"^中错";
+                        MatchCollection matches2 = Regex.Matches(sb.ToString(), prttern2, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern3 = @"^中错中";
+                        MatchCollection matches3 = Regex.Matches(sb.ToString(), prttern3, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern4 = @"^中错中中";
+                        MatchCollection matches4 = Regex.Matches(sb.ToString(), prttern4, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern5 = @"^中错中中错";
+                        MatchCollection matches5 = Regex.Matches(sb.ToString(), prttern5, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern6 = @"^中错中中错中";
+                        MatchCollection matches6 = Regex.Matches(sb.ToString(), prttern6, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern7 = @"^中错中中错中错";
+                        MatchCollection matches7 = Regex.Matches(sb.ToString(), prttern7, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern8 = @"^中错中中错中错错";
+                        MatchCollection matches8 = Regex.Matches(sb.ToString(), prttern8, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern9 = @"^中错中中错中错错中";
+                        MatchCollection matches9 = Regex.Matches(sb.ToString(), prttern9, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern10 = @"^中错中中错中错错中错";
+                        MatchCollection matches10 = Regex.Matches(sb.ToString(), prttern10, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern11 = @"^中错中中错中错错中错中";
+                        MatchCollection matches11 = Regex.Matches(sb.ToString(), prttern11, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern12 = @"^中错中中错中错错中错中中";
+                        MatchCollection matches12 = Regex.Matches(sb.ToString(), prttern12, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern13 = @"^中错中中错中错错中错中中错";
+                        MatchCollection matches13 = Regex.Matches(sb.ToString(), prttern13, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern14 = @"^中错中中错中错错中错中中错中}";
+                        MatchCollection matches14 = Regex.Matches(sb.ToString(), prttern14, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern15 = @"^中错中中错中错错中错中中错中错";
+                        MatchCollection matches15 = Regex.Matches(sb.ToString(), prttern15, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string prttern16 = @"^中错中中错中错错中错中中错中错错";
+                        MatchCollection matches16 = Regex.Matches(sb.ToString(), prttern16, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                        if (matches2.Count > 0 && matches3.Count == 0)
+                        {
+                            a = 2;
+                        }
+                        else if (matches3.Count > 0 && matches4.Count == 0)
+                        {
+                            a = 3;
+                        }
+                        else if (matches4.Count > 0 && matches5.Count == 0)
+                        {
+                            a = 4;
+                        }
+                        else if (matches5.Count > 0 && matches6.Count == 0)
+                        {
+                            a = 5;
+                        }
+                        else if (matches6.Count > 0 && matches7.Count == 0)
+                        {
+                            a = 6;
+                        }
+                        else if (matches7.Count > 0 && matches8.Count == 0)
+                        {
+                            a = 7;
+                        }
+                        else if (matches8.Count > 0 && matches9.Count == 0)
+                        {
+                            a = 8;
+                        }
+                        else if (matches9.Count > 0 && matches10.Count == 0)
+                        {
+                            a = 9;
+                        }
+                        else if (matches10.Count > 0 && matches11.Count == 0)
+                        {
+                            a = 10;
+                        }
+                        else if (matches11.Count > 0 && matches12.Count == 0)
+                        {
+                            a = 11;
+                        }
+                        else if (matches12.Count > 0 && matches13.Count == 0)
+                        {
+                            a = 12;
+                        }
+                        else if (matches13.Count > 0 && matches14.Count == 0)
+                        {
+                            a = 13;
+                        }
+                        else if (matches14.Count > 0 && matches15.Count == 0)
+                        {
+                            a = 14;
+                        }
+                        else if (matches15.Count > 0 && matches16.Count == 0)
+                        {
+                            a = 15;
+                        }
+
+
+                        int b = 0;
+
+                        string p2 = @"^错中";
+                        MatchCollection amatches2 = Regex.Matches(sb.ToString(), p2, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p3 = @"^错中错";
+                        MatchCollection amatches3 = Regex.Matches(sb.ToString(), p3, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p4 = @"^错中错错";
+                        MatchCollection amatches4 = Regex.Matches(sb.ToString(), p4, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p5 = @"^错中错错中";
+                        MatchCollection amatches5 = Regex.Matches(sb.ToString(), p5, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p6 = @"^错中错错中错";
+                        MatchCollection amatches6 = Regex.Matches(sb.ToString(), p6, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p7 = @"^错中错错中错中";
+                        MatchCollection amatches7 = Regex.Matches(sb.ToString(), p7, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p8 = @"^错中错错中错中中";
+                        MatchCollection amatches8 = Regex.Matches(sb.ToString(), p8, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p9 = @"^错中错错中错中中错";
+                        MatchCollection amatches9 = Regex.Matches(sb.ToString(), p9, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p10 = @"^错中错错中错中中错中";
+                        MatchCollection amatches10 = Regex.Matches(sb.ToString(), p10, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p11 = @"^错中错错中错中中错中错";
+                        MatchCollection amatches11 = Regex.Matches(sb.ToString(), p11, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p12 = @"^错中错错中错中中错中错错";
+                        MatchCollection amatches12 = Regex.Matches(sb.ToString(), p12, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p13 = @"^错中错错中错中中错中错错中";
+                        MatchCollection amatches13 = Regex.Matches(sb.ToString(), p13, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p14 = @"^错中错错中错中中错中错错中错";
+                        MatchCollection amatches14 = Regex.Matches(sb.ToString(), p14, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p15 = @"^错中错错中错中中错中错错中错中";
+                        MatchCollection amatches15 = Regex.Matches(sb.ToString(), p15, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        string p16 = @"^错中错错中错中中错中错错中错中中";
+                        MatchCollection amatches16 = Regex.Matches(sb.ToString(), p16, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                        if (amatches2.Count > 0 && amatches3.Count == 0)
+                        {
+                            b = 2;
+                        }
+                        else if (amatches3.Count > 0 && amatches4.Count == 0)
+                        {
+                            b = 3;
+                        }
+                        else if (amatches4.Count > 0 && amatches5.Count == 0)
+                        {
+                            b = 4;
+                        }
+                        else if (amatches5.Count > 0 && amatches6.Count == 0)
+                        {
+                            b = 5;
+                        }
+                        else if (amatches6.Count > 0 && amatches7.Count == 0)
+                        {
+                            b = 6;
+                        }
+                        else if (amatches7.Count > 0 && amatches8.Count == 0)
+                        {
+                            b = 7;
+                        }
+                        else if (amatches8.Count > 0 && amatches9.Count == 0)
+                        {
+                            b = 8;
+                        }
+                        else if (amatches9.Count > 0 && amatches10.Count == 0)
+                        {
+                            b = 9;
+                        }
+                        else if (amatches10.Count > 0 && amatches11.Count == 0)
+                        {
+                            b = 10;
+                        }
+                        else if (amatches11.Count > 0 && amatches12.Count == 0)
+                        {
+                            b = 11;
+                        }
+                        else if (amatches12.Count > 0 && amatches13.Count == 0)
+                        {
+                            b = 12;
+                        }
+                        else if (amatches13.Count > 0 && amatches14.Count == 0)
+                        {
+                            b = 13;
+                        }
+                        else if (amatches14.Count > 0 && amatches15.Count == 0)
+                        {
+                            b = 14;
+                        }
+                        else if (amatches15.Count > 0 && amatches16.Count == 0)
+                        {
+                            b = 15;
+                        }
+
+                        int c = a > b ? a : b;
+
+
+                        if (c >= Convert.ToInt32(textBox1.Text))
+                        {
+                            ListViewItem lv1 = listView2.Items.Add(list); //使用Listview展示数据
+                            lv1.SubItems.Add(c.ToString());
+                        }
+
+
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        #endregion
 
         private void 连续出现_Load(object sender, EventArgs e)
         {
@@ -4374,17 +4874,17 @@ namespace fang.临时软件
                     thread.Start();
                 }
 
-                //else if (checkBox17.Checked == true)
-                //{
-                //    Thread thread = new Thread(new ThreadStart(run17));
-                //    thread.Start();
-                //}
+                else if (checkBox17.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(run17));
+                    thread.Start();
+                }
 
-                //else if (checkBox18.Checked == true)
-                //{
-                //    Thread thread = new Thread(new ThreadStart(run18));
-                //    thread.Start();
-                //}
+                else if (checkBox18.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(run18));
+                    thread.Start();
+                }
 
             }
 
@@ -4502,19 +5002,19 @@ namespace fang.临时软件
                 timer1.Start();
             }
 
-            //else if (checkBox17.Checked == true)
-            //{
-            //    Thread thread = new Thread(new ThreadStart(run17));
-            //    thread.Start();
-            //    timer1.Start();
-            //}
+            else if (checkBox17.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(run17));
+                thread.Start();
+                timer1.Start();
+            }
 
-            //else if (checkBox18.Checked == true)
-            //{
-            //    Thread thread = new Thread(new ThreadStart(run18));
-            //    thread.Start();
-            //    timer1.Start();
-            //}
+            else if (checkBox18.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(run18));
+                thread.Start();
+                timer1.Start();
+            }
 
         }
 
