@@ -24,7 +24,7 @@ namespace fang.临时软件
         }
 
         bool zanting = true;
-
+        bool status = true;
 
         #region 获取网址
 
@@ -120,33 +120,42 @@ namespace fang.临时软件
         public void run()
 
         {
-            ArrayList companys = getListviewValue1(listView1,1);
+            string str = System.Environment.CurrentDirectory;
 
-            ArrayList keys = getListviewValue1(listView1, 2);
-
+            StreamReader sr = new StreamReader(str + "/partIndex.txt", Encoding.Default);
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            ArrayList lists = new ArrayList();
+            for (int i = 0; i < text.Length; i++)
+            {
+                lists.Add(text[i]);
+            }
+            string[]companys = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             try
 
             {
-
                 foreach (string company in companys)
                 {
-                    foreach (string key in keys)
-                    {
 
+                    foreach (string key in lists)
+                    {
+                        label3.Text = company+""+key;
+                        
 
                         string html = GetUrl("https://" + company + ".ic.net.cn/userHomePage/search.php?key=" + key, "utf-8");
-                 
+
                         MatchCollection xinghaos = Regex.Matches(html, @" id=""partNo"" value=""([\s\S]*?)""");
                         MatchCollection mfgs = Regex.Matches(html, @" id=""mfg"" value=""([\s\S]*?)""");
                         MatchCollection dcs = Regex.Matches(html, @" id=""dc"" value=""([\s\S]*?)""");
                         MatchCollection qtys = Regex.Matches(html, @" id=""qty"" value=""([\s\S]*?)""");
                         MatchCollection packages = Regex.Matches(html, @" id=""pack"" value=""([\s\S]*?)""");
                         MatchCollection des = Regex.Matches(html, @" id=""description"" value=""([\s\S]*?)""");
-                        
 
 
 
-                        
+
+
 
                         for (int i = 0; i < xinghaos.Count; i++)
                         {
@@ -163,7 +172,7 @@ namespace fang.临时软件
                             lv2.SubItems.Add(DateTime.Now.ToString());
 
                         }
-                       
+
 
 
 
@@ -173,15 +182,18 @@ namespace fang.临时软件
                             listView2.EnsureVisible(listView2.Items.Count - 1);
                         }
 
+                        if (status == false)
+
+                        {
+                            return;
+                        }
                         while (this.zanting == false)
                         {
                             Application.DoEvents();
                         }
                         Thread.Sleep(1000);
 
-
                     }
-
                 }
             }
 
@@ -196,6 +208,7 @@ namespace fang.临时软件
 
         private void skinButton2_Click(object sender, EventArgs e)
         {
+            status = true;
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
@@ -203,13 +216,7 @@ namespace fang.临时软件
 
         private void IC交易网_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                lv1.SubItems.Add("jzic18");
-                lv1.SubItems.Add("XC95");
-            }
-            
+           
         }
 
         private void skinButton3_Click(object sender, EventArgs e)
@@ -220,6 +227,27 @@ namespace fang.临时软件
         private void skinButton5_Click(object sender, EventArgs e)
         {
             zanting = true;
+        }
+
+     
+        private void skinButton4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView2.Items.Clear();
+        }
+
+        private void skinButton7_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
