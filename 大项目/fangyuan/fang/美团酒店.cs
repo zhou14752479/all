@@ -107,7 +107,7 @@ namespace fang
                         string html = method.GetUrl("https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityid + "?cateId=-1&sort=defaults&userid=-1&offset=0&limit=1000&mypos=33.959478%2C118.27953&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&cityId=" + cityid + "&areaId=" + areaId + "&q=%E9%85%92%E5%BA%97", "utf-8");
 
                         MatchCollection matchs = Regex.Matches(html, @"false},{""id"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        MatchCollection prices = Regex.Matches(html, @"lowestprice"":([\s\S]*?),");
+                        MatchCollection prices = Regex.Matches(html, @"avgprice"":([\s\S]*?),");
 
                         ArrayList lists = new ArrayList();
 
