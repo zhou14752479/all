@@ -4550,35 +4550,35 @@ namespace fang.临时软件
 
                         int a = 0;
 
-                        string prttern2 = @"^错错中错";
+                        string prttern2 = @"^中错";
                         MatchCollection matches2 = Regex.Matches(sb.ToString(), prttern2, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern3 = @"^错错中错中";
+                        string prttern3 = @"^中错中";
                         MatchCollection matches3 = Regex.Matches(sb.ToString(), prttern3, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern4 = @"^错错中错中中";
+                        string prttern4 = @"^中中错中";
                         MatchCollection matches4 = Regex.Matches(sb.ToString(), prttern4, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern5 = @"^错错中错中中错";
+                        string prttern5 = @"^错中中错中";
                         MatchCollection matches5 = Regex.Matches(sb.ToString(), prttern5, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern6 = @"^错错中错中中错中";
+                        string prttern6 = @"^中错中中错中";
                         MatchCollection matches6 = Regex.Matches(sb.ToString(), prttern6, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern7 = @"^错错中错中中错中错";
+                        string prttern7 = @"^错中错中中错中";
                         MatchCollection matches7 = Regex.Matches(sb.ToString(), prttern7, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern8 = @"^错错中错中中错中错错";
+                        string prttern8 = @"^错错中错中中错中";
                         MatchCollection matches8 = Regex.Matches(sb.ToString(), prttern8, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern9 = @"^错错中错中中错中错错中";
+                        string prttern9 = @"^中错错中错中中错中";  
                         MatchCollection matches9 = Regex.Matches(sb.ToString(), prttern9, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern10 = @"^错错中错中中错中错错中错";
+                        string prttern10 = @"^错中错错中错中中错中";
                         MatchCollection matches10 = Regex.Matches(sb.ToString(), prttern10, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern11 = @"^错错中错中中错中错错中错中";
+                        string prttern11 = @"^中错中错错中错中中错中";
                         MatchCollection matches11 = Regex.Matches(sb.ToString(), prttern11, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern12 = @"^错错中错中中错中错错中错中中";
+                        string prttern12 = @"^中中错中错错中错中中错中";
                         MatchCollection matches12 = Regex.Matches(sb.ToString(), prttern12, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern13 = @"^错错中错中中错中错错中错中中错";
+                        string prttern13 = @"^错中中错中错错中错中中错中";
                         MatchCollection matches13 = Regex.Matches(sb.ToString(), prttern13, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern14 = @"^错错中错中中错中错错中错中中错中}";
+                        string prttern14 = @"^中错中中错中错错中错中中错中";
                         MatchCollection matches14 = Regex.Matches(sb.ToString(), prttern14, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern15 = @"^错错中错中中错中错错中错中中错中错";
+                        string prttern15 = @"^错中错中中错中错错中错中中错中";
                         MatchCollection matches15 = Regex.Matches(sb.ToString(), prttern15, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string prttern16 = @"^错错中错中中错中错错中错中中错中错错";
+                        string prttern16 = @"^错错中错中中错中错错中错中中错中";
                         MatchCollection matches16 = Regex.Matches(sb.ToString(), prttern16, RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                         if (matches2.Count > 0 && matches3.Count == 0)
@@ -4641,35 +4641,35 @@ namespace fang.临时软件
 
                         int b = 0;
 
-                        string p2 = @"^中中错中";
+                        string p2 = @"^错中";
                         MatchCollection amatches2 = Regex.Matches(sb.ToString(), p2, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p3 = @"^中中错中错";
+                        string p3 = @"^错中错";
                         MatchCollection amatches3 = Regex.Matches(sb.ToString(), p3, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p4 = @"^中中错中错错";
+                        string p4 = @"^错错中错";
                         MatchCollection amatches4 = Regex.Matches(sb.ToString(), p4, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p5 = @"^中中错中错错中";
+                        string p5 = @"^中错错中错";
                         MatchCollection amatches5 = Regex.Matches(sb.ToString(), p5, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p6 = @"^中中错中错错中错";
+                        string p6 = @"^错中错错中错";
                         MatchCollection amatches6 = Regex.Matches(sb.ToString(), p6, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p7 = @"^中中错中错错中错中";
+                        string p7 = @"^中错中错错中错";
                         MatchCollection amatches7 = Regex.Matches(sb.ToString(), p7, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p8 = @"^中中错中错错中错中中";
+                        string p8 = @"^中中错中错错中错";
                         MatchCollection amatches8 = Regex.Matches(sb.ToString(), p8, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p9 = @"^中中错中错错中错中中错";
+                        string p9 = @"^错中中错中错错中错";
                         MatchCollection amatches9 = Regex.Matches(sb.ToString(), p9, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p10 = @"^中中错中错错中错中中错中";
+                        string p10 = @"^中错中中错中错错中错";
                         MatchCollection amatches10 = Regex.Matches(sb.ToString(), p10, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p11 = @"^中中错中错错中错中中错中错";
+                        string p11 = @"^错中错中中错中错错中错";
                         MatchCollection amatches11 = Regex.Matches(sb.ToString(), p11, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p12 = @"^中中错中错错中错中中错中错错";
+                        string p12 = @"^错错中错中中错中错错中错";
                         MatchCollection amatches12 = Regex.Matches(sb.ToString(), p12, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p13 = @"^中中错中错错中错中中错中错错中";
+                        string p13 = @"^中错错中错中中错中错错中错";
                         MatchCollection amatches13 = Regex.Matches(sb.ToString(), p13, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p14 = @"^中中错中错错中错中中错中错错中错";
+                        string p14 = @"^错中错错中错中中错中错错中错";
                         MatchCollection amatches14 = Regex.Matches(sb.ToString(), p14, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p15 = @"^中中错中错错中错中中错中错错中错中";
+                        string p15 = @"^中错中错错中错中中错中错错中错";
                         MatchCollection amatches15 = Regex.Matches(sb.ToString(), p15, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        string p16 = @"^中中错中错错中错中中错中错错中错中中";
+                        string p16 = @"^中中错中错错中错中中错中错错中错";
                         MatchCollection amatches16 = Regex.Matches(sb.ToString(), p16, RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                         if (amatches2.Count > 0 && amatches3.Count == 0)
