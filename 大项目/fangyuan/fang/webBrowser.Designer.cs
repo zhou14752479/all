@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -46,6 +47,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             // 
             // splitContainer1.Panel2
@@ -54,6 +56,14 @@
             this.splitContainer1.Size = new System.Drawing.Size(1259, 653);
             this.splitContainer1.SplitterDistance = 179;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(1259, 84);
+            this.textBox1.TabIndex = 0;
             // 
             // webBrowser1
             // 
@@ -65,14 +75,15 @@
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
-            // textBox1
+            // button1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1259, 179);
-            this.textBox1.TabIndex = 0;
+            this.button1.Location = new System.Drawing.Point(384, 106);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(217, 38);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "登陆成功，关闭此窗口";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // webBrowser
             // 
@@ -97,5 +108,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

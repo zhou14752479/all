@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,35 +22,82 @@ namespace fang._2019
             InitializeComponent();
         }
 
-        private void 淘宝商品上下架_Load(object sender, EventArgs e)
-        {
-            textBox1.Text = webbrowser.cookie;
-        }
-        bool zanting = true;
-        public void run()
+
+      public static  string COOKIE= "";
+
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset,string COOKIE)
         {
             try
             {
-                int type = 0;
+             
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.KeepAlive = false;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
+        private void 淘宝商品上下架_Load(object sender, EventArgs e)
+        {
+         
+        }
+        bool zanting = true;
+        bool status = true;
+        public void run()
+        {
+            if (COOKIE == "")
+            {
+                MessageBox.Show("请登录账号！");
+                return;
+            }
+            listView1.Items.Clear();
+            try
+            {
+                string type = "on_sale";
                 if (radioButton1.Checked == true)
                 {
-                    type = 11;
+                    type = "on_sale";
                 }
 
-                else if (radioButton1.Checked == true)
+                else if (radioButton2.Checked == true)
                 {
-                    type = 1;
+                    type = "in_stock";
                 }
 
 
                 for (int i = 1; i < 99999; i++)
                 {
 
-                    string url = "https://sell.taobao.com/auction/merchandise/auction_list.htm?type=" + type;
-                    string postdata = "_tb_token_=57685d3e0586a&pageName=goodsOnSale&banner=&page=" + i + "&setVal=&orderField=1&orderBy=0&singleId=&singleIdNum=&singleIdMinNum=&distributionIds=&action=goodsmanager%2FGoodsManageAction&event_submit_do_recommend=&event_submit_do_delete=&event_submit_do_off_shelf=&event_submit_do_unrecommend=&event_submit_do_g9_distribute=&event_submit_do_set_lighting_auction=&shopCatName=%C8%AB%B2%BF%B7%D6%C0%E0&searchKeyword=&startPrice=&endPrice=&itemConditionSet=&outId=&startNum=&endNum=&itemStepAudit=&category=&scatid=&itemId=&operate=&canoff%3A589166196631=true&recommend%3A589166196631=false&fittingRoom%3A589166196631=false&canoff%3A589378993132=true&recommend%3A589378993132=false&fittingRoom%3A589378993132=false&canoff%3A589378729533=true&recommend%3A589378729533=false&fittingRoom%3A589378729533=false&canoff%3A589527138215=true&recommend%3A589527138215=false&fittingRoom%3A589527138215=false&canoff%3A589166396372=true&recommend%3A589166396372=false&fittingRoom%3A589166396372=false&canoff%3A589527054270=true&recommend%3A589527054270=false&fittingRoom%3A589527054270=false&canoff%3A589166400362=true&recommend%3A589166400362=false&fittingRoom%3A589166400362=false&canoff%3A589527058238=true&recommend%3A589527058238=false&fittingRoom%3A589527058238=false&canoff%3A589378785389=true&recommend%3A589378785389=false&fittingRoom%3A589378785389=false&canoff%3A589166068792=true&recommend%3A589166068792=false&fittingRoom%3A589166068792=false&canoff%3A589379013067=true&recommend%3A589379013067=false&fittingRoom%3A589379013067=false&canoff%3A589379045007=true&recommend%3A589379045007=false&fittingRoom%3A589379045007=false&canoff%3A589689775205=true&recommend%3A589689775205=false&fittingRoom%3A589689775205=false&canoff%3A589378765339=true&recommend%3A589378765339=false&fittingRoom%3A589378765339=false&canoff%3A589689919017=true&recommend%3A589689919017=false&fittingRoom%3A589689919017=false&canoff%3A589526762665=true&recommend%3A589526762665=false&fittingRoom%3A589526762665=false&canoff%3A589378709360=true&recommend%3A589378709360=false&fittingRoom%3A589378709360=false&canoff%3A589689739178=true&recommend%3A589689739178=false&fittingRoom%3A589689739178=false&canoff%3A589166392178=true&recommend%3A589166392178=false&fittingRoom%3A589166392178=false&canoff%3A589166284283=true&recommend%3A589166284283=false&fittingRoom%3A589166284283=false&operate=&pageNO=";
-                    string cookie = textBox1.Text;
-                    string html = method.PostUrl(url, postdata, cookie, "gb2312");
-                    MatchCollection IDs = Regex.Matches(html, @"data-param=""itemId=([\s\S]*?)&cid=([\s\S]*?)&title=([\s\S]*?)""");
+                    string url = "https://item.publish.taobao.com/taobao/manager/table.htm?jsonBody=%7B%22filter%22%3A%7B%7D%2C%22pagination%22%3A%7B%22current%22%3A"+i+"%2C%22pageSize%22%3A20%7D%2C%22table%22%3A%7B%22sort%22%3A%7B%7D%7D%2C%22tab%22%3A%22"+type+"%22%7D";
+
+                   
+                    
+                    string html = GetUrl(url,"utf-8", COOKIE);
+                    MatchCollection IDs = Regex.Matches(html, @"itemId"":""([\s\S]*?)""");
+                    MatchCollection titles = Regex.Matches(html, @"link"",""text"":""([\s\S]*?)""");
 
                     if (IDs.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
@@ -57,7 +107,7 @@ namespace fang._2019
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(IDs[j].Groups[1].Value);
-                        lv1.SubItems.Add(IDs[j].Groups[3].Value);
+                        lv1.SubItems.Add(titles[j].Groups[1].Value);
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -66,8 +116,13 @@ namespace fang._2019
                         {
                             listView1.EnsureVisible(listView1.Items.Count - 1);
                         }
+
+                        if (status==false)
+                        {
+                            return;
+                        }
                     }
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                 }
 
             }
@@ -79,9 +134,27 @@ namespace fang._2019
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
+            status = true;
+            #region   读取注册码信息才能运行软件！
+
+            RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
+            if (rsg != null && rsg.GetValue("mac") != null)  //如果值不为空
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+
+            }
+
+            else
+            {
+                MessageBox.Show("请注册软件！");
+                login lg = new login();
+                lg.Show();
+            }
+
+            #endregion
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -96,11 +169,59 @@ namespace fang._2019
 
         private void 删除此商品ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
 
-            textBox5.Text = "http://gw.api.taobao.com/router/rest?sign=48EB55380FBD5C0B58E4FD265BE5A36F&timestamp=2019-03-21+15%3A04%3A10&v=2.0&app_key=" + textBox2.Text + "&method=taobao.item.delete&sign_method=hmac&partner_id=top-apitools&session=" + textBox4.Text + "&format=json&num_iid=" + this.listView1.SelectedItems[0].SubItems[1].Text + "&force_sensitive_param_fuzzy=true";
-            //textBox5.Text=  method.GetUrl("http://gw.api.taobao.com/router/rest?sign=48EB55380FBD5C0B58E4FD265BE5A36F&timestamp=2019-03-21+15%3A04%3A10&v=2.0&app_key="+textBox2.Text+"&method=taobao.item.delete&sign_method=hmac&partner_id=top-apitools&session="+textBox4.Text+"&format=json&num_iid="+ this.listView1.SelectedItems[0].SubItems[1].Text + "&force_sensitive_param_fuzzy=true", "utf-8");
+            for (int i = 0; i < this.listView1.SelectedItems.Count; i++)
+            {
+                
+                string postdata = "jsonBody=%7B%22auctionids%22%3A%5B%22" + this.listView1.SelectedItems[i].SubItems[1].Text + "%22%5D%7D";
+                string url = "https://item.publish.taobao.com/taobao/manager/batchFastEdit.htm?optType=batchDeleteItemSubmitPlugin";
+                textBox5.Text += this.listView1.SelectedItems[i].SubItems[2].Text + method.PostUrl(url, postdata, COOKIE, "utf-8") + "\r\n";
+
+
+            
+
+            }
         }
 
-      
+        private void 淘宝商品上下架_Load_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // textBox1.Text = webbrowser.cookie;
+            webBrowser web = new webBrowser("https://login.taobao.com/member/login.jhtml");
+            web.Show();
+        }
+
+        private void splitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
+        {
+            textBox1.Text = webBrowser.cookie;
+            COOKIE = textBox1.Text;
+        }
+
+        private void 下架此商品ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.listView1.SelectedItems.Count; i++)
+            {
+                textBox5.Text  += this.listView1.SelectedItems[i].SubItems[2].Text + GetUrl("https://item.publish.taobao.com/taobao/manager/fastEdit.htm?optType=batchDownShelfSubmitPlugin&jsonBody=%7B%22itemId%22:%22" + this.listView1.SelectedItems[i].SubItems[1].Text + "%22%7D", "utf-8", COOKIE) + "\r\n";
+            }
+
+        }
+
+        private void 上架此商品ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.listView1.SelectedItems.Count; i++)
+            {
+                textBox5.Text += this.listView1.SelectedItems[i].SubItems[2].Text + GetUrl("https://item.publish.taobao.com/taobao/manager/fastEdit.htm?optType=batchUpShelfSubmitPlugin&jsonBody=%7B%22itemId%22:%22" + this.listView1.SelectedItems[i].SubItems[1].Text + "%22%7D", "utf-8", COOKIE) + "\r\n";
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
     }
 }

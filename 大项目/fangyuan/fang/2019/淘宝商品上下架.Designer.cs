@@ -29,15 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(淘宝商品上下架));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -54,11 +49,15 @@
             this.删除此商品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.上架此商品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.下架此商品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button5 = new System.Windows.Forms.Button();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -68,6 +67,8 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 440);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(705, 22);
@@ -82,13 +83,17 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.button5);
+            this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.radioButton2);
             this.splitContainer1.Panel1.Controls.Add(this.radioButton1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.MouseEnter += new System.EventHandler(this.splitContainer1_Panel1_MouseEnter);
             // 
             // splitContainer1.Panel2
             // 
@@ -97,78 +102,24 @@
             this.splitContainer1.SplitterDistance = 234;
             this.splitContainer1.TabIndex = 1;
             // 
-            // groupBox2
+            // button4
             // 
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 226);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 112);
-            this.groupBox2.TabIndex = 44;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "参数设置";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 87);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 12);
-            this.label3.TabIndex = 38;
-            this.label3.Text = "SessionKey:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(85, 84);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(132, 21);
-            this.textBox4.TabIndex = 37;
-            this.textBox4.Text = "6101018dbbd914698336f5364b1d38615fbb77b0fb6ba092909643899";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "AppSecret:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 12);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "AppKey:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(85, 17);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(132, 21);
-            this.textBox2.TabIndex = 34;
-            this.textBox2.Text = "23140690";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(85, 51);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(132, 21);
-            this.textBox3.TabIndex = 33;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.Font = new System.Drawing.Font("宋体", 10F);
+            this.button4.Location = new System.Drawing.Point(0, 98);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(234, 33);
+            this.button4.TabIndex = 45;
+            this.button4.Text = "第一步：登陆获取COOKIE";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("宋体", 11F);
-            this.button3.Location = new System.Drawing.Point(123, 172);
+            this.button3.Location = new System.Drawing.Point(109, 245);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(83, 26);
+            this.button3.Size = new System.Drawing.Size(83, 31);
             this.button3.TabIndex = 43;
             this.button3.Text = "继续";
             this.button3.UseVisualStyleBackColor = true;
@@ -177,9 +128,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 11F);
-            this.button2.Location = new System.Drawing.Point(24, 172);
+            this.button2.Location = new System.Drawing.Point(12, 245);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 26);
+            this.button2.Size = new System.Drawing.Size(83, 31);
             this.button2.TabIndex = 42;
             this.button2.Text = "暂停";
             this.button2.UseVisualStyleBackColor = true;
@@ -188,9 +139,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(123, 118);
+            this.radioButton2.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton2.Location = new System.Drawing.Point(12, 204);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(83, 16);
+            this.radioButton2.Size = new System.Drawing.Size(95, 18);
             this.radioButton2.TabIndex = 41;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "仓库中商品";
@@ -199,9 +151,10 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(24, 118);
+            this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton1.Location = new System.Drawing.Point(12, 159);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(83, 16);
+            this.radioButton1.Size = new System.Drawing.Size(95, 18);
             this.radioButton1.TabIndex = 40;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "出售中商品";
@@ -209,21 +162,21 @@
             // 
             // textBox1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 338);
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(234, 102);
+            this.textBox1.Size = new System.Drawing.Size(234, 98);
             this.textBox1.TabIndex = 39;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 11F);
-            this.button1.Location = new System.Drawing.Point(24, 140);
+            this.button1.Location = new System.Drawing.Point(109, 159);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 26);
+            this.button1.Size = new System.Drawing.Size(108, 63);
             this.button1.TabIndex = 38;
-            this.button1.Text = "获取商品列表";
+            this.button1.Text = "第二步：   获取商品列表";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -251,6 +204,7 @@
             this.textBox5.Location = new System.Drawing.Point(0, 0);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
+            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox5.Size = new System.Drawing.Size(467, 82);
             this.textBox5.TabIndex = 34;
             // 
@@ -283,7 +237,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "商品名称";
-            this.columnHeader3.Width = 300;
+            this.columnHeader3.Width = 400;
             // 
             // contextMenuStrip1
             // 
@@ -306,12 +260,51 @@
             this.上架此商品ToolStripMenuItem.Name = "上架此商品ToolStripMenuItem";
             this.上架此商品ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.上架此商品ToolStripMenuItem.Text = "上架此商品";
+            this.上架此商品ToolStripMenuItem.Click += new System.EventHandler(this.上架此商品ToolStripMenuItem_Click);
             // 
             // 下架此商品ToolStripMenuItem
             // 
             this.下架此商品ToolStripMenuItem.Name = "下架此商品ToolStripMenuItem";
             this.下架此商品ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.下架此商品ToolStripMenuItem.Text = "下架此商品";
+            this.下架此商品ToolStripMenuItem.Click += new System.EventHandler(this.下架此商品ToolStripMenuItem_Click);
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("宋体", 11F);
+            this.button5.Location = new System.Drawing.Point(12, 291);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(205, 32);
+            this.button5.TabIndex = 46;
+            this.button5.Text = "停止";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(252, 17);
+            this.toolStripStatusLabel1.Text = "购买QQ：852266010   微信：17606117606";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(12, 365);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(185, 12);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "右击商品进行编辑(上架下架删除)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(12, 387);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 12);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "按住Ctrl可以进行多个商品操作";
             // 
             // 淘宝商品上下架
             // 
@@ -320,15 +313,18 @@
             this.ClientSize = new System.Drawing.Size(705, 462);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "淘宝商品上下架";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "自动商品管理";
+            this.Load += new System.EventHandler(this.淘宝商品上下架_Load_1);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -345,7 +341,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+       public System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -354,18 +350,16 @@
         private System.Windows.Forms.ToolStripMenuItem 下架此商品ToolStripMenuItem;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

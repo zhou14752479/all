@@ -1,4 +1,5 @@
-﻿using System;
+﻿using fang._2019;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -63,6 +64,11 @@ namespace fang
         {
             textBox1.Text= GetCookies(this.url);
             cookie = textBox1.Text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

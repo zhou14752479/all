@@ -636,11 +636,11 @@ namespace fang
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Post";
-            //request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentType = "application/json";
+            request.ContentType = "application/x-www-form-urlencoded";
+            //request.ContentType = "application/json";
             request.ContentLength = postData.Length;
             request.AllowAutoRedirect = true;
-            request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16B92 MicroMessenger/7.0.3(0x17000321) NetType/3G Language/zh_CN";
+            request.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.1.4322)";
             request.Headers.Add("Cookie", COOKIE);
 
             StreamWriter sw = new StreamWriter(request.GetRequestStream());

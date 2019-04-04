@@ -30,11 +30,9 @@ namespace main
         }
 
         bool status = true;
-
-        //http://168s.mobile.hc360.com/get168.cgi?fc=0&e=100&n=0&z=%E4%B8%AD%E5%9B%BD:%E6%B1%9F%E8%8B%8F%E7%9C%81%3A%E5%AE%BF%E8%BF%81%E5%B8%82&v=609&s_id=001%3B003&gs=37&w=%E5%A9%9A%E7%BA%B1
         bool zanting = true;
 
-        #region  慧聪
+        #region  慧聪网
 
         public void huicong()
         {
@@ -44,7 +42,7 @@ namespace main
 
                 string[] keywords = textBox3.Text.Trim().Split(',');
 
-                string city = System.Web.HttpUtility.UrlEncode("中国:江苏省");
+                string city = System.Web.HttpUtility.UrlEncode("中国:"+comboBox1.Text+":"+comboBox2.Text);
                 foreach (string keyword in keywords)
                 {
 
@@ -375,6 +373,7 @@ namespace main
 
         }
         #endregion
+
         #region  百度地图采集
 
         public void baidu()
@@ -658,6 +657,176 @@ namespace main
         private void button7_Click(object sender, EventArgs e)
         {
             status = false;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.comboBox2.Items.Clear();
+            this.comboBox2.Text="";
+            if (this.comboBox1.Text == "全国")
+            {
+                this.comboBox2.Items.Add("中国");
+
+            }
+            else if (this.comboBox1.Text == "北京")
+            {
+                this.comboBox2.Items.Add("北京");
+            }
+            else if (this.comboBox1.Text == "天津")
+            {
+                this.comboBox2.Items.Add("天津");
+            }
+            else if (this.comboBox1.Text == "重庆")
+            {
+                this.comboBox2.Items.Add("重庆");
+            }
+            else if (this.comboBox1.Text == "上海")
+            {
+                this.comboBox2.Items.Add("上海");
+            }
+            else if (this.comboBox1.Text == "河北省")
+            {
+                comboBox2.Items.Add("石家庄市"); comboBox2.Items.Add("保定市"); comboBox2.Items.Add("沧州市"); comboBox2.Items.Add("廊坊市"); comboBox2.Items.Add("唐山市"); comboBox2.Items.Add("邢台市"); comboBox2.Items.Add("邯郸市"); comboBox2.Items.Add("衡水市"); comboBox2.Items.Add("秦皇岛市"); comboBox2.Items.Add("张家口市"); comboBox2.Items.Add("承德市");
+            }
+            else if (this.comboBox1.Text == "山西省")
+            {
+                comboBox2.Items.Add("太原市"); comboBox2.Items.Add("运城市"); comboBox2.Items.Add("临汾市"); comboBox2.Items.Add("大同市"); comboBox2.Items.Add("长治市"); comboBox2.Items.Add("晋城市"); comboBox2.Items.Add("吕梁市"); comboBox2.Items.Add("衡水市"); comboBox2.Items.Add("阳泉市"); comboBox2.Items.Add("忻州市"); comboBox2.Items.Add("朔州市"); comboBox2.Items.Add("晋中市");
+            }
+            else if (this.comboBox1.Text == "内蒙古自治区")
+            {
+                comboBox2.Items.Add("呼和浩特市"); comboBox2.Items.Add("包头市"); comboBox2.Items.Add("赤峰市"); comboBox2.Items.Add("呼伦贝尔市"); comboBox2.Items.Add("通辽市"); comboBox2.Items.Add("鄂尔多斯市"); comboBox2.Items.Add("巴彦淖尔盟市"); comboBox2.Items.Add("锡林郭勒市"); comboBox2.Items.Add("乌兰察布市"); comboBox2.Items.Add("兴安盟"); comboBox2.Items.Add("乌海市"); comboBox2.Items.Add("阿拉善盟市");
+            }
+            else if (this.comboBox1.Text == "辽宁省")
+            {
+                comboBox2.Items.Add("沈阳市"); comboBox2.Items.Add("大连市"); comboBox2.Items.Add("鞍山市"); comboBox2.Items.Add("锦州市"); comboBox2.Items.Add("营口市"); comboBox2.Items.Add("丹东市"); comboBox2.Items.Add("抚顺市"); comboBox2.Items.Add("朝阳市"); comboBox2.Items.Add("葫芦岛市"); comboBox2.Items.Add("铁岭市"); comboBox2.Items.Add("辽阳市"); comboBox2.Items.Add("盘锦市"); comboBox2.Items.Add("阜新市"); comboBox2.Items.Add("本溪市");
+            }
+            else if (this.comboBox1.Text == "吉林省")
+            {
+                comboBox2.Items.Add("长春市"); comboBox2.Items.Add("吉林市"); comboBox2.Items.Add("延边朝鲜族自治州"); comboBox2.Items.Add("通化市"); comboBox2.Items.Add("四平市"); comboBox2.Items.Add("白城市"); comboBox2.Items.Add("松原市"); comboBox2.Items.Add("白山市"); comboBox2.Items.Add("辽源市");
+
+            }
+            else if (this.comboBox1.Text == "黑龙江省")
+            {
+                comboBox2.Items.Add("哈尔滨市"); comboBox2.Items.Add("大庆市"); comboBox2.Items.Add("齐齐哈尔市"); comboBox2.Items.Add("佳木斯市"); comboBox2.Items.Add("伊春市"); comboBox2.Items.Add("牡丹江市"); comboBox2.Items.Add("鸡西市"); comboBox2.Items.Add("黑河市"); comboBox2.Items.Add("绥化市"); comboBox2.Items.Add("双鸭山市"); comboBox2.Items.Add("鹤岗市"); comboBox2.Items.Add("七台河市"); comboBox2.Items.Add("大兴安岭地区");
+            }
+            else if (this.comboBox1.Text == "江苏省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市"); 
+            }
+            else if (this.comboBox1.Text == "浙江省")
+            {
+                comboBox2.Items.Add("杭州市"); comboBox2.Items.Add("温州市"); comboBox2.Items.Add("宁波市"); comboBox2.Items.Add("金华市"); comboBox2.Items.Add("台州市"); comboBox2.Items.Add("嘉兴市"); comboBox2.Items.Add("绍兴市"); comboBox2.Items.Add("湖州市"); comboBox2.Items.Add("丽水市"); comboBox2.Items.Add("衢州市"); comboBox2.Items.Add("舟山市"); 
+            }
+            else if (this.comboBox1.Text == "安徽省")
+            {
+                comboBox2.Items.Add("合肥市"); comboBox2.Items.Add("淮北市"); comboBox2.Items.Add("安庆市"); comboBox2.Items.Add("芜湖市"); comboBox2.Items.Add("阜阳市"); comboBox2.Items.Add("滁州市"); comboBox2.Items.Add("蚌埠市"); comboBox2.Items.Add("马鞍山市"); comboBox2.Items.Add("六安市"); comboBox2.Items.Add("巢湖市"); comboBox2.Items.Add("宣城市"); comboBox2.Items.Add("淮南市"); comboBox2.Items.Add("亳州市"); comboBox2.Items.Add("黄山市"); comboBox2.Items.Add("池州市"); comboBox2.Items.Add("铜陵市"); comboBox2.Items.Add("宿州市");
+            }
+            else if (this.comboBox1.Text == "福建省")
+            {
+                comboBox2.Items.Add("厦门市"); comboBox2.Items.Add("泉州市"); comboBox2.Items.Add("福州市"); comboBox2.Items.Add("漳州市"); comboBox2.Items.Add("莆田市"); comboBox2.Items.Add("龙岩市"); comboBox2.Items.Add("宁德市"); comboBox2.Items.Add("三明市"); comboBox2.Items.Add("南平市"); 
+            }
+            else if (this.comboBox1.Text == "江西省")
+            {
+                comboBox2.Items.Add("南昌市"); comboBox2.Items.Add("抚州市"); comboBox2.Items.Add("赣州市"); comboBox2.Items.Add("九江市"); comboBox2.Items.Add("上饶市"); comboBox2.Items.Add("吉安市"); comboBox2.Items.Add("景德镇市"); comboBox2.Items.Add("萍乡市"); comboBox2.Items.Add("新余市"); comboBox2.Items.Add("宜春市"); comboBox2.Items.Add("鹰潭市"); 
+            }
+            else if (this.comboBox1.Text == "山东省")
+            {
+                comboBox2.Items.Add("济南市"); comboBox2.Items.Add("青岛市"); comboBox2.Items.Add("淄博市"); comboBox2.Items.Add("枣庄市"); comboBox2.Items.Add("东营市"); comboBox2.Items.Add("烟台市"); comboBox2.Items.Add("莱阳市"); comboBox2.Items.Add("潍坊市"); comboBox2.Items.Add("济宁市"); comboBox2.Items.Add("泰安市"); comboBox2.Items.Add("威海市"); comboBox2.Items.Add("日照市"); comboBox2.Items.Add("滨州市"); comboBox2.Items.Add("德州市"); comboBox2.Items.Add("聊城市"); comboBox2.Items.Add("临沂市"); comboBox2.Items.Add("菏泽市"); comboBox2.Items.Add("莱芜市");
+            }
+            else if (this.comboBox1.Text == "河南省")
+            {
+                comboBox2.Items.Add("郑州市"); comboBox2.Items.Add("洛阳市"); comboBox2.Items.Add("新乡市"); comboBox2.Items.Add("南阳市"); comboBox2.Items.Add("安阳市"); comboBox2.Items.Add("焦作市"); comboBox2.Items.Add("许昌市"); comboBox2.Items.Add("商丘市"); comboBox2.Items.Add("平顶山市"); comboBox2.Items.Add("周口市"); comboBox2.Items.Add("信阳市"); comboBox2.Items.Add("濮阳市"); comboBox2.Items.Add("开封市"); comboBox2.Items.Add("驻马店市"); comboBox2.Items.Add("鹤壁市"); comboBox2.Items.Add("三门峡市"); comboBox2.Items.Add("漯河市"); comboBox2.Items.Add("济源市");
+            }
+            else if (this.comboBox1.Text == "湖北省")
+            {
+                comboBox2.Items.Add("武汉市"); comboBox2.Items.Add("襄樊市"); comboBox2.Items.Add("宜昌市"); comboBox2.Items.Add("荆州市"); comboBox2.Items.Add("十堰市"); comboBox2.Items.Add("孝感市"); comboBox2.Items.Add("黄冈市"); comboBox2.Items.Add("恩施土家族苗族自治州"); comboBox2.Items.Add("黄石市"); comboBox2.Items.Add("荆门市"); comboBox2.Items.Add("随州市"); comboBox2.Items.Add("咸宁市"); comboBox2.Items.Add("鄂州市"); comboBox2.Items.Add("潜江市"); comboBox2.Items.Add("神农架林区市"); comboBox2.Items.Add("天门市"); comboBox2.Items.Add("仙桃市");
+            }
+            else if (this.comboBox1.Text == "湖南省")
+            {
+                comboBox2.Items.Add("长沙市"); comboBox2.Items.Add("湘潭市"); comboBox2.Items.Add("衡阳市"); comboBox2.Items.Add("株洲市"); comboBox2.Items.Add("郴州市"); comboBox2.Items.Add("常德市"); comboBox2.Items.Add("邵阳市"); comboBox2.Items.Add("岳阳市"); comboBox2.Items.Add("怀化市"); comboBox2.Items.Add("永州市"); comboBox2.Items.Add("娄底市"); comboBox2.Items.Add("益阳市"); comboBox2.Items.Add("张家界市");
+            }
+            else if (this.comboBox1.Text == "广东省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "广西省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "海南省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "四川省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "贵州省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "云南省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "西藏自治区")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "陕西省")
+            {
+                comboBox2.Items.Add("西安市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "甘肃省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "甘肃省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "青海省")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "宁夏回族自治区")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+            else if (this.comboBox1.Text == "新疆维吾尔自治区")
+            {
+                comboBox2.Items.Add("苏州市"); comboBox2.Items.Add("南京市"); comboBox2.Items.Add("无锡市"); comboBox2.Items.Add("常州市"); comboBox2.Items.Add("徐州市"); comboBox2.Items.Add("南通市"); comboBox2.Items.Add("扬州市"); comboBox2.Items.Add("泰州市"); comboBox2.Items.Add("盐城市"); comboBox2.Items.Add("镇江市"); comboBox2.Items.Add("连云港市"); comboBox2.Items.Add("淮安市"); comboBox2.Items.Add("宿迁市");
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }
