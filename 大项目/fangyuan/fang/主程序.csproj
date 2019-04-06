@@ -84,6 +84,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="2019\mgstoo图片下载.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019\mgstoo图片下载.Designer.cs">
+      <DependentUpon>mgstoo图片下载.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019\webbrowser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,6 +375,9 @@
     <Compile Include="直播平台软件\kuaishou.Designer.cs">
       <DependentUpon>kuaishou.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="2019\mgstoo图片下载.resx">
+      <DependentUpon>mgstoo图片下载.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019\webbrowser.resx">
       <DependentUpon>webbrowser.cs</DependentUpon>
     </EmbeddedResource>

@@ -20,7 +20,7 @@ namespace fang._2019
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 淘宝商品上下架());
+                Application.Run(new mgstoo图片下载());
 
             //}
             //catch (Exception ex)

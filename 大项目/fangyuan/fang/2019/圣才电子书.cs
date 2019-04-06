@@ -42,7 +42,7 @@ namespace fang._2019
                         string downUrl = "http://e.100xuexi.com/uploads/ebook/" + path.Groups[1].Value + "/mobile/" + path.Groups[1].Value + ".epub";
 
                         textBox1.Text = downUrl;
-                        //method.downloadFile(downUrl, textBox2.Text, title.Groups[1].Value.Replace("_", "").Trim() + ".epub");
+                        method.downloadFile(downUrl, textBox2.Text, title.Groups[1].Value.Replace("_", "").Trim() + ".epub");
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(url);
