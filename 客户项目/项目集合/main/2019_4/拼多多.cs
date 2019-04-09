@@ -108,21 +108,33 @@ namespace main._2019_4
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < (Convert.ToInt32(textBox3.Text)+1); i++)
             {
 
-                    List<string> list = new List<string>();
-                    foreach (ListViewItem item in listView1.Items)
+                    
+               
+               
+                foreach (ListViewItem item in listView1.Items)
                     {
-                        if ((item.Index+1)%5 == i)
+                        if ((item.Index+ Convert.ToInt32(textBox3.Text) + 1)% Convert.ToInt32(textBox3.Text)== i)
                         {
-                            string temp = item.SubItems[1].Text;
+                        List<string> list = new List<string>();
+                        string temp = item.SubItems[1].Text;
                             string temp1 = item.SubItems[2].Text;
                             list.Add(temp + "-----" + temp1);
 
-                            Thread thexp = new Thread(() => export(list)) { IsBackground = true };
-                            thexp.Start();
-                        }
+                        
+                            string path = AppDomain.CurrentDomain.BaseDirectory  +textBox10.Text +i+ ".txt";
+
+                        StringBuilder sb = new StringBuilder();
+                            foreach (string tel in list)
+                            {
+                                sb.AppendLine(tel);
+                            }
+                            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+                            
+                       
+                    }
                     }
                 
 
@@ -131,15 +143,7 @@ namespace main._2019_4
 
         private static void export(List<string> list)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "url_" + Guid.NewGuid().ToString() + ".txt";
-
-            StringBuilder sb = new StringBuilder();
-            foreach (string tel in list)
-            {
-                sb.AppendLine(tel);
-            }
-            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
-            MessageBox.Show("文件导出成功!文件地址:" + path);
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -245,6 +249,11 @@ namespace main._2019_4
                 Index = this.listView2.SelectedItems[0].Index;//取当前选中项的index,SelectedItems[0]这必须为0
                 listView2.Items[Index].Remove();
             }
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
