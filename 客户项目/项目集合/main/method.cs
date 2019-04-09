@@ -410,8 +410,8 @@ namespace main
 
         private static void export(List<string> list)
         {
-            // string path = AppDomain.CurrentDomain.BaseDirectory + "url_" + Guid.NewGuid().ToString() + ".txt";
-            string path = AppDomain.CurrentDomain.BaseDirectory  + Guid.NewGuid().ToString() + ".txt";
+             string path = AppDomain.CurrentDomain.BaseDirectory + "url_" + Guid.NewGuid().ToString() + ".txt";
+            
             StringBuilder sb = new StringBuilder();
             foreach (string tel in list)
             {

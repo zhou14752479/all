@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -155,22 +156,31 @@ namespace main._2019_4
 
             for (int i = 0; i < keywords.Count; i++)
             {
-                textBox10.Text += keywords[i].Groups[3].ToString()+"\r\n";
+                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                lv2.SubItems.Add(keywords[i].Groups[3].ToString());
+               
             }
             
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            string[] keys = textBox10.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            Random rd = new Random();
+            ArrayList keys =new ArrayList();
+
+            foreach (ListViewItem item in listView2.Items)
+            {
+                keys.Add(item.SubItems[1].Text);
+            }
+
+
+                Random rd = new Random();
             foreach (ListViewItem item in listView1.Items)
             {
                
                 while (item.SubItems[2].Text.Length < 29)
                 {
 
-                    int suiji = rd.Next(0, keys.Length);
+                    int suiji = rd.Next(0, keys.Count);
                     item.SubItems[2].Text = item.SubItems[2].Text + keys[suiji].ToString();
                 }
             }
@@ -188,6 +198,21 @@ namespace main._2019_4
                     item.SubItems[2].Text = item.SubItems[2].Text.Replace(key, textBox6.Text); ;
                 }
                 
+            }
+        }
+
+        private void listView2_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int Index = 0;
+            if (this.listView2.SelectedItems.Count > 0)//判断listview有被选中项
+            {
+                Index = this.listView2.SelectedItems[0].Index;//取当前选中项的index,SelectedItems[0]这必须为0
+                listView2.Items[Index].Remove();
             }
         }
     }
