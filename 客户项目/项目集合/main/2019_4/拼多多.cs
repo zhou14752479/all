@@ -114,9 +114,15 @@ namespace main._2019_4
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string[] keys = textBox4.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
             foreach (ListViewItem item in listView1.Items)
             {
-                item.SubItems[2].Text = item.SubItems[2].Text.Replace(textBox4.Text.Trim(), ""); 
+                foreach (string key in keys)
+                {
+                    item.SubItems[2].Text = item.SubItems[2].Text.Replace(key.Trim(), "");
+                }
+                
                 
             }
         }
@@ -174,10 +180,13 @@ namespace main._2019_4
 
         private void button5_Click(object sender, EventArgs e)
         {
+            string[] keys = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             foreach (ListViewItem item in listView1.Items)
             {
-                item.SubItems[2].Text= item.SubItems[2].Text.Replace(textBox5.Text, textBox6.Text); ;
-
+                foreach (string key in keys)
+                {
+                    item.SubItems[2].Text = item.SubItems[2].Text.Replace(key, textBox6.Text); ;
+                }
                 
             }
         }
