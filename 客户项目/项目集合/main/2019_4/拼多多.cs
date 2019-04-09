@@ -54,7 +54,7 @@ namespace main._2019_4
                     {
                        
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(Url);
+                        lv1.SubItems.Add(id);
                         lv1.SubItems.Add(title.Trim());
 
                         listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
@@ -108,9 +108,38 @@ namespace main._2019_4
 
         private void button2_Click(object sender, EventArgs e)
         {
-            method.ListviewToTxt(listView1);
+            for (int i = 0; i < 5; i++)
+            {
 
-            //MessageBox.Show((100 - Convert.ToInt32(textBox2.Text)).ToString());
+                    List<string> list = new List<string>();
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        if ((item.Index+1)%5 == i)
+                        {
+                            string temp = item.SubItems[1].Text;
+                            string temp1 = item.SubItems[2].Text;
+                            list.Add(temp + "-----" + temp1);
+
+                            Thread thexp = new Thread(() => export(list)) { IsBackground = true };
+                            thexp.Start();
+                        }
+                    }
+                
+
+            }
+        }
+
+        private static void export(List<string> list)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "url_" + Guid.NewGuid().ToString() + ".txt";
+
+            StringBuilder sb = new StringBuilder();
+            foreach (string tel in list)
+            {
+                sb.AppendLine(tel);
+            }
+            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            MessageBox.Show("文件导出成功!文件地址:" + path);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -123,9 +152,11 @@ namespace main._2019_4
                 {
                     item.SubItems[2].Text = item.SubItems[2].Text.Replace(key.Trim(), "");
                 }
-                
-                
+
+
             }
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)

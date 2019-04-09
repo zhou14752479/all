@@ -301,10 +301,12 @@ namespace main
 
                 return dt;
             }
-            #endregion
+        #endregion
 
-            #region NPOI导出表格
-            public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
+        
+
+        #region NPOI导出表格
+        public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
             {
                 int i = 0;
                 int j = 0;
