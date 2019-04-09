@@ -34,10 +34,7 @@ namespace main._2019_4
             {
                 string[] ids = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-                string url2 = "http://www.ciwuyou.com/fenci/?text=" + textBox9.Text + "&set_ignore=1&do_fork=1&Submit=%E5%88%86+%E8%AF%8D";
-                string strhtml = method.GetUrl(url2, "utf-8");
-                Random rd = new Random();
-                MatchCollection keywords = Regex.Matches(strhtml, @"<td width=""70"">([\s\S]*?)</td>([\s\S]*?)<td width=""71"">([\s\S]*?)</td>");
+              
 
                 foreach (string id in ids)
                 {
@@ -50,29 +47,14 @@ namespace main._2019_4
                     Match titles = Regex.Match(html, @"""goodsName"":""([\s\S]*?)""");
 
                     string title = titles.Groups[1].Value;
-                    decimal a = (Convert.ToDecimal((100 - Convert.ToInt32(textBox2.Text))) / 100);
-                    
-                    string title1 = title.Substring(0,Convert.ToInt32(title.Length*a));
-                    string title2 = title1.Replace(textBox4.Text,"");
-                    string title3 = title2.Replace(textBox5.Text, textBox6.Text);
-                    string title4 = textBox7.Text + title3 + textBox8.Text;
-                    
                    
-                    
-                   
+       
                     for (int i = 0; i < Convert.ToInt32(textBox3.Text); i++)
                     {
-                        string title5 = title4;
-
-                        while (title5.Length < 29)
-                        {
-                            
-                            int suiji = rd.Next(0, keywords.Count);
-                            title5 = title5 + keywords[suiji].Groups[3].ToString();
-                        }
+                       
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(Url);
-                        lv1.SubItems.Add(title5.Trim());
+                        lv1.SubItems.Add(title.Trim());
 
                         listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
              
@@ -128,6 +110,76 @@ namespace main._2019_4
             method.ListviewToTxt(listView1);
 
             //MessageBox.Show((100 - Convert.ToInt32(textBox2.Text)).ToString());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.SubItems[2].Text = item.SubItems[2].Text.Replace(textBox4.Text.Trim(), ""); 
+                
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.SubItems[2].Text = textBox7.Text + item.SubItems[2].Text + textBox8.Text;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                decimal a = (Convert.ToDecimal((100 - Convert.ToInt32(textBox2.Text))) / 100);
+                item.SubItems[2].Text = item.SubItems[2].Text.Substring(0, Convert.ToInt32(item.SubItems[2].Text.Length * a)); 
+
+            }
+            
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string url2 = "http://www.ciwuyou.com/fenci/?text=" + textBox9.Text + "&set_ignore=1&do_fork=1&Submit=%E5%88%86+%E8%AF%8D";
+            string strhtml = method.GetUrl(url2, "utf-8");
+            
+            MatchCollection keywords = Regex.Matches(strhtml, @"<td width=""70"">([\s\S]*?)</td>([\s\S]*?)<td width=""71"">([\s\S]*?)</td>");
+
+            for (int i = 0; i < keywords.Count; i++)
+            {
+                textBox10.Text += keywords[i].Groups[3].ToString()+"\r\n";
+            }
+            
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string[] keys = textBox10.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            Random rd = new Random();
+            foreach (ListViewItem item in listView1.Items)
+            {
+               
+                while (item.SubItems[2].Text.Length < 29)
+                {
+
+                    int suiji = rd.Next(0, keys.Length);
+                    item.SubItems[2].Text = item.SubItems[2].Text + keys[suiji].ToString();
+                }
+            }
+           
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.SubItems[2].Text= item.SubItems[2].Text.Replace(textBox5.Text, textBox6.Text); ;
+
+                
+            }
         }
     }
 }
