@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace main._2019_4
@@ -54,7 +55,7 @@ namespace main._2019_4
                     {
                        
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(id);
+                        lv1.SubItems.Add(Url);
                         lv1.SubItems.Add(title.Trim());
 
                         listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
@@ -108,36 +109,48 @@ namespace main._2019_4
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 1; i < (Convert.ToInt32(textBox3.Text)+1); i++)
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-
-                    
-               
-               
-                foreach (ListViewItem item in listView1.Items)
+                for (int i = 0; i < Convert.ToInt32(textBox3.Text); i++)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (ListViewItem item in listView1.Items)
                     {
-                        if ((item.Index+ Convert.ToInt32(textBox3.Text) + 1)% Convert.ToInt32(textBox3.Text)== i)
+                        if ((item.Index + Convert.ToInt32(textBox3.Text) + 1) % Convert.ToInt32(textBox3.Text) == i)
                         {
-                        List<string> list = new List<string>();
-                        string temp = item.SubItems[1].Text;
+                            List<string> list = new List<string>();
+                            string temp = item.SubItems[1].Text;
                             string temp1 = item.SubItems[2].Text;
                             list.Add(temp + "-----" + temp1);
 
-                        
-                            string path = AppDomain.CurrentDomain.BaseDirectory  +textBox10.Text +i+ ".txt";
-
-                        StringBuilder sb = new StringBuilder();
                             foreach (string tel in list)
                             {
                                 sb.AppendLine(tel);
                             }
-                            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
-                            
-                       
-                    }
-                    }
-                
 
+                        }
+
+                    }
+
+                    string path = "";
+                    if (i == 0)
+                    {
+                        
+                        path = dialog.SelectedPath + "\\"+textBox10.Text + textBox3.Text + ".txt";
+                        
+                    }
+                    else
+                    {
+                        path = dialog.SelectedPath +"\\" +textBox10.Text + i + ".txt";
+                    }
+
+
+                    System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+
+                }
+                MessageBox.Show("导出完成");
             }
         }
 
@@ -184,8 +197,11 @@ namespace main._2019_4
 
         private void button7_Click(object sender, EventArgs e)
         {
-            string url2 = "http://www.ciwuyou.com/fenci/?text=" + textBox9.Text + "&set_ignore=1&do_fork=1&Submit=%E5%88%86+%E8%AF%8D";
-            string strhtml = method.GetUrl(url2, "utf-8");
+            string url2 = "http://www.ciwuyou.com/fenci/";
+            string datautf8= HttpUtility.UrlEncode(textBox9.Text, Encoding.UTF8); ;
+            string postdata = "text="+ datautf8 + "&set_ignore=1&do_fork=1&Submit=%E5%88%86+%E8%AF%8D";
+
+            string strhtml = method.PostUrl(url2,postdata,"", "utf-8");
             
             MatchCollection keywords = Regex.Matches(strhtml, @"<td width=""70"">([\s\S]*?)</td>([\s\S]*?)<td width=""71"">([\s\S]*?)</td>");
 
@@ -254,6 +270,18 @@ namespace main._2019_4
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            listView2.Items.Clear();
+            textBox9.Text = "";
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            textBox1.Text = "";
         }
     }
 }

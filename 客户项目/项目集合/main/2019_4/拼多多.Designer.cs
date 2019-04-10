@@ -48,6 +48,8 @@
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -67,10 +69,10 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -100,6 +102,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button10);
+            this.splitContainer1.Panel2.Controls.Add(this.button9);
             this.splitContainer1.Panel2.Controls.Add(this.button8);
             this.splitContainer1.Panel2.Controls.Add(this.listView2);
             this.splitContainer1.Panel2.Controls.Add(this.button7);
@@ -261,7 +265,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(173, 402);
+            this.button7.Location = new System.Drawing.Point(176, 405);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(74, 23);
             this.button7.TabIndex = 51;
@@ -293,6 +297,24 @@
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能区";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(496, 62);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox10.Size = new System.Drawing.Size(59, 21);
+            this.textBox10.TabIndex = 52;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label11.Location = new System.Drawing.Point(408, 65);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(91, 14);
+            this.label11.TabIndex = 51;
+            this.label11.Text = "导出文件名：";
             // 
             // button6
             // 
@@ -471,27 +493,33 @@
             this.textBox9.Size = new System.Drawing.Size(484, 117);
             this.textBox9.TabIndex = 46;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(408, 65);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(91, 14);
-            this.label11.TabIndex = 51;
-            this.label11.Text = "导出文件名：";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(496, 62);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox10.Size = new System.Drawing.Size(59, 21);
-            this.textBox10.TabIndex = 52;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button9.ForeColor = System.Drawing.Color.DarkCyan;
+            this.button9.Location = new System.Drawing.Point(253, 255);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(79, 23);
+            this.button9.TabIndex = 54;
+            this.button9.Text = "清空分词";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button10.ForeColor = System.Drawing.Color.DarkCyan;
+            this.button10.Location = new System.Drawing.Point(381, 255);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(79, 23);
+            this.button10.TabIndex = 55;
+            this.button10.Text = "清空结果";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // 拼多多
             // 
@@ -560,5 +588,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button9;
     }
 }
