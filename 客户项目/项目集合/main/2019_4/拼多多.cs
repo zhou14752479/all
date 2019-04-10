@@ -167,7 +167,7 @@ namespace main._2019_4
             {
                 foreach (string key in keys)
                 {
-                    item.SubItems[2].Text = item.SubItems[2].Text.Replace(key.Trim(), "");
+                    item.SubItems[2].Text = item.SubItems[2].Text.Replace(key.Trim(), "").Replace(" ","");
                 }
 
 
@@ -283,5 +283,53 @@ namespace main._2019_4
             listView1.Items.Clear();
             textBox1.Text = "";
         }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem lvi = listView1.SelectedItems[0];
+            TextBox tb = new TextBox();
+            tb.Width = 1000;
+            tb.LostFocus += new EventHandler(this.Text_Blur);
+            tb.Location = new Point(lvi.SubItems[2].Bounds.Left, lvi.SubItems[2].Bounds.Top);
+            listView1.Controls.Add(tb);
+            tb.Focus();
+            tb.Text = lvi.SubItems[2].Text;
+
+        }
+
+        private void Text_Blur(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            ListViewItem lvi = listView1.SelectedItems[0];
+            lvi.SubItems[2].Text = tb.Text;
+            tb.Parent.Controls.Remove(tb);
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+                
+        }
+
+        private void listView1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void 访问网址ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListViewItem lvi = listView1.SelectedItems[0];
+            System.Diagnostics.Process.Start(lvi.SubItems[1].Text);
+        }
+
+        private void 删除该行ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int Index = 0;
+            if (this.listView1.SelectedItems.Count > 0)//判断listview有被选中项
+            {
+                Index = this.listView1.SelectedItems[0].Index;//取当前选中项的index,SelectedItems[0]这必须为0
+                listView1.Items[Index].Remove();
+            }
+        }
     }
-}
+    }

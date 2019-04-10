@@ -40,6 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,14 +73,16 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.访问网址ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除该行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -212,6 +216,30 @@
             this.label6.Size = new System.Drawing.Size(119, 14);
             this.label6.TabIndex = 42;
             this.label6.Text = "需要的替换词语：";
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button10.ForeColor = System.Drawing.Color.DarkCyan;
+            this.button10.Location = new System.Drawing.Point(381, 255);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(79, 23);
+            this.button10.TabIndex = 55;
+            this.button10.Text = "清空结果";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button9.ForeColor = System.Drawing.Color.DarkCyan;
+            this.button9.Location = new System.Drawing.Point(253, 255);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(79, 23);
+            this.button9.TabIndex = 54;
+            this.button9.Text = "清空分词";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -460,7 +488,9 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
+            this.listView1.ContextMenuStrip = this.contextMenuStrip2;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
@@ -468,6 +498,9 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.Click += new System.EventHandler(this.listView1_Click);
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView2_MouseClick);
             // 
             // columnHeader1
             // 
@@ -497,29 +530,27 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button9
+            // contextMenuStrip2
             // 
-            this.button9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button9.ForeColor = System.Drawing.Color.DarkCyan;
-            this.button9.Location = new System.Drawing.Point(253, 255);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(79, 23);
-            this.button9.TabIndex = 54;
-            this.button9.Text = "清空分词";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.访问网址ToolStripMenuItem,
+            this.删除该行ToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(181, 70);
             // 
-            // button10
+            // 访问网址ToolStripMenuItem
             // 
-            this.button10.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button10.ForeColor = System.Drawing.Color.DarkCyan;
-            this.button10.Location = new System.Drawing.Point(381, 255);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(79, 23);
-            this.button10.TabIndex = 55;
-            this.button10.Text = "清空结果";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.访问网址ToolStripMenuItem.Name = "访问网址ToolStripMenuItem";
+            this.访问网址ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.访问网址ToolStripMenuItem.Text = "访问网址";
+            this.访问网址ToolStripMenuItem.Click += new System.EventHandler(this.访问网址ToolStripMenuItem_Click);
+            // 
+            // 删除该行ToolStripMenuItem
+            // 
+            this.删除该行ToolStripMenuItem.Name = "删除该行ToolStripMenuItem";
+            this.删除该行ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除该行ToolStripMenuItem.Text = "删除该行";
+            this.删除该行ToolStripMenuItem.Click += new System.EventHandler(this.删除该行ToolStripMenuItem_Click);
             // 
             // 拼多多
             // 
@@ -540,6 +571,7 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -590,5 +622,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem 访问网址ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除该行ToolStripMenuItem;
     }
 }
