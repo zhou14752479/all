@@ -227,12 +227,15 @@ namespace main._2019_4
                 Random rd = new Random();
             foreach (ListViewItem item in listView1.Items)
             {
-               
+
                 while (item.SubItems[2].Text.Length < 29)
                 {
-
                     int suiji = rd.Next(0, keys.Count);
-                    item.SubItems[2].Text = item.SubItems[2].Text + keys[suiji].ToString();
+                    if (!item.SubItems[2].Text.Contains(keys[Convert.ToInt32(suiji)].ToString()))  //包含重复的继续下次随机
+                    {
+                        
+                        item.SubItems[2].Text = item.SubItems[2].Text + keys[Convert.ToInt32(suiji)].ToString();
+                    }
                 }
             }
            
@@ -331,5 +334,7 @@ namespace main._2019_4
                 listView1.Items[Index].Remove();
             }
         }
-    }
+
+       
+        }
     }

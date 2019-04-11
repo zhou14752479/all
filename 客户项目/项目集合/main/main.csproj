@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="2019_4\txt合并.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_4\txt合并.Designer.cs">
+      <DependentUpon>txt合并.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_4\拼多多.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <Compile Include="register.Designer.cs">
       <DependentUpon>register.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="2019_4\txt合并.resx">
+      <DependentUpon>txt合并.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019_4\拼多多.resx">
       <DependentUpon>拼多多.cs</DependentUpon>
     </EmbeddedResource>

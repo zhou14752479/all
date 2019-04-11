@@ -70,12 +70,12 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.访问网址ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除该行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -517,6 +517,28 @@
             this.columnHeader3.Text = "标题";
             this.columnHeader3.Width = 500;
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.访问网址ToolStripMenuItem,
+            this.删除该行ToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(125, 48);
+            // 
+            // 访问网址ToolStripMenuItem
+            // 
+            this.访问网址ToolStripMenuItem.Name = "访问网址ToolStripMenuItem";
+            this.访问网址ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.访问网址ToolStripMenuItem.Text = "访问网址";
+            this.访问网址ToolStripMenuItem.Click += new System.EventHandler(this.访问网址ToolStripMenuItem_Click);
+            // 
+            // 删除该行ToolStripMenuItem
+            // 
+            this.删除该行ToolStripMenuItem.Name = "删除该行ToolStripMenuItem";
+            this.删除该行ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除该行ToolStripMenuItem.Text = "删除该行";
+            this.删除该行ToolStripMenuItem.Click += new System.EventHandler(this.删除该行ToolStripMenuItem_Click);
+            // 
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(173, 279);
@@ -529,28 +551,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.访问网址ToolStripMenuItem,
-            this.删除该行ToolStripMenuItem});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(181, 70);
-            // 
-            // 访问网址ToolStripMenuItem
-            // 
-            this.访问网址ToolStripMenuItem.Name = "访问网址ToolStripMenuItem";
-            this.访问网址ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.访问网址ToolStripMenuItem.Text = "访问网址";
-            this.访问网址ToolStripMenuItem.Click += new System.EventHandler(this.访问网址ToolStripMenuItem_Click);
-            // 
-            // 删除该行ToolStripMenuItem
-            // 
-            this.删除该行ToolStripMenuItem.Name = "删除该行ToolStripMenuItem";
-            this.删除该行ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除该行ToolStripMenuItem.Text = "删除该行";
-            this.删除该行ToolStripMenuItem.Click += new System.EventHandler(this.删除该行ToolStripMenuItem_Click);
             // 
             // 拼多多
             // 
