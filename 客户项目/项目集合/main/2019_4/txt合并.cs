@@ -7,6 +7,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -77,9 +79,9 @@ namespace main._2019_4
         }
 
 
-        public static void run()
+      
+        private void button1_Click(object sender, EventArgs e)
         {
-
             if (path == "")
             {
                 MessageBox.Show("请选择文本所在文件夹");
@@ -88,20 +90,33 @@ namespace main._2019_4
             ArrayList lists = new ArrayList();
 
             lists = GetTxtFiles(path);
-
-            for (int i = 0; i < lists.Count; i++)
+            for (int j = 1; j < 999; j++)
             {
+                for (int i = 0; i < lists.Count; i++)
+                {
+                    Match shuzi = Regex.Match(Path.GetFileName(lists[i].ToString()), @"\d+");
 
-                string a = System.IO.File.ReadAllText("文件A的路径");
-                string b = System.IO.File.ReadAllText("文件B的路径");
-                System.IO.File.WriteAllText("文件C的路径", a + b);
+
+
+                    if (shuzi.Groups[0].Value == j.ToString())
+                    {
+                        //MessageBox.Show(Path.GetFileName(lists[i].ToString()));
+                        string a = System.IO.File.ReadAllText(lists[i].ToString());
+
+                        System.IO.File.AppendAllText(path + "\\" + textBox2.Text + j + ".txt", a);
+                        File.Delete(lists[i].ToString());
+                    }
+
+
+
+                }
             }
-            
 
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+            MessageBox.Show("合并完成");
+
+
+
 
         }
     }
