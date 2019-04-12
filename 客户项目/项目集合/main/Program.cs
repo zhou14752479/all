@@ -16,7 +16,7 @@ namespace main._2019_4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new txt合并());
+            Application.Run(new crm58());
         }
     }
 }

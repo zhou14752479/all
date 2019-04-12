@@ -107,7 +107,7 @@ namespace main
                 {
                     Uri uri = new Uri(url);
                     HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(uri);
-                    myReq.UserAgent = "User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705";
+                    myReq.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
                     myReq.Accept = "*/*";
                     myReq.KeepAlive = true;
                     myReq.Headers.Add("Accept-Language", "zh-cn,en-us;q=0.5");
@@ -134,19 +134,19 @@ namespace main
             /// </summary>
             /// <param name="Url">网址</param>
             /// <returns></returns>
-            public static string GetUrlWithCookie(string Url, string charset, string COOKIE)
+            public static string GetUrlWithCookie(string Url, string COOKIE)
             {
                 try
                 {
 
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
-                    request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36";
+                    request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
 
                     request.Headers.Add("Cookie", COOKIE);
                     HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
-                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                     string content = reader.ReadToEnd();
                     reader.Close();
