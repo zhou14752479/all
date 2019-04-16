@@ -62,7 +62,7 @@ namespace fang._2019
         #endregion
         private void 淘宝商品上下架_Load(object sender, EventArgs e)
         {
-         
+            timer1.Start();  //获取webbrowser的 COOKIE
         }
         bool zanting = true;
         bool status = true;
@@ -122,7 +122,7 @@ namespace fang._2019
                             return;
                         }
                     }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(3000);
                 }
 
             }
@@ -177,17 +177,13 @@ namespace fang._2019
                 string postdata = "jsonBody=%7B%22auctionids%22%3A%5B%22" + this.listView1.SelectedItems[i].SubItems[1].Text + "%22%5D%7D";
                 string url = "https://item.publish.taobao.com/taobao/manager/batchFastEdit.htm?optType=batchDeleteItemSubmitPlugin";
                 textBox5.Text += this.listView1.SelectedItems[i].SubItems[2].Text + method.PostUrl(url, postdata, COOKIE, "utf-8") + "\r\n";
-
+                Thread.Sleep(3000);
 
             
 
             }
         }
 
-        private void 淘宝商品上下架_Load_1(object sender, EventArgs e)
-        {
-            
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -198,8 +194,7 @@ namespace fang._2019
 
         private void splitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
         {
-            textBox1.Text = webBrowser.cookie;
-            COOKIE = textBox1.Text;
+           
         }
 
         private void 下架此商品ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -207,6 +202,8 @@ namespace fang._2019
             for (int i = 0; i < this.listView1.SelectedItems.Count; i++)
             {
                 textBox5.Text  += this.listView1.SelectedItems[i].SubItems[2].Text + GetUrl("https://item.publish.taobao.com/taobao/manager/fastEdit.htm?optType=batchDownShelfSubmitPlugin&jsonBody=%7B%22itemId%22:%22" + this.listView1.SelectedItems[i].SubItems[1].Text + "%22%7D", "utf-8", COOKIE) + "\r\n";
+                Thread.Sleep(3000);
+
             }
 
         }
@@ -216,12 +213,21 @@ namespace fang._2019
             for (int i = 0; i < this.listView1.SelectedItems.Count; i++)
             {
                 textBox5.Text += this.listView1.SelectedItems[i].SubItems[2].Text + GetUrl("https://item.publish.taobao.com/taobao/manager/fastEdit.htm?optType=batchUpShelfSubmitPlugin&jsonBody=%7B%22itemId%22:%22" + this.listView1.SelectedItems[i].SubItems[1].Text + "%22%7D", "utf-8", COOKIE) + "\r\n";
+                Thread.Sleep(3000);
+
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             status = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+            textBox1.Text = webBrowser.cookie;
+            COOKIE = textBox1.Text;
         }
     }
 }

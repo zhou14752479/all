@@ -1,4 +1,4 @@
-﻿using fang._2019;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace fang
+namespace main
 {
     public partial class webBrowser : Form
     {
@@ -64,7 +64,7 @@ namespace fang
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            textBox1.Text= GetCookies(this.url);
+            textBox1.Text = GetCookies(this.url);
             cookie = textBox1.Text;
         }
 
@@ -77,5 +77,7 @@ namespace fang
         {
             webBrowser1.Refresh();
         }
+
+  
     }
 }

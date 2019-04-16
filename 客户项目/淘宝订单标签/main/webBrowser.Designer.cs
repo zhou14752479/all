@@ -1,4 +1,4 @@
-﻿namespace fang
+﻿namespace main
 {
     partial class webBrowser
     {
@@ -55,9 +55,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
-            this.splitContainer1.Size = new System.Drawing.Size(1259, 653);
-            this.splitContainer1.SplitterDistance = 179;
-            this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.Size = new System.Drawing.Size(1267, 717);
+            this.splitContainer1.SplitterDistance = 196;
+            this.splitContainer1.TabIndex = 1;
             // 
             // button1
             // 
@@ -83,7 +83,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1259, 470);
+            this.webBrowser1.Size = new System.Drawing.Size(1267, 517);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
@@ -96,10 +96,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1259, 653);
+            this.ClientSize = new System.Drawing.Size(1267, 717);
             this.Controls.Add(this.splitContainer1);
             this.Name = "webBrowser";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "webBrowser";
             this.Load += new System.EventHandler(this.webBrowser_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -114,9 +113,9 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Timer timer1;
     }
 }

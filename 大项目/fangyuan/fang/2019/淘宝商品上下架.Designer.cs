@@ -31,7 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(淘宝商品上下架));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -49,10 +53,7 @@
             this.删除此商品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.上架此商品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.下架此商品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button5 = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -74,6 +75,12 @@
             this.statusStrip1.Size = new System.Drawing.Size(705, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(252, 17);
+            this.toolStripStatusLabel1.Text = "购买QQ：852266010   微信：17606117606";
             // 
             // splitContainer1
             // 
@@ -101,6 +108,37 @@
             this.splitContainer1.Size = new System.Drawing.Size(705, 440);
             this.splitContainer1.SplitterDistance = 234;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(12, 387);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 12);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "按住Ctrl可以进行多个商品操作";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(12, 365);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(185, 12);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "右击商品进行编辑(上架下架删除)";
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("宋体", 11F);
+            this.button5.Location = new System.Drawing.Point(12, 291);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(205, 32);
+            this.button5.TabIndex = 46;
+            this.button5.Text = "停止";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -269,42 +307,10 @@
             this.下架此商品ToolStripMenuItem.Text = "下架此商品";
             this.下架此商品ToolStripMenuItem.Click += new System.EventHandler(this.下架此商品ToolStripMenuItem_Click);
             // 
-            // button5
+            // timer1
             // 
-            this.button5.Font = new System.Drawing.Font("宋体", 11F);
-            this.button5.Location = new System.Drawing.Point(12, 291);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(205, 32);
-            this.button5.TabIndex = 46;
-            this.button5.Text = "停止";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(252, 17);
-            this.toolStripStatusLabel1.Text = "购买QQ：852266010   微信：17606117606";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(12, 365);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(185, 12);
-            this.label1.TabIndex = 47;
-            this.label1.Text = "右击商品进行编辑(上架下架删除)";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(12, 387);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 12);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "按住Ctrl可以进行多个商品操作";
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // 淘宝商品上下架
             // 
@@ -317,7 +323,7 @@
             this.Name = "淘宝商品上下架";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "自动商品管理";
-            this.Load += new System.EventHandler(this.淘宝商品上下架_Load_1);
+            this.Load += new System.EventHandler(this.淘宝商品上下架_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -361,5 +367,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Timer timer1;
     }
 }
