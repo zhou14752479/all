@@ -64,8 +64,10 @@ namespace fang
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            textBox1.Text= GetCookies(this.url);
+            textBox1.Text = GetCookies(this.url);
             cookie = textBox1.Text;
+            //textBox1.Text = webBrowser1.Document.Cookie;
+            //cookie = textBox1.Text;
         }
 
         private void button1_Click(object sender, EventArgs e)
