@@ -141,7 +141,7 @@ namespace main
 
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
-                    request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
+                    request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 QQ/7.9.0.445 V1_IPH_SQ_7.9.0_1_APP_A Pixel/1080 Core/WKWebView Device/Apple(iPhone 7Plus) NetType/WIFI QBWebViewType/1 WKType/1";
 
                     request.Headers.Add("Cookie", COOKIE);
                     HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈

@@ -37,5 +37,10 @@ namespace main
                 return;
             }
         }
+
+        private void Register_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = method.GetMacAddress();
+        }
     }
 }

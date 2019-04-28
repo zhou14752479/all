@@ -14,6 +14,7 @@ namespace main
     public partial class webBrowser : Form
     {
         public static string cookie { get; set; }
+      
         public string url;
 
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -64,6 +65,7 @@ namespace main
         {
             textBox1.Text = GetCookies("http://oppflow.crm.58.com/visit/accoUserList");
             cookie = textBox1.Text;
+           
         }
 
         private void button1_Click(object sender, EventArgs e)

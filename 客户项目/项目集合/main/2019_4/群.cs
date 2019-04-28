@@ -31,9 +31,17 @@ namespace main._2019_4
             }
         }
 
+        public static string COOKIE = " XWINDEXGREY=1; main_login=qq; pac_uid=1_852266010; pgv_info=ssid=s742373320; pgv_pvid=8532151720; skey=MCjHmnyKqc; uin=o0852266010; traceid=b5e5d0424b";
+
         private void 群_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        public static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
         }
 
         #region  微信群二维码下载主程序
@@ -66,7 +74,7 @@ namespace main._2019_4
                         lists.Add("https://www.weixinqun.com"+url.Groups[2].Value);
                     }
 
-                    MessageBox.Show(lists.Count.ToString());
+                   
                     if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                         break;
@@ -84,7 +92,11 @@ namespace main._2019_4
 
                         method.downloadFile(downurl.Groups[1].Value,path,title.Groups[1].Value+".jpg");
 
-                        listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                        if (listView1.Items.Count > 2)
+                        {
+                            listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                        }
+
 
                     }
 
@@ -112,53 +124,50 @@ namespace main._2019_4
 
         public void run1()
         {
-           
+
+            if (textBox3.Text == "")
+            {
+                MessageBox.Show("请输入QQ群搜索关键字");
+                return;
+            }
+
             try
             {
-                for (int i = 0; i < 3300; i++)
+                for (int i = 0; i < 100; i++)
                 {
+                    string keyword = System.Web.HttpUtility.UrlDecode(textBox3.Text);
+
+                    String Url = "https://qun.qq.com/cgi-bin/group_search/group_search?retype=2&keyword="+keyword+"&page="+i+"&wantnum=20&city_flag=0&distance=1&ver=1&from=9&bkn=1767690426&style=1";
+
+                    string html = method.GetUrlWithCookie(Url, COOKIE);
+
+                    string html2 = Unicode2String(html);
+
+                    MatchCollection names = Regex.Matches(html2, @",""name"":""([\s\S]*?)""");
+                    MatchCollection codes = Regex.Matches(html2, @"""code"":([\s\S]*?),");
 
 
-                    String Url = "https://www.weixinqun.com/group?p=" + i;
-
-                    string html = method.GetUrl(Url, "utf-8");
-
-
-                    MatchCollection urls = Regex.Matches(html, @"<p class=""goods_name ellips"">([\s\S]*?)<a href=""([\s\S]*?)""");
-
-                    ArrayList lists = new ArrayList();
-
-                    foreach (Match url in urls)
-                    {
-                        lists.Add("https://www.weixinqun.com" + url.Groups[2].Value);
-                    }
-
-                    MessageBox.Show(lists.Count.ToString());
-                    if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+                    if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                         break;
-                    foreach (string list in lists)
+                    for (int j = 0; j< names.Count; j++)
 
                     {
 
-
-                        string strhtml = method.GetUrl(list, "utf-8");
-                        Match title = Regex.Match(strhtml, @"<title>([\s\S]*?),");
-                        Match downurl = Regex.Match(strhtml, @"<span class=""shiftcode"" style=""display: none;""><img src=""([\s\S]*?)""");
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                        lv1.SubItems.Add(title.Groups[1].Value.Trim());
-                        lv1.SubItems.Add("微信群请查看二维码，无群号");
+                        lv1.SubItems.Add(names[j].Groups[1].Value.Trim());
+                        lv1.SubItems.Add(codes[j].Groups[1].Value.Trim());
 
-                        method.downloadFile(downurl.Groups[1].Value, path, title.Groups[1].Value + ".jpg");
-
-                        listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                        if (listView1.Items.Count > 2)
+                        {
+                            listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                        }
+                        
 
                     }
 
-
-                    Thread.Sleep(Convert.ToInt32(500));   //内容获取间隔，可变量        
+                    Thread.Sleep(Convert.ToInt32(2000));   //内容获取间隔，可变量        
                 }
-
 
             }
 
@@ -182,10 +191,18 @@ namespace main._2019_4
             RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
             if (rsg != null && rsg.GetValue("mac") != null)  //如果值不为空
             {
-                Thread thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-
+                if (radioButton1.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(run));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
+                else if (radioButton2.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(run1));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
             }
 
             else
@@ -196,6 +213,18 @@ namespace main._2019_4
             }
 
             #endregion
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            webBrowser web1 = new webBrowser("https://qun.qq.com/member.html");
+            web1.Show();
+
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }
