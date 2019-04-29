@@ -73,7 +73,7 @@ namespace main
                         string strhtml = method.GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
                        
                         MatchCollection names = Regex.Matches(strhtml, @"searchResultfoTitle"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        MatchCollection tels = Regex.Matches(strhtml, @"searchResultfoText"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        MatchCollection tels = Regex.Matches(strhtml, @"searchResultfoML"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection areas = Regex.Matches(strhtml, @"searchResultfoZone"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection address = Regex.Matches(strhtml, @"searchResultfoAddress"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection tips = Regex.Matches(strhtml, @"searchResultfoTp"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
