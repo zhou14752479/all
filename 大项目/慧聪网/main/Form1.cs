@@ -53,6 +53,10 @@ namespace main
                 {
                     city = System.Web.HttpUtility.UrlEncode("中国:" + comboBox1.Text );
                 }
+                if (comboBox1.Text == "全国")
+                {
+                    city = System.Web.HttpUtility.UrlEncode("中国" );
+                }
 
                 textBox1.Text = city;
                 foreach (string keyword in keywords)
@@ -85,7 +89,7 @@ namespace main
                         for (int j = 0; j < names.Count; j++)
                         {
 
-                            if (names.Count > 0)
+                            if (names.Count > 0&& tels[j].Groups[1].Value !="")
                             {
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                 lv1.SubItems.Add(names[j].Groups[1].Value.Trim());
@@ -119,9 +123,11 @@ namespace main
                         System.Threading.Thread.Sleep(100);   //内容获取间隔，可变量
 
                     }
-                }
-                
 
+
+                }
+
+                button2.Enabled = true;
             }
             catch (System.Exception ex)
             {
