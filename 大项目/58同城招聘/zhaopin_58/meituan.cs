@@ -322,7 +322,7 @@ namespace zhaopin_58
                             foreach (Match NextMatch in TitleMatchs)
                             {
 
-                                lists.Add("https://apimobile.meituan.com/group/v1/poi/"+ NextMatch.Groups[1].Value + "?fields=areaName,name,addr,phone" );
+                                lists.Add(NextMatch.Groups[1].Value);
                             }
 
                         
@@ -331,14 +331,15 @@ namespace zhaopin_58
                                 break;
                             foreach (string list in lists)
                             {
-                                string strhtml = GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
+                                string strhtml = GetUrl("https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,name,addr,phone");  //定义的GetRul方法 返回 reader.ReadToEnd()                             
 
                             
                                 Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
                                 Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
-                                Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");                        
-                                if (name.Groups[2].Value != "")
+                                Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
+
+                            if (name.Groups[2].Value != "")
                                 {
                                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                     lv1.SubItems.Add(name.Groups[2].Value.Trim());
@@ -346,6 +347,14 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
+
+
+                                //下载图片
+                                string imghtml = GetUrl("https://www.meituan.com/meishi/" + list + "/");
+                                Match imgurl = Regex.Match(imghtml, @"albumImgUrls"":\[""([\s\S]*?)@");
+                                method.downloadFile(imgurl.Groups[1].Value, AppDomain.CurrentDomain.BaseDirectory, name.Groups[2].Value.Trim() + ".jpg");
+
+                                //下载图片结束
 
                                 if (strhtml.Contains("有外卖"))
                                 {

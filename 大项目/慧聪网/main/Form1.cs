@@ -409,7 +409,15 @@ namespace main
 
             {
                 // string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                string[] citys = { "北京市", "上海市", "天津市", "重庆市", "南京市", "成都市", "广州市", "深圳市", "武汉市", "杭州市", "济南市", "苏州市", "宁波市", };
+       
+
+                ArrayList citys = new ArrayList();
+                foreach (var item in comboBox2.Items)
+                {                
+                        citys.Add(item);
+                   
+                }
+                citys.RemoveAt(0);
 
                 string[] keywords = textBox3.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
@@ -419,7 +427,12 @@ namespace main
                 foreach (string city in citys)
 
                 {
-                    int cityid = getcityId(city + "市");  //获取 citycode;
+                    int cityid = getcityId(city );  //获取 citycode;
+                    if (comboBox2.Text != "全省")
+                    {
+                        cityid = getcityId(comboBox2.Text );  //获取 citycode;
+                    }
+                   
 
                     foreach (string keyword in keywords)
 
@@ -429,6 +442,7 @@ namespace main
 
                         {
 
+                            
                             int j = i - 1 > 0 ? i - 1 : 0;
 
                             String Url = "https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_par=direct&pcevaname=pc4.1&qt=con&from=webmap&c=" + cityid + "&wd=" + keyword + "&wd2=&pn=" + i + "&nn=" + j + "0&db=0&sug=0&addr=0&pl_data_type=cater&pl_price_section=0%2C%2B&pl_sort_type=data_type&pl_sort_rule=0&pl_discount2_section=0%2C%2B&pl_groupon_section=0%2C%2B&pl_cater_book_pc_section=0%2C%2B&pl_hotel_book_pc_section=0%2C%2B&pl_ticket_book_flag_section=0%2C%2B&pl_movie_book_section=0%2C%2B&pl_business_type=cater&pl_business_id=&da_src=pcmappg.poi.page&on_gel=1&src=7&gr=3&l=12";
@@ -466,16 +480,15 @@ namespace main
 
                                 if (content.tel !=null)
                                 {
-                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                    lv1.SubItems.Add(content.name);
+                                    ListViewItem lv1 = listView2.Items.Add(listView2.Items.Count.ToString());
                                     lv1.SubItems.Add(content.name);
                                     lv1.SubItems.Add(content.tel);
-
+                                  
                                     lv1.SubItems.Add(content.addr);
                                     lv1.SubItems.Add(keyword.Trim());
-                                    if (listView1.Items.Count - 1 > 1)
+                                    if (listView2.Items.Count - 1 > 1)
                                     {
-                                        listView1.EnsureVisible(listView1.Items.Count - 1);
+                                        listView2.EnsureVisible(listView2.Items.Count - 1);
                                     }
                                     if (status == false)
                                     {
@@ -601,8 +614,11 @@ namespace main
                 MessageBox.Show("请先登录您的账号！");
                 return;
             }
-            Thread thread = new Thread(new ThreadStart(huicong));
-            thread.Start();      
+            //Thread thread = new Thread(new ThreadStart(huicong));
+            //thread.Start();     
+
+            Thread thread = new Thread(new ThreadStart(baidu));
+            thread.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)

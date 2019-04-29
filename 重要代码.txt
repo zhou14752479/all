@@ -5,3 +5,5 @@ Unicode转中文
      	     	  return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
       	        	  source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
        		 }
+获取当前程序运行的文件夹带“\”
+		AppDomain.CurrentDomain.BaseDirectory
