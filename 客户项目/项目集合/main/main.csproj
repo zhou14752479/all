@@ -80,6 +80,12 @@
     <Compile Include="2019_4\拼多多.Designer.cs">
       <DependentUpon>拼多多.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_4\搜索引擎.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_4\搜索引擎.Designer.cs">
+      <DependentUpon>搜索引擎.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_4\群.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_4\拼多多.resx">
       <DependentUpon>拼多多.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_4\搜索引擎.resx">
+      <DependentUpon>搜索引擎.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_4\群.resx">
       <DependentUpon>群.cs</DependentUpon>

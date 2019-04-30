@@ -20,7 +20,7 @@ namespace fang._2019
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 拼多多搜索());
+                Application.Run(new 赶集本地服务());
 
             //}
             //catch (Exception ex)

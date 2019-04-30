@@ -7,3 +7,8 @@ Unicode转中文
        		 }
 获取当前程序运行的文件夹带“\”
 		AppDomain.CurrentDomain.BaseDirectory
+
+
+URL 解码
+System.Web.HttpUtility.UrlEncode(comboBox1.Text);
+

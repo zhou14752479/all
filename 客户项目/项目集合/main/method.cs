@@ -54,7 +54,7 @@ namespace main
                 }
                 catch (System.Exception ex)
                 {
-                    ex.ToString();
+                  MessageBox.Show(  ex.ToString());
 
                 }
                 return "";

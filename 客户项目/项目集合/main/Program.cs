@@ -16,7 +16,7 @@ namespace main._2019_4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 群());
+            Application.Run(new 搜索引擎());
         }
     }
 }
