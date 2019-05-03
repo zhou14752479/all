@@ -92,6 +92,18 @@
     <Compile Include="2019_4\群.Designer.cs">
       <DependentUpon>群.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_5\拼多多推荐.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\拼多多推荐.Designer.cs">
+      <DependentUpon>拼多多推荐.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_5\网站发布项目.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\网站发布项目.Designer.cs">
+      <DependentUpon>网站发布项目.cs</DependentUpon>
+    </Compile>
     <Compile Include="method.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_4\群.resx">
       <DependentUpon>群.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\拼多多推荐.resx">
+      <DependentUpon>拼多多推荐.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\网站发布项目.resx">
+      <DependentUpon>网站发布项目.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

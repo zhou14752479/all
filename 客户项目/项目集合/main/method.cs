@@ -34,8 +34,8 @@ namespace main
                 try
                 {
 
-
-                    string COOKIE = "api_uid=rBUGYFw76x2onmUyf6+7Ag==; ua=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F71.0.3578.98%20Safari%2F537.36; msec=1800000; webp=1; rec_list_catgoods=rec_list_catgoods_tS1aCi; _nano_fp=XpdYl09Yn59Yl0d8Xo_3OImpoqcCXvWZljWqsB1u; rec_list=rec_list_a5zfaK; rec_list_mall_bottom=rec_list_mall_bottom_BvBfWF; rec_list_index=rec_list_index_57uosz; JSESSIONID=CFC9795F1F6ED86DEA7F9FFF6950FCEE; pdd_user_id=7312500755985; pdd_user_uin=7BT7HSLWTMIXDJYZTOHT4Q45MQ_GEXDA; PDDAccessToken=HM4WB65TFF2ZZBSTYMGVAXE3WQTA47CGOT2ZKRP5S2GVRZFJG74Q102118b; goods_detail=goods_detail_q5vUgt; goods_detail_mall=goods_detail_mall_SpisdW; ab=0; sp=0; gp=0; egrp=5";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //加上这一句
+                string COOKIE = "api_uid=rBUGYFw76x2onmUyf6+7Ag==; ua=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F71.0.3578.98%20Safari%2F537.36; msec=1800000; webp=1; rec_list_catgoods=rec_list_catgoods_tS1aCi; _nano_fp=XpdYl09Yn59Yl0d8Xo_3OImpoqcCXvWZljWqsB1u; rec_list=rec_list_a5zfaK; rec_list_mall_bottom=rec_list_mall_bottom_BvBfWF; rec_list_index=rec_list_index_57uosz; JSESSIONID=CFC9795F1F6ED86DEA7F9FFF6950FCEE; pdd_user_id=7312500755985; pdd_user_uin=7BT7HSLWTMIXDJYZTOHT4Q45MQ_GEXDA; PDDAccessToken=HM4WB65TFF2ZZBSTYMGVAXE3WQTA47CGOT2ZKRP5S2GVRZFJG74Q102118b; goods_detail=goods_detail_q5vUgt; goods_detail_mall=goods_detail_mall_SpisdW; ab=0; sp=0; gp=0; egrp=5";
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
                     request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";

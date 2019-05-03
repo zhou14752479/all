@@ -291,6 +291,7 @@ namespace zhaopin_58
 
         public void run()
         {
+           
 
             try
             {
@@ -331,7 +332,7 @@ namespace zhaopin_58
                                 break;
                             foreach (string list in lists)
                             {
-                                string strhtml = GetUrl("https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,name,addr,phone");  //定义的GetRul方法 返回 reader.ReadToEnd()                             
+                                string strhtml = GetUrl("https://apimobile.meituan.com/group/v1/poi/"+list+"?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng");  //定义的GetRul方法 返回 reader.ReadToEnd()                             
 
                             
                                 Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
@@ -348,11 +349,16 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
 
-
+                                
                                 //下载图片
-                                string imghtml = GetUrl("https://www.meituan.com/meishi/" + list + "/");
-                                Match imgurl = Regex.Match(imghtml, @"albumImgUrls"":\[""([\s\S]*?)@");
-                                method.downloadFile(imgurl.Groups[1].Value, AppDomain.CurrentDomain.BaseDirectory, name.Groups[2].Value.Trim() + ".jpg");
+                               
+                                Match imgurl = Regex.Match(strhtml, @"frontImg"":""([\s\S]*?)""");
+                               
+                                if (method.GetUrl(imgurl.Groups[1].Value.Replace("/w.h", ""))!="")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
+                                {
+                                    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h",""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[2].Value.Trim() + ".jpg");
+
+                                }
 
                                 //下载图片结束
 

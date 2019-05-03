@@ -19,7 +19,7 @@ namespace _58.程序界面
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                Application.Run(new Map());
+                Application.Run(new fang_58());
 
 
         }
