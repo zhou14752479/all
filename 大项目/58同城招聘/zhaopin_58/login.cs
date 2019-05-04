@@ -87,11 +87,11 @@ namespace zhaopin_58
 
 
 
-                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select * from wuba2019 where phone='" + skinTextBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("select * from vip where phone='" + skinTextBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
 
                 MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源

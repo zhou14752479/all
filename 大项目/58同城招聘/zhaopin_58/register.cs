@@ -51,7 +51,7 @@ namespace zhaopin_58
             {
 
 
-                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -59,7 +59,7 @@ namespace zhaopin_58
                 string password = skinTextBox2.Text.Trim();
                 string phone = skinTextBox3.Text.Trim();
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO wuba2019 (username,password,phone,register_t,ip,mac)VALUES('" + username + " ', '" + password + " ','" + phone + " ', '" + time + " ', '" + ip + " ', '" + mac + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO vip (username,password,phone,register_t,ip,mac)VALUES('" + username + " ', '" + password + " ','" + phone + " ', '" + time + " ', '" + ip + " ', '" + mac + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
                 //  MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，注册不需要读取，直接执行SQL语句即可
 

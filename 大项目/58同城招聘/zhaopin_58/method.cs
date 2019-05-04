@@ -11,6 +11,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -18,8 +19,56 @@ using System.Windows.Forms;
 
 namespace zhaopin_58
 {
+   
     class method
     {
+      
+
+        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern bool InternetGetCookieEx(string lpszUrl, string lpszCookieName, StringBuilder lpszCookieData, ref int lpdwSize, int dwFlags, IntPtr lpReserved);
+
+        const int ERROR_INSUFFICIENT_BUFFER = 122;
+
+        const int INTERNET_COOKIE_HTTPONLY = 0x00002000;
+
+        public static string GetCookies(string uri)
+        {
+            StringBuilder buffer;
+            string result;
+            int bufferLength;
+            int flags;
+
+            bufferLength = 1024;
+            buffer = new StringBuilder(bufferLength);
+
+            flags = INTERNET_COOKIE_HTTPONLY;
+
+            if (InternetGetCookieEx(uri, null, buffer, ref bufferLength, flags, IntPtr.Zero))
+            {
+                result = buffer.ToString();
+            }
+            else
+            {
+                result = null;
+
+                if (Marshal.GetLastWin32Error() == ERROR_INSUFFICIENT_BUFFER)
+                {
+                    buffer.Length = bufferLength;
+
+                    if (InternetGetCookieEx(uri, null, buffer, ref bufferLength, flags, IntPtr.Zero))
+                    {
+                        result = buffer.ToString();
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
+
+
+
 
         #region 下载文件
         /// <summary>
@@ -54,6 +103,41 @@ namespace zhaopin_58
             try
             {
                 string COOKIE = "abt=1499071937.0%7CADE; _lxsdk_cuid=15d07a688f6c8-0b50ac5c472b18-333f5902-100200-15d07a688f79c; oc=xrmkO2nLZoY_IrhbS451igIl7hYw7IdDK6N_eVitVxW6WMxwN8yqI07hUj0vwzV57Iemuglzh4HS0E77JWewbxs2LOrDkniIWKv_go8Z8i77EVeAUCUejMdsEHZtdIDxMvg4fR4p53MxVNd2YZr8ZNhk_yZNN_hIE2VChkJKOJI; __mta=54360727.1499071941097.1518360971460.1518584371801.7; iuuid=F457EFC99EEB24DD0A17795BB1F8A91129848721BFF3EE82C45EF7C15E7C210E; _lxsdk=F457EFC99EEB24DD0A17795BB1F8A91129848721BFF3EE82C45EF7C15E7C210E; webp=1; __utmz=74597006.1547084235.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _hc.v=125767d7-22b6-b361-e802-854d70351873.1547084296; cityname=%E5%AE%BF%E8%BF%81; __utma=74597006.1002021895.1547084235.1547426995.1547429915.3; i_extend=C145095553688078665527034436504084189858_b2_e4339319119865529162_v1084616022904540227_a%e8%bf%90%e5%8a%a8%e5%81%a5%e8%ba%ab_f179411730E015954189128616476612677712756937264803_e7765034795530822391_v1084625786170336172_a%e8%bf%90%e5%8a%a8%e5%81%a5%e8%ba%abGimthomepagesearchH__a100005__b3; uuid=1542127099cf4e0c8245.1550021213.1.0.0; ci=60; rvct=60%2C1%2C184%2C875%2C55%2C40; __mta=54360727.1499071941097.1518584371801.1550470987575.8; _lxsdk_s=168ff45b4ee-4d2-6f6-965%7C%7C6";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Timeout = 10000;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
+
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlwithCookie(string Url,string COOKIE)
+        {
+            try
+            {
+                
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Timeout = 10000;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";

@@ -33,7 +33,7 @@ namespace zhaopin_58
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT name from meituan_province_city ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -59,7 +59,7 @@ namespace zhaopin_58
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT name from meituan_province_city ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -86,7 +86,7 @@ namespace zhaopin_58
 
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -122,7 +122,7 @@ namespace zhaopin_58
 
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -158,7 +158,7 @@ namespace zhaopin_58
 
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -196,7 +196,7 @@ namespace zhaopin_58
             string cityPinYin = Getpinyin(city);
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT meituan_area_id from meituan_area Where meituan_area_citypinyin= '" + cityPinYin + "' ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -226,7 +226,7 @@ namespace zhaopin_58
 
             try
             {
-                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=vip;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
                 MySqlCommand cmd = new MySqlCommand("INSERT INTO meituan_datas (meituan_name,meituan_addr,meituan_tel,area,city,cate)VALUES('" + values[0] + " ','" + values[1] + " ','" + values[2] + " ','" + values[3] + " ','" + values[4] + " ','" + values[5] + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
@@ -295,6 +295,11 @@ namespace zhaopin_58
 
             try
             {
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请输入关键字");
+                    return;
+                }
                 
                 string[] keywords = textBox1.Text.Trim().Split(',');
 
@@ -432,8 +437,57 @@ namespace zhaopin_58
         private void button1_Click(object sender, EventArgs e)
         {
             status = true;
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
+
+            //#region
+
+            //if (System.IO.File.Exists(@"C:\login.txt"))
+            //{
+            //    StreamReader sr = new StreamReader(@"C:\login.txt", Encoding.Default);
+            //    string texts = sr.ReadToEnd();    //一次性读取完 
+            //    if (texts == DateTime.Now.ToString("yyyyMMdd"))
+            //    {
+            //        Thread thread = new Thread(new ThreadStart(run));
+            //        thread.Start();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("请登录您的账号！");
+            //        System.Diagnostics.Process.Start( "http://www.acaiji.com");
+            //        return;
+            //    }
+            //}
+
+            //else
+            //{
+            //    MessageBox.Show("请登录您的账号！");
+            //    System.Diagnostics.Process.Start("IEXPLORE.EXE", "http://www.acaiji.com");
+            //    return;
+
+            //}
+
+
+
+            //#endregion
+
+            //string COOKIE = method.GetCookies("http://www.acaiji.com/");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://www.acaiji.com/");
+            request.CookieContainer = new CookieContainer();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            int count = response.Cookies.Count;
+            foreach (Cookie cookie in response.Cookies)
+            {
+                string name = cookie.Name;
+                DateTime expires = cookie.Expires;
+                DateTime timestamp = cookie.TimeStamp;
+                int version = cookie.Version;
+                Uri commicalurl = cookie.CommentUri;
+                string comment = cookie.Comment;
+                MessageBox.Show(comment);
+            }
+           
+
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
