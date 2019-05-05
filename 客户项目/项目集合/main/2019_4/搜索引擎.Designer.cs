@@ -31,11 +31,21 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,16 +58,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,6 +109,26 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(167, 110);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(92, 23);
+            this.button5.TabIndex = 13;
+            this.button5.Text = "导出结果";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(12, 110);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(92, 23);
+            this.button6.TabIndex = 14;
+            this.button6.Text = "清空结果";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button4
             // 
@@ -171,6 +192,78 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数设置";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Gray;
+            this.label7.Location = new System.Drawing.Point(10, 180);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(149, 12);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "(竞价网址一般只有第一页)";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(228, 23);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(55, 23);
+            this.button7.TabIndex = 18;
+            this.button7.Text = "打开";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(93, 23);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(129, 21);
+            this.textBox4.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 32);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 12);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "导入关键字：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(266, 138);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 12);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "ms";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(218, 135);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(41, 21);
+            this.textBox3.TabIndex = 14;
+            this.textBox3.Text = "1000";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(149, 138);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "设置间隔：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Gray;
+            this.label3.Location = new System.Drawing.Point(10, 159);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(149, 12);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "(只针对自然排名网址搜索)";
             // 
             // textBox1
             // 
@@ -281,96 +374,9 @@
             this.columnHeader6.Text = "关键字";
             this.columnHeader6.Width = 100;
             // 
-            // label4
+            // openFileDialog1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(149, 138);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "设置间隔：";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(218, 135);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(41, 21);
-            this.textBox3.TabIndex = 14;
-            this.textBox3.Text = "1000";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(266, 138);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(17, 12);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "ms";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(167, 110);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(92, 23);
-            this.button5.TabIndex = 13;
-            this.button5.Text = "导出结果";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(12, 110);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(92, 23);
-            this.button6.TabIndex = 14;
-            this.button6.Text = "清空结果";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 32);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 12);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "导入关键字：";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(93, 23);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(129, 21);
-            this.textBox4.TabIndex = 17;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(228, 23);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(55, 23);
-            this.button7.TabIndex = 18;
-            this.button7.Text = "打开";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(10, 159);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 12);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "(只针对自然排名网址搜索)";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Gray;
-            this.label7.Location = new System.Drawing.Point(10, 180);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(149, 12);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "(竞价网址一般只有第一页)";
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // 搜索引擎
             // 
@@ -426,5 +432,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

@@ -150,25 +150,38 @@ namespace fang
         private void button1_Click(object sender, EventArgs e)
         {
             button2.Text = "停止";
-
-            #region   读取注册码信息才能运行软件！
            
-            RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
-            if (rsg != null && rsg.GetValue("mac") != null)  //如果值不为空
+
+            #region 通用登录
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php","utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == localip.Trim())
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
             {
                 Thread thread = new Thread(new ThreadStart(jingjiren));
                 Control.CheckForIllegalCrossThreadCalls = false;
                 thread.Start();
 
-            }
 
+            }
             else
             {
-                MessageBox.Show("请注册软件！");
-                login lg = new login();
-                lg.Show();
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
             }
-           
             #endregion
 
         }

@@ -277,28 +277,56 @@ namespace _58.程序界面
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(ershoufang));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-            }
+            #region 通用登录
+           
+            bool value = false;
+            string html = Method.GetUrl("http://acaiji.com/success/ip.php");
+            string localip = Method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-            else if (radioButton2.Checked == true)
+            foreach (Match ip in ips)
             {
-                Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
-                string o = "shangpucs";
-                thread.Start((object)o);
-                
-            }
-
-            else if (radioButton3.Checked == true)
-            {
-                Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
-                string o = "shangpucz";
-                thread.Start((object)o);
+                if (ip.Groups[1].Value.Trim() == localip.Trim())
+                {
+                    value = true;
+                    break;
+                }
 
             }
+            if (value == true)
+            {
+                if (radioButton1.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(ershoufang));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
+
+                else if (radioButton2.Checked == true)
+                {
+                    Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
+                    string o = "shangpucs";
+                    thread.Start((object)o);
+
+                }
+
+                else if (radioButton3.Checked == true)
+                {
+                    Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
+                    string o = "shangpucz";
+                    thread.Start((object)o);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
+
+          
 
         }
 

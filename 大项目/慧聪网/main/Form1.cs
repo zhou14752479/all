@@ -36,6 +36,7 @@ namespace main
 
         public void huicong()
         {
+            listView2.Visible = false;
             if (comboBox1.Text == "")
             {
                 MessageBox.Show("请选择地区");
@@ -409,8 +410,11 @@ namespace main
 
             {
                 // string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
-       
-
+                if (textBox3.Text == "")
+                {
+                    MessageBox.Show("请输入关键字");
+                    return;
+                }
                 ArrayList citys = new ArrayList();
                 foreach (var item in comboBox2.Items)
                 {                
@@ -614,11 +618,11 @@ namespace main
                 MessageBox.Show("请先登录您的账号！");
                 return;
             }
-            //Thread thread = new Thread(new ThreadStart(huicong));
-            //thread.Start();     
-
-            Thread thread = new Thread(new ThreadStart(baidu));
+            Thread thread = new Thread(new ThreadStart(huicong));
             thread.Start();
+
+            //Thread thread = new Thread(new ThreadStart(baidu));
+            //thread.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)

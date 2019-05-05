@@ -479,27 +479,50 @@ namespace main
                 }
             }
 
-            #endregion
+        #endregion
 
 
 
 
-            /// <summary>
-            /// 获取字符串的首字母
-            /// </summary>
-            /// <param name="str"></param>
-            /// <returns></returns>
+        /// <summary>
+        /// 获取字符串的首字母
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+
+        #region 获取公网IP
+        public static string GetIP()
+        {
+            using (var webClient = new WebClient())
+            {
+                try
+                {
+                    webClient.Credentials = CredentialCache.DefaultCredentials;
+                    byte[] pageDate = webClient.DownloadData("http://pv.sohu.com/cityjson?ie=utf-8");
+                    String ip = Encoding.UTF8.GetString(pageDate);
+                    webClient.Dispose();
+
+                    Match rebool = Regex.Match(ip, @"\d{2,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
+                    return rebool.Value;
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
+
+            }
+        }
+
+        #endregion
 
 
 
-
-
-            #region 获取IP地区
-            /// <summary>
-            /// 获取IP地区
-            /// </summary>
-            /// <returns></returns>
-            public static string GetIp()
+        #region 获取IP地区
+        /// <summary>
+        /// 获取IP地区
+        /// </summary>
+        /// <returns></returns>
+        public static string GetIp()
             {
                 try
                 {

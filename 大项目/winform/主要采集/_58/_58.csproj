@@ -60,10 +60,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1DD206523344D933871D00A107B8AA9FFE314199</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>05A6EC23E2ECA43B22F6C08FA30B47D4D1920081</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>_58_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>_58_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -143,12 +143,6 @@
     <Compile Include="ershoufang.Designer.cs">
       <DependentUpon>ershoufang.cs</DependentUpon>
     </Compile>
-    <Compile Include="临时软件\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="临时软件\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="临时软件\jd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,12 +154,6 @@
     </Compile>
     <Compile Include="程序界面\caiji_58.Designer.cs">
       <DependentUpon>caiji_58.cs</DependentUpon>
-    </Compile>
-    <Compile Include="程序界面\dianping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="程序界面\dianping.Designer.cs">
-      <DependentUpon>dianping.cs</DependentUpon>
     </Compile>
     <Compile Include="公用界面\Buy.cs">
       <SubType>Form</SubType>
@@ -257,17 +245,11 @@
     <EmbeddedResource Include="ershoufang.resx">
       <DependentUpon>ershoufang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="临时软件\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="临时软件\jd.resx">
       <DependentUpon>jd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="程序界面\caiji_58.resx">
       <DependentUpon>caiji_58.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="程序界面\dianping.resx">
-      <DependentUpon>dianping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="公用界面\Buy.resx">
       <DependentUpon>Buy.cs</DependentUpon>
@@ -332,6 +314,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="_58_1_TemporaryKey.pfx" />
+    <None Include="_58_2_TemporaryKey.pfx" />
     <None Include="_58_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

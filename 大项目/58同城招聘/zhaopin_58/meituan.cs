@@ -217,29 +217,7 @@ namespace zhaopin_58
         #endregion
 
 
-        /// <summary>
-        /// 插入数据库配置
-        /// </summary>
-        /// <param name="values"></param>
-        public void insertData(string[] values)
-        {
-
-            try
-            {
-                string constr = "Host =47.99.68.92;Database=vip;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO meituan_datas (meituan_name,meituan_addr,meituan_tel,area,city,cate)VALUES('" + values[0] + " ','" + values[1] + " ','" + values[2] + " ','" + values[3] + " ','" + values[4] + " ','" + values[5] + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-
-            }
-
-            catch (System.Exception ex)
-            {
-                ex.ToString();
-            }
-        }
+      
 
         private void meituan_Load(object sender, EventArgs e)
         {
@@ -357,13 +335,13 @@ namespace zhaopin_58
                                 
                                 //下载图片
                                
-                                Match imgurl = Regex.Match(strhtml, @"frontImg"":""([\s\S]*?)""");
+                                //Match imgurl = Regex.Match(strhtml, @"frontImg"":""([\s\S]*?)""");
                                
-                                if (method.GetUrl(imgurl.Groups[1].Value.Replace("/w.h", ""))!="")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
-                                {
-                                    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h",""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[2].Value.Trim() + ".jpg");
+                                //if (method.GetUrl(imgurl.Groups[1].Value.Replace("/w.h", ""))!="")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
+                                //{
+                                //    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h",""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[2].Value.Trim() + ".jpg");
 
-                                }
+                                //}
 
                                 //下载图片结束
 
@@ -375,8 +353,7 @@ namespace zhaopin_58
                                 {
                                     lv1.SubItems.Add("无外卖");
                                 }
-                                    string[] values = { name.Groups[1].Value.Trim(), addr.Groups[1].Value.Trim(), tel.Groups[1].Value.Trim(), areaName.Groups[1].Value.Trim(), city,"" };
-                                    insertData(values);
+                                  
 
                                     if (listView1.Items.Count - 1 > 1)
                                     {
@@ -415,11 +392,137 @@ namespace zhaopin_58
         #endregion
 
 
-        
 
-      
+        #region  有所城市
 
-      
+        public void run1()
+        {
+
+
+            try
+            {
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请输入关键字");
+                    return;
+                }
+
+                string[] keywords = textBox1.Text.Trim().Split(',');
+
+                ArrayList citys = getCityNames();
+                foreach (string city in citys)
+                {
+
+                ArrayList areaIds = getAreaId(city);
+                string cityId = GetCityId(city);
+
+                    foreach (string keyword in keywords)
+
+                    {
+
+                        foreach (string area in areaIds)
+                        {
+
+                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?cateId=-1&sort=default&userid=-1&offset=0&limit=1000&mypos=33.959859%2C118.279675&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&q=" + keyword + "&requestType=filter&cityId=" + cityId + "&areaId=" + area;
+
+                            string html = GetUrl(Url);
+
+
+                            MatchCollection TitleMatchs = Regex.Matches(html, @"false},{""id"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                            ArrayList lists = new ArrayList();
+
+                            foreach (Match NextMatch in TitleMatchs)
+                            {
+
+                                lists.Add(NextMatch.Groups[1].Value);
+                            }
+
+
+                            if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                break;
+                            foreach (string list in lists)
+                            {
+                                string strhtml = GetUrl("https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng");  //定义的GetRul方法 返回 reader.ReadToEnd()                             
+
+
+                                Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
+                                Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
+                                Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
+                                Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
+
+                                if (name.Groups[2].Value != "")
+                                {
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                    lv1.SubItems.Add(name.Groups[2].Value.Trim());
+                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(city);
+
+
+                                    //下载图片
+
+                                    //Match imgurl = Regex.Match(strhtml, @"frontImg"":""([\s\S]*?)""");
+
+                                    //if (method.GetUrl(imgurl.Groups[1].Value.Replace("/w.h", ""))!="")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
+                                    //{
+                                    //    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h",""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[2].Value.Trim() + ".jpg");
+
+                                    //}
+
+                                    //下载图片结束
+
+                                    if (strhtml.Contains("有外卖"))
+                                    {
+                                        lv1.SubItems.Add("有外卖");
+                                    }
+                                    else
+                                    {
+                                        lv1.SubItems.Add("无外卖");
+                                    }
+
+
+                                    if (listView1.Items.Count - 1 > 1)
+                                    {
+                                        listView1.EnsureVisible(listView1.Items.Count - 1);
+                                    }
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+
+                                    if (status == false)
+                                    {
+                                        return;
+                                    }
+
+                                    Thread.Sleep(1000);   //内容获取间隔，可变量
+
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
+
+
+
+
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        #endregion
+
+
+
 
         private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -433,61 +536,77 @@ namespace zhaopin_58
         {
             
         }
+        public static IPAddress Getlocalipaddress() 
+        {
+            if (Dns.GetHostAddresses(Dns.GetHostName()).Length > 1)
+                return Dns.GetHostAddresses(Dns.GetHostName())[1];
+            else
+                return Dns.GetHostAddresses(Dns.GetHostName())[0];
+        }
+
+        #region 获取公网IP
+        public static string GetIP()
+        {
+            using (var webClient = new WebClient())
+            {
+                try
+                {
+                    webClient.Credentials = CredentialCache.DefaultCredentials;
+                    byte[] pageDate = webClient.DownloadData("http://pv.sohu.com/cityjson?ie=utf-8");
+                    String ip = Encoding.UTF8.GetString(pageDate);
+                    webClient.Dispose();
+
+                    Match rebool = Regex.Match(ip, @"\d{2,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
+                    return rebool.Value;
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
+
+            }
+        }
+
+        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
             status = true;
 
-            //#region
+            #region 通用登录
 
-            //if (System.IO.File.Exists(@"C:\login.txt"))
-            //{
-            //    StreamReader sr = new StreamReader(@"C:\login.txt", Encoding.Default);
-            //    string texts = sr.ReadToEnd();    //一次性读取完 
-            //    if (texts == DateTime.Now.ToString("yyyyMMdd"))
-            //    {
-            //        Thread thread = new Thread(new ThreadStart(run));
-            //        thread.Start();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("请登录您的账号！");
-            //        System.Diagnostics.Process.Start( "http://www.acaiji.com");
-            //        return;
-            //    }
-            //}
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php");
+            string localip = GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-            //else
-            //{
-            //    MessageBox.Show("请登录您的账号！");
-            //    System.Diagnostics.Process.Start("IEXPLORE.EXE", "http://www.acaiji.com");
-            //    return;
-
-            //}
-
-
-
-            //#endregion
-
-            //string COOKIE = method.GetCookies("http://www.acaiji.com/");
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://www.acaiji.com/");
-            request.CookieContainer = new CookieContainer();
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            int count = response.Cookies.Count;
-            foreach (Cookie cookie in response.Cookies)
+            foreach (Match ip in ips)
             {
-                string name = cookie.Name;
-                DateTime expires = cookie.Expires;
-                DateTime timestamp = cookie.TimeStamp;
-                int version = cookie.Version;
-                Uri commicalurl = cookie.CommentUri;
-                string comment = cookie.Comment;
-                MessageBox.Show(comment);
+                if (ip.Groups[1].Value.Trim()==localip.Trim())
+                {
+                    value = true;
+                    break;
+                }
+                
             }
-           
+            if(value==true)
+            {
+                //--------登陆函数------------------
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
 
-           
+            }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
+
+
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)

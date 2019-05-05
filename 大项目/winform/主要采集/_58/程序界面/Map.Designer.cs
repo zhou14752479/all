@@ -402,9 +402,6 @@
             System.Windows.Forms.TreeNode treeNode196 = new System.Windows.Forms.TreeNode("云南省", new System.Windows.Forms.TreeNode[] {
             treeNode195});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.登陆ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.注册账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.登陆账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.合作模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.使用说明ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.查看教程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -450,7 +447,6 @@
             this.visualButton2 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.visualButton3 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.visualButton4 = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.skinTreeView1 = new CCWin.SkinControl.SkinTreeView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -463,7 +459,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.登陆ToolStripMenuItem,
             this.合作模式ToolStripMenuItem,
             this.使用说明ToolStripMenuItem,
             this.帮助ToolStripMenuItem});
@@ -472,29 +467,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1125, 25);
             this.menuStrip1.TabIndex = 99;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // 登陆ToolStripMenuItem
-            // 
-            this.登陆ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.注册账号ToolStripMenuItem,
-            this.登陆账号ToolStripMenuItem});
-            this.登陆ToolStripMenuItem.Name = "登陆ToolStripMenuItem";
-            this.登陆ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.登陆ToolStripMenuItem.Text = "账号登陆";
-            // 
-            // 注册账号ToolStripMenuItem
-            // 
-            this.注册账号ToolStripMenuItem.Name = "注册账号ToolStripMenuItem";
-            this.注册账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.注册账号ToolStripMenuItem.Text = "注册账号";
-            this.注册账号ToolStripMenuItem.Click += new System.EventHandler(this.注册账号ToolStripMenuItem_Click);
-            // 
-            // 登陆账号ToolStripMenuItem
-            // 
-            this.登陆账号ToolStripMenuItem.Name = "登陆账号ToolStripMenuItem";
-            this.登陆账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.登陆账号ToolStripMenuItem.Text = "登陆账号";
-            this.登陆账号ToolStripMenuItem.Click += new System.EventHandler(this.登陆账号ToolStripMenuItem_Click);
             // 
             // 合作模式ToolStripMenuItem
             // 
@@ -978,15 +950,6 @@
             this.visualButton4.TextStyle = textStyle5;
             this.visualButton4.Click += new System.EventHandler(this.visualButton4_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(541, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 221;
-            this.label1.Text = "测试用户";
-            // 
             // skinTreeView1
             // 
             this.skinTreeView1.Font = new System.Drawing.Font("宋体", 10F);
@@ -1445,7 +1408,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.skinTreeView1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.visualButton4);
             this.Controls.Add(this.visualButton3);
             this.Controls.Add(this.visualButton2);
@@ -1478,9 +1440,6 @@
 
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 登陆ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 注册账号ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 登陆账号ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 合作模式ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 使用说明ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 查看教程ToolStripMenuItem;
@@ -1518,7 +1477,6 @@
         private VisualPlus.Toolkit.Controls.Interactivity.VisualButton visualButton2;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualButton visualButton3;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualButton visualButton4;
-        private System.Windows.Forms.Label label1;
         private CCWin.SkinControl.SkinTreeView skinTreeView1;
         private VisualPlus.Toolkit.Controls.DataVisualization.VisualProgressIndicator visualProgressIndicator1;
         private System.Windows.Forms.Label label2;

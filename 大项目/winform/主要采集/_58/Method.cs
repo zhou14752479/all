@@ -67,7 +67,7 @@ namespace _58
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT cityname from city_58 ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -97,7 +97,7 @@ namespace _58
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT citycode from city_58 ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -127,7 +127,7 @@ namespace _58
 
 
 
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -471,49 +471,7 @@ namespace _58
         }
         #endregion
 
-        #region  连接数据库
-
-        public void database()
-        {
-
-            try
-            {
-
-
-                string dns = Dns.GetHostName();
-                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-                MySqlCommand cmd = new MySqlCommand("select * from vip_user ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                while (reader.Read())
-                {
-
-
-                    string pw = reader["password"].ToString();
-
-
-
-
-                }
-
-
-
-            }
-
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
-
-
-        #endregion
+        
 
         #region 注册码随机生成函数
         /// <summary>
@@ -1274,134 +1232,37 @@ namespace _58
         #endregion
 
 
-        #region 积分充值
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="username">用户名</param>
-        /// <param name="point">当前积分</param>
-        /// <param name="change">改动的积分</param>
 
-        public static void addPoints(string username,int point,int change)
+
+        #region 获取公网IP
+        public static string GetIP()
         {
-            try
+            using (var webClient = new WebClient())
             {
-
-
-                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-                DateTime dt = DateTime.Now;
-                string time = DateTime.Now.ToString();
-                int points = point + change;
-               
-                MySqlCommand cmd = new MySqlCommand("UPDATE vip_points  SET points ='" + points + " ',points_t='" + time + " ' where username= '" + username + " '", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-              
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-                if (count > 0)
+                try
                 {
-                    MessageBox.Show("充值成功！");
-                    
-                    mycon.Close();
-                                   
+                    webClient.Credentials = CredentialCache.DefaultCredentials;
+                    byte[] pageDate = webClient.DownloadData("http://pv.sohu.com/cityjson?ie=utf-8");
+                    String ip = Encoding.UTF8.GetString(pageDate);
+                    webClient.Dispose();
+
+                    Match rebool = Regex.Match(ip, @"\d{2,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
+                    return rebool.Value;
                 }
-                else
+                catch (Exception e)
                 {
-                    MessageBox.Show("充值失败请联系客服！");
+                    return e.ToString();
                 }
 
-
             }
-
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
         }
-        #endregion
 
-        #region 积分减少
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="username">用户名</param>
-        /// <param name="point">当前积分</param>
-        /// <param name="change">改动的积分</param>
-
-        public static void decreasePoints(string username, int point, int change)
-        {
-            try
-            {
-
-
-                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-                DateTime dt = DateTime.Now;               
-                int points = point - change;
-
-                MySqlCommand cmd = new MySqlCommand("UPDATE vip_points  SET points ='" + points + " ' where username= '" + username + " '", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-                if (count > 0)
-                {
-                    MessageBox.Show("本次共消耗"+change+"积分");
-
-                    mycon.Close();
-
-                }
-               
-            }
-
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
-        #endregion
-
-        #region 读取积分
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="username">用户名</param>
-      
-
-        public static int getPoints(string username)
-        {
-           
-                string constr = "Host =116.62.62.62;Database=vip;Username=root;Password=zhoukaige";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-  
-                MySqlCommand cmd = new MySqlCommand("select * from vip_points where username = '" + username + "'  ", mycon);         //SQL语句读取textbox的值'" + skinTextBox1.Text+"'
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-            if (reader.Read())
-            {
-                string points = reader["points"].ToString().Trim();
-
-                mycon.Close();
-                reader.Close();
-
-                return Convert.ToInt32(points);
-            }
-            else
-            {
-                return 0;
-            }
-                      
-
-        }
         #endregion
 
 
-        
+
+
+
 
         //<a\b[^>]+\bhref="([^"]*)"[^>]*>([\s\S]*?)</a>
 

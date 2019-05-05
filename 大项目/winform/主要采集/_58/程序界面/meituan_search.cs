@@ -30,10 +30,35 @@ namespace _58
             Control.CheckForIllegalCrossThreadCalls = false; // 设置线程之间可以操作
         }
 
+        #region 获取数据库美团城市名称
+        public void getCityName()
+        {
+            ArrayList list = new ArrayList();
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
+                string str = "SELECT name from meituan_province_city ";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    list.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                MessageBox.Show(ee.Message.ToString());
+            }
+            comboBox1.DataSource = list;
+
+        }
+        #endregion
         private void meituan_search_Load(object sender, EventArgs e)
         {
 
-            getCityName();
+         getCityName();
 
             this.cookie = "client-id=f66b7fc9-3f5b-4a1c-b702-fed6ff564ecf;";
 
@@ -65,31 +90,7 @@ namespace _58
 //从上到下，私有程度逐渐降低
 
 
-        #region 获取数据库美团城市名称
-        public void getCityName()
-        {
-            ArrayList list = new ArrayList();
-            try
-            {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
-                string str = "SELECT meituan_city_name from meituan_city ";
-                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                DataTable dt = ds.Tables[0];
-                foreach (DataRow dr in dt.Rows)
-                {
-                    list.Add(dr[0].ToString().Trim());
-                }
-            }
-            catch (MySqlException ee)
-            {
-                MessageBox.Show(ee.Message.ToString());
-            }
-            comboBox1.DataSource = list;
-            comboBox3.DataSource = list;
-        }
-        #endregion
+        
 
         #region GET请求
         public static string meituan_GetUrl(string Url,string COOKIE)
@@ -133,7 +134,7 @@ namespace _58
 
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -656,17 +657,6 @@ namespace _58
 
        
 
-        private void 注册账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            register rg = new register();
-            rg.Show();
-        }
-
-        private void 登陆账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Login lg = new Login();
-            lg.Show();
-        }
         #region  其他事件
 
       
@@ -743,7 +733,7 @@ namespace _58
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT meituan_area_citypinyin from meituan_area ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -767,7 +757,7 @@ namespace _58
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT meituan_area_id from meituan_area ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -832,15 +822,23 @@ namespace _58
 
         private void button2_Click(object sender, EventArgs e)
         {
+            #region 通用登录
 
+            bool value = false;
+            string html = Method.GetUrl("http://acaiji.com/success/ip.php");
+            string localip = Method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-            if (label1.Text == "测试用户" || label1.Text == "")
+            foreach (Match ip in ips)
             {
-                MessageBox.Show("请注册账号登陆！");
-                return;
-            }
+                if (ip.Groups[1].Value.Trim() == localip.Trim())
+                {
+                    value = true;
+                    break;
+                }
 
-            else
+            }
+            if (value == true)
             {
                 if (tabControl1.SelectedIndex == 0) //简单地级市采集
                 {
@@ -856,7 +854,19 @@ namespace _58
                     Search_thread.Start();
 
                 }
+
             }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
+
+
+           
+            
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
@@ -886,6 +896,9 @@ namespace _58
             label1.Text = Method.User; //获取Method公共类的静态变量User的值
         }
 
+        private void TabPage1_MouseEnter(object sender, EventArgs e)
+        {
 
+        }
     }
 }

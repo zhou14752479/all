@@ -23,13 +23,7 @@ namespace _58
 
         private void Map_Load(object sender, EventArgs e)
         {
-            string path = System.Environment.CurrentDirectory; //获取当前程序运行文件夹
-
-            if (File.Exists(path + "\\mac.txt"))    //判断当前文件夹内是否存有mac.txt，若存在，则表示已注册。
-
-            {
-                注册账号ToolStripMenuItem.Enabled = false;
-            }
+            
         }
 
 
@@ -885,7 +879,7 @@ namespace _58
 
 
 
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -929,7 +923,7 @@ namespace _58
 
         private void Map_MouseEnter(object sender, EventArgs e)
         {
-            label1.Text = Method.User;
+           
         }
 
         private void 查看教程ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -947,55 +941,7 @@ namespace _58
             MessageBox.Show("您确定要关闭吗？");
         }
 
-        #region  导入数据到数据库
-
-        public static void importtodatabase(DataGridView dgv)
-        {
-
-            try
-            {
-
-
-
-                string constr = "Host =116.62.62.62;Database=datas;Username=root;Password=zhoukaige";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-                for (int i = 0; i < dgv.RowCount - 1; i++)   //dgv.RowCount： 行数   RowColumn ：列数
-                {
-                    if ((dgv.Rows[i].Cells[0].Value.ToString() != "") || (dgv.Rows[i].Cells[1].Value.ToString() != "") || (dgv.Rows[i].Cells[2].Value.ToString() != "") || (dgv.Rows[i].Cells[3].Value.ToString() != ""))
-                    {
-
-
-                        string name = dgv.Rows[i].Cells[0].Value.ToString().Trim();
-                        string address = dgv.Rows[i].Cells[1].Value.ToString().Trim();
-                        string tell = dgv.Rows[i].Cells[2].Value.ToString().Trim();
-                        string keywords = dgv.Rows[i].Cells[3].Value.ToString().Trim();
-                        string city = dgv.Rows[i].Cells[4].Value.ToString().Trim();
-
-                        string sql = "INSERT INTO map_datas (map_name,map_address,map_tell,map_keywords,map_city)VALUES('" + name + " ', '" + address + " ', '" + tell + " ','" + keywords + " ','" + city + " ')";
-                        MySqlCommand cmd = new MySqlCommand(sql, mycon);
-
-                        cmd.ExecuteNonQuery();  //执行sql语句
-
-
-                        //MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                        //reader.Read();
-                    }
-
-                }
-                mycon.Close();
-
-
-            }
-
-            catch (System.Exception ex)
-            {
-                ex.ToString();
-            }
-
-        }
-        #endregion
+        
        
 
        
@@ -1072,11 +1018,8 @@ namespace _58
         private void visualButton1_Click(object sender, EventArgs e)
         {
             visualButton2.Text = "停止采集";
-            if (label1.Text == "测试用户" || label1.Text == "")
-            {
-                MessageBox.Show("请注册账号登陆！");
-                return;
-            }
+
+           
 
             if (textBox1.Text == "" || textBox2.Text == "")
 
@@ -1084,40 +1027,69 @@ namespace _58
                 MessageBox.Show("请输入城市和关键字！");
                 return;
             }
+            #region 通用登录
 
-            visualProgressIndicator1.Show();
+            bool value = false;
+            string html = Method.GetUrl("http://acaiji.com/success/ip.php");
+            string localip = Method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-            if (radioButton2.Checked == true)
+            foreach (Match ip in ips)
             {
-                Thread thread = new Thread(new ThreadStart(tengxun));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-            }
-            else if (radioButton3.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(gaode));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-            }
-            else if (radioButton4.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(map_360));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-            }
-            else if (radioButton5.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(sougou));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-            }
+                if (ip.Groups[1].Value.Trim() == localip.Trim())
+                {
+                    value = true;
+                    break;
+                }
 
-            else if (radioButton6.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(baidu));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
             }
+            if (value == true)
+            {
+                visualProgressIndicator1.Show();
+
+                if (radioButton2.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(tengxun));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
+                else if (radioButton3.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(gaode));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
+                else if (radioButton4.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(map_360));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
+                else if (radioButton5.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(sougou));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
+
+                else if (radioButton6.Checked == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(baidu));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
+
+
+            
         }
 
         private void visualButton3_Click(object sender, EventArgs e)

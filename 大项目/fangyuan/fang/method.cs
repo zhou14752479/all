@@ -172,7 +172,7 @@ namespace fang
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT cityname from city_58 ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -202,7 +202,7 @@ namespace fang
 
 
 
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -449,32 +449,27 @@ namespace fang
      
 
 
-        #region 获取IP地区
-        /// <summary>
-        /// 获取IP地区
-        /// </summary>
-        /// <returns></returns>
-        public static string GetIp()
+        #region 获取公网IP
+        public static string GetIP()
         {
-            try
+            using (var webClient = new WebClient())
             {
+                try
+                {
+                    webClient.Credentials = CredentialCache.DefaultCredentials;
+                    byte[] pageDate = webClient.DownloadData("http://pv.sohu.com/cityjson?ie=utf-8");
+                    String ip = Encoding.UTF8.GetString(pageDate);
+                    webClient.Dispose();
 
-                string html = GetUrl("https://ip.cn/","utf-8");
-
-                MatchCollection match = Regex.Matches(html, @"<code>([\s\S]*?)</code>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-
-                return match[0].Groups[1].Value.Trim();
+                    Match rebool = Regex.Match(ip, @"\d{2,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
+                    return rebool.Value;
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
 
             }
-
-            catch (Exception ex)
-            {
-                ex.ToString();
-
-                return "获取IP错误";
-            }
-
         }
 
         #endregion

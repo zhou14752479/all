@@ -39,9 +39,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.账号登陆ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.注册账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.登陆账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.使用说明ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.联系我们ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,7 +154,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.账号登陆ToolStripMenuItem,
             this.使用说明ToolStripMenuItem,
             this.帮助ToolStripMenuItem,
             this.清空ToolStripMenuItem});
@@ -166,29 +162,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(950, 25);
             this.menuStrip1.TabIndex = 98;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // 账号登陆ToolStripMenuItem
-            // 
-            this.账号登陆ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.注册账号ToolStripMenuItem,
-            this.登陆账号ToolStripMenuItem});
-            this.账号登陆ToolStripMenuItem.Name = "账号登陆ToolStripMenuItem";
-            this.账号登陆ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.账号登陆ToolStripMenuItem.Text = "账号登陆";
-            // 
-            // 注册账号ToolStripMenuItem
-            // 
-            this.注册账号ToolStripMenuItem.Name = "注册账号ToolStripMenuItem";
-            this.注册账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.注册账号ToolStripMenuItem.Text = "注册账号";
-            this.注册账号ToolStripMenuItem.Click += new System.EventHandler(this.注册账号ToolStripMenuItem_Click);
-            // 
-            // 登陆账号ToolStripMenuItem
-            // 
-            this.登陆账号ToolStripMenuItem.Name = "登陆账号ToolStripMenuItem";
-            this.登陆账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.登陆账号ToolStripMenuItem.Text = "登陆账号";
-            this.登陆账号ToolStripMenuItem.Click += new System.EventHandler(this.登陆账号ToolStripMenuItem_Click);
             // 
             // 使用说明ToolStripMenuItem
             // 
@@ -263,6 +236,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "快速采集";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.MouseEnter += new System.EventHandler(this.TabPage1_MouseEnter);
             // 
             // textBox2
             // 
@@ -656,9 +630,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 账号登陆ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 注册账号ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 登陆账号ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 使用说明ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 联系我们ToolStripMenuItem2;
