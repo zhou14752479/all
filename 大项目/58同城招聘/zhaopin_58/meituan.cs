@@ -410,6 +410,7 @@ namespace zhaopin_58
                 string[] keywords = textBox1.Text.Trim().Split(',');
 
                 ArrayList citys = getCityNames();
+                citys.RemoveAt(0);
                 foreach (string city in citys)
                 {
 
@@ -592,7 +593,7 @@ namespace zhaopin_58
             if(value==true)
             {
                 //--------登陆函数------------------
-                Thread thread = new Thread(new ThreadStart(run));
+                Thread thread = new Thread(new ThreadStart(run1));
                 thread.Start();
 
             }
