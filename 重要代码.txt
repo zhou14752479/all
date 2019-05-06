@@ -16,3 +16,6 @@ System.Web.HttpUtility.UrlEncode(comboBox1.Text);
 
 五、允许远程服务器连接数据  
 	grant all privileges on *.* to 'root'@'%' identified by 'root' with grant option; 
+
+六、去掉标签值
+    
