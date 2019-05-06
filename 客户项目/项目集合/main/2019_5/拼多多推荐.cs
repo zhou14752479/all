@@ -99,5 +99,10 @@ namespace main._2019_5
         {
             zanting = true;
         }
+
+        private void 拼多多推荐_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
