@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace _58.程序界面
-{
+namespace _58.临时软件 { 
     static class Program
     {
         /// <summary>
@@ -19,7 +18,7 @@ namespace _58.程序界面
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                Application.Run(new Map());
+                Application.Run(new ershoufang());
 
 
         }

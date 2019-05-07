@@ -105,7 +105,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(687, 576);
+            this.splitContainer1.Size = new System.Drawing.Size(687, 579);
             this.splitContainer1.SplitterDistance = 185;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -189,7 +189,7 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Location = new System.Drawing.Point(7, 59);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(430, 101);
+            this.groupBox3.Size = new System.Drawing.Size(430, 123);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "参数设置";
@@ -197,7 +197,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 78);
+            this.label3.Location = new System.Drawing.Point(4, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 26;
@@ -206,7 +206,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(75, 75);
+            this.comboBox2.Location = new System.Drawing.Point(75, 91);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 20);
             this.comboBox2.TabIndex = 25;
@@ -265,7 +265,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(329, 78);
+            this.button7.Location = new System.Drawing.Point(329, 89);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(95, 23);
             this.button7.TabIndex = 22;
@@ -289,13 +289,13 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(95, 23);
             this.button5.TabIndex = 20;
-            this.button5.Text = "导出表格";
+            this.button5.Text = "导出数据";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(218, 78);
+            this.button4.Location = new System.Drawing.Point(218, 88);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(95, 23);
             this.button4.TabIndex = 19;
@@ -348,7 +348,7 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(443, 59);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(227, 101);
+            this.groupBox1.Size = new System.Drawing.Size(227, 123);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "登陆账号";
@@ -357,7 +357,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(168, 29);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 52);
+            this.button1.Size = new System.Drawing.Size(48, 71);
             this.button1.TabIndex = 8;
             this.button1.Text = "登陆";
             this.button1.UseVisualStyleBackColor = true;
@@ -365,7 +365,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(62, 60);
+            this.textBox2.Location = new System.Drawing.Point(62, 79);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(100, 21);
@@ -392,7 +392,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 60);
+            this.label6.Location = new System.Drawing.Point(15, 88);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 5;
@@ -407,7 +407,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(687, 387);
+            this.tabControl1.Size = new System.Drawing.Size(687, 390);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -416,8 +416,8 @@
             this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(679, 359);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(679, 362);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "采集结果";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -433,7 +433,7 @@
             this.listView2.GridLines = true;
             this.listView2.Location = new System.Drawing.Point(3, 3);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(673, 353);
+            this.listView2.Size = new System.Drawing.Size(673, 356);
             this.listView2.TabIndex = 5;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -470,7 +470,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(673, 353);
+            this.listView1.Size = new System.Drawing.Size(673, 356);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -509,8 +509,8 @@
             this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage2.Size = new System.Drawing.Size(679, 362);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(679, 359);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "使用说明";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -520,28 +520,27 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(3, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(673, 356);
+            this.richTextBox1.Size = new System.Drawing.Size(673, 353);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "使用前需购买此软件会员！\n账号分为初级会员和高级会员\n初级会员：\n\t可以采集大部分城市、省份、\n\n\n\n高级会员：\n\n\n\n\n使用步骤：";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(44, 20);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLabel1.Text = "总数：";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(15, 20);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(15, 17);
             this.toolStripStatusLabel2.Text = "0";
             // 
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(436, 20);
-            this.toolStripStatusLabel4.Text = "                                                                                 " +
-    "                          ";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(284, 17);
+            this.toolStripStatusLabel4.Text = "                                                                     ";
             // 
             // statusStrip1
             // 
@@ -551,18 +550,17 @@
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel4,
             this.toolStripStatusLabel5});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 576);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 579);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(687, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(687, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel5
             // 
-            this.toolStripStatusLabel5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel5.Image")));
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(109, 20);
-            this.toolStripStatusLabel5.Text = "QQ：8847695";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(263, 17);
+            this.toolStripStatusLabel5.Text = "联系我们：QQ：8847695  微信：2603238157";
             // 
             // Form1
             // 
@@ -572,6 +570,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form1_Load);
