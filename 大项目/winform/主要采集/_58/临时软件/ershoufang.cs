@@ -34,10 +34,8 @@ namespace _58.临时软件
 
             try
             {
-                string[] citys = {"sh","nj","wx","su","nt","suqian","xz","cz","yancheng","ha","lyg","taizhou","gz","sz",
-                    "hz","nb","wz","jh","jx","tz","sx","huzhou","lishui","quzhou","zhoushan"
+                string[] citys = { "wx", "su", "gz", "sz", "hz", "nb" };
 
-                };
 
                 foreach (string city in citys)
                 {
