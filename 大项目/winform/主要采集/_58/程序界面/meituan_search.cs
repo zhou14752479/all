@@ -264,9 +264,9 @@ namespace _58
 
                                     int a = this.tell.Groups[1].Value.IndexOf("/");   //获取/的索引
 
-                                    if (checkBox2.Checked == true)
+                                    if (checkBox1.Checked == true)
                                     {
-                                        this.Condition = this.tell.Groups[1].Value != "" && this.tell.Groups[1].Value.Remove(0, a + 1).IndexOf("-") == -1;
+                                        this.Condition = this.tell.Groups[1].Value != "" && !this.tell.Groups[1].Value.Contains("-") ;
                                     }
 
                                     if (this.Condition)
