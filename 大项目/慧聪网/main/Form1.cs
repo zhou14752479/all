@@ -436,7 +436,23 @@ namespace main
                     {
                         cityid = getcityId(comboBox2.Text );  //获取 citycode;
                     }
-                   
+                    if (comboBox1.Text != "北京")
+                    {
+                        cityid = getcityId("北京市");  //获取 citycode;
+                    }
+                    if (comboBox1.Text != "上海")
+                    {
+                        cityid = getcityId("上海市");  //获取 citycode;
+                    }
+                    if (comboBox1.Text != "天津市")
+                    {
+                        cityid = getcityId("天津市");  //获取 citycode;
+                    }
+                    if (comboBox1.Text != "重庆")
+                    {
+                        cityid = getcityId("重庆市");  //获取 citycode;
+                    }
+
 
                     foreach (string keyword in keywords)
 
@@ -618,11 +634,11 @@ namespace main
                 MessageBox.Show("请先登录您的账号！");
                 return;
             }
-            Thread thread = new Thread(new ThreadStart(huicong));
-            thread.Start();
-
-            //Thread thread = new Thread(new ThreadStart(baidu));
+            //Thread thread = new Thread(new ThreadStart(huicong));
             //thread.Start();
+
+            Thread thread = new Thread(new ThreadStart(baidu));
+            thread.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -692,13 +708,22 @@ namespace main
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if (listView2.Visible == true)
+            {
+                method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+                return;
+            }
+
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
-            button2.Enabled = true;
+            listView2.Items.Clear();
+                button2.Enabled = true;
+           
         }
 
         private void button7_Click(object sender, EventArgs e)
