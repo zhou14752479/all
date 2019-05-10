@@ -44,16 +44,17 @@ namespace main
                 for (int i = 1; i < 100; i++)
                 {
                     string url = textBox1.Text + "pg" + i + "/";
-
+                    Match city= Regex.Match(url, @"//([\s\S]*?)\.");
+                    
                     string html = method.GetHtmlSource(url);
 
                     MatchCollection matches = Regex.Matches(html, @"data-id=""([\s\S]*?)""");
                     MatchCollection zuixin = Regex.Matches(html, @"<div class=""totalPrice""><span>([\s\S]*?)</span>");
-
+                   
                     ArrayList lists = new ArrayList();
                     foreach (Match NextMatch in matches)
                     {
-                        lists.Add("https://cq.lianjia.com/ershoufang/co41c" + NextMatch.Groups[1].Value + "/");
+                        lists.Add("https://"+ city .Groups[1].Value+ ".lianjia.com/ershoufang/co41c" + NextMatch.Groups[1].Value + "/");
 
                     }
 
@@ -86,13 +87,14 @@ namespace main
 
                             string url1 = "http://www.17gp.com/FangJia/GetCommunityList";
                             string postdata = "kw=" + xiaoqu.Groups[1].Value + "&num=8&code=";
-                            string cookie = "VerifyToken=a5c6c1e375284296ad8e109365d92cf6; Hm_lvt_1799f23f2766063ed058651d23d7543d=1551768898; UM_distinctid=1694ca2805728-0c9405f52fafef-5d1f3b1c-100200-1694ca28059315; CNZZDATA1263082085=48898473-1551768855-null%7C1551768855; gr_user_id=2eeb5b35-caac-4b7d-b61d-84358dbbf01e; Hm_lpvt_1799f23f2766063ed058651d23d7543d=1551771217; gr_session_id_9d5a50541bffa263=d861bda6-e22b-46c7-9f69-202139bda1fd; gr_session_id_9d5a50541bffa263_d861bda6-e22b-46c7-9f69-202139bda1fd=true";
+                            string cookie = textBox8.Text;
+                            
                             string ahtml = method.PostUrl(url1, postdata, cookie, "utf-8");
 
                             Match aid = Regex.Match(ahtml, @"guid"":""([\s\S]*?)""");
 
 
-                            string bhtml = method.PostUrl("http://www.17gp.com/FangJia/GetRecentlyPrice/" + aid.Groups[1].Value, "", "VerifyToken=a5c6c1e375284296ad8e109365d92cf6; Hm_lvt_1799f23f2766063ed058651d23d7543d=1551768898; UM_distinctid=1694ca2805728-0c9405f52fafef-5d1f3b1c-100200-1694ca28059315; CNZZDATA1263082085=48898473-1551768855-null%7C1551768855; gr_user_id=2eeb5b35-caac-4b7d-b61d-84358dbbf01e; gr_session_id_9d5a50541bffa263=d861bda6-e22b-46c7-9f69-202139bda1fd; gr_session_id_9d5a50541bffa263_d861bda6-e22b-46c7-9f69-202139bda1fd=true; Hm_lpvt_1799f23f2766063ed058651d23d7543d=1551772518", "utf-8");
+                            string bhtml = method.PostUrl("http://www.17gp.com/FangJia/GetRecentlyPrice/" + aid.Groups[1].Value, "", textBox8.Text, "utf-8");
 
                             Match pgprice = Regex.Match(bhtml, @"avgPrice"":""([\s\S]*?)""");
 
@@ -242,6 +244,12 @@ namespace main
                 MessageBox.Show(ex.ToString());
             }
 
+        }
+
+        private void Button5_Click_1(object sender, EventArgs e)
+        {
+            webbrowser web = new webbrowser("http://www.17gp.com/fangjia");
+            web.Show();
         }
     }
 }
