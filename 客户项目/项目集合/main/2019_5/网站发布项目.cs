@@ -50,7 +50,7 @@ namespace main._2019_5
                 {
 
                     string url = "http://miss0304.com/class.asp?page="+i+"&typeid="+typeid+"&areaid="+areaid;
-                    string html = method.GetUrlWithCookie(url,COOKIE);
+                    string html = method.GetUrlWithCookie(url,COOKIE,"gb2312");
 
                     MatchCollection ids = Regex.Matches(html, @"show.asp\?id=([\s\S]*?)""");
                     ArrayList lists = new ArrayList();
@@ -69,7 +69,7 @@ namespace main._2019_5
                     foreach (string list in lists)
 
                     {
-                        string strhtml = method.GetUrlWithCookie(list, COOKIE);
+                        string strhtml = method.GetUrlWithCookie(list, COOKIE,"gb2312");
                         
                         Match a1 = Regex.Match(strhtml, @"信息标题：([\s\S]*?)</td>");
                         Match a2 = Regex.Match(strhtml, @"信息分类：([\s\S]*?)</td>");
@@ -87,6 +87,8 @@ namespace main._2019_5
                         Match a14 = Regex.Match(strhtml, @"详细地址：([\s\S]*?)</td>");
                         Match a15 = Regex.Match(strhtml, @"QQ/微信/电话：([\s\S]*?)</td>");
                         Match a16 = Regex.Match(strhtml, @"综合评价：([\s\S]*?)</td>");
+                        Match a17 = Regex.Match(strhtml, @"详细介绍([\s\S]*?)<!-- 评论 begin-->");
+                        //Match a18 = Regex.Match(strhtml, @"详细介绍([\s\S]*?)<!-- 评论 begin-->");  //图片地址
                         if (a1.Groups[1].Value != "")
                         {
                             ListViewItem lv1 = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
@@ -106,6 +108,7 @@ namespace main._2019_5
                             lv1.SubItems.Add(CleanHtml(a14.Groups[1].Value));
                             lv1.SubItems.Add(CleanHtml(a15.Groups[1].Value));
                             lv1.SubItems.Add(CleanHtml(a16.Groups[1].Value));
+                            lv1.SubItems.Add(CleanHtml(a17.Groups[1].Value));
 
                         }
 

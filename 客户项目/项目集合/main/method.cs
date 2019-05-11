@@ -134,7 +134,7 @@ namespace main
             /// </summary>
             /// <param name="Url">网址</param>
             /// <returns></returns>
-            public static string GetUrlWithCookie(string Url, string COOKIE)
+            public static string GetUrlWithCookie(string Url, string COOKIE,string charset)
             {
                 try
                 {
@@ -146,7 +146,7 @@ namespace main
                     request.Headers.Add("Cookie", COOKIE);
                     HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
-                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("gb2312")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                     string content = reader.ReadToEnd();
                     reader.Close();

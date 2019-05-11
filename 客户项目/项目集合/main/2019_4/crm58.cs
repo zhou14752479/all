@@ -27,7 +27,7 @@ namespace main._2019_4
         /// <returns></returns>
         public  void getTags()
         {
-            string html = method.GetUrlWithCookie("http://s.crm.58.com/OppTag/GetFrequentTags", textBox1.Text.Trim());
+            string html = method.GetUrlWithCookie("http://s.crm.58.com/OppTag/GetFrequentTags", textBox1.Text.Trim(), "utf-8");
 
             MatchCollection tags = Regex.Matches(html, @"tagName"":""([\s\S]*?)""");
 
@@ -103,7 +103,7 @@ namespace main._2019_4
 
                     string Url = "http://crm.58.com/Release/GetTodayWillReleaseOppFromEs?buId=" + buId + "&userCity=%E5%8C%97%E4%BA%AC";
 
-                    string html = method.GetUrlWithCookie(Url, textBox1.Text.Trim());
+                    string html = method.GetUrlWithCookie(Url, textBox1.Text.Trim(), "utf-8");
 
 
                     if (!html.Contains("盾"))

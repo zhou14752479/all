@@ -16,7 +16,7 @@ namespace zhaopin_58
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new meituan());
+            Application.Run(new 验证码登陆());
         }
     }
 }

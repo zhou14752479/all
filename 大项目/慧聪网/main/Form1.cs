@@ -421,6 +421,8 @@ namespace main
                         citys.Add(item);
                    
                 }
+
+                
                 citys.RemoveAt(0);
 
                 string[] keywords = textBox3.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -431,29 +433,32 @@ namespace main
                 foreach (string city in citys)
 
                 {
-                    int cityid = getcityId(city );  //获取 citycode;
-                    if (comboBox2.Text != "全省")
+                    int cityid = getcityId(city);  //获取 citycode;
+                   
+                    if (comboBox1.Text.Trim() == "北京")
                     {
-                        cityid = getcityId(comboBox2.Text );  //获取 citycode;
-                    }
-                    if (comboBox1.Text != "北京")
-                    {
+                        
                         cityid = getcityId("北京市");  //获取 citycode;
+                        
                     }
-                    if (comboBox1.Text != "上海")
+                   else if (comboBox1.Text == "上海")
                     {
                         cityid = getcityId("上海市");  //获取 citycode;
                     }
-                    if (comboBox1.Text != "天津市")
+                    else if (comboBox1.Text == "天津")
                     {
                         cityid = getcityId("天津市");  //获取 citycode;
                     }
-                    if (comboBox1.Text != "重庆")
+                    else if (comboBox1.Text== "重庆")
                     {
                         cityid = getcityId("重庆市");  //获取 citycode;
                     }
 
-
+                    else if (comboBox2.Text != "全省")
+                    {
+                        cityid = getcityId(comboBox2.Text);  //获取 citycode;
+                    }
+                   
                     foreach (string keyword in keywords)
 
                     {
@@ -527,7 +532,7 @@ namespace main
 
             catch (System.Exception ex)
             {
-                ex.ToString();
+              MessageBox.Show(  ex.ToString());
             }
 
         }
@@ -749,19 +754,23 @@ namespace main
             }
             else if (this.comboBox1.Text == "北京")
             {
-                this.comboBox2.Items.Add("北京");
+                this.comboBox2.Items.Add("北京市");
+                this.comboBox2.Items.Add("北京市");
             }
             else if (this.comboBox1.Text == "天津")
             {
-                this.comboBox2.Items.Add("天津");
+                this.comboBox2.Items.Add("天津市");
+                this.comboBox2.Items.Add("天津市");
             }
             else if (this.comboBox1.Text == "重庆")
             {
-                this.comboBox2.Items.Add("重庆");
+                this.comboBox2.Items.Add("重庆市");
+                this.comboBox2.Items.Add("重庆市");
             }
             else if (this.comboBox1.Text == "上海")
             {
-                this.comboBox2.Items.Add("上海");
+                this.comboBox2.Items.Add("上海市");
+                this.comboBox2.Items.Add("上海市");
             }
             else if (this.comboBox1.Text == "河北省")
             {

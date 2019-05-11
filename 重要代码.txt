@@ -18,4 +18,37 @@ System.Web.HttpUtility.UrlEncode(comboBox1.Text);
 	grant all privileges on *.* to 'root'@'%' identified by 'root' with grant option; 
 
 六、去掉标签值
+
+
+7、读取txt 写入TXT
+ if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                 
+                        ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
+                        lv2.SubItems.Add(text[i]);
+
+                    
+                }
+            }
+
+
+
+  FileStream fs1 = new FileStream(path + "新文档.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+      StreamWriter sw = new StreamWriter(fs1);
+     sw.WriteLine(text[i]);
+       sw.Close();
+        fs1.Close();          
+                   
+                 
+                
+    
+           
+
     

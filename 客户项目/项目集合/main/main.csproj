@@ -92,11 +92,29 @@
     <Compile Include="2019_4\群.Designer.cs">
       <DependentUpon>群.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_5\jd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\jd.Designer.cs">
+      <DependentUpon>jd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_5\医药网.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\医药网.Designer.cs">
+      <DependentUpon>医药网.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_5\拼多多推荐.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="2019_5\拼多多推荐.Designer.cs">
       <DependentUpon>拼多多推荐.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_5\文本筛选.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\文本筛选.Designer.cs">
+      <DependentUpon>文本筛选.cs</DependentUpon>
     </Compile>
     <Compile Include="2019_5\登录验证.cs">
       <SubType>Form</SubType>
@@ -140,8 +158,17 @@
     <EmbeddedResource Include="2019_4\群.resx">
       <DependentUpon>群.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\jd.resx">
+      <DependentUpon>jd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\医药网.resx">
+      <DependentUpon>医药网.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019_5\拼多多推荐.resx">
       <DependentUpon>拼多多推荐.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\文本筛选.resx">
+      <DependentUpon>文本筛选.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_5\登录验证.resx">
       <DependentUpon>登录验证.cs</DependentUpon>

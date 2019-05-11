@@ -31,7 +31,7 @@ namespace main._2019_5
                 {
 
                     string url = "http://mobile.yangkeduo.com/proxy/api/api/barrow/query?app_name=rectab_sim_gyl&support_types=0_1&offset="+i+"&count=20&list_id=6rTfjG3X02&dp_list_id=6rTfjG3X02_dp&pdduid=7312500755985&is_back=1";
-                    string html = method.GetUrlWithCookie(url, COOKIE);
+                    string html = method.GetUrlWithCookie(url, COOKIE, "utf-8");
                     //textBox3.Text = html;
                     //return;
 

@@ -199,8 +199,7 @@ namespace fang
 
                 for (int i = 0; i < text.Length; i++)
                 {
-                  
-
+                 
                         ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
                         lv2.SubItems.Add(text[i]);
 

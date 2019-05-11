@@ -139,7 +139,7 @@ namespace main._2019_4
 
                     String Url = "https://qun.qq.com/cgi-bin/group_search/group_search?retype=2&keyword="+keyword+"&page="+i+"&wantnum=20&city_flag=0&distance=1&ver=1&from=9&bkn=1767690426&style=1";
 
-                    string html = method.GetUrlWithCookie(Url, COOKIE);
+                    string html = method.GetUrlWithCookie(Url, COOKIE, "utf-8");
 
                     string html2 = Unicode2String(html);
 
