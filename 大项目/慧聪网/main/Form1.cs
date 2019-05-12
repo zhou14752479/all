@@ -400,6 +400,8 @@ namespace main
         }
         #endregion
 
+        ArrayList finishes = new ArrayList();
+
         #region  百度地图采集
 
         public void baidu()
@@ -419,10 +421,20 @@ namespace main
                 foreach (var item in comboBox2.Items)
                 {                
                         citys.Add(item);
-                   
+
+                }
+                 if (comboBox1.Text == "全国")
+                {
+                    citys.Add("北京");  //获取 citycode;
+                    citys.Add("上海");
+                    citys.Add("天津");
+                    citys.Add("重庆");
+                    citys.Add("广州");
+                    citys.Add("深圳");
+                    citys.Add("杭州");
                 }
 
-                
+
                 citys.RemoveAt(0);
 
                 string[] keywords = textBox3.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -459,6 +471,7 @@ namespace main
                         cityid = getcityId(comboBox2.Text);  //获取 citycode;
                     }
                    
+
                     foreach (string keyword in keywords)
 
                     {
@@ -503,8 +516,9 @@ namespace main
                             foreach (Content content in jsonParser.Content)
                             {
 
-                                if (content.tel !=null)
+                                if (content.tel !=null&&!finishes.Contains(content.tel))
                                 {
+                                    finishes.Add(content.name);
                                     ListViewItem lv1 = listView2.Items.Add(listView2.Items.Count.ToString());
                                     lv1.SubItems.Add(content.name);
                                     lv1.SubItems.Add(content.tel);
@@ -528,11 +542,12 @@ namespace main
 
                     }
                 }
+                button2.Enabled = true;
             }
 
             catch (System.Exception ex)
             {
-              MessageBox.Show(  ex.ToString());
+             ex.ToString();
             }
 
         }
@@ -641,9 +656,12 @@ namespace main
             }
             //Thread thread = new Thread(new ThreadStart(huicong));
             //thread.Start();
-
-            Thread thread = new Thread(new ThreadStart(baidu));
-            thread.Start();
+            for (int i = 0; i <5; i++)
+            {
+                Thread thread = new Thread(new ThreadStart(baidu));
+                thread.Start();
+            }
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
