@@ -49,7 +49,7 @@ namespace main._2019_5
 
 
 
-                    MatchCollection goodids = Regex.Matches(html, @"<img  data-sku=""([\s\S]*?)""");
+                    //MatchCollection goodids = Regex.Matches(html, @"<img  data-sku=""([\s\S]*?)""");
 
 
 
