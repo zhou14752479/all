@@ -98,11 +98,18 @@ namespace main
 
                             Match pgprice = Regex.Match(bhtml, @"avgPrice"":""([\s\S]*?)""");
 
+                           
                             lv1.SubItems.Add(pgprice.Groups[1].Value);
 
                             Double a = Convert.ToDouble(zuidi[0].Groups[1].Value);
                             Double b = Convert.ToDouble(zuidi[1].Groups[1].Value);
-                            Double d = Convert.ToDouble(pgprice.Groups[1].Value);
+                            Double d = 0.00;
+                            if (pgprice.Groups[1].Value != "")
+                            {
+                                 d = Convert.ToDouble(pgprice.Groups[1].Value);
+                            }
+
+                     
 
                             if (a < b * Convert.ToDouble(textBox2.Text))
                             {

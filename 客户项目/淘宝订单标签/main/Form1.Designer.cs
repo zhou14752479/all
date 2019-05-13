@@ -41,13 +41,13 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -170,6 +170,16 @@
             this.splitContainer2.SplitterDistance = 79;
             this.splitContainer2.TabIndex = 0;
             // 
+            // textBox2
+            // 
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox2.Location = new System.Drawing.Point(0, 0);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(384, 191);
+            this.textBox2.TabIndex = 40;
+            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -187,6 +197,11 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "是否标记";
+            this.columnHeader4.Width = 100;
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 11F);
@@ -194,7 +209,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(203, 38);
             this.button1.TabIndex = 38;
-            this.button1.Text = "开始标记";
+            this.button1.Text = "监控定单";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -238,21 +253,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(669, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "是否标记";
-            this.columnHeader4.Width = 100;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox2.Location = new System.Drawing.Point(0, 0);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(384, 191);
-            this.textBox2.TabIndex = 40;
             // 
             // Form1
             // 

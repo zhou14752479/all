@@ -6,7 +6,13 @@
       	        	  source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
        		 }
 二、获取当前程序运行的文件夹带“\”
-		AppDomain.CurrentDomain.BaseDirectory
+		AppDomain.CurrentDomain.BaseDirectory  
+
+创建文件夹
+  if (!Directory.Exists(sPath))
+                {
+                    Directory.CreateDirectory(sPath); //创建文件夹
+                }
 
 三、URL 解码
 System.Web.HttpUtility.UrlEncode(comboBox1.Text);
