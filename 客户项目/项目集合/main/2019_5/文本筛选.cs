@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,39 +27,25 @@ namespace main._2019_5
 
         private void button3_Click(object sender, EventArgs e)
         {
-            #region 通用登录
+            #region   读取注册码信息才能运行软件！
 
-
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
+            RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
+            if (rsg != null && rsg.GetValue("mac") != null)  //如果值不为空
             {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
+                Thread thread = new Thread(new ThreadStart(run));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
 
             }
-            if (value == true)
-            {
 
-              
-                    Thread thread = new Thread(new ThreadStart(run));
-                    thread.Start();
-        
-            }
             else
             {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
+                MessageBox.Show("请注册软件！");
+                register lg = new register();
+                lg.Show();
             }
-            #endregion
 
+            #endregion
         }
 
 
@@ -88,10 +75,7 @@ namespace main._2019_5
 
 
 
-            StreamReader sr1 = new StreamReader(heipath, Encoding.Default);
-            //一次性读取完 
-            string texts1 = sr1.ReadToEnd();
-            string[] text1 = texts1.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            string[] text1 = File.ReadAllLines(heipath, Encoding.GetEncoding("gb2312")); //黑名单
 
 
             ArrayList lists = new ArrayList();
@@ -110,23 +94,28 @@ namespace main._2019_5
 
             for (int i = 0; i < lists.Count; i++)
             {
-
-                for (int j = 0; j < text1.Length; j++)
+                if (!lists[i].ToString().Contains(" "))
                 {
-                    if (lists[i].ToString().Contains(text1[j]))
+                    for (int j = 0; j < text1.Length; j++)
                     {
-                        lists[i] = lists[i].ToString().Replace(text1[j], "").Trim();
+                        if (lists[i].ToString().Contains(text1[j]) && text1[j].ToString() != "")
+                        {
+
+
+                            lists[i] = lists[i].ToString().Replace(text1[j], "").Trim();
+
+                        }
 
                     }
-
+                    sw.WriteLine(lists[i]);
                 }
-                sw.WriteLine(lists[i]);
             }
 
 
 
 
             sw.Close();
+            
             fs1.Close();
             MessageBox.Show("生成成功");
         }
@@ -149,6 +138,8 @@ namespace main._2019_5
             {
                 heipath = openFileDialog1.FileName;
             }
+
+            
         }
     }
 }

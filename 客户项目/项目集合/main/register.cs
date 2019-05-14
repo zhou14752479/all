@@ -20,8 +20,10 @@ namespace main
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text.Trim() == method.Random(textBox1.Text).Trim())
+            if (textBox1.Text== "sanyoukeji"&& textBox2.Text.Trim() == "sanyou13233808686")
             {
+                //if (textBox2.Text.Trim() == method.Random(textBox1.Text).Trim())
+                //{
 
                 RegistryKey regkey = Registry.CurrentUser.CreateSubKey("zhucema");//要创建一个特殊的字符串，防止与系统或其他程序写注册表名称相同，如果存在则更新值。
                 regkey.SetValue("mac", textBox1.Text.Trim());

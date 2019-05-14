@@ -32,20 +32,39 @@ namespace main._2019_5
                    
                     MatchCollection goodids = Regex.Matches(html, @"<img  data-sku=""([\s\S]*?)""");
 
-                    ArrayList shopUrls = new ArrayList();
+                    
                     for (int j = 0; j < goodids.Count; j++)
                     {
                         string URL = "https://item.jd.com/" + goodids[j].Groups[1].Value + ".html";
                         string strhtml = method.GetUrl(URL, "utf-8");
-                        Match  shopid = Regex.Match(strhtml, @"""-([\s\S]*?)""");
-                        string shopUrl = "https://mall.jd.com/view_search-" + shopid.Groups[1].Value + "-0-5-1-24-1.html";
-                        shopUrls.Add(shopUrl);
+                        Match  shopid = Regex.Match(strhtml, @"data-vid=""([\s\S]*?)""");
+                        Match  hangye = Regex.Match(strhtml, @"mbNav-3"">([\s\S]*?)<");
+
+                        MatchCollection items= Regex.Matches(strhtml, @"compare\/([\s\S]*?)-([\s\S]*?)-");
+
+                        StringBuilder sb = new StringBuilder();
+                        for (int a = 0; a < items.Count; a++)
+                        {
+                            sb.Append("J_"+items[a].Groups[2].Value+",");
+                        }
+                        string priceUrl = "https://p.3.cn/prices/mgets?skuIds="+sb.ToString()+"&type=1&callback=jsonp1557817529049&_=1557817529050";
+
+                        MatchCollection pricees = Regex.Matches(strhtml, @"""p"":""([\s\S]*?)""");
+
+
+                        for (int b = 0; b < pricees.Count; b++)
+                        {
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(items[b].Groups[2].Value);
+                            listViewItem.SubItems.Add(pricees[b].Groups[1].Value);
+                        }
+
+
+
+
                     }
 
-                    foreach (string shopurl in shopUrls)
-                    {
-                        string ahtml= method.GetUrl(shopurl, "utf-8");
-                    }
+                   
 
 
 
