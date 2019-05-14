@@ -25,10 +25,51 @@ namespace main._2019_5
         string strpath = "";
         string heipath = "";
 
+        /// <summary>
+        /// 根据字节数截取字符串
+        /// </summary>
+        /// <param name="Text"></param>
+        /// <param name="LimitSize"></param>
+        /// <returns></returns>
+        private string GetSubStringByLength(string Text, int LimitSize)
+        {
+            byte[] bytes = Encoding.Unicode.GetBytes(Text);
+            int nByte = 0;                       //  表示当前的字节数
+            int i = 0;                              //  要截取的字节数
+            for (; i < bytes.GetLength(0) && nByte < LimitSize; i++)
+            {
+                if (i % 2 == 0)                 //  偶数位置，如0、2、4等，为UCS2编码中两个字节的第一个字节
+                {
+                    nByte++;                    //  在UCS2第一个字节时n加1
+                }
+                else
+                {
+                    if (bytes[i] > 0)               //  当UCS2编码的第二个字节大于0时，该UCS2字符为汉字，一个汉字算两个字节
+                    {
+                        nByte++;
+                    }
+                }
+            }
+
+            //  如果i为奇数时，处理成偶数
+            if (i % 2 == 1)
+            {
+                if (bytes[i] > 0)                               //  该UCS2字符是汉字时，去掉这个截一半的汉字
+                    i = i - 1;
+                else
+                    i = i + 1;                                  //  该UCS2字符是字母或数字，则保留该字符
+            }
+            LimitSize = i;
+
+            return Encoding.Unicode.GetString(bytes, 0, i);
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
+
+
             
-            
+
             #region   读取注册码信息才能运行软件！
 
             RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
@@ -90,7 +131,7 @@ namespace main._2019_5
                 if (System.Text.Encoding.Default.GetByteCount(text[i].ToString()) > 2*Convert.ToInt32(textBox1.Text))
                 {
 
-                    lists.Add(text[i].Substring(0, (Convert.ToInt32(textBox1.Text))));
+                    lists.Add(GetSubStringByLength(text[i].ToString(), 2 * Convert.ToInt32(textBox1.Text)));
                 }
             }
 
