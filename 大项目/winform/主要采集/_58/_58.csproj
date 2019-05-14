@@ -60,7 +60,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>05A6EC23E2ECA43B22F6C08FA30B47D4D1920081</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>E4B56263787C811249167AFCBE83A53EC2E6832A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>_58_2_TemporaryKey.pfx</ManifestKeyFile>
@@ -322,6 +322,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="_58_2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
