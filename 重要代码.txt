@@ -52,6 +52,9 @@ System.Web.HttpUtility.UrlEncode(comboBox1.Text);
        sw.Close();
         fs1.Close();          
                    
+
+System.Text.Encoding.Default.GetByteCount("字符串") 获取字符串字节长度
+
                  
                 
     

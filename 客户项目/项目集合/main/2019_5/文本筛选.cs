@@ -27,6 +27,8 @@ namespace main._2019_5
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
+            
             #region   读取注册码信息才能运行软件！
 
             RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
@@ -85,7 +87,7 @@ namespace main._2019_5
             for (int i = 0; i < text.Length; i++)
             {
 
-                if (text[i].Length > Convert.ToInt32(textBox1.Text))
+                if (System.Text.Encoding.Default.GetByteCount(text[i].ToString()) > 2*Convert.ToInt32(textBox1.Text))
                 {
 
                     lists.Add(text[i].Substring(0, (Convert.ToInt32(textBox1.Text))));
