@@ -120,6 +120,7 @@
             this.Name = "文本筛选";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "标题生成  三友科技内部专用，未经许可禁止外传    电话：13233808686";
+            this.Load += new System.EventHandler(this.文本筛选_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

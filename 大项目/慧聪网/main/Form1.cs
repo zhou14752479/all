@@ -516,7 +516,7 @@ namespace main
                             foreach (Content content in jsonParser.Content)
                             {
 
-                                if (content.tel !=null&&!finishes.Contains(content.tel))
+                                if (content.tel !=null&&!finishes.Contains(content.name))
                                 {
                                     finishes.Add(content.name);
                                     ListViewItem lv1 = listView2.Items.Add(listView2.Items.Count.ToString());

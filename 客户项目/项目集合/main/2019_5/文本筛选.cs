@@ -128,10 +128,11 @@ namespace main._2019_5
             for (int i = 0; i < text.Length; i++)
             {
 
-                if (System.Text.Encoding.Default.GetByteCount(text[i].ToString()) > 2*Convert.ToInt32(textBox1.Text))
+                if (System.Text.Encoding.Default.GetByteCount(text[i].ToString()) > 50)
                 {
 
-                    lists.Add(GetSubStringByLength(text[i].ToString(), 2 * Convert.ToInt32(textBox1.Text)));
+                   // lists.Add(GetSubStringByLength(text[i].ToString(), 2 * Convert.ToInt32(textBox1.Text)));
+                    lists.Add(text[i].ToString());
                 }
             }
 
@@ -183,6 +184,11 @@ namespace main._2019_5
             }
 
             
+        }
+
+        private void 文本筛选_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

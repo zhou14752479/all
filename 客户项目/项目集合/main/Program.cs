@@ -16,7 +16,7 @@ namespace main._2019_5
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 文本筛选());
+            Application.Run(new 网站发布项目());
         }
     }
 }
