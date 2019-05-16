@@ -65,36 +65,39 @@ namespace main
         /// <param name="COOKIE">cookie</param>
         /// <param name="charset">编码格式</param>
         /// <returns></returns>
-        public static string PostUrl(string url, string postData, string COOKIE, string charset)
+        public static string PostUrl(string url, string data, string COOKIE, string charset)
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Method = "Post";
-                request.ContentType = "application/x-www-form-urlencoded";
-                //request.ContentType = "application/json";
-                request.Accept = "*/*";
-                request.KeepAlive = true;
-                request.ContentLength = postData.Length;
-                request.AllowAutoRedirect = true;
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
-                request.Headers.Add("Cookie", COOKIE);
+                Encoding myEncoding = Encoding.GetEncoding("gb2312");  //选择编码字符集
+                
+                byte[] bytesToPost = System.Text.Encoding.Default.GetBytes(data); //转换为bytes数据
 
-                StreamWriter sw = new StreamWriter(request.GetRequestStream());
-                sw.Write(postData);
-                sw.Flush();
-                WebResponse response = request.GetResponse();
-                Stream s = response.GetResponseStream();
-                StreamReader sr = new StreamReader(s, Encoding.GetEncoding(charset));
-                string html = sr.ReadToEnd();
+                string responseResult = String.Empty;
+                HttpWebRequest req = (HttpWebRequest)
+                HttpWebRequest.Create("http://192.168.60.59:81/rpc/snBurn/insertBySN");   //创建一个有效的httprequest请求，地址和端口和指定路径必须要和网页系统工程师确认正确，不然一直通讯不成功
+                req.Method = "POST";
+                req.ContentType =
+                "application/x-www-form-urlencoded;charset=gb2312";
+                req.ContentLength = bytesToPost.Length;
 
-                sw.Dispose();
-                sw.Close();
-                sr.Dispose();
-                sr.Close();
-                s.Dispose();
-                s.Close();
-                return html;
+                using (Stream reqStream = req.GetRequestStream())
+                {
+                    reqStream.Write(bytesToPost, 0, bytesToPost.Length);     //把要上传网页系统的数据通过post发送
+                }
+                HttpWebResponse cnblogsRespone = (HttpWebResponse)req.GetResponse();
+                if (cnblogsRespone != null && cnblogsRespone.StatusCode == HttpStatusCode.OK)
+                {
+                    StreamReader sr;
+                    using (sr = new StreamReader(cnblogsRespone.GetResponseStream()))
+                    {
+                        responseResult = sr.ReadToEnd();  //网页系统的json格式的返回值，在responseResult里，具体内容就是网页系统负责工程师跟你协议号的返回值协议内容
+                    }
+                    sr.Close();
+                }
+                cnblogsRespone.Close();
+           
+                return responseResult;
             }
             catch (System.Exception ex)
             {
@@ -113,7 +116,7 @@ namespace main
 
 
 
-        public static string COOKIE = "miid=1280586377935732790; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; t=549c883cd0d96a2361709464aafc2ef7; _cc_=VT5L2FSpdA%3D%3D; tg=0; enc=ETipG2bZXOBHnnMkMzY3V6vYw2XTofpVPJGY9qC1fAumaq8fCu7r9hMM6FXypvSyFZULNgxuMbmMSGJt3v7L0Q%3D%3D; hng=CN%7Czh-CN%7CCNY%7C156; mt=ci=-1_0&np=; _m_h5_tk=d9c8b6472e450c3aefd8e744b5493d2a_1557716623605; _m_h5_tk_enc=a4b37f56f0472e17ba1a7fa281ad30d0; cookie2=143fbba0f593d0f9a0718b5d255e82de; _tb_token_=5e390746ee3ee; x=2992737907; _bl_uid=njj6hv4Xl4aqL0q7entvuUh8gtbv; uc3=id2=&nk2=&lg2=; skt=a9cb3a75d590d96a; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E6%A1%94%E5%AD%90; unb=3247690276; tracknick=; csg=2a68fe9e; v=0; uc1=cookie14=UoTZ48JVxO2P5A%3D%3D&lng=zh_CN; l=bBreIJ14vWJ-OGV6KOfNZuIRGobTmKRf1sPzw4gGqICP_uClDaVlWZ96MH8DC3GVa6FpR3oWYJ1uB5TzFyUIh; isg=BF9fadZcf8-kK3vT8QTxEs-b7rMpbLsCldONLvGkd4xxgHcC-ZH1tm4WQlBbGIve";
+        public static string COOKIE = "miid=1280586377935732790; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; t=549c883cd0d96a2361709464aafc2ef7; tg=0; hng=CN%7Czh-CN%7CCNY%7C156; _bl_uid=njj6hv4Xl4aqL0q7entvuUh8gtbv; enc=5BnyFFuDeqJnqQZxA6QyFlyN20GFeiRDc0kkddkfspydsa13DgSJd7cMSqH2bHy0qmM%2BsJvDUWBn%2Bfei0I78CA%3D%3D; _cc_=VFC%2FuZ9ajQ%3D%3D; mt=ci=-1_0&np=; _m_h5_tk=da06e51a2a981f23c980f3c5e7cde11a_1557828467488; _m_h5_tk_enc=3d04b61039a426004703a7797a9c54c1; cookie2=1a953bd75316101f8b16733d6d1410bf; _tb_token_=83ee3731e750; x=2992737907; uc3=id2=&nk2=&lg2=; skt=b46d5bacaace540e; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E6%A1%94%E5%AD%90; unb=3247690276; tracknick=; csg=6feba747; v=0; uc1=cookie14=UoTZ48xqWqOx%2BQ%3D%3D&lng=zh_CN; l=bBreIJ14vWJ-OIgfKOfgNuIRGi7O6IOb8sPzw4gGxICP_rfMCiGfWZ9BZ4THC3GVZ66yR3oWYJ1uB28l6yCV.; isg=BBQUxEISNBowOaDSTj1Ko1ii5VJGxTA7Ilr276703B93mbXj1nhJ56RfmdGkYXCv";
 
 
         public static string getToken()
@@ -149,7 +152,7 @@ namespace main
                     int prei = i - 1;
                     string url = "https://trade.taobao.com/trade/itemlist/asyncSold.htm?event_submit_do_query=1&_input_charset=utf8";
 
-                    string postdata = "auctionType=0&close=0&pageNum=2&pageSize=15&queryMore=true&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&prePageNo=1&buyerNick=&dateBegin=0&dateEnd=0&logisticsService=&orderStatus=&queryOrder=desc&rateStatus=&refund=&sellerNick=&tabCode=latest3Months";
+                    string postdata = "auctionType=0&close=0&pageNum=2&pageSize=15&queryMore=false&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&prePageNo=1";
                     
                     string html = PostUrl(url,postdata ,COOKIE, "gb2312");
 

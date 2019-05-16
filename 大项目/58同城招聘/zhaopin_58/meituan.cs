@@ -13,6 +13,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace zhaopin_58
 {
@@ -33,16 +35,27 @@ namespace zhaopin_58
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                string str = "SELECT name from meituan_province_city ";
-                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                DataTable dt = ds.Tables[0];
-                foreach (DataRow dr in dt.Rows)
+                //创建Xml文档。
+                XmlDocument xml = new XmlDocument();
+                //加载要读取的xml文件。
+                xml.Load("http://www.acaiji.com/xml/meituan_province_city.xml");
+               // 获得文档中的根节点。
+                 XmlElement xmlElement = xml.DocumentElement;
+                XmlNodeList nodeList = xmlElement.ChildNodes;
+                foreach (XmlNode item in nodeList)
                 {
-                    list.Add(dr[0].ToString().Trim());
+
+                    XmlNodeList nodes = item.ChildNodes;
+
+                    foreach (XmlNode node in nodes)
+                    {
+                        if (node.Name == "name")
+                        {
+                            list.Add(node.InnerText);
+                        }
+                    }
                 }
+
             }
             catch (MySqlException ee)
             {
@@ -53,56 +66,75 @@ namespace zhaopin_58
         }
         #endregion
 
-        #region 获取数据库美团城市名称返回集合
+        #region 获取XML城市名称返回集合
         public ArrayList getCityNames()
         {
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                string str = "SELECT name from meituan_province_city ";
-                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                DataTable dt = ds.Tables[0];
-                foreach (DataRow dr in dt.Rows)
+                //创建Xml文档。
+                XmlDocument xml = new XmlDocument();
+                //加载要读取的xml文件。
+                xml.Load("http://www.acaiji.com/xml/meituan_province_city.xml");
+                // 获得文档中的根节点。
+                XmlElement xmlElement = xml.DocumentElement;
+                XmlNodeList nodeList = xmlElement.ChildNodes;
+                foreach (XmlNode item in nodeList)
                 {
-                    list.Add(dr[0].ToString().Trim());
+
+                    XmlNodeList nodes = item.ChildNodes;
+
+                    foreach (XmlNode node in nodes)
+                    {
+                        if (node.Name == "name")
+                        {
+                            list.Add(node.InnerText);
+                        }
+                    }
                 }
+
             }
             catch (MySqlException ee)
             {
                 MessageBox.Show(ee.Message.ToString());
             }
+            
             return list;
 
         }
         #endregion
 
-        #region  获取数据库中城市名称对应的拼音
+        #region  获取XML城市名称对应的拼音
 
         public string Getpinyin(string city)
         {
 
             try
             {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
+                //创建Xml文档。
+                XmlDocument xml = new XmlDocument();
+                //加载要读取的xml文件。
+                xml.Load("http://www.acaiji.com/xml/meituan_province_city.xml");
+                // 获得文档中的根节点。
+                XmlElement xmlElement = xml.DocumentElement;
+                XmlNodeList nodeList = xmlElement.ChildNodes;
+                foreach (XmlNode item in nodeList)
+                {
 
-                MySqlCommand cmd = new MySqlCommand("select pinyin from meituan_province_city where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+                    XmlNodeList nodes = item.ChildNodes;
 
+                    foreach (XmlNode node in nodes)
+                    {
+                        if (node.Name == "name"&&node.InnerText==city)
+                        {
+                            return node.NextSibling.NextSibling.InnerText; //根据xml排序获取南京节点后第二个节点nanjing
+                            
+                            
+                        }
+                    }
+                }
 
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                reader.Read();
-
-                string citypinyin = reader["pinyin"].ToString().Trim();
-                mycon.Close();
-                reader.Close();
-                return citypinyin;
-
-
+                return "";
             }
 
             catch (System.Exception ex)
@@ -115,64 +147,38 @@ namespace zhaopin_58
 
         #endregion
 
-        #region  获取数据库中城市名称对应的缩写
+        
 
-        public string Getsuoxie(string city)
-        {
-
-            try
-            {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-                MySqlCommand cmd = new MySqlCommand("select suoxie from meituan_province_city where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                reader.Read();
-
-                string citypinyin = reader["suoxie"].ToString().Trim();
-                mycon.Close();
-                reader.Close();
-                return citypinyin;
-
-
-            }
-
-            catch (System.Exception ex)
-            {
-                return ex.ToString();
-            }
-
-
-        }
-
-        #endregion
-
-        #region  获取数据库中城市名称对应的Id
+        #region  获取XML城市名称对应的Id
 
         public string GetCityId(string city)
         {
 
             try
             {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
+                XmlDocument xml = new XmlDocument();
+                //加载要读取的xml文件。
+                xml.Load("http://www.acaiji.com/xml/meituan_province_city.xml");
+                // 获得文档中的根节点。
+                XmlElement xmlElement = xml.DocumentElement;
+                XmlNodeList nodeList = xmlElement.ChildNodes;
+                foreach (XmlNode item in nodeList)
+                {
 
-                MySqlCommand cmd = new MySqlCommand("select meituan_cityid from meituan_pc_city where meituan_cityname='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+                    XmlNodeList nodes = item.ChildNodes;
 
+                    foreach (XmlNode node in nodes)
+                    {
+                        if (node.Name == "name" && node.InnerText == city)
+                        {
+                            // return node.PreviousSibling.InnerText; //根据xml排序获取南京节点之前的节点值即南京的CityID
 
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+                            return node.NextSibling.InnerText;
+                        }
+                    }
+                }
 
-                reader.Read();
-
-                string meituan_cityid = reader["meituan_cityid"].ToString().Trim();
-                mycon.Close();
-                reader.Close();
-                return meituan_cityid;
+                return "";
 
 
             }
@@ -187,6 +193,45 @@ namespace zhaopin_58
         }
 
         #endregion
+
+        //#region 获取城市名对应的区域ID
+        //public ArrayList getAreaId(string city)
+        //{
+
+        //    ArrayList areas = new ArrayList();
+        //    string cityPinYin = Getpinyin(city);
+        //    try
+        //    {
+        //        //创建Xml文档。
+        //        XmlDocument xml = new XmlDocument();
+        //        //加载要读取的xml文件。
+        //        xml.Load("http://www.acaiji.com/xml/meituan_area.xml");
+        //        // 获得文档中的根节点。
+        //        XmlElement xmlElement = xml.DocumentElement;
+        //        XmlNodeList nodeList = xmlElement.ChildNodes;
+        //        foreach (XmlNode item in nodeList)
+        //        {
+
+        //            XmlNodeList nodes = item.ChildNodes;
+
+        //            foreach (XmlNode node in nodes)
+        //            {
+        //                if (node.Name == "meituan_area_citypinyin" && node.InnerText == cityPinYin)
+        //                {
+        //                    areas.Add(node.PreviousSibling.InnerText);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (MySqlException ee)
+        //    {
+        //        ee.Message.ToString();
+        //    }
+        //    return areas;
+        //}
+
+        //#endregion
+
 
         #region 获取城市名对应的区域ID
         public ArrayList getAreaId(string city)
@@ -215,9 +260,6 @@ namespace zhaopin_58
         }
 
         #endregion
-
-
-      
 
         private void meituan_Load(object sender, EventArgs e)
         {
@@ -295,7 +337,8 @@ namespace zhaopin_58
                         {
 
                             string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/"+cityId+"?cateId=-1&sort=default&userid=-1&offset=0&limit=1000&mypos=33.959859%2C118.279675&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&q="+keyword+"&requestType=filter&cityId="+cityId+"&areaId="+area;
-                            
+
+                       
                             string html = GetUrl(Url);
                         
                             
@@ -634,6 +677,8 @@ namespace zhaopin_58
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+
+
             status = false;
         }
     }

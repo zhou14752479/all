@@ -32,17 +32,17 @@ namespace main
             public static string GetUrl(string Url, string charset)
             {
                 try
-                {
-
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //加上这一句
-                string COOKIE = "api_uid=rBUGYFw76x2onmUyf6+7Ag==; ua=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F71.0.3578.98%20Safari%2F537.36; msec=1800000; webp=1; rec_list_catgoods=rec_list_catgoods_tS1aCi; _nano_fp=XpdYl09Yn59Yl0d8Xo_3OImpoqcCXvWZljWqsB1u; rec_list=rec_list_a5zfaK; rec_list_mall_bottom=rec_list_mall_bottom_BvBfWF; rec_list_index=rec_list_index_57uosz; JSESSIONID=CFC9795F1F6ED86DEA7F9FFF6950FCEE; pdd_user_id=7312500755985; pdd_user_uin=7BT7HSLWTMIXDJYZTOHT4Q45MQ_GEXDA; PDDAccessToken=HM4WB65TFF2ZZBSTYMGVAXE3WQTA47CGOT2ZKRP5S2GVRZFJG74Q102118b; goods_detail=goods_detail_q5vUgt; goods_detail_mall=goods_detail_mall_SpisdW; ab=0; sp=0; gp=0; egrp=5";
+            {
+                string COOKIE = "Hm_lvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557975485; __utmc=56961525; __utmz=56961525.1557975489.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); PHPSESSID=3e944cfd954c52e155f6d5d99ad19606779f6240; pm=; LastUrl=; FirstURL=www.okooo.com/; FirstOKURL=http%3A//www.okooo.com/jingcai/; First_Source=www.okooo.com; __utma=56961525.1606818588.1557975489.1557981725.1557985950.3; IMUserID=30498306; IMUserName=%E6%9E%97%E5%AD%94988610; OKSID=3e944cfd954c52e155f6d5d99ad19606779f6240; M_UserName=%22%5Cu6797%5Cu5b54988610%22; M_UserID=30498306; M_Ukey=067e94b82ba40266c3a93fde0c9d9c01; OkAutoUuid=aa5bcc288c3e2610627fc126218f5eb1; OkMsIndex=8; Hm_lpvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557987723; __utmb=56961525.45.9.1557987726651";
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
-                    request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
-                    request.AllowAutoRedirect = true;
-                    request.Headers.Add("Cookie", COOKIE);
-                    request.KeepAlive = false;
-                    HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                    request.UserAgent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5";
+                request.Accept = "gzip";
+                request.Headers.Add("Accept-Language", "zh-cn,en-us;q=0.5");
+                //request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                //request.KeepAlive = false;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                     StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
@@ -54,7 +54,7 @@ namespace main
                 }
                 catch (System.Exception ex)
                 {
-                  MessageBox.Show(  ex.ToString());
+                  MessageBox.Show(ex.ToString());
 
                 }
                 return "";
@@ -101,7 +101,7 @@ namespace main
             #endregion
 
             #region ！！！！如果之前的请求获取不到源码就用这个去获取,非常重要！！！！
-            public static string GetHtmlSource(string url)
+            public static string GetHtmlSource(string url,string charset)
             {
                 try
                 {
@@ -113,7 +113,7 @@ namespace main
                     myReq.Headers.Add("Accept-Language", "zh-cn,en-us;q=0.5");
                     HttpWebResponse result = (HttpWebResponse)myReq.GetResponse();
                     Stream receviceStream = result.GetResponseStream();
-                    StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.GetEncoding("utf-8"));
+                    StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.GetEncoding(charset));
                     string strHTML = readerOfStream.ReadToEnd();
                     readerOfStream.Close();
                     receviceStream.Close();

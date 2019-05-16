@@ -35,6 +35,9 @@
     <ApplicationIcon>1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper">
+      <HintPath>..\..\..\..\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
@@ -131,6 +134,12 @@
     <Compile Include="2019_5\网站发布项目.Designer.cs">
       <DependentUpon>网站发布项目.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_5\足球数据.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\足球数据.Designer.cs">
+      <DependentUpon>足球数据.cs</DependentUpon>
+    </Compile>
     <Compile Include="method.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_5\网站发布项目.resx">
       <DependentUpon>网站发布项目.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\足球数据.resx">
+      <DependentUpon>足球数据.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

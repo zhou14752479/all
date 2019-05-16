@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F32BFE1F-4707-447A-BF42-DF82F710371F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CsharpHttpHelper_Demo</RootNamespace>
+    <AssemblyName>CsharpHttpHelper_Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HttpCertificate_Demo.aspx" />
+    <Content Include="HttpCookieCollection_Demo.aspx" />
+    <Content Include="HttpGet_Demo.aspx" />
+    <Content Include="HttpHeader_Demo.aspx" />
+    <Content Include="HttpHtml_Demo.aspx" />
+    <Content Include="HttpImage_Demo.aspx" />
+    <Content Include="HttpJson_Demo.aspx" />
+    <Content Include="HttpJs_Demo.aspx" />
+    <Content Include="HttpLocation_Demo.aspx" />
+    <Content Include="HttpMD5_Demo.aspx" />
+    <Content Include="HttpPost_Demo.aspx" />
+    <Content Include="HttpProxy_Demo.aspx" />
+    <Content Include="HttpStringCookie_Demo.aspx" />
+    <Content Include="HttpUrl_Demospx.aspx" />
+    <Content Include="Index.aspx" />
+    <Content Include="test.js" />
+    <Content Include="Text.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HttpCertificate_Demo.aspx.cs">
+      <DependentUpon>HttpCertificate_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpCertificate_Demo.aspx.designer.cs">
+      <DependentUpon>HttpCertificate_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpCookieCollection_Demo.aspx.cs">
+      <DependentUpon>HttpCookieCollection_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpCookieCollection_Demo.aspx.designer.cs">
+      <DependentUpon>HttpCookieCollection_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpGet_Demo.aspx.cs">
+      <DependentUpon>HttpGet_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpGet_Demo.aspx.designer.cs">
+      <DependentUpon>HttpGet_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpHeader_Demo.aspx.cs">
+      <DependentUpon>HttpHeader_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpHeader_Demo.aspx.designer.cs">
+      <DependentUpon>HttpHeader_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpHtml_Demo.aspx.cs">
+      <DependentUpon>HttpHtml_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpHtml_Demo.aspx.designer.cs">
+      <DependentUpon>HttpHtml_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpImage_Demo.aspx.cs">
+      <DependentUpon>HttpImage_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpImage_Demo.aspx.designer.cs">
+      <DependentUpon>HttpImage_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpJson_Demo.aspx.cs">
+      <DependentUpon>HttpJson_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpJson_Demo.aspx.designer.cs">
+      <DependentUpon>HttpJson_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpJs_Demo.aspx.cs">
+      <DependentUpon>HttpJs_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpJs_Demo.aspx.designer.cs">
+      <DependentUpon>HttpJs_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpLocation_Demo.aspx.cs">
+      <DependentUpon>HttpLocation_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpLocation_Demo.aspx.designer.cs">
+      <DependentUpon>HttpLocation_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpMD5_Demo.aspx.cs">
+      <DependentUpon>HttpMD5_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpMD5_Demo.aspx.designer.cs">
+      <DependentUpon>HttpMD5_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpPost_Demo.aspx.cs">
+      <DependentUpon>HttpPost_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpPost_Demo.aspx.designer.cs">
+      <DependentUpon>HttpPost_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpProxy_Demo.aspx.cs">
+      <DependentUpon>HttpProxy_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpProxy_Demo.aspx.designer.cs">
+      <DependentUpon>HttpProxy_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpStringCookie_Demo.aspx.cs">
+      <DependentUpon>HttpStringCookie_Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpStringCookie_Demo.aspx.designer.cs">
+      <DependentUpon>HttpStringCookie_Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HttpUrl_Demospx.aspx.cs">
+      <DependentUpon>HttpUrl_Demospx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HttpUrl_Demospx.aspx.designer.cs">
+      <DependentUpon>HttpUrl_Demospx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Text.aspx.cs">
+      <DependentUpon>Text.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Text.aspx.designer.cs">
+      <DependentUpon>Text.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CsharpHttpHelper\CsharpHttpHelper.csproj">
+      <Project>{966C2F8B-47E5-4E6D-ABFC-13501E739D25}</Project>
+      <Name>CsharpHttpHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1916</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

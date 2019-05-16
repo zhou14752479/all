@@ -73,7 +73,7 @@ namespace main._2019_4
 
                         string Url = "https://m.baidu.com/from=1000539d/s?pn=" + i + "0&word=" + keyutf8;
 
-                        string html = method.GetHtmlSource(Url);
+                        string html = method.GetHtmlSource(Url,"utf-8");
 
                         MatchCollection urls = Regex.Matches(html, @"data-lp=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection bs = Regex.Matches(html, @"mu':'([\s\S]*?)'", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -133,7 +133,7 @@ namespace main._2019_4
 
                         string Url = "https://m.so.com/nextpage?q=" + keyutf8 + "&src=suggest_m1.0_a&sug_pos=2&srcg=home_next&pn=" + i + "&ajax=1&psid=c7412fca1c4a62b43444f9d081cded08&es=0%7C0%7C0%7C0%7C0%7C0%7C-1";
 
-                        string html = method.GetHtmlSource(Url);
+                        string html = method.GetHtmlSource(Url,"utf-8");
 
                         MatchCollection ass = Regex.Matches(html, @"<a class=""e-more-see-detail"" href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection urls = Regex.Matches(html, @"<span class='res-site-url'>([\s\S]*?)</span>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -222,7 +222,7 @@ namespace main._2019_4
 
                         string Url = "https://m.sogou.com/web/search/ajax_query.jsp?type=1&uID=AAGFTAEkJwAAAAqMGE/jJgEAkwA=&v=5&dp=1&pid=sogou-waps-7880d7226e872b77&keyword=" + keyutf8 + "&suuid=65173a96-4d07-406e-b5a6-6bb5e967b8f7&p=" + i + "&s_from=pagenext&showextquery=1";
 
-                        string html = method.GetHtmlSource(Url);
+                        string html = method.GetHtmlSource(Url, "utf-8");
 
                         MatchCollection urls = Regex.Matches(html, @"data-lp=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection bs = Regex.Matches(html, @"<div class=""citeurl"">([\s\S]*?)</div>", RegexOptions.IgnoreCase | RegexOptions.Multiline);

@@ -157,7 +157,7 @@ namespace main._2019_5
                                     string shengfen = a3.Groups[2].Value.Trim() + "|" + a3.Groups[1].Value.Trim();
 
                                     string diqu = a3.Groups[4].Value + "|" + a3.Groups[3].Value;
-                                    string content = xxjs+sb.ToString() + "<p>管理约姐姐网【yuejj.net】提示:要求付定金 保证金的,总之提前要钱的都是骗子。</p><p>【必赢棋牌】真金游戏，真钱真刺激，不靠运气靠技术，技术好的一次赢几千，支持微信、支付宝、银行卡等多种方式上下分，想玩就玩，想走就走，安全可靠，注册就送18，可提现，点击下载：http://lol.wutgb6y.com:8899/?GameID=1&channelCode=1278</p>"+ "<img src=\"http://yuejj.net/111.png\" />"+"<p>【需要更新城市资源以及聊天的请添加3万人聊天技术讨论群，随便聊不踢人（乱发广告的除外），点击立刻加入</p><p>https://pt.im/joinchat/RmS8my3KbP_594rgWGFGEw</p><p>potato频道：https://pt.im/yuejj</p>";
+                                    string content = xxjs+sb.ToString() + "<p>管理约姐姐网【yuejj.net】提示:要求付定金 保证金的,总之提前要钱的都是骗子。</p><p>【必赢棋牌】真金游戏，真钱真刺激，不靠运气靠技术，技术好的一次赢几千，支持微信、支付宝、银行卡等多种方式上下分，想玩就玩，想走就走，安全可靠，注册就送18，可提现，点击下载：http://lol.wutgb6y.com:8899/?GameID=1&channelCode=1278</p>"+ "<a href=\"http://lol.wutgb6y.com:8899/?GameID=1&channelCode=1278\"<img src=\"http://yuejj.net/111.png\" /></a>" + "<p>【需要更新城市资源以及聊天的请添加3万人聊天技术讨论群，随便聊不踢人（乱发广告的除外），点击立刻加入</p><p>https://pt.im/joinchat/RmS8my3KbP_594rgWGFGEw</p><p>potato频道：https://pt.im/yuejj</p>";
 
                                     string q1 = HttpUtility.UrlEncode(ftype, Encoding.GetEncoding("gb2312"));
                                     string q2 = HttpUtility.UrlEncode(shengfen, Encoding.GetEncoding("gb2312"));
