@@ -31,6 +31,7 @@ namespace main._2019_5
             {
                 URL = url,
                 Method = "GET",//URL     可选项 默认为Get  
+                Encoding = Encoding.GetEncoding("utf-8"),
                 Timeout = 100000,//连接超时时间     可选项默认为100000  
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
                 
@@ -64,93 +65,106 @@ namespace main._2019_5
         #region  
 
 
-   
 
-            
 
-           
-          
 
+
+
+
+        bool zanting = true;
             public void run()
+
         {
-           
+
+            DateTime dtStart = DateTime.Parse(dateTimePicker1.Text); ;
+            DateTime dtEnd = DateTime.Parse(dateTimePicker2.Text);
 
             try
             {
+                for (DateTime dt = dtStart; dt <= dtEnd; dt = dt.AddDays(1))
+                {
 
-                String Url = "http://www.okooo.com/livecenter/jingcai/?date=2019-05-15";
+                    String Url = "http://www.okooo.com/livecenter/jingcai/?date="+ dt.ToString("yyyy-MM-dd");
+                    textBox1.Text = Url;
+                    string html = method.GetUrl(Url, "utf-8");
 
-                    string html = method.GetUrl(Url, "gb2312");
-                
 
-                MatchCollection urls = Regex.Matches(html, @"matchid=""([\s\S]*?)""");
+                    MatchCollection urls = Regex.Matches(html, @"matchid=""([\s\S]*?)""");
+                    MatchCollection ass = Regex.Matches(html, @"<b class=""font_red ctrl_homescore"">([\s\S]*?)</b>");
+                    MatchCollection bss = Regex.Matches(html, @"<b class=""font_red ctrl_awayscore"">([\s\S]*?)</b>");
 
-               
-                ArrayList lists = new ArrayList();
+                    ArrayList lists = new ArrayList();
 
                     foreach (System.Text.RegularExpressions.Match url in urls)
                     {
-                        lists.Add("http://www.okooo.com/soccer/match/" + url.Groups[1].Value+"/ah/ajax/?page=0&trnum=0&companytype=BaijiaBooks" );
+                        lists.Add("http://www.okooo.com/soccer/match/" + url.Groups[1].Value + "/ah/ajax/?page=0&trnum=0&companytype=BaijiaBooks");
                     }
 
 
-                    foreach (string list in lists)
-
+                    for (int i = 0; i < lists.Count; i++)
                     {
-                    string strhtml = gethtml(list);
-                    
-                   System.Text.RegularExpressions. Match mainhtml = Regex.Match(strhtml, @"澳门彩票</span>([\s\S]*?)data-pname");
 
-                    textBox1.Text = strhtml;
-                    return;
-                    System.Text.RegularExpressions.Match a1 = Regex.Match(mainhtml.Groups[1].Value, @"class=""nolink "" ><span>([\s\S]*?)</span>");
-                    MatchCollection a2 = Regex.Matches(mainhtml.Groups[1].Value, @"attval=""([\s\S]*?)""");//2个
-                    MatchCollection a3 = Regex.Matches(mainhtml.Groups[1].Value, @"<span class="""">([\s\S]*?)</span>"); //4个
-                    System.Text.RegularExpressions.Match a4 = Regex.Match(mainhtml.Groups[1].Value, @"class=""nolink ""><span>([\s\S]*?)</span>");
-                    System.Text.RegularExpressions.Match a5= Regex.Match(mainhtml.Groups[1].Value, @"bgObj"">([\s\S]*?)</span>");
+                        string strhtml = gethtml(lists[i].ToString());
 
+                        System.Text.RegularExpressions.Match mainhtml = Regex.Match(strhtml, @"澳门彩票</span>([\s\S]*?)data-pname");
 
+                       // textBox1.Text = mainhtml.Groups[1].Value;
 
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                    lv1.SubItems.Add("1:1");   //比分
-
-
-                    lv1.SubItems.Add(a1.Groups[1].Value.Trim());   //初盘
-                    lv1.SubItems.Add(a2[0].Groups[1].Value.Trim());
-                    lv1.SubItems.Add(a4.Groups[1].Value.Trim());
-
-                    lv1.SubItems.Add(a3[0].Groups[1].Value.Trim());   //最新盘
-                    lv1.SubItems.Add(a2[1].Groups[1].Value.Trim());
-                    lv1.SubItems.Add(a3[1].Groups[1].Value.Trim());
-
-                    lv1.SubItems.Add(a5.Groups[1].Value.Trim());   //凯莉
-                    lv1.SubItems.Add(a3[2].Groups[1].Value.Trim());
-                    lv1.SubItems.Add(a3[3].Groups[1].Value.Trim());
+                        System.Text.RegularExpressions.Match a1 = Regex.Match(mainhtml.Groups[1].Value, @"class=""nolink "" ><span>([\s\S]*?)</span>");
+                        MatchCollection a2 = Regex.Matches(mainhtml.Groups[1].Value, @"attval=""([\s\S]*?)""");//2个
+                        MatchCollection a3 = Regex.Matches(mainhtml.Groups[1].Value, @"<span class="""">([\s\S]*?)</span>"); //4个
+                        System.Text.RegularExpressions.Match a4 = Regex.Match(mainhtml.Groups[1].Value, @"class=""nolink ""><span>([\s\S]*?)</span>");
+                        System.Text.RegularExpressions.Match a5 = Regex.Match(mainhtml.Groups[1].Value, @"bgObj"">([\s\S]*?)</span>");
 
 
 
-                    if (listView1.Items.Count > 2)
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
+                        lv1.SubItems.Add(ass[i].Groups[1].Value + "：" + bss[i].Groups[1].Value);   //比分
+
+                        if (a2.Count > 1 && a3.Count > 3)
+                        {
+                            lv1.SubItems.Add(a1.Groups[1].Value.Trim());   //初盘
+                            lv1.SubItems.Add(a2[0].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a4.Groups[1].Value.Trim());
+
+                            lv1.SubItems.Add(a3[0].Groups[1].Value.Trim());   //最新盘
+                            lv1.SubItems.Add(a2[1].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a3[1].Groups[1].Value.Trim());
+
+                            lv1.SubItems.Add(a5.Groups[1].Value.Trim());   //凯莉
+                            lv1.SubItems.Add(a3[2].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a3[3].Groups[1].Value.Trim());
+
+                            lv1.SubItems.Add(Url.Substring(Url.Length - 10, 10));//日期
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                        }
+
+
+                        if (listView1.Items.Count > 2)
                         {
                             listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
                         }
 
-
+                        Thread.Sleep(Convert.ToInt32(2000));   //内容获取间隔，可变量        
                     }
 
 
-                    Thread.Sleep(Convert.ToInt32(2000));   //内容获取间隔，可变量        
+
                 }
 
 
-            
-
+            }
 
 
 
             catch (System.Exception ex)
             {
 
-                MessageBox.Show( ex.ToString());
+                ex.ToString();
             }
 
         }
@@ -163,19 +177,70 @@ namespace main._2019_5
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            label3.Text = "程序运行中......";
+            #region 通用登录
+           
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-            //Thread thread = new Thread(new ThreadStart(run));
-            //Control.CheckForIllegalCrossThreadCalls = false;
-            //thread.Start();
+            foreach (System.Text.RegularExpressions.Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == localip.Trim())
+                {
+                    value = true;
+                    break;
+                }
 
-            run();
+            }
+            if (value == true)
+            {
+
+                    Thread thread = new Thread(new ThreadStart(run));
+                    thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+        
+            }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
+
+
 
 
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-         
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+            label3.Text = "程序已暂停......";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+            label3.Text = "程序运行中......";
+            zanting = true;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            this.dateTimePicker2.CustomFormat = "yyyy-MM-dd";
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            this.dateTimePicker2.CustomFormat = "yyyy-MM-dd";
         }
     }
 }
