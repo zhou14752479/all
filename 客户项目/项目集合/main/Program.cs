@@ -16,7 +16,7 @@ namespace main._2019_5
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 足球数据());
+            Application.Run(new Form1());
         }
     }
 }

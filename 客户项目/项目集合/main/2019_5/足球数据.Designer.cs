@@ -37,6 +37,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,8 +52,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -61,7 +62,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(462, 30);
+            this.button4.Location = new System.Drawing.Point(503, 30);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(118, 44);
             this.button4.TabIndex = 3;
@@ -71,7 +72,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(308, 30);
+            this.button3.Location = new System.Drawing.Point(251, 30);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(122, 44);
             this.button3.TabIndex = 2;
@@ -81,7 +82,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(167, 30);
+            this.button2.Location = new System.Drawing.Point(132, 30);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(113, 44);
             this.button2.TabIndex = 1;
@@ -93,7 +94,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(12, 30);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 44);
+            this.button1.Size = new System.Drawing.Size(114, 44);
             this.button1.TabIndex = 0;
             this.button1.Text = "开始";
             this.button1.UseVisualStyleBackColor = true;
@@ -131,13 +132,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(263, 12);
+            this.groupBox2.Location = new System.Drawing.Point(193, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(587, 88);
+            this.groupBox2.Size = new System.Drawing.Size(657, 88);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
@@ -161,9 +163,25 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(862, 393);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.Size = new System.Drawing.Size(862, 447);
+            this.splitContainer1.SplitterDistance = 173;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(31, 65);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(143, 21);
+            this.dateTimePicker2.TabIndex = 11;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(31, 31);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(143, 21);
+            this.dateTimePicker1.TabIndex = 10;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // listView1
             // 
@@ -184,7 +202,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(862, 209);
+            this.listView1.Size = new System.Drawing.Size(862, 270);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -201,11 +219,11 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "初盘(主)";
-            this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "初盘(盘)";
+            this.columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
@@ -214,11 +232,11 @@
             // columnHeader6
             // 
             this.columnHeader6.Text = "最新(主)";
-            this.columnHeader6.Width = 100;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "最新(盘)";
+            this.columnHeader7.Width = 100;
             // 
             // columnHeader8
             // 
@@ -241,27 +259,21 @@
             this.columnHeader12.Text = "日期";
             this.columnHeader12.Width = 100;
             // 
-            // dateTimePicker1
+            // button5
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(31, 31);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(143, 21);
-            this.dateTimePicker1.TabIndex = 10;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(31, 65);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(143, 21);
-            this.dateTimePicker2.TabIndex = 11;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.button5.Location = new System.Drawing.Point(379, 30);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(118, 44);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "清空";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // 足球数据
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 393);
+            this.ClientSize = new System.Drawing.Size(862, 447);
             this.Controls.Add(this.splitContainer1);
             this.Name = "足球数据";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -302,5 +314,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button button5;
     }
 }

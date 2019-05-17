@@ -62,7 +62,7 @@ namespace main._2019_5
         {
             InitializeComponent();
         }
-        #region  
+        #region  主程序
 
 
 
@@ -118,11 +118,12 @@ namespace main._2019_5
 
 
 
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                        lv1.SubItems.Add(ass[i].Groups[1].Value + "：" + bss[i].Groups[1].Value);   //比分
 
-                        if (a2.Count > 1 && a3.Count > 3)
+
+                        if (a1.Groups[1].Value.Trim()!=""&&a2.Count > 1 && a3.Count > 3)
                         {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
+                            lv1.SubItems.Add(ass[i].Groups[1].Value + "：" + bss[i].Groups[1].Value);   //比分
                             lv1.SubItems.Add(a1.Groups[1].Value.Trim());   //初盘
                             lv1.SubItems.Add(a2[0].Groups[1].Value.Trim());
                             lv1.SubItems.Add(a4.Groups[1].Value.Trim());
@@ -149,7 +150,7 @@ namespace main._2019_5
                             listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
                         }
 
-                        Thread.Sleep(Convert.ToInt32(2000));   //内容获取间隔，可变量        
+                        Thread.Sleep(Convert.ToInt32(200));   //内容获取间隔，可变量        
                     }
 
 
@@ -241,6 +242,11 @@ namespace main._2019_5
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             this.dateTimePicker2.CustomFormat = "yyyy-MM-dd";
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }
