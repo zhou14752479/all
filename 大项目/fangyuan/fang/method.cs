@@ -19,6 +19,36 @@ namespace fang
 {
     class method
     {
+        #region 通过API获取IP
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetIp(string Url)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+                request.AllowAutoRedirect = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 10000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  I
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
 
         #region GET请求
         /// <summary>
@@ -32,7 +62,7 @@ namespace fang
             {
 
 
-                string COOKIE = "api_uid=rBQRpFvJizBVvw8WqeZ3Ag==";
+                string COOKIE = "UM_distinctid=16ac976a42144c-0ebfe92ec1edca-5701631-1fa400-16ac976a42293; CNZZDATA1260775240=1830064386-1558155823-%7C1558155823; remember_user_token=W1sxODQxODZdLCIkMmEkMTAkbU82STNmdnNqU2JwLlpTLnEzRFQydSJd--eb2166e94f3197538b59a56e9f958dee5817a66e; _session_id=98a277df4a42d44894f5e93c2922f5ff; catalog_type_value=1; flash=null";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
