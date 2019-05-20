@@ -36,8 +36,8 @@ namespace main._2019_5
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
                 
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
-                Cookie = "Hm_lvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557975485; __utmc=56961525; __utmz=56961525.1557975489.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); PHPSESSID=3e944cfd954c52e155f6d5d99ad19606779f6240; pm=; LastUrl=; FirstURL=www.okooo.com/; FirstOKURL=http%3A//www.okooo.com/jingcai/; First_Source=www.okooo.com; __utma=56961525.1606818588.1557975489.1557981725.1557985950.3; IMUserID=30498306; IMUserName=%E6%9E%97%E5%AD%94988610; OKSID=3e944cfd954c52e155f6d5d99ad19606779f6240; M_UserName=%22%5Cu6797%5Cu5b54988610%22; M_UserID=30498306; M_Ukey=067e94b82ba40266c3a93fde0c9d9c01; OkAutoUuid=aa5bcc288c3e2610627fc126218f5eb1; OkMsIndex=8; Hm_lpvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557987723; __utmb=56961525.45.9.1557987726651",//字符串Cookie     可选项  
-                UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Cookie = "__utmz=56961525.1557975489.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); LastUrl=; FirstURL=www.okooo.com/; FirstOKURL=http%3A//www.okooo.com/jingcai/; First_Source=www.okooo.com; PHPSESSID=60fddb6fd9f56507ccd1b95834f15d29eb0a5f55; __utma=56961525.1606818588.1557975489.1557993243.1558315411.6; __utmc=56961525; Hm_lvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557975485,1557989883,1558315411; pm=; IMUserID=30507057; IMUserName=%E6%96%AF%E9%80%9A655604; OkAutoUuid=7f1acad3f3be6a54cf09f9db591282f0; OkMsIndex=5; OKSID=60fddb6fd9f56507ccd1b95834f15d29eb0a5f55; M_UserName=%22ok_312051481369%22; M_UserID=30507057; M_Ukey=e313df743083a4e515c115574f759ff3; OkTouchAutoUuid=7f1acad3f3be6a54cf09f9db591282f0; OkTouchMsIndex=5; DRUPAL_LOGGED_IN=Y; isInvitePurview=0; Hm_lpvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1558316099; __utmb=56961525.31.9.1558316100808",//字符串Cookie     可选项  
+                UserAgent = "MMozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
                 Referer = "http://www.sufeinet.com",//来源URL     可选项  
@@ -88,7 +88,7 @@ namespace main._2019_5
                     textBox1.Text = Url;
                     string html = method.GetUrl(Url, "utf-8");
 
-
+                    
                     MatchCollection urls = Regex.Matches(html, @"matchid=""([\s\S]*?)""");
                     MatchCollection ass = Regex.Matches(html, @"<b class=""font_red ctrl_homescore"">([\s\S]*?)</b>");
                     MatchCollection bss = Regex.Matches(html, @"<b class=""font_red ctrl_awayscore"">([\s\S]*?)</b>");
@@ -99,13 +99,15 @@ namespace main._2019_5
                     {
                         lists.Add("http://www.okooo.com/soccer/match/" + url.Groups[1].Value + "/ah/ajax/?page=0&trnum=0&companytype=BaijiaBooks");
                     }
-
+                    
 
                     for (int i = 0; i < lists.Count; i++)
                     {
 
                         string strhtml = gethtml(lists[i].ToString());
 
+                        textBox1.Text = lists[i].ToString();
+                       
                         System.Text.RegularExpressions.Match mainhtml = Regex.Match(strhtml, @"澳门彩票</span>([\s\S]*?)data-pname");
 
                        // textBox1.Text = mainhtml.Groups[1].Value;
@@ -122,7 +124,7 @@ namespace main._2019_5
 
                         if (a1.Groups[1].Value.Trim()!=""&&a2.Count > 1 && a3.Count > 3)
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                             lv1.SubItems.Add(ass[i].Groups[1].Value + "：" + bss[i].Groups[1].Value);   //比分
                             lv1.SubItems.Add(a1.Groups[1].Value.Trim());   //初盘
                             lv1.SubItems.Add(a2[0].Groups[1].Value.Trim());
@@ -138,10 +140,11 @@ namespace main._2019_5
 
                             lv1.SubItems.Add(Url.Substring(Url.Length - 10, 10));//日期
 
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
+                           
+                        }
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
 
 

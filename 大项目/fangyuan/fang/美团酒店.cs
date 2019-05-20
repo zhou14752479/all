@@ -31,7 +31,7 @@ namespace fang
 
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -67,7 +67,7 @@ namespace fang
             string cityPinYin = Getpinyin(cityid);
             try
             {
-                string constr = "Host =116.62.62.62;Database=citys;Username=root;Password=zhoukaige";
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
                 string str = "SELECT meituan_area_id from meituan_area Where meituan_area_citypinyin= '" + cityPinYin + "' ";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();

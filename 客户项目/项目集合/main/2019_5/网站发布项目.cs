@@ -63,6 +63,7 @@ namespace main._2019_5
                             string url = "http://miss0304.com/class.asp?page=" + i + "&typeid=" + typeid + "&areaid=" + areaid;
                             string html = method.GetUrlWithCookie(url, aCOOKIE, "gb2312");
 
+                            textBox1.Text = html;
                             MatchCollection ids = Regex.Matches(html, @"show.asp\?id=([\s\S]*?)""");
                             ArrayList lists = new ArrayList();
 
@@ -76,11 +77,11 @@ namespace main._2019_5
 
                                 break;
 
-
+                            
                             foreach (string list in lists)
 
                             {
-
+                                
                                 label4.Text = "发布成功！";
                                 string strhtml = method.GetUrlWithCookie(list, aCOOKIE, "gb2312");
 

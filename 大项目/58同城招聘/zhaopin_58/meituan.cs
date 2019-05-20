@@ -636,7 +636,7 @@ namespace zhaopin_58
             if(value==true)
             {
                 //--------登陆函数------------------
-                Thread thread = new Thread(new ThreadStart(run));
+                Thread thread = new Thread(new ThreadStart(run1));
                 thread.Start();
 
             }
