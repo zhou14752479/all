@@ -28,23 +28,26 @@ namespace fang.临时软件
         public void run()
 
         {
+            ArrayList ids = new ArrayList();
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            for (int i = 1001; i < 3002; i++)
+            foreach (string id in ids)
             {
+
+ 
                
-                    if (!Directory.Exists(path + i))
+                    if (!Directory.Exists(path + id))
                     {
-                        Directory.CreateDirectory(path + i); //创建文件夹
+                        Directory.CreateDirectory(path + id); //创建文件夹
                     }
 
                     for (int j = 1; j < 7; j++)
                     {
 
-                        string url = "http://pic.shanshi123.com/img/" + i + "/" + j + ".jpg";
+                    string url = "http://mall.plap.cn/npc/products.html?utf8=%E2%9C%93&q%5Bcatalog_id_eq%5D="+id+"&q%5Bname_or_products_my_sku_cont%5D=&q%5Bproducts_price_gteq%5D=&q%5Bproducts_price_lteq%5D=&commit=%E5%AF%BC%E5%87%BAEXCEL";
 
                         if (method.GetUrl(url, "utf-8") != "")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
                         {
-                            method.downloadFile(url, path + i, "//" + j + ".jpg");
+                            method.downloadFile(url, path + i, "//" + j + ".xlsx");
 
                         }
 

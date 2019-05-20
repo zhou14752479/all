@@ -422,9 +422,9 @@ namespace fang
         public static void downloadFile(string URLAddress,string subPath, string name)
         {
             string path = System.IO.Directory.GetCurrentDirectory();
-
+            string COOKIE = "UM_distinctid=16ad4734c5c978-01f2ab5cd7670d-f353163-1fa400-16ad4734c5d34e; _session_id=a7b677a3494a3f68369e49e14fbde41a; catalog_type_value=1; CNZZDATA1260775240=1290548349-1558337855-%7C1558343257; flash=null";
             WebClient client = new WebClient();
-           
+            client.Headers.Add("Cookie", COOKIE);
             if (false == System.IO.Directory.Exists(subPath))
             {
                 //创建pic文件夹
