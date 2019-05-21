@@ -29,7 +29,7 @@ namespace main
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset, string COOKIE)
+        public static string GetUrl(string Url, string COOKIE)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace main
                 request.KeepAlive = false;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("gbk")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                 string content = reader.ReadToEnd();
                 reader.Close();
@@ -58,6 +58,11 @@ namespace main
             return "";
         }
         #endregion
+
+
+
+
+        public static string COOKIE = "_uab_collina=155841531117990759884066; miid=1280586377935732790; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; t=549c883cd0d96a2361709464aafc2ef7; tg=0; hng=CN%7Czh-CN%7CCNY%7C156; _bl_uid=njj6hv4Xl4aqL0q7entvuUh8gtbv; _cc_=V32FPkk%2Fhw%3D%3D; enc=%2F%2B%2BMghI4XSh%2FGHJNSwgjpPsLgt0%2BE%2F%2BXQEBwokzOKQE3HkzETF8JiGAwWPNxItQwJOaD6V%2BBli0Wo0CeeA2X%2Fw%3D%3D; cookie2=1fe232f05a5136e28c32b1b505c5ea2e; _tb_token_=e3ea33e443e86; x=2992737907; _m_h5_tk=f8b0a562742b9fd05290ecc4ca22ac27_1558415881482; _m_h5_tk_enc=9ddf61ebe4a148329d6dd757b658cfc3; mt=ci=0_0; uc3=id2=&nk2=&lg2=; skt=ac295dae5743f3ef; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E6%A1%94%E5%AD%90; unb=3247690276; tracknick=; csg=baf127cb; v=0; x5sec=7b2274726164656d616e616765723b32223a226563336365336636373234393536313063333536643131343236336530646535434d32506a756346454e436e765a36346d634c443141456144444d794e4463324f5441794e7a59374d513d3d227d; uc1=cookie14=UoTZ7HEFr%2BLQZA%3D%3D&lng=zh_CN; l=bBreIJ14vWJ-OqdDBOfiVuIRGs7teIOb8sPzw4gGjICPOJfwSBbCWZt02rLeC3GVa6UWR3oWYJ1uBy8ivy4Eh; isg=BIuL2QUdU7GOmY_f_WBN1ptnGi-1iJfKQf9ZIv2JUEosHKl-hfMu82P-9lxXPPea";
         #region POST请求
         /// <summary>
         /// POST请求
@@ -67,27 +72,26 @@ namespace main
         /// <param name="COOKIE">cookie</param>
         /// <param name="charset">编码格式</param>
         /// <returns></returns>
-        public static string PostUrl()
+        public static string PostUrl(string url,string POSTdata)
         {
             HttpHelper http = new HttpHelper();
             HttpItem item = new HttpItem()
             {
-                URL = "https://trade.taobao.com/trade/itemlist/asyncSold.htm?event_submit_do_query=1&_input_charset=utf8",//URL     必需项  
+                URL = url,//URL     必需项  
                 Method = "POST",//URL     可选项 默认为Get  
-                Encoding = Encoding.GetEncoding("gb2312"),//编码格式（utf-8,gb2312,gbk）     可选项 默认类会自动识别  
                 Timeout = 100000,//连接超时时间     可选项默认为100000  
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
-                Cookie = "miid=1280586377935732790; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; t=549c883cd0d96a2361709464aafc2ef7; tg=0; hng=CN%7Czh-CN%7CCNY%7C156; _bl_uid=njj6hv4Xl4aqL0q7entvuUh8gtbv; enc=5BnyFFuDeqJnqQZxA6QyFlyN20GFeiRDc0kkddkfspydsa13DgSJd7cMSqH2bHy0qmM%2BsJvDUWBn%2Bfei0I78CA%3D%3D; _m_h5_tk=da06e51a2a981f23c980f3c5e7cde11a_1557828467488; _m_h5_tk_enc=3d04b61039a426004703a7797a9c54c1; _cc_=W5iHLLyFfA%3D%3D; mt=ci=41_1; cookie2=1e8a19072fad675b0e26975ca81971ac; _tb_token_=ee3eeeb918b3b; x=2992737907; uc3=id2=&nk2=&lg2=; skt=bc10876b3a7e3fb4; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E6%A1%94%E5%AD%90; unb=3247690276; tracknick=; csg=6ed74aed; v=0; uc1=cookie14=UoTZ7HUO4iQLBA%3D%3D&lng=zh_CN; l=bBreIJ14vWJ-OvB8BOfNiuIRGZ7T6IOb8sPzw4gGAICPO11wJNH1WZ9eQDTeC3GVa6U2R3oWYJ1uBuYrAyUIh; isg=BCkpA5FIUYbzOm01KxYP7DVpONVDXhVG3yF7yMsf3ZAukkukE0O1-NzEVHYBCrVg",//字符串Cookie     可选项  
+                Cookie = COOKIE,
                 UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "application/x-www-form-urlencoded",//返回类型    可选项有默认值  
-                Referer = "",//来源URL     可选项  
+                Referer = "https://trade.taobao.com/trade/itemlist/list_sold_items.htm?spm=687.8433302.201.1.296f226aJPgeJs&mytmenu=ymbb&utkn=g,ygvm3kgs5w24ftni2dc5pkgc6s26u1558407955652&scm=1028.1.1.201",//来源URL     可选项  
                 //Allowautoredirect = False,//是否根据３０１跳转     可选项  
                 //AutoRedirectCookie = False,//是否自动处理Cookie     可选项  
-                                           //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
+                //                           //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
                                            //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
-                Postdata = "auctionType=0&close=0&pageNum=2&pageSize=15&queryMore=false&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&prePageNo=1",//Post数据     可选项GET时不需要写  
+                Postdata =POSTdata ,//Post数据     可选项GET时不需要写  
                                                                                                                                                                                                                                                                                                                                                    //ProxyIp = "192.168.1.105：2020",//代理服务器ID     可选项 不需要代理 时可以不设置这三个参数  
                                                                                                                                                                                                                                                                                                                                                    //ProxyPwd = "123456",//代理服务器密码     可选项  
                                                                                                                                                                                                                                                                                                                                                    //ProxyUserName = "administrator",//代理服务器账户名     可选项  
@@ -95,7 +99,6 @@ namespace main
             };
             HttpResult result = http.GetHtml(item);
             string html = result.Html;
-            string cookie = result.Cookie;
             return html;
 
         }
@@ -105,9 +108,6 @@ namespace main
 
 
 
-
-
-        public static string COOKIE = "miid=1280586377935732790; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; t=549c883cd0d96a2361709464aafc2ef7; tg=0; hng=CN%7Czh-CN%7CCNY%7C156; _bl_uid=njj6hv4Xl4aqL0q7entvuUh8gtbv; enc=5BnyFFuDeqJnqQZxA6QyFlyN20GFeiRDc0kkddkfspydsa13DgSJd7cMSqH2bHy0qmM%2BsJvDUWBn%2Bfei0I78CA%3D%3D; _cc_=VFC%2FuZ9ajQ%3D%3D; mt=ci=-1_0&np=; _m_h5_tk=da06e51a2a981f23c980f3c5e7cde11a_1557828467488; _m_h5_tk_enc=3d04b61039a426004703a7797a9c54c1; cookie2=1a953bd75316101f8b16733d6d1410bf; _tb_token_=83ee3731e750; x=2992737907; uc3=id2=&nk2=&lg2=; skt=b46d5bacaace540e; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E6%A1%94%E5%AD%90; unb=3247690276; tracknick=; csg=6feba747; v=0; uc1=cookie14=UoTZ48xqWqOx%2BQ%3D%3D&lng=zh_CN; l=bBreIJ14vWJ-OIgfKOfgNuIRGi7O6IOb8sPzw4gGxICP_rfMCiGfWZ9BZ4THC3GVZ66yR3oWYJ1uB28l6yCV.; isg=BBQUxEISNBowOaDSTj1Ko1ii5VJGxTA7Ilr276703B93mbXj1nhJ56RfmdGkYXCv";
 
 
         public static string getToken()
@@ -125,6 +125,12 @@ namespace main
             return token;
 
         }
+
+        public static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
+        }
         public void run()
         {
             if (COOKIE == "")
@@ -137,41 +143,45 @@ namespace main
             {
                 
 
-                for (int i = 2; i < 100; i++)
-                {
-                    
-                    int prei = i - 1;
-                    string url = "https://trade.taobao.com/trade/itemlist/asyncSold.htm?event_submit_do_query=1&_input_charset=utf8";
-
-                    string postdata = "auctionType=0&close=0&pageNum=2&pageSize=15&queryMore=false&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&prePageNo=1";
-
-                    //string html = PostUrl(url,postdata ,COOKIE, "gb2312");
-                    string html = "";
+              
+                    string URL = "https://trade.taobao.com/trade/itemlist/list_sold_items.htm?action=itemlist/SoldQueryAction&event_submit_do_query=1&auctionStatus=PAID&tabCode=waitSend";
+                    string postdata = "action=itemlist/SoldQueryAction&event_submit_do_query=1&auctionStatus=PAID&tabCode=waitSend";
+                    string html = PostUrl(URL,postdata); ;
                     textBox1.Text = html;
-
                     MatchCollection IDs = Regex.Matches(html, @"tradeID=([\s\S]*?)&");
-                    MatchCollection users = Regex.Matches(html, @"userID=([\s\S]*?)&");
-                    MatchCollection times = Regex.Matches(html, @"createTime"":""([\s\S]*?)""");
-                    //MatchCollection users = Regex.Matches(html, @"userID=([\s\S]*?)&");
-                    //MatchCollection users = Regex.Matches(html, @"userID=([\s\S]*?)&");
-                    if (IDs.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                        break;
+                    MatchCollection bianmas = Regex.Matches(html, @"u5546\\u5BB6\\u7F16\\u7801\\""\,\\""value\\"":\\""([\s\S]*?)\\");
+                   
+                    MatchCollection taocans = Regex.Matches(html, @"skuText\\"":\[{([\s\S]*?)}\]");
+                MatchCollection times = Regex.Matches(html, @"createTime\\"":\\""([\s\S]*?)\\");
+                MatchCollection users = Regex.Matches(html, @"\\""nick\\"":\\""([\s\S]*?)\\""");
+                    
 
                  
                     for (int j = 0; j < IDs.Count; j++)
                     {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(IDs[j].Groups[1].Value);
-                       
-                       
 
-                      
-                    }
-                    Thread.Sleep(3000);
+                    string strhtml = GetUrl("https://trade.tmall.com/detail/orderDetail.htm?bizOrderId="+ IDs[j].Groups[1].Value,COOKIE);
+
+                    MatchCollection xs = Regex.Matches(strhtml, @"\[{""text"":""([\s\S]*?)""");
+                    Match card = Regex.Match(strhtml,@"名""}\,{""content"":\[{""text"":""([\s\S]*?)""");
+
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(IDs[j].Groups[1].Value);
+                    lv1.SubItems.Add(bianmas[j].Groups[1].Value);
+                    lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
+                    lv1.SubItems.Add(times[j].Groups[1].Value);
+                    lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
+                    lv1.SubItems.Add(xs[0].Groups[1].Value);
+                    lv1.SubItems.Add(xs[1].Groups[1].Value);
+                    lv1.SubItems.Add(xs[7].Groups[1].Value);
+                    lv1.SubItems.Add(card.Groups[1].Value);
+
+
+                }
+                Thread.Sleep(3000);
                 }
 
-            }
+            
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -211,7 +221,7 @@ namespace main
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = PostUrl();
+            
             #region   读取注册码信息才能运行软件！
 
             RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
@@ -244,6 +254,7 @@ namespace main
         private void button5_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(getToken());
+          
            
         }
 

@@ -654,13 +654,13 @@ namespace main
                 MessageBox.Show("请先登录您的账号！");
                 return;
             }
-            //Thread thread = new Thread(new ThreadStart(huicong));
-            //thread.Start();
-            for (int i = 0; i <5; i++)
-            {
-                Thread thread = new Thread(new ThreadStart(baidu));
-                thread.Start();
-            }
+            Thread thread = new Thread(new ThreadStart(huicong));
+            thread.Start();
+            //for (int i = 0; i <5; i++)
+            //{
+            //    Thread thread = new Thread(new ThreadStart(baidu));
+            //    thread.Start();
+            //}
            
         }
 

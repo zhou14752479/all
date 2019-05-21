@@ -21,6 +21,44 @@ namespace main
             InitializeComponent();
         }
 
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
+        {
+            try
+            {
+                string COOKIE = "Hm_lvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557975485; __utmc=56961525; __utmz=56961525.1557975489.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); PHPSESSID=3e944cfd954c52e155f6d5d99ad19606779f6240; pm=; LastUrl=; FirstURL=www.okooo.com/; FirstOKURL=http%3A//www.okooo.com/jingcai/; First_Source=www.okooo.com; __utma=56961525.1606818588.1557975489.1557981725.1557985950.3; IMUserID=30498306; IMUserName=%E6%9E%97%E5%AD%94988610; OKSID=3e944cfd954c52e155f6d5d99ad19606779f6240; M_UserName=%22%5Cu6797%5Cu5b54988610%22; M_UserID=30498306; M_Ukey=067e94b82ba40266c3a93fde0c9d9c01; OkAutoUuid=aa5bcc288c3e2610627fc126218f5eb1; OkMsIndex=8; Hm_lpvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557987723; __utmb=56961525.45.9.1557987726651";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+
+                request.UserAgent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5";
+                request.Accept = "gzip";
+                request.Headers.Add("Accept-Language", "zh-cn,en-us;q=0.5");
+                //request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                //request.KeepAlive = false;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+            }
+            return "";
+        }
+        #endregion
+
         /// <summary>
         /// 上海交易所
         /// </summary>
@@ -29,7 +67,7 @@ namespace main
         public string shfe(string time)
         {
             string url = "http://www.shfe.com.cn/data/dailydata/kx/kx"+time+".dat";
-            string json = method.GetUrl(url, "utf-8");
+            string json = GetUrl(url, "utf-8");
 
             return json;
         }
@@ -53,7 +91,7 @@ namespace main
             public string dce()
         {
             string url = "http://www.dce.com.cn/publicweb/quotesdata/dayQuotesCh.html?dayQuotes.variety=all&dayQuotes.trade_type=0&year=2019&month=4&day=16";
-            string html = method.GetUrl(url,"utf-8");
+            string html = GetUrl(url,"utf-8");
             MatchCollection matches = Regex.Matches(html, @"<tr><td>&nbsp;([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td>([\s\S]*?)<td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td>");
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < matches.Count; i++)
@@ -95,7 +133,7 @@ namespace main
         public string czce(string time)
         {
             string url = "http://www.czce.com.cn/cn/DFSStaticFiles/Future/2019/"+time+"/FutureDataDaily.htm";
-            string html = method.GetUrl(url, "utf-8");
+            string html = GetUrl(url, "utf-8");
 
             Match shtml = Regex.Match(html, @"<tbody>([\s\S]*?)<td valign");
             string strhtml = shtml.Groups[1].Value;
