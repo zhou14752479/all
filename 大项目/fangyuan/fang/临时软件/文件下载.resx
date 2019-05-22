@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox3.Text" xml:space="preserve">
+    <value>UM_distinctid=16ad4734c5c978-01f2ab5cd7670d-f353163-1fa400-16ad4734c5d34e; CNZZDATA1260775240=1290548349-1558337855-%7C1558417979; _session_id=062028791c81dc57d6252870344f1f08; catalog_type_value=1; flash=%7B%7D</value>
+  </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

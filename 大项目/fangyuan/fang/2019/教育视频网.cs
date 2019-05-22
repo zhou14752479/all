@@ -50,7 +50,7 @@ namespace fang._2019
                         string vedioUrl = "http://hknm5s6gzvm5a6wju24.exp.bcevod.com/" + videoValue.Groups[1].Value + "/" + videoValue.Groups[1].Value + ".m3u8."+i+".ts";
 
                         textBox1.Text = vedioUrl;
-                        method.downloadFile(vedioUrl, textBox2.Text, title.Groups[1].Value.Trim()+i + ".ts");
+                        method.downloadFile(vedioUrl, textBox2.Text, title.Groups[1].Value.Trim()+i + ".ts","");
 
                        
             

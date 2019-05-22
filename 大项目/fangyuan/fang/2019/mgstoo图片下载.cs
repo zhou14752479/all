@@ -78,7 +78,7 @@ namespace fang._2019
 
                                 string downUrl = path.Groups[2].Value;
 
-                                method.downloadFile(downUrl, textBox2.Text , filename);
+                                method.downloadFile(downUrl, textBox2.Text , filename,"");
 
                                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                                 lv1.SubItems.Add(downUrl);

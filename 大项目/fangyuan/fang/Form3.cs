@@ -44,7 +44,7 @@ namespace fang
 
                     string city = method.Get58pinyin(comboBox1.SelectedItem.ToString());
 
-                    for (int i = 2; i <141; i++)
+                    for (int i = 1; i <141; i++)
                     {
                         String Url = "https://broker.58.com/"+city+"/list/pn"+i+"/";
 
@@ -84,7 +84,7 @@ namespace fang
                         string rxg1 = @"<div class=""user-name"">([\s\S]*?)<";
                         
                         string rxg3 = @"所属公司<span class=""u-msg"">([\s\S]*?)<";
-                        string rxg4 = @"target=""_blank"">([\s\S]*?)</a>";
+                        string rxg4 = @"<ul class=""zymk clearfix"">([\s\S]*?)</li>";
                         string rxg5 = @"cityId = ""([\s\S]*?)""";
                         string rxg6 = @"brokerId = ""([\s\S]*?)""";
                        string rxg7 = @"<div class=""user-pic""><img src=""([\s\S]*?)""";
@@ -117,12 +117,12 @@ namespace fang
                         lv1.SubItems.Add(company.Groups[1].Value.Trim());
                         lv1.SubItems.Add(comboBox1.SelectedItem.ToString());
                         // lv1.SubItems.Add(Regex.Replace(xiaoqu.Groups[1].Value.Trim(), "<[^>]*>", ""));
-                        lv1.SubItems.Add(xiaoqu.Groups[1].Value);
+                        lv1.SubItems.Add(Regex.Replace(xiaoqu.Groups[1].Value.Trim(), "<[^>]*>", "").Trim());
 
                         listView1.EnsureVisible(listView1.Items.Count-1);  //滚动到指定位置
 
-                        Application.DoEvents();
-                        System.Threading.Thread.Sleep(Convert.ToInt32(500));   //内容获取间隔，可变量                     
+                        //Application.DoEvents();
+                        //System.Threading.Thread.Sleep(Convert.ToInt32(500));   //内容获取间隔，可变量                     
 
                         }
 

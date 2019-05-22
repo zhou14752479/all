@@ -35,6 +35,8 @@ namespace fang.临时软件
             return text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
         }
         ArrayList finishes = new ArrayList();
+
+       public static string COOKIE = "";
         public void run()
 
         {
@@ -44,16 +46,16 @@ namespace fang.临时软件
             foreach (string url in urls)
             {
 
-                    
-               
-                    //if (!Directory.Exists(path + id))
-                    //{
-                    //    Directory.CreateDirectory(path + id); //创建文件夹
-                    //}
-           
-                        if (method.GetUrl(url, "utf-8") != "")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
+                COOKIE = textBox3.Text;
+
+                //if (!Directory.Exists(path + id))
+                //{
+                //    Directory.CreateDirectory(path + id); //创建文件夹
+                //}
+                
+                if (method.GetUrl(url, "utf-8") != "")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
                         {
-                            method.downloadFile(url, path , "//" + a + ".xlsx");
+                            method.downloadFile(url, path , "//" + a + ".xlsx",COOKIE);
 
                         }
 

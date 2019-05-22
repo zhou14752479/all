@@ -42,13 +42,14 @@ namespace main._2019_5
         bool zanting =true;
         static string aCOOKIE = "";
 
-        public static string bCOOKIE = "ASPSESSIONIDACASTDAB=KAONLOEBJCEJNBLIOLMBJLPJ; usercookies%5F11357=dayarticlenum=0&daysoftnum=0&userip=49%2E89%2E190%2E56; NewAspUsers=password=12cb74d5e2c21fb6&RegDateTime=2019%2D04%2D20+18%3A07%3A14&UserToday=0%2C0%2C0%2C0%2C0%2C0&userlastip=49%2E89%2E190%2E56&UserGroup=VIP+%BB%E1%D4%B1&usermail=my%40email%2Ecom&UserLogin=21&UserGrade=3&UserClass=0&username=sunny168&nickname=sunny168&usercookies=0&userid=11357&LastTime=2019%2F5%2F15+10%3A17%3A42&LastTimeIP=49%2E89%2E190%2E56&LastTimeDate=2019%2F5%2F15+10%3A17%3A42; NewAspCookies=AdminStatus=%C6%D5%CD%A8%B9%DC%C0%ED%D4%B1&AdminID=7&Adminflag=Setting%2CBadWords%2CChannel%2CTemplate%2CMakelabel%2CLockIP%2CFriendLink%2CAnnounce%2CCreateIndex%2Cdata%2CBatchReplace%2CMailList%2COnline%2CUploadFile%2CVote%2CAdFileAdmin%2Cadmanage%2COther%2CArticle%5F1%2CPostArticle%5F1%2CClass%5F1%2CSpecial%5F1%2CCreateHtml%5F1%2CComment%5F1%2CList%5F1%2CBatSetting%5F1%2CJsScript%5F1%2CFileAdmin%5F1%2CCollection%5F1%2CSoft%5F2%2CPostSoft%5F2%2CClass%5F2%2CSpecial%5F2%2CCreateHtml%5F2%2CComment%5F2%2CList%5F2%2CBatSetting%5F2%2CJsScript%5F2%2CFileAdmin%5F2%2CCollection%5F2%2CDownServer%5F2%2CFlash%5F5%2CPostFlash%5F5%2CClass%5F5%2CSpecial%5F5%2CCreateHtml%5F5%2CComment%5F5%2CList%5F5%2CBatSetting%5F5%2CJsScript%5F5%2CFileAdmin%5F5%2CCollection%5F5%2CDownServer%5F5%2CAddUser%2CAdminUser%2CChangePassword%2CUserGroup%2CMailList%2CConfirm%2CAccount%2CCard%2CConform%2CUserOrder%2CPayMode%2CMessage&AdminGrade=0&AdminPass=a7a0bd9ef71d8cf9&RandomCode=808498H3KF2ABII5&AdminName=jiqiren";
+        public static string bCOOKIE = "";
         public void run()
         {
             aCOOKIE = textBox2.Text;
+            bCOOKIE = textBox3.Text;
             int[] typeids = { 1,2,3,4,5,6};
-            int[] areaids = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
-
+            //int[] areaids = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
+            int[] areaids = {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
             try
             {
                 for (int i = 1; i < 1000; i = i ++)
@@ -60,7 +61,7 @@ namespace main._2019_5
                         {
 
 
-                            string url = "http://miss0304.com/class.asp?page=" + i + "&typeid=" + typeid + "&areaid=" + areaid;
+                            string url = "http://weike0403.com/class.asp?page=" + i + "&typeid=" + typeid + "&areaid=" + areaid;
                             string html = method.GetUrlWithCookie(url, aCOOKIE, "gb2312");
 
                             textBox1.Text = html;
@@ -69,7 +70,7 @@ namespace main._2019_5
 
                             foreach (Match id in ids)
                             {
-                                lists.Add("http://miss0304.com/show.asp?id=" + id.Groups[1].Value);
+                                lists.Add("http://weike0403.com/show.asp?id=" + id.Groups[1].Value);
                             }
 
 
@@ -108,7 +109,7 @@ namespace main._2019_5
 
                                 for (int s = 0; s < a18.Count; s++)
                                 {
-                                    sb.Append("<img src=\"http://miss0304.com/UploadFile/image/" + a18[s].Groups[0].Value + ".jpg \" />");
+                                    sb.Append("<img src=\"http://weike0403.com/UploadFile/image/" + a18[s].Groups[0].Value + ".jpg \" />");
                                 }
 
                                 if (a1.Groups[1].Value != "" && a3.Groups[1].Value != "")

@@ -419,10 +419,10 @@ namespace fang
         /// <param name="URLAddress">图片地址</param>
         /// <param name="subPath">图片所在文件夹</param>
         /// <param name="name">图片名称</param>
-        public static void downloadFile(string URLAddress,string subPath, string name)
+        public static void downloadFile(string URLAddress,string subPath, string name,string COOKIE)
         {
             string path = System.IO.Directory.GetCurrentDirectory();
-            string COOKIE = "UM_distinctid=16ad4734c5c978-01f2ab5cd7670d-f353163-1fa400-16ad4734c5d34e; CNZZDATA1260775240=1290548349-1558337855-%7C1558417979; _session_id=062028791c81dc57d6252870344f1f08; catalog_type_value=1; flash=%7B%7D";
+            
             WebClient client = new WebClient();
             client.Headers.Add("Cookie", COOKIE);
             if (false == System.IO.Directory.Exists(subPath))
