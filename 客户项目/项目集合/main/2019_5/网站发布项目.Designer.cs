@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(网站发布项目));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,8 +64,6 @@
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -99,6 +99,26 @@
             this.splitContainer1.SplitterDistance = 194;
             this.splitContainer1.TabIndex = 2;
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(410, 72);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(507, 35);
+            this.textBox3.TabIndex = 15;
+            this.textBox3.Text = resources.GetString("textBox3.Text");
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 11F);
+            this.label7.ForeColor = System.Drawing.Color.Blue;
+            this.label7.Location = new System.Drawing.Point(319, 72);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 15);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "COOKIE:";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -112,7 +132,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(410, 29);
+            this.textBox2.Location = new System.Drawing.Point(410, 12);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(507, 43);
@@ -176,10 +196,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(410, 147);
+            this.textBox1.Location = new System.Drawing.Point(410, 116);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(507, 34);
+            this.textBox1.Size = new System.Drawing.Size(507, 65);
             this.textBox1.TabIndex = 6;
             // 
             // groupBox2
@@ -344,26 +364,6 @@
             // 
             this.columnHeader18.Text = "详细介绍";
             this.columnHeader18.Width = 100;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("宋体", 11F);
-            this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(319, 103);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 15);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "COOKIE:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(410, 87);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(507, 35);
-            this.textBox3.TabIndex = 15;
-            this.textBox3.Text = resources.GetString("textBox3.Text");
             // 
             // 网站发布项目
             // 
