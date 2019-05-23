@@ -241,7 +241,7 @@ namespace main._2019_5
                             string html = method.GetUrlWithCookie(url, aCOOKIE, "utf-8");
 
                            
-                            MatchCollection ids = Regex.Matches(html, @"ShowInfo.asp\?id=([\s\S]*?)&");
+                            MatchCollection ids = Regex.Matches(html, @"ShowInfo.asp\?id=([\s\S]*?)""");
                             ArrayList lists = new ArrayList();
 
                             foreach (Match id in ids)
@@ -277,9 +277,9 @@ namespace main._2019_5
                                 Match a12 = Regex.Match(strhtml, @"环境设备</td>([\s\S]*?)</td>");
                                 Match a13 = Regex.Match(strhtml, @"安全评估</td>([\s\S]*?)</td>");
                                 Match a14 = Regex.Match(strhtml, @"详细地址</td>([\s\S]*?)</td>");
-                                Match a15 = Regex.Match(strhtml, @"QQ/微信/电话</td>([\s\S]*?)</td>");
+                                Match a15 = Regex.Match(strhtml, @"tel=([\s\S]*?)""");
                                 Match a16 = Regex.Match(strhtml, @"综合评价</td>([\s\S]*?)</td>");
-                                Match a17 = Regex.Match(strhtml, @"详细介绍：([\s\S]*?)</div>");
+                                Match a17 = Regex.Match(strhtml, @"详细介绍：([\s\S]*?)<!--投诉-->");
                                 MatchCollection a18 = Regex.Matches(strhtml, @"\d{12,}");  //图片地址
 
                                 StringBuilder sb = new StringBuilder();
@@ -288,29 +288,28 @@ namespace main._2019_5
                                 {
                                     sb.Append("<img src=\"http://fenglouge123.com/allphoto/upload/" + a18[s].Groups[0].Value + ".jpg \" />");
                                 }
-                                MessageBox.Show(CleanHtml(a3.Groups[2].Value));
-                                MessageBox.Show(CleanHtml(a3.Groups[3].Value));
-                                MessageBox.Show(CleanHtml(a3.Groups[4].Value));
-                                MessageBox.Show(CleanHtml(a3.Groups[5].Value));
+
+                                textBox1.Text = list;
+                               
 
                                 if (a1.Groups[1].Value != "" && a3.Groups[1].Value != "")
                                 {
                                     ListViewItem lv1 = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
 
-                                    string title = CleanHtml(a1.Groups[1].Value);
-                                    string laiyuan = CleanHtml(a4.Groups[1].Value);
-                                    string shuliang = CleanHtml(a5.Groups[1].Value);
-                                    string nianling = CleanHtml(a6.Groups[1].Value);
-                                    string suzhi = CleanHtml(a7.Groups[1].Value);
-                                    string waixing = CleanHtml(a8.Groups[1].Value);
-                                    string xiangmu = CleanHtml(a9.Groups[1].Value);
-                                    string jiage = CleanHtml(a10.Groups[1].Value);
-                                    string yysj = CleanHtml(a11.Groups[1].Value);
-                                    string hjsb = CleanHtml(a12.Groups[1].Value);
-                                    string aqpg = CleanHtml(a13.Groups[1].Value);
-                                    string adds = CleanHtml(a14.Groups[1].Value);
-                                    string lxfs = CleanHtml(a15.Groups[1].Value);
-                                    string zhpj = CleanHtml(a16.Groups[1].Value);
+                                    string title = HttpUtility.UrlEncode(CleanHtml(a1.Groups[1].Value),Encoding.GetEncoding("gb2312"));
+                                    string laiyuan = HttpUtility.UrlEncode(CleanHtml(a4.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string shuliang = HttpUtility.UrlEncode(CleanHtml(a5.Groups[1].Value),Encoding.GetEncoding("gb2312"));
+                                    string nianling = HttpUtility.UrlEncode(CleanHtml(a6.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string suzhi = HttpUtility.UrlEncode(CleanHtml(a7.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string waixing = HttpUtility.UrlEncode(CleanHtml(a8.Groups[1].Value),Encoding.GetEncoding("gb2312"));
+                                    string xiangmu = HttpUtility.UrlEncode(CleanHtml(a9.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string jiage = HttpUtility.UrlEncode(CleanHtml(a10.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string yysj = HttpUtility.UrlEncode(CleanHtml(a11.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string hjsb = HttpUtility.UrlEncode(CleanHtml(a12.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string aqpg = HttpUtility.UrlEncode(CleanHtml(a13.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string adds = HttpUtility.UrlEncode(CleanHtml(a14.Groups[1].Value), Encoding.GetEncoding("gb2312"));
+                                    string lxfs = "<img src=\"http:////fenglouge123.com//img.aspx?tel="+a15.Groups[1].Value.Trim()+">";
+                                    string zhpj = HttpUtility.UrlEncode(CleanHtml(a16.Groups[1].Value),Encoding.GetEncoding("gb2312"));
                                     string xxjs = CleanHtml(a17.Groups[1].Value);
 
                                     label3.Text = DateTime.Now.ToString();
@@ -318,8 +317,8 @@ namespace main._2019_5
                                     label4.Text = "正在采集..";
                                    
                                     lv1.SubItems.Add(CleanHtml(a1.Groups[1].Value));
-                                    lv1.SubItems.Add(CleanHtml(a2.Groups[1].Value));
-                                    lv1.SubItems.Add(CleanHtml(a3.Groups[1].Value));
+                                    lv1.SubItems.Add(CleanHtml(a3.Groups[3].Value));
+                                    lv1.SubItems.Add(CleanHtml(a3.Groups[2].Value));
                                     lv1.SubItems.Add(CleanHtml(a4.Groups[1].Value));
                                     lv1.SubItems.Add(CleanHtml(a5.Groups[1].Value));
                                     lv1.SubItems.Add(CleanHtml(a6.Groups[1].Value));
@@ -336,12 +335,13 @@ namespace main._2019_5
                                     lv1.SubItems.Add(CleanHtml(a17.Groups[1].Value));
 
 
-                                    string ftype = a2.Groups[2].Value.Trim() + "|" + a2.Groups[1].Value.Trim();
-                                    string shengfen = a3.Groups[2].Value.Trim() + "|" + a3.Groups[1].Value.Trim();
-
-                                    string diqu = a3.Groups[4].Value + "|" + a3.Groups[3].Value;
+                                    string ftype = CleanHtml(a2.Groups[1].Value).Trim() + "|" + CleanHtml(a3.Groups[3].Value).Trim();
+                                    string shengfen = a3.Groups[4].Value.Trim() + "|" + a3.Groups[2].Value.Trim();
+                                   
+                                    string diqu = a3.Groups[7].Value + "|" + a3.Groups[5].Value;
                                     string content = xxjs + sb.ToString() + "<p>管理约姐姐网【yuejj.net】提示:要求付定金 保证金的,总之提前要钱的都是骗子。</p><p>【必赢棋牌】真金游戏，真钱真刺激，不靠运气靠技术，技术好的一次赢几千，支持微信、支付宝、银行卡等多种方式上下分，想玩就玩，想走就走，安全可靠，注册就送18，可提现，复制到浏览器下载：http://259955.com</p>" + "<a href=\"http://lol.wutgb6y.com:8899/?GameID=1&channelCode=1278\"<img src=\"http://yuejj.net/111.png\" /></a>" + "<p>【需要更新城市资源以及聊天的请添加3万人聊天技术讨论群，随便聊不踢人（乱发广告的除外），点击立刻加入</p><p>https://pt.im/joinchat/RmS8my3KbP_594rgWGFGEw</p><p>potato频道：https://pt.im/yuejj</p>";
-
+                                    
+                                    
                                     string q1 = HttpUtility.UrlEncode(ftype, Encoding.GetEncoding("gb2312"));
                                     string q2 = HttpUtility.UrlEncode(shengfen, Encoding.GetEncoding("gb2312"));
                                     string q3 = HttpUtility.UrlEncode(diqu, Encoding.GetEncoding("gb2312"));
@@ -350,8 +350,10 @@ namespace main._2019_5
 
                                     string postData = "ftype=" + q1 + "&shengfen=" + q2 + "&diqu=" + q3 + "&title=" + title + "&adds=" + adds + "&laiyuan=" + laiyuan + "&shuliang=" + shuliang + "&nianling=" + nianling + "&suzhi=" + suzhi + "&waixing=" + waixing + "&xiangmu=" + xiangmu + "&jiage=" + jiage + "&yysj=" + yysj + "&hjsb=" + hjsb + "&aqpg=" + aqpg + "&lxfs=" + lxfs + "&zhpj=" + zhpj + "&content=%3Cp%3E%26nbsp%3B" + q4 + "%3C%2Fp%3E&Submit=+%C8%B7+%C8%CF+%B7%A2+%B2%BC+";
 
+                                    textBox1.Text = postData;
+                                   
                                     textBox1.Text = method.PostUrl(posturl, postData, bCOOKIE, "gb2312");
-
+                                  
                                     label4.Text = "正在发布....";
                                     label4.Text = "正在发布......";
 
