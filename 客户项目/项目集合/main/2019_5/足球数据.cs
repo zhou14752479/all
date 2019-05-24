@@ -24,7 +24,7 @@ namespace main._2019_5
 
 
 
-        public string gethtml(string url)
+        public string gethtml(string url,string COOKIE)
         {
             HttpHelper http = new HttpHelper();
             HttpItem item = new HttpItem()
@@ -36,7 +36,7 @@ namespace main._2019_5
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
                 
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
-                Cookie = "__utmz=56961525.1557975489.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); LastUrl=; FirstURL=www.okooo.com/; FirstOKURL=http%3A//www.okooo.com/jingcai/; First_Source=www.okooo.com; PHPSESSID=60fddb6fd9f56507ccd1b95834f15d29eb0a5f55; __utma=56961525.1606818588.1557975489.1557993243.1558315411.6; __utmc=56961525; Hm_lvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557975485,1557989883,1558315411; pm=; IMUserID=30507057; IMUserName=%E6%96%AF%E9%80%9A655604; OkAutoUuid=7f1acad3f3be6a54cf09f9db591282f0; OkMsIndex=5; OKSID=60fddb6fd9f56507ccd1b95834f15d29eb0a5f55; M_UserName=%22ok_312051481369%22; M_UserID=30507057; M_Ukey=e313df743083a4e515c115574f759ff3; OkTouchAutoUuid=7f1acad3f3be6a54cf09f9db591282f0; OkTouchMsIndex=5; DRUPAL_LOGGED_IN=Y; isInvitePurview=0; Hm_lpvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1558316099; __utmb=56961525.31.9.1558316100808",//字符串Cookie     可选项  
+                Cookie = COOKIE,
                 UserAgent = "MMozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
@@ -68,14 +68,15 @@ namespace main._2019_5
 
 
 
-
+        public static string COOKIE="";
 
 
         bool zanting = true;
             public void run()
 
         {
-
+            COOKIE = textBox2.Text;
+            
             DateTime dtStart = DateTime.Parse(dateTimePicker1.Text); ;
             DateTime dtEnd = DateTime.Parse(dateTimePicker2.Text);
 
@@ -104,7 +105,7 @@ namespace main._2019_5
                     for (int i = 0; i < lists.Count; i++)
                     {
 
-                        string strhtml = gethtml(lists[i].ToString());
+                        string strhtml = gethtml(lists[i].ToString(),COOKIE);
 
                         textBox1.Text = lists[i].ToString();
                        

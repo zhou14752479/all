@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(足球数据));
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -52,7 +54,8 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button5 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -144,6 +147,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(379, 30);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(118, 44);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "清空";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -153,6 +166,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.dateTimePicker2);
             this.splitContainer1.Panel1.Controls.Add(this.dateTimePicker1);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -163,8 +178,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(862, 447);
-            this.splitContainer1.SplitterDistance = 173;
+            this.splitContainer1.Size = new System.Drawing.Size(862, 546);
+            this.splitContainer1.SplitterDistance = 211;
             this.splitContainer1.TabIndex = 3;
             // 
             // dateTimePicker2
@@ -202,7 +217,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(862, 270);
+            this.listView1.Size = new System.Drawing.Size(862, 331);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -259,21 +274,31 @@
             this.columnHeader12.Text = "日期";
             this.columnHeader12.Width = 100;
             // 
-            // button5
+            // textBox2
             // 
-            this.button5.Location = new System.Drawing.Point(379, 30);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(118, 44);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "清空";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            this.textBox2.Location = new System.Drawing.Point(263, 165);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(587, 42);
+            this.textBox2.TabIndex = 12;
+            this.textBox2.Text = resources.GetString("textBox2.Text");
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(152, 188);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 19);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "COOKIE：";
             // 
             // 足球数据
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 447);
+            this.ClientSize = new System.Drawing.Size(862, 546);
             this.Controls.Add(this.splitContainer1);
             this.Name = "足球数据";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -315,5 +340,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>__utmz=56961525.1557975489.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); LastUrl=; FirstURL=www.okooo.com/; FirstOKURL=http%3A//www.okooo.com/jingcai/; First_Source=www.okooo.com; M_UserName=%22ok_312051481369%22; M_UserID=30507057; M_Ukey=e313df743083a4e515c115574f759ff3; PHPSESSID=2bc009d1dd25c6c778c9e552a216ba570cae85e1; __utma=56961525.1606818588.1557975489.1558315411.1558683752.7; __utmc=56961525; Hm_lvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557975485,1557989883,1558315411,1558683753; pm=; IMUserID=30507057; IMUserName=%E6%96%AF%E9%80%9A655604; OkAutoUuid=9bb85f4df080d1b5ce3e4ce70e2ae7d9; OkMsIndex=3; OKSID=2bc009d1dd25c6c778c9e552a216ba570cae85e1; OkTouchAutoUuid=9bb85f4df080d1b5ce3e4ce70e2ae7d9; OkTouchMsIndex=3; DRUPAL_LOGGED_IN=Y; isInvitePurview=0; __utmb=56961525.13.9.1558683783602; Hm_lpvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1558684072</value>
+  </data>
 </root>

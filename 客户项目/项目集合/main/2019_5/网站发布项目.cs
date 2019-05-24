@@ -351,9 +351,9 @@ namespace main._2019_5
                                     string postData = "ftype=" + q1 + "&shengfen=" + q2 + "&diqu=" + q3 + "&title=" + title + "&adds=" + adds + "&laiyuan=" + laiyuan + "&shuliang=" + shuliang + "&nianling=" + nianling + "&suzhi=" + suzhi + "&waixing=" + waixing + "&xiangmu=" + xiangmu + "&jiage=" + jiage + "&yysj=" + yysj + "&hjsb=" + hjsb + "&aqpg=" + aqpg + "&lxfs=" + lxfs + "&zhpj=" + zhpj + "&content=%3Cp%3E%26nbsp%3B" + q4 + "%3C%2Fp%3E&Submit=+%C8%B7+%C8%CF+%B7%A2+%B2%BC+";
 
                                     textBox1.Text = postData;
-                                   
+
                                     textBox1.Text = method.PostUrl(posturl, postData, bCOOKIE, "gb2312");
-                                  
+
                                     label4.Text = "正在发布....";
                                     label4.Text = "正在发布......";
 
