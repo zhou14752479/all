@@ -63,13 +63,15 @@ namespace main
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            textBox1.Text = GetCookies("http://oppflow.crm.58.com/visit/accoUserList");
+            textBox1.Text =  webBrowser1.Document.Cookie; ;
             cookie = textBox1.Text;
            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox1.Text = GetCookies("http://user.shikee.com/seller");
+            cookie = textBox1.Text;
             this.Hide();
         }
 
@@ -81,6 +83,12 @@ namespace main
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void SplitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
+        {
+            textBox1.Text = webBrowser1.Document.Cookie; ;
+            cookie = textBox1.Text;
         }
     }
 

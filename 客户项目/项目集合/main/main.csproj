@@ -119,6 +119,12 @@
     <Compile Include="2019_5\拼多多推荐.Designer.cs">
       <DependentUpon>拼多多推荐.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_5\数字组合、.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\数字组合、.Designer.cs">
+      <DependentUpon>数字组合、.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_5\文本筛选.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,12 @@
     </Compile>
     <Compile Include="2019_5\网站发布项目.Designer.cs">
       <DependentUpon>网站发布项目.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_5\试客联盟.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\试客联盟.Designer.cs">
+      <DependentUpon>试客联盟.cs</DependentUpon>
     </Compile>
     <Compile Include="2019_5\足球数据.cs">
       <SubType>Form</SubType>
@@ -189,6 +201,9 @@
     <EmbeddedResource Include="2019_5\拼多多推荐.resx">
       <DependentUpon>拼多多推荐.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\数字组合、.resx">
+      <DependentUpon>数字组合、.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019_5\文本筛选.resx">
       <DependentUpon>文本筛选.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_5\网站发布项目.resx">
       <DependentUpon>网站发布项目.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\试客联盟.resx">
+      <DependentUpon>试客联盟.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_5\足球数据.resx">
       <DependentUpon>足球数据.cs</DependentUpon>

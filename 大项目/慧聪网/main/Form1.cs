@@ -32,6 +32,21 @@ namespace main
         bool status = true;
         bool zanting = true;
 
+        public class Info
+        {
+           
+            public string recordList { get; set; }
+        }
+
+        public class recordList
+        {
+            public string companyname { get; set; }
+            public string linkman { get; set; }
+            public string linkmp { get; set; }
+            public string address { get; set; }
+            public string cityname { get; set; }
+        }
+
         #region  慧聪网
 
         public void huicong()
@@ -76,26 +91,57 @@ namespace main
                         string Url = "https://esapi.org.hc360.com/interface/getinfos.html?pnum="+i+"&psize=100&kwd="+keyword+"&z="+city+"&index=companyinfo&collapsef=providerid";
                        
                         string strhtml = method.GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-                       
+
+                        //string json = strhtml;
+                        //List<Info> jobInfoList = JsonConvert.DeserializeObject<List<Info>>(json);
+
+
+                        //foreach (Info jobInfo in jobInfoList)
+                        //{
+                        //     List<recordList> recordList = JsonConvert.DeserializeObject<List<recordList>>(jobInfo.recordList);
+
+                        //    foreach (recordList records in recordList)
+                        //    {
+                        //        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                        //        lv1.SubItems.Add(records.companyname);
+                        //        lv1.SubItems.Add(records.linkman);
+                        //        lv1.SubItems.Add(records.linkmp);
+                        //        lv1.SubItems.Add(records.address);
+                        //        lv1.SubItems.Add(records.cityname);
+
+                        //        if (status == false)
+                        //        {
+                        //            return;
+                        //        }
+
+                        //        if (listView1.Items.Count - 1 > 1)
+                        //        {
+                        //            listView1.EnsureVisible(listView1.Items.Count - 1);
+                        //        }
+                        //    }
+                        //}
+
                         MatchCollection names = Regex.Matches(strhtml, @"companyname"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection tels = Regex.Matches(strhtml, @"linkmp"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection areas = Regex.Matches(strhtml, @"cityname"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection address = Regex.Matches(strhtml, @"address"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection contacts = Regex.Matches(strhtml, @"linkman"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
+                        int count = names.Count < address.Count ? names.Count : address.Count;
+
                         if (names.Count == 0)
 
                             break;
 
-                        for (int j = 0; j < names.Count; j++)
+                        for (int j = 0; j < count; j++)
                         {
 
-                            if (names.Count > 0&& tels[j].Groups[1].Value !="")
+                            if (names.Count > 0 && tels[j].Groups[1].Value != "")
                             {
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                 lv1.SubItems.Add(names[j].Groups[1].Value.Trim());
                                 lv1.SubItems.Add(contacts[j].Groups[1].Value.Trim());
-                                lv1.SubItems.Add(tels[j].Groups[1].Value.Trim());              
+                                lv1.SubItems.Add(tels[j].Groups[1].Value.Trim());
                                 lv1.SubItems.Add(address[j].Groups[1].Value.Trim());
                                 lv1.SubItems.Add(areas[j].Groups[1].Value.Trim());
                                 toolStripStatusLabel2.Text = listView1.Items.Count.ToString();
@@ -104,7 +150,7 @@ namespace main
                                     Application.DoEvents();
                                 }
 
-                               if (status == false)
+                                if (status == false)
                                 {
                                     return;
                                 }
@@ -117,9 +163,9 @@ namespace main
 
                         }
 
-                       
 
-                      
+
+
                         Application.DoEvents();
                         System.Threading.Thread.Sleep(1000);   //内容获取间隔，可变量
 
@@ -132,7 +178,7 @@ namespace main
             }
             catch (System.Exception ex)
             {
-               MessageBox.Show(  ex.ToString());
+              MessageBox.Show(  ex.ToString());
             }
         }
 
@@ -649,15 +695,15 @@ namespace main
         {
             button2.Enabled = false;
             status = true;
-            //if (denglu == false)
-            //{
-            //    MessageBox.Show("请先登录您的账号！");
-            //    return;
-            //}
-            //Thread thread = new Thread(new ThreadStart(huicong));
-            //thread.Start();
-           
-            
+            if (denglu == false)
+            {
+                MessageBox.Show("请先登录您的账号！");
+                return;
+            }
+            Thread thread = new Thread(new ThreadStart(huicong));
+            thread.Start();
+
+
             //for (int i = 0; i <5; i++)
             //{
             //    Thread thread = new Thread(new ThreadStart(baidu));
@@ -666,36 +712,36 @@ namespace main
 
 
 
-            #region 慧聪网通用登录
+            //#region 慧聪网通用登录
 
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php","utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            //bool value = false;
+            //string html = method.GetUrl("http://acaiji.com/success/ip.php","utf-8");
+            //string localip = method.GetIP();
+            //MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
+            //foreach (Match ip in ips)
+            //{
+            //    if (ip.Groups[1].Value.Trim() == localip.Trim())
+            //    {
+            //        value = true;
+            //        break;
+            //    }
 
-            }
-            if (value == true)
-            {
-                //--------登陆函数------------------
-                Thread thread2 = new Thread(new ThreadStart(huicong));
-                thread2.Start();
+            //}
+            //if (value == true)
+            //{
+            //    //--------登陆函数------------------
+            //    Thread thread2 = new Thread(new ThreadStart(huicong));
+            //    thread2.Start();
 
-            }
-            else
-            {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
-            }
-            #endregion
+            //}
+            //else
+            //{
+            //    MessageBox.Show("请登录您的账号！");
+            //    System.Diagnostics.Process.Start("http://www.acaiji.com");
+            //    return;
+            //}
+            //#endregion
 
         }
 
