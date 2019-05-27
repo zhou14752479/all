@@ -143,6 +143,12 @@
     <Compile Include="2019_5\网站发布项目.Designer.cs">
       <DependentUpon>网站发布项目.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_5\花拍.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_5\花拍.Designer.cs">
+      <DependentUpon>花拍.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_5\试客联盟.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_5\网站发布项目.resx">
       <DependentUpon>网站发布项目.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_5\花拍.resx">
+      <DependentUpon>花拍.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_5\试客联盟.resx">
       <DependentUpon>试客联盟.cs</DependentUpon>

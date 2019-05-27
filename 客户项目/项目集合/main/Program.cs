@@ -16,7 +16,7 @@ namespace main._2019_5
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 试客联盟());
+            Application.Run(new 花拍());
         }
     }
 }
