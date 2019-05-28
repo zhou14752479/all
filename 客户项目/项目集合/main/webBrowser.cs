@@ -70,7 +70,11 @@ namespace main
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = GetCookies("http://user.shikee.com/seller");
+            //textBox1.Text = GetCookies("http://user.shikee.com/seller");
+            //cookie = textBox1.Text;
+            //this.Hide();
+
+            textBox1.Text = GetCookies("https://seller.huapai.com/goodslist/index?tid=0&status=2&step_status=-1&oid=0&per_page=10");
             cookie = textBox1.Text;
             this.Hide();
         }
@@ -80,16 +84,9 @@ namespace main
             webBrowser1.Refresh();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
+       
 
-        private void SplitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
-        {
-            textBox1.Text = webBrowser1.Document.Cookie; ;
-            cookie = textBox1.Text;
-        }
+
     }
 
 

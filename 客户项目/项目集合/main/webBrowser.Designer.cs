@@ -51,7 +51,7 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
-            this.splitContainer1.Panel1.MouseEnter += new System.EventHandler(this.SplitContainer1_Panel1_MouseEnter);
+        
             // 
             // splitContainer1.Panel2
             // 
@@ -68,7 +68,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "关闭此窗口";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 

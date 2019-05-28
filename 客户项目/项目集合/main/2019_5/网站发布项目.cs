@@ -225,12 +225,14 @@ namespace main._2019_5
             bCOOKIE = textBox3.Text;
             int[] typeids = { 1, 2, 3, 4, 5, 6 };
             //int[] areaids = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
-            int[] areaids = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
+           // int[] areaids = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
+            string[] areaids = textBox4.Text.Split(new string[] { "," }, StringSplitOptions.None);
+
             try
             {
                 for (int i = 1; i < 1000; i = i++)
                 {
-                    foreach (int areaid in areaids)
+                    foreach (var areaid in areaids)
                     {
 
                         foreach (var typeid in typeids)

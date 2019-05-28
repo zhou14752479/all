@@ -118,7 +118,7 @@ namespace main._2019_5
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            webBrowser web = new webBrowser("http://login.shikee.com/");
+            webBrowser web = new webBrowser("http://seller.huapai.com/");
             web.Show();
         }
     }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,13 +17,30 @@ namespace main._2019_5
         public 花拍()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
-        public static string COOKIE = "PHPSESSID=ohvckqa066j1ubejgkpb77jt47; CNZZDATA1254168241=1079397366-1558943902-%7C1558943902; UM_distinctid=16af859acbc102-05e012748741a1c-69010762-1fa400-16af859acbd77e; Hm_lvt_e51dc33d7f97d2b32af34d847bc7164c=1558944793; Hm_lpvt_e51dc33d7f97d2b32af34d847bc7164c=1558944815";
+        public static string CleanHtml(string strHtml)
+        {
+            if (string.IsNullOrEmpty(strHtml)) return strHtml;
+            //删除脚本
+            //Regex.Replace(strHtml, @"<script[^>]*?>.*?</script>", "", RegexOptions.IgnoreCase)
+            strHtml = Regex.Replace(strHtml, @"(\<script(.+?)\</script\>)|(\<style(.+?)\</style\>)", "", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            //删除标签
+            var r = new Regex(@"</?[^>]*>", RegexOptions.IgnoreCase);
+            Match m;
+            for (m = r.Match(strHtml); m.Success; m = m.NextMatch())
+            {
+                strHtml = strHtml.Replace(m.Groups[0].ToString(), "");
+            }
+            return strHtml.Trim();
+        }
+
+        public static string COOKIE = "";
 
         bool status = true;
         bool zanting = true;
-        #region 
+        
         public void run()
         {
             COOKIE = webBrowser.cookie;
@@ -35,16 +53,17 @@ namespace main._2019_5
                     string Url = "https://seller.huapai.com/goodslist/index?tid=0&status=2&step_status=-1&oid=0&per_page=" + i ;
 
                     string html = method.GetUrlWithCookie(Url, COOKIE, "utf-8");
-
-                    MatchCollection names = Regex.Matches(html, @"data-name=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                    MatchCollection dingdans = Regex.Matches(html, @"uid([\s\S]*?)</a></td>([\s\S]*?)<td>([\s\S]*?)</td>([\s\S]*?)<td>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection names = Regex.Matches(html, @"male\.png"" width=""15""\/>([\s\S]*?)</p>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                   
+                    MatchCollection dingdans = Regex.Matches(html, @"订单号：([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    MatchCollection QQs = Regex.Matches(html, @"<div style=""margin-left: 20px;"">([\s\S]*?)</p>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                     for (int j = 0; j < names.Count; j++)
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
                         lv1.SubItems.Add(names[j].Groups[1].Value.Trim());
-                        lv1.SubItems.Add(dingdans[j].Groups[3].Value.Trim());
-                        lv1.SubItems.Add(dingdans[j].Groups[5].Value.Trim());
+                        lv1.SubItems.Add(dingdans[j].Groups[1].Value.Trim());
+                        lv1.SubItems.Add(CleanHtml(QQs[j].Groups[1].Value).Trim());
 
                         if (listView1.Items.Count > 2)
                         {
@@ -84,6 +103,32 @@ namespace main._2019_5
         {
             webBrowser web = new webBrowser("https://seller.huapai.com/");
             web.Show();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

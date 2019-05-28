@@ -79,37 +79,9 @@ namespace fang.临时软件
             }
 
 
-            #region 通用登录
-
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (System.Text.RegularExpressions.Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-            }
-            else
-            {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
-            }
-            #endregion
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
 
         }

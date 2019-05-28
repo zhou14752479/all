@@ -64,6 +64,8 @@
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,6 +82,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox4);
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
             this.splitContainer1.Panel1.Controls.Add(this.textBox3);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.label6);
@@ -96,7 +100,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
             this.splitContainer1.Size = new System.Drawing.Size(1304, 538);
-            this.splitContainer1.SplitterDistance = 194;
+            this.splitContainer1.SplitterDistance = 229;
             this.splitContainer1.TabIndex = 2;
             // 
             // textBox3
@@ -280,7 +284,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1304, 340);
+            this.listView1.Size = new System.Drawing.Size(1304, 305);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -365,6 +369,26 @@
             this.columnHeader18.Text = "详细介绍";
             this.columnHeader18.Width = 100;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(295, 195);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(213, 19);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "采集区域ID(逗号隔开)";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(514, 195);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(403, 21);
+            this.textBox4.TabIndex = 17;
+            this.textBox4.Text = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23" +
+    ", 24, 25, 26, 27, 28, 29, 30";
+            // 
             // 网站发布项目
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -421,5 +445,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
