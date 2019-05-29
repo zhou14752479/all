@@ -34,8 +34,8 @@ namespace main
 
         public class Info
         {
-           
-            public string recordList { get; set; }
+
+            public List<recordList> recordList;
         }
 
         public class recordList
@@ -92,22 +92,72 @@ namespace main
                        
                         string strhtml = method.GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                        //string json = strhtml;
-                        //List<Info> jobInfoList = JsonConvert.DeserializeObject<List<Info>>(json);
+
+                        Info jsonParser = JsonConvert.DeserializeObject<Info>(strhtml);
 
 
-                        //foreach (Info jobInfo in jobInfoList)
+
+                        foreach (recordList recordList1 in jsonParser.recordList)
+                        {
+
+                            if (recordList1.linkmp != "null" && recordList1.linkmp !="")
+                            {
+                               
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                lv1.SubItems.Add(recordList1.companyname);
+                                lv1.SubItems.Add(recordList1.linkman);
+
+                                lv1.SubItems.Add(recordList1.linkmp);
+                                lv1.SubItems.Add(recordList1.address);
+                                lv1.SubItems.Add(recordList1.cityname);
+                                if (listView2.Items.Count - 1 > 1)
+                                {
+                                    listView2.EnsureVisible(listView2.Items.Count - 1);
+                                }
+                                if (status == false)
+                                {
+                                    return;
+                                }
+
+                                while (this.zanting == false)
+                                {
+                                  Application.DoEvents();
+                              }
+
+                            }
+
+                            Application.DoEvents();
+                            Thread.Sleep(1000);   //内容获取间隔，可变量
+                        }
+
+                        //MatchCollection names = Regex.Matches(strhtml, @"companyname"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        //MatchCollection tels = Regex.Matches(strhtml, @"linkmp"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        //MatchCollection areas = Regex.Matches(strhtml, @"cityname"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        //MatchCollection address = Regex.Matches(strhtml, @"address"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        //MatchCollection contacts = Regex.Matches(strhtml, @"linkman"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                        //int count = names.Count < address.Count ? names.Count : address.Count;
+
+                        //if (names.Count == 0)
+
+                        //    break;
+
+                        //for (int j = 0; j < count; j++)
                         //{
-                        //     List<recordList> recordList = JsonConvert.DeserializeObject<List<recordList>>(jobInfo.recordList);
 
-                        //    foreach (recordList records in recordList)
+                        //    if (names.Count > 0 && tels[j].Groups[1].Value != "")
                         //    {
                         //        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                        //        lv1.SubItems.Add(records.companyname);
-                        //        lv1.SubItems.Add(records.linkman);
-                        //        lv1.SubItems.Add(records.linkmp);
-                        //        lv1.SubItems.Add(records.address);
-                        //        lv1.SubItems.Add(records.cityname);
+                        //        lv1.SubItems.Add(names[j].Groups[1].Value.Trim());
+                        //        lv1.SubItems.Add(contacts[j].Groups[1].Value.Trim());
+                        //        lv1.SubItems.Add(tels[j].Groups[1].Value.Trim());
+                        //        lv1.SubItems.Add(address[j].Groups[1].Value.Trim());
+                        //        lv1.SubItems.Add(areas[j].Groups[1].Value.Trim());
+                        //        toolStripStatusLabel2.Text = listView1.Items.Count.ToString();
+                        //        while (this.zanting == false)
+                        //        {
+                        //            Application.DoEvents();
+                        //        }
 
                         //        if (status == false)
                         //        {
@@ -119,47 +169,6 @@ namespace main
                         //            listView1.EnsureVisible(listView1.Items.Count - 1);
                         //        }
                         //    }
-                        //}
-
-                        MatchCollection names = Regex.Matches(strhtml, @"companyname"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        MatchCollection tels = Regex.Matches(strhtml, @"linkmp"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        MatchCollection areas = Regex.Matches(strhtml, @"cityname"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        MatchCollection address = Regex.Matches(strhtml, @"address"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        MatchCollection contacts = Regex.Matches(strhtml, @"linkman"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-                        int count = names.Count < address.Count ? names.Count : address.Count;
-
-                        if (names.Count == 0)
-
-                            break;
-
-                        for (int j = 0; j < count; j++)
-                        {
-
-                            if (names.Count > 0 && tels[j].Groups[1].Value != "")
-                            {
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                lv1.SubItems.Add(names[j].Groups[1].Value.Trim());
-                                lv1.SubItems.Add(contacts[j].Groups[1].Value.Trim());
-                                lv1.SubItems.Add(tels[j].Groups[1].Value.Trim());
-                                lv1.SubItems.Add(address[j].Groups[1].Value.Trim());
-                                lv1.SubItems.Add(areas[j].Groups[1].Value.Trim());
-                                toolStripStatusLabel2.Text = listView1.Items.Count.ToString();
-                                while (this.zanting == false)
-                                {
-                                    Application.DoEvents();
-                                }
-
-                                if (status == false)
-                                {
-                                    return;
-                                }
-
-                                if (listView1.Items.Count - 1 > 1)
-                                {
-                                    listView1.EnsureVisible(listView1.Items.Count - 1);
-                                }
-                            }
 
                         }
 
@@ -172,7 +181,7 @@ namespace main
                     }
 
 
-                }
+                
 
                 button2.Enabled = true;
             }
