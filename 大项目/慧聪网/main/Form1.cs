@@ -126,9 +126,10 @@ namespace main
 
                             }
 
-                            Application.DoEvents();
-                            Thread.Sleep(1000);   //内容获取间隔，可变量
+                            
                         }
+                        Application.DoEvents();
+                        Thread.Sleep(1000);   //内容获取间隔，可变量
 
                         //MatchCollection names = Regex.Matches(strhtml, @"companyname"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         //MatchCollection tels = Regex.Matches(strhtml, @"linkmp"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -170,7 +171,7 @@ namespace main
                         //        }
                         //    }
 
-                        }
+                    }
 
 
 
