@@ -204,8 +204,7 @@ namespace main
         {
             webBrowser web = new webBrowser("https://login.taobao.com/member/login.jhtml");
             web.Show();
-            //webBrowser web = new webBrowser("http://crm.58.com/");
-            //web.Show();
+           
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -221,26 +220,9 @@ namespace main
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            #region   读取注册码信息才能运行软件！
-
-            RegistryKey rsg = Registry.CurrentUser.OpenSubKey("zhucema"); //true表可修改                
-            if (rsg != null && rsg.GetValue("mac") != null)  //如果值不为空
-            {
-                Thread thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-
-            }
-
-            else
-            {
-                MessageBox.Show("请注册软件！");
-                login lg = new login();
-                lg.Show();
-            }
-
-            #endregion
+            Thread thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
         }
         public string GetResponseString(HttpWebResponse webresponse)
         {
@@ -261,6 +243,11 @@ namespace main
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }
