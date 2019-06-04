@@ -92,6 +92,7 @@ namespace zhaopin_58
         }
 
         #endregion
+
         #region GET请求
         /// <summary>
         /// GET请求
