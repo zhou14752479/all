@@ -94,7 +94,10 @@ namespace main
 
                         string strhtml = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-
+                        if (!strhtml.Contains("address"))
+                        {
+                            break;
+                        }
                         Info jsonParser = JsonConvert.DeserializeObject<Info>(strhtml);
 
 
