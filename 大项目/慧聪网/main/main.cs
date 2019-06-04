@@ -306,7 +306,7 @@ namespace main
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(huicong1));
+            Thread thread = new Thread(new ThreadStart(huicong));
             thread.Start();
         }
 
