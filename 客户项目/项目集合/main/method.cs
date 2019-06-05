@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CsharpHttpHelper;
+using CsharpHttpHelper.Enum;
+using MySql.Data.MySqlClient;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
@@ -33,10 +35,10 @@ namespace main
             {
                 try
             {
-                string COOKIE = "Hm_lvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557975485; __utmc=56961525; __utmz=56961525.1557975489.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); PHPSESSID=3e944cfd954c52e155f6d5d99ad19606779f6240; pm=; LastUrl=; FirstURL=www.okooo.com/; FirstOKURL=http%3A//www.okooo.com/jingcai/; First_Source=www.okooo.com; __utma=56961525.1606818588.1557975489.1557981725.1557985950.3; IMUserID=30498306; IMUserName=%E6%9E%97%E5%AD%94988610; OKSID=3e944cfd954c52e155f6d5d99ad19606779f6240; M_UserName=%22%5Cu6797%5Cu5b54988610%22; M_UserID=30498306; M_Ukey=067e94b82ba40266c3a93fde0c9d9c01; OkAutoUuid=aa5bcc288c3e2610627fc126218f5eb1; OkMsIndex=8; Hm_lpvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1557987723; __utmb=56961525.45.9.1557987726651";
+                string COOKIE = "global_cookie=s9jclgj0s2h7qa3f6gm17rv6o17jw7b97oh; ASP.NET_SessionId=jbm2d2t4lal1wymgomofe3ul; integratecover=1; __utmc=147393320; Rent_StatLog=ae772611-8b3d-4d52-916a-5f036c6c2df0; SoufunSessionID_Shop=; Captcha=383870564A777447564A77762B43476B5034646945463663444D514B594A63463461444E775836636C6D6D4649756D74434D487442417253564C77336F6C6D7343647535537077554E6F773D; g_sourcepage=zf_fy%5Egrxq_pc; unique_cookie=U_jkbrjbp06cbrnntr5rl73twau1ljwilt7h9*8; __utma=147393320.1524563003.1559018326.1559701185.1559718180.3; __utmz=147393320.1559718180.3.3.utmcsr=fz.zu.fang.com|utmccn=(referral)|utmcmd=referral|utmcct=/house/a21/; __utmb=147393320.3.10.1559718180";
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
-                    request.UserAgent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5";
+                    request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
                 request.Accept = "gzip";
                 request.Headers.Add("Accept-Language", "zh-cn,en-us;q=0.5");
                 //request.AllowAutoRedirect = true;
@@ -98,10 +100,49 @@ namespace main
                 }
                 return "";
             }
-            #endregion
+        #endregion
 
-            #region ！！！！如果之前的请求获取不到源码就用这个去获取,非常重要！！！！
-            public static string GetHtmlSource(string url,string charset)
+        /// <summary>
+        /// 苏菲论坛获取URL
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="COOKIE"></param>
+        /// <returns></returns>
+        public static string gethtml(string url, string COOKIE,string charset)
+        {
+            HttpHelper http = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = url,
+                Method = "GET",//URL     可选项 默认为Get  
+                Encoding = Encoding.GetEncoding(charset),
+                Timeout = 100000,//连接超时时间     可选项默认为100000  
+                ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
+
+                IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
+                Cookie = COOKIE,
+                UserAgent = "MMozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
+                ContentType = "text/html",//返回类型    可选项有默认值  
+                Referer = "http://www.sufeinet.com",//来源URL     可选项  
+                                                    //Allowautoredirect = False,//是否根据３０１跳转     可选项  
+                                                    //AutoRedirectCookie = False,//是否自动处理Cookie     可选项  
+                                                    //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
+                                                    //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
+                Postdata = "",//Post数据     可选项GET时不需要写  
+                              //ProxyIp = "192.168.1.105：2020",//代理服务器ID     可选项 不需要代理 时可以不设置这三个参数  
+                              //ProxyPwd = "123456",//代理服务器密码     可选项  
+                              //ProxyUserName = "administrator",//代理服务器账户名     可选项  
+                ResultType = ResultType.String,//返回数据类型，是Byte还是String  
+            };
+            HttpResult result = http.GetHtml(item);
+            string html = result.Html;
+            return html;
+
+        }
+
+        #region ！！！！如果之前的请求获取不到源码就用这个去获取,非常重要！！！！
+        public static string GetHtmlSource(string url,string charset)
             {
                 try
                 {

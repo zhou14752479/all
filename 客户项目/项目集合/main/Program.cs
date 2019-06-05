@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_5
+namespace main._2019_6
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace main._2019_5
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 花拍());
+            Application.Run(new zufang());
         }
     }
 }

@@ -161,6 +161,12 @@
     <Compile Include="2019_5\足球数据.Designer.cs">
       <DependentUpon>足球数据.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\zufang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\zufang.Designer.cs">
+      <DependentUpon>zufang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_5\足球数据.resx">
       <DependentUpon>足球数据.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\zufang.resx">
+      <DependentUpon>zufang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,30 @@ namespace main
 {
     public partial class main : Form
     {
+        public void insertData(string[] values)
+        {
+
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO companys (cname,linkman,province,city,phone,number,email,item,mainpro,ctime,qq,address)VALUES('" + values[0] + " ','" + values[1] + " ','" + values[2] + " ','" + values[3] + " ','" + values[4] + " ','" + values[5] + " ','" + values[6] + " ','" + values[7] + " ','" + values[8] + " ','" + values[9] + " ','" + values[10] + " ','" + values[11]+ "')", mycon);
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+
+                mycon.Close();
+                
+                
+            }
+
+            catch (System.Exception ex)
+            {
+             textBox1.Text= ex.ToString();
+            }
+        }
+
+
         public main()
         {
             InitializeComponent();
@@ -53,6 +78,8 @@ namespace main
 
         public void huicong()
         {
+
+
            
             if (comboBox1.Text == "")
             {
@@ -122,7 +149,10 @@ namespace main
                                 lv1.SubItems.Add(recordList1.createdate);
                                 lv1.SubItems.Add(recordList1.linkqq);
                                 lv1.SubItems.Add(recordList1.address);
-                                
+
+                                string[] values = { recordList1.companyname, recordList1.linkman, recordList1.proname, recordList1.cityname, recordList1.linkmp, recordList1.pnumber, recordList1.email, recordList1.areaname, recordList1.mainpro, recordList1.createdate, recordList1.linkqq, recordList1.address };
+                                insertData(values);
+
                                 if (listView1.Items.Count - 1 > 1)
                                 {
                                     listView1.EnsureVisible(listView1.Items.Count - 1);
@@ -213,11 +243,11 @@ namespace main
                         foreach (string keyword in keywords)
                         {
 
-                            if (keyword == "")
-                            {
-                                MessageBox.Show("请输入采集行业或者关键词！");
-                                return;
-                            }
+                            //if (keyword == "")
+                            //{
+                            //    MessageBox.Show("请输入采集行业或者关键词！");
+                            //    return;
+                            //}
                             string key = System.Web.HttpUtility.UrlEncode(keyword);
 
                             for (int i = 1; i < 9999; i++)
@@ -240,24 +270,10 @@ namespace main
                                 foreach (recordList recordList1 in jsonParser.recordList)
                                 {
 
-                                    if (recordList1.linkmp != "null" && recordList1.linkmp != "")
-                                    {
-
-                                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                        lv1.SubItems.Add(recordList1.companyname);
-                                        lv1.SubItems.Add(recordList1.linkman);
-                                        lv1.SubItems.Add(recordList1.proname);
-                                        lv1.SubItems.Add(recordList1.cityname);
-
-                                        lv1.SubItems.Add(recordList1.linkmp);
-                                        lv1.SubItems.Add(recordList1.pnumber);
-                                        lv1.SubItems.Add(recordList1.email);
-                                        lv1.SubItems.Add(recordList1.areaname);
-                                        lv1.SubItems.Add(recordList1.mainpro);
-                                        lv1.SubItems.Add(recordList1.createdate);
-                                        lv1.SubItems.Add(recordList1.linkqq);
-                                        lv1.SubItems.Add(recordList1.address);
-
+                                                   
+                                        string[] values = { recordList1.companyname, recordList1.linkman, recordList1.proname, recordList1.cityname, recordList1.linkmp, recordList1.pnumber, recordList1.email, recordList1.areaname, recordList1.mainpro, recordList1.createdate, recordList1.linkqq, recordList1.address };
+                                        insertData(values);
+                                    toolStripStatusLabel5.Text = recordList1.companyname;
                                         if (listView1.Items.Count - 1 > 1)
                                         {
                                             listView1.EnsureVisible(listView1.Items.Count - 1);
@@ -284,7 +300,7 @@ namespace main
                         }
 
                     }
-                }
+                
 
 
                 button2.Enabled = true;
@@ -309,7 +325,7 @@ namespace main
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(huicong));
+            Thread thread = new Thread(new ThreadStart(huicong1));
             thread.Start();
         }
 
