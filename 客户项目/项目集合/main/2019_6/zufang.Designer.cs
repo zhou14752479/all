@@ -33,6 +33,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -40,15 +41,14 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button6 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -94,6 +94,11 @@
             this.columnHeader3.Text = "联系人";
             this.columnHeader3.Width = 100;
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "地区";
+            this.columnHeader5.Width = 100;
+            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(306, 30);
@@ -102,6 +107,7 @@
             this.button5.TabIndex = 13;
             this.button5.Text = "导出结果";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // button3
             // 
@@ -111,6 +117,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "继续";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button2
             // 
@@ -120,6 +127,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "暂停";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button1
             // 
@@ -153,6 +161,7 @@
             this.button6.TabIndex = 14;
             this.button6.Text = "清空结果";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // splitContainer1
             // 
@@ -174,10 +183,14 @@
             this.splitContainer1.SplitterDistance = 193;
             this.splitContainer1.TabIndex = 5;
             // 
-            // columnHeader5
+            // textBox2
             // 
-            this.columnHeader5.Text = "地区";
-            this.columnHeader5.Width = 100;
+            this.textBox2.Location = new System.Drawing.Point(556, 12);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(121, 163);
+            this.textBox2.TabIndex = 9;
+            this.textBox2.Text = "fz";
             // 
             // groupBox1
             // 
@@ -194,47 +207,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "网站设置";
             // 
-            // comboBox1
+            // textBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "安居客",
-            "房天下"});
-            this.comboBox1.Location = new System.Drawing.Point(110, 21);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 0;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "个人房源出租",
-            "个人商铺出租"});
-            this.comboBox2.Location = new System.Drawing.Point(110, 59);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
-            this.comboBox2.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 10F);
-            this.label1.Location = new System.Drawing.Point(27, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 14);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "选择网站：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.Location = new System.Drawing.Point(27, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 14);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "选择分类：";
+            this.textBox1.Location = new System.Drawing.Point(349, 23);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 21);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.Text = "fz";
             // 
             // label3
             // 
@@ -246,22 +225,50 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "输入城市：";
             // 
-            // textBox1
+            // label2
             // 
-            this.textBox1.Location = new System.Drawing.Point(349, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.Text = "fz";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10F);
+            this.label2.Location = new System.Drawing.Point(27, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 14);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "选择分类：";
             // 
-            // textBox2
+            // label1
             // 
-            this.textBox2.Location = new System.Drawing.Point(556, 12);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 163);
-            this.textBox2.TabIndex = 9;
-            this.textBox2.Text = "fz";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 10F);
+            this.label1.Location = new System.Drawing.Point(27, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 14);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "选择网站：";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "个人房源出租",
+            "个人商铺出租",
+            "个人商铺出售"});
+            this.comboBox2.Location = new System.Drawing.Point(110, 59);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "安居客",
+            "房天下",
+            "赶集商铺出租",
+            "赶集商铺出售"});
+            this.comboBox1.Location = new System.Drawing.Point(110, 21);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 0;
             // 
             // zufang
             // 

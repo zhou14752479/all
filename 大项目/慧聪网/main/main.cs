@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -215,7 +216,7 @@ namespace main
         public void huicong1()
         {
 
-          
+            status = true;
 
             try
             {
@@ -325,8 +326,37 @@ namespace main
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(huicong1));
-            thread.Start();
+
+            #region 通用登录
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php","utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == localip.Trim())
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+                //--------登陆函数------------------
+                Thread thread = new Thread(new ThreadStart(huicong));
+                thread.Start();
+
+            }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -62,7 +62,7 @@ namespace main
 
 
 
-        public static string COOKIE = "_uab_collina=155841531117990759884066; miid=1280586377935732790; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; t=549c883cd0d96a2361709464aafc2ef7; tg=0; hng=CN%7Czh-CN%7CCNY%7C156; _bl_uid=njj6hv4Xl4aqL0q7entvuUh8gtbv; _cc_=V32FPkk%2Fhw%3D%3D; enc=%2F%2B%2BMghI4XSh%2FGHJNSwgjpPsLgt0%2BE%2F%2BXQEBwokzOKQE3HkzETF8JiGAwWPNxItQwJOaD6V%2BBli0Wo0CeeA2X%2Fw%3D%3D; cookie2=1fe232f05a5136e28c32b1b505c5ea2e; _tb_token_=e3ea33e443e86; x=2992737907; _m_h5_tk=f8b0a562742b9fd05290ecc4ca22ac27_1558415881482; _m_h5_tk_enc=9ddf61ebe4a148329d6dd757b658cfc3; mt=ci=0_0; uc3=id2=&nk2=&lg2=; skt=ac295dae5743f3ef; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E6%A1%94%E5%AD%90; unb=3247690276; tracknick=; csg=baf127cb; v=0; x5sec=7b2274726164656d616e616765723b32223a226563336365336636373234393536313063333536643131343236336530646535434d32506a756346454e436e765a36346d634c443141456144444d794e4463324f5441794e7a59374d513d3d227d; uc1=cookie14=UoTZ7HEFr%2BLQZA%3D%3D&lng=zh_CN; l=bBreIJ14vWJ-OqdDBOfiVuIRGs7teIOb8sPzw4gGjICPOJfwSBbCWZt02rLeC3GVa6UWR3oWYJ1uBy8ivy4Eh; isg=BIuL2QUdU7GOmY_f_WBN1ptnGi-1iJfKQf9ZIv2JUEosHKl-hfMu82P-9lxXPPea";
+        public static string COOKIE = "uab_collina=155841531117990759884066; miid=1280586377935732790; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; t=549c883cd0d96a2361709464aafc2ef7; tg=0; hng=CN%7Czh-CN%7CCNY%7C156; _bl_uid=njj6hv4Xl4aqL0q7entvuUh8gtbv; enc=%2F%2B%2BMghI4XSh%2FGHJNSwgjpPsLgt0%2BE%2F%2BXQEBwokzOKQE3HkzETF8JiGAwWPNxItQwJOaD6V%2BBli0Wo0CeeA2X%2Fw%3D%3D; _cc_=VFC%2FuZ9ajQ%3D%3D; mt=ci=0_0; cookie2=1a0167481cba99d744fbe947d615133c; _tb_token_=f735731f58ee4; x=3217048383; uc3=id2=&nk2=&lg2=; skt=2db91d75324a2e81; sn=%E9%B8%BF%E5%B0%8A%E9%80%9A%E4%BF%A1%E4%B8%93%E8%90%A5%E5%BA%97%3A%E7%A7%8B%E6%99%B4; unb=3870257178; tracknick=; csg=e8f9d9aa; v=0; _m_h5_tk=75fb26a6c7caaac16cbcabdc81aa5499_1559800223244; _m_h5_tk_enc=bea8cc0d3e74c5fc568e6f9c10dd9196; uc1=cookie14=UoTZ7Y3ZiZKNlQ%3D%3D&lng=zh_CN; l=bBO_rJlcvvQT9vasBOfwquIRGn7TmQObzsPzw4gGrICP935XLjlfWZTTkzLWC3GVa6e2J3oWYJ1uBATT4yUIh; isg=BHV1LNS1Rczrr6Fw4FHppGiGhPHvWiFwq203LPeZOuxLzpfAvkDf1AMMGNLdjkG8";
         #region POST请求
         /// <summary>
         /// POST请求
@@ -147,7 +147,7 @@ namespace main
                     string URL = "https://trade.taobao.com/trade/itemlist/list_sold_items.htm?action=itemlist/SoldQueryAction&event_submit_do_query=1&auctionStatus=PAID&tabCode=waitSend";
                     string postdata = "action=itemlist/SoldQueryAction&event_submit_do_query=1&auctionStatus=PAID&tabCode=waitSend";
                     string html = PostUrl(URL,postdata); ;
-                    textBox1.Text = html;
+                    
                     MatchCollection IDs = Regex.Matches(html, @"tradeID=([\s\S]*?)&");
                     MatchCollection bianmas = Regex.Matches(html, @"u5546\\u5BB6\\u7F16\\u7801\\""\,\\""value\\"":\\""([\s\S]*?)\\");
                    

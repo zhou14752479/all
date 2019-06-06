@@ -167,6 +167,12 @@
     <Compile Include="2019_6\zufang.Designer.cs">
       <DependentUpon>zufang.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\证券所.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\证券所.Designer.cs">
+      <DependentUpon>证券所.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\zufang.resx">
       <DependentUpon>zufang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\证券所.resx">
+      <DependentUpon>证券所.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
