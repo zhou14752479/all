@@ -133,6 +133,7 @@ namespace main
         }
         public void run()
         {
+            COOKIE = textBox1.Text;
             if (COOKIE == "")
             {
                 MessageBox.Show("请登录账号！");
@@ -248,6 +249,11 @@ namespace main
         private void Button6_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

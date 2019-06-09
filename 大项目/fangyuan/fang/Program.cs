@@ -20,7 +20,7 @@ namespace fang.临时软件
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 百家号视频());
+                Application.Run(new 文件下载());
 
             //}
             //catch (Exception ex)
