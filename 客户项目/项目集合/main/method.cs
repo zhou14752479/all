@@ -35,13 +35,12 @@ namespace main
             {
                 try
             {
-                string COOKIE = "global_cookie=s9jclgj0s2h7qa3f6gm17rv6o17jw7b97oh; ASP.NET_SessionId=jbm2d2t4lal1wymgomofe3ul; integratecover=1; __utmc=147393320; Rent_StatLog=ae772611-8b3d-4d52-916a-5f036c6c2df0; SoufunSessionID_Shop=; Captcha=383870564A777447564A77762B43476B5034646945463663444D514B594A63463461444E775836636C6D6D4649756D74434D487442417253564C77336F6C6D7343647535537077554E6F773D; g_sourcepage=zf_fy%5Egrxq_pc; unique_cookie=U_jkbrjbp06cbrnntr5rl73twau1ljwilt7h9*8; __utma=147393320.1524563003.1559018326.1559701185.1559718180.3; __utmz=147393320.1559718180.3.3.utmcsr=fz.zu.fang.com|utmccn=(referral)|utmcmd=referral|utmcct=/house/a21/; __utmb=147393320.3.10.1559718180";
+                string COOKIE = "";
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
                     request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
-                request.Accept = "gzip";
-                request.Headers.Add("Accept-Language", "zh-cn,en-us;q=0.5");
-                //request.AllowAutoRedirect = true;
+               
+                request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 //request.KeepAlive = false;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈

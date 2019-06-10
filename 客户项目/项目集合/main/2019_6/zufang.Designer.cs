@@ -278,7 +278,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "zufang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "zufang";
+            this.Text = "房产采集";
             this.Load += new System.EventHandler(this.Zufang_Load);
             this.groupBox2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
