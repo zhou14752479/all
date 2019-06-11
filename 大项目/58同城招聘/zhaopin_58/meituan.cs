@@ -329,12 +329,13 @@ namespace zhaopin_58
                     ArrayList areaIds = getAreaId(city);
                     string cityId = GetCityId(city);
 
+
+                foreach (string area in areaIds)
+                {
+
                     foreach (string keyword in keywords)
 
                     {
-
-                        foreach (string area in areaIds)
-                        {
 
                             string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/"+cityId+"?cateId=-1&sort=default&userid=-1&offset=0&limit=1000&mypos=33.959859%2C118.279675&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&q="+keyword+"&requestType=filter&cityId="+cityId+"&areaId="+area;
 
@@ -365,6 +366,7 @@ namespace zhaopin_58
                                 Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
                                 Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
+                            Match opentime = Regex.Match(strhtml, @"openInfo"":""([\s\S]*?)""");
 
                             if (name.Groups[2].Value != "")
                                 {
@@ -374,12 +376,13 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
+                                lv1.SubItems.Add(opentime.Groups[1].Value);
 
-                                
+
                                 //下载图片
-                               
+
                                 //Match imgurl = Regex.Match(strhtml, @"frontImg"":""([\s\S]*?)""");
-                               
+
                                 //if (method.GetUrl(imgurl.Groups[1].Value.Replace("/w.h", ""))!="")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
                                 //{
                                 //    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h",""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[2].Value.Trim() + ".jpg");
@@ -436,7 +439,7 @@ namespace zhaopin_58
 
 
 
-        #region  有所城市
+        #region  所有城市
 
         public void run1()
         {
@@ -636,7 +639,7 @@ namespace zhaopin_58
             if(value==true)
             {
                 //--------登陆函数------------------
-                Thread thread = new Thread(new ThreadStart(run1));
+                Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
 
             }
