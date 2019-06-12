@@ -55,7 +55,9 @@ System.Web.HttpUtility.UrlEncode(comboBox1.Text);
 
 System.Text.Encoding.Default.GetByteCount("字符串") 获取字符串字节长度
 
-                 
+换行分割
+string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
                 
     
            
