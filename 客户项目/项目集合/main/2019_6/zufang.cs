@@ -603,11 +603,11 @@ namespace main._2019_6
                     
 
                     string html = method.gethtml(Url, "", "gb2312");
-
+                    if (html==null)
+                        break;
                     MatchCollection ids = Regex.Matches(html, @"""houseid"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-                    if (ids.Count <1)
-                        break;
+                   
 
                     ArrayList lists = new ArrayList();
 
@@ -682,11 +682,10 @@ namespace main._2019_6
 
 
                     string html = method.gethtml(Url, "", "gb2312");
-
-                    MatchCollection ids = Regex.Matches(html, @"""houseid"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-                    if (ids.Count < 1)
+                    if (html == null)
                         break;
+                    MatchCollection ids = Regex.Matches(html, @"""houseid"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    
 
                     ArrayList lists = new ArrayList();
 
@@ -760,7 +759,8 @@ namespace main._2019_6
                     string Url = "https://" + city + ".shop.fang.com/shou/house/a21-h316/";
 
                     string html = method.gethtml(Url, "", "gb2312");
-
+                    if (html == null)
+                        break;
                     MatchCollection ids = Regex.Matches(html, @"""houseid"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                     ArrayList lists = new ArrayList();
@@ -835,7 +835,8 @@ namespace main._2019_6
 
                     String Url = "http://" + city + ".58.com/shangpucs/0/pn1/";
                     string html = method.GetUrl(Url, "utf-8");
-
+                    if (html == null)
+                        break;
 
                     MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
@@ -918,7 +919,8 @@ namespace main._2019_6
                     string Url = "http://" + city + ".ganji.com/shangpucs/0/";
 
                     string html = method.GetUrl(Url, "utf-8");
-
+                    if (html == null)
+                        break;
                     MatchCollection ids = Regex.Matches(html, @"<dd class=""dd-item title"">([\s\S]*?)<a href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                     ArrayList lists = new ArrayList();
@@ -992,7 +994,8 @@ namespace main._2019_6
                     string Url = "http://"+city+".ganji.com/ershoufang/0/";
 
                     string html = method.GetUrl(Url, "utf-8");
-
+                    if (html == null)
+                        break;
 
                     MatchCollection ids = Regex.Matches(html, @"<dd class=""dd-item title"">([\s\S]*?)<a href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
@@ -1063,7 +1066,7 @@ namespace main._2019_6
 
             else if (comboBox1.Text == "房天下" && comboBox2.Text == "个人二手房")
             {
-                Thread thread = new Thread(new ThreadStart(fang2));
+                Thread thread = new Thread(new ThreadStart(ganji2));
                 thread.Start();
             }
             else if (comboBox1.Text == "房天下" && comboBox2.Text == "个人商铺出售")
@@ -1082,8 +1085,13 @@ namespace main._2019_6
                 Thread thread = new Thread(new ThreadStart(anjuke3));
                 thread.Start();
             }
+            else if (comboBox1.Text == "安居客" && comboBox2.Text == "个人二手房")
+            {
+                Thread thread = new Thread(new ThreadStart(ganji2));
+                thread.Start();
+            }
 
-           
+
 
             else if (comboBox1.Text == "赶集商铺出售")
             {

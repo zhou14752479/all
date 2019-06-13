@@ -231,8 +231,8 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "个人房源出租",
-            "个人商铺出租",
-            "个人商铺出售"});
+            "个人商铺出售",
+            "个人二手房"});
             this.comboBox2.Location = new System.Drawing.Point(110, 59);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 20);
