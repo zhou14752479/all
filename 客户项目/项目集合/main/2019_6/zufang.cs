@@ -666,8 +666,7 @@ namespace main._2019_6
 
         #endregion
 
-
-        #region 房天下商铺出租
+        #region 房天下二手房
         public void fang2()
         {
 
@@ -678,32 +677,37 @@ namespace main._2019_6
                 {
 
 
-                    string Url = "https://" + city + ".shop.fang.com/zu/house/a21-h316/";
+
+                    string Url = "https://" + city + ".zu.fang.com/house/a21-h316/";
+
 
                     string html = method.gethtml(Url, "", "gb2312");
 
                     MatchCollection ids = Regex.Matches(html, @"""houseid"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
+                    if (ids.Count < 1)
+                        break;
+
                     ArrayList lists = new ArrayList();
 
                     foreach (Match id in ids)
                     {
-                        lists.Add("https://" + city + ".shop.fang.com/zu/1_" + id.Groups[1].Value + ".html");
+                        lists.Add("https://" + city + ".zu.fang.com/chuzu/1_" + id.Groups[1].Value + "_-1.htm");
                     }
 
 
                     foreach (string list in lists)
 
                     {
-
                         string strhtml = method.gethtml(list, "", "gb2312");
 
 
-                        Match title = Regex.Match(strhtml, @"<h3 class=""cont_tit"" title=""([\s\S]*?)""");
-                        Match linkman = Regex.Match(strhtml, @"<span class=""zf_mfname"">([\s\S]*?)</span>");
-                        Match phone = Regex.Match(strhtml, @"<span class=""zf_mftel"">([\s\S]*?)</span>");
-                        Match cityname = Regex.Match(strhtml, @"址</b><span>([\s\S]*?)</span>");
-                        if (!cityname.Groups[1].Value.Contains("-"))
+                        Match title = Regex.Match(strhtml, @"<h1 class=""title "">([\s\S]*?)</h1>");
+                        Match linkman = Regex.Match(strhtml, @"agentName: '([\s\S]*?)'");
+                        Match phone = Regex.Match(strhtml, @"agentMobile: '([\s\S]*?)'");
+                        Match cityname = Regex.Match(strhtml, @"cityName: '([\s\S]*?)'");
+
+                        if (!cityname.Groups[1].Value.Contains("400"))
                         {
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
                             lv1.SubItems.Add(title.Groups[1].Value.Trim());
@@ -740,6 +744,8 @@ namespace main._2019_6
         }
 
         #endregion
+
+
 
         #region 房天下商铺出售
         public void fang3()
@@ -814,157 +820,9 @@ namespace main._2019_6
 
         #endregion
        
-        #region 安居客整租
-        public void anjuke1()
-        {
+        
 
-            try
-            {
-
-                foreach (string city in citys)
-                {
-
-
-                    string Url = "http://" + city + ".baixing.com/zhengzu/?grfy=1&sortKey=createdTime";
-
-                    string html = method.GetUrl(Url, "utf-8");
-
-                    MatchCollection ids = Regex.Matches(html, @"data-aid='([\s\S]*?)'", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-                    ArrayList lists = new ArrayList();
-
-                    foreach (Match id in ids)
-                    {
-                        lists.Add("http://" + city + ".baixing.com/zhengzu/a" + id.Groups[1].Value + ".html");
-                    }
-
-
-                    foreach (string list in lists)
-
-                    {
-
-                        string strhtml = method.GetUrl(list, "utf-8");
-
-
-                        Match title = Regex.Match(strhtml, @"<h1>([\s\S]*?)</h1>");
-                        Match linkman = Regex.Match(strhtml, @"poster-name'>([\s\S]*?)'");
-                        Match phone = Regex.Match(strhtml, @"<strong>([\s\S]*?)</strong>");
-                        Match cityname = Regex.Match(strhtml, @"<i class='icon-ditu'></i><label>([\s\S]*?)</label>");
-                        if (!cityname.Groups[1].Value.Contains("-"))
-                        {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                            lv1.SubItems.Add(title.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(linkman.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(phone.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(cityname.Groups[1].Value.Trim());
-
-                            if (listView1.Items.Count > 2)
-                            {
-                                listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
-                            }
-
-
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-
-
-                            if (this.status == false)
-                                return;
-                        }
-                    }
-
-                }
-            }
-            catch (System.Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
-
-        #endregion
-
-        #region 安居客商铺出租
-        public void anjuke2()
-        {
-
-            try
-            {
-                foreach (string city in citys)
-                {
-
-
-                    String Url = "http://" + city + ".58.com/shangpucz/0/pn1/";
-                    string html = method.GetUrl(Url, "utf-8");
-
-
-                    MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-
-                    ArrayList lists = new ArrayList();
-
-                    foreach (Match NextMatch in TitleMatchs)
-                    {
-
-                        if (!lists.Contains(NextMatch.Groups[0].Value))
-                        {
-                            lists.Add(NextMatch.Groups[0].Value);
-                        }
-                    }
-
-                    foreach (string list in lists)
-                    {
-
-                        string strhtml = method.GetUrl(list, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-
-                        string title = @"<h1 class=""c_000 f20"">([\s\S]*?)</h1>";
-                        string Rxg = @"<a class=""c_000 agent-name-txt""([\s\S]*?)>([\s\S]*?)</a>";
-                        string Rxg1 = @"<p class='phone-num'>([\s\S]*?)</p>";
-                        string Rxg2 = @"xxdz-des"">([\s\S]*?)</span>";
-
-                        Match titles = Regex.Match(strhtml, title);
-                        Match contacts = Regex.Match(strhtml, Rxg);
-                        Match tell = Regex.Match(strhtml, Rxg1);
-                        Match region = Regex.Match(strhtml, Rxg2);
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                        lv1.SubItems.Add(titles.Groups[1].Value.Trim());
-                        lv1.SubItems.Add(contacts.Groups[2].Value.Trim());
-                        lv1.SubItems.Add(tell.Groups[1].Value.Trim());
-                        lv1.SubItems.Add(region.Groups[1].Value.Trim());
-
-                        if (listView1.Items.Count > 2)
-                        {
-                            listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
-                        }
-
-                        Thread.Sleep(1000);
-
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-
-
-                        if (this.status == false)
-                            return;
-
-                    }
-                }
-            }
-
-            catch (System.Exception ex)
-            {
-
-                ex.ToString();
-            }
-
-        }
-
-        #endregion
+        
 
         #region 安居客商铺出售
         public void anjuke3()
@@ -1044,82 +902,10 @@ namespace main._2019_6
 
         #endregion
 
-        #region 赶集商铺出租
-        public void ganji2()
-        {
-
-            try
-            {
-
-                foreach (string city in citys)
-                {
-
-
-                    string Url = "http://" + city + ".ganji.com/shangpucz/0/";
-
-                    string html = method.GetUrl(Url, "utf-8");
-
-                    MatchCollection ids = Regex.Matches(html, @"<dd class=""dd-item title"">([\s\S]*?)<a href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-                    ArrayList lists = new ArrayList();
-
-                    foreach (Match id in ids)
-                    {
-                        lists.Add("http:" + id.Groups[2].Value);
-                    }
-
-
-                    foreach (string list in lists)
-
-                    {
-
-                        string strhtml = method.GetUrl(list, "utf-8");
-
-
-                        Match title = Regex.Match(strhtml, @"<title>([\s\S]*?)</title>");
-                        Match linkman = Regex.Match(strhtml, @"<div class=""name"">([\s\S]*?)_blank"">([\s\S]*?)</a>");
-                        Match phone = Regex.Match(strhtml, @"phone"" gjalog=""([\s\S]*?)>([\s\S]*?)</a>");
-                        Match cityname = Regex.Match(strhtml, @"com"" title="""">([\s\S]*?)</a>");
-                        if (!cityname.Groups[1].Value.Contains("-"))
-                        {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                            lv1.SubItems.Add(title.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(linkman.Groups[2].Value.Trim());
-                            lv1.SubItems.Add(phone.Groups[2].Value.Trim());
-                            lv1.SubItems.Add(cityname.Groups[1].Value.Trim());
-
-                            if (listView1.Items.Count > 2)
-                            {
-                                listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
-                            }
-
-
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-
-
-                            if (this.status == false)
-                                return;
-                        }
-                    }
-                }
-
-            }
-
-            catch (System.Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
-
-        #endregion
+        
 
         #region 赶集商铺出售
-        public void ganji3()
+        public void ganji1()
         {
 
             try
@@ -1192,6 +978,81 @@ namespace main._2019_6
 
         #endregion
 
+        #region 赶集个人二手房
+        public void ganji2()
+        {
+
+            try
+            {
+
+                foreach (string city in citys)
+                {
+
+
+                    string Url = "http://"+city+".ganji.com/ershoufang/0/";
+
+                    string html = method.GetUrl(Url, "utf-8");
+
+
+                    MatchCollection ids = Regex.Matches(html, @"<dd class=""dd-item title"">([\s\S]*?)<a href=""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                    ArrayList lists = new ArrayList();
+
+                    foreach (Match id in ids)
+                    {
+                        lists.Add("http:" + id.Groups[2].Value);
+                    }
+
+
+                    foreach (string list in lists)
+
+                    {
+
+                        string strhtml = method.GetUrl(list, "utf-8");
+
+
+                        Match title = Regex.Match(strhtml, @"@title=([\s\S]*?)@");
+                        Match linkman = Regex.Match(strhtml, @"<div class=""name"">([\s\S]*?)_blank"">([\s\S]*?)</a>");
+                        Match phone = Regex.Match(strhtml, @"phone"" gjalog=""([\s\S]*?)>([\s\S]*?)</a>");
+                        Match cityname = Regex.Match(strhtml, @"com"" title="""">([\s\S]*?)</a>");
+                        if (!cityname.Groups[1].Value.Contains("-"))
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
+                            lv1.SubItems.Add(title.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(linkman.Groups[2].Value.Trim());
+                            lv1.SubItems.Add(phone.Groups[2].Value.Trim());
+                            lv1.SubItems.Add(cityname.Groups[1].Value.Trim());
+
+                            if (listView1.Items.Count > 2)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                            }
+
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+
+                            if (this.status == false)
+                                return;
+                        }
+                    }
+
+                }
+            }
+
+            catch (System.Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        #endregion
+
         private void Button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.Text == "房天下" && comboBox2.Text == "个人房源出租")
@@ -1200,7 +1061,7 @@ namespace main._2019_6
                 thread.Start();
             }
 
-            else if (comboBox1.Text == "房天下" && comboBox2.Text == "个人商铺出租")
+            else if (comboBox1.Text == "房天下" && comboBox2.Text == "个人二手房")
             {
                 Thread thread = new Thread(new ThreadStart(fang2));
                 thread.Start();
@@ -1215,26 +1076,23 @@ namespace main._2019_6
                 Thread thread = new Thread(new ThreadStart(fang1));
                 thread.Start();
             }
-            else if (comboBox1.Text == "安居客" && comboBox2.Text == "个人商铺出租")
-            {
-                Thread thread = new Thread(new ThreadStart(anjuke2));
-                thread.Start();
-            }
+          
             else if (comboBox1.Text == "安居客" && comboBox2.Text == "个人商铺出售")
             {
                 Thread thread = new Thread(new ThreadStart(anjuke3));
                 thread.Start();
             }
 
-            else if (comboBox1.Text == "赶集商铺出租")
-            {
-                Thread thread = new Thread(new ThreadStart(ganji2));
-                thread.Start();
-            }
+           
 
             else if (comboBox1.Text == "赶集商铺出售")
             {
-                Thread thread = new Thread(new ThreadStart(ganji3));
+                Thread thread = new Thread(new ThreadStart(ganji1));
+                thread.Start();
+            }
+            else if (comboBox1.Text == "赶集个人二手房")
+            {
+                Thread thread = new Thread(new ThreadStart(ganji2));
                 thread.Start();
             }
 
