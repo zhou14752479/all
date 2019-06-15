@@ -16,6 +16,7 @@
 
 三、URL 解码
 System.Web.HttpUtility.UrlEncode(comboBox1.Text);
+System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); 指定编码
 
 四、遇到请求被终止未能创建SSL/TLS安全通道
 	System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
