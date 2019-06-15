@@ -659,90 +659,14 @@ namespace main._2019_6
             catch (System.Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+               ex.ToString();
             }
 
         }
 
         #endregion
 
-        #region 房天下二手房
-        public void fang2()
-        {
-
-            try
-            {
-
-                foreach (string city in citys)
-                {
-
-
-
-                    string Url = "https://" + city + ".zu.fang.com/house/a21-h316/";
-
-
-                    string html = method.gethtml(Url, "", "gb2312");
-                    if (html == null)
-                        break;
-                    MatchCollection ids = Regex.Matches(html, @"""houseid"":""([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                    
-
-                    ArrayList lists = new ArrayList();
-
-                    foreach (Match id in ids)
-                    {
-                        lists.Add("https://" + city + ".zu.fang.com/chuzu/1_" + id.Groups[1].Value + "_-1.htm");
-                    }
-
-
-                    foreach (string list in lists)
-
-                    {
-                        string strhtml = method.gethtml(list, "", "gb2312");
-
-
-                        Match title = Regex.Match(strhtml, @"<h1 class=""title "">([\s\S]*?)</h1>");
-                        Match linkman = Regex.Match(strhtml, @"agentName: '([\s\S]*?)'");
-                        Match phone = Regex.Match(strhtml, @"agentMobile: '([\s\S]*?)'");
-                        Match cityname = Regex.Match(strhtml, @"cityName: '([\s\S]*?)'");
-
-                        if (!cityname.Groups[1].Value.Contains("400"))
-                        {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                            lv1.SubItems.Add(title.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(linkman.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(phone.Groups[1].Value.Trim());
-                            lv1.SubItems.Add(cityname.Groups[1].Value.Trim());
-
-                            if (listView1.Items.Count > 2)
-                            {
-                                listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
-                            }
-
-
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-
-
-                            if (this.status == false)
-                                return;
-                        }
-                    }
-
-                }
-            }
-
-            catch (System.Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
-
-        #endregion
+        
 
 
 
@@ -813,7 +737,7 @@ namespace main._2019_6
             catch (System.Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
 
         }
@@ -949,7 +873,7 @@ namespace main._2019_6
                             lv1.SubItems.Add(linkman.Groups[2].Value.Trim());
                             lv1.SubItems.Add(phone.Groups[2].Value.Trim());
                             lv1.SubItems.Add(cityname.Groups[1].Value.Trim());
-
+                            Thread.Sleep(1000);
                             if (listView1.Items.Count > 2)
                             {
                                 listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
@@ -973,7 +897,7 @@ namespace main._2019_6
             catch (System.Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+               ex.ToString();
             }
 
         }
@@ -1025,7 +949,7 @@ namespace main._2019_6
                             lv1.SubItems.Add(linkman.Groups[2].Value.Trim());
                             lv1.SubItems.Add(phone.Groups[2].Value.Trim());
                             lv1.SubItems.Add(cityname.Groups[1].Value.Trim());
-
+                            Thread.Sleep(1000);
                             if (listView1.Items.Count > 2)
                             {
                                 listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
@@ -1049,7 +973,7 @@ namespace main._2019_6
             catch (System.Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+               ex.ToString();
             }
 
         }
