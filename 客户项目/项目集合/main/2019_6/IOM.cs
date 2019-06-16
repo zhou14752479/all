@@ -97,15 +97,17 @@ namespace main._2019_6
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-        }
+      
 
         private void button3_Click(object sender, EventArgs e)
         {
             label11.Text = (Convert.ToInt32(textBox1.Text) - Convert.ToInt32(textBox3.Text)).ToString();
             label12.Text = (Convert.ToInt32(textBox1.Text)+ Convert.ToInt32(textBox2.Text) - Convert.ToInt32(textBox4.Text)-Convert.ToInt32(label11.Text)).ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }

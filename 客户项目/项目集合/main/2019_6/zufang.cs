@@ -641,7 +641,7 @@ namespace main._2019_6
                                 listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
                             }
 
-
+                            Thread.Sleep(500);
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -718,7 +718,7 @@ namespace main._2019_6
                             {
                                 listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
                             }
-
+                            Thread.Sleep(500);
 
                             while (this.zanting == false)
                             {
@@ -796,7 +796,7 @@ namespace main._2019_6
                         lv1.SubItems.Add(contacts.Groups[2].Value.Trim());
                         lv1.SubItems.Add(tell.Groups[1].Value.Trim());
                         lv1.SubItems.Add(region.Groups[1].Value.Trim());
-                        Thread.Sleep(1000);
+                        Thread.Sleep(500);
                         if (listView1.Items.Count > 2)
                         {
                             listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置

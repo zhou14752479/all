@@ -491,7 +491,7 @@ namespace main
 
             #endregion
 
-            #region 获取Mac地址
+        #region 获取Mac地址
             /// <summary>
             /// 获取Mac地址
             /// </summary>
@@ -771,8 +771,52 @@ namespace main
                 return html;
             }
 
-            #endregion
+        #endregion
+
+
+        public static void expotTxt(ListView lv1)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+               
+                    StringBuilder sb = new StringBuilder();
+                    foreach (ListViewItem item in lv1.Items)
+                    {          
+                            List<string> list = new List<string>();
+                            string temp = item.SubItems[1].Text;     
+                            list.Add(temp);
+                            foreach (string tel in list)
+                            {
+                                sb.AppendLine(tel);
+                            }
+
+                    string path = "";
+                  
+                     path = dialog.SelectedPath + "\\导出结果.txt";
+                    
+                    System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+
+                }
+                MessageBox.Show("导出完成");
+            }
+
         }
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
     }
 
 

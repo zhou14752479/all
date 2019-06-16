@@ -24,26 +24,26 @@ namespace main._2019_6
 
         public void jiankong()
         {
-            ArrayList lists = GetFiles(Path);
-            int geshu = 0;
-            for (int i = 0; i < listView1.Items.Count; i++)
-            {
+            //ArrayList lists = GetFiles(Path);
+            //int geshu = 0;
+            //for (int i = 0; i < listView1.Items.Count; i++)
+            //{
                 
-                for (int j = 0; j < listView1.Columns.Count; j++)
-                {
-                    if (listView1.Items[i].SubItems[j].Text!=""&& lists.Contains(listView1.Items[i].SubItems[j].Text.Trim()))
+            //    for (int j = 0; j < listView1.Columns.Count; j++)
+            //    {
+            //        if (lists.Contains(listView1.Items[i].SubItems[j].Text.Trim()))
 
-                    {
-                        geshu = geshu + 1;
-                    }
-                }
+            //        {
+            //            geshu = geshu + 1;
+            //        }
+            //    }
 
-                if (geshu > 2)
-                {
-                    MessageBox.Show(listView1.Items[i].SubItems[1].Text+"符合要求");
-                }
+            //    if (geshu > 2)
+            //    {
+            //        MessageBox.Show(listView1.Items[i].SubItems[1].Text+"符合要求");
+            //    }
                 
-            }
+            //}
         }
 
 
