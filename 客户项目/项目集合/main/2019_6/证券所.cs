@@ -22,37 +22,13 @@ namespace main._2019_6
         }
 
 
-        public void jiankong()
-        {
-            //ArrayList lists = GetFiles(Path);
-            //int geshu = 0;
-            //for (int i = 0; i < listView1.Items.Count; i++)
-            //{
-                
-            //    for (int j = 0; j < listView1.Columns.Count; j++)
-            //    {
-            //        if (lists.Contains(listView1.Items[i].SubItems[j].Text.Trim()))
-
-            //        {
-            //            geshu = geshu + 1;
-            //        }
-            //    }
-
-            //    if (geshu > 2)
-            //    {
-            //        MessageBox.Show(listView1.Items[i].SubItems[1].Text+"符合要求");
-            //    }
-                
-            //}
-        }
-
 
         public static string Path=AppDomain.CurrentDomain.BaseDirectory;
 
         private void 证券所_Load(object sender, EventArgs e)
         {
             Control.CheckForIllegalCrossThreadCalls = false;
-            timer1.Start();
+            
         }
         #region  获取文件夹内的所有.txt文件
         public static ArrayList GetFiles(string filePath)
@@ -74,7 +50,7 @@ namespace main._2019_6
                 string fullName = info.FullName;
                 //获取文件的扩展名
                 string extension = info.Extension.ToLower();
-                if (extension == ".htm")
+                if (extension == ".txt")
                 {
                     //获取文件的大小
                     long length = info.Length;
@@ -86,6 +62,7 @@ namespace main._2019_6
             return lists;
         }
         #endregion
+
         /// <summary>
         /// 上海
         /// </summary>
@@ -125,6 +102,8 @@ namespace main._2019_6
                     }
 
                 }
+
+                label3.Text = "获取完成";
 
             }
 
@@ -198,7 +177,7 @@ namespace main._2019_6
                     //}
                    
                 }
-                
+                label3.Text = "获取完成";
 
             }
             catch (System.Exception ex)
@@ -209,21 +188,156 @@ namespace main._2019_6
 
         }
 
+        public void run2()
+        {
+           
+
+
+
+            DateTime dt = DateTime.Parse(dateTimePicker1.Text);
+            try
+            {
+
+
+                string Url = "http://acaiji.com/sse.php?date=" + dt.ToString("yyyyMMdd");
+
+                string html = method.gethtml(Url, "", "utf-8");
+
+                MatchCollection codes = Regex.Matches(html, @"""secCode"":""([\s\S]*?)""");
+                MatchCollection jianchengs = Regex.Matches(html, @"""secAbbr"":""([\s\S]*?)""");
+                MatchCollection mairus = Regex.Matches(html, @"""branchNameB"":""([\s\S]*?)""");
+                MatchCollection maichus = Regex.Matches(html, @"""branchNameS"":""([\s\S]*?)""");
+
+                for (int i = 0; i < codes.Count; i++)
+                {
+                    ArrayList lists = GetFiles(Path);
+                    int geshu = 0;
+
+                    string buy = mairus[i].Groups[1].Value.Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", "").Replace("证券营业部", "");
+                    string sell = maichus[i].Groups[1].Value.Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", "").Replace("证券营业部", "");
+                    string[] mairu = buy.Split(new string[] { "," }, StringSplitOptions.None);
+                    string[] maichu = sell.Split(new string[] { "," }, StringSplitOptions.None);
+
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                    lv1.SubItems.Add(codes[i].Groups[1].Value);
+                    lv1.SubItems.Add(jianchengs[i].Groups[1].Value);
+                    for (int a = 0; a < lists.Count; a++)
+                    {
+                        StreamReader sr = new StreamReader(lists[a].ToString(), Encoding.Default);
+                        //一次性读取完 
+                        string texts = sr.ReadToEnd();
+                        
+                        for (int j = 0; j < mairu.Length; j++)
+                        {
+                            lv1.SubItems.Add(mairu[j]);
+                            if (texts.Contains(mairu[j]))
+                            {
+                             
+                                geshu = geshu + 1;
+                            }
+                        }
+                        for (int j = 0; j < maichu.Length; j++)
+                        {
+                            lv1.SubItems.Add(maichu[j]);
+                            if (texts.Contains(maichu[j]))
+                            {
+                                geshu = geshu + 1;
+                            }
+                        }
+                    }
+
+                    if (geshu >1)
+                    {
+                       textBox1.Text += jianchengs[i].Groups[1].Value+"\r\n";
+                    }
+
+                }
+
+
+                string aUrl = "http://reportdocs.static.szse.cn/files/text/jy/jy" + dt.ToString("yyMMdd") + ".txt";
+
+                string ahtml = method.GetUrl(aUrl, "gb2312");
+                MatchCollection names = Regex.Matches(ahtml, @".*\(代码");
+                MatchCollection acodes = Regex.Matches(ahtml, @"\(代码.*\)");
+                MatchCollection amairus = Regex.Matches(ahtml, @"买入金额最大的前5名([\s\S]*?)卖出金额最大的前5名");
+                MatchCollection amaichus = Regex.Matches(ahtml, @"卖出金额最大的前5名([\s\S]*?)代码");
+
+                for (int i = 0; i < acodes.Count; i++)
+                {
+
+                    ArrayList lists = GetFiles(Path);
+                    int geshu = 0;
+                 
+
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
+                    lv1.SubItems.Add(acodes[i].Groups[0].Value.Replace("(代码", "").Replace(")", ""));
+                    lv1.SubItems.Add(names[i].Groups[0].Value.Replace("(代码", ""));
+
+                    MatchCollection buys = Regex.Matches(amairus[i].Groups[1].Value, @".*证券|.*专用");
+
+                    for (int a = 0; a < lists.Count; a++)
+                    {
+
+                        StreamReader sr = new StreamReader(lists[a].ToString(), Encoding.Default);
+                        //一次性读取完 
+                        string texts = sr.ReadToEnd();
+                        for (int j = 0; j < buys.Count; j++)
+                        {
+                            string buy = buys[j].Groups[0].Value.Remove(buys[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", "");
+                            lv1.SubItems.Add(buy);
+
+                            if (texts.Contains(buy))
+                            {
+
+                                geshu = geshu + 1;
+                            }
+                        }
+
+                        if (i != acodes.Count - 1)
+
+                        {
+                            MatchCollection sells = Regex.Matches(amaichus[i].Groups[1].Value, @".*证券|.*专用");
+                           
+                            for (int j = 0; j < sells.Count; j++)
+                            {
+                                string sell = sells[j].Groups[0].Value.Remove(sells[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", "");
+                                lv1.SubItems.Add(sell);
+                                if (texts.Contains(sell))
+                                {
+
+                                    geshu = geshu + 1;
+                                }
+                            }
+                        }
+                    }
+
+                    if (geshu > 1)
+                    {
+                        textBox1.Text += jianchengs[i].Groups[1].Value + "\r\n";
+                    }
+
+                }
+                label3.Text = "获取完成";
+
+            }
+
+
+            catch (System.Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
+
         private void Button1_Click(object sender, EventArgs e)
         {
 
-            if (comboBox1.Text == "上海证券交易所")
-            {
-                label3.Text = "正在获取上海证券交易所信息";           
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-            }
-            else if (comboBox1.Text == "深圳证券交易所")
-            {
-                label3.Text = "正在获取深圳证券交易所信息";     
-                Thread thread = new Thread(new ThreadStart(run1));
-                thread.Start();
-            }
+            label3.Text = "正在获取...";
+            Thread thread = new Thread(new ThreadStart(run2));
+            thread.Start();
+
+
         }
 
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -241,9 +355,9 @@ namespace main._2019_6
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
-            jiankong();
+            textBox1.Text = "";
         }
     }
 }

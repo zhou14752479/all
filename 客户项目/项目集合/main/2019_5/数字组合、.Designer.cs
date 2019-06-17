@@ -39,13 +39,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(481, 52);
+            this.groupBox2.Location = new System.Drawing.Point(734, 52);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(179, 86);
             this.groupBox2.TabIndex = 6;
@@ -75,29 +76,30 @@
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader3});
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 52);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(463, 372);
+            this.listView1.Size = new System.Drawing.Size(701, 368);
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "序号";
+            this.columnHeader1.Text = "组合";
             this.columnHeader1.Width = 40;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "数值";
-            this.columnHeader2.Width = 500;
+            this.columnHeader2.Text = "A组";
+            this.columnHeader2.Width = 300;
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(497, 241);
+            this.textBox1.Location = new System.Drawing.Point(734, 187);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(121, 30);
@@ -106,7 +108,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(497, 287);
+            this.button2.Location = new System.Drawing.Point(734, 242);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 34);
             this.button2.TabIndex = 11;
@@ -117,7 +119,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(495, 211);
+            this.label2.Location = new System.Drawing.Point(732, 160);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 12;
@@ -125,7 +127,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(497, 340);
+            this.button3.Location = new System.Drawing.Point(734, 309);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(121, 34);
             this.button3.TabIndex = 13;
@@ -136,17 +138,22 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(495, 386);
+            this.label3.Location = new System.Drawing.Point(732, 359);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(161, 12);
             this.label3.TabIndex = 14;
             this.label3.Text = "若删除不完整请多次点击删除";
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "B组";
+            this.columnHeader3.Width = 350;
+            // 
             // 数字组合
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 450);
+            this.ClientSize = new System.Drawing.Size(925, 450);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
@@ -178,5 +185,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

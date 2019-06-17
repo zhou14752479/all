@@ -47,6 +47,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -82,7 +84,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(689, 330);
+            this.listView1.Size = new System.Drawing.Size(689, 309);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -144,9 +146,9 @@
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 105);
+            this.groupBox2.Location = new System.Drawing.Point(12, 138);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(521, 70);
+            this.groupBox2.Size = new System.Drawing.Size(622, 70);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
@@ -176,12 +178,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(689, 527);
-            this.splitContainer1.SplitterDistance = 193;
+            this.splitContainer1.Size = new System.Drawing.Size(689, 537);
+            this.splitContainer1.SplitterDistance = 224;
             this.splitContainer1.TabIndex = 5;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -189,7 +193,7 @@
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(521, 87);
+            this.groupBox1.Size = new System.Drawing.Size(622, 120);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "网站设置";
@@ -198,7 +202,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(285, 20);
+            this.radioButton1.Location = new System.Drawing.Point(471, 25);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(71, 16);
             this.radioButton1.TabIndex = 4;
@@ -210,11 +214,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.Location = new System.Drawing.Point(27, 61);
+            this.label2.Location = new System.Drawing.Point(224, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 14);
+            this.label2.Size = new System.Drawing.Size(63, 14);
             this.label2.TabIndex = 3;
-            this.label2.Text = "选择分类：";
+            this.label2.Text = "二手房：";
             // 
             // label1
             // 
@@ -222,20 +226,20 @@
             this.label1.Font = new System.Drawing.Font("宋体", 10F);
             this.label1.Location = new System.Drawing.Point(27, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 14);
+            this.label1.Size = new System.Drawing.Size(49, 14);
             this.label1.TabIndex = 2;
-            this.label1.Text = "选择网站：";
+            this.label1.Text = "租房：";
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "个人房源出租",
-            "个人商铺出售",
-            "个人二手房"});
-            this.comboBox2.Location = new System.Drawing.Point(110, 59);
+            "房天下",
+            "赶集网",
+            "安居客"});
+            this.comboBox2.Location = new System.Drawing.Point(306, 23);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.Size = new System.Drawing.Size(117, 20);
             this.comboBox2.TabIndex = 1;
             // 
             // comboBox1
@@ -243,19 +247,39 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "房天下",
-            "安居客",
-            "赶集商铺出租",
-            "赶集个人二手房"});
-            this.comboBox1.Location = new System.Drawing.Point(110, 21);
+            "安居客"});
+            this.comboBox1.Location = new System.Drawing.Point(82, 23);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 10F);
+            this.label3.Location = new System.Drawing.Point(224, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 14);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "商铺出售：";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "房天下",
+            "赶集网",
+            "安居客"});
+            this.comboBox3.Location = new System.Drawing.Point(306, 64);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(117, 20);
+            this.comboBox3.TabIndex = 6;
             // 
             // zufang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 527);
+            this.ClientSize = new System.Drawing.Size(689, 537);
             this.Controls.Add(this.splitContainer1);
             this.Name = "zufang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -293,5 +317,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }

@@ -166,26 +166,43 @@ namespace main
                     MatchCollection xs = Regex.Matches(strhtml, @"\[{""text"":""([\s\S]*?)""");
                     Match card = Regex.Match(strhtml,@"名""}\,{""content"":\[{""text"":""([\s\S]*?)""");
 
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                   
+                    if (textBox3.Text == "")
+                    {
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(IDs[j].Groups[1].Value);
-                    lv1.SubItems.Add(bianmas[j].Groups[1].Value);
-                    lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
-                    lv1.SubItems.Add(times[j].Groups[1].Value);
-                    lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
-                    lv1.SubItems.Add(xs[0].Groups[1].Value);
-                    lv1.SubItems.Add(xs[1].Groups[1].Value);
-                    lv1.SubItems.Add(xs[7].Groups[1].Value);
-                    lv1.SubItems.Add(card.Groups[1].Value);
-
+                        lv1.SubItems.Add(bianmas[j].Groups[1].Value);
+                        lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
+                        lv1.SubItems.Add(times[j].Groups[1].Value);
+                        lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
+                        lv1.SubItems.Add(xs[0].Groups[1].Value);
+                        lv1.SubItems.Add(xs[1].Groups[1].Value);
+                        lv1.SubItems.Add(xs[7].Groups[1].Value);
+                        lv1.SubItems.Add(card.Groups[1].Value);
+                    }
+                    else if( bianmas[j].Groups[1].Value==textBox3.Text.Trim())
+                    {
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(IDs[j].Groups[1].Value);
+                        lv1.SubItems.Add(bianmas[j].Groups[1].Value);
+                        lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
+                        lv1.SubItems.Add(times[j].Groups[1].Value);
+                        lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
+                        lv1.SubItems.Add(xs[0].Groups[1].Value);
+                        lv1.SubItems.Add(xs[1].Groups[1].Value);
+                        lv1.SubItems.Add(xs[7].Groups[1].Value);
+                        lv1.SubItems.Add(card.Groups[1].Value);
+                    }
+                    
 
                 }
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 }
 
             
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
         }
 
@@ -210,13 +227,17 @@ namespace main
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //textBox1.Text = webBrowser.cookie;
-            //COOKIE = textBox1.Text;
+            listView1.Items.Clear();
+            Thread thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           // timer1.Start();
+            timer1.Start();
+            timer1.Interval = Convert.ToInt32(textBox2.Text)*1000;
         }
 
         private void button1_Click(object sender, EventArgs e)

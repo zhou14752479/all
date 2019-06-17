@@ -96,8 +96,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(1077, 350);
-            this.splitContainer1.SplitterDistance = 128;
+            this.splitContainer1.Size = new System.Drawing.Size(1230, 499);
+            this.splitContainer1.SplitterDistance = 132;
             this.splitContainer1.TabIndex = 6;
             // 
             // label12
@@ -292,7 +292,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1077, 218);
+            this.listView1.Size = new System.Drawing.Size(1230, 363);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -320,7 +320,7 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "定单地址";
-            this.columnHeader5.Width = 120;
+            this.columnHeader5.Width = 200;
             // 
             // columnHeader6
             // 
@@ -339,13 +339,13 @@
             // columnHeader9
             // 
             this.columnHeader9.Text = "客户电话以及名称";
-            this.columnHeader9.Width = 200;
+            this.columnHeader9.Width = 250;
             // 
             // IOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 350);
+            this.ClientSize = new System.Drawing.Size(1230, 499);
             this.Controls.Add(this.splitContainer1);
             this.Name = "IOM";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

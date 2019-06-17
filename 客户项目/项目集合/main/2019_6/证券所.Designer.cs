@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,8 +53,8 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -79,6 +79,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
@@ -94,17 +96,26 @@
             this.splitContainer1.SplitterDistance = 197;
             this.splitContainer1.TabIndex = 4;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(804, 58);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(301, 118);
+            this.textBox1.TabIndex = 13;
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "上海证券交易所",
-            "深圳证券交易所"});
+            "深圳证券交易所",
+            "全部"});
             this.comboBox1.Location = new System.Drawing.Point(15, 138);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(143, 20);
             this.comboBox1.TabIndex = 12;
-            this.comboBox1.Text = "上海证券交易所";
+            this.comboBox1.Text = "全部";
             // 
             // label2
             // 
@@ -271,18 +282,26 @@
             this.columnHeader13.Text = "卖出营业部5";
             this.columnHeader13.Width = 100;
             // 
-            // textBox1
+            // label4
             // 
-            this.textBox1.Location = new System.Drawing.Point(804, 24);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(399, 152);
-            this.textBox1.TabIndex = 13;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(800, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(189, 19);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "符合要求的营业部：";
             // 
-            // timer1
+            // button3
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.button3.Location = new System.Drawing.Point(1106, 58);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(130, 31);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "清空";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // 证券所
             // 
@@ -330,6 +349,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button3;
     }
 }
