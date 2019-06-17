@@ -191,6 +191,12 @@
     <Compile Include="2019_6\证券所.Designer.cs">
       <DependentUpon>证券所.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\马蜂窝.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\马蜂窝.Designer.cs">
+      <DependentUpon>马蜂窝.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\证券所.resx">
       <DependentUpon>证券所.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\马蜂窝.resx">
+      <DependentUpon>马蜂窝.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
