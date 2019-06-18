@@ -105,7 +105,7 @@ namespace main
 
         #endregion
 
-
+        string path = AppDomain.CurrentDomain.BaseDirectory;
 
 
 
@@ -166,7 +166,11 @@ namespace main
                     MatchCollection xs = Regex.Matches(strhtml, @"\[{""text"":""([\s\S]*?)""");
                     Match card = Regex.Match(strhtml,@"名""}\,{""content"":\[{""text"":""([\s\S]*?)""");
 
-                   
+                   string pichtml= GetUrl("https://wt.taobao.com/trade/order/detail_info.do?m=Query&order_id=" + IDs[j].Groups[1].Value+"&mds=authPics,realName,certNo&_input_charset=UTF-8&callback=jsonp22" , COOKIE);
+
+                    MatchCollection pics= Regex.Matches(pichtml, @"url"":""([\s\S]*?)""");
+                    Match name = Regex.Match(pichtml, @"realName"":""([\s\S]*?)""");
+
                     if (textBox3.Text == "")
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
@@ -177,8 +181,13 @@ namespace main
                         lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
                         lv1.SubItems.Add(xs[0].Groups[1].Value);
                         lv1.SubItems.Add(xs[1].Groups[1].Value);
-                        lv1.SubItems.Add(xs[7].Groups[1].Value);
+                        lv1.SubItems.Add(name.Groups[1].Value);
                         lv1.SubItems.Add(card.Groups[1].Value);
+
+                        for (int i = 0; i < pics.Count; i++)
+                        {
+                            method.downloadFile(pics[i].Groups[1].Value,path, name.Groups[1].Value+i + ".jpg");
+                        }
                     }
                     else if( bianmas[j].Groups[1].Value==textBox3.Text.Trim())
                     {
@@ -190,7 +199,7 @@ namespace main
                         lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
                         lv1.SubItems.Add(xs[0].Groups[1].Value);
                         lv1.SubItems.Add(xs[1].Groups[1].Value);
-                        lv1.SubItems.Add(xs[7].Groups[1].Value);
+                        lv1.SubItems.Add(name.Groups[1].Value);
                         lv1.SubItems.Add(card.Groups[1].Value);
                     }
                     

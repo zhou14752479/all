@@ -71,12 +71,17 @@ namespace main._2019_6
                     StringBuilder sb = new StringBuilder();
                     for (int j = 0; j < bodys.Count; j++)
                     {
-                        
-                        sb.Append(Regex.Replace(bodys[j].Groups[2].Value, "<.*?>", "").Trim());
+                        Match BODY = Regex.Match(bodys[j].Groups[2].Value, @">([^<]+)<");
+                        sb.Append(BODY.Groups[0].Value.Replace(">","").Replace("<","").Trim());
                     }
 
                     lv1.SubItems.Add(title.Groups[1].Value);
                     lv1.SubItems.Add(sb.ToString());
+                    FileStream fs1 = new FileStream(path + text[i] + "//"+ text[i]+".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.Write(sb.ToString());
+                    sw.Close();
+                    fs1.Close();
                     method.downloadFile(pic.Groups[1].Value, path + text[i], title.Groups[1].Value+".jpg");
 
                         if (listView1.Items.Count > 2)
@@ -124,6 +129,11 @@ namespace main._2019_6
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }

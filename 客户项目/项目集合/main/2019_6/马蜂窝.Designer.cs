@@ -33,10 +33,11 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -56,11 +57,12 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.button4);
             this.splitContainer1.Size = new System.Drawing.Size(1118, 586);
-            this.splitContainer1.SplitterDistance = 820;
+            this.splitContainer1.SplitterDistance = 819;
             this.splitContainer1.TabIndex = 6;
             // 
             // listView1
@@ -73,7 +75,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(820, 586);
+            this.listView1.Size = new System.Drawing.Size(819, 586);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -91,7 +93,18 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "内容";
-            this.columnHeader3.Width = 500;
+            this.columnHeader3.Width = 1000;
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.Blue;
+            this.button1.Location = new System.Drawing.Point(4, 141);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(185, 28);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "开始采集";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -115,16 +128,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button1
+            // button2
             // 
-            this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(4, 141);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(185, 28);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "开始采集";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button2.ForeColor = System.Drawing.Color.Blue;
+            this.button2.Location = new System.Drawing.Point(4, 196);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(185, 28);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "开始采集";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // 马蜂窝
             // 
@@ -133,6 +146,7 @@
             this.ClientSize = new System.Drawing.Size(1118, 586);
             this.Controls.Add(this.splitContainer1);
             this.Name = "马蜂窝";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "马蜂窝";
             this.Load += new System.EventHandler(this.马蜂窝_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -154,5 +168,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

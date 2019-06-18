@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,30 @@ namespace main
 {
     class method
     {
+        #region 下载文件
+        /// <summary>
+        /// 下载图片
+        /// </summary>
+        /// <param name="URLAddress">图片地址</param>
+        /// <param name="subPath">图片所在文件夹</param>
+        /// <param name="name">图片名称</param>
+        public static void downloadFile(string URLAddress, string subPath, string name)
+        {
+            string path = System.IO.Directory.GetCurrentDirectory();
+
+            WebClient client = new WebClient();
+
+            if (false == System.IO.Directory.Exists(subPath))
+            {
+                //创建pic文件夹
+                System.IO.Directory.CreateDirectory(subPath);
+            }
+            client.DownloadFile(URLAddress, subPath + "\\" + name);
+        }
+
+        #endregion
+
+
         #region listview转datable
         /// <summary>
         /// listview转datable

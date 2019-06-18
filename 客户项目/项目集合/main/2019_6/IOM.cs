@@ -87,7 +87,7 @@ namespace main._2019_6
                 lv1.SubItems.Add(a2.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a3.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a4.Groups[1].Value.Trim());
-                lv1.SubItems.Add(a5.Groups[1].Value.Trim());
+                lv1.SubItems.Add(a5.Groups[1].Value.Trim().Replace("-","."));
                 lv1.SubItems.Add(a6.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a7.Groups[1].Value.Trim()+a8.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a9.Groups[1].Value.Trim());

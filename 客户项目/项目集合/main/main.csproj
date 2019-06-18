@@ -35,6 +35,9 @@
     <ApplicationIcon>1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="aliyun-net-sdk-Core">
+      <HintPath>..\..\..\..\aliyun-net-sdk-Core.dll</HintPath>
+    </Reference>
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\..\HttpHelper.dll</HintPath>
     </Reference>

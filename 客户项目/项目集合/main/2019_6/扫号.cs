@@ -45,20 +45,21 @@ namespace main._2019_6
             for (int i = 0; i < text.Length; i++)
             {
                 label1.Text = "正在验证"+text[i];
-                string URL = "http://ndh.nlldbj.com//Handlers/ApiSendCode.ashx?PhoneNum=" + text[i] + "&CodeType=1";
+                // string URL = "http://ndh.nlldbj.com//Handlers/ApiSendCode.ashx?PhoneNum=" + text[i] + "&CodeType=1";  //牛大亨
+
+                string URL = "https://nlb.iszfl.com/Handlers/ApiSendCode.ashx?PhoneNum=" + text[i] + " &CodeType=1";    //牛老板
 
                 string html = method.GetUrl(URL,"utf-8");
 
-                if (html == "" || html.Contains("次数"))
+                if (html.Contains("未绑定"))
                 {
+                    label1.Text = text[i] + "未绑定...验证下一个";
+                }
+                else
+                {           
                     label1.Text = text[i] + "已绑定..正在添加.....";
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                     lv1.SubItems.Add(text[i]);   //比分
-                }
-                else
-                {
-                    label1.Text = text[i] + "未绑定...验证下一个";
-
                 }
 
                 while (this.zanting == false)
