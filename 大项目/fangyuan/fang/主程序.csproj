@@ -180,6 +180,12 @@
     <Compile Include="临时软件\域名收录.Designer.cs">
       <DependentUpon>域名收录.cs</DependentUpon>
     </Compile>
+    <Compile Include="临时软件\大学录取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="临时软件\大学录取.Designer.cs">
+      <DependentUpon>大学录取.cs</DependentUpon>
+    </Compile>
     <Compile Include="临时软件\数据库管理.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -434,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\域名收录.resx">
       <DependentUpon>域名收录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="临时软件\大学录取.resx">
+      <DependentUpon>大学录取.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\数据库管理.resx">
       <DependentUpon>数据库管理.cs</DependentUpon>
