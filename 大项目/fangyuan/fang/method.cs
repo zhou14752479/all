@@ -665,7 +665,7 @@ namespace fang
             //request.ContentType = "application/json";
             request.ContentLength = postData.Length;
             request.AllowAutoRedirect = true;
-            request.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.1.4322)";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
             request.Headers.Add("Cookie", COOKIE);
 
             StreamWriter sw = new StreamWriter(request.GetRequestStream());
