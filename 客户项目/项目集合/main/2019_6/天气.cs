@@ -23,10 +23,10 @@ namespace main._2019_6
         #region 采集
         public void run()
         {
-
+            
             try
             {
-                string path = AppDomain.CurrentDomain.BaseDirectory;
+               
                 StreamReader sr = new StreamReader(textBox1.Text, Encoding.Default);
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
@@ -74,22 +74,21 @@ namespace main._2019_6
                         MatchCollection a7 = Regex.Matches(html, @",aqi:'([\s\S]*?)'", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection a8 = Regex.Matches(html, @",aqiInfo:'([\s\S]*?)'", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-
+                        StringBuilder sb = new StringBuilder();
                         for (int z = 0; z < a1.Count; z++)
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
 
-                            lv1.SubItems.Add(city.Groups[1].Value);
-                            lv1.SubItems.Add(a1[z].Groups[1].Value);
-                            lv1.SubItems.Add(a2[z].Groups[1].Value);
-                            lv1.SubItems.Add(a3[z].Groups[1].Value);
-                            lv1.SubItems.Add(a4[z].Groups[1].Value);
-                            lv1.SubItems.Add(a5[z].Groups[1].Value);
-                            lv1.SubItems.Add(a6[z].Groups[1].Value);
-                            lv1.SubItems.Add(a7[z].Groups[1].Value);
-                            lv1.SubItems.Add(a8[z].Groups[1].Value);
+                            sb.Append(city.Groups[1].Value+"#"+ a1[z].Groups[1].Value+"#" + a2[z].Groups[1].Value + "#" + a3[z].Groups[1].Value + "#" + a4[z].Groups[1].Value + "#" + a5[z].Groups[1].Value + "#" + a6[z].Groups[1].Value + "#" + a7[z].Groups[1].Value + "#" + a8[z].Groups[1].Value + "\r\n");
+                          
                         }
 
+
+                        string path = AppDomain.CurrentDomain.BaseDirectory;
+                        FileStream fs1 = new FileStream(path + "天气.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                        StreamWriter sw = new StreamWriter(fs1,);  //,true代表追加写入
+                        sw.Write(sb.ToString());
+                        sw.Close();
+                        fs1.Close();
 
                         //FileStream fs1 = new FileStream(path + text[i] + "//" + text[i] + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                         //StreamWriter sw = new StreamWriter(fs1);
@@ -111,7 +110,7 @@ namespace main._2019_6
             catch (System.Exception ex)
             {
 
-                ex.ToString();
+             MessageBox.Show(  ex.ToString());
             }
 
         }
@@ -136,6 +135,11 @@ namespace main._2019_6
         private void Button2_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void 天气_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

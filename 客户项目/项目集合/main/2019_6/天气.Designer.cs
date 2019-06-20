@@ -33,11 +33,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -46,6 +41,11 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -111,6 +111,42 @@
             this.columnHeader3.Text = "日期";
             this.columnHeader3.Width = 100;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "高温";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "低温";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "天气";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "风力";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "风向";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "aqi";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "空气";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(4, 282);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(250, 156);
+            this.textBox2.TabIndex = 12;
+            // 
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.Blue;
@@ -155,42 +191,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "高温";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "低温";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "天气";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "风力";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "风向";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "aqi";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "空气";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(4, 282);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(250, 156);
-            this.textBox2.TabIndex = 12;
-            // 
             // 天气
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -199,6 +199,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "天气";
             this.Text = "天气";
+            this.Load += new System.EventHandler(this.天气_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
