@@ -188,6 +188,12 @@
     <Compile Include="2019_6\zufang.Designer.cs">
       <DependentUpon>zufang.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\天气.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\天气.Designer.cs">
+      <DependentUpon>天气.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_6\扫号.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\zufang.resx">
       <DependentUpon>zufang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\天气.resx">
+      <DependentUpon>天气.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\扫号.resx">
       <DependentUpon>扫号.cs</DependentUpon>
