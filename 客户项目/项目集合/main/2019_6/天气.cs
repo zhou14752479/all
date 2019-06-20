@@ -84,8 +84,8 @@ namespace main._2019_6
 
 
                         string path = AppDomain.CurrentDomain.BaseDirectory;
-                        FileStream fs1 = new FileStream(path + "天气.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-                        StreamWriter sw = new StreamWriter(fs1,);  //,true代表追加写入
+                        FileStream fs1 = new FileStream(path + "天气.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                        StreamWriter sw = new StreamWriter(fs1); 
                         sw.Write(sb.ToString());
                         sw.Close();
                         fs1.Close();
