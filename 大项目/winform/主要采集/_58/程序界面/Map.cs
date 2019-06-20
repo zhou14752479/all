@@ -142,10 +142,10 @@ namespace _58
 
                             int j = i - 1>0 ? i-1 :0;
                             
-                            String Url = "https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_par=direct&pcevaname=pc4.1&qt=con&from=webmap&c="+cityid+"&wd="+keyword+"&wd2=&pn="+i+"&nn="+j+"0&db=0&sug=0&addr=0&pl_data_type=cater&pl_price_section=0%2C%2B&pl_sort_type=data_type&pl_sort_rule=0&pl_discount2_section=0%2C%2B&pl_groupon_section=0%2C%2B&pl_cater_book_pc_section=0%2C%2B&pl_hotel_book_pc_section=0%2C%2B&pl_ticket_book_flag_section=0%2C%2B&pl_movie_book_section=0%2C%2B&pl_business_type=cater&pl_business_id=&da_src=pcmappg.poi.page&on_gel=1&src=7&gr=3&l=12";
-                                         
+                            String Url = "https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_par=direct&pcevaname=pc4.1&qt=con&from=webmap&c="+cityid+"&wd="+keyword+"&wd2=&pn="+i+"&nn="+j+"0&db=0&sug=0&addr=0&&da_src=pcmappg.poi.page&on_gel=1&src=7&gr=3&l=13.2&auth=6GNgMOxNx%40CM2KzLPeYAvKP725L6c0z5uxHLVTTxHNNtBnlQADZZzy1uVt1GgvPUDZYOYIZuVt1cv3uztHee%40ewWvPWv3GuxtVwi04960vyACFIMOSU7ucEWe1GD8zv7u%40ZPuHt0A%3DH73uzCCyoET1jlBhlADM5ZYYDMJ7zlp55CKBvaaZyY&device_ratio=1&tn=B_NORMAL_MAP&u_loc=13167726,4000141&ie=utf-8";
 
 
+                           
                             string html = Method.GetUrl(Url);
 
 

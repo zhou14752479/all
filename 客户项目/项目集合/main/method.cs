@@ -83,7 +83,7 @@ namespace main
             {
                 try
             {
-                string COOKIE = "";
+                string COOKIE = "shshshfpa=1325c19d-7317-26c8-e006-872a4999a27c-1526910507; shshshfpb=04f1e443ad4a14669b330d37d1758accda7f9d43dafa36bed5b0a7393d; __jdu=1746186544; _gcl_au=1.1.2120468405.1557565190; 3AB9D23F7A4B3C9B=W6QBEF5Y5EEHHOXWYSZC2W573XDNDCKCNKNFR2WTIFWNLSYRADQCTJY3QJNDM2XXCICM7SW4MLBVF7SE2WASP7S7CU; shshshfp=351fc8ffba55f412419fd7aaff6b8b33; areaId=12; ipLoc-djd=12-933-3407-0; __jda=122270672.1746186544.1539856564.1557561069.1560992546.10; __jdc=122270672; __jdv=122270672|direct|-|none|-|1560992545513; user-key=cc251f81-7265-4e83-af94-1630e9ffee59; cn=0; __jdb=122270672.6.1746186544|10.1560992546; JSESSIONID=3C98D332BEA436756A79ECA6D00E93FB.s1; shshshsID=a893e10b44c5f4c08f477c224193cd79_7_1560993010860";
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
                     request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";

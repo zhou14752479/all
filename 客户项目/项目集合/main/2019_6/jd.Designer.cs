@@ -37,6 +37,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,7 +63,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1229, 550);
+            this.splitContainer1.Size = new System.Drawing.Size(712, 550);
             this.splitContainer1.SplitterDistance = 366;
             this.splitContainer1.TabIndex = 7;
             // 
@@ -69,12 +72,15 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1229, 366);
+            this.listView1.Size = new System.Drawing.Size(712, 366);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -87,27 +93,28 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "标题";
-            this.columnHeader2.Width = 300;
+            this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "内容";
-            this.columnHeader3.Width = 1000;
+            this.columnHeader3.Text = "价格";
+            this.columnHeader3.Width = 50;
             // 
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.Blue;
-            this.button2.Location = new System.Drawing.Point(309, 90);
+            this.button2.Location = new System.Drawing.Point(515, 95);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(185, 35);
             this.button2.TabIndex = 11;
             this.button2.Text = "1";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(321, 40);
+            this.button1.Location = new System.Drawing.Point(499, 49);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(185, 28);
             this.button1.TabIndex = 10;
@@ -118,19 +125,34 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(4, 13);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(553, 21);
+            this.textBox1.Size = new System.Drawing.Size(489, 136);
             this.textBox1.TabIndex = 9;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "评论数";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "类目";
+            this.columnHeader5.Width = 150;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "链接";
+            this.columnHeader6.Width = 200;
+            // 
             // jd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1229, 550);
+            this.ClientSize = new System.Drawing.Size(712, 550);
             this.Controls.Add(this.splitContainer1);
             this.Name = "jd";
             this.Text = "jd";
@@ -155,5 +177,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

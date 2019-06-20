@@ -31,7 +31,7 @@ namespace main._2019_6
 
                 string URL = "https://mall.jd.com/view_search-"+ match.Groups[1].Value + "-0-99-1-24-1.html" ;
 
-                string html2= method.GetUrl(URL, "utf-8");
+                string html2= method.gethtml(URL,"", "utf-8");
                 Match id1 = Regex.Match(html2, @"m_render_pageInstance_id=""([\s\S]*?)""");
                 Match id2 = Regex.Match(html2, @"m_render_layout_instance_id=""([\s\S]*?)""");
                 Match id3 = Regex.Match(html2, @"SearchList-([\s\S]*?) ");
@@ -89,6 +89,11 @@ namespace main._2019_6
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }
