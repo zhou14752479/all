@@ -37,6 +37,9 @@
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\CSkin.dll</HintPath>
     </Reference>
+    <Reference Include="HttpHelper">
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\MySql.Data.dll</HintPath>
     </Reference>
