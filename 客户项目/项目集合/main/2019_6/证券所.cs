@@ -122,70 +122,73 @@ namespace main._2019_6
             DateTime dt = DateTime.Parse(dateTimePicker1.Text);
             try
             {
-
-
-                string Url = "http://reportdocs.static.szse.cn/files/text/jy/jy" + dt.ToString("yyMMdd") + ".txt";
-
-                string html = method.GetUrl(Url, "gb2312");
-                MatchCollection names = Regex.Matches(html, @".*\(代码");
-                MatchCollection codes = Regex.Matches(html, @"\(代码.*\)");
-                MatchCollection mairus = Regex.Matches(html, @"买入金额最大的前5名([\s\S]*?)卖出金额最大的前5名");
-                MatchCollection maichus = Regex.Matches(html, @"卖出金额最大的前5名([\s\S]*?)代码");
-
-                for (int i = 0; i < codes.Count; i++)
+                for (int j = 1; j < 20; j++)
                 {
-                    
 
 
 
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
-                    lv1.SubItems.Add(codes[i].Groups[0].Value.Replace("(代码","").Replace(")",""));
-                    lv1.SubItems.Add(names[i].Groups[0].Value.Replace("(代码", ""));
+                    string Url = "http://www.szse.cn/api/report/ShowReport/data?SHOWTYPE=JSON&CATALOGID=1842_xxpl&TABKEY=tab1&PAGENO=" + j + "&txtStart=" + dt.ToString("yy-MM-dd") + "&txtEnd=" + dt.ToString("yy-MM-dd");
 
-                    MatchCollection buys = Regex.Matches(mairus[i].Groups[1].Value, @".*证券|.*专用");
-
-                   
-                    for (int j = 0; j < buys.Count; j++)
+                    string strhtml = method.GetUrl(Url, "gb2312");
+                    MatchCollection urls = Regex.Matches(strhtml, @"param='([\s\S]*?)'");
+                    if (urls.Count == 0)
                     {
-                        lv1.SubItems.Add(buys[j].Groups[0].Value.Remove(buys[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
+                        return;
                     }
 
-                    if (i != codes.Count - 1)
 
+                    for (int i = 0; i < urls.Count; i++)
                     {
-                        MatchCollection sells = Regex.Matches(maichus[i].Groups[1].Value, @".*证券|.*专用");
-                        for (int j = 0; j < sells.Count; j++)
-                        {
-                            lv1.SubItems.Add(sells[j].Groups[0].Value.Remove(sells[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
-                        }
+
+                        string url2 = "http://www.szse.cn/api/report" + urls[i].Groups[1].Value;
+                        string html = method.GetUrl(url2, "utf-8");
+
+                        Match names = Regex.Match(html, @"""data"":([\s\S]*?)""zqjc"":""([\s\S]*?)&nbsp;");
+                        Match code = Regex.Match(html, @"&nbsp;\(([\s\S]*?)\)");
+
+                        Match mai1 = Regex.Match(html, @"买1"",""zsmc"":""([\s\S]*?)""");
+                        Match mai2 = Regex.Match(html, @"买2"",""zsmc"":""([\s\S]*?)""");
+                        Match mai3 = Regex.Match(html, @"买3"",""zsmc"":""([\s\S]*?)""");
+                        Match mai4 = Regex.Match(html, @"买4"",""zsmc"":""([\s\S]*?)""");
+                        Match mai5 = Regex.Match(html, @"买5"",""zsmc"":""([\s\S]*?)""");
+                        Match sell1 = Regex.Match(html, @"卖1"",""zsmc"":""([\s\S]*?)""");
+                        Match sell2 = Regex.Match(html, @"卖2"",""zsmc"":""([\s\S]*?)""");
+                        Match sell3 = Regex.Match(html, @"卖3"",""zsmc"":""([\s\S]*?)""");
+                        Match sell4 = Regex.Match(html, @"卖4"",""zsmc"":""([\s\S]*?)""");
+                        Match sell5 = Regex.Match(html, @"卖5"",""zsmc"":""([\s\S]*?)""");
+
+
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
+
+                        lv1.SubItems.Add(code.Groups[1].Value);
+                        lv1.SubItems.Add(names.Groups[2].Value);
+                        lv1.SubItems.Add(mai1.Groups[1].Value.Remove(mai1.Groups[1].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
+                        lv1.SubItems.Add(mai2.Groups[1].Value);
+                        lv1.SubItems.Add(mai3.Groups[1].Value);
+                        lv1.SubItems.Add(mai4.Groups[1].Value);
+                        lv1.SubItems.Add(mai5.Groups[1].Value);
+                        lv1.SubItems.Add(sell1.Groups[1].Value);
+                        lv1.SubItems.Add(sell2.Groups[1].Value);
+                        lv1.SubItems.Add(sell3.Groups[1].Value);
+                        lv1.SubItems.Add(sell4.Groups[1].Value);
+                        lv1.SubItems.Add(sell5.Groups[1].Value);
+
+
+
+
+
+
                     }
-                    //else if (i == codes.Count - 1)
-                    //{
-                    //    Match maichus1 = Regex.Match(html, @"卖出金额最大的前5名([\s\S]*?)其它异常");
-                    //    MatchCollection sells = Regex.Matches(maichus1.Groups[1].Value, @".*证券|.*专用");
-                    //    //for (int j = 0; j < sells.Count; j++)
-                    //    //{
-                    //    //    lv1.SubItems.Add(sells[j].Groups[0].Value.Remove(sells[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
+                    label3.Text = "获取完成";
 
-                    //    //}
-
-                    //    lv1.SubItems.Add(sells[sells.Count-5].Groups[0].Value.Remove(sells[sells.Count - 5].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
-                    //    //lv1.SubItems.Add(sells[sells.Count -4].Groups[0].Value.Remove(sells[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
-                    //    //lv1.SubItems.Add(sells[sells.Count -3].Groups[0].Value.Remove(sells[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
-                    //    //lv1.SubItems.Add(sells[sells.Count -2].Groups[0].Value.Remove(sells[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
-                    //    //lv1.SubItems.Add(sells[sells.Count -1].Groups[0].Value.Remove(sells[j].Groups[0].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
-                    //}
-                   
                 }
-                label3.Text = "获取完成";
-
             }
             catch (System.Exception ex)
             {
 
-              MessageBox.Show  (ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
-
+        
         }
 
         public void run2()
@@ -332,10 +335,20 @@ namespace main._2019_6
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            if (comboBox1.Text == "上海证券交易所")
+            {
+                label3.Text = "正在获取...";
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+            }
+            else
+            {
+                label3.Text = "正在获取...";
+                Thread thread = new Thread(new ThreadStart(run1));
+                thread.Start();
 
-            label3.Text = "正在获取...";
-            Thread thread = new Thread(new ThreadStart(run2));
-            thread.Start();
+            }
+
 
 
         }

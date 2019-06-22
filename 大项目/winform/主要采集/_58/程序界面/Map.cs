@@ -124,7 +124,7 @@ namespace _58
                 
                 string[] keywords = textBox2.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-                int pages = 200;
+                int pages = 10;
 
 
                 foreach (string city in citys)

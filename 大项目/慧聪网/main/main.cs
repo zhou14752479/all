@@ -151,8 +151,8 @@ namespace main
                                 lv1.SubItems.Add(recordList1.linkqq);
                                 lv1.SubItems.Add(recordList1.address);
 
-                                string[] values = { recordList1.companyname, recordList1.linkman, recordList1.proname, recordList1.cityname, recordList1.linkmp, recordList1.pnumber, recordList1.email, recordList1.areaname, recordList1.mainpro, recordList1.createdate, recordList1.linkqq, recordList1.address };
-                                insertData(values);
+                                //string[] values = { recordList1.companyname, recordList1.linkman, recordList1.proname, recordList1.cityname, recordList1.linkmp, recordList1.pnumber, recordList1.email, recordList1.areaname, recordList1.mainpro, recordList1.createdate, recordList1.linkqq, recordList1.address };
+                                //insertData(values);
 
                                 if (listView1.Items.Count - 1 > 1)
                                 {

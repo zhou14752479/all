@@ -982,64 +982,54 @@ namespace main._2019_6
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //出租
-            if (comboBox1.Text == "房天下" )
-            {
-                Thread thread = new Thread(new ThreadStart(fang1));
-                thread.Start();
-            }
+            ////安居客
+            //if (radioButton2.Checked == true)
+            //{
+            //    Thread thread = new Thread(new ThreadStart(fang1));
+            //    thread.Start();
+            //}
+            //if (radioButton3.Checked == true)
+            //{
+            //    Thread thread = new Thread(new ThreadStart(anjuke3));
+            //    thread.Start();
+            //}
+            //if (radioButton4.Checked == true)
+            //{
+            //    Thread thread = new Thread(new ThreadStart(ganji2));
+            //    thread.Start();
+            //}
 
-            else  if ( comboBox1.Text == "安居客")
-            {
-                citys[0] = "bj";
-                Thread thread = new Thread(new ThreadStart(fang1));
-                thread.Start();
-            }
 
-            //商铺出售
+            ////房天下
+            //if (radioButton2.Checked == true)
+            //{
+            //    Thread thread = new Thread(new ThreadStart(fang1));
+            //    thread.Start();
+            //}
+            //if (radioButton3.Checked == true)
+            //{
+            //    Thread thread = new Thread(new ThreadStart(fang3));
+            //    thread.Start();
+            //}
+            //if (radioButton4.Checked == true)
+            //{
+            //    Thread thread = new Thread(new ThreadStart(ganji2));
+            //    thread.Start();
+            //}
 
-            else if (comboBox2.Text == "赶集网")
+          //  赶集网
+          
+            if (radioButton3.Checked == true)
             {
-               
                 Thread thread = new Thread(new ThreadStart(ganji1));
                 thread.Start();
             }
-            else if ( comboBox2.Text == "房天下")
+            if (radioButton4.Checked == true)
             {
-                
-                Thread thread = new Thread(new ThreadStart(fang3));
-                thread.Start();
-            }
-            else if (comboBox2.Text == "安居客")
-            {
-               
-                Thread thread = new Thread(new ThreadStart(anjuke3));
-                thread.Start();
-            }
-
-            //二手房
-
-
-
-           
-            else if (comboBox3.Text == "赶集网")
-            {
-                citys[0] = "bj";
                 Thread thread = new Thread(new ThreadStart(ganji2));
                 thread.Start();
             }
-            else if (comboBox3.Text == "安居客" )
-            {
-                citys[0] = "sh";
-                Thread thread = new Thread(new ThreadStart(ganji2));
-                thread.Start();
-            }
-            else if (comboBox3.Text == "房天下" )
-            {
-                citys[0] = "tj";
-                Thread thread = new Thread(new ThreadStart(ganji2));
-                thread.Start();
-            }
+
 
         }
 
