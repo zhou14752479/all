@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,7 @@ namespace main._2019_6
             InitializeComponent();
         }
         bool zanting = true;
+        ArrayList finishes = new ArrayList();
         public void run()
         {
             try
@@ -32,78 +34,85 @@ namespace main._2019_6
                 for (int a = 0; a < text.Length; a++)
                 {
 
-                    string url = text[a];
-                    // string url = "https://mall.jd.com/index-145893.html";
-                    //  string html = method.gethtml(url,"", "utf-8");
-                    string html = GetUrl(url);
-
-                    Match match = Regex.Match(html, @"search-"" \+ ([\s\S]*?) ");
-
-                    string URL = "https://mall.jd.com/view_search-" + match.Groups[1].Value + "-0-99-1-24-1.html";
-                    textBox2.Text = "正在抓取" + text[a];
-                    string html2 = method.gethtml(URL, "", "utf-8");
-                    Match id1 = Regex.Match(html2, @"m_render_pageInstance_id=""([\s\S]*?)""");
-                    Match id2 = Regex.Match(html2, @"m_render_layout_instance_id=""([\s\S]*?)""");
-                    Match id3 = Regex.Match(html2, @"SearchList-([\s\S]*?) ");
-
-                    Match shopid = Regex.Match(html2, @"shopId = ""([\s\S]*?)""");
-                    Match id5 = Regex.Match(html2, @"m_render_app_id=""([\s\S]*?)""");
-                    Match id6 = Regex.Match(html2, @"vender_id"" value=""([\s\S]*?)""");
-                    // string zurl = "https://module-jshop.jd.com/module/allGoods/goods.html?callback=jQuery4333181&sortType=0&appId=" + match.Groups[1].Value + "&pageInstanceId=" + id1.Groups[1].Value + "&searchWord=&pageNo=2&direction=1&instanceId=" + id2.Groups[1].Value + "&modulePrototypeId=55555&moduleTemplateId="+ id3.Groups[1].Value;
-
-
-                    string ZURL = "https://module-jshop.jd.com/module/getModuleHtml.html?orderBy=99&direction=1&pageNo=1&categoryId=0&pageSize=24&pagePrototypeId=8&pageInstanceId=" + id1.Groups[1].Value + "&moduleInstanceId=" + id1.Groups[1].Value + "&prototypeId=68&templateId=" + id3.Groups[1].Value + "&appId=" + id5.Groups[1].Value + "&layoutInstanceId=" + id2.Groups[1].Value + "&origin=0&shopId=" + shopid.Groups[1].Value + "&venderId=" + id6.Groups[1].Value + "&callback=jshop_module_render_callback";
-                    string strhtml = GetUrl(ZURL);
-
-
-                    MatchCollection urls = Regex.Matches(strhtml, @"data-id=\\""([\s\S]*?)\\""");
-                    if (urls.Count == 0)
+                    if (!finishes.Contains(text[a]))
                     {
-                        return;
-                    }
+                        finishes.Add(text[a]);
+                        string url = text[a];
+                        // string url = "https://mall.jd.com/index-145893.html";
+                        //  string html = method.gethtml(url,"", "utf-8");
+                        string html = GetUrl(url);
 
+                        Match match = Regex.Match(html, @"search-"" \+ ([\s\S]*?) ");
 
-                    for (int i = 0; i < urls.Count; i++)
-                    {
+                        string URL = "https://mall.jd.com/view_search-" + match.Groups[1].Value + "-0-99-1-24-1.html";
+                        textBox2.Text = "正在抓取" + text[a];
+                        string html2 = GetUrl(URL);
+                        Match id1 = Regex.Match(html2, @"m_render_pageInstance_id=""([\s\S]*?)""");
+                        Match id2 = Regex.Match(html2, @"m_render_layout_instance_id=""([\s\S]*?)""");
+                        Match id3 = Regex.Match(html2, @"SearchList-([\s\S]*?) ");
 
-                        string url2 = "https://item.jd.com/" + urls[i].Groups[1].Value + ".html";
-                        string priceUrl = "https://p.3.cn/prices/get?skuid=J_" + urls[i].Groups[1].Value;
-                        string commenUrl = "https://club.jd.com/comment/productCommentSummaries.action?referenceIds=" + urls[i].Groups[1].Value + "&callback=jQuery6926331";
-                        string html3 = method.GetUrl(url2, "gb2312");
-
-                        string priceHtml = GetUrl(priceUrl);
-                        string commenHtml = GetUrl(commenUrl);
-                        //Match name = Regex.Match(html, @"<title>([\s\S]*?)-");
-                        //Match count = Regex.Match(html3, @"<em>共([\s\S]*?)条");
-
-                        Match biaoti = Regex.Match(html3, @"<div class=""item ellipsis"" title=""([\s\S]*?)""");
-                        Match price = Regex.Match(priceHtml, @"""p"":""([\s\S]*?)""");
-                        Match comments = Regex.Match(commenHtml, @"CommentCountStr"":""([\s\S]*?)""");
-                        MatchCollection items = Regex.Matches(html3, @"mbNav-([\s\S]*?)"">([\s\S]*?)</a>");
-
-                        StringBuilder sb = new StringBuilder();
-                        for (int z = 0; z < items.Count; z++)
+                        Match shopid = Regex.Match(html2, @"shopId = ""([\s\S]*?)""");
+                        Match id5 = Regex.Match(html2, @"m_render_app_id=""([\s\S]*?)""");
+                        Match id6 = Regex.Match(html2, @"vender_id"" value=""([\s\S]*?)""");
+                        // string zurl = "https://module-jshop.jd.com/module/allGoods/goods.html?callback=jQuery4333181&sortType=0&appId=" + match.Groups[1].Value + "&pageInstanceId=" + id1.Groups[1].Value + "&searchWord=&pageNo=2&direction=1&instanceId=" + id2.Groups[1].Value + "&modulePrototypeId=55555&moduleTemplateId="+ id3.Groups[1].Value;
+                        if (id1.Groups[1].Value == "")
                         {
-                            sb.Append(items[z].Groups[2].Value + "-");
+                            break;
                         }
 
+                        string ZURL = "https://module-jshop.jd.com/module/getModuleHtml.html?orderBy=99&direction=1&pageNo=1&categoryId=0&pageSize=24&pagePrototypeId=8&pageInstanceId=" + id1.Groups[1].Value + "&moduleInstanceId=" + id1.Groups[1].Value + "&prototypeId=68&templateId=" + id3.Groups[1].Value + "&appId=" + id5.Groups[1].Value + "&layoutInstanceId=" + id2.Groups[1].Value + "&origin=0&shopId=" + shopid.Groups[1].Value + "&venderId=" + id6.Groups[1].Value + "&callback=jshop_module_render_callback";
+                        string strhtml = GetUrl(ZURL);
 
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
 
-                        lv1.SubItems.Add(biaoti.Groups[1].Value);
-                        lv1.SubItems.Add(price.Groups[1].Value);
+                        MatchCollection urls = Regex.Matches(strhtml, @"data-id=\\""([\s\S]*?)\\""");
 
-                        lv1.SubItems.Add(comments.Groups[1].Value);
-                        lv1.SubItems.Add(sb.ToString());
-                        lv1.SubItems.Add(url2);
 
-                        Thread.Sleep(500);
-                        while (this.zanting == false)
+
+                        for (int i = 0; i < urls.Count; i++)
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                    }
 
+                            string url2 = "https://item.jd.com/" + urls[i].Groups[1].Value + ".html";
+                            string priceUrl = "https://p.3.cn/prices/get?skuid=J_" + urls[i].Groups[1].Value;
+                            string commenUrl = "https://club.jd.com/comment/productCommentSummaries.action?referenceIds=" + urls[i].Groups[1].Value + "&callback=jQuery6926331";
+                            string html3 = method.GetUrl(url2, "gb2312");
+
+                            string priceHtml = GetUrl(priceUrl);
+                            string commenHtml = GetUrl(commenUrl);
+                            //Match name = Regex.Match(html, @"<title>([\s\S]*?)-");
+                            //Match count = Regex.Match(html3, @"<em>共([\s\S]*?)条");
+
+                            Match biaoti = Regex.Match(html3, @"<div class=""item ellipsis"" title=""([\s\S]*?)""");
+                            Match price = Regex.Match(priceHtml, @"""p"":""([\s\S]*?)""");
+                            Match comments = Regex.Match(commenHtml, @"CommentCountStr"":""([\s\S]*?)""");
+                            MatchCollection items = Regex.Matches(html3, @"mbNav-([\s\S]*?)"">([\s\S]*?)</a>");
+
+                            StringBuilder sb = new StringBuilder();
+                            for (int z = 0; z < items.Count; z++)
+                            {
+                                sb.Append(items[z].Groups[2].Value + "-");
+                            }
+
+                            if (biaoti.Groups[1].Value != "")
+                            {
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
+
+                                lv1.SubItems.Add(biaoti.Groups[1].Value);
+                                lv1.SubItems.Add(price.Groups[1].Value);
+
+                                lv1.SubItems.Add(comments.Groups[1].Value);
+                                lv1.SubItems.Add(sb.ToString());
+                                lv1.SubItems.Add(url2);
+
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+                            }
+
+                          
+                        }
+
+                    }
                 }
             }
 
@@ -138,9 +147,13 @@ namespace main._2019_6
         }
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
+            for (int i = 0; i < 5; i++)
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+            }
+            
 
         }
 

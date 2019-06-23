@@ -16,7 +16,7 @@ namespace main._2019_6
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new jd1());
+            Application.Run(new 淘宝宝贝上架监控());
         }
     }
 }

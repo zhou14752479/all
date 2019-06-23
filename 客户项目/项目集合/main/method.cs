@@ -164,7 +164,7 @@ namespace main
                 Method = "GET",//URL     可选项 默认为Get  
                 Encoding = Encoding.GetEncoding(charset),
                 Timeout = 100000,//连接超时时间     可选项默认为100000  
-               
+                Allowautoredirect = true,
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
 
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
