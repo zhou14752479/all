@@ -200,6 +200,12 @@
     <Compile Include="2019_6\图书管理.Designer.cs">
       <DependentUpon>图书管理.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\彩客.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\彩客.Designer.cs">
+      <DependentUpon>彩客.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_6\扫号.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\图书管理.resx">
       <DependentUpon>图书管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\彩客.resx">
+      <DependentUpon>彩客.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\扫号.resx">
       <DependentUpon>扫号.cs</DependentUpon>

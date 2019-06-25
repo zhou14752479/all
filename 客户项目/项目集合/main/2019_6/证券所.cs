@@ -84,8 +84,8 @@ namespace main._2019_6
                 
                 for (int i = 0; i < codes.Count; i++)
                 {
-                    string buy = mairus[i].Groups[1].Value.Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", "").Replace("证券营业部", "");
-                   string sell= maichus[i].Groups[1].Value.Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", "").Replace("证券营业部", "");
+                    string buy = mairus[i].Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", "");
+                   string sell= maichus[i].Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", "");
                     string[] mairu = buy.Split(new string[] { "," }, StringSplitOptions.None);
                     string[] maichu = sell.Split(new string[] { "," }, StringSplitOptions.None);
 
@@ -162,16 +162,16 @@ namespace main._2019_6
 
                         lv1.SubItems.Add(code.Groups[1].Value);
                         lv1.SubItems.Add(names.Groups[2].Value);
-                        lv1.SubItems.Add(mai1.Groups[1].Value.Remove(mai1.Groups[1].Value.Length - 2, 2).Replace("有限", "").Replace("责任", "").Replace("公司", "").Replace("股份", "").Replace("第一", "").Replace("第二", ""));
-                        lv1.SubItems.Add(mai2.Groups[1].Value);
-                        lv1.SubItems.Add(mai3.Groups[1].Value);
-                        lv1.SubItems.Add(mai4.Groups[1].Value);
-                        lv1.SubItems.Add(mai5.Groups[1].Value);
-                        lv1.SubItems.Add(sell1.Groups[1].Value);
-                        lv1.SubItems.Add(sell2.Groups[1].Value);
-                        lv1.SubItems.Add(sell3.Groups[1].Value);
-                        lv1.SubItems.Add(sell4.Groups[1].Value);
-                        lv1.SubItems.Add(sell5.Groups[1].Value);
+                        lv1.SubItems.Add(mai1.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(mai2.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(mai3.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(mai4.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(mai5.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(sell1.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(sell2.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(sell3.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(sell4.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
+                        lv1.SubItems.Add(sell5.Groups[1].Value.Replace("有限责任公司", "").Replace("股份有限公司", "").Replace("有限公司", "").Replace("证券营业部", "").Replace("营业部", ""));
 
 
 
