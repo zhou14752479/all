@@ -30,6 +30,8 @@ namespace main
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
            
         }
+
+        bool zanting = true;
         #region 获取百度citycode
         public int getcityId(string cityName)
         {
@@ -123,14 +125,20 @@ namespace main
 
                             foreach (Content content in jsonParser.Content)
                             {
-                               
+                                if (content.tel != ""&& !content.tel.Contains("-"))
+                                {
 
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                lv1.SubItems.Add(content.name);
-                                lv1.SubItems.Add(content.tel);
-                                lv1.SubItems.Add(content.addr);
-                                lv1.SubItems.Add(city);
-                                lv1.SubItems.Add(keyword);
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                    lv1.SubItems.Add(content.name);
+                                    lv1.SubItems.Add(content.tel);
+                                    lv1.SubItems.Add(content.addr);
+                                    lv1.SubItems.Add(city);
+                                    lv1.SubItems.Add(keyword);
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();
+                                    }
+                                }
                             }
 
 
@@ -233,11 +241,10 @@ namespace main
                                 Match tell = Regex.Match(strhtml, Rxg);
                                 Match address = Regex.Match(strhtml, Rxg1);
 
-                             
-                                if (tell.Groups[1].Value.Trim() != "")
 
+                                if (tell.Groups[1].Value != "" && !tell.Groups[1].Value.Contains("-"))
                                 {
-                         
+
 
                                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                     lv1.SubItems.Add(titles.Groups[1].Value);
@@ -245,7 +252,10 @@ namespace main
                                     lv1.SubItems.Add(address.Groups[1].Value);
                                     lv1.SubItems.Add(city);
                                     lv1.SubItems.Add(keyword);
-
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();
+                                    }
 
                                 }
 
@@ -440,18 +450,25 @@ namespace main
 
 
 
-                            for (int j = 0; j <names.Count; j++)
+                            for (int j = 0; j < names.Count; j++)
+                            {
+                                if (Unicode2String(tels[j].Groups[1].Value) != "" && !Unicode2String(tels[j].Groups[1].Value).Contains("-"))
                                 {
+
                                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                     lv1.SubItems.Add(Unicode2String(names[j].Groups[1].Value));
                                     lv1.SubItems.Add(Unicode2String(tels[j].Groups[1].Value));
                                     lv1.SubItems.Add(Unicode2String(address[j].Groups[1].Value));
                                     lv1.SubItems.Add(city);
                                     lv1.SubItems.Add(keyword);
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();
+                                    }
                                 }
 
 
-
+                            }
 
                             
 
@@ -532,6 +549,16 @@ namespace main
         private void skinTreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             textBox1.Text += e.Node.Text + "\r\n";
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
         }
     }
 }

@@ -104,9 +104,15 @@ namespace main._2019_6
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
                     lv1.SubItems.Add("Pinnacle");   //比分
                 }
+                if (ccc.Length > 6 || aaa.Length > 6|| bbb.Length > 6)
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据  
+                    for (int j = 0; j < 9; j++)
+                    {
 
-
-
+                        lv1.SubItems.Add("---------------------------");   //比分
+                    }
+                }
                 while (this.zanting == false)
                 {
                     label1.Text = "已暂停....";

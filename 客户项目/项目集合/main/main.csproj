@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +48,15 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="aliyun-net-sdk-Core">
@@ -164,6 +188,12 @@
     <Compile Include="2019_5\足球数据.Designer.cs">
       <DependentUpon>足球数据.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\dnsIp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\dnsIp.Designer.cs">
+      <DependentUpon>dnsIp.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_6\IOM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +247,12 @@
     </Compile>
     <Compile Include="2019_6\淘宝宝贝上架监控.Designer.cs">
       <DependentUpon>淘宝宝贝上架监控.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_6\点击获取链接.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\点击获取链接.Designer.cs">
+      <DependentUpon>点击获取链接.cs</DependentUpon>
     </Compile>
     <Compile Include="2019_6\证券所.cs">
       <SubType>Form</SubType>
@@ -297,6 +333,9 @@
     <EmbeddedResource Include="2019_5\足球数据.resx">
       <DependentUpon>足球数据.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\dnsIp.resx">
+      <DependentUpon>dnsIp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019_6\IOM.resx">
       <DependentUpon>IOM.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +363,9 @@
     <EmbeddedResource Include="2019_6\淘宝宝贝上架监控.resx">
       <DependentUpon>淘宝宝贝上架监控.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\点击获取链接.resx">
+      <DependentUpon>点击获取链接.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019_6\证券所.resx">
       <DependentUpon>证券所.cs</DependentUpon>
     </EmbeddedResource>
@@ -349,6 +391,7 @@
       <DependentUpon>webBrowser.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -365,6 +408,13 @@
   <ItemGroup>
     <Content Include="1.ico" />
     <Content Include="bitbug_favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
