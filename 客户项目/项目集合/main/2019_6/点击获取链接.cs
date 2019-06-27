@@ -130,6 +130,11 @@ namespace main._2019_6
             webBrowser1.Navigate("https://"+textBox1.Text);
         }
 
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
 
 
         //屏蔽IE脚本弹出错误

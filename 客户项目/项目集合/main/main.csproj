@@ -224,6 +224,12 @@
     <Compile Include="2019_6\zufang.Designer.cs">
       <DependentUpon>zufang.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\京东定单.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\京东定单.Designer.cs">
+      <DependentUpon>京东定单.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_6\图书管理.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -350,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\zufang.resx">
       <DependentUpon>zufang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\京东定单.resx">
+      <DependentUpon>京东定单.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\图书管理.resx">
       <DependentUpon>图书管理.cs</DependentUpon>

@@ -51,18 +51,17 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
-        
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
             this.splitContainer1.Size = new System.Drawing.Size(1260, 660);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.SplitterDistance = 98;
             this.splitContainer1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(452, 107);
+            this.button1.Location = new System.Drawing.Point(456, 47);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(217, 38);
             this.button1.TabIndex = 1;
@@ -75,7 +74,7 @@
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1259, 84);
+            this.textBox1.Size = new System.Drawing.Size(1259, 41);
             this.textBox1.TabIndex = 0;
             // 
             // webBrowser1
@@ -84,7 +83,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1260, 476);
+            this.webBrowser1.Size = new System.Drawing.Size(1260, 558);
             this.webBrowser1.TabIndex = 0;
             // 
             // timer1

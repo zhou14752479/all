@@ -35,6 +35,7 @@ namespace main
             webBrowser1.Url = new Uri(this.url);
 
             timer1.Start();
+            method.SetIE(0);
         }
 
         #region 非常重要获取当前存在浏览器的cookie，可以登陆wbbbrowser更新cookie。
@@ -74,7 +75,7 @@ namespace main
             //cookie = textBox1.Text;
             //this.Hide();
 
-            textBox1.Text = GetCookies("https://seller.huapai.com/goodslist/index?tid=0&status=2&step_status=-1&oid=0&per_page=10");
+            textBox1.Text = GetCookies("https://order.jd.com/center/list.action?d=1&s=4096&page=1");
             cookie = textBox1.Text;
             this.Hide();
         }
