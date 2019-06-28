@@ -30,7 +30,7 @@ namespace main._2019_6
         {
             try
             {
-                for (int i = 1; i < 50; i = i++)
+                for (int i = 1; i < 50; i++)
                 {
 
                     string url = "https://order.jd.com/center/list.action?d=1&s=4096&page="+i;
@@ -39,6 +39,7 @@ namespace main._2019_6
                     MatchCollection ids = Regex.Matches(html, @"datasubmit-([\s\S]*?)""");
                     MatchCollection names = Regex.Matches(html, @" <span class=""txt"">([\s\S]*?)</span>");
 
+                   
                     if (ids.Count == 0)
                         break;
 
@@ -106,7 +107,33 @@ namespace main._2019_6
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            #region 通用导出
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == "1.1.1.1")
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+                method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+
+            }
+            else
+            {
+                MessageBox.Show("IP不符");
+               
+            }
+            #endregion
         }
     }
 }

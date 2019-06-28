@@ -84,7 +84,7 @@ namespace main._2019_6
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用登录
+            #region 通用导出
            
             bool value = false;
             string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");

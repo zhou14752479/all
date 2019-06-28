@@ -202,7 +202,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "扫号";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "快乐联盟";
+            this.Text = "3D捕鱼";
             this.Load += new System.EventHandler(this.扫号_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
