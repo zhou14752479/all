@@ -103,11 +103,11 @@ namespace main._2019_6
             {
                 label1.Text = "正在验证" + text[i];
                
-                string URL = "http://api.cl0579.com/Services/Ajax.asmx/SendSmsCode?mobilePhone="+text[i] + "&account=";    
+                string URL = "http://defense.t84586.top:8080/login/sendPhoneCode?phone=" + text[i];    
                
                 string html = method.GetUrl(URL, "utf-8");
                
-                if (html.Contains("成功"))
+                if (html.Contains("未绑定"))
                 {
                     label1.Text = text[i] + "未绑定...验证下一个";
                 }

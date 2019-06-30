@@ -47,8 +47,9 @@ namespace main._2019_6
                     {
                         textBox1.Text += "正在获取" + ids[j].Groups[1].Value+"信息" + "\r\n";
                         string wuliuURL = "https://details.jd.com/lazy/getOrderTrackInfoMultiPackage.action?orderId="+ids[j].Groups[1].Value;  //物流单号
-                        string wuliuhtml = method.GetUrlWithCookie(wuliuURL, cookie, "utf-8");
+                        string wuliuhtml = method.GetUrlWithCookie(wuliuURL, cookie, "gb2312");
                         Match danhao = Regex.Match(wuliuhtml, @"carriageId"":""([\s\S]*?)""");
+                        Match gongsi = Regex.Match(wuliuhtml, @"carrier"":""([\s\S]*?)""");
                         textBox1.Text += "正在获取物流单号信息" + "\r\n";
 
                         string tuihuo = "https://myjd.jd.com/afs/ajax/getOrderAfsServiceOp.action?orderId=" + ids[j].Groups[1].Value;  //退货
@@ -62,14 +63,20 @@ namespace main._2019_6
                         string strhtml=  method.GetUrlWithCookie(tuihuoURL, cookie, "gb2312");
 
 
-                        Match tuixinxi = Regex.Match(strhtml, @"<td>发货地址信息</td>([\s\S]*?)</tr>");
+                        Match address = Regex.Match(strhtml, @"收货地址：([\s\S]*?)<");
+                        Match tel = Regex.Match(strhtml, @"电话：([\s\S]*?)<");
+                        Match lxr = Regex.Match(strhtml, @"收件人：([\s\S]*?)<");
 
-                       
+
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                        listViewItem.SubItems.Add(lxr.Groups[1].Value);
+                        listViewItem.SubItems.Add(tel.Groups[1].Value);
+                        listViewItem.SubItems.Add(address.Groups[1].Value);
+                        listViewItem.SubItems.Add(gongsi.Groups[1].Value);
                         listViewItem.SubItems.Add(danhao.Groups[1].Value);
-                        listViewItem.SubItems.Add(tuixinxi.Groups[1].Value.Replace("<br />","").Replace("<strong>","").Replace("</strong>","").Replace("<td>","").Replace("</td>","").Replace(" ","").Trim());
-
+                        listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                       
+                       
                         textBox1.Text = "";
 
                     }

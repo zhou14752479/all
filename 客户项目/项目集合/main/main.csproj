@@ -212,6 +212,7 @@
     <Compile Include="2019_6\jd1.Designer.cs">
       <DependentUpon>jd1.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\sendEmail.cs" />
     <Compile Include="2019_6\tieba.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +249,12 @@
     <Compile Include="2019_6\扫号.Designer.cs">
       <DependentUpon>扫号.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_6\披露易.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\披露易.Designer.cs">
+      <DependentUpon>披露易.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_6\淘宝宝贝上架监控.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +272,12 @@
     </Compile>
     <Compile Include="2019_6\证券所.Designer.cs">
       <DependentUpon>证券所.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_6\雷速体育.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_6\雷速体育.Designer.cs">
+      <DependentUpon>雷速体育.cs</DependentUpon>
     </Compile>
     <Compile Include="2019_6\马蜂窝.cs">
       <SubType>Form</SubType>
@@ -369,6 +382,9 @@
     <EmbeddedResource Include="2019_6\扫号.resx">
       <DependentUpon>扫号.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\披露易.resx">
+      <DependentUpon>披露易.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019_6\淘宝宝贝上架监控.resx">
       <DependentUpon>淘宝宝贝上架监控.cs</DependentUpon>
     </EmbeddedResource>
@@ -377,6 +393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\证券所.resx">
       <DependentUpon>证券所.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_6\雷速体育.resx">
+      <DependentUpon>雷速体育.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_6\马蜂窝.resx">
       <DependentUpon>马蜂窝.cs</DependentUpon>
