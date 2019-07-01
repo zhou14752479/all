@@ -53,6 +53,7 @@
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label7 = new System.Windows.Forms.Label();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -95,7 +96,8 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(13, 50);
@@ -115,12 +117,12 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "域名";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Width = 160;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "名称";
-            this.columnHeader3.Width = 300;
+            this.columnHeader3.Width = 180;
             // 
             // button2
             // 
@@ -144,6 +146,7 @@
             this.button3.TabIndex = 47;
             this.button3.Text = "CDN检测";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // groupBox1
             // 
@@ -317,6 +320,11 @@
             this.label7.TabIndex = 49;
             this.label7.Text = "当前进度";
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "状态码";
+            this.columnHeader4.Width = 50;
+            // 
             // dnsIp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -370,5 +378,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

@@ -965,7 +965,7 @@ namespace _58
             else
             {
                 MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                System.Diagnostics.Process.Start("iexplore.exe", "http://www.acaiji.com");
                 return;
             }
             #endregion

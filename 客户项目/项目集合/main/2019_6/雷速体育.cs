@@ -62,6 +62,7 @@ namespace main._2019_6
             HttpResult result = http.GetHtml(item);
             string html = result.Html;
             string cookie = result.Cookie;
+            
             return html;
         }
         #endregion

@@ -16,7 +16,7 @@ namespace main._2019_6
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new zufang());
+            Application.Run(new dnsIp());
         }
     }
 }

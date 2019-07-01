@@ -61,12 +61,12 @@ namespace main._2019_6
         /// <summary>
         /// 获取ID
         /// </summary>
-        public string getId()
+        public string getId(string code)
         {
             try
             {
 
-                string URL = "https://www1.hkexnews.hk/search/prefix.do?&callback=callback&lang=ZH&type=A&name=" + textBox1.Text + "&market=SEHK";
+                string URL = "https://www1.hkexnews.hk/search/prefix.do?&callback=callback&lang=ZH&type=A&name=" + code + "&market=SEHK";
 
                 string html = GetUrl(URL, "utf-8");
 
@@ -99,45 +99,54 @@ namespace main._2019_6
                 DateTime dtEnd = DateTime.Parse(dateTimePicker2.Text);
 
                 string startdate = dtStart.ToString("yyyyMMdd"); 
-                string enddate = dtEnd.ToString("yyyyMMdd"); 
+                string enddate = dtEnd.ToString("yyyyMMdd");
 
-                string URL = "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId="+getId()+"&documentType=-1&fromDate="+ startdate + "&toDate="+ enddate + "&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=9999&lang=zh";
+                StreamReader sr = new StreamReader(textBox1.Text, Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int a = 0; a < text.Length; a++)
+                {
+
+                    string URL = "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=" + getId(text[a]) + "&documentType=-1&fromDate=" + startdate + "&toDate=" + enddate + "&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=9999&lang=zh";
 
                     string html = GetUrl(URL, "utf-8");
 
-                MatchCollection dates = Regex.Matches(html, @"""DATE_TIME\\"":\\""([\s\S]*?)\\");
-                MatchCollection codes = Regex.Matches(html, @"""STOCK_CODE\\"":\\""([\s\S]*?)\\");
-                MatchCollection names = Regex.Matches(html, @"""STOCK_NAME\\"":\\""([\s\S]*?)\\");
+                    MatchCollection dates = Regex.Matches(html, @"""DATE_TIME\\"":\\""([\s\S]*?)\\");
+                    MatchCollection codes = Regex.Matches(html, @"""STOCK_CODE\\"":\\""([\s\S]*?)\\");
+                    MatchCollection names = Regex.Matches(html, @"""STOCK_NAME\\"":\\""([\s\S]*?)\\");
 
 
-                MatchCollection urls = Regex.Matches(html, @"""FILE_LINK\\"":\\""([\s\S]*?)\\");
+                    MatchCollection urls = Regex.Matches(html, @"""FILE_LINK\\"":\\""([\s\S]*?)\\");
                     MatchCollection filenames = Regex.Matches(html, @"""TITLE\\"":\\""([\s\S]*?)\\");
 
-                if (urls.Count > 0)
-                { 
-                    for (int j = 0; j < urls.Count; j++)
+                    if (urls.Count > 0)
                     {
-                        textBox2.Text = DateTime.Now.ToShortTimeString() + "正在获取"+textBox1.Text+"的信息"+"\r\n";
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                        lv1.SubItems.Add(dates[j].Groups[1].Value);
-                        lv1.SubItems.Add(codes[j].Groups[1].Value);
-                        lv1.SubItems.Add(names[j].Groups[1].Value);
-                        lv1.SubItems.Add(filenames[j].Groups[1].Value);
-                        lv1.SubItems.Add("https://www1.hkexnews.hk"+urls[j].Groups[1].Value);
-                        if (listView1.Items.Count > 2)
+                        for (int j = 0; j < urls.Count; j++)
                         {
-                            listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                            textBox2.Text = DateTime.Now.ToShortTimeString() + "正在获取" + text[a]+ "的信息" + "\r\n";
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
+                            lv1.SubItems.Add(dates[j].Groups[1].Value);
+                            lv1.SubItems.Add(codes[j].Groups[1].Value);
+                            lv1.SubItems.Add(names[j].Groups[1].Value);
+                            lv1.SubItems.Add(filenames[j].Groups[1].Value);
+                            lv1.SubItems.Add("https://www1.hkexnews.hk" + urls[j].Groups[1].Value);
+                            if (listView1.Items.Count > 2)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                            }
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
                         }
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
+
 
                     }
 
-
+                    Thread.Sleep(1000);
                 }
-
 
             }
             catch (Exception ex)
@@ -158,9 +167,38 @@ namespace main._2019_6
         {
             textBox2.Text = DateTime.Now.ToShortTimeString() + "软件开始运行.....";
 
-            Thread thread = new Thread(new ThreadStart(getFile));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
+
+            #region 通用验证
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == "2.2.2.2")
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+                Thread thread = new Thread(new ThreadStart(getFile));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+             
+
+            }
+            else
+            {
+                MessageBox.Show("IP不符");
+
+            }
+            #endregion
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -181,6 +219,14 @@ namespace main._2019_6
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = openFileDialog1.FileName;
+            }
         }
     }
 }

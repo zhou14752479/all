@@ -1089,7 +1089,6 @@
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "二手房";
             this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.Visible = false;
             // 
             // radioButton4
             // 
@@ -1137,6 +1136,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "生意转让";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Visible = false;
             // 
             // groupBox5
             // 

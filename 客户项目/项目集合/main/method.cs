@@ -93,10 +93,11 @@ namespace main
                 request.Headers.Add("Cookie", COOKIE);
                 request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-
+                
                     StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                     string content = reader.ReadToEnd();
+                
                     reader.Close();
                     response.Close();
                     return content;
