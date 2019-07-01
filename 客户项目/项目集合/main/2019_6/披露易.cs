@@ -100,11 +100,8 @@ namespace main._2019_6
 
                 string startdate = dtStart.ToString("yyyyMMdd"); 
                 string enddate = dtEnd.ToString("yyyyMMdd");
-
-                StreamReader sr = new StreamReader(textBox1.Text, Encoding.Default);
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
-                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+         
+                string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int a = 0; a < text.Length; a++)
                 {
 
@@ -119,12 +116,12 @@ namespace main._2019_6
 
                     MatchCollection urls = Regex.Matches(html, @"""FILE_LINK\\"":\\""([\s\S]*?)\\");
                     MatchCollection filenames = Regex.Matches(html, @"""TITLE\\"":\\""([\s\S]*?)\\");
-
+                    textBox2.Text = DateTime.Now.ToShortTimeString() + "正在获取" + text[a] + "的信息" + "\r\n";
                     if (urls.Count > 0)
                     {
                         for (int j = 0; j < urls.Count; j++)
                         {
-                            textBox2.Text = DateTime.Now.ToShortTimeString() + "正在获取" + text[a]+ "的信息" + "\r\n";
+                            
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
                             lv1.SubItems.Add(dates[j].Groups[1].Value);
                             lv1.SubItems.Add(codes[j].Groups[1].Value);
