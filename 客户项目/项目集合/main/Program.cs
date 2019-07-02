@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_6
+namespace main._2019_7
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace main._2019_6
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 披露易());
+            Application.Run(new bank());
         }
     }
 }

@@ -61,20 +61,21 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(456, 47);
+            this.button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.ForeColor = System.Drawing.Color.Red;
+            this.button1.Location = new System.Drawing.Point(481, 47);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(217, 38);
             this.button1.TabIndex = 1;
-            this.button1.Text = "关闭此窗口";
+            this.button1.Text = "确定";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1259, 41);
+            this.textBox1.Size = new System.Drawing.Size(1259, 21);
             this.textBox1.TabIndex = 0;
             // 
             // webBrowser1
@@ -85,6 +86,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(1260, 558);
             this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1_DocumentCompleted);
             // 
             // timer1
             // 

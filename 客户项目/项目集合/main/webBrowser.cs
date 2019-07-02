@@ -34,8 +34,11 @@ namespace main
 
             webBrowser1.Url = new Uri(this.url);
 
-            timer1.Start();
+           // timer1.Start();
             method.SetIE(0);
+
+            this.webBrowser1.ScriptErrorsSuppressed = true;  //屏蔽IE脚本弹出错误
+            this.webBrowser1.DocumentCompleted += webBrowser1_DocumentCompleted;  //屏蔽IE脚本弹出错误
         }
 
         #region 非常重要获取当前存在浏览器的cookie，可以登陆wbbbrowser更新cookie。
@@ -64,20 +67,18 @@ namespace main
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            textBox1.Text =  webBrowser1.Document.Cookie; ;
+            this.webBrowser1.Document.Window.Error += OnWebBrowserDocumentWindowError;
+            textBox1.Text = webBrowser1.Document.Cookie; ;
             cookie = textBox1.Text;
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //textBox1.Text = GetCookies("http://user.shikee.com/seller");
-            //cookie = textBox1.Text;
-            //this.Hide();
-
             textBox1.Text = GetCookies("https://order.jd.com/center/list.action?d=1&s=4096&page=1");
             cookie = textBox1.Text;
             this.Hide();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -85,8 +86,20 @@ namespace main
             webBrowser1.Refresh();
         }
 
-       
+      
+        private void OnWebBrowserDocumentWindowError(object sender, HtmlElementErrorEventArgs e)
+        {
+            e.Handled = true;
+        }
 
+     
+
+      
+
+        private void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+          
+        }
 
     }
 
