@@ -136,6 +136,56 @@ namespace main._2019_6
             
         }
 
+        public void run10()
+        {
+            progressBar1.Value = 0;//设置当前值
+            progressBar1.Step = 1;//设置没次增长多少
+            for (int i = 1; i < 99; i++)
+            {
+
+
+                string URL = "https://dns.aizhan.com/" + textBox1.Text + "/" + i + "/";
+
+                label7.Text = "正在获取第" + i + "页域名信息.....";
+                string html = GetUrl(URL, "utf-8");
+
+                MatchCollection urls = Regex.Matches(html, @"rel=""nofollow"" target=""_blank"">([\s\S]*?)</a>");
+                MatchCollection names = Regex.Matches(html, @"rel=""nofollow"" target=""_blank"">([\s\S]*?)<td class=""title"">([\s\S]*?)</td>");
+                Match Ipaddress = Regex.Match(html, @"<strong class=""red"">([\s\S]*?)<");
+                Match area = Regex.Match(html, @"<strong>([\s\S]*?)<");
+
+                Match count = Regex.Match(html, @"共有 <span class=""red"">([\s\S]*?)</span>"); //总数
+                label8.Text = Ipaddress.Groups[1].Value;
+                label9.Text = area.Groups[1].Value;
+                if (urls.Count == 0)
+                    break;
+                progressBar1.Maximum = Convert.ToInt32(count.Groups[1].Value);//设置最大值
+                for (int j = 0; j < urls.Count; j++)
+                {
+
+                    ListViewItem lv1 = listView3.Items.Add((listView3.Items.Count + 1).ToString()); //使用Listview展示数据         
+                    lv1.SubItems.Add(urls[j].Groups[1].Value);
+                    lv1.SubItems.Add(names[j].Groups[2].Value.Replace("<span>", "").Replace("</span>", "").Trim());
+                    lv1.SubItems.Add(Getstatuscode(urls[j].Groups[1].Value));
+                    Thread.Sleep(200);
+
+
+
+                    progressBar1.Value += progressBar1.Step; //让进度条增加一次
+                }
+            }
+            //for (int a = 0; a < listView1.Items.Count; a++)
+            //{
+            //    listView1.Items[a].SubItems[3].Text = Getstatuscode(listView1.Items[a].SubItems[1].Text);
+            //    Thread.Sleep(1000);
+            //}
+
+
+            label7.Text = textBox1.Text + "抓取结束";
+
+        }
+
+
 
         /// <summary>
         /// C段查询
@@ -200,6 +250,9 @@ namespace main._2019_6
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            listView3.Visible = false;
+            listView1.Visible = true;
+
             #region 通用验证
 
             bool value = false;
@@ -237,6 +290,8 @@ namespace main._2019_6
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            listView3.Visible = false;
+            listView1.Visible = true;
             #region 通用验证
 
             bool value = false;
@@ -274,7 +329,7 @@ namespace main._2019_6
 
         private void button4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Getstatuscode("http://www.acaiji.com"));
+            
 
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
@@ -292,9 +347,10 @@ namespace main._2019_6
         private void listView2_MouseClick(object sender, MouseEventArgs e)
         {
             status = false;
-            listView1.Items.Clear();
+            listView1.Visible = false;
+            listView3.Visible = true;
             textBox1.Text = this.listView2.SelectedItems[0].SubItems[0].Text;
-            Thread thread = new Thread(new ThreadStart(run));
+            Thread thread = new Thread(new ThreadStart(run10));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
 

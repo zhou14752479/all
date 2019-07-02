@@ -285,11 +285,47 @@
     <Compile Include="2019_6\马蜂窝.Designer.cs">
       <DependentUpon>马蜂窝.cs</DependentUpon>
     </Compile>
-    <Compile Include="2019_7\bank.cs">
+    <Compile Include="2019_7\banks\bank.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="2019_7\bank.Designer.cs">
+    <Compile Include="2019_7\banks\bank.Designer.cs">
       <DependentUpon>bank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_7\banks\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\banks\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_7\banks\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\banks\Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_7\banks\Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\banks\Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_7\banks\Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\banks\Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_7\banks\login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\banks\login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_7\banks\select.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\banks\select.Designer.cs">
+      <DependentUpon>select.cs</DependentUpon>
     </Compile>
     <Compile Include="2019_7\books.cs">
       <SubType>Form</SubType>
@@ -424,8 +460,26 @@
     <EmbeddedResource Include="2019_6\马蜂窝.resx">
       <DependentUpon>马蜂窝.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2019_7\bank.resx">
+    <EmbeddedResource Include="2019_7\banks\bank.resx">
       <DependentUpon>bank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\banks\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\banks\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\banks\Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\banks\Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\banks\login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\banks\select.resx">
+      <DependentUpon>select.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_7\books.resx">
       <DependentUpon>books.cs</DependentUpon>

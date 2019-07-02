@@ -8,15 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_7
+namespace main._2019_7.banks
 {
-    public partial class bank : Form
+    public partial class Form4 : Form
     {
-        public bank()
+        public Form4()
         {
             InitializeComponent();
         }
 
-      
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
