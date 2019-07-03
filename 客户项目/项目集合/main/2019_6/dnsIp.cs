@@ -26,6 +26,8 @@ namespace main._2019_6
         }
 
         bool status = true;
+        bool zanting = true;
+        
         public dnsIp()
         {
             InitializeComponent();
@@ -119,9 +121,12 @@ namespace main._2019_6
                     lv1.SubItems.Add(names[j].Groups[2].Value.Replace("<span>","").Replace("</span>","").Trim());
                     lv1.SubItems.Add(Getstatuscode(urls[j].Groups[1].Value));
                     Thread.Sleep(200);
-                   
-                    
-                    
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+
                     progressBar1.Value += progressBar1.Step; //让进度条增加一次
                 }
             }
@@ -169,7 +174,10 @@ namespace main._2019_6
                     lv1.SubItems.Add(Getstatuscode(urls[j].Groups[1].Value));
                     Thread.Sleep(200);
 
-
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
 
                     progressBar1.Value += progressBar1.Step; //让进度条增加一次
                 }
@@ -203,6 +211,10 @@ namespace main._2019_6
                 {
                     ListViewItem lv2 = listView2.Items.Add(duans[0] + "." + duans[1] + "." + duans[2] + "." + a); //使用Listview展示数据         
                     progressBar1.Value += progressBar1.Step; //让进度条增加一次
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
                 }
 
                 for (int i = 0; i < listView2.Items.Count; i++)
@@ -210,6 +222,10 @@ namespace main._2019_6
                     textBox1.Text = listView2.Items[i].SubItems[0].Text;
                     run();
                     Thread.Sleep((Convert.ToInt32(textBox2.Text))*1000);
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
                 }
                 MessageBox.Show("C段IP抓取完成");
 
@@ -367,6 +383,16 @@ namespace main._2019_6
         private void ListView3_MouseClick(object sender, MouseEventArgs e)
         {
             System.Diagnostics.Process.Start("IExplore.exe", this.listView3.SelectedItems[0].SubItems[1].Text);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            zanting = true;
         }
     }
 }
