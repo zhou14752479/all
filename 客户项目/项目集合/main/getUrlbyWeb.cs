@@ -31,6 +31,7 @@ namespace main
         {
             this.webBrowser1.Document.Window.Error += OnWebBrowserDocumentWindowError;
             textBox1.Text = e.Url.ToString();
+            URL = textBox1.Text;
         }
         private void OnWebBrowserDocumentWindowError(object sender, HtmlElementErrorEventArgs e)
         {
@@ -53,6 +54,7 @@ namespace main
         private void Button1_Click(object sender, EventArgs e)
         {
             URL = textBox1.Text;
+            this.Close();
         }
     }
 }

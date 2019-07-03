@@ -130,7 +130,7 @@ namespace main._2019_6
             //    listView1.Items[a].SubItems[3].Text = Getstatuscode(listView1.Items[a].SubItems[1].Text);
             //    Thread.Sleep(1000);
             //}
-          
+            Thread.Sleep((Convert.ToInt32(textBox2.Text)) * 1000);
 
             label7.Text = textBox1.Text+ "抓取结束";
             
@@ -180,7 +180,7 @@ namespace main._2019_6
             //    Thread.Sleep(1000);
             //}
 
-
+            Thread.Sleep((Convert.ToInt32(textBox2.Text)) * 1000);
             label7.Text = textBox1.Text + "抓取结束";
 
         }
@@ -209,7 +209,7 @@ namespace main._2019_6
                 {
                     textBox1.Text = listView2.Items[i].SubItems[0].Text;
                     run();
-                    Thread.Sleep(5000);
+                    Thread.Sleep((Convert.ToInt32(textBox2.Text))*1000);
                 }
                 MessageBox.Show("C段IP抓取完成");
 
@@ -362,6 +362,11 @@ namespace main._2019_6
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;        
 
+        }
+
+        private void ListView3_MouseClick(object sender, MouseEventArgs e)
+        {
+            System.Diagnostics.Process.Start("IExplore.exe", this.listView3.SelectedItems[0].SubItems[1].Text);
         }
     }
 }

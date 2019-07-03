@@ -104,6 +104,11 @@ namespace main._2019_6
                 string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int a = 0; a < text.Length; a++)
                 {
+                    if (getId(text[a]) == "")
+                    {
+                        continue;
+                    }
+
 
                     string URL = "https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0&market=SEHK&stockId=" + getId(text[a]) + "&documentType=-1&fromDate=" + startdate + "&toDate=" + enddate + "&title=&searchType=0&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=9999&lang=zh";
 
@@ -115,6 +120,7 @@ namespace main._2019_6
 
 
                     MatchCollection urls = Regex.Matches(html, @"""FILE_LINK\\"":\\""([\s\S]*?)\\");
+                    MatchCollection shortTitle = Regex.Matches(html, @"""SHORT_TEXT\\"":\\""([\s\S]*?)\\");
                     MatchCollection filenames = Regex.Matches(html, @"""TITLE\\"":\\""([\s\S]*?)\\");
                     textBox2.Text = DateTime.Now.ToShortTimeString() + "正在获取" + text[a] + "的信息" + "\r\n";
                     if (urls.Count > 0)
@@ -126,7 +132,7 @@ namespace main._2019_6
                             lv1.SubItems.Add(dates[j].Groups[1].Value);
                             lv1.SubItems.Add(codes[j].Groups[1].Value);
                             lv1.SubItems.Add(names[j].Groups[1].Value);
-                            lv1.SubItems.Add(filenames[j].Groups[1].Value);
+                            lv1.SubItems.Add(shortTitle[j].Groups[1].Value.Replace("\\u0026#x5b;","").Replace("\\u003cbr/\\u003e","") + filenames[j].Groups[1].Value);
                             lv1.SubItems.Add("https://www1.hkexnews.hk" + urls[j].Groups[1].Value);
                             if (listView1.Items.Count > 2)
                             {

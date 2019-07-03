@@ -157,6 +157,7 @@ namespace main
         /// <param name="url"></param>
         /// <param name="COOKIE"></param>
         /// <returns></returns>
+        /// 
         public static string gethtml(string url, string COOKIE,string charset)
         {
             HttpHelper http = new HttpHelper();
@@ -396,7 +397,7 @@ namespace main
 
         
 
-        #region NPOI导出表格
+            #region NPOI导出表格
         public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
             {
                 int i = 0;
@@ -479,7 +480,7 @@ namespace main
         #endregion
 
 
-        #region  listview导出文本TXT
+            #region  listview导出文本TXT
         public static void ListviewToTxt(ListView listview)
         {
             if (listview.Items.Count == 0)
@@ -518,7 +519,7 @@ namespace main
 
         #endregion
 
-        #region 下载文件
+             #region 下载文件
         /// <summary>
         /// 下载图片
         /// </summary>
@@ -541,7 +542,7 @@ namespace main
 
             #endregion
 
-        #region 获取Mac地址
+             #region 获取Mac地址
             /// <summary>
             /// 获取Mac地址
             /// </summary>
@@ -581,7 +582,7 @@ namespace main
         /// <param name="str"></param>
         /// <returns></returns>
 
-        #region 获取公网IP
+         #region 获取公网IP
         public static string GetIP()
         {
             using (var webClient = new WebClient())
@@ -608,7 +609,7 @@ namespace main
 
 
 
-        #region 获取IP地区
+          #region 获取IP地区
         /// <summary>
         /// 获取IP地区
         /// </summary>

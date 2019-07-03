@@ -221,7 +221,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(37, 24);
             this.textBox2.TabIndex = 49;
-            this.textBox2.Text = "2";
+            this.textBox2.Text = "5";
             // 
             // button4
             // 
@@ -345,6 +345,7 @@
             this.listView3.TabIndex = 50;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
+            this.listView3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView3_MouseClick);
             // 
             // columnHeader6
             // 
@@ -383,8 +384,7 @@
             this.Controls.Add(this.label1);
             this.Name = "dnsIp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "域名/IP查询                                                                     问题联系V" +
-    "X：17606117606";
+            this.Text = "域名/IP查询         ";
             this.Load += new System.EventHandler(this.DnsIp_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

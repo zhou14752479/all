@@ -20,13 +20,27 @@ namespace main._2019_6
             InitializeComponent();
         }
 
+
         private void 图书管理_Load(object sender, EventArgs e)
         {
              this.MaximizeBox = false;
             this.MinimizeBox = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
-        
+
+        public string getpath(string SS)
+        {
+            string COOKIE = "BAIDUID=D5049657ADDEADD6C4D60D7802DC22B4:FG=1; PSTM=1561528830; BIDUPSID=76109653D77CDD2ACB1BF156ACA5E346; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; PANWEB=1; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=1561013992,1561447770,1562142535,1562142895; pan_login_way=1; cflag=13%3A3; BDUSS=mdWVE54dmVHbFRWcTM5VlNJV35oSU13TjdjQ2REUHRyRFhHS0ZBM3BGZVEtRU5kSVFBQUFBJCQAAAAAAAAAAAEAAAD0LrFyxMfE48TYtcTKx87SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJBrHF2QaxxdQ; STOKEN=0d994607324554cdf3bd84bdb2cce4ea68376ca41feed890d39423e94444f3bd; SCRC=8124da518718ac5acbbf73b4e1c4b87f; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=1562143637; PANPSC=11757023105963863571%3A0GmL5sexpYYcpMfV1W1gZjuv496EomYGNgFaXHWhM1y3BOfT0TuZB8OijyEil6yD8ly%2FFujFBf3XSMB6kAfIwEci2O0YbEjpqeApMNr%2BJEQRKbpUZr7ImOnnyISseKY%2FuQgCSNj%2B%2FHlhBaVJALTttqzMPzKymVmsB9A6qWrDKGV2TQaGfItAk1vKX4DMNpv6HhgzMjI7O4rZ81l%2BOzvAFmLRX39ULzx%2Bt2o1MmJi5hZ9bfFV5UX2VQ%3D%3D";
+            string url = "https://pan.baidu.com/api/search?recursion=1&order=time&desc=1&showempty=0&web=1&page=1&num=100&key="+SS+"&t=0.6523770958253432&channel=chunlei&web=1&app_id=250528&bdstoken=48404fb5de446913308370558e82e71a&logid=MTU2MjE0Mzc2Nzk0ODAuNzI5Nzg4MDAyMTAyNjQzNw==&clienttype=0";
+            string html = method.gethtml(url, COOKIE, "utf-8");
+            Match path = Regex.Match(html, @"path"":""([\s\S]*?)""");
+            return "";
+        }
+
+
+
+
+
         public void  run()
         {
             try
@@ -89,6 +103,11 @@ namespace main._2019_6
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
