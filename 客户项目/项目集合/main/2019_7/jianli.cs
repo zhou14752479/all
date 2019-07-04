@@ -196,7 +196,7 @@ namespace main._2019_7
                 }
                 else 
                 {
-                    MessageBox.Show("未激活软件，试用次数已达上限,请激活后使用！");
+                    MessageBox.Show("未激活软件，试用次数已达上限,请激活后使用！联系QQ 583504945");
                 }
               
                 sr.Close();

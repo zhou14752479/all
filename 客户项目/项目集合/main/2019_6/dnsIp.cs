@@ -91,6 +91,7 @@ namespace main._2019_6
         /// </summary>
         public void run()
         {
+           
             progressBar1.Value = 0;//设置当前值
             progressBar1.Step = 1;//设置没次增长多少
             for (int i = 1; i <99; i++)

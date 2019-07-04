@@ -62,16 +62,16 @@ namespace main._2019_6
             {
                 string url = "http://1x2d.win007.com/"+IDS[i]+".js";
                 string strhtml = method.GetUrl(url, "utf-8");
-                Match aaas = Regex.Match(strhtml, @"12bet\|([\s\S]*?)12BET");
-                Match bbbs = Regex.Match(strhtml, @"Mansion88\|([\s\S]*?)明陞");
-                Match cccs = Regex.Match(strhtml, @"Pinnacle\|([\s\S]*?)Pinnacle");
+                Match aaas = Regex.Match(strhtml, @"Bet 365\|([\s\S]*?)bet 365");
+                Match bbbs = Regex.Match(strhtml, @"William Hill\|([\s\S]*?)威廉希尔");
+                //Match cccs = Regex.Match(strhtml, @"Pinnacle\|([\s\S]*?)Pinnacle");
 
                 Match zhu = Regex.Match(strhtml, @"hometeam_cn=""([\s\S]*?)""");
                 Match ke = Regex.Match(strhtml, @"guestteam_cn=""([\s\S]*?)""");
 
                 string[] aaa = aaas.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                 string[] bbb = bbbs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
-                string[] ccc = cccs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
+                //string[] ccc = cccs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                
                 if (aaa.Length > 6)
                 {
@@ -81,7 +81,7 @@ namespace main._2019_6
                         lv1.SubItems.Add(aaa[j]);   //比分
                     }
                     lv1.SubItems.Add(zhu.Groups[1].Value+"："+ke.Groups[1].Value);
-                    lv1.SubItems.Add("12bet");   //比分
+                    lv1.SubItems.Add("Bet 365");   //比分
                 }
                 if (bbb.Length > 6)
                 {
@@ -91,20 +91,11 @@ namespace main._2019_6
                         lv1.SubItems.Add(bbb[j]);   //比分
                     }
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("明陞");   //比分
+                    lv1.SubItems.Add("威廉希尔(英国)");   //比分
 
                 }
-                if (ccc.Length > 6)
-                {
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
-                    for (int j = 0; j < 7; j++)
-                    {
-                        lv1.SubItems.Add(ccc[j]);   //比分
-                    }
-                    lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("Pinnacle");   //比分
-                }
-                if (ccc.Length > 6 || aaa.Length > 6|| bbb.Length > 6)
+               
+                if ( aaa.Length > 6|| bbb.Length > 6)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据  
                     for (int j = 0; j < 9; j++)
