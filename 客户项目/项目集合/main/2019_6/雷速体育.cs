@@ -82,6 +82,10 @@ namespace main._2019_6
                 
                 MatchCollection ids = Regex.Matches(weihtml.Groups[1].Value, @"<li class=""list-item list-item-([\s\S]*?) ");
 
+
+                MatchCollection scores = Regex.Matches(weihtml.Groups[1].Value, @"<div class=""float-left col-4"">([\s\S]*?)</div>");
+
+
                 ArrayList lists = new ArrayList();
 
                 foreach (Match id in ids)

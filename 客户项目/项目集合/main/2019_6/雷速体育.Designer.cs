@@ -105,8 +105,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label10);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.textBox6);
-            this.splitContainer1.Size = new System.Drawing.Size(523, 364);
-            this.splitContainer1.SplitterDistance = 240;
+            this.splitContainer1.Size = new System.Drawing.Size(523, 383);
+            this.splitContainer1.SplitterDistance = 252;
             this.splitContainer1.TabIndex = 9;
             // 
             // listView1
@@ -121,7 +121,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(523, 240);
+            this.listView1.Size = new System.Drawing.Size(523, 252);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -349,7 +349,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 364);
+            this.ClientSize = new System.Drawing.Size(523, 383);
             this.Controls.Add(this.splitContainer1);
             this.Name = "雷速体育";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

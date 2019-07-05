@@ -68,7 +68,7 @@ namespace main._2019_7
                         lv1.SubItems.Add(sb.ToString());
                        
 
-                        method.downloadFile(pics[j].Groups[1].Value, path , titles[j].Groups[1].Value.Replace(":","").Replace(",","") + ".jpg");
+                        method.downloadFile(pics[j].Groups[1].Value, path , titles[j].Groups[1].Value.Replace(":","").Replace(",","").Replace("\\", "").Replace("/", "").Replace(".", "") + ".jpg");
 
                     }
 
