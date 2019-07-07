@@ -72,17 +72,6 @@ namespace main._2019_6
                 string[] aaa = aaas.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                 string[] bbb = bbbs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                 //string[] ccc = cccs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
-               
-                if (aaa.Length > 6)
-                {
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
-                    for (int j = 0; j < 7; j++)
-                    {       
-                        lv1.SubItems.Add(aaa[j]);   //比分
-                    }
-                    lv1.SubItems.Add(zhu.Groups[1].Value+"："+ke.Groups[1].Value);
-                    lv1.SubItems.Add("Bet 365");   //比分
-                }
                 if (bbb.Length > 6)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
@@ -94,6 +83,17 @@ namespace main._2019_6
                     lv1.SubItems.Add("威廉希尔(英国)");   //比分
 
                 }
+                if (aaa.Length > 6)
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                    for (int j = 0; j < 7; j++)
+                    {       
+                        lv1.SubItems.Add(aaa[j]);   //比分
+                    }
+                    lv1.SubItems.Add(zhu.Groups[1].Value+"："+ke.Groups[1].Value);
+                    lv1.SubItems.Add("Bet 365");   //比分
+                }
+               
                
                 if ( aaa.Length > 6|| bbb.Length > 6)
                 {

@@ -83,8 +83,6 @@ namespace main._2019_6
                 MatchCollection ids = Regex.Matches(weihtml.Groups[1].Value, @"<li class=""list-item list-item-([\s\S]*?) ");
 
 
-                MatchCollection scores = Regex.Matches(weihtml.Groups[1].Value, @"<div class=""float-left col-4"">([\s\S]*?)</div>");
-
 
                 ArrayList lists = new ArrayList();
 
@@ -136,11 +134,74 @@ namespace main._2019_6
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
 
 
         }
+
+
+        public void run1()
+        {
+           
+                try
+                {
+                    string URL = "https://live.leisu.com/lanqiu";
+
+                    string html = GetUrl(URL, "utf-8");
+
+                    Match weihtml = Regex.Match(html, @"html([\s\S]*?)未开始");
+
+
+                    MatchCollection ids = Regex.Matches(weihtml.Groups[1].Value, @"<li class=""list-item list-item-([\s\S]*?) ");
+
+
+                    MatchCollection scores = Regex.Matches(weihtml.Groups[1].Value, @"<div class=""float-left col-4"">([\s\S]*?)</div>");
+
+
+
+                    for (int a = 1; 12*a-2 < scores.Count; a++)
+                    {
+
+                        int x = Convert.ToInt32(scores[12* a -8].Groups[1].Value) + Convert.ToInt32(scores[12*a-4].Groups[1].Value);
+                        int y = Convert.ToInt32(scores[12 * a - 7].Groups[1].Value) + Convert.ToInt32(scores[12 * a -3].Groups[1].Value);
+                        int z = Convert.ToInt32(scores[12 * a - 6].Groups[1].Value) + Convert.ToInt32(scores[12 * a -2].Groups[1].Value);
+
+
+                        ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据         
+
+                        lv2.SubItems.Add(x.ToString());
+                        lv2.SubItems.Add(y.ToString());
+                        lv2.SubItems.Add(z.ToString());
+
+                    if (x<20|x>50)
+                    {
+                        sendEmail.send(textBox3.Text, "雷速体育提醒", "第一节的比赛达到比分设定值！");
+
+                    }
+                    if (y < 20 | y > 50)
+                    {
+                        sendEmail.send(textBox3.Text, "雷速体育提醒", "第一节的比赛达到比分设定值！");
+
+                    }
+                    if (z < 20 |z> 50)
+                    {
+                        sendEmail.send(textBox3.Text, "雷速体育提醒", "第一节的比赛达到比分设定值！");
+
+                    }
+
+
+                }
+                }
+            catch (Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+
+        }
+
 
         public void jiankong()
         {
@@ -165,10 +226,30 @@ namespace main._2019_6
 
         private void button1_Click(object sender, EventArgs e)
         {
-            button1.Text = "监控已开启";
-            button1.Enabled = false;
-            timer1.Interval = (Convert.ToInt32(textBox2.Text)) * 1000;
-            timer1.Start();
+            if (checkBox1.Checked == true)
+            {
+                button1.Text = "监控已开启";
+                button1.Enabled = false;
+                timer1.Interval = (Convert.ToInt32(textBox2.Text)) * 1000;
+                timer1.Start();
+
+            }
+
+            else if (checkBox2.Checked == true)
+            {
+                button1.Text = "监控已开启";
+                button1.Enabled = false;
+                timer2.Interval = (Convert.ToInt32(textBox2.Text)) * 1000;
+                timer2.Start();
+
+            }
+
+            else
+            {
+                MessageBox.Show("请选择需要监控的比赛！");
+            }
+
+
 
 
         }
@@ -182,6 +263,11 @@ namespace main._2019_6
             thread.Start();
         }
 
-        
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(run1));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
+        }
     }
 }

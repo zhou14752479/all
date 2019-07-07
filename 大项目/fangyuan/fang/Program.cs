@@ -20,7 +20,7 @@ namespace fang.临时软件
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 大学录取());
+                Application.Run(new 美团酒店());
 
             //}
             //catch (Exception ex)

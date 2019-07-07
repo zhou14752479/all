@@ -33,14 +33,14 @@ namespace main._2019_7
             try
             {
 
-                for (int i = 1; i <51; i++)
+                for (int i = 4; i <51; i++)
                 {
 
                     label3.Text = "正在抓取第" + i + "页" + "........";
 
-                          string Url = getUrlbyWeb.URL+ "?page="+i;
+                       string Url = getUrlbyWeb.URL+ "?page="+i;
 
-
+                   
                     string html = method.gethtml(Url, "", "gb2312");
                     if (html == null)
                         break;
@@ -50,7 +50,7 @@ namespace main._2019_7
                     MatchCollection prices = Regex.Matches(html, @"<li class='product-search-result__price'>([\s\S]*?)</li>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                     MatchCollection pics = Regex.Matches(html, @"<img class=""product-cover__image"" alt="""" src=""([\s\S]*?)width", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                  
-                    for (int j = 0; j < titles.Count; j++)
+                    for (int j = 0; j <authers.Count; j++)
 
                     {
                         MatchCollection price = Regex.Matches(prices[j].Groups[1].Value, @"student_price&quot;:&quot;([\s\S]*?)&", RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -66,9 +66,12 @@ namespace main._2019_7
                             sb.Append(price[a].Groups[1].Value+"，");
                         }
                         lv1.SubItems.Add(sb.ToString());
-                       
 
-                        method.downloadFile(pics[j].Groups[1].Value, path , titles[j].Groups[1].Value.Replace(":","").Replace(",","").Replace("\\", "").Replace("/", "").Replace(".", "") + ".jpg");
+                        if (titles[j].Groups[1].Value.Length < 248)
+                        {
+                            method.downloadFile(pics[j].Groups[1].Value, path, titles[j].Groups[1].Value.Replace(":", "").Replace(",", "").Replace("\\", "").Replace("/", "").Replace(".", "").Replace("*", "").Replace("?", "").Replace("|", "").Replace(">", "").Replace("<", "").Replace("\"", "") + ".jpg");
+
+                        }
 
                     }
 
