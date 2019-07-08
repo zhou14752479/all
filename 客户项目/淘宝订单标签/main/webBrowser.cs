@@ -71,6 +71,8 @@ namespace main
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
+            textBox1.Text = GetCookies(this.url);
+            cookie = textBox1.Text;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

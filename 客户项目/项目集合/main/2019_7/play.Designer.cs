@@ -235,6 +235,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1022, 635);
             this.Controls.Add(this.skinButton11);
             this.Controls.Add(this.skinButton9);
@@ -247,9 +248,10 @@
             this.Controls.Add(this.skinButton3);
             this.Controls.Add(this.skinButton2);
             this.Controls.Add(this.skinButton1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "play";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "play";
+            this.Text = "视频软件";
             this.Load += new System.EventHandler(this.Play_Load);
             this.ResumeLayout(false);
 

@@ -67,7 +67,12 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -229,7 +234,7 @@
             this.skinButton5.BorderColor = System.Drawing.Color.Silver;
             this.skinButton5.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton5.DownBack = null;
-            this.skinButton5.Location = new System.Drawing.Point(530, 63);
+            this.skinButton5.Location = new System.Drawing.Point(561, 63);
             this.skinButton5.MouseBack = null;
             this.skinButton5.Name = "skinButton5";
             this.skinButton5.NormlBack = null;
@@ -335,7 +340,7 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(84, 66);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(121, 21);
+            this.textBox4.Size = new System.Drawing.Size(102, 21);
             this.textBox4.TabIndex = 12;
             this.textBox4.Text = "1000";
             // 
@@ -355,7 +360,7 @@
             this.skinButton4.BorderColor = System.Drawing.Color.Silver;
             this.skinButton4.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton4.DownBack = null;
-            this.skinButton4.Location = new System.Drawing.Point(407, 63);
+            this.skinButton4.Location = new System.Drawing.Point(449, 63);
             this.skinButton4.MouseBack = null;
             this.skinButton4.Name = "skinButton4";
             this.skinButton4.NormlBack = null;
@@ -372,7 +377,7 @@
             this.skinButton3.BorderColor = System.Drawing.Color.Silver;
             this.skinButton3.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton3.DownBack = null;
-            this.skinButton3.Location = new System.Drawing.Point(530, 24);
+            this.skinButton3.Location = new System.Drawing.Point(561, 24);
             this.skinButton3.MouseBack = null;
             this.skinButton3.Name = "skinButton3";
             this.skinButton3.NormlBack = null;
@@ -389,7 +394,7 @@
             this.skinButton2.BorderColor = System.Drawing.Color.Silver;
             this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton2.DownBack = null;
-            this.skinButton2.Location = new System.Drawing.Point(407, 24);
+            this.skinButton2.Location = new System.Drawing.Point(449, 24);
             this.skinButton2.MouseBack = null;
             this.skinButton2.Name = "skinButton2";
             this.skinButton2.NormlBack = null;
@@ -412,7 +417,7 @@
             "1周内"});
             this.comboBox1.Location = new System.Drawing.Point(84, 33);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.Size = new System.Drawing.Size(102, 20);
             this.comboBox1.TabIndex = 7;
             this.comboBox1.Text = "1小时内";
             // 
@@ -429,6 +434,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.button3);
+            this.splitContainer1.Panel2.Controls.Add(this.button2);
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton7);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton6);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton5);
@@ -511,6 +520,26 @@
             this.columnHeader2.Text = "ID";
             this.columnHeader2.Width = 200;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(340, 66);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 23);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "下载全部";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(340, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "下载选中项";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -519,6 +548,23 @@
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 6;
             this.label5.Text = "时间设置：";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(222, 66);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(103, 23);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "选择保存地址";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(223, 36);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(102, 21);
+            this.textBox2.TabIndex = 27;
             // 
             // 百家号视频
             // 
@@ -593,5 +639,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button3;
     }
 }

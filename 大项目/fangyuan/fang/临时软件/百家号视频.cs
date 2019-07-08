@@ -316,5 +316,81 @@ namespace fang.临时软件
         {
             status = false;
         }
+        /// <summary>
+        /// 下载
+        /// </summary>
+        public void down()
+        {
+            foreach (ListViewItem item in listView2.SelectedItems)
+            {
+                string path = textBox2.Text + "\\";
+                string url = item.SubItems[4].Text;
+                string name = item.SubItems[1].Text;
+                method.downloadFile(url, path, name + ".mp4", "");
+            }
+            MessageBox.Show("下载完成");
+        }
+
+        public void down1()
+        {
+            foreach (ListViewItem item in listView2.Items)
+            {
+                string path = textBox2.Text+"\\";
+                string url = item.SubItems[4].Text;
+                string name = item.SubItems[1].Text;
+                method.downloadFile(url, path, name + ".mp4", "");
+            }
+
+            MessageBox.Show("下载完成");
+        }
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("请选择保存地址");
+                return;
+            }
+            if (listView2.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("请选择下载项");
+                return;
+            }
+            Thread thread = new Thread(new ThreadStart(down));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
+
+         
+           
+         
+        }
+
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("请选择保存地址");
+                return;
+            }
+            if (listView2.Items.Count == 0)
+            {
+                MessageBox.Show("无下载项");
+                return;
+            }
+            Thread thread = new Thread(new ThreadStart(down1));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
+
+            
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            bool flag = this.folderBrowserDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                this.textBox2.Text = this.folderBrowserDialog1.SelectedPath;
+            }
+        }
     }
 }

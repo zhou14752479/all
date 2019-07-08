@@ -39,9 +39,9 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button3 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -188,6 +188,16 @@
             this.columnHeader2.Text = "链接";
             this.columnHeader2.Width = 1000;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(31, 59);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(128, 30);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "清空链接";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -208,16 +218,6 @@
             this.button1.Text = "导出全部链接";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(31, 59);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 30);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "清空链接";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // 点击获取链接
             // 

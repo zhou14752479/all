@@ -16,7 +16,7 @@ namespace main._2019_7
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 浏览器采集());
+            Application.Run(new play());
         }
     }
 }

@@ -23,7 +23,7 @@ namespace main._2019_7
             this.MinimizeBox = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
-        string path = AppDomain.CurrentDomain.BaseDirectory+"\\config\\";
+        string path = AppDomain.CurrentDomain.BaseDirectory+ "\\config\\";
 
         private void SkinButton1_Click(object sender, EventArgs e)
         {       

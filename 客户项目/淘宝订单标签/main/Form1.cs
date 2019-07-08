@@ -62,7 +62,7 @@ namespace main
 
 
 
-        public static string COOKIE = "uab_collina=155841531117990759884066; miid=1280586377935732790; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; t=549c883cd0d96a2361709464aafc2ef7; tg=0; hng=CN%7Czh-CN%7CCNY%7C156; _bl_uid=njj6hv4Xl4aqL0q7entvuUh8gtbv; enc=%2F%2B%2BMghI4XSh%2FGHJNSwgjpPsLgt0%2BE%2F%2BXQEBwokzOKQE3HkzETF8JiGAwWPNxItQwJOaD6V%2BBli0Wo0CeeA2X%2Fw%3D%3D; _cc_=VFC%2FuZ9ajQ%3D%3D; mt=ci=0_0; cookie2=1a0167481cba99d744fbe947d615133c; _tb_token_=f735731f58ee4; x=3217048383; uc3=id2=&nk2=&lg2=; skt=2db91d75324a2e81; sn=%E9%B8%BF%E5%B0%8A%E9%80%9A%E4%BF%A1%E4%B8%93%E8%90%A5%E5%BA%97%3A%E7%A7%8B%E6%99%B4; unb=3870257178; tracknick=; csg=e8f9d9aa; v=0; _m_h5_tk=75fb26a6c7caaac16cbcabdc81aa5499_1559800223244; _m_h5_tk_enc=bea8cc0d3e74c5fc568e6f9c10dd9196; uc1=cookie14=UoTZ7Y3ZiZKNlQ%3D%3D&lng=zh_CN; l=bBO_rJlcvvQT9vasBOfwquIRGn7TmQObzsPzw4gGrICP935XLjlfWZTTkzLWC3GVa6e2J3oWYJ1uBATT4yUIh; isg=BHV1LNS1Rczrr6Fw4FHppGiGhPHvWiFwq203LPeZOuxLzpfAvkDf1AMMGNLdjkG8";
+        public static string COOKIE = "t=792ea994957bef8e4a71539f91876594; tg=0; _m_h5_tk=80b9d40156f454dcf701dfcad347c4ef_1562227700260; _m_h5_tk_enc=5e99c10aec1a43efcffd88a184daf3ca; thw=cn; _cc_=UtASsssmfA%3D%3D; cookie2=1e8205cf8c8f6ed20bdad5fc8418df4c; _tb_token_=5758e797758e8; mt=ci=0_0; x=2992737907; uc3=id2=&nk2=&lg2=; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E5%85%A8%E8%87%AA%E5%8A%A8%E5%AF%BC%E8%B4%AD01; unb=3300260619; tracknick=; cna=8QJMFUu4DhACATFZv2JYDtwd; _bl_uid=10jnOxj9tagx5qodm8jwuOwx3FX0; skt=09efb2d4079ea14b; csg=f2fb0d75; v=0; uc1=cookie14=UoTaGqj6bYDcrA%3D%3D&lng=zh_CN; l=cB_Zr19mqxALdELEBOfNVQhfh87O5IOb8sPP2FyMGICP_-fp7jSNWZn29_T9CnGVLsCDJ3oWYJ1uBu87ty4el8pnv6n7oc-C.; isg=BK6u9Pltf7ta64tf73Kiz3eu_wTcu3ir3Lgc-dh2aLF4u08VQTvbuH35c2fyY2rB";
         #region POST请求
         /// <summary>
         /// POST请求
@@ -168,55 +168,68 @@ namespace main
                     for (int j = 0; j < IDs.Count; j++)
                     {
 
-                        if (!Directory.Exists(path+ IDs[j].Groups[1].Value))
-                        {
-                            Directory.CreateDirectory(path+IDs[j].Groups[1].Value); //创建文件夹
-                        }
+                       
                         string strhtml = GetUrl("https://trade.tmall.com/detail/orderDetail.htm?bizOrderId=" + IDs[j].Groups[1].Value, COOKIE);
 
-                        MatchCollection xs = Regex.Matches(strhtml, @"\[{""text"":""([\s\S]*?)""");
-                        Match card = Regex.Match(strhtml, @"名""}\,{""content"":\[{""text"":""([\s\S]*?)""");
-
-                        string pichtml = GetUrl("https://wt.taobao.com/trade/order/detail_info.do?m=Query&order_id=" + IDs[j].Groups[1].Value + "&mds=authPics,realName,certNo&_input_charset=UTF-8&callback=jsonp22", COOKIE);
-
-                        MatchCollection pics = Regex.Matches(pichtml, @"url"":""([\s\S]*?)""");
-                        Match name = Regex.Match(pichtml, @"realName"":""([\s\S]*?)""");
-
-                        if (textBox3.Text == "")
+                        if (!strhtml.Contains("备忘："))
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(IDs[j].Groups[1].Value);
-                            lv1.SubItems.Add(bianmas[j].Groups[1].Value);
-                            lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
-                            lv1.SubItems.Add(times[j].Groups[1].Value);
-                            lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
-                            lv1.SubItems.Add(xs[0].Groups[1].Value);
-                            lv1.SubItems.Add(xs[1].Groups[1].Value);
-                            lv1.SubItems.Add(name.Groups[1].Value);
-                            lv1.SubItems.Add(card.Groups[1].Value);
+                            MatchCollection xs = Regex.Matches(strhtml, @"\[{""text"":""([\s\S]*?)""");
+                            Match card = Regex.Match(strhtml, @"名""}\,{""content"":\[{""text"":""([\s\S]*?)""");
 
-                            for (int z = 0; z< pics.Count; z++)
+                            string pichtml = GetUrl("https://wt.taobao.com/trade/order/detail_info.do?m=Query&order_id=" + IDs[j].Groups[1].Value + "&mds=authPics,realName,certNo&_input_charset=UTF-8&callback=jsonp22", COOKIE);
+
+                            MatchCollection pics = Regex.Matches(pichtml, @"url"":""([\s\S]*?)""");
+                            Match name = Regex.Match(pichtml, @"realName"":""([\s\S]*?)""");
+
+                            if (textBox3.Text == "无")
                             {
-                                method.downloadFile(pics[z].Groups[1].Value, path+IDs[j].Groups[1].Value+"\\", name.Groups[1].Value + z + ".jpg");
-                            }
-                        }
-                        else if (bianmas[j].Groups[1].Value == textBox3.Text.Trim())
-                        {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(IDs[j].Groups[1].Value);
-                            lv1.SubItems.Add(bianmas[j].Groups[1].Value);
-                            lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
-                            lv1.SubItems.Add(times[j].Groups[1].Value);
-                            lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
-                            lv1.SubItems.Add(xs[0].Groups[1].Value);
-                            lv1.SubItems.Add(xs[1].Groups[1].Value);
-                            lv1.SubItems.Add(name.Groups[1].Value);
-                            lv1.SubItems.Add(card.Groups[1].Value);
-                        }
+                                if (!Directory.Exists(path + IDs[j].Groups[1].Value))
+                                {
+                                    Directory.CreateDirectory(path + "图片\\" + textBox3.Text + "\\" + IDs[j].Groups[1].Value); //创建文件夹
+                                }
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(IDs[j].Groups[1].Value);
+                                lv1.SubItems.Add(bianmas[j].Groups[1].Value);
+                                lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
+                                lv1.SubItems.Add(times[j].Groups[1].Value);
+                                lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
+                                lv1.SubItems.Add(xs[0].Groups[1].Value);
+                                lv1.SubItems.Add(xs[1].Groups[1].Value);
+                                lv1.SubItems.Add(name.Groups[1].Value);
+                                lv1.SubItems.Add(card.Groups[1].Value);
 
+                                for (int z = 0; z < pics.Count; z++)
+                                {
+                                    method.downloadFile(pics[z].Groups[1].Value, path+"图片\\"+textBox3.Text+"\\" + IDs[j].Groups[1].Value + "\\", name.Groups[1].Value + z + ".jpg");
+                                }
+                            }
+                            else if (bianmas[j].Groups[1].Value == textBox3.Text.Trim())
+                            {
+                                if (!Directory.Exists(path + "图片\\" + textBox3.Text + "\\" + IDs[j].Groups[1].Value))
+                                {
+                                    Directory.CreateDirectory(path + IDs[j].Groups[1].Value); //创建文件夹
+                                }
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(IDs[j].Groups[1].Value);
+                                lv1.SubItems.Add(bianmas[j].Groups[1].Value);
+                                lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
+                                lv1.SubItems.Add(times[j].Groups[1].Value);
+                                lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
+                                lv1.SubItems.Add(xs[0].Groups[1].Value);
+                                lv1.SubItems.Add(xs[1].Groups[1].Value);
+                                lv1.SubItems.Add(name.Groups[1].Value);
+                                lv1.SubItems.Add(card.Groups[1].Value);
+                                for (int z = 0; z < pics.Count; z++)
+                                {
+                                    method.downloadFile(pics[z].Groups[1].Value, path + "图片\\" + textBox3.Text + "\\" + IDs[j].Groups[1].Value + "\\", name.Groups[1].Value + z + ".jpg");
+                                }
+                            }
+
+                            biaoji(IDs[j].Groups[1].Value,textBox4.Text);
+                        }
+                        Thread.Sleep(100);
 
                     }
-                    Thread.Sleep(100);
                 }
 
              }
@@ -224,11 +237,21 @@ namespace main
             
             catch (System.Exception ex)
             {
-              MessageBox.Show(  ex.ToString());
+              ex.ToString();
             }
         }
 
 
+
+        public void biaoji(string orderid,string text)
+        {
+            string gb2312text= System.Web.HttpUtility.UrlEncode(text, Encoding.GetEncoding("GB2312")); 
+            string url = "https://trade.taobao.com/trade/memo/update_sell_memo.htm?spm=a1z09.1.0.0.15c636065NK8kq&seller_id=2992737907&biz_order_id="+ orderid + "&user_type=1&pageNum=1&auctionTitle=null&dateBegin=0&dateEnd=0&commentStatus=&buyerNick=&auctionStatus=PAID&logisticsService=";
+           COOKIE = textBox1.Text;
+           string postdata = "_tb_token_=5758e797758e8&event_submit_do_query=1&action=memo%2FUpdateSellMemoAction&user_type=1&pageNum=1&auctionTitle=&dateBegin=0&dateEnd=0&commentStatus=&buyerNick=&auctionStatus=PAID&returnUrl=&logisticsService=&from_flag=&biz_order_id="+orderid+"&flag=3&memo="+gb2312text;
+         label8.Text= PostUrl(url,postdata);
+
+        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -296,6 +319,7 @@ namespace main
 
         private void button7_Click(object sender, EventArgs e)
         {
+            
             listView1.Items.Clear();
         }
     }
