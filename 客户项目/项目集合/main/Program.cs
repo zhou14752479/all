@@ -16,7 +16,7 @@ namespace main._2019_7
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new play());
+            Application.Run(new play1());
         }
     }
 }

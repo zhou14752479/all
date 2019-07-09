@@ -183,9 +183,9 @@ namespace main
 
                             if (textBox3.Text == "无")
                             {
-                                if (!Directory.Exists(path + IDs[j].Groups[1].Value))
+                                if (!Directory.Exists(path + bianmas[j].Groups[1].Value))
                                 {
-                                    Directory.CreateDirectory(path + "图片\\" + textBox3.Text + "\\" + IDs[j].Groups[1].Value); //创建文件夹
+                                    Directory.CreateDirectory(path + "图片\\" + bianmas[j].Groups[1].Value + "\\" + IDs[j].Groups[1].Value); //创建文件夹
                                 }
                                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                                 lv1.SubItems.Add(IDs[j].Groups[1].Value);
@@ -193,14 +193,29 @@ namespace main
                                 lv1.SubItems.Add(Unicode2String(taocans[j].Groups[1].Value));
                                 lv1.SubItems.Add(times[j].Groups[1].Value);
                                 lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
-                                lv1.SubItems.Add(xs[0].Groups[1].Value);
+                               // lv1.SubItems.Add(xs[0].Groups[1].Value);
                                 lv1.SubItems.Add(xs[1].Groups[1].Value);
                                 lv1.SubItems.Add(name.Groups[1].Value);
                                 lv1.SubItems.Add(card.Groups[1].Value);
 
+                                string[] text = xs[0].Groups[1].Value.Split(new string[]{" "}, StringSplitOptions.None);
+                                MessageBox.Show(text[0]);
+                                string[] names = text[0].Split(new string[] { "," }, StringSplitOptions.None);
+                                MessageBox.Show(names[2]);
+                                lv1.SubItems.Add(names[0]);
+                                lv1.SubItems.Add(names[1]);
+                                lv1.SubItems.Add(names[2]);
+                                lv1.SubItems.Add(text[1]);
+                                lv1.SubItems.Add(text[2]);
+                                lv1.SubItems.Add(text[3]);
+                                lv1.SubItems.Add(text[4]);
+
+
+
+
                                 for (int z = 0; z < pics.Count; z++)
                                 {
-                                    method.downloadFile(pics[z].Groups[1].Value, path+"图片\\"+textBox3.Text+"\\" + IDs[j].Groups[1].Value + "\\", name.Groups[1].Value + z + ".jpg");
+                                    method.downloadFile(pics[z].Groups[1].Value, path+"图片\\"+ bianmas[j].Groups[1].Value + "\\" + IDs[j].Groups[1].Value + "\\", name.Groups[1].Value + z + ".jpg");
                                 }
                             }
                             else if (bianmas[j].Groups[1].Value == textBox3.Text.Trim())
@@ -237,7 +252,7 @@ namespace main
             
             catch (System.Exception ex)
             {
-              ex.ToString();
+             ex.ToString();
             }
         }
 
@@ -245,10 +260,14 @@ namespace main
 
         public void biaoji(string orderid,string text)
         {
+
+
             string gb2312text= System.Web.HttpUtility.UrlEncode(text, Encoding.GetEncoding("GB2312")); 
             string url = "https://trade.taobao.com/trade/memo/update_sell_memo.htm?spm=a1z09.1.0.0.15c636065NK8kq&seller_id=2992737907&biz_order_id="+ orderid + "&user_type=1&pageNum=1&auctionTitle=null&dateBegin=0&dateEnd=0&commentStatus=&buyerNick=&auctionStatus=PAID&logisticsService=";
            COOKIE = textBox1.Text;
-           string postdata = "_tb_token_=5758e797758e8&event_submit_do_query=1&action=memo%2FUpdateSellMemoAction&user_type=1&pageNum=1&auctionTitle=&dateBegin=0&dateEnd=0&commentStatus=&buyerNick=&auctionStatus=PAID&returnUrl=&logisticsService=&from_flag=&biz_order_id="+orderid+"&flag=3&memo="+gb2312text;
+            Match token = Regex.Match(COOKIE, @"_tb_token_=([\s\S]*?);");
+
+            string postdata = "_tb_token_="+token.Groups[1].Value+"&event_submit_do_query=1&action=memo%2FUpdateSellMemoAction&user_type=1&pageNum=1&auctionTitle=&dateBegin=0&dateEnd=0&commentStatus=&buyerNick=&auctionStatus=PAID&returnUrl=&logisticsService=&from_flag=&biz_order_id="+orderid+"&flag=3&memo=" + gb2312text;
          label8.Text= PostUrl(url,postdata);
 
         }
@@ -287,6 +306,7 @@ namespace main
 
         private void button1_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("点击了开始");
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
@@ -309,7 +329,7 @@ namespace main
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Button6_Click(object sender, EventArgs e)
@@ -321,6 +341,16 @@ namespace main
         {
             
             listView1.Items.Clear();
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GroupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

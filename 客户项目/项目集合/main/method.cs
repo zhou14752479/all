@@ -192,7 +192,7 @@ namespace main
 
         }
 
-             #region ！！！！如果之前的请求获取不到源码就用这个去获取,非常重要！！！！
+            #region ！！！！如果之前的请求获取不到源码就用这个去获取,非常重要！！！！
         public static string GetHtmlSource(string url,string charset)
             {
                 try
