@@ -443,7 +443,7 @@
             // 
             // columnHeader11
             // 
-            this.columnHeader11.Text = "姓名";
+            this.columnHeader11.Text = "名字";
             // 
             // columnHeader12
             // 

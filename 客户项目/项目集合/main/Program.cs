@@ -16,7 +16,7 @@ namespace main._2019_7
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new play1());
+            Application.Run(new 搜索竞价());
         }
     }
 }

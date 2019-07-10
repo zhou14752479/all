@@ -186,12 +186,42 @@ namespace fang
 
         private void skinButton2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10; i++)
+            #region 通用验证
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
             {
-                Thread thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
+                if (ip.Groups[1].Value.Trim() == localip)
+                {
+                    value = true;
+                    break;
+                }
+
             }
+            if (value == true)
+            {
+                status = false;
+                listView1.Items.Clear();
+                for (int i = 0; i < 10; i++)
+                {
+                    Thread thread = new Thread(new ThreadStart(run));
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    thread.Start();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("IP不符");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+            }
+            #endregion
+
+           
         }
 
         private void skinButton4_Click(object sender, EventArgs e)

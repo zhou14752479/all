@@ -62,7 +62,7 @@ namespace main._2019_6
             {
                 string url = "http://1x2d.win007.com/"+IDS[i]+".js";
                 string strhtml = method.GetUrl(url, "utf-8");
-                Match aaas = Regex.Match(strhtml, @"Bet 365\|([\s\S]*?)bet 365");
+                Match aaas = Regex.Match(strhtml, @"Interwetten\|([\s\S]*?)Interwetten");
                 Match bbbs = Regex.Match(strhtml, @"William Hill\|([\s\S]*?)威廉希尔");
                 //Match cccs = Regex.Match(strhtml, @"Pinnacle\|([\s\S]*?)Pinnacle");
 
@@ -77,10 +77,10 @@ namespace main._2019_6
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                     for (int j = 0; j < 7; j++)
                     {
-                        lv1.SubItems.Add(bbb[j]);   //比分
+                        lv1.SubItems.Add(aaa[j]);   //比分
                     }
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("威廉希尔(英国)");   //比分
+                    lv1.SubItems.Add("Interwetten(塞浦路斯)");   //比分
 
                 }
                 if (aaa.Length > 6)
@@ -88,10 +88,11 @@ namespace main._2019_6
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                     for (int j = 0; j < 7; j++)
                     {       
-                        lv1.SubItems.Add(aaa[j]);   //比分
+                        lv1.SubItems.Add(bbb[j]);   //比分
                     }
                     lv1.SubItems.Add(zhu.Groups[1].Value+"："+ke.Groups[1].Value);
-                    lv1.SubItems.Add("Bet 365");   //比分
+                    lv1.SubItems.Add("威廉希尔(英国)");   //比分
+
                 }
                
                

@@ -107,7 +107,7 @@ namespace main
 
         string path = AppDomain.CurrentDomain.BaseDirectory;
 
-
+        bool zanting = true;
 
 
         public static string getToken()
@@ -199,9 +199,9 @@ namespace main
                                 lv1.SubItems.Add(card.Groups[1].Value);
 
                                 string[] text = xs[0].Groups[1].Value.Split(new string[]{" "}, StringSplitOptions.None);
-                                MessageBox.Show(text[0]);
+                               
                                 string[] names = text[0].Split(new string[] { "," }, StringSplitOptions.None);
-                                MessageBox.Show(names[2]);
+                               
                                 lv1.SubItems.Add(names[0]);
                                 lv1.SubItems.Add(names[1]);
                                 lv1.SubItems.Add(names[2]);
@@ -211,11 +211,14 @@ namespace main
                                 lv1.SubItems.Add(text[4]);
 
 
-
-
                                 for (int z = 0; z < pics.Count; z++)
                                 {
                                     method.downloadFile(pics[z].Groups[1].Value, path+"图片\\"+ bianmas[j].Groups[1].Value + "\\" + IDs[j].Groups[1].Value + "\\", name.Groups[1].Value + z + ".jpg");
+                                }
+                                while (this.zanting == false)
+                                {
+                                    label1.Text = "已暂停....";
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
                             }
                             else if (bianmas[j].Groups[1].Value == textBox3.Text.Trim())
@@ -237,6 +240,11 @@ namespace main
                                 for (int z = 0; z < pics.Count; z++)
                                 {
                                     method.downloadFile(pics[z].Groups[1].Value, path + "图片\\" + textBox3.Text + "\\" + IDs[j].Groups[1].Value + "\\", name.Groups[1].Value + z + ".jpg");
+                                }
+                                while (this.zanting == false)
+                                {
+                                    label1.Text = "已暂停....";
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
                             }
 
@@ -323,13 +331,13 @@ namespace main
         private void button5_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(getToken());
-          
+            zanting = false;
            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            zanting = false;
         }
 
         private void Button6_Click(object sender, EventArgs e)
@@ -345,7 +353,7 @@ namespace main
 
         private void Button3_Click(object sender, EventArgs e)
         {
-
+            zanting = true;
         }
 
         private void GroupBox1_Enter(object sender, EventArgs e)

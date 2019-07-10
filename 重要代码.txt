@@ -61,6 +61,6 @@ string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
                 
     
-           
+           Regex.Replace(url.Groups[1].Value, "<[^>]+>", "")  //»•±Í«©
 
     
