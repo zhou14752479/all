@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NewLife.Log;
 
-namespace main._2019_6
+namespace LeafBrower
 {
     static class Program
     {
@@ -14,9 +15,12 @@ namespace main._2019_6
         [STAThread]
         static void Main()
         {
+            XTrace.UseWinForm();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 雷速体育());
+            Application.Run(new FrmMain());
+
         }
     }
 }

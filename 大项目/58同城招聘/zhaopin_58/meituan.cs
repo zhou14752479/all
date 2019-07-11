@@ -270,7 +270,18 @@ namespace zhaopin_58
         bool zanting = true;
         bool status = true;
 
-        
+
+        //下载图片
+
+        //Match imgurl = Regex.Match(strhtml, @"frontImg"":""([\s\S]*?)""");
+
+        //if (method.GetUrl(imgurl.Groups[1].Value.Replace("/w.h", ""))!="")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
+        //{
+        //    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h",""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[2].Value.Trim() + ".jpg");
+
+        //}
+
+        //下载图片结束
 
 
         #region  主程序按照单个城市多个关键词
@@ -336,28 +347,22 @@ namespace zhaopin_58
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
                                 Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
                             Match opentime = Regex.Match(strhtml, @"openInfo"":""([\s\S]*?)""");
+
+                          
+
+
                             if (name.Groups[2].Value != "")
                             {
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                lv1.SubItems.Add(name.Groups[2].Value.Trim());
-                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(city);
-                                lv1.SubItems.Add(opentime.Groups[1].Value);
-
-
-                                //下载图片
-
-                                //Match imgurl = Regex.Match(strhtml, @"frontImg"":""([\s\S]*?)""");
-
-                                //if (method.GetUrl(imgurl.Groups[1].Value.Replace("/w.h", ""))!="")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
-                                //{
-                                //    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h",""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[2].Value.Trim() + ".jpg");
-
-                                //}
-
-                                //下载图片结束
+                               
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                    lv1.SubItems.Add(name.Groups[2].Value.Trim());
+                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(city);
+                                    lv1.SubItems.Add(opentime.Groups[1].Value);
+                              
+                               
 
                                 if (strhtml.Contains("有外卖"))
                                 {
@@ -652,6 +657,28 @@ namespace zhaopin_58
 
 
             status = false;
+        }
+
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                if (listView1.Items[i].SubItems[3].Text.Contains("-"))
+                {
+                    listView1.Items.Remove(listView1.Items[i]);
+                }
+            }
+        }
+
+        private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                if (listView1.Items[i].SubItems[3].Text=="")
+                {
+                    listView1.Items.Remove(listView1.Items[i]);
+                }
+            }
         }
     }
 }
