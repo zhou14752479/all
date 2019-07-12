@@ -74,6 +74,7 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label9 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -212,7 +213,7 @@
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox4.Size = new System.Drawing.Size(200, 43);
             this.textBox4.TabIndex = 49;
-            this.textBox4.Text = "测试7月9日";
+            this.textBox4.Text = "测试7月12日";
             // 
             // groupBox2
             // 
@@ -238,6 +239,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dateTimePicker2);
@@ -469,6 +471,16 @@
             // 
             this.columnHeader17.Text = "地址";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(21, 137);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 14);
+            this.label9.TabIndex = 59;
+            this.label9.Text = "当前状态";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -542,6 +554,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.Label label9;
     }
 }
 

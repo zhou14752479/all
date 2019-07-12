@@ -243,7 +243,7 @@ namespace main
                                 }
                                 while (this.zanting == false)
                                 {
-                                    label1.Text = "已暂停....";
+                                   
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
                             }
@@ -314,7 +314,7 @@ namespace main
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("点击了开始");
+            label9.Text = "开始采集中....";
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
@@ -330,29 +330,33 @@ namespace main
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(getToken());
+            label9.Text = "已暂停";
+           
             zanting = false;
            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            label9.Text = "已暂停";
             zanting = false;
         }
 
         private void Button6_Click(object sender, EventArgs e)
         {
+            label9.Text = "导出数据";
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            
+            label9.Text = "清空了数据";
             listView1.Items.Clear();
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            label9.Text = "继续抓取";
             zanting = true;
         }
 
