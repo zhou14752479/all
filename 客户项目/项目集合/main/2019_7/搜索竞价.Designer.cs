@@ -33,7 +33,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button7 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -87,22 +86,14 @@
             this.columnHeader6.Text = "关键字";
             this.columnHeader6.Width = 100;
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(228, 23);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(55, 23);
-            this.button7.TabIndex = 18;
-            this.button7.Text = "打开";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
-            // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(93, 23);
+            this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(129, 21);
+            this.textBox4.Size = new System.Drawing.Size(62, 57);
             this.textBox4.TabIndex = 17;
+            this.textBox4.Text = "装修\r\n男装\r\n广告牌\r\n";
             // 
             // label6
             // 
@@ -215,7 +206,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -253,7 +243,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.SplitContainer splitContainer1;

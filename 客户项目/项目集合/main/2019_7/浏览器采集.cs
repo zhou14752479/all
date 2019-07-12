@@ -88,21 +88,15 @@ namespace main._2019_7
 
         private void button1_Click(object sender, EventArgs e)
         {
-     
-                HtmlDocument doc = this.webBrowser1.Document;
-                HtmlElementCollection hrefs = doc.GetElementsByTagName("a");
-                foreach (HtmlElement href in hrefs)
-                {
-                    //if (href.GetAttribute("class").ToLower() == "poi-title")   //a标签的date-index值为next的a标签然后点击， 必须唯一性
-                    //{
+
+            HtmlAgilityPack.HtmlDocument hd = new HtmlAgilityPack.HtmlDocument();
+            //加载Html文档
+            hd.LoadHtml(strhtml);
+            string str = hd.DocumentNode.SelectSingleNode("//*[@id='e_font']").OuterHtml;
+
+        }
 
 
-                    //}
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                    lv1.SubItems.Add(href.OuterHtml);
-                }
-            
-           
 
         }
     }
