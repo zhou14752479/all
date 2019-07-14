@@ -292,45 +292,52 @@ namespace main._2019_7
 
         private void Button1_Click(object sender, EventArgs e)
         {
-                    Thread thread = new Thread(new ThreadStart(a360));
-                    thread.Start();
-
-            //#region 通用登录
-            //if (textBox4.Text == "")
-            //{
-            //    MessageBox.Show("请输入关键字");
-            //    return;
-            //}
-            //status = true;
-            //bool value = false;
-            //string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            //string localip = method.GetIP();
-            //MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            //foreach (Match ip in ips)
-            //{
-            //    if (ip.Groups[1].Value.Trim() == localip.Trim())
-            //    {
-            //        value = true;
-            //        break;
-            //    }
-
-            //}
-            //if (value == true)
-            //{
 
 
-            //        Thread thread = new Thread(new ThreadStart(sougou));
-            //        thread.Start();
+            #region 通用登录
+            if (textBox4.Text == "")
+            {
+                MessageBox.Show("请输入关键字");
+                return;
+            }
+            status = true;
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("请登录您的账号！");
-            //    System.Diagnostics.Process.Start("http://www.acaiji.com");
-            //    return;
-            //}
-            //#endregion
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == localip.Trim())
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+
+
+                Thread thread = new Thread(new ThreadStart(sougou));
+                thread.Start();
+                Thread thread1 = new Thread(new ThreadStart(baidu));
+                thread1.Start();
+                Thread thread2 = new Thread(new ThreadStart(a360));
+                thread2.Start();
+                Thread thread3 = new Thread(new ThreadStart(sougou));
+                thread3.Start();
+                Thread thread4 = new Thread(new ThreadStart(sougou1));
+                thread4.Start();
+
+            }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
         }
 
         private void Button5_Click(object sender, EventArgs e)

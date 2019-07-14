@@ -60,31 +60,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="aliyun-net-sdk-Core">
-      <HintPath>..\..\..\..\贴吧监控6181\贴吧监控6181\aliyun-net-sdk-Core.dll</HintPath>
+      <HintPath>..\..\..\..\贴吧监控6181\aliyun-net-sdk-Core.dll</HintPath>
     </Reference>
     <Reference Include="CSkin">
-      <HintPath>..\..\..\大项目\winform\主要采集\_58\bin\Debug\CSkin.dll</HintPath>
+      <HintPath>..\..\..\..\主程序\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\..\HttpHelper.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\贴吧监控6181\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\..\主程序\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\NPOI.dll</HintPath>
+      <HintPath>..\..\..\..\主程序\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\..\主程序\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\..\主程序\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\..\主程序\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

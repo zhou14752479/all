@@ -89,10 +89,7 @@ namespace main._2019_7
         private void button1_Click(object sender, EventArgs e)
         {
 
-            HtmlAgilityPack.HtmlDocument hd = new HtmlAgilityPack.HtmlDocument();
-            //加载Html文档
-            hd.LoadHtml(strhtml);
-            string str = hd.DocumentNode.SelectSingleNode("//*[@id='e_font']").OuterHtml;
+          
 
         }
 
@@ -100,4 +97,4 @@ namespace main._2019_7
 
         }
     }
-}
+
