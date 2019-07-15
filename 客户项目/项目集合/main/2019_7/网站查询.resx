@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>35, 8</value>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>142, 7</value>
-  </metadata>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>everywhere_tool_welcome=true; t=792ea994957bef8e4a71539f91876594; tg=0; thw=cn; _cc_=UtASsssmfA%3D%3D; cna=8QJMFUu4DhACATFZv2JYDtwd; _bl_uid=10jnOxj9tagx5qodm8jwuOwx3FX0; hng=CN%7Czh-CN%7CCNY%7C156; UM_distinctid=16bde9c6ccb7f7-0183a6c7f99aa8-f353163-1fa400-16bde9c6cccb79; cookie2=10c641a3acdf889e375ad38c33e3d162; _tb_token_=f1b5363a80059; _m_h5_tk=2b0315d201367985b0a3d69c7204ccea_1563159358913; _m_h5_tk_enc=c9a6684d769f104effdddd74aa6d618c; enc=BJiGDZ0SETmb%2BZ1Af%2FLOxZ7Ow%2Fz8B4xQY%2F3CPHkFybDesLHC8XJXgbKIOBMMGVwHTtQxN1Uu1ZSlm%2FWpfRRSTw%3D%3D; mt=ci=0_0; x=2992737907; uc3=id2=&amp;nk2=&amp;lg2=; skt=c14db7bca9937f04; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E5%85%A8%E8%87%AA%E5%8A%A8%E5%AF%BC%E8%B4%AD01; unb=3300260619; tracknick=; csg=3c5b6827; v=0; uc1=cookie14=UoTaG7729nAdqw%3D%3D&amp;lng=zh_CN; l=bBI7rtxIqx_YCAgMKOfMmuIRGt7OEQOfCVVzw4gGfICPOHC55tDVWZnKSbYXC3GVa6UD53oWYJ1uB-Y8yyUIh; isg=BGhozjW4oSdJb42riEDbbdiTOVa6OcTx9j6aayKa--MgfQ7nzqUwK2z7dVUozYRz</value>
-  </data>
 </root>

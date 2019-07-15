@@ -108,8 +108,9 @@ namespace main._2019_7
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
                             lv1.SubItems.Add(System.Web.HttpUtility.UrlDecode(url.Groups[1].Value.Trim()));
                             lv1.SubItems.Add(keyword);
+                        lv1.SubItems.Add("百度");
 
-                            if (this.status == false)
+                        if (this.status == false)
                                 return;
 
                             if (listView1.Items.Count > 2)
@@ -161,7 +162,8 @@ namespace main._2019_7
                                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
                                 lv1.SubItems.Add(getTTurl(url.Groups[1].Value.Trim()));
                                 lv1.SubItems.Add(keyword);
-                                if (this.status == false)
+                        lv1.SubItems.Add("360移动");
+                        if (this.status == false)
                                     return;
 
                                 if (listView1.Items.Count > 2)
@@ -213,6 +215,7 @@ namespace main._2019_7
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
                         lv1.SubItems.Add(getTurl(url.Groups[1].Value));
                         lv1.SubItems.Add(keyword);
+                        lv1.SubItems.Add("搜狗PC");
 
                         if (this.status == false)
                             return;
@@ -264,8 +267,9 @@ namespace main._2019_7
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
                             lv1.SubItems.Add(url.Groups[1].Value);
                             lv1.SubItems.Add(keyword);
+                        lv1.SubItems.Add("搜狗移动");
 
-                            if (this.status == false)
+                        if (this.status == false)
                                 return;
 
                             if (listView1.Items.Count > 2)
@@ -273,6 +277,61 @@ namespace main._2019_7
                                 listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
                             }       
                          }
+
+
+                }
+
+            }
+
+
+            catch (System.Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        #endregion
+
+        #region UC搜索
+        public void Uc()
+        {
+
+            try
+            {
+                string[] keywords = textBox4.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (string keyword in keywords)
+                {
+                    string keyutf8 = System.Web.HttpUtility.UrlEncode(keyword);
+
+                    string cookie = "sm_uuid=7be889c3e1b5b527a6a1ab71bbc0f48c%7C%7C%7C1563171518; sm_diu=7be889c3e1b5b527a6a1ab71bbc0f48c%7C%7C11eef1794c3d0baf5b%7C1563171518; sm_sid=7be889c3e1b5b527a6a1ab71bbc0f48c; cna=8QJMFUu4DhACATFZv2JYDtwd; isg=BFBQDZWhOf8bd-X74K9oyJyVIZ5isTwJDjayE0ojnqt-hfUv8SgG87D3XQ3AVew7";
+                    string Url = "https://so.m.sm.cn/s?q="+keyutf8+"&uc_param_str=dnntnwvepffrgibijbprsv&from=ucdh";
+
+                    string html = method.GetUrlWithCookie(Url,cookie, "utf-8");
+                   
+                    MatchCollection urls = Regex.Matches(html, @"<div class=""other"">([\s\S]*?)</div>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+                   
+
+                    foreach (Match url in urls)
+                    {
+                        if (url.Groups[1].Value.Contains("广告"))
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
+                            lv1.SubItems.Add(Regex.Replace(url.Groups[1].Value, "<[^>]+>", "").Replace("广告","").Trim());
+                            lv1.SubItems.Add(keyword);
+                            lv1.SubItems.Add("UC移动");
+
+                            if (this.status == false)
+                                return;
+
+                            if (listView1.Items.Count > 2)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                            }
+                        }
+                    }
 
 
                 }
@@ -329,6 +388,8 @@ namespace main._2019_7
                 thread3.Start();
                 Thread thread4 = new Thread(new ThreadStart(sougou1));
                 thread4.Start();
+                Thread thread5 = new Thread(new ThreadStart(Uc));
+                thread5.Start();
 
             }
             else

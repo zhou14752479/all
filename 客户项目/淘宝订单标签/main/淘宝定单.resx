@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>35, 8</value>
-  </metadata>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>142, 7</value>
+    <value>18, 7</value>
   </metadata>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>everywhere_tool_welcome=true; t=792ea994957bef8e4a71539f91876594; tg=0; thw=cn; _cc_=UtASsssmfA%3D%3D; cna=8QJMFUu4DhACATFZv2JYDtwd; _bl_uid=10jnOxj9tagx5qodm8jwuOwx3FX0; hng=CN%7Czh-CN%7CCNY%7C156; UM_distinctid=16bde9c6ccb7f7-0183a6c7f99aa8-f353163-1fa400-16bde9c6cccb79; cookie2=10c641a3acdf889e375ad38c33e3d162; _tb_token_=f1b5363a80059; _m_h5_tk=2b0315d201367985b0a3d69c7204ccea_1563159358913; _m_h5_tk_enc=c9a6684d769f104effdddd74aa6d618c; enc=BJiGDZ0SETmb%2BZ1Af%2FLOxZ7Ow%2Fz8B4xQY%2F3CPHkFybDesLHC8XJXgbKIOBMMGVwHTtQxN1Uu1ZSlm%2FWpfRRSTw%3D%3D; mt=ci=0_0; x=2992737907; uc3=id2=&amp;nk2=&amp;lg2=; skt=c14db7bca9937f04; sn=%E8%81%94%E9%80%9A%E7%BF%BC%E5%BE%B7%E9%80%9A%E4%BF%A1%E4%B8%93%E5%8D%96%E5%BA%97%3A%E5%85%A8%E8%87%AA%E5%8A%A8%E5%AF%BC%E8%B4%AD01; unb=3300260619; tracknick=; csg=3c5b6827; v=0; uc1=cookie14=UoTaG7729nAdqw%3D%3D&amp;lng=zh_CN; l=bBI7rtxIqx_YCAgMKOfMmuIRGt7OEQOfCVVzw4gGfICPOHC55tDVWZnKSbYXC3GVa6UD53oWYJ1uB-Y8yyUIh; isg=BGhozjW4oSdJb42riEDbbdiTOVa6OcTx9j6aayKa--MgfQ7nzqUwK2z7dVUozYRz</value>
+    <value>everywhere_tool_welcome=true; t=792ea994957bef8e4a71539f91876594; tg=0; thw=cn; _cc_=UtASsssmfA%3D%3D; cna=8QJMFUu4DhACATFZv2JYDtwd; _bl_uid=10jnOxj9tagx5qodm8jwuOwx3FX0; hng=CN%7Czh-CN%7CCNY%7C156; UM_distinctid=16bde9c6ccb7f7-0183a6c7f99aa8-f353163-1fa400-16bde9c6cccb79; v=0; cookie2=10c641a3acdf889e375ad38c33e3d162; _tb_token_=f1b5363a80059; _m_h5_tk=2b0315d201367985b0a3d69c7204ccea_1563159358913; _m_h5_tk_enc=c9a6684d769f104effdddd74aa6d618c; unb=1052347548; sg=080; _l_g_=Ug%3D%3D; skt=9739cdc22e373f52; cookie1=Vvj8uMJubtxirKFtxaDmWPxYCP5sb7EKtrFe1w68JDk%3D; csg=67db7fc7; uc3=vt3=F8dBy3%2F%2F2L52y6gdSjw%3D&amp;id2=UoH62EAv27BqSg%3D%3D&amp;nk2=GcOvCmiKUSBXqZNU&amp;lg2=V32FPkk%2Fw0dUvg%3D%3D; existShop=MTU2MzE1NTc0MA%3D%3D; tracknick=zkg852266010; lgc=zkg852266010; dnk=zkg852266010; _nk_=zkg852266010; cookie17=UoH62EAv27BqSg%3D%3D; mt=ci=0_0&amp;np=; uc1=cookie14=UoTaG771bb83gA%3D%3D&amp;lng=zh_CN&amp;cookie16=W5iHLLyFPlMGbLDwA%2BdvAGZqLg%3D%3D&amp;existShop=true&amp;cookie21=VT5L2FSpdet1EftGlDZ1Vg%3D%3D&amp;tag=8&amp;cookie15=UtASsssmOIJ0bQ%3D%3D&amp;pas=0; enc=BJiGDZ0SETmb%2BZ1Af%2FLOxZ7Ow%2Fz8B4xQY%2F3CPHkFybDesLHC8XJXgbKIOBMMGVwHTtQxN1Uu1ZSlm%2FWpfRRSTw%3D%3D; l=cBI7rtxIqx_YCSySBOfNNuIRGt7T4IOb8sPzw4gGfICPOeCMu2OfWZnM93YHCnGVLsODR3oWYJ1uB8TizyUIhoP6G7bkvKJC.; isg=BBERSuUxKAt4yEQQOZ_Ctjm0IB1r1o2adzkTcPOnVlitmjDsO82_wG-4PC7Zkh0o</value>
   </data>
 </root>

@@ -58,7 +58,7 @@ namespace main
                 dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
             }
             //每行内容
-            for (i = 0; i < lv.Items.Count - 1; i++)
+            for (i = 0; i < lv.Items.Count; i++)
             {
                 dr = dt.NewRow();
                 for (j = 0; j < lv.Columns.Count; j++)

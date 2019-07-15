@@ -412,6 +412,12 @@
     <Compile Include="2019_7\浏览器采集.Designer.cs">
       <DependentUpon>浏览器采集.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_7\网站查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\网站查询.Designer.cs">
+      <DependentUpon>网站查询.cs</DependentUpon>
+    </Compile>
     <Compile Include="getUrlbyWeb.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -585,6 +591,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_7\浏览器采集.resx">
       <DependentUpon>浏览器采集.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\网站查询.resx">
+      <DependentUpon>网站查询.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="getUrlbyWeb.resx">
       <DependentUpon>getUrlbyWeb.cs</DependentUpon>

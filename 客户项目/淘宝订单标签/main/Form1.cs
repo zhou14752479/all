@@ -131,6 +131,9 @@ namespace main
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
                 source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
         }
+        /// <summary>
+        /// 等待发货
+        /// </summary>
         public void run()
         {
             COOKIE = textBox1.Text;
@@ -139,7 +142,7 @@ namespace main
                 MessageBox.Show("请登录账号！");
                 return;
             }
-            listView1.Items.Clear();
+           
             try
             {
 
@@ -299,7 +302,7 @@ namespace main
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
+           
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
@@ -358,6 +361,7 @@ namespace main
         {
             label9.Text = "继续抓取";
             zanting = true;
+            timer1.Start();
         }
 
         private void GroupBox1_Enter(object sender, EventArgs e)

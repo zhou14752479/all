@@ -45,6 +45,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -74,7 +75,6 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label9 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -213,7 +213,7 @@
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox4.Size = new System.Drawing.Size(200, 43);
             this.textBox4.TabIndex = 49;
-            this.textBox4.Text = "测试7月12日";
+            this.textBox4.Text = "测试7月15日";
             // 
             // groupBox2
             // 
@@ -263,6 +263,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能设置";
             this.groupBox1.Enter += new System.EventHandler(this.GroupBox1_Enter);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(21, 137);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 14);
+            this.label9.TabIndex = 59;
+            this.label9.Text = "当前状态";
             // 
             // label8
             // 
@@ -339,7 +349,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(75, 21);
             this.textBox2.TabIndex = 50;
-            this.textBox2.Text = "1000";
+            this.textBox2.Text = "60";
             // 
             // label2
             // 
@@ -470,16 +480,6 @@
             // columnHeader17
             // 
             this.columnHeader17.Text = "地址";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(21, 137);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 14);
-            this.label9.TabIndex = 59;
-            this.label9.Text = "当前状态";
             // 
             // Form1
             // 

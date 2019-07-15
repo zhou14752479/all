@@ -29,11 +29,12 @@ namespace main._2019_7
 
         public void run()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string path = AppDomain.CurrentDomain.BaseDirectory+"图片\\";
+            int biaoji = 1;
             try
             {
 
-                for (int i = 4; i <51; i++)
+                for (int i = 1; i <51; i++)
                 {
 
                     label3.Text = "正在抓取第" + i + "页" + "........";
@@ -53,6 +54,7 @@ namespace main._2019_7
                     for (int j = 0; j <authers.Count; j++)
 
                     {
+                        biaoji= biaoji+1;
                         MatchCollection price = Regex.Matches(prices[j].Groups[1].Value, @"student_price&quot;:&quot;([\s\S]*?)&", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                         label3.Text = "正在抓取...."+ titles[j].Groups[1].Value.Trim();
@@ -66,12 +68,15 @@ namespace main._2019_7
                             sb.Append(price[a].Groups[1].Value+"，");
                         }
                         lv1.SubItems.Add(sb.ToString());
+                        lv1.SubItems.Add(biaoji.ToString());
+                        method.downloadFile(pics[j].Groups[1].Value, path, biaoji + ".jpg");
 
-                        if (titles[j].Groups[1].Value.Length < 248)
+                        while (this.zanting == false)
                         {
-                            method.downloadFile(pics[j].Groups[1].Value, path, titles[j].Groups[1].Value.Replace(":", "").Replace(",", "").Replace("\\", "").Replace("/", "").Replace(".", "").Replace("*", "").Replace("?", "").Replace("|", "").Replace(">", "").Replace("<", "").Replace("\"", "") + ".jpg");
 
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
+
 
                     }
 
@@ -83,7 +88,7 @@ namespace main._2019_7
             catch (System.Exception ex)
             {
 
-              MessageBox.Show( ex.ToString());
+               ex.ToString();
             }
 
         }

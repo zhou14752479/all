@@ -82,6 +82,12 @@
     <Compile Include="webBrowser.Designer.cs">
       <DependentUpon>webBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="淘宝定单.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="淘宝定单.Designer.cs">
+      <DependentUpon>淘宝定单.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +105,9 @@
     </Compile>
     <EmbeddedResource Include="webBrowser.resx">
       <DependentUpon>webBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="淘宝定单.resx">
+      <DependentUpon>淘宝定单.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

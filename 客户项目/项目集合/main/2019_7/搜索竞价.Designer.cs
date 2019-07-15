@@ -46,6 +46,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,7 +62,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "网址";
-            this.columnHeader2.Width = 350;
+            this.columnHeader2.Width = 250;
             // 
             // columnHeader1
             // 
@@ -72,7 +73,8 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader3});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -89,10 +91,10 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(93, 23);
+            this.textBox4.Location = new System.Drawing.Point(12, 47);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(62, 111);
+            this.textBox4.Size = new System.Drawing.Size(283, 142);
             this.textBox4.TabIndex = 17;
             this.textBox4.Text = "装修\r\n男装\r\n广告牌\r\n";
             // 
@@ -220,11 +222,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(91, 147);
+            this.label1.Location = new System.Drawing.Point(93, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 18;
             this.label1.Text = "一行一个关键词";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "来源";
             // 
             // 搜索竞价
             // 
@@ -268,5 +274,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
