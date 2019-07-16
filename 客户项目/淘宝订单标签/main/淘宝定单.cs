@@ -125,56 +125,61 @@ namespace main
         /// </summary>
         public void run()
         {
-            COOKIE = textBox1.Text;
-            if (COOKIE == "")
-            {
-                MessageBox.Show("请登录账号！");
-                return;
-            }
-            
-            try
-            {
 
-                for (int i = 0; i < 20; i++)
+           
+
+                try
                 {
-
-
-                    string URL = "https://trade.taobao.com/trade/itemlist/asyncSold.htm?event_submit_do_query=1&_input_charset=utf8";
-                    string postdata = "action=itemlist%2FSoldQueryAction&auctionType=0&buyerNick=&close=0&dateBegin=0&dateEnd=0&logisticsService=&orderStatus=PAID&pageNum=" + i+ "&pageSize=15&queryMore=false&queryOrder=desc&rateStatus=&refund=&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&sellerNick=&tabCode=waitSend&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&prePageNo=" + i;
-                    string html = PostUrl(URL, postdata); ;
-
-                    MatchCollection IDs = Regex.Matches(html, @"tradeID=([\s\S]*?)&");
-                 
-                    MatchCollection times = Regex.Matches(html, @"createTime"":""([\s\S]*?)""");
-                    MatchCollection users = Regex.Matches(html, @"""nick"":""([\s\S]*?)""");
-                    if (IDs.Count == 0)
+                for (int a = 0; a < listView2.Items.Count; a++)
+                {
+                    COOKIE = listView2.Items[a].SubItems[1].Text;
+                    if (COOKIE == "")
                     {
-                        break;
+                        MessageBox.Show("请登录账号！");
+                        return;
                     }
-
-
-                    for (int j = 0; j < IDs.Count; j++)
+                    for (int i = 0; i < 20; i++)
                     {
 
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(IDs[j].Groups[1].Value);
-                        lv1.SubItems.Add(times[j].Groups[1].Value);
-                        lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
 
+                        string URL = "https://trade.taobao.com/trade/itemlist/asyncSold.htm?event_submit_do_query=1&_input_charset=utf8";
+                        string postdata = "action=itemlist%2FSoldQueryAction&auctionType=0&buyerNick=&close=0&dateBegin=0&dateEnd=0&logisticsService=&orderStatus=PAID&pageNum=" + i + "&pageSize=15&queryMore=false&queryOrder=desc&rateStatus=&refund=&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&sellerNick=&tabCode=waitSend&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&prePageNo=" + i;
+                        string html = PostUrl(URL, postdata); ;
 
+                        MatchCollection IDs = Regex.Matches(html, @"tradeID=([\s\S]*?)&");
 
-                        while (this.zanting == false)
+                        MatchCollection times = Regex.Matches(html, @"createTime"":""([\s\S]*?)""");
+                        MatchCollection users = Regex.Matches(html, @"""actualFee"":""([\s\S]*?)""");
+                        if (IDs.Count == 0)
                         {
-                            label1.Text = "已暂停....";
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            break;
                         }
 
-                        Thread.Sleep(100);
 
+                        for (int j = 0; j < IDs.Count; j++)
+                        {
+
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(IDs[j].Groups[1].Value);
+                            lv1.SubItems.Add(times[j].Groups[1].Value);
+                            lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
+
+
+
+                            while (this.zanting == false)
+                            {
+                                //label1.Text = "已暂停....";
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+                            Thread.Sleep(100);
+
+                        }
                     }
-                }
 
-            }
+                }
+                }
+                
 
 
             catch (System.Exception ex)
@@ -198,7 +203,13 @@ namespace main
 
         private void Button6_Click(object sender, EventArgs e)
         {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
 
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            lv2.SubItems.Add(webBrowser.cookie);
         }
     }
 }

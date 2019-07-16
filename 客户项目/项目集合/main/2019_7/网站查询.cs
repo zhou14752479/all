@@ -25,10 +25,11 @@ namespace main._2019_7
         string[] urls = { };
         public void ReadText()
         {
-
+            label3.Text = "正在读取邮箱文件...请稍后";
             StreamReader streamReader = new StreamReader(this.textBox1.Text);
             string text = streamReader.ReadToEnd();
             urls= text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            label4.Text = "导入共"+urls.Length;
         }
         private void 网站查询_Load(object sender, EventArgs e)
         {
@@ -36,17 +37,20 @@ namespace main._2019_7
         }
         bool zanting = true;
         ArrayList finishes = new ArrayList();
-
+        bool status = true;
         #region 主程序
         public void run()
         {
-
+            int a = 0;
             try
             {
                
 
                 foreach (string url in urls)
                 {
+                    a++;
+                    label3.Text = "正在抓取"+url;
+                    label4.Text = "导入共" + urls.Length+"已抓取"+a+"条";
                     if (!finishes.Contains(url))
                     {
                         finishes.Add(url);
@@ -60,29 +64,32 @@ namespace main._2019_7
                             Match keyword = Regex.Match(html, @"<meta name=""keywords"" content=""([\s\S]*?)""", RegexOptions.IgnoreCase);
                             Match description = Regex.Match(html, @"<meta name=""description"" content=""([\s\S]*?)""", RegexOptions.IgnoreCase);
 
-                            if (title.Groups[1].Value != "")
-                            {
-                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
-                                lv1.SubItems.Add(title.Groups[1].Value);
-                                lv1.SubItems.Add(keyword.Groups[1].Value);
-                                lv1.SubItems.Add(description.Groups[1].Value);
+                            string A1 = title.Groups[1].Value!="" ? title.Groups[1].Value : "FAILED";
+                            string A2 = keyword.Groups[1].Value != "" ? keyword.Groups[1].Value : "FAILED";
+                            string A3 = description.Groups[1].Value != "" ? description.Groups[1].Value : "FAILED";
+
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据         
+                                lv1.SubItems.Add(A1);
+                                lv1.SubItems.Add(A2);
+                                lv1.SubItems.Add(A3);
                                 lv1.SubItems.Add(url);
-                                if (listView1.Items.Count > 2)
-                                {
-                                    listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
-                                }
+                              
                                 while (this.zanting == false)
                                 {
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
+                            if (status == false)
+                            {
+                                return;
                             }
+                         
 
 
                         }
                     }
                 }
 
-
+                MessageBox.Show("抓取完成");
             }
 
             
@@ -111,18 +118,47 @@ namespace main._2019_7
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            ReadText();
-            for (int i = 0; i < 10; i++)
+            status = true;
+            if (textBox1.Text == "")
             {
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
+                MessageBox.Show("请导入文件");
+                return;
             }
-        }
+            ReadText();
 
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(new ThreadStart(ReadText));
-            thread.Start();
+            #region 通用导出
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == "3.3.3.3")
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+                for (int i = 0; i < Convert.ToInt32(textBox2.Text); i++)
+                {
+                    Thread thread = new Thread(new ThreadStart(run));
+                    thread.Start();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
+           
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -138,6 +174,21 @@ namespace main._2019_7
         private void Button2_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
+
+        private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
