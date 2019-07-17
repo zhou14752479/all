@@ -134,22 +134,22 @@ namespace main
                 {
                     COOKIE = listView2.Items[a].SubItems[1].Text;
                     if (COOKIE == "")
-                    {
-                        MessageBox.Show("请登录账号！");
-                        return;
-                    }
-                    for (int i = 0; i < 20; i++)
+                        continue;
+
+                    for (int i= 1; i < 20; i++)
                     {
 
 
                         string URL = "https://trade.taobao.com/trade/itemlist/asyncSold.htm?event_submit_do_query=1&_input_charset=utf8";
-                        string postdata = "action=itemlist%2FSoldQueryAction&auctionType=0&buyerNick=&close=0&dateBegin=0&dateEnd=0&logisticsService=&orderStatus=PAID&pageNum=" + i + "&pageSize=15&queryMore=false&queryOrder=desc&rateStatus=&refund=&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&sellerNick=&tabCode=waitSend&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&prePageNo=" + i;
+                        int z = i - 1;
+                        string postdata = "auctionType=0&close=0&pageNum="+i+"&pageSize=15&queryMore=false&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&prePageNo="+z;
                         string html = PostUrl(URL, postdata); ;
 
-                        MatchCollection IDs = Regex.Matches(html, @"tradeID=([\s\S]*?)&");
+                        MatchCollection IDs = Regex.Matches(html, @"&orderid=([\s\S]*?)""");
 
                         MatchCollection times = Regex.Matches(html, @"createTime"":""([\s\S]*?)""");
                         MatchCollection users = Regex.Matches(html, @"""actualFee"":""([\s\S]*?)""");
+                        MatchCollection zhuangtai = Regex.Matches(html, @"],""text"":""([\s\S]*?)""");
                         if (IDs.Count == 0)
                         {
                             break;
@@ -163,6 +163,7 @@ namespace main
                             lv1.SubItems.Add(IDs[j].Groups[1].Value);
                             lv1.SubItems.Add(times[j].Groups[1].Value);
                             lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
+                            lv1.SubItems.Add(Unicode2String(zhuangtai[j].Groups[1].Value));
 
 
 
@@ -210,6 +211,26 @@ namespace main
         {
             ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
             lv2.SubItems.Add(webBrowser.cookie);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            zanting = false;
         }
     }
 }

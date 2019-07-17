@@ -31,11 +31,15 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button8 = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.button4 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
@@ -49,10 +53,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button8 = new System.Windows.Forms.Button();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -102,6 +103,41 @@
             this.splitContainer1.SplitterDistance = 416;
             this.splitContainer1.TabIndex = 5;
             // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.button8.Font = new System.Drawing.Font("宋体", 10F);
+            this.button8.Location = new System.Drawing.Point(12, 245);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(402, 29);
+            this.button8.TabIndex = 67;
+            this.button8.Text = "第二步：点击获取COOKIE";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader13,
+            this.columnHeader14});
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.Location = new System.Drawing.Point(8, 8);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(402, 196);
+            this.listView2.TabIndex = 66;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "序号";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "COOKIE";
+            this.columnHeader14.Width = 1000;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -119,6 +155,18 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(106, 21);
             this.dateTimePicker2.TabIndex = 64;
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.button4.Font = new System.Drawing.Font("宋体", 10F);
+            this.button4.Location = new System.Drawing.Point(8, 210);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(402, 29);
+            this.button4.TabIndex = 45;
+            this.button4.Text = "第一步：登陆淘宝";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(91, 363);
@@ -134,18 +182,6 @@
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 62;
             this.label5.Text = "设置时间：";
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button4.Font = new System.Drawing.Font("宋体", 10F);
-            this.button4.Location = new System.Drawing.Point(8, 210);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(402, 29);
-            this.button4.TabIndex = 45;
-            this.button4.Text = "第一步：登陆淘宝";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // groupBox1
             // 
@@ -181,6 +217,7 @@
             this.button7.TabIndex = 48;
             this.button7.Text = "清空";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // button6
             // 
@@ -214,6 +251,7 @@
             this.button5.TabIndex = 46;
             this.button5.Text = "停止";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // button3
             // 
@@ -224,6 +262,7 @@
             this.button3.TabIndex = 43;
             this.button3.Text = "继续";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button2
             // 
@@ -234,6 +273,7 @@
             this.button2.TabIndex = 42;
             this.button2.Text = "暂停";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // listView1
             // 
@@ -241,7 +281,8 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -272,40 +313,10 @@
             this.columnHeader4.Text = "金额";
             this.columnHeader4.Width = 100;
             // 
-            // listView2
+            // columnHeader5
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader13,
-            this.columnHeader14});
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(8, 8);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(402, 196);
-            this.listView2.TabIndex = 66;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "序号";
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "COOKIE";
-            this.columnHeader14.Width = 1000;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button8.Font = new System.Drawing.Font("宋体", 10F);
-            this.button8.Location = new System.Drawing.Point(12, 245);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(402, 29);
-            this.button8.TabIndex = 67;
-            this.button8.Text = "第二步：点击获取COOKIE";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            this.columnHeader5.Text = "定单状态";
+            this.columnHeader5.Width = 100;
             // 
             // 淘宝定单
             // 
@@ -357,5 +368,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

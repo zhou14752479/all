@@ -20,13 +20,35 @@ namespace main._2019_7
             InitializeComponent();
         }
 
-        bool zanting = true;
+       
 
         public string NCRtoString(string str)
         {
-            return "";
+            string outStr = "";
+            if (!string.IsNullOrEmpty(str))
+            {
+                string[] strlist = str.Replace("&#", "").Replace(";", "").Split('x');
+                try
+                {
+                    for (int i = 1; i < strlist.Length; i++)
+                    {
+                        //将unicode字符转为10进制整数，然后转为char中文字符  
+                        outStr += (char)int.Parse(strlist[i], System.Globalization.NumberStyles.HexNumber);
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    outStr = ex.Message;
+                }
+            }
+            
+            return outStr;
          
         }
+
+        string typeid = "1";
+        bool status = true;
+        bool zanting = true;
         #region 主程序
         public void run()
         {
@@ -36,7 +58,7 @@ namespace main._2019_7
                 for (int i = 0; i < 9999; i++)
                 {
 
-                    string Url = "https://3g.kq36.cn/m/companylist.aspx?keyw=&typeid=1&proviceid=0&cityid=0&areaid=0&minying=&guimo=&xingzhi=&offerid=&ddlmedicare=&pageindex="+i;
+                    string Url = "https://3g.kq36.cn/m/companylist.aspx?keyw=&typeid="+typeid+"&proviceid=0&cityid=0&areaid=0&minying=&guimo=&xingzhi=&offerid=&ddlmedicare=&pageindex="+i;
 
                     string html = method.GetUrl(Url, "utf-8");
                    
@@ -61,12 +83,12 @@ namespace main._2019_7
                         Match a2 = Regex.Match(strhtml, @"成立</li>([\s\S]*?)</li>");
                         Match a3 = Regex.Match(strhtml, @"员工</li>([\s\S]*?)</li>");
                         Match a4 = Regex.Match(strhtml, @"性质</li>([\s\S]*?)</li>");
-                        Match a5 = Regex.Match(strhtml, @"联系</li>([\s\S]*?)</li>");
+                        Match a5 = Regex.Match(strhtml, @"联系</li>([\s\S]*?)&nbsp");
                         Match a6 = Regex.Match(strhtml, @"电话</li>([\s\S]*?)</li>");
                         Match a7 = Regex.Match(strhtml, @"手机</li>([\s\S]*?)</li>");
                         Match a8 = Regex.Match(strhtml, @"QQ</li>([\s\S]*?)</li>");
-                        Match a9 = Regex.Match(strhtml, @"邮箱</li>([\s\S]*?)</li>");
-                        Match a10 = Regex.Match(strhtml, @"地址</li>([\s\S]*?)</li>");
+                        Match a9 = Regex.Match(strhtml, @"data-email=""([\s\S]*?)""");
+                        Match a10 = Regex.Match(strhtml, @"地址</li>([\s\S]*?)<a");
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                         lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
@@ -84,6 +106,11 @@ namespace main._2019_7
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+
+                        {
+                            return;
                         }
                         Thread.Sleep(2000);
                     }
@@ -108,14 +135,93 @@ namespace main._2019_7
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            if (radioButton1.Checked == true)
+            {
+                typeid = "1";
+            }
+            else if (radioButton2.Checked == true)
+            {
+                typeid = "3";
+            }
+            else if (radioButton3.Checked == true)
+            {
+                typeid = "8";
+            }
+            else if (radioButton4.Checked == true)
+            {
+                typeid = "5";
+            }
+            else if (radioButton5.Checked == true)
+            {
+                typeid = "26";
+            }
+            else if (radioButton6.Checked == true)
+            {
+                typeid = "2000";
+            }
+
+            status = true;
+           
+
+            #region 通用导出
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == "3.3.3.3")
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+            else
+            {
+                MessageBox.Show("请登录您的账号！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                return;
+            }
+            #endregion
+          
+
+
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(NCRtoString("&#x5E7F;&#x4E1C;&#x6DF1;&#x5733;&#x5B9D;&#x5B89;&#x533A;&#x798F;&#x6C38;&#x8857;&#x9053;&#x6C38;&#x548C;&#x8DEF;&#x53CC;&#x91D1;&#x60E0;&#x5DE5;&#x4E1A;&#x533A;&#x44;&#x680B;&#x35;&#x697C"));
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            status = false;
         }
     }
 }

@@ -8,15 +8,15 @@
 ¶þ¡¢»ñÈ¡µ±Ç°³ÌÐòÔËÐÐµÄÎÄ¼þ¼Ð´ø¡°\¡±
 		AppDomain.CurrentDomain.BaseDirectory  
 
-´´½¨ÎÄ¼þ¼Ð
-  if (!Directory.Exists(sPath))
+	´´½¨ÎÄ¼þ¼Ð
+  	if (!Directory.Exists(sPath))
                 {
                     Directory.CreateDirectory(sPath); //´´½¨ÎÄ¼þ¼Ð
                 }
 
 Èý¡¢URL ½âÂë
-System.Web.HttpUtility.UrlEncode(comboBox1.Text);
-System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); Ö¸¶¨±àÂë
+	System.Web.HttpUtility.UrlEncode(comboBox1.Text);
+	System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); Ö¸¶¨±àÂë
 
 ËÄ¡¢Óöµ½ÇëÇó±»ÖÕÖ¹Î´ÄÜ´´½¨SSL/TLS°²È«Í¨µÀ
 	System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //ÔÚGetUrl()º¯ÊýÇ°¼ÓÉÏÕâÒ»¾ä¾Í¿ÉÒÔ
@@ -25,10 +25,12 @@ System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); Ö¸¶¨±
 	grant all privileges on *.* to 'root'@'%' identified by 'root' with grant option; 
 
 Áù¡¢È¥µô±êÇ©Öµ
-
+                
+    
+           Regex.Replace(url.Groups[1].Value, "<[^>]+>", "")  //È¥±êÇ©
 
 7¡¢¶ÁÈ¡txt Ð´ÈëTXT
- if (openFileDialog1.ShowDialog() == DialogResult.OK)
+        	if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
                 //Ò»´ÎÐÔ¶ÁÈ¡Íê 
@@ -44,23 +46,45 @@ System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); Ö¸¶¨±
                     
                 }
             }
+°Ë¡¢
+	System.Text.Encoding.Default.GetByteCount("×Ö·û´®") »ñÈ¡×Ö·û´®×Ö½Ú³¤¶È
+
+	»»ÐÐ·Ö¸î
+	string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
 
-
-  FileStream fs1 = new FileStream(path + "ÐÂÎÄµµ.txt", FileMode.Create, FileAccess.Write);//´´½¨Ð´ÈëÎÄ¼þ 
-      StreamWriter sw = new StreamWriter(fs1);
-     sw.WriteLine(text[i]);
-       sw.Close();
-        fs1.Close();          
+¾Å¡¢¶ÁÈ¡TXTÎÄ¼þ
+  	FileStream fs1 = new FileStream(path + "ÐÂÎÄµµ.txt", FileMode.Create, FileAccess.Write);//´´½¨Ð´ÈëÎÄ¼þ 
+      	StreamWriter sw = new StreamWriter(fs1);
+    	 sw.WriteLine(text[i]);
+      	 sw.Close();
+       	 fs1.Close();          
                    
 
-System.Text.Encoding.Default.GetByteCount("×Ö·û´®") »ñÈ¡×Ö·û´®×Ö½Ú³¤¶È
+	
 
-»»ÐÐ·Ö¸î
-string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-                
-    
-           Regex.Replace(url.Groups[1].Value, "<[^>]+>", "")  //È¥±êÇ©
-
-    
+Ê®¡¢NCR±àÂë×ªÖÐÎÄºº×Ö
+     public string NCRtoString(string str)
+        {
+            string outStr = "";
+            if (!string.IsNullOrEmpty(str))
+            {
+                string[] strlist = str.Replace("&#", "").Replace(";", "").Split('x');
+                try
+                {
+                    for (int i = 1; i < strlist.Length; i++)
+                    {
+                        //½«unicode×Ö·û×ªÎª10½øÖÆÕûÊý£¬È»ºó×ªÎªcharÖÐÎÄ×Ö·û  
+                        outStr += (char)int.Parse(strlist[i], System.Globalization.NumberStyles.HexNumber);
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    outStr = ex.Message;
+                }
+            }
+            
+            return outStr;
+         
+        }
