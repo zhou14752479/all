@@ -118,12 +118,14 @@ namespace main._2019_6
                         double b = Convert.ToDouble(jishi.Groups[2].Value);
                         double c = b - a;
                         double d = a - b;
-                        if (c > Convert.ToDouble(textBox1.Text)&& Convert.ToDouble(textBox1.Text)>0)
+
+                        
+                        if (c > Convert.ToDouble(textBox1.Text)&& Convert.ToDouble(textBox1.Text)>0 && c>0)
                         {
                             sendEmail.send(textBox3.Text,"雷速体育提醒",matches[0].Groups[1].Value + "-" + matches[1].Groups[1].Value+"的比赛达到设定差值请查看！");
                             
                         }
-                        if (d < Convert.ToDouble(textBox1.Text)&& Convert.ToDouble(textBox1.Text)<0)
+                        if (d < Convert.ToDouble(textBox1.Text)&& Convert.ToDouble(textBox1.Text)<0 && d<0)
                         {
                             sendEmail.send(textBox3.Text, "雷速体育提醒", matches[0].Groups[1].Value + "-" + matches[1].Groups[1].Value + "的比赛达到设定差值请查看！");
                         }

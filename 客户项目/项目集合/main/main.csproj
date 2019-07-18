@@ -406,6 +406,12 @@
     <Compile Include="2019_7\医疗网.Designer.cs">
       <DependentUpon>医疗网.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_7\定时打开.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\定时打开.Designer.cs">
+      <DependentUpon>定时打开.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_7\搜索竞价.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -594,6 +600,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_7\医疗网.resx">
       <DependentUpon>医疗网.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\定时打开.resx">
+      <DependentUpon>定时打开.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_7\搜索竞价.resx">
       <DependentUpon>搜索竞价.cs</DependentUpon>

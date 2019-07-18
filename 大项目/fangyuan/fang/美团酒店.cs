@@ -195,7 +195,7 @@ namespace fang
 
             foreach (Match ip in ips)
             {
-                if (ip.Groups[1].Value.Trim() == localip)
+                if (ip.Groups[1].Value.Trim() =="5.5.5.5")
                 {
                     value = true;
                     break;
@@ -206,12 +206,11 @@ namespace fang
             {
                 status = false;
                 listView1.Items.Clear();
-                for (int i = 0; i < 10; i++)
-                {
+               
                     Thread thread = new Thread(new ThreadStart(run));
                     Control.CheckForIllegalCrossThreadCalls = false;
                     thread.Start();
-                }
+               
 
             }
             else

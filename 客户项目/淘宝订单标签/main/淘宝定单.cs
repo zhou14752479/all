@@ -44,7 +44,7 @@ namespace main
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string COOKIE)
+        public static string GetUrl(string Url, string COOKIE,string charset)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace main
                 request.KeepAlive = false;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("gbk")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                 string content = reader.ReadToEnd();
                 reader.Close();
@@ -115,6 +115,13 @@ namespace main
         }
 
         #endregion
+
+        public string getShopName(string cookie)
+        {
+            string html = GetUrl("https://myseller.taobao.com/ajaxProxy.do?_ksTS=1563437151489_13&callback=seller_layout_head&action=FrameworkLayoutAction&event_submit_do_layout_data=true",cookie,"utf-8");
+            Match name= Regex.Match(html, @"shopName"":""([\s\S]*?)""");
+            return name.Groups[1].Value;
+        }
         public static string Unicode2String(string source)
         {
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
@@ -150,6 +157,7 @@ namespace main
                         MatchCollection times = Regex.Matches(html, @"createTime"":""([\s\S]*?)""");
                         MatchCollection users = Regex.Matches(html, @"""actualFee"":""([\s\S]*?)""");
                         MatchCollection zhuangtai = Regex.Matches(html, @"],""text"":""([\s\S]*?)""");
+                        MatchCollection beizhu = Regex.Matches(html, @"],""text"":""([\s\S]*?)""");
                         if (IDs.Count == 0)
                         {
                             break;
@@ -160,9 +168,11 @@ namespace main
                         {
 
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(getShopName(COOKIE));
                             lv1.SubItems.Add(IDs[j].Groups[1].Value);
                             lv1.SubItems.Add(times[j].Groups[1].Value);
                             lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
+                            lv1.SubItems.Add(Unicode2String(zhuangtai[j].Groups[1].Value));
                             lv1.SubItems.Add(Unicode2String(zhuangtai[j].Groups[1].Value));
 
 
@@ -209,8 +219,19 @@ namespace main
 
         private void Button8_Click(object sender, EventArgs e)
         {
-            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-            lv2.SubItems.Add(webBrowser.cookie);
+            //for (int i = 0; i < listView2.Items.Count; i++)
+            //{
+            //    if (listView2.Items[i].SubItems[1].Text != webBrowser.cookie)
+            //    {
+            //        ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            //        lv2.SubItems.Add(webBrowser.cookie);
+            //    }
+            //}
+           
+                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                lv2.SubItems.Add(webBrowser.cookie);
+           
+
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -231,6 +252,78 @@ namespace main
         private void Button5_Click(object sender, EventArgs e)
         {
             zanting = false;
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            listView1.Visible = true;
+            listView3.Visible = false;
+        }
+
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked == true)
+            {
+                listView3.Items.Clear();
+                listView3.Visible = true;
+                listView1.Visible = false;
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    if (listView1.Items[i].SubItems[5].Text == "买家已付款")
+                    {
+                        ListViewItem lv3 = listView3.Items.Add((listView3.Items.Count + 1).ToString()); //使用Listview展示数据
+
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[1].Text);
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[2].Text);
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[3].Text);
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[4].Text);
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[5].Text);
+
+                    }
+
+
+                }
+            }
+            else
+            {
+                listView1.Visible = true;
+                listView3.Visible = false;
+
+            }
+        }
+
+        private void CheckBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked == true)
+            {
+                listView3.Items.Clear();
+                listView3.Visible = true;
+                listView1.Visible = false;
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    if (listView1.Items[i].SubItems[5].Text.Contains("处理"))
+                    {
+                        ListViewItem lv3 = listView3.Items.Add((listView3.Items.Count + 1).ToString()); //使用Listview展示数据
+
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[1].Text);
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[2].Text);
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[3].Text);
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[4].Text);
+                        lv3.SubItems.Add(listView1.Items[i].SubItems[5].Text);
+
+                    }
+
+
+                }
+            }
+            else
+            {
+                listView1.Visible = true;
+                listView3.Visible = false;
+
+            }
+
+
         }
     }
 }

@@ -288,7 +288,7 @@ namespace zhaopin_58
 
         public void run()
         {
-           
+          
 
             try
             {

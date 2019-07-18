@@ -84,35 +84,8 @@ namespace main._2019_6
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用导出
-           
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
 
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-                method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-
-            }
-            else
-            {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
-            }
-            #endregion
-           
         }
 
         private void Label1_Click(object sender, EventArgs e)

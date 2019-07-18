@@ -54,6 +54,18 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -74,7 +86,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 545);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(887, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(980, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -98,9 +110,14 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.listView3);
+            this.splitContainer1.Panel2.Controls.Add(this.checkBox4);
+            this.splitContainer1.Panel2.Controls.Add(this.checkBox3);
+            this.splitContainer1.Panel2.Controls.Add(this.checkBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(887, 545);
-            this.splitContainer1.SplitterDistance = 416;
+            this.splitContainer1.Size = new System.Drawing.Size(980, 545);
+            this.splitContainer1.SplitterDistance = 428;
             this.splitContainer1.TabIndex = 5;
             // 
             // button8
@@ -109,7 +126,7 @@
             this.button8.Font = new System.Drawing.Font("宋体", 10F);
             this.button8.Location = new System.Drawing.Point(12, 245);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(402, 29);
+            this.button8.Size = new System.Drawing.Size(373, 29);
             this.button8.TabIndex = 67;
             this.button8.Text = "第二步：点击获取COOKIE";
             this.button8.UseVisualStyleBackColor = false;
@@ -124,7 +141,7 @@
             this.listView2.GridLines = true;
             this.listView2.Location = new System.Drawing.Point(8, 8);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(402, 196);
+            this.listView2.Size = new System.Drawing.Size(377, 196);
             this.listView2.TabIndex = 66;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -161,7 +178,7 @@
             this.button4.Font = new System.Drawing.Font("宋体", 10F);
             this.button4.Location = new System.Drawing.Point(8, 210);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(402, 29);
+            this.button4.Size = new System.Drawing.Size(377, 29);
             this.button4.TabIndex = 45;
             this.button4.Text = "第一步：登陆淘宝";
             this.button4.UseVisualStyleBackColor = false;
@@ -194,7 +211,7 @@
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Location = new System.Drawing.Point(8, 404);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(402, 129);
+            this.groupBox1.Size = new System.Drawing.Size(362, 129);
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能设置";
@@ -211,7 +228,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("宋体", 11F);
-            this.button7.Location = new System.Drawing.Point(288, 88);
+            this.button7.Location = new System.Drawing.Point(249, 91);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(97, 32);
             this.button7.TabIndex = 48;
@@ -222,7 +239,7 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("宋体", 11F);
-            this.button6.Location = new System.Drawing.Point(288, 31);
+            this.button6.Location = new System.Drawing.Point(249, 31);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(97, 32);
             this.button6.TabIndex = 47;
@@ -236,7 +253,7 @@
             this.button1.Font = new System.Drawing.Font("宋体", 11F);
             this.button1.Location = new System.Drawing.Point(21, 31);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 32);
+            this.button1.Size = new System.Drawing.Size(130, 32);
             this.button1.TabIndex = 38;
             this.button1.Text = "开始采集";
             this.button1.UseVisualStyleBackColor = false;
@@ -247,7 +264,7 @@
             this.button5.Font = new System.Drawing.Font("宋体", 11F);
             this.button5.Location = new System.Drawing.Point(21, 88);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(169, 32);
+            this.button5.Size = new System.Drawing.Size(130, 32);
             this.button5.TabIndex = 46;
             this.button5.Text = "停止";
             this.button5.UseVisualStyleBackColor = true;
@@ -256,7 +273,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("宋体", 11F);
-            this.button3.Location = new System.Drawing.Point(196, 88);
+            this.button3.Location = new System.Drawing.Point(157, 91);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(86, 32);
             this.button3.TabIndex = 43;
@@ -267,7 +284,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 11F);
-            this.button2.Location = new System.Drawing.Point(196, 31);
+            this.button2.Location = new System.Drawing.Point(157, 31);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 32);
             this.button2.TabIndex = 42;
@@ -282,13 +299,13 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Location = new System.Drawing.Point(0, 40);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(467, 545);
+            this.listView1.Size = new System.Drawing.Size(548, 505);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -300,29 +317,134 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "订单号";
+            this.columnHeader2.Text = "店铺名称";
             this.columnHeader2.Width = 120;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "时间";
+            this.columnHeader3.Text = "订单号";
             this.columnHeader3.Width = 120;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "金额";
+            this.columnHeader4.Text = "时间";
             this.columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "定单状态";
-            this.columnHeader5.Width = 100;
+            this.columnHeader5.Text = "金额";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "订单状态";
+            this.columnHeader6.Width = 100;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Font = new System.Drawing.Font("宋体", 10F);
+            this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.checkBox1.Location = new System.Drawing.Point(7, 13);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(54, 18);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "全部";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("宋体", 10F);
+            this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.checkBox2.Location = new System.Drawing.Point(89, 13);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(68, 18);
+            this.checkBox2.TabIndex = 7;
+            this.checkBox2.Text = "代发货";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Font = new System.Drawing.Font("宋体", 10F);
+            this.checkBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.checkBox3.Location = new System.Drawing.Point(178, 12);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(68, 18);
+            this.checkBox3.TabIndex = 8;
+            this.checkBox3.Text = "退货中";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Font = new System.Drawing.Font("宋体", 10F);
+            this.checkBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.checkBox4.Location = new System.Drawing.Point(277, 12);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(68, 18);
+            this.checkBox4.TabIndex = 9;
+            this.checkBox4.Text = "售后中";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // listView3
+            // 
+            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12});
+            this.listView3.FullRowSelect = true;
+            this.listView3.GridLines = true;
+            this.listView3.Location = new System.Drawing.Point(0, 40);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(548, 505);
+            this.listView3.TabIndex = 10;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.listView3.View = System.Windows.Forms.View.Details;
+            this.listView3.Visible = false;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "ID";
+            this.columnHeader7.Width = 40;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "店铺名称";
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "订单号";
+            this.columnHeader9.Width = 120;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "时间";
+            this.columnHeader10.Width = 100;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "金额";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "订单状态";
+            this.columnHeader12.Width = 100;
             // 
             // 淘宝定单
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 567);
+            this.ClientSize = new System.Drawing.Size(980, 567);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "淘宝定单";
@@ -333,6 +455,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -369,5 +492,17 @@
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
     }
 }
