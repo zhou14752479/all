@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_6
+namespace main._2019_5
 {
     static class Program
     {
@@ -18,7 +18,7 @@ namespace main._2019_6
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 雷速体育());
+            Application.Run(new 数字组合());
         }
     }
 }
