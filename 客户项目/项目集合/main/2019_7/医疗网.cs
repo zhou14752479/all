@@ -47,18 +47,156 @@ namespace main._2019_7
         }
 
         string typeid = "1";
+        string pro = "";
         bool status = true;
         bool zanting = true;
         #region 主程序
         public void run()
         {
+            if (this.comboBox1.Text == "全国")
+            {
+
+                pro = "";
+            }
+            else if (this.comboBox1.Text == "北京")
+            {
+                pro = "15";
+            }
+            else if (this.comboBox1.Text == "天津")
+            {
+                pro = "13";
+            }
+            else if (this.comboBox1.Text == "重庆")
+            {
+                pro = "27";
+            }
+            else if (this.comboBox1.Text == "上海")
+            {
+                pro = "8";
+            }
+            else if (this.comboBox1.Text == "河北省")
+            {
+                pro = "29";
+            }
+            else if (this.comboBox1.Text == "山西省")
+            {
+                pro = "28";
+            }
+            else if (this.comboBox1.Text == "内蒙古自治区")
+            {
+                pro = "33";
+            }
+            else if (this.comboBox1.Text == "辽宁省")
+            {
+                pro = "14";
+            }
+            else if (this.comboBox1.Text == "吉林省")
+            {
+                pro = "23";
+
+            }
+            else if (this.comboBox1.Text == "黑龙江省")
+            {
+                pro = "5";
+            }
+            else if (this.comboBox1.Text == "江苏省")
+            {
+                pro = "30";
+            }
+            else if (this.comboBox1.Text == "浙江省")
+            {
+                pro = "19";
+            }
+            else if (this.comboBox1.Text == "安徽省")
+            {
+                pro = "31";
+            }
+            else if (this.comboBox1.Text == "福建省")
+            {
+                pro = "11";
+            }
+            else if (this.comboBox1.Text == "江西省")
+            {
+                pro = "20";
+            }
+            else if (this.comboBox1.Text == "山东省")
+            {
+                pro = "18";
+            }
+            else if (this.comboBox1.Text == "河南省")
+            {
+                pro = "17";
+            }
+            else if (this.comboBox1.Text == "湖北省")
+            {
+                pro = "16";
+            }
+            else if (this.comboBox1.Text == "湖南省")
+            {
+                pro = "6";
+            }
+            else if (this.comboBox1.Text == "广东省")
+            {
+                pro = "10";
+            }
+            else if (this.comboBox1.Text == "广西省")
+            {
+                pro = "22";
+            }
+            else if (this.comboBox1.Text == "海南省")
+            {
+                pro = "12";
+            }
+            else if (this.comboBox1.Text == "四川省")
+            {
+                pro = "3";
+            }
+            else if (this.comboBox1.Text == "贵州省")
+            {
+                pro = "9";
+            }
+            else if (this.comboBox1.Text == "云南省")
+            {
+                pro = "4";
+            }
+            else if (this.comboBox1.Text == "西藏自治区")
+            {
+                pro = "24";
+            }
+            else if (this.comboBox1.Text == "陕西省")
+            {
+                pro = "26";
+            }
+            else if (this.comboBox1.Text == "甘肃省")
+            {
+                pro = "25";
+            }
+
+            else if (this.comboBox1.Text == "青海省")
+            {
+                pro = "1";
+            }
+            else if (this.comboBox1.Text == "宁夏回族自治区")
+            {
+                pro = "32";
+            }
+            else if (this.comboBox1.Text == "新疆维吾尔自治区")
+            {
+                pro = "2";
+            }
+
+
+
+
+
+
 
             try
             {
                 for (int i = 0; i < 9999; i++)
                 {
 
-                    string Url = "https://3g.kq36.cn/m/companylist.aspx?keyw=&typeid="+typeid+"&proviceid=0&cityid=0&areaid=0&minying=&guimo=&xingzhi=&offerid=&ddlmedicare=&pageindex="+i;
+                    string Url = "https://3g.kq36.cn/m/companylist.aspx?keyw=&typeid="+typeid+"&proviceid="+this.pro+"&cityid=&areaid=&minying=&guimo=&xingzhi=&offerid=&ddlmedicare=&pageindex="+i;
 
                     string html = method.GetUrl(Url, "utf-8");
                    

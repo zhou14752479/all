@@ -38,30 +38,64 @@ namespace main._2019_7
         public void run()
 
         {
-            string h= DateTime.Now.Hour.ToString();
-            string m = DateTime.Now.Minute.ToString();
-            string s = DateTime.Now.Second.ToString();
-            if (textBox2.Text == h && textBox3.Text == m && textBox4.Text == s)
+            //string h= DateTime.Now.Hour.ToString();
+            //string m = DateTime.Now.Minute.ToString();
+            //string s = DateTime.Now.Second.ToString();
+            if (dateTimePicker1.Text == DateTime.Now.ToLongTimeString())
             {
                 webBrowser1.Navigate(textBox1.Text);
-               
             }
-            if (textBox7.Text == h && textBox6.Text == m && textBox5.Text == s)
+            if (dateTimePicker2.Text == DateTime.Now.ToLongTimeString())
             {
-                webBrowser1.Navigate(textBox8.Text);
-              
+                webBrowser1.Navigate(textBox2.Text);
             }
-            if (textBox11.Text == h && textBox10.Text == m && textBox9.Text == s)
+
+            if (dateTimePicker3.Text == DateTime.Now.ToLongTimeString())
             {
-                webBrowser1.Navigate(textBox12.Text);
-               
+                webBrowser1.Navigate(textBox3.Text);
             }
+         
+        }
+
+        public void run1()
+
+        {
+           
+            if (dateTimePicker4.Value < Convert.ToDateTime( DateTime.Now.ToLongTimeString()) && Convert.ToDateTime(DateTime.Now.ToLongTimeString())< dateTimePicker5.Value)
+            {
+                timer2.Start();
+            }
+
+            if (dateTimePicker7.Value < Convert.ToDateTime(DateTime.Now.ToLongTimeString()) && Convert.ToDateTime(DateTime.Now.ToLongTimeString()) < dateTimePicker6.Value)
+            {
+                timer3.Start();
+            }
+
+
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
             run();
 
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+            timer2.Interval = Convert.ToInt32(textBox4.Text) * 1000;
+            timer3.Interval = Convert.ToInt32(textBox7.Text) * 1000;
+            run1();
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate(textBox5.Text);
+        }
+
+        private void Timer3_Tick(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate(textBox6.Text);
         }
     }
 }

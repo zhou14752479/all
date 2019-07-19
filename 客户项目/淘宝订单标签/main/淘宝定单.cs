@@ -23,6 +23,17 @@ namespace main
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// 时间戳Timestamp
+        /// </summary>
+        /// <returns></returns>
+        private int GetCreatetime(DateTime dt)
+        {
+            DateTime DateStart = new DateTime(1970, 1, 1, 8, 0, 0);
+            return Convert.ToInt32((dt - DateStart).TotalSeconds);
+        }
+
         private void splitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
         {
 
@@ -127,6 +138,9 @@ namespace main
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
                 source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
         }
+
+        string datebegin = "";
+        string dateend = "";
         /// <summary>
         /// 等待发货
         /// </summary>
@@ -149,7 +163,7 @@ namespace main
 
                         string URL = "https://trade.taobao.com/trade/itemlist/asyncSold.htm?event_submit_do_query=1&_input_charset=utf8";
                         int z = i - 1;
-                        string postdata = "auctionType=0&close=0&pageNum="+i+"&pageSize=15&queryMore=false&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&prePageNo="+z;
+                        string postdata = "auctionType=0&close=0&pageNum="+i+ "&pageSize=15&queryMore=false&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&dateBegin="+datebegin+"&dateEnd="+dateend+"&prePageNo=" + z;
                         string html = PostUrl(URL, postdata); ;
 
                         MatchCollection IDs = Regex.Matches(html, @"&orderid=([\s\S]*?)""");
@@ -208,6 +222,7 @@ namespace main
 
         private void Button4_Click(object sender, EventArgs e)
         {
+            button8.Enabled = true;
             webBrowser web = new webBrowser("https://login.taobao.com/member/login.jhtml");
             web.Show();
         }
@@ -219,6 +234,7 @@ namespace main
 
         private void Button8_Click(object sender, EventArgs e)
         {
+            button8.Enabled = false;
             //for (int i = 0; i < listView2.Items.Count; i++)
             //{
             //    if (listView2.Items[i].SubItems[1].Text != webBrowser.cookie)
@@ -227,9 +243,9 @@ namespace main
             //        lv2.SubItems.Add(webBrowser.cookie);
             //    }
             //}
-           
-                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                lv2.SubItems.Add(webBrowser.cookie);
+
+            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            lv2.SubItems.Add(webBrowser.cookie);
            
 
         }
@@ -252,6 +268,7 @@ namespace main
         private void Button5_Click(object sender, EventArgs e)
         {
             zanting = false;
+           
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -324,6 +341,18 @@ namespace main
             }
 
 
+        }
+
+    
+
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            datebegin = GetCreatetime(dateTimePicker1.Value).ToString() + "000";
+        }
+
+        private void DateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            dateend = GetCreatetime(dateTimePicker2.Value).ToString() + "000";
         }
     }
 }
