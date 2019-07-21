@@ -55,7 +55,7 @@ namespace main
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string COOKIE,string charset)
+        public static string GetUrl(string Url, string COOKIE, string charset)
         {
             try
             {
@@ -129,8 +129,8 @@ namespace main
 
         public string getShopName(string cookie)
         {
-            string html = GetUrl("https://myseller.taobao.com/ajaxProxy.do?_ksTS=1563437151489_13&callback=seller_layout_head&action=FrameworkLayoutAction&event_submit_do_layout_data=true",cookie,"utf-8");
-            Match name= Regex.Match(html, @"shopName"":""([\s\S]*?)""");
+            string html = GetUrl("https://myseller.taobao.com/ajaxProxy.do?_ksTS=1563437151489_13&callback=seller_layout_head&action=FrameworkLayoutAction&event_submit_do_layout_data=true", cookie, "utf-8");
+            Match name = Regex.Match(html, @"shopName"":""([\s\S]*?)""");
             return name.Groups[1].Value;
         }
         public static string Unicode2String(string source)
@@ -142,36 +142,36 @@ namespace main
         string datebegin = "";
         string dateend = "";
         /// <summary>
-        /// 等待发货
+        /// 主程序
         /// </summary>
         public void run()
         {
 
-           
 
-                try
-                {
+
+            try
+            {
                 for (int a = 0; a < listView2.Items.Count; a++)
                 {
                     COOKIE = listView2.Items[a].SubItems[1].Text;
                     if (COOKIE == "")
                         continue;
 
-                    for (int i= 1; i < 20; i++)
+                    for (int i = 1; i < 20; i++)
                     {
 
 
                         string URL = "https://trade.taobao.com/trade/itemlist/asyncSold.htm?event_submit_do_query=1&_input_charset=utf8";
                         int z = i - 1;
-                        string postdata = "auctionType=0&close=0&pageNum="+i+ "&pageSize=15&queryMore=false&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&dateBegin="+datebegin+"&dateEnd="+dateend+"&prePageNo=" + z;
+                        string postdata = "auctionType=0&close=0&pageNum=" + i + "&pageSize=15&queryMore=false&rxAuditFlag=0&rxElectronicAllFlag=0&rxElectronicAuditFlag=0&rxHasSendFlag=0&rxOldFlag=0&rxSendFlag=0&rxSuccessflag=0&rxWaitSendflag=0&tradeTag=0&useCheckcode=false&useOrderInfo=false&errorCheckcode=false&action=itemlist%2FSoldQueryAction&dateBegin=" + datebegin + "&dateEnd=" + dateend + "&prePageNo=" + z;
                         string html = PostUrl(URL, postdata); ;
 
                         MatchCollection IDs = Regex.Matches(html, @"&orderid=([\s\S]*?)""");
 
                         MatchCollection times = Regex.Matches(html, @"createTime"":""([\s\S]*?)""");
-                        MatchCollection users = Regex.Matches(html, @"""actualFee"":""([\s\S]*?)""");
+                        MatchCollection prices = Regex.Matches(html, @"""actualFee"":""([\s\S]*?)""");
                         MatchCollection zhuangtai = Regex.Matches(html, @"],""text"":""([\s\S]*?)""");
-                        MatchCollection beizhu = Regex.Matches(html, @"],""text"":""([\s\S]*?)""");
+                        //  MatchCollection beizhu = Regex.Matches(html, @"],""text"":""([\s\S]*?)""");
                         if (IDs.Count == 0)
                         {
                             break;
@@ -185,8 +185,7 @@ namespace main
                             lv1.SubItems.Add(getShopName(COOKIE));
                             lv1.SubItems.Add(IDs[j].Groups[1].Value);
                             lv1.SubItems.Add(times[j].Groups[1].Value);
-                            lv1.SubItems.Add(Unicode2String(users[j].Groups[1].Value));
-                            lv1.SubItems.Add(Unicode2String(zhuangtai[j].Groups[1].Value));
+                            lv1.SubItems.Add(Unicode2String(prices[j].Groups[1].Value));
                             lv1.SubItems.Add(Unicode2String(zhuangtai[j].Groups[1].Value));
 
 
@@ -203,13 +202,79 @@ namespace main
                     }
 
                 }
-                }
-                
+            }
+
 
 
             catch (System.Exception ex)
             {
                 ex.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 退款管理
+        /// </summary>
+        public void tui()
+        {
+
+
+
+            try
+            {
+                for (int a = 0; a < listView2.Items.Count; a++)
+                {
+                    COOKIE = listView2.Items[a].SubItems[1].Text;
+                    if (COOKIE == "")
+                        continue;
+
+                    string URL = "https://refund2.taobao.com/dispute/sellerDisputeList.htm";
+
+                    string html = GetUrl(URL, COOKIE, "utf-8");
+                    MatchCollection IDs = Regex.Matches(html, @"&tradeID=([\s\S]*?)&");
+
+                    MatchCollection times = Regex.Matches(html, @"2019-([\s\S]*?)""");
+                    MatchCollection prices = Regex.Matches(html, @"name"":""￥([\s\S]*?)""");
+                    MatchCollection zhuangtai = Regex.Matches(html, @"#2485D7\\"">([\s\S]*?)""");
+                    MatchCollection zhuangtai2 = Regex.Matches(html, @"title"":""\(([\s\S]*?)""");
+                    if (IDs.Count == 0)
+                    {
+                        break;
+                    }
+
+
+                    for (int j = 0; j < IDs.Count; j++)
+                    {
+
+                        ListViewItem lv3 = listView3.Items.Add((listView3.Items.Count + 1).ToString()); //使用Listview展示数据
+                        lv3.SubItems.Add(getShopName(COOKIE));
+                        lv3.SubItems.Add(IDs[j].Groups[1].Value);
+                        lv3.SubItems.Add("2019-" + times[j].Groups[1].Value);
+                        lv3.SubItems.Add(Unicode2String(prices[(2 * j) + 1].Groups[1].Value));
+                        lv3.SubItems.Add(Unicode2String("(" + zhuangtai2[j].Groups[1].Value) + zhuangtai[j].Groups[1].Value.Replace("<\\/font><br/>",""));
+
+
+                        while (this.zanting == false)
+                        {
+                            //label1.Text = "已暂停....";
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                    }
+
+                    Thread.Sleep(100);
+
+                }
+            }
+
+
+
+
+
+
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -316,22 +381,9 @@ namespace main
                 listView3.Items.Clear();
                 listView3.Visible = true;
                 listView1.Visible = false;
-                for (int i = 0; i < listView1.Items.Count; i++)
-                {
-                    if (listView1.Items[i].SubItems[5].Text.Contains("处理"))
-                    {
-                        ListViewItem lv3 = listView3.Items.Add((listView3.Items.Count + 1).ToString()); //使用Listview展示数据
-
-                        lv3.SubItems.Add(listView1.Items[i].SubItems[1].Text);
-                        lv3.SubItems.Add(listView1.Items[i].SubItems[2].Text);
-                        lv3.SubItems.Add(listView1.Items[i].SubItems[3].Text);
-                        lv3.SubItems.Add(listView1.Items[i].SubItems[4].Text);
-                        lv3.SubItems.Add(listView1.Items[i].SubItems[5].Text);
-
-                    }
-
-
-                }
+                Thread thread = new Thread(new ThreadStart(tui));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
             }
             else
             {
