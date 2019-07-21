@@ -8,9 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>main</RootNamespace>
     <AssemblyName>main</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,12 +25,11 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -61,6 +62,15 @@
   <ItemGroup>
     <Reference Include="aliyun-net-sdk-Core">
       <HintPath>..\..\..\..\贴吧监控6181\aliyun-net-sdk-Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp">
+      <HintPath>..\..\..\..\cefsharp\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Core">
+      <HintPath>..\..\..\..\cefsharp\CefSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.WinForms">
+      <HintPath>..\..\..\..\cefsharp\CefSharp.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\主程序\CSkin.dll</HintPath>
@@ -424,6 +434,12 @@
     <Compile Include="2019_7\浏览器采集.Designer.cs">
       <DependentUpon>浏览器采集.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_7\网易充值.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\网易充值.Designer.cs">
+      <DependentUpon>网易充值.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_7\网站查询.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +466,12 @@
     </Compile>
     <Compile Include="webBrowser.Designer.cs">
       <DependentUpon>webBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="谷歌浏览器.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="谷歌浏览器.Designer.cs">
+      <DependentUpon>谷歌浏览器.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="2019_4\crm58.resx">
       <DependentUpon>crm58.cs</DependentUpon>
@@ -610,6 +632,9 @@
     <EmbeddedResource Include="2019_7\浏览器采集.resx">
       <DependentUpon>浏览器采集.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\网易充值.resx">
+      <DependentUpon>网易充值.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019_7\网站查询.resx">
       <DependentUpon>网站查询.cs</DependentUpon>
     </EmbeddedResource>
@@ -624,12 +649,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="register.resx">
       <DependentUpon>register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="webBrowser.resx">
       <DependentUpon>webBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="谷歌浏览器.resx">
+      <DependentUpon>谷歌浏览器.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

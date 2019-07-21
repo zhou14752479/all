@@ -75,9 +75,9 @@ namespace main
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = GetCookies("https://order.jd.com/center/list.action?d=1&s=4096&page=1");
+            textBox1.Text = GetCookies(this.url);
             cookie = textBox1.Text;
-            this.Hide();
+            //this.Hide();
 
         }
 
