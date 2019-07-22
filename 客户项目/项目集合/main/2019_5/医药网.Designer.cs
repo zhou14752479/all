@@ -242,6 +242,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "医药网";
             this.Text = "医药网";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.医药网_FormClosed);
             this.Load += new System.EventHandler(this.医药网_Load);
             this.groupBox2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);

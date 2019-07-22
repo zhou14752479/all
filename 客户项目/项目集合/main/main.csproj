@@ -63,15 +63,6 @@
     <Reference Include="aliyun-net-sdk-Core">
       <HintPath>..\..\..\..\贴吧监控6181\aliyun-net-sdk-Core.dll</HintPath>
     </Reference>
-    <Reference Include="CefSharp">
-      <HintPath>..\..\..\..\cefsharp\CefSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.Core">
-      <HintPath>..\..\..\..\cefsharp\CefSharp.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.WinForms">
-      <HintPath>..\..\..\..\cefsharp\CefSharp.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\主程序\CSkin.dll</HintPath>
     </Reference>
@@ -467,12 +458,6 @@
     <Compile Include="webBrowser.Designer.cs">
       <DependentUpon>webBrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="谷歌浏览器.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="谷歌浏览器.Designer.cs">
-      <DependentUpon>谷歌浏览器.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="2019_4\crm58.resx">
       <DependentUpon>crm58.cs</DependentUpon>
     </EmbeddedResource>
@@ -656,9 +641,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="webBrowser.resx">
       <DependentUpon>webBrowser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="谷歌浏览器.resx">
-      <DependentUpon>谷歌浏览器.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

@@ -543,7 +543,7 @@ namespace main._2019_5
 
 };
         bool zanting = true;
-        public static string COOKIE = "COOKIE_mode=0; ASP.NET_SessionId=5lt4qecmtxf1fgxmutukosag; COOKIE_NAME=thcgn0213; COOKIE_PWD=hy4881";
+        public static string COOKIE = "COOKIE_mode=0; ASP.NET_SessionId=ujmwdsnubl0yppxmbhljwnsu; COOKIE_NAME=%20thcgn0213; COOKIE_PWD=771808";
         public void run()
         {
 
@@ -663,6 +663,12 @@ namespace main._2019_5
         private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void 医药网_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+            
         }
     }
 }

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "method", "method\method.csproj", "{B19CD667-8934-4DC9-AEEA-357182E30EEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "谷歌浏览器", "谷歌浏览器\谷歌浏览器.csproj", "{592EED6C-2646-4AFA-96F4-46C2FF989614}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B19CD667-8934-4DC9-AEEA-357182E30EEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B19CD667-8934-4DC9-AEEA-357182E30EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B19CD667-8934-4DC9-AEEA-357182E30EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B19CD667-8934-4DC9-AEEA-357182E30EEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{592EED6C-2646-4AFA-96F4-46C2FF989614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{592EED6C-2646-4AFA-96F4-46C2FF989614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{592EED6C-2646-4AFA-96F4-46C2FF989614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{592EED6C-2646-4AFA-96F4-46C2FF989614}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EEF6826-0C80-4B2B-9027-7665963062A5}
+	EndGlobalSection
+EndGlobal
