@@ -151,8 +151,6 @@ namespace main
                                 lv1.SubItems.Add(recordList1.linkqq);
                                 lv1.SubItems.Add(recordList1.address);
 
-                                //string[] values = { recordList1.companyname, recordList1.linkman, recordList1.proname, recordList1.cityname, recordList1.linkmp, recordList1.pnumber, recordList1.email, recordList1.areaname, recordList1.mainpro, recordList1.createdate, recordList1.linkqq, recordList1.address };
-                                //insertData(values);
 
                                 if (listView1.Items.Count - 1 > 1)
                                 {
@@ -169,8 +167,6 @@ namespace main
                                 }
 
                             }
-
-
                         }
                         Application.DoEvents();
                         Thread.Sleep(100);   //内容获取间隔，可变量
@@ -178,10 +174,6 @@ namespace main
                
 
                     }
-
-
-
-
                     Application.DoEvents();
                     System.Threading.Thread.Sleep(1000);   //内容获取间隔，可变量
 
@@ -194,7 +186,7 @@ namespace main
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+               ex.ToString();
             }
         }
 
@@ -211,118 +203,7 @@ namespace main
         #endregion
 
 
-        #region  慧聪网临时
-
-        public void huicong1()
-        {
-
-            status = true;
-
-            try
-            {
-                for (int z = 0; z< comboBox1.Items.Count; z++)
-                {
-                    comboBox1.Text = comboBox1.GetItemText(comboBox1.Items[z]);
-                    for (int j = 0; j < comboBox2.Items.Count; j++)
-                    {
-
-                        comboBox2.Text = comboBox2.GetItemText(comboBox2.Items[j]);
-                        string[] keywords = textBox3.Text.Trim().Split(',');
-
-
-                        string city = System.Web.HttpUtility.UrlEncode("中国:" + comboBox1.Text + ":" + comboBox2.Text);
-                        if (comboBox2.Text == "全省" || comboBox2.Text == "")
-                        {
-                            city = System.Web.HttpUtility.UrlEncode("中国:" + comboBox1.Text);
-                        }
-                        if (comboBox1.Text == "全国")
-                        {
-                            city = System.Web.HttpUtility.UrlEncode("中国");
-                        }
-                       
-
-                        foreach (string keyword in keywords)
-                        {
-
-                            //if (keyword == "")
-                            //{
-                            //    MessageBox.Show("请输入采集行业或者关键词！");
-                            //    return;
-                            //}
-                            string key = System.Web.HttpUtility.UrlEncode(keyword);
-
-                            for (int i = 1; i < 9999; i++)
-                            {
-                                textBox1.Text = comboBox1.Text + comboBox2.Text +keyword+ "第"+i+"页";
-
-                                string Url = "https://esapi.org.hc360.com/interface/getinfos.html?pnum=" + i + "&psize=1000&kwd=" + keyword + "&z=" + city + "&index=companyinfo&collapsef=providerid";
-
-                                string strhtml = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-
-                                if (!strhtml.Contains("address"))
-                                {
-                                   break;
-                                }
-                                Info jsonParser = JsonConvert.DeserializeObject<Info>(strhtml);
-
-
-
-                                foreach (recordList recordList1 in jsonParser.recordList)
-                                {
-
-                                                   
-                                        string[] values = { recordList1.companyname, recordList1.linkman, recordList1.proname, recordList1.cityname, recordList1.linkmp, recordList1.pnumber, recordList1.email, recordList1.areaname, recordList1.mainpro, recordList1.createdate, recordList1.linkqq, recordList1.address };
-                                        insertData(values);
-                                    toolStripStatusLabel5.Text = recordList1.companyname;
-                                        if (listView1.Items.Count - 1 > 1)
-                                        {
-                                            listView1.EnsureVisible(listView1.Items.Count - 1);
-                                        }
-                                        if (status == false)
-                                        {
-                                            return;
-                                        }
-
-                                        while (this.zanting == false)
-                                        {
-                                            Application.DoEvents();
-                                        }
-
-                                    }
-
-
-                                }
-                               
-
-                            }
-
-
-                        }
-
-                    }
-                
-
-
-                button2.Enabled = true;
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-        #endregion
+        
 
         private void Button2_Click(object sender, EventArgs e)
         {

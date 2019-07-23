@@ -284,11 +284,11 @@ namespace zhaopin_58
         //下载图片结束
 
 
-        #region  主程序按照单个城市多个关键词
+        #region  主程序按照多个城市多个关键词
 
         public void run()
         {
-          
+
 
             try
             {
@@ -297,29 +297,30 @@ namespace zhaopin_58
                     MessageBox.Show("请输入关键字");
                     return;
                 }
-                
+                string[] citys = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] keywords = textBox1.Text.Trim().Split(',');
 
-                string city = comboBox1.SelectedItem.ToString();
-              
+                //string city = comboBox1.SelectedItem.ToString();
 
+                foreach (string city in citys)
+                {
                     ArrayList areaIds = getAreaId(city);
                     string cityId = GetCityId(city);
 
 
-                foreach (string area in areaIds)
-                {
-
-                    foreach (string keyword in keywords)
-
+                    foreach (string area in areaIds)
                     {
 
-                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/"+cityId+"?cateId=-1&sort=default&userid=-1&offset=0&limit=1000&mypos=33.959859%2C118.279675&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&q="+keyword+"&requestType=filter&cityId="+cityId+"&areaId="+area;
-                       
-                       
+                        foreach (string keyword in keywords)
+
+                        {
+
+                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?cateId=-1&sort=default&userid=-1&offset=0&limit=1000&mypos=33.959859%2C118.279675&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&q=" + keyword + "&requestType=filter&cityId=" + cityId + "&areaId=" + area;
+
+
                             string html = method.GetUrl(Url);
-                        
-                            
+
+
                             MatchCollection TitleMatchs = Regex.Matches(html, @"false},{""id"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                             ArrayList lists = new ArrayList();
@@ -330,30 +331,30 @@ namespace zhaopin_58
                                 lists.Add(NextMatch.Groups[1].Value);
                             }
 
-                        
+
                             if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                                 break;
                             foreach (string list in lists)
                             {
-                            string aurl = "https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng";
-                            
-                            string strhtml = method.gethtml(aurl);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
-                          
+                                string aurl = "https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng";
 
-                            Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
-                           // Match name = Regex.Match(strhtml, @"""name"":""([\s\S]*?)""");
-                            Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
+                                string strhtml = method.gethtml(aurl);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
+
+
+                                Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
+                                // Match name = Regex.Match(strhtml, @"""name"":""([\s\S]*?)""");
+                                Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
                                 Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
-                            Match opentime = Regex.Match(strhtml, @"openInfo"":""([\s\S]*?)""");
-
-                          
+                                Match opentime = Regex.Match(strhtml, @"openInfo"":""([\s\S]*?)""");
 
 
-                            if (name.Groups[2].Value != "")
-                            {
-                               
+
+
+                                if (name.Groups[2].Value != "")
+                                {
+
                                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                     lv1.SubItems.Add(name.Groups[2].Value.Trim());
                                     lv1.SubItems.Add(addr.Groups[1].Value.Trim());
@@ -361,51 +362,52 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
                                     lv1.SubItems.Add(opentime.Groups[1].Value);
-                              
-                               
-
-                                if (strhtml.Contains("有外卖"))
-                                {
-                                    lv1.SubItems.Add("有外卖");
-                                }
-                                else
-                                {
-                                    lv1.SubItems.Add("无外卖");
-                                }
 
 
-                                if (listView1.Items.Count - 1 > 1)
-                                {
-                                    listView1.EnsureVisible(listView1.Items.Count - 1);
-                                }
-                                while (this.zanting == false)
-                                {
-                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                }
 
-                                if (status == false)
-                                {
-                                    return;
-                                }
+                                    if (strhtml.Contains("有外卖"))
+                                    {
+                                        lv1.SubItems.Add("有外卖");
+                                    }
+                                    else
+                                    {
+                                        lv1.SubItems.Add("无外卖");
+                                    }
 
-                                Thread.Sleep(1000);   //内容获取间隔，可变量
 
-                            }
+                                    if (listView1.Items.Count - 1 > 1)
+                                    {
+                                        listView1.EnsureVisible(listView1.Items.Count - 1);
+                                    }
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+
+                                    if (status == false)
+                                    {
+                                        return;
+                                    }
+
+                                    Thread.Sleep(1000);   //内容获取间隔，可变量
+
                                 }
-                                
                             }
 
                         }
+
                     }
-                
-            
+                }
+            }
+
+
 
 
 
 
             catch (System.Exception ex)
             {
-              MessageBox.Show(  ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -679,6 +681,16 @@ namespace zhaopin_58
                     listView1.Items.Remove(listView1.Items[i]);
                 }
             }
+        }
+
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void ComboBox1_TextChanged(object sender, EventArgs e)
+        {
+            textBox2.Text += comboBox1.Text + ",";
         }
     }
 }

@@ -283,11 +283,11 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(523, 9);
+            this.label15.Location = new System.Drawing.Point(536, 9);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(38, 29);
             this.label15.TabIndex = 5;
-            this.label15.Text = "图";
+            this.label15.Text = "件";
             // 
             // label14
             // 
@@ -297,7 +297,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(38, 29);
             this.label14.TabIndex = 4;
-            this.label14.Text = "地";
+            this.label14.Text = "软";
             // 
             // label13
             // 
@@ -502,7 +502,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "main";
-            this.Text = "地图综合采集器";
+            this.Text = "思忆58企业抓取                                VX：17606117606";
             this.Load += new System.EventHandler(this.Main_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

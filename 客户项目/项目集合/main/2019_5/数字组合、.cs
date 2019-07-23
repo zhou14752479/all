@@ -60,7 +60,7 @@ namespace main._2019_5
         {
             for (int a = 0; a < 999999; a++)
             {
-                if (listView1.Items.Count == 20)
+                if (listView1.Items.Count == 300)
                     return;
 
                 ArrayList list2 = new ArrayList();
