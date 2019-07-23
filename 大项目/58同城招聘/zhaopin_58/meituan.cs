@@ -284,7 +284,7 @@ namespace zhaopin_58
         //下载图片结束
 
 
-        #region  主程序按照多个城市多个关键词
+        #region  主程序按照单个个城市多个关键词
 
         public void run()
         {
@@ -297,13 +297,11 @@ namespace zhaopin_58
                     MessageBox.Show("请输入关键字");
                     return;
                 }
-                string[] citys = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
+               // string[] citys = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] keywords = textBox1.Text.Trim().Split(',');
 
-                //string city = comboBox1.SelectedItem.ToString();
+                string city = comboBox1.SelectedItem.ToString();
 
-                foreach (string city in citys)
-                {
                     ArrayList areaIds = getAreaId(city);
                     string cityId = GetCityId(city);
 
@@ -398,7 +396,7 @@ namespace zhaopin_58
 
                     }
                 }
-            }
+            
 
 
 
@@ -683,14 +681,10 @@ namespace zhaopin_58
             }
         }
 
-        private void TextBox2_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
+     
         private void ComboBox1_TextChanged(object sender, EventArgs e)
         {
-            textBox2.Text += comboBox1.Text + ",";
+            
         }
     }
 }
