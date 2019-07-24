@@ -619,7 +619,7 @@ namespace zhaopin_58
             }
             else
             {
-                MessageBox.Show("请登录您的账号！");
+                MessageBox.Show("请登录您的账号！登陆成功返回软件使用即可");
                 System.Diagnostics.Process.Start("http://www.acaiji.com");
                 return;
             }

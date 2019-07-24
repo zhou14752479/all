@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -65,12 +66,16 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripStatusLabel1
@@ -135,7 +140,9 @@
             // 
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader13,
-            this.columnHeader14});
+            this.columnHeader14,
+            this.columnHeader15});
+            this.listView2.ContextMenuStrip = this.contextMenuStrip1;
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.Location = new System.Drawing.Point(8, 8);
@@ -151,8 +158,8 @@
             // 
             // columnHeader14
             // 
-            this.columnHeader14.Text = "COOKIE";
-            this.columnHeader14.Width = 1000;
+            this.columnHeader14.Text = "店铺名";
+            this.columnHeader14.Width = 150;
             // 
             // label6
             // 
@@ -363,7 +370,7 @@
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(68, 18);
             this.checkBox2.TabIndex = 7;
-            this.checkBox2.Text = "代发货";
+            this.checkBox2.Text = "待发货";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
@@ -429,6 +436,25 @@
             this.columnHeader6.Text = "订单状态";
             this.columnHeader6.Width = 200;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.删除此行ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            // 
+            // 删除此行ToolStripMenuItem
+            // 
+            this.删除此行ToolStripMenuItem.Name = "删除此行ToolStripMenuItem";
+            this.删除此行ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除此行ToolStripMenuItem.Text = "删除此行";
+            this.删除此行ToolStripMenuItem.Click += new System.EventHandler(this.删除此行ToolStripMenuItem_Click);
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "COOKIE";
+            this.columnHeader15.Width = 1000;
+            // 
             // 淘宝定单
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -449,6 +475,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -492,5 +519,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 删除此行ToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
     }
 }

@@ -37,6 +37,7 @@ namespace 谷歌浏览器
         {
             browser.Parent = this.splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)

@@ -1,6 +1,7 @@
 ﻿using CsharpHttpHelper;
 using CsharpHttpHelper.Enum;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,6 +45,7 @@ namespace main
             this.MaximizeBox = false;
             this.MinimizeBox = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            dateTimePicker1.Text = DateTime.Now.AddDays(-91).ToString();
 
         }
 
@@ -138,7 +140,7 @@ namespace main
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
                 source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
         }
-
+        ArrayList finishes = new ArrayList();
         string datebegin = "";
         string dateend = "";
         /// <summary>
@@ -153,7 +155,7 @@ namespace main
             {
                 for (int a = 0; a < listView2.Items.Count; a++)
                 {
-                    COOKIE = listView2.Items[a].SubItems[1].Text;
+                    COOKIE = listView2.Items[a].SubItems[2].Text;
                     if (COOKIE == "")
                         continue;
 
@@ -180,15 +182,17 @@ namespace main
 
                         for (int j = 0; j < IDs.Count; j++)
                         {
+                            if (!finishes.Contains(IDs[j].Groups[1].Value))
+                            {
+                                finishes.Add(IDs[j].Groups[1].Value);
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(getShopName(COOKIE));
+                                lv1.SubItems.Add(IDs[j].Groups[1].Value);
+                                lv1.SubItems.Add(times[j].Groups[1].Value);
+                                lv1.SubItems.Add(Unicode2String(prices[j].Groups[1].Value));
+                                lv1.SubItems.Add(Unicode2String(zhuangtai[j].Groups[1].Value));
 
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(getShopName(COOKIE));
-                            lv1.SubItems.Add(IDs[j].Groups[1].Value);
-                            lv1.SubItems.Add(times[j].Groups[1].Value);
-                            lv1.SubItems.Add(Unicode2String(prices[j].Groups[1].Value));
-                            lv1.SubItems.Add(Unicode2String(zhuangtai[j].Groups[1].Value));
-
-
+                            }
 
                             while (this.zanting == false)
                             {
@@ -224,7 +228,7 @@ namespace main
             {
                 for (int a = 0; a < listView2.Items.Count; a++)
                 {
-                    COOKIE = listView2.Items[a].SubItems[1].Text;
+                    COOKIE = listView2.Items[a].SubItems[2].Text;
                     if (COOKIE == "")
                         continue;
 
@@ -299,19 +303,28 @@ namespace main
 
         private void Button8_Click(object sender, EventArgs e)
         {
-            button8.Enabled = false;
-            //for (int i = 0; i < listView2.Items.Count; i++)
-            //{
-            //    if (listView2.Items[i].SubItems[1].Text != webBrowser.cookie)
-            //    {
-            //        ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-            //        lv2.SubItems.Add(webBrowser.cookie);
-            //    }
-            //}
 
-            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-            lv2.SubItems.Add(webBrowser.cookie);
-           
+            bool cunzai = false;
+            for (int a = 0; a < listView2.Items.Count; a++)
+            {
+                if (listView2.Items[a].SubItems[1].Text == getShopName(webBrowser.cookie))
+                {
+                    cunzai = true;
+                }
+
+            }
+            if (cunzai == false)
+            {
+                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                lv2.SubItems.Add(getShopName(webBrowser.cookie));
+                lv2.SubItems.Add(webBrowser.cookie);
+            }
+            else
+            {
+                MessageBox.Show("店铺已添加！请勿重复添加");
+            }
+          
+
 
         }
 
@@ -405,6 +418,16 @@ namespace main
         private void DateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             dateend = GetCreatetime(dateTimePicker2.Value).ToString() + "000";
+        }
+
+        private void 删除此行ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int Index = 0;
+            if (this.listView2.SelectedItems.Count > 0)//判断listview有被选中项
+            {
+                Index = this.listView2.SelectedItems[0].Index;//取当前选中项的index,SelectedItems[0]这必须为0
+                listView2.Items[Index].Remove();
+            }
         }
     }
 }

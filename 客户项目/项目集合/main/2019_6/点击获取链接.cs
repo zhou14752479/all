@@ -29,18 +29,18 @@ namespace main._2019_6
 
         private void 点击获取链接_Load(object sender, EventArgs e)
         {
-             webBrowser1.Navigate("https://www.taobao.com");
+             webBrowser1.Navigate("http://mybrowse.osfipin.com/");
            
             this.webBrowser1.ScriptErrorsSuppressed = true;  //屏蔽IE脚本弹出错误
             this.webBrowser1.DocumentCompleted += WebBrowser1_DocumentCompleted;  //屏蔽IE脚本弹出错误
 
 
-            method.SetIE(0);  //设置浏览器版本为枚举值第一个值
+            method.SetIE(method.IeVersion.强制ie10);  //设置浏览器版本为枚举值第一个值
         }
 
         private void WebBrowser1_NewWindow(object sender, CancelEventArgs e)
-        {   
-          
+        {
+            MessageBox.Show(this.webBrowser1.StatusText);
 
             if (checkBox1.Checked == false)
 
