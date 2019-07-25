@@ -271,11 +271,6 @@ namespace main
             }
 
 
-
-
-
-
-
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -284,6 +279,8 @@ namespace main
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            finishes.Clear();
+            listView1.Items.Clear(); 
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
@@ -340,7 +337,15 @@ namespace main
 
         private void Button7_Click(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
+            DialogResult dr = MessageBox.Show("确定要清空吗？", "清空", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                listView1.Items.Clear(); //点确定的代码
+            }
+            else
+            { //点取消的代码 
+            }
+               
         }
 
         private void Button5_Click(object sender, EventArgs e)

@@ -28,7 +28,7 @@ namespace 谷歌浏览器
         public void InitBrowser()
         {
             Cef.Initialize(new CefSettings());
-            browser = new ChromiumWebBrowser("https://bj.meituan.com/meishi/pn2/");
+            browser = new ChromiumWebBrowser("https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-17505474205.28.7dbd3ab0r6df1n&id=578075804402");
             browser.Parent = this.splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
             // browser.ExecuteJavaScriptAsync("alert("你好")");//script是String格式的js代码
@@ -37,7 +37,7 @@ namespace 谷歌浏览器
         {
             browser.Parent = this.splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
-            
+            browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -59,12 +59,7 @@ namespace 谷歌浏览器
             this.BeginInvoke(new Action(() => {
                 String html = browser.GetSourceAsync().Result;
                 textBox1.Text = html;
-                MatchCollection titles = Regex.Matches(textBox1.Text, @"address"":""([\s\S]*?)""");
-
-                for (int i = 0; i < titles.Count; i++)
-                {
-                    textBox2.Text += titles[i].Groups[1].Value + "\r\n";
-                }
+               
 
             }));
         }
