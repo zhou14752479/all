@@ -28,7 +28,7 @@ namespace 谷歌浏览器
         public void InitBrowser()
         {
             Cef.Initialize(new CefSettings());
-            browser = new ChromiumWebBrowser("https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-17505474205.28.7dbd3ab0r6df1n&id=578075804402");
+            browser = new ChromiumWebBrowser("https://s.taobao.com/search?initiative_id=tbindexz_20170306&ie=utf8&spm=a21bo.2017.201856-taobao-item.2&sourceId=tb.index&search_type=item&ssid=s5-e&commend=all&imgfile=&q=%E6%A3%AE%E6%B5%B7%E5%A1%9E%E5%B0%94&suggest=0_1&_input_charset=utf-8&wq=%E6%A3%AE%E6%B5%B7&suggest_query=%E6%A3%AE%E6%B5%B7&source=suggest");
             browser.Parent = this.splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
             // browser.ExecuteJavaScriptAsync("alert("你好")");//script是String格式的js代码
@@ -44,12 +44,12 @@ namespace 谷歌浏览器
         {
 
             //browser.GetBrowser().MainFrame.ExecuteJavaScriptAsync("document.getElementById('ceshi').click();");
-            for (int i = 1; i < 60; i++)
-            {
-                browser = new ChromiumWebBrowser("https://bj.meituan.com/meishi/pn"+i+"/");
-                browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
+            //for (int i = 1; i < 60; i++)
+            //{
+            //    browser = new ChromiumWebBrowser("https://bj.meituan.com/meishi/pn"+i+"/");
+            //    browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
                 
-            }
+            //}
           
         }
 

@@ -98,28 +98,25 @@ namespace 类库
         #endregion
 
         #region 苏飞请求
-        public static string gethtml(string url, string COOKIE, string charset)
+        public static string gethtml(string url)
         {
             HttpHelper http = new HttpHelper();
             HttpItem item = new HttpItem()
             {
-                URL = url,
+                URL = url,//URL     必需项  
                 Method = "GET",//URL     可选项 默认为Get  
-                Encoding = Encoding.GetEncoding(charset),
                 Timeout = 100000,//连接超时时间     可选项默认为100000  
-                Allowautoredirect = true,
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
-
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
-                Cookie = COOKIE,
-                UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Cookie = "t=792ea994957bef8e4a71539f91876594; tg=0; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; hng=CN%7Czh-CN%7CCNY%7C156; UM_distinctid=16bde9c6ccb7f7-0183a6c7f99aa8-f353163-1fa400-16bde9c6cccb79; enc=BJiGDZ0SETmb%2BZ1Af%2FLOxZ7Ow%2Fz8B4xQY%2F3CPHkFybDesLHC8XJXgbKIOBMMGVwHTtQxN1Uu1ZSlm%2FWpfRRSTw%3D%3D; ali_ab=49.94.92.171.1563332665663.4; tracknick=zkg852266010; lgc=zkg852266010; x=e%3D1%26p%3D*%26s%3D0%26c%3D0%26f%3D0%26g%3D0%26t%3D0; _m_h5_tk=202bd7e0b5ef0cb289427c315b979841_1563943103843; _m_h5_tk_enc=4a0c8a5a5e645948f43df4f92cb98265; uc3=vt3=F8dBy3zYc7DsdnXudaU%3D&id2=UoH62EAv27BqSg%3D%3D&nk2=GcOvCmiKUSBXqZNU&lg2=VFC%2FuZ9ayeYq2g%3D%3D; _cc_=VT5L2FSpdA%3D%3D; mt=ci=43_1&np=; v=0; cookie2=1288712afd3d1c4d68d232a2f3cc4456; _tb_token_=fb5933bf33856; pnm_cku822=118%23ZVWZzSfhOd7mkZ2kReL%2BZYquZYT4zHWzagC2NsTIiIJtbFSTyHRVPgZuusqhzeWZZgZZXoqVzeAuZZZh0HWWGcb%2FZzqTqhZzZgZCcfq4zH2ZZZChXHWVZgZZusqhzeWZZgCuTOq4zH2ZZZZXbZW4Zg2ZZzWZ%2BWep%2FDquqYiIrDgZAZ2gh%2FOQqbQ%2FXAvYegf8cAtfYgQZuYPAPQqZZyjyZgXFoVSZXGtCs2xxDkaR0K7odTFd%2B5eqpuDxvHBSTUoTg%2FTJnc%2FTGik99KgS5e%2BRDtAttrXDZ3kyPPO5nNjA9s1dCdeULib99uo6lTTF526Y%2FukYFFn6gJAknGP3xHJhzYPd9Ck%2FesOUxBDHXLfIqMbDSIZIc6E%2BHArVW%2FQeXQ5%2B1T2%2F4PR6heYr%2FNHe0%2FGF9p6lQ%2FL50QS%3D; l=cBxhyUZrqScyZ-UyBOCNquIRGob9_IRAguPRwVYXi_5QB686W8_OkV894FJ6cjWd9TLB40tUd_v9-etkjs4pJA8MbsyN.; isg=BOnpx5CPkCJ1MaydhuRVNLpS-JWDHtWMH2E7CIvecVAPUglk0wL4uNBIELZBSnUg; uc1=cookie14=UoTaHPk78xIQ2w%3D%3D",//字符串Cookie     可选项  
+                UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
                 Referer = "http://www.sufeinet.com",//来源URL     可选项  
-                                                    //Allowautoredirect = False,//是否根据３０１跳转     可选项  
-                                                    //AutoRedirectCookie = False,//是否自动处理Cookie     可选项  
-                                                    //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
-                                                    //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
+                //Allowautoredirect = False,//是否根据３０１跳转     可选项  
+                //AutoRedirectCookie = False,//是否自动处理Cookie     可选项  
+                                           //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
+                                           //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
                 Postdata = "",//Post数据     可选项GET时不需要写  
                               //ProxyIp = "192.168.1.105：2020",//代理服务器ID     可选项 不需要代理 时可以不设置这三个参数  
                               //ProxyPwd = "123456",//代理服务器密码     可选项  
@@ -128,6 +125,9 @@ namespace 类库
             };
             HttpResult result = http.GetHtml(item);
             string html = result.Html;
+            string cookie = result.Cookie;
+
+
             return html;
 
         }

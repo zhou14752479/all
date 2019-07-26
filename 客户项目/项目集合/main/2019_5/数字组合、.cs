@@ -60,7 +60,7 @@ namespace main._2019_5
         {
             for (int a = 0; a < 999999; a++)
             {
-                if (listView1.Items.Count == 300)
+                if (listView1.Items.Count == 100)
                     return;
 
                 ArrayList list2 = new ArrayList();
@@ -251,24 +251,25 @@ namespace main._2019_5
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+            //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            //method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
 
-            //for (int i = 0; i < listView1.Items.Count; i++)
-            //{
-            //    if (listView1.Items[i].BackColor != Color.Red)
-            //    {
-            //        listView1.Items.RemoveAt(i);
-            //    }
-            //}
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                if (listView1.Items[i].BackColor != Color.Red)
+                {
+                    listView1.Items[i].SubItems[1].Text = "";
 
-            //for (int i = 0; i < listView2.Items.Count; i++)
-            //{
-            //    if (listView2.Items[i].BackColor != Color.Red)
-            //    {
-            //        listView2.Items.RemoveAt(i);
-            //    }
-            //}
+                }
+            }
+
+            for (int i = 0; i < listView2.Items.Count; i++)
+            {
+                if (listView2.Items[i].BackColor != Color.Red)
+                {
+                    listView2.Items[i].SubItems[1].Text = "";
+                }
+            }
 
         }
 

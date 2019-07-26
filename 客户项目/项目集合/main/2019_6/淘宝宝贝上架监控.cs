@@ -152,5 +152,10 @@ namespace main._2019_6
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
         }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
