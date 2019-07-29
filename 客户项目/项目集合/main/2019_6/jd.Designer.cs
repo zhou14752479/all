@@ -36,15 +36,15 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -117,12 +117,63 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "类目";
-            this.columnHeader5.Width = 150;
+            this.columnHeader5.Width = 80;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "链接";
-            this.columnHeader6.Width = 200;
+            this.columnHeader6.Width = 300;
+            // 
+            // button5
+            // 
+            this.button5.ForeColor = System.Drawing.Color.Blue;
+            this.button5.Location = new System.Drawing.Point(469, 104);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(185, 26);
+            this.button5.TabIndex = 16;
+            this.button5.Text = "继续";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.ForeColor = System.Drawing.Color.Blue;
+            this.button4.Location = new System.Drawing.Point(469, 72);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(185, 26);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "暂停";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 11F);
+            this.label1.Location = new System.Drawing.Point(12, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 15);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "软件运行日志：";
+            // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.Color.Blue;
+            this.button3.Location = new System.Drawing.Point(278, 13);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(119, 25);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "导入店铺链接";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(4, 75);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(258, 55);
+            this.textBox2.TabIndex = 12;
             // 
             // button2
             // 
@@ -157,57 +208,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(4, 75);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(258, 55);
-            this.textBox2.TabIndex = 12;
-            // 
-            // button3
-            // 
-            this.button3.ForeColor = System.Drawing.Color.Blue;
-            this.button3.Location = new System.Drawing.Point(278, 13);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(119, 25);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "导入店铺链接";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 11F);
-            this.label1.Location = new System.Drawing.Point(12, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 15);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "软件运行日志：";
-            // 
-            // button4
-            // 
-            this.button4.ForeColor = System.Drawing.Color.Blue;
-            this.button4.Location = new System.Drawing.Point(469, 72);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(185, 26);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "暂停";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.ForeColor = System.Drawing.Color.Blue;
-            this.button5.Location = new System.Drawing.Point(469, 104);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(185, 26);
-            this.button5.TabIndex = 16;
-            this.button5.Text = "继续";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // jd
             // 

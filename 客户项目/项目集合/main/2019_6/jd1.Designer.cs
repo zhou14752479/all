@@ -63,8 +63,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(520, 450);
-            this.splitContainer1.SplitterDistance = 299;
+            this.splitContainer1.Size = new System.Drawing.Size(594, 474);
+            this.splitContainer1.SplitterDistance = 379;
             this.splitContainer1.TabIndex = 8;
             // 
             // listView1
@@ -78,7 +78,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(520, 299);
+            this.listView1.Size = new System.Drawing.Size(594, 379);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -101,7 +101,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "链接";
-            this.columnHeader4.Width = 200;
+            this.columnHeader4.Width = 300;
             // 
             // button3
             // 
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 450);
+            this.ClientSize = new System.Drawing.Size(594, 474);
             this.Controls.Add(this.splitContainer1);
             this.Name = "jd1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

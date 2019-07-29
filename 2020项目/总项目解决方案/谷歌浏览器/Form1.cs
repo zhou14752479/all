@@ -28,15 +28,14 @@ namespace 谷歌浏览器
         public void InitBrowser()
         {
             Cef.Initialize(new CefSettings());
-            browser = new ChromiumWebBrowser("https://s.taobao.com/search?initiative_id=tbindexz_20170306&ie=utf8&spm=a21bo.2017.201856-taobao-item.2&sourceId=tb.index&search_type=item&ssid=s5-e&commend=all&imgfile=&q=%E6%A3%AE%E6%B5%B7%E5%A1%9E%E5%B0%94&suggest=0_1&_input_charset=utf-8&wq=%E6%A3%AE%E6%B5%B7&suggest_query=%E6%A3%AE%E6%B5%B7&source=suggest");
+            browser = new ChromiumWebBrowser("https://mall.jd.com/view_search-622998-0-99-1-24-1.html");
             browser.Parent = this.splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
             // browser.ExecuteJavaScriptAsync("alert("你好")");//script是String格式的js代码
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            browser.Parent = this.splitContainer1.Panel2;
-            browser.Dock = DockStyle.Fill;
+       
             browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
         }
 

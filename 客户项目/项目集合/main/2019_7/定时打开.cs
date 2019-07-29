@@ -60,13 +60,15 @@ namespace main._2019_7
         public void run1()
 
         {
-           
-            if (dateTimePicker4.Value < Convert.ToDateTime( DateTime.Now.ToLongTimeString()) && Convert.ToDateTime(DateTime.Now.ToLongTimeString())< dateTimePicker5.Value)
+
+
+            if (Convert.ToDateTime(dateTimePicker4.Value.ToLongTimeString()) < Convert.ToDateTime( DateTime.Now.ToLongTimeString()) && Convert.ToDateTime(DateTime.Now.ToLongTimeString())< Convert.ToDateTime(dateTimePicker5.Value.ToLongTimeString()))
             {
+               
                 timer2.Start();
             }
 
-            if (dateTimePicker7.Value < Convert.ToDateTime(DateTime.Now.ToLongTimeString()) && Convert.ToDateTime(DateTime.Now.ToLongTimeString()) < dateTimePicker6.Value)
+            if (Convert.ToDateTime(dateTimePicker7.Value.ToLongTimeString()) < Convert.ToDateTime(DateTime.Now.ToLongTimeString()) && Convert.ToDateTime(DateTime.Now.ToLongTimeString()) < Convert.ToDateTime(dateTimePicker6.Value.ToLongTimeString()))
             {
                 timer3.Start();
             }

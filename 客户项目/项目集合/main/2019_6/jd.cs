@@ -23,6 +23,7 @@ namespace main._2019_6
         }
         bool zanting = true;
         ArrayList finishes = new ArrayList();
+        #region  电脑端
         public void run()
         {
             try
@@ -121,9 +122,67 @@ namespace main._2019_6
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        #endregion
+
+
+        #region  手机端
+        public void run1()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader(textBox1.Text, Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int a = 0; a < text.Length - 1; a++)
+                {
+                    
+                        string url = text[a];
+                    textBox2.Text += "正在抓取"+url+"\r\n";
+                        Match shopID = Regex.Match(url, @"index-([\s\S]*?)\.");
+                    for (int i = 0; i < 999; i++)
+                    {
+
+
+                        string ZURL = "https://wqsou.jd.com/search/searchjson?datatype=1&page="+i+"&pagesize=100&merge_sku=yes&qp_disable=yes&key=ids%2C%2C" + shopID.Groups[1].Value + "&source=omz&_=1564383664458&sceneval=2&g_login_type=1&callback=jsonpCBKV&g_ty=ls";
+
+                        string html = GetUrl(ZURL);
+
+                        MatchCollection Names = Regex.Matches(html, @"warename"": ""([\s\S]*?)""");
+                        MatchCollection prices = Regex.Matches(html, @"dredisprice"": ""([\s\S]*?)""");
+                        MatchCollection comments = Regex.Matches(html, @"commentcount"": ""([\s\S]*?)""");
+                        MatchCollection uids = Regex.Matches(html, @"wareid"": ""([\s\S]*?)""");
+                        MatchCollection catids = Regex.Matches(html, @"catid"": ""([\s\S]*?)""");
+
+                        if (Names.Count == 0)
+                            break;
+
+                        for (int j = 0; j < Names.Count; j++)
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
+
+                            lv1.SubItems.Add(Names[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(prices[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(comments[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add(catids[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add("https://item.jd.com/"+uids[j].Groups[1].Value+ ".html");
+
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        #endregion
         private void Jd_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("唯一购买VX：17606117606，后台监控侵权必究");
+            
         }
 
 
@@ -147,12 +206,10 @@ namespace main._2019_6
         }
         private void Button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                Thread thread = new Thread(new ThreadStart(run));
+    
+                Thread thread = new Thread(new ThreadStart(run1));
                 Control.CheckForIllegalCrossThreadCalls = false;
                 thread.Start();
-            }
             
 
         }

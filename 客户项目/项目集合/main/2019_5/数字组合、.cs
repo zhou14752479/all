@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -60,7 +61,7 @@ namespace main._2019_5
         {
             for (int a = 0; a < 999999; a++)
             {
-                if (listView1.Items.Count == 100)
+                if (listView1.Items.Count == 300)
                     return;
 
                 ArrayList list2 = new ArrayList();
@@ -168,7 +169,34 @@ namespace main._2019_5
 
         private void 数字组合_Load(object sender, EventArgs e)
         {
-          
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            StreamReader sr = new StreamReader(path+"A.txt", Encoding.Default);
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            for (int i = 0; i < text.Length; i++)
+            {
+
+                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                lv1.SubItems.Add(text[i]);
+
+
+            }
+
+            StreamReader sr1 = new StreamReader(path + "B.txt", Encoding.Default);
+            //一次性读取完 
+            string texts1 = sr1.ReadToEnd();
+            string[] text1 = texts1.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            for (int i = 0; i < text1.Length; i++)
+            {
+
+                ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
+                lv2.SubItems.Add(text1[i]);
+
+
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -259,6 +287,7 @@ namespace main._2019_5
                 if (listView1.Items[i].BackColor != Color.Red)
                 {
                     listView1.Items[i].SubItems[1].Text = "";
+                    listView1.Items[i].SubItems[0].Text = "";
 
                 }
             }
@@ -268,6 +297,7 @@ namespace main._2019_5
                 if (listView2.Items[i].BackColor != Color.Red)
                 {
                     listView2.Items[i].SubItems[1].Text = "";
+                    listView2.Items[i].SubItems[0].Text = "";
                 }
             }
 
