@@ -34,7 +34,7 @@ namespace main._2019_5
         {
             ArrayList arr = new ArrayList();
             
-            for (var i = 0; i < 999999; i++)
+            for (var i = 0; i < 9999999; i++)
             {
 
 
@@ -59,9 +59,9 @@ namespace main._2019_5
 
         public void run()
         {
-            for (int a = 0; a < 999999; a++)
+            for (int a = 0; a < 9999999; a++)
             {
-                if (listView1.Items.Count == 300)
+                if (listView1.Items.Count == 1200)
                     return;
 
                 ArrayList list2 = new ArrayList();
@@ -170,7 +170,7 @@ namespace main._2019_5
         private void 数字组合_Load(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            StreamReader sr = new StreamReader(path+"A.txt", Encoding.Default);
+            StreamReader sr = new StreamReader(path + "A.txt", Encoding.Default);
             //一次性读取完 
             string texts = sr.ReadToEnd();
             string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -178,7 +178,7 @@ namespace main._2019_5
             for (int i = 0; i < text.Length; i++)
             {
 
-                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据
                 lv1.SubItems.Add(text[i]);
 
 
@@ -192,7 +192,7 @@ namespace main._2019_5
             for (int i = 0; i < text1.Length; i++)
             {
 
-                ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
+                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
                 lv2.SubItems.Add(text1[i]);
 
 
@@ -282,24 +282,64 @@ namespace main._2019_5
             //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
             //method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
 
+            //for (int i = 0; i < listView1.Items.Count; i++)
+            //{
+            //    if (listView1.Items[i].BackColor != Color.Red)
+            //    {
+            //        listView1.Items[i].SubItems[1].Text = "";
+            //        listView1.Items[i].SubItems[0].Text = "";
+
+            //    }
+            //}
+
+            //for (int i = 0; i < listView2.Items.Count; i++)
+            //{
+            //    if (listView2.Items[i].BackColor != Color.Red)
+            //    {
+            //        listView2.Items[i].SubItems[1].Text = "";
+            //        listView2.Items[i].SubItems[0].Text = "";
+            //    }
+            //}
+
+            ArrayList list1 = new ArrayList();
+            ArrayList list2 = new ArrayList();
             for (int i = 0; i < listView1.Items.Count; i++)
             {
-                if (listView1.Items[i].BackColor != Color.Red)
+                if (listView1.Items[i].BackColor == Color.Red)
                 {
-                    listView1.Items[i].SubItems[1].Text = "";
-                    listView1.Items[i].SubItems[0].Text = "";
+                    list1.Add(listView1.Items[i].SubItems[1].Text);
 
                 }
             }
 
             for (int i = 0; i < listView2.Items.Count; i++)
             {
-                if (listView2.Items[i].BackColor != Color.Red)
+                if (listView2.Items[i].BackColor == Color.Red)
                 {
-                    listView2.Items[i].SubItems[1].Text = "";
-                    listView2.Items[i].SubItems[0].Text = "";
+                    list2.Add(listView2.Items[i].SubItems[1].Text);
                 }
             }
+            listView1.Items.Clear();
+            listView2.Items.Clear();
+            for (int i = 0; i < list1.Count; i++)
+            {
+
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                lv1.SubItems.Add(list1[i].ToString());
+
+
+            }
+
+            for (int i = 0; i < list2.Count; i++)
+            {
+
+                ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                lv1.SubItems.Add(list2[i].ToString());
+
+
+            }
+
+
 
         }
 

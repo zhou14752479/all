@@ -18,7 +18,7 @@ namespace main._2019_6
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new jd());
+            Application.Run(new 扫号());
         }
     }
 }
