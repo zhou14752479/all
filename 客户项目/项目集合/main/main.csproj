@@ -66,6 +66,9 @@
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\主程序\CSkin.dll</HintPath>
     </Reference>
+    <Reference Include="DotRas, Version=1.3.5166.33435, Culture=neutral, PublicKeyToken=b378f04384b7892a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotRas.for.Win8.1.3.0\lib\net40\DotRas.dll</HintPath>
+    </Reference>
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\..\HttpHelper.dll</HintPath>
     </Reference>

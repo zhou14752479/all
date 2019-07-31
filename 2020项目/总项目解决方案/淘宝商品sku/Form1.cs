@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -90,6 +91,7 @@ namespace 淘宝商品sku
         }
 
         #endregion
+        
 
         #region 获取SKU价格
         public void run(string url)
@@ -157,7 +159,8 @@ namespace 淘宝商品sku
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.ListviewToTxt(listView1);
+            listView1.Items.Clear();
         }
         private Point mPoint = new Point();
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -222,6 +225,28 @@ namespace 淘宝商品sku
                 run(url);
             }
            
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length-1; i++)
+                {
+                    
+                    string[] values = text[i].Split(new string[] {"-----" }, StringSplitOptions.None);
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                   lv1.SubItems.Add(values[0]);
+                    lv1.SubItems.Add(values[1]);
+
+
+                }
+            }
         }
     }
 }

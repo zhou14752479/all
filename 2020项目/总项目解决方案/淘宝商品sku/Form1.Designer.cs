@@ -42,6 +42,8 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -94,11 +96,12 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(617, 21);
             this.textBox1.TabIndex = 28;
-            this.textBox1.Text = "https://shop101463431.taobao.com/?spm=a230r.7195193.1997079397.2.6a04442bRmVcMa";
+            this.textBox1.Text = "https://shop145672826.taobao.com/index.htm?spm=2013.1.w5002-18853258787.2.401567f" +
+    "fAsfLiN";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(521, 55);
+            this.button1.Location = new System.Drawing.Point(410, 55);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(89, 23);
             this.button1.TabIndex = 29;
@@ -108,7 +111,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(635, 55);
+            this.button2.Location = new System.Drawing.Point(523, 55);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(89, 23);
             this.button2.TabIndex = 30;
@@ -161,12 +164,27 @@
             this.label2.TabIndex = 34;
             this.label2.Text = "商品抓取完成后选区左侧商品获取相应的SKU价格";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(635, 55);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(89, 23);
+            this.button3.TabIndex = 35;
+            this.button3.Text = "导入商品信息";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(736, 450);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.label3);
@@ -204,6 +222,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }
 

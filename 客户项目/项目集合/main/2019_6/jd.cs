@@ -167,7 +167,10 @@ namespace main._2019_6
                             lv1.SubItems.Add(comments[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add(catids[j].Groups[1].Value.Trim());
                             lv1.SubItems.Add("https://item.jd.com/"+uids[j].Groups[1].Value+ ".html");
-
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
                         }
 
                     }

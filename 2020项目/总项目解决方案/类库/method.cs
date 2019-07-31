@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -249,5 +250,43 @@ namespace 类库
 
         #endregion
 
+        #region  listview导出文本TXT
+        public static void ListviewToTxt(ListView listview)
+        {
+            if (listview.Items.Count == 0)
+            {
+                MessageBox.Show("列表为空!");
+            }
+            else
+            {
+                List<string> list = new List<string>();
+                foreach (ListViewItem item in listview.Items)
+                {
+                    string temp = item.SubItems[1].Text;
+                    string temp1 = item.SubItems[2].Text;
+                    list.Add(temp + "-----" + temp1);
+                }
+                Thread thexp = new Thread(() => export(list)) { IsBackground = true };
+                thexp.Start();
+            }
+        }
+
+
+        private static void export(List<string> list)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "url_" + Guid.NewGuid().ToString() + ".txt";
+
+            StringBuilder sb = new StringBuilder();
+            foreach (string tel in list)
+            {
+                sb.AppendLine(tel);
+            }
+            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            MessageBox.Show("文件导出成功!文件地址:" + path);
+        }
+
+
+
+        #endregion
     }
 }
