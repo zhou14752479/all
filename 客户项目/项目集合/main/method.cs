@@ -979,8 +979,10 @@ namespace main
                     foreach (ListViewItem item in lv1.Items)
                     {          
                             List<string> list = new List<string>();
-                            string temp = item.SubItems[1].Text;     
-                            list.Add(temp);
+                            string temp = item.SubItems[1].Text;
+                    string temp1 = item.SubItems[2].Text;
+                    string temp2 = item.SubItems[3].Text;
+                    list.Add(temp+"-----"+temp1 + "-----" + temp2);
                             foreach (string tel in list)
                             {
                                 sb.AppendLine(tel);

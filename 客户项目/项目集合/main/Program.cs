@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_7
+namespace main._2019_6
 {
     static class Program
     {
@@ -18,7 +18,7 @@ namespace main._2019_7
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 医疗网());
+            Application.Run(new 扫号());
         }
     }
 }

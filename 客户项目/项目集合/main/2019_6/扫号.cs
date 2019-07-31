@@ -153,7 +153,8 @@ namespace main._2019_6
         }
 
 
-
+        int a = 0;
+        int b = 0;
         ArrayList finishes = new ArrayList();
         public void run2()
         {
@@ -178,19 +179,24 @@ namespace main._2019_6
                         string html = method.GetUrl("https://teracloud.jp/en/index.php?cmd=user&password=" + zhanghao[1] + "&pcmd=login&userid=" + zhanghao[0], "utf-8");
                         if (html.Contains("firstname"))
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
-                            lv1.SubItems.Add(zhanghao[0]);
-                            lv1.SubItems.Add(zhanghao[1]);
-                            lv1.SubItems.Add("正确");
+                            a = a + 1;
+                            ListViewItem lv2= listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据         
+                            lv2.SubItems.Add(zhanghao[0]);
+                            lv2.SubItems.Add(zhanghao[1]);
+                            lv2.SubItems.Add("正确");
+                           
                         }
                         else
                         {
+                            b = b +1;
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                             lv1.SubItems.Add(zhanghao[0]);
                             lv1.SubItems.Add(zhanghao[1]);
                             lv1.SubItems.Add("错误");
+                          
 
                         }
+                        label1.Text = "当前正确" + a + "个"+ "当前错误" + b + "个";
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -221,7 +227,7 @@ namespace main._2019_6
 
         private void button5_Click(object sender, EventArgs e)
         {
-            method.expotTxt(listView1);
+            method.expotTxt(listView2);
         }
 
         private void 扫号_Load(object sender, EventArgs e)
