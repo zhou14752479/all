@@ -299,40 +299,12 @@ namespace main._2019_7
             }
 
             status = true;
-           
 
-            #region 通用导出
 
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == "3.3.3.3")
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-            }
-            else
-            {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
-            }
-            #endregion
-          
 
 
         }

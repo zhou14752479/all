@@ -46,6 +46,8 @@
                     
                 }
             }
+
+		一次性写入System.IO.File.WriteAllText(path, textBox1.Text.Trim(), Encoding.UTF8);
 八、
 	System.Text.Encoding.Default.GetByteCount("字符串") 获取字符串字节长度
 
@@ -53,7 +55,7 @@
 	string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
 
-九、读取TXT文件
+九、写入TXT文件
   	FileStream fs1 = new FileStream(path + "新文档.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
       	StreamWriter sw = new StreamWriter(fs1);
     	 sw.WriteLine(text[i]);
@@ -102,3 +104,17 @@
             else
             { //点取消的代码 
             }
+
+十三、获取所有txt文件
+   public ArrayList getFileName()
+        {
+            ArrayList lists = new ArrayList();
+
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            DirectoryInfo folder = new DirectoryInfo(path);
+            for (int i = 0; i < folder.GetFiles("*.txt").Count(); i++)
+            {
+                lists.Add(folder.GetFiles("*.txt")[i].Name);
+            }
+            return lists;
+        }

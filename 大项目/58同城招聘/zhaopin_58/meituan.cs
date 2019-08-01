@@ -284,7 +284,7 @@ namespace zhaopin_58
         //下载图片结束
 
 
-        #region  主程序按照单个个城市多个关键词
+        #region  主程序按照单个城市多个关键词
 
         public void run()
         {
@@ -346,11 +346,12 @@ namespace zhaopin_58
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
                                 Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
                                 Match opentime = Regex.Match(strhtml, @"openInfo"":""([\s\S]*?)""");
+                            Match score = Regex.Match(strhtml, @"avgScore"":([\s\S]*?),");
 
 
 
 
-                                if (name.Groups[2].Value != "")
+                            if (name.Groups[2].Value != "")
                                 {
 
                                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
@@ -360,10 +361,11 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
                                     lv1.SubItems.Add(opentime.Groups[1].Value);
+                                lv1.SubItems.Add(score.Groups[1].Value);
 
 
 
-                                    if (strhtml.Contains("有外卖"))
+                                if (strhtml.Contains("有外卖"))
                                     {
                                         lv1.SubItems.Add("有外卖");
                                     }
@@ -430,7 +432,7 @@ namespace zhaopin_58
                 string[] keywords = textBox1.Text.Trim().Split(',');
 
                 ArrayList citys = getCityNames();
-                citys.RemoveAt(0);
+                
                 foreach (string city in citys)
                 {
 
@@ -467,11 +469,12 @@ namespace zhaopin_58
                             {
                                 string strhtml = method.gethtml("https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng");  //定义的GetRul方法 返回 reader.ReadToEnd()                             
 
-
+                                string commentHtml = method.gethtml("https://www.meituan.com/meishi/api/poi/getMerchantComment?uuid=f87c45af885944f3a19d.1564549522.1.0.0&platform=1&riskLevel=1&optimusCode=10&id="+list);
                                 Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
                                 Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
                                 Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
+                                Match comment = Regex.Match(commentHtml, @"""total"":([\s\S]*?)\}");
 
                                 if (name.Groups[2].Value != "")
                                 {
@@ -481,6 +484,10 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
+                                    lv1.SubItems.Add(comment.Groups[1].Value.Trim());
+
+
+
 
 
                                     //下载图片

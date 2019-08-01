@@ -307,7 +307,7 @@ namespace main._2019_5
             {
                 if (listView1.Items[i].BackColor == Color.Red)
                 {
-                    list1.Add(listView1.Items[i].SubItems[1].Text);
+                    list1.Add(listView1.Items[i].SubItems[0].Text+"-"+listView1.Items[i].SubItems[1].Text);
 
                 }
             }
@@ -316,25 +316,26 @@ namespace main._2019_5
             {
                 if (listView2.Items[i].BackColor == Color.Red)
                 {
-                    list2.Add(listView2.Items[i].SubItems[1].Text);
+                    list2.Add(listView2.Items[i].SubItems[0].Text+"-"+listView2.Items[i].SubItems[1].Text);
                 }
             }
             listView1.Items.Clear();
             listView2.Items.Clear();
             for (int i = 0; i < list1.Count; i++)
             {
+                string[] text = list1[i].ToString().Split(new string[] { "-" }, StringSplitOptions.None);
 
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                lv1.SubItems.Add(list1[i].ToString());
+                ListViewItem lv1 = listView1.Items.Add((text[0]).ToString()); //使用Listview展示数据
+                lv1.SubItems.Add(text[1].ToString());
 
 
             }
 
             for (int i = 0; i < list2.Count; i++)
             {
-
-                ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                lv1.SubItems.Add(list2[i].ToString());
+                string[] text = list2[i].ToString().Split(new string[] { "-" }, StringSplitOptions.None);
+                ListViewItem lv1 = listView2.Items.Add((text[0]).ToString()); //使用Listview展示数据
+                lv1.SubItems.Add(text[1].ToString());
 
 
             }

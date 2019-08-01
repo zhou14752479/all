@@ -30,6 +30,8 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
@@ -56,8 +58,6 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -101,6 +101,56 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "选择分类";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "全国",
+            "北京",
+            "上海",
+            "重庆",
+            "天津",
+            "山西省",
+            "内蒙古自治区",
+            "辽宁省",
+            "吉林省",
+            "黑龙江省",
+            "江苏省",
+            "浙江省",
+            "安徽省",
+            "福建省",
+            "江西省",
+            "山东省",
+            "河南省",
+            "湖北省",
+            "湖南省",
+            "广东省",
+            "广西省",
+            "海南省",
+            "四川省",
+            "贵州省",
+            "云南省",
+            "西藏自治区",
+            "陕西省",
+            "甘肃省",
+            "青海省",
+            "宁夏回族自治区",
+            "新疆维吾尔自治区",
+            "河北省"});
+            this.comboBox1.Location = new System.Drawing.Point(375, 71);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(373, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "选择省份：";
             // 
             // radioButton6
             // 
@@ -258,11 +308,10 @@
             this.columnHeader11,
             this.columnHeader12,
             this.columnHeader13});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1119, 383);
+            this.listView1.Size = new System.Drawing.Size(1119, 371);
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -321,56 +370,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(373, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "选择省份：";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "全国",
-            "北京",
-            "上海",
-            "重庆",
-            "天津",
-            "山西省",
-            "内蒙古自治区",
-            "辽宁省",
-            "吉林省",
-            "黑龙江省",
-            "江苏省",
-            "浙江省",
-            "安徽省",
-            "福建省",
-            "江西省",
-            "山东省",
-            "河南省",
-            "湖北省",
-            "湖南省",
-            "广东省",
-            "广西省",
-            "海南省",
-            "四川省",
-            "贵州省",
-            "云南省",
-            "西藏自治区",
-            "陕西省",
-            "甘肃省",
-            "青海省",
-            "宁夏回族自治区",
-            "新疆维吾尔自治区",
-            "河北省"});
-            this.comboBox1.Location = new System.Drawing.Point(375, 71);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 25;
             // 
             // 医疗网
             // 

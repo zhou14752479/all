@@ -380,6 +380,12 @@
     <Compile Include="2019_7\downPics.Designer.cs">
       <DependentUpon>downPics.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_7\fang58.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_7\fang58.Designer.cs">
+      <DependentUpon>fang58.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_7\jianli.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -595,6 +601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_7\downPics.resx">
       <DependentUpon>downPics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_7\fang58.resx">
+      <DependentUpon>fang58.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_7\jianli.resx">
       <DependentUpon>jianli.cs</DependentUpon>
