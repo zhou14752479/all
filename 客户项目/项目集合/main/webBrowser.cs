@@ -68,8 +68,8 @@ namespace main
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             this.webBrowser1.Document.Window.Error += OnWebBrowserDocumentWindowError;
-            textBox1.Text = webBrowser1.Document.Cookie; ;
-            cookie = textBox1.Text;
+            //textBox1.Text = webBrowser1.Document.Cookie; ;
+            //cookie = textBox1.Text;
 
         }
 

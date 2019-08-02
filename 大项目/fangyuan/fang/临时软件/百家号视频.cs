@@ -80,7 +80,7 @@ namespace fang.临时软件
                     
                     Match uk = Regex.Match(html, @"uk\\"":\\""([\s\S]*?)\\""");
                     
-                    string URL = "https://author.baidu.com/pipe?tab=9&uk="+uk.Groups[1].Value+"&&defaultTab=video&pagelets[]=video&reqID=3&ispeed=1";
+                    string URL = "https://author.baidu.com/pipe?tab=9&uk="+uk.Groups[1].Value+ "&&defaultTab=video&pagelets[]=video&reqID=3&ispeed=1&num=100";
 
                     string URL1 = "https://author.baidu.com/list?type=video&tab=9&uk=" + uk.Groups[1].Value + "&ctime=15527060331505&callback=jsonp2";
 
