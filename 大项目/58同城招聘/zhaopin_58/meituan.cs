@@ -283,6 +283,7 @@ namespace zhaopin_58
 
         //下载图片结束
 
+        string paixu = "default";
 
         #region  主程序按照单个城市多个关键词
 
@@ -297,9 +298,19 @@ namespace zhaopin_58
                     MessageBox.Show("请输入关键字");
                     return;
                 }
-               // string[] citys = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
-                string[] keywords = textBox1.Text.Trim().Split(',');
 
+                if (comboBox2.Text == "按照销量排序")
+                {
+                    paixu = "solds";
+                }
+
+                else if (comboBox2.Text == "按照评价排序")
+                {
+                    paixu = "rating";
+                }
+                // string[] citys = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] keywords = textBox1.Text.Trim().Split(',');
+                
                 string city = comboBox1.SelectedItem.ToString();
 
                     ArrayList areaIds = getAreaId(city);
@@ -313,7 +324,7 @@ namespace zhaopin_58
 
                         {
 
-                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?cateId=-1&sort=default&userid=-1&offset=0&limit=1000&mypos=33.959859%2C118.279675&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&q=" + keyword + "&requestType=filter&cityId=" + cityId + "&areaId=" + area;
+                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?cateId=-1&sort="+paixu+"&userid=-1&offset=0&limit=1000&mypos=33.959859%2C118.279675&uuid=C693C857695CAE55399A30C25D9D05F8914E58638F1E750BFB40CACC3AD5AE9F&pcentrance=6&q=" + keyword + "&requestType=filter&cityId=" + cityId + "&areaId=" + area;
 
 
                             string html = method.GetUrl(Url);
@@ -345,37 +356,47 @@ namespace zhaopin_58
                                 Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
                                 Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
-                                Match opentime = Regex.Match(strhtml, @"openInfo"":""([\s\S]*?)""");
+                      
                             Match score = Regex.Match(strhtml, @"avgScore"":([\s\S]*?),");
+                            Match waimai = Regex.Match(strhtml, @"isWaimai"":([\s\S]*?),");
 
 
 
 
-                            if (name.Groups[2].Value != "")
+                            if (name.Groups[2].Value != "" && radioButton1.Checked == true)
+                            {
+
+                                if (waimai.Groups[1].Value == "1")
                                 {
-
                                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                     lv1.SubItems.Add(name.Groups[2].Value.Trim());
                                     lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
-                                    lv1.SubItems.Add(opentime.Groups[1].Value);
-                                lv1.SubItems.Add(score.Groups[1].Value);
+                                    lv1.SubItems.Add(score.Groups[1].Value);
+                                    lv1.SubItems.Add("有外卖");
+                                }
+                            }
+
+                            if (name.Groups[2].Value != "" && radioButton2.Checked == true)
+                            {
+
+                                if (waimai.Groups[1].Value == "0")
+                                {
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                    lv1.SubItems.Add(name.Groups[2].Value.Trim());
+                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(city);
+                                    lv1.SubItems.Add(score.Groups[1].Value);
+                                    lv1.SubItems.Add("无外卖");
+                                }
+                            }
 
 
-
-                                if (strhtml.Contains("有外卖"))
-                                    {
-                                        lv1.SubItems.Add("有外卖");
-                                    }
-                                    else
-                                    {
-                                        lv1.SubItems.Add("无外卖");
-                                    }
-
-
-                                    if (listView1.Items.Count - 1 > 1)
+                            if (listView1.Items.Count - 1 > 1)
                                     {
                                         listView1.EnsureVisible(listView1.Items.Count - 1);
                                     }
@@ -391,7 +412,7 @@ namespace zhaopin_58
 
                                     Thread.Sleep(1000);   //内容获取间隔，可变量
 
-                                }
+                                
                             }
 
                         }
@@ -469,12 +490,12 @@ namespace zhaopin_58
                             {
                                 string strhtml = method.gethtml("https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng");  //定义的GetRul方法 返回 reader.ReadToEnd()                             
 
-                                string commentHtml = method.gethtml("https://www.meituan.com/meishi/api/poi/getMerchantComment?uuid=f87c45af885944f3a19d.1564549522.1.0.0&platform=1&riskLevel=1&optimusCode=10&id="+list);
+                               // string commentHtml = method.gethtml("https://www.meituan.com/meishi/api/poi/getMerchantComment?uuid=f87c45af885944f3a19d.1564549522.1.0.0&platform=1&riskLevel=1&optimusCode=10&id="+list);
                                 Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
                                 Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
                                 Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
                                 Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
-                                Match comment = Regex.Match(commentHtml, @"""total"":([\s\S]*?)\}");
+                                //Match comment = Regex.Match(commentHtml, @"""total"":([\s\S]*?)\}");
 
                                 if (name.Groups[2].Value != "")
                                 {
@@ -484,7 +505,7 @@ namespace zhaopin_58
                                     lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                                     lv1.SubItems.Add(city);
-                                    lv1.SubItems.Add(comment.Groups[1].Value.Trim());
+                                   // lv1.SubItems.Add(comment.Groups[1].Value.Trim());
 
 
 

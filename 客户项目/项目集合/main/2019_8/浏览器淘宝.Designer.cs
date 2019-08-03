@@ -122,9 +122,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1090, 14);
+            this.button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Location = new System.Drawing.Point(1078, 14);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(199, 25);
+            this.button1.Size = new System.Drawing.Size(199, 85);
             this.button1.TabIndex = 3;
             this.button1.Text = "下载此宝贝";
             this.button1.UseVisualStyleBackColor = true;
@@ -164,7 +165,7 @@
             this.ClientSize = new System.Drawing.Size(1289, 765);
             this.Controls.Add(this.splitContainer1);
             this.Name = "浏览器淘宝";
-            this.Text = "浏览器淘宝";
+            this.Text = "浏览器淘宝                              软件购买维护  VX 17606117606       ";
             this.Load += new System.EventHandler(this.浏览器淘宝_Load);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace zhaopin_58
+namespace AutoSend
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace zhaopin_58
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 美团());
+            Application.Run(new Form1());
         }
     }
 }

@@ -452,6 +452,12 @@
     <Compile Include="2019_7\网站查询.Designer.cs">
       <DependentUpon>网站查询.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_8\CF扫号.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_8\CF扫号.Designer.cs">
+      <DependentUpon>CF扫号.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_8\浏览器淘宝.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -649,6 +655,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_7\网站查询.resx">
       <DependentUpon>网站查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_8\CF扫号.resx">
+      <DependentUpon>CF扫号.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_8\浏览器淘宝.resx">
       <DependentUpon>浏览器淘宝.cs</DependentUpon>

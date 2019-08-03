@@ -35,28 +35,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin">
-      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\CSkin.dll</HintPath>
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\HttpHelper.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\NPOI.dll</HintPath>
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\..\..\软件\58同城招聘2-22\58同城招聘2-22\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -95,11 +95,11 @@
     <Compile Include="商家58.Designer.cs">
       <DependentUpon>商家58.cs</DependentUpon>
     </Compile>
-    <Compile Include="城市列表.cs">
+    <Compile Include="城市控件.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="城市列表.Designer.cs">
-      <DependentUpon>城市列表.cs</DependentUpon>
+    <Compile Include="城市控件.Designer.cs">
+      <DependentUpon>城市控件.cs</DependentUpon>
     </Compile>
     <Compile Include="本地服务.cs">
       <SubType>Form</SubType>
@@ -119,12 +119,6 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="招聘58.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="招聘58.Designer.cs">
-      <DependentUpon>招聘58.cs</DependentUpon>
-    </Compile>
     <Compile Include="method.cs" />
     <Compile Include="Ocr.cs" />
     <Compile Include="Program.cs" />
@@ -134,6 +128,12 @@
     </Compile>
     <Compile Include="register.Designer.cs">
       <DependentUpon>register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="美团.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="美团.Designer.cs">
+      <DependentUpon>美团.cs</DependentUpon>
     </Compile>
     <Compile Include="赶集招聘.cs">
       <SubType>Form</SubType>
@@ -156,8 +156,8 @@
     <EmbeddedResource Include="商家58.resx">
       <DependentUpon>商家58.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="城市列表.resx">
-      <DependentUpon>城市列表.cs</DependentUpon>
+    <EmbeddedResource Include="城市控件.resx">
+      <DependentUpon>城市控件.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="本地服务.resx">
       <DependentUpon>本地服务.cs</DependentUpon>
@@ -167,9 +167,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="招聘58.resx">
-      <DependentUpon>招聘58.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -182,6 +179,9 @@
     </Compile>
     <EmbeddedResource Include="register.resx">
       <DependentUpon>register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="美团.resx">
+      <DependentUpon>美团.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="赶集招聘.resx">
       <DependentUpon>赶集招聘.cs</DependentUpon>

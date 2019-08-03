@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝商品sku", "淘宝�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "类库", "类库\类库.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSend", "AutoSend\AutoSend.csproj", "{159DAA63-561B-4F94-BF3D-060129EEAB8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{159DAA63-561B-4F94-BF3D-060129EEAB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{159DAA63-561B-4F94-BF3D-060129EEAB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{159DAA63-561B-4F94-BF3D-060129EEAB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{159DAA63-561B-4F94-BF3D-060129EEAB8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
