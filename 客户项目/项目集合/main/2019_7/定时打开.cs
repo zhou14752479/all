@@ -22,7 +22,7 @@ namespace main._2019_7
         {
             this.webBrowser1.ScriptErrorsSuppressed = true;  //屏蔽IE脚本弹出错误
             this.webBrowser1.DocumentCompleted += WebBrowser1_DocumentCompleted;  //屏蔽IE脚本弹出错误
-            method.SetIE(0);  //设置浏览器版本为枚举值第一个值
+            
             timer1.Start();
         }
 

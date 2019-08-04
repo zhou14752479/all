@@ -36,9 +36,8 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\fangyuan\fang\bin\Debug\CSkin.dll</HintPath>
+    <Reference Include="CSkin">
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -47,19 +46,19 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>..\..\..\..\..\58软件\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\..\..\..\..\58软件\NPOI.dll</HintPath>
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\..\..\..\58软件\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\..\..\..\58软件\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\..\..\..\58软件\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

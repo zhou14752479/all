@@ -29,32 +29,6 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -81,6 +55,32 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -93,6 +93,14 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,6 +116,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button10);
+            this.splitContainer1.Panel1.Controls.Add(this.button9);
             this.splitContainer1.Panel1.Controls.Add(this.textBox11);
             this.splitContainer1.Panel1.Controls.Add(this.textBox12);
             this.splitContainer1.Panel1.Controls.Add(this.label11);
@@ -167,234 +177,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1350, 630);
             this.splitContainer1.SplitterDistance = 353;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 10F);
-            this.label1.Location = new System.Drawing.Point(75, 87);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "监测网址：";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(158, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(274, 21);
-            this.textBox1.TabIndex = 1;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(438, 81);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.Text = "二手房采集规则";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(575, 80);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "启动采集";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(656, 81);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "暂停采集";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.Location = new System.Drawing.Point(737, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 14);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "接收信箱列表：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 10F);
-            this.label3.Location = new System.Drawing.Point(949, 87);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 14);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "SMTP：";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(993, 82);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(79, 21);
-            this.textBox2.TabIndex = 7;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(1122, 82);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(79, 21);
-            this.textBox3.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 10F);
-            this.label4.Location = new System.Drawing.Point(1078, 86);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 14);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "账号：";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(1249, 82);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(79, 21);
-            this.textBox4.TabIndex = 11;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("宋体", 10F);
-            this.label5.Location = new System.Drawing.Point(1207, 87);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 14);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "密码：";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(848, 85);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(95, 21);
-            this.textBox5.TabIndex = 12;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(848, 132);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(95, 21);
-            this.textBox6.TabIndex = 25;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(1249, 129);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(79, 21);
-            this.textBox7.TabIndex = 24;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("宋体", 10F);
-            this.label6.Location = new System.Drawing.Point(1207, 134);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 14);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "密码：";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(1122, 129);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(79, 21);
-            this.textBox8.TabIndex = 22;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("宋体", 10F);
-            this.label7.Location = new System.Drawing.Point(1078, 133);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 14);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "账号：";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(993, 129);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(79, 21);
-            this.textBox9.TabIndex = 20;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("宋体", 10F);
-            this.label8.Location = new System.Drawing.Point(949, 134);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 14);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "SMTP：";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("宋体", 10F);
-            this.label9.Location = new System.Drawing.Point(737, 134);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 14);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "接收信箱列表：";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(656, 128);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "暂停采集";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(575, 127);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "启动采集";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(438, 128);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
-            this.comboBox2.TabIndex = 15;
-            this.comboBox2.Text = "二手房采集规则";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(158, 127);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(274, 21);
-            this.textBox10.TabIndex = 14;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("宋体", 10F);
-            this.label10.Location = new System.Drawing.Point(75, 134);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 14);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "监测网址：";
             // 
             // textBox11
             // 
@@ -483,6 +265,7 @@
             this.button6.TabIndex = 42;
             this.button6.Text = "启动采集";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // comboBox3
             // 
@@ -495,7 +278,7 @@
             // 
             // textBox15
             // 
-            this.textBox15.Location = new System.Drawing.Point(158, 224);
+            this.textBox15.Location = new System.Drawing.Point(158, 176);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(274, 21);
             this.textBox15.TabIndex = 40;
@@ -597,6 +380,7 @@
             this.button8.TabIndex = 29;
             this.button8.Text = "启动采集";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // comboBox4
             // 
@@ -609,7 +393,7 @@
             // 
             // textBox20
             // 
-            this.textBox20.Location = new System.Drawing.Point(158, 177);
+            this.textBox20.Location = new System.Drawing.Point(158, 226);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(274, 21);
             this.textBox20.TabIndex = 27;
@@ -624,6 +408,238 @@
             this.label20.TabIndex = 26;
             this.label20.Text = "监测网址：";
             // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(848, 132);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(95, 21);
+            this.textBox6.TabIndex = 25;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(1249, 129);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(79, 21);
+            this.textBox7.TabIndex = 24;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 10F);
+            this.label6.Location = new System.Drawing.Point(1207, 134);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 14);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "密码：";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(1122, 129);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(79, 21);
+            this.textBox8.TabIndex = 22;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 10F);
+            this.label7.Location = new System.Drawing.Point(1078, 133);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 14);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "账号：";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(993, 129);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(79, 21);
+            this.textBox9.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("宋体", 10F);
+            this.label8.Location = new System.Drawing.Point(949, 134);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 14);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "SMTP：";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 10F);
+            this.label9.Location = new System.Drawing.Point(737, 134);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(105, 14);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "接收信箱列表：";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(656, 128);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 17;
+            this.button3.Text = "暂停采集";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(575, 127);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "启动采集";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(438, 128);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 15;
+            this.comboBox2.Text = "二手房采集规则";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(158, 127);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(274, 21);
+            this.textBox10.TabIndex = 14;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("宋体", 10F);
+            this.label10.Location = new System.Drawing.Point(75, 134);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 14);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "监测网址：";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(848, 85);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(95, 21);
+            this.textBox5.TabIndex = 12;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(1249, 82);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(79, 21);
+            this.textBox4.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("宋体", 10F);
+            this.label5.Location = new System.Drawing.Point(1207, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 14);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "密码：";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(1122, 82);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(79, 21);
+            this.textBox3.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 10F);
+            this.label4.Location = new System.Drawing.Point(1078, 86);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 14);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "账号：";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(993, 82);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(79, 21);
+            this.textBox2.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 10F);
+            this.label3.Location = new System.Drawing.Point(949, 87);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 14);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "SMTP：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10F);
+            this.label2.Location = new System.Drawing.Point(737, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 14);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "接收信箱列表：";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(656, 81);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "暂停采集";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(575, 80);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "启动采集";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(438, 81);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.Text = "二手房采集规则";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(158, 80);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(274, 21);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "https://suqian.58.com/ershoufang/0/";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 10F);
+            this.label1.Location = new System.Drawing.Point(75, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 14);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "监测网址：";
+            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -637,7 +653,13 @@
             this.columnHeader10,
             this.columnHeader11,
             this.columnHeader12,
-            this.columnHeader13});
+            this.columnHeader13,
+            this.columnHeader3,
+            this.columnHeader6,
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16,
+            this.columnHeader17});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -650,53 +672,100 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "序号";
+            this.columnHeader1.Width = 40;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "企业名称";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Text = "浏览/时间";
+            this.columnHeader2.Width = 80;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "年份";
+            this.columnHeader4.Text = "标题";
+            this.columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "规模";
+            this.columnHeader5.Text = "小区";
+            this.columnHeader5.Width = 80;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "性质";
+            this.columnHeader7.Text = "面积";
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "联系人";
-            this.columnHeader8.Width = 80;
+            this.columnHeader8.Text = "总价";
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "电话";
-            this.columnHeader9.Width = 100;
+            this.columnHeader9.Text = "单价";
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "手机";
-            this.columnHeader10.Width = 100;
+            this.columnHeader10.Text = "区域";
             // 
             // columnHeader11
             // 
-            this.columnHeader11.Text = "QQ";
-            this.columnHeader11.Width = 100;
+            this.columnHeader11.Text = "户型";
+            this.columnHeader11.Width = 80;
             // 
             // columnHeader12
             // 
-            this.columnHeader12.Text = "邮箱";
-            this.columnHeader12.Width = 100;
+            this.columnHeader12.Text = "朝向";
+            this.columnHeader12.Width = 40;
             // 
             // columnHeader13
             // 
-            this.columnHeader13.Text = "地址";
-            this.columnHeader13.Width = 200;
+            this.columnHeader13.Text = "楼层";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "建筑年代";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "装修";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "描述";
+            this.columnHeader14.Width = 100;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "电话";
+            this.columnHeader15.Width = 80;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "联系人";
+            this.columnHeader16.Width = 100;
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "网址";
+            this.columnHeader17.Width = 200;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.White;
+            this.button9.Location = new System.Drawing.Point(575, 270);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 52;
+            this.button9.Text = "全部启动";
+            this.button9.UseVisualStyleBackColor = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.White;
+            this.button10.Location = new System.Drawing.Point(656, 270);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 53;
+            this.button10.Text = "全部暂停";
+            this.button10.UseVisualStyleBackColor = false;
             // 
             // fang58
             // 
@@ -705,7 +774,9 @@
             this.ClientSize = new System.Drawing.Size(1350, 630);
             this.Controls.Add(this.splitContainer1);
             this.Name = "fang58";
-            this.Text = "fang58";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "58房源采集";
+            this.Load += new System.EventHandler(this.fang58_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -782,5 +853,13 @@
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button9;
     }
 }

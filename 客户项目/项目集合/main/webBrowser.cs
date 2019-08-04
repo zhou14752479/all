@@ -35,7 +35,7 @@ namespace main
             webBrowser1.Url = new Uri(this.url);
 
            // timer1.Start();
-            method.SetIE(0);
+           
 
             this.webBrowser1.ScriptErrorsSuppressed = true;  //屏蔽IE脚本弹出错误
             this.webBrowser1.DocumentCompleted += webBrowser1_DocumentCompleted;  //屏蔽IE脚本弹出错误

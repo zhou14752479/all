@@ -86,7 +86,7 @@ namespace main._2019_8
 
             this.webBrowser1.ScriptErrorsSuppressed = true;  //屏蔽IE脚本弹出错误
             this.webBrowser1.DocumentCompleted += WebBrowser1_DocumentCompleted;  //屏蔽IE脚本弹出错误
-            method.SetIE(method.IeVersion.强制ie10);  //设置浏览器版本为枚举值第一个值
+            method.SetWebBrowserFeatures(method.IeVersion.IE11);  //设置浏览器版本为枚举值第一个值
         }
 
         private void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)

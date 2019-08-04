@@ -21,6 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DotRas;
+using System.ComponentModel;
 
 namespace main
 {
@@ -718,74 +719,68 @@ referer: https://shop145672826.taobao.com/index.htm?spm=2013.1.w5002-18853258787
 
         #endregion
 
+
         public enum IeVersion
         {
-            强制ie10,//10001 (0x2711) Internet Explorer 10。网页以IE 10的标准模式展现，页面!DOCTYPE无效
-            标准ie10,//10000 (0x02710) Internet Explorer 10。在IE 10标准模式中按照网页上!DOCTYPE指令来显示网页。Internet Explorer 10 默认值。
-            强制ie9,//9999 (0x270F) Windows Internet Explorer 9. 强制IE9显示，忽略!DOCTYPE指令
-            标准ie9,//9000 (0x2328) Internet Explorer 9. Internet Explorer 9默认值，在IE9标准模式中按照网页上!DOCTYPE指令来显示网页。
-            强制ie8,//8888 (0x22B8) Internet Explorer 8，强制IE8标准模式显示，忽略!DOCTYPE指令
-            标准ie8,//8000 (0x1F40) Internet Explorer 8默认设置，在IE8标准模式中按照网页上!DOCTYPE指令展示网页
-            标准ie7//7000 (0x1B58) 使用WebBrowser Control控件的应用程序所使用的默认值，在IE7标准模式中按照网页上!DOCTYPE指令来展示网页
-        }
+            IE7 = 7,
+            IE8 = 8,
+            IE9 = 9,
+            IE10 = 10,
+            IE11 = 11
+        };
 
-
-        #region  切换IE版本
-
-        /// <summary>
-        /// 设置WebBrowser的默认版本
-        /// </summary>
-        /// <param name="ver">IE版本</param>
-        public static void SetIE(IeVersion ver)
+        /// <summary>  
+        /// 修改注册表信息来兼容当前程序
+        /// </summary>  
+        public static void SetWebBrowserFeatures(IeVersion ieVersion)
         {
-            string productName = AppDomain.CurrentDomain.SetupInformation.ApplicationName;//获取程序名称
+            if (LicenseManager.UsageMode != LicenseUsageMode.Runtime) return;
+            //获取程序及名称  
+            string AppName = System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
 
-            object version;
-            switch (ver)
-            {
-                case IeVersion.标准ie7:
-                    version = 0x1B58;
-                    break;
-                case IeVersion.标准ie8:
-                    version = 0x1F40;
-                    break;
-                case IeVersion.强制ie8:
-                    version = 0x22B8;
-                    break;
-                case IeVersion.标准ie9:
-                    version = 0x2328;
-                    break;
-                case IeVersion.强制ie9:
-                    version = 0x270F;
-                    break;
-                case IeVersion.标准ie10:
-                    version = 0x02710;
-                    break;
-                case IeVersion.强制ie10:
-                    version = 0x2711;
-                    break;
-                default:
-                    version = 0x1F40;
-                    break;
-            }
+            //得到浏览器的模式的值  
+            UInt32 ieMode = GeoEmulationModee((int)ieVersion);
 
-            RegistryKey key = Registry.CurrentUser;
-            RegistryKey software =
-                key.CreateSubKey(
-                    @"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION\" + productName);
-            if (software != null)
-            {
-                software.Close();
-                software.Dispose();
-            }
-            RegistryKey wwui =
-                key.OpenSubKey(
-                    @"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", true);
-            //该项必须已存在
-            if (wwui != null) wwui.SetValue(productName, version, RegistryValueKind.DWord);
+            string featureControlRegKey = @"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\FeatureControl\";
+            //设置浏览器对应用程序（appName）以什么模式（ieMode）运行  
+
+            Registry.SetValue(featureControlRegKey + "FEATURE_BROWSER_EMULATION", AppName, ieMode, RegistryValueKind.DWord);
+
+            Registry.SetValue(featureControlRegKey + "FEATURE_ENABLE_CLIPCHILDREN_OPTIMIZATION", AppName, 1, RegistryValueKind.DWord);
+            Registry.SetValue(featureControlRegKey + "FEATURE_AJAX_CONNECTIONEVENTS", AppName, 1, RegistryValueKind.DWord);
+            Registry.SetValue(featureControlRegKey + "FEATURE_GPU_RENDERING", AppName, 1, RegistryValueKind.DWord);
+            Registry.SetValue(featureControlRegKey + "FEATURE_WEBOC_DOCUMENT_ZOOM", AppName, 1, RegistryValueKind.DWord);
+            Registry.SetValue(featureControlRegKey + "FEATURE_NINPUT_LEGACYMODE", AppName, 0, RegistryValueKind.DWord);
         }
-        #endregion
 
+        /// <summary>  
+        /// 通过版本得到浏览器模式的值  
+        /// </summary>  
+        /// <param name="browserVersion"></param>  
+        /// <returns></returns>  
+        private static UInt32 GeoEmulationModee(int browserVersion)
+        {
+            UInt32 mode = 11000; // Internet Explorer 11. Webpages containing standards-based !DOCTYPE directives are displayed in IE11 Standards mode.   
+            switch (browserVersion)
+            {
+                case 7:
+                    mode = 7000; // Webpages containing standards-based !DOCTYPE directives are displayed in IE7 Standards mode.   
+                    break;
+                case 8:
+                    mode = 8000; // Webpages containing standards-based !DOCTYPE directives are displayed in IE8 mode.   
+                    break;
+                case 9:
+                    mode = 9000; // Internet Explorer 9. Webpages containing standards-based !DOCTYPE directives are displayed in IE9 mode.                      
+                    break;
+                case 10:
+                    mode = 10000; // Internet Explorer 10.  
+                    break;
+                case 11:
+                    mode = 11000; // Internet Explorer 11  
+                    break;
+            }
+            return mode;
+        }
 
 
         #region datagriview转datatable

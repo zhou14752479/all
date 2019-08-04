@@ -16,7 +16,7 @@ namespace 谷歌浏览器
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 京东商品总数());
+            Application.Run(new Form1());
         }
     }
 }

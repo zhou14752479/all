@@ -64,7 +64,8 @@ namespace AutoSend
                     SetForegroundWindow(k);             //把窗体置于最前
                     for (int i = 1; i <= num; i++)
                     {
-                        str = i + ": " + info;
+                        //str = i + ": " + info;
+                        str = info;
                         SendKeys.SendWait(str);
                         SendKeys.Send("{ENTER}");
                         Thread.Sleep(1000);

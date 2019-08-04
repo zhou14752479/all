@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_7
+namespace main._2019_8
 {
     static class Program
     {
@@ -18,7 +18,7 @@ namespace main._2019_7
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 上海企业());
+            Application.Run(new 浏览器淘宝());
         }
     }
 

@@ -13,6 +13,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>C:\Users\sq41\Desktop\1\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,8 +31,6 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -60,10 +60,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0AB14874BDA9955E0A02C6EB2340A1B29BD092E0</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CAE03F4929414876FCFA8ADF5E9AFE4ED6F24932</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>_58_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>_58_4_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -73,7 +73,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin">
-      <HintPath>..\..\..\..\..\58软件\CSkin.dll</HintPath>
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -87,9 +87,8 @@
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\fangyuan\fang\bin\Debug\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -131,9 +130,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="VisualPlus, Version=0.4.1.5, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\fangyuan\fang\bin\Debug\VisualPlus.dll</HintPath>
+    <Reference Include="VisualPlus">
+      <HintPath>..\..\..\58同城招聘\zhaopin_58\bin\Debug\VisualPlus.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -325,6 +323,7 @@
     <None Include="_58_1_TemporaryKey.pfx" />
     <None Include="_58_2_TemporaryKey.pfx" />
     <None Include="_58_3_TemporaryKey.pfx" />
+    <None Include="_58_4_TemporaryKey.pfx" />
     <None Include="_58_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
