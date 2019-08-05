@@ -213,8 +213,8 @@ referer: https://shop145672826.taobao.com/index.htm?spm=2013.1.w5002-18853258787
                     request.Headers.Add("Cookie", COOKIE);
                     request.KeepAlive = false;
                     HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-
-                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                request.Timeout = 5000;
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("gb2312")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                     string content = reader.ReadToEnd();
                     reader.Close();

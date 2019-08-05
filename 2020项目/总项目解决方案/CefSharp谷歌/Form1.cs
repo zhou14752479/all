@@ -8,16 +8,55 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 谷歌浏览器
+namespace CefSharp谷歌
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// 中文字符工具类
+        /// </summary>
+        public static class ChineseStringUtility
+        {
+            private const int LOCALE_SYSTEM_DEFAULT = 0x0800;
+            private const int LCMAP_SIMPLIFIED_CHINESE = 0x02000000;
+            private const int LCMAP_TRADITIONAL_CHINESE = 0x04000000;
+
+            [DllImport("kernel32", CharSet = CharSet.Auto, SetLastError = true)]
+            private static extern int LCMapString(int Locale, int dwMapFlags, string lpSrcStr, int cchSrc, [Out] string lpDestStr, int cchDest);
+
+            /// <summary>
+            /// 将字符转换成简体中文
+            /// </summary>
+            /// <param name="source">输入要转换的字符串</param>
+            /// <returns>转换完成后的字符串</returns>
+            public static string ToSimplified(string source)
+            {
+                String target = new String(' ', source.Length);
+                int ret = LCMapString(LOCALE_SYSTEM_DEFAULT, LCMAP_SIMPLIFIED_CHINESE, source, source.Length, target, source.Length);
+                return target;
+            }
+
+            /// <summary>
+            /// 将字符转换为繁体中文
+            /// </summary>
+            /// <param name="source">输入要转换的字符串</param>
+            /// <returns>转换完成后的字符串</returns>
+            public static string ToTraditional(string source)
+            {
+                String target = new String(' ', source.Length);
+                int ret = LCMapString(LOCALE_SYSTEM_DEFAULT, LCMAP_TRADITIONAL_CHINESE, source, source.Length, target, source.Length);
+                return target;
+            }
+        }
+
+
+
         internal class OpenPageSelf : ILifeSpanHandler
         {
             public bool DoClose(IWebBrowser browserControl, IBrowser browser)
@@ -49,27 +88,19 @@ namespace 谷歌浏览器
 
 
         public ChromiumWebBrowser browser;
+        public void InitBrowser()
+        {
+            //Cef.Initialize(new CefSettings());
+            browser = new ChromiumWebBrowser("https://www.taobao.com");
+            browser.Parent = this.splitContainer1.Panel2;
+            browser.Dock = DockStyle.Fill;
 
+        }
         public Form1()
         {
             InitializeComponent();
             InitBrowser();
             browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
-
-
-        }
-        public void InitBrowser()
-        {
-            Cef.Initialize(new CefSettings());
-            browser = new ChromiumWebBrowser("https://www.taobao.com");
-            browser.Parent = this.splitContainer1.Panel2;
-            browser.Dock = DockStyle.Fill;
-            // browser.ExecuteJavaScriptAsync("alert("你好")");//script是String格式的js代码
-        }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-       
-            browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -77,15 +108,14 @@ namespace 谷歌浏览器
             Thread thread = new Thread(new ThreadStart(taobao));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
-            //browser.GetBrowser().MainFrame.ExecuteJavaScriptAsync("document.getElementById('ceshi').click();");
-            //for (int i = 1; i < 60; i++)
-            //{
-            //    browser = new ChromiumWebBrowser("https://bj.meituan.com/meishi/pn"+i+"/");
-            //    browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
-
-            //}
-
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
+        }
+
+
         #region 下载文件
         /// <summary>
         /// 下载图片
@@ -144,6 +174,7 @@ namespace 谷歌浏览器
         #endregion
         public static string COOKIE;
         #endregion
+
         public void taobao()
         {
             try
@@ -154,7 +185,7 @@ namespace 谷歌浏览器
                     return;
 
                 }
-                
+
 
                 string html = GetUrlWithCookie(textBox1.Text, COOKIE, "gb2312");
 
@@ -164,7 +195,7 @@ namespace 谷歌浏览器
 
 
                 // Match  aURL = Regex.Match(html, @"descnew([\s\S]*?),");  //详情图来源网址
-                string path = AppDomain.CurrentDomain.BaseDirectory + title.Groups[1].Value + "\\";
+                string path = AppDomain.CurrentDomain.BaseDirectory + ChineseStringUtility.ToTraditional(title.Groups[1].Value) + "\\";
 
                 string subPath = path + "产品介绍图\\";
                 //string ahtml = method.GetUrl("http://descnew"+aURL.Groups[1].Value.Replace("'","").Replace("\"",""), "gb2312");
@@ -236,18 +267,23 @@ namespace 谷歌浏览器
 
         private void FrameEndFunc(object sender, FrameLoadEndEventArgs e)
         {
-            
+
             this.BeginInvoke(new Action(() => {
                 String html = browser.GetSourceAsync().Result;
-                //textBox1.Text = html;
+              
 
                 textBox1.Text = browser.Address;
             }));
         }
 
+        private void Label1_Click(object sender, EventArgs e)
+        {
+            browser.Back();
+        }
 
-      
-
-
+        private void Label2_Click(object sender, EventArgs e)
+        {
+            browser.Forward();
+        }
     }
 }

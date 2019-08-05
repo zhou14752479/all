@@ -193,6 +193,8 @@ namespace main._2019_7
 
             try
             {
+                string ahtml = method.GetUrl(textBox1.Text, "utf-8");
+
                 for (int i = 0; i < 9999; i++)
                 {
 
@@ -214,8 +216,16 @@ namespace main._2019_7
                     foreach (string list in lists)
 
                     {
+                       
 
-                        string strhtml = method.GetUrl(list, "gb2312");
+                        
+
+                        Match IP = Regex.Match(ahtml, @"ip"":""([\s\S]*?)""");
+                        Match PORT = Regex.Match(ahtml, @"port"":([\s\S]*?)\}");
+
+                        textBox2.Text = IP.Groups[1].Value;
+                        
+                        string strhtml = method.GetUrlwithIP(list,IP.Groups[1].Value+":"+PORT.Groups[1].Value);
 
                         Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)诚");
                         Match a2 = Regex.Match(strhtml, @"成立</li>([\s\S]*?)</li>");
@@ -227,30 +237,38 @@ namespace main._2019_7
                         Match a8 = Regex.Match(strhtml, @"QQ</li>([\s\S]*?)</li>");
                         Match a9 = Regex.Match(strhtml, @"data-email=""([\s\S]*?)""");
                         Match a10 = Regex.Match(strhtml, @"地址</li>([\s\S]*?)<a");
-
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
-                        lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a3.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(NCRtoString(Regex.Replace(a5.Groups[1].Value, "<[^>]+>", "")).Trim());
-                        lv1.SubItems.Add(Regex.Replace(a6.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a7.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a8.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a9.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(NCRtoString(Regex.Replace(a10.Groups[1].Value, "<[^>]+>", "")).Trim());
-
-
-                        while (this.zanting == false)
+                        if (a1.Groups[1].Value == "")
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                             ahtml = method.GetUrl(textBox1.Text, "utf-8");
+                            continue;
                         }
-                        if (status == false)
 
-                        {
-                            return;
-                        }
-                        Thread.Sleep(2000);
+
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                            lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(Regex.Replace(a3.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(NCRtoString(Regex.Replace(a5.Groups[1].Value, "<[^>]+>", "")).Trim());
+                            lv1.SubItems.Add(Regex.Replace(a6.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(Regex.Replace(a7.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(Regex.Replace(a8.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(Regex.Replace(a9.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(NCRtoString(Regex.Replace(a10.Groups[1].Value, "<[^>]+>", "")).Trim());
+
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+
+                            {
+                                return;
+                            }
+                            
+                        
+                      
                     }
 
                 }
