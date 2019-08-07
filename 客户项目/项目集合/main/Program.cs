@@ -18,7 +18,7 @@ namespace main._2019_7
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fang58());
+            Application.Run(new 上海企业());
         }
     }
 

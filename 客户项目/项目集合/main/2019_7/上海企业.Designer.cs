@@ -199,6 +199,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(321, 55);
             this.textBox2.TabIndex = 5;
+            this.textBox2.Text = "JSESSIONID=rBtPJQBQXUjRU5IEVpC8BEx1npCDY92OOUYA; BIGipServerGSJ-YCT-pool1=6259414" +
+    "20.20480.0000; BIGipServerGSJ-INT-YCT-WEB=139399596.20480.0000";
             // 
             // textBox1
             // 

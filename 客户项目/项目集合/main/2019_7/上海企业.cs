@@ -168,6 +168,7 @@ namespace main._2019_7
             sw.Close();
             fs.Close();
             listView2.Items.Clear();
+            finishes.Clear();
         }
 
         private void 删除此行ToolStripMenuItem_Click(object sender, EventArgs e)
