@@ -160,16 +160,26 @@ namespace main._2019_6
 
                         for (int j = 0; j < Names.Count; j++)
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
-
-                            lv1.SubItems.Add(Names[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(prices[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(comments[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add(catids[j].Groups[1].Value.Trim());
-                            lv1.SubItems.Add("https://item.jd.com/"+uids[j].Groups[1].Value+ ".html");
-                            while (this.zanting == false)
+                            if (prices[j].Groups[1].Value != "" && comments[j].Groups[1].Value != "" && prices[j].Groups[1].Value != null && comments[j].Groups[1].Value != null)
                             {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                               
+                                
+                                bool jiage = Convert.ToDouble(prices[j].Groups[1].Value.Trim()) > Convert.ToInt32(textBox3.Text) && Convert.ToDouble(prices[j].Groups[1].Value.Trim()) < Convert.ToInt32(textBox4.Text);
+                                bool pinglun = Convert.ToInt32(comments[j].Groups[1].Value.Trim()) > Convert.ToInt32(textBox5.Text) && Convert.ToInt32(comments[j].Groups[1].Value.Trim()) < Convert.ToInt32(textBox6.Text);
+
+                                if (jiage && pinglun)
+                                {
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
+                                    lv1.SubItems.Add(Names[j].Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(prices[j].Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(comments[j].Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(catids[j].Groups[1].Value.Trim());
+                                    lv1.SubItems.Add("https://item.jd.com/" + uids[j].Groups[1].Value + ".html");
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+                                }
                             }
                         }
 
@@ -238,5 +248,10 @@ namespace main._2019_6
         private void button5_Click(object sender, EventArgs e)
         {
             zanting = true;        }
+
+        private void SplitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -11,7 +11,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using 类库;
+using helper;
+
 
 
 namespace 淘宝商品sku

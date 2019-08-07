@@ -30,8 +30,27 @@ namespace main._2019_8
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox1.Text = openFileDialog1.FileName;
+
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请输入手机号文本");
+                    label1.Text = "请输入手机号文本";
+                    return;
+                }
+                StreamReader sr = new StreamReader(textBox1.Text, Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+               string[]  text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                    lv1.SubItems.Add(text[i].Trim());   //比分
+                    lv1.SubItems.Add("无");   //比分
+                }
+
+                }
             }
-        }
         bool zanting = true;
         int yipao = 0;
         ArrayList finishes = new ArrayList();
@@ -39,28 +58,28 @@ namespace main._2019_8
         {
 
            
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < listView1.Items.Count; i++)
             {
                 
-                if (!finishes.Contains(text[i]))
+                if (!finishes.Contains(listView1.Items[i].SubItems[1].Text))
                 {
                     yipao = yipao + 1;
                   
-                    finishes.Add(text[i]);
+                    finishes.Add(listView1.Items[i].SubItems[1].Text);
                     foreach (string key in dic.Keys)
                     {
-                        label1.Text = "正在验证" + text[i] + key+"累计已验证"+yipao;
-                        string URL = "https://api.unipay.qq.com/v1/r/1450000251/get_role_list?pf=mds_pay-__mds_webpay_iframe.pay-website&pfkey=pfkey&aid=pay.index.cf&from_h5=1&pc_st=C70B4FBC-2937-49FB-B56C-C1809C68DEB81564978624411&r=0.9533438451065357&openid=852266010&openkey=%40kA1vR2opA&session_id=uin&session_type=skey&sck=92C2EB88878C43722ED6BC6A929BB983&anti_auto_script_token_id=E34436CBB13DFA9AD8585CD634A2339C87B32152C86AD0EA7ECE6B593DB5993C73A453273455760FE533C0E4A6F522B00883C656EEDB9E4C7E4ADA894249FE9B&isusempaymode=1&zoneid=" + dic[key] + "&game_scene=dq_pay&provide_uin=" + text[i] + "&webversion=minipayv2&from_https=1&t=1564978642590&__refer=https%3A%2F%2Fpay.qq.com%2Fmidas%2Fminipay_v2%2Fviews%2Fpayindex%2Fpcgame.shtml%3Fcode%3Dcfdq%26aid%3Dpay.index.cf%26pf%3Dmds_pay-__mds_webpay_iframe.pay-website%26extend%3DeditableForTeam%253D0%26openid%3D%26openkey%3D%26session_id%3Duin%26session_type%3Dvask_27";
+                        label1.Text = "正在验证" + listView1.Items[i].SubItems[1].Text + key+"累计已验证"+yipao;
+                        string URL = "https://api.unipay.qq.com/v1/r/1450000251/get_role_list?pf=mds_pay-__mds_webpay_iframe.pay-website&pfkey=pfkey&aid=pay.index.cf&from_h5=1&pc_st=3941CAFB-6132-43DD-9476-C1C3F69EA9DF1565169619582&r=0.5387149660723942&openid=852266010&openkey=%40jA5J2coeq&session_id=uin&session_type=skey&sck=D8DFA3FBDA3C9E907369BABC2B3E1205&anti_auto_script_token_id=E34436CBB13DFA9AD8585CD634A2339C87B32152C86AD0EA7ECE6B593DB5993C8A8FE1D033D59E098D6924261F742FCE3DEE5AF4114D0E6B4CA4726B184797E7&isusempaymode=1&zoneid=324&game_scene=dq_pay&provide_uin="+listView1.Items[i].SubItems[1].Text.Trim()+"&webversion=minipayv2&from_https=1&t=1565169638158&__refer=https%3A%2F%2Fpay.qq.com%2Fmidas%2Fminipay_v2%2Fviews%2Fpayindex%2Fpcgame.shtml%3Fcode%3Dcfdq%26aid%3Dpay.index.cf%26pf%3Dmds_pay-__mds_webpay_iframe.pay-website%26extend%3DeditableForTeam%253D0%26openid%3D%26openkey%3D%26session_id%3Duin%26session_type%3Dvask_27";
 
                         string html = method.GetUrl(URL, "utf-8");
 
                         if (html.Contains("role_list"))
                         {
 
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
-                            lv1.SubItems.Add(text[i]);   //比分
-                            lv1.SubItems.Add(key);
+                            listView1.Items[i].SubItems[2].Text = key;
+
                         }
+                      
 
 
                         while (this.zanting == false)
@@ -82,19 +101,11 @@ namespace main._2019_8
             label1.Text = "全部验证结束";
 
         }
-        string[] text = { };
+       
     private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
-            {
-                MessageBox.Show("请输入手机号文本");
-                label1.Text = "请输入手机号文本";
-                return;
-            }
-            StreamReader sr = new StreamReader(textBox1.Text, Encoding.Default);
-            //一次性读取完 
-            string texts = sr.ReadToEnd();
-             text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+          
+
 
             for (int i = 0; i < Convert.ToInt32(textBox2.Text); i++)
             {

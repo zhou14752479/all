@@ -88,7 +88,7 @@ namespace zhaopin_58
                 
                 foreach (string city in citys)
                 {
-                   
+                  
                     string cityId = GetcId(city);
                     
                     foreach (string keyword in keywords)

@@ -7,7 +7,7 @@
     <ProjectGuid>{4AB3B912-E9F2-4425-82C0-505BDA466258}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>类库</RootNamespace>
-    <AssemblyName>类库</AssemblyName>
+    <AssemblyName>helper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -69,6 +69,9 @@
     <Compile Include="method.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
