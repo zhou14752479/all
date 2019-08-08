@@ -20,7 +20,7 @@ namespace main._2019_6
             InitializeComponent();
         }
 
-        #region  获取文件夹内的所有.htm文件
+        #region  获取文件夹内的所有.html文件
         public static ArrayList GetFiles(string filePath)
         {
             ArrayList lists = new ArrayList();
@@ -40,7 +40,7 @@ namespace main._2019_6
                 string fullName = info.FullName;
                 //获取文件的扩展名
                 string extension = info.Extension.ToLower();
-                if (extension == ".htm")
+                if (extension == ".html")
                 {
                     //获取文件的大小
                     long length = info.Length;
@@ -67,19 +67,20 @@ namespace main._2019_6
 
             for (int i = 0; i < lists.Count; i++)
             {
-                string html = System.IO.File.ReadAllText(lists[i].ToString());
-
                 
-                Match a1 = Regex.Match(html, @"fieldId=""5"">([\s\S]*?)</DIV>");      //订单编码
-                Match a2 = Regex.Match(html, @"fieldId=""383"">([\s\S]*?)</DIV>");     //订单名称
-                Match a3 = Regex.Match(html, @"fieldId=""391"">([\s\S]*?)</DIV>");  //订单内容
-                Match a4 = Regex.Match(html, @"fieldId=""427"">([\s\S]*?)</DIV>");  //订单地址
-               // Match a5 = Regex.Match(html, @"fieldId=""1274"">([\s\S]*?)</DIV>");  //要求完成时间
-                Match a5 = Regex.Match(html, @"fieldId=""1274"">2019-([\s\S]*?) ");  //要求完成时间
-                Match a6 = Regex.Match(html, @"fieldId=""396"">([\s\S]*?)</DIV>"); //受理人
-                Match a7 = Regex.Match(html, @"fieldId=""425"">([\s\S]*?)</DIV>");  //客户经理名称
-                Match a8 = Regex.Match(html, @"fieldId=""426"">([\s\S]*?)</DIV>");  //客户经理电话
-                Match a9 = Regex.Match(html, @"fieldId=""384"">([\s\S]*?)</DIV>");   //客户名以及电话
+                string html = System.IO.File.ReadAllText(lists[i].ToString());
+               
+                
+                Match a1 = Regex.Match(html, @"fieldid=""5"" ismust=""0"">([\s\S]*?)</div>");      //订单编码
+                Match a2 = Regex.Match(html, @"fieldid=""383"" ismust=""0"">([\s\S]*?)</div>");     //订单名称
+                Match a3 = Regex.Match(html, @"fieldid=""391"" ismust=""0"">([\s\S]*?)</div>");  //订单内容
+                Match a4 = Regex.Match(html, @"fieldid=""427"" ismust=""0"">([\s\S]*?)</div>");  //订单地址
+               
+                Match a5 = Regex.Match(html, @"fieldid=""1274"" ismust=""0"">([\s\S]*?) ");  //要求完成时间
+                Match a6 = Regex.Match(html, @"fieldid=""396"" ismust=""0"">([\s\S]*?)</div>"); //受理人
+                Match a7 = Regex.Match(html, @"fieldid=""425"" ismust=""0"">([\s\S]*?)</div>");  //客户经理名称
+                Match a8 = Regex.Match(html, @"fieldid=""426"" ismust=""0"">([\s\S]*?)</div>");  //客户经理电话
+                Match a9 = Regex.Match(html, @"fieldid=""384"" ismust=""0"">([\s\S]*?)</div>");   //客户名以及电话
 
 
                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
@@ -87,7 +88,7 @@ namespace main._2019_6
                 lv1.SubItems.Add(a2.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a3.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a4.Groups[1].Value.Trim());
-                lv1.SubItems.Add(a5.Groups[1].Value.Trim().Replace("-","."));
+                lv1.SubItems.Add(a5.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a6.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a7.Groups[1].Value.Trim()+a8.Groups[1].Value.Trim());
                 lv1.SubItems.Add(a9.Groups[1].Value.Trim());

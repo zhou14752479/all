@@ -58,6 +58,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox5);
             this.splitContainer1.Panel1.Controls.Add(this.label12);
             this.splitContainer1.Panel1.Controls.Add(this.label11);
             this.splitContainer1.Panel1.Controls.Add(this.label10);
@@ -341,6 +343,15 @@
             this.columnHeader9.Text = "客户电话以及名称";
             this.columnHeader9.Width = 250;
             // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox5.Location = new System.Drawing.Point(932, 18);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(252, 78);
+            this.textBox5.TabIndex = 32;
+            // 
             // IOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -391,5 +402,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

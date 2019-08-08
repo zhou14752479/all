@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝商品sku", "淘宝商品sku\淘宝商品sku.csproj", "{3B14D39A-9D47-4126-9C9C-E81983E325F9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSend", "AutoSend\AutoSend.csproj", "{159DAA63-561B-4F94-BF3D-060129EEAB8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSharp谷歌", "CefSharp谷歌\CefSharp谷歌.csproj", "{A6A2FBB2-9EE0-4970-B2B3-8EDC5DD5FC5A}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3B14D39A-9D47-4126-9C9C-E81983E325F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B14D39A-9D47-4126-9C9C-E81983E325F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B14D39A-9D47-4126-9C9C-E81983E325F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B14D39A-9D47-4126-9C9C-E81983E325F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{159DAA63-561B-4F94-BF3D-060129EEAB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{159DAA63-561B-4F94-BF3D-060129EEAB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{159DAA63-561B-4F94-BF3D-060129EEAB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU

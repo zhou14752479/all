@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -20,6 +21,45 @@ namespace fang._2019
             InitializeComponent();
         }
         public static string COOKIE = "api_uid=rBQRpFvJizBVvw8WqeZ3Ag==; _nano_fp=XpdqlpUqnp9xn5ToXo_ke8~lQxmpH7B0sj51EhI7; ua=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F69.0.3497.81%20Safari%2F537.36; webp=1; msec=1800000; rec_list_catgoods=rec_list_catgoods_DSg1TO; pdd_user_uin=7BT7HSLWTMIXDJYZTOHT4Q45MQ_GEXDA; pdd_user_id=7312500755985; PDDAccessToken=N4ADUU4BJHRIWTYK46NGVVW2V4MK2CMYPVUOFEPDOYQGEMOEK7UQ102118b; rec_list_orders=rec_list_orders_K5JiGI; rec_list_personal=rec_list_personal_HEFmke; goods_detail=goods_detail_hQ45vl; goods_detail_mall=goods_detail_mall_fQPHOK; rec_list_index=rec_list_index_nMlbWf; JSESSIONID=161A48C74397995F7DD031BDFF3C5DCB";
+
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
+        {
+            try
+            {
+
+
+                string COOKIE = "api_uid=rBRoCF1JQFY3vGGjH54FAg==; ua=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F74.0.3729.108%20Safari%2F537.36; _nano_fp=Xpdjnp9JXpEJnpdqlT_eXSrkHSrnSw51ePWr~7Ki; webp=1; msec=1800000; pdd_user_id=7312500755985; pdd_user_uin=7BT7HSLWTMIXDJYZTOHT4Q45MQ_GEXDA; PDDAccessToken=IXQBWE5H7SATDQTIERBY6G6CMXECWKFPWTWUVJDM5K24FQ5LH74Q102118b; goods_detail=goods_detail_IcH7fD; goods_detail_mall=goods_detail_mall_11OLmH; JSESSIONID=F2D9203A6483FEB472A05DBEDF41C65C; rec_list_index=rec_list_index_WiMZw0";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("AccessToken", "IXQBWE5H7SATDQTIERBY6G6CMXECWKFPWTWUVJDM5K24FQ5LH74Q102118b");
+                request.KeepAlive = false;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
         private void timer1_Tick(object sender, EventArgs e)
         {
 
@@ -44,14 +84,14 @@ namespace fang._2019
             try
             {
                 string[] array = this.ReadText();
-                foreach (string keyword in array)
+                foreach (string values  in array)
                 {
+                    string[] keyword = values.Split(new string[] { "&" }, StringSplitOptions.None);
 
-
-                    string url = "http://mobile.yangkeduo.com/search_result.html?search_key="+keyword+"&sort_type=_sales";
-                    string html = method.GetUrlWithCookie(url, "utf-8",COOKIE);
-                    //textBox3.Text = html;
-                    //return;
+                    string url = "http://mobile.yangkeduo.com/search_result.html?search_key="+keyword[1].ToString()+"&sort_type=_sales";
+                    string html = GetUrl(url, "utf-8");
+                    textBox3.Text = html;
+                   
                     if (!html.Contains("没有找到"))
                     {
                         Match match = Regex.Match(html, @"""goodsID"":([\s\S]*?),");
@@ -59,7 +99,7 @@ namespace fang._2019
                       
                         string URL = "http://mobile.yangkeduo.com/goods.html?goods_id=" + match.Groups[1].Value.Trim();
                         
-                        string strhtml = method.GetUrlWithCookie(URL, "utf-8",COOKIE);
+                        string strhtml = GetUrl(URL, "utf-8");
 
                         Match counts = Regex.Match(strhtml, @"<span class=""g-sales regular-text"">([\s\S]*?)</span>");
                         Match price = Regex.Match(strhtml, @"minOnSaleGroupPrice"":""([\s\S]*?)""");
@@ -70,7 +110,7 @@ namespace fang._2019
                         Match shopcounts = Regex.Match(strhtml, @"已拼([\s\S]*?)<");
 
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(keyword);
+                        listViewItem.SubItems.Add(keyword[1].ToString());
                         listViewItem.SubItems.Add(counts.Groups[1].Value.ToString().Replace("已拼","").Trim());
                         listViewItem.SubItems.Add(price.Groups[1].Value.ToString());
                         listViewItem.SubItems.Add(commentCount.Groups[1].Value.ToString());
@@ -99,7 +139,7 @@ namespace fang._2019
 
                        
                         ListViewItem listViewItem = this.listView2.Items.Add((listView2.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(keyword);
+                        listViewItem.SubItems.Add(keyword[1].ToString());
                         listViewItem.SubItems.Add(sousuo.Groups[1].Value.ToString());                 
                         if (this.listView2.Items.Count > 2)
                         {

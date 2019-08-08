@@ -697,9 +697,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1.ico" />
     <Content Include="bitbug_favicon.ico" />
     <Content Include="icon.ico" />
+    <Content Include="logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
