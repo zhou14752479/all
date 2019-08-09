@@ -18,7 +18,8 @@ namespace main._2019_8
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CF扫号());
+           
+            Application.Run(new 浏览器淘宝());
         }
     }
 

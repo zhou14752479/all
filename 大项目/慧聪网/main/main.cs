@@ -168,14 +168,12 @@ namespace main
 
                             }
                         }
-                        Application.DoEvents();
-                        Thread.Sleep(100);   //内容获取间隔，可变量
+                      
 
                
 
                     }
-                    Application.DoEvents();
-                    System.Threading.Thread.Sleep(1000);   //内容获取间隔，可变量
+                   
 
                 }
 

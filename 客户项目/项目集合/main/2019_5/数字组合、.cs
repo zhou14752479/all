@@ -22,46 +22,15 @@ namespace main._2019_5
             Control.CheckForIllegalCrossThreadCalls = false;
         }
 
-        /// <summary>
-        /// 返回随机数组
-        /// </summary>
-        /// <param name="minValue">最小值</param>
-        /// <param name="maxValue">最大值</param>
-        /// <param name="count">个数</param>
-        /// <returns></returns>
-
-        public ArrayList getarray(int max,int n)
-        {
-            ArrayList arr = new ArrayList();
-            
-            for (var i = 0; i < 9999999; i++)
-            {
-
-
-                if (arr.Count == n)
-                {
-                    break;
-                }
-                else
-                {
-                    Random random = new Random();
-                    var shuzhi = random.Next(max);
-                    if (!arr.Contains(shuzhi)&& shuzhi !=0)
-                    {
-                        arr.Add(shuzhi);
-                    }
-                }
-            }
-            return arr;
-        }
+     
 
         ArrayList finishes = new ArrayList();
 
         public void run()
         {
-            for (int a = 0; a < 9999999; a++)
+            for (long a = 0; a < 999999999999; a++)
             {
-                if (listView1.Items.Count == 1200)
+                if (listView1.Items.Count == 2400)
                     return;
 
                 ArrayList list2 = new ArrayList();
@@ -178,7 +147,7 @@ namespace main._2019_5
             for (int i = 0; i < text.Length; i++)
             {
 
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                 lv1.SubItems.Add(text[i]);
 
 
@@ -201,10 +170,10 @@ namespace main._2019_5
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-
+           
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+           
 
 
         }
@@ -279,8 +248,7 @@ namespace main._2019_5
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-            //method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+           
 
             //for (int i = 0; i < listView1.Items.Count; i++)
             //{
@@ -344,6 +312,12 @@ namespace main._2019_5
 
         }
 
-       
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+      
     }
 }

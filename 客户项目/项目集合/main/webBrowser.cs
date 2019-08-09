@@ -72,9 +72,10 @@ namespace main
             //cookie = textBox1.Text;
 
         }
-
+       
         private void button1_Click(object sender, EventArgs e)
         {
+          
             textBox1.Text = GetCookies(this.url);
             cookie = textBox1.Text;
             //this.Hide();

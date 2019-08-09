@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -81,8 +82,11 @@ namespace main._2019_8
                     foreach (string key in dic.Keys)
                     {
                         label1.Text = "正在验证" + listView1.Items[i].SubItems[1].Text + key+"累计已验证"+yipao;
-                        string URL = "https://api.unipay.qq.com/v1/r/1450000251/get_role_list?pf=mds_pay-__mds_webpay_iframe.pay-website&pfkey=pfkey&aid=pay.index.cf&from_h5=1&pc_st=E2D80D51-48B1-4240-A654-919166A6CBE21565238778900&r=0.7314007353164214&openid=852266010&openkey=%409yx6R0I7F&session_id=uin&session_type=skey&sck=A9B0470293274E3B604AE58C46F37425&anti_auto_script_token_id=E34436CBB13DFA9AD8585CD634A2339C87B32152C86AD0EA7ECE6B593DB5993CCC8060CF2A5D46A338A1C5A774AE16DFC4AD5056C880BFA3AB13D036D3028D3E&isusempaymode=1&zoneid="+dic[key]+"&game_scene=dq_pay&provide_uin="+listView1.Items[i].SubItems[1].Text+"&webversion=minipayv2&from_https=1&t=1565238808154&__refer=https%3A%2F%2Fpay.qq.com%2Fmidas%2Fminipay_v2%2Fviews%2Fpayindex%2Fpcgame.shtml%3Fcode%3Dcfdq%26aid%3Dpay.index.cf%26pf%3Dmds_pay-__mds_webpay_iframe.pay-website%26extend%3DeditableForTeam%253D0%26openid%3D%26openkey%3D%26session_id%3Duin%26session_type%3Dvask_27";
+                        Match zid = Regex.Match(textBox3.Text, @"zoneid=([\s\S]*?)&");
+                        Match zQQ= Regex.Match(textBox3.Text, @"provide_uin=([\s\S]*?)&");
+                        string URL = "https://api.unipay.qq.com/v1/r/1450000251/get_role_list?"+textBox3.Text.Replace(zid.Groups[1].Value,dic[key]).Replace(zQQ.Groups[1].Value, listView1.Items[i].SubItems[1].Text);
 
+                       
                         string html = method.GetUrl(URL, "utf-8");
 
                         if (html.Contains("role"))
@@ -127,12 +131,12 @@ namespace main._2019_8
 
 
 
-            for (int i = 0; i < Convert.ToInt32(textBox2.Text); i++)
-            {
+            //for (int i = 0; i < Convert.ToInt32(textBox2.Text); i++)
+            //{
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
-            }
+           // }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -196,6 +200,11 @@ namespace main._2019_8
             dic.Add("上海电信一区", "320");
 
 
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }
