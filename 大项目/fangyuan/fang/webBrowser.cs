@@ -33,8 +33,10 @@ namespace fang
             webBrowser1.ScriptErrorsSuppressed = true;
 
             webBrowser1.Url = new Uri(this.url);
-
+            
             timer1.Start();
+
+          
         }
 
 
@@ -72,12 +74,18 @@ namespace fang
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            HtmlElement element2 = webBrowser1.Document.CreateElement("script"); //新建个script标签
+            element2.SetAttribute("type", "text/javascript");
+            element2.SetAttribute("text", textBox1.Text); //脚本内容
+            webBrowser1.Document.Body.AppendChild(element2); //插入到webbrowser当前网页中
+            webBrowser1.Document.InvokeScript("doFuck");//执行新插入script标签中的doFuck函数
+
+            //this.Hide();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            webBrowser1.Refresh();
+          //  webBrowser1.Refresh();
         }
     }
 }

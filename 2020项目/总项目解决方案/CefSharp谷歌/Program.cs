@@ -32,7 +32,7 @@ namespace CefSharp谷歌
             };
             //Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
             Cef.Initialize(new CefSettings());
-            Application.Run(new main());
+            Application.Run(new Form1());
         }
 
         // Will attempt to load missing assembly from either x86 or x64 subdir

@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -98,6 +99,30 @@ namespace helper
 
         #endregion
 
+        #region 获取公网IP
+        public static string GetIP()
+        {
+            using (var webClient = new WebClient())
+            {
+                try
+                {
+                    webClient.Credentials = CredentialCache.DefaultCredentials;
+                    byte[] pageDate = webClient.DownloadData("http://pv.sohu.com/cityjson?ie=utf-8");
+                    String ip = Encoding.UTF8.GetString(pageDate);
+                    webClient.Dispose();
+
+                    Match rebool = Regex.Match(ip, @"\d{2,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
+                    return rebool.Value;
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
+
+            }
+        }
+
+        #endregion
         #region 苏飞请求
         public static string gethtml(string url,string COOKIE)
         {

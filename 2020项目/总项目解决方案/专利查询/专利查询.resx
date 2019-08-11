@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="timer2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>345, 17</value>
   </metadata>
-  <data name="textBox3.Text" xml:space="preserve">
-    <value>api_uid=rBQRpFvJizBVvw8WqeZ3Ag==; _nano_fp=XpdqlpUqnp9xn5ToXo_ke8~lQxmpH7B0sj51EhI7; msec=1800000; pdd_user_uin=7BT7HSLWTMIXDJYZTOHT4Q45MQ_GEXDA; rec_list_personal=rec_list_personal_Nah6Rp; ua=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F75.0.3770.142%20Safari%2F537.36; webp=1; pdd_user_id=7312500755985; PDDAccessToken=NJOZ36OLGEFYLG5MNP7MNPIIIAHVT6KMCGCX7I6PAUCGXBE4HYZA102118b; rec_list_index=rec_list_index_KAoc9A; JSESSIONID=8C33297034561B2AE261874A36EE9385; goods_detail=goods_detail_YyIeD1; goods_detail_mall=goods_detail_mall_M98jud</value>
-  </data>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>435, 17</value>
+  </metadata>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>165, 17</value>
+    <value>583, 17</value>
   </metadata>
 </root>
