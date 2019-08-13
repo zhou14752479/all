@@ -106,7 +106,7 @@ namespace main._2019_7
                         lv1.SubItems.Add(Regex.Replace(a15.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(purl);
                         shuliang = shuliang + 1;
-                        label22.Text = shuliang.ToString(0;)
+                        label22.Text = shuliang.ToString();
 
                         while (this.zanting == false)
                         {
@@ -116,6 +116,12 @@ namespace main._2019_7
 
                         {
                             return;
+                        }
+                        string[] text = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                        foreach (string mail in text)
+                        {
+                            send(textBox2.Text, textBox3.Text, textBox4.Text,mail, a2.Groups[1].Value+ purl);
+                           
                         }
                         Thread.Sleep(1000);
                     }
@@ -356,6 +362,51 @@ namespace main._2019_7
             {
                 zanting = false;
             }
+        }
+
+        private void Button11_Click(object sender, EventArgs e)
+        {
+            textBox5.Text = textBox32.Text;
+            textBox32.Visible = false;
+        }
+
+        private void Button12_Click(object sender, EventArgs e)
+        {
+            textBox6.Text = textBox32.Text;
+            textBox32.Visible = false;
+        }
+
+        private void Button13_Click(object sender, EventArgs e)
+        {
+            textBox16.Text = textBox32.Text;
+            textBox32.Visible = false;
+        }
+
+        private void Button14_Click(object sender, EventArgs e)
+        {
+            textBox11.Text = textBox32.Text;
+            textBox32.Visible = false;
+        }
+
+        private void Button11_MouseHover(object sender, EventArgs e)
+        {
+            textBox32.Visible = true;
+
+        }
+
+        private void Button12_MouseHover(object sender, EventArgs e)
+        {
+            textBox32.Visible = true;
+        }
+
+        private void Button13_MouseHover(object sender, EventArgs e)
+        {
+            textBox32.Visible = true;
+        }
+
+        private void Button14_MouseHover(object sender, EventArgs e)
+        {
+            textBox32.Visible = true;
         }
     }
 }

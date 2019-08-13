@@ -33,6 +33,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader45 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -88,9 +91,6 @@
             this.columnHeader46 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader47 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader48 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader45 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader49 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader50 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader51 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -133,6 +133,29 @@
             this.splitContainer1.Size = new System.Drawing.Size(1216, 457);
             this.splitContainer1.SplitterDistance = 173;
             this.splitContainer1.TabIndex = 10;
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader32,
+            this.columnHeader45});
+            this.listView2.GridLines = true;
+            this.listView2.Location = new System.Drawing.Point(122, 52);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(235, 99);
+            this.listView2.TabIndex = 10;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader32
+            // 
+            this.columnHeader32.Text = "序号";
+            this.columnHeader32.Width = 40;
+            // 
+            // columnHeader45
+            // 
+            this.columnHeader45.Text = "号码";
+            this.columnHeader45.Width = 300;
             // 
             // label2
             // 
@@ -482,29 +505,6 @@
             // 
             this.columnHeader48.Text = "Date in Location";
             // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader32,
-            this.columnHeader45});
-            this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(122, 52);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(235, 99);
-            this.listView2.TabIndex = 10;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader32
-            // 
-            this.columnHeader32.Text = "序号";
-            this.columnHeader32.Width = 40;
-            // 
-            // columnHeader45
-            // 
-            this.columnHeader45.Text = "号码";
-            this.columnHeader45.Width = 300;
-            // 
             // columnHeader49
             // 
             this.columnHeader49.Text = "Attorney Name";
@@ -519,7 +519,7 @@
             // 
             // columnHeader52
             // 
-            this.columnHeader52.Text = "Correspondent Name/Address";
+            this.columnHeader52.Text = "Correspondent NameAddress";
             // 
             // columnHeader53
             // 
