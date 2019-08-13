@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -27,19 +28,18 @@ namespace 专利查询
 
             try
             {
-                if (dataGridView1.RowCount == 0)
+                if (listView2.Items.Count == 0)
                 {
                     MessageBox.Show("请导入文件查询");
                     return;
                 }
 
 
-                for (int i = 0; i < dataGridView1.RowCount-1; i++)
+                for (int i = 0; i < listView2.Items.Count; i++)
                 {
-                    if (dataGridView1.Rows[i].Cells[0].Value.ToString() == "")
-                        continue;
-                    string html = method.gethtml("https://tsdr.uspto.gov/statusview/sn" + dataGridView1.Rows[i].Cells[0].Value, COOKIE);
-                    label2.Text = "正在查询" + dataGridView1.Rows[i].Cells[0].Value + "......";
+                   
+                    string html = method.gethtml("https://tsdr.uspto.gov/statusview/sn" + listView2.Items[i].SubItems[1].Text, COOKIE);
+                    label2.Text = "正在查询" + listView2.Items[i].SubItems[1].Text + "......";
                     Match a1 = Regex.Match(html, @"Generated on:</div>([\s\S]*?)</div>");
                     Match a2 = Regex.Match(html, @"Mark:</div>([\s\S]*?)</div>");
                     Match a3 = Regex.Match(html, @"US Serial Number:</div>([\s\S]*?)</div>");
@@ -83,6 +83,12 @@ namespace 专利查询
                     MatchCollection a40 = Regex.Matches(html, @"<td valign=""top"">([\s\S]*?)</td>");
                     Match a41 = Regex.Match(html, @"Current Location:</div>([\s\S]*?)</div>");
                     Match a42 = Regex.Match(html, @"Date in Location:</div>([\s\S]*?)</div>");
+                    Match a43 = Regex.Match(html, @"Attorney Name:</div>([\s\S]*?)</div>");
+                    Match a44 = Regex.Match(html, @"Attorney Primary Email Address:</div>([\s\S]*?)</div>");
+                    Match a45 = Regex.Match(html, @"Attorney Email Authorized:</div>([\s\S]*?)</div>");
+                    Match a46 = Regex.Match(html, @"Correspondent Name\/Address:</div>([\s\S]*?)<div class=""double table"">");
+                    Match a47 = Regex.Match(html, @"Correspondent e-mail:</div>([\s\S]*?)</div>");
+                    Match a48 = Regex.Match(html, @"Correspondent e-mail Authorized:</div>([\s\S]*?)</div>");
 
 
 
@@ -91,7 +97,7 @@ namespace 专利查询
 
 
 
-                    if(a40.Count>2)
+                    if (a40.Count>2)
                     {
 
 
@@ -144,6 +150,12 @@ namespace 专利查询
 
                         lv1.SubItems.Add(Regex.Replace(a41.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a42.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a43.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a44.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a45.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a46.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a47.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a48.Groups[1].Value, "<[^>]+>", "").Trim());
 
 
                         while (this.zanting == false)
@@ -191,31 +203,29 @@ namespace 专利查询
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.ds.Tables.Clear();
-            this.Ofile.FileName = "";
-            this.dataGridView1.DataSource = "";
-            this.Ofile.ShowDialog();
-            string fileName = this.Ofile.FileName;
-            if (fileName != null && fileName != "")
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string connectionString = " Provider = Microsoft.Jet.OLEDB.4.0 ; Data Source = " + fileName + "; Extended Properties='Excel 8.0;HDR=YES;IMEX=1'";
-                OleDbConnection oleDbConnection = new OleDbConnection(connectionString);
-                oleDbConnection.Open();
-                DataTable oleDbSchemaTable = oleDbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[]
-                {
-                    null,
-                    null,
-                    null,
-                    "TABLE"
-                });
-                string str = oleDbSchemaTable.Rows[0]["TABLE_NAME"].ToString();
-                string selectCommandText = "select * from [" + str + "]";
-                OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(selectCommandText, oleDbConnection);
-                oleDbDataAdapter.Fill(this.ds, "temp");
-                oleDbConnection.Close();
-                this.dataGridView1.DataSource = this.ds.Tables[0];
+                textBox1.Text = openFileDialog1.FileName;
 
-                textBox1.Text = this.Ofile.FileName;
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请输入手机号文本");
+                    label1.Text = "请输入手机号文本";
+                    return;
+                }
+                StreamReader sr = new StreamReader(textBox1.Text, Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据         
+                    lv2.SubItems.Add(text[i].Trim());
+                    
+
+                }
+
             }
         }
 

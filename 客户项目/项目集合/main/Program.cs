@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_8
+namespace main._2019_7
 {
     static class Program
     {
@@ -19,7 +19,7 @@ namespace main._2019_8
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            
-            Application.Run(new 浏览器淘宝());
+            Application.Run(new fang58());
         }
     }
 

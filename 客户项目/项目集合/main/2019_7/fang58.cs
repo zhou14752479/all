@@ -1,9 +1,13 @@
-﻿using System;
+﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -23,6 +27,7 @@ namespace main._2019_7
         }
         bool status = true;
         bool zanting = true;
+        int shuliang = 0;
         #region 主程序
         public void run(object url)
         {
@@ -37,17 +42,17 @@ namespace main._2019_7
                     string html = method.GetUrl(Url, "utf-8");
                
                     Match city= Regex.Match(Url, @"https:\/\/([\s\S]*?)\.");
-                Match uids = Regex.Match(html, @"sku_id':\[([\s\S]*?)\]", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                MatchCollection ids = Regex.Matches(html, @"esf_id:([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-                string[] ids = uids.Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
+                
 
-                if (ids.Length == 0)
+                if (ids.Count == 0)
                         return;
                     ArrayList lists = new ArrayList();
 
-                    foreach (string id in ids)
+                    foreach (Match id in ids)
                     {
-                        lists.Add(id);
+                        lists.Add(id.Groups[1].Value);
                     }
 
                     foreach (string list in lists)
@@ -55,10 +60,14 @@ namespace main._2019_7
                     {
                     string purl = "https://" + city.Groups[1].Value + ".58.com/ershoufang/" + list + "x.shtml";
                     string murl = "https://m.58.com/"+ city.Groups[1].Value + "/ershoufang/"+list+"x.shtml";
+                    string lurl = "https://jst1.58.com/counter?infoid="+list+"&userid=0&uname=&sid=0&lid=0&px=0&cfpath=";
+
 
                     string strhtml = method.GetUrl(purl, "utf-8");
                     string mhtml = method.GetUrl(murl, "utf-8");
-
+                    string lhtml = method.gethtml(lurl,"", "utf-8");
+                    
+                    Match a0 = Regex.Match(lhtml, @"total=\d*");
                     Match a1 = Regex.Match(strhtml, @"id=''>([\s\S]*?)</span>");
                         Match a2 = Regex.Match(strhtml, @"<title>([\s\S]*?)-");
                         Match a3 = Regex.Match(strhtml, @"<span class='c_000 mr_10'>([\s\S]*?)</span>");
@@ -77,10 +86,10 @@ namespace main._2019_7
 
 
 
-
-
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
-                        lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
+                    if (Convert.ToInt32(a0.Groups[0].Value.Replace("total=", "")) < Convert.ToInt32(textBox25.Text))
+                    {
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                        lv1.SubItems.Add(a0.Groups[0].Value.Replace("total=", "") + "/" + Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a3.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Trim());
@@ -90,15 +99,16 @@ namespace main._2019_7
                         lv1.SubItems.Add(Regex.Replace(a8.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a9.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a10.Groups[1].Value, "<[^>]+>", "").Trim());
-                    lv1.SubItems.Add(Regex.Replace(a11.Groups[1].Value, "<[^>]+>", "").Trim());
-                    lv1.SubItems.Add(Regex.Replace(a12.Groups[1].Value, "<[^>]+>", "").Trim());
-                    lv1.SubItems.Add(Regex.Replace(a13.Groups[1].Value, "<[^>]+>", "").Trim());
-                    lv1.SubItems.Add(Regex.Replace(a14.Groups[1].Value, "<[^>]+>", "").Trim());
-                    lv1.SubItems.Add(Regex.Replace(a15.Groups[1].Value, "<[^>]+>", "").Trim());
-                    lv1.SubItems.Add(purl);
-                  
+                        lv1.SubItems.Add(Regex.Replace(a11.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a12.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a13.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a14.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a15.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(purl);
+                        shuliang = shuliang + 1;
+                        label22.Text = shuliang.ToString(0;)
 
-                    while (this.zanting == false)
+                        while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
@@ -107,8 +117,8 @@ namespace main._2019_7
                         {
                             return;
                         }
-                        Thread.Sleep(2000);
-                    
+                        Thread.Sleep(1000);
+                    }
 
                 }
             }
@@ -154,7 +164,7 @@ namespace main._2019_7
         }
         private void fang58_Load(object sender, EventArgs e)
         {
-
+            timer1.Start();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -167,7 +177,16 @@ namespace main._2019_7
 
         private void button2_Click(object sender, EventArgs e)
         {
-            zanting = false;
+            if (zanting == false)
+            {
+                zanting = true;
+            }
+            else if(zanting==true)
+            {
+                zanting = false;
+            }
+
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -192,6 +211,151 @@ namespace main._2019_7
             Thread thread = new Thread(new ParameterizedThreadStart(run));
             string o = textBox20.Text;
             thread.Start((object)o);
+        }
+        #region NPOI导出表格
+        public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            ISheet sheet = null;
+            IWorkbook workbook = null;
+            FileStream fs = null;
+            // bool disposed;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            sfd.Title = "Excel文件导出";
+            string fileName = path + DateTime.Now.ToShortDateString().Replace("/","-")+ ".xlsx";
+
+          
+
+            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
+                workbook = new XSSFWorkbook();
+            else if (fileName.IndexOf(".xls") > 0) // 2003版本
+                workbook = new HSSFWorkbook();
+
+            try
+            {
+                if (workbook != null)
+                {
+                    sheet = workbook.CreateSheet(sheetName);
+                    ICellStyle style = workbook.CreateCellStyle();
+                    style.FillPattern = FillPattern.SolidForeground;
+
+                }
+                else
+                {
+                    return -1;
+                }
+
+                if (isColumnWritten == true) //写入DataTable的列名
+                {
+                    IRow row = sheet.CreateRow(0);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
+
+                    }
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                for (i = 0; i < data.Rows.Count; ++i)
+                {
+                    IRow row = sheet.CreateRow(count);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());
+                    }
+                    ++count;
+                }
+                workbook.Write(fs); //写入到excel
+                workbook.Close();
+                fs.Close();
+                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
+               
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return -1;
+            }
+        }
+
+        #endregion
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            int h = Convert.ToInt32(DateTime.Now.Hour); int m = Convert.ToInt32(DateTime.Now.Minute); int s = Convert.ToInt32(DateTime.Now.Second);
+            if (Convert.ToInt32(textBox27.Text) == h && Convert.ToInt32(textBox28.Text) == m && Convert.ToInt32(textBox29.Text) == s)
+            {
+                zanting = false;
+                DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            }
+
+            zanting = true;
+            listView1.Items.Clear();
+            shuliang = 0;
+
+
+        }
+
+        private void Button10_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+                zanting = true;
+            }
+            else if (zanting == true)
+            {
+                zanting = false;
+            }
+        }
+
+        private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+                zanting = true;
+            }
+            else if (zanting == true)
+            {
+                zanting = false;
+            }
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+                zanting = true;
+            }
+            else if (zanting == true)
+            {
+                zanting = false;
+            }
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+                zanting = true;
+            }
+            else if (zanting == true)
+            {
+                zanting = false;
+            }
         }
     }
 }
