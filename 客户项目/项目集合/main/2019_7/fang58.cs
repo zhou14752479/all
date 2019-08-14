@@ -84,7 +84,7 @@ namespace main._2019_7
                     Match a14 = Regex.Match(strhtml, @"<p class='phone-num'>([\s\S]*?)</p>");
                     Match a15 = Regex.Match(mhtml, @"<h2 class=""agent-title"">([\s\S]*?)</h2>");
 
-
+                   
 
                     if (Convert.ToInt32(a0.Groups[0].Value.Replace("total=", "")) < Convert.ToInt32(textBox25.Text))
                     {
@@ -302,11 +302,12 @@ namespace main._2019_7
             {
                 zanting = false;
                 DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+                listView1.Items.Clear();
+                shuliang = 0;
             }
 
             zanting = true;
-            listView1.Items.Clear();
-            shuliang = 0;
+           
 
 
         }

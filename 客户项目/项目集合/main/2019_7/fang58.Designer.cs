@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox31 = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -125,12 +131,6 @@
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label31 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.textBox32 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -222,6 +222,69 @@
             this.splitContainer1.Size = new System.Drawing.Size(1469, 703);
             this.splitContainer1.SplitterDistance = 393;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // textBox32
+            // 
+            this.textBox32.Location = new System.Drawing.Point(664, 101);
+            this.textBox32.Multiline = true;
+            this.textBox32.Name = "textBox32";
+            this.textBox32.Size = new System.Drawing.Size(100, 245);
+            this.textBox32.TabIndex = 76;
+            this.textBox32.Visible = false;
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(900, 220);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 75;
+            this.button14.Text = "添加信箱";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.Button14_Click);
+            this.button14.MouseHover += new System.EventHandler(this.Button14_MouseHover);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(900, 169);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(75, 23);
+            this.button13.TabIndex = 74;
+            this.button13.Text = "添加信箱";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.Button13_Click);
+            this.button13.MouseHover += new System.EventHandler(this.Button13_MouseHover);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(900, 122);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 73;
+            this.button12.Text = "添加信箱";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.Button12_Click);
+            this.button12.MouseHover += new System.EventHandler(this.Button12_MouseHover);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(900, 72);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 72;
+            this.button11.Text = "添加信箱";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.Button11_Click);
+            this.button11.MouseHover += new System.EventHandler(this.Button11_MouseHover);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("宋体", 10F);
+            this.label31.Location = new System.Drawing.Point(897, 34);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(70, 14);
+            this.label31.TabIndex = 71;
+            this.label31.Text = "邮箱列表:";
             // 
             // groupBox1
             // 
@@ -831,6 +894,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(95, 21);
             this.textBox5.TabIndex = 12;
+            this.textBox5.Text = "852266010@qq.com";
             // 
             // textBox4
             // 
@@ -838,6 +902,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(79, 21);
             this.textBox4.TabIndex = 11;
+            this.textBox4.Text = "bebjqaocpgoabegj";
             // 
             // label5
             // 
@@ -855,6 +920,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(79, 21);
             this.textBox3.TabIndex = 9;
+            this.textBox3.Text = "1073689549@qq.com";
             // 
             // label4
             // 
@@ -872,6 +938,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(79, 21);
             this.textBox2.TabIndex = 7;
+            this.textBox2.Text = "smtp.qq.com";
             // 
             // label3
             // 
@@ -1053,69 +1120,6 @@
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("宋体", 10F);
-            this.label31.Location = new System.Drawing.Point(897, 34);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(70, 14);
-            this.label31.TabIndex = 71;
-            this.label31.Text = "邮箱列表:";
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(900, 72);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 72;
-            this.button11.Text = "添加信箱";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.Button11_Click);
-            this.button11.MouseHover += new System.EventHandler(this.Button11_MouseHover);
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(900, 122);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 73;
-            this.button12.Text = "添加信箱";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.Button12_Click);
-            this.button12.MouseHover += new System.EventHandler(this.Button12_MouseHover);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(900, 169);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 74;
-            this.button13.Text = "添加信箱";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.Button13_Click);
-            this.button13.MouseHover += new System.EventHandler(this.Button13_MouseHover);
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(900, 220);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 75;
-            this.button14.Text = "添加信箱";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.Button14_Click);
-            this.button14.MouseHover += new System.EventHandler(this.Button14_MouseHover);
-            // 
-            // textBox32
-            // 
-            this.textBox32.Location = new System.Drawing.Point(664, 101);
-            this.textBox32.Multiline = true;
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(100, 245);
-            this.textBox32.TabIndex = 76;
-            this.textBox32.Visible = false;
             // 
             // fang58
             // 

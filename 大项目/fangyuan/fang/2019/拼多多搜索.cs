@@ -23,28 +23,29 @@ namespace fang._2019
         }
         public static string COOKIE = "";
 
-        #region GET请求
+        #region GET使用代理IP请求
         /// <summary>
         /// GET请求
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, String COOKIE, string charset)
+        public static string GetUrl(string Url,string COOKIE, string ip,int port)
         {
             try
             {
 
 
+               
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+                WebProxy proxy = new WebProxy(ip,port);
+                request.Proxy = proxy;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
-                request.Headers.Add("AccessToken", "NJOZ36OLGEFYLG5MNP7MNPIIIAHVT6KMCGCX7I6PAUCGXBE4HYZA102118b");
                 request.KeepAlive = false;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                 string content = reader.ReadToEnd();
                 reader.Close();
@@ -60,16 +61,17 @@ namespace fang._2019
             return "";
         }
         #endregion
+
+        string IP = "";
+        int PORT = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
-
-            //textBox3.Text = webBrowser.cookie;
-            //COOKIE = textBox3.Text;
+          string html=  method.GetUrl(textBox2.Text,"utf-8");
+            string[] text = html.Split(new string[] { ":" }, StringSplitOptions.None);
+            IP = text[0];
+            PORT = Convert.ToInt32(text[1]);
         }
-        private void splitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
-        {
-
-        }
+       
         bool zanting = true;
 
         public string[] ReadText()
@@ -81,6 +83,11 @@ namespace fang._2019
         }
         public void run()
         {
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("请导入文本");
+                return;
+            }
             COOKIE = textBox3.Text;
             try
             {
@@ -90,7 +97,7 @@ namespace fang._2019
                     string[] keyword = values.Split(new string[] { "&" }, StringSplitOptions.None);
 
                     string url = "http://mobile.yangkeduo.com/search_result.html?search_key="+keyword[1].ToString()+"&sort_type=_sales";
-                    string html = GetUrl(url,COOKIE, "utf-8");
+                    string html = GetUrl(url, COOKIE, this.IP, this.PORT);
                     textBox3.Text = html;
 
                     if (html.Contains("暂无相关商品"))
@@ -128,7 +135,7 @@ namespace fang._2019
 
                         string URL = "http://mobile.yangkeduo.com/goods.html?goods_id=" + match.Groups[1].Value.Trim();
 
-                        string strhtml = GetUrl(URL, COOKIE, "utf-8");
+                        string strhtml = GetUrl(URL, COOKIE, this.IP,this.PORT);
 
                         Match counts = Regex.Match(strhtml, @"<span class=""g-sales regular-text"">([\s\S]*?)</span>");
                         Match price = Regex.Match(strhtml, @"minOnSaleGroupPrice"":""([\s\S]*?)""");
@@ -174,9 +181,25 @@ namespace fang._2019
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(this.run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
+            string html = method.GetUrl(textBox2.Text, "utf-8");
+            string[] text = html.Split(new string[] { ":" }, StringSplitOptions.None);
+            if (text.Length > 1)
+            {
+                IP = text[0];
+                PORT = Convert.ToInt32(text[1]);
+                timer1.Start();
+                timer1.Interval = (Convert.ToInt32(textBox5.Text)) * 1000;
+                Thread thread = new Thread(new ThreadStart(this.run));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+            }
+            else
+            {
+                MessageBox.Show("请输入正确的代理IP地址");
+                return;
+            }
+
+            
 
         }
 
@@ -202,53 +225,40 @@ namespace fang._2019
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
-            //if (flag)
-            //{
-            //    this.textBox1.Text = this.openFileDialog1.FileName;
-            //}
-            //string url = "http://app.58.com/api/detail/zpfangchan/36149962795705?v=1&platform=android&version=7.0.1.0&sidDict=%7B%22PGTID%22%3A%22%22%2C%22GTID%22%3A%22101551665202271302713434986%22%7D&format=xml&localname=linyi&commondata=%7B%22cateid%22%3A%2238673%22%2C%22catename%22%3A%22%25e6%2588%25bf%25e5%259c%25b0%25e4%25ba%25a7%22%2C%22filterparams%22%3A%7B%7D%7D";
-            //WebClient webClient = new WebClient();
-            //webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36";
-            //webClient.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
-            //byte[] myDataBuffer = webClient.DownloadData(url);
-            //string data = Encoding.UTF8.GetString(myDataBuffer);
-            //XmlDocument xml = new XmlDocument();
-            //xml.LoadXml(data);
-            //XmlNode xn_tel_info = xml.SelectSingleNode("/root/result/userinfo_area/tel_info");
-            //if (xn_tel_info != null)
-            //{
-            //string phone = xn_tel_info.Attributes["content"].Value;
-            // MessageBox.Show(phone);
-            // if (phone.Length > 0)
-            //  phone = AES.Decrypt(phone, "crazycrazycrazy1");
-            string phone = AES.Decrypt("63761C9101B9AC46FAC0A4BF75D29D09", "crazycrazycrazy1");
-                MessageBox.Show(phone);
-          //  }
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                this.textBox1.Text = this.openFileDialog1.FileName;
+            }
             
-
 
         }
 
         private void 拼多多搜索_Load(object sender, EventArgs e)
         {
-           
+            
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            webBrowser web = new webBrowser("http://mobile.yangkeduo.com/");
-            web.Show();
-
-        }
-
-        private void button7_Click_1(object sender, EventArgs e)
-        {
+           
             bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
             if (flag)
             {
                 this.textBox4.Text = this.openFileDialog1.FileName;
             }
+
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            webBrowser web = new webBrowser("http://mobile.yangkeduo.com/");
+            web.Show();
+        }
+
+        private void SplitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
+        {
+            textBox3.Text = webBrowser.cookie;
         }
     }
 }
