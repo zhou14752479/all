@@ -61,7 +61,7 @@ namespace main._2019_7
                     string purl = "https://" + city.Groups[1].Value + ".58.com/ershoufang/" + list + "x.shtml";
                     string murl = "https://m.58.com/"+ city.Groups[1].Value + "/ershoufang/"+list+"x.shtml";
                     string lurl = "https://jst1.58.com/counter?infoid="+list+"&userid=0&uname=&sid=0&lid=0&px=0&cfpath=";
-
+                    
 
                     string strhtml = method.GetUrl(purl, "utf-8");
                     string mhtml = method.GetUrl(murl, "utf-8");
@@ -84,10 +84,11 @@ namespace main._2019_7
                     Match a14 = Regex.Match(strhtml, @"<p class='phone-num'>([\s\S]*?)</p>");
                     Match a15 = Regex.Match(mhtml, @"<h2 class=""agent-title"">([\s\S]*?)</h2>");
 
-                   
+
 
                     if (Convert.ToInt32(a0.Groups[0].Value.Replace("total=", "")) < Convert.ToInt32(textBox25.Text))
                     {
+                        textBox33.Text  += DateTime.Now.ToString() + "----" + "浏览量符合正在抓取..." + purl+"\r\n";
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                         lv1.SubItems.Add(a0.Groups[0].Value.Replace("total=", "") + "/" + Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
@@ -120,10 +121,17 @@ namespace main._2019_7
                         string[] text = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                         foreach (string mail in text)
                         {
-                            send(textBox2.Text, textBox3.Text, textBox4.Text,mail, a2.Groups[1].Value+ purl);
-                           
+                            send(textBox2.Text, textBox3.Text, textBox4.Text, mail, a2.Groups[1].Value + purl);
+
                         }
                         Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        textBox33.Text += DateTime.Now.ToString() + "----" + "浏览量不符合跳过：" + purl+"\r\n";
+                        textBox33.SelectionStart = this.textBox33.Text.Length;
+                        textBox33.SelectionLength = 0;
+                        textBox33.ScrollToCaret();
                     }
 
                 }
@@ -170,11 +178,13 @@ namespace main._2019_7
         }
         private void fang58_Load(object sender, EventArgs e)
         {
+           
             timer1.Start();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox33.Text = DateTime.Now.ToString() + "----" + "程序已启动"+"\r\n";
             Control.CheckForIllegalCrossThreadCalls = false;
             Thread thread = new Thread(new ParameterizedThreadStart(run));
             string o = textBox1.Text;
@@ -389,25 +399,17 @@ namespace main._2019_7
             textBox32.Visible = false;
         }
 
-        private void Button11_MouseHover(object sender, EventArgs e)
+        private void Button15_Click(object sender, EventArgs e)
         {
-            textBox32.Visible = true;
+            if (textBox32.Visible == true)
+            {
+                textBox32.Visible = false;
+            }
+           else if (textBox32.Visible == false)
+            {
+                textBox32.Visible = true;
+            }
 
-        }
-
-        private void Button12_MouseHover(object sender, EventArgs e)
-        {
-            textBox32.Visible = true;
-        }
-
-        private void Button13_MouseHover(object sender, EventArgs e)
-        {
-            textBox32.Visible = true;
-        }
-
-        private void Button14_MouseHover(object sender, EventArgs e)
-        {
-            textBox32.Visible = true;
         }
     }
 }

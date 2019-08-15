@@ -131,6 +131,9 @@
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button15 = new System.Windows.Forms.Button();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBox33 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -147,6 +150,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button15);
             this.splitContainer1.Panel1.Controls.Add(this.textBox32);
             this.splitContainer1.Panel1.Controls.Add(this.button14);
             this.splitContainer1.Panel1.Controls.Add(this.button13);
@@ -225,10 +229,10 @@
             // 
             // textBox32
             // 
-            this.textBox32.Location = new System.Drawing.Point(664, 101);
+            this.textBox32.Location = new System.Drawing.Point(1023, 56);
             this.textBox32.Multiline = true;
             this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(100, 245);
+            this.textBox32.Size = new System.Drawing.Size(166, 193);
             this.textBox32.TabIndex = 76;
             this.textBox32.Visible = false;
             // 
@@ -241,7 +245,6 @@
             this.button14.Text = "添加信箱";
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.Button14_Click);
-            this.button14.MouseHover += new System.EventHandler(this.Button14_MouseHover);
             // 
             // button13
             // 
@@ -252,7 +255,6 @@
             this.button13.Text = "添加信箱";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.Button13_Click);
-            this.button13.MouseHover += new System.EventHandler(this.Button13_MouseHover);
             // 
             // button12
             // 
@@ -263,7 +265,6 @@
             this.button12.Text = "添加信箱";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.Button12_Click);
-            this.button12.MouseHover += new System.EventHandler(this.Button12_MouseHover);
             // 
             // button11
             // 
@@ -274,7 +275,6 @@
             this.button11.Text = "添加信箱";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.Button11_Click);
-            this.button11.MouseHover += new System.EventHandler(this.Button11_MouseHover);
             // 
             // label31
             // 
@@ -289,6 +289,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.textBox33);
+            this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.textBox31);
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.textBox30);
@@ -314,7 +316,7 @@
             // textBox31
             // 
             this.textBox31.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox31.Location = new System.Drawing.Point(577, 12);
+            this.textBox31.Location = new System.Drawing.Point(266, 76);
             this.textBox31.Name = "textBox31";
             this.textBox31.Size = new System.Drawing.Size(40, 24);
             this.textBox31.TabIndex = 75;
@@ -325,7 +327,7 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("宋体", 10F);
             this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label30.Location = new System.Drawing.Point(508, 17);
+            this.label30.Location = new System.Drawing.Point(197, 81);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(63, 14);
             this.label30.TabIndex = 74;
@@ -997,7 +999,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(274, 21);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "https://suqian.58.com/ershoufang/0/";
+            this.textBox1.Text = "https://mdj.58.com/ershoufang/0/";
             // 
             // label1
             // 
@@ -1120,6 +1122,37 @@
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(891, 8);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(95, 23);
+            this.button15.TabIndex = 77;
+            this.button15.Text = "输入邮箱";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.Button15_Click);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label33.ForeColor = System.Drawing.Color.Red;
+            this.label33.Location = new System.Drawing.Point(506, 14);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(93, 16);
+            this.label33.TabIndex = 77;
+            this.label33.Text = "运行状态：";
+            // 
+            // textBox33
+            // 
+            this.textBox33.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox33.Location = new System.Drawing.Point(509, 33);
+            this.textBox33.Multiline = true;
+            this.textBox33.Name = "textBox33";
+            this.textBox33.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox33.Size = new System.Drawing.Size(853, 81);
+            this.textBox33.TabIndex = 78;
             // 
             // fang58
             // 
@@ -1247,5 +1280,8 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox textBox33;
     }
 }

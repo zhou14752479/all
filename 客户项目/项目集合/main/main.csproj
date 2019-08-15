@@ -462,6 +462,12 @@
     <Compile Include="2019_8\CF扫号.Designer.cs">
       <DependentUpon>CF扫号.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_8\fahuo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_8\fahuo.Designer.cs">
+      <DependentUpon>fahuo.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_8\浏览器淘宝.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -662,6 +668,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_8\CF扫号.resx">
       <DependentUpon>CF扫号.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_8\fahuo.resx">
+      <DependentUpon>fahuo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_8\浏览器淘宝.resx">
       <DependentUpon>浏览器淘宝.cs</DependentUpon>
