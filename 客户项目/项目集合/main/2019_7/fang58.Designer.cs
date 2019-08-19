@@ -30,6 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.textBox37 = new System.Windows.Forms.TextBox();
+            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.button15 = new System.Windows.Forms.Button();
             this.textBox32 = new System.Windows.Forms.TextBox();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -37,6 +44,9 @@
             this.button11 = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.textBox31 = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.textBox30 = new System.Windows.Forms.TextBox();
@@ -52,7 +62,6 @@
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.textBox27 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.textBox23 = new System.Windows.Forms.TextBox();
@@ -131,9 +140,11 @@
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button15 = new System.Windows.Forms.Button();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.timer5 = new System.Windows.Forms.Timer(this.components);
+            this.timer6 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,6 +161,12 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox38);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox37);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox36);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox35);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox34);
+            this.splitContainer1.Panel1.Controls.Add(this.label23);
             this.splitContainer1.Panel1.Controls.Add(this.button15);
             this.splitContainer1.Panel1.Controls.Add(this.textBox32);
             this.splitContainer1.Panel1.Controls.Add(this.button14);
@@ -158,7 +175,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.button11);
             this.splitContainer1.Panel1.Controls.Add(this.label31);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.label23);
             this.splitContainer1.Panel1.Controls.Add(this.label22);
             this.splitContainer1.Panel1.Controls.Add(this.textBox24);
             this.splitContainer1.Panel1.Controls.Add(this.textBox23);
@@ -227,9 +243,64 @@
             this.splitContainer1.SplitterDistance = 393;
             this.splitContainer1.TabIndex = 0;
             // 
+            // textBox38
+            // 
+            this.textBox38.Location = new System.Drawing.Point(1322, 12);
+            this.textBox38.Name = "textBox38";
+            this.textBox38.Size = new System.Drawing.Size(37, 21);
+            this.textBox38.TabIndex = 83;
+            // 
+            // textBox37
+            // 
+            this.textBox37.Location = new System.Drawing.Point(1262, 12);
+            this.textBox37.Name = "textBox37";
+            this.textBox37.Size = new System.Drawing.Size(37, 21);
+            this.textBox37.TabIndex = 82;
+            // 
+            // textBox36
+            // 
+            this.textBox36.Location = new System.Drawing.Point(1195, 12);
+            this.textBox36.Name = "textBox36";
+            this.textBox36.Size = new System.Drawing.Size(37, 21);
+            this.textBox36.TabIndex = 81;
+            // 
+            // textBox35
+            // 
+            this.textBox35.Location = new System.Drawing.Point(1133, 12);
+            this.textBox35.Name = "textBox35";
+            this.textBox35.Size = new System.Drawing.Size(37, 21);
+            this.textBox35.TabIndex = 80;
+            // 
+            // textBox34
+            // 
+            this.textBox34.Location = new System.Drawing.Point(1067, 12);
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new System.Drawing.Size(37, 21);
+            this.textBox34.TabIndex = 79;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("宋体", 9F);
+            this.label23.Location = new System.Drawing.Point(1002, 17);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(59, 12);
+            this.label23.TabIndex = 78;
+            this.label23.Text = "排除区域:";
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(898, 12);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(77, 23);
+            this.button15.TabIndex = 77;
+            this.button15.Text = "输入邮箱";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.Button15_Click);
+            // 
             // textBox32
             // 
-            this.textBox32.Location = new System.Drawing.Point(1023, 56);
+            this.textBox32.Location = new System.Drawing.Point(728, 53);
             this.textBox32.Multiline = true;
             this.textBox32.Name = "textBox32";
             this.textBox32.Size = new System.Drawing.Size(166, 193);
@@ -279,16 +350,17 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("宋体", 10F);
-            this.label31.Location = new System.Drawing.Point(897, 34);
+            this.label31.Font = new System.Drawing.Font("宋体", 9F);
+            this.label31.Location = new System.Drawing.Point(898, 38);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(70, 14);
+            this.label31.Size = new System.Drawing.Size(59, 12);
             this.label31.TabIndex = 71;
             this.label31.Text = "邮箱列表:";
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.label32);
             this.groupBox1.Controls.Add(this.textBox33);
             this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.textBox31);
@@ -312,6 +384,38 @@
             this.groupBox1.TabIndex = 70;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数设置";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("宋体", 10F);
+            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label32.Location = new System.Drawing.Point(346, 83);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(21, 14);
+            this.label32.TabIndex = 79;
+            this.label32.Text = "IP";
+            // 
+            // textBox33
+            // 
+            this.textBox33.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox33.Location = new System.Drawing.Point(509, 33);
+            this.textBox33.Multiline = true;
+            this.textBox33.Name = "textBox33";
+            this.textBox33.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox33.Size = new System.Drawing.Size(853, 81);
+            this.textBox33.TabIndex = 78;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label33.ForeColor = System.Drawing.Color.Red;
+            this.label33.Location = new System.Drawing.Point(506, 14);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(93, 16);
+            this.label33.TabIndex = 77;
+            this.label33.Text = "运行状态：";
             // 
             // textBox31
             // 
@@ -340,7 +444,7 @@
             this.textBox30.Name = "textBox30";
             this.textBox30.Size = new System.Drawing.Size(40, 24);
             this.textBox30.TabIndex = 73;
-            this.textBox30.Text = "2";
+            this.textBox30.Text = "10";
             // 
             // label29
             // 
@@ -360,6 +464,8 @@
             this.textBox26.Name = "textBox26";
             this.textBox26.Size = new System.Drawing.Size(341, 24);
             this.textBox26.TabIndex = 71;
+            this.textBox26.Text = "http://webapi.http.zhimacangku.com/getip?num=1&type=1&pro=&city=0&yys=0&port=1&ti" +
+    "me=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=";
             // 
             // label28
             // 
@@ -463,16 +569,6 @@
             this.label25.TabIndex = 65;
             this.label25.Text = "时";
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("宋体", 10F);
-            this.label23.Location = new System.Drawing.Point(1376, 34);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(77, 14);
-            this.label23.TabIndex = 61;
-            this.label23.Text = "当日采集：";
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -515,7 +611,7 @@
             this.textBox21.Name = "textBox21";
             this.textBox21.Size = new System.Drawing.Size(113, 24);
             this.textBox21.TabIndex = 54;
-            this.textBox21.Text = "宿迁二手房";
+            this.textBox21.Text = "牡丹江二手房";
             // 
             // button10
             // 
@@ -904,7 +1000,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(79, 21);
             this.textBox4.TabIndex = 11;
-            this.textBox4.Text = "bebjqaocpgoabegj";
+            this.textBox4.Text = "ehglpsmvzouhbdaa";
             // 
             // label5
             // 
@@ -1123,36 +1219,26 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // button15
+            // timer2
             // 
-            this.button15.Location = new System.Drawing.Point(891, 8);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(95, 23);
-            this.button15.TabIndex = 77;
-            this.button15.Text = "输入邮箱";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.Button15_Click);
+            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
             // 
-            // label33
+            // timer3
             // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label33.ForeColor = System.Drawing.Color.Red;
-            this.label33.Location = new System.Drawing.Point(506, 14);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(93, 16);
-            this.label33.TabIndex = 77;
-            this.label33.Text = "运行状态：";
+            this.timer3.Interval = 100000;
+            this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
-            // textBox33
+            // timer4
             // 
-            this.textBox33.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox33.Location = new System.Drawing.Point(509, 33);
-            this.textBox33.Multiline = true;
-            this.textBox33.Name = "textBox33";
-            this.textBox33.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox33.Size = new System.Drawing.Size(853, 81);
-            this.textBox33.TabIndex = 78;
+            this.timer4.Interval = 100000;
+            // 
+            // timer5
+            // 
+            this.timer5.Interval = 100000;
+            // 
+            // timer6
+            // 
+            this.timer6.Interval = 100000;
             // 
             // fang58
             // 
@@ -1255,7 +1341,6 @@
         private System.Windows.Forms.TextBox textBox23;
         private System.Windows.Forms.TextBox textBox22;
         private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox textBox25;
         private System.Windows.Forms.Label label21;
@@ -1283,5 +1368,17 @@
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBox34;
+        private System.Windows.Forms.TextBox textBox38;
+        private System.Windows.Forms.TextBox textBox37;
+        private System.Windows.Forms.TextBox textBox36;
+        private System.Windows.Forms.TextBox textBox35;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Timer timer4;
+        private System.Windows.Forms.Timer timer5;
+        private System.Windows.Forms.Timer timer6;
     }
 }

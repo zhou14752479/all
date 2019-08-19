@@ -713,6 +713,7 @@
     <Content Include="bitbug_favicon.ico" />
     <Content Include="icon.ico" />
     <Content Include="logo.ico" />
+    <Content Include="图标.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

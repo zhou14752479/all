@@ -33,8 +33,6 @@ namespace fang._2019
         {
             try
             {
-
-
                
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 WebProxy proxy = new WebProxy(ip,port);

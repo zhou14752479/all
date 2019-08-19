@@ -104,7 +104,11 @@ namespace CefSharp谷歌
         }
 
         private void Button1_Click(object sender, EventArgs e)
-        {
+        {if (textBox2.Text == "")
+            {
+                MessageBox.Show("请选择保存文件夹");
+                return;
+            }
             Thread thread = new Thread(new ThreadStart(taobao));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
@@ -195,8 +199,9 @@ namespace CefSharp谷歌
 
 
                 // Match  aURL = Regex.Match(html, @"descnew([\s\S]*?),");  //详情图来源网址
-                string path = AppDomain.CurrentDomain.BaseDirectory + ChineseStringUtility.ToTraditional(title.Groups[1].Value) + "\\";
-
+                // string path = AppDomain.CurrentDomain.BaseDirectory + ChineseStringUtility.ToTraditional(title.Groups[1].Value) + "\\";
+                string path = textBox2.Text +"\\"+ ChineseStringUtility.ToTraditional(title.Groups[1].Value)+"\\";
+                MessageBox.Show(path);
                 string subPath = path + "产品介绍图\\";
                 //string ahtml = method.GetUrl("http://descnew"+aURL.Groups[1].Value.Replace("'","").Replace("\"",""), "gb2312");
                 //MatchCollection xqpics = Regex.Matches(ahtml, @"<img src=""([\s\S]*?)""");  //详情图
@@ -284,6 +289,18 @@ namespace CefSharp谷歌
         private void Label2_Click(object sender, EventArgs e)
         {
             browser.Forward();
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string foldPath = dialog.SelectedPath;
+                textBox2.Text = foldPath;
+                //MessageBox.Show("已选择文件夹:" + foldPath, "选择文件夹提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox3.Text" xml:space="preserve">
-    <value>_ga=GA1.2.941752577.1565829967; _gid=GA1.2.551517254.1565829967; Hm_lvt_0d5a2843368abb56b28d36fcc415cc43=1565829968; SESSION=e6a8add5-76e2-45f5-bc96-60f96d5bb8a7; _ati=55880335864; Hm_lpvt_0d5a2843368abb56b28d36fcc415cc43=1565832943</value>
+    <value>_ga=GA1.2.941752577.1565829967; _ati=55880335864; _gid=GA1.2.125635223.1566178373; Hm_lvt_0d5a2843368abb56b28d36fcc415cc43=1565829968,1565919083,1566178374; Hm_lpvt_0d5a2843368abb56b28d36fcc415cc43=1566178374; SESSION=efa8a008-8e14-4b00-838f-7fd74a263559</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

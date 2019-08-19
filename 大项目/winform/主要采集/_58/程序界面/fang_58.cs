@@ -125,7 +125,7 @@ namespace _58
 
 
                         string title = @"<h1 class=""c_000 f20"">([\s\S]*?)</h1>";
-                        string Rxg = @"<a class=""c_000 agent-name-txt""([\s\S]*?)>([\s\S]*?)</a>";
+                        string Rxg = @"<p class=""poster-name"">([\s\S]*?)</p>";
                         string Rxg1 = @"<p class='phone-num'>([\s\S]*?)</p>";
                         string Rxg2 = @"详细地址:</span>([\s\S]*?)</span>";
                         string Rxg3 = @"content_item2"">([\s\S]*?)</span>";
@@ -150,7 +150,7 @@ namespace _58
 
                         this.skinDataGridView1.Rows[index].Cells[0].Value = titles.Groups[1].Value.Trim();
                         
-                        this.skinDataGridView1.Rows[index].Cells[1].Value = contacts.Groups[2].Value.Trim();
+                        this.skinDataGridView1.Rows[index].Cells[1].Value = contacts.Groups[1].Value.Trim();
                         this.skinDataGridView1.Rows[index].Cells[2].Value = tell.Groups[1].Value;
 
                         string temp = Regex.Replace(region.Groups[1].Value, "<[^>]*>", "");
@@ -865,7 +865,7 @@ namespace _58
         #region 主采集按钮
         private void skinButton1_Click(object sender, EventArgs e)
         {
-
+            skinButton13.Text = "停止采集";
             #region 通用登录
 
             bool value = false;
@@ -965,7 +965,7 @@ namespace _58
             else
             {
                 MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("iexplore.exe", "http://www.acaiji.com");
+                System.Diagnostics.Process.Start("iexplore.exe", "http://www.acaiji.com/denglu");
                 return;
             }
             #endregion
