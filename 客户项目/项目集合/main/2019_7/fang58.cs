@@ -556,6 +556,7 @@ namespace main._2019_7
                                 return;
                             }
                             string[] text = textBox11.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
                             foreach (string mail in text)
                             {
                                 send(textBox14.Text, textBox13.Text, textBox12.Text, mail, a2.Groups[1].Value + purl);
