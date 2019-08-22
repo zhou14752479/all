@@ -48,9 +48,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(177, 408);
+            this.button1.Location = new System.Drawing.Point(159, 408);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(69, 24);
+            this.button1.Size = new System.Drawing.Size(101, 35);
             this.button1.TabIndex = 0;
             this.button1.Text = "直接转换";
             this.button1.UseVisualStyleBackColor = true;

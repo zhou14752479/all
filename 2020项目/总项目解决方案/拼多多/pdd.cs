@@ -22,7 +22,7 @@ namespace 拼多多
 
         public static string COOKIE;
         #region 获取店铺内宝贝
-        public void run1()
+        public void run()
         {
 
             try
@@ -86,9 +86,35 @@ namespace 拼多多
             //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
+        public void run1()
+        {
+            try
+            {
+                for (long i = Convert.ToInt64(textBox2.Text); i < Convert.ToInt64(textBox3.Text); i++)
+                {
+                    string url = "http://mobile.yangkeduo.com/goods.html?goods_id="+i;
+                    string html = method.GetUrl(url,"utf-8");
+
+                    Match shopID = Regex.Match(html, @"已拼([\s\S]*?)<");
+
+                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                    listViewItem.SubItems.Add(i);
+                    listViewItem.SubItems.Add(shopID.Groups[1].Value.ToString());
+
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Thread thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)

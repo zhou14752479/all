@@ -38,6 +38,9 @@
     <Reference Include="Dev, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dev.1.0.0.3\lib\net45\Dev.dll</HintPath>
     </Reference>
+    <Reference Include="HttpHelper">
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MySql.Data.dll</HintPath>

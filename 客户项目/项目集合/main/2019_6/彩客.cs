@@ -62,17 +62,19 @@ namespace main._2019_6
             {
                 string url = "http://1x2d.win007.com/"+IDS[i]+".js";
                 string strhtml = method.GetUrl(url, "utf-8");
-                Match aaas = Regex.Match(strhtml, @"Interwetten\|([\s\S]*?)Interwetten");
-                Match bbbs = Regex.Match(strhtml, @"William Hill\|([\s\S]*?)威廉希尔");
-                //Match cccs = Regex.Match(strhtml, @"Pinnacle\|([\s\S]*?)Pinnacle");
+                Match aaas = Regex.Match(strhtml, @"10BET\|([\s\S]*?)10BET");
+                Match bbbs = Regex.Match(strhtml, @"IBCBET\|([\s\S]*?)IBCBET");
+                Match cccs = Regex.Match(strhtml, @"12bet\|([\s\S]*?)12BET");
+                Match ddds = Regex.Match(strhtml, @"Mansion88\|([\s\S]*?)明陞");
 
                 Match zhu = Regex.Match(strhtml, @"hometeam_cn=""([\s\S]*?)""");
                 Match ke = Regex.Match(strhtml, @"guestteam_cn=""([\s\S]*?)""");
 
                 string[] aaa = aaas.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                 string[] bbb = bbbs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
-                //string[] ccc = cccs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
-                if (bbb.Length > 6)
+                string[] ccc = cccs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
+                string[] ddd = ddds.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
+                if (aaa.Length > 6)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                     for (int j = 0; j < 7; j++)
@@ -80,10 +82,10 @@ namespace main._2019_6
                         lv1.SubItems.Add(aaa[j]);   //比分
                     }
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("Interwetten(塞浦路斯)");   //比分
+                    lv1.SubItems.Add("10BET(英国)");   //比分
 
                 }
-                if (aaa.Length > 6)
+                if (bbb.Length > 6)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
                     for (int j = 0; j < 7; j++)
@@ -91,12 +93,34 @@ namespace main._2019_6
                         lv1.SubItems.Add(bbb[j]);   //比分
                     }
                     lv1.SubItems.Add(zhu.Groups[1].Value+"："+ke.Groups[1].Value);
-                    lv1.SubItems.Add("威廉希尔(英国)");   //比分
+                    lv1.SubItems.Add("IBCBET");   //比分
 
                 }
-               
-               
-                if ( aaa.Length > 6|| bbb.Length > 6)
+                if (ccc.Length > 6)
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                    for (int j = 0; j < 7; j++)
+                    {
+                        lv1.SubItems.Add(ccc[j]);   //比分
+                    }
+                    lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
+                    lv1.SubItems.Add("12bet");   //比分
+
+                }
+                if (ddd.Length > 6)
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                    for (int j = 0; j < 7; j++)
+                    {
+                        lv1.SubItems.Add(ddd[j]);   //比分
+                    }
+                    lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
+                    lv1.SubItems.Add("明陞");   //比分
+
+                }
+
+
+                if ( aaa.Length > 6|| bbb.Length > 6 || ccc.Length > 6 || ddd.Length > 6)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据  
                     for (int j = 0; j < 9; j++)

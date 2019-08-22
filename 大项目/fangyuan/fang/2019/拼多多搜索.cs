@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CsharpHttpHelper;
+using CsharpHttpHelper.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -90,11 +92,12 @@ namespace fang._2019
             try
             {
                 string[] array = this.ReadText();
-                foreach (string values  in array)
+                foreach (string values in array)
                 {
                     string[] keyword = values.Split(new string[] { "&" }, StringSplitOptions.None);
 
                     string url = "http://mobile.yangkeduo.com/search_result.html?search_key="+keyword[1].ToString()+"&sort_type=_sales";
+                  
                     string html = GetUrl(url, COOKIE, this.IP, this.PORT);
                     textBox3.Text = html;
 
@@ -239,13 +242,14 @@ namespace fang._2019
 
         private void button7_Click(object sender, EventArgs e)
         {
-           
-            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
-            if (flag)
-            {
-                this.textBox4.Text = this.openFileDialog1.FileName;
-            }
 
+            //bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            //if (flag)
+            //{
+            //    this.textBox4.Text = this.openFileDialog1.FileName;
+            //}
+
+            textBox3.Text = method.getsufeiUrl("http://tool.sufeinet.com/HttpHelper.aspx?type=url&url=http://mobile.yangkeduo.com/goods.html?goods_id=735873502");
         }
 
         private void Button8_Click(object sender, EventArgs e)
@@ -256,7 +260,7 @@ namespace fang._2019
 
         private void SplitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
         {
-            textBox3.Text = webBrowser.cookie;
+            //textBox3.Text = webBrowser.cookie;
         }
     }
 }

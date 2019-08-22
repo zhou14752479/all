@@ -384,6 +384,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(461, 21);
             this.textBox2.TabIndex = 18;
+            this.textBox2.Text = "http://http.tiqu.alicdns.com/getip3?num=1&type=1&pro=&city=0&yys=0&port=1&time=1&" +
+    "ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=";
             // 
             // label2
             // 

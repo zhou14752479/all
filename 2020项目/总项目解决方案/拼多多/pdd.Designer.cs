@@ -164,6 +164,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(34, 21);
             this.textBox1.TabIndex = 29;
+            this.textBox1.Text = "1";
             // 
             // label2
             // 
@@ -191,6 +192,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(95, 21);
             this.textBox2.TabIndex = 32;
+            this.textBox2.Text = "735873502";
             // 
             // textBox3
             // 
@@ -198,6 +200,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(95, 21);
             this.textBox3.TabIndex = 33;
+            this.textBox3.Text = "795849999";
             // 
             // button1
             // 
@@ -216,6 +219,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(95, 21);
             this.textBox4.TabIndex = 38;
+            this.textBox4.Text = "999";
             // 
             // textBox5
             // 
@@ -223,6 +227,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(95, 21);
             this.textBox5.TabIndex = 37;
+            this.textBox5.Text = "0";
             // 
             // label4
             // 
@@ -250,6 +255,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(95, 21);
             this.textBox6.TabIndex = 42;
+            this.textBox6.Text = "999";
             // 
             // textBox7
             // 
@@ -257,6 +263,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(95, 21);
             this.textBox7.TabIndex = 41;
+            this.textBox7.Text = "0";
             // 
             // label6
             // 
@@ -284,6 +291,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(95, 21);
             this.textBox8.TabIndex = 46;
+            this.textBox8.Text = "999";
             // 
             // textBox9
             // 
@@ -291,6 +299,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(95, 21);
             this.textBox9.TabIndex = 45;
+            this.textBox9.Text = "0";
             // 
             // label8
             // 
@@ -344,6 +353,7 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(64, 21);
             this.textBox11.TabIndex = 51;
+            this.textBox11.Text = "1";
             // 
             // label11
             // 

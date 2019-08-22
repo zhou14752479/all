@@ -266,5 +266,30 @@ namespace main._2019_8
         {
             textBox3.Text = webBrowser.cookie;
         }
+
+        private void Fahuo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;    //取消"关闭窗口"事件
+                this.WindowState = FormWindowState.Minimized;    //使关闭时窗口向右下角缩小的效果
+                notifyIcon1.Visible = true;
+                this.Hide();
+                return;
+            }
+        }
+
+        private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            notifyIcon1.Visible = false;
+            this.Show();
+            WindowState = FormWindowState.Normal;
+            this.Focus();
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
