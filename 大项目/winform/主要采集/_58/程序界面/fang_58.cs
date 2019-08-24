@@ -1146,6 +1146,11 @@ namespace _58
         {
             System.Diagnostics.Process.Start("http://acaiji.com/buy.aspx");
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("IEXPLORE.EXE", "https://mdj.58.com/ershoufang/");
+        }
     }
 
     

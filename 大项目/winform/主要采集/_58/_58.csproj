@@ -60,10 +60,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D3219050176BF9CFFB8A707293A24E1BA643761D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>92FD0A920A5B184C25919EA5867222A734F53DFB</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>_58_5_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>_58_6_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -325,6 +325,7 @@
     <None Include="_58_3_TemporaryKey.pfx" />
     <None Include="_58_4_TemporaryKey.pfx" />
     <None Include="_58_5_TemporaryKey.pfx" />
+    <None Include="_58_6_TemporaryKey.pfx" />
     <None Include="_58_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

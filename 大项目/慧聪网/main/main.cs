@@ -120,6 +120,7 @@ namespace main
 
                         string Url = "https://esapi.org.hc360.com/interface/getinfos.html?pnum=" + i + "&psize=100&kwd=" + keyword + "&z=" + city + "&index=companyinfo&collapsef=providerid";
 
+                       
                         string strhtml = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
                         if (!strhtml.Contains("address"))
@@ -232,7 +233,7 @@ namespace main
             else
             {
                 MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                System.Diagnostics.Process.Start("http://www.acaiji.com/denglu");
                 return;
             }
             #endregion
@@ -249,23 +250,20 @@ namespace main
             }
             else if (this.comboBox1.Text == "北京")
             {
-                this.comboBox2.Items.Add("北京市");
-                this.comboBox2.Items.Add("北京市");
+                
             }
             else if (this.comboBox1.Text == "天津")
             {
-                this.comboBox2.Items.Add("天津市");
-                this.comboBox2.Items.Add("天津市");
+                
             }
             else if (this.comboBox1.Text == "重庆")
             {
-                this.comboBox2.Items.Add("重庆市");
-                this.comboBox2.Items.Add("重庆市");
+              
             }
             else if (this.comboBox1.Text == "上海")
             {
-                this.comboBox2.Items.Add("上海市");
-                this.comboBox2.Items.Add("上海市");
+              
+                
             }
             else if (this.comboBox1.Text == "河北省")
             {
