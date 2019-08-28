@@ -88,3 +88,14 @@
         }
 
         #endregion
+
+
+#region °ó¶¨Êý¾Ý
+  string conn = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
+            MySqlDataAdapter sda = new MySqlDataAdapter("Select aname,bname From datas Where length(aname)=20", conn);
+                DataSet Ds = new DataSet();
+                sda.Fill(Ds, "T_Class");
+
+                this.dataGridView1.DataSource = Ds.Tables["T_Class"];
+
+  #endregion

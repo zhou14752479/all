@@ -43,25 +43,6 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBox31 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox28 = new System.Windows.Forms.TextBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.textBox23 = new System.Windows.Forms.TextBox();
@@ -145,11 +126,31 @@
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.timer5 = new System.Windows.Forms.Timer(this.components);
             this.timer6 = new System.Windows.Forms.Timer(this.components);
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -161,6 +162,27 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label32);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox33);
+            this.splitContainer1.Panel1.Controls.Add(this.label33);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox31);
+            this.splitContainer1.Panel1.Controls.Add(this.label30);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox30);
+            this.splitContainer1.Panel1.Controls.Add(this.label29);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox26);
+            this.splitContainer1.Panel1.Controls.Add(this.label28);
+            this.splitContainer1.Panel1.Controls.Add(this.label21);
+            this.splitContainer1.Panel1.Controls.Add(this.label27);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox25);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox29);
+            this.splitContainer1.Panel1.Controls.Add(this.label26);
+            this.splitContainer1.Panel1.Controls.Add(this.label24);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox28);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox27);
+            this.splitContainer1.Panel1.Controls.Add(this.label25);
+            this.splitContainer1.Panel1.Controls.Add(this.label36);
+            this.splitContainer1.Panel1.Controls.Add(this.label35);
+            this.splitContainer1.Panel1.Controls.Add(this.label34);
             this.splitContainer1.Panel1.Controls.Add(this.textBox38);
             this.splitContainer1.Panel1.Controls.Add(this.textBox37);
             this.splitContainer1.Panel1.Controls.Add(this.textBox36);
@@ -174,7 +196,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.button12);
             this.splitContainer1.Panel1.Controls.Add(this.button11);
             this.splitContainer1.Panel1.Controls.Add(this.label31);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label22);
             this.splitContainer1.Panel1.Controls.Add(this.textBox24);
             this.splitContainer1.Panel1.Controls.Add(this.textBox23);
@@ -357,218 +378,6 @@
             this.label31.TabIndex = 71;
             this.label31.Text = "邮箱列表:";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.groupBox1.Controls.Add(this.label32);
-            this.groupBox1.Controls.Add(this.textBox33);
-            this.groupBox1.Controls.Add(this.label33);
-            this.groupBox1.Controls.Add(this.textBox31);
-            this.groupBox1.Controls.Add(this.label30);
-            this.groupBox1.Controls.Add(this.textBox30);
-            this.groupBox1.Controls.Add(this.label29);
-            this.groupBox1.Controls.Add(this.textBox26);
-            this.groupBox1.Controls.Add(this.label28);
-            this.groupBox1.Controls.Add(this.label21);
-            this.groupBox1.Controls.Add(this.label27);
-            this.groupBox1.Controls.Add(this.textBox25);
-            this.groupBox1.Controls.Add(this.textBox29);
-            this.groupBox1.Controls.Add(this.label26);
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.textBox28);
-            this.groupBox1.Controls.Add(this.textBox27);
-            this.groupBox1.Controls.Add(this.label25);
-            this.groupBox1.Location = new System.Drawing.Point(12, 249);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1368, 120);
-            this.groupBox1.TabIndex = 70;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "参数设置";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("宋体", 10F);
-            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label32.Location = new System.Drawing.Point(346, 83);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(21, 14);
-            this.label32.TabIndex = 79;
-            this.label32.Text = "IP";
-            // 
-            // textBox33
-            // 
-            this.textBox33.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox33.Location = new System.Drawing.Point(509, 33);
-            this.textBox33.Multiline = true;
-            this.textBox33.Name = "textBox33";
-            this.textBox33.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox33.Size = new System.Drawing.Size(853, 81);
-            this.textBox33.TabIndex = 78;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label33.ForeColor = System.Drawing.Color.Red;
-            this.label33.Location = new System.Drawing.Point(506, 14);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(93, 16);
-            this.label33.TabIndex = 77;
-            this.label33.Text = "运行状态：";
-            // 
-            // textBox31
-            // 
-            this.textBox31.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox31.Location = new System.Drawing.Point(266, 76);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(40, 24);
-            this.textBox31.TabIndex = 75;
-            this.textBox31.Text = "2";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("宋体", 10F);
-            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label30.Location = new System.Drawing.Point(197, 81);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(63, 14);
-            this.label30.TabIndex = 74;
-            this.label30.Text = "线程数：";
-            // 
-            // textBox30
-            // 
-            this.textBox30.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox30.Location = new System.Drawing.Point(131, 76);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(40, 24);
-            this.textBox30.TabIndex = 73;
-            this.textBox30.Text = "10";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("宋体", 10F);
-            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label29.Location = new System.Drawing.Point(6, 83);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(133, 14);
-            this.label29.TabIndex = 72;
-            this.label29.Text = "间隔多少秒切换IP：";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox26.Location = new System.Drawing.Point(131, 46);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(341, 24);
-            this.textBox26.TabIndex = 71;
-            this.textBox26.Text = "http://webapi.http.zhimacangku.com/getip?num=1&type=1&pro=&city=0&yys=0&port=1&ti" +
-    "me=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("宋体", 10F);
-            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label28.Location = new System.Drawing.Point(6, 51);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(91, 14);
-            this.label28.TabIndex = 70;
-            this.label28.Text = "代理IP地址：";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("宋体", 10F);
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label21.Location = new System.Drawing.Point(6, 17);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(119, 14);
-            this.label21.TabIndex = 58;
-            this.label21.Text = "设置浏览量低于：";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("宋体", 10F);
-            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label27.Location = new System.Drawing.Point(455, 17);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(21, 14);
-            this.label27.TabIndex = 69;
-            this.label27.Text = "秒";
-            // 
-            // textBox25
-            // 
-            this.textBox25.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox25.Location = new System.Drawing.Point(131, 12);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(40, 24);
-            this.textBox25.TabIndex = 59;
-            this.textBox25.Text = "100";
-            // 
-            // textBox29
-            // 
-            this.textBox29.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox29.Location = new System.Drawing.Point(417, 12);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(33, 24);
-            this.textBox29.TabIndex = 68;
-            this.textBox29.Text = "10";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("宋体", 10F);
-            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label26.Location = new System.Drawing.Point(400, 17);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(21, 14);
-            this.label26.TabIndex = 67;
-            this.label26.Text = "分";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("宋体", 10F);
-            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label24.Location = new System.Drawing.Point(197, 17);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(105, 14);
-            this.label24.TabIndex = 63;
-            this.label24.Text = "每天导出时间：";
-            // 
-            // textBox28
-            // 
-            this.textBox28.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox28.Location = new System.Drawing.Point(362, 12);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(33, 24);
-            this.textBox28.TabIndex = 66;
-            this.textBox28.Text = "10";
-            // 
-            // textBox27
-            // 
-            this.textBox27.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox27.Location = new System.Drawing.Point(308, 12);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(33, 24);
-            this.textBox27.TabIndex = 64;
-            this.textBox27.Text = "13";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("宋体", 10F);
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label25.Location = new System.Drawing.Point(346, 17);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(21, 14);
-            this.label25.TabIndex = 65;
-            this.label25.Text = "时";
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -633,6 +442,7 @@
             this.button9.TabIndex = 52;
             this.button9.Text = "全部启动";
             this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.Button9_Click);
             // 
             // textBox11
             // 
@@ -1129,6 +939,7 @@
             this.columnHeader17});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1469, 306);
@@ -1240,6 +1051,221 @@
             // 
             this.timer6.Interval = 100000;
             // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label34.Location = new System.Drawing.Point(1386, 102);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(16, 15);
+            this.label34.TabIndex = 84;
+            this.label34.Text = "0";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label35.Location = new System.Drawing.Point(1386, 151);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(16, 15);
+            this.label35.TabIndex = 85;
+            this.label35.Text = "0";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label36.Location = new System.Drawing.Point(1386, 199);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(16, 15);
+            this.label36.TabIndex = 86;
+            this.label36.Text = "0";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("宋体", 10F);
+            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label32.Location = new System.Drawing.Point(354, 320);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(21, 14);
+            this.label32.TabIndex = 104;
+            this.label32.Text = "IP";
+            // 
+            // textBox33
+            // 
+            this.textBox33.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox33.Location = new System.Drawing.Point(517, 270);
+            this.textBox33.Multiline = true;
+            this.textBox33.Name = "textBox33";
+            this.textBox33.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox33.Size = new System.Drawing.Size(853, 81);
+            this.textBox33.TabIndex = 103;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label33.ForeColor = System.Drawing.Color.Red;
+            this.label33.Location = new System.Drawing.Point(514, 251);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(93, 16);
+            this.label33.TabIndex = 102;
+            this.label33.Text = "运行状态：";
+            // 
+            // textBox31
+            // 
+            this.textBox31.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox31.Location = new System.Drawing.Point(274, 313);
+            this.textBox31.Name = "textBox31";
+            this.textBox31.Size = new System.Drawing.Size(40, 24);
+            this.textBox31.TabIndex = 101;
+            this.textBox31.Text = "2";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("宋体", 10F);
+            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label30.Location = new System.Drawing.Point(205, 318);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(63, 14);
+            this.label30.TabIndex = 100;
+            this.label30.Text = "线程数：";
+            // 
+            // textBox30
+            // 
+            this.textBox30.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox30.Location = new System.Drawing.Point(139, 313);
+            this.textBox30.Name = "textBox30";
+            this.textBox30.Size = new System.Drawing.Size(40, 24);
+            this.textBox30.TabIndex = 99;
+            this.textBox30.Text = "10";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("宋体", 10F);
+            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label29.Location = new System.Drawing.Point(14, 320);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(133, 14);
+            this.label29.TabIndex = 98;
+            this.label29.Text = "间隔多少秒切换IP：";
+            // 
+            // textBox26
+            // 
+            this.textBox26.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox26.Location = new System.Drawing.Point(139, 283);
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(341, 24);
+            this.textBox26.TabIndex = 97;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("宋体", 10F);
+            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label28.Location = new System.Drawing.Point(14, 288);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(91, 14);
+            this.label28.TabIndex = 96;
+            this.label28.Text = "代理IP地址：";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("宋体", 10F);
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label21.Location = new System.Drawing.Point(14, 254);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(119, 14);
+            this.label21.TabIndex = 87;
+            this.label21.Text = "设置浏览量低于：";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("宋体", 10F);
+            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label27.Location = new System.Drawing.Point(463, 254);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(21, 14);
+            this.label27.TabIndex = 95;
+            this.label27.Text = "秒";
+            // 
+            // textBox25
+            // 
+            this.textBox25.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox25.Location = new System.Drawing.Point(139, 249);
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(40, 24);
+            this.textBox25.TabIndex = 88;
+            this.textBox25.Text = "100";
+            // 
+            // textBox29
+            // 
+            this.textBox29.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox29.Location = new System.Drawing.Point(425, 249);
+            this.textBox29.Name = "textBox29";
+            this.textBox29.Size = new System.Drawing.Size(33, 24);
+            this.textBox29.TabIndex = 94;
+            this.textBox29.Text = "10";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("宋体", 10F);
+            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label26.Location = new System.Drawing.Point(408, 254);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(21, 14);
+            this.label26.TabIndex = 93;
+            this.label26.Text = "分";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("宋体", 10F);
+            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label24.Location = new System.Drawing.Point(205, 254);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(105, 14);
+            this.label24.TabIndex = 89;
+            this.label24.Text = "每天导出时间：";
+            // 
+            // textBox28
+            // 
+            this.textBox28.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox28.Location = new System.Drawing.Point(370, 249);
+            this.textBox28.Name = "textBox28";
+            this.textBox28.Size = new System.Drawing.Size(33, 24);
+            this.textBox28.TabIndex = 92;
+            this.textBox28.Text = "10";
+            // 
+            // textBox27
+            // 
+            this.textBox27.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox27.Location = new System.Drawing.Point(316, 249);
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(33, 24);
+            this.textBox27.TabIndex = 90;
+            this.textBox27.Text = "13";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("宋体", 10F);
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label25.Location = new System.Drawing.Point(354, 254);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(21, 14);
+            this.label25.TabIndex = 91;
+            this.label25.Text = "时";
+            // 
             // fang58
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1249,15 +1275,14 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "fang58";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "58房源采集";
+            this.Text = "58房源采集                            问题咨询 VX 17606117606";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Fang58_FormClosing);
             this.Load += new System.EventHandler(this.fang58_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1342,23 +1367,7 @@
         private System.Windows.Forms.TextBox textBox22;
         private System.Windows.Forms.TextBox textBox21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox29;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox28;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox31;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox textBox30;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button12;
@@ -1366,8 +1375,6 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox textBox32;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox33;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox textBox34;
         private System.Windows.Forms.TextBox textBox38;
@@ -1375,10 +1382,30 @@
         private System.Windows.Forms.TextBox textBox36;
         private System.Windows.Forms.TextBox textBox35;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Timer timer4;
         private System.Windows.Forms.Timer timer5;
         private System.Windows.Forms.Timer timer6;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox textBox31;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox textBox30;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox textBox26;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.Label label25;
     }
 }

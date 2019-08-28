@@ -21,7 +21,7 @@ namespace fang.临时软件
         }
        bool  zanting=true;
         ArrayList finishes = new ArrayList();
-        #region  
+        #region  主程序
         public void run()
         {
 

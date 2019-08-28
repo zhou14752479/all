@@ -28,6 +28,9 @@ namespace main._2019_7
         bool status = true;
         bool zanting = true;
         int shuliang = 0;
+        int shuliang1 = 0;
+        int shuliang2 = 0;
+        int shuliang3= 0;
         string IP = "";
         int PORT = 0;
         #region GET使用代理IP请求
@@ -66,6 +69,7 @@ namespace main._2019_7
             return "";
         }
         #endregion
+       
         #region 主程序1
         public void run1()
         {
@@ -160,9 +164,10 @@ namespace main._2019_7
                                 return;
                             }
                             string[] text = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                            foreach (string mail in text)
+                            string body = a0.Groups[1].Value + "\r\n" + a1.Groups[1].Value + "\r\n" + a2.Groups[1].Value + "\r\n" + a3.Groups[1].Value + "\r\n" + a4.Groups[1].Value + "\r\n" + a5.Groups[1].Value + "\r\n" + a6.Groups[1].Value + "\r\n" + a7.Groups[1].Value + "\r\n" + a8.Groups[1].Value + "\r\n" + a9.Groups[1].Value + "\r\n" + a10.Groups[1].Value + "\r\n" + a11.Groups[1].Value + "\r\n" + a12.Groups[1].Value + "\r\n" + a13.Groups[1].Value + "\r\n" + a14.Groups[1].Value + "\r\n" + a15.Groups[1].Value;
+                                foreach (string mail in text)
                             {
-                                send(textBox2.Text, textBox3.Text, textBox4.Text, mail, a2.Groups[1].Value + purl);
+                                send(textBox2.Text, textBox3.Text, textBox4.Text, mail, body);
 
                             }
                             
@@ -279,8 +284,8 @@ namespace main._2019_7
                             lv1.SubItems.Add(Regex.Replace(a14.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add(Regex.Replace(a15.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add(purl);
-                            shuliang = shuliang + 1;
-                            label22.Text = shuliang.ToString();
+                            shuliang1 = shuliang1 + 1;
+                            label34.Text = shuliang1.ToString();
 
                             while (this.zanting == false)
                             {
@@ -292,9 +297,10 @@ namespace main._2019_7
                                 return;
                             }
                             string[] text = textBox6.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                            string body = a0.Groups[1].Value + "\r\n" + a1.Groups[1].Value + "\r\n" + a2.Groups[1].Value + "\r\n" + a3.Groups[1].Value + "\r\n" + a4.Groups[1].Value + "\r\n" + a5.Groups[1].Value + "\r\n" + a6.Groups[1].Value + "\r\n" + a7.Groups[1].Value + "\r\n" + a8.Groups[1].Value + "\r\n" + a9.Groups[1].Value + "\r\n" + a10.Groups[1].Value + "\r\n" + a11.Groups[1].Value + "\r\n" + a12.Groups[1].Value + "\r\n" + a13.Groups[1].Value + "\r\n" + a14.Groups[1].Value + "\r\n" + a15.Groups[1].Value;
                             foreach (string mail in text)
                             {
-                                send(textBox9.Text, textBox8.Text, textBox7.Text, mail, a2.Groups[1].Value + purl);
+                                send(textBox9.Text, textBox8.Text, textBox7.Text, mail, body);
 
                             }
                             
@@ -411,8 +417,8 @@ namespace main._2019_7
                             lv1.SubItems.Add(Regex.Replace(a14.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add(Regex.Replace(a15.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add(purl);
-                            shuliang = shuliang + 1;
-                            label22.Text = shuliang.ToString();
+                            shuliang2 = shuliang2 + 1;
+                            label35.Text = shuliang2.ToString();
 
                             while (this.zanting == false)
                             {
@@ -424,9 +430,10 @@ namespace main._2019_7
                                 return;
                             }
                             string[] text = textBox16.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                            string body = a0.Groups[1].Value + "\r\n" + a1.Groups[1].Value + "\r\n" + a2.Groups[1].Value + "\r\n" + a3.Groups[1].Value + "\r\n" + a4.Groups[1].Value + "\r\n" + a5.Groups[1].Value + "\r\n" + a6.Groups[1].Value + "\r\n" + a7.Groups[1].Value + "\r\n" + a8.Groups[1].Value + "\r\n" + a9.Groups[1].Value + "\r\n" + a10.Groups[1].Value + "\r\n" + a11.Groups[1].Value + "\r\n" + a12.Groups[1].Value + "\r\n" + a13.Groups[1].Value + "\r\n" + a14.Groups[1].Value + "\r\n" + a15.Groups[1].Value;
                             foreach (string mail in text)
                             {
-                                send(textBox19.Text, textBox18.Text, textBox17.Text, mail, a2.Groups[1].Value + purl);
+                                send(textBox19.Text, textBox18.Text, textBox17.Text, mail, body);
 
                             }
                            
@@ -543,8 +550,8 @@ namespace main._2019_7
                             lv1.SubItems.Add(Regex.Replace(a14.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add(Regex.Replace(a15.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add(purl);
-                            shuliang = shuliang + 1;
-                            label22.Text = shuliang.ToString();
+                            shuliang3 = shuliang3 + 1;
+                            label36.Text = shuliang3.ToString();
 
                             while (this.zanting == false)
                             {
@@ -556,10 +563,10 @@ namespace main._2019_7
                                 return;
                             }
                             string[] text = textBox11.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
+                            string body = a0.Groups[1].Value + "\r\n" + a1.Groups[1].Value + "\r\n" + a2.Groups[1].Value + "\r\n" + a3.Groups[1].Value + "\r\n" + a4.Groups[1].Value + "\r\n" + a5.Groups[1].Value + "\r\n" + a6.Groups[1].Value + "\r\n" + a7.Groups[1].Value + "\r\n" + a8.Groups[1].Value + "\r\n" + a9.Groups[1].Value + "\r\n" + a10.Groups[1].Value + "\r\n" + a11.Groups[1].Value + "\r\n" + a12.Groups[1].Value + "\r\n" + a13.Groups[1].Value + "\r\n" + a14.Groups[1].Value + "\r\n" + a15.Groups[1].Value;
                             foreach (string mail in text)
                             {
-                                send(textBox14.Text, textBox13.Text, textBox12.Text, mail, a2.Groups[1].Value + purl);
+                                send(textBox14.Text, textBox13.Text, textBox12.Text, mail, body);
 
                             }
                            
@@ -626,9 +633,71 @@ namespace main._2019_7
 
         }
         private void fang58_Load(object sender, EventArgs e)
-        {  
+        {
+            #region 通用验证
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == "11.11.11.11")
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+                //不采取操作
+
+            }
+            else
+            {
+                MessageBox.Show("验证失败！");
+                System.Diagnostics.Process.Start("http://www.acaiji.com");
+                this.Close();
+                return;
+            }
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             timer1.Start();
-           
+            //读取对应的text的值到对应text
+            foreach (Control ctr in splitContainer1.Panel1.Controls)
+            {
+                if (ctr is TextBox)
+                {
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "存值\\";
+                    if (File.Exists(path + ctr.Name + ".txt"))
+                    {
+
+                        StreamReader sr = new StreamReader(path + ctr.Name + ".txt", Encoding.GetEncoding("utf-8"));
+                        //一次性读取完 
+                        string texts = sr.ReadToEnd();
+                        ctr.Text = texts;
+                        sr.Close();
+                    }
+                }
+                
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -820,6 +889,7 @@ namespace main._2019_7
             {
                 zanting = false;
             }
+
         }
 
         private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -914,6 +984,32 @@ namespace main._2019_7
             Control.CheckForIllegalCrossThreadCalls = false;
             Thread thread = new Thread(new ThreadStart(run1));
             thread.Start();
+        }
+
+        private void Fang58_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //存放所有text的值
+            foreach (Control ctr in splitContainer1.Panel1.Controls)
+            {
+                if (ctr is TextBox)
+                {
+
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "存值\\";
+                    FileStream fs1 = new FileStream(path + ctr.Name + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(ctr.Text);
+                    sw.Close();
+                    fs1.Close();
+
+                }
+            }
+
+        }
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

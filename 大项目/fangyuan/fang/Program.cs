@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace fang._2019
+namespace fang.临时软件
 {
     static class Program
     {
@@ -20,7 +20,7 @@ namespace fang._2019
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 拼多多搜索());
+                Application.Run(new 军队采购());
 
             //}
             //catch (Exception ex)
