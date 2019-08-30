@@ -98,7 +98,7 @@ namespace 拼多多
                     Match shopID = Regex.Match(html, @"已拼([\s\S]*?)<");
 
                     ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                    listViewItem.SubItems.Add(i);
+                    listViewItem.SubItems.Add(i.ToString());
                     listViewItem.SubItems.Add(shopID.Groups[1].Value.ToString());
 
 

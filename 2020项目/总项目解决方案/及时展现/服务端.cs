@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -133,10 +134,67 @@ namespace 及时展现
 
         #endregion
 
-        
+
+        #region  读取数据插入数据库
+
+        public void  getData()
+        {
+
+            try
+            {
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                StreamReader sr = new StreamReader(path+"a.txt", Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    string[] values = text[i].Split(new string[] { "," }, StringSplitOptions.None);
+
+
+                    string constr = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
+                    MySqlConnection mycon = new MySqlConnection(constr);
+                    mycon.Open();
+
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO datas (aname,bname,cname,dname,time)VALUES('" +values[0] +" ', '" + values[1] + " ','" + values[2] + " ', '" + values[3] + "', '" + DateTime.Now + "')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                    int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                    if (count > 0)
+                    {
+                       
+
+                        mycon.Close();
+
+                    }
+                    else
+                    {
+                        textBox2.Text = "生成失败";
+                    }
+
+                   
+
+                }
+                
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+               ex.ToString();
+            }
+
+
+        }
+
+        #endregion
+
 
         private void 服务端_Load(object sender, EventArgs e)
         {
+            timer1.Start();
+
             ArrayList list = new ArrayList();
             list = getP();
             comboBox1.DataSource = list;
@@ -174,48 +232,136 @@ namespace 及时展现
         private void Button1_Click(object sender, EventArgs e)
         {
             textBox1.Text = comboBox1.Text +"：" +comboBox2.Text + "：" + comboBox3.Text;
+            
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            //string chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            string chars = "123456789abcdefghijkmnpqrstuvwxyz";
-            Random randrom = new Random((int)DateTime.Now.Ticks);
-
-            string user = "";
-            string pass = "";
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < numericUpDown1.Value; i++)
             {
-                user += chars[randrom.Next(chars.Length)];
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                pass += chars[randrom.Next(chars.Length)];
-            }
+                string chars = "123456789abcdefghijkmnpqrstuvwxyz";
+                Random randrom = new Random((int)DateTime.Now.Ticks);
 
+                string user = "";
+                string pass = "";
+                for (int j = 0; j < 6; j++)
+                {
+                    user += chars[randrom.Next(chars.Length)];
+                }
+                for (int j = 0; j < 6; j++)
+                {
+                    pass += chars[randrom.Next(chars.Length)];
+                }
+
+
+
+                string constr = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+                string time = DateTime.Now.AddDays(Convert.ToUInt32(comboBox4.Text)).ToString();
+                string keywords = "";
+                if (textBox1.Text.Contains("："))
+                {
+                    string[] texts = textBox1.Text.Split(new string[] { "：" }, StringSplitOptions.None);
+                    if (texts[2] != "不限")
+                    {
+                        keywords = texts[2];
+                    }
+
+                    if (texts[2] == "不限" && texts[1] != "不限")
+                    {
+                        ArrayList lists = getA(Getcode(texts[1]));
+                        foreach (string list in lists)
+                        {
+                            keywords += list + ",";
+                        }
+                    }
+                    if (texts[2] == "不限" && texts[1] == "不限")
+                    {
+                        ArrayList lists = getC(Getcode(texts[0]));
+                        foreach (string list in lists)
+                        {
+                            keywords += list + ",";
+                        }
+                    }
+
+
+                }
+
+                else
+                {
+                    keywords = textBox1.Text;
+
+                }
+
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO users (user,pass,time,keywords)VALUES('" + user + " ', '" + pass + " ','" + time + " ', '" + keywords + "')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+                    textBox2.Text += "账号：" + user + "   密码：" + pass + "\r\n";
+
+                    mycon.Close();
+
+                }
+                else
+                {
+                    textBox2.Text = "生成失败";
+                }
+            }
+           
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
             
+        }
+        #region 获取用户
+        public void run()
+        {
+           
+            string sql = "Select * From users ";
+           
 
+            string conn = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
+           
+            MySqlDataAdapter sda = new MySqlDataAdapter(sql, conn);
+            DataSet Ds = new DataSet();
+            sda.Fill(Ds, "T_Class");
+
+            this.dataGridView1.DataSource = Ds.Tables["T_Class"];
+           
+
+        }
+
+        #endregion
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            run();
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
             string constr = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();
-            string time = DateTime.Now.AddDays(Convert.ToUInt32(comboBox4.Text)).ToString();
-            string keywords = "没有";
-
-
-            MySqlCommand cmd = new MySqlCommand("INSERT INTO users (user,pass,time,keywords)VALUES('" + user + " ', '" + pass + " ','" + time + " ', '" + keywords + "')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+            MySqlCommand cmd = new MySqlCommand("UPDATE gonggao SET gonggao= '" + textBox3.Text + "' ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
             int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
             if (count > 0)
             {
-                textBox2.Text = "账号：" + user + "   密码：" + pass;
-                
+
+                MessageBox.Show("更新公告成功");
                 mycon.Close();
-                                
             }
             else
             {
-                textBox2.Text = "生成失败";
+                MessageBox.Show("更新公告失败");
+                mycon.Close();
             }
         }
+
+  
     }
 }

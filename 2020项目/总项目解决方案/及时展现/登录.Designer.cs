@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,41 +51,15 @@
             this.panel1.Size = new System.Drawing.Size(259, 193);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 10F);
-            this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(16, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "账 号：";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(78, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 21);
-            this.textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(78, 68);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(141, 21);
-            this.textBox2.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(16, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 14);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "密 码：";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 10F);
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(16, 101);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 14);
+            this.label3.TabIndex = 5;
             // 
             // button1
             // 
@@ -99,15 +73,44 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // label3
+            // textBox2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 10F);
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(16, 101);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 14);
-            this.label3.TabIndex = 5;
+            this.textBox2.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox2.Location = new System.Drawing.Point(78, 68);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
+            this.textBox2.Size = new System.Drawing.Size(141, 23);
+            this.textBox2.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10F);
+            this.label2.ForeColor = System.Drawing.Color.Blue;
+            this.label2.Location = new System.Drawing.Point(16, 70);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 14);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "密 码：";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox1.Location = new System.Drawing.Point(78, 34);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(141, 23);
+            this.textBox1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 10F);
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(16, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 14);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "账 号：";
             // 
             // 登录
             // 

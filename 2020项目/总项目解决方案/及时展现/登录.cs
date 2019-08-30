@@ -43,31 +43,54 @@ namespace 及时展现
 
 
                 if (reader.Read())
-                    {
+                  {
 
                     string username = reader["user"].ToString().Trim();
                     string password = reader["pass"].ToString().Trim();
+                    string keywords = reader["keywords"].ToString().Trim();
                     string time = reader["time"].ToString().Trim();
+                    string status = reader["status"].ToString().Trim();
 
                     DateTime dt = DateTime.Now;
                     if (dt < Convert.ToDateTime(time))
                     {
-                        if (textBox2.Text.Trim() == password)
-
+                        if (status == "0")
                         {
-                           
-                            客户端 kh = new 客户端();
-                            kh.Show();
-                            this.Hide();
+                            if (textBox2.Text.Trim() == password)
 
+                            {
+
+                                客户端 kh = new 客户端();
+                                kh.Show();
+                                客户端.keywords = keywords;
+                                kh.label6.Text = username;
+                                kh.label7.Text = time;
+                                this.Hide();
+                                mycon.Close();
+
+                                
+                                MySqlConnection mycon1 = new MySqlConnection(constr);
+                                MySqlCommand cmd1 = new MySqlCommand("UPDATE users SET status= 1 ", mycon1);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                                cmd1.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                                mycon1.Close();
+                            }
+                            else
+
+                            {
+                                MessageBox.Show("您的密码错误！");
+                                label3.Text = "请重新输入密码！";
+                                return;
+                            }
                         }
-                        else
 
+                        else
                         {
-                            MessageBox.Show("您的密码错误！");
-                            label3.Text = "请重新输入密码！";
+                            MessageBox.Show("您的账号在其它地方已登录！");
+                            label3.Text = "您的账号在其它地方已登录！";
                             return;
                         }
+                      
                     }
                     else
                     {
@@ -87,7 +110,9 @@ namespace 及时展现
 
                 }
 
-
+                
+                reader.Close();
+                
             }
 
                 catch (System.Exception ex)
