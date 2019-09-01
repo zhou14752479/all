@@ -104,23 +104,24 @@ namespace 及时展现
         {
             label1.Text = "正在获取，请稍后................";
             string[] keys = keywords.Split(new string[] { "," }, StringSplitOptions.None);
-            string sql = "Select aname,bname From datas Where";
+            string sql = "Select aname,bname,time From datas Where";
             foreach (string key in keys)
             {
                 if (key != "")
                 {
                     sql += " aname like \"" + key + "%\" or";
                 }
-
+               
             }
             sql = sql.Substring(0, sql.Length - 3);
+            sql = sql + "order by time DESC";
             if (keywords == "全国")
             {
-                sql = "Select aname,bname From datas";
+                sql = "Select aname,bname,time From datas order by time DESC";
             }
 
             string conn = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
-            // MySqlDataAdapter sda = new MySqlDataAdapter("Select aname,bname From datas Where aname like '" + keywords + "%' ", conn);
+          
             MySqlDataAdapter sda = new MySqlDataAdapter(sql, conn);
             DataSet Ds = new DataSet();
             sda.Fill(Ds, "T_Class");
@@ -159,5 +160,34 @@ namespace 及时展现
             thread1.Start();
             Txt(dataGridView1);
         }
+
+        private void 客户端_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+          
+
+            DialogResult result = MessageBox.Show("确认退出吗？", "退出询问"
+           , MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result != DialogResult.OK)
+            {
+                e.Cancel = true;//告诉窗体关闭这个任务取消
+                
+            }
+            else
+            {
+                string constr = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
+                MySqlConnection mycon1 = new MySqlConnection(constr);
+                mycon1.Open();
+                MySqlCommand cmd1 = new MySqlCommand("UPDATE users SET status= 0 where user='" + label6.Text + "' ", mycon1);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                cmd1.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                mycon1.Close();
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+        }
+
+
+    
     }
 }

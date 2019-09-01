@@ -202,6 +202,7 @@
             this.Name = "客户端";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "客户端";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.客户端_FormClosing);
             this.Load += new System.EventHandler(this.客户端_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

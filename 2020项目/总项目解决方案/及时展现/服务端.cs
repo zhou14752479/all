@@ -137,20 +137,13 @@ namespace 及时展现
 
         #region  读取数据插入数据库
 
-        public void  getData()
+        public void  getData(string value)
         {
 
             try
             {
-                string path = AppDomain.CurrentDomain.BaseDirectory;
-                StreamReader sr = new StreamReader(path+"a.txt", Encoding.Default);
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
-                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-                for (int i = 0; i < text.Length; i++)
-                {
-                    string[] values = text[i].Split(new string[] { "," }, StringSplitOptions.None);
+              
+                    string[] values = value.Split(new string[] { "," }, StringSplitOptions.None);
 
 
                     string constr = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
@@ -159,6 +152,7 @@ namespace 及时展现
 
                     MySqlCommand cmd = new MySqlCommand("INSERT INTO datas (aname,bname,cname,dname,time)VALUES('" +values[0] +" ', '" + values[1] + " ','" + values[2] + " ', '" + values[3] + "', '" + DateTime.Now + "')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
+                    textBox4.Text += DateTime.Now.ToString() + "导入数据" + value+"成功"+"\r\n";
                     int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
                     if (count > 0)
                     {
@@ -174,7 +168,7 @@ namespace 及时展现
 
                    
 
-                }
+                
                 
 
 
@@ -362,6 +356,47 @@ namespace 及时展现
             }
         }
 
-  
+        string filepath="";
+        string Filter = "";
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FileSystemWatcher fileSystemWatcher1 = new FileSystemWatcher();
+
+            this.fileSystemWatcher1.Changed += new FileSystemEventHandler(fileSystemWatcher1_Changed);
+
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.Path = filepath;
+            this.fileSystemWatcher1.Filter = Filter;
+            this.fileSystemWatcher1.IncludeSubdirectories = false;//不监视子目录
+        }
+
+        private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+
+            FileStream fs = File.Open(textBox5.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            StreamReader sr = new StreamReader(fs);//流读取器
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            string value = text[text.Length-1];
+            getData(value);
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox5.Text = openFileDialog1.FileName;
+                
+                Filter = openFileDialog1.SafeFileName;
+                filepath = openFileDialog1.FileName.Replace(Filter,"");
+               
+            }
+
+
+        }
+
+
     }
 }

@@ -118,3 +118,18 @@
             }
             return lists;
         }
+
+
+十四 
+关闭窗口提示框
+ DialogResult result = MessageBox.Show("确认退出吗？", "退出询问"
+           , MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result != DialogResult.OK)
+            {
+                e.Cancel = true;//告诉窗体关闭这个任务取消
+                
+            }
+            else
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }

@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSend", "AutoSend\AutoSend.csproj", "{159DAA63-561B-4F94-BF3D-060129EEAB8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSharp谷歌", "CefSharp谷歌\CefSharp谷歌.csproj", "{A6A2FBB2-9EE0-4970-B2B3-8EDC5DD5FC5A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "拼多多", "拼多多\拼多多.csproj", "{28E99380-3C0D-4620-8F55-E61FCBDABA6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "专利查询", "专利查询\专利查询.csproj", "{211B3F43-1EA5-4EB1-B338-7EEB1F108168}"
 EndProject
@@ -35,10 +33,6 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28E99380-3C0D-4620-8F55-E61FCBDABA6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28E99380-3C0D-4620-8F55-E61FCBDABA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28E99380-3C0D-4620-8F55-E61FCBDABA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28E99380-3C0D-4620-8F55-E61FCBDABA6F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{211B3F43-1EA5-4EB1-B338-7EEB1F108168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{211B3F43-1EA5-4EB1-B338-7EEB1F108168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{211B3F43-1EA5-4EB1-B338-7EEB1F108168}.Release|Any CPU.ActiveCfg = Release|Any CPU

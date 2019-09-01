@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -70,10 +72,26 @@ namespace 及时展现
 
                                 
                                 MySqlConnection mycon1 = new MySqlConnection(constr);
-                                MySqlCommand cmd1 = new MySqlCommand("UPDATE users SET status= 1 ", mycon1);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                                mycon1.Open();
+                                MySqlCommand cmd1 = new MySqlCommand("UPDATE users SET status= 1 where user='" + username+ "'   ", mycon1);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
                                 cmd1.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
                                 mycon1.Close();
+
+
+                                string path = AppDomain.CurrentDomain.BaseDirectory;
+                                FileStream fs1 = new FileStream(path +"config\\"+ "user.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                                StreamWriter sw = new StreamWriter(fs1);
+                                sw.WriteLine(textBox1.Text);
+                                sw.Close();
+                                fs1.Close();
+
+
+
+
+
+
+
                             }
                             else
 
@@ -122,6 +140,24 @@ namespace 及时展现
 
   
         }
+
+        private void 登录_Load(object sender, EventArgs e)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            if (File.Exists(path + "config\\" + "user.txt"))
+            {
+                StreamReader sr = new StreamReader(path + "config\\" + "user.txt", Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                textBox1.Text = texts;
+                sr.Close();
+            }
+
+
+        }
+
+
+
 
 
 
