@@ -39,6 +39,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -54,8 +56,6 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -182,6 +182,26 @@
             this.splitContainer1.SplitterDistance = 211;
             this.splitContainer1.TabIndex = 3;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(152, 188);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 19);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "COOKIE：";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(263, 165);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(587, 42);
+            this.textBox2.TabIndex = 12;
+            this.textBox2.Text = resources.GetString("textBox2.Text");
+            // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(31, 65);
@@ -215,6 +235,7 @@
             this.columnHeader12});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(862, 331);
@@ -273,26 +294,6 @@
             // 
             this.columnHeader12.Text = "日期";
             this.columnHeader12.Width = 100;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(263, 165);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(587, 42);
-            this.textBox2.TabIndex = 12;
-            this.textBox2.Text = resources.GetString("textBox2.Text");
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(152, 188);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 19);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "COOKIE：";
             // 
             // 足球数据
             // 

@@ -375,7 +375,7 @@ namespace 及时展现
         {
 
             FileStream fs = File.Open(textBox5.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            StreamReader sr = new StreamReader(fs);//流读取器
+            StreamReader sr = new StreamReader(fs, Encoding.Default);//流读取器
             string texts = sr.ReadToEnd();
             string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             string value = text[text.Length-1];

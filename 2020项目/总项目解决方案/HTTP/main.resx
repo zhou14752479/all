@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox2.Text" xml:space="preserve">
-    <value>acw_tc=3ad7912515673920424227266eabfd998a0733bec98e5a485e619eb05a; PHPSESSID=3c4e3d980f553c5779cbda9ee27a23210047e19f; LastUrl=; Hm_lvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1567392047; pm=; __utma=56961525.1068581603.1567392051.1567392051.1567392051.1; __utmc=56961525; __utmz=56961525.1567392051.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); IMUserID=30507057; IMUserName=%E6%96%AF%E9%80%9A655604; OkAutoUuid=e6fa22ace1c20e62685fab0ff4635d98; OkMsIndex=7; M_UserID=30507057; M_Ukey=e313df743083a4e515c115574f759ff3; OkTouchAutoUuid=e6fa22ace1c20e62685fab0ff4635d98; OkTouchMsIndex=7; DRUPAL_LOGGED_IN=Y; isInvitePurview=0; Hm_lpvt_5ffc07c2ca2eda4cc1c4d8e50804c94b=1567392248; M_UserName=%22%5Cu65af%5Cu901a655604%22; __utmb=56961525.35.4.1567392251524</value>
-  </data>
 </root>

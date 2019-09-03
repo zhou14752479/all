@@ -1,3 +1,5 @@
+ctrl+ALT+++空格
+
 一、Unicode转中文
 
  			public static string Unicode2String(string source)

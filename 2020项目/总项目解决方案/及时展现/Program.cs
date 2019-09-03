@@ -15,7 +15,7 @@ namespace 及时展现
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 登录());
+            Application.Run(new 服务端());
         }
     }
 }
