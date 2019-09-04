@@ -91,7 +91,7 @@ namespace zhaopin_58
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select * from vip where phone='" + skinTextBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("select * from vip where username='" + skinTextBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
 
                 MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源

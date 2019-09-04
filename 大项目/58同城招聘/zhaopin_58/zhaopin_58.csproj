@@ -89,12 +89,6 @@
     <Compile Include="webbrowser.Designer.cs">
       <DependentUpon>webbrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="商家58.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="商家58.Designer.cs">
-      <DependentUpon>商家58.cs</DependentUpon>
-    </Compile>
     <Compile Include="城市控件.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,9 +146,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="webbrowser.resx">
       <DependentUpon>webbrowser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="商家58.resx">
-      <DependentUpon>商家58.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="城市控件.resx">
       <DependentUpon>城市控件.cs</DependentUpon>
