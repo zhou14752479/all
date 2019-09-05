@@ -1149,7 +1149,7 @@ namespace _58
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("IEXPLORE.EXE", "https://mdj.58.com/ershoufang/");
+            System.Diagnostics.Process.Start("IEXPLORE.EXE", "https://cq.58.com/shangpu/39380991011852x.shtml");
         }
     }
 

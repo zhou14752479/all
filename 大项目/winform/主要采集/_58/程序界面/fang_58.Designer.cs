@@ -472,6 +472,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.skinButton4 = new CCWin.SkinControl.SkinButton();
             this.skinButton3 = new CCWin.SkinControl.SkinButton();
             this.label13 = new System.Windows.Forms.Label();
@@ -510,7 +511,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1051,7 +1051,6 @@
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(71, 16);
             this.radioButton9.TabIndex = 88;
-            this.radioButton9.TabStop = true;
             this.radioButton9.Text = "土地租售";
             this.radioButton9.UseVisualStyleBackColor = true;
             this.radioButton9.Visible = false;
@@ -1063,7 +1062,6 @@
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(47, 16);
             this.radioButton8.TabIndex = 87;
-            this.radioButton8.TabStop = true;
             this.radioButton8.Text = "厂房";
             this.radioButton8.UseVisualStyleBackColor = true;
             this.radioButton8.Visible = false;
@@ -1075,7 +1073,6 @@
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(47, 16);
             this.radioButton7.TabIndex = 86;
-            this.radioButton7.TabStop = true;
             this.radioButton7.Text = "车位";
             this.radioButton7.UseVisualStyleBackColor = true;
             this.radioButton7.Visible = false;
@@ -1087,9 +1084,9 @@
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(83, 16);
             this.radioButton5.TabIndex = 84;
-            this.radioButton5.TabStop = true;
             this.radioButton5.Text = "房东二手房";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.Visible = false;
             // 
             // radioButton4
             // 
@@ -1098,7 +1095,6 @@
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(59, 16);
             this.radioButton4.TabIndex = 83;
-            this.radioButton4.TabStop = true;
             this.radioButton4.Text = "写字楼";
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.Visible = false;
@@ -1110,9 +1106,9 @@
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(71, 16);
             this.radioButton3.TabIndex = 82;
-            this.radioButton3.TabStop = true;
             this.radioButton3.Text = "商铺出租";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Visible = false;
             // 
             // radioButton2
             // 
@@ -1121,13 +1117,14 @@
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(71, 16);
             this.radioButton2.TabIndex = 81;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "商铺出售";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Visible = false;
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(20, 26);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(71, 16);
@@ -1135,7 +1132,6 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "生意转让";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.Visible = false;
             // 
             // groupBox5
             // 
@@ -1287,6 +1283,17 @@
             this.groupBox4.TabIndex = 41;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "采集操作";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(210, 22);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel1.TabIndex = 79;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "验证码验证";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // skinButton4
             // 
@@ -1697,17 +1704,6 @@
             this.label15.Size = new System.Drawing.Size(71, 15);
             this.label15.TabIndex = 210;
             this.label15.Text = "测试用户";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(210, 22);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(65, 12);
-            this.linkLabel1.TabIndex = 79;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "验证码验证";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // fang_58
             // 
