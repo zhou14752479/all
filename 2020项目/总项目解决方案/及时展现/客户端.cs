@@ -102,32 +102,40 @@ namespace 及时展现
         #region 获取内容
         public void run()
         {
-            label1.Text = "正在获取，请稍后................";
-            string[] keys = keywords.Split(new string[] { "," }, StringSplitOptions.None);
-            string sql = "Select aname,bname,time From datas Where";
-            foreach (string key in keys)
+            try
             {
-                if (key != "")
+                label1.Text = "正在获取，请稍后................";
+                string[] keys = keywords.Split(new string[] { "," }, StringSplitOptions.None);
+                string sql = "Select aname,bname,time From datas Where";
+                foreach (string key in keys)
                 {
-                    sql += " aname like \"" + key + "%\" or";
-                }
-               
-            }
-            sql = sql.Substring(0, sql.Length - 3);
-            sql = sql + "order by time DESC";
-            if (keywords == "全国")
-            {
-                sql = "Select aname,bname,time From datas order by time DESC";
-            }
+                    if (key != "")
+                    {
+                        sql += " aname like \"" + key + "%\" or";
+                    }
 
-            string conn = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
-          
-            MySqlDataAdapter sda = new MySqlDataAdapter(sql, conn);
-            DataSet Ds = new DataSet();
-            sda.Fill(Ds, "T_Class");
-           
-            this.dataGridView1.DataSource = Ds.Tables["T_Class"];
-            label1.Text = "获取完成";
+                }
+                sql = sql.Substring(0, sql.Length - 3);
+                sql = sql + "order by time DESC";
+                if (keywords == "全国")
+                {
+                    sql = "Select aname,bname,time From datas order by time DESC";
+                }
+
+                string conn = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
+
+                MySqlDataAdapter sda = new MySqlDataAdapter(sql, conn);
+                DataSet Ds = new DataSet();
+                sda.Fill(Ds, "T_Class");
+
+                this.dataGridView1.DataSource = Ds.Tables["T_Class"];
+                label1.Text = "获取完成";
+            }
+            catch (Exception ex)
+            {
+
+                ex.ToString();
+            }
             
         }
 
@@ -155,9 +163,7 @@ namespace 及时展现
             //Control.CheckForIllegalCrossThreadCalls = false;
             //thread.Start();
             run();
-            Thread thread1 = new Thread(new ThreadStart(getgg));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            thread1.Start();
+            getgg();
             Txt(dataGridView1);
         }
 
