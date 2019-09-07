@@ -89,11 +89,12 @@ namespace 及时展现
                     textBox1.Text = reader["gonggao"].ToString().Trim();
 
                 }
+                mycon.Close();
             }
 
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
         }
 

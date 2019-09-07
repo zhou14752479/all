@@ -233,7 +233,7 @@ namespace main._2019_8
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用验证
+            
 
             bool value = false;
             string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
@@ -272,7 +272,7 @@ namespace main._2019_8
                 MessageBox.Show("IP不符");
 
             }
-            #endregion
+         
            
            
         }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(服务端));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -50,17 +51,17 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -319,6 +320,43 @@
             this.tabPage2.Text = "  数据导入  ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(412, 30);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(277, 21);
+            this.textBox5.TabIndex = 4;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(694, 30);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(86, 23);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "选择监控文本";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.textBox4.Location = new System.Drawing.Point(3, 3);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox4.Size = new System.Drawing.Size(403, 368);
+            this.textBox4.TabIndex = 2;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(512, 142);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(177, 34);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "开启数据监控导入";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dataGridView1);
@@ -377,47 +415,10 @@
             this.timer1.Interval = 3000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(512, 142);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(177, 34);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "开启数据监控导入";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.textBox4.Location = new System.Drawing.Point(3, 3);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(403, 368);
-            this.textBox4.TabIndex = 2;
-            // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(694, 30);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(86, 23);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "选择监控文本";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(412, 30);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(277, 21);
-            this.textBox5.TabIndex = 4;
             // 
             // openFileDialog1
             // 
@@ -429,9 +430,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 400);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "服务端";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "服务端";
+            this.Text = "ali采集 V1.0";
             this.Load += new System.EventHandler(this.服务端_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
