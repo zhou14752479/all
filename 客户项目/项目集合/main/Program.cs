@@ -19,7 +19,7 @@ namespace main._2019_8
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            
-            Application.Run(new fahuo());
+            Application.Run(new 中国足球网());
         }
     }
 

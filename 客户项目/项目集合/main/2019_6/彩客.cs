@@ -46,6 +46,7 @@ namespace main._2019_6
 
         }
         bool zanting = true;
+        #region  运行程序
         public void run()
         {
 
@@ -148,11 +149,11 @@ namespace main._2019_6
             label1.Text = "验证结束，请点击导出，文本名为【导出结果】";
         }
 
-       
-       
-    
+        #endregion
 
-    private void Button1_Click(object sender, EventArgs e)
+
+
+        private void Button1_Click(object sender, EventArgs e)
         {
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
