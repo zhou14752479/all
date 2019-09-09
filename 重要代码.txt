@@ -135,3 +135,6 @@ ctrl+ALT+++空格
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
+
+
+十五  toolTip1.SetToolTip(label1,"点击访问");

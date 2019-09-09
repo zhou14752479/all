@@ -563,7 +563,7 @@ namespace main._2019_7
                                 return;
                             }
                             string[] text = textBox11.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                            string body = a0.Groups[1].Value + "\r\n" + a1.Groups[1].Value + "\r\n" + a2.Groups[1].Value + "\r\n" + a3.Groups[1].Value + "\r\n" + a4.Groups[1].Value + "\r\n" + a5.Groups[1].Value + "\r\n" + a6.Groups[1].Value + "\r\n" + a7.Groups[1].Value + "\r\n" + a8.Groups[1].Value + "\r\n" + a9.Groups[1].Value + "\r\n" + a10.Groups[1].Value + "\r\n" + a11.Groups[1].Value + "\r\n" + a12.Groups[1].Value + "\r\n" + a13.Groups[1].Value + "\r\n" + a14.Groups[1].Value + "\r\n" + a15.Groups[1].Value;
+                            string body = a2.Groups[1].Value + "\r\n" + a3.Groups[1].Value + "\r\n" + a4.Groups[1].Value + "\r\n" + a5.Groups[1].Value + "\r\n" + a6.Groups[1].Value + "\r\n" + a7.Groups[1].Value + "\r\n" + a8.Groups[1].Value + "\r\n" + a9.Groups[1].Value + "\r\n" + a10.Groups[1].Value + "\r\n" + a11.Groups[1].Value + "\r\n" + a12.Groups[1].Value + "\r\n" + a13.Groups[1].Value + "\r\n" + a14.Groups[1].Value + "\r\n" + a15.Groups[1].Value;
                             foreach (string mail in text)
                             {
                                 send(textBox14.Text, textBox13.Text, textBox12.Text, mail, body);
@@ -596,7 +596,7 @@ namespace main._2019_7
             catch (System.Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
 
         }

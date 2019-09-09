@@ -298,7 +298,7 @@ namespace zhaopin_58
                     MessageBox.Show("请输入关键字");
                     return;
                 }
-
+                button1.Enabled = false;
                 if (comboBox2.Text == "按照销量排序")
                 {
                     paixu = "solds";
@@ -311,7 +311,7 @@ namespace zhaopin_58
                 // string[] citys = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] keywords = textBox1.Text.Trim().Split(',');
                 
-                string city = comboBox1.SelectedItem.ToString();
+                string city = comboBox1.Text;
 
                     ArrayList areaIds = getAreaId(city);
                     string cityId = GetCityId(city);
@@ -621,38 +621,9 @@ namespace zhaopin_58
         private void button1_Click(object sender, EventArgs e)
         {
             status = true;
-
-            #region 通用登录
-
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php");
-            string localip = GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim()==localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
-                
-            }
-            if(value==true)
-            {
-                //--------登陆函数------------------
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-
-            }
-            else
-            {
-                MessageBox.Show("请登录您的账号！登陆成功返回软件使用即可");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
-            }
-            #endregion
-
+            
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
 
 
 
@@ -682,7 +653,7 @@ namespace zhaopin_58
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            button1.Enabled = true;
 
             status = false;
         }

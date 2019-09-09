@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Management;
 using System.Text;
@@ -75,7 +76,7 @@ namespace zhaopin_58
 
         #endregion
 
-        #region  登陆函数，用户名或者手机号都可以登陆
+        #region  登陆函数
 
         public void myLogin()
         {
@@ -124,7 +125,7 @@ namespace zhaopin_58
                         skinButton1.Text = "正在连接服务器......";
 
                         Application.DoEvents();
-                        System.Threading.Thread.Sleep(500);
+                        System.Threading.Thread.Sleep(200);
 
                         skinButton1.Text = "正在验证用户名和密码......";
                         Application.DoEvents();
@@ -179,8 +180,8 @@ namespace zhaopin_58
 
 
         #endregion
-        
 
+        private Point mPoint = new Point();
         private void login_Load(object sender, EventArgs e)
         {
             RegistryKey regkey = Registry.CurrentUser.OpenSubKey("acaiji"); //打开爱采集注册表
@@ -214,16 +215,9 @@ namespace zhaopin_58
 
         }
 
-        private void skinPanel1_Paint(object sender, PaintEventArgs e)
-        {
+   
 
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            register rg = new register();
-            rg.Show();
-        }
+      
 
         private void label5_Click(object sender, EventArgs e)
         {
@@ -234,5 +228,142 @@ namespace zhaopin_58
         {
             MessageBox.Show("联系微信17606117606，提供您的手机号！");
         }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("IExplore.exe", "http://www.acaiji.com/");
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("IExplore.exe", "http://www.acaiji.com/");
+        }
+
+        private void SkinPanel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mPoint.X = e.X;
+            mPoint.Y = e.Y;
+        }
+
+        private void SkinPanel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Point myPosittion = MousePosition;
+                myPosittion.Offset(-mPoint.X, -mPoint.Y);
+                Location = myPosittion;
+            }
+        }
+
+        private void Login_Resize(object sender, EventArgs e)
+        {
+            SetWindowRegion();
+        }
+        public void SetWindowRegion()
+        {
+            System.Drawing.Drawing2D.GraphicsPath FormPath;
+            FormPath = new System.Drawing.Drawing2D.GraphicsPath();
+            Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
+            FormPath = GetRoundedRectPath(rect, 10);
+            this.Region = new Region(FormPath);
+
+        }
+        private GraphicsPath GetRoundedRectPath(Rectangle rect, int radius)
+        {
+            int diameter = radius;
+            Rectangle arcRect = new Rectangle(rect.Location, new Size(diameter, diameter));
+            GraphicsPath path = new GraphicsPath();
+
+            // 左上角
+            path.AddArc(arcRect, 180, 90);
+
+            // 右上角
+            arcRect.X = rect.Right - diameter;
+            path.AddArc(arcRect, 270, 90);
+
+            // 右下角
+            arcRect.Y = rect.Bottom - diameter;
+            path.AddArc(arcRect, 0, 90);
+
+            // 左下角
+            arcRect.X = rect.Left;
+            path.AddArc(arcRect, 90, 90);
+            path.CloseFigure();//闭合曲线
+            return path;
+        }
+
+        private void SkinButton2_Click(object sender, EventArgs e)
+        {
+            DateTime dt = DateTime.Now;
+            string time = DateTime.Now.ToString();
+            string ip = method.GetIp();
+            string mac = login.GetMacAddress();
+
+
+            if (skinTextBox3.Text == "" || skinTextBox4.Text == "" || skinTextBox5.Text == "")
+            {
+                MessageBox.Show("请完善账号信息！");
+                return;
+            }
+            if (skinTextBox3.Text.Length < 11)
+            {
+                MessageBox.Show("请输入十一位有效手机号！");
+                return;
+            }
+
+            if (skinTextBox5.Text.Trim() != login.Random())
+            {
+                MessageBox.Show("您的注册码错误！");
+                return;
+            }
+
+
+            try
+            {
+
+
+                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                string username = skinTextBox3.Text.Trim();
+                string password = skinTextBox4.Text.Trim();
+                
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO vip (username,password,register_t,ip,mac)VALUES('" + username + " ', '" + password + " ', '" + time + " ', '" + ip + " ', '" + mac + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+               
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+                    MessageBox.Show("注册成功！");
+                   
+                    mycon.Close();
+                              
+                }
+                else
+                {
+                    MessageBox.Show("连接失败！");
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+      
+
+      
+
+        private void Label1_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(label1,"点击访问");
+        }
+
+      
     }
 }

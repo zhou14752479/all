@@ -16,7 +16,7 @@ namespace zhaopin_58
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 美团());
+            Application.Run(new login());
         }
     }
 }
