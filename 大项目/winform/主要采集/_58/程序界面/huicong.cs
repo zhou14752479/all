@@ -25,12 +25,7 @@ namespace _58
 
         private void huicong_Load(object sender, EventArgs e)
         {
-            string path = System.Environment.CurrentDirectory; //获取当前程序运行文件夹
-            if (File.Exists(path + "\\mac.txt"))
-
-            {
-                注册账号ToolStripMenuItem.Enabled = false;
-            }
+           
         }
         #region  运行函数
         public void Run()
@@ -300,17 +295,7 @@ namespace _58
 
         
 
-        private void 注册账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            register rg = new register();
-            rg.Show();
-        }
-
-        private void 登陆账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Login lg = new Login();
-            lg.Show();
-        }
+      
 
         private void huicong_MouseEnter(object sender, EventArgs e)
         {

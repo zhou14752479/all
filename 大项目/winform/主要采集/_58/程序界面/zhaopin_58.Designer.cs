@@ -919,9 +919,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.登陆ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.注册账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.登陆账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.合作模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.联系我们ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -946,13 +943,13 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.skinDataGridView1 = new CCWin.SkinControl.SkinDataGridView();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -2031,7 +2028,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.登陆ToolStripMenuItem,
             this.合作模式ToolStripMenuItem,
             this.帮助ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -2039,29 +2035,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1051, 25);
             this.menuStrip1.TabIndex = 81;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // 登陆ToolStripMenuItem
-            // 
-            this.登陆ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.注册账号ToolStripMenuItem,
-            this.登陆账号ToolStripMenuItem});
-            this.登陆ToolStripMenuItem.Name = "登陆ToolStripMenuItem";
-            this.登陆ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.登陆ToolStripMenuItem.Text = "账号登陆";
-            // 
-            // 注册账号ToolStripMenuItem
-            // 
-            this.注册账号ToolStripMenuItem.Name = "注册账号ToolStripMenuItem";
-            this.注册账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.注册账号ToolStripMenuItem.Text = "注册账号";
-            this.注册账号ToolStripMenuItem.Click += new System.EventHandler(this.注册账号ToolStripMenuItem_Click);
-            // 
-            // 登陆账号ToolStripMenuItem
-            // 
-            this.登陆账号ToolStripMenuItem.Name = "登陆账号ToolStripMenuItem";
-            this.登陆账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.登陆账号ToolStripMenuItem.Text = "登陆账号";
-            this.登陆账号ToolStripMenuItem.Click += new System.EventHandler(this.登陆账号ToolStripMenuItem_Click);
             // 
             // 合作模式ToolStripMenuItem
             // 
@@ -2306,30 +2279,6 @@
             this.skinDataGridView1.TitleBackColorBegin = System.Drawing.Color.White;
             this.skinDataGridView1.TitleBackColorEnd = System.Drawing.SystemColors.ButtonFace;
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton1.Location = new System.Drawing.Point(887, 590);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(109, 18);
-            this.radioButton1.TabIndex = 219;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "按照分类采集";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton2.Location = new System.Drawing.Point(887, 610);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(123, 18);
-            this.radioButton2.TabIndex = 220;
-            this.radioButton2.Text = "搜索关键词采集";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.HeaderText = "公司名称";
@@ -2354,6 +2303,30 @@
             // 
             this.Column1.HeaderText = "职位";
             this.Column1.Name = "Column1";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton1.Location = new System.Drawing.Point(887, 590);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(109, 18);
+            this.radioButton1.TabIndex = 219;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "按照分类采集";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton2.Location = new System.Drawing.Point(887, 610);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(123, 18);
+            this.radioButton2.TabIndex = 220;
+            this.radioButton2.Text = "搜索关键词采集";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // zhaopin_58
             // 
@@ -2415,9 +2388,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 登陆ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 注册账号ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 登陆账号ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 合作模式ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 联系我们ToolStripMenuItem;

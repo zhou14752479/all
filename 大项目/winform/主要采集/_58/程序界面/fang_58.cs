@@ -862,121 +862,91 @@ namespace _58
 
         #endregion
 
-        #region 主采集按钮
+       
         private void skinButton1_Click(object sender, EventArgs e)
         {
             skinButton13.Text = "停止采集";
-            #region 通用登录
 
-            bool value = false;
-            string html = Method.GetUrl("http://acaiji.com/success/ip.php");
-            string localip =Method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
+            if (radioButton1.Checked == true)
             {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
+
+                Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
+                string o = "shengyizr";
+                thread.Start((object)o);
+                //创建带参数的线程
+
+                Control.CheckForIllegalCrossThreadCalls = false;
+                label8.Text = radioButton1.Text;
 
             }
-            if (value == true)
+            else if (radioButton5.Checked == true)
             {
-                if (radioButton1.Checked == true)
-                {
-
-                    Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
-                    string o = "shengyizr";
-                    thread.Start((object)o);
-                    //创建带参数的线程
-
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    label8.Text = radioButton1.Text;
-
-                }
-                else if (radioButton5.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(ershoufang));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                    label8.Text = radioButton5.Text;
-                }
-                else if (radioButton3.Checked == true)
-                {
-                    Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
-                    string o = "shangpucz";
-                    thread.Start((object)o);
-                    label8.Text = radioButton3.Text;
-                }
-
-                else if (radioButton2.Checked == true)
-                {
-                    Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
-                    string o = "shangpucs";
-                    thread.Start((object)o);
-                    //创建带参数的线程
-                    label8.Text = radioButton2.Text;
-                }
-                else if (radioButton4.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(ershoufang));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-
-                    label8.Text = radioButton4.Text;
-                }
-
-
-                else if (radioButton8.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(changfang));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                    label8.Text = radioButton8.Text;
-                }
-
-                else if (radioButton7.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(chewei));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                    label8.Text = radioButton7.Text;
-                }
-
-                else if (radioButton9.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(tudi));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                    label8.Text = radioButton9.Text;
-                }
-
-
-
-                else
-                {
-                    MessageBox.Show("请选择采集模板！");
-                }
-
-
+                Thread thread = new Thread(new ThreadStart(ershoufang));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+                label8.Text = radioButton5.Text;
             }
+            else if (radioButton3.Checked == true)
+            {
+                Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
+                string o = "shangpucz";
+                thread.Start((object)o);
+                label8.Text = radioButton3.Text;
+            }
+
+            else if (radioButton2.Checked == true)
+            {
+                Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
+                string o = "shangpucs";
+                thread.Start((object)o);
+                //创建带参数的线程
+                label8.Text = radioButton2.Text;
+            }
+            else if (radioButton4.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(ershoufang));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+
+                label8.Text = radioButton4.Text;
+            }
+
+
+            else if (radioButton8.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(changfang));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+                label8.Text = radioButton8.Text;
+            }
+
+            else if (radioButton7.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(chewei));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+                label8.Text = radioButton7.Text;
+            }
+
+            else if (radioButton9.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(tudi));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+                label8.Text = radioButton9.Text;
+            }
+
+
+
             else
             {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("iexplore.exe", "http://www.acaiji.com/denglu");
-                return;
+                MessageBox.Show("请选择采集模板！");
             }
-            #endregion
 
 
 
-           
-           
 
         }
-        #endregion
 
 
 
@@ -984,12 +954,7 @@ namespace _58
 
 
 
-
-
-
-
-
-        private void skinButton14_Click(object sender, EventArgs e)
+            private void skinButton14_Click(object sender, EventArgs e)
         {
             SendMessage();
         }
@@ -1081,22 +1046,14 @@ namespace _58
 
         }
 
-        private void 登陆账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Login lg = new Login();
-            lg.Show();
-        }
+     
 
         private void fang_58_MouseEnter(object sender, EventArgs e)
         {
             label15.Text = Method.User; //获取Method公共类的静态变量User的值
         }
 
-        private void 注册账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            register rg = new register();
-            rg.Show();
-        }
+  
 
         private void 合作模式ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1149,7 +1106,7 @@ namespace _58
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("IEXPLORE.EXE", "https://cq.58.com/shangpu/39380991011852x.shtml");
+            System.Diagnostics.Process.Start("IEXPLORE.EXE", "https://suqian.58.com/ershoufang/");
         }
     }
 

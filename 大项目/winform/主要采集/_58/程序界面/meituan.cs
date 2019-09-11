@@ -517,11 +517,7 @@ namespace _58
 
       
 
-        private void 账号注册ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            register rg = new register();
-            rg.Show();
-        }
+    
 
         private void 登陆ToolStripMenuItem_Click(object sender, EventArgs e)
         {

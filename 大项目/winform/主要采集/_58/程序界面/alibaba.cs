@@ -212,21 +212,11 @@ namespace _58
 
         private void visualButton1_Click(object sender, EventArgs e)
         {
-            if (label1.Text == "测试用户" || label1.Text == "")
-            {
-                MessageBox.Show("请注册账号登陆！");
-                register rg = new register();
-                rg.Show();
-                return;
-            }
-
-            else
-            {
-
+          
                 Thread thread = new Thread(new ThreadStart(Run));
                 Control.CheckForIllegalCrossThreadCalls = false;
                 thread.Start();
-            }
+           
 
         }
 
@@ -250,17 +240,7 @@ namespace _58
         }
 
       
-        private void 注册账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            register rg = new register();
-            rg.Show();
-        }
-
-        private void 登陆账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Login lg = new Login();
-            lg.Show();
-        }
+      
 
         private void alibaba_MouseEnter(object sender, EventArgs e)
         {

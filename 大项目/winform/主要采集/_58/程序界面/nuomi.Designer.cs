@@ -417,7 +417,6 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.登陆ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.注册账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.登陆账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.合作模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1395,23 +1394,15 @@
             // 登陆ToolStripMenuItem
             // 
             this.登陆ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.注册账号ToolStripMenuItem,
             this.登陆账号ToolStripMenuItem});
             this.登陆ToolStripMenuItem.Name = "登陆ToolStripMenuItem";
             this.登陆ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.登陆ToolStripMenuItem.Text = "账号登陆";
             // 
-            // 注册账号ToolStripMenuItem
-            // 
-            this.注册账号ToolStripMenuItem.Name = "注册账号ToolStripMenuItem";
-            this.注册账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.注册账号ToolStripMenuItem.Text = "注册账号";
-            this.注册账号ToolStripMenuItem.Click += new System.EventHandler(this.注册账号ToolStripMenuItem_Click);
-            // 
             // 登陆账号ToolStripMenuItem
             // 
             this.登陆账号ToolStripMenuItem.Name = "登陆账号ToolStripMenuItem";
-            this.登陆账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.登陆账号ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.登陆账号ToolStripMenuItem.Text = "登陆账号";
             this.登陆账号ToolStripMenuItem.Click += new System.EventHandler(this.登陆账号ToolStripMenuItem_Click);
             // 
@@ -1527,7 +1518,6 @@
         private CCWin.SkinControl.SkinButton skinButton22;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 登陆ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 注册账号ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 登陆账号ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 合作模式ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;

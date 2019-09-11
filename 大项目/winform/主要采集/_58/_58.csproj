@@ -190,12 +190,6 @@
       <DependentUpon>huicong.cs</DependentUpon>
     </Compile>
     <Compile Include="Method.cs" />
-    <Compile Include="公用界面\register.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="公用界面\register.Designer.cs">
-      <DependentUpon>register.cs</DependentUpon>
-    </Compile>
     <Compile Include="程序界面\fang_58.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,9 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="程序界面\huicong.resx">
       <DependentUpon>huicong.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="公用界面\register.resx">
-      <DependentUpon>register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="程序界面\fang_58.resx">
       <DependentUpon>fang_58.cs</DependentUpon>

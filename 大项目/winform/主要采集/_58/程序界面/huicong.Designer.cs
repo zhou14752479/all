@@ -373,9 +373,6 @@
             this.skinTextBox2 = new CCWin.SkinControl.SkinTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.登陆ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.注册账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.登陆账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.分销ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.分销模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oEM模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -984,7 +981,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.登陆ToolStripMenuItem,
             this.分销ToolStripMenuItem,
             this.帮助ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -992,29 +988,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1006, 25);
             this.menuStrip1.TabIndex = 102;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // 登陆ToolStripMenuItem
-            // 
-            this.登陆ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.注册账号ToolStripMenuItem,
-            this.登陆账号ToolStripMenuItem});
-            this.登陆ToolStripMenuItem.Name = "登陆ToolStripMenuItem";
-            this.登陆ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.登陆ToolStripMenuItem.Text = "账号登陆";
-            // 
-            // 注册账号ToolStripMenuItem
-            // 
-            this.注册账号ToolStripMenuItem.Name = "注册账号ToolStripMenuItem";
-            this.注册账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.注册账号ToolStripMenuItem.Text = "注册账号";
-            this.注册账号ToolStripMenuItem.Click += new System.EventHandler(this.注册账号ToolStripMenuItem_Click);
-            // 
-            // 登陆账号ToolStripMenuItem
-            // 
-            this.登陆账号ToolStripMenuItem.Name = "登陆账号ToolStripMenuItem";
-            this.登陆账号ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.登陆账号ToolStripMenuItem.Text = "登陆账号";
-            this.登陆账号ToolStripMenuItem.Click += new System.EventHandler(this.登陆账号ToolStripMenuItem_Click);
             // 
             // 分销ToolStripMenuItem
             // 
@@ -1028,13 +1001,13 @@
             // 分销模式ToolStripMenuItem
             // 
             this.分销模式ToolStripMenuItem.Name = "分销模式ToolStripMenuItem";
-            this.分销模式ToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.分销模式ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.分销模式ToolStripMenuItem.Text = "分销模式";
             // 
             // oEM模式ToolStripMenuItem
             // 
             this.oEM模式ToolStripMenuItem.Name = "oEM模式ToolStripMenuItem";
-            this.oEM模式ToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.oEM模式ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.oEM模式ToolStripMenuItem.Text = "OEM模式";
             // 
             // 帮助ToolStripMenuItem
@@ -1128,9 +1101,6 @@
         private CCWin.SkinControl.SkinTreeView skinTreeView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 登陆ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 注册账号ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 登陆账号ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 分销ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 分销模式ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oEM模式ToolStripMenuItem;

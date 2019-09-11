@@ -562,7 +562,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.账号注册ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.登陆ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.合作模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.使用说明ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1463,7 +1462,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.账号注册ToolStripMenuItem,
             this.登陆ToolStripMenuItem,
             this.合作模式ToolStripMenuItem,
             this.使用说明ToolStripMenuItem,
@@ -1473,13 +1471,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(915, 25);
             this.menuStrip1.TabIndex = 100;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // 账号注册ToolStripMenuItem
-            // 
-            this.账号注册ToolStripMenuItem.Name = "账号注册ToolStripMenuItem";
-            this.账号注册ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.账号注册ToolStripMenuItem.Text = "账号注册";
-            this.账号注册ToolStripMenuItem.Click += new System.EventHandler(this.账号注册ToolStripMenuItem_Click);
             // 
             // 登陆ToolStripMenuItem
             // 
@@ -2017,7 +2008,6 @@
         private CCWin.SkinControl.SkinTreeView skinTreeView1;
         private CCWin.SkinControl.SkinTreeView skinTreeView2;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 账号注册ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 合作模式ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 使用说明ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 查看教程ToolStripMenuItem;

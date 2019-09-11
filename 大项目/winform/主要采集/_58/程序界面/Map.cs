@@ -909,17 +909,6 @@ namespace _58
 
         #endregion
 
-        private void 注册账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            register rg = new register();
-            rg.Show();
-        }
-
-        private void 登陆账号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Login lg = new Login();
-            lg.Show();
-        }
 
         private void Map_MouseEnter(object sender, EventArgs e)
         {
