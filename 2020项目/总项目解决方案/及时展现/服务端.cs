@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -358,6 +359,9 @@ namespace 及时展现
 
         string filepath="";
         string Filter = "";
+     
+
+
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -369,6 +373,7 @@ namespace 及时展现
             this.fileSystemWatcher1.Path = filepath;
             this.fileSystemWatcher1.Filter = Filter;
             this.fileSystemWatcher1.IncludeSubdirectories = false;//不监视子目录
+
         }
 
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -378,7 +383,8 @@ namespace 及时展现
             StreamReader sr = new StreamReader(fs, Encoding.Default);//流读取器
             string texts = sr.ReadToEnd();
             string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            string value = text[text.Length-1];
+            string value = text[text.Length - 1];
+            MessageBox.Show(value);
             getData(value);
 
         }
