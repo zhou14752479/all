@@ -18,7 +18,7 @@ namespace _58.临时软件 {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                Application.Run(new Login());
+                Application.Run(new fang_58());
 
 
         }

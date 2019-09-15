@@ -138,3 +138,13 @@ ctrl+ALT+++空格
 
 
 十五  toolTip1.SetToolTip(label1,"点击访问");
+
+十六  时间戳转时间
+ private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            long mTime = long.Parse(timeStamp + "0000");
+            TimeSpan toNow = new TimeSpan(mTime);
+            return startTime.Add(toNow);
+
+        }

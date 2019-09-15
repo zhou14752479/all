@@ -239,6 +239,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "花拍";
             this.Text = "花拍";
+            this.Load += new System.EventHandler(this.花拍_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);

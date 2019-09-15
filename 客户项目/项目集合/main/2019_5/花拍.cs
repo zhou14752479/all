@@ -130,5 +130,10 @@ namespace main._2019_5
         {
             listView1.Items.Clear();
         }
+
+        private void 花拍_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

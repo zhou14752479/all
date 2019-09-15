@@ -486,6 +486,24 @@
     <Compile Include="2019_8\浏览器淘宝.Designer.cs">
       <DependentUpon>浏览器淘宝.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_9\亚马逊.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_9\亚马逊.Designer.cs">
+      <DependentUpon>亚马逊.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_9\企查查.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_9\企查查.Designer.cs">
+      <DependentUpon>企查查.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_9\拍卖.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_9\拍卖.Designer.cs">
+      <DependentUpon>拍卖.cs</DependentUpon>
+    </Compile>
     <Compile Include="getUrlbyWeb.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -692,6 +710,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_8\浏览器淘宝.resx">
       <DependentUpon>浏览器淘宝.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_9\亚马逊.resx">
+      <DependentUpon>亚马逊.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_9\企查查.resx">
+      <DependentUpon>企查查.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_9\拍卖.resx">
+      <DependentUpon>拍卖.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="getUrlbyWeb.resx">
       <DependentUpon>getUrlbyWeb.cs</DependentUpon>

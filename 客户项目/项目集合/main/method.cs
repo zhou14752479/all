@@ -163,8 +163,7 @@ namespace main
             {
                 try
             {
-                string COOKIE = "t=792ea994957bef8e4a71539f91876594; tg=0; thw=cn; cna=8QJMFUu4DhACATFZv2JYDtwd; hng=CN%7Czh-CN%7CCNY%7C156; UM_distinctid=16bde9c6ccb7f7-0183a6c7f99aa8-f353163-1fa400-16bde9c6cccb79; enc=BJiGDZ0SETmb%2BZ1Af%2FLOxZ7Ow%2Fz8B4xQY%2F3CPHkFybDesLHC8XJXgbKIOBMMGVwHTtQxN1Uu1ZSlm%2FWpfRRSTw%3D%3D; ali_ab=49.94.92.171.1563332665663.4; tracknick=zkg852266010; lgc=zkg852266010; x=e%3D1%26p%3D*%26s%3D0%26c%3D0%26f%3D0%26g%3D0%26t%3D0; uc3=vt3=F8dBy32lwOHuaHzi4N4%3D&id2=UoH62EAv27BqSg%3D%3D&nk2=GcOvCmiKUSBXqZNU&lg2=W5iHLLyFOGW7aA%3D%3D; uc4=id4=0%40UOnlZ%2FcoxCrIUsehKG1BBwVBnH2i&nk4=0%40GwrkntVPltPB9cR46GnfFEkk2C3zLuw%3D; _cc_=V32FPkk%2Fhw%3D%3D; _m_h5_tk=d02b72aac33f598223551b72018da50f_1564729203893; _m_h5_tk_enc=4d3e81811aa151dd8facee7612bce0b9; mt=ci=43_1; cookie2=19cb683b918091f99354bec17b926c57; v=0; _tb_token_=36e3785e5b198; l=cBxhyUZrqScyZ5DDBOCNquIRGobTsIRAguPRwVYXi_5Cw1T17Z_OkSbnWe96cjWdtrYB40tUd_v9-etkmum4AbM8sxAR.; isg=BIyMX-ZbPZwe7CmS61fIE08xXep-bTgLaqJ-R-ZNkzfacSx7DtV__mDDFTlsOWjH";
-referer: https://shop145672826.taobao.com/index.htm?spm=2013.1.w5002-18853258787.2.2fc7258aIrZpr9";
+                string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
                     request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
@@ -255,7 +254,7 @@ referer: https://shop145672826.taobao.com/index.htm?spm=2013.1.w5002-18853258787
                 UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
-                Referer = "http://www.sufeinet.com",//来源URL     可选项  
+                Referer = "https://auction.jd.com/sifa_list.html",//来源URL     可选项  
                                                     //Allowautoredirect = False,//是否根据３０１跳转     可选项  
                                                     //AutoRedirectCookie = False,//是否自动处理Cookie     可选项  
                                                     //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
