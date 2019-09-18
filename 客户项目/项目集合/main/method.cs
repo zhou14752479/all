@@ -254,7 +254,7 @@ namespace main
                 UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
-                Referer = "https://auction.jd.com/sifa_list.html",//来源URL     可选项  
+                Referer = "",//来源URL     可选项  
                                                     //Allowautoredirect = False,//是否根据３０１跳转     可选项  
                                                     //AutoRedirectCookie = False,//是否自动处理Cookie     可选项  
                                                     //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  

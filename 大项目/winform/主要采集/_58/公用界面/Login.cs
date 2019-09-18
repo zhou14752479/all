@@ -150,10 +150,13 @@ namespace _58
 
                         }
 
-                        //meituan mt = new meituan();
-                        //mt.Show();
-                        fang_58 fang = new fang_58();
-                        fang.Show();
+                        ////meituan mt = new meituan();
+                        ////mt.Show();
+                        //fang_58 fang = new fang_58();
+                        //fang.Show();
+
+                        Map mp = new Map();
+                        mp.Show();
                         this.Hide();
 
                     }

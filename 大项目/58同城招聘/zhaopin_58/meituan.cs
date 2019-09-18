@@ -361,40 +361,60 @@ namespace zhaopin_58
                             Match waimai = Regex.Match(strhtml, @"isWaimai"":([\s\S]*?),");
 
 
+                            //if (name.Groups[2].Value != "" && radioButton1.Checked == true)
+                            //{
 
+                            //    if (waimai.Groups[1].Value == "1")
+                            //    {
+                            //        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                            //        lv1.SubItems.Add(name.Groups[2].Value.Trim());
+                            //        lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                            //        lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                            //        lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                            //        lv1.SubItems.Add(city);
+                            //        lv1.SubItems.Add(score.Groups[1].Value);
+                            //        lv1.SubItems.Add("有外卖");
+                            //    }
+                            //}
 
-                            if (name.Groups[2].Value != "" && radioButton1.Checked == true)
+                            //if (name.Groups[2].Value != "" && radioButton2.Checked == true)
+                            //{
+
+                            //    if (waimai.Groups[1].Value == "0")
+                            //    {
+                            //        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                            //        lv1.SubItems.Add(name.Groups[2].Value.Trim());
+                            //        lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                            //        lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                            //        lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                            //        lv1.SubItems.Add(city);
+                            //        lv1.SubItems.Add(score.Groups[1].Value);
+                            //        lv1.SubItems.Add("无外卖");
+                            //    }
+                            //}
+
+                            if (waimai.Groups[1].Value == "1")
                             {
-
-                                if (waimai.Groups[1].Value == "1")
-                                {
-                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                    lv1.SubItems.Add(name.Groups[2].Value.Trim());
-                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(city);
-                                    lv1.SubItems.Add(score.Groups[1].Value);
-                                    lv1.SubItems.Add("有外卖");
-                                }
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                lv1.SubItems.Add(name.Groups[2].Value.Trim());
+                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(city);
+                                lv1.SubItems.Add(score.Groups[1].Value);
+                                lv1.SubItems.Add("有外卖");
                             }
-
-                            if (name.Groups[2].Value != "" && radioButton2.Checked == true)
+                            if (waimai.Groups[1].Value == "0")
                             {
-
-                                if (waimai.Groups[1].Value == "0")
-                                {
-                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                    lv1.SubItems.Add(name.Groups[2].Value.Trim());
-                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(city);
-                                    lv1.SubItems.Add(score.Groups[1].Value);
-                                    lv1.SubItems.Add("无外卖");
-                                }
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                lv1.SubItems.Add(name.Groups[2].Value.Trim());
+                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(city);
+                                lv1.SubItems.Add(score.Groups[1].Value);
+                                lv1.SubItems.Add("无外卖");
                             }
-
 
                             if (listView1.Items.Count - 1 > 1)
                                     {

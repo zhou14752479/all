@@ -20,7 +20,7 @@ namespace fang.临时软件
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 军队采购());
+                Application.Run(new Form3());
 
             //}
             //catch (Exception ex)

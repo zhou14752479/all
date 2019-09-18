@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-namespace _58.临时软件 { 
+namespace 价格监控
+{
     static class Program
     {
         /// <summary>
@@ -14,13 +14,9 @@ namespace _58.临时软件 {
         [STAThread]
         static void Main()
         {
-
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-
-                Application.Run(new Login());
-
-
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
     }
 }
