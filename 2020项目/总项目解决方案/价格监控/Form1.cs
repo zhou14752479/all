@@ -72,8 +72,10 @@ namespace 价格监控
                     Match snprice = Regex.Match(SNhtml, @"""price"":""([\s\S]*?)""");
                     Match tmprice = Regex.Match(TMhtml, @"""price"":""([\s\S]*?)""");
 
-                   
-                  
+                    MessageBox.Show(jdprice.Groups[1].Value);
+                    MessageBox.Show(snprice.Groups[1].Value);
+                    MessageBox.Show(tmprice.Groups[1].Value);
+
 
                     double min = 0;
 

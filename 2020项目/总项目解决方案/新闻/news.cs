@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
+using MySql.Data.MySqlClient;
 
 namespace 新闻
 {
@@ -20,7 +21,47 @@ namespace 新闻
             InitializeComponent();
         }
         bool zanting = true;
+       
+        #region  读取数据插入数据库
 
+        public void insertData(string a,string b,string c,string d)
+        {
+
+            try
+            {
+
+                string constr = "Host ="+textBox1.Text.Trim()+";Database="+textBox2.Text.Trim()+";Username="+ textBox3.Text.Trim() + ";Password="+ textBox4.Text.Trim();
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO '" + textBox6.Text.Trim() + " ' ('" + textBox7.Text.Trim() + " ','" + textBox8.Text.Trim() + " ','" + textBox9.Text.Trim() + " ','" + textBox10.Text.Trim() + " ')VALUES('" + a + " ', '" + b + " ','" + c + " ', '" + d + "')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+            
+
+                }
+
+                mycon.Close();
+
+
+
+
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+            }
+
+
+        }
+
+        #endregion
 
         #region  新闻获取
         public void run()
@@ -59,12 +100,83 @@ namespace 新闻
                             Match a4 = Regex.Match(strhtml, @"<div class=""article-content"">([\s\S]*?)</div>");
 
 
-
+                           // insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
 
                             ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                             listViewItem.SubItems.Add(a1.Groups[1].Value);
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
+                            listViewItem.SubItems.Add(a4.Groups[1].Value);
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+                            Thread.Sleep(100);
+
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        #endregion
+
+        #region  新闻获取1
+        public void run1()
+        {
+            try
+            {
+                string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
+                foreach (string keyword in keywords)
+                {
+
+
+                    for (int i = 1; i < 999; i = i ++)
+                    {
+
+                        string url = "https://search.sina.com.cn/?q="+keyword+"&range=all&c=news&sort=time&col=&source=&from=&country=&size=&time=&a=&page="+i+"&pf=0&ps=0&dpc=1" ;
+                        string html = method.GetUrl(url, "utf-8");
+
+                        MatchCollection ids = Regex.Matches(html, @"<h2><a href=""([\s\S]*?)""");
+
+
+                        if (ids.Count == 0)
+                            break;
+
+                        for (int j = 0; j < ids.Count; j++)
+                        {
+
+                            string URL =  ids[j].Groups[1].Value;
+
+                            string strhtml = method.GetUrl(URL, "utf-8");
+
+
+
+                            Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)_");
+                            Match a2 = Regex.Match(strhtml, @"<span class=""date"">([\s\S]*?)</span>");
+                          
+                            Match a4 = Regex.Match(strhtml, @"id=""artibody"">([\s\S]*?)<!-- 评论");
+
+
+                            // insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
+
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(a1.Groups[1].Value);
+                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                            listViewItem.SubItems.Add("新浪网");
                             listViewItem.SubItems.Add(a4.Groups[1].Value);
 
                             while (this.zanting == false)
@@ -118,7 +230,7 @@ namespace 新闻
             if (value == true)
             {
                
-                    Thread thread = new Thread(new ThreadStart(run));
+                    Thread thread = new Thread(new ThreadStart(run1));
                     thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
               
