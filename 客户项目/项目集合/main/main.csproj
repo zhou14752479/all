@@ -486,6 +486,12 @@
     <Compile Include="2019_8\浏览器淘宝.Designer.cs">
       <DependentUpon>浏览器淘宝.cs</DependentUpon>
     </Compile>
+    <Compile Include="2019_9\m1688.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_9\m1688.Designer.cs">
+      <DependentUpon>m1688.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_9\亚马逊.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -710,6 +716,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2019_8\浏览器淘宝.resx">
       <DependentUpon>浏览器淘宝.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_9\m1688.resx">
+      <DependentUpon>m1688.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2019_9\亚马逊.resx">
       <DependentUpon>亚马逊.cs</DependentUpon>

@@ -19,7 +19,7 @@ namespace main._2019_9
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            
-            Application.Run(new 亚马逊());
+            Application.Run(new m1688());
         }
     }
 

@@ -587,15 +587,14 @@ namespace _58
                         string html = Method.GetUrl(Url);
 
 
-                        MatchCollection TitleMatchs = Regex.Matches(html, @"<li logr=""([\s\S]*?)_0_([\s\S]*?)_([\s\S]*?)_", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        MatchCollection TitleMatchs = Regex.Matches(html, @"esf_id:([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-
+                    ArrayList lists = new ArrayList();
                         foreach (Match NextMatch in TitleMatchs)
                         {
 
-                            textBox14.Text += "http://" + city + ".58.com/ershoufang/" + NextMatch.Groups[3].Value + "x.shtml" + "\r\n";
-                            textBox14.SelectionStart = textBox14.Text.Length;                                                            //设定光标位置
-                            textBox14.ScrollToCaret();                                                                                   //滚动到光标处
+                            lists.Add("https://"+city+".58.com/ershoufang/"+NextMatch.Groups[1].Value+"x.shtml");
+                                                                                                        //滚动到光标处
                         }
 
                         string tm1 = DateTime.Now.ToString();                                                                            //获取系统时间
@@ -604,16 +603,11 @@ namespace _58
                         textBox3.ScrollToCaret();
 
 
-                        string[] lines = textBox14.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-
-
-                        for (int j = 0; j < lines.Length - 1; j++)
-
-                        {
+                    foreach (string url in lists)
+                    {
 
                         this.index = this.skinDataGridView1.Rows.Add();
-                        String Url1 = lines[j];
+                        String Url1 = url;
                             // str = str.Substring(str.Length - i) 从右边开始取i个字符
 
                             string Url2 = "http://m.58.com/" + city + "/ershoufang/" + Url1.Substring(Url1.Length - 21);                       //获取二手房手机端的网址
@@ -663,7 +657,7 @@ namespace _58
 
 
 
-                        this.skinDataGridView1.Rows[index].Cells[7].Value = lines[j];
+                        this.skinDataGridView1.Rows[index].Cells[7].Value = url;
 
 
 
@@ -681,12 +675,12 @@ namespace _58
 
                             }
                             Application.DoEvents();
-                            System.Threading.Thread.Sleep(time);   //内容获取间隔，可变量
+                            System.Threading.Thread.Sleep(1000);   //内容获取间隔，可变量
 
 
 
                         }
-                        textBox14.Text = "";
+                        
 
                     }
                 }

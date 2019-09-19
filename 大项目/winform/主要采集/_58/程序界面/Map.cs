@@ -1016,69 +1016,41 @@ namespace _58
                 MessageBox.Show("请输入城市和关键字！");
                 return;
             }
-            #region 通用登录
+            visualProgressIndicator1.Show();
 
-            bool value = false;
-            string html = Method.GetUrl("http://acaiji.com/success/ip.php");
-            string localip = Method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
+            if (radioButton2.Checked == true)
             {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
-
+                Thread thread = new Thread(new ThreadStart(tengxun));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
             }
-            if (value == true)
+            else if (radioButton3.Checked == true)
             {
-                visualProgressIndicator1.Show();
-
-                if (radioButton2.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(tengxun));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                }
-                else if (radioButton3.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(gaode));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                }
-                else if (radioButton4.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(map_360));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                }
-                else if (radioButton5.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(sougou));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                }
-
-                else if (radioButton6.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(baidu));
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    thread.Start();
-                }
-
+                Thread thread = new Thread(new ThreadStart(gaode));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
             }
-            else
+            else if (radioButton4.Checked == true)
             {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
+                Thread thread = new Thread(new ThreadStart(map_360));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
             }
-            #endregion
+            else if (radioButton5.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(sougou));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+            }
+
+            else if (radioButton6.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(baidu));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                thread.Start();
+            }
 
 
-            
         }
 
         private void visualButton3_Click(object sender, EventArgs e)
