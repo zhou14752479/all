@@ -48,20 +48,20 @@ namespace 价格监控
 
                     Match jdid = Regex.Match(a, @"\d{6,}");
                     string JDurl = "https://c0.3.cn/stock?skuId="+jdid.Groups[0].Value+"&area=12_933_3407_0&venderId=1000000140&buyNum=1&choseSuitSkuIds=&cat=670,671,1105&ch=1&callback=jQuery8851179";
-                    
-                    Match snaid = Regex.Match(b, @"\d{11,}");
-                    Match snbid = Regex.Match(b, @"com\/0\d{9}");
 
-                    string snid = "";
-                    if (snaid.Groups[0].Value.Contains("0000000"))
+                    Match aid = Regex.Match(b, @"com\/([\s\S]*?)\/([\s\S]*?)\.");
+
+
+                    string snid = aid.Groups[2].Value;
+                    int z = aid.Groups[2].Value.Length;
+
+                    while (z < 18)
                     {
-                        snid = snaid.Groups[0].Value;
+                        snid = "0" + snid;
+                        z++;
                     }
-                    else
-                    {
-                        snid="0000000"+ snaid.Groups[0].Value;
-                    }
-                    string SNurl = "https://tuijian.suning.com/recommend-portal/dyBase.jsonp?u=&c=&parameter="+snid+ "&vendorId=" + snbid.Groups[0].Value.Replace("com/","") + "&cityId=9185&sceneIds=1-1&count=20&districtCode=5270199&adChanCode=pc&callback=Recommend.getRecomData";
+
+                    string SNurl = "https://pas.suning.com/nspcsale_0_"+snid+"_"+snid+"_"+ aid.Groups[1].Value + "_100_527_5270101_20268_1000185_9185_11470_Z001___R0401003_76.0_0___000021978___.html?callback=pcData&_=1568892695337";
                    
                     string JDhtml = method.GetUrl(JDurl, "utf-8");
                     string SNhtml = method.GetUrl(SNurl, "utf-8");
@@ -69,11 +69,13 @@ namespace 价格监控
 
 
                     Match jdprice = Regex.Match(JDhtml, @"""p"":""([\s\S]*?)""");
-                    Match snprice = Regex.Match(SNhtml, @"""price"":""([\s\S]*?)""");
+                    Match snprice = Regex.Match(SNhtml, @"""promotionPrice"":""([\s\S]*?)""");
                     Match tmprice = Regex.Match(TMhtml, @"""price"":""([\s\S]*?)""");
 
-                   
-                  
+                    //MessageBox.Show(jdprice.Groups[1].Value);
+                    //MessageBox.Show(snprice.Groups[1].Value);
+                    //MessageBox.Show(tmprice.Groups[1].Value);
+
 
                     double min = 0;
 
@@ -156,6 +158,8 @@ namespace 价格监控
         private void Button4_Click(object sender, EventArgs e)
         {
             zanting = true;
+
+           
         }
 
         private void Button6_Click(object sender, EventArgs e)
