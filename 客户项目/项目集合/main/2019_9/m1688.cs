@@ -165,5 +165,20 @@ namespace main._2019_9
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
     }
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "新闻", "新闻\新闻.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "价格监控", "价格监控\价格监控.csproj", "{DF786588-67B5-4734-9F95-8C0C0E933971}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标查询", "商标查询\商标查询.csproj", "{7E41244F-251C-4C16-9635-FD6366F6608A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DF786588-67B5-4734-9F95-8C0C0E933971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF786588-67B5-4734-9F95-8C0C0E933971}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF786588-67B5-4734-9F95-8C0C0E933971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E41244F-251C-4C16-9635-FD6366F6608A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E41244F-251C-4C16-9635-FD6366F6608A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

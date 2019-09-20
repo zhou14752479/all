@@ -71,13 +71,13 @@ namespace helper
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Post";
-            request.ContentType = "application/x-www-form-urlencoded";
-            //request.ContentType = "application/json";
+            //request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentType = "application/json";
             request.ContentLength = postData.Length;
             request.AllowAutoRedirect = true;
-            request.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.1.4322)";
+            request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523) NetType/3G Language/zh_CN";
             request.Headers.Add("Cookie", COOKIE);
-
+            request.Referer = "https://servicewechat.com/wxb37374b344073551/19/page-frame.html";
             StreamWriter sw = new StreamWriter(request.GetRequestStream());
             sw.Write(postData);
             sw.Flush();

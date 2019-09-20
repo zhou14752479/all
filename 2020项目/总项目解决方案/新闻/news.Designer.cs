@@ -38,6 +38,10 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -47,6 +51,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -59,6 +65,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -66,13 +73,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -134,8 +137,10 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -144,6 +149,7 @@
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -172,6 +178,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.dateTimePicker2);
             this.groupBox2.Controls.Add(this.dateTimePicker1);
@@ -189,6 +197,40 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("黑体", 11F);
+            this.label14.Location = new System.Drawing.Point(198, 66);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(23, 15);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "至";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(227, 63);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(107, 21);
+            this.dateTimePicker2.TabIndex = 22;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(85, 63);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(107, 21);
+            this.dateTimePicker1.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("黑体", 11F);
+            this.label6.Location = new System.Drawing.Point(23, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 15);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "时间：";
             // 
             // label5
             // 
@@ -264,7 +306,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(938, 424);
+            this.tabPage2.Size = new System.Drawing.Size(938, 466);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "   导入数据库配置   ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -299,6 +341,23 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(407, 265);
             this.panel2.TabIndex = 20;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("黑体", 11F);
+            this.label13.Location = new System.Drawing.Point(19, 70);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(71, 15);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "数据库：";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(141, 199);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(106, 21);
+            this.textBox6.TabIndex = 16;
             // 
             // textBox4
             // 
@@ -417,6 +476,13 @@
             this.panel1.Size = new System.Drawing.Size(225, 192);
             this.panel1.TabIndex = 16;
             // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(99, 148);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(106, 21);
+            this.textBox10.TabIndex = 16;
+            // 
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(99, 17);
@@ -478,63 +544,30 @@
             this.label10.TabIndex = 11;
             this.label10.Text = "正文：";
             // 
-            // textBox10
+            // label15
             // 
-            this.textBox10.Location = new System.Drawing.Point(99, 148);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(106, 21);
-            this.textBox10.TabIndex = 16;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("黑体", 11F);
+            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(23, 96);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(103, 15);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "未开始......";
             // 
-            // textBox6
+            // columnHeader6
             // 
-            this.textBox6.Location = new System.Drawing.Point(141, 199);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(106, 21);
-            this.textBox6.TabIndex = 16;
+            this.columnHeader6.Text = "网址";
             // 
-            // label13
+            // checkBox1
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("黑体", 11F);
-            this.label13.Location = new System.Drawing.Point(19, 70);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 15);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "数据库：";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("黑体", 11F);
-            this.label6.Location = new System.Drawing.Point(23, 63);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 15);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "时间：";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(85, 63);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(107, 21);
-            this.dateTimePicker1.TabIndex = 21;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(227, 63);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(107, 21);
-            this.dateTimePicker2.TabIndex = 22;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("黑体", 11F);
-            this.label14.Location = new System.Drawing.Point(198, 66);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(23, 15);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "至";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(493, 38);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(84, 16);
+            this.checkBox1.TabIndex = 25;
+            this.checkBox1.Text = "导入数据库";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // news
             // 
@@ -612,5 +645,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

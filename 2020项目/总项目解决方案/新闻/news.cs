@@ -68,15 +68,16 @@ namespace 新闻
         {
             try
             {
+                label15.Text = "已启动正在采集......";
                 string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
                 {
 
 
-                    for (int i = 1; i < 9999; i = i + 10)
+                    for (int i = 0; i < 9999; i = i + 10)
                     {
 
-                        string url = "https://www.baidu.com/s?rtt=1&bsst=1&cl=2&tn=news&rsv_dl=ns_pc&word=" + keyword + "&x_bfe_rqs=03E80&x_bfe_tjscore=0.002777&tngroupname=organic_news&pn=" + i;
+                        string url = "https://www.baidu.com/s?ie=utf-8&cl=2&medium=2&rtt=1&bsst=1&rsv_dl=news_b_pn&tn=news&wd="+keyword+"&tfflag=0&x_bfe_rqs=03E80&x_bfe_tjscore=0.002154&tngroupname=organic_news&pn=" + i;
                         string html = method.GetUrl(url, "utf-8");
 
                         MatchCollection ids = Regex.Matches(html, @"baijiahao\.baidu\.com([\s\S]*?)""");
@@ -99,21 +100,32 @@ namespace 新闻
                             Match a3 = Regex.Match(strhtml, @"uthor-name"">([\s\S]*?)<");
                             Match a4 = Regex.Match(strhtml, @"<div class=""article-content"">([\s\S]*?)</div>");
 
-
-                           // insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
-
-                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                            listViewItem.SubItems.Add(a1.Groups[1].Value);
-                            listViewItem.SubItems.Add(a2.Groups[1].Value);
-                            listViewItem.SubItems.Add(a3.Groups[1].Value);
-                            listViewItem.SubItems.Add(a4.Groups[1].Value);
-
-                            while (this.zanting == false)
+                            DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
+                            if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
                             {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                if (checkBox1.Checked == true)
+                                {
+                                    insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
+                                }
+
+
+                                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                listViewItem.SubItems.Add(a1.Groups[1].Value);
+                                listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                listViewItem.SubItems.Add(a4.Groups[1].Value);
+                               
+                                listViewItem.SubItems.Add(URL);
+
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+
+                                Thread.Sleep(100);
                             }
 
-                            Thread.Sleep(100);
+                         
 
                         }
                     }
@@ -230,7 +242,7 @@ namespace 新闻
             if (value == true)
             {
                
-                    Thread thread = new Thread(new ThreadStart(run1));
+                    Thread thread = new Thread(new ThreadStart(run));
                     thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
               
@@ -257,6 +269,11 @@ namespace 新闻
         private void Button6_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.listView1.SelectedItems[0].SubItems[5].Text);
         }
     }
 }
