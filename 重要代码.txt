@@ -148,3 +148,9 @@ ctrl+ALT+++空格
             return startTime.Add(toNow);
 
         }
+
+
+十七  正则替换TextBox里的内容
+postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
+
+

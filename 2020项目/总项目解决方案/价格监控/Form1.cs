@@ -62,47 +62,72 @@ namespace 价格监控
                     }
 
                     string SNurl = "https://pas.suning.com/nspcsale_0_"+snid+"_"+snid+"_"+ aid.Groups[1].Value + "_100_527_5270101_20268_1000185_9185_11470_Z001___R0401003_76.0_0___000021978___.html?callback=pcData&_=1568892695337";
-                   
+
+
+
+
+                    Match tmid = Regex.Match(c, @"&id=([\s\S]*?)&skuId=([\s\S]*?)&");
+
+
+                    string TMurl = "https://detail.m.tmall.com/item.htm?id="+tmid.Groups[1].Value+"&skuId="+tmid.Groups[2].Value;
                     string JDhtml = method.GetUrl(JDurl, "utf-8");
                     string SNhtml = method.GetUrl(SNurl, "utf-8");
-                    string TMhtml = method.GetUrl(c, "utf-8");
+                    string TMhtml = method.GetUrl(TMurl, "utf-8");
 
 
                     Match jdprice = Regex.Match(JDhtml, @"""p"":""([\s\S]*?)""");
                     Match snprice = Regex.Match(SNhtml, @"""promotionPrice"":""([\s\S]*?)""");
-                    Match tmprice = Regex.Match(TMhtml, @"""price"":""([\s\S]*?)""");
+                    Match tmprice = Regex.Match(TMhtml, @"transmitPrice"":{""priceText"":""([\s\S]*?)""");
 
 
                     //MessageBox.Show(jdprice.Groups[1].Value);
                     //MessageBox.Show(snprice.Groups[1].Value);
                     //MessageBox.Show(tmprice.Groups[1].Value);
 
-                    MessageBox.Show(jdprice.Groups[1].Value);
-                    MessageBox.Show(snprice.Groups[1].Value);
-                    MessageBox.Show(tmprice.Groups[1].Value);
+
 
 
 
                     double min = 0;
-
-
-                    if (Convert.ToDouble(jdprice.Groups[1].Value) < Convert.ToDouble(snprice.Groups[1].Value))
+                    if (snprice.Groups[1].Value != "")
                     {
-                        min = Convert.ToDouble(jdprice.Groups[1].Value);
-                        if (min > Convert.ToDouble(tmprice.Groups[1].Value))
+                        if (Convert.ToDouble(jdprice.Groups[1].Value) < Convert.ToDouble(snprice.Groups[1].Value))
                         {
-                            min = Convert.ToDouble(tmprice.Groups[1].Value);
+                            min = Convert.ToDouble(jdprice.Groups[1].Value);
+                            if (min > Convert.ToDouble(tmprice.Groups[1].Value))
+                            {
+                                min = Convert.ToDouble(tmprice.Groups[1].Value);
+                            }
+                        }
+
+                        else
+                        {
+                            min = Convert.ToDouble(snprice.Groups[1].Value);
+                            if (min > Convert.ToDouble(tmprice.Groups[1].Value))
+                            {
+                                min = Convert.ToDouble(tmprice.Groups[1].Value);
+                            }
                         }
                     }
 
                     else
                     {
-                        min = Convert.ToDouble(snprice.Groups[1].Value);
-                        if (min > Convert.ToDouble(tmprice.Groups[1].Value))
+                        if (Convert.ToDouble(jdprice.Groups[1].Value) < Convert.ToDouble(tmprice.Groups[1].Value))
+                        {
+                            min = Convert.ToDouble(jdprice.Groups[1].Value);
+
+                        }
+                        else
                         {
                             min = Convert.ToDouble(tmprice.Groups[1].Value);
                         }
+
+
+
                     }
+
+
+                  
 
                     double cha = min - Convert.ToDouble(f);
                     double lv = cha / Convert.ToDouble(f);

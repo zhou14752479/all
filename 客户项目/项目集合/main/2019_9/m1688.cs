@@ -64,8 +64,8 @@ namespace main._2019_9
 
                 for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
-                    string title = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                    string  taobao = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    string title = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    string  taobao = dataGridView1.Rows[i].Cells[0].Value.ToString();
 
 
                     string url = "https://m.1688.com/offer_search/-6D7033.html?keywords="+ System.Web.HttpUtility.UrlEncode(title); ;
@@ -73,56 +73,28 @@ namespace main._2019_9
                     string html = method.GetUrl(url,"utf-8");
 
 
-                    MatchCollection aids = Regex.Matches(html, @"data-offer-id=""([\s\S]*?)""");
+                    //MatchCollection aids = Regex.Matches(html, @"data-offer-id=""([\s\S]*?)""");
+                    MatchCollection aids = Regex.Matches(html, @"<span><font color=red>([\s\S]*?)</font>");
 
-                    if (aids.Count < 6)
+                    if (aids.Count < Convert.ToInt32(textBox2.Text))
                     {
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
 
                         listViewItem.SubItems.Add(title);
                         listViewItem.SubItems.Add(taobao);
+                        listViewItem.SubItems.Add(aids.Count.ToString());
+                        listViewItem.SubItems.Add("符合条件");
                     }
                     else
                     {
-                        int all = 0;
-                        MatchCollection alts = Regex.Matches(html, @"data-offer-id=""([\s\S]*?)alt=""([\s\S]*?)""");
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
 
-                        int yuan = 0;
-                        foreach (char c in title)
-                        {
-                            yuan++;
-                        }
-
-                            for (int j = 0; j < alts.Count; j++)
-                        {
-                           
-                            int geshu = 0;
-                            foreach (char c in title)
-                            {
-                                if (alts[j].Groups[2].Value.IndexOf(c) > -1)
-                                    geshu++;
-
-                            }
-
-
-                            if ((yuan - geshu) < 3)
-                            {
-                                all++;
-                            }
-
-
-                        }
-
-                        if (all < 6)
-                        {
-                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-
-                            listViewItem.SubItems.Add(title);
-                            listViewItem.SubItems.Add(taobao);
-                        }
-                       
-
+                        listViewItem.SubItems.Add(title);
+                        listViewItem.SubItems.Add(taobao);
+                        listViewItem.SubItems.Add(aids.Count.ToString());
+                        listViewItem.SubItems.Add("不符合");
                     }
+            
 
                    
    
@@ -161,9 +133,39 @@ namespace main._2019_9
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            button1.Enabled = false;
+
+            #region 通用验证
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == "15.15.15.15")
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+
+            }
+            else
+            {
+                MessageBox.Show("IP不符");
+
+            }
+            #endregion
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -174,11 +176,22 @@ namespace main._2019_9
         private void Button4_Click(object sender, EventArgs e)
         {
             zanting = true;
+            button1.Enabled = true;
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.listView1.SelectedItems[0].SubItems[2].Text);
+        }
+
+        private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

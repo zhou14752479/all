@@ -68,13 +68,13 @@ namespace helper
         /// <returns></returns>
         public static string PostUrl(string url, string postData, string COOKIE, string charset)
         {
-
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Post";
             //request.ContentType = "application/x-www-form-urlencoded";
             request.ContentType = "application/json";
             request.ContentLength = postData.Length;
-            request.AllowAutoRedirect = true;
+            //request.AllowAutoRedirect = true;
             request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523) NetType/3G Language/zh_CN";
             request.Headers.Add("Cookie", COOKIE);
             request.Referer = "https://servicewechat.com/wxb37374b344073551/19/page-frame.html";
@@ -82,19 +82,15 @@ namespace helper
             sw.Write(postData);
             sw.Flush();
 
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
-            WebResponse response = request.GetResponse();
-            Stream s = response.GetResponseStream();
-            StreamReader sr = new StreamReader(s, Encoding.GetEncoding(charset));
-            string html = sr.ReadToEnd();
+            StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
-            sw.Dispose();
-            sw.Close();
-            sr.Dispose();
-            sr.Close();
-            s.Dispose();
-            s.Close();
+            string html = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
             return html;
+            
         }
 
         #endregion
