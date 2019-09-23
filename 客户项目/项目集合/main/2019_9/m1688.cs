@@ -22,10 +22,13 @@ namespace main._2019_9
 
         OpenFileDialog Ofile = new OpenFileDialog();
 
-
+      
         DataSet ds = new DataSet();
         private void button5_Click(object sender, EventArgs e)
         {
+          
+           
+
             this.ds.Tables.Clear();
             this.Ofile.FileName = "";
             this.dataGridView1.DataSource = "";
@@ -49,6 +52,17 @@ namespace main._2019_9
                 oleDbDataAdapter.Fill(this.ds, "temp");
                 oleDbConnection.Close();
                 this.dataGridView1.DataSource = this.ds.Tables[0];
+
+
+                //DataColumn column = new DataColumn();
+                //column.ColumnName = "序号";
+                //column.AutoIncrement = true;
+                //column.AutoIncrementSeed = 1;
+                //column.AutoIncrementStep = 1;
+                //ds.Tables[0].Columns.Add(column);
+                //dataGridView1.Columns["序号"].DisplayIndex = 0;//调整列顺序
+
+
 
                 textBox1.Text = this.Ofile.FileName;
             }
@@ -95,11 +109,6 @@ namespace main._2019_9
                         listViewItem.SubItems.Add("不符合");
                     }
             
-
-                   
-   
-
-
                     while (this.zanting == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -109,10 +118,9 @@ namespace main._2019_9
 
                 }
 
+                MessageBox.Show("采集完成");
+
             }
-
-
-
 
             catch (Exception ex)
             {
@@ -192,6 +200,23 @@ namespace main._2019_9
         private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void M1688_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            { //点取消的代码 
+            }
+        }
+
+        private void 复制标题ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[1].Text);
         }
     }
 }

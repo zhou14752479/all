@@ -98,10 +98,10 @@ ctrl+ALT+++空格
  Environment.Exit(0);
 
 十二、弹窗口确定 取消
- DialogResult dr = MessageBox.Show("确定要清空吗？", "清空", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+ DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
-                listView1.Items.Clear(); //点确定的代码
+               Environment.Exit(0);
             }
             else
             { //点取消的代码 

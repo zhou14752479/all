@@ -275,5 +275,10 @@ namespace 新闻
         {
             System.Diagnostics.Process.Start(this.listView1.SelectedItems[0].SubItems[5].Text);
         }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
     }
 }

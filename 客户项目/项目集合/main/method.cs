@@ -423,18 +423,22 @@ namespace main
                 {
                     dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
                 }
-                //每行内容
-                for (i = 0; i < lv.Items.Count; i++)
-                {
+            //每行内容
+            for (i = 0; i < lv.Items.Count; i++)
+            {
+
+                //if (lv.Items[i].SubItems[4].Text == "符合条件")
+                //{
                     dr = dt.NewRow();
                     for (j = 0; j < lv.Columns.Count; j++)
                     {
                         dr[j] = lv.Items[i].SubItems[j].Text.Trim();
                     }
                     dt.Rows.Add(dr);
-                }
+                //}
+            }
 
-                return dt;
+            return dt;
             }
             #endregion
 
