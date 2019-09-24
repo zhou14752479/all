@@ -80,54 +80,84 @@ namespace 价格监控
                     Match tmprice = Regex.Match(TMhtml, @"transmitPrice"":{""priceText"":""([\s\S]*?)""");
 
 
-                    //MessageBox.Show(jdprice.Groups[1].Value);
-                    //MessageBox.Show(snprice.Groups[1].Value);
-                    //MessageBox.Show(tmprice.Groups[1].Value);
+                  
 
 
 
 
 
                     double min = 0;
-                    if (snprice.Groups[1].Value != "")
-                    {
-                        if (Convert.ToDouble(jdprice.Groups[1].Value) < Convert.ToDouble(snprice.Groups[1].Value))
-                        {
-                            min = Convert.ToDouble(jdprice.Groups[1].Value);
-                            if (min > Convert.ToDouble(tmprice.Groups[1].Value))
-                            {
-                                min = Convert.ToDouble(tmprice.Groups[1].Value);
-                            }
-                        }
-
-                        else
-                        {
-                            min = Convert.ToDouble(snprice.Groups[1].Value);
-                            if (min > Convert.ToDouble(tmprice.Groups[1].Value))
-                            {
-                                min = Convert.ToDouble(tmprice.Groups[1].Value);
-                            }
-                        }
-                    }
-
-                    else
+                    if (snprice.Groups[1].Value == "" && jdprice.Groups[1].Value != "" && tmprice.Groups[1].Value != "")
                     {
                         if (Convert.ToDouble(jdprice.Groups[1].Value) < Convert.ToDouble(tmprice.Groups[1].Value))
                         {
                             min = Convert.ToDouble(jdprice.Groups[1].Value);
 
                         }
+
                         else
                         {
                             min = Convert.ToDouble(tmprice.Groups[1].Value);
+
+                        }
+                    }
+
+                    else if (jdprice.Groups[1].Value == "" && snprice.Groups[1].Value != "" && tmprice.Groups[1].Value != "")
+                    {
+                        if (Convert.ToDouble(snprice.Groups[1].Value) < Convert.ToDouble(tmprice.Groups[1].Value))
+                        {
+                            min = Convert.ToDouble(snprice.Groups[1].Value);
+
                         }
 
+                        else
+                        {
+                            min = Convert.ToDouble(tmprice.Groups[1].Value);
 
+                        }
 
                     }
 
+                    else if (tmprice.Groups[1].Value == "" && snprice.Groups[1].Value != "" && jdprice.Groups[1].Value != "")
+                    {
+                        if (Convert.ToDouble(snprice.Groups[1].Value) < Convert.ToDouble(jdprice.Groups[1].Value))
+                        {
+                            min = Convert.ToDouble(snprice.Groups[1].Value);
 
-                  
+                        }
+
+                        else
+                        {
+                            min = Convert.ToDouble(jdprice.Groups[1].Value);
+
+                        }
+
+                    }
+
+                    else
+                    {
+                        if (Convert.ToDouble(snprice.Groups[1].Value) < Convert.ToDouble(jdprice.Groups[1].Value))
+                        {
+                            min = Convert.ToDouble(snprice.Groups[1].Value);
+                            if (min > Convert.ToDouble(tmprice.Groups[1].Value))
+                            {
+                                min = Convert.ToDouble(tmprice.Groups[1].Value);
+                            }
+                            
+                        }
+
+                        else
+                        {
+                            min = Convert.ToDouble(jdprice.Groups[1].Value);
+                            if (min > Convert.ToDouble(tmprice.Groups[1].Value))
+                            {
+                                min = Convert.ToDouble(tmprice.Groups[1].Value);
+                            }
+                        }
+                    }
+
+
+
 
                     double cha = min - Convert.ToDouble(f);
                     double lv = cha / Convert.ToDouble(f);

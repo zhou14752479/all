@@ -96,7 +96,7 @@ namespace 新闻
 
 
                             Match a1 = Regex.Match(strhtml, @"<h2>([\s\S]*?)</h2>");
-                            Match a2 = Regex.Match(strhtml, @"time"":""([\s\S]*?)""");
+                            Match a2 = Regex.Match(strhtml, @"dateUpdate"" content=""([\s\S]*?)""");
                             Match a3 = Regex.Match(strhtml, @"uthor-name"">([\s\S]*?)<");
                             Match a4 = Regex.Match(strhtml, @"<div class=""article-content"">([\s\S]*?)</div>");
 
