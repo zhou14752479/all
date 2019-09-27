@@ -100,9 +100,9 @@ namespace 新闻
                             Match a3 = Regex.Match(strhtml, @"uthor-name"">([\s\S]*?)<");
                             Match a4 = Regex.Match(strhtml, @"<div class=""article-content"">([\s\S]*?)</div>");
 
-                            DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
-                            if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
-                            {
+                            //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
+                            //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
+                            //{
                                 if (checkBox1.Checked == true)
                                 {
                                     insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
@@ -123,7 +123,7 @@ namespace 新闻
                                 }
 
                                 Thread.Sleep(100);
-                            }
+                        //    }
 
                          
 

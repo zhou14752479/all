@@ -44,8 +44,17 @@ namespace 商标查询
               postdata=  Regex.Replace(postdata, @"\d{6,}",text[a].Trim());
                     
                     string html =method.PostUrl(url,postdata,"","utf-8");
-                    
-                        Match a1 = Regex.Match(html, @"""MarkName"":""([\s\S]*?)""");
+                    string aurl = "https://www.qccip.com/trademark/search/index.html?searchType=MARKNAME&keyword="+text[a];
+                    string acookie = "Hm_lvt_bba8c1510f76443f6de83bcb863f8e4a=1569483410; NTKF_T2D_CLIENTID=guestA9DE2DBC-E274-ED6C-D5BA-6C804E772568; nTalk_CACHE_DATA={uid:kf_10532_ISME9754_guestA9DE2DBC-E274-ED,tid:1569483411062766}; tokenOverTime=1570088295476; qcc_token=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJhcGkubGFuZ2RvbmcucWNjLmNuIiwiY2xpZW50IjpudWxsLCJ1c2VySWQiOiIzNzMxIiwiaWF0IjoxNTY5NDgzNDk1fQ.t-EwmOIh7WoQCfSA5XS7654Zf8HIA-ObfoiKxJLUoYBLs2KJu50peTBOt6R9c9g0A0wQL3Lc4cNuJ3AeBb8oBw; phoneNo=17606117606; userName=17606117606; Hm_lpvt_bba8c1510f76443f6de83bcb863f8e4a=1569484374";
+                    string ahtml = method.GetUrlWithCookie(aurl, acookie, "utf-8");
+                    Match aid = Regex.Match(ahtml, @"""encryptid"":""([\s\S]*?)""");
+                    string burl = "https://www.qccip.com/trademark/detail/"+aid.Groups[1].Value+".html";
+                    string bhtml = method.GetUrlWithCookie(burl, acookie, "utf-8");
+                    Match adate = Regex.Match(bhtml, @"""flowDate"":""([\s\S]*?)""");
+                    Match aname = Regex.Match(bhtml, @"""flowItem"":""([\s\S]*?)""");
+
+
+                    Match a1 = Regex.Match(html, @"""MarkName"":""([\s\S]*?)""");
                         Match a2 = Regex.Match(html, @"UnionTypeCode"":([\s\S]*?),");
                         Match a3 = Regex.Match(html, @"""StateDate2017"":""([\s\S]*?)""");
                         Match a4 = Regex.Match(html, @"""AppPerson"":""([\s\S]*?)""");
@@ -63,7 +72,7 @@ namespace 商标查询
                         lv1.SubItems.Add(text[a]);
                         lv1.SubItems.Add(a1.Groups[1].Value);
                         lv1.SubItems.Add(a2.Groups[1].Value);
-                        lv1.SubItems.Add(a3.Groups[1].Value);
+                        lv1.SubItems.Add(aname.Groups[1].Value+adate.Groups[1].Value);//收发文日期
                         lv1.SubItems.Add(a4.Groups[1].Value);
                         lv1.SubItems.Add("中国");
                         lv1.SubItems.Add(a51.Groups[1].Value);
@@ -99,60 +108,6 @@ namespace 商标查询
         }
 
 
-        public void run1()
-        {
-            try
-
-            {
-                
-                    string url = "https://api.ipr.kuaifawu.com/xcx/tmsearch/index";
-
-
-
-                    string postdata = textBox2.Text;
-
-                    postdata = Regex.Replace(postdata, @"\d{6,}", text[a].Trim());
-
-                    string html = method.PostUrl(url, postdata, "", "utf-8");
-                textBox3.Text = html;
-                    Match a1 = Regex.Match(html, @"""MarkName"":""([\s\S]*?)""");
-                    Match a2 = Regex.Match(html, @"UnionTypeCode"":([\s\S]*?),");
-                    Match a3 = Regex.Match(html, @"""StateDate2017"":""([\s\S]*?)""");
-                    Match a4 = Regex.Match(html, @"""AppPerson"":""([\s\S]*?)""");
-                    Match a5 = Regex.Match(html, @"""Addr"":""([\s\S]*?)""");  // 地址
-
-
-                    Match a51 = Regex.Match(html, @"""Addr"":""([\s\S]*?)省");  // 省
-                    Match a52 = Regex.Match(html, @"省([\s\S]*?)市");  // 市
-
-                    Match a6 = Regex.Match(html, @"""AppDate"":""([\s\S]*?)""");
-                    Match a7 = Regex.Match(html, @"""AgentName"":""([\s\S]*?)""");
-
-
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
-                    lv1.SubItems.Add("申请号");
-                    lv1.SubItems.Add(a1.Groups[1].Value);
-                    lv1.SubItems.Add(a2.Groups[1].Value);
-                    lv1.SubItems.Add(a3.Groups[1].Value);
-                    lv1.SubItems.Add(a4.Groups[1].Value);
-                    lv1.SubItems.Add("中国");
-                    lv1.SubItems.Add(a51.Groups[1].Value);
-                    lv1.SubItems.Add(a52.Groups[1].Value);
-                    lv1.SubItems.Add(a5.Groups[1].Value);
-                    lv1.SubItems.Add(a6.Groups[1].Value);
-                    lv1.SubItems.Add(a7.Groups[1].Value);
-
-
-                
-
-               
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
 
         private void Button1_Click(object sender, EventArgs e)
         {

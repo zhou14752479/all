@@ -24,7 +24,7 @@ namespace 淘宝商品sku
             InitializeComponent();
         }
 
-        public static string COOKIE= "t=db807e67e00d0d1d34419cc5686c31bc; ali_ab=121.234.247.249.1523710505053.9; thw=cn; UM_distinctid=16a5312a75437a-0215e3ab7f0a66-5701631-1fa400-16a5312a755cf6; _m_h5_tk=62b87b345583a58f8366530424905db1_1564200453485; _m_h5_tk_enc=c33e74e65e58f6c35aca17b2c80f04dc; hng=CN%7Czh-CN%7CCNY%7C156; cna=/h4DE4EwWXQCATFGW6Fbj0Jl; uc3=nk2=GcOvCmiKUSBXqZNU&lg2=URm48syIIVrSKA%3D%3D&vt3=F8dBy3za1eXFL98xsVg%3D&id2=UoH62EAv27BqSg%3D%3D; lgc=zkg852266010; uc4=nk4=0%40GwrkntVPltPB9cR46GnfFEki3ZzDLyo%3D&id4=0%40UOnlZ%2FcoxCrIUsehKG1BAZBUjAb5; tracknick=zkg852266010; _cc_=WqG3DMC9EA%3D%3D; tg=0; mt=ci=43_1; enc=1CYl3mYliNWuy%2BDPLhsGnkuO2MysZCOo47GQOZTf%2Bw%2FKvqZQOQrFvw%2FF%2F95bBCZDRWDz0Ush3IC5mw6Pix0XKw%3D%3D; x5sec=7b2273686f7073797374656d3b32223a22316533646536306363323638373162646535623638343238366464613336393743492f6937756b464550726c704a6e55696554344a526f4d4d5441314d6a4d304e7a55304f44737a227d; pnm_cku822=098%23E1hvXvvUvbpvUvCkvvvvvjiPRFFhtj3URLdW6j1VPmPwAjYPPszyAjn8RszZ1jnCvphvC9v9vvCvp8yCvv9vvUv0wxufJOyCvvOUvvVva68tvpvIvvvvvhCvvvvvvUnvphvh5Qvv96CvpC29vvm2phCvhhvvvUnvphvppvyCvhQhew6vC0Er6j7gRbIs7TmxfwpOdeDHD7zpaBwgnZ43IExrVTtiBXxr1WmK5eECkbmxfBuKf3qxs4V9%2Bul1pc7y%2BE7rejvrYExr68g72QhvCvvvMMGtvpvhvvvvv8wCvvpvvUmm; l=cBSQUU-qq_AdS-FhBOCZourza7797IRAguPzaNbMi_5aU6L6xv7OkVfNxFp6cjWdtEYB4k6UXwe9-etkiIhb5lnOEKyF.; isg=BCcnC5XLNgX0krKADCFt6mq9tlujn_uORXM4mfmUV7bd6EeqAX5u3-nuCqhTANMG";
+        public static string COOKIE= "t=792ea994957bef8e4a71539f91876594; thw=cn; UM_distinctid=16bde9c6ccb7f7-0183a6c7f99aa8-f353163-1fa400-16bde9c6cccb79; enc=BJiGDZ0SETmb%2BZ1Af%2FLOxZ7Ow%2Fz8B4xQY%2F3CPHkFybDesLHC8XJXgbKIOBMMGVwHTtQxN1Uu1ZSlm%2FWpfRRSTw%3D%3D; ali_ab=49.94.92.171.1563332665663.4; cna=8QJMFUu4DhACATFZv2JYDtwd; hng=CN%7Czh-CN%7CCNY%7C156; uc3=nk2=GcOvCmiKUSBXqZNU&lg2=VT5L2FSpMGV7TQ%3D%3D&vt3=F8dByuK6VGM%2Fj%2BDcu48%3D&id2=UoH62EAv27BqSg%3D%3D; lgc=zkg852266010; uc4=id4=0%40UOnlZ%2FcoxCrIUsehKG1MJKGz9FxR&nk4=0%40GwrkntVPltPB9cR46GnfFERBj601fAU%3D; tracknick=zkg852266010; _cc_=VT5L2FSpdA%3D%3D; tg=0; _m_h5_tk=de749cd01b256ca028e16cae6b69e992_1569225008906; _m_h5_tk_enc=0ed81481b2c8037778aa64c58ca4ec9f; mt=ci=43_1; x=e%3D1%26p%3D*%26s%3D0%26c%3D0%26f%3D0%26g%3D0%26t%3D0; v=0; cookie2=178c99ac00fb0b45511462530bff0247; _tb_token_=5b73e85b3157e; uc1=cookie14=UoTaEcJ15acvYQ%3D%3D; l=cBL47CXIqHssfe2WKOCMquIRGZ7OSIRAguPRwVXXi_5Q56L6ER7Ok1zaFFp6VjWdTgYB40tUd_29-etkmrHG2X2dh-0l.; isg=BGdnSBdP9vR1KHKf4pSmDSPm9pvxRDOgzQuFNjnUg_YdKIfqQbzLHqUuSmgTwBNG";
         bool zanting = true;
 
         #region 获取店铺内宝贝
@@ -35,7 +35,7 @@ namespace 淘宝商品sku
             {
                 for (int i = 1; i < 999; i++)
                 {
-                    
+
 
                     Match shopid = Regex.Match(textBox1.Text, @"https:\/\/([\s\S]*?)\.");
                     string Url = "https://" + shopid.Groups[1].Value + ".taobao.com/category.htm";
@@ -44,7 +44,7 @@ namespace 淘宝商品sku
                     Match title = Regex.Match(html, @"<span class=""shop-name-title"" title=""([\s\S]*?)""");
                     Match midid = Regex.Match(html, @"mid=w-([\s\S]*?)-");
 
-                    string curl = "https://" + shopid.Groups[1].Value + ".taobao.com/i/asynSearch.htm?_ksTS=1561163488418_160&callback=jsonp161&mid=w-" + midid.Groups[1].Value + "-0&wid=" + midid.Groups[1].Value + "&path=/search.htm&search=y&orderType=newOn_desc&viewType=grid&keyword=null&lowPrice=null&highPrice=null&pageNo="+i;
+                    string curl = "https://" + shopid.Groups[1].Value + ".taobao.com/i/asynSearch.htm?_ksTS=1561163488418_160&callback=jsonp161&mid=w-" + midid.Groups[1].Value + "-0&wid=" + midid.Groups[1].Value + "&path=/search.htm&search=y&orderType=newOn_desc&viewType=grid&keyword=null&lowPrice=null&highPrice=null&pageNo=" + i;
 
 
                     MatchCollection names = Regex.Matches(method.gethtml(curl,COOKIE), @"<img alt=\\""([\s\S]*?)\\");
