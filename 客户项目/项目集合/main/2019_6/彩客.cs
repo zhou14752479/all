@@ -74,8 +74,14 @@ namespace main._2019_6
                 Match date = Regex.Match(strhtml, @"MatchTime=""([\s\S]*?)""");
 
                 string[] time = date.Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);//获取时间格式
-                int h = Convert.ToInt32(time[3]) + 8;
-                string TIME = time[0] + "年" + time[1].Replace("-1","") + "月" + time[2] + "日" + h + ":" + time[4];
+                string TIME = "无";
+                if (time.Length >4)
+                {
+                    int h = Convert.ToInt32(time[3]) + 8;
+                   TIME = time[0] + "年" + time[1].Replace("-1", "") + "月" + time[2] + "日" + h + ":" + time[4];
+                }
+                
+              
 
 
 
@@ -210,7 +216,7 @@ namespace main._2019_6
            
 
            
-            label1.Text = "验证结束，请点击导出，文本名为【导出结果】";
+            label1.Text = "抓取结束，请点击导出，文本名为【导出结果】";
         }
 
         #endregion
