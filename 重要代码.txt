@@ -154,3 +154,17 @@ ctrl+ALT+++空格
 postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
 
 
+十八 打开选择文件夹
+
+ System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.Description = "请选择所在文件夹";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                {
+                    MessageBox.Show(this, "文件夹路径不能为空", "提示");
+                    return;
+                }
+
+                textBox1.Text = dialog.SelectedPath;
+            }

@@ -51,5 +51,15 @@ namespace main._2019_7
             MatchCollection vedios = Regex.Matches(html, @"imgVedioUrl"":""([\s\S]*?)""");  //视频
 
         }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -90,7 +90,7 @@ namespace main._2019_9
                     //MatchCollection aids = Regex.Matches(html, @"data-offer-id=""([\s\S]*?)""");
                     MatchCollection aids = Regex.Matches(html, @"<span><font color=red>([\s\S]*?)</font>");
 
-                    if (aids.Count < Convert.ToInt32(textBox2.Text))
+                    if (aids.Count <= Convert.ToInt32(textBox2.Text))
                     {
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
 
@@ -114,7 +114,7 @@ namespace main._2019_9
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(Convert.ToInt32(textBox3.Text));
 
                 }
 

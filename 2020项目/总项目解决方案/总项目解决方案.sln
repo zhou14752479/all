@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTP", "HTTP\HTTP.csproj", "{DCC730A5-752F-48A3-BCA6-9D56F7A0B222}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "新闻", "新闻\新闻.csproj", "{B6903F93-D708-4224-BC61-64D7F8A617F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "价格监控", "价格监控\价格监控.csproj", "{DF786588-67B5-4734-9F95-8C0C0E933971}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标查询", "商标查询\商标查询.csproj", "{7E41244F-251C-4C16-9635-FD6366F6608A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百佳网上超市", "百佳网上超市\百佳网上超市.csproj", "{EAA077BC-7AAB-4C27-9643-44FB8DEFCB1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DCC730A5-752F-48A3-BCA6-9D56F7A0B222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DCC730A5-752F-48A3-BCA6-9D56F7A0B222}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DCC730A5-752F-48A3-BCA6-9D56F7A0B222}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DCC730A5-752F-48A3-BCA6-9D56F7A0B222}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6903F93-D708-4224-BC61-64D7F8A617F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6903F93-D708-4224-BC61-64D7F8A617F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6903F93-D708-4224-BC61-64D7F8A617F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{7E41244F-251C-4C16-9635-FD6366F6608A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAA077BC-7AAB-4C27-9643-44FB8DEFCB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAA077BC-7AAB-4C27-9643-44FB8DEFCB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAA077BC-7AAB-4C27-9643-44FB8DEFCB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAA077BC-7AAB-4C27-9643-44FB8DEFCB1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
