@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_9
+namespace main._2019_8
 {
     static class Program
     {
@@ -19,7 +19,7 @@ namespace main._2019_9
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            
-            Application.Run(new m1688());
+            Application.Run(new fahuo());
         }
     }
 

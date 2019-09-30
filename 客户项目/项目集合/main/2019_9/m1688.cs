@@ -82,21 +82,22 @@ namespace main._2019_9
                     string  taobao = dataGridView1.Rows[i].Cells[0].Value.ToString();
 
 
-                    string url = "https://m.1688.com/offer_search/-6D7033.html?keywords="+ System.Web.HttpUtility.UrlEncode(title); ;
+                    string url = "https://m.1688.com/offer_search/-6D7033.html?sortType=booked&filtId=&keywords="+System.Web.HttpUtility.UrlEncode(title)+ "&descendOrder=true";
 
                     string html = method.GetUrl(url,"utf-8");
 
-
                     //MatchCollection aids = Regex.Matches(html, @"data-offer-id=""([\s\S]*?)""");
-                    MatchCollection aids = Regex.Matches(html, @"<span><font color=red>([\s\S]*?)</font>");
-
-                    if (aids.Count <= Convert.ToInt32(textBox2.Text))
+                    //MatchCollection aids = Regex.Matches(html, @"<span><font color=red>([\s\S]*?)</font>");
+                    Match geshu = Regex.Match(html, @"<b id='counter-number'>([\s\S]*?)</b>");
+                    if (geshu.Groups[1].Value == "")
+                        continue;
+                    if (Convert.ToInt32(geshu.Groups[1].Value) <= Convert.ToInt32(textBox2.Text))
                     {
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
 
                         listViewItem.SubItems.Add(title);
                         listViewItem.SubItems.Add(taobao);
-                        listViewItem.SubItems.Add(aids.Count.ToString());
+                        listViewItem.SubItems.Add(geshu.Groups[1].Value);
                         listViewItem.SubItems.Add("符合条件");
                     }
                     else
@@ -105,7 +106,7 @@ namespace main._2019_9
 
                         listViewItem.SubItems.Add(title);
                         listViewItem.SubItems.Add(taobao);
-                        listViewItem.SubItems.Add(aids.Count.ToString());
+                        listViewItem.SubItems.Add(geshu.Groups[1].Value);
                         listViewItem.SubItems.Add("不符合");
                     }
             

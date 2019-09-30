@@ -25,6 +25,12 @@ namespace 百佳网上超市
         #region  主程序
         public void run()
         {
+            if (textBox3.Text == "")
+
+            {
+                MessageBox.Show("请输入分类网址");
+                return;
+            }
             try
             {
                 textBox2.Text += "已启动正在采集......" + "\r\n";
@@ -33,7 +39,7 @@ namespace 百佳网上超市
                 for (int i = 1; i < 100; i = i + 1)
                 {
 
-                    string url = "https://www.parknshop.com/zh-hk/beverages-wine-spirits/brewed-reconstituted-beverages/c/040200?q=:igcBestSeller&page=" + i + "&resultsForPage=35&text=&sort=&category2nd=1&category3rd=0&minSel=9.0&maxSel=178.0&minSlider=9.0&maxSlider=178.0&_=1569719729085";
+                    string url = textBox3.Text+"?q=:igcBestSeller&page=" + i + "&resultsForPage=35&text=&sort=&category2nd=1&category3rd=0&minSel=9.0&maxSel=178.0&minSlider=9.0&maxSlider=178.0&_=1569719729085";
                     string html = method.GetUrl(url, "utf-8");
                    
                     MatchCollection ids = Regex.Matches(html, @"<div class=""name"">([\s\S]*?)<a href=""([\s\S]*?)""");
@@ -75,6 +81,14 @@ namespace 百佳网上超市
                         listViewItem.SubItems.Add(Regex.Replace(name.Groups[1].Value, "<[^>]+>", ""));
                         listViewItem.SubItems.Add(description);
 
+                        //构造下载地址，下载图片
+
+                        
+                        Match shuzi = Regex.Match(ids[j].Groups[2].Value, @"\d{4,}");
+
+                        string downUrl = "https://www.parknshop.com"+ ids[j].Groups[2].Value + "/showGalleryImages?&codeVarSel="+shuzi.Groups[0].Value;
+                       
+                        getimage(Regex.Replace(mingzi.Groups[1].Value, "<[^>]+>", ""), downUrl);
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -109,12 +123,12 @@ namespace 百佳网上超市
 
         #region
 
-        public void getimage(string dic)
+        public void getimage(string dic,string url)
         {
-            string url = "https://www.parknshop.com/zh-hk/beer-12-can/p/BP_163144/showGalleryImages?&codeVarSel=163144";
+            //string url = "https://www.parknshop.com/zh-hk/beer-12-can/p/BP_163144/showGalleryImages?&codeVarSel=163144";
             string cookie = "starbuysDisplay=true; scs=1; _dy_csc_ses=t; _dy_c_exps=; optimizelyEndUserId=oeu1569717848351r0.8872103555652517; optimizelySegments=%7B%226360070715%22%3A%22none%22%2C%226340792419%22%3A%22direct%22%2C%226342032533%22%3A%22gc%22%2C%226374150451%22%3A%22false%22%7D; optimizelyBuckets=%7B%7D; promoDisplay=true; crazyBannerDisplay=true; crazyBannerDisplayIsWm=true; _ga=GA1.2.261122262.1569717854; _gid=GA1.2.1393964393.1569717854; gaUserId=503b3bd5-d6e5-47e5-8cd3-b17fd3a032bb; _fbp=fb.1.1569717866681.1804581336; JSESSIONID=5F4E6BA36019D41301F7B9406CB81A24.phkpfa23; QueueITAccepted-SDFrts345E-V3_pnsprdhk=EventId%3Dpnsprdhk%26QueueId%3Db4d3acfe-1843-47ff-8294-daddd7d4af02%26RedirectType%3Dsafetynet%26IssueTime%3D1569719660%26Hash%3D84474cf9d22a4e438d13c00bfea5340be468b3b7a4e1f6253b8c5ebe2845ba87; ins-gaSSId=b8050312-a85e-b3d7-6dde-0f601dadc374_1569719674; _hjid=890a1193-1d78-4de8-b031-f8701c55ae68; _hjIncludedInSample=1; current-currency=HKD; insdrSV=21; lang=zt; ins-product-id=163144; _dy_ses_load_seq=70882%3A1569724185390; _dy_soct=242023.362820.1569724185; optimizelyPendingLogEvents=%5B%5D";
             string html = method.PostUrl(url,"",cookie,"utf-8");
-            Match part = Regex.Match(html, @"圖片只供參考</p>([\s\S]*?)</div>");
+            Match part = Regex.Match(html, @"圖片只供參考</p>([\s\S]*?)btn-next");
 
             MatchCollection images = Regex.Matches(part.Groups[1].Value, @"data-zoom-image=""([\s\S]*?)""");
 
@@ -140,6 +154,12 @@ namespace 百佳网上超市
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("请选择图片保存文件夹");
+                return;
+            }
+
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();

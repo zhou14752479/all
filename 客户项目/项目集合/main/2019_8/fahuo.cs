@@ -22,6 +22,8 @@ namespace main._2019_8
         ArrayList lists = new ArrayList();
         public static string COOKIE1;
         public static string COOKIE2;
+
+        public static string yuming= "www.cmykjx.com";
         /// <summary>
         /// 录入到发货易
         /// </summary>
@@ -31,10 +33,10 @@ namespace main._2019_8
             COOKIE2 = textBox3.Text;
             try
             {
-                for (int a = 0; a < 5; a++)
+                for (int a = 1; a < 5; a++)
                 {
 
-                    string url = "http://www.cmykjx.com/admin/orders/defaults.html?orderId=&productText=&receiverName=&orderStatus=&page=" + a;
+                    string url = "http://"+yuming+"/admin/orders/defaults.html?orderId=&productText=&receiverName=&orderStatus=&page=" + a;
                     string html = method.GetUrlWithCookie(url, COOKIE1, "utf-8");
 
                     MatchCollection fahuos = Regex.Matches(html, @"layui-btn-mini"">([\s\S]*?)</a>");
@@ -137,7 +139,7 @@ namespace main._2019_8
 
                         if (kuaidi.Groups[1].Value != "")
                         {
-                            string durl = "http://www.cmykjx.com/admin/orders/save.html?kd=" + kuaidi.Groups[1].Value.Trim() + "&id=" + text[1].ToString();
+                            string durl = "http://" + yuming + "/admin/orders/save.html?kd=" + kuaidi.Groups[1].Value.Trim() + "&id=" + text[1].ToString();
                             string dhtml = method.GetUrlWithCookie(durl, COOKIE1, "utf-8"); //录入快递单号 发货
 
 
@@ -202,7 +204,7 @@ namespace main._2019_8
 
             foreach (Match ip in ips)
             {
-                if (ip.Groups[1].Value.Trim() == "9.9.9.9")
+                if (ip.Groups[1].Value.Trim() == "17.17.17.17")
                 {
                     value = true;
                     break;
@@ -249,7 +251,7 @@ namespace main._2019_8
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            webBrowser web = new webBrowser("http://www.cmykjx.com/admin/orders/defaults.html?orderId=&productText=&receiverName=&orderStatus=");
+            webBrowser web = new webBrowser("http://" + yuming + "/admin/orders/defaults.html?orderId=&productText=&receiverName=&orderStatus=");
             web.Show();
         }
 
