@@ -45,11 +45,13 @@ namespace 商标查询
                     
                     string html =method.PostUrl(url,postdata,"","utf-8");
                     string aurl = "https://www.qccip.com/trademark/search/index.html?searchType=MARKNAME&keyword="+text[a];
-                    string acookie = "Hm_lvt_bba8c1510f76443f6de83bcb863f8e4a=1569483410; NTKF_T2D_CLIENTID=guestA9DE2DBC-E274-ED6C-D5BA-6C804E772568; nTalk_CACHE_DATA={uid:kf_10532_ISME9754_guestA9DE2DBC-E274-ED,tid:1569483411062766}; tokenOverTime=1570088295476; qcc_token=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJhcGkubGFuZ2RvbmcucWNjLmNuIiwiY2xpZW50IjpudWxsLCJ1c2VySWQiOiIzNzMxIiwiaWF0IjoxNTY5NDgzNDk1fQ.t-EwmOIh7WoQCfSA5XS7654Zf8HIA-ObfoiKxJLUoYBLs2KJu50peTBOt6R9c9g0A0wQL3Lc4cNuJ3AeBb8oBw; phoneNo=17606117606; userName=17606117606; Hm_lpvt_bba8c1510f76443f6de83bcb863f8e4a=1569484374";
+                    string acookie = "nTalk_CACHE_DATA={uid:kf_10532_ISME9754_guest97FBC8B7-A346-EF,tid:1570245944816602}; NTKF_T2D_CLIENTID=guest97FBC8B7-A346-EF8C-6A4F-99F3A5F08E17; Hm_lvt_bba8c1510f76443f6de83bcb863f8e4a=1570245945; Hm_lpvt_bba8c1510f76443f6de83bcb863f8e4a=1570245947; tokenOverTime=1570850754083; qcc_token=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJhcGkubGFuZ2RvbmcucWNjLmNuIiwiY2xpZW50IjpudWxsLCJ1c2VySWQiOiIzNzMxIiwiaWF0IjoxNTcwMjQ1OTU0fQ.077OjA4SYYP1TESGc6gsEE-XlOSAfWuNDXcMVr3eI3nz8JLjCE-QYWiKYBgNj1xn0dy6P1G7A5VeB6IOw9UR9g; phoneNo=17606117606; userName=17606117606";
                     string ahtml = method.GetUrlWithCookie(aurl, acookie, "utf-8");
                     Match aid = Regex.Match(ahtml, @"""encryptid"":""([\s\S]*?)""");
                     string burl = "https://www.qccip.com/trademark/detail/"+aid.Groups[1].Value+".html";
                     string bhtml = method.GetUrlWithCookie(burl, acookie, "utf-8");
+
+
                     Match adate = Regex.Match(bhtml, @"""flowDate"":""([\s\S]*?)""");
                     Match aname = Regex.Match(bhtml, @"""flowItem"":""([\s\S]*?)""");
 
@@ -72,7 +74,7 @@ namespace 商标查询
                         lv1.SubItems.Add(text[a]);
                         lv1.SubItems.Add(a1.Groups[1].Value);
                         lv1.SubItems.Add(a2.Groups[1].Value);
-                        lv1.SubItems.Add(aname.Groups[1].Value+adate.Groups[1].Value);//收发文日期
+                       
                         lv1.SubItems.Add(a4.Groups[1].Value);
                         lv1.SubItems.Add("中国");
                         lv1.SubItems.Add(a51.Groups[1].Value);
@@ -80,9 +82,9 @@ namespace 商标查询
                         lv1.SubItems.Add(a5.Groups[1].Value);
                         lv1.SubItems.Add(a6.Groups[1].Value);
                         lv1.SubItems.Add(a7.Groups[1].Value);
-                        
+                    lv1.SubItems.Add(aname.Groups[1].Value + adate.Groups[1].Value);//收发文日期
 
-                        while (this.zanting == false)
+                    while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
@@ -183,5 +185,8 @@ namespace 商标查询
             { //点取消的代码 
             }
         }
+
+     
+
     }
 }

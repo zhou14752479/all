@@ -23,7 +23,7 @@ namespace main._2019_8
         public static string COOKIE1;
         public static string COOKIE2;
 
-        public static string yuming= "www.cmykjx.com";
+        public static string yuming= "www.hiyunyin.com";
         /// <summary>
         /// 录入到发货易
         /// </summary>
@@ -75,7 +75,7 @@ namespace main._2019_8
                         string districtCode = System.Web.HttpUtility.UrlEncode(a5.Groups[1].Value, Encoding.GetEncoding("utf-8"));
                         string street = System.Web.HttpUtility.UrlEncode(a6.Groups[1].Value, Encoding.GetEncoding("utf-8"));
 
-                        string data = "shopId=228152&orderJson=%7B%22consigneeName%22%3A%22" + name + "%22%2C%22mobile%22%3A%22" + mobile + "%22%2C%22telephone%22%3A%22%22%2C%22provinceCode%22%3A%22" + provinceCode + "%22%2C%22cityCode%22%3A%22" + cityCode + "%22%2C%22districtCode%22%3A%22" + districtCode + "%22%2C%22street%22%3A%22" + street + "%22%2C%22zipCode%22%3A%22%22%2C%22shippingCost%22%3A%220%22%2C%22weight%22%3A%220%22%2C%22buyerUsername%22%3A%22%22%2C%22originalId%22%3A%22" + dingdan + "%22%2C%22buyerRemarks%22%3A%22%22%2C%22sellerRemarks%22%3A%22%22%2C%22codAmounts%22%3A0%2C%22orderItems%22%3A%5B%5D%7D&frequentConsigneeId=";
+                        string data = "shopId=234605&orderJson=%7B%22consigneeName%22%3A%22" + name + "%22%2C%22mobile%22%3A%22" + mobile + "%22%2C%22telephone%22%3A%22%22%2C%22provinceCode%22%3A%22" + provinceCode + "%22%2C%22cityCode%22%3A%22" + cityCode + "%22%2C%22districtCode%22%3A%22" + districtCode + "%22%2C%22street%22%3A%22" + street + "%22%2C%22zipCode%22%3A%22%22%2C%22shippingCost%22%3A%220%22%2C%22weight%22%3A%220%22%2C%22buyerUsername%22%3A%22%22%2C%22originalId%22%3A%22" + dingdan + "%22%2C%22buyerRemarks%22%3A%22%22%2C%22sellerRemarks%22%3A%22%22%2C%22codAmounts%22%3A0%2C%22orderItems%22%3A%5B%5D%7D&frequentConsigneeId=";
 
                         string api2 = "http://a22.fahuoyi.com/manualOrder/saveRest?" + data;
                         string bhtml = method.GetUrlWithCookie(api2, COOKIE2, "utf-8");

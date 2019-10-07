@@ -167,7 +167,7 @@ namespace 百佳网上超市
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
         private void Button4_Click(object sender, EventArgs e)
@@ -185,5 +185,29 @@ namespace 百佳网上超市
                 textBox1.Text = dialog.SelectedPath;
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+                Environment.Exit(0);
+        
+          
+        }
+
     }
 }

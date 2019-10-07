@@ -174,7 +174,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(48, 23);
             this.textBox4.TabIndex = 5;
-            this.textBox4.Text = "1";
+            this.textBox4.Text = "5";
             // 
             // label1
             // 
@@ -207,6 +207,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(648, 23);
             this.textBox3.TabIndex = 2;
+            this.textBox3.Text = resources.GetString("textBox3.Text");
             // 
             // textBox2
             // 
@@ -216,6 +217,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(648, 23);
             this.textBox2.TabIndex = 1;
+            this.textBox2.Text = "PHPSESSID=sth1hbs4s558lgptem817tsqe7";
             // 
             // textBox1
             // 

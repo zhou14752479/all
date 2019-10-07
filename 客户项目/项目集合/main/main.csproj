@@ -113,6 +113,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="2019_10\淘宝联盟.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_10\淘宝联盟.Designer.cs">
+      <DependentUpon>淘宝联盟.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2019_10\登陆.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2019_10\登陆.Designer.cs">
+      <DependentUpon>登陆.cs</DependentUpon>
+    </Compile>
     <Compile Include="2019_4\crm58.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -525,6 +537,12 @@
     <Compile Include="webBrowser.Designer.cs">
       <DependentUpon>webBrowser.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="2019_10\淘宝联盟.resx">
+      <DependentUpon>淘宝联盟.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2019_10\登陆.resx">
+      <DependentUpon>登陆.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2019_4\crm58.resx">
       <DependentUpon>crm58.cs</DependentUpon>
     </EmbeddedResource>
