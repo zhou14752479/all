@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百佳网上超市", "百�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标生成", "商标生成\商标生成.csproj", "{A64AD82F-AFDB-472A-AD05-C520ABD47621}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "小红书", "小红书\小红书.csproj", "{906CC726-F207-47F9-892B-0DF2BDDE4399}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
