@@ -52,53 +52,54 @@ namespace 百佳网上超市
 
                         string URL = "https://www.parknshop.com" + ids[j].Groups[2].Value;
                         textBox2.Text += "正在采集......" + URL + "\r\n";
-
-                        string strhtml = method.GetUrl(URL, "utf-8");  //中文源码
-                        string enhtml = method.GetUrl(URL.Replace("zh-hk","en"), "utf-8");  //中文源码
-
-
-                        Match mingzi = Regex.Match(strhtml, @"<div class=""itemName"">([\s\S]*?)</div>");
-                        Match price = Regex.Match(strhtml, @"<div class=""price discount"">([\s\S]*?)</span>");
-                        Match miaoshu1 = Regex.Match(strhtml, @"itemprop=""description"">([\s\S]*?)</div>");
-
-                        Match name = Regex.Match(enhtml, @"<div class=""itemName"">([\s\S]*?)</div>");
-                        Match description1 = Regex.Match(enhtml, @"itemprop=""description"">([\s\S]*?)</div>");
-
-
-                        string miaoshu2 = Regex.Replace(miaoshu1.Groups[1].Value, @"<table>[\s\S]*</table>", "");
-                        string miaoshu = Regex.Replace(miaoshu2, "<[^>]+>", "").Replace("Ingredient:", "").Replace("-->",""); ;
-
-
-                        string description2 = Regex.Replace(description1.Groups[1].Value, @"<table>[\s\S]*</table>", "");
-                        string description = Regex.Replace(description2, "<[^>]+>", "").Replace("Ingredient:", "").Replace("-->", "");
-
-
-                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-
-                        listViewItem.SubItems.Add(Regex.Replace(mingzi.Groups[1].Value, "<[^>]+>", ""));
-                        listViewItem.SubItems.Add(Regex.Replace(price.Groups[1].Value, "<[^>]+>", ""));
-                        listViewItem.SubItems.Add(miaoshu);
-                        listViewItem.SubItems.Add(Regex.Replace(name.Groups[1].Value, "<[^>]+>", ""));
-                        listViewItem.SubItems.Add(description);
-
-                        //构造下载地址，下载图片
-
-                        
-                        Match shuzi = Regex.Match(ids[j].Groups[2].Value, @"\d{4,}");
-
-                        string downUrl = "https://www.parknshop.com"+ ids[j].Groups[2].Value + "/showGalleryImages?&codeVarSel="+shuzi.Groups[0].Value;
-                       
-                        getimage(Regex.Replace(mingzi.Groups[1].Value, "<[^>]+>", ""), downUrl);
-                        while (this.zanting == false)
+                        if (!URL.Contains("-:"))
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            string strhtml = method.GetUrl(URL, "utf-8");  //中文源码
+                            string enhtml = method.GetUrl(URL.Replace("zh-hk", "en"), "utf-8");  //中文源码
+
+
+                            Match mingzi = Regex.Match(strhtml, @"<div class=""itemName"">([\s\S]*?)</div>");
+                            Match price = Regex.Match(strhtml, @"<div class=""price discount"">([\s\S]*?)</span>");
+                            Match miaoshu1 = Regex.Match(strhtml, @"itemprop=""description"">([\s\S]*?)</div>");
+
+                            Match name = Regex.Match(enhtml, @"<div class=""itemName"">([\s\S]*?)</div>");
+                            Match description1 = Regex.Match(enhtml, @"itemprop=""description"">([\s\S]*?)</div>");
+
+
+                            string miaoshu2 = Regex.Replace(miaoshu1.Groups[1].Value, @"<table>[\s\S]*</table>", "");
+                            string miaoshu = Regex.Replace(miaoshu2, "<[^>]+>", "").Replace("Ingredient:", "").Replace("-->", ""); ;
+
+
+                            string description2 = Regex.Replace(description1.Groups[1].Value, @"<table>[\s\S]*</table>", "");
+                            string description = Regex.Replace(description2, "<[^>]+>", "").Replace("Ingredient:", "").Replace("-->", "");
+
+
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+
+                            listViewItem.SubItems.Add(Regex.Replace(mingzi.Groups[1].Value, "<[^>]+>", ""));
+                            listViewItem.SubItems.Add(Regex.Replace(price.Groups[1].Value, "<[^>]+>", ""));
+                            listViewItem.SubItems.Add(miaoshu);
+                            listViewItem.SubItems.Add(Regex.Replace(name.Groups[1].Value, "<[^>]+>", ""));
+                            listViewItem.SubItems.Add(description);
+
+                            //构造下载地址，下载图片
+
+
+                            Match shuzi = Regex.Match(ids[j].Groups[2].Value, @"\d{5,}");
+
+                            string downUrl = "https://www.parknshop.com" + ids[j].Groups[2].Value + "/showGalleryImages?&codeVarSel=" + shuzi.Groups[0].Value;
+
+                            getimage(Regex.Replace(mingzi.Groups[1].Value, "<[^>]+>", "").Replace("/", "").Replace("\\", ""), downUrl);
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+                            Thread.Sleep(100);
+
+
+
                         }
-
-                        Thread.Sleep(100);
-
-
-
-
 
                     }
 
@@ -121,7 +122,7 @@ namespace 百佳网上超市
         #endregion
 
 
-        #region
+        #region 图片下载
 
         public void getimage(string dic,string url)
         {

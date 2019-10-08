@@ -54,10 +54,31 @@ namespace main._2019_7
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.Description = "请选择所在文件夹";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                {
+                    MessageBox.Show(this, "文件夹路径不能为空", "提示");
+                    return;
+                }
 
+                textBox2.Text = dialog.SelectedPath;
+            }
         }
 
         private void Button4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            method.downloadFile(textBox1.Text,textBox2.Text,"1.jpg");
+        }
+
+        private void TextBox3_TextChanged(object sender, EventArgs e)
         {
 
         }

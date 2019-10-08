@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox3.Text" xml:space="preserve">
-    <value>http://http.tiqu.alicdns.com/getip3?num=1&amp;type=1&amp;pro=&amp;city=0&amp;yys=0&amp;port=11&amp;time=1&amp;ts=0&amp;ys=0&amp;cs=0&amp;lb=1&amp;sb=0&amp;pb=4&amp;mr=2&amp;regions=110000,130000,140000,150000,210000,310000,320000,330000,340000,350000,360000,370000,410000,430000,440000,500000,510000</value>
-  </data>
 </root>

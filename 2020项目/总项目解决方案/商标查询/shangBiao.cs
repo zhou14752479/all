@@ -44,16 +44,11 @@ namespace 商标查询
               postdata=  Regex.Replace(postdata, @"\d{6,}",text[a].Trim());
                     
                     string html =method.PostUrl(url,postdata,"","utf-8");
-                    string aurl = "https://www.qccip.com/trademark/search/index.html?searchType=MARKNAME&keyword="+text[a];
-                    string acookie = "nTalk_CACHE_DATA={uid:kf_10532_ISME9754_guest97FBC8B7-A346-EF,tid:1570245944816602}; NTKF_T2D_CLIENTID=guest97FBC8B7-A346-EF8C-6A4F-99F3A5F08E17; Hm_lvt_bba8c1510f76443f6de83bcb863f8e4a=1570245945; Hm_lpvt_bba8c1510f76443f6de83bcb863f8e4a=1570245947; tokenOverTime=1570850754083; qcc_token=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJhcGkubGFuZ2RvbmcucWNjLmNuIiwiY2xpZW50IjpudWxsLCJ1c2VySWQiOiIzNzMxIiwiaWF0IjoxNTcwMjQ1OTU0fQ.077OjA4SYYP1TESGc6gsEE-XlOSAfWuNDXcMVr3eI3nz8JLjCE-QYWiKYBgNj1xn0dy6P1G7A5VeB6IOw9UR9g; phoneNo=17606117606; userName=17606117606";
-                    string ahtml = method.GetUrlWithCookie(aurl, acookie, "utf-8");
-                    Match aid = Regex.Match(ahtml, @"""encryptid"":""([\s\S]*?)""");
-                    string burl = "https://www.qccip.com/trademark/detail/"+aid.Groups[1].Value+".html";
-                    string bhtml = method.GetUrlWithCookie(burl, acookie, "utf-8");
+                   
 
 
-                    Match adate = Regex.Match(bhtml, @"""flowDate"":""([\s\S]*?)""");
-                    Match aname = Regex.Match(bhtml, @"""flowItem"":""([\s\S]*?)""");
+                    
+                 
 
 
                     Match a1 = Regex.Match(html, @"""MarkName"":""([\s\S]*?)""");
@@ -69,8 +64,15 @@ namespace 商标查询
                         Match a6 = Regex.Match(html, @"""AppDate"":""([\s\S]*?)""");
                         Match a7 = Regex.Match(html, @"""AgentName"":""([\s\S]*?)""");
 
+                    //通知书发文抓取
+                    string aurl = "https://zhiqingzhe.zqz510.com/api/tq/gti?uid=18f0514dacf94e9899136734417b7c83&an=" + text[a].Trim() + "&ic=" + a2.Groups[1].Value.Trim(); ;
+                   
+                    string ahtml = method.GetUrl(aurl,  "utf-8");
+                    
+                    Match aaa = Regex.Match(ahtml, @"""gglx"":""([\s\S]*?)"",""pd"":""([\s\S]*?)""");
 
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
+                    //结束
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
                         lv1.SubItems.Add(text[a]);
                         lv1.SubItems.Add(a1.Groups[1].Value);
                         lv1.SubItems.Add(a2.Groups[1].Value);
@@ -82,7 +84,7 @@ namespace 商标查询
                         lv1.SubItems.Add(a5.Groups[1].Value);
                         lv1.SubItems.Add(a6.Groups[1].Value);
                         lv1.SubItems.Add(a7.Groups[1].Value);
-                    lv1.SubItems.Add(aname.Groups[1].Value + adate.Groups[1].Value);//收发文日期
+                    lv1.SubItems.Add(aaa.Groups[2].Value + aaa.Groups[1].Value);//收发文日期
 
                     while (this.zanting == false)
                         {

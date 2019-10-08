@@ -156,5 +156,33 @@ namespace main._2019_10
         {
             System.Diagnostics.Process.Start(this.listView1.SelectedItems[0].SubItems[1].Text);
         }
+
+        private void 淘宝联盟_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            
+        }
+
+        private void 复制佣金链接ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[3].Text);
+        }
+
+ 
+
+        private void 复制领券链接ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[4].Text);
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
     }
 }
