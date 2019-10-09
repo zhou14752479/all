@@ -28,14 +28,15 @@ namespace 淘宝搜索
         }
 
         public static string HTML;
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+     
+
+        private void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             this.loaded = true; //加载完成传值
 
             this.webBrowser1.Document.Window.Error += OnWebBrowserDocumentWindowError;
             //textBox1.Text = e.Url.ToString();
             HTML = webBrowser1.DocumentText;
-           
         }
         private void OnWebBrowserDocumentWindowError(object sender, HtmlElementErrorEventArgs e)
         {
@@ -50,27 +51,34 @@ namespace 淘宝搜索
                 if (loaded == true)
                 {
                     string html = HTML;
-                    MatchCollection shops = Regex.Matches(html, @"""nick"":""(\s\S]*?)""");
-                    for (int j = 0; j < shops.Count; j++)
+                    MatchCollection titles = Regex.Matches(html, @"""raw_title"":""(\s\S]*?)""");
+                    MessageBox.Show(titles.Count.ToString());
+                    for (int j = 0; j < titles.Count; j++)
                     {
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(shops[j].Groups[1].Value);
-                    }
-                }
-                
-                HtmlDocument dc = webBrowser1.Document;
-                HtmlElementCollection es = dc.GetElementsByTagName("a");   //GetElementsByTagName返回集合
-                foreach (HtmlElement e1 in es)
-                {
-                    if (e1.GetAttribute("trace") == "srp_bottom_pagedown")
-                    {
-                        //  e1.SetAttribute("value", textBox1.Text.Trim());
-                        e1.InvokeMember("click");
+                        listViewItem.SubItems.Add(titles[j].Groups[1].Value);
                     }
 
+
+                    HTML = "";
+                   
+
+                    HtmlDocument dc = webBrowser1.Document;
+                    HtmlElementCollection es = dc.GetElementsByTagName("a");   //GetElementsByTagName返回集合
+                    foreach (HtmlElement e1 in es)
+                    {
+                        if (e1.GetAttribute("trace") == "srp_bottom_pagedown")
+                        {
+                            //  e1.SetAttribute("value", textBox1.Text.Trim());
+                            e1.InvokeMember("click");
+                        }
+
+                    }
+                    
                 }
-                this.webBrowser1.DocumentCompleted += webBrowser1_DocumentCompleted;
-               
+                loaded = false;
+                this.webBrowser1.DocumentCompleted += WebBrowser1_DocumentCompleted;
+
             }
 
            
@@ -78,5 +86,12 @@ namespace 淘宝搜索
             
 
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(loaded.ToString());
+        }
+
+      
     }
 }

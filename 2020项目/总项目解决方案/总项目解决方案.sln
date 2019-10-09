@@ -5,11 +5,7 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "小红书", "小红书\小红书.csproj", "{906CC726-F207-47F9-892B-0DF2BDDE4399}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝搜索", "淘宝搜索\淘宝搜索.csproj", "{D90F3177-BA27-496A-AE00-3F24849FF9DA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标查询", "商标查询\商标查询.csproj", "{7E41244F-251C-4C16-9635-FD6366F6608A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +17,10 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D90F3177-BA27-496A-AE00-3F24849FF9DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D90F3177-BA27-496A-AE00-3F24849FF9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D90F3177-BA27-496A-AE00-3F24849FF9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D90F3177-BA27-496A-AE00-3F24849FF9DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E41244F-251C-4C16-9635-FD6366F6608A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E41244F-251C-4C16-9635-FD6366F6608A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
