@@ -89,7 +89,8 @@ namespace 百佳网上超市
 
                             string downUrl = "https://www.parknshop.com" + ids[j].Groups[2].Value + "/showGalleryImages?&codeVarSel=" + shuzi.Groups[0].Value;
 
-                            getimage(Regex.Replace(mingzi.Groups[1].Value, "<[^>]+>", "").Replace("/", "").Replace("\\", ""), downUrl);
+                            
+                            getimage(removeValid(Regex.Replace(mingzi.Groups[1].Value, "<[^>]+>", "")), downUrl);
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -118,6 +119,22 @@ namespace 百佳网上超市
             }
         }
 
+
+        #endregion
+
+
+
+        #region 去掉路径中非法字符
+        public string removeValid(string illegal)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+            foreach (char c in invalid)
+            {
+                illegal = illegal.Replace(c.ToString(), "");
+            }
+            return illegal;
+        }
 
         #endregion
 
@@ -189,6 +206,7 @@ namespace 百佳网上超市
 
         private void button2_Click(object sender, EventArgs e)
         {
+            
             zanting = false;
         }
 

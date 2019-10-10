@@ -17,6 +17,7 @@ namespace main._2019_10
         public 淘宝联盟()
         {
             InitializeComponent();
+            登陆.COOKIE = "t=66b127d321b80e83458173989c887619; cna=8QJMFUu4DhACATFZv2JYDtwd; account-path-guide-s1=true; cookie2=124fbbb9b491ba0a4a8e55b68cc6b4f9; v=0; _tb_token_=e1e33be63538; alimamapwag=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzc0LjAuMzcyOS4xMDggU2FmYXJpLzUzNy4zNg%3D%3D; cookie32=2d392e569cc3a01381c91efc1d2578fd; alimamapw=TA8BWQAGBwAGAAQBOgkAAgUOV1NRUVcBAg8CU1MBUAoCVQJaB1NXBwEFUVNS; cookie31=MTI3MjA5NjM2LHprZzg1MjI2NjAxMCwxMDUyMzQ3NTQ4QGFsaW1hbWEuY29tLFRC; login=UtASsssmOIJ0bQ%3D%3D; rurl=aHR0cHM6Ly9wdWIuYWxpbWFtYS5jb20v; l=cB_ODS3eq4YS4UNzBOfNVQhfh87TuQdfGcVP2FyMGICP_YfDlHAAWZBEX1TkCnGVLsdkJ3oWYJ1uBj8gAy4EhGaMPgLQuv3P.; isg=BG1tKmYhzFItqqg9hqeMxvJMfAlL3queczU_BK9xNYQ0JonYdhnMbbC0ELpllblU";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -51,7 +52,8 @@ namespace main._2019_10
             string html = method.GetUrlWithCookie("https://pub.alimama.com/openapi/json2/1/gateway.unionpub/optimus.material.json?t=1570240748303&_data_=%7B\"floorId\"%3A\"20392\"%2C\"pageNum\"%3A0%2C\"pageSize\"%3A60%2C\"refpid\"%3A\"mm_127209636_0_0\"%2C\"variableMap\"%3A%7B\"fn\"%3A\"search\"%2C\"q\"%3A\"https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fid%3D"+id+"\"%2C\"_t\"%3A\"1570240747987\"%7D%7D", 登陆.COOKIE, "utf-8");
             Match a1 = Regex.Match(html, @"""calTkRate"":""([\s\S]*?)""");
            
-            return a1.Groups[1].Value.Replace("00","");
+            
+            return (Convert.ToInt32(a1.Groups[1].Value) / 100).ToString();
         }
 
         #endregion
@@ -66,30 +68,49 @@ namespace main._2019_10
                 string[] urls = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string url in urls)
                 {
-                    Match uid = Regex.Match(url,@"\d{10,}");                //获取商品ID
-                    Match tid = Regex.Match(comboBox1.Text, @"\d{10,}"); //获取推广位Id
-                    string URL = "https://pub.alimama.com/openapi/param2/1/gateway.unionpub/shareitem.json?t=1570239508002&shareUserType=1&unionBizCode=union_pub&shareSceneCode=item_search&materialId="+uid.Groups[0].Value+"&tkClickSceneCode=qtz_pub_search&siteId=913050312&adzoneId="+tid.Groups[0].Value+"&bypage=1&extendMap=%7B%22qtzParam%22%3A%7B%22lensId%22%3A%22OPT%401570239087%400b1a25c0_0ea0_16d998b01ec_95dc%4001%22%7D%7D&materialType=1&needQueryQtz=true";
-                  
+                    if (url != "")
+                    {
+                        Match uid = Regex.Match(url, @"\d{10,}");                //获取商品ID
+                        Match tid = Regex.Match(comboBox1.Text, @"\d{10,}"); //获取推广位Id
+                        string URL = "https://pub.alimama.com/openapi/param2/1/gateway.unionpub/shareitem.json?t=1570239508002&shareUserType=1&unionBizCode=union_pub&shareSceneCode=item_search&materialId=" + uid.Groups[0].Value + "&tkClickSceneCode=qtz_pub_search&siteId=913050312&adzoneId=" + tid.Groups[0].Value + "&bypage=1&extendMap=%7B%22qtzParam%22%3A%7B%22lensId%22%3A%22OPT%401570239087%400b1a25c0_0ea0_16d998b01ec_95dc%4001%22%7D%7D&materialType=1&needQueryQtz=true";
 
-                    string strhtml = method.GetUrlWithCookie(URL, 登陆.COOKIE, "utf-8");
-
-
-                    Match a1 = Regex.Match(strhtml, @"shortLinkInfo([\s\S]*?)url"":""([\s\S]*?)"",""couponUrl"":""([\s\S]*?)""");
-                  
+                        textBox1.Text = URL;
+                        string strhtml = method.GetUrlWithCookie(URL, 登陆.COOKIE, "utf-8");
 
 
-
-                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                    listViewItem.SubItems.Add(url);
-                    listViewItem.SubItems.Add(gety(uid.Groups[0].Value)+"%");
-                    listViewItem.SubItems.Add(a1.Groups[2].Value);
-                    listViewItem.SubItems.Add(a1.Groups[3].Value);
+                        Match a1 = Regex.Match(strhtml, @"shortLinkInfo([\s\S]*?)url"":""([\s\S]*?)""");
+                        Match a2 = Regex.Match(strhtml, @"shortLinkInfo([\s\S]*?)""couponUrl"":""([\s\S]*?)""");
 
 
 
-                    Thread.Sleep(Convert.ToInt32(textBox2.Text));
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                        listViewItem.SubItems.Add(url);
+                        listViewItem.SubItems.Add(gety(uid.Groups[0].Value) + "%");
+                        if (a1.Groups[2].Value == "")
+                        {
+                            listViewItem.SubItems.Add("此产品没有参与推广");
+                        }
+                        else
+                        {
+                            listViewItem.SubItems.Add(a1.Groups[2].Value);
+                        }
+
+                        if (a2.Groups[2].Value == "")
+                        {
+                            listViewItem.SubItems.Add("无");
+                        }
+                        else
+                        {
+                            listViewItem.SubItems.Add(a2.Groups[2].Value);
+                        }
+
+                       
+
+
+
+                        Thread.Sleep(Convert.ToInt32(textBox2.Text));
+                    }
                 }
-
                 //MessageBox.Show(登陆.COOKIE);
                 //string html = method.GetUrlWithCookie("https://pub.alimama.com/manage/overview/index.htm",登陆.COOKIE,"utf-8");
                 //textBox1.Text = html;
@@ -159,7 +180,7 @@ namespace main._2019_10
 
         private void 淘宝联盟_Load(object sender, EventArgs e)
         {
-            登陆.COOKIE = "t=66b127d321b80e83458173989c887619; cookie2=19e2d179805b9692dee99be17918b8b6; v=0; _tb_token_=8aa60eebf555; cna=8QJMFUu4DhACATFZv2JYDtwd; JSESSIONID=65DAF41B86CC58050ED5DAD2B848E032; alimamapwag=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzc0LjAuMzcyOS4xMDggU2FmYXJpLzUzNy4zNg%3D%3D; cookie32=2d392e569cc3a01381c91efc1d2578fd; alimamapw=TA8BWQAGBwAGAAQBOgkAAgUOV1NRUVcBAg8CU1MBUAoCVQJaB1NXBwEFUVNS; cookie31=MTI3MjA5NjM2LHprZzg1MjI2NjAxMCwxMDUyMzQ3NTQ4QGFsaW1hbWEuY29tLFRC; login=VT5L2FSpMGV7TQ%3D%3D; rurl=aHR0cHM6Ly9wdWIuYWxpbWFtYS5jb20v; l=cB_ODS3eq4YS410zBOfgVuIRGi7OyQObzsPzw4gGxICPOY6BobNRWZBIZft6CnGVLspyJ3oWYJ1uBRLaqy4EhGaMPgLQuv3P.; isg=BHd3Dk8e5tOPxGJfINEWBIwyBmsBlEPyfdv1Zskno8bmeJW60A987zQaWpiDkCMW";
+           
         }
 
         private void Button1_Click(object sender, EventArgs e)

@@ -168,3 +168,17 @@ postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
 
                 textBox1.Text = dialog.SelectedPath;
             }
+十九去掉路径中非法字符
+       #region 去掉路径中非法字符
+        public string removeValid(string illegal)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+            foreach (char c in invalid)
+            {
+                illegal = illegal.Replace(c.ToString(), "");
+            }
+            return illegal;
+        }
+
+        #endregion

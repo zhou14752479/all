@@ -42,6 +42,7 @@
             this.复制佣金链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.复制领券链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,7 +55,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -78,7 +78,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(842, 227);
+            this.listView1.Size = new System.Drawing.Size(1034, 227);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -100,12 +100,12 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "佣金链接";
-            this.columnHeader4.Width = 200;
+            this.columnHeader4.Width = 350;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "领券链接";
-            this.columnHeader5.Width = 200;
+            this.columnHeader5.Width = 350;
             // 
             // contextMenuStrip1
             // 
@@ -177,9 +177,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(842, 502);
+            this.splitContainer1.Size = new System.Drawing.Size(1034, 502);
             this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.TabIndex = 10;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(15, 248);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel1.TabIndex = 35;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "清空数据";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // label4
             // 
@@ -294,27 +305,17 @@
             this.textBox1.Size = new System.Drawing.Size(533, 211);
             this.textBox1.TabIndex = 24;
             this.textBox1.Text = "https://detail.tmall.com/item.htm?id=595800107955";
+            this.textBox1.WordWrap = false;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(15, 248);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel1.TabIndex = 35;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "清空数据";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
             // 淘宝联盟
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 502);
+            this.ClientSize = new System.Drawing.Size(1034, 502);
             this.Controls.Add(this.splitContainer1);
             this.Name = "淘宝联盟";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
