@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝搜索", "淘宝搜�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标查询", "商标查询\商标查询.csproj", "{7E41244F-251C-4C16-9635-FD6366F6608A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "货币价格监控", "货币价格监控\货币价格监控.csproj", "{51FF38D5-DC4B-45CA-8A7F-492124B96458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7E41244F-251C-4C16-9635-FD6366F6608A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51FF38D5-DC4B-45CA-8A7F-492124B96458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51FF38D5-DC4B-45CA-8A7F-492124B96458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51FF38D5-DC4B-45CA-8A7F-492124B96458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51FF38D5-DC4B-45CA-8A7F-492124B96458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
