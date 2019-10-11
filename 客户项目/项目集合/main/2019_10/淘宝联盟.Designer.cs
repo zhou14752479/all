@@ -116,39 +116,40 @@
             this.复制佣金链接ToolStripMenuItem,
             this.复制领券链接ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // 打开佣金链接ToolStripMenuItem
             // 
             this.打开佣金链接ToolStripMenuItem.Name = "打开佣金链接ToolStripMenuItem";
-            this.打开佣金链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.打开佣金链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.打开佣金链接ToolStripMenuItem.Text = "打开佣金链接";
             this.打开佣金链接ToolStripMenuItem.Click += new System.EventHandler(this.打开佣金链接ToolStripMenuItem_Click);
             // 
             // 打开领券链接ToolStripMenuItem
             // 
             this.打开领券链接ToolStripMenuItem.Name = "打开领券链接ToolStripMenuItem";
-            this.打开领券链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.打开领券链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.打开领券链接ToolStripMenuItem.Text = "打开领券链接";
             this.打开领券链接ToolStripMenuItem.Click += new System.EventHandler(this.打开领券链接ToolStripMenuItem_Click);
             // 
             // 打开原链接ToolStripMenuItem
             // 
             this.打开原链接ToolStripMenuItem.Name = "打开原链接ToolStripMenuItem";
-            this.打开原链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.打开原链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.打开原链接ToolStripMenuItem.Text = "打开原链接";
             this.打开原链接ToolStripMenuItem.Click += new System.EventHandler(this.打开原链接ToolStripMenuItem_Click);
             // 
             // 复制佣金链接ToolStripMenuItem
             // 
             this.复制佣金链接ToolStripMenuItem.Name = "复制佣金链接ToolStripMenuItem";
-            this.复制佣金链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.复制佣金链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.复制佣金链接ToolStripMenuItem.Text = "复制佣金链接";
+            this.复制佣金链接ToolStripMenuItem.Click += new System.EventHandler(this.复制佣金链接ToolStripMenuItem_Click);
             // 
             // 复制领券链接ToolStripMenuItem
             // 
             this.复制领券链接ToolStripMenuItem.Name = "复制领券链接ToolStripMenuItem";
-            this.复制领券链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.复制领券链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.复制领券链接ToolStripMenuItem.Text = "复制领券链接";
             this.复制领券链接ToolStripMenuItem.Click += new System.EventHandler(this.复制领券链接ToolStripMenuItem_Click);
             // 
