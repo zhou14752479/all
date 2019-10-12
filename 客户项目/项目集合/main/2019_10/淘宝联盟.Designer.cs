@@ -38,7 +38,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.打开佣金链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开领券链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.打开原链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.复制佣金链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.复制领券链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -112,44 +111,36 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.打开佣金链接ToolStripMenuItem,
             this.打开领券链接ToolStripMenuItem,
-            this.打开原链接ToolStripMenuItem,
             this.复制佣金链接ToolStripMenuItem,
             this.复制领券链接ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 92);
             // 
             // 打开佣金链接ToolStripMenuItem
             // 
             this.打开佣金链接ToolStripMenuItem.Name = "打开佣金链接ToolStripMenuItem";
-            this.打开佣金链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.打开佣金链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.打开佣金链接ToolStripMenuItem.Text = "打开佣金链接";
             this.打开佣金链接ToolStripMenuItem.Click += new System.EventHandler(this.打开佣金链接ToolStripMenuItem_Click);
             // 
             // 打开领券链接ToolStripMenuItem
             // 
             this.打开领券链接ToolStripMenuItem.Name = "打开领券链接ToolStripMenuItem";
-            this.打开领券链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.打开领券链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.打开领券链接ToolStripMenuItem.Text = "打开领券链接";
             this.打开领券链接ToolStripMenuItem.Click += new System.EventHandler(this.打开领券链接ToolStripMenuItem_Click);
-            // 
-            // 打开原链接ToolStripMenuItem
-            // 
-            this.打开原链接ToolStripMenuItem.Name = "打开原链接ToolStripMenuItem";
-            this.打开原链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.打开原链接ToolStripMenuItem.Text = "打开原链接";
-            this.打开原链接ToolStripMenuItem.Click += new System.EventHandler(this.打开原链接ToolStripMenuItem_Click);
             // 
             // 复制佣金链接ToolStripMenuItem
             // 
             this.复制佣金链接ToolStripMenuItem.Name = "复制佣金链接ToolStripMenuItem";
-            this.复制佣金链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制佣金链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.复制佣金链接ToolStripMenuItem.Text = "复制佣金链接";
             this.复制佣金链接ToolStripMenuItem.Click += new System.EventHandler(this.复制佣金链接ToolStripMenuItem_Click);
             // 
             // 复制领券链接ToolStripMenuItem
             // 
             this.复制领券链接ToolStripMenuItem.Name = "复制领券链接ToolStripMenuItem";
-            this.复制领券链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制领券链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.复制领券链接ToolStripMenuItem.Text = "复制领券链接";
             this.复制领券链接ToolStripMenuItem.Click += new System.EventHandler(this.复制领券链接ToolStripMenuItem_Click);
             // 
@@ -198,15 +189,15 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(555, 111);
+            this.label4.Location = new System.Drawing.Point(801, 130);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(281, 12);
+            this.label4.Size = new System.Drawing.Size(185, 12);
             this.label4.TabIndex = 34;
-            this.label4.Text = "仅用作小批量转换链接，多了会引起淘宝屏蔽！！！";
+            this.label4.Text = "仅用作小批量转换链接多了会屏蔽";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(640, 223);
+            this.textBox2.Location = new System.Drawing.Point(911, 223);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(62, 21);
             this.textBox2.TabIndex = 33;
@@ -216,7 +207,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 9F);
-            this.label3.Location = new System.Drawing.Point(552, 229);
+            this.label3.Location = new System.Drawing.Point(823, 229);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 32;
@@ -225,7 +216,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(640, 64);
+            this.comboBox1.Location = new System.Drawing.Point(884, 88);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 31;
@@ -234,7 +225,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 9F);
-            this.label2.Location = new System.Drawing.Point(557, 74);
+            this.label2.Location = new System.Drawing.Point(801, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 30;
@@ -244,7 +235,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.Aquamarine;
             this.button4.Font = new System.Drawing.Font("宋体", 10F);
-            this.button4.Location = new System.Drawing.Point(694, 155);
+            this.button4.Location = new System.Drawing.Point(911, 159);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(111, 54);
             this.button4.TabIndex = 29;
@@ -255,7 +246,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Aquamarine;
             this.button3.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(554, 155);
+            this.button3.Location = new System.Drawing.Point(803, 158);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(92, 54);
             this.button3.TabIndex = 28;
@@ -267,7 +258,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Aquamarine;
             this.button2.Font = new System.Drawing.Font("宋体", 10F);
-            this.button2.Location = new System.Drawing.Point(694, 19);
+            this.button2.Location = new System.Drawing.Point(911, 23);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(111, 38);
             this.button2.TabIndex = 27;
@@ -279,7 +270,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Aquamarine;
             this.button1.Font = new System.Drawing.Font("宋体", 10F);
-            this.button1.Location = new System.Drawing.Point(557, 20);
+            this.button1.Location = new System.Drawing.Point(803, 23);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 38);
             this.button1.TabIndex = 26;
@@ -292,7 +283,7 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(539, 231);
+            this.groupBox1.Size = new System.Drawing.Size(769, 231);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "商品链接一行一个";
@@ -303,7 +294,7 @@
             this.textBox1.Location = new System.Drawing.Point(3, 17);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(533, 211);
+            this.textBox1.Size = new System.Drawing.Size(763, 211);
             this.textBox1.TabIndex = 24;
             this.textBox1.Text = "https://detail.tmall.com/item.htm?id=595800107955";
             this.textBox1.WordWrap = false;
@@ -358,7 +349,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 打开佣金链接ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 打开领券链接ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 打开原链接ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 复制佣金链接ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 复制领券链接ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel1;

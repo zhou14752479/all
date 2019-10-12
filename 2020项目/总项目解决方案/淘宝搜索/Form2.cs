@@ -19,63 +19,57 @@ namespace 淘宝搜索
             InitializeComponent();
         }
 
-        public static string COOKIE;
-        bool zanting = true;
-        #region 淘宝搜索
-        public void run()
-        {
-            try
-
-            {
-
-                for (int i = 0; i < 4401; i=i+44)
-                {
-                    string url = "";
-
-                    string html = method.GetUrlWithCookie(url,COOKIE, "utf-8");
-
-
-                    if (html.Contains("小红书登录"))
-                    {
-                        
-                       
-                    }
-
-                 
-                    MatchCollection titles = Regex.Matches(html, @"{""rawtitle"":""([\s\S]*?)""");
-
-                    for (int j = 0; j < titles.Count; j++)
-                    {
-                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(titles[j].Groups[1].Value);
-
-                    }
-
-
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                    }
-
-
-                }
-            }
-
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-        #endregion
+        public static string html;
+        bool loding = true;
+        
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            webBrowser1.Navigate("https://user.uu898.com/buyerOrder.aspx");
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            if (loding == false)
+            {
+                MatchCollection ids = Regex.Matches(html, @"订单编号：([\s\S]*?)</span>");
+                MatchCollection times = Regex.Matches(html, @"支付时间：([\s\S]*?)</span>");
+                MatchCollection fuwuqis = Regex.Matches(html, @"订单编号：([\s\S]*?)</span>");
+                //MatchCollection counts = Regex.Matches(html, @"title='([\s\S]*?)元=([\s\S]*?)金");
+                MatchCollection prices = Regex.Matches(html, @"title='([\s\S]*?)元=([\s\S]*?)金");
+                MatchCollection status = Regex.Matches(html, @"订单状态：([\s\S]*?)</span>");
+
+                for (int j = 0; j < ids.Count; j++)
+                {
+                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                    listViewItem.SubItems.Add(ids[j].Groups[1].Value);
+                    listViewItem.SubItems.Add(times[j].Groups[1].Value);
+                    listViewItem.SubItems.Add(fuwuqis[j].Groups[1].Value);
+                    listViewItem.SubItems.Add(prices[j].Groups[1].Value);
+                    listViewItem.SubItems.Add(prices[j].Groups[2].Value);
+                    listViewItem.SubItems.Add(status[j].Groups[1].Value);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("请等待网页加载完成....");
+            }
+        }
+
+        private void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            html = webBrowser1.DocumentText;  //获取到的html
+            loding = false;
+        }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            loding = true; 
         }
     }
 }

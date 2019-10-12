@@ -51,9 +51,16 @@ namespace main._2019_10
         {
             string html = method.GetUrlWithCookie("https://pub.alimama.com/openapi/json2/1/gateway.unionpub/optimus.material.json?t=1570240748303&_data_=%7B\"floorId\"%3A\"20392\"%2C\"pageNum\"%3A0%2C\"pageSize\"%3A60%2C\"refpid\"%3A\"mm_127209636_0_0\"%2C\"variableMap\"%3A%7B\"fn\"%3A\"search\"%2C\"q\"%3A\"https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fid%3D"+id+"\"%2C\"_t\"%3A\"1570240747987\"%7D%7D", 登陆.COOKIE, "utf-8");
             Match a1 = Regex.Match(html, @"""calTkRate"":""([\s\S]*?)""");
-           
+
+            if (a1.Groups[1].Value == "")
+            {
+                return "未推广";
+            }
+            else
+            {
+                return (Convert.ToInt32(a1.Groups[1].Value) / 100).ToString();
+            }
             
-            return (Convert.ToInt32(a1.Groups[1].Value) / 100).ToString();
         }
 
         #endregion
@@ -74,7 +81,7 @@ namespace main._2019_10
                         Match tid = Regex.Match(comboBox1.Text, @"\d{10,}"); //获取推广位Id
                         string URL = "https://pub.alimama.com/openapi/param2/1/gateway.unionpub/shareitem.json?t=1570239508002&shareUserType=1&unionBizCode=union_pub&shareSceneCode=item_search&materialId=" + uid.Groups[0].Value + "&tkClickSceneCode=qtz_pub_search&siteId=913050312&adzoneId=" + tid.Groups[0].Value + "&bypage=1&extendMap=%7B%22qtzParam%22%3A%7B%22lensId%22%3A%22OPT%401570239087%400b1a25c0_0ea0_16d998b01ec_95dc%4001%22%7D%7D&materialType=1&needQueryQtz=true";
 
-                        textBox1.Text = URL;
+                      
                         string strhtml = method.GetUrlWithCookie(URL, 登陆.COOKIE, "utf-8");
 
 
@@ -84,11 +91,21 @@ namespace main._2019_10
 
 
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                        if (gety(uid.Groups[0].Value) == "未推广")
+                        {
+
+                            listViewItem.SubItems.Add(url);
+                            listViewItem.SubItems.Add("未推广");
+                            listViewItem.SubItems.Add("未推广");
+                            listViewItem.SubItems.Add("未推广");
+                            continue;
+                        }
                         listViewItem.SubItems.Add(url);
                         listViewItem.SubItems.Add(gety(uid.Groups[0].Value) + "%");
+
                         if (a1.Groups[2].Value == "")
                         {
-                            listViewItem.SubItems.Add("此产品没有参与推广");
+                            listViewItem.SubItems.Add("无");
                         }
                         else
                         {
@@ -119,7 +136,7 @@ namespace main._2019_10
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+              ex.ToString();
             }
         }
 
@@ -173,10 +190,7 @@ namespace main._2019_10
             System.Diagnostics.Process.Start(this.listView1.SelectedItems[0].SubItems[4].Text);
         }
 
-        private void 打开原链接ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(this.listView1.SelectedItems[0].SubItems[1].Text);
-        }
+      
 
         private void 淘宝联盟_Load(object sender, EventArgs e)
         {

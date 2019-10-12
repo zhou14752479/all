@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,80 +19,81 @@ namespace 淘宝搜索
         {
             InitializeComponent();
         }
-        bool loaded = false;   //该变量表示网页是否加载完成.默认未加载完成
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("https://www.taobao.com");
-
-            this.webBrowser1.ScriptErrorsSuppressed = true;  //屏蔽IE脚本弹出错误
-            
+            webBrowser1.Navigate("https://www.dianping.com/suqian/ch0");
+          this.webBrowser1.ScriptErrorsSuppressed = true;  //屏蔽IE脚本弹出错误
         }
 
-        public static string HTML;
-     
+        bool loading = true;   //该变量表示网页是否正在加载.
 
-        private void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        string html = string.Empty;
+
+  
+
+        public void GetHtml(ArrayList urls)
+
         {
-            this.loaded = true; //加载完成传值
 
-            this.webBrowser1.Document.Window.Error += OnWebBrowserDocumentWindowError;
-            //textBox1.Text = e.Url.ToString();
-            HTML = webBrowser1.DocumentText;
+            webBrowser1.Navigated += new WebBrowserNavigatedEventHandler(browser_Navigated);
+
+            foreach (string url in urls)
+            {
+                loading = true;  //表示正在加载
+
+                webBrowser1.Navigate(url);
+                textBox1.Text = url;
+
+                while (loading)
+                {
+                    Application.DoEvents();//等待本次加载完毕才执行下次循环.
+
+                }
+
+            }
+
         }
-        private void OnWebBrowserDocumentWindowError(object sender, HtmlElementErrorEventArgs e)
+
+
+
+        void browser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            e.Handled = true;
+           html = webBrowser1.DocumentText;  //获取到的html.
+            MatchCollection titles = Regex.Matches(html, @"<h4>([\s\S]*?)</h4>");
+            textBox2.Text = html;
+           
+            for (int j = 0; j < titles.Count; j++)
+            {
+                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                listViewItem.SubItems.Add(titles[j].Groups[1].Value);
+
+            }
+            loading = false;//在加载完成后,将该变量置为false,下一次循环随即开始执行.
         }
+        
+
 
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 100; i++)
+            ArrayList urls = new ArrayList();
+            for (int i = 1; i < 10; i++)
             {
-                if (loaded == true)
-                {
-                    string html = HTML;
-                    MatchCollection titles = Regex.Matches(html, @"""raw_title"":""(\s\S]*?)""");
-                    MessageBox.Show(titles.Count.ToString());
-                    for (int j = 0; j < titles.Count; j++)
-                    {
-                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(titles[j].Groups[1].Value);
-                    }
-
-
-                    HTML = "";
-                   
-
-                    HtmlDocument dc = webBrowser1.Document;
-                    HtmlElementCollection es = dc.GetElementsByTagName("a");   //GetElementsByTagName返回集合
-                    foreach (HtmlElement e1 in es)
-                    {
-                        if (e1.GetAttribute("trace") == "srp_bottom_pagedown")
-                        {
-                            //  e1.SetAttribute("value", textBox1.Text.Trim());
-                            e1.InvokeMember("click");
-                        }
-
-                    }
-                    
-                }
-                loaded = false;
-                this.webBrowser1.DocumentCompleted += WebBrowser1_DocumentCompleted;
-
+                urls.Add("http://www.dianping.com/suqian/ch0/p" + i);
             }
-
-           
-            
-            
+            GetHtml(urls);
 
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(loaded.ToString());
+            MessageBox.Show("");
         }
 
-      
+        private void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            
+        }
     }
 }
