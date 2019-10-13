@@ -28,13 +28,13 @@ namespace main._2019_10
 
         #region 获取推广位
 
-        public void gett()
+        public static void gett()
         {
             string html = method.GetUrlWithCookie("https://pub.alimama.com/common/adzone/newSelfAdzone2.json?tag=29&itemId=&blockId=", 登陆.COOKIE, "utf-8");
             MatchCollection  a1s = Regex.Matches(html, @"tagList"":\[\]\,""name"":""([\s\S]*?)"",""id"":([\s\S]*?)""");
             foreach (Match match in a1s)
             {
-                comboBox1.Items.Add(match.Groups[1].Value+"-"+ match.Groups[2].Value);
+              comboBox1.Items.Add(match.Groups[1].Value+"-"+ match.Groups[2].Value);
             }
             if (comboBox1.Items.Count > 0)
             {
@@ -70,16 +70,16 @@ namespace main._2019_10
         {
             try
             {
-                gett();
-                Thread.Sleep(1000);
+               
                 string[] urls = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string url in urls)
                 {
                     if (url != "")
                     {
-                        Match uid = Regex.Match(url, @"\d{10,}");                //获取商品ID
+                        Match uid = Regex.Match(url, @"id=\d{10,}");                //获取商品ID
                         Match tid = Regex.Match(comboBox1.Text, @"\d{10,}"); //获取推广位Id
-                        string URL = "https://pub.alimama.com/openapi/param2/1/gateway.unionpub/shareitem.json?t=1570239508002&shareUserType=1&unionBizCode=union_pub&shareSceneCode=item_search&materialId=" + uid.Groups[0].Value + "&tkClickSceneCode=qtz_pub_search&siteId=913050312&adzoneId=" + tid.Groups[0].Value + "&bypage=1&extendMap=%7B%22qtzParam%22%3A%7B%22lensId%22%3A%22OPT%401570239087%400b1a25c0_0ea0_16d998b01ec_95dc%4001%22%7D%7D&materialType=1&needQueryQtz=true";
+                        string id = uid.Groups[0].Value.Replace("id=","");
+                        string URL = "https://pub.alimama.com/openapi/param2/1/gateway.unionpub/shareitem.json?t=1570239508002&shareUserType=1&unionBizCode=union_pub&shareSceneCode=item_search&materialId=" +id+ "&tkClickSceneCode=qtz_pub_search&siteId=913050312&adzoneId=" + tid.Groups[0].Value + "&bypage=1&extendMap=%7B%22qtzParam%22%3A%7B%22lensId%22%3A%22OPT%401570239087%400b1a25c0_0ea0_16d998b01ec_95dc%4001%22%7D%7D&materialType=1&needQueryQtz=true";
 
                       
                         string strhtml = method.GetUrlWithCookie(URL, 登陆.COOKIE, "utf-8");
@@ -91,7 +91,7 @@ namespace main._2019_10
 
 
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        if (gety(uid.Groups[0].Value) == "未推广")
+                        if (gety(id) == "未推广")
                         {
 
                             listViewItem.SubItems.Add(url);
@@ -101,7 +101,7 @@ namespace main._2019_10
                             continue;
                         }
                         listViewItem.SubItems.Add(url);
-                        listViewItem.SubItems.Add(gety(uid.Groups[0].Value) + "%");
+                        listViewItem.SubItems.Add(gety(id) + "%");
 
                         if (a1.Groups[2].Value == "")
                         {

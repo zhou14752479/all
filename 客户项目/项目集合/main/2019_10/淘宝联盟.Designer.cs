@@ -45,7 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -158,7 +158,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
-            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
+            this.splitContainer1.Panel1.Controls.Add(comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
@@ -215,11 +215,11 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(884, 88);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 31;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new System.Drawing.Point(884, 88);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new System.Drawing.Size(121, 20);
+            comboBox1.TabIndex = 31;
             // 
             // label2
             // 
@@ -296,7 +296,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(763, 211);
             this.textBox1.TabIndex = 24;
-            this.textBox1.Text = "https://detail.tmall.com/item.htm?id=595800107955";
             this.textBox1.WordWrap = false;
             // 
             // openFileDialog1
@@ -335,7 +334,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
@@ -352,5 +350,6 @@
         private System.Windows.Forms.ToolStripMenuItem 复制佣金链接ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 复制领券链接ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        public static System.Windows.Forms.ComboBox comboBox1;
     }
 }

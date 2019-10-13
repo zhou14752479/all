@@ -136,6 +136,7 @@ namespace main._2019_10
             }
 
             COOKIE = GetCookies("https://pub.alimama.com/manage/overview/index.htm");
+            淘宝联盟.gett();
             this.Hide();
         }
 
