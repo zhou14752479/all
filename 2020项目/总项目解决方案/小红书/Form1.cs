@@ -31,6 +31,16 @@ namespace 小红书
         #region 小红书
         public void run()
         {
+            if (textBox3.Text == "")
+            {
+                MessageBox.Show("请输入代理IP地址");
+                return;
+            }
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("请导入.xls文件");
+                return;
+            }
             try
 
             {
@@ -198,6 +208,24 @@ namespace 小红书
         {   
             MessageBox.Show("选择网站下方【生成API链接】其他不变，然后复制链接");
             System.Diagnostics.Process.Start("http://h.zhimaruanjian.com/getapi/");
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            button1.Enabled = true;
         }
     }
 }

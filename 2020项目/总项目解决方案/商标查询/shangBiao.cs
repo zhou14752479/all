@@ -22,8 +22,9 @@ namespace 商标查询
         }
 
         bool zanting = true;
-
+        public static string shoufawen = "";
         string path = AppDomain.CurrentDomain.BaseDirectory + "data\\";
+        string weiPath = AppDomain.CurrentDomain.BaseDirectory + "datas.txt";
         #region  主程序
         public void run()
         {
@@ -32,7 +33,8 @@ namespace 商标查询
 {
                
                 string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                for (int a = 0; a < text.Length - 1; a++)
+               
+                for (int a = 0; a < text.Length; a++)
                 {
                    toolStrip1.Text = "正在抓取"+text[a]+"........";
                     string url = "https://api.ipr.kuaifawu.com/xcx/tmsearch/index";
@@ -47,12 +49,9 @@ namespace 商标查询
 
 
 
-
-
-
                     Match a1 = Regex.Match(html, @"""MarkName"":""([\s\S]*?)""");
                     Match a2 = Regex.Match(html, @"UnionTypeCode"":([\s\S]*?),");
-                    Match a3 = Regex.Match(html, @"""StateDate2017"":""([\s\S]*?)""");
+                    //Match a3 = Regex.Match(html, @"""StateDate2017"":""([\s\S]*?)""");
                     Match a4 = Regex.Match(html, @"""AppPerson"":""([\s\S]*?)""");
                     Match a5 = Regex.Match(html, @"""Addr"":""([\s\S]*?)""");  // 地址
 
@@ -84,7 +83,11 @@ namespace 商标查询
                     lv1.SubItems.Add(a6.Groups[1].Value);
                     lv1.SubItems.Add(a7.Groups[1].Value);
                     lv1.SubItems.Add(aaa.Groups[2].Value + aaa.Groups[1].Value);//收发文日期
-
+                    FileStream fs1 = new FileStream(path + DateTime.Now.ToShortDateString().Replace("/","-") +".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(text[a]+"#"+a1.Groups[1].Value + "#" + a2.Groups[1].Value + "#" + a4.Groups[1].Value +"#中国"+ "#" + a51.Groups[1].Value + "#" + a52.Groups[1].Value + "#" + a5.Groups[1].Value + "#" + a6.Groups[1].Value + "#" + a7.Groups[1].Value+"#"+ aaa.Groups[2].Value + aaa.Groups[1].Value);
+                    sw.Close();
+                    fs1.Close();
                     while (this.zanting == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -103,15 +106,68 @@ namespace 商标查询
             }
         }
         #endregion
-     
 
+        #region listview转datable
+        /// <summary>
+        /// listview转datable
+        /// </summary>
+        /// <param name="lv"></param>
+        /// <returns></returns>
+        public static DataTable listViewToDataTable(ListView lv)
+        {
+            int i, j;
+            DataTable dt = new DataTable();
+            DataRow dr;
+            dt.Clear();
+            dt.Columns.Clear();
+            //生成DataTable列头
+            for (i = 0; i < lv.Columns.Count; i++)
+            {
+                dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
+            }
+            //每行内容
+            for (i = 0; i < lv.Items.Count; i++)
+            {
+                dr = dt.NewRow();
+                for (j = 0; j < lv.Columns.Count; j++)
+                {
+                    if (lv.Items[i].SubItems[10].Text.Contains(shangBiao.shoufawen))
+                    {
+                        dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+                    }
+                    
+                }
+                dt.Rows.Add(dr);
+            }
+
+            return dt;
+        }
+        #endregion
 
         private void shangBiao_Load(object sender, EventArgs e)
         {
+           
+            FileSystemWatcher fileSystemWatcher1 = new FileSystemWatcher();
 
+            this.fileSystemWatcher1.Changed += new FileSystemEventHandler(fileSystemWatcher1_Changed);
+
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.Path = path ;
+            this.fileSystemWatcher1.Filter = DateTime.Now.ToShortDateString().Replace("/", "-")+".txt";
+            this.fileSystemWatcher1.IncludeSubdirectories = false;//不监视子目录
         }
 
-       
+        private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+
+            FileStream fs = File.Open(path + DateTime.Now.ToShortDateString().Replace("/", "-") + ".txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            StreamReader sr = new StreamReader(fs, Encoding.Default);//流读取器
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+          
+            
+
+        }
 
         private void ShangBiao_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -121,7 +177,8 @@ namespace 商标查询
                 Environment.Exit(0); //点确定的代码
             }
             else
-            { //点取消的代码 
+            {
+                e.Cancel=true;
             }
         }
 
@@ -174,7 +231,7 @@ namespace 商标查询
 
         private void ToolStripButton4_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.DataTableToExcel(listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -184,19 +241,94 @@ namespace 商标查询
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
-            //一次性读取完 
-            string texts = sr.ReadToEnd();
-            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-            for (int i = 0; i < text.Length; i++)
+            if (checkBox1.Checked == true)
             {
+                shangBiao.shoufawen = checkBox1.Text;
+            }
+            if (checkBox2.Checked == true)
+            {
+                shangBiao.shoufawen = checkBox2.Text;
+            }
+            if (checkBox3.Checked == true)
+            {
+                shangBiao.shoufawen = checkBox3.Text;
+            }
+            if (checkBox4.Checked == true)
+            {
+                shangBiao.shoufawen = checkBox4.Text;
+            }
 
-                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                lv1.SubItems.Add(text[i]);
 
+
+
+
+
+
+
+
+
+
+            string date = DateTime.Now.ToShortDateString().Replace("/", "-");
+
+            if (radioButton2.Checked == true)
+            {
+                date = DateTime.Now.AddDays(-1).ToShortDateString().Replace("/", "-");
+            }
+
+           else if (radioButton3.Checked == true)
+            {
+                date = DateTime.Now.AddDays(-2).ToShortDateString().Replace("/", "-");
+            }
+
+
+            if (File.Exists(path + date + ".txt"))
+            {
+                listView1.Items.Clear();
+                StreamReader sr = new StreamReader(path + date + ".txt", Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    string[] values = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
+                    if (values.Length > 10)
+                    {
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(values[0]);
+                        lv1.SubItems.Add(values[1]);
+                        lv1.SubItems.Add(values[2]);
+                        lv1.SubItems.Add(values[3]);
+                        lv1.SubItems.Add(values[4]);
+                        lv1.SubItems.Add(values[5]);
+                        lv1.SubItems.Add(values[6]);
+                        lv1.SubItems.Add(values[7]);
+                        lv1.SubItems.Add(values[8]);
+                        lv1.SubItems.Add(values[9]);
+                        lv1.SubItems.Add(values[10]);
+                    }
+
+                }
 
             }
+
+            else
+            {
+                MessageBox.Show("未查询到相关数据");
+            }
+
+          
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            FileStream fs1 = new FileStream(weiPath, FileMode.Create, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1);
+            sw.WriteLine(textBox1.Text);
+            sw.Close();
+            fs1.Close();
+            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            linkLabel3.Text = text.Length.ToString();
         }
     }
 }

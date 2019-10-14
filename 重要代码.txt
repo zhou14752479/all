@@ -104,7 +104,8 @@ ctrl+ALT+++空格
                Environment.Exit(0);
             }
             else
-            { //点取消的代码 
+            { 
+	e.Cancel = true;//点取消的代码 
             }
 
 十三、获取所有txt文件
