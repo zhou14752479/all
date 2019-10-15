@@ -471,6 +471,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.skinButton4 = new CCWin.SkinControl.SkinButton();
             this.skinButton3 = new CCWin.SkinControl.SkinButton();
@@ -510,7 +511,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1122,7 +1122,6 @@
             this.radioButton1.TabIndex = 72;
             this.radioButton1.Text = "生意转让";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.Visible = false;
             // 
             // groupBox5
             // 
@@ -1274,6 +1273,15 @@
             this.groupBox4.TabIndex = 41;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "采集操作";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(316, 62);
+            this.textBox14.Multiline = true;
+            this.textBox14.Name = "textBox14";
+            this.textBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox14.Size = new System.Drawing.Size(288, 68);
+            this.textBox14.TabIndex = 80;
             // 
             // linkLabel1
             // 
@@ -1695,15 +1703,6 @@
             this.label15.Size = new System.Drawing.Size(71, 15);
             this.label15.TabIndex = 210;
             this.label15.Text = "测试用户";
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(316, 62);
-            this.textBox14.Multiline = true;
-            this.textBox14.Name = "textBox14";
-            this.textBox14.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox14.Size = new System.Drawing.Size(288, 68);
-            this.textBox14.TabIndex = 80;
             // 
             // fang_58
             // 

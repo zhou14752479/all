@@ -70,6 +70,10 @@ namespace main._2019_10
         {
             try
             {
+                if (comboBox1.Text == "")
+                {
+                    MessageBox.Show("登陆失效请重新登录");
+                }
                
                 string[] urls = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string url in urls)

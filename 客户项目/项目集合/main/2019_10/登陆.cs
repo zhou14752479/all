@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -137,6 +138,9 @@ namespace main._2019_10
 
             COOKIE = GetCookies("https://pub.alimama.com/manage/overview/index.htm");
             淘宝联盟.gett();
+
+          
+            淘宝联盟.label1.Text = textBox1.Text;
             this.Hide();
         }
 

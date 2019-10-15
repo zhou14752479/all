@@ -20,6 +20,22 @@ namespace 学习啦
         {
             InitializeComponent();
         }
+        string path = AppDomain.CurrentDomain.BaseDirectory+"/data/";
+        #region 爬虫列表页
+
+        public ArrayList getLists(string url)
+        {
+            ArrayList lists = new ArrayList();
+            string html = method.GetUrl(url, "gbk");
+            MatchCollection urls = Regex.Matches(html, @"http://www.xuexila.com/[a-z]{2,}/");
+            for (int i = 0; i < urls.Count; i++)
+            {
+                lists.Add(urls[i].Groups[0].Value);
+            }
+
+            return lists;
+        }
+        #endregion
 
         #region 列表页匹配文章地址
 
@@ -59,6 +75,38 @@ namespace 学习啦
         }
         #endregion
 
+        public bool panduan(string url)
+        {
+            bool panduan = false;
+            StreamReader sr = new StreamReader(path + "wan.txt", Encoding.UTF8);
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == url)
+                {
+                    panduan = true;
+                }
+               
+            }
+            return panduan;
+        }
+
+
+        public void run()
+        {
+            ArrayList lists = getLists("http://www.xuexila.com/");
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < lists.Count; i++)
+            {
+                sb.Append(lists[i]+"\r\n");
+            }
+            System.IO.File.WriteAllText(path+"wan.txt", sb.ToString(), Encoding.UTF8);
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -66,7 +114,10 @@ namespace 学习啦
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            getDoc("http://www.xuexila.com/yundong/yundong/c72193.html");
+            //run();
+          bool a=  panduan("http://www.xuexila.com/hob/");
+
+            MessageBox.Show(a.ToString());
         }
     }
 }

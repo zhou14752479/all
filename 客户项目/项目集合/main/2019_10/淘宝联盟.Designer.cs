@@ -54,6 +54,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -154,6 +155,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel1.Controls.Add(label1);
             this.splitContainer1.Panel1.Controls.Add(this.linkLabel1);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
@@ -216,7 +218,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new System.Drawing.Point(884, 88);
+            comboBox1.Location = new System.Drawing.Point(883, 97);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new System.Drawing.Size(121, 20);
             comboBox1.TabIndex = 31;
@@ -225,7 +227,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 9F);
-            this.label2.Location = new System.Drawing.Point(801, 91);
+            this.label2.Location = new System.Drawing.Point(800, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 30;
@@ -258,7 +260,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Aquamarine;
             this.button2.Font = new System.Drawing.Font("宋体", 10F);
-            this.button2.Location = new System.Drawing.Point(911, 23);
+            this.button2.Location = new System.Drawing.Point(911, 44);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(111, 38);
             this.button2.TabIndex = 27;
@@ -270,7 +272,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Aquamarine;
             this.button1.Font = new System.Drawing.Font("宋体", 10F);
-            this.button1.Location = new System.Drawing.Point(803, 23);
+            this.button1.Location = new System.Drawing.Point(802, 44);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 38);
             this.button1.TabIndex = 26;
@@ -301,6 +303,17 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("宋体", 13F);
+            label1.ForeColor = System.Drawing.Color.Red;
+           label1.Location = new System.Drawing.Point(800, 13);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(62, 18);
+            label1.TabIndex = 36;
+            label1.Text = "未登录";
             // 
             // 淘宝联盟
             // 
@@ -351,5 +364,6 @@
         private System.Windows.Forms.ToolStripMenuItem 复制领券链接ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel1;
         public static System.Windows.Forms.ComboBox comboBox1;
+        public static System.Windows.Forms.Label label1;
     }
 }

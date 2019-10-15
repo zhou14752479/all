@@ -19,7 +19,8 @@ namespace 商标查询
         {
             InitializeComponent();
         }
-        public static string COOKIE= "zg_did=%7B%22did%22%3A%20%2216c2bdc701a9fd-0cfda5fe614295-f353163-1fa400-16c2bdc701d70%22%7D; UM_distinctid=16c2bdc9cef480-089a8a3d063f-f353163-1fa400-16c2bdc9cf11d8; _uab_collina=156410397489894899860524; acw_tc=7518019a15708437013286366e44f9a842cdcc7173a88f0350e57ea423; QCCSESSID=spcn3mjv3gdbs3nmbogkb6lrp3; CNZZDATA1254842228=1203877086-1564099416-https%253A%252F%252Fwww.baidu.com%252F%7C1571012515; Hm_lvt_3456bee468c83cc63fb5147f119f1075=1569482634,1570843703,1571013810; hasShow=1; zg_de1d1a35bfa24ce29bbf2c7eb17e6c4f=%7B%22sid%22%3A%201571013808460%2C%22updated%22%3A%201571015408329%2C%22info%22%3A%201570843699939%2C%22superProperty%22%3A%20%22%7B%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22%22%2C%22cuid%22%3A%20%22b924eb29800901c1435f40aa0f0d2da5%22%2C%22zs%22%3A%200%2C%22sc%22%3A%200%7D; Hm_lpvt_3456bee468c83cc63fb5147f119f1075=1571015408";
+        bool zanting = true;
+       
         #region  中间量获取
         public void run()
 
@@ -38,7 +39,9 @@ namespace 商标查询
                     }
                     label1.Text = "正在查询.."+ text[a];
                     string url = "https://www.qichacha.com/search?key=" + text[a];
-                    string html = method.GetUrlWithCookie(url,COOKIE,"utf-8");
+                    string html = method.GetUrlWithCookie(url,登录.COOKIE,"utf-8");
+
+                    textBox1.Text = html;
                     Match company = Regex.Match(html, @"data-name=""([\s\S]*?)""");
                     Match name = Regex.Match(html, @"法定代表人：([\s\S]*?)</a>");
                     Match tel = Regex.Match(html, @"电话：([\s\S]*?)</span>");
@@ -64,6 +67,11 @@ namespace 商标查询
                         lv1.SubItems.Add(Regex.Replace(address.Groups[1].Value, "<[^>]+>", "").Trim());
                         
 
+                    }
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
 
                     if (listView1.Items.Count > 2)
@@ -120,6 +128,32 @@ namespace 商标查询
 
             }
             #endregion
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            登录 dl = new 登录();
+            dl.Show();
         }
     }
 }

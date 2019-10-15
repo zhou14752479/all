@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E41244F-251C-4C16-9635-FD6366F6608A}</ProjectGuid>
+    <ProjectGuid>{221AD148-A3E4-4A13-8740-A7E0E97A006A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>商标查询</RootNamespace>
-    <AssemblyName>商标查询</AssemblyName>
+    <RootNamespace>常用代码管理软件</RootNamespace>
+    <AssemblyName>常用代码管理软件</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,9 +30,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSkin">
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\CSkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,26 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="shangBiao.cs">
+    <Compile Include="客户预测软件.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="shangBiao.Designer.cs">
-      <DependentUpon>shangBiao.cs</DependentUpon>
+    <Compile Include="客户预测软件.Designer.cs">
+      <DependentUpon>客户预测软件.cs</DependentUpon>
     </Compile>
-    <Compile Include="企查查.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="企查查.Designer.cs">
-      <DependentUpon>企查查.cs</DependentUpon>
-    </Compile>
-    <Compile Include="登录.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="登录.Designer.cs">
-      <DependentUpon>登录.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,16 +73,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="shangBiao.resx">
-      <DependentUpon>shangBiao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="企查查.resx">
-      <DependentUpon>企查查.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="登录.resx">
-      <DependentUpon>登录.cs</DependentUpon>
+    <EmbeddedResource Include="客户预测软件.resx">
+      <DependentUpon>客户预测软件.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -99,12 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\helper\helper.csproj">
-      <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
-      <Name>helper</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
