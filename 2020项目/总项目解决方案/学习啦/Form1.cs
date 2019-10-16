@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
@@ -20,7 +21,22 @@ namespace 学习啦
         {
             InitializeComponent();
         }
+        #region 去掉路径中非法字符
+        public string removeValid(string illegal)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+            foreach (char c in invalid)
+            {
+                illegal = illegal.Replace(c.ToString(), "");
+            }
+            return illegal;
+        }
+
+        #endregion
+
         string path = AppDomain.CurrentDomain.BaseDirectory+"/data/";
+        bool zanting = true;
         #region 爬虫列表页
 
         public ArrayList getLists(string url)
@@ -55,7 +71,7 @@ namespace 学习啦
 
         #region 下载文章到doc
 
-        public void getDoc(string url)
+        public void getDoc(string url,string dic)
         {
            
             string html = method.GetUrl(url, "gbk");
@@ -64,10 +80,10 @@ namespace 学习啦
             // string str = body.Groups[1].Value.Replace("</p>","\r\n");
            
             string value = Regex.Replace(body.Groups[1].Value.Replace("a(\"conten\");", ""), "<[^>]+>", ""); //去标签
-            textBox1.Text = value;
-            string path = AppDomain.CurrentDomain.BaseDirectory;
-            FileStream fs1 = new FileStream(path + title.Groups[1].Value+".docx", FileMode.Create, FileAccess.Write);//创建写入文件 
+           
+            FileStream fs1 = new FileStream(path + dic+"/"+ removeValid(title.Groups[1].Value)+".docx", FileMode.Create, FileAccess.Write);//创建写入文件 
             StreamWriter sw = new StreamWriter(fs1);
+            sw.WriteLine("                              " + title.Groups[1].Value);
             sw.WriteLine(value);
             sw.Close();
             fs1.Close();
@@ -91,19 +107,88 @@ namespace 学习啦
                 }
                
             }
+            sr.Close();
             return panduan;
         }
 
+        public void baocun(string path, string list)
+        {
+            FileStream fs1 = new FileStream(path, FileMode.Append, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1);
+            sw.WriteLine(list);
+            sw.Close();
+            fs1.Close();
+        }
 
+
+        /// <summary>
+        /// 主程序
+        /// </summary>
         public void run()
         {
-            ArrayList lists = getLists("http://www.xuexila.com/");
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < lists.Count; i++)
+            try
             {
-                sb.Append(lists[i]+"\r\n");
+                ArrayList lists = getLists("http://www.xuexila.com/");
+                foreach (string list in lists)
+                {
+                    if (panduan(list) == false)
+                    {
+                        textBox1.Text +=DateTime.Now.ToString()+ "正在抓取" + list + "\r\n";
+                        Match item = Regex.Match(list, @"com/([\s\S]*?)/");
+
+                        if (!Directory.Exists(path + item.Groups[1].Value))
+                        {
+                            Directory.CreateDirectory(path + item.Groups[1].Value); //创建文件夹
+                        }
+
+                        ArrayList urls = getArticleUrls(list);
+                        foreach (string url in urls)
+                        {
+                            getDoc(url, removeValid(item.Groups[1].Value));
+                        }
+                        baocun(path + "wan.txt", list);
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+
+                        ArrayList alists = getLists(list);
+                        foreach (string alist in alists)
+                        {
+                            if (panduan(alist) == false)
+                            {
+                                textBox1.Text += DateTime.Now.ToString() + "正在抓取" + alist + "\r\n";
+                                Match aitem = Regex.Match(alist, @"com/([\s\S]*?)/");
+
+                                if (!Directory.Exists(path + aitem.Groups[1].Value))
+                                {
+                                    Directory.CreateDirectory(path + aitem.Groups[1].Value); //创建文件夹
+                                }
+
+                                ArrayList aurls = getArticleUrls(alist);
+                                foreach (string aurl in aurls)
+                                {
+                                    getDoc(aurl, removeValid(aitem.Groups[1].Value));
+                                }
+
+                                baocun(path + "wan.txt", alist);
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+
             }
-            System.IO.File.WriteAllText(path+"wan.txt", sb.ToString(), Encoding.UTF8);
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
 
         }
 
@@ -112,12 +197,82 @@ namespace 学习啦
 
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            //run();
-          bool a=  panduan("http://www.xuexila.com/hob/");
+    
 
-            MessageBox.Show(a.ToString());
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+        }
+
+        private void ToolStripButton1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "已开始请勿重复点击"+"\r\n";
+            
+            #region 通用验证
+
+            bool value = false;
+            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
+            string localip = method.GetIP();
+            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            foreach (Match ip in ips)
+            {
+                if (ip.Groups[1].Value.Trim() == "22.22.22.22")
+                {
+                    value = true;
+                    break;
+                }
+
+            }
+            if (value == true)
+            {
+
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+
+            }
+            else
+            {
+                MessageBox.Show("IP不符");
+
+            }
+            #endregion
+
+        }
+
+        private void ToolStripButton2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void ToolStripButton3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void ToolStripButton4_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要重新开始吗？", "确定", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                System.IO.File.WriteAllText(path + "wan.txt", "", Encoding.UTF8);
+                MessageBox.Show("重置成功，请点击开始");
+            }
+            else
+            {
+               
+            }
+            
         }
     }
 }

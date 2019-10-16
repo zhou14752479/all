@@ -80,7 +80,23 @@ namespace 常用代码管理软件
             skinTextBox8.Text = "";
         }
         
-        private void SkinButton1_Click(object sender, EventArgs e)
+       
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                
+            }
+        }
+
+
+        public void run()
+
         {
             if (skinTextBox1.Text.Contains("赔率") || skinTextBox2.Text.Contains("赔率") || skinTextBox3.Text.Contains("赔率") || skinTextBox4.Text.Contains("赔率") || skinTextBox5.Text.Contains("赔率") || skinTextBox6.Text.Contains("赔率"))
             {
@@ -96,11 +112,11 @@ namespace 常用代码管理软件
             Random r = new Random();
             int num = r.Next(1, 51);
             int num1 = r.Next(1, 51);
-            int num2 = 100 - (num+num1);
+            int num2 = 100 - (num + num1);
 
-            string a = num.ToString()+"%";
-            string b = num1.ToString()+"%";
-            string c = num2.ToString()+"%";
+            string a = num.ToString() + "%";
+            string b = num1.ToString() + "%";
+            string c = num2.ToString() + "%";
 
 
             Graphics gra = this.pictureBox1.CreateGraphics();
@@ -133,19 +149,16 @@ namespace 常用代码管理软件
             Font myFont2 = new Font("宋体", 20, FontStyle.Bold);
             Brush zibush2 = new SolidBrush(Color.White);//填充的颜色
             gra2.DrawString(c, myFont2, zibush2, 40, 50);
+
+        }
+        private void Label15_Click(object sender, EventArgs e)
+        {
+            run();
         }
 
-        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void Label16_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dr == DialogResult.OK)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                
-            }
+            run();
         }
     }
 }

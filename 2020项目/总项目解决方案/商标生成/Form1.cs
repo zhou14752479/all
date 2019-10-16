@@ -33,8 +33,8 @@ namespace 商标生成
 
             {
              
-                    textBox4.Text+=  "正在抓取" +textBox3.Text + "\r\n";
-                    string url = "http://v.juhe.cn/trademark/marklist?applicantCn="+ HttpUtility.UrlEncode(textBox3.Text.Trim())+"&idCardNo=&key="+textBox1.Text;
+                    
+                    string url = "";
 
                    
                     string html = method.GetUrl(url, "utf-8");
@@ -56,13 +56,7 @@ namespace 商标生成
                 
                 for (int i = 0; i < a1.Count; i++)
                     {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
-                        lv1.SubItems.Add(a1[i].Groups[1].Value);
-                        lv1.SubItems.Add(a2[i].Groups[1].Value);
-                        lv1.SubItems.Add(a3[i].Groups[1].Value);
-                        lv1.SubItems.Add(a4[i].Groups[1].Value);
-                        lv1.SubItems.Add(a5[i].Groups[1].Value);
-                        lv1.SubItems.Add(a6[i].Groups[1].Value);
+                     
 
                     }
 
@@ -91,12 +85,12 @@ namespace 商标生成
 
             {
 
-                string[] text = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string[] text = "".Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < text.Length; i++)
                 {
 
                     string[] regnos = text[i].Split(new string[] { "," }, StringSplitOptions.None);
-                    string url = "http://v.juhe.cn/trademark/detail?regNo=" + regnos[0] + "&intCls=" + regnos[1] + "&key=" + textBox1.Text;
+                    string url = "http://v.juhe.cn/trademark/detail?regNo=" + regnos[0] + "&intCls=" + regnos[1] + "&key=";
                     string html = method.GetUrl(url, "utf-8");
 
 
@@ -110,14 +104,7 @@ namespace 商标生成
 
                     Match img = Regex.Match(html, @"""tmImg"":""([\s\S]*?)""");
 
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
-                    lv1.SubItems.Add(a1.Groups[1].Value);
-                    lv1.SubItems.Add(a2.Groups[1].Value);
-                    lv1.SubItems.Add(a3.Groups[1].Value);
-                    lv1.SubItems.Add(a4.Groups[1].Value);
-                    lv1.SubItems.Add(a5.Groups[1].Value);
-                    lv1.SubItems.Add(a6.Groups[1].Value);
-                    lv1.SubItems.Add(a7.Groups[1].Value);
+                  
 
 
 
@@ -146,11 +133,7 @@ namespace 商标生成
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || textBox3.Text == "")
-            {
-                MessageBox.Show("请输入APPKEY和注册人");
-                return;
-            }
+           
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -163,24 +146,9 @@ namespace 商标生成
             Control.CheckForIllegalCrossThreadCalls = false;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            zanting = false;
-        }
+     
+      
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
-        }
-
-        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            textBox2.Text += listView1.SelectedItems[0].SubItems[5].Text + listView1.SelectedItems[0].SubItems[4].Text + "\r\n";
-        }
+      
     }
 }
