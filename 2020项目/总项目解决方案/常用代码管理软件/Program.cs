@@ -16,7 +16,7 @@ namespace 常用代码管理软件
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 客户预测软件());
+            Application.Run(new 点评评论());
         }
     }
 }
