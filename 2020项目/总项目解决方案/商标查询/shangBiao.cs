@@ -36,7 +36,8 @@ namespace 商标查询
                
                 for (int a = 0; a < text.Length; a++)
                 {
-                   toolStrip1.Text = "正在抓取"+text[a]+"........";
+                    linkLabel1.Text = (a+1).ToString();
+                   toolStripLabel1.Text = "正在抓取"+text[a]+"........";
                     string url = "https://api.ipr.kuaifawu.com/xcx/tmsearch/index";
 
 
@@ -83,9 +84,9 @@ namespace 商标查询
                     lv1.SubItems.Add(a6.Groups[1].Value);
                     lv1.SubItems.Add(a7.Groups[1].Value);
                     lv1.SubItems.Add(aaa.Groups[2].Value + aaa.Groups[1].Value);//收发文日期
-                    FileStream fs1 = new FileStream(path + DateTime.Now.ToShortDateString().Replace("/","-") +".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    FileStream fs1 = new FileStream(path + DateTime.Now.ToShortDateString().Replace("/","-") +".txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1);
-                    sw.WriteLine(text[a]+"#"+a1.Groups[1].Value + "#" + a2.Groups[1].Value + "#" + a4.Groups[1].Value +"#中国"+ "#" + a51.Groups[1].Value + "#" + a52.Groups[1].Value + "#" + a5.Groups[1].Value + "#" + a6.Groups[1].Value + "#" + a7.Groups[1].Value+"#"+ aaa.Groups[2].Value + aaa.Groups[1].Value);
+                    sw.WriteLine(text[a]+"#"+a1.Groups[1].Value + "#" + a2.Groups[1].Value + "#" + a4.Groups[1].Value +"#中国"+ "#" + a51.Groups[1].Value + "#" + a52.Groups[1].Value + "#" + a5.Groups[1].Value + "#" + a6.Groups[1].Value + "#" + a7.Groups[1].Value+"#"+ aaa.Groups[2].Value + aaa.Groups[1].Value,Encoding.GetEncoding("utf-8"));
                     sw.Close();
                     fs1.Close();
                     while (this.zanting == false)
@@ -269,13 +270,16 @@ namespace 商标查询
 
 
             string date = DateTime.Now.ToShortDateString().Replace("/", "-");
-
+            if (radioButton1.Checked == true)
+            {
+                date = DateTime.Now.ToShortDateString().Replace("/", "-");
+            }
             if (radioButton2.Checked == true)
             {
                 date = DateTime.Now.AddDays(-1).ToShortDateString().Replace("/", "-");
             }
 
-           else if (radioButton3.Checked == true)
+          if (radioButton3.Checked == true)
             {
                 date = DateTime.Now.AddDays(-2).ToShortDateString().Replace("/", "-");
             }
@@ -284,9 +288,10 @@ namespace 商标查询
             if (File.Exists(path + date + ".txt"))
             {
                 listView1.Items.Clear();
-                StreamReader sr = new StreamReader(path + date + ".txt", Encoding.Default);
+                StreamReader sr = new StreamReader(path + date + ".txt", Encoding.GetEncoding("utf-8"));
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
+                
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
                 for (int i = 0; i < text.Length; i++)
@@ -309,6 +314,8 @@ namespace 商标查询
                     }
 
                 }
+                sr.Close();
+                method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
 
             }
 

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -104,7 +105,8 @@ namespace 常用代码管理软件
                 return;
             }
 
-
+            label17.Text = "正在运算请稍后......";
+            Thread.Sleep(10000);
 
 
 
@@ -149,16 +151,21 @@ namespace 常用代码管理软件
             Font myFont2 = new Font("宋体", 20, FontStyle.Bold);
             Brush zibush2 = new SolidBrush(Color.White);//填充的颜色
             gra2.DrawString(c, myFont2, zibush2, 40, 50);
-
+            label17.Text = "运算成功";
         }
         private void Label15_Click(object sender, EventArgs e)
         {
-            run();
+
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void Label16_Click(object sender, EventArgs e)
         {
-            run();
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
     }
 }
