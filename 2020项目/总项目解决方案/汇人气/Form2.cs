@@ -139,8 +139,8 @@ namespace 汇人气
                         }
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据      
-                            lv1.SubItems.Add(a1s[j].Groups[1].Value);
-                        lv1.SubItems.Add(a2s[j].Groups[1].Value);
+                        lv1.SubItems.Add(a1s[j].Groups[1].Value);
+                        lv1.SubItems.Add("*******"+a2s[j].Groups[1].Value.Substring(7));
                         lv1.SubItems.Add(a3s[j].Groups[1].Value);
                         lv1.SubItems.Add(a4s[j].Groups[1].Value);
                         lv1.SubItems.Add(a5s[j].Groups[1].Value);
@@ -211,6 +211,7 @@ namespace 汇人气
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
             zanting = true;
         }
 

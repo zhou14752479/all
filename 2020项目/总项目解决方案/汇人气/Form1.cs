@@ -92,8 +92,8 @@ namespace 汇人气
                         if (Convert.ToDecimal(coins[j].Groups[1].Value) < Convert.ToDecimal(textBox4.Text))
                         {
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据      
-                            lv1.SubItems.Add(tels[j].Groups[1].Value);
-                            lv1.SubItems.Add(QQs[j].Groups[1].Value);
+                            lv1.SubItems.Add("*******"+tels[j].Groups[1].Value.Substring(7));
+                            lv1.SubItems.Add("*****"+QQs[j].Groups[1].Value.Substring(QQs[j].Groups[1].Length-4));
                             lv1.SubItems.Add(coins[j].Groups[1].Value);
                             lv1.SubItems.Add((Convert.ToInt32(chongzhis[j].Groups[1].Value)/100).ToString());
                             lv1.SubItems.Add(atime[j].Groups[1].Value);
