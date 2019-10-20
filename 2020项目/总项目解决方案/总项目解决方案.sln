@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜索引擎", "搜索引擎\搜索引擎.csproj", "{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "新闻", "新闻\新闻.csproj", "{B6903F93-D708-4224-BC61-64D7F8A617F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "汇人气", "汇人气\汇人气.csproj", "{40B987D8-786A-4932-9A6F-5AC7BF04F160}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{B6903F93-D708-4224-BC61-64D7F8A617F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6903F93-D708-4224-BC61-64D7F8A617F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6903F93-D708-4224-BC61-64D7F8A617F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40B987D8-786A-4932-9A6F-5AC7BF04F160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40B987D8-786A-4932-9A6F-5AC7BF04F160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40B987D8-786A-4932-9A6F-5AC7BF04F160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40B987D8-786A-4932-9A6F-5AC7BF04F160}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

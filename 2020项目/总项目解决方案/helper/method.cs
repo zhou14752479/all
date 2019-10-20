@@ -47,7 +47,7 @@ namespace helper
             sw.Flush();
 
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-
+            response.GetResponseHeader("Set-Cookie");
             StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
             string html = reader.ReadToEnd();
@@ -58,6 +58,44 @@ namespace helper
         }
 
         #endregion
+
+        #region POST请求获取header
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string getheader(string url, string postData)
+        {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "Post";
+            request.ContentType = "application/x-www-form-urlencoded";
+            //request.ContentType = "application/json";
+            request.ContentLength = postData.Length;
+           
+            request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523) NetType/3G Language/zh_CN";
+          
+            request.Referer = "https://servicewechat.com/wxb37374b344073551/19/page-frame.html";
+            StreamWriter sw = new StreamWriter(request.GetRequestStream());
+            sw.Write(postData);
+            sw.Flush();
+
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+            string cookie= response.GetResponseHeader("Set-Cookie");
+           
+
+           
+            response.Close();
+            return cookie;
+
+        }
+
+        #endregion
+
 
         #region 获取公网IP
         public static string GetIP()
