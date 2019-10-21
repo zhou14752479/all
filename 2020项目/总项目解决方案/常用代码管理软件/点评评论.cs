@@ -25,37 +25,52 @@ namespace 常用代码管理软件
         {
             for (int i = 2; i < 3; i++)
             {
-                Match uid = Regex.Match(textBox1.Text,@"\d{6,}");
                
-                string url = "http://www.dianping.com/shop/"+uid.Groups[0].Value+"/review_all/p"+i;
-                string html = method.GetUrlWithCookie(url, COOKIE, "utf-8");
                 MatchCollection view1s = Regex.Matches(html, @"<div class=""review-words"">([\s\S]*?)</div>");
                 MatchCollection views2s = Regex.Matches(html, @"<div class=""review-words Hide"">([\s\S]*?)<div class=""less-words"">");
                 foreach (Match view1 in view1s)
                 {
 
-                    MatchCollection svg = Regex.Matches(view1.Groups[1].Value, @"<.*?>");
+                    MatchCollection svg = Regex.Matches(view1.Groups[1].Value, @"<.*?></svgmtsi>");
+                    string value = view1.Groups[1].Value;
                     for (int x = 0; x < svg.Count; x++)
-                    {
-                        string value = view1.Groups[1].Value.Replace(svg[x].Groups[1].Value,"");
+                    {       
+                         value= value.Replace(svg[x].Groups[0].Value, getSVG(svg[x].Groups[0].Value));
+                      
+                       
                     }
-                  
-
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                    lv1.SubItems.Add("111");
-                    
+                    lv1.SubItems.Add(value);
+
+
                 }
             }
            
 
         }
 
-
-        public string getSVG()
+        public static string csshtml;
+        public static string svghtml;
+        public void getCSS()
         {
+
             Match uid = Regex.Match(textBox1.Text, @"\d{6,}");
 
-            return "";
+            string url = "http://www.dianping.com/shop/" + uid.Groups[0].Value + "/review_all/p" + i;
+            string html = method.GetUrlWithCookie(url, COOKIE, "utf-8");
+
+            Match css = Regex.Match(html, @"s3plus.meituan.net([\s\S]*?)""");
+            string cssUrl = "http://s3plus.meituan.net" + css.Groups[1].Value;
+             csshtml = method.GetUrlWithCookie(cssUrl, COOKIE, "utf-8");
+            Match svgUrl = Regex.Match(html, @"url\(//([\s\S]*?)\)");
+            
+        }
+
+        public string getSVG(string value)
+        {
+            Match zimu = Regex.Match(value, @"class=""([\s\S]*?)""");
+
+            return zimu.Groups[1].Value;
         }
 
         private void 点评评论_Load(object sender, EventArgs e)

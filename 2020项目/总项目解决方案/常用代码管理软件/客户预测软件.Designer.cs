@@ -497,7 +497,7 @@
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
             this.pictureBox4.Location = new System.Drawing.Point(707, 48);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(604, 173);
+            this.pictureBox4.Size = new System.Drawing.Size(604, 155);
             this.pictureBox4.TabIndex = 19;
             this.pictureBox4.TabStop = false;
             // 

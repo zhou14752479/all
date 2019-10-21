@@ -60,7 +60,8 @@ namespace 搜索引擎
         }
 
         #endregion
-        #region  新闻获取
+       
+        #region  百度新闻获取
         public void run()
         {
             try

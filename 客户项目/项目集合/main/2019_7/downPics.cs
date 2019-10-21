@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -72,10 +73,32 @@ namespace main._2019_7
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
+        public void run()
+        {
+            string html = method.GetUrl(textBox1.Text, "utf-8");
+            MatchCollection titles = Regex.Matches(html, @"""Title"":""([\s\S]*?)""");  //主图
+            MatchCollection pics = Regex.Matches(html, @"mage"":""([\s\S]*?)\?");  //主图
+            for (int i = 0; i < pics.Count; i++)
+            {
+                method.downloadFile("https://glamox.com" + pics[i].Groups[1].Value, textBox2.Text, titles[i].Groups[1].Value+".png");
+                Thread.Sleep(200);
+                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                lv1.SubItems.Add("https://glamox.com" + pics[i].Groups[1].Value);
+                lv1.SubItems.Add(titles[i].Groups[1].Value);
+                lv1.SubItems.Add("是");
 
+            }
+        }
         private void Button1_Click(object sender, EventArgs e)
         {
-            method.downloadFile(textBox1.Text,textBox2.Text,"1.jpg");
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("请选择图片保存位置");
+            }
+
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void TextBox3_TextChanged(object sender, EventArgs e)

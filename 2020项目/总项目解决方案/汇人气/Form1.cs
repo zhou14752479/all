@@ -91,9 +91,18 @@ namespace 汇人气
                     {
                         if (Convert.ToDecimal(coins[j].Groups[1].Value) < Convert.ToDecimal(textBox4.Text))
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据      
-                            lv1.SubItems.Add("*******"+tels[j].Groups[1].Value.Substring(7));
-                            lv1.SubItems.Add("*****"+QQs[j].Groups[1].Value.Substring(QQs[j].Groups[1].Length-4));
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据 
+                            if (tels[j].Groups[1].Value.Length > 7 && QQs[j].Groups[1].Value.Length > 5)
+                            {
+                                lv1.SubItems.Add("*******" + tels[j].Groups[1].Value.Substring(7));
+                                lv1.SubItems.Add("*****" + QQs[j].Groups[1].Value.Substring(QQs[j].Groups[1].Length - 4));
+                            }
+                            else
+                            {
+                                lv1.SubItems.Add( tels[j].Groups[1].Value);
+                                lv1.SubItems.Add( QQs[j].Groups[1].Value);
+                            }
+                           
                             lv1.SubItems.Add(coins[j].Groups[1].Value);
                             lv1.SubItems.Add((Convert.ToInt32(chongzhis[j].Groups[1].Value)/100).ToString());
                             lv1.SubItems.Add(atime[j].Groups[1].Value);
@@ -144,37 +153,10 @@ namespace 汇人气
 
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用验证
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == "23.23.23.23")
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-
-            }
-            else
-            {
-                MessageBox.Show("IP不符");
-
-            }
-            #endregion
 
         }
 

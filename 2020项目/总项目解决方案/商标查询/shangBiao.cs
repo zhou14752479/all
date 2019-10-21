@@ -32,18 +32,18 @@ namespace 商标查询
             
 {
                
-                string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
                
-                for (int a = 0; a < text.Length; a++)
+                for (int a = 0; a < richTextBox1.Lines.Length; a++)
                 {
                     linkLabel1.Text = (a+1).ToString();
-                   toolStripLabel1.Text = "正在抓取"+text[a]+"........";
+                   toolStripLabel1.Text = "正在抓取"+ richTextBox1.Lines[a]+ "........";
                     string url = "https://api.ipr.kuaifawu.com/xcx/tmsearch/index";
 
 
                     string postdata = textBox2.Text;
 
-                    postdata = Regex.Replace(postdata, @"\d{6,}", text[a].Trim());
+                    postdata = Regex.Replace(postdata, @"\d{6,}", richTextBox1.Lines[a].Trim());
 
                     string html = method.PostUrl(url, postdata, "", "utf-8");
 
@@ -64,7 +64,7 @@ namespace 商标查询
                     Match a7 = Regex.Match(html, @"""AgentName"":""([\s\S]*?)""");
 
                     //通知书发文抓取
-                    string aurl = "https://zhiqingzhe.zqz510.com/api/tq/gti?uid=18f0514dacf94e9899136734417b7c83&an=" + text[a].Trim() + "&ic=" + a2.Groups[1].Value.Trim(); ;
+                    string aurl = "https://zhiqingzhe.zqz510.com/api/tq/gti?uid=18f0514dacf94e9899136734417b7c83&an=" + richTextBox1.Lines[a].Trim() + "&ic=" + a2.Groups[1].Value.Trim(); ;
 
                     string ahtml = method.GetUrl(aurl, "utf-8");
 
@@ -72,7 +72,7 @@ namespace 商标查询
 
                     //结束
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
-                    lv1.SubItems.Add(text[a]);
+                    lv1.SubItems.Add(richTextBox1.Lines[a]);
                     lv1.SubItems.Add(a1.Groups[1].Value);
                     lv1.SubItems.Add(a2.Groups[1].Value);
 
@@ -86,7 +86,7 @@ namespace 商标查询
                     lv1.SubItems.Add(aaa.Groups[2].Value + aaa.Groups[1].Value);//收发文日期
                     FileStream fs1 = new FileStream(path + DateTime.Now.ToShortDateString().Replace("/","-") +".txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1);
-                    sw.WriteLine(text[a]+"#"+a1.Groups[1].Value + "#" + a2.Groups[1].Value + "#" + a4.Groups[1].Value +"#中国"+ "#" + a51.Groups[1].Value + "#" + a52.Groups[1].Value + "#" + a5.Groups[1].Value + "#" + a6.Groups[1].Value + "#" + a7.Groups[1].Value+"#"+ aaa.Groups[2].Value + aaa.Groups[1].Value,Encoding.GetEncoding("utf-8"));
+                    sw.WriteLine(richTextBox1.Lines[a].Trim()+ "#"+a1.Groups[1].Value + "#" + a2.Groups[1].Value + "#" + a4.Groups[1].Value +"#中国"+ "#" + a51.Groups[1].Value + "#" + a52.Groups[1].Value + "#" + a5.Groups[1].Value + "#" + a6.Groups[1].Value + "#" + a7.Groups[1].Value+"#"+ aaa.Groups[2].Value + aaa.Groups[1].Value,Encoding.GetEncoding("utf-8"));
                     sw.Close();
                     fs1.Close();
                     while (this.zanting == false)
@@ -147,7 +147,13 @@ namespace 商标查询
 
         private void shangBiao_Load(object sender, EventArgs e)
         {
-           
+            StreamReader sr = new StreamReader(weiPath, Encoding.Default);
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            richTextBox1.Text = texts;
+            sr.Close();
+
             FileSystemWatcher fileSystemWatcher1 = new FileSystemWatcher();
 
             this.fileSystemWatcher1.Changed += new FileSystemEventHandler(fileSystemWatcher1_Changed);
@@ -235,10 +241,7 @@ namespace 商标查询
             method.DataTableToExcel(listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-        private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            textBox1.Visible = true;
-        }
+      
 
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -316,7 +319,15 @@ namespace 商标查询
                 }
                 sr.Close();
                 method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-
+                DialogResult dr = MessageBox.Show("需要删除数据吗？", "删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dr == DialogResult.OK)
+                {
+                    listView1.Items.Clear();
+                }
+                else
+                {
+                  
+                }
             }
 
             else
@@ -327,15 +338,32 @@ namespace 商标查询
           
         }
 
-        private void TextBox1_TextChanged(object sender, EventArgs e)
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void SplitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void SplitContainer1_Panel1_MouseHover(object sender, EventArgs e)
         {
             FileStream fs1 = new FileStream(weiPath, FileMode.Create, FileAccess.Write);//创建写入文件 
             StreamWriter sw = new StreamWriter(fs1);
-            sw.WriteLine(textBox1.Text);
+            sw.WriteLine(richTextBox1.Text);
             sw.Close();
             fs1.Close();
-            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            linkLabel3.Text = text.Length.ToString();
+           
+            linkLabel3.Text = richTextBox1.Lines.Length.ToString();
+          
+            
+        }
+
+        private void ToolStripButton5_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
         }
     }
 }

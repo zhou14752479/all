@@ -60,6 +60,7 @@ namespace 汇人气
                 return;
             }
             int page = getPage();
+            
             if (checkBox2.Checked== true)
             {
                 objType =0;
@@ -85,8 +86,8 @@ namespace 汇人气
                 for (int i = 1; i < page+1; i++)
                 {
 
-                    string url = "http://boss.tao-liang.cn/api/fund/cashier/pay/boss/list?objType=" + objType + "&objKey=&moneyBeg=" + textBox7.Text + "&moneyEnd=" + textBox8.Text + "&state=" + state + "&type=" + type + "&startTime=" + startTime + "&endTime=" + endTime + "&startRegisterTime=" + RstartTime + "&endRegisterTime=" + RendTime + "&page=1&limit=" + textBox6.Text;
-
+                    string url = "http://boss.tao-liang.cn/api/fund/cashier/pay/boss/list?objType=" + objType + "&objKey=&moneyBeg=" + textBox7.Text + "&moneyEnd=" + textBox8.Text + "&state=" + state + "&type=" + type + "&startTime=" + startTime + "&endTime=" + endTime + "&startRegisterTime=" + RstartTime + "&endRegisterTime=" + RendTime + "&page="+i+"&limit=" + textBox6.Text;
+                    
                     string html = method.GetUrlWithCookie(url, COOKIE, "utf-8");
 
                     MatchCollection a1s = Regex.Matches(html, @"""createTime"":""([\s\S]*?)""");
@@ -105,6 +106,7 @@ namespace 汇人气
                     {
                         break;
                     }
+                   
                     for (int j = 0; j < a1s.Count; j++)
                     {
                         if (a6s[j].Groups[1].Value == "0")
@@ -257,37 +259,10 @@ namespace 汇人气
 
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用验证
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == "23.23.23.23")
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-
-            }
-            else
-            {
-                MessageBox.Show("IP不符");
-
-            }
-            #endregion
         }
 
         private void button6_Click(object sender, EventArgs e)
