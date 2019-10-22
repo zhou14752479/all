@@ -61,8 +61,8 @@ namespace 搜索引擎
 
         #endregion
        
-        #region  百度新闻获取
-        public void run()
+        #region  百度获取
+        public void baidu()
         {
             try
             {
@@ -142,9 +142,261 @@ namespace 搜索引擎
 
 
         #endregion
+
+        #region  搜狗获取
+        public void sougou()
+        {
+            try
+            {
+                label15.Text = "已启动正在采集......";
+                string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
+                foreach (string keyword in keywords)
+                {
+
+
+                    for (int i = 0; i < 9999; i = i + 1)
+                    {
+
+                        string url = "https://news.sogou.com/news?mode=1&media=&query=site%3Asohu.com+"+keyword+"&time=0&clusterId=&sort=1&page="+i+"&p=42230305&dp=1";
+                        string html = method.GetUrl(url, "utf-8");
+
+                        MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
+
+
+                        if (urls.Count == 0)
+                            break;
+
+                        for (int j = 0; j < urls.Count; j++)
+                        {
+
+                        
+                            string strhtml = method.GetUrl(urls[j].Groups[2].Value, "utf-8");
+
+
+
+                            Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)</title>");
+                            Match a2 = Regex.Match(strhtml, @"dateUpdate"" content=""([\s\S]*?)""");
+                            Match a3 = Regex.Match(strhtml, @"mediaid"" content=""([\s\S]*?)""");
+                            Match a4 = Regex.Match(strhtml, @"<article class=""article"" id=""mp-editor"">([\s\S]*?)</article>");
+
+                            //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
+                            //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
+                            //{
+                            if (checkBox1.Checked == true)
+                            {
+                                insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
+                            }
+
+
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(a1.Groups[1].Value);
+                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                            listViewItem.SubItems.Add(a4.Groups[1].Value);
+
+                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+                            Thread.Sleep(100);
+                            //    }
+
+
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        #endregion
+
+        
+
+        #region  360获取
+        public void so360()
+        {
+            try
+            {
+                label15.Text = "已启动正在采集......";
+                string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
+                foreach (string keyword in keywords)
+                {
+
+
+                    for (int i = 0; i < 9999; i = i + 1)
+                    {
+
+                        string url = "https://news.sogou.com/news?mode=1&media=&query=site:qq.com+" + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
+                        string html = method.GetUrl(url, "utf-8");
+
+                        MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
+
+
+                        if (urls.Count == 0)
+                            break;
+
+                        for (int j = 0; j < urls.Count; j++)
+                        {
+
+
+                            string strhtml = method.GetUrl(urls[j].Groups[2].Value, "gb2312");
+
+
+
+                            Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)_");
+                            Match a2 = Regex.Match(strhtml, @"pubtime:'([\s\S]*?)'");
+                            Match a3 = Regex.Match(strhtml, @"jgname"">([\s\S]*?)</span>");
+                            Match a4 = Regex.Match(strhtml, @"<div class=""content-article"">([\s\S]*?)<div id=""Status""></div>");
+
+                            //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
+                            //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
+                            //{
+                            if (checkBox1.Checked == true)
+                            {
+                                insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
+                            }
+
+
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(a1.Groups[1].Value);
+                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                            listViewItem.SubItems.Add(a4.Groups[1].Value);
+
+                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+                            Thread.Sleep(100);
+                            //    }
+
+
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        #endregion
+
+        #region  必应获取
+        public void biying()
+        {
+            try
+            {
+                label15.Text = "已启动正在采集......";
+                string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
+                foreach (string keyword in keywords)
+                {
+
+
+                    for (int i = 0; i < 9999; i = i + 1)
+                    {
+
+                        string url = "https://news.sogou.com/news?mode=1&media=&query=site:sina.com.cn+" + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
+                        string html = method.GetUrl(url, "utf-8");
+
+                        MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
+
+
+                        if (urls.Count == 0)
+                            break;
+
+                        for (int j = 0; j < urls.Count; j++)
+                        {
+
+
+                            string strhtml = method.GetUrl(urls[j].Groups[2].Value, "gb2312");
+
+
+
+                            Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)_");
+                            Match a2 = Regex.Match(strhtml, @"<span class=""date"">([\s\S]*?)</span>");
+                            Match a3 = Regex.Match(strhtml, @"rel=""nofollow"">([\s\S]*?)</a>");
+                            Match a4 = Regex.Match(strhtml, @"<div class=""article"" id=""article"">([\s\S]*?)<!-- 正文 end -->");
+
+                            //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
+                            //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
+                            //{
+                            if (checkBox1.Checked == true)
+                            {
+                                insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
+                            }
+
+
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(a1.Groups[1].Value);
+                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                            listViewItem.SubItems.Add(a4.Groups[1].Value);
+
+                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+                            Thread.Sleep(100);
+                            //    }
+
+
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        #endregion
         private void Main_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(so360));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
     }
 }

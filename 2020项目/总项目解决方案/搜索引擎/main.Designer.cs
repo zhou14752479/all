@@ -507,7 +507,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(375, 23);
             this.textBox5.TabIndex = 18;
-            this.textBox5.Text = "(多个关键字用逗号隔开)";
+            this.textBox5.Text = "大数据";
             // 
             // button4
             // 
@@ -552,6 +552,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "开始采集";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // tabPage2
             // 
@@ -559,7 +560,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(868, 478);
+            this.tabPage2.Size = new System.Drawing.Size(1027, 478);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "   导入数据库配置   ";
             this.tabPage2.UseVisualStyleBackColor = true;

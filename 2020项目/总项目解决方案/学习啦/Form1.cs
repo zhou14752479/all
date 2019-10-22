@@ -44,9 +44,14 @@ namespace 学习啦
             ArrayList lists = new ArrayList();
             string html = method.GetUrl(url, "gbk");
             MatchCollection urls = Regex.Matches(html, @"http://www.xuexila.com/[a-z]{2,}/");
+            MatchCollection url2s = Regex.Matches(html, @"http://www.xuexila.com/[a-z]{2,}/[a-z]{2,}");
             for (int i = 0; i < urls.Count; i++)
             {
                 lists.Add(urls[i].Groups[0].Value);
+            }
+            for (int i = 0; i < url2s.Count; i++)
+            {
+                lists.Add(url2s[i].Groups[0].Value);
             }
 
             return lists;
