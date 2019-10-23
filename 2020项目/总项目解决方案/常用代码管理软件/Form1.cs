@@ -18,6 +18,20 @@ namespace 常用代码管理软件
         {
             InitializeComponent();
         }
+
+        #region 去掉路径中非法字符
+        public string removeValid(string illegal)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+            foreach (char c in invalid)
+            {
+                illegal = illegal.Replace(c.ToString(), "");
+            }
+            return illegal;
+        }
+
+        #endregion
         /// <summary>
         /// 加载数据
         /// </summary>
@@ -31,7 +45,7 @@ namespace 常用代码管理软件
                 if (!folder.GetFiles("*.txt")[i].Name.Contains("body"))
                 {
 
-                    StreamReader sr = new StreamReader(path + folder.GetFiles("*.txt")[i].Name, Encoding.Default);
+                    StreamReader sr = new StreamReader(path + folder.GetFiles("*.txt")[i].Name, Encoding.GetEncoding("utf-8"));
                     //一次性读取完 
                     string texts = sr.ReadToEnd();
                     listBox1.Items.Add(texts);
@@ -63,11 +77,24 @@ namespace 常用代码管理软件
         {
             int index = listBox1.IndexFromPoint(e.X, e.Y);
             listBox1.SelectedIndex = index;
+            
             if (listBox1.SelectedIndex != -1)
             {
-                MessageBox.Show(listBox1.SelectedItem.ToString());
+                textBox2.Text = listBox1.SelectedItem.ToString();
+                StreamReader sr = new StreamReader(path + removeValid(listBox1.SelectedItem.ToString()).Trim()+"_body.txt", Encoding.GetEncoding("utf-8"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                richTextBox1.Text = texts;
+                sr.Close();
+               
            
             }
+        }
+
+        private void ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(richTextBox1.Text);
+            MessageBox.Show("复制成功");
         }
     }
 }

@@ -25,7 +25,7 @@ namespace 常用代码管理软件
         {
             for (int i = 2; i < 3; i++)
             {
-               
+                string html = "";
                 MatchCollection view1s = Regex.Matches(html, @"<div class=""review-words"">([\s\S]*?)</div>");
                 MatchCollection views2s = Regex.Matches(html, @"<div class=""review-words Hide"">([\s\S]*?)<div class=""less-words"">");
                 foreach (Match view1 in view1s)
@@ -56,7 +56,7 @@ namespace 常用代码管理软件
 
             Match uid = Regex.Match(textBox1.Text, @"\d{6,}");
 
-            string url = "http://www.dianping.com/shop/" + uid.Groups[0].Value + "/review_all/p" + i;
+            string url = "http://www.dianping.com/shop/" + uid.Groups[0].Value + "/review_all/p1";
             string html = method.GetUrlWithCookie(url, COOKIE, "utf-8");
 
             Match css = Regex.Match(html, @"s3plus.meituan.net([\s\S]*?)""");

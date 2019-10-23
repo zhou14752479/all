@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标查询", "商标查�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜索引擎", "搜索引擎\搜索引擎.csproj", "{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "汇人气", "汇人气\汇人气.csproj", "{40B987D8-786A-4932-9A6F-5AC7BF04F160}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "京东购物车", "京东购物车\京东购物车.csproj", "{93B92686-6E93-4643-84D7-61F4FD18BDAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40B987D8-786A-4932-9A6F-5AC7BF04F160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40B987D8-786A-4932-9A6F-5AC7BF04F160}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40B987D8-786A-4932-9A6F-5AC7BF04F160}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40B987D8-786A-4932-9A6F-5AC7BF04F160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -66,8 +66,8 @@ namespace 搜索引擎
         {
             try
             {
-                label15.Text = "已启动正在采集......";
-                string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
+              
+                string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
                 {
 
@@ -111,9 +111,9 @@ namespace 搜索引擎
                             listViewItem.SubItems.Add(a1.Groups[1].Value);
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
-                            listViewItem.SubItems.Add(a4.Groups[1].Value);
+                            listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
 
-                            listViewItem.SubItems.Add(URL);
+                          
 
                             while (this.zanting == false)
                             {
@@ -148,8 +148,8 @@ namespace 搜索引擎
         {
             try
             {
-                label15.Text = "已启动正在采集......";
-                string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
+                
+                string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
                 {
 
@@ -157,11 +157,11 @@ namespace 搜索引擎
                     for (int i = 0; i < 9999; i = i + 1)
                     {
 
-                        string url = "https://news.sogou.com/news?mode=1&media=&query=site%3Asohu.com+"+keyword+"&time=0&clusterId=&sort=1&page="+i+"&p=42230305&dp=1";
-                        string html = method.GetUrl(url, "utf-8");
-
+                        string url = "https://news.sogou.com/news?mode=1&media=&query=site%3Asohu.com "+keyword+"&time=0&clusterId=&sort=1&page="+i+"&p=42230305&dp=1";
+                        string html = method.GetUrl(url, "gbk");
+                        
                         MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
-
+                      
 
                         if (urls.Count == 0)
                             break;
@@ -171,13 +171,12 @@ namespace 搜索引擎
 
                         
                             string strhtml = method.GetUrl(urls[j].Groups[2].Value, "utf-8");
-
-
+      
 
                             Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)</title>");
                             Match a2 = Regex.Match(strhtml, @"dateUpdate"" content=""([\s\S]*?)""");
                             Match a3 = Regex.Match(strhtml, @"mediaid"" content=""([\s\S]*?)""");
-                            Match a4 = Regex.Match(strhtml, @"<article class=""article"" id=""mp-editor"">([\s\S]*?)</article>");
+                            Match a4 = Regex.Match(strhtml, @"<p data-role=""original-title"" style=""display:none"">([\s\S]*?)</article>");
 
                             //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
                             //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
@@ -192,16 +191,18 @@ namespace 搜索引擎
                             listViewItem.SubItems.Add(a1.Groups[1].Value);
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
-                            listViewItem.SubItems.Add(a4.Groups[1].Value);
+                            listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
 
-                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+
+
 
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
 
-                            Thread.Sleep(100);
+                            Thread.Sleep(1000);
+                            
                             //    }
 
 
@@ -225,14 +226,13 @@ namespace 搜索引擎
         #endregion
 
         
-
         #region  360获取
         public void so360()
         {
             try
             {
-                label15.Text = "已启动正在采集......";
-                string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
+             
+                string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
                 {
 
@@ -240,8 +240,8 @@ namespace 搜索引擎
                     for (int i = 0; i < 9999; i = i + 1)
                     {
 
-                        string url = "https://news.sogou.com/news?mode=1&media=&query=site:qq.com+" + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
-                        string html = method.GetUrl(url, "utf-8");
+                        string url = "https://news.sogou.com/news?mode=1&media=&query=site:qq.com " + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
+                        string html = method.GetUrl(url, "gbk");
 
                         MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
 
@@ -275,9 +275,9 @@ namespace 搜索引擎
                             listViewItem.SubItems.Add(a1.Groups[1].Value);
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
-                            listViewItem.SubItems.Add(a4.Groups[1].Value);
+                            listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
 
-                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+                           
 
                             while (this.zanting == false)
                             {
@@ -312,8 +312,8 @@ namespace 搜索引擎
         {
             try
             {
-                label15.Text = "已启动正在采集......";
-                string[] keywords = textBox5.Text.Split(new string[] { "," }, StringSplitOptions.None);
+                
+                string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
                 {
 
@@ -321,8 +321,8 @@ namespace 搜索引擎
                     for (int i = 0; i < 9999; i = i + 1)
                     {
 
-                        string url = "https://news.sogou.com/news?mode=1&media=&query=site:sina.com.cn+" + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
-                        string html = method.GetUrl(url, "utf-8");
+                        string url = "https://news.sogou.com/news?mode=1&media=&query=site:sina.com.cn " + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
+                        string html = method.GetUrl(url, "gbk");
 
                         MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
 
@@ -334,18 +334,16 @@ namespace 搜索引擎
                         {
 
 
-                            string strhtml = method.GetUrl(urls[j].Groups[2].Value, "gb2312");
+                            string strhtml = method.GetUrl(urls[j].Groups[2].Value, "utf-8");
 
 
 
                             Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)_");
                             Match a2 = Regex.Match(strhtml, @"<span class=""date"">([\s\S]*?)</span>");
                             Match a3 = Regex.Match(strhtml, @"rel=""nofollow"">([\s\S]*?)</a>");
-                            Match a4 = Regex.Match(strhtml, @"<div class=""article"" id=""article"">([\s\S]*?)<!-- 正文 end -->");
+                            Match a4 = Regex.Match(strhtml, @"<!-- 正文 start -->([\s\S]*?)<!-- 正文 end -->");
 
-                            //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
-                            //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
-                            //{
+                           
                             if (checkBox1.Checked == true)
                             {
                                 insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
@@ -356,9 +354,10 @@ namespace 搜索引擎
                             listViewItem.SubItems.Add(a1.Groups[1].Value);
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
-                            listViewItem.SubItems.Add(a4.Groups[1].Value);
+                            listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
 
-                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+                          
+                          
 
                             while (this.zanting == false)
                             {
@@ -387,16 +386,67 @@ namespace 搜索引擎
 
 
         #endregion
+
+        /// <summary>
+        /// 判断相似度
+        /// </summary>
+        /// <returns></returns>
+        public bool panduan()
+        {
+            return false;
+        }
         private void Main_Load(object sender, EventArgs e)
         {
-            
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, true);
+            }
+
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(so360));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            textBox11.Text = "已启动正在采集......" + "\r\n";
+            if (checkedListBox1.GetItemChecked(0) == true)
+            {
+                Thread thread = new Thread(new ThreadStart(baidu));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+            if (checkedListBox1.GetItemChecked(1) == true)
+            {
+                Thread thread = new Thread(new ThreadStart(sougou));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+            if (checkedListBox1.GetItemChecked(2) == true)
+            {
+                Thread thread = new Thread(new ThreadStart(so360));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+            if (checkedListBox1.GetItemChecked(3) == true)
+            {
+                Thread thread = new Thread(new ThreadStart(biying));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+     
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = false;
         }
     }
 }

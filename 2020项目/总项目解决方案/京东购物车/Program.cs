@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 常用代码管理软件
+namespace 京东购物车
 {
     static class Program
     {
