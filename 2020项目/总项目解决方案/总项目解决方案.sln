@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标查询", "商标查询\商标查询.csproj", "{7E41244F-251C-4C16-9635-FD6366F6608A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜索引擎", "搜索引擎\搜索引擎.csproj", "{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "京东购物车", "京东购物车\京东购物车.csproj", "{93B92686-6E93-4643-84D7-61F4FD18BDAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标生成", "商标生成\商标生成.csproj", "{A64AD82F-AFDB-472A-AD05-C520ABD47621}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浏览器抓取", "浏览器抓取\浏览器抓取.csproj", "{77DB5198-93B0-4235-81D4-B629BFA06A41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +23,6 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E41244F-251C-4C16-9635-FD6366F6608A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E41244F-251C-4C16-9635-FD6366F6608A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E41244F-251C-4C16-9635-FD6366F6608A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,14 @@ Global
 		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

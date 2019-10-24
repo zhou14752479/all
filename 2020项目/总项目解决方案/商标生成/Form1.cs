@@ -146,9 +146,10 @@ namespace 商标生成
             Control.CheckForIllegalCrossThreadCalls = false;
         }
 
-     
-      
-
-      
+        private void 新建任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new_renwu nr = new new_renwu();
+            nr.Show();
+        }
     }
 }
