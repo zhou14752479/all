@@ -86,7 +86,7 @@ namespace 学习啦
            
             string value = Regex.Replace(body.Groups[1].Value.Replace("a(\"conten\");", ""), "<[^>]+>", ""); //去标签
            
-            FileStream fs1 = new FileStream(path + dic+"/"+ removeValid(title.Groups[1].Value)+".docx", FileMode.Create, FileAccess.Write);//创建写入文件 
+            FileStream fs1 = new FileStream(path + dic+"/"+ removeValid(title.Groups[1].Value)+".doc", FileMode.Create, FileAccess.Write);//创建写入文件 
             StreamWriter sw = new StreamWriter(fs1);
             sw.WriteLine("                              " + title.Groups[1].Value);
             sw.WriteLine(value);

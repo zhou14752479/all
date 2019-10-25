@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,6 +23,12 @@ namespace 搜索引擎
         }
 
         bool zanting = true;
+       
+
+        bool status1 = false;
+        bool status2 = false;
+        bool status3 = false;
+        bool status4 = false;
 
         #region  读取数据插入数据库
 
@@ -66,12 +73,12 @@ namespace 搜索引擎
         {
             try
             {
-              
+                status1 = false;
                 string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
+
                 {
-
-
+                    textBox11.Text += "正在抓取百度搜索"+keyword;
                     for (int i = 0; i < 9999; i = i + 10)
                     {
 
@@ -112,8 +119,8 @@ namespace 搜索引擎
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
                             listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                            listViewItem.SubItems.Add(keyword);
 
-                          
 
                             while (this.zanting == false)
                             {
@@ -127,8 +134,8 @@ namespace 搜索引擎
                         }
                     }
 
-
                 }
+                status1 = true;
             }
 
 
@@ -148,20 +155,21 @@ namespace 搜索引擎
         {
             try
             {
-                
+
+                status2 = false;
                 string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
+
                 {
-
-
+                    textBox11.Text += "正在抓取搜狗搜索" + keyword;
                     for (int i = 0; i < 9999; i = i + 1)
                     {
 
-                        string url = "https://news.sogou.com/news?mode=1&media=&query=site%3Asohu.com "+keyword+"&time=0&clusterId=&sort=1&page="+i+"&p=42230305&dp=1";
+                        string url = "https://news.sogou.com/news?mode=1&media=&query=site%3Asohu.com " + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
                         string html = method.GetUrl(url, "gbk");
-                        
+
                         MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
-                      
+
 
                         if (urls.Count == 0)
                             break;
@@ -169,9 +177,9 @@ namespace 搜索引擎
                         for (int j = 0; j < urls.Count; j++)
                         {
 
-                        
+
                             string strhtml = method.GetUrl(urls[j].Groups[2].Value, "utf-8");
-      
+
 
                             Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)</title>");
                             Match a2 = Regex.Match(strhtml, @"dateUpdate"" content=""([\s\S]*?)""");
@@ -192,7 +200,7 @@ namespace 搜索引擎
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
                             listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
-
+                            listViewItem.SubItems.Add(keyword);
 
 
 
@@ -202,15 +210,14 @@ namespace 搜索引擎
                             }
 
                             Thread.Sleep(1000);
-                            
+
                             //    }
 
 
                         }
                     }
-
-
                 }
+                status2 = true;
             }
 
 
@@ -231,12 +238,13 @@ namespace 搜索引擎
         {
             try
             {
-             
+
+                status3 = false;
                 string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
+
                 {
-
-
+                    textBox11.Text += "正在抓取360搜索" + keyword;
                     for (int i = 0; i < 9999; i = i + 1)
                     {
 
@@ -276,8 +284,8 @@ namespace 搜索引擎
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
                             listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                            listViewItem.SubItems.Add(keyword);
 
-                           
 
                             while (this.zanting == false)
                             {
@@ -287,12 +295,10 @@ namespace 搜索引擎
                             Thread.Sleep(100);
                             //    }
 
-
                         }
                     }
-
-
                 }
+                status3 = true;
             }
 
 
@@ -312,12 +318,14 @@ namespace 搜索引擎
         {
             try
             {
-                
+
+
+                status4 = false;
                 string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string keyword in keywords)
+
                 {
-
-
+                    textBox11.Text += "正在抓取必应搜索" + keyword;
                     for (int i = 0; i < 9999; i = i + 1)
                     {
 
@@ -343,7 +351,7 @@ namespace 搜索引擎
                             Match a3 = Regex.Match(strhtml, @"rel=""nofollow"">([\s\S]*?)</a>");
                             Match a4 = Regex.Match(strhtml, @"<!-- 正文 start -->([\s\S]*?)<!-- 正文 end -->");
 
-                           
+
                             if (checkBox1.Checked == true)
                             {
                                 insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
@@ -355,9 +363,9 @@ namespace 搜索引擎
                             listViewItem.SubItems.Add(a2.Groups[1].Value);
                             listViewItem.SubItems.Add(a3.Groups[1].Value);
                             listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                            listViewItem.SubItems.Add(keyword);
 
-                          
-                          
+
 
                             while (this.zanting == false)
                             {
@@ -373,6 +381,7 @@ namespace 搜索引擎
 
 
                 }
+                status4 = true;
             }
 
 
@@ -406,47 +415,81 @@ namespace 搜索引擎
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            textBox11.Text = "已启动正在采集......" + "\r\n";
-            if (checkedListBox1.GetItemChecked(0) == true)
-            {
-                Thread thread = new Thread(new ThreadStart(baidu));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+            timer1.Start();
 
-            }
-            if (checkedListBox1.GetItemChecked(1) == true)
-            {
-                Thread thread = new Thread(new ThreadStart(sougou));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+          
+               
+                if (checkedListBox1.GetItemChecked(0) == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(baidu));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+                if (checkedListBox1.GetItemChecked(1) == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(sougou));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+                if (checkedListBox1.GetItemChecked(2) == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(so360));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+                if (checkedListBox1.GetItemChecked(3) == true)
+                {
+                    Thread thread = new Thread(new ThreadStart(biying));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+              
+            
 
-            }
-            if (checkedListBox1.GetItemChecked(2) == true)
-            {
-                Thread thread = new Thread(new ThreadStart(so360));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-            }
-            if (checkedListBox1.GetItemChecked(3) == true)
-            {
-                Thread thread = new Thread(new ThreadStart(biying));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-            }
+            
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+             
         }
 
-     
+
+        public void export()
+        {
+            if (status1 == true && status2 == true && status3 == true && status4 == true)
+            {
+
+                timer1.Stop();
+                string[] keywords = textBox5.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (string key in keywords)
+
+                {
+                    string path = AppDomain.CurrentDomain.BaseDirectory + key + "\\";
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path); //创建文件夹
+                    }
+                    string filename = path + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Trim() + ".xlsx";
+
+                    method.DataTableToExcelTime(method.listViewToDataTableSx(this.listView1, key), "Sheet1", true, filename);
+                }
+
+                textBox11.Text += "数据导出完成";
+            }
+
+       }
 
         private void Button3_Click(object sender, EventArgs e)
         {
             zanting = false;
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            export();
         }
     }
 }

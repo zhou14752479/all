@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
@@ -60,7 +61,12 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -75,10 +81,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -360,7 +364,8 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -397,8 +402,13 @@
             this.columnHeader5.Text = "正文";
             this.columnHeader5.Width = 1000;
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "关键字";
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.textBox13);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.textBox12);
@@ -423,13 +433,49 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
             // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(115, 401);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(70, 21);
+            this.textBox13.TabIndex = 49;
+            this.textBox13.Text = "200";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("黑体", 11F);
+            this.label16.Location = new System.Drawing.Point(6, 401);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(87, 15);
+            this.label16.TabIndex = 48;
+            this.label16.Text = "内容字数：";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(115, 374);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(70, 21);
+            this.textBox12.TabIndex = 47;
+            this.textBox12.Text = "70%";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("黑体", 11F);
+            this.label15.Location = new System.Drawing.Point(6, 377);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(103, 15);
+            this.label15.TabIndex = 46;
+            this.label15.Text = "标题相似度：";
+            // 
             // textBox11
             // 
             this.textBox11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox11.Location = new System.Drawing.Point(3, 432);
+            this.textBox11.Location = new System.Drawing.Point(3, 440);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(234, 205);
+            this.textBox11.Size = new System.Drawing.Size(234, 197);
             this.textBox11.TabIndex = 45;
             // 
             // button4
@@ -498,10 +544,10 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(118, 351);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel1.Size = new System.Drawing.Size(77, 12);
             this.linkLabel1.TabIndex = 38;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "导出表格";
+            this.linkLabel1.Text = "手动导出全部";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // checkBox1
@@ -545,7 +591,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(77, 135);
             this.textBox5.TabIndex = 34;
-            this.textBox5.Text = "大数据";
+            this.textBox5.Text = "自由行\r\n旅游";
             // 
             // label6
             // 
@@ -580,41 +626,21 @@
             this.tabControl1.Size = new System.Drawing.Size(1035, 672);
             this.tabControl1.TabIndex = 1;
             // 
-            // label15
+            // timer1
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("黑体", 11F);
-            this.label15.Location = new System.Drawing.Point(6, 377);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(103, 15);
-            this.label15.TabIndex = 46;
-            this.label15.Text = "标题相似度：";
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // textBox12
+            // label17
             // 
-            this.textBox12.Location = new System.Drawing.Point(115, 374);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(70, 21);
-            this.textBox12.TabIndex = 47;
-            this.textBox12.Text = "70%";
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(115, 401);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(70, 21);
-            this.textBox13.TabIndex = 49;
-            this.textBox13.Text = "200";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("黑体", 11F);
-            this.label16.Location = new System.Drawing.Point(6, 401);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(87, 15);
-            this.label16.TabIndex = 48;
-            this.label16.Text = "内容字数：";
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("黑体", 9F);
+            this.label17.ForeColor = System.Drawing.Color.Silver;
+            this.label17.Location = new System.Drawing.Point(6, 425);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(221, 12);
+            this.label17.TabIndex = 50;
+            this.label17.Text = "默认按照要求自动导出，也可以手动导出";
             // 
             // main
             // 
@@ -624,7 +650,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "main";
+            this.Text = "搜索引擎抓取软件";
             this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -698,5 +724,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label17;
     }
 }
