@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标生成", "商标生成\商标生成.csproj", "{A64AD82F-AFDB-472A-AD05-C520ABD47621}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浏览器抓取", "浏览器抓取\浏览器抓取.csproj", "{77DB5198-93B0-4235-81D4-B629BFA06A41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "藏宝阁", "藏宝阁\藏宝阁.csproj", "{00676491-FBBE-49B3-B2DC-EBC247E7509A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
