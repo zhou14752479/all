@@ -19,7 +19,7 @@ namespace main._2019_7
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            
-            Application.Run(new downPics());
+            Application.Run(new jianli());
         }
     }
 

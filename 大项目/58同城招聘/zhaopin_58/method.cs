@@ -425,8 +425,8 @@ namespace zhaopin_58
                 Timeout = 100000,//连接超时时间     可选项默认为100000  
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
-                Cookie = "",//字符串Cookie     可选项  
-                UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Cookie = "_lxsdk_cuid=16bd4b88a38c8-0d297d6bd625d2-f353163-1fa400-16bd4b88a38c8; iuuid=F3B7CF367A381B6BDA09F29EB6CBD0809EA666DB1290BBF84995C104FBF57A65; _lxsdk=F3B7CF367A381B6BDA09F29EB6CBD0809EA666DB1290BBF84995C104FBF57A65; _hc.v=df1f9416-050a-6ffd-b8c9-62180be8d8d4.1564129261; webp=1; __utmz=74597006.1565052051.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); cityname=%E5%AE%BF%E8%BF%81; _ga=GA1.2.1573254713.1564129433; __utma=74597006.1469495456.1565052051.1565064905.1565238563.3; i_extend=C_b1Gimthomepagecategory1394H__a; ci=105; rvct=105%2C184%2C70%2C50%2C73%2C240%2C44%2C10%2C55%2C1; uuid=8233f3072d514535be61.1572224529.1.0.0; lat=33.95941; lng=118.25547; _lxsdk_s=16e0fe52d11-a08-f1c-561%7C%7C8",//字符串Cookie     可选项  
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
                 Referer = "http://www.sufeinet.com",//来源URL     可选项  

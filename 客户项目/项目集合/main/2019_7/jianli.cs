@@ -28,7 +28,7 @@ namespace main._2019_7
            
             try
             {
-                string connetStr = "server=154.209.249.254;user=root;password=root;database=datas;"; //localhost不支持ssl连接时，最后一句一定要加！！！sslMode=none;
+                string connetStr = "server=49.232.128.185;user=root;password=root;database=datas;"; //localhost不支持ssl连接时，最后一句一定要加！！！sslMode=none;
                 MySqlConnection conn = new MySqlConnection(connetStr);
                 conn.Open(); //连接数据库
                 for (int i = 0; i < 200; i++)
@@ -100,7 +100,7 @@ namespace main._2019_7
         {
             try
             {
-                string connetStr = "server=154.209.249.254;user=root;password=root;database=datas;"; //localhost不支持ssl连接时，最后一句一定要加！！！sslMode=none;
+                string connetStr = "server=49.232.128.185;user=root;password=root;database=datas;"; //localhost不支持ssl连接时，最后一句一定要加！！！sslMode=none;
                 MySqlConnection conn = new MySqlConnection(connetStr);
                 conn.Open(); //连接数据库
                 for (int i = 0; i < 9999; i++)
@@ -169,7 +169,7 @@ namespace main._2019_7
 
         private void Button1_Click(object sender, EventArgs e)
         {
-
+            button1.Enabled = false;
 
            
 
@@ -226,7 +226,8 @@ namespace main._2019_7
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            string connetStr = "server=154.209.249.254;user=root;password=root;database=datas;"; //localhost不支持ssl连接时，最后一句一定要加！！！sslMode=none;
+            button1.Enabled = true;
+            string connetStr = "server=49.232.128.185;user=root;password=root;database=datas;"; //localhost不支持ssl连接时，最后一句一定要加！！！sslMode=none;
             MySqlConnection conn = new MySqlConnection(connetStr);
             try
             {
@@ -264,6 +265,7 @@ namespace main._2019_7
 
         private void Button5_Click(object sender, EventArgs e)
         {
+            button1.Enabled = true;
             zanting = true;
         }
     }

@@ -308,24 +308,27 @@ namespace zhaopin_58
                 {
                     paixu = "rating";
                 }
-                // string[] citys = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
+
                 string[] keywords = textBox1.Text.Trim().Split(',');
-                
+
                 string city = comboBox1.Text;
 
-                    ArrayList areaIds = getAreaId(city);
-                    string cityId = GetCityId(city);
+                ArrayList areaIds = getAreaId(city);
+                string cityId = GetCityId(city);
 
 
-                    foreach (string area in areaIds)
+                foreach (string area in areaIds)
+                {
+
+                    foreach (string keyword in keywords)
+
                     {
 
-                        foreach (string keyword in keywords)
-
+                        for (int i = 0; i < 1200; i = i + 15)
                         {
 
-                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?cateId=-1&sort="+paixu+ "&userid=-1&offset=0&limit=1000&mypos=33.94112014770508%2C118.24800109863281&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&pcentrance=6&q=" + keyword + "&requestType=filter&cityId=" + cityId + "&areaId=" + area;
-                        textBox1.Text = Url;
+                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/" + cityId + "?cateId=-1&sort=" + paixu + "&userid=-1&offset=" + i + "&limit=15&mypos=33.94112014770508%2C118.24800109863281&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&pcentrance=6&q=" + keyword + "&requestType=filter&cityId=" + cityId + "&areaId=" + area;
+
 
                             string html = method.GetUrl(Url);
 
@@ -346,100 +349,57 @@ namespace zhaopin_58
                                 break;
                             foreach (string list in lists)
                             {
-                                string aurl = "https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng";
-
+                                string aurl = "https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid="+list;
+                                //  string aurl = "https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + list;
+                                //string aurl = "https://apimobile.meituan.com/group/v1/poi/" + list;
                                 string strhtml = method.gethtml(aurl);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
 
 
-                                Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
-                                // Match name = Regex.Match(strhtml, @"""name"":""([\s\S]*?)""");
-                                Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
-                                Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
-                                Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
-                      
-                            Match score = Regex.Match(strhtml, @"avgScore"":([\s\S]*?),");
-                            Match waimai = Regex.Match(strhtml, @"isWaimai"":([\s\S]*?),");
+                                Match name = Regex.Match(strhtml, @"""name"":""([\s\S]*?)""");
+
+                                Match addr = Regex.Match(strhtml, @"""addr"":""([\s\S]*?)""");
+                                Match tel = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
+                                Match areaName = Regex.Match(strhtml, @"""areaName"":""([\s\S]*?)""");
+
+                                Match score = Regex.Match(strhtml, @"avgScore"":([\s\S]*?),");
+                               
 
 
-                            //if (name.Groups[2].Value != "" && radioButton1.Checked == true)
-                            //{
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                                    lv1.SubItems.Add(name.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
+                                    lv1.SubItems.Add(city);
+                                    lv1.SubItems.Add(score.Groups[1].Value);
+                                    lv1.SubItems.Add("有外卖");
+                              
+                                if (listView1.Items.Count - 1 > 1)
+                                {
+                                    listView1.EnsureVisible(listView1.Items.Count - 1);
+                                }
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
 
-                            //    if (waimai.Groups[1].Value == "1")
-                            //    {
-                            //        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                            //        lv1.SubItems.Add(name.Groups[2].Value.Trim());
-                            //        lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                            //        lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                            //        lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                            //        lv1.SubItems.Add(city);
-                            //        lv1.SubItems.Add(score.Groups[1].Value);
-                            //        lv1.SubItems.Add("有外卖");
-                            //    }
-                            //}
+                                if (status == false)
+                                {
+                                    return;
+                                }
 
-                            //if (name.Groups[2].Value != "" && radioButton2.Checked == true)
-                            //{
+                                Thread.Sleep(1000);   //内容获取间隔，可变量
 
-                            //    if (waimai.Groups[1].Value == "0")
-                            //    {
-                            //        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                            //        lv1.SubItems.Add(name.Groups[2].Value.Trim());
-                            //        lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                            //        lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                            //        lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                            //        lv1.SubItems.Add(city);
-                            //        lv1.SubItems.Add(score.Groups[1].Value);
-                            //        lv1.SubItems.Add("无外卖");
-                            //    }
-                            //}
 
-                            if (waimai.Groups[1].Value == "1")
-                            {
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                lv1.SubItems.Add(name.Groups[2].Value.Trim());
-                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(city);
-                                lv1.SubItems.Add(score.Groups[1].Value);
-                                lv1.SubItems.Add("有外卖");
-                            }
-                            if (waimai.Groups[1].Value == "0")
-                            {
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                lv1.SubItems.Add(name.Groups[2].Value.Trim());
-                                lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(city);
-                                lv1.SubItems.Add(score.Groups[1].Value);
-                                lv1.SubItems.Add("无外卖");
-                            }
-
-                            if (listView1.Items.Count - 1 > 1)
-                                    {
-                                        listView1.EnsureVisible(listView1.Items.Count - 1);
-                                    }
-                                    while (this.zanting == false)
-                                    {
-                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                    }
-
-                                    if (status == false)
-                                    {
-                                        return;
-                                    }
-
-                                    Thread.Sleep(1000);   //内容获取间隔，可变量
-
-                                
                             }
 
                         }
 
                     }
                 }
-            
+
+            }
+
 
 
 
@@ -641,11 +601,9 @@ namespace zhaopin_58
         private void button1_Click(object sender, EventArgs e)
         {
             status = true;
-            
+
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
-
-
 
         }
 
@@ -704,6 +662,19 @@ namespace zhaopin_58
         private void ComboBox1_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void Meituan_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }
