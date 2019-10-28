@@ -103,42 +103,42 @@
             this.新建任务ToolStripMenuItem,
             this.新建分组ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 114);
             this.contextMenuStrip1.Text = "编辑该任务数据";
             // 
             // 开始ToolStripMenuItem
             // 
             this.开始ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("开始ToolStripMenuItem.Image")));
             this.开始ToolStripMenuItem.Name = "开始ToolStripMenuItem";
-            this.开始ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.开始ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.开始ToolStripMenuItem.Text = "开始任务";
             // 
             // 暂停ToolStripMenuItem
             // 
             this.暂停ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("暂停ToolStripMenuItem.Image")));
             this.暂停ToolStripMenuItem.Name = "暂停ToolStripMenuItem";
-            this.暂停ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.暂停ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.暂停ToolStripMenuItem.Text = "暂停";
             // 
             // 继续ToolStripMenuItem
             // 
             this.继续ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("继续ToolStripMenuItem.Image")));
             this.继续ToolStripMenuItem.Name = "继续ToolStripMenuItem";
-            this.继续ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.继续ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.继续ToolStripMenuItem.Text = "继续";
             // 
             // 新建任务ToolStripMenuItem
             // 
             this.新建任务ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("新建任务ToolStripMenuItem.Image")));
             this.新建任务ToolStripMenuItem.Name = "新建任务ToolStripMenuItem";
-            this.新建任务ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新建任务ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.新建任务ToolStripMenuItem.Text = "新建任务";
             this.新建任务ToolStripMenuItem.Click += new System.EventHandler(this.新建任务ToolStripMenuItem_Click);
             // 
             // 新建分组ToolStripMenuItem
             // 
             this.新建分组ToolStripMenuItem.Name = "新建分组ToolStripMenuItem";
-            this.新建分组ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新建分组ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.新建分组ToolStripMenuItem.Text = "新建分组";
             // 
             // imageList1
@@ -364,6 +364,7 @@
             this.toolStripButton10.Name = "toolStripButton10";
             this.toolStripButton10.Size = new System.Drawing.Size(105, 22);
             this.toolStripButton10.Text = "导出Excel表格";
+            this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
             // toolStripButton12
             // 

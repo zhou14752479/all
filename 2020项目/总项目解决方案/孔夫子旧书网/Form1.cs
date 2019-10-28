@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -25,6 +26,21 @@ namespace 孔夫子旧书网
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
                 source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
         }
+        #region 去掉路径中非法字符
+        public string removeValid(string illegal)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+            foreach (char c in invalid)
+            {
+                illegal = illegal.Replace(c.ToString(), "");
+            }
+            return illegal;
+        }
+
+        #endregion
+        bool zanting = true;
+        string path = AppDomain.CurrentDomain.BaseDirectory + "images\\";
         /// <summary>
         /// 主程序
         /// </summary>
@@ -66,6 +82,8 @@ namespace 孔夫子旧书网
                         Match a17 = Regex.Match(bookHtml, @"""authorIntroduction"":""([\s\S]*?)""");
                         Match a18 = Regex.Match(bookHtml, @"""directory"":""([\s\S]*?)""");
 
+                        Match picurl = Regex.Match(bookHtml, @"<meta property=""og:image"" content=""([\s\S]*?)""");
+
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(Unicode2String(a1.Groups[1].Value));
                         listViewItem.SubItems.Add(Unicode2String(a2.Groups[1].Value));
@@ -82,9 +100,16 @@ namespace 孔夫子旧书网
                         listViewItem.SubItems.Add(Unicode2String(a13.Groups[1].Value));
                         listViewItem.SubItems.Add(Unicode2String(a14.Groups[1].Value));
                         listViewItem.SubItems.Add(Unicode2String(a15.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a16.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a17.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a18.Groups[1].Value));
+                        listViewItem.SubItems.Add(Unicode2String(a16.Groups[1].Value).Trim());
+                        listViewItem.SubItems.Add(Unicode2String(a17.Groups[1].Value).Trim());
+                        listViewItem.SubItems.Add(Unicode2String(a18.Groups[1].Value).Trim());
+                        
+                        if (picurl.Groups[1].Value != "")
+                        {
+                            method.downloadFile(picurl.Groups[1].Value, path, removeValid(Unicode2String(a1.Groups[1].Value) + ".jpg"));
+
+                        }
+                        
                     }
                    
                    
@@ -114,6 +139,26 @@ namespace 孔夫子旧书网
         private void Button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", path);
         }
     }
 }

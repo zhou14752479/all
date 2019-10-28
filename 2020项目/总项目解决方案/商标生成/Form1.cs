@@ -151,5 +151,10 @@ namespace 商标生成
             new_renwu nr = new new_renwu();
             nr.Show();
         }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

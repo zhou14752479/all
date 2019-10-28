@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜索引擎", "搜索引�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "京东购物车", "京东购物车\京东购物车.csproj", "{93B92686-6E93-4643-84D7-61F4FD18BDAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标生成", "商标生成\商标生成.csproj", "{A64AD82F-AFDB-472A-AD05-C520ABD47621}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浏览器抓取", "浏览器抓取\浏览器抓取.csproj", "{77DB5198-93B0-4235-81D4-B629BFA06A41}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "藏宝阁", "藏宝阁\藏宝阁.csproj", "{00676491-FBBE-49B3-B2DC-EBC247E7509A}"
@@ -35,10 +33,6 @@ Global
 		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A64AD82F-AFDB-472A-AD05-C520ABD47621}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
