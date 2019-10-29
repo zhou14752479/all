@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,8 +25,8 @@ namespace 藏宝阁
         }
 
 
-       public static  string COOKIE = "return_url=; msg_box_flag=1; vjuids=-2726bafde.161942f98fe.0.02543fddefe7; _ntes_nuid=3f1bc64af8e3be5d2510190789b7c3d9; _ga=GA1.2.2029656332.1522893311; __gads=ID=ce9df49c84b50a78:T=1531915856:S=ALNI_Mb1_wWgIlwzpsg1nHswBaugPS2PMA; vjlast=1518609603.1540779331.12; _ntes_nnid=3f1bc64af8e3be5d2510190789b7c3d9,1552719963380; vinfo_n_f_l_n3=85348dd7f24f9d12.1.7.1518609602838.1540779571787.1552720007350; UM_distinctid=16c1460b43a524-0d13ac087207e7-c343162-1fa400-16c1460b43b3eb; P_INFO=xingjiyou001@163.com|1563710223|0|other|00&99|jis&1563709989&163#jis&321300#10#0#0|&0|163&ecard&mail163|xingjiyou001@163.com; mail_psc_fingerprint=137d1e4f97c7c196c6daef1e19ff9ccf; __f_=1570701703931; fingerprint=gecq3ncnemrwn1u2; area_td_id=1; area_id=3; _nietop_foot=%u5927%u8BDD2%u7ECF%u5178%u7248%7Cxy2.163.com; latest_views=115_1408813; msg_box_flag=1; cur_servername=%25E7%25A7%25A6%25E5%2585%25B3%25E6%25B1%2589%25E6%259C%2588; sid=bb7bNo2EAsr4kWJpHVD7lQJipF4N6e79Bj2U-_dx; last_login_serverid=249; wallet_data=%7B%22is_locked%22%3A%20false%2C%20%22checking_balance%22%3A%200%2C%20%22balance%22%3A%200%2C%20%22free_balance%22%3A%200%7D";
-        #region GET请求带COOKIE
+       public static  string COOKIE = "fingerprint=6ke7wjxyis0k4fqq; msg_box_flag=1; _ntes_nnid=49bc8878754882fe696204132932ebe7,1563757620289; _ntes_nuid=49bc8878754882fe696204132932ebe7; usertrack=ezq0J11HilIZSVxcILa3Ag==; UM_distinctid=16d48b104fb648-0b695a783e0c83-f353163-1fa400-16d48b104fcaf9; vinfo_n_f_l_n3=80b4785de51d55b3.1.0.1568882622014.0.1568882666358; __f_=1570753726419; sid=rcAEI_LGMVF91iIikfOM4X7SKisvxtbPKH6LZZtD; last_login_serverid=249; wallet_data=%7B%22is_locked%22%3A%20false%2C%20%22checking_balance%22%3A%200%2C%20%22balance%22%3A%200%2C%20%22free_balance%22%3A%200%7D";
+        #region GET请求
         /// <summary>
         /// GET请求带COOKIE
         /// </summary>
@@ -65,6 +66,64 @@ namespace 藏宝阁
         {
 
         }
+
+        ArrayList glists = new ArrayList();
+        ArrayList wlists = new ArrayList();
+
+        /// <summary>
+        /// 公示期第一次获取
+        /// </summary>
+        public void gongshiFirst()
+        {
+            try
+            {
+                string url = "https://xy2.cbg.163.com/cgi-bin/equipquery.py?act=fair_show_list&server_id=249&areaid=4&page=1&kind_id=45&query_order=create_time+DESC";
+                string html = GetUrl(url, "gb2312");
+                MatchCollection links = Regex.Matches(html, @"<a class=""soldImg"" style=""text-decoration:none;"" href=""([\s\S]*?)""");
+              
+                for (int i = 0; i < links.Count; i++)
+                {
+                    glists.Add(links[i].Groups[1].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                textBox1.Text = ex.ToString();
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// 我要买第一次获取
+        /// </summary>
+        public void woyaomaiFirst()
+        {
+            try
+            {
+                string url = "https://xy2.cbg.163.com/cgi-bin/equipquery.py?act=query&server_id=249&areaid=4&page=1&kind_id=45&query_order=selling_time+DESC";
+                string html = GetUrl(url, "gb2312");
+                MatchCollection links = Regex.Matches(html, @"<a class=""soldImg"" style=""text-decoration:none;"" href=""([\s\S]*?)""");
+
+                for (int i = 0; i < links.Count; i++)
+                {
+                    wlists.Add(links[i].Groups[1].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                textBox1.Text = ex.ToString();
+            }
+        }
+
+
+
+
+
+
         /// <summary>
         /// 公示期
         /// </summary>
@@ -78,12 +137,60 @@ namespace 藏宝阁
                 Match serverName = Regex.Match(html, @"""server_name"" : ""([\s\S]*?)""");
                 MatchCollection links = Regex.Matches(html, @"<a class=""soldImg"" style=""text-decoration:none;"" href=""([\s\S]*?)""");
                 MatchCollection prices = Regex.Matches(html, @"data_price=""([\s\S]*?)""");
+
+
+
                 for (int i = 0; i < links.Count; i++)
                 {
-                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                    listViewItem.SubItems.Add(serverName.Groups[1].Value);
-                    listViewItem.SubItems.Add(prices[i+1].Groups[1].Value);
-                    listViewItem.SubItems.Add(links[i].Groups[1].Value);
+                    if (!glists.Contains(links[i].Groups[1].Value))
+                    {
+                        if (Convert.ToDecimal(textBox2.Text) < Convert.ToDecimal(prices[i + 1].Groups[1].Value) && Convert.ToDecimal(prices[i + 1].Groups[1].Value) < Convert.ToDecimal(textBox3.Text))
+                        {
+                            System.Media.SystemSounds.Asterisk.Play();
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(serverName.Groups[1].Value);
+                            listViewItem.SubItems.Add(prices[i + 1].Groups[1].Value);
+                            listViewItem.SubItems.Add(links[i].Groups[1].Value);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                textBox1.Text = ex.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 我要买
+        /// </summary>
+        public void woyaomai()
+        {
+            try
+            {
+                string url = "https://xy2.cbg.163.com/cgi-bin/equipquery.py?act=query&server_id=249&areaid=4&page=1&kind_id=45&query_order=create_time+DESC";
+                string html = GetUrl(url, "gb2312");
+
+                Match serverName = Regex.Match(html, @"""server_name"" : ""([\s\S]*?)""");
+                MatchCollection links = Regex.Matches(html, @"<a class=""soldImg"" style=""text-decoration:none;"" href=""([\s\S]*?)""");
+                MatchCollection prices = Regex.Matches(html, @"data_price=""([\s\S]*?)""");
+
+
+
+                for (int i = 0; i < links.Count; i++)
+                {
+                    if (!wlists.Contains(links[i].Groups[1].Value))
+                    {
+                        if (Convert.ToDecimal(textBox2.Text) < Convert.ToDecimal(prices[i + 1].Groups[1].Value) && Convert.ToDecimal(prices[i + 1].Groups[1].Value) < Convert.ToDecimal(textBox3.Text))
+                        {
+                            System.Media.SystemSounds.Asterisk.Play();
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(serverName.Groups[1].Value);
+                            listViewItem.SubItems.Add(prices[i + 1].Groups[1].Value);
+                            listViewItem.SubItems.Add(links[i].Groups[1].Value);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -95,9 +202,26 @@ namespace 藏宝阁
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(gongshi));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            if (radioButton1.Checked == true)
+            {
+                button1.Enabled = false;
+                Thread thread = new Thread(new ThreadStart(gongshiFirst));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+                timer1.Start();
+            }
+
+            else if (radioButton2.Checked == true)
+            {
+                button1.Enabled = false;
+                Thread thread = new Thread(new ThreadStart(woyaomaiFirst));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+                timer1.Start();
+
+            }
         }
 
         /// <summary>
@@ -111,6 +235,36 @@ namespace 藏宝阁
                 return;
 
             System.Diagnostics.Process.Start(listView1.SelectedItems[0].SubItems[3].Text);
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(gongshi));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+            else if (radioButton2.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(gongshi));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+         
+            button1.Enabled = true;
+            timer1.Stop();
         }
     }
 }

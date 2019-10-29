@@ -63,6 +63,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
@@ -82,7 +83,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -433,6 +433,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("黑体", 9F);
+            this.label17.ForeColor = System.Drawing.Color.Silver;
+            this.label17.Location = new System.Drawing.Point(6, 425);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(221, 12);
+            this.label17.TabIndex = 50;
+            this.label17.Text = "默认按照要求自动导出，也可以手动导出";
+            // 
             // textBox13
             // 
             this.textBox13.Location = new System.Drawing.Point(115, 401);
@@ -488,6 +499,7 @@
             this.button4.TabIndex = 44;
             this.button4.Text = "继续";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // button3
             // 
@@ -630,17 +642,6 @@
             // 
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("黑体", 9F);
-            this.label17.ForeColor = System.Drawing.Color.Silver;
-            this.label17.Location = new System.Drawing.Point(6, 425);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(221, 12);
-            this.label17.TabIndex = 50;
-            this.label17.Text = "默认按照要求自动导出，也可以手动导出";
             // 
             // main
             // 

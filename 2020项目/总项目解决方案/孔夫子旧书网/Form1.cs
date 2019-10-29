@@ -21,6 +21,16 @@ namespace 孔夫子旧书网
             InitializeComponent();
         }
 
+        #region  代理iP
+
+        public void getIp()
+        {
+            string ahtml = method.GetUrl(textBox2.Text, "utf-8");
+            this.IP = ahtml.Trim();
+
+        }
+        #endregion
+        public string IP = "";
         public static string Unicode2String(string source)
         {
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
@@ -40,28 +50,46 @@ namespace 孔夫子旧书网
 
         #endregion
         bool zanting = true;
+        bool status = true;
         string path = AppDomain.CurrentDomain.BaseDirectory + "images\\";
         /// <summary>
         /// 主程序
         /// </summary>
         public void run()
         {
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("请输入代理IP地址");
+                return;
+            }
+
+            if (textBox3.Text == "")
+            {
+                MessageBox.Show("请输入ISBN号");
+                return;
+            }
+
+
             try
             {
-                for (int i = 0; i < richTextBox1.Lines.Length; i++)
+                string[] text = textBox3.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length; i++)
                 {
 
-                    string url = "http://search.kongfz.com/item_result/?select=0&key="+richTextBox1.Lines[i]+"&status=1";
-                    string html = method.GetUrl(url, "utf-8");
+                    string url = "http://search.kongfz.com/item_result/?select=0&key="+ text[i].Trim()+ "&status=1";
+                    string html = method.GetUrlwithIP(url, this.IP);
 
                     Match bookUrl = Regex.Match(html, @"<a class=""img-box"" target=""_blank""([\s\S]*?)href=""([\s\S]*?)""");
                     if (bookUrl.Groups[2].Value == "")
                     {
-                        textBox1.Text += richTextBox1.Lines[i];
+                        textBox1.Text += text[i]+"\r\n";
+                      
+                        
                     }
                     else
                     {
-                        string bookHtml = method.GetUrl(bookUrl.Groups[2].Value, "utf-8");
+                        string bookHtml = method.GetUrlwithIP(bookUrl.Groups[2].Value, this.IP);
 
                         Match a1 = Regex.Match(bookHtml, @"""bookName"":""([\s\S]*?)""");
                         Match a2 = Regex.Match(bookHtml, @"""author"":""([\s\S]*?)""");
@@ -83,32 +111,48 @@ namespace 孔夫子旧书网
                         Match a18 = Regex.Match(bookHtml, @"""directory"":""([\s\S]*?)""");
 
                         Match picurl = Regex.Match(bookHtml, @"<meta property=""og:image"" content=""([\s\S]*?)""");
+                        string picName = Regex.Replace(picurl.Groups[1].Value, ".*/", "");  //去标签
 
-                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(Unicode2String(a1.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a2.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a3.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a4.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a5.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a6.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a7.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a8.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a9.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a10.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a11.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a12.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a13.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a14.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a15.Groups[1].Value));
-                        listViewItem.SubItems.Add(Unicode2String(a16.Groups[1].Value).Trim());
-                        listViewItem.SubItems.Add(Unicode2String(a17.Groups[1].Value).Trim());
-                        listViewItem.SubItems.Add(Unicode2String(a18.Groups[1].Value).Trim());
-                        
-                        if (picurl.Groups[1].Value != "")
+                        if (picurl.Groups[1].Value.Contains("jpg"))
                         {
-                            method.downloadFile(picurl.Groups[1].Value, path, removeValid(Unicode2String(a1.Groups[1].Value) + ".jpg"));
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(Unicode2String(a1.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a2.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a3.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a4.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a5.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a6.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a7.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a8.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a9.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a10.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a11.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a12.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a13.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a14.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a15.Groups[1].Value));
+                            listViewItem.SubItems.Add(Unicode2String(a16.Groups[1].Value).Trim());
+                            listViewItem.SubItems.Add(Unicode2String(a17.Groups[1].Value).Trim());
+                            listViewItem.SubItems.Add(Unicode2String(a18.Groups[1].Value).Trim());
+                            listViewItem.SubItems.Add(picName);
+
+
+                            method.downloadFile(picurl.Groups[1].Value, path, picName + ".jpg");
 
                         }
+
+                        else
+                        {
+                            textBox1.Text += text[i] + "\r\n";
+
+                        }
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+                        Thread.Sleep(500);
                         
                     }
                    
@@ -128,6 +172,10 @@ namespace 孔夫子旧书网
 
         private void button1_Click(object sender, EventArgs e)
         {
+            status = true;
+            getIp();
+            timer1.Start();
+            button1.Enabled = false;
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -138,7 +186,7 @@ namespace 孔夫子旧书网
 
         private void Button2_Click(object sender, EventArgs e)
         {
-
+            status = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -159,6 +207,21 @@ namespace 孔夫子旧书网
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("explorer.exe", path);
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            button1.Enabled = true;
+        }
+
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            getIp();
         }
     }
 }

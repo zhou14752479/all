@@ -103,7 +103,7 @@ namespace main._2019_7
                 string connetStr = "server=49.232.128.185;user=root;password=root;database=datas;"; //localhost不支持ssl连接时，最后一句一定要加！！！sslMode=none;
                 MySqlConnection conn = new MySqlConnection(connetStr);
                 conn.Open(); //连接数据库
-                for (int i = 0; i < 9999; i++)
+                for (int i = 0; i < 99999; i++)
                 {
                   
 

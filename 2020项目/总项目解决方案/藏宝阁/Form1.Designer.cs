@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -35,19 +36,20 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -134,6 +136,92 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数设置";
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radioButton2.ForeColor = System.Drawing.Color.Red;
+            this.radioButton2.Location = new System.Drawing.Point(137, 20);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(145, 20);
+            this.radioButton2.TabIndex = 60;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "公示期＋我要买";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radioButton1.ForeColor = System.Drawing.Color.Red;
+            this.radioButton1.Location = new System.Drawing.Point(18, 20);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(111, 20);
+            this.radioButton1.TabIndex = 59;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "只看公示期";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("黑体", 11F);
+            this.label2.Location = new System.Drawing.Point(185, 117);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 15);
+            this.label2.TabIndex = 58;
+            this.label2.Text = "分钟";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox4.Location = new System.Drawing.Point(134, 108);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(46, 24);
+            this.textBox4.TabIndex = 57;
+            this.textBox4.Text = "5";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox3.Location = new System.Drawing.Point(238, 68);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(46, 24);
+            this.textBox3.TabIndex = 56;
+            this.textBox3.Text = "999999";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("黑体", 11F);
+            this.label1.Location = new System.Drawing.Point(185, 74);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 15);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "-----";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox2.Location = new System.Drawing.Point(133, 68);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(46, 24);
+            this.textBox2.TabIndex = 54;
+            this.textBox2.Text = "0";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("宋体", 11F);
+            this.linkLabel1.Location = new System.Drawing.Point(187, 225);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(97, 15);
+            this.linkLabel1.TabIndex = 52;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "清空所有链接";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
+            // 
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -153,6 +241,7 @@
             this.button2.TabIndex = 50;
             this.button2.Text = "停止监控";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // label15
             // 
@@ -187,90 +276,10 @@
             this.label6.TabIndex = 33;
             this.label6.Text = "设置价格区间：";
             // 
-            // linkLabel1
+            // timer1
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("宋体", 11F);
-            this.linkLabel1.Location = new System.Drawing.Point(185, 204);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(97, 15);
-            this.linkLabel1.TabIndex = 52;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "清空所有链接";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox2.Location = new System.Drawing.Point(133, 68);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(46, 24);
-            this.textBox2.TabIndex = 54;
-            this.textBox2.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("黑体", 11F);
-            this.label1.Location = new System.Drawing.Point(185, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 15);
-            this.label1.TabIndex = 55;
-            this.label1.Text = "-----";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox3.Location = new System.Drawing.Point(238, 68);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(46, 24);
-            this.textBox3.TabIndex = 56;
-            this.textBox3.Text = "999999";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox4.Location = new System.Drawing.Point(134, 108);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(46, 24);
-            this.textBox4.TabIndex = 57;
-            this.textBox4.Text = "5";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("黑体", 11F);
-            this.label2.Location = new System.Drawing.Point(185, 117);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
-            this.label2.TabIndex = 58;
-            this.label2.Text = "分钟";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton1.ForeColor = System.Drawing.Color.Red;
-            this.radioButton1.Location = new System.Drawing.Point(18, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(111, 20);
-            this.radioButton1.TabIndex = 59;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "只看公示期";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton2.ForeColor = System.Drawing.Color.Red;
-            this.radioButton2.Location = new System.Drawing.Point(137, 20);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(145, 20);
-            this.radioButton2.TabIndex = 60;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "公示期＋我要买";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.timer1.Interval = 100000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // Form1
             // 
@@ -315,6 +324,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
