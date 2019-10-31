@@ -83,6 +83,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -365,7 +366,8 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader7});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -376,6 +378,7 @@
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -523,6 +526,7 @@
             this.button6.TabIndex = 42;
             this.button6.Text = "清空结果";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // button1
             // 
@@ -577,7 +581,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("黑体", 11F);
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label14.Location = new System.Drawing.Point(160, 139);
+            this.label14.Location = new System.Drawing.Point(6, 136);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(71, 15);
             this.label14.TabIndex = 36;
@@ -588,7 +592,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("黑体", 11F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(160, 113);
+            this.label5.Location = new System.Drawing.Point(6, 110);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 15);
             this.label5.TabIndex = 35;
@@ -598,10 +602,10 @@
             // 
             this.textBox5.Font = new System.Drawing.Font("宋体", 10F);
             this.textBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.textBox5.Location = new System.Drawing.Point(73, 16);
+            this.textBox5.Location = new System.Drawing.Point(83, 16);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(77, 135);
+            this.textBox5.Size = new System.Drawing.Size(144, 135);
             this.textBox5.TabIndex = 34;
             this.textBox5.Text = "自由行\r\n旅游";
             // 
@@ -642,6 +646,10 @@
             // 
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "网址";
             // 
             // main
             // 
@@ -728,5 +736,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

@@ -152,7 +152,7 @@ namespace 孔夫子旧书网
                         }
                         if (status == false)
                             return;
-                        Thread.Sleep(500);
+                        Thread.Sleep(100);
                         
                     }
                    

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B6903F93-D708-4224-BC61-64D7F8A617F3}</ProjectGuid>
+    <ProjectGuid>{BB68703C-DFB3-45CD-9DC1-8E2A914EE616}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>新闻</RootNamespace>
-    <AssemblyName>新闻</AssemblyName>
+    <RootNamespace>大球差值监控</RootNamespace>
+    <AssemblyName>大球差值监控</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="news.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="news.Designer.cs">
-      <DependentUpon>news.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="news.resx">
-      <DependentUpon>news.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -82,7 +79,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\helper\helper.csproj">
+    <ProjectReference Include="..\helper\helper.csproj">
       <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
       <Name>helper</Name>
     </ProjectReference>

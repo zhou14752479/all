@@ -388,7 +388,7 @@ namespace zhaopin_58
                                     return;
                                 }
 
-                                Thread.Sleep(1000);   //内容获取间隔，可变量
+                                Thread.Sleep(1500);   //内容获取间隔，可变量
 
 
                             }

@@ -52,6 +52,7 @@
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -66,7 +67,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -235,6 +235,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数设置";
             // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Location = new System.Drawing.Point(649, 142);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel3.TabIndex = 65;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "清空数据";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
+            // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
@@ -249,6 +260,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(109, 16);
+            this.textBox3.MaxLength = 9999999;
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -380,20 +392,9 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(649, 142);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel3.TabIndex = 65;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "清空数据";
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
-            // 
             // timer1
             // 
-            this.timer1.Interval = 600000;
+            this.timer1.Interval = 1200000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // Form1
