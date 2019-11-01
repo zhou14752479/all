@@ -32,11 +32,41 @@ namespace 搜索引擎
         bool status3 = false;
         bool status4 = false;
 
+        bool tingzhi = true;
+
         ArrayList baidus = new ArrayList();
         ArrayList sougous = new ArrayList();
         ArrayList so360s = new ArrayList();
         ArrayList biyings = new ArrayList();
+        #region 去掉路径中非法字符
+        public string removeValid(string illegal)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
 
+            foreach (char c in invalid)
+            {
+                illegal = illegal.Replace(c.ToString(), "");
+            }
+            return illegal;
+        }
+
+        #endregion
+
+
+        public void exportTXT(string key,string title,string body)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory+"txt\\" + key.Trim() + "\\";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path); //创建文件夹
+            }
+            FileStream fs1 = new FileStream(path + removeValid(title) + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1);
+            sw.WriteLine(body);
+            sw.Close();
+            fs1.Close();
+
+        }
 
         #region GET请求
         /// <summary>
@@ -76,6 +106,7 @@ namespace 搜索引擎
             return "";
         }
         #endregion
+
         #region  读取数据插入数据库
 
         public void insertData(string a, string b, string c, string d)
@@ -178,12 +209,15 @@ namespace 搜索引擎
                                         listViewItem.SubItems.Add(keyword);
                                         listViewItem.SubItems.Add(URL);
 
-
+                                        exportTXT(keyword,a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
                                         while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                         }
-
+                                        if (tingzhi == false)
+                                        {
+                                            return;
+                                        }
                                         Thread.Sleep(100);
                                         //    }
                                     }
@@ -276,12 +310,15 @@ namespace 搜索引擎
                                         listViewItem.SubItems.Add(keyword);
                                         listViewItem.SubItems.Add(urls[j].Groups[2].Value);
 
-
+                                        exportTXT(keyword, a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
                                         while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                         }
-
+                                        if (tingzhi == false)
+                                        {
+                                            return;
+                                        }
                                         Thread.Sleep(1000);
 
                                         //    }
@@ -373,13 +410,16 @@ namespace 搜索引擎
                                         listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
                                         listViewItem.SubItems.Add(keyword);
                                         listViewItem.SubItems.Add(urls[j].Groups[2].Value);
-
+                                        exportTXT(keyword, a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
                                         while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                         }
-
-                                        Thread.Sleep(100);
+                                        if (tingzhi == false)
+                                        {
+                                            return;
+                                        }
+                                        Thread.Sleep(1000);
                                         //    }
                                     }
                                 }
@@ -467,14 +507,18 @@ namespace 搜索引擎
                                         listViewItem.SubItems.Add(keyword);
                                         listViewItem.SubItems.Add(urls[j].Groups[2].Value);
 
-
+                                        exportTXT(keyword, a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
 
                                         while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                         }
+                                        if (tingzhi == false)
+                                        {
+                                            return;
+                                        }
 
-                                        Thread.Sleep(100);
+                                        Thread.Sleep(1000);
                                         //    }
                                     }
                                 }
@@ -522,6 +566,7 @@ namespace 搜索引擎
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            tingzhi = true;
             button1.Enabled = false;
             timer1.Start();
 
@@ -614,6 +659,11 @@ namespace 搜索引擎
         private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             System.Diagnostics.Process.Start(this.listView1.SelectedItems[0].SubItems[6].Text);
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tingzhi = false;
         }
     }
 }
