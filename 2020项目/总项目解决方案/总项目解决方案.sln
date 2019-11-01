@@ -7,13 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜索引擎", "搜索引擎\搜索引擎.csproj", "{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "京东购物车", "京东购物车\京东购物车.csproj", "{93B92686-6E93-4643-84D7-61F4FD18BDAB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浏览器抓取", "浏览器抓取\浏览器抓取.csproj", "{77DB5198-93B0-4235-81D4-B629BFA06A41}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "藏宝阁", "藏宝阁\藏宝阁.csproj", "{00676491-FBBE-49B3-B2DC-EBC247E7509A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "大球差值监控", "大球差值监控\大球差值监控.csproj", "{BB68703C-DFB3-45CD-9DC1-8E2A914EE616}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +25,6 @@ Global
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93B92686-6E93-4643-84D7-61F4FD18BDAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,10 +33,6 @@ Global
 		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB68703C-DFB3-45CD-9DC1-8E2A914EE616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB68703C-DFB3-45CD-9DC1-8E2A914EE616}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB68703C-DFB3-45CD-9DC1-8E2A914EE616}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB68703C-DFB3-45CD-9DC1-8E2A914EE616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
