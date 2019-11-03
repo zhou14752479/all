@@ -137,7 +137,7 @@ namespace 孔夫子旧书网
                             listViewItem.SubItems.Add(picName);
 
 
-                            method.downloadFile(picurl.Groups[1].Value, path, picName + ".jpg");
+                           // method.downloadFile(picurl.Groups[1].Value, path, picName + ".jpg");
 
                         }
 

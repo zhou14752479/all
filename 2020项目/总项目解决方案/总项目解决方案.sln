@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "藏宝阁", "藏宝阁\藏�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浏览器多账户管理", "2020_1\浏览器多账户管理\浏览器多账户管理.csproj", "{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔夫子旧书网", "孔夫子旧书网\孔夫子旧书网.csproj", "{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
