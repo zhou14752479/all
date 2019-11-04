@@ -45,16 +45,22 @@ namespace 大球差值监控
                             string html = method.GetUrl(url, "gb2312");
 
                             MatchCollection values = Regex.Matches(html, @"<TD height=22><FONT color=([\s\S]*?)><B>([\s\S]*?)</B>");
+                            MatchCollection times = Regex.Matches(html, @"<TD>\d{2}-\d{2}.*</TD>");
+                            string time0 = times[0].Groups[0].Value;
+                            string time1 = times[0].Groups[0].Value;
+
                             if (values.Count > 1)
                             {
-                                decimal a = Convert.ToDecimal(values[0].Groups[2].Value);
-                                decimal b = Convert.ToDecimal(values[1].Groups[2].Value);
-                                if (a- b > Convert.ToDecimal(textBox22.Text))
+                                if (time0 == time1)
                                 {
-                                    MessageBox.Show(url + "达到设置差值,差值为" + (a- b));
-                                    textBox23.Text += "达到设置差值,差值为"+(a-b)+"网址："+ url+ "\r\n";
+                                    decimal a = Convert.ToDecimal(values[0].Groups[2].Value);
+                                    decimal b = Convert.ToDecimal(values[1].Groups[2].Value);
+                                    if (a - b > Convert.ToDecimal(textBox22.Text))
+                                    {
+                                        MessageBox.Show(url + "达到设置差值,差值为" + (a - b));
+                                        textBox23.Text += "达到设置差值,差值为" + (a - b) + "网址：" + url + "\r\n";
+                                    }
                                 }
-
 
                             }
                             

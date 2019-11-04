@@ -26,6 +26,8 @@ namespace 藏宝阁
 
 
        public static  string COOKIE = "fingerprint=6ke7wjxyis0k4fqq; msg_box_flag=1; return_url=; _ntes_nnid=49bc8878754882fe696204132932ebe7,1563757620289; _ntes_nuid=49bc8878754882fe696204132932ebe7; usertrack=ezq0J11HilIZSVxcILa3Ag==; UM_distinctid=16d48b104fb648-0b695a783e0c83-f353163-1fa400-16d48b104fcaf9; vinfo_n_f_l_n3=80b4785de51d55b3.1.0.1568882622014.0.1568882666358; __f_=1570753726419; fingerprint=eyl0sdlidvrj7dnh; _ga=GA1.2.1528693412.1572317136; cbg_qrcode=pLDLXVfFey2CP4b8PLqbYmflUJG1wdcV2a29DP1Y; NTES_SESS=oq1CLi4jhkHyNwpLKsjGqiFIcFhPrE37QXBYi5xIdn_juWdmu57zsxsxJb8es48SHnwVAAdjP0pzgWni6hOXRJ6DJ05LNCzneXEpHq3akCJVb9idP4DMNH_yFiY_2iV1CY6lRpIsn9U6obVT2brlstbWoHLC37B5aYo5gy04keDFrhwfSfW6VBzxkyNAu2eJNwRYtNsx_bNexe8qVP65zPc3rZXnkMDKK; S_INFO=1572596411|0|3&80##|m17606117606; P_INFO=m17606117606@163.com|1572596411|0|cbg|00&99|jis&1572596382&cbg#jis&321300#10#0#0|176606&1|cbg|17606117606@163.com; latest_views=249_3482378-456_47479-456_42146; msg_box_flag=1; area_td_id=4; area_id=2; cur_servername=%25E6%2598%25A5%25E6%259A%2596%25E8%258A%25B1%25E5%25BC%2580; sid=Ya0U4iA0NZZs9K-5omNKJeAIW8jcQNalHpdtRwwa; last_login_serverid=97; wallet_data=%7B%22is_locked%22%3A%20false%2C%20%22checking_balance%22%3A%200%2C%20%22balance%22%3A%200%2C%20%22free_balance%22%3A%200%7D";
+       
+        
         #region GET请求
         /// <summary>
         /// GET请求带COOKIE
