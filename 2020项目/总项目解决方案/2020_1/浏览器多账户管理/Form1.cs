@@ -113,5 +113,11 @@ namespace 浏览器多账户管理
             e.Cancel = true;
 
         }
+
+        private void 添加店铺ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            add ad = new add();
+            ad.Show();
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace 搜索引擎
 
         bool zanting = true;
        
+     
 
         bool status1 = false;
         bool status2 = false;
@@ -68,6 +69,8 @@ namespace 搜索引擎
 
         }
 
+        public string IP = "";
+        public static string COOKIE = "usid=07WwkCu3b_78aUPT; IPLOC=CN3213; SUV=00BA2DBC3159B8CD5D2585534E6EA580; CXID=5EA7E0DBFC0F423A95BC1EB511A405C7; SUID=CDB859313118960A000000005D25B077; ssuid=7291915575; pgv_pvi=5970681856; start_time=1562896518693; front_screen_resolution=1920*1080; wuid=AAElSJCaKAAAAAqMCGWoVQEAkwA=; FREQUENCY=1562896843272_13; sg_uuid=6358936283; newsCity=%u5BBF%u8FC1; sortcookie=1; sw_uuid=3118318168; ld=Hyllllllll2NmXZSlllllVLfKx9llllltm@ySyllll9lllll4Zlll5@@@@@@@@@@; sct=2; SNUID=D88B74083A3FAF46DECF61003A5B6CA1";
         #region GET请求
         /// <summary>
         /// GET请求
@@ -79,7 +82,7 @@ namespace 搜索引擎
             try
             {
                 // System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "usid=07WwkCu3b_78aUPT; IPLOC=CN3213; SUV=00BA2DBC3159B8CD5D2585534E6EA580; CXID=5EA7E0DBFC0F423A95BC1EB511A405C7; SUID=CDB859313118960A000000005D25B077; ssuid=7291915575; pgv_pvi=5970681856; start_time=1562896518693; front_screen_resolution=1920*1080; wuid=AAElSJCaKAAAAAqMCGWoVQEAkwA=; FREQUENCY=1562896843272_13; sg_uuid=6358936283; newsCity=%u5BBF%u8FC1; sortcookie=1; sw_uuid=3118318168; ld=Hyllllllll2NmXZSlllllVLfKx9llllltm@ySyllll9lllll4Zlll5@@@@@@@@@@; sct=2; SNUID=D88B74083A3FAF46DECF61003A5B6CA1";
+               
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "https://news.sogou.com/news?query=site%3Asohu.com+%B4%F3%CA%FD%BE%DD&_ast=1571813760&_asf=news.sogou.com&time=0&w=03009900&sort=1&mode=1&manual=&dp=1";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
@@ -93,6 +96,43 @@ namespace 搜索引擎
 
                 string content = reader.ReadToEnd();
 
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
+
+        #region GET使用代理IP请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlwithIP(string Url, string ip,string charset)
+        {
+            try
+            {
+          
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 8000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
                 reader.Close();
                 response.Close();
                 return content;
@@ -269,7 +309,7 @@ namespace 搜索引擎
                         {
 
                             string url = "https://news.sogou.com/news?mode=1&media=&query=site%3Asohu.com " + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
-                            string html = GetUrl(url, "gbk");
+                            string html = GetUrlwithIP(url, IP,"gbk");
 
                             MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
 
@@ -284,7 +324,7 @@ namespace 搜索引擎
                                 {
                                     sougous.Add(urls[j].Groups[2].Value);
 
-                                    string strhtml = GetUrl(urls[j].Groups[2].Value, "utf-8");
+                                    string strhtml = GetUrlwithIP(urls[j].Groups[2].Value,IP, "utf-8");
 
 
                                     Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)</title>");
@@ -295,6 +335,11 @@ namespace 搜索引擎
                                     //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
                                     //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
                                     //{
+
+                                    if (a1.Groups[1].Value=="")
+                                    {
+                                        getIp();                         
+                                    }
                                     if (checkBox1.Checked == true)
                                     {
                                         insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
@@ -319,7 +364,7 @@ namespace 搜索引擎
                                         {
                                             return;
                                         }
-                                        Thread.Sleep(1000);
+                                        Thread.Sleep(Convert.ToInt32(textBox15.Text));
 
                                         //    }
                                     }
@@ -370,7 +415,7 @@ namespace 搜索引擎
                         {
 
                             string url = "https://news.sogou.com/news?mode=1&media=&query=site:qq.com " + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
-                            string html = GetUrl(url, "gbk");
+                            string html = GetUrlwithIP(url,IP, "gbk");
 
                             MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
 
@@ -384,7 +429,7 @@ namespace 搜索引擎
                                 {
                                     so360s.Add(urls[j].Groups[2].Value);
 
-                                    string strhtml = GetUrl(urls[j].Groups[2].Value, "gb2312");
+                                    string strhtml = GetUrlwithIP(urls[j].Groups[2].Value,IP, "gb2312");
 
 
 
@@ -419,7 +464,7 @@ namespace 搜索引擎
                                         {
                                             return;
                                         }
-                                        Thread.Sleep(1000);
+                                        Thread.Sleep(Convert.ToInt32(textBox15.Text));
                                         //    }
                                     }
                                 }
@@ -468,7 +513,7 @@ namespace 搜索引擎
                         {
 
                             string url = "https://news.sogou.com/news?mode=1&media=&query=site:sina.com.cn " + keyword + "&time=0&clusterId=&sort=1&page=" + i + "&p=42230305&dp=1";
-                            string html = GetUrl(url, "gbk");
+                            string html = GetUrlwithIP(url,IP, "gbk");
 
                             MatchCollection urls = Regex.Matches(html, @"<h3 class=""vrTitle"">([\s\S]*?)<a href=""([\s\S]*?)""");
 
@@ -482,7 +527,7 @@ namespace 搜索引擎
                                 {
                                     biyings.Add(urls[j].Groups[2].Value);
 
-                                    string strhtml = GetUrl(urls[j].Groups[2].Value, "utf-8");
+                                    string strhtml = GetUrlwithIP(urls[j].Groups[2].Value,IP, "utf-8");
 
 
 
@@ -518,7 +563,7 @@ namespace 搜索引擎
                                             return;
                                         }
 
-                                        Thread.Sleep(1000);
+                                        Thread.Sleep(Convert.ToInt32(textBox15.Text));
                                         //    }
                                     }
                                 }
@@ -547,6 +592,16 @@ namespace 搜索引擎
 
         #endregion
 
+        #region  代理iP
+
+        public void getIp()
+        {
+            string ahtml = method.GetUrl(textBox14.Text, "utf-8");
+            this.IP = ahtml.Trim();
+
+        }
+        #endregion
+
         /// <summary>
         /// 判断相似度
         /// </summary>
@@ -566,13 +621,19 @@ namespace 搜索引擎
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            if (textBox14.Text == "")
+            {
+                MessageBox.Show("请输入代理IP地址");
+                return;
+            }
+
             tingzhi = true;
             button1.Enabled = false;
             timer1.Start();
+            getIp();
 
-          
-               
-                if (checkedListBox1.GetItemChecked(0) == true)
+
+            if (checkedListBox1.GetItemChecked(0) == true)
                 {
                     Thread thread = new Thread(new ThreadStart(baidu));
                     thread.Start();

@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜索引擎", "搜索引擎\搜索引擎.csproj", "{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浏览器抓取", "浏览器抓取\浏览器抓取.csproj", "{77DB5198-93B0-4235-81D4-B629BFA06A41}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "藏宝阁", "藏宝阁\藏宝阁.csproj", "{00676491-FBBE-49B3-B2DC-EBC247E7509A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浏览器多账户管理", "2020_1\浏览器多账户管理\浏览器多账户管理.csproj", "{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "微信群二维码", "2020_1\微信群二维码\微信群二维码.csproj", "{FF498430-1B03-475E-A5E5-EC4E5623DF39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +23,6 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77DB5198-93B0-4235-81D4-B629BFA06A41}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00676491-FBBE-49B3-B2DC-EBC247E7509A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +31,14 @@ Global
 		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF498430-1B03-475E-A5E5-EC4E5623DF39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF498430-1B03-475E-A5E5-EC4E5623DF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF498430-1B03-475E-A5E5-EC4E5623DF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF498430-1B03-475E-A5E5-EC4E5623DF39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

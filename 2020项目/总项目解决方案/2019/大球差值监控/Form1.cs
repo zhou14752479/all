@@ -43,11 +43,12 @@ namespace 大球差值监控
 
                             string url = c.Text;
                             string html = method.GetUrl(url, "gb2312");
-
+                            
                             MatchCollection values = Regex.Matches(html, @"<TD height=22><FONT color=([\s\S]*?)><B>([\s\S]*?)</B>");
-                            MatchCollection times = Regex.Matches(html, @"<TD>\d{2}-\d{2}.*</TD>");
+                            MatchCollection times = Regex.Matches(html, @"<TD>\d{1,}-\d{1,}.*</TD>");
+                           
                             string time0 = times[0].Groups[0].Value;
-                            string time1 = times[0].Groups[0].Value;
+                            string time1 = times[1].Groups[0].Value;
 
                             if (values.Count > 1)
                             {
