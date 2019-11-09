@@ -364,6 +364,9 @@ namespace zhaopin_58
             toolTip1.SetToolTip(label1,"点击访问");
         }
 
-      
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.acaiji.com");
+        }
     }
 }

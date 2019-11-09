@@ -16,5 +16,10 @@ namespace 微信群二维码
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

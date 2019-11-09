@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "微信群二维码", "2020_1\微信群二维码\微信群二维码.csproj", "{FF498430-1B03-475E-A5E5-EC4E5623DF39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "小红书", "2019\小红书\小红书.csproj", "{906CC726-F207-47F9-892B-0DF2BDDE4399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{FF498430-1B03-475E-A5E5-EC4E5623DF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF498430-1B03-475E-A5E5-EC4E5623DF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF498430-1B03-475E-A5E5-EC4E5623DF39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906CC726-F207-47F9-892B-0DF2BDDE4399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

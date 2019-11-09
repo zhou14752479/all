@@ -50,8 +50,8 @@ namespace 小红书
                     string url = dataGridView1.Rows[i].Cells[2].Value.ToString();
                      
                     string html = method.GetUrlwithIP(url,IP);
-                  
-                    
+
+                   
                     if (html.Contains("小红书登录"))
                     {
                         getIp();
