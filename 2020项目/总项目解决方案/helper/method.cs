@@ -19,7 +19,46 @@ namespace helper
 {
     public class method
     {
-        
+        public static void ListViewToCSV(ListView listView, bool includeHidden)
+        {
+            //make header string
+            SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+           
+            //sfd.Title = "Excel文件导出";
+            string filePath = "";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                filePath = sfd.FileName+".csv";
+            }
+            StringBuilder result = new StringBuilder();
+            WriteCSVRow(result, listView.Columns.Count, i => includeHidden || listView.Columns[i].Width > 0, i => listView.Columns[i].Text);
+
+            //export data rows
+            foreach (ListViewItem listItem in listView.Items)
+                WriteCSVRow(result, listView.Columns.Count, i => includeHidden || listView.Columns[i].Width > 0, i => listItem.SubItems[i].Text);
+
+            File.WriteAllText(filePath, result.ToString());
+            MessageBox.Show("导出成功");
+        }
+
+        private static void WriteCSVRow(StringBuilder result, int itemsCount, Func<int, bool> isColumnNeeded, Func<int, string> columnValue)
+        {
+            bool isFirstTime = true;
+            for (int i = 0; i < itemsCount; i++)
+            {
+                if (!isColumnNeeded(i))
+                    continue;
+
+                if (!isFirstTime)
+                    result.Append(",");
+                isFirstTime = false;
+
+                result.Append(String.Format("\"{0}\"", columnValue(i)));
+            }
+            result.AppendLine();
+        }
 
         #region POST请求
         /// <summary>
@@ -406,9 +445,10 @@ namespace helper
                 List<string> list = new List<string>();
                 foreach (ListViewItem item in listview.Items)
                 {
-                    string temp = item.SubItems[1].Text;
-                    string temp1 = item.SubItems[2].Text;
-                    list.Add(temp + "-----" + temp1);
+                    for (int i = 0; i < item.SubItems.Count; i++)
+                    {
+                        list.Add(item.SubItems[i].Text + "，");
+                    }
                 }
                 Thread thexp = new Thread(() => export(list)) { IsBackground = true };
                 thexp.Start();

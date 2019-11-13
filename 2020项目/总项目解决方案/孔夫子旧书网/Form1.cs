@@ -202,6 +202,7 @@ namespace 孔夫子旧书网
         private void button5_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+           
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -223,5 +224,7 @@ namespace 孔夫子旧书网
         {
             getIp();
         }
+
+       
     }
 }

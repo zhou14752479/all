@@ -306,7 +306,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(108, 29);
             this.button5.TabIndex = 59;
-            this.button5.Text = "导 出";
+            this.button5.Text = "导 出 表 格";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 

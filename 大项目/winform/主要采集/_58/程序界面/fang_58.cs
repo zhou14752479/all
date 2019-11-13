@@ -68,9 +68,9 @@ namespace _58
         #region  生意转让、商铺出租、商铺出售
         public void shangpu(object item)
         {
-            string[] headers = { "标题", "联系人", "电话", "地区", "网址" ,"面积","日租金","经度","纬度"};
+            string[] headers = { "标题", "联系人", "电话", "地区", "网址" ,"面积"};
 
-            setDatagridview(skinDataGridView1, 9, headers);
+            setDatagridview(skinDataGridView1, 6, headers);
 
             try
             {
@@ -85,7 +85,7 @@ namespace _58
 
                 for (int i = 1; i <= page; i++)
                 {
-                    String Url = "http://" + city + ".58.com/"+item.ToString()+"/0/pn" + i + "/";
+                    String Url = "https://" + city + ".58.com/"+item.ToString()+"/0/pn" + i + "/";
                     string html = Method.GetUrl(Url);
 
 
@@ -124,27 +124,17 @@ namespace _58
                         string strhtml = Method.GetUrl(Url1);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
-                        string title = @"<h1 class=""c_000 f20"">([\s\S]*?)</h1>";
-                        string Rxg = @"<p class=""poster-name"">([\s\S]*?)</p>";
-                        string Rxg1 = @"<p class='phone-num'>([\s\S]*?)</p>";
-                        string Rxg2 = @"详细地址:</span>([\s\S]*?)</span>";
-                        string Rxg3 = @"content_item2"">([\s\S]*?)</span>";
-                        string Rxg4 = @"money_num_chuzu"">([\s\S]*?)</span>";
                         
-                        string Rxg5 = @"baidulon"":""([\s\S]*?)""";
-                        string Rxg6 = @"baidulat"":""([\s\S]*?)""";
 
 
 
-                        Match titles = Regex.Match(strhtml, title);
-                        Match contacts = Regex.Match(strhtml, Rxg);
-                        Match tell = Regex.Match(strhtml, Rxg1);
-                        Match region = Regex.Match(strhtml, Rxg2);
+                        Match titles = Regex.Match(strhtml, @"<title>([\s\S]*?)-");
+                        Match contacts = Regex.Match(strhtml, @"<p class=""poster-name"">([\s\S]*?)</p>");
+                        Match tell = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
+                        Match region = Regex.Match(strhtml, @"域：</span>([\s\S]*?)</p>");
 
-                        Match mianji = Regex.Match(strhtml, Rxg3);
-                        Match zujin = Regex.Match(strhtml, Rxg4);
-                        Match lon = Regex.Match(strhtml, Rxg5);
-                        Match lat = Regex.Match(strhtml, Rxg6);
+                        Match mianji = Regex.Match(strhtml, @"<span class=""up"">([\s\S]*?)</span>");
+                    
 
 
 
@@ -158,9 +148,7 @@ namespace _58
 
                         this.skinDataGridView1.Rows[index].Cells[4].Value = list;
                         this.skinDataGridView1.Rows[index].Cells[5].Value = mianji.Groups[1].Value.Trim(); 
-                        this.skinDataGridView1.Rows[index].Cells[6].Value = zujin.Groups[1].Value.Trim(); 
-                        this.skinDataGridView1.Rows[index].Cells[7].Value = lon.Groups[1].Value.Trim(); 
-                        this.skinDataGridView1.Rows[index].Cells[8].Value = lat.Groups[1].Value.Trim(); 
+                      
 
 
                         this.skinDataGridView1.CurrentCell = this.skinDataGridView1.Rows[index].Cells[0];  //让datagridview滚动到当前行
@@ -557,7 +545,12 @@ namespace _58
             }
         }
         #endregion
-        
+        public static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
+        }
+
         #region  58二手房
         public void ershoufang()
         {
@@ -566,9 +559,9 @@ namespace _58
 
             try
             {
-                string[] headers = {"标题","联系人","电话","地区","小区","面积","价格","网址"};
+                string[] headers = {"标题","联系人","电话","地区","小区","价格","网址"};
 
-                setDatagridview(skinDataGridView1,8,headers);
+                setDatagridview(skinDataGridView1,7,headers);
 
                 string city = label6.Text;
 
@@ -582,7 +575,7 @@ namespace _58
 
                     for (int i = 1; i <= page; i++)
                     {
-                        String Url = "http://" + city + ".58.com/ershoufang/0/pn" + i + "/";
+                        String Url = "https://" + city + ".58.com/ershoufang/0/pn" + i + "/";
 
                         string html = Method.GetUrl(Url);
 
@@ -607,57 +600,41 @@ namespace _58
                     {
 
                         this.index = this.skinDataGridView1.Rows.Add();
-                        String Url1 = url;
-                            // str = str.Substring(str.Length - i) 从右边开始取i个字符
+                      
+                         
+                            string strhtml = Method.GetUrl(url);                                                                               
 
-                            string Url2 = "http://m.58.com/" + city + "/ershoufang/" + Url1.Substring(Url1.Length - 21);                       //获取二手房手机端的网址
+                         
+                           
 
-                            string strhtml = Method.GetUrl(Url1);                                                                                //定义的GetRul方法 返回 reader.ReadToEnd()
+                            Match titles = Regex.Match(strhtml, @"<h1 class=""c_333 f20"">([\s\S]*?)</h1>");
+                            Match contacts = Regex.Match(strhtml, @"""linkman"":""([\s\S]*?)""");        //unicode
+                            Match tell = Regex.Match(strhtml, @"<p class='phone-num'>([\s\S]*?)<");
+                            Match area = Regex.Match(strhtml, @"quyu'\)"">([\s\S]*?)<");
+                        Match xiaoqu = Regex.Match(strhtml, @"xiaoqu_name'\)"">([\s\S]*?)<");
 
-                            string strhtml2 = Method.GetUrl(Url2);                                                                               //请求手机端网址
+                        Match price = Regex.Match(strhtml, @"MinPrice':'([\s\S]*?)'");
 
-                            string title = @"<h1 class=""c_333 f20"">([\s\S]*?)</h1>";  //标题
-                            string Rxg = @"<h2 class=""agent-title"">([\s\S]*?)</h2>";  //手机端正则匹配联系人
-                            string Rxg1 = @"<p class='phone-num'>([\s\S]*?)<";   //电话
-                            string Rxg2 = @"<li class=""address-info"">([\s\S]*?) -";//手机端地区
-                            string Rxg3 = @"小区：([\s\S]*?)</h2>";//手机端小区
-                            string Rxg4 = @"面积</p>([\s\S]*?)</p>"; //手机端面积去除标签
-                            string Rxg5 = @"售价</p>([\s\S]*?)</p>"; //手机端售价去除标签
+                        textBox14.Text = contacts.Groups[1].Value.Trim();
 
-
-
-                            Match titles = Regex.Match(strhtml, title);
-                            Match contacts = Regex.Match(strhtml2, Rxg);                                                        //手机端正则匹配联系人
-                            Match tell = Regex.Match(strhtml, Rxg1);
-                            Match area = Regex.Match(strhtml2, Rxg2);
-
-                        Match xiaoqu = Regex.Match(strhtml2, Rxg3);
-                        Match mianji = Regex.Match(strhtml2, Rxg4);
-                        Match price = Regex.Match(strhtml2, Rxg5);
-
-
-                            this.skinDataGridView1.Rows[index].Cells[0].Value = titles.Groups[1].Value;
+                        this.skinDataGridView1.Rows[index].Cells[0].Value = titles.Groups[1].Value.Trim();
                                                        
-                            this.skinDataGridView1.Rows[index].Cells[1].Value = contacts.Groups[1].Value;
+                            this.skinDataGridView1.Rows[index].Cells[1].Value = Unicode2String(contacts.Groups[1].Value.Trim());
 
-                        this.skinDataGridView1.Rows[index].Cells[2].Value = tell.Groups[1].Value;
+                        this.skinDataGridView1.Rows[index].Cells[2].Value = tell.Groups[1].Value.Trim();
 
 
-                            this.skinDataGridView1.Rows[index].Cells[3].Value = label14.Text+""+area.Groups[1].Value;
+                            this.skinDataGridView1.Rows[index].Cells[3].Value = label14.Text+""+area.Groups[1].Value.Trim();
 
                             
-                        this.skinDataGridView1.Rows[index].Cells[4].Value = xiaoqu.Groups[1].Value;
+                        this.skinDataGridView1.Rows[index].Cells[4].Value = xiaoqu.Groups[1].Value.Trim();
 
 
-                        string temp = Regex.Replace(mianji.Groups[1].Value, "<[^>]*>", "");
-                        this.skinDataGridView1.Rows[index].Cells[5].Value = temp.Trim();
-
-                        string temp1 = Regex.Replace(price.Groups[1].Value, "<[^>]*>", "");
-                        this.skinDataGridView1.Rows[index].Cells[6].Value = temp1.Trim();
+                        this.skinDataGridView1.Rows[index].Cells[5].Value = price.Groups[1].Value.Trim();
 
 
 
-                        this.skinDataGridView1.Rows[index].Cells[7].Value = url;
+                        this.skinDataGridView1.Rows[index].Cells[6].Value = url;
 
 
 
@@ -1061,8 +1038,17 @@ namespace _58
 
         private void fang_58_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-            MessageBox.Show("您确定要关闭吗？");
+
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+
         }
 
         private void skinButton3_Click(object sender, EventArgs e)

@@ -57,7 +57,7 @@ namespace _58
         }
 
         #endregion
-
+        string path = AppDomain.CurrentDomain.BaseDirectory; //获取当前程序运行文件夹
         #region 注册码随机生成函数
         /// <summary>
         /// 注册码随机生成函数
@@ -89,40 +89,29 @@ namespace _58
         {
 
 
-
             try
             {
-
-
-
                 string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
                 MySqlCommand cmd = new MySqlCommand("select * from vip where username='" + skinTextBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
-
                 MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-
 
                 if (reader.Read())
                 {
-
                     string username = reader["username"].ToString().Trim();
                     string password = reader["password"].ToString().Trim();
                     string mac = reader["mac"].ToString().Trim();
 
+                    ////判断MAC地址
 
-                    //判断MAC地址
-
-                    if (GetMacAddress().ToString().Trim() != mac)
-                    {
-                        MessageBox.Show("您使用的此台电脑未开通，如需开通此台电脑请联系客服购买！VX：17606117606");
-                        return;
-                    }
-
-
+                    //if (GetMacAddress().ToString().Trim() != mac)
+                    //{
+                    //    MessageBox.Show("您使用的此台电脑未开通，如需开通此台电脑请联系客服购买！VX：17606117606");
+                    //    return;
+                    //}
 
                     //判断密码
                     if (skinTextBox2.Text.Trim() == password)
@@ -143,10 +132,13 @@ namespace _58
                         //记住账号密码
                         if (checkBox1.Checked == true)
                         {
-                            RegistryKey regkey = Registry.CurrentUser.CreateSubKey("acaiji");//要创建一个特殊的字符串，防止与系统或其他程序写注册表名称相同，
-                            regkey.SetValue("UserName", skinTextBox1.Text.Trim());
-                            regkey.SetValue("PassWord", skinTextBox2.Text.Trim());
-                            regkey.Close();
+                           
+                            FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                            StreamWriter sw = new StreamWriter(fs1);
+                            sw.WriteLine(skinTextBox1.Text);
+                            sw.WriteLine(skinTextBox2.Text);
+                            sw.Close();
+                            fs1.Close();
 
                         }
 
@@ -249,17 +241,18 @@ namespace _58
 
         private void Login_Load(object sender, EventArgs e)
         {
-            //RegistryKey regkey = Registry.CurrentUser.OpenSubKey("cc"); //打开cc注册表
+            if (File.Exists(path + "config.txt"))
+            {
+                StreamReader sr = new StreamReader(path + "config.txt", Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-            //if (regkey != null)
+                skinTextBox1.Text = text[0];
+                skinTextBox2.Text = text[1];
 
-            //{
+            }
 
-            //    string[] keys = Method.readKey();
-            //    skinTextBox1.Text = keys[0];
-
-            //    skinTextBox2.Text = keys[1];
-            //}
         }
 
         private void button1_Click(object sender, EventArgs e)

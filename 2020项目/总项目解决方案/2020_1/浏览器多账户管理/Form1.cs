@@ -87,7 +87,7 @@ namespace 浏览器多账户管理
         #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("https://www.1688.com/");
+            webBrowser1.Navigate("https://login.taobao.com/member/login.jhtml?style=b2b&css_style=b2b&from=b2b&newMini2=true&full_redirect=true&redirect_url=https%3A%2F%2Flogin.1688.com%2Fmember%2Fjump.htm%3Ftarget%3Dhttps%253A%252F%252Flogin.1688.com%252Fmember%252FmarketSigninJump.htm%253FDone%253Dhttps%25253A%25252F%25252Fwww.1688.com%25252F&reg=http%3A%2F%2Fmember.1688.com%2Fmember%2Fjoin%2Fenterprise_join.htm%3Flead%3Dhttps%253A%252F%252Fwww.1688.com%252F%26leadUrl%3Dhttps%253A%252F%252Fwww.1688.com%252F%26tracelog%3Dnotracelog_s_reg");
             webBrowser1.ScriptErrorsSuppressed = true;
         }
 
@@ -116,8 +116,46 @@ namespace 浏览器多账户管理
 
         private void 添加店铺ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            add ad = new add();
-            ad.Show();
+            panel2.Visible = true;
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            Button button1 = new Button();
+            button1.Text = textBox4.Text;
+            button1.Name = textBox2.Text + "-" + textBox3.Text;
+            button1.Dock = DockStyle.Top;
+            button1.Height = 40;
+            button1.Font = new Font("Tahoma", 10, FontStyle.Bold);
+             splitContainer1.Panel1.Controls.Add(button1);
+            panel2.Visible = false;
+
+            button1.Click += new EventHandler(aBtn_Click);//使用事件函数句柄指向一个具体的函数
+        }
+
+        private void aBtn_Click(object sender, EventArgs e)
+        {
+
+
+            Button btn = (Button)sender;//获取被点击的控件,按钮
+          
+
+            string[] text = btn.Name.Split(new string[] { "-" }, StringSplitOptions.None);
+
+
+            HtmlDocument dc = webBrowser1.Document;
+            HtmlElementCollection es = dc.GetElementsByTagName("input");   //GetElementsByTagName返回集合
+            foreach (HtmlElement e1 in es)
+            {
+                if (e1.GetAttribute("name") == "TPL_username")
+                {
+                    e1.SetAttribute("value", text[0].Trim());
+                }
+                if (e1.GetAttribute("name") == "TPL_password")
+                {
+                    e1.SetAttribute("value", text[1].Trim());
+                }
+            }
         }
     }
 }

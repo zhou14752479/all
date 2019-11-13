@@ -63,11 +63,11 @@ namespace main._2019_6
             {
                 string url = "http://1x2d.win007.com/"+IDS[i]+".js";
                 string strhtml = method.GetUrl(url, "utf-8");
-                Match aaas = Regex.Match(strhtml, @"10BET\|([\s\S]*?)10BET");
-                Match bbbs = Regex.Match(strhtml, @"18bet\|([\s\S]*?)18bet");
-                Match cccs = Regex.Match(strhtml, @"IBCBET\|([\s\S]*?)IBCBET");
-                Match ddds = Regex.Match(strhtml, @"12bet\|([\s\S]*?)12BET");
-                Match eees = Regex.Match(strhtml, @"Easybets\|([\s\S]*?)易胜博");
+                Match aaas = Regex.Match(strhtml, @"Pinnacle\|([\s\S]*?)Pinnacle");
+                Match bbbs = Regex.Match(strhtml, @"Expekt\|([\s\S]*?)Expekt");
+                Match cccs = Regex.Match(strhtml, @"Marathon\|([\s\S]*?)马博");
+                Match ddds = Regex.Match(strhtml, @"William Hill\|([\s\S]*?)威廉希尔");
+            
 
                 Match zhu = Regex.Match(strhtml, @"hometeam_cn=""([\s\S]*?)""");
                 Match ke = Regex.Match(strhtml, @"guestteam_cn=""([\s\S]*?)""");
@@ -92,7 +92,7 @@ namespace main._2019_6
                 string[] bbb = bbbs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                 string[] ccc = cccs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                 string[] ddd = ddds.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
-                string[] eee = eees.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
+                
                 if (aaa.Length > 6)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
@@ -108,7 +108,7 @@ namespace main._2019_6
                     //}
 
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("10BET(英国)");  
+                    lv1.SubItems.Add("Pinnacle（荷兰）");  
                     lv1.SubItems.Add(TIME);   //时间
 
                 }
@@ -121,14 +121,14 @@ namespace main._2019_6
                     lv1.SubItems.Add(bbb[1]);   //比分
                     lv1.SubItems.Add(bbb[2]);   //比分
                     lv1.SubItems.Add(bbb[6]);   //比分
-                    lv1.SubItems.Add(TIME);   //时间
+                  
 
                     //for (int j = 0; j < 7; j++)
                     //{       
                     //    lv1.SubItems.Add(bbb[j]);   //比分
                     //}
                     lv1.SubItems.Add(zhu.Groups[1].Value+"："+ke.Groups[1].Value);
-                    lv1.SubItems.Add("18bet");
+                    lv1.SubItems.Add("Expekt（瑞典）");
                     lv1.SubItems.Add(TIME);   //时间
 
                 }
@@ -147,7 +147,7 @@ namespace main._2019_6
                     //    lv1.SubItems.Add(ccc[j]);   //比分
                     //}
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("IBCBET");   
+                    lv1.SubItems.Add("马博（荷属安的列斯群岛）");   
                     lv1.SubItems.Add(TIME);   //时间
                 }
                 if (ddd.Length > 6)
@@ -166,30 +166,11 @@ namespace main._2019_6
                     //    lv1.SubItems.Add(ddd[j]);   //比分
                     //}
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("12BET");   
+                    lv1.SubItems.Add("威廉希尔（英国）");   
                     lv1.SubItems.Add(TIME);   //时间
                 }
 
-                if (eee.Length > 6)
-                {
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
-
-
-                    lv1.SubItems.Add(eee[0]);   //比分
-                    lv1.SubItems.Add(eee[1]);   //比分
-                    lv1.SubItems.Add(eee[2]);   //比分
-                    lv1.SubItems.Add(eee[6]);   //比分
-                   
-
-                    //for (int j = 0; j < 7; j++)
-                    //{
-                    //    lv1.SubItems.Add(ddd[j]);   //比分
-                    //}
-                    lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("易胜博");  
-                    lv1.SubItems.Add(TIME);   //时间
-                }
-
+          
 
                 if ( aaa.Length > 6|| bbb.Length > 6 || ccc.Length > 6 || ddd.Length > 6)
                 {

@@ -369,9 +369,9 @@ namespace zhaopin_58
                                
                                 Match imgurl = Regex.Match(strhtml, @"frontImg"":""([\s\S]*?)""");
 
-                                if (method.GetUrl(imgurl.Groups[1].Value.Replace("/w.h", "")) != "")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
+                                if (imgurl.Groups[1].Value.Replace("/w.h", "")!= "")   //判断请求图片的网址响应是否为空，如果为空表示没有图片，下载会报错！
                                 {
-                                    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h", ""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[1].Value.Trim() + ".jpg");
+                                    method.downloadFile(imgurl.Groups[1].Value.Replace("/w.h", ""), AppDomain.CurrentDomain.BaseDirectory + "图片", name.Groups[1].Value.Trim()+ tel.Groups[1].Value.Trim() + ".jpg");
 
                                 }
 
