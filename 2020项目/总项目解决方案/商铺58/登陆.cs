@@ -1,31 +1,64 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using System.Management;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.IO;
-using CCWin;
-using System.Net.Sockets;
-using System.Threading;
-using Microsoft.Win32;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace _58
+namespace 商铺58
 {
-    public partial class Login : Form
+    public partial class 登陆 : Form
     {
-        public Login()
+        public 登陆()
         {
             InitializeComponent();
         }
+        string path = AppDomain.CurrentDomain.BaseDirectory; //获取当前程序运行文件夹
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+
+            }
+        }
+        #region 获取公网IP
+        public static string GetIP()
+        {
+            using (var webClient = new WebClient())
+            {
+                try
+                {
+                    webClient.Credentials = CredentialCache.DefaultCredentials;
+                    byte[] pageDate = webClient.DownloadData("http://pv.sohu.com/cityjson?ie=utf-8");
+                    String ip = Encoding.UTF8.GetString(pageDate);
+                    webClient.Dispose();
+
+                    Match rebool = Regex.Match(ip, @"\d{2,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
+                    return rebool.Value;
+                }
+                catch (Exception e)
+                {
+                    return e.ToString();
+                }
+
+            }
+        }
+
+        #endregion
 
         #region 获取Mac地址
         /// <summary>
@@ -57,7 +90,7 @@ namespace _58
         }
 
         #endregion
-        string path = AppDomain.CurrentDomain.BaseDirectory; //获取当前程序运行文件夹
+
         #region 注册码随机生成函数
         /// <summary>
         /// 注册码随机生成函数
@@ -82,7 +115,7 @@ namespace _58
 
 
         #endregion
-
+       
         #region  登陆函数
 
         public void myLogin()
@@ -105,13 +138,13 @@ namespace _58
                     string password = reader["password"].ToString().Trim();
                     string mac = reader["mac"].ToString().Trim();
 
-                    ////判断MAC地址
+                    //判断MAC地址
 
-                    //if (GetMacAddress().ToString().Trim() != mac)
-                    //{
-                    //    MessageBox.Show("您使用的此台电脑未开通，如需开通此台电脑请联系客服购买！VX：17606117606");
-                    //    return;
-                    //}
+                    if (GetMacAddress().ToString().Trim() != mac)
+                    {
+                        MessageBox.Show("您使用的此台电脑未开通，如需开通此台电脑请联系客服购买！VX：17606117606");
+                        return;
+                    }
 
                     //判断密码
                     if (skinTextBox2.Text.Trim() == password)
@@ -132,7 +165,7 @@ namespace _58
                         //记住账号密码
                         if (checkBox1.Checked == true)
                         {
-                           
+
                             FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                             StreamWriter sw = new StreamWriter(fs1);
                             sw.WriteLine(skinTextBox1.Text);
@@ -142,13 +175,8 @@ namespace _58
 
                         }
 
-                        //meituan mt = new meituan();
-                        //mt.Show();
-                        fang_58 fang = new fang_58();
-                        fang.Show();
-
-                        //Map mp = new Map();
-                        //mp.Show();
+                        Form1 fm1 = new Form1();
+                        fm1.Show();
                         this.Hide();
 
                     }
@@ -184,9 +212,6 @@ namespace _58
 
 
         #endregion
-
-
-
         private void skinButton1_Click(object sender, EventArgs e)
         {
             if (skinTextBox1.Text == "" || skinTextBox1.Text == "用户名或者手机号")
@@ -201,101 +226,14 @@ namespace _58
             }
 
             myLogin();
-
-
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void label5_MouseHover(object sender, EventArgs e)
-        {
-            label5.ForeColor = Color.Blue;
-        }
-       
-       
-
-        private void label5_MouseLeave(object sender, EventArgs e)
-        {
-            label5.ForeColor = Color.White;
-        }
-        
-        private void skinTextBox1_Enter(object sender, EventArgs e)
-        {
-            //skinTextBox1.Text = "";
-        }
-
-        private void skinTextBox2_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
-     
-
-        private void skinPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-            if (File.Exists(path + "config.txt"))
-            {
-                StreamReader sr = new StreamReader(path + "config.txt", Encoding.Default);
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
-                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-                skinTextBox1.Text = text[0];
-                skinTextBox2.Text = text[1];
-
-            }
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("IEXPLORE.EXE", "http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("IEXPLORE.EXE", "https://amos.alicdn.com/getcid.aw?v=3&uid=zkg852266010&site=cnalichn&groupid=0&s=1&charset=gbk"); 
-        }
-
-        private void skinTextBox1_Enter_1(object sender, EventArgs e)
-        {
-            skinTextBox1.Text = "";
-        }
-
-        private void skinRadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            
-            System.Diagnostics.Process.Start("IEXPLORE.EXE", "https://item.taobao.com/item.htm?scm=1007.13982.82927.0&id=566098255025&last_time=1521528109");
-        }
-
-        private void Login_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                this.skinButton1_Click(sender, e);//触发button事件  
-            }
-        }
-
-        private void SkinButton2_Click(object sender, EventArgs e)
+        private void skinButton2_Click(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
             string time = DateTime.Now.ToString();
-            string ip = Method.GetIp();
+            string ip = GetIP();
             string mac = GetMacAddress();
-
 
             if (skinTextBox3.Text == "" || skinTextBox4.Text == "" || skinTextBox5.Text == "")
             {
@@ -352,30 +290,29 @@ namespace _58
             }
         }
 
-        private void Label5_Click_1(object sender, EventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Close();
-        }
-        private Point mPoint = new Point();
-        private void SkinPanel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            mPoint.X = e.X;
-            mPoint.Y = e.Y;
+            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
         }
 
-        private void SkinPanel1_MouseMove(object sender, MouseEventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            System.Diagnostics.Process.Start("http://www.acaiji.com");
+        }
+
+        private void 登陆_Load(object sender, EventArgs e)
+        {
+            if (File.Exists(path + "config.txt"))
             {
-                Point myPosittion = MousePosition;
-                myPosittion.Offset(-mPoint.X, -mPoint.Y);
-                Location = myPosittion;
+                StreamReader sr = new StreamReader(path + "config.txt", Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                skinTextBox1.Text = text[0];
+                skinTextBox2.Text = text[1];
+
             }
-        }
-
-        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
         }
     }
 }

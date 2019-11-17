@@ -72,6 +72,7 @@
             this.linkLabel1.TabIndex = 50;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "购买注册码";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked_1);
             // 
             // skinTextBox5
             // 
