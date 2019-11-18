@@ -25,6 +25,7 @@ namespace 商铺58
 
         string city = "bj";
         string cityName = "北京";
+        public static string username = "";
 
         #region GET请求
         /// <summary>
@@ -175,7 +176,7 @@ namespace 商铺58
               
 
             }
-            else if (radioButton3.Checked == true)
+            else if (radioButton2.Checked == true)
             {
                 Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
                 string o = "shangpucs";
@@ -184,7 +185,7 @@ namespace 商铺58
 
             }
 
-            else if (radioButton2.Checked == true)
+            else if (radioButton3.Checked == true)
             {
                 Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
                 string o = "shengyizr";
@@ -313,6 +314,31 @@ namespace 商铺58
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.acaiji.com");
+        }
+
+        private void LinkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://suqian.58.com/shangpucz/");
+        }
+
+        private void LinkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("微信添加付款或者支付宝付款，账号:17606117606");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            label3.Text = username;
+        }
+
+        private void LinkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("详情联系微信：17606117606");
+        }
+
+        private void LinkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            button1.Enabled = true;
         }
     }
 }

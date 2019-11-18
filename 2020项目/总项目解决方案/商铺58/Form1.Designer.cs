@@ -28,419 +28,419 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1541 = new System.Windows.Forms.TreeNode("北京市");
-            System.Windows.Forms.TreeNode treeNode1542 = new System.Windows.Forms.TreeNode("上海市");
-            System.Windows.Forms.TreeNode treeNode1543 = new System.Windows.Forms.TreeNode("天津市");
-            System.Windows.Forms.TreeNode treeNode1544 = new System.Windows.Forms.TreeNode("重庆市");
-            System.Windows.Forms.TreeNode treeNode1545 = new System.Windows.Forms.TreeNode("宿迁");
-            System.Windows.Forms.TreeNode treeNode1546 = new System.Windows.Forms.TreeNode("南京");
-            System.Windows.Forms.TreeNode treeNode1547 = new System.Windows.Forms.TreeNode("无锡");
-            System.Windows.Forms.TreeNode treeNode1548 = new System.Windows.Forms.TreeNode("苏州");
-            System.Windows.Forms.TreeNode treeNode1549 = new System.Windows.Forms.TreeNode("徐州");
-            System.Windows.Forms.TreeNode treeNode1550 = new System.Windows.Forms.TreeNode("连云港");
-            System.Windows.Forms.TreeNode treeNode1551 = new System.Windows.Forms.TreeNode("盐城");
-            System.Windows.Forms.TreeNode treeNode1552 = new System.Windows.Forms.TreeNode("泰州");
-            System.Windows.Forms.TreeNode treeNode1553 = new System.Windows.Forms.TreeNode("扬州");
-            System.Windows.Forms.TreeNode treeNode1554 = new System.Windows.Forms.TreeNode("镇江");
-            System.Windows.Forms.TreeNode treeNode1555 = new System.Windows.Forms.TreeNode("常州");
-            System.Windows.Forms.TreeNode treeNode1556 = new System.Windows.Forms.TreeNode("淮安");
-            System.Windows.Forms.TreeNode treeNode1557 = new System.Windows.Forms.TreeNode("江苏省", new System.Windows.Forms.TreeNode[] {
-            treeNode1545,
-            treeNode1546,
-            treeNode1547,
-            treeNode1548,
-            treeNode1549,
-            treeNode1550,
-            treeNode1551,
-            treeNode1552,
-            treeNode1553,
-            treeNode1554,
-            treeNode1555,
-            treeNode1556});
-            System.Windows.Forms.TreeNode treeNode1558 = new System.Windows.Forms.TreeNode("合肥");
-            System.Windows.Forms.TreeNode treeNode1559 = new System.Windows.Forms.TreeNode("芜湖");
-            System.Windows.Forms.TreeNode treeNode1560 = new System.Windows.Forms.TreeNode("蚌埠");
-            System.Windows.Forms.TreeNode treeNode1561 = new System.Windows.Forms.TreeNode("阜阳");
-            System.Windows.Forms.TreeNode treeNode1562 = new System.Windows.Forms.TreeNode("淮南");
-            System.Windows.Forms.TreeNode treeNode1563 = new System.Windows.Forms.TreeNode("安庆");
-            System.Windows.Forms.TreeNode treeNode1564 = new System.Windows.Forms.TreeNode("宿州");
-            System.Windows.Forms.TreeNode treeNode1565 = new System.Windows.Forms.TreeNode("六安");
-            System.Windows.Forms.TreeNode treeNode1566 = new System.Windows.Forms.TreeNode("淮北");
-            System.Windows.Forms.TreeNode treeNode1567 = new System.Windows.Forms.TreeNode("滁州");
-            System.Windows.Forms.TreeNode treeNode1568 = new System.Windows.Forms.TreeNode("马鞍山");
-            System.Windows.Forms.TreeNode treeNode1569 = new System.Windows.Forms.TreeNode("铜陵");
-            System.Windows.Forms.TreeNode treeNode1570 = new System.Windows.Forms.TreeNode("宣城");
-            System.Windows.Forms.TreeNode treeNode1571 = new System.Windows.Forms.TreeNode("亳州");
-            System.Windows.Forms.TreeNode treeNode1572 = new System.Windows.Forms.TreeNode("黄山");
-            System.Windows.Forms.TreeNode treeNode1573 = new System.Windows.Forms.TreeNode("池州");
-            System.Windows.Forms.TreeNode treeNode1574 = new System.Windows.Forms.TreeNode("安徽省", new System.Windows.Forms.TreeNode[] {
-            treeNode1558,
-            treeNode1559,
-            treeNode1560,
-            treeNode1561,
-            treeNode1562,
-            treeNode1563,
-            treeNode1564,
-            treeNode1565,
-            treeNode1566,
-            treeNode1567,
-            treeNode1568,
-            treeNode1569,
-            treeNode1570,
-            treeNode1571,
-            treeNode1572,
-            treeNode1573});
-            System.Windows.Forms.TreeNode treeNode1575 = new System.Windows.Forms.TreeNode("济南");
-            System.Windows.Forms.TreeNode treeNode1576 = new System.Windows.Forms.TreeNode("青岛");
-            System.Windows.Forms.TreeNode treeNode1577 = new System.Windows.Forms.TreeNode("烟台");
-            System.Windows.Forms.TreeNode treeNode1578 = new System.Windows.Forms.TreeNode("潍坊");
-            System.Windows.Forms.TreeNode treeNode1579 = new System.Windows.Forms.TreeNode("临沂");
-            System.Windows.Forms.TreeNode treeNode1580 = new System.Windows.Forms.TreeNode("淄博");
-            System.Windows.Forms.TreeNode treeNode1581 = new System.Windows.Forms.TreeNode("济宁");
-            System.Windows.Forms.TreeNode treeNode1582 = new System.Windows.Forms.TreeNode("泰安");
-            System.Windows.Forms.TreeNode treeNode1583 = new System.Windows.Forms.TreeNode("聊城");
-            System.Windows.Forms.TreeNode treeNode1584 = new System.Windows.Forms.TreeNode("威海");
-            System.Windows.Forms.TreeNode treeNode1585 = new System.Windows.Forms.TreeNode("枣庄");
-            System.Windows.Forms.TreeNode treeNode1586 = new System.Windows.Forms.TreeNode("德州");
-            System.Windows.Forms.TreeNode treeNode1587 = new System.Windows.Forms.TreeNode("日照");
-            System.Windows.Forms.TreeNode treeNode1588 = new System.Windows.Forms.TreeNode("东营");
-            System.Windows.Forms.TreeNode treeNode1589 = new System.Windows.Forms.TreeNode("菏泽");
-            System.Windows.Forms.TreeNode treeNode1590 = new System.Windows.Forms.TreeNode("莱芜");
-            System.Windows.Forms.TreeNode treeNode1591 = new System.Windows.Forms.TreeNode("滨州");
-            System.Windows.Forms.TreeNode treeNode1592 = new System.Windows.Forms.TreeNode("山东省", new System.Windows.Forms.TreeNode[] {
-            treeNode1575,
-            treeNode1576,
-            treeNode1577,
-            treeNode1578,
-            treeNode1579,
-            treeNode1580,
-            treeNode1581,
-            treeNode1582,
-            treeNode1583,
-            treeNode1584,
-            treeNode1585,
-            treeNode1586,
-            treeNode1587,
-            treeNode1588,
-            treeNode1589,
-            treeNode1590,
-            treeNode1591});
-            System.Windows.Forms.TreeNode treeNode1593 = new System.Windows.Forms.TreeNode("杭州");
-            System.Windows.Forms.TreeNode treeNode1594 = new System.Windows.Forms.TreeNode("宁波");
-            System.Windows.Forms.TreeNode treeNode1595 = new System.Windows.Forms.TreeNode("温州");
-            System.Windows.Forms.TreeNode treeNode1596 = new System.Windows.Forms.TreeNode("嘉兴");
-            System.Windows.Forms.TreeNode treeNode1597 = new System.Windows.Forms.TreeNode("金华");
-            System.Windows.Forms.TreeNode treeNode1598 = new System.Windows.Forms.TreeNode("台州");
-            System.Windows.Forms.TreeNode treeNode1599 = new System.Windows.Forms.TreeNode("绍兴");
-            System.Windows.Forms.TreeNode treeNode1600 = new System.Windows.Forms.TreeNode("湖州");
-            System.Windows.Forms.TreeNode treeNode1601 = new System.Windows.Forms.TreeNode("丽水");
-            System.Windows.Forms.TreeNode treeNode1602 = new System.Windows.Forms.TreeNode("衢州");
-            System.Windows.Forms.TreeNode treeNode1603 = new System.Windows.Forms.TreeNode("舟山");
-            System.Windows.Forms.TreeNode treeNode1604 = new System.Windows.Forms.TreeNode("浙江省", new System.Windows.Forms.TreeNode[] {
-            treeNode1593,
-            treeNode1594,
-            treeNode1595,
-            treeNode1596,
-            treeNode1597,
-            treeNode1598,
-            treeNode1599,
-            treeNode1600,
-            treeNode1601,
-            treeNode1602,
-            treeNode1603});
-            System.Windows.Forms.TreeNode treeNode1605 = new System.Windows.Forms.TreeNode("广州");
-            System.Windows.Forms.TreeNode treeNode1606 = new System.Windows.Forms.TreeNode("深圳");
-            System.Windows.Forms.TreeNode treeNode1607 = new System.Windows.Forms.TreeNode("佛山");
-            System.Windows.Forms.TreeNode treeNode1608 = new System.Windows.Forms.TreeNode("东莞");
-            System.Windows.Forms.TreeNode treeNode1609 = new System.Windows.Forms.TreeNode("中山");
-            System.Windows.Forms.TreeNode treeNode1610 = new System.Windows.Forms.TreeNode("珠海");
-            System.Windows.Forms.TreeNode treeNode1611 = new System.Windows.Forms.TreeNode("惠州");
-            System.Windows.Forms.TreeNode treeNode1612 = new System.Windows.Forms.TreeNode("江门");
-            System.Windows.Forms.TreeNode treeNode1613 = new System.Windows.Forms.TreeNode("汕头");
-            System.Windows.Forms.TreeNode treeNode1614 = new System.Windows.Forms.TreeNode("湛江");
-            System.Windows.Forms.TreeNode treeNode1615 = new System.Windows.Forms.TreeNode("肇庆");
-            System.Windows.Forms.TreeNode treeNode1616 = new System.Windows.Forms.TreeNode("茂名");
-            System.Windows.Forms.TreeNode treeNode1617 = new System.Windows.Forms.TreeNode("揭阳");
-            System.Windows.Forms.TreeNode treeNode1618 = new System.Windows.Forms.TreeNode("梅州");
-            System.Windows.Forms.TreeNode treeNode1619 = new System.Windows.Forms.TreeNode("清远");
-            System.Windows.Forms.TreeNode treeNode1620 = new System.Windows.Forms.TreeNode("阳江");
-            System.Windows.Forms.TreeNode treeNode1621 = new System.Windows.Forms.TreeNode("韶关");
-            System.Windows.Forms.TreeNode treeNode1622 = new System.Windows.Forms.TreeNode("河源");
-            System.Windows.Forms.TreeNode treeNode1623 = new System.Windows.Forms.TreeNode("云浮");
-            System.Windows.Forms.TreeNode treeNode1624 = new System.Windows.Forms.TreeNode("广东省", new System.Windows.Forms.TreeNode[] {
-            treeNode1605,
-            treeNode1606,
-            treeNode1607,
-            treeNode1608,
-            treeNode1609,
-            treeNode1610,
-            treeNode1611,
-            treeNode1612,
-            treeNode1613,
-            treeNode1614,
-            treeNode1615,
-            treeNode1616,
-            treeNode1617,
-            treeNode1618,
-            treeNode1619,
-            treeNode1620,
-            treeNode1621,
-            treeNode1622,
-            treeNode1623});
-            System.Windows.Forms.TreeNode treeNode1625 = new System.Windows.Forms.TreeNode("长春");
-            System.Windows.Forms.TreeNode treeNode1626 = new System.Windows.Forms.TreeNode("吉林");
-            System.Windows.Forms.TreeNode treeNode1627 = new System.Windows.Forms.TreeNode("四平");
-            System.Windows.Forms.TreeNode treeNode1628 = new System.Windows.Forms.TreeNode("延边");
-            System.Windows.Forms.TreeNode treeNode1629 = new System.Windows.Forms.TreeNode("吉林省", new System.Windows.Forms.TreeNode[] {
-            treeNode1625,
-            treeNode1626,
-            treeNode1627,
-            treeNode1628});
-            System.Windows.Forms.TreeNode treeNode1630 = new System.Windows.Forms.TreeNode("沈阳");
-            System.Windows.Forms.TreeNode treeNode1631 = new System.Windows.Forms.TreeNode("大连");
-            System.Windows.Forms.TreeNode treeNode1632 = new System.Windows.Forms.TreeNode("鞍山");
-            System.Windows.Forms.TreeNode treeNode1633 = new System.Windows.Forms.TreeNode("锦州");
-            System.Windows.Forms.TreeNode treeNode1634 = new System.Windows.Forms.TreeNode("抚顺");
-            System.Windows.Forms.TreeNode treeNode1635 = new System.Windows.Forms.TreeNode("营口");
-            System.Windows.Forms.TreeNode treeNode1636 = new System.Windows.Forms.TreeNode("盘锦");
-            System.Windows.Forms.TreeNode treeNode1637 = new System.Windows.Forms.TreeNode("辽宁省", new System.Windows.Forms.TreeNode[] {
-            treeNode1630,
-            treeNode1631,
-            treeNode1632,
-            treeNode1633,
-            treeNode1634,
-            treeNode1635,
-            treeNode1636});
-            System.Windows.Forms.TreeNode treeNode1638 = new System.Windows.Forms.TreeNode("哈尔滨");
-            System.Windows.Forms.TreeNode treeNode1639 = new System.Windows.Forms.TreeNode("大庆");
-            System.Windows.Forms.TreeNode treeNode1640 = new System.Windows.Forms.TreeNode("齐齐哈尔");
-            System.Windows.Forms.TreeNode treeNode1641 = new System.Windows.Forms.TreeNode("绥化");
-            System.Windows.Forms.TreeNode treeNode1642 = new System.Windows.Forms.TreeNode("牡丹江");
-            System.Windows.Forms.TreeNode treeNode1643 = new System.Windows.Forms.TreeNode("黑龙江", new System.Windows.Forms.TreeNode[] {
-            treeNode1638,
-            treeNode1639,
-            treeNode1640,
-            treeNode1641,
-            treeNode1642});
-            System.Windows.Forms.TreeNode treeNode1644 = new System.Windows.Forms.TreeNode("呼和浩特");
-            System.Windows.Forms.TreeNode treeNode1645 = new System.Windows.Forms.TreeNode("包头");
-            System.Windows.Forms.TreeNode treeNode1646 = new System.Windows.Forms.TreeNode("赤峰");
-            System.Windows.Forms.TreeNode treeNode1647 = new System.Windows.Forms.TreeNode("内蒙古", new System.Windows.Forms.TreeNode[] {
-            treeNode1644,
-            treeNode1645,
-            treeNode1646});
-            System.Windows.Forms.TreeNode treeNode1648 = new System.Windows.Forms.TreeNode("南昌");
-            System.Windows.Forms.TreeNode treeNode1649 = new System.Windows.Forms.TreeNode("九江");
-            System.Windows.Forms.TreeNode treeNode1650 = new System.Windows.Forms.TreeNode("赣州");
-            System.Windows.Forms.TreeNode treeNode1651 = new System.Windows.Forms.TreeNode("上饶");
-            System.Windows.Forms.TreeNode treeNode1652 = new System.Windows.Forms.TreeNode("抚州");
-            System.Windows.Forms.TreeNode treeNode1653 = new System.Windows.Forms.TreeNode("景德镇");
-            System.Windows.Forms.TreeNode treeNode1654 = new System.Windows.Forms.TreeNode("江西省", new System.Windows.Forms.TreeNode[] {
-            treeNode1648,
-            treeNode1649,
-            treeNode1650,
-            treeNode1651,
-            treeNode1652,
-            treeNode1653});
-            System.Windows.Forms.TreeNode treeNode1655 = new System.Windows.Forms.TreeNode("石家庄");
-            System.Windows.Forms.TreeNode treeNode1656 = new System.Windows.Forms.TreeNode("保定");
-            System.Windows.Forms.TreeNode treeNode1657 = new System.Windows.Forms.TreeNode("唐山");
-            System.Windows.Forms.TreeNode treeNode1658 = new System.Windows.Forms.TreeNode("廊坊");
-            System.Windows.Forms.TreeNode treeNode1659 = new System.Windows.Forms.TreeNode("邯郸");
-            System.Windows.Forms.TreeNode treeNode1660 = new System.Windows.Forms.TreeNode("秦皇岛");
-            System.Windows.Forms.TreeNode treeNode1661 = new System.Windows.Forms.TreeNode("沧州");
-            System.Windows.Forms.TreeNode treeNode1662 = new System.Windows.Forms.TreeNode("邢台");
-            System.Windows.Forms.TreeNode treeNode1663 = new System.Windows.Forms.TreeNode("衡水");
-            System.Windows.Forms.TreeNode treeNode1664 = new System.Windows.Forms.TreeNode("张家口");
-            System.Windows.Forms.TreeNode treeNode1665 = new System.Windows.Forms.TreeNode("承德");
-            System.Windows.Forms.TreeNode treeNode1666 = new System.Windows.Forms.TreeNode("河北省", new System.Windows.Forms.TreeNode[] {
-            treeNode1655,
-            treeNode1656,
-            treeNode1657,
-            treeNode1658,
-            treeNode1659,
-            treeNode1660,
-            treeNode1661,
-            treeNode1662,
-            treeNode1663,
-            treeNode1664,
-            treeNode1665});
-            System.Windows.Forms.TreeNode treeNode1667 = new System.Windows.Forms.TreeNode("郑州");
-            System.Windows.Forms.TreeNode treeNode1668 = new System.Windows.Forms.TreeNode("洛阳");
-            System.Windows.Forms.TreeNode treeNode1669 = new System.Windows.Forms.TreeNode("新乡");
-            System.Windows.Forms.TreeNode treeNode1670 = new System.Windows.Forms.TreeNode("南阳");
-            System.Windows.Forms.TreeNode treeNode1671 = new System.Windows.Forms.TreeNode("许昌");
-            System.Windows.Forms.TreeNode treeNode1672 = new System.Windows.Forms.TreeNode("平顶山");
-            System.Windows.Forms.TreeNode treeNode1673 = new System.Windows.Forms.TreeNode("安阳");
-            System.Windows.Forms.TreeNode treeNode1674 = new System.Windows.Forms.TreeNode("焦作");
-            System.Windows.Forms.TreeNode treeNode1675 = new System.Windows.Forms.TreeNode("商丘");
-            System.Windows.Forms.TreeNode treeNode1676 = new System.Windows.Forms.TreeNode("开封");
-            System.Windows.Forms.TreeNode treeNode1677 = new System.Windows.Forms.TreeNode("河南省", new System.Windows.Forms.TreeNode[] {
-            treeNode1667,
-            treeNode1668,
-            treeNode1669,
-            treeNode1670,
-            treeNode1671,
-            treeNode1672,
-            treeNode1673,
-            treeNode1674,
-            treeNode1675,
-            treeNode1676});
-            System.Windows.Forms.TreeNode treeNode1678 = new System.Windows.Forms.TreeNode("武汉");
-            System.Windows.Forms.TreeNode treeNode1679 = new System.Windows.Forms.TreeNode("襄阳");
-            System.Windows.Forms.TreeNode treeNode1680 = new System.Windows.Forms.TreeNode("宜昌");
-            System.Windows.Forms.TreeNode treeNode1681 = new System.Windows.Forms.TreeNode("荆州");
-            System.Windows.Forms.TreeNode treeNode1682 = new System.Windows.Forms.TreeNode("十堰");
-            System.Windows.Forms.TreeNode treeNode1683 = new System.Windows.Forms.TreeNode("黄石");
-            System.Windows.Forms.TreeNode treeNode1684 = new System.Windows.Forms.TreeNode("孝感");
-            System.Windows.Forms.TreeNode treeNode1685 = new System.Windows.Forms.TreeNode("黄冈");
-            System.Windows.Forms.TreeNode treeNode1686 = new System.Windows.Forms.TreeNode("湖北省", new System.Windows.Forms.TreeNode[] {
-            treeNode1678,
-            treeNode1679,
-            treeNode1680,
-            treeNode1681,
-            treeNode1682,
-            treeNode1683,
-            treeNode1684,
-            treeNode1685});
-            System.Windows.Forms.TreeNode treeNode1687 = new System.Windows.Forms.TreeNode("长沙");
-            System.Windows.Forms.TreeNode treeNode1688 = new System.Windows.Forms.TreeNode("株洲");
-            System.Windows.Forms.TreeNode treeNode1689 = new System.Windows.Forms.TreeNode("益阳");
-            System.Windows.Forms.TreeNode treeNode1690 = new System.Windows.Forms.TreeNode("常德");
-            System.Windows.Forms.TreeNode treeNode1691 = new System.Windows.Forms.TreeNode("衡阳");
-            System.Windows.Forms.TreeNode treeNode1692 = new System.Windows.Forms.TreeNode("湘潭");
-            System.Windows.Forms.TreeNode treeNode1693 = new System.Windows.Forms.TreeNode("岳阳");
-            System.Windows.Forms.TreeNode treeNode1694 = new System.Windows.Forms.TreeNode("郴州");
-            System.Windows.Forms.TreeNode treeNode1695 = new System.Windows.Forms.TreeNode("湖南省", new System.Windows.Forms.TreeNode[] {
-            treeNode1687,
-            treeNode1688,
-            treeNode1689,
-            treeNode1690,
-            treeNode1691,
-            treeNode1692,
-            treeNode1693,
-            treeNode1694});
-            System.Windows.Forms.TreeNode treeNode1696 = new System.Windows.Forms.TreeNode("南宁");
-            System.Windows.Forms.TreeNode treeNode1697 = new System.Windows.Forms.TreeNode("桂林");
-            System.Windows.Forms.TreeNode treeNode1698 = new System.Windows.Forms.TreeNode("柳州");
-            System.Windows.Forms.TreeNode treeNode1699 = new System.Windows.Forms.TreeNode("玉林");
-            System.Windows.Forms.TreeNode treeNode1700 = new System.Windows.Forms.TreeNode("梧州");
-            System.Windows.Forms.TreeNode treeNode1701 = new System.Windows.Forms.TreeNode("广西省", new System.Windows.Forms.TreeNode[] {
-            treeNode1696,
-            treeNode1697,
-            treeNode1698,
-            treeNode1699,
-            treeNode1700});
-            System.Windows.Forms.TreeNode treeNode1702 = new System.Windows.Forms.TreeNode("银川");
-            System.Windows.Forms.TreeNode treeNode1703 = new System.Windows.Forms.TreeNode("宁夏自治区", new System.Windows.Forms.TreeNode[] {
-            treeNode1702});
-            System.Windows.Forms.TreeNode treeNode1704 = new System.Windows.Forms.TreeNode("海口");
-            System.Windows.Forms.TreeNode treeNode1705 = new System.Windows.Forms.TreeNode("三亚");
-            System.Windows.Forms.TreeNode treeNode1706 = new System.Windows.Forms.TreeNode("海南省", new System.Windows.Forms.TreeNode[] {
-            treeNode1704,
-            treeNode1705});
-            System.Windows.Forms.TreeNode treeNode1707 = new System.Windows.Forms.TreeNode("成都");
-            System.Windows.Forms.TreeNode treeNode1708 = new System.Windows.Forms.TreeNode("绵阳");
-            System.Windows.Forms.TreeNode treeNode1709 = new System.Windows.Forms.TreeNode("德阳");
-            System.Windows.Forms.TreeNode treeNode1710 = new System.Windows.Forms.TreeNode("南充");
-            System.Windows.Forms.TreeNode treeNode1711 = new System.Windows.Forms.TreeNode("宜宾");
-            System.Windows.Forms.TreeNode treeNode1712 = new System.Windows.Forms.TreeNode("自贡");
-            System.Windows.Forms.TreeNode treeNode1713 = new System.Windows.Forms.TreeNode("乐山");
-            System.Windows.Forms.TreeNode treeNode1714 = new System.Windows.Forms.TreeNode("泸州");
-            System.Windows.Forms.TreeNode treeNode1715 = new System.Windows.Forms.TreeNode("达州");
-            System.Windows.Forms.TreeNode treeNode1716 = new System.Windows.Forms.TreeNode("内江");
-            System.Windows.Forms.TreeNode treeNode1717 = new System.Windows.Forms.TreeNode("遂宁");
-            System.Windows.Forms.TreeNode treeNode1718 = new System.Windows.Forms.TreeNode("攀枝花");
-            System.Windows.Forms.TreeNode treeNode1719 = new System.Windows.Forms.TreeNode("眉山");
-            System.Windows.Forms.TreeNode treeNode1720 = new System.Windows.Forms.TreeNode("广安");
-            System.Windows.Forms.TreeNode treeNode1721 = new System.Windows.Forms.TreeNode("资阳");
-            System.Windows.Forms.TreeNode treeNode1722 = new System.Windows.Forms.TreeNode("凉山");
-            System.Windows.Forms.TreeNode treeNode1723 = new System.Windows.Forms.TreeNode("广元");
-            System.Windows.Forms.TreeNode treeNode1724 = new System.Windows.Forms.TreeNode("雅安");
-            System.Windows.Forms.TreeNode treeNode1725 = new System.Windows.Forms.TreeNode("巴中");
-            System.Windows.Forms.TreeNode treeNode1726 = new System.Windows.Forms.TreeNode("阿坝");
-            System.Windows.Forms.TreeNode treeNode1727 = new System.Windows.Forms.TreeNode("甘孜");
-            System.Windows.Forms.TreeNode treeNode1728 = new System.Windows.Forms.TreeNode("安岳");
-            System.Windows.Forms.TreeNode treeNode1729 = new System.Windows.Forms.TreeNode("广汉");
-            System.Windows.Forms.TreeNode treeNode1730 = new System.Windows.Forms.TreeNode("简阳");
-            System.Windows.Forms.TreeNode treeNode1731 = new System.Windows.Forms.TreeNode("仁寿");
-            System.Windows.Forms.TreeNode treeNode1732 = new System.Windows.Forms.TreeNode("射洪");
-            System.Windows.Forms.TreeNode treeNode1733 = new System.Windows.Forms.TreeNode("大竹");
-            System.Windows.Forms.TreeNode treeNode1734 = new System.Windows.Forms.TreeNode("宣汉");
-            System.Windows.Forms.TreeNode treeNode1735 = new System.Windows.Forms.TreeNode("渠县");
-            System.Windows.Forms.TreeNode treeNode1736 = new System.Windows.Forms.TreeNode("长宁");
-            System.Windows.Forms.TreeNode treeNode1737 = new System.Windows.Forms.TreeNode("四川省", new System.Windows.Forms.TreeNode[] {
-            treeNode1707,
-            treeNode1708,
-            treeNode1709,
-            treeNode1710,
-            treeNode1711,
-            treeNode1712,
-            treeNode1713,
-            treeNode1714,
-            treeNode1715,
-            treeNode1716,
-            treeNode1717,
-            treeNode1718,
-            treeNode1719,
-            treeNode1720,
-            treeNode1721,
-            treeNode1722,
-            treeNode1723,
-            treeNode1724,
-            treeNode1725,
-            treeNode1726,
-            treeNode1727,
-            treeNode1728,
-            treeNode1729,
-            treeNode1730,
-            treeNode1731,
-            treeNode1732,
-            treeNode1733,
-            treeNode1734,
-            treeNode1735,
-            treeNode1736});
-            System.Windows.Forms.TreeNode treeNode1738 = new System.Windows.Forms.TreeNode("福州");
-            System.Windows.Forms.TreeNode treeNode1739 = new System.Windows.Forms.TreeNode("厦门");
-            System.Windows.Forms.TreeNode treeNode1740 = new System.Windows.Forms.TreeNode("泉州");
-            System.Windows.Forms.TreeNode treeNode1741 = new System.Windows.Forms.TreeNode("莆田");
-            System.Windows.Forms.TreeNode treeNode1742 = new System.Windows.Forms.TreeNode("漳州");
-            System.Windows.Forms.TreeNode treeNode1743 = new System.Windows.Forms.TreeNode("宁德");
-            System.Windows.Forms.TreeNode treeNode1744 = new System.Windows.Forms.TreeNode("三名");
-            System.Windows.Forms.TreeNode treeNode1745 = new System.Windows.Forms.TreeNode("南平");
-            System.Windows.Forms.TreeNode treeNode1746 = new System.Windows.Forms.TreeNode("龙岩");
-            System.Windows.Forms.TreeNode treeNode1747 = new System.Windows.Forms.TreeNode("武夷山");
-            System.Windows.Forms.TreeNode treeNode1748 = new System.Windows.Forms.TreeNode("福建省", new System.Windows.Forms.TreeNode[] {
-            treeNode1738,
-            treeNode1739,
-            treeNode1740,
-            treeNode1741,
-            treeNode1742,
-            treeNode1743,
-            treeNode1744,
-            treeNode1745,
-            treeNode1746,
-            treeNode1747});
-            System.Windows.Forms.TreeNode treeNode1749 = new System.Windows.Forms.TreeNode("贵阳");
-            System.Windows.Forms.TreeNode treeNode1750 = new System.Windows.Forms.TreeNode("遵义");
-            System.Windows.Forms.TreeNode treeNode1751 = new System.Windows.Forms.TreeNode("六盘水");
-            System.Windows.Forms.TreeNode treeNode1752 = new System.Windows.Forms.TreeNode("贵州省", new System.Windows.Forms.TreeNode[] {
-            treeNode1749,
-            treeNode1750,
-            treeNode1751});
-            System.Windows.Forms.TreeNode treeNode1753 = new System.Windows.Forms.TreeNode("兰州");
-            System.Windows.Forms.TreeNode treeNode1754 = new System.Windows.Forms.TreeNode("天水");
-            System.Windows.Forms.TreeNode treeNode1755 = new System.Windows.Forms.TreeNode("白银");
-            System.Windows.Forms.TreeNode treeNode1756 = new System.Windows.Forms.TreeNode("甘肃省", new System.Windows.Forms.TreeNode[] {
-            treeNode1753,
-            treeNode1754,
-            treeNode1755});
-            System.Windows.Forms.TreeNode treeNode1757 = new System.Windows.Forms.TreeNode("昆明");
-            System.Windows.Forms.TreeNode treeNode1758 = new System.Windows.Forms.TreeNode("云南省", new System.Windows.Forms.TreeNode[] {
-            treeNode1757});
-            System.Windows.Forms.TreeNode treeNode1759 = new System.Windows.Forms.TreeNode("西安");
-            System.Windows.Forms.TreeNode treeNode1760 = new System.Windows.Forms.TreeNode("陕西省", new System.Windows.Forms.TreeNode[] {
-            treeNode1759});
+            System.Windows.Forms.TreeNode treeNode661 = new System.Windows.Forms.TreeNode("北京市");
+            System.Windows.Forms.TreeNode treeNode662 = new System.Windows.Forms.TreeNode("上海市");
+            System.Windows.Forms.TreeNode treeNode663 = new System.Windows.Forms.TreeNode("天津市");
+            System.Windows.Forms.TreeNode treeNode664 = new System.Windows.Forms.TreeNode("重庆市");
+            System.Windows.Forms.TreeNode treeNode665 = new System.Windows.Forms.TreeNode("宿迁");
+            System.Windows.Forms.TreeNode treeNode666 = new System.Windows.Forms.TreeNode("南京");
+            System.Windows.Forms.TreeNode treeNode667 = new System.Windows.Forms.TreeNode("无锡");
+            System.Windows.Forms.TreeNode treeNode668 = new System.Windows.Forms.TreeNode("苏州");
+            System.Windows.Forms.TreeNode treeNode669 = new System.Windows.Forms.TreeNode("徐州");
+            System.Windows.Forms.TreeNode treeNode670 = new System.Windows.Forms.TreeNode("连云港");
+            System.Windows.Forms.TreeNode treeNode671 = new System.Windows.Forms.TreeNode("盐城");
+            System.Windows.Forms.TreeNode treeNode672 = new System.Windows.Forms.TreeNode("泰州");
+            System.Windows.Forms.TreeNode treeNode673 = new System.Windows.Forms.TreeNode("扬州");
+            System.Windows.Forms.TreeNode treeNode674 = new System.Windows.Forms.TreeNode("镇江");
+            System.Windows.Forms.TreeNode treeNode675 = new System.Windows.Forms.TreeNode("常州");
+            System.Windows.Forms.TreeNode treeNode676 = new System.Windows.Forms.TreeNode("淮安");
+            System.Windows.Forms.TreeNode treeNode677 = new System.Windows.Forms.TreeNode("江苏省", new System.Windows.Forms.TreeNode[] {
+            treeNode665,
+            treeNode666,
+            treeNode667,
+            treeNode668,
+            treeNode669,
+            treeNode670,
+            treeNode671,
+            treeNode672,
+            treeNode673,
+            treeNode674,
+            treeNode675,
+            treeNode676});
+            System.Windows.Forms.TreeNode treeNode678 = new System.Windows.Forms.TreeNode("合肥");
+            System.Windows.Forms.TreeNode treeNode679 = new System.Windows.Forms.TreeNode("芜湖");
+            System.Windows.Forms.TreeNode treeNode680 = new System.Windows.Forms.TreeNode("蚌埠");
+            System.Windows.Forms.TreeNode treeNode681 = new System.Windows.Forms.TreeNode("阜阳");
+            System.Windows.Forms.TreeNode treeNode682 = new System.Windows.Forms.TreeNode("淮南");
+            System.Windows.Forms.TreeNode treeNode683 = new System.Windows.Forms.TreeNode("安庆");
+            System.Windows.Forms.TreeNode treeNode684 = new System.Windows.Forms.TreeNode("宿州");
+            System.Windows.Forms.TreeNode treeNode685 = new System.Windows.Forms.TreeNode("六安");
+            System.Windows.Forms.TreeNode treeNode686 = new System.Windows.Forms.TreeNode("淮北");
+            System.Windows.Forms.TreeNode treeNode687 = new System.Windows.Forms.TreeNode("滁州");
+            System.Windows.Forms.TreeNode treeNode688 = new System.Windows.Forms.TreeNode("马鞍山");
+            System.Windows.Forms.TreeNode treeNode689 = new System.Windows.Forms.TreeNode("铜陵");
+            System.Windows.Forms.TreeNode treeNode690 = new System.Windows.Forms.TreeNode("宣城");
+            System.Windows.Forms.TreeNode treeNode691 = new System.Windows.Forms.TreeNode("亳州");
+            System.Windows.Forms.TreeNode treeNode692 = new System.Windows.Forms.TreeNode("黄山");
+            System.Windows.Forms.TreeNode treeNode693 = new System.Windows.Forms.TreeNode("池州");
+            System.Windows.Forms.TreeNode treeNode694 = new System.Windows.Forms.TreeNode("安徽省", new System.Windows.Forms.TreeNode[] {
+            treeNode678,
+            treeNode679,
+            treeNode680,
+            treeNode681,
+            treeNode682,
+            treeNode683,
+            treeNode684,
+            treeNode685,
+            treeNode686,
+            treeNode687,
+            treeNode688,
+            treeNode689,
+            treeNode690,
+            treeNode691,
+            treeNode692,
+            treeNode693});
+            System.Windows.Forms.TreeNode treeNode695 = new System.Windows.Forms.TreeNode("济南");
+            System.Windows.Forms.TreeNode treeNode696 = new System.Windows.Forms.TreeNode("青岛");
+            System.Windows.Forms.TreeNode treeNode697 = new System.Windows.Forms.TreeNode("烟台");
+            System.Windows.Forms.TreeNode treeNode698 = new System.Windows.Forms.TreeNode("潍坊");
+            System.Windows.Forms.TreeNode treeNode699 = new System.Windows.Forms.TreeNode("临沂");
+            System.Windows.Forms.TreeNode treeNode700 = new System.Windows.Forms.TreeNode("淄博");
+            System.Windows.Forms.TreeNode treeNode701 = new System.Windows.Forms.TreeNode("济宁");
+            System.Windows.Forms.TreeNode treeNode702 = new System.Windows.Forms.TreeNode("泰安");
+            System.Windows.Forms.TreeNode treeNode703 = new System.Windows.Forms.TreeNode("聊城");
+            System.Windows.Forms.TreeNode treeNode704 = new System.Windows.Forms.TreeNode("威海");
+            System.Windows.Forms.TreeNode treeNode705 = new System.Windows.Forms.TreeNode("枣庄");
+            System.Windows.Forms.TreeNode treeNode706 = new System.Windows.Forms.TreeNode("德州");
+            System.Windows.Forms.TreeNode treeNode707 = new System.Windows.Forms.TreeNode("日照");
+            System.Windows.Forms.TreeNode treeNode708 = new System.Windows.Forms.TreeNode("东营");
+            System.Windows.Forms.TreeNode treeNode709 = new System.Windows.Forms.TreeNode("菏泽");
+            System.Windows.Forms.TreeNode treeNode710 = new System.Windows.Forms.TreeNode("莱芜");
+            System.Windows.Forms.TreeNode treeNode711 = new System.Windows.Forms.TreeNode("滨州");
+            System.Windows.Forms.TreeNode treeNode712 = new System.Windows.Forms.TreeNode("山东省", new System.Windows.Forms.TreeNode[] {
+            treeNode695,
+            treeNode696,
+            treeNode697,
+            treeNode698,
+            treeNode699,
+            treeNode700,
+            treeNode701,
+            treeNode702,
+            treeNode703,
+            treeNode704,
+            treeNode705,
+            treeNode706,
+            treeNode707,
+            treeNode708,
+            treeNode709,
+            treeNode710,
+            treeNode711});
+            System.Windows.Forms.TreeNode treeNode713 = new System.Windows.Forms.TreeNode("杭州");
+            System.Windows.Forms.TreeNode treeNode714 = new System.Windows.Forms.TreeNode("宁波");
+            System.Windows.Forms.TreeNode treeNode715 = new System.Windows.Forms.TreeNode("温州");
+            System.Windows.Forms.TreeNode treeNode716 = new System.Windows.Forms.TreeNode("嘉兴");
+            System.Windows.Forms.TreeNode treeNode717 = new System.Windows.Forms.TreeNode("金华");
+            System.Windows.Forms.TreeNode treeNode718 = new System.Windows.Forms.TreeNode("台州");
+            System.Windows.Forms.TreeNode treeNode719 = new System.Windows.Forms.TreeNode("绍兴");
+            System.Windows.Forms.TreeNode treeNode720 = new System.Windows.Forms.TreeNode("湖州");
+            System.Windows.Forms.TreeNode treeNode721 = new System.Windows.Forms.TreeNode("丽水");
+            System.Windows.Forms.TreeNode treeNode722 = new System.Windows.Forms.TreeNode("衢州");
+            System.Windows.Forms.TreeNode treeNode723 = new System.Windows.Forms.TreeNode("舟山");
+            System.Windows.Forms.TreeNode treeNode724 = new System.Windows.Forms.TreeNode("浙江省", new System.Windows.Forms.TreeNode[] {
+            treeNode713,
+            treeNode714,
+            treeNode715,
+            treeNode716,
+            treeNode717,
+            treeNode718,
+            treeNode719,
+            treeNode720,
+            treeNode721,
+            treeNode722,
+            treeNode723});
+            System.Windows.Forms.TreeNode treeNode725 = new System.Windows.Forms.TreeNode("广州");
+            System.Windows.Forms.TreeNode treeNode726 = new System.Windows.Forms.TreeNode("深圳");
+            System.Windows.Forms.TreeNode treeNode727 = new System.Windows.Forms.TreeNode("佛山");
+            System.Windows.Forms.TreeNode treeNode728 = new System.Windows.Forms.TreeNode("东莞");
+            System.Windows.Forms.TreeNode treeNode729 = new System.Windows.Forms.TreeNode("中山");
+            System.Windows.Forms.TreeNode treeNode730 = new System.Windows.Forms.TreeNode("珠海");
+            System.Windows.Forms.TreeNode treeNode731 = new System.Windows.Forms.TreeNode("惠州");
+            System.Windows.Forms.TreeNode treeNode732 = new System.Windows.Forms.TreeNode("江门");
+            System.Windows.Forms.TreeNode treeNode733 = new System.Windows.Forms.TreeNode("汕头");
+            System.Windows.Forms.TreeNode treeNode734 = new System.Windows.Forms.TreeNode("湛江");
+            System.Windows.Forms.TreeNode treeNode735 = new System.Windows.Forms.TreeNode("肇庆");
+            System.Windows.Forms.TreeNode treeNode736 = new System.Windows.Forms.TreeNode("茂名");
+            System.Windows.Forms.TreeNode treeNode737 = new System.Windows.Forms.TreeNode("揭阳");
+            System.Windows.Forms.TreeNode treeNode738 = new System.Windows.Forms.TreeNode("梅州");
+            System.Windows.Forms.TreeNode treeNode739 = new System.Windows.Forms.TreeNode("清远");
+            System.Windows.Forms.TreeNode treeNode740 = new System.Windows.Forms.TreeNode("阳江");
+            System.Windows.Forms.TreeNode treeNode741 = new System.Windows.Forms.TreeNode("韶关");
+            System.Windows.Forms.TreeNode treeNode742 = new System.Windows.Forms.TreeNode("河源");
+            System.Windows.Forms.TreeNode treeNode743 = new System.Windows.Forms.TreeNode("云浮");
+            System.Windows.Forms.TreeNode treeNode744 = new System.Windows.Forms.TreeNode("广东省", new System.Windows.Forms.TreeNode[] {
+            treeNode725,
+            treeNode726,
+            treeNode727,
+            treeNode728,
+            treeNode729,
+            treeNode730,
+            treeNode731,
+            treeNode732,
+            treeNode733,
+            treeNode734,
+            treeNode735,
+            treeNode736,
+            treeNode737,
+            treeNode738,
+            treeNode739,
+            treeNode740,
+            treeNode741,
+            treeNode742,
+            treeNode743});
+            System.Windows.Forms.TreeNode treeNode745 = new System.Windows.Forms.TreeNode("长春");
+            System.Windows.Forms.TreeNode treeNode746 = new System.Windows.Forms.TreeNode("吉林");
+            System.Windows.Forms.TreeNode treeNode747 = new System.Windows.Forms.TreeNode("四平");
+            System.Windows.Forms.TreeNode treeNode748 = new System.Windows.Forms.TreeNode("延边");
+            System.Windows.Forms.TreeNode treeNode749 = new System.Windows.Forms.TreeNode("吉林省", new System.Windows.Forms.TreeNode[] {
+            treeNode745,
+            treeNode746,
+            treeNode747,
+            treeNode748});
+            System.Windows.Forms.TreeNode treeNode750 = new System.Windows.Forms.TreeNode("沈阳");
+            System.Windows.Forms.TreeNode treeNode751 = new System.Windows.Forms.TreeNode("大连");
+            System.Windows.Forms.TreeNode treeNode752 = new System.Windows.Forms.TreeNode("鞍山");
+            System.Windows.Forms.TreeNode treeNode753 = new System.Windows.Forms.TreeNode("锦州");
+            System.Windows.Forms.TreeNode treeNode754 = new System.Windows.Forms.TreeNode("抚顺");
+            System.Windows.Forms.TreeNode treeNode755 = new System.Windows.Forms.TreeNode("营口");
+            System.Windows.Forms.TreeNode treeNode756 = new System.Windows.Forms.TreeNode("盘锦");
+            System.Windows.Forms.TreeNode treeNode757 = new System.Windows.Forms.TreeNode("辽宁省", new System.Windows.Forms.TreeNode[] {
+            treeNode750,
+            treeNode751,
+            treeNode752,
+            treeNode753,
+            treeNode754,
+            treeNode755,
+            treeNode756});
+            System.Windows.Forms.TreeNode treeNode758 = new System.Windows.Forms.TreeNode("哈尔滨");
+            System.Windows.Forms.TreeNode treeNode759 = new System.Windows.Forms.TreeNode("大庆");
+            System.Windows.Forms.TreeNode treeNode760 = new System.Windows.Forms.TreeNode("齐齐哈尔");
+            System.Windows.Forms.TreeNode treeNode761 = new System.Windows.Forms.TreeNode("绥化");
+            System.Windows.Forms.TreeNode treeNode762 = new System.Windows.Forms.TreeNode("牡丹江");
+            System.Windows.Forms.TreeNode treeNode763 = new System.Windows.Forms.TreeNode("黑龙江", new System.Windows.Forms.TreeNode[] {
+            treeNode758,
+            treeNode759,
+            treeNode760,
+            treeNode761,
+            treeNode762});
+            System.Windows.Forms.TreeNode treeNode764 = new System.Windows.Forms.TreeNode("呼和浩特");
+            System.Windows.Forms.TreeNode treeNode765 = new System.Windows.Forms.TreeNode("包头");
+            System.Windows.Forms.TreeNode treeNode766 = new System.Windows.Forms.TreeNode("赤峰");
+            System.Windows.Forms.TreeNode treeNode767 = new System.Windows.Forms.TreeNode("内蒙古", new System.Windows.Forms.TreeNode[] {
+            treeNode764,
+            treeNode765,
+            treeNode766});
+            System.Windows.Forms.TreeNode treeNode768 = new System.Windows.Forms.TreeNode("南昌");
+            System.Windows.Forms.TreeNode treeNode769 = new System.Windows.Forms.TreeNode("九江");
+            System.Windows.Forms.TreeNode treeNode770 = new System.Windows.Forms.TreeNode("赣州");
+            System.Windows.Forms.TreeNode treeNode771 = new System.Windows.Forms.TreeNode("上饶");
+            System.Windows.Forms.TreeNode treeNode772 = new System.Windows.Forms.TreeNode("抚州");
+            System.Windows.Forms.TreeNode treeNode773 = new System.Windows.Forms.TreeNode("景德镇");
+            System.Windows.Forms.TreeNode treeNode774 = new System.Windows.Forms.TreeNode("江西省", new System.Windows.Forms.TreeNode[] {
+            treeNode768,
+            treeNode769,
+            treeNode770,
+            treeNode771,
+            treeNode772,
+            treeNode773});
+            System.Windows.Forms.TreeNode treeNode775 = new System.Windows.Forms.TreeNode("石家庄");
+            System.Windows.Forms.TreeNode treeNode776 = new System.Windows.Forms.TreeNode("保定");
+            System.Windows.Forms.TreeNode treeNode777 = new System.Windows.Forms.TreeNode("唐山");
+            System.Windows.Forms.TreeNode treeNode778 = new System.Windows.Forms.TreeNode("廊坊");
+            System.Windows.Forms.TreeNode treeNode779 = new System.Windows.Forms.TreeNode("邯郸");
+            System.Windows.Forms.TreeNode treeNode780 = new System.Windows.Forms.TreeNode("秦皇岛");
+            System.Windows.Forms.TreeNode treeNode781 = new System.Windows.Forms.TreeNode("沧州");
+            System.Windows.Forms.TreeNode treeNode782 = new System.Windows.Forms.TreeNode("邢台");
+            System.Windows.Forms.TreeNode treeNode783 = new System.Windows.Forms.TreeNode("衡水");
+            System.Windows.Forms.TreeNode treeNode784 = new System.Windows.Forms.TreeNode("张家口");
+            System.Windows.Forms.TreeNode treeNode785 = new System.Windows.Forms.TreeNode("承德");
+            System.Windows.Forms.TreeNode treeNode786 = new System.Windows.Forms.TreeNode("河北省", new System.Windows.Forms.TreeNode[] {
+            treeNode775,
+            treeNode776,
+            treeNode777,
+            treeNode778,
+            treeNode779,
+            treeNode780,
+            treeNode781,
+            treeNode782,
+            treeNode783,
+            treeNode784,
+            treeNode785});
+            System.Windows.Forms.TreeNode treeNode787 = new System.Windows.Forms.TreeNode("郑州");
+            System.Windows.Forms.TreeNode treeNode788 = new System.Windows.Forms.TreeNode("洛阳");
+            System.Windows.Forms.TreeNode treeNode789 = new System.Windows.Forms.TreeNode("新乡");
+            System.Windows.Forms.TreeNode treeNode790 = new System.Windows.Forms.TreeNode("南阳");
+            System.Windows.Forms.TreeNode treeNode791 = new System.Windows.Forms.TreeNode("许昌");
+            System.Windows.Forms.TreeNode treeNode792 = new System.Windows.Forms.TreeNode("平顶山");
+            System.Windows.Forms.TreeNode treeNode793 = new System.Windows.Forms.TreeNode("安阳");
+            System.Windows.Forms.TreeNode treeNode794 = new System.Windows.Forms.TreeNode("焦作");
+            System.Windows.Forms.TreeNode treeNode795 = new System.Windows.Forms.TreeNode("商丘");
+            System.Windows.Forms.TreeNode treeNode796 = new System.Windows.Forms.TreeNode("开封");
+            System.Windows.Forms.TreeNode treeNode797 = new System.Windows.Forms.TreeNode("河南省", new System.Windows.Forms.TreeNode[] {
+            treeNode787,
+            treeNode788,
+            treeNode789,
+            treeNode790,
+            treeNode791,
+            treeNode792,
+            treeNode793,
+            treeNode794,
+            treeNode795,
+            treeNode796});
+            System.Windows.Forms.TreeNode treeNode798 = new System.Windows.Forms.TreeNode("武汉");
+            System.Windows.Forms.TreeNode treeNode799 = new System.Windows.Forms.TreeNode("襄阳");
+            System.Windows.Forms.TreeNode treeNode800 = new System.Windows.Forms.TreeNode("宜昌");
+            System.Windows.Forms.TreeNode treeNode801 = new System.Windows.Forms.TreeNode("荆州");
+            System.Windows.Forms.TreeNode treeNode802 = new System.Windows.Forms.TreeNode("十堰");
+            System.Windows.Forms.TreeNode treeNode803 = new System.Windows.Forms.TreeNode("黄石");
+            System.Windows.Forms.TreeNode treeNode804 = new System.Windows.Forms.TreeNode("孝感");
+            System.Windows.Forms.TreeNode treeNode805 = new System.Windows.Forms.TreeNode("黄冈");
+            System.Windows.Forms.TreeNode treeNode806 = new System.Windows.Forms.TreeNode("湖北省", new System.Windows.Forms.TreeNode[] {
+            treeNode798,
+            treeNode799,
+            treeNode800,
+            treeNode801,
+            treeNode802,
+            treeNode803,
+            treeNode804,
+            treeNode805});
+            System.Windows.Forms.TreeNode treeNode807 = new System.Windows.Forms.TreeNode("长沙");
+            System.Windows.Forms.TreeNode treeNode808 = new System.Windows.Forms.TreeNode("株洲");
+            System.Windows.Forms.TreeNode treeNode809 = new System.Windows.Forms.TreeNode("益阳");
+            System.Windows.Forms.TreeNode treeNode810 = new System.Windows.Forms.TreeNode("常德");
+            System.Windows.Forms.TreeNode treeNode811 = new System.Windows.Forms.TreeNode("衡阳");
+            System.Windows.Forms.TreeNode treeNode812 = new System.Windows.Forms.TreeNode("湘潭");
+            System.Windows.Forms.TreeNode treeNode813 = new System.Windows.Forms.TreeNode("岳阳");
+            System.Windows.Forms.TreeNode treeNode814 = new System.Windows.Forms.TreeNode("郴州");
+            System.Windows.Forms.TreeNode treeNode815 = new System.Windows.Forms.TreeNode("湖南省", new System.Windows.Forms.TreeNode[] {
+            treeNode807,
+            treeNode808,
+            treeNode809,
+            treeNode810,
+            treeNode811,
+            treeNode812,
+            treeNode813,
+            treeNode814});
+            System.Windows.Forms.TreeNode treeNode816 = new System.Windows.Forms.TreeNode("南宁");
+            System.Windows.Forms.TreeNode treeNode817 = new System.Windows.Forms.TreeNode("桂林");
+            System.Windows.Forms.TreeNode treeNode818 = new System.Windows.Forms.TreeNode("柳州");
+            System.Windows.Forms.TreeNode treeNode819 = new System.Windows.Forms.TreeNode("玉林");
+            System.Windows.Forms.TreeNode treeNode820 = new System.Windows.Forms.TreeNode("梧州");
+            System.Windows.Forms.TreeNode treeNode821 = new System.Windows.Forms.TreeNode("广西省", new System.Windows.Forms.TreeNode[] {
+            treeNode816,
+            treeNode817,
+            treeNode818,
+            treeNode819,
+            treeNode820});
+            System.Windows.Forms.TreeNode treeNode822 = new System.Windows.Forms.TreeNode("银川");
+            System.Windows.Forms.TreeNode treeNode823 = new System.Windows.Forms.TreeNode("宁夏自治区", new System.Windows.Forms.TreeNode[] {
+            treeNode822});
+            System.Windows.Forms.TreeNode treeNode824 = new System.Windows.Forms.TreeNode("海口");
+            System.Windows.Forms.TreeNode treeNode825 = new System.Windows.Forms.TreeNode("三亚");
+            System.Windows.Forms.TreeNode treeNode826 = new System.Windows.Forms.TreeNode("海南省", new System.Windows.Forms.TreeNode[] {
+            treeNode824,
+            treeNode825});
+            System.Windows.Forms.TreeNode treeNode827 = new System.Windows.Forms.TreeNode("成都");
+            System.Windows.Forms.TreeNode treeNode828 = new System.Windows.Forms.TreeNode("绵阳");
+            System.Windows.Forms.TreeNode treeNode829 = new System.Windows.Forms.TreeNode("德阳");
+            System.Windows.Forms.TreeNode treeNode830 = new System.Windows.Forms.TreeNode("南充");
+            System.Windows.Forms.TreeNode treeNode831 = new System.Windows.Forms.TreeNode("宜宾");
+            System.Windows.Forms.TreeNode treeNode832 = new System.Windows.Forms.TreeNode("自贡");
+            System.Windows.Forms.TreeNode treeNode833 = new System.Windows.Forms.TreeNode("乐山");
+            System.Windows.Forms.TreeNode treeNode834 = new System.Windows.Forms.TreeNode("泸州");
+            System.Windows.Forms.TreeNode treeNode835 = new System.Windows.Forms.TreeNode("达州");
+            System.Windows.Forms.TreeNode treeNode836 = new System.Windows.Forms.TreeNode("内江");
+            System.Windows.Forms.TreeNode treeNode837 = new System.Windows.Forms.TreeNode("遂宁");
+            System.Windows.Forms.TreeNode treeNode838 = new System.Windows.Forms.TreeNode("攀枝花");
+            System.Windows.Forms.TreeNode treeNode839 = new System.Windows.Forms.TreeNode("眉山");
+            System.Windows.Forms.TreeNode treeNode840 = new System.Windows.Forms.TreeNode("广安");
+            System.Windows.Forms.TreeNode treeNode841 = new System.Windows.Forms.TreeNode("资阳");
+            System.Windows.Forms.TreeNode treeNode842 = new System.Windows.Forms.TreeNode("凉山");
+            System.Windows.Forms.TreeNode treeNode843 = new System.Windows.Forms.TreeNode("广元");
+            System.Windows.Forms.TreeNode treeNode844 = new System.Windows.Forms.TreeNode("雅安");
+            System.Windows.Forms.TreeNode treeNode845 = new System.Windows.Forms.TreeNode("巴中");
+            System.Windows.Forms.TreeNode treeNode846 = new System.Windows.Forms.TreeNode("阿坝");
+            System.Windows.Forms.TreeNode treeNode847 = new System.Windows.Forms.TreeNode("甘孜");
+            System.Windows.Forms.TreeNode treeNode848 = new System.Windows.Forms.TreeNode("安岳");
+            System.Windows.Forms.TreeNode treeNode849 = new System.Windows.Forms.TreeNode("广汉");
+            System.Windows.Forms.TreeNode treeNode850 = new System.Windows.Forms.TreeNode("简阳");
+            System.Windows.Forms.TreeNode treeNode851 = new System.Windows.Forms.TreeNode("仁寿");
+            System.Windows.Forms.TreeNode treeNode852 = new System.Windows.Forms.TreeNode("射洪");
+            System.Windows.Forms.TreeNode treeNode853 = new System.Windows.Forms.TreeNode("大竹");
+            System.Windows.Forms.TreeNode treeNode854 = new System.Windows.Forms.TreeNode("宣汉");
+            System.Windows.Forms.TreeNode treeNode855 = new System.Windows.Forms.TreeNode("渠县");
+            System.Windows.Forms.TreeNode treeNode856 = new System.Windows.Forms.TreeNode("长宁");
+            System.Windows.Forms.TreeNode treeNode857 = new System.Windows.Forms.TreeNode("四川省", new System.Windows.Forms.TreeNode[] {
+            treeNode827,
+            treeNode828,
+            treeNode829,
+            treeNode830,
+            treeNode831,
+            treeNode832,
+            treeNode833,
+            treeNode834,
+            treeNode835,
+            treeNode836,
+            treeNode837,
+            treeNode838,
+            treeNode839,
+            treeNode840,
+            treeNode841,
+            treeNode842,
+            treeNode843,
+            treeNode844,
+            treeNode845,
+            treeNode846,
+            treeNode847,
+            treeNode848,
+            treeNode849,
+            treeNode850,
+            treeNode851,
+            treeNode852,
+            treeNode853,
+            treeNode854,
+            treeNode855,
+            treeNode856});
+            System.Windows.Forms.TreeNode treeNode858 = new System.Windows.Forms.TreeNode("福州");
+            System.Windows.Forms.TreeNode treeNode859 = new System.Windows.Forms.TreeNode("厦门");
+            System.Windows.Forms.TreeNode treeNode860 = new System.Windows.Forms.TreeNode("泉州");
+            System.Windows.Forms.TreeNode treeNode861 = new System.Windows.Forms.TreeNode("莆田");
+            System.Windows.Forms.TreeNode treeNode862 = new System.Windows.Forms.TreeNode("漳州");
+            System.Windows.Forms.TreeNode treeNode863 = new System.Windows.Forms.TreeNode("宁德");
+            System.Windows.Forms.TreeNode treeNode864 = new System.Windows.Forms.TreeNode("三名");
+            System.Windows.Forms.TreeNode treeNode865 = new System.Windows.Forms.TreeNode("南平");
+            System.Windows.Forms.TreeNode treeNode866 = new System.Windows.Forms.TreeNode("龙岩");
+            System.Windows.Forms.TreeNode treeNode867 = new System.Windows.Forms.TreeNode("武夷山");
+            System.Windows.Forms.TreeNode treeNode868 = new System.Windows.Forms.TreeNode("福建省", new System.Windows.Forms.TreeNode[] {
+            treeNode858,
+            treeNode859,
+            treeNode860,
+            treeNode861,
+            treeNode862,
+            treeNode863,
+            treeNode864,
+            treeNode865,
+            treeNode866,
+            treeNode867});
+            System.Windows.Forms.TreeNode treeNode869 = new System.Windows.Forms.TreeNode("贵阳");
+            System.Windows.Forms.TreeNode treeNode870 = new System.Windows.Forms.TreeNode("遵义");
+            System.Windows.Forms.TreeNode treeNode871 = new System.Windows.Forms.TreeNode("六盘水");
+            System.Windows.Forms.TreeNode treeNode872 = new System.Windows.Forms.TreeNode("贵州省", new System.Windows.Forms.TreeNode[] {
+            treeNode869,
+            treeNode870,
+            treeNode871});
+            System.Windows.Forms.TreeNode treeNode873 = new System.Windows.Forms.TreeNode("兰州");
+            System.Windows.Forms.TreeNode treeNode874 = new System.Windows.Forms.TreeNode("天水");
+            System.Windows.Forms.TreeNode treeNode875 = new System.Windows.Forms.TreeNode("白银");
+            System.Windows.Forms.TreeNode treeNode876 = new System.Windows.Forms.TreeNode("甘肃省", new System.Windows.Forms.TreeNode[] {
+            treeNode873,
+            treeNode874,
+            treeNode875});
+            System.Windows.Forms.TreeNode treeNode877 = new System.Windows.Forms.TreeNode("昆明");
+            System.Windows.Forms.TreeNode treeNode878 = new System.Windows.Forms.TreeNode("云南省", new System.Windows.Forms.TreeNode[] {
+            treeNode877});
+            System.Windows.Forms.TreeNode treeNode879 = new System.Windows.Forms.TreeNode("西安");
+            System.Windows.Forms.TreeNode treeNode880 = new System.Windows.Forms.TreeNode("陕西省", new System.Windows.Forms.TreeNode[] {
+            treeNode879});
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -466,6 +466,8 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.linkLabel8 = new System.Windows.Forms.LinkLabel();
             this.linkLabel7 = new System.Windows.Forms.LinkLabel();
@@ -477,7 +479,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.skinTreeView1 = new CCWin.SkinControl.SkinTreeView();
-            this.linkLabel9 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -730,6 +732,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkLabel11);
+            this.groupBox2.Controls.Add(this.linkLabel10);
             this.groupBox2.Controls.Add(this.linkLabel9);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.linkLabel4);
@@ -744,6 +748,28 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数配置";
+            // 
+            // linkLabel10
+            // 
+            this.linkLabel10.AutoSize = true;
+            this.linkLabel10.Location = new System.Drawing.Point(391, 34);
+            this.linkLabel10.Name = "linkLabel10";
+            this.linkLabel10.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel10.TabIndex = 8;
+            this.linkLabel10.TabStop = true;
+            this.linkLabel10.Text = "无数据验证";
+            this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel10_LinkClicked);
+            // 
+            // linkLabel9
+            // 
+            this.linkLabel9.AutoSize = true;
+            this.linkLabel9.Location = new System.Drawing.Point(320, 34);
+            this.linkLabel9.Name = "linkLabel9";
+            this.linkLabel9.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel9.TabIndex = 7;
+            this.linkLabel9.TabStop = true;
+            this.linkLabel9.Text = "清空数据";
+            this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
             // groupBox3
             // 
@@ -769,6 +795,7 @@
             this.linkLabel8.TabIndex = 17;
             this.linkLabel8.TabStop = true;
             this.linkLabel8.Text = "软件代理";
+            this.linkLabel8.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel8_LinkClicked);
             // 
             // linkLabel7
             // 
@@ -802,11 +829,12 @@
             this.linkLabel5.TabIndex = 14;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "充值续费";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel5_LinkClicked);
             // 
             // linkLabel4
             // 
             this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(320, 78);
+            this.linkLabel4.Location = new System.Drawing.Point(320, 60);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(89, 12);
             this.linkLabel4.TabIndex = 5;
@@ -866,489 +894,489 @@
             this.skinTreeView1.Font = new System.Drawing.Font("宋体", 10F);
             this.skinTreeView1.Location = new System.Drawing.Point(370, 112);
             this.skinTreeView1.Name = "skinTreeView1";
-            treeNode1541.Name = "bj";
-            treeNode1541.Text = "北京市";
-            treeNode1542.Name = "sh";
-            treeNode1542.Text = "上海市";
-            treeNode1543.Name = "tj";
-            treeNode1543.Text = "天津市";
-            treeNode1544.Name = "cq";
-            treeNode1544.Text = "重庆市";
-            treeNode1545.Name = "suqian";
-            treeNode1545.Text = "宿迁";
-            treeNode1546.Name = "nj";
-            treeNode1546.Text = "南京";
-            treeNode1547.Name = "wx";
-            treeNode1547.Text = "无锡";
-            treeNode1548.Name = "su";
-            treeNode1548.Text = "苏州";
-            treeNode1549.Name = "xz";
-            treeNode1549.Text = "徐州";
-            treeNode1550.Name = "lyg";
-            treeNode1550.Text = "连云港";
-            treeNode1551.Name = "yancheng";
-            treeNode1551.Text = "盐城";
-            treeNode1552.Name = "taizhou";
-            treeNode1552.Text = "泰州";
-            treeNode1553.Name = "yz";
-            treeNode1553.Text = "扬州";
-            treeNode1554.Name = "zj";
-            treeNode1554.Text = "镇江";
-            treeNode1555.Name = "cz";
-            treeNode1555.Text = "常州";
-            treeNode1556.Name = "ha";
-            treeNode1556.Text = "淮安";
-            treeNode1557.Name = "节点2";
-            treeNode1557.Text = "江苏省";
-            treeNode1558.Name = "hf";
-            treeNode1558.Text = "合肥";
-            treeNode1559.Name = "wuhu";
-            treeNode1559.Text = "芜湖";
-            treeNode1560.Name = "bengbu";
-            treeNode1560.Text = "蚌埠";
-            treeNode1561.Name = "fy";
-            treeNode1561.Text = "阜阳";
-            treeNode1562.Name = "hn";
-            treeNode1562.Text = "淮南";
-            treeNode1563.Name = "anqing";
-            treeNode1563.Text = "安庆";
-            treeNode1564.Name = "suzhou";
-            treeNode1564.Text = "宿州";
-            treeNode1565.Name = "la";
-            treeNode1565.Text = "六安";
-            treeNode1566.Name = "huaibei";
-            treeNode1566.Text = "淮北";
-            treeNode1567.Name = "chuzhou";
-            treeNode1567.Text = "滁州";
-            treeNode1568.Name = "mas";
-            treeNode1568.Text = "马鞍山";
-            treeNode1569.Name = "tongling";
-            treeNode1569.Text = "铜陵";
-            treeNode1570.Name = "xuancheng";
-            treeNode1570.Text = "宣城";
-            treeNode1571.Name = "bozhou";
-            treeNode1571.Text = "亳州";
-            treeNode1572.Name = "huangshan";
-            treeNode1572.Text = "黄山";
-            treeNode1573.Name = "chizhou";
-            treeNode1573.Text = "池州";
-            treeNode1574.Name = "节点3";
-            treeNode1574.Text = "安徽省";
-            treeNode1575.Name = "jn";
-            treeNode1575.Text = "济南";
-            treeNode1576.Name = "qd";
-            treeNode1576.Text = "青岛";
-            treeNode1577.Name = "yt";
-            treeNode1577.Text = "烟台";
-            treeNode1578.Name = "wf";
-            treeNode1578.Text = "潍坊";
-            treeNode1579.Name = "linyi";
-            treeNode1579.Text = "临沂";
-            treeNode1580.Name = "zb";
-            treeNode1580.Text = "淄博";
-            treeNode1581.Name = "jining";
-            treeNode1581.Text = "济宁";
-            treeNode1582.Name = "ta";
-            treeNode1582.Text = "泰安";
-            treeNode1583.Name = "lc";
-            treeNode1583.Text = "聊城";
-            treeNode1584.Name = "weihai";
-            treeNode1584.Text = "威海";
-            treeNode1585.Name = "zaozhuang";
-            treeNode1585.Text = "枣庄";
-            treeNode1586.Name = "dz";
-            treeNode1586.Text = "德州";
-            treeNode1587.Name = "rizhao";
-            treeNode1587.Text = "日照";
-            treeNode1588.Name = "dy";
-            treeNode1588.Text = "东营";
-            treeNode1589.Name = "heze";
-            treeNode1589.Text = "菏泽";
-            treeNode1590.Name = "lw";
-            treeNode1590.Text = "莱芜";
-            treeNode1591.Name = "bz";
-            treeNode1591.Text = "滨州";
-            treeNode1592.Name = "shandong";
-            treeNode1592.Text = "山东省";
-            treeNode1593.Name = "hz";
-            treeNode1593.Text = "杭州";
-            treeNode1594.Name = "nb";
-            treeNode1594.Text = "宁波";
-            treeNode1595.Name = "wz";
-            treeNode1595.Text = "温州";
-            treeNode1596.Name = "jx";
-            treeNode1596.Text = "嘉兴";
-            treeNode1597.Name = "jh";
-            treeNode1597.Text = "金华";
-            treeNode1598.Name = "tz";
-            treeNode1598.Text = "台州";
-            treeNode1599.Name = "sx";
-            treeNode1599.Text = "绍兴";
-            treeNode1600.Name = "huzhou";
-            treeNode1600.Text = "湖州";
-            treeNode1601.Name = "lishui";
-            treeNode1601.Text = "丽水";
-            treeNode1602.Name = "quzhou";
-            treeNode1602.Text = "衢州";
-            treeNode1603.Name = "zhoushan";
-            treeNode1603.Text = "舟山";
-            treeNode1604.Name = "节点5";
-            treeNode1604.Text = "浙江省";
-            treeNode1605.Name = "gz";
-            treeNode1605.Text = "广州";
-            treeNode1606.Name = "sz";
-            treeNode1606.Text = "深圳";
-            treeNode1607.Name = "fs";
-            treeNode1607.Text = "佛山";
-            treeNode1608.Name = "dg";
-            treeNode1608.Text = "东莞";
-            treeNode1609.Name = "zs";
-            treeNode1609.Text = "中山";
-            treeNode1610.Name = "zs";
-            treeNode1610.Text = "珠海";
-            treeNode1611.Name = "huizhou";
-            treeNode1611.Text = "惠州";
-            treeNode1612.Name = "jm";
-            treeNode1612.Text = "江门";
-            treeNode1613.Name = "st";
-            treeNode1613.Text = "汕头";
-            treeNode1614.Name = "zhanjiang";
-            treeNode1614.Text = "湛江";
-            treeNode1615.Name = "zq";
-            treeNode1615.Text = "肇庆";
-            treeNode1616.Name = "mm";
-            treeNode1616.Text = "茂名";
-            treeNode1617.Name = "jy";
-            treeNode1617.Text = "揭阳";
-            treeNode1618.Name = "mz";
-            treeNode1618.Text = "梅州";
-            treeNode1619.Name = "qingyuan";
-            treeNode1619.Text = "清远";
-            treeNode1620.Name = "yj";
-            treeNode1620.Text = "阳江";
-            treeNode1621.Name = "sg";
-            treeNode1621.Text = "韶关";
-            treeNode1622.Name = "hy";
-            treeNode1622.Text = "河源";
-            treeNode1623.Name = "yf";
-            treeNode1623.Text = "云浮";
-            treeNode1624.Name = "节点23";
-            treeNode1624.Text = "广东省";
-            treeNode1625.Name = "cc";
-            treeNode1625.Text = "长春";
-            treeNode1626.Name = "jl";
-            treeNode1626.Text = "吉林";
-            treeNode1627.Name = "sp";
-            treeNode1627.Text = "四平";
-            treeNode1628.Name = "yanbian";
-            treeNode1628.Text = "延边";
-            treeNode1629.Name = "节点25";
-            treeNode1629.Text = "吉林省";
-            treeNode1630.Name = "sy";
-            treeNode1630.Text = "沈阳";
-            treeNode1631.Name = "dl";
-            treeNode1631.Text = "大连";
-            treeNode1632.Name = "as";
-            treeNode1632.Text = "鞍山";
-            treeNode1633.Name = "jinzhou";
-            treeNode1633.Text = "锦州";
-            treeNode1634.Name = "fushun";
-            treeNode1634.Text = "抚顺";
-            treeNode1635.Name = "yk";
-            treeNode1635.Text = "营口";
-            treeNode1636.Name = "pj";
-            treeNode1636.Text = "盘锦";
-            treeNode1637.Name = "节点26";
-            treeNode1637.Text = "辽宁省";
-            treeNode1638.Name = "hrb";
-            treeNode1638.Text = "哈尔滨";
-            treeNode1639.Name = "dq";
-            treeNode1639.Text = "大庆";
-            treeNode1640.Name = "qqhr";
-            treeNode1640.Text = "齐齐哈尔";
-            treeNode1641.Name = "suihua";
-            treeNode1641.Text = "绥化";
-            treeNode1642.Name = "mdj";
-            treeNode1642.Text = "牡丹江";
-            treeNode1643.Name = "节点27";
-            treeNode1643.Text = "黑龙江";
-            treeNode1644.Name = "hu";
-            treeNode1644.Text = "呼和浩特";
-            treeNode1645.Name = "bt";
-            treeNode1645.Text = "包头";
-            treeNode1646.Name = "chifeng";
-            treeNode1646.Text = "赤峰";
-            treeNode1647.Name = "节点28";
-            treeNode1647.Text = "内蒙古";
-            treeNode1648.Name = "nc";
-            treeNode1648.Text = "南昌";
-            treeNode1649.Name = "jj";
-            treeNode1649.Text = "九江";
-            treeNode1650.Name = "ganzhou";
-            treeNode1650.Text = "赣州";
-            treeNode1651.Name = "ss";
-            treeNode1651.Text = "上饶";
-            treeNode1652.Name = "fuzhou";
-            treeNode1652.Text = "抚州";
-            treeNode1653.Name = "jdz";
-            treeNode1653.Text = "景德镇";
-            treeNode1654.Name = "节点29";
-            treeNode1654.Text = "江西省";
-            treeNode1655.Name = "sjz";
-            treeNode1655.Text = "石家庄";
-            treeNode1656.Name = "bd";
-            treeNode1656.Text = "保定";
-            treeNode1657.Name = "ts";
-            treeNode1657.Text = "唐山";
-            treeNode1658.Name = "ls";
-            treeNode1658.Text = "廊坊";
-            treeNode1659.Name = "hd";
-            treeNode1659.Text = "邯郸";
-            treeNode1660.Name = "qhd";
-            treeNode1660.Text = "秦皇岛";
-            treeNode1661.Name = "cangzhou";
-            treeNode1661.Text = "沧州";
-            treeNode1662.Name = "xt";
-            treeNode1662.Text = "邢台";
-            treeNode1663.Name = "hs";
-            treeNode1663.Text = "衡水";
-            treeNode1664.Name = "zjk";
-            treeNode1664.Text = "张家口";
-            treeNode1665.Name = "chengde";
-            treeNode1665.Text = "承德";
-            treeNode1666.Name = "节点30";
-            treeNode1666.Text = "河北省";
-            treeNode1667.Name = "zz";
-            treeNode1667.Text = "郑州";
-            treeNode1668.Name = "luoyang";
-            treeNode1668.Text = "洛阳";
-            treeNode1669.Name = "xx";
-            treeNode1669.Text = "新乡";
-            treeNode1670.Name = "ny";
-            treeNode1670.Text = "南阳";
-            treeNode1671.Name = "xc";
-            treeNode1671.Text = "许昌";
-            treeNode1672.Name = "pds";
-            treeNode1672.Text = "平顶山";
-            treeNode1673.Name = "ay";
-            treeNode1673.Text = "安阳";
-            treeNode1674.Name = "jiaozuo";
-            treeNode1674.Text = "焦作";
-            treeNode1675.Name = "sq";
-            treeNode1675.Text = "商丘";
-            treeNode1676.Name = "kf";
-            treeNode1676.Text = "开封";
-            treeNode1677.Name = "节点31";
-            treeNode1677.Text = "河南省";
-            treeNode1678.Name = "wh";
-            treeNode1678.Text = "武汉";
-            treeNode1679.Name = "xf";
-            treeNode1679.Text = "襄阳";
-            treeNode1680.Name = "yc";
-            treeNode1680.Text = "宜昌";
-            treeNode1681.Name = "jingzhou";
-            treeNode1681.Text = "荆州";
-            treeNode1682.Name = "shiyan";
-            treeNode1682.Text = "十堰";
-            treeNode1683.Name = "hshi";
-            treeNode1683.Text = "黄石";
-            treeNode1684.Name = "xiaogan";
-            treeNode1684.Text = "孝感";
-            treeNode1685.Name = "hg";
-            treeNode1685.Text = "黄冈";
-            treeNode1686.Name = "节点32";
-            treeNode1686.Text = "湖北省";
-            treeNode1687.Name = "cs";
-            treeNode1687.Text = "长沙";
-            treeNode1688.Name = "zhuzhou";
-            treeNode1688.Text = "株洲";
-            treeNode1689.Name = "yiyang";
-            treeNode1689.Text = "益阳";
-            treeNode1690.Name = "changde";
-            treeNode1690.Text = "常德";
-            treeNode1691.Name = "hy";
-            treeNode1691.Text = "衡阳";
-            treeNode1692.Name = "xiangtan";
-            treeNode1692.Text = "湘潭";
-            treeNode1693.Name = "yy";
-            treeNode1693.Text = "岳阳";
-            treeNode1694.Name = "chenzhou";
-            treeNode1694.Text = "郴州";
-            treeNode1695.Name = "节点33";
-            treeNode1695.Text = "湖南省";
-            treeNode1696.Name = "nn";
-            treeNode1696.Text = "南宁";
-            treeNode1697.Name = "gl";
-            treeNode1697.Text = "桂林";
-            treeNode1698.Name = "liuzhou";
-            treeNode1698.Text = "柳州";
-            treeNode1699.Name = "yulin";
-            treeNode1699.Text = "玉林";
-            treeNode1700.Name = "wuzhou";
-            treeNode1700.Text = "梧州";
-            treeNode1701.Name = "节点34";
-            treeNode1701.Text = "广西省";
-            treeNode1702.Name = "yinchuan";
-            treeNode1702.Text = "银川";
-            treeNode1703.Name = "节点35";
-            treeNode1703.Text = "宁夏自治区";
-            treeNode1704.Name = "haikou";
-            treeNode1704.Text = "海口";
-            treeNode1705.Name = "sanya";
-            treeNode1705.Text = "三亚";
-            treeNode1706.Name = "节点36";
-            treeNode1706.Text = "海南省";
-            treeNode1707.Name = "cd";
-            treeNode1707.Text = "成都";
-            treeNode1708.Name = "mianyang";
-            treeNode1708.Text = "绵阳";
-            treeNode1709.Name = "deyang";
-            treeNode1709.Text = "德阳";
-            treeNode1710.Name = "nanchong";
-            treeNode1710.Text = "南充";
-            treeNode1711.Name = "yb";
-            treeNode1711.Text = "宜宾";
-            treeNode1712.Name = "zg";
-            treeNode1712.Text = "自贡";
-            treeNode1713.Name = "ls";
-            treeNode1713.Text = "乐山";
-            treeNode1714.Name = "luzhou";
-            treeNode1714.Text = "泸州";
-            treeNode1715.Name = "dazhou";
-            treeNode1715.Text = "达州";
-            treeNode1716.Name = "scnj";
-            treeNode1716.Text = "内江";
-            treeNode1717.Name = "suining";
-            treeNode1717.Text = "遂宁";
-            treeNode1718.Name = "panzhihua";
-            treeNode1718.Text = "攀枝花";
-            treeNode1719.Name = "ms";
-            treeNode1719.Text = "眉山";
-            treeNode1720.Name = "ga";
-            treeNode1720.Text = "广安";
-            treeNode1721.Name = "zy";
-            treeNode1721.Text = "资阳";
-            treeNode1722.Name = "liangshan";
-            treeNode1722.Text = "凉山";
-            treeNode1723.Name = "guangyuan";
-            treeNode1723.Text = "广元";
-            treeNode1724.Name = "ya";
-            treeNode1724.Text = "雅安";
-            treeNode1725.Name = "bazhong";
-            treeNode1725.Text = "巴中";
-            treeNode1726.Name = "ab";
-            treeNode1726.Text = "阿坝";
-            treeNode1727.Name = "ganzi";
-            treeNode1727.Text = "甘孜";
-            treeNode1728.Name = "anyuexian";
-            treeNode1728.Text = "安岳";
-            treeNode1729.Name = "guanghanshi";
-            treeNode1729.Text = "广汉";
-            treeNode1730.Name = "jianyangshi";
-            treeNode1730.Text = "简阳";
-            treeNode1731.Name = "renshouxian";
-            treeNode1731.Text = "仁寿";
-            treeNode1732.Name = "shehongxian";
-            treeNode1732.Text = "射洪";
-            treeNode1733.Name = "dazu";
-            treeNode1733.Text = "大竹";
-            treeNode1734.Name = "xuanhan";
-            treeNode1734.Text = "宣汉";
-            treeNode1735.Name = "qux";
-            treeNode1735.Text = "渠县";
-            treeNode1736.Name = "changningx";
-            treeNode1736.Text = "长宁";
-            treeNode1737.Name = "节点0";
-            treeNode1737.Text = "四川省";
-            treeNode1738.Name = "fz";
-            treeNode1738.Text = "福州";
-            treeNode1739.Name = "xm";
-            treeNode1739.Text = "厦门";
-            treeNode1740.Name = "qz";
-            treeNode1740.Text = "泉州";
-            treeNode1741.Name = "pt";
-            treeNode1741.Text = "莆田";
-            treeNode1742.Name = "zhangzhou";
-            treeNode1742.Text = "漳州";
-            treeNode1743.Name = "nd";
-            treeNode1743.Text = "宁德";
-            treeNode1744.Name = "sm";
-            treeNode1744.Text = "三名";
-            treeNode1745.Name = "np";
-            treeNode1745.Text = "南平";
-            treeNode1746.Name = "ly";
-            treeNode1746.Text = "龙岩";
-            treeNode1747.Name = "wuyishan";
-            treeNode1747.Text = "武夷山";
-            treeNode1748.Name = "节点3";
-            treeNode1748.Text = "福建省";
-            treeNode1749.Name = "gy";
-            treeNode1749.Text = "贵阳";
-            treeNode1750.Name = "zunyi";
-            treeNode1750.Text = "遵义";
-            treeNode1751.Name = "lps";
-            treeNode1751.Text = "六盘水";
-            treeNode1752.Name = "节点17";
-            treeNode1752.Text = "贵州省";
-            treeNode1753.Name = "lz";
-            treeNode1753.Text = "兰州";
-            treeNode1754.Name = "tianshui";
-            treeNode1754.Text = "天水";
-            treeNode1755.Name = "by";
-            treeNode1755.Text = "白银";
-            treeNode1756.Name = "节点23";
-            treeNode1756.Text = "甘肃省";
-            treeNode1757.Name = "km";
-            treeNode1757.Text = "昆明";
-            treeNode1758.Name = "节点0";
-            treeNode1758.Text = "云南省";
-            treeNode1759.Name = "xa";
-            treeNode1759.Text = "西安";
-            treeNode1760.Name = "节点0";
-            treeNode1760.Text = "陕西省";
+            treeNode661.Name = "bj";
+            treeNode661.Text = "北京市";
+            treeNode662.Name = "sh";
+            treeNode662.Text = "上海市";
+            treeNode663.Name = "tj";
+            treeNode663.Text = "天津市";
+            treeNode664.Name = "cq";
+            treeNode664.Text = "重庆市";
+            treeNode665.Name = "suqian";
+            treeNode665.Text = "宿迁";
+            treeNode666.Name = "nj";
+            treeNode666.Text = "南京";
+            treeNode667.Name = "wx";
+            treeNode667.Text = "无锡";
+            treeNode668.Name = "su";
+            treeNode668.Text = "苏州";
+            treeNode669.Name = "xz";
+            treeNode669.Text = "徐州";
+            treeNode670.Name = "lyg";
+            treeNode670.Text = "连云港";
+            treeNode671.Name = "yancheng";
+            treeNode671.Text = "盐城";
+            treeNode672.Name = "taizhou";
+            treeNode672.Text = "泰州";
+            treeNode673.Name = "yz";
+            treeNode673.Text = "扬州";
+            treeNode674.Name = "zj";
+            treeNode674.Text = "镇江";
+            treeNode675.Name = "cz";
+            treeNode675.Text = "常州";
+            treeNode676.Name = "ha";
+            treeNode676.Text = "淮安";
+            treeNode677.Name = "节点2";
+            treeNode677.Text = "江苏省";
+            treeNode678.Name = "hf";
+            treeNode678.Text = "合肥";
+            treeNode679.Name = "wuhu";
+            treeNode679.Text = "芜湖";
+            treeNode680.Name = "bengbu";
+            treeNode680.Text = "蚌埠";
+            treeNode681.Name = "fy";
+            treeNode681.Text = "阜阳";
+            treeNode682.Name = "hn";
+            treeNode682.Text = "淮南";
+            treeNode683.Name = "anqing";
+            treeNode683.Text = "安庆";
+            treeNode684.Name = "suzhou";
+            treeNode684.Text = "宿州";
+            treeNode685.Name = "la";
+            treeNode685.Text = "六安";
+            treeNode686.Name = "huaibei";
+            treeNode686.Text = "淮北";
+            treeNode687.Name = "chuzhou";
+            treeNode687.Text = "滁州";
+            treeNode688.Name = "mas";
+            treeNode688.Text = "马鞍山";
+            treeNode689.Name = "tongling";
+            treeNode689.Text = "铜陵";
+            treeNode690.Name = "xuancheng";
+            treeNode690.Text = "宣城";
+            treeNode691.Name = "bozhou";
+            treeNode691.Text = "亳州";
+            treeNode692.Name = "huangshan";
+            treeNode692.Text = "黄山";
+            treeNode693.Name = "chizhou";
+            treeNode693.Text = "池州";
+            treeNode694.Name = "节点3";
+            treeNode694.Text = "安徽省";
+            treeNode695.Name = "jn";
+            treeNode695.Text = "济南";
+            treeNode696.Name = "qd";
+            treeNode696.Text = "青岛";
+            treeNode697.Name = "yt";
+            treeNode697.Text = "烟台";
+            treeNode698.Name = "wf";
+            treeNode698.Text = "潍坊";
+            treeNode699.Name = "linyi";
+            treeNode699.Text = "临沂";
+            treeNode700.Name = "zb";
+            treeNode700.Text = "淄博";
+            treeNode701.Name = "jining";
+            treeNode701.Text = "济宁";
+            treeNode702.Name = "ta";
+            treeNode702.Text = "泰安";
+            treeNode703.Name = "lc";
+            treeNode703.Text = "聊城";
+            treeNode704.Name = "weihai";
+            treeNode704.Text = "威海";
+            treeNode705.Name = "zaozhuang";
+            treeNode705.Text = "枣庄";
+            treeNode706.Name = "dz";
+            treeNode706.Text = "德州";
+            treeNode707.Name = "rizhao";
+            treeNode707.Text = "日照";
+            treeNode708.Name = "dy";
+            treeNode708.Text = "东营";
+            treeNode709.Name = "heze";
+            treeNode709.Text = "菏泽";
+            treeNode710.Name = "lw";
+            treeNode710.Text = "莱芜";
+            treeNode711.Name = "bz";
+            treeNode711.Text = "滨州";
+            treeNode712.Name = "shandong";
+            treeNode712.Text = "山东省";
+            treeNode713.Name = "hz";
+            treeNode713.Text = "杭州";
+            treeNode714.Name = "nb";
+            treeNode714.Text = "宁波";
+            treeNode715.Name = "wz";
+            treeNode715.Text = "温州";
+            treeNode716.Name = "jx";
+            treeNode716.Text = "嘉兴";
+            treeNode717.Name = "jh";
+            treeNode717.Text = "金华";
+            treeNode718.Name = "tz";
+            treeNode718.Text = "台州";
+            treeNode719.Name = "sx";
+            treeNode719.Text = "绍兴";
+            treeNode720.Name = "huzhou";
+            treeNode720.Text = "湖州";
+            treeNode721.Name = "lishui";
+            treeNode721.Text = "丽水";
+            treeNode722.Name = "quzhou";
+            treeNode722.Text = "衢州";
+            treeNode723.Name = "zhoushan";
+            treeNode723.Text = "舟山";
+            treeNode724.Name = "节点5";
+            treeNode724.Text = "浙江省";
+            treeNode725.Name = "gz";
+            treeNode725.Text = "广州";
+            treeNode726.Name = "sz";
+            treeNode726.Text = "深圳";
+            treeNode727.Name = "fs";
+            treeNode727.Text = "佛山";
+            treeNode728.Name = "dg";
+            treeNode728.Text = "东莞";
+            treeNode729.Name = "zs";
+            treeNode729.Text = "中山";
+            treeNode730.Name = "zs";
+            treeNode730.Text = "珠海";
+            treeNode731.Name = "huizhou";
+            treeNode731.Text = "惠州";
+            treeNode732.Name = "jm";
+            treeNode732.Text = "江门";
+            treeNode733.Name = "st";
+            treeNode733.Text = "汕头";
+            treeNode734.Name = "zhanjiang";
+            treeNode734.Text = "湛江";
+            treeNode735.Name = "zq";
+            treeNode735.Text = "肇庆";
+            treeNode736.Name = "mm";
+            treeNode736.Text = "茂名";
+            treeNode737.Name = "jy";
+            treeNode737.Text = "揭阳";
+            treeNode738.Name = "mz";
+            treeNode738.Text = "梅州";
+            treeNode739.Name = "qingyuan";
+            treeNode739.Text = "清远";
+            treeNode740.Name = "yj";
+            treeNode740.Text = "阳江";
+            treeNode741.Name = "sg";
+            treeNode741.Text = "韶关";
+            treeNode742.Name = "hy";
+            treeNode742.Text = "河源";
+            treeNode743.Name = "yf";
+            treeNode743.Text = "云浮";
+            treeNode744.Name = "节点23";
+            treeNode744.Text = "广东省";
+            treeNode745.Name = "cc";
+            treeNode745.Text = "长春";
+            treeNode746.Name = "jl";
+            treeNode746.Text = "吉林";
+            treeNode747.Name = "sp";
+            treeNode747.Text = "四平";
+            treeNode748.Name = "yanbian";
+            treeNode748.Text = "延边";
+            treeNode749.Name = "节点25";
+            treeNode749.Text = "吉林省";
+            treeNode750.Name = "sy";
+            treeNode750.Text = "沈阳";
+            treeNode751.Name = "dl";
+            treeNode751.Text = "大连";
+            treeNode752.Name = "as";
+            treeNode752.Text = "鞍山";
+            treeNode753.Name = "jinzhou";
+            treeNode753.Text = "锦州";
+            treeNode754.Name = "fushun";
+            treeNode754.Text = "抚顺";
+            treeNode755.Name = "yk";
+            treeNode755.Text = "营口";
+            treeNode756.Name = "pj";
+            treeNode756.Text = "盘锦";
+            treeNode757.Name = "节点26";
+            treeNode757.Text = "辽宁省";
+            treeNode758.Name = "hrb";
+            treeNode758.Text = "哈尔滨";
+            treeNode759.Name = "dq";
+            treeNode759.Text = "大庆";
+            treeNode760.Name = "qqhr";
+            treeNode760.Text = "齐齐哈尔";
+            treeNode761.Name = "suihua";
+            treeNode761.Text = "绥化";
+            treeNode762.Name = "mdj";
+            treeNode762.Text = "牡丹江";
+            treeNode763.Name = "节点27";
+            treeNode763.Text = "黑龙江";
+            treeNode764.Name = "hu";
+            treeNode764.Text = "呼和浩特";
+            treeNode765.Name = "bt";
+            treeNode765.Text = "包头";
+            treeNode766.Name = "chifeng";
+            treeNode766.Text = "赤峰";
+            treeNode767.Name = "节点28";
+            treeNode767.Text = "内蒙古";
+            treeNode768.Name = "nc";
+            treeNode768.Text = "南昌";
+            treeNode769.Name = "jj";
+            treeNode769.Text = "九江";
+            treeNode770.Name = "ganzhou";
+            treeNode770.Text = "赣州";
+            treeNode771.Name = "ss";
+            treeNode771.Text = "上饶";
+            treeNode772.Name = "fuzhou";
+            treeNode772.Text = "抚州";
+            treeNode773.Name = "jdz";
+            treeNode773.Text = "景德镇";
+            treeNode774.Name = "节点29";
+            treeNode774.Text = "江西省";
+            treeNode775.Name = "sjz";
+            treeNode775.Text = "石家庄";
+            treeNode776.Name = "bd";
+            treeNode776.Text = "保定";
+            treeNode777.Name = "ts";
+            treeNode777.Text = "唐山";
+            treeNode778.Name = "ls";
+            treeNode778.Text = "廊坊";
+            treeNode779.Name = "hd";
+            treeNode779.Text = "邯郸";
+            treeNode780.Name = "qhd";
+            treeNode780.Text = "秦皇岛";
+            treeNode781.Name = "cangzhou";
+            treeNode781.Text = "沧州";
+            treeNode782.Name = "xt";
+            treeNode782.Text = "邢台";
+            treeNode783.Name = "hs";
+            treeNode783.Text = "衡水";
+            treeNode784.Name = "zjk";
+            treeNode784.Text = "张家口";
+            treeNode785.Name = "chengde";
+            treeNode785.Text = "承德";
+            treeNode786.Name = "节点30";
+            treeNode786.Text = "河北省";
+            treeNode787.Name = "zz";
+            treeNode787.Text = "郑州";
+            treeNode788.Name = "luoyang";
+            treeNode788.Text = "洛阳";
+            treeNode789.Name = "xx";
+            treeNode789.Text = "新乡";
+            treeNode790.Name = "ny";
+            treeNode790.Text = "南阳";
+            treeNode791.Name = "xc";
+            treeNode791.Text = "许昌";
+            treeNode792.Name = "pds";
+            treeNode792.Text = "平顶山";
+            treeNode793.Name = "ay";
+            treeNode793.Text = "安阳";
+            treeNode794.Name = "jiaozuo";
+            treeNode794.Text = "焦作";
+            treeNode795.Name = "sq";
+            treeNode795.Text = "商丘";
+            treeNode796.Name = "kf";
+            treeNode796.Text = "开封";
+            treeNode797.Name = "节点31";
+            treeNode797.Text = "河南省";
+            treeNode798.Name = "wh";
+            treeNode798.Text = "武汉";
+            treeNode799.Name = "xf";
+            treeNode799.Text = "襄阳";
+            treeNode800.Name = "yc";
+            treeNode800.Text = "宜昌";
+            treeNode801.Name = "jingzhou";
+            treeNode801.Text = "荆州";
+            treeNode802.Name = "shiyan";
+            treeNode802.Text = "十堰";
+            treeNode803.Name = "hshi";
+            treeNode803.Text = "黄石";
+            treeNode804.Name = "xiaogan";
+            treeNode804.Text = "孝感";
+            treeNode805.Name = "hg";
+            treeNode805.Text = "黄冈";
+            treeNode806.Name = "节点32";
+            treeNode806.Text = "湖北省";
+            treeNode807.Name = "cs";
+            treeNode807.Text = "长沙";
+            treeNode808.Name = "zhuzhou";
+            treeNode808.Text = "株洲";
+            treeNode809.Name = "yiyang";
+            treeNode809.Text = "益阳";
+            treeNode810.Name = "changde";
+            treeNode810.Text = "常德";
+            treeNode811.Name = "hy";
+            treeNode811.Text = "衡阳";
+            treeNode812.Name = "xiangtan";
+            treeNode812.Text = "湘潭";
+            treeNode813.Name = "yy";
+            treeNode813.Text = "岳阳";
+            treeNode814.Name = "chenzhou";
+            treeNode814.Text = "郴州";
+            treeNode815.Name = "节点33";
+            treeNode815.Text = "湖南省";
+            treeNode816.Name = "nn";
+            treeNode816.Text = "南宁";
+            treeNode817.Name = "gl";
+            treeNode817.Text = "桂林";
+            treeNode818.Name = "liuzhou";
+            treeNode818.Text = "柳州";
+            treeNode819.Name = "yulin";
+            treeNode819.Text = "玉林";
+            treeNode820.Name = "wuzhou";
+            treeNode820.Text = "梧州";
+            treeNode821.Name = "节点34";
+            treeNode821.Text = "广西省";
+            treeNode822.Name = "yinchuan";
+            treeNode822.Text = "银川";
+            treeNode823.Name = "节点35";
+            treeNode823.Text = "宁夏自治区";
+            treeNode824.Name = "haikou";
+            treeNode824.Text = "海口";
+            treeNode825.Name = "sanya";
+            treeNode825.Text = "三亚";
+            treeNode826.Name = "节点36";
+            treeNode826.Text = "海南省";
+            treeNode827.Name = "cd";
+            treeNode827.Text = "成都";
+            treeNode828.Name = "mianyang";
+            treeNode828.Text = "绵阳";
+            treeNode829.Name = "deyang";
+            treeNode829.Text = "德阳";
+            treeNode830.Name = "nanchong";
+            treeNode830.Text = "南充";
+            treeNode831.Name = "yb";
+            treeNode831.Text = "宜宾";
+            treeNode832.Name = "zg";
+            treeNode832.Text = "自贡";
+            treeNode833.Name = "ls";
+            treeNode833.Text = "乐山";
+            treeNode834.Name = "luzhou";
+            treeNode834.Text = "泸州";
+            treeNode835.Name = "dazhou";
+            treeNode835.Text = "达州";
+            treeNode836.Name = "scnj";
+            treeNode836.Text = "内江";
+            treeNode837.Name = "suining";
+            treeNode837.Text = "遂宁";
+            treeNode838.Name = "panzhihua";
+            treeNode838.Text = "攀枝花";
+            treeNode839.Name = "ms";
+            treeNode839.Text = "眉山";
+            treeNode840.Name = "ga";
+            treeNode840.Text = "广安";
+            treeNode841.Name = "zy";
+            treeNode841.Text = "资阳";
+            treeNode842.Name = "liangshan";
+            treeNode842.Text = "凉山";
+            treeNode843.Name = "guangyuan";
+            treeNode843.Text = "广元";
+            treeNode844.Name = "ya";
+            treeNode844.Text = "雅安";
+            treeNode845.Name = "bazhong";
+            treeNode845.Text = "巴中";
+            treeNode846.Name = "ab";
+            treeNode846.Text = "阿坝";
+            treeNode847.Name = "ganzi";
+            treeNode847.Text = "甘孜";
+            treeNode848.Name = "anyuexian";
+            treeNode848.Text = "安岳";
+            treeNode849.Name = "guanghanshi";
+            treeNode849.Text = "广汉";
+            treeNode850.Name = "jianyangshi";
+            treeNode850.Text = "简阳";
+            treeNode851.Name = "renshouxian";
+            treeNode851.Text = "仁寿";
+            treeNode852.Name = "shehongxian";
+            treeNode852.Text = "射洪";
+            treeNode853.Name = "dazu";
+            treeNode853.Text = "大竹";
+            treeNode854.Name = "xuanhan";
+            treeNode854.Text = "宣汉";
+            treeNode855.Name = "qux";
+            treeNode855.Text = "渠县";
+            treeNode856.Name = "changningx";
+            treeNode856.Text = "长宁";
+            treeNode857.Name = "节点0";
+            treeNode857.Text = "四川省";
+            treeNode858.Name = "fz";
+            treeNode858.Text = "福州";
+            treeNode859.Name = "xm";
+            treeNode859.Text = "厦门";
+            treeNode860.Name = "qz";
+            treeNode860.Text = "泉州";
+            treeNode861.Name = "pt";
+            treeNode861.Text = "莆田";
+            treeNode862.Name = "zhangzhou";
+            treeNode862.Text = "漳州";
+            treeNode863.Name = "nd";
+            treeNode863.Text = "宁德";
+            treeNode864.Name = "sm";
+            treeNode864.Text = "三名";
+            treeNode865.Name = "np";
+            treeNode865.Text = "南平";
+            treeNode866.Name = "ly";
+            treeNode866.Text = "龙岩";
+            treeNode867.Name = "wuyishan";
+            treeNode867.Text = "武夷山";
+            treeNode868.Name = "节点3";
+            treeNode868.Text = "福建省";
+            treeNode869.Name = "gy";
+            treeNode869.Text = "贵阳";
+            treeNode870.Name = "zunyi";
+            treeNode870.Text = "遵义";
+            treeNode871.Name = "lps";
+            treeNode871.Text = "六盘水";
+            treeNode872.Name = "节点17";
+            treeNode872.Text = "贵州省";
+            treeNode873.Name = "lz";
+            treeNode873.Text = "兰州";
+            treeNode874.Name = "tianshui";
+            treeNode874.Text = "天水";
+            treeNode875.Name = "by";
+            treeNode875.Text = "白银";
+            treeNode876.Name = "节点23";
+            treeNode876.Text = "甘肃省";
+            treeNode877.Name = "km";
+            treeNode877.Text = "昆明";
+            treeNode878.Name = "节点0";
+            treeNode878.Text = "云南省";
+            treeNode879.Name = "xa";
+            treeNode879.Text = "西安";
+            treeNode880.Name = "节点0";
+            treeNode880.Text = "陕西省";
             this.skinTreeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1541,
-            treeNode1542,
-            treeNode1543,
-            treeNode1544,
-            treeNode1557,
-            treeNode1574,
-            treeNode1592,
-            treeNode1604,
-            treeNode1624,
-            treeNode1629,
-            treeNode1637,
-            treeNode1643,
-            treeNode1647,
-            treeNode1654,
-            treeNode1666,
-            treeNode1677,
-            treeNode1686,
-            treeNode1695,
-            treeNode1701,
-            treeNode1703,
-            treeNode1706,
-            treeNode1737,
-            treeNode1748,
-            treeNode1752,
-            treeNode1756,
-            treeNode1758,
-            treeNode1760});
+            treeNode661,
+            treeNode662,
+            treeNode663,
+            treeNode664,
+            treeNode677,
+            treeNode694,
+            treeNode712,
+            treeNode724,
+            treeNode744,
+            treeNode749,
+            treeNode757,
+            treeNode763,
+            treeNode767,
+            treeNode774,
+            treeNode786,
+            treeNode797,
+            treeNode806,
+            treeNode815,
+            treeNode821,
+            treeNode823,
+            treeNode826,
+            treeNode857,
+            treeNode868,
+            treeNode872,
+            treeNode876,
+            treeNode878,
+            treeNode880});
             this.skinTreeView1.Size = new System.Drawing.Size(116, 330);
             this.skinTreeView1.TabIndex = 11;
             this.skinTreeView1.Visible = false;
             this.skinTreeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.skinTreeView1_AfterSelect);
             // 
-            // linkLabel9
+            // linkLabel11
             // 
-            this.linkLabel9.AutoSize = true;
-            this.linkLabel9.Location = new System.Drawing.Point(320, 54);
-            this.linkLabel9.Name = "linkLabel9";
-            this.linkLabel9.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel9.TabIndex = 7;
-            this.linkLabel9.TabStop = true;
-            this.linkLabel9.Text = "清空数据";
-            this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
+            this.linkLabel11.AutoSize = true;
+            this.linkLabel11.Location = new System.Drawing.Point(320, 84);
+            this.linkLabel11.Name = "linkLabel11";
+            this.linkLabel11.Size = new System.Drawing.Size(77, 12);
+            this.linkLabel11.TabIndex = 9;
+            this.linkLabel11.TabStop = true;
+            this.linkLabel11.Text = "重置开始按钮";
+            this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel11_LinkClicked);
             // 
             // Form1
             // 
@@ -1366,6 +1394,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "58同城商铺采集";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1420,6 +1449,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private CCWin.SkinControl.SkinTreeView skinTreeView1;
         private System.Windows.Forms.LinkLabel linkLabel9;
+        private System.Windows.Forms.LinkLabel linkLabel10;
+        private System.Windows.Forms.LinkLabel linkLabel11;
     }
 }
 

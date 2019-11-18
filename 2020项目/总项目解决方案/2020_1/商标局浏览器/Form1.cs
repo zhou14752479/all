@@ -223,23 +223,31 @@ namespace 商标局浏览器
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    SetProxy("");
+            //    string url = "http://http.tiqu.alicdns.com/getip3?num=1&type=1&pro=&city=0&yys=0&port=1&time=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=";
+
+            //    string IP = GetUrl(url, "utf-8");
+
+            //    if (IP.Contains(":"))
+            //    {
+
+            //        SetProxy(IP.Trim());
+            //        textBox1.Text += DateTime.Now.ToString() + "  重置成功" + "\r\n";
+            //    }
+            //    else
+            //    {
+            //        textBox1.Text = DateTime.Now.ToString() + "  重置失败";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    textBox1.Text = ex.ToString();
+            //}
+
             SetProxy("");
-            string url = "http://http.tiqu.alicdns.com/getip3?num=1&type=1&pro=&city=0&yys=0&port=1&time=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=";
-
-            string IP = GetUrl(url, "utf-8");
-
-            if (IP.Contains(":"))
-            {
-
-                SetProxy(IP.Trim());
-                textBox1.Text += DateTime.Now.ToString() + "  重置成功" + "\r\n";
-            }
-            else
-            {
-                textBox1.Text = DateTime.Now.ToString() + "  重置失败";
-            }
-
-
         }
 
         #region 获取公网IP
@@ -269,7 +277,7 @@ namespace 商标局浏览器
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label3.Text = GetIP();
+            //label3.Text = GetIP();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

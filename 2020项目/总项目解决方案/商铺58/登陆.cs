@@ -174,7 +174,7 @@ namespace 商铺58
                             fs1.Close();
 
                         }
-
+                        Form1.username = skinTextBox1.Text;
                         Form1 fm1 = new Form1();
                         fm1.Show();
                         this.Hide();
@@ -292,7 +292,7 @@ namespace 商铺58
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
+            System.Diagnostics.Process.Start("http://www.acaiji.com");
         }
 
         private void label1_Click(object sender, EventArgs e)

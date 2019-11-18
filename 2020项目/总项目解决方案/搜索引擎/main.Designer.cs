@@ -64,6 +64,10 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
@@ -85,10 +89,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -450,6 +450,39 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
             // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(184, 168);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(43, 21);
+            this.textBox15.TabIndex = 55;
+            this.textBox15.Text = "100";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(101, 171);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(89, 12);
+            this.label19.TabIndex = 54;
+            this.label19.Text = "间隔单位毫秒：";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(14, 260);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(213, 21);
+            this.textBox14.TabIndex = 53;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(11, 245);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(77, 12);
+            this.label18.TabIndex = 52;
+            this.label18.Text = "代理IP地址：";
+            // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
@@ -673,39 +706,6 @@
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(11, 245);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(77, 12);
-            this.label18.TabIndex = 52;
-            this.label18.Text = "代理IP地址：";
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(14, 260);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(213, 21);
-            this.textBox14.TabIndex = 53;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(101, 171);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(89, 12);
-            this.label19.TabIndex = 54;
-            this.label19.Text = "间隔单位毫秒：";
-            // 
-            // textBox15
-            // 
-            this.textBox15.Location = new System.Drawing.Point(184, 168);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(43, 21);
-            this.textBox15.TabIndex = 55;
-            this.textBox15.Text = "100";
-            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -715,6 +715,7 @@
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "搜索引擎抓取软件";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
