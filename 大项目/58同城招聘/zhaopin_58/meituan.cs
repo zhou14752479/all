@@ -501,21 +501,18 @@ namespace zhaopin_58
                             lists.Add(NextMatch.Groups[1].Value);
                         }
 
-                        string a = "https://apimobile.meituan.com/group/v1/poi/";
-                        string b = "https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=";
-                        string c = "https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=";
-                        string d = c;
+                      
                         foreach (string list in lists)
                         {
 
-                            //string aurl = "https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid="+list;
+                            string aurl = "https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid="+list;
                             //  string aurl = "https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + list;
                             // string aurl = "https://apimobile.meituan.com/group/v1/poi/" + list;
-                            string aurl = d + list;
+                            //string aurl = "https://i.meituan.com/wrapapi/poiinfo?poiId="+list;
                             string strhtml = GetUrl(aurl);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
 
 
-                            Match name = Regex.Match(strhtml, @"hourRoomSpan([\s\S]*?)""name"":""([\s\S]*?)""");
+                            Match name = Regex.Match(strhtml, @"""name"":""([\s\S]*?)""");
 
                             Match addr = Regex.Match(strhtml, @"""addr"":""([\s\S]*?)""");
                             Match tel = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
@@ -523,26 +520,15 @@ namespace zhaopin_58
                             Match score = Regex.Match(strhtml, @"avgScore"":([\s\S]*?),");
                             Match waimai = Regex.Match(strhtml, @"isWaimai"":([\s\S]*?),");
 
-                            if (name.Groups[1].Value == "")
-                            {
-                                d = a;
-                                aurl= d + list;
-                                string jiance= GetUrl(aurl);
-                                if (jiance == "")
-                                {
-                                    d = b;
-                                }
-
-
-                            }
+                           
 
                             ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                            lv1.SubItems.Add(name.Groups[2].Value.Trim());
+                            lv1.SubItems.Add(name.Groups[1].Value.Trim());
                             lv1.SubItems.Add(addr.Groups[1].Value.Trim());
                             lv1.SubItems.Add(tel.Groups[1].Value.Trim());
                             lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
                             lv1.SubItems.Add(city);
-                            lv1.SubItems.Add(waimai.Groups[1].Value);
+                          //  lv1.SubItems.Add(waimai.Groups[1].Value);
 
                             if (checkBox1.Checked == true)
                             {
@@ -570,7 +556,7 @@ namespace zhaopin_58
                                 return;
                             }
 
-                            Thread.Sleep(1000);   //内容获取间隔，可变量
+                            Thread.Sleep(2000);   //内容获取间隔，可变量
 
 
                         }
