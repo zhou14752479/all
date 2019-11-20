@@ -44,7 +44,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(57, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 147);
             this.groupBox1.TabIndex = 0;
@@ -99,11 +99,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(238, 175);
+            this.ClientSize = new System.Drawing.Size(365, 175);
             this.Controls.Add(this.groupBox1);
             this.Name = "login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "登陆";
+            this.Text = "登录 Mgu足球打水19-20专业版";
             this.Load += new System.EventHandler(this.login_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

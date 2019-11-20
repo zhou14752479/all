@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E41244F-251C-4C16-9635-FD6366F6608A}</ProjectGuid>
+    <ProjectGuid>{8C5F5C05-9A7A-482B-BF72-F023D47134D7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>商标查询</RootNamespace>
-    <AssemblyName>商标查询</AssemblyName>
+    <RootNamespace>美团</RootNamespace>
+    <AssemblyName>美团</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,11 +30,29 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSkin">
+      <HintPath>..\商铺58\bin\Debug\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\商铺58\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\商铺58\bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\商铺58\bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\商铺58\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\商铺58\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,26 +64,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="method.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="shangBiao.cs">
+    <Compile Include="登陆.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="shangBiao.Designer.cs">
-      <DependentUpon>shangBiao.cs</DependentUpon>
+    <Compile Include="登陆.Designer.cs">
+      <DependentUpon>登陆.cs</DependentUpon>
     </Compile>
-    <Compile Include="企查查.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="企查查.Designer.cs">
-      <DependentUpon>企查查.cs</DependentUpon>
-    </Compile>
-    <Compile Include="登录.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="登录.Designer.cs">
-      <DependentUpon>登录.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,16 +90,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="shangBiao.resx">
-      <DependentUpon>shangBiao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="企查查.resx">
-      <DependentUpon>企查查.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="登录.resx">
-      <DependentUpon>登录.cs</DependentUpon>
+    <EmbeddedResource Include="登陆.resx">
+      <DependentUpon>登陆.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -99,12 +106,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\helper\helper.csproj">
-      <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
-      <Name>helper</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

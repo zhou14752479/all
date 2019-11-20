@@ -40,13 +40,12 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(1040, 665);
             this.webBrowser1.TabIndex = 0;
-           
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(159, 91);
+            this.panel1.Size = new System.Drawing.Size(1028, 151);
             this.panel1.TabIndex = 1;
             // 
             // Form1
@@ -58,7 +57,7 @@
             this.Controls.Add(this.webBrowser1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "主程序";
+            this.Text = "登录 Mgu足球打水19-20专业版";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

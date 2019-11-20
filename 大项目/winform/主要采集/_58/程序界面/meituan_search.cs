@@ -167,7 +167,7 @@ namespace _58
         public string Rxg1;
         public string Rxg2;
 
-        private bool Condition = true;  //定义数据采集筛选条件，默认为真不筛选
+       
         private Match tell;
 
         #region  所有分类搜索手机端主函数一
@@ -262,22 +262,16 @@ namespace _58
                                     this.tell = Regex.Match(strhtml1, Rxg1);
                                     Match addr = Regex.Match(strhtml1, Rxg2);
 
-                                    int a = this.tell.Groups[1].Value.IndexOf("/");   //获取/的索引
+                            
 
-                                    if (checkBox1.Checked == true)
-                                    {
-                                        this.Condition = this.tell.Groups[1].Value != "" && !this.tell.Groups[1].Value.Contains("-") ;
-                                    }
-
-                                    if (this.Condition)
-                                    {
+                                
                                         this.index = this.dataGridView1.Rows.Add();    //利用dataGridView1.Rows.Add()事件为DataGridView控件增加新的行，该函数返回添加新行的索引号，即新行的行号，然后可以通过该索引号操作该行的各个单元格，如dataGridView1.Rows[index].Cells[0].Value = "1"。这是很常用也是很简单的方法。
 
                                         this.dataGridView1.Rows[index].Cells[0].Value = index;
                                         this.dataGridView1.Rows[index].Cells[1].Value = name.Groups[1].Value;
 
 
-                                        this.dataGridView1.Rows[index].Cells[2].Value = this.tell.Groups[1].Value.Remove(0, a + 1);
+                                        this.dataGridView1.Rows[index].Cells[2].Value = this.tell.Groups[1].Value;
 
                                         this.dataGridView1.Rows[index].Cells[3].Value = addr.Groups[1].Value;
 
@@ -292,7 +286,7 @@ namespace _58
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                         }
 
-                                    }
+                                    
 
 
                                    
@@ -369,13 +363,7 @@ namespace _58
 
                                     int a = this.tell.Groups[1].Value.IndexOf("/");   //获取/的索引
 
-                                    if (checkBox2.Checked == true)
-                                    {
-                                        this.Condition = this.tell.Groups[1].Value != "" && this.tell.Groups[1].Value.Remove(0, a + 1).IndexOf("-") == -1;
-                                    }
-
-                                    if (this.Condition)
-                                    {
+                                 
                                         this.index = this.dataGridView1.Rows.Add();    //利用dataGridView1.Rows.Add()事件为DataGridView控件增加新的行，该函数返回添加新行的索引号，即新行的行号，然后可以通过该索引号操作该行的各个单元格，如dataGridView1.Rows[index].Cells[0].Value = "1"。这是很常用也是很简单的方法。
 
                                         this.dataGridView1.Rows[index].Cells[0].Value = index;
@@ -408,7 +396,7 @@ namespace _58
                                     Thread.Sleep(1000);
 
 
-                                }
+                                
 
 
 
@@ -822,51 +810,24 @@ namespace _58
 
         private void button2_Click(object sender, EventArgs e)
         {
-            #region 通用登录
 
-            bool value = false;
-            string html = Method.GetUrl("http://acaiji.com/success/ip.php");
-            string localip = Method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
+            if (tabControl1.SelectedIndex == 0) //简单地级市采集
             {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
+                Thread search_thread = new Thread(new ThreadStart(this.Search1));
+
+                search_thread.Start();
 
             }
-            if (value == true)
+            else if (tabControl1.SelectedIndex == 1)//地级市区县精准采集
             {
-                if (tabControl1.SelectedIndex == 0) //简单地级市采集
-                {
-                    Thread search_thread = new Thread(new ThreadStart(this.Search1));
+                Thread Search_thread = new Thread(new ThreadStart(this.Search2));
 
-                    search_thread.Start();
-
-                }
-                else if (tabControl1.SelectedIndex == 1)//地级市区县精准采集
-                {
-                    Thread Search_thread = new Thread(new ThreadStart(this.Search2));
-
-                    Search_thread.Start();
-
-                }
+                Search_thread.Start();
 
             }
-            else
-            {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
-            }
-            #endregion
 
 
-           
-            
+
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
@@ -897,6 +858,11 @@ namespace _58
         }
 
         private void TabPage1_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SplitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
