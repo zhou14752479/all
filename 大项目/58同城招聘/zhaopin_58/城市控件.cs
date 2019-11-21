@@ -152,5 +152,10 @@ namespace zhaopin_58
         {
             this.Hide();
         }
+
+        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
     }
 }

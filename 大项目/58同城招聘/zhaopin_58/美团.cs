@@ -117,33 +117,17 @@ namespace zhaopin_58
                                 break;
                             foreach (string list in lists)
                             {
-                                string strhtml = method.gethtml("https://apimobile.meituan.com/group/v1/poi/" + list + "?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng");  //定义的GetRul方法 返回 reader.ReadToEnd()                             
+                            string strhtml1 = method.GetUrl("http://i.meituan.com/poi/" + list);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                                // string commentHtml = method.gethtml("https://www.meituan.com/meishi/api/poi/getMerchantComment?uuid=f87c45af885944f3a19d.1564549522.1.0.0&platform=1&riskLevel=1&optimusCode=10&id="+list);
-                                Match name = Regex.Match(strhtml, @"poiid([\s\S]*?)""name"":""([\s\S]*?)""");
-                                Match addr = Regex.Match(strhtml, @"addr"":""([\s\S]*?)""");
-                                Match tel = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""");
-                                Match areaName = Regex.Match(strhtml, @"areaName"":""([\s\S]*?)""");
-                               
+                            Match name = Regex.Match(strhtml1, @"<h1 class=""dealcard-brand"">([\s\S]*?)</h1>");
+                            Match tell = Regex.Match(strhtml1, @"data-tele=""([\s\S]*?)""");
+                            Match addr = Regex.Match(strhtml1, @"addr:([\s\S]*?)&");
 
-                                if (name.Groups[2].Value != "")
-                                {
-                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-                                    lv1.SubItems.Add(name.Groups[2].Value.Trim());
-                                    lv1.SubItems.Add(addr.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(tel.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(areaName.Groups[1].Value.Trim());
-                                    lv1.SubItems.Add(city);
-                                 
-
-                                    if (strhtml.Contains("有外卖"))
-                                    {
-                                        lv1.SubItems.Add("有外卖");
-                                    }
-                                    else
-                                    {
-                                        lv1.SubItems.Add("无外卖");
-                                    }
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(name.Groups[1].Value);
+                            listViewItem.SubItems.Add(tell.Groups[1].Value);
+                            listViewItem.SubItems.Add(addr.Groups[1].Value);
+                            listViewItem.SubItems.Add(city);
 
 
                                     if (listView1.Items.Count - 1 > 1)
@@ -164,7 +148,7 @@ namespace zhaopin_58
 
                                 
 
-                            }
+                            
 
                         }
                     }
@@ -185,41 +169,13 @@ namespace zhaopin_58
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            button1.Enabled = false;
 
             status = true;
+            Thread thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
 
-            #region 通用登录
-
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php");
-            string localip = GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-                //--------登陆函数------------------
-                Thread thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-
-            }
-            else
-            {
-                MessageBox.Show("请登录您的账号！登陆成功返回软件使用即可");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
-            }
-            #endregion
 
         }
         #region 获取公网IP
@@ -296,6 +252,11 @@ namespace zhaopin_58
         private void 美团_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            button1.Enabled = true;
         }
     }
 }
