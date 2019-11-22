@@ -10,6 +10,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -223,31 +224,35 @@ namespace 商标局浏览器
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    SetProxy("");
-            //    string url = "http://http.tiqu.alicdns.com/getip3?num=1&type=1&pro=&city=0&yys=0&port=1&time=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions=";
+            timer1.Start();
 
-            //    string IP = GetUrl(url, "utf-8");
+            try
+            {
+                SetProxy("");
+                string url = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=1&fa=0&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7";
 
-            //    if (IP.Contains(":"))
-            //    {
+                string IP = GetUrl(url, "utf-8");
 
-            //        SetProxy(IP.Trim());
-            //        textBox1.Text += DateTime.Now.ToString() + "  重置成功" + "\r\n";
-            //    }
-            //    else
-            //    {
-            //        textBox1.Text = DateTime.Now.ToString() + "  重置失败";
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
+                if (IP.Contains(":"))
+                {
 
-            //    textBox1.Text = ex.ToString();
-            //}
+                    SetProxy(IP.Trim());
+                    
+                    textBox1.Text += DateTime.Now.ToString() + "  重置成功" + "\r\n";
+                }
+                else
+                {
+                    textBox1.Text = DateTime.Now.ToString() + "  重置失败";
+                }
+            }
+            catch (Exception ex)
+            {
 
-            SetProxy("");
+                textBox1.Text = ex.ToString();
+            }
+          
+
+          
         }
 
         #region 获取公网IP
@@ -277,7 +282,7 @@ namespace 商标局浏览器
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //label3.Text = GetIP();
+            label3.Text = GetIP();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -293,6 +298,34 @@ namespace 商标局浏览器
                 e.Cancel = true;//点取消的代码 
             }
 
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+            SetProxy("");
+        }
+
+        int i = 100;
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (i != 0)
+            {
+                i = i - 1;
+                button1.Text = i.ToString();
+
+                button1.Enabled = false;
+
+
+            }
+            else
+            {
+                i = 100;
+                button1.Enabled = true;
+                button1.Text = "重置状态";
+                timer1.Stop();
+            }
+
+           
         }
     }
 }
