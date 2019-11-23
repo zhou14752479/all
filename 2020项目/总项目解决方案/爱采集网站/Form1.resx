@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>Hm_lvt_f2826885e8c15bc6de5504516e18a28f=1565137812,1565137844,1565143081,1565157137; 2qA0_2132_ulastactivity=e34eAaTd53FBreaWU7hsGu00lIIjzVzmdZpiWiY0zMXf7tvUI4UF; 2qA0_2132_nofavfid=1; dQMw_2132_smile=1D1; dQMw_2132_nofavfid=1; dQMw_2132_ulastactivity=4b0dzwWlmJ8vneuuvcqF4LLuX53wOW6f4nkV%2BbWSkwnHr%2F8GM4Bc; dQMw_2132_lastcheckfeed=1%7C1569809653; Hm_lvt_99ec3e0819bd6ac83f83f49e733a6a9d=1570495688; Hm_lvt_7b43330a4da4a6f4353e553988ee8a62=1571903696; catfishuser_id=1; catfishuser=admin; catfishuser_p=861810d93198fb91a74537e5c797f762; think_var=zh-cn; PHPSESSID=e62e090h3gjes8brv0fnvcelv5</value>
+    <value>Hm_lvt_f2826885e8c15bc6de5504516e18a28f=1565179051; dQMw_2132_nofavfid=1; Hm_lvt_f2826885e8c15bc6de5504516e18a28f=1565179051,1565867957; dQMw_2132_smile=1D1; dQMw_2132_ulastactivity=7fd6tZM%2FgjRvA44cm1t5BGzglJdDwqFaFfJ%2BuJEeOXYxLoNF1L8R; dQMw_2132_lastcheckfeed=1%7C1568518035; think_var=zh-cn; PHPSESSID=5bae8j6k3c9kibokv67niqmq74; Hm_lvt_ffefde4fd82a8c2be1d76ed29a706270=1574422738,1574472810,1574481870; Hm_lpvt_ffefde4fd82a8c2be1d76ed29a706270=1574481870; nb-referrer-hostname=www.acaiji.com; nb-start-page-url=http%3A%2F%2Fwww.acaiji.com%2F</value>
   </data>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

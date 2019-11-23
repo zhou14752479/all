@@ -145,7 +145,7 @@ namespace 爱采集网站
                 string cookie = textBox1.Text;
                 string strhtml2 = PostUrl(url, postdata, cookie, "gb2312");
 
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
         }
 
@@ -155,16 +155,9 @@ namespace 爱采集网站
             Control.CheckForIllegalCrossThreadCalls = false;
             search_thread.Start();
 
-            timer1.Start();
-
-
+       
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            Thread search_thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            search_thread.Start();
-        }
+     
     }
 }
