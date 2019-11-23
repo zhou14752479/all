@@ -58,7 +58,7 @@ namespace 商标局浏览器
         #endregion
         private void Button1_Click(object sender, EventArgs e)
         {
-            string URL = "http://wapi.http.cnapi.cc/index/index/save_white?neek=26149&appkey=2e7e9bc7b677b2ede1559db3430d635e&white="+textBox1.Text;
+            string URL = "http://h.xunlianip.com/Users-whiteIpAddNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0&whiteip="+ textBox1.Text.Trim();
             textBox2.Text = GetUrl(URL,"utf-8");
         }
     }
