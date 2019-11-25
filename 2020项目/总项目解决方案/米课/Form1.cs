@@ -21,46 +21,52 @@ namespace 米课
             InitializeComponent();
         }
         bool zanting = true;
-        
+
+       
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
         public void run()
         {
-            string cookie = textBox2.Text;
+
             try
             {
-               
-               
-                string html = method.PostUrl("http://data.imiker.com/ajax_search", "m=hs&type=buy&country=all&content="+textBox1.Text+"&sort=0",cookie,"utf-8");
+
+                string cookie = textBox2.Text;
+                string html = method.PostUrl("http://data.imiker.com/ajax_search", "m=hs&type=buy&country=all&content=" + textBox1.Text + "&sort=0", cookie, "utf-8");
                 Match datas = Regex.Match(html, @"data"":\[([\s\S]*?)\]");
 
                 string[] data = datas.Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
                 MessageBox.Show(data.Length.ToString());
                 for (int i = 0; i < 100; i++)
                 {
-                    string postdata = "&list%5B"+5*i+"%5D="+data[5*i]+ "&list%5B"+ (5*i+1) + "%5D="+data[5*i+1] +"&list%5B"+ (5*i+2)+ "%5D="+data[5*i+2] +"&list%5B"+ (5*i+3)+ "%5D="+data[5*i+3] +"&list%5B"+(5*i+4)+"%5D="+data[5*i+4];
-                    string postdata1 = "m=hs&type=buy&country=all&content="+textBox1.Text + postdata.Replace("\"", "").Replace(" ","+")+ "&page="+i;
+                    string postdata = "&list%5B" + 5 * i + "%5D=" + data[5 * i] + "&list%5B" + (5 * i + 1) + "%5D=" + data[5 * i + 1] + "&list%5B" + (5 * i + 2) + "%5D=" + data[5 * i + 2] + "&list%5B" + (5 * i + 3) + "%5D=" + data[5 * i + 3] + "&list%5B" + (5 * i + 4) + "%5D=" + data[5 * i + 4];
+                    string postdata1 = "m=hs&type=buy&country=all&content=" + textBox1.Text + postdata.Replace("\"", "").Replace(" ", "+") + "&page=" + i;
 
                     string strhtml = method.PostUrl("http://data.imiker.com/ajax_list", postdata1, cookie, "utf-8");
-                    
+
                     //textBox2.Text = strhtml;
                     //MessageBox.Show("1");
-                    
+
                     MatchCollection matches = Regex.Matches(strhtml, @"<h2>([\s\S]*?)<a href=""/detailed/hs/buy/([\s\S]*?)""");
-                    MatchCollection  countrys = Regex.Matches(strhtml, @"<span class=""country"">([\s\S]*?)</span>");
+                    MatchCollection countrys = Regex.Matches(strhtml, @"<span class=""country"">([\s\S]*?)</span>");
                     ArrayList lists = new ArrayList();
                     foreach (Match NextMatch in matches)
                     {
 
-                        lists.Add( NextMatch.Groups[2].Value);
+                        lists.Add(NextMatch.Groups[2].Value);
 
                     }
 
-                    for (int j = 0; j <lists.Count; j++)
+                    for (int j = 0; j < lists.Count; j++)
                     {
-                       
+
                         string ahtml = method.GetUrlWithCookie("http://data.imiker.com/detailed_ajax?m=hs&type=buy&content=" + lists[j].ToString().Replace("/", "&des="), cookie, "utf-8");
-                       
+
                         Match a1 = Regex.Match(ahtml, @"""importer"":""([\s\S]*?)""");
-                        
+
                         Match a3 = Regex.Match(ahtml, @"""related_total"":([\s\S]*?),");
                         Match a4 = Regex.Match(ahtml, @"""total"":([\s\S]*?),");
                         Match a5 = Regex.Match(ahtml, @"""related_total"":([\s\S]*?)percent"":([\s\S]*?),");
@@ -89,11 +95,6 @@ namespace 米课
                 throw;
             }
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             #region 通用验证
