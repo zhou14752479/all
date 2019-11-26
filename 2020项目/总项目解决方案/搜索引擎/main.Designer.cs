@@ -473,6 +473,8 @@
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(213, 21);
             this.textBox14.TabIndex = 53;
+            this.textBox14.Text = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=1&fa=0&qty=1&port=1&f" +
+    "ormat=txt&ss=1&css=&pro=&city=&usertype=7";
             // 
             // label18
             // 

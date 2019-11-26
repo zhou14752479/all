@@ -34,18 +34,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -62,8 +59,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox7 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -119,11 +132,12 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listView2);
             this.splitContainer1.Panel1.Controls.Add(this.listView1);
+            this.splitContainer1.Panel1.Controls.Add(this.listView2);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBox7);
             this.splitContainer1.Panel2.Controls.Add(this.button8);
             this.splitContainer1.Panel2.Controls.Add(this.button7);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
@@ -146,67 +160,30 @@
             this.splitContainer1.Panel2.Controls.Add(this.button3);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Size = new System.Drawing.Size(923, 450);
-            this.splitContainer1.SplitterDistance = 319;
+            this.splitContainer1.Size = new System.Drawing.Size(1075, 509);
+            this.splitContainer1.SplitterDistance = 360;
             this.splitContainer1.TabIndex = 1;
             // 
             // listView2
             // 
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader8});
+            this.columnHeader5,
+            this.columnHeader1});
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(0, 0);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(923, 319);
-            this.listView2.TabIndex = 12;
+            this.listView2.Size = new System.Drawing.Size(1075, 360);
+            this.listView2.TabIndex = 11;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "序号";
-            this.columnHeader2.Width = 40;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "比赛";
-            this.columnHeader3.Width = 200;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "平均欧赔";
-            this.columnHeader4.Width = 200;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "比分";
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader1});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(923, 319);
-            this.listView1.TabIndex = 11;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader9
             // 
@@ -216,31 +193,48 @@
             // columnHeader10
             // 
             this.columnHeader10.Text = "比赛";
-            this.columnHeader10.Width = 200;
+            this.columnHeader10.Width = 100;
             // 
-            // columnHeader11
+            // columnHeader2
             // 
-            this.columnHeader11.Text = "澳门即时盘口";
-            this.columnHeader11.Width = 150;
+            this.columnHeader2.Text = "比分";
             // 
-            // columnHeader12
+            // columnHeader3
             // 
-            this.columnHeader12.Text = "澳门初始盘口";
-            this.columnHeader12.Width = 150;
+            this.columnHeader3.Text = "水";
             // 
-            // columnHeader13
+            // columnHeader4
             // 
-            this.columnHeader13.Text = "易胜博即时盘口";
-            this.columnHeader13.Width = 150;
+            this.columnHeader4.Text = "盘";
             // 
-            // columnHeader14
+            // columnHeader5
             // 
-            this.columnHeader14.Text = "易胜博初始盘口";
-            this.columnHeader14.Width = 150;
+            this.columnHeader5.Text = "水1";
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "比分";
+            this.columnHeader1.Text = "时间";
+            this.columnHeader1.Width = 100;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(826, 75);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(85, 30);
+            this.button8.TabIndex = 22;
+            this.button8.Text = "清空欧赔";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(826, 20);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(85, 30);
+            this.button7.TabIndex = 21;
+            this.button7.Text = "清空亚";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // label5
             // 
@@ -378,31 +372,114 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
-            // button7
+            // listView1
             // 
-            this.button7.Location = new System.Drawing.Point(826, 20);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(85, 30);
-            this.button7.TabIndex = 21;
-            this.button7.Text = "清空亚";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16,
+            this.columnHeader17,
+            this.columnHeader18,
+            this.columnHeader19,
+            this.columnHeader20,
+            this.columnHeader21,
+            this.columnHeader22,
+            this.columnHeader24});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1075, 360);
+            this.listView1.TabIndex = 16;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // button8
+            // columnHeader6
             // 
-            this.button8.Location = new System.Drawing.Point(826, 75);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(85, 30);
-            this.button8.TabIndex = 22;
-            this.button8.Text = "清空欧赔";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            this.columnHeader6.Text = "序号";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "比赛";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "比分";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "水";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "盘";
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "水1";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "水2";
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "盘";
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "水3";
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "水4";
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "盘";
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "水5";
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Text = "水6";
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.Text = "盘";
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Text = "水7";
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Text = "时间";
+            this.columnHeader24.Width = 100;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(411, 56);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(259, 86);
+            this.textBox7.TabIndex = 23;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 450);
+            this.ClientSize = new System.Drawing.Size(1075, 509);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -423,20 +500,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
@@ -454,6 +521,29 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+        private System.Windows.Forms.ColumnHeader columnHeader19;
+        private System.Windows.Forms.ColumnHeader columnHeader20;
+        private System.Windows.Forms.ColumnHeader columnHeader21;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.TextBox textBox7;
     }
 }
 

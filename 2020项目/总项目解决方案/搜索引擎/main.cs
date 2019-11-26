@@ -249,7 +249,7 @@ namespace 搜索引擎
                                         listViewItem.SubItems.Add(keyword);
                                         listViewItem.SubItems.Add(URL);
 
-                                        exportTXT(keyword,a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                        exportTXT(key.Replace(",",""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
                                         while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -330,7 +330,7 @@ namespace 搜索引擎
                                     Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)</title>");
                                     Match a2 = Regex.Match(strhtml, @"dateUpdate"" content=""([\s\S]*?)""");
                                     Match a3 = Regex.Match(strhtml, @"mediaid"" content=""([\s\S]*?)""");
-                                    Match a4 = Regex.Match(strhtml, @"<p data-role=""original-title"" style=""display:none"">([\s\S]*?)</article>");
+                                    Match a4 = Regex.Match(strhtml, @"<p data-role=""original-title"" style=""display:none"">([\s\S]*?)<p>([\s\S]*?)</article>");
 
                                     //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
                                     //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
@@ -342,20 +342,20 @@ namespace 搜索引擎
                                     }
                                     if (checkBox1.Checked == true)
                                     {
-                                        insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[1].Value);
+                                        insertData(a1.Groups[1].Value, a2.Groups[1].Value, a3.Groups[1].Value, a4.Groups[2].Value);
                                     }
 
-                                    if (a4.Groups[1].Value.Length > 500)
+                                    if (a4.Groups[2].Value.Length > 500)
                                     {
                                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                         listViewItem.SubItems.Add(a1.Groups[1].Value);
                                         listViewItem.SubItems.Add(a2.Groups[1].Value);
                                         listViewItem.SubItems.Add(a3.Groups[1].Value);
-                                        listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
+                                        listViewItem.SubItems.Add(Regex.Replace(a4.Groups[2].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
                                         listViewItem.SubItems.Add(keyword);
                                         listViewItem.SubItems.Add(urls[j].Groups[2].Value);
 
-                                        exportTXT(keyword, a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
+                                        exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[2].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
                                         while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -433,10 +433,10 @@ namespace 搜索引擎
 
 
 
-                                    Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)_");
-                                    Match a2 = Regex.Match(strhtml, @"pubtime:'([\s\S]*?)'");
-                                    Match a3 = Regex.Match(strhtml, @"jgname"">([\s\S]*?)</span>");
-                                    Match a4 = Regex.Match(strhtml, @"<div class=""content-article"">([\s\S]*?)<div id=""Status""></div>");
+                                    Match a1 = Regex.Match(strhtml, @"<h1>([\s\S]*?)</h1>");
+                                    Match a2 = Regex.Match(strhtml, @"""pubtime"": ""([\s\S]*?)""");
+                                    Match a3 = Regex.Match(strhtml, @"""media"": ""([\s\S]*?)""");
+                                    Match a4 = Regex.Match(strhtml, @"<p class=""one-p"">([\s\S]*?)<div id=""Status""></div>");
 
                                     //DateTime dt = Convert.ToDateTime(a2.Groups[1].Value);
                                     //if (dateTimePicker1.Value < dt && dt < dateTimePicker2.Value)
@@ -455,7 +455,7 @@ namespace 搜索引擎
                                         listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
                                         listViewItem.SubItems.Add(keyword);
                                         listViewItem.SubItems.Add(urls[j].Groups[2].Value);
-                                        exportTXT(keyword, a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                        exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
                                         while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -548,11 +548,12 @@ namespace 搜索引擎
                                         listViewItem.SubItems.Add(a1.Groups[1].Value);
                                         listViewItem.SubItems.Add(a2.Groups[1].Value);
                                         listViewItem.SubItems.Add(a3.Groups[1].Value);
-                                        listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                        //listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                        listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Replace("原标题：","").Replace("(sinaads = window.sinaads || []).push({});", "").Trim());
                                         listViewItem.SubItems.Add(keyword);
                                         listViewItem.SubItems.Add(urls[j].Groups[2].Value);
 
-                                        exportTXT(keyword, a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                        exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Replace("原标题：", "").Replace("(sinaads = window.sinaads || []).push({});", "").Trim());
 
                                         while (this.zanting == false)
                                         {

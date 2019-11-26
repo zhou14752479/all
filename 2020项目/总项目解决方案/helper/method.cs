@@ -176,7 +176,7 @@ namespace helper
                 UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
-                Referer = "https://lp930428.taobao.com/search.htm?spm=a1z10.1-c-s.w5002-21751133133.1.18cc669dBw81Oa&search=y",//来源URL     可选项  
+                Referer = "https://live.500.com/wanchang.php",//来源URL     可选项  
                 //Allowautoredirect = False,//是否根据３０１跳转     可选项  
                 //AutoRedirectCookie = False,//是否自动处理Cookie     可选项  
                                            //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  

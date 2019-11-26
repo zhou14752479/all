@@ -27,7 +27,7 @@ namespace live500
         
         
         bool zanting = true;
-        string cookie = "sdc_session=1574662393729; Hm_lvt_4f816d475bb0b9ed640ae412d6b42cab=1574662394; _jzqc=1; _jzqckmp=1; __utmc=63332592; WT_FPC=id=undefined:lv=1574663711365:ss=1574662393728; _qzja=1.2058205138.1574662394138.1574662394138.1574662394138.1574663708169.1574663711448.0.0.0.8.1; _qzjc=1; _qzjto=8.1.0; motion_id=1574665756836_0.4964356646263226; sdc_userflag=1574666904975::1574666904975::1; Hm_lpvt_4f816d475bb0b9ed640ae412d6b42cab=1574666905; _jzqa=1.3024433889462328000.1574662394.1574662394.1574666905.2; _jzqx=1.1574666905.1574666905.1.jzqsr=live%2E500%2Ecom|jzqct=/wanchang%2Ephp.-; _jzqb=1.1.10.1574666905.1; __utma=63332592.832186015.1574662397.1574662397.1574666911.2; __utmz=63332592.1574666911.2.2.utmcsr=live.500.com|utmccn=(referral)|utmcmd=referral|utmcct=/wanchang.php; __utmt=1; __utmb=63332592.1.10.1574666911; CLICKSTRN_ID=49.89.124.214-1574662395.188996::BBBDC09E0995FD2E900BCCA43F96ED30";
+        string cookie = "_jzqx=1.1574666905.1574666905.1.jzqsr=live%2E500%2Ecom|jzqct=/wanchang%2Ephp.-; sdc_session=1574750368429; _jzqc=1; _jzqckmp=1; Hm_lvt_4f816d475bb0b9ed640ae412d6b42cab=1574662394,1574670892,1574750371; _qzjc=1; __utmc=63332592; _jzqa=1.3024433889462328000.1574662394.1574750369.1574757944.5; motion_id=1574757963912_0.20063945858556798; WT_FPC=id=undefined:lv=1574757965514:ss=1574757965514; sdc_userflag=1574757944139::1574757965519::3; Hm_lpvt_4f816d475bb0b9ed640ae412d6b42cab=1574757966; _qzja=1.892491754.1574662759148.1574750380463.1574757965624.1574750380463.1574757965624.0.0.0.17.5; _qzjto=2.2.0; _jzqb=1.3.10.1574757944.1; _qzjb=1.1574757965624.1.0.0.0; __utma=63332592.832186015.1574662397.1574750392.1574757967.4; __utmz=63332592.1574757967.4.3.utmcsr=live.500.com|utmccn=(referral)|utmcmd=referral|utmcct=/wanchang.php; __utmt=1; __utmb=63332592.2.10.1574757967; CLICKSTRN_ID=49.89.124.214-1574662395.188996::BBBDC09E0995FD2E900BCCA43F96ED30";
 
         public void run()
         {
@@ -40,7 +40,9 @@ namespace live500
                 string html = method.gethtml("https://live.500.com/wanchang.php/?e="+date, cookie);
               
                 MatchCollection matches = Regex.Matches(html, @"<tr id=""a([\s\S]*?)""");
+                MatchCollection times = Regex.Matches(html, @"<td align=""center"">([\s\S]*?)</td>");
 
+                
                 ArrayList lists = new ArrayList();
                 foreach (Match NextMatch in matches)
                 {
@@ -60,7 +62,7 @@ namespace live500
                     Match yishengbo = Regex.Match(ahtml, @"title=""易胜博"">([\s\S]*?)<td class=""td_one"">");
                   
                     
-                    Match bisai = Regex.Match(ahtml, @"<title>([\s\S]*?)-");
+                    Match bisai = Regex.Match(ahtml, @"<title>([\s\S]*?)\(");
                     Match bifen = Regex.Match(ahtml, @"<strong>([\s\S]*?)</strong>");
                     MatchCollection a1s = Regex.Matches(aomen.Groups[1].Value, @"<td width=""58""([\s\S]*?)>([\s\S]*?)</td>");
                     MatchCollection a2s = Regex.Matches(aomen.Groups[1].Value, @""" ref=""([\s\S]*?)>([\s\S]*?)<");
@@ -74,12 +76,21 @@ namespace live500
                     {
                         ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(bisai.Groups[1].Value);
-                        listViewItem.SubItems.Add(a1s[0].Groups[2].Value+"  " + a2s[0].Groups[2].Value + "  " + a3s[0].Groups[2].Value);
-                        listViewItem.SubItems.Add(a1s[1].Groups[2].Value + "  " + a2s[1].Groups[2].Value + "  " + a3s[1].Groups[2].Value);
-
-                        listViewItem.SubItems.Add(b1s[0].Groups[2].Value + "  " + b2s[0].Groups[2].Value + "  " + b3s[0].Groups[2].Value);
-                        listViewItem.SubItems.Add(b1s[1].Groups[2].Value + "  " + b2s[1].Groups[2].Value + "  " + b3s[1].Groups[2].Value);
                         listViewItem.SubItems.Add(bifen.Groups[1].Value);
+                        listViewItem.SubItems.Add(a1s[0].Groups[2].Value);
+                        listViewItem.SubItems.Add(a2s[0].Groups[2].Value);
+                        listViewItem.SubItems.Add(a3s[0].Groups[2].Value);
+                        listViewItem.SubItems.Add(a1s[1].Groups[2].Value);
+                        listViewItem.SubItems.Add(a2s[1].Groups[2].Value);
+                        listViewItem.SubItems.Add(a3s[1].Groups[2].Value);
+
+                        listViewItem.SubItems.Add(b1s[0].Groups[2].Value);
+                        listViewItem.SubItems.Add(b2s[0].Groups[2].Value);
+                        listViewItem.SubItems.Add(b3s[0].Groups[2].Value);
+                        listViewItem.SubItems.Add(b1s[1].Groups[2].Value);
+                        listViewItem.SubItems.Add(b2s[1].Groups[2].Value);
+                        listViewItem.SubItems.Add(b3s[1].Groups[2].Value);
+                        listViewItem.SubItems.Add(times[(5*j)+1].Groups[1].Value);
 
 
                         while (this.zanting == false)
@@ -107,7 +118,7 @@ namespace live500
                 string html = method.gethtml("https://live.500.com/?e="+date1, cookie);
 
                 MatchCollection matches = Regex.Matches(html, @"<tr id=""a([\s\S]*?)""");
-
+                MatchCollection times = Regex.Matches(html, @"<td align=""center"">([\s\S]*?)</td>");
                 ArrayList lists = new ArrayList();
                 foreach (Match NextMatch in matches)
                 {
@@ -122,19 +133,22 @@ namespace live500
                     string ahtml = method.gethtml("https://odds.500.com/fenxi/ouzhi-" + lists[j] + ".shtml", cookie);
                    
 
-                    Match bisai = Regex.Match(ahtml, @"<title>([\s\S]*?)-");
+                    Match bisai = Regex.Match(ahtml, @"<title>([\s\S]*?)\(");
                     Match bifen = Regex.Match(ahtml, @"<strong>([\s\S]*?)</strong>");
 
-
+                    textBox7.Text = "https://odds.500.com/fenxi/ouzhi-" + lists[j] + ".shtml";
                     Match a1 = Regex.Match(ahtml, @"avwinj2"">([\s\S]*?)</td>");
                     Match a2 = Regex.Match(ahtml, @"avdrawj2"">([\s\S]*?)</td>");
                     Match a3 = Regex.Match(ahtml, @"avlostj2"">([\s\S]*?)</td>");
 
                     ListViewItem listViewItem = listView2.Items.Add((listView2.Items.Count + 1).ToString());
                     listViewItem.SubItems.Add(bisai.Groups[1].Value);
-                    listViewItem.SubItems.Add(a1.Groups[1].Value + "  " + a2.Groups[1].Value + "  " + a3.Groups[1].Value);
                     listViewItem.SubItems.Add(bifen.Groups[1].Value);
-                    
+                    listViewItem.SubItems.Add(a1.Groups[1].Value);
+                    listViewItem.SubItems.Add(a2.Groups[1].Value);
+                    listViewItem.SubItems.Add(a3.Groups[1].Value);
+                   
+                    listViewItem.SubItems.Add(times[(4* j) + 1].Groups[1].Value);
 
 
                 }
@@ -174,7 +188,7 @@ namespace live500
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -194,7 +208,7 @@ namespace live500
 
         private void Button7_Click(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
+            listView2.Items.Clear();
         }
 
         private void Button8_Click(object sender, EventArgs e)
