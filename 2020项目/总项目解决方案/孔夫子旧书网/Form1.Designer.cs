@@ -68,6 +68,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -212,6 +213,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.linkLabel3);
             this.groupBox2.Controls.Add(this.linkLabel2);
             this.groupBox2.Controls.Add(this.textBox3);
@@ -397,6 +399,18 @@
             this.timer1.Interval = 1200000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button6.ForeColor = System.Drawing.Color.Blue;
+            this.button6.Location = new System.Drawing.Point(637, 102);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(108, 29);
+            this.button6.TabIndex = 66;
+            this.button6.Text = "导 出 文 本";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -457,6 +471,7 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button6;
     }
 }
 

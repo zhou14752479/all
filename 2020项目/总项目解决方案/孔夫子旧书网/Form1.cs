@@ -225,6 +225,9 @@ namespace 孔夫子旧书网
             getIp();
         }
 
-       
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            method.ListviewToTxt(listView1);
+        }
     }
 }

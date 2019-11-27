@@ -136,7 +136,7 @@ namespace live500
                     Match bisai = Regex.Match(ahtml, @"<title>([\s\S]*?)\(");
                     Match bifen = Regex.Match(ahtml, @"<strong>([\s\S]*?)</strong>");
 
-                    textBox7.Text = "https://odds.500.com/fenxi/ouzhi-" + lists[j] + ".shtml";
+                    
                     Match a1 = Regex.Match(ahtml, @"avwinj2"">([\s\S]*?)</td>");
                     Match a2 = Regex.Match(ahtml, @"avdrawj2"">([\s\S]*?)</td>");
                     Match a3 = Regex.Match(ahtml, @"avlostj2"">([\s\S]*?)</td>");
@@ -149,7 +149,7 @@ namespace live500
                     listViewItem.SubItems.Add(a3.Groups[1].Value);
                    
                     listViewItem.SubItems.Add(times[(4* j) + 1].Groups[1].Value);
-
+                    Thread.Sleep(1000);
 
                 }
 
@@ -188,7 +188,7 @@ namespace live500
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -208,7 +208,7 @@ namespace live500
 
         private void Button7_Click(object sender, EventArgs e)
         {
-            listView2.Items.Clear();
+            listView1.Items.Clear();
         }
 
         private void Button8_Click(object sender, EventArgs e)
