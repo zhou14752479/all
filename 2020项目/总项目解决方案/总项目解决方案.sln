@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "live500", "live500\live500.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔夫子旧书网", "孔夫子旧书网\孔夫子旧书网.csproj", "{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "湄洲库存", "湄洲库存\湄洲库存.csproj", "{13BBEFA4-35C0-44A9-B493-7D38635FACFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13BBEFA4-35C0-44A9-B493-7D38635FACFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13BBEFA4-35C0-44A9-B493-7D38635FACFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13BBEFA4-35C0-44A9-B493-7D38635FACFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13BBEFA4-35C0-44A9-B493-7D38635FACFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
