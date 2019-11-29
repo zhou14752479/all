@@ -23,6 +23,10 @@ namespace 湄洲库存
             InitializeComponent();
         }
 
+        int start = 1;
+        bool zanting = true;
+        bool status = true;
+
         #region POST请求
         /// <summary>
         /// POST请求
@@ -142,10 +146,11 @@ namespace 湄洲库存
         {
             try
             {
-                for (int i = 1; i < 245897; i++)
+                for (int i = start; i < 245897; i++)
                 {
+
                     string keyword = getkey(i);
-                    MessageBox.Show(keyword);
+                   
                     int page = 0;
 
                     string[] text = getpage(keyword).Split(new string[] { "," }, StringSplitOptions.None);
@@ -183,29 +188,49 @@ namespace 湄洲库存
 
                         for (int z = 0; z < a1s.Count; z++)
                         {
-                            string a1 = a1s[z].Groups[1].Value;
-                            string a2 = a2s[z].Groups[1].Value;
+                           
+                           string a1 = a1s[z].Groups[1].Value.Replace("\"", "");
+                            string a2 = a2s[z].Groups[1].Value.Replace("\"", "");
                             string a3 = a3s[z].Groups[1].Value.Replace("\"", "");
                             string a4 = a4s[z].Groups[1].Value.Replace("\"", "");
-                            string a5 = a5s[z].Groups[1].Value;
-                            string a6 = a6s[z].Groups[1].Value;
-                            string a7 = a7s[z].Groups[1].Value;
-                            string a8 = a8s[z].Groups[1].Value;
-                            string a9 = a9s[z].Groups[1].Value;
+                            string a5 = a5s[z].Groups[1].Value.Replace("\"", "");
+                            string a6 = a6s[z].Groups[1].Value.Replace("\"", "");
+                            string a7 = a7s[z].Groups[1].Value.Replace("\"", "");
+                            string a8 = a8s[z].Groups[1].Value.Replace("\"", "");
+                            string a9 = a9s[z].Groups[1].Value.Replace("\"", "");
                             string a10 = a10s[z].Groups[1].Value.Replace("\"","");
-                            string a11 = a11s[z].Groups[1].Value;
-                            string a12 = a12s[z].Groups[1].Value;
+                            string a11 = a11s[z].Groups[1].Value.Replace("\"", "");
+                            string a12 = a12s[z].Groups[1].Value.Replace("\"", "");
+
+                            label2.Text = "正在抓取：" +a1;
                             string sql = "INSERT INTO stockList VALUES( '" + i + "','" + a1 + "','" + a2 + "','" + a3 + "','" + a4 + "','" + a5 + "','" + a6 + "','" + a7 + "','" + a8 + "','" + a9 + "','" + a10 +"', '" + a11+ "', '" + keyword + "', '" + a12+ "')";
                             insertdata(sql);
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+                            {
+                                return;
+                            }
+
                         }//当前页结束
 
-                        Thread.Sleep(1000);
+                        Thread.Sleep(Convert.ToInt32(textBox2.Text));
 
                     }//翻页结束
 
-                    textBox1.Text += keyword + "，正在采集到的" + total + "数据"+"\r\n";
+                    textBox1.Text += DateTime.Now.ToString()+":"+ keyword + "，正在采集到的" + total + "数据"+"\r\n";
                     string sql2 = "INSERT INTO Keyword VALUES('" + i+ "','" + keyword + "','1','" + total + "')";
                     insertdata(sql2);
+
+                    //记录当前运行到的i
+                    string path = AppDomain.CurrentDomain.BaseDirectory;
+                    FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(i);
+                    sw.Close();
+                    fs1.Close();
 
                 }//关键字结束
             }
@@ -216,16 +241,54 @@ namespace 湄洲库存
             }
         }
 
-private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            StreamReader sr = new StreamReader(path + "config.txt", Encoding.Default);
+            string text = sr.ReadToEnd();
+            if (text != "")
+            {
+                start = Convert.ToInt32(text);
+            }
 
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            status = true;
+            label2.Text = "开始采集中.....";
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+
         }
     }
 }

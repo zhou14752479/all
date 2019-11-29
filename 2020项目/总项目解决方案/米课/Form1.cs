@@ -40,11 +40,11 @@ namespace 米课
 
                 string[] data = datas.Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
                 MessageBox.Show(data.Length.ToString());
-                for (int i = 0; i < 100; i++)
+                for (int i = 50; i < 100; i++)
                 {
-                    string postdata = "&list%5B" + 5 * i + "%5D=" + data[5 * i] + "&list%5B" + (5 * i + 1) + "%5D=" + data[5 * i + 1] + "&list%5B" + (5 * i + 2) + "%5D=" + data[5 * i + 2] + "&list%5B" + (5 * i + 3) + "%5D=" + data[5 * i + 3] + "&list%5B" + (5 * i + 4) + "%5D=" + data[5 * i + 4];
-                    string postdata1 = "m=hs&type=buy&country=all&content=" + textBox1.Text + postdata.Replace("\"", "").Replace(" ", "+") + "&page=" + i;
-
+                    string postdata = "&list%5B" + 5 * i + "%5D=" + data[5 * i].Replace("&", "%26") + "&list%5B" + (5 * i + 1) + "%5D=" + data[5 * i + 1].Replace("&", "%26") + "&list%5B" + (5 * i + 2) + "%5D=" + data[5 * i + 2].Replace("&", "%26") + "&list%5B" + (5 * i + 3) + "%5D=" + data[5 * i + 3].Replace("&", "%26") + "&list%5B" + (5 * i + 4) + "%5D=" + data[5 * i + 4].Replace("&", "%26");
+                    string postdata1 = "m=hs&type=buy&country=all&content=" + textBox1.Text + postdata.Replace("\\/", "%2F").Replace("\"", "").Replace(" ", "+").Replace("\\u6797", "%E6%9E%97") + "&page=" + i;
+                    textBox3.Text = postdata1;
                     string strhtml = method.PostUrl("http://data.imiker.com/ajax_list", postdata1, cookie, "utf-8");
 
                     //textBox2.Text = strhtml;
@@ -85,14 +85,14 @@ namespace 米课
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
-                        Thread.Sleep(1000);
+                        
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.ToString());
             }
         }
         private void button1_Click(object sender, EventArgs e)
