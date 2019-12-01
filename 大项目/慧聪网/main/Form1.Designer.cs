@@ -75,7 +75,6 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -131,7 +130,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(38, 29);
             this.label16.TabIndex = 6;
-            this.label16.Text = "据";
+            this.label16.Text = "销";
             // 
             // label15
             // 
@@ -141,7 +140,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(38, 29);
             this.label15.TabIndex = 5;
-            this.label15.Text = "数";
+            this.label15.Text = "营";
             // 
             // label14
             // 
@@ -151,7 +150,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(38, 29);
             this.label14.TabIndex = 4;
-            this.label14.Text = "大";
+            this.label14.Text = "据";
             // 
             // label13
             // 
@@ -161,7 +160,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(38, 29);
             this.label13.TabIndex = 3;
-            this.label13.Text = "客";
+            this.label13.Text = "数";
             // 
             // label12
             // 
@@ -171,7 +170,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(38, 29);
             this.label12.TabIndex = 2;
-            this.label12.Text = "搜";
+            this.label12.Text = "大";
             // 
             // groupBox3
             // 
@@ -548,19 +547,12 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
-            this.toolStripStatusLabel4,
-            this.toolStripStatusLabel5});
+            this.toolStripStatusLabel4});
             this.statusStrip1.Location = new System.Drawing.Point(0, 579);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(687, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel5
-            // 
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(263, 17);
-            this.toolStripStatusLabel5.Text = "联系我们：QQ：8847695  微信：2603238157";
             // 
             // Form1
             // 
@@ -622,7 +614,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
