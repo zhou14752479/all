@@ -63,9 +63,9 @@ namespace main._2019_6
             {
                 string url = "http://1x2d.win007.com/"+IDS[i]+".js";
                 string strhtml = method.GetUrl(url, "utf-8");
-                Match aaas = Regex.Match(strhtml, @"Pinnacle\|([\s\S]*?)Pinnacle");
-                Match bbbs = Regex.Match(strhtml, @"Expekt\|([\s\S]*?)Expekt");
-                Match cccs = Regex.Match(strhtml, @"Marathon\|([\s\S]*?)马博");
+                Match aaas = Regex.Match(strhtml, @"Bet 365\|([\s\S]*?)bet 365");
+                //Match bbbs = Regex.Match(strhtml, @"Expekt\|([\s\S]*?)Expekt");
+                //Match cccs = Regex.Match(strhtml, @"Marathon\|([\s\S]*?)马博");
                 Match ddds = Regex.Match(strhtml, @"William Hill\|([\s\S]*?)威廉希尔");
             
 
@@ -89,8 +89,8 @@ namespace main._2019_6
 
 
                 string[] aaa = aaas.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
-                string[] bbb = bbbs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
-                string[] ccc = cccs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
+                //string[] bbb = bbbs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
+                //string[] ccc = cccs.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                 string[] ddd = ddds.Groups[1].Value.Split(new string[] { "|" }, StringSplitOptions.None);
                 
                 if (aaa.Length > 6)
@@ -108,48 +108,48 @@ namespace main._2019_6
                     //}
 
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("Pinnacle（荷兰）");  
+                    lv1.SubItems.Add("bet365");  
                     lv1.SubItems.Add(TIME);   //时间
 
                 }
-                if (bbb.Length > 6)
-                {
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                //if (bbb.Length > 6)
+                //{
+                //    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
 
 
-                    lv1.SubItems.Add(bbb[0]);   //比分
-                    lv1.SubItems.Add(bbb[1]);   //比分
-                    lv1.SubItems.Add(bbb[2]);   //比分
-                    lv1.SubItems.Add(bbb[6]);   //比分
+                //    lv1.SubItems.Add(bbb[0]);   //比分
+                //    lv1.SubItems.Add(bbb[1]);   //比分
+                //    lv1.SubItems.Add(bbb[2]);   //比分
+                //    lv1.SubItems.Add(bbb[6]);   //比分
                   
 
-                    //for (int j = 0; j < 7; j++)
-                    //{       
-                    //    lv1.SubItems.Add(bbb[j]);   //比分
-                    //}
-                    lv1.SubItems.Add(zhu.Groups[1].Value+"："+ke.Groups[1].Value);
-                    lv1.SubItems.Add("Expekt（瑞典）");
-                    lv1.SubItems.Add(TIME);   //时间
+                //    //for (int j = 0; j < 7; j++)
+                //    //{       
+                //    //    lv1.SubItems.Add(bbb[j]);   //比分
+                //    //}
+                //    lv1.SubItems.Add(zhu.Groups[1].Value+"："+ke.Groups[1].Value);
+                //    lv1.SubItems.Add("Expekt（瑞典）");
+                //    lv1.SubItems.Add(TIME);   //时间
 
-                }
-                if (ccc.Length > 6)
-                {
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
+                //}
+                //if (ccc.Length > 6)
+                //{
+                //    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
 
-                    lv1.SubItems.Add(ccc[0]);   //比分
-                    lv1.SubItems.Add(ccc[1]);   //比分
-                    lv1.SubItems.Add(ccc[2]);   //比分
-                    lv1.SubItems.Add(ccc[6]);   //比分
+                //    lv1.SubItems.Add(ccc[0]);   //比分
+                //    lv1.SubItems.Add(ccc[1]);   //比分
+                //    lv1.SubItems.Add(ccc[2]);   //比分
+                //    lv1.SubItems.Add(ccc[6]);   //比分
                    
 
-                    //for (int j = 0; j < 7; j++)
-                    //{
-                    //    lv1.SubItems.Add(ccc[j]);   //比分
-                    //}
-                    lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("马博（荷属安的列斯群岛）");   
-                    lv1.SubItems.Add(TIME);   //时间
-                }
+                //    //for (int j = 0; j < 7; j++)
+                //    //{
+                //    //    lv1.SubItems.Add(ccc[j]);   //比分
+                //    //}
+                //    lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
+                //    lv1.SubItems.Add("马博（荷属安的列斯群岛）");   
+                //    lv1.SubItems.Add(TIME);   //时间
+                //}
                 if (ddd.Length > 6)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据         
@@ -166,13 +166,13 @@ namespace main._2019_6
                     //    lv1.SubItems.Add(ddd[j]);   //比分
                     //}
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("威廉希尔（英国）");   
+                    lv1.SubItems.Add("威廉希尔");   
                     lv1.SubItems.Add(TIME);   //时间
                 }
 
           
 
-                if ( aaa.Length > 6|| bbb.Length > 6 || ccc.Length > 6 || ddd.Length > 6)
+                if ( aaa.Length > 6 || ddd.Length > 6)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据  
                     for (int j = 0; j < 9; j++)

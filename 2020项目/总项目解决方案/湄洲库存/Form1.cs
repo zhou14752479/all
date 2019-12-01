@@ -202,6 +202,8 @@ namespace 湄洲库存
                             string a11 = a11s[z].Groups[1].Value.Replace("\"", "");
                             string a12 = a12s[z].Groups[1].Value.Replace("\"", "");
 
+                         
+                           
                             label2.Text = "正在抓取：" +a1;
                             string sql = "INSERT INTO stockList VALUES( '" + i + "','" + a1 + "','" + a2 + "','" + a3 + "','" + a4 + "','" + a5 + "','" + a6 + "','" + a7 + "','" + a8 + "','" + a9 + "','" + a10 +"', '" + a11+ "', '" + keyword + "', '" + a12+ "')";
                             insertdata(sql);
@@ -220,9 +222,13 @@ namespace 湄洲库存
 
                     }//翻页结束
 
-                    textBox1.Text += DateTime.Now.ToString()+":"+ keyword + "，正在采集到的" + total + "数据"+"\r\n";
+                    textBox1.Text= textBox1.Text.Insert(0, DateTime.Now.ToString()+":"+ keyword + "，正在采集到的" + total + "数据"+"\r\n");
                     string sql2 = "INSERT INTO Keyword VALUES('" + i+ "','" + keyword + "','1','" + total + "')";
                     insertdata(sql2);
+                    if (textBox1.Lines.Length==1000)
+                    {
+                        textBox1.Text = "";
+                    }
 
                     //记录当前运行到的i
                     string path = AppDomain.CurrentDomain.BaseDirectory;
@@ -250,6 +256,7 @@ namespace 湄洲库存
             {
                 start = Convert.ToInt32(text);
             }
+            sr.Close();
 
         }
 

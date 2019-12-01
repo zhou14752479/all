@@ -38,25 +38,26 @@ namespace 米课
                 string html = method.PostUrl("http://data.imiker.com/ajax_search", "m=hs&type=buy&country=all&content=" + textBox1.Text + "&sort=0", cookie, "utf-8");
                 Match datas = Regex.Match(html, @"data"":\[([\s\S]*?)\]");
 
-                string[] data = datas.Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
-                MessageBox.Show(data.Length.ToString());
-                for (int i = 50; i < 100; i++)
+                string[] data = datas.Groups[1].Value.Split(new string[] { "\"," }, StringSplitOptions.None);
+              
+                for (int i = 0; i < 100; i++)
                 {
                     string postdata = "&list%5B" + 5 * i + "%5D=" + data[5 * i].Replace("&", "%26") + "&list%5B" + (5 * i + 1) + "%5D=" + data[5 * i + 1].Replace("&", "%26") + "&list%5B" + (5 * i + 2) + "%5D=" + data[5 * i + 2].Replace("&", "%26") + "&list%5B" + (5 * i + 3) + "%5D=" + data[5 * i + 3].Replace("&", "%26") + "&list%5B" + (5 * i + 4) + "%5D=" + data[5 * i + 4].Replace("&", "%26");
-                    string postdata1 = "m=hs&type=buy&country=all&content=" + textBox1.Text + postdata.Replace("\\/", "%2F").Replace("\"", "").Replace(" ", "+").Replace("\\u6797", "%E6%9E%97") + "&page=" + i;
-                    textBox3.Text = postdata1;
+                    string postdata1 = "m=hs&type=buy&country=" + Country + "&content=" + textBox1.Text + postdata.Replace("\\/", "%2F").Replace("\"", "").Replace(" ", "+").Replace(",", "%2C").Replace("\\u6797", "%E6%9E%97").Replace("\\u2019", "%E2%80%99") + "&page=" + i;
+                    //textBox3.Text = postdata1;
                     string strhtml = method.PostUrl("http://data.imiker.com/ajax_list", postdata1, cookie, "utf-8");
 
                     //textBox2.Text = strhtml;
                     //MessageBox.Show("1");
 
-                    MatchCollection matches = Regex.Matches(strhtml, @"<h2>([\s\S]*?)<a href=""/detailed/hs/buy/([\s\S]*?)""");
+                   // MatchCollection matches = Regex.Matches(strhtml, @"<h2>([\s\S]*?)<a href=""/detailed/hs/buy/([\s\S]*?)""");
+                    MatchCollection matches = Regex.Matches(strhtml, @"""buy"",""([\s\S]*?)""");
                     MatchCollection countrys = Regex.Matches(strhtml, @"<span class=""country"">([\s\S]*?)</span>");
                     ArrayList lists = new ArrayList();
                     foreach (Match NextMatch in matches)
                     {
 
-                        lists.Add(NextMatch.Groups[2].Value);
+                        lists.Add(NextMatch.Groups[1].Value+"/"+textBox1.Text.Trim());
 
                     }
 
@@ -95,8 +96,78 @@ namespace 米课
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        public string Country = "all";
         private void button1_Click(object sender, EventArgs e)
         {
+            switch (comboBox1.Text)
+            {
+                case "全球":
+                    Country="all";
+                    break;
+                case "美国":
+                    Country = "imiker_us";
+                    break;
+                case "哥伦比亚":
+                    Country = "imiker_co";
+                    break;
+                case "秘鲁":
+                    Country = "imiker_pe";
+                    break;
+                case "巴拉圭":
+                    Country = "imiker_py";
+                    break;
+                case "厄瓜多尔":
+                    Country = "imiker_ec";
+                    break;
+                case "俄罗斯":
+                    Country = "imiker_ru";
+                    break;
+                case "乌克兰":
+                    Country = "imiker_ua";
+                    break;
+                case "巴基斯坦":
+                    Country = "imiker_pk";
+                    break;
+                case "阿根廷":
+                    Country = "ar";
+                    break;
+                case "智利":
+                    Country = "imiker_cl";
+                    break;
+                case "乌拉圭":
+                    Country = "imiker_uy";
+                    break;
+                case "委内瑞拉":
+                    Country = "ve";
+                    break;
+                case "哥斯达黎加":
+                    Country = "cr";
+                    break;
+                case "巴拿马":
+                    Country = "pa";
+                    break;
+                case "印度":
+                    Country = "imiker_in";
+                    break;
+                case "韩国":
+                    Country = "ko";
+                    break;
+                case "英国":
+                    Country = "uk";
+                    break;
+                case "德国":
+                    Country = "de";
+                    break;
+                case "法国":
+                    Country = "fr";
+                    break;
+                case "日本":
+                    Country = "jp";
+                    break;
+
+            }
+
             #region 通用验证
 
             bool value = false;
