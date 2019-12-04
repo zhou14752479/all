@@ -24,6 +24,38 @@ namespace 一机一码
                 Form1 fm1 = new Form1();
                 fm1.Show();
             }
+            else if (textBox1.Text == "abc147258" && textBox2.Text == "abc159357")
+            {
+                Form1 fm1 = new Form1();
+                fm1.Show();
+            }
+            else if(textBox1.Text == "jht147258" && textBox2.Text == "jht159357")
+            {
+                Form1 fm1 = new Form1();
+                fm1.Show();
+            }
+            else if (textBox1.Text == "kgt147258" && textBox2.Text == "kgt159357")
+            {
+                Form1 fm1 = new Form1();
+                fm1.Show();
+            }
+            else if (textBox1.Text == "fth147258" && textBox2.Text == "fth159357")
+            {
+                Form1 fm1 = new Form1();
+                fm1.Show();
+            }
+
+            else if (textBox1.Text == "qaz11256" && textBox2.Text == "djk159369")
+            {
+                Form1 fm1 = new Form1();
+                fm1.Show();
+            }
+
+            else if (textBox1.Text == "qaz25369" && textBox2.Text == "djk126588")
+            {
+                Form1 fm1 = new Form1();
+                fm1.Show();
+            }
 
             else
             {

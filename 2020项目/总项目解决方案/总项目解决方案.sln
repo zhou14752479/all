@@ -23,11 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wuba", "wuba\wuba.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "live500", "live500\live500.csproj", "{5EF37666-4A88-48E8-AF3B-C486F474C5D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔夫子旧书网", "孔夫子旧书网\孔夫子旧书网.csproj", "{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "湄洲库存", "湄洲库存\湄洲库存.csproj", "{13BBEFA4-35C0-44A9-B493-7D38635FACFA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浙江移动", "浙江移动\浙江移动.csproj", "{B496471A-0C24-4ACF-A524-04DA1EC461F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "图片转字符图", "图片转字符图\图片转字符图.csproj", "{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,10 +75,6 @@ Global
 		{5EF37666-4A88-48E8-AF3B-C486F474C5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EF37666-4A88-48E8-AF3B-C486F474C5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EF37666-4A88-48E8-AF3B-C486F474C5D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C93D0C75-7B6A-4493-B3E5-FB2F04BD3CC0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13BBEFA4-35C0-44A9-B493-7D38635FACFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13BBEFA4-35C0-44A9-B493-7D38635FACFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13BBEFA4-35C0-44A9-B493-7D38635FACFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +83,10 @@ Global
 		{B496471A-0C24-4ACF-A524-04DA1EC461F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B496471A-0C24-4ACF-A524-04DA1EC461F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B496471A-0C24-4ACF-A524-04DA1EC461F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

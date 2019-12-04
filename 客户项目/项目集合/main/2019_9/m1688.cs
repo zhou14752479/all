@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,7 +27,7 @@ namespace main._2019_9
         DataSet ds = new DataSet();
         private void button5_Click(object sender, EventArgs e)
         {
-          
+            dataGridView1.Columns.Clear();
            
 
             this.ds.Tables.Clear();
@@ -68,7 +69,7 @@ namespace main._2019_9
             }
         }
         bool zanting = true;
-        #region  主程序
+        #region  1688
         public void run()
         {
             try
@@ -135,6 +136,78 @@ namespace main._2019_9
 
         #endregion
 
+        #region  京东
+        public void jd()
+        {
+            //if (textBox4.Text != "")
+            //{
+               
+            //}
+
+
+            try
+            {
+
+
+
+
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+                    string title = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    string taobao = dataGridView1.Rows[i].Cells[0].Value.ToString();
+
+
+                    string url = "https://search.jd.com/Search?keyword="+System.Web.HttpUtility.UrlEncode(title)+ "&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&psort=3&click=0";
+
+                    string html = method.GetUrl(url, "utf-8");
+
+                    Match geshu = Regex.Match(html, @"result_count:'([\s\S]*?)'");
+                    if (geshu.Groups[1].Value == "")
+                        continue;
+                    if (Convert.ToInt32(geshu.Groups[1].Value) <= Convert.ToInt32(textBox2.Text))
+                    {
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+
+                        listViewItem.SubItems.Add(title);
+                        listViewItem.SubItems.Add(taobao);
+                        listViewItem.SubItems.Add(geshu.Groups[1].Value);
+                        listViewItem.SubItems.Add("符合条件");
+                    }
+                    else
+                    {
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+
+                        listViewItem.SubItems.Add(title);
+                        listViewItem.SubItems.Add(taobao);
+                        listViewItem.SubItems.Add(geshu.Groups[1].Value);
+                        listViewItem.SubItems.Add("不符合");
+                    }
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+
+                    Thread.Sleep(Convert.ToInt32(textBox3.Text));
+
+                }
+
+                MessageBox.Show("采集完成");
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+
+
+
+        #endregion
+
         private void m1688_Load(object sender, EventArgs e)
         {
 
@@ -144,37 +217,9 @@ namespace main._2019_9
         {
             button1.Enabled = false;
 
-            #region 通用验证
-
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == "15.15.15.15")
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-
-            }
-            else
-            {
-                MessageBox.Show("IP不符");
-
-            }
-            #endregion
+            Thread thread = new Thread(new ThreadStart(jd));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -219,5 +264,7 @@ namespace main._2019_9
         {
             Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[1].Text);
         }
+
+    
     }
 }

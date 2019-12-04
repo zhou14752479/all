@@ -27,13 +27,18 @@ namespace 浙江移动
         }
 
         bool zanting = true;
-        #region  主程序
-        public void run()
+        string cityId = "402881ea3286d488013286d756720002";
+
+        
+
+        #region  多个号码提取
+        public void tiqu()
         {
             try
 
             {
-                StreamReader sr = new StreamReader(textBox4.Text, Encoding.Default);
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                StreamReader sr = new StreamReader(path+"url.txt", Encoding.Default);
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -42,17 +47,15 @@ namespace 浙江移动
                 foreach (string  urls in text)
                 {
                     string[] url = urls.Split(new string[] { "," }, StringSplitOptions.None);
-
-                    Match suiteId = Regex.Match(url[0], @"prepayInfoId=.*");
+                    string ahtml = method.GetUrl(url[1], "utf-8");
+                    Match suiteId = Regex.Match(ahtml, @"suiteId"" value=""([\s\S]*?)""");
 
                   
                     for (int i = 0; i < 9999; i++)
                     {
 
-                        string URL = "http://wap.zj.10086.cn/shop/shop/goods/contractNumber/queryIndex.do?cityid=402881ea3286d488013286d756720002&currentPageNum=" + i + "&span1=&span2=&span3=&span4=&span5=&fuzzySpan=&span6=&span7=&span8=&span9=&span10=&teleCodePer=&suiteId="+ suiteId.Groups[0].Value .Replace("prepayInfoId=","").Trim() + "&priceRangeId=&baseFeeId=&numRuleId=&orderBy=&isNofour=N&pageCount=100";
-                        textBox2.Text = URL;
-                        MessageBox.Show("1");
-
+                        string URL = "http://wap.zj.10086.cn/shop/shop/goods/contractNumber/queryIndex.do?cityid=402881ea3286d488013286d756720002&currentPageNum=" + i + "&span1=&span2=&span3=&span4=&span5=&fuzzySpan=&span6=&span7=&span8=&span9=&span10=&teleCodePer=&suiteId="+ suiteId.Groups[1].Value .Replace("prepayInfoId=","").Trim() + "&priceRangeId=&baseFeeId=&numRuleId=&orderBy=&isNofour=N&pageCount=100";
+                      
                         string html = method.GetUrl(URL, "utf-8");
 
 
@@ -76,7 +79,7 @@ namespace 浙江移动
                             lv1.SubItems.Add(a3s[j].Groups[1].Value.Replace("\"", ""));
                             lv1.SubItems.Add(a4s[j].Groups[1].Value.Replace("\"", ""));
                             lv1.SubItems.Add(a5s[j].Groups[1].Value.Replace("\"", ""));
-                            lv1.SubItems.Add(url[1]);
+                            lv1.SubItems.Add(url[0]);
 
                             while (this.zanting == false)
                             {
@@ -99,11 +102,177 @@ namespace 浙江移动
             }
         }
         #endregion
+
+        #region  模糊查询
+        public void mohuchaxun()
+        {
+            if (checkBox1.Checked == true)
+            {
+                cityId = "Hangzhou";
+            }
+            else if (checkBox2.Checked == true)
+            {
+                cityId = "Ningbo";
+            }
+            else if (checkBox3.Checked == true)
+            {
+                cityId = "Wenzhou";
+            }
+            else if (checkBox4.Checked == true)
+            {
+                cityId = "Shaoxing";
+            }
+            else if (checkBox5.Checked == true)
+            {
+                cityId = "Quzhou";
+            }
+            else if (checkBox6.Checked == true)
+            {
+                cityId = "Jinhua";
+            }
+            else if (checkBox7.Checked == true)
+            {
+                cityId = "Zhoushan";
+            }
+            else if (checkBox8.Checked == true)
+            {
+                cityId = "Jiaxing";
+            }
+            else if (checkBox9.Checked == true)
+            {
+                cityId = "Huzhou";
+            }
+            else if (checkBox10.Checked == true)
+            {
+                cityId = "Lishui";
+            }
+            else if (checkBox11.Checked == true)
+            {
+                cityId = "Taizhou";
+            }
+
+
+
+
+
+
+            try
+            {
+                string a1 = textBox5.Text.Trim();
+                string a2 = textBox6.Text.Trim();
+                string a3 = textBox7.Text.Trim();
+                string a4 = textBox8.Text.Trim();
+                string a5 = textBox9.Text.Trim();
+                string a6 = textBox10.Text.Trim();
+                string a7 = textBox11.Text.Trim();
+                string a8 = textBox12.Text.Trim();
+                string a9 = textBox13.Text.Trim();
+                string a10 = textBox14.Text.Trim();
+                string a11 = textBox15.Text.Trim();
+                string URL = "http://www.zj.10086.cn/shop/shop/sales/ajaxNumberInfos.do?citycd=" + cityId + "&numId=&priceRangeId=&numRuleId=&teleCodePer=&teleCode=" + a1+"A"+a2+"A"+a3+"A"+a4+"A"+a5+"A"+a6+"A"+a7+"A"+a8+"A"+a9+"A"+a10+"A"+a11+"A&suiteTypeId=&suiteDetailId=&proId=&isLoverTeleCode=&regionid=&officeId=&baseFeeId=&noFourNumber=false&stuTag=&orderBy=";
+
+                string html = method.GetUrl(URL, "utf-8");
+
+                MatchCollection a1s = Regex.Matches(html, @"<h6>([\s\S]*?)</h6>");  //手机号
+                MatchCollection a2s = Regex.Matches(html, @"<u>([\s\S]*?)</u>");  //预存
+              
+
+
+                for (int j = 0; j < a1s.Count; j++)
+                {
+                    ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据      
+                    lv1.SubItems.Add(a1s[j].Groups[1].Value.Replace("\"", ""));
+                    lv1.SubItems.Add(a2s[j].Groups[1].Value.Replace("\"", ""));
+                  
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        #endregion
+
+        #region  精确查询
+        public void jingquechaxun()
+        {
+            if (checkBox1.Checked == true)
+            {
+                cityId = "Hangzhou";
+            }
+            else if (checkBox2.Checked == true)
+            {
+                cityId = "Ningbo";
+            }
+            else if (checkBox3.Checked == true)
+            {
+                cityId = "Wenzhou";
+            }
+            else if (checkBox4.Checked == true)
+            {
+                cityId = "Shaoxing";
+            }
+            else if (checkBox5.Checked == true)
+            {
+                cityId = "Quzhou";
+            }
+            else if (checkBox6.Checked == true)
+            {
+                cityId = "Jinhua";
+            }
+            else if (checkBox7.Checked == true)
+            {
+                cityId = "Zhoushan";
+            }
+            else if (checkBox8.Checked == true)
+            {
+                cityId = "Jiaxing";
+            }
+            else if (checkBox9.Checked == true)
+            {
+                cityId = "Huzhou";
+            }
+            else if (checkBox10.Checked == true)
+            {
+                cityId = "Lishui";
+            }
+            else if (checkBox11.Checked == true)
+            {
+                cityId = "Taizhou";
+            }
+            try
+            {
+                string URL = "http://www.zj.10086.cn/shop/shop/sales/ajaxNumberInfos.do?citycd="+cityId+"&numId=&priceRangeId=&numRuleId=&teleCodePer=&teleCode="+textBox1.Text.Trim()+"&suiteTypeId=&suiteDetailId=&proId=&isLoverTeleCode=&regionid=&officeId=&baseFeeId=&noFourNumber=false&stuTag=&orderBy=";
+
+                string html = method.GetUrl(URL, "utf-8");
+
+                MatchCollection a1s = Regex.Matches(html, @"<h6>([\s\S]*?)</h6>");  //手机号
+                MatchCollection a2s = Regex.Matches(html, @"<u>([\s\S]*?)</u>");  //预存
+
+
+
+                for (int j = 0; j < a1s.Count; j++)
+                {
+                    ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据      
+                    lv1.SubItems.Add(a1s[j].Groups[1].Value.Replace("\"", ""));
+                    lv1.SubItems.Add(a2s[j].Groups[1].Value.Replace("\"", ""));
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        #endregion
         private void Button2_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
+            Thread thread = new Thread(new ThreadStart(tiqu));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -117,6 +286,44 @@ namespace 浙江移动
             {
                 textBox4.Text = openFileDialog1.FileName;
             }
+        }
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+   
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+     
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(mohuchaxun));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(jingquechaxun));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
     }
 }
