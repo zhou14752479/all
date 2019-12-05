@@ -101,7 +101,9 @@ namespace 图片转字符图
         {
 
             //ConvertToChar(new Bitmap(textBox1.Text), @"D:\1.txt",20,20);
-            run(textBox1.Text, @"D:\1.txt");
+            //   run(textBox1.Text, @"D:\1.txt");
+
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)

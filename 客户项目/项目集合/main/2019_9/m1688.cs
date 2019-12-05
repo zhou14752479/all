@@ -217,7 +217,7 @@ namespace main._2019_9
         {
             button1.Enabled = false;
 
-            Thread thread = new Thread(new ThreadStart(jd));
+            Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
         }

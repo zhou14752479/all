@@ -89,6 +89,12 @@
     <Compile Include="webbrowser.Designer.cs">
       <DependentUpon>webbrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="yanzheng.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="yanzheng.Designer.cs">
+      <DependentUpon>yanzheng.cs</DependentUpon>
+    </Compile>
     <Compile Include="城市控件.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="webbrowser.resx">
       <DependentUpon>webbrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="yanzheng.resx">
+      <DependentUpon>yanzheng.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="城市控件.resx">
       <DependentUpon>城市控件.cs</DependentUpon>

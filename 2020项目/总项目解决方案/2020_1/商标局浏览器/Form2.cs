@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -58,8 +60,31 @@ namespace 商标局浏览器
         #endregion
         private void Button1_Click(object sender, EventArgs e)
         {
-            string URL = "http://h.xunlianip.com/Users-whiteIpAddNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0&whiteip="+ textBox1.Text.Trim();
-            textBox2.Text = GetUrl(URL,"utf-8");
+           
+
+            
+
+            string URL = "http://h.xunlianip.com/Users-whiteIpAddNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0&whiteip=" + textBox1.Text.Trim();
+           string ahtml = GetUrl(URL, "utf-8");
+            if (ahtml.Contains("最多"))
+            {
+                string html = GetUrl("http://h.xunlianip.com/Users-whiteIpListNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0", "utf-8");
+                Match ip1 = Regex.Match(html, @"\[""([\s\S]*?)""");
+                string shanchuHtml = GetUrl("http://h.xunlianip.com/Users-whiteIpDelNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0&whiteip=" + ip1.Groups[1].Value, "utf-8");
+                Thread.Sleep(2000);
+                string URL1 = "http://h.xunlianip.com/Users-whiteIpAddNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0&whiteip=" + textBox1.Text.Trim();
+                textBox2.Text= GetUrl(URL1, "utf-8");
+
+            }
+            else
+            {
+                textBox2.Text = ahtml;
+            }
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

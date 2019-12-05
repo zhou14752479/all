@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -68,7 +69,36 @@ namespace zhaopin_58
         }
 
 
+        #region 获取Mac地址
+        /// <summary>
+        /// 获取Mac地址
+        /// </summary>
+        /// <returns></returns>
+        public static string GetMacAddress()
+        {
+            try
+            {
+                string strMac = string.Empty;
+                ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+                ManagementObjectCollection moc = mc.GetInstances();
+                foreach (ManagementObject mo in moc)
+                {
+                    if ((bool)mo["IPEnabled"] == true)
+                    {
+                        strMac = mo["MacAddress"].ToString();
+                    }
+                }
+                moc = null;
+                mc = null;
+                return strMac;
+            }
+            catch
+            {
+                return "unknown";
+            }
+        }
 
+        #endregion
 
 
 

@@ -29,7 +29,7 @@ namespace zhaopin_58
         }
 
         string IP = "";
-        #region 获取数据库美团城市名称
+        #region 获取XML美团城市名称
         public void getCityName()
         {
             ArrayList list = new ArrayList();
@@ -64,6 +64,73 @@ namespace zhaopin_58
             comboBox1.DataSource = list;
 
         }
+        #endregion
+
+        #region 获取数据库58城市名称
+        /// <summary>
+        /// 获取数据库美团城市名称
+        /// </summary>
+        /// <param name="cob">数据绑定的下拉框</param>
+        public  void getDataCityName()
+        {
+            ArrayList list = new ArrayList();
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
+                string str = "SELECT name from meituan_province_city ";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    list.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                ee.Message.ToString();
+            }
+           comboBox1.DataSource = list;
+
+        }
+
+        #endregion
+
+        #region  获取数据库中城市名称对应的ID
+
+        public string GetcId(string city)
+        {
+
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select cid from province where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                reader.Read();
+
+                string cid = reader["cid"].ToString().Trim();
+                mycon.Close();
+                reader.Close();
+                return cid;
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+
+
+        }
+
         #endregion
 
         #region 获取XML城市名称返回集合
@@ -234,9 +301,16 @@ namespace zhaopin_58
 
         }
         #endregion
+
+
+
+    
+
+
         private void meituan_Load(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(getCityName));
+           
+            Thread thread = new Thread(new ThreadStart(getDataCityName));
             thread.Start();
 
         }
@@ -475,7 +549,7 @@ namespace zhaopin_58
 
                 string city = comboBox1.Text;
 
-                string cityId = GetCityId(city);
+                string cityId = GetcId(city);
 
 
                 foreach (string keyword in keywords)
@@ -505,8 +579,8 @@ namespace zhaopin_58
                         foreach (string list in lists)
                         {
 
-                            string aurl = "https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid="+list;
-                            //  string aurl = "https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + list;
+                            //string aurl = "https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid="+list;
+                              string aurl = "https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + list;
                             // string aurl = "https://apimobile.meituan.com/group/v1/poi/" + list;
                             //string aurl = "https://i.meituan.com/wrapapi/poiinfo?poiId="+list;
                             string strhtml = GetUrl(aurl);  //定义的GetRul方法 返回 reader.ReadToEnd()                             
@@ -514,7 +588,7 @@ namespace zhaopin_58
 
                             Match name = Regex.Match(strhtml, @"""name"":""([\s\S]*?)""");
 
-                            Match addr = Regex.Match(strhtml, @"""addr"":""([\s\S]*?)""");
+                            Match addr = Regex.Match(strhtml, @"""address"":""([\s\S]*?)""");
                             Match tel = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
                             Match areaName = Regex.Match(strhtml, @"""areaName"":""([\s\S]*?)""");
                             Match score = Regex.Match(strhtml, @"avgScore"":([\s\S]*?),");
@@ -858,6 +932,11 @@ namespace zhaopin_58
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+        private void LinkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            button1.Enabled = true;
         }
     }
 }

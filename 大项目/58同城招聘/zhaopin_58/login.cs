@@ -143,10 +143,10 @@ namespace zhaopin_58
 
                         }
 
-                        //meituan mt = new meituan();
-                        //mt.Show();
-                        美团 mt = new 美团();
-                            mt.Show();
+                        meituan mt = new meituan();
+                        mt.Show();
+                        //美团 mt = new 美团();
+                        //    mt.Show();
                         this.Hide();
 
 
