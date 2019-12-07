@@ -426,14 +426,15 @@ namespace main
             //每行内容
             for (i = 0; i < lv.Items.Count; i++)
             {
-
-                dr = dt.NewRow();
-                for (j = 0; j < lv.Columns.Count; j++)
+                if (lv.Items[i].SubItems[4].Text == "符合条件")
                 {
-                    dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+                    dr = dt.NewRow();
+                    for (j = 0; j < lv.Columns.Count; j++)
+                    {
+                        dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+                    }
+                    dt.Rows.Add(dr);
                 }
-                dt.Rows.Add(dr);
-
 
             }
 
@@ -561,8 +562,81 @@ namespace main
 
         #endregion
 
+        #region NPOI自动导出导出表格
+        public static int DataTableToExcel2(DataTable data, string sheetName, bool isColumnWritten,string title)
+        {
+     
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string time = DateTime.Now.ToString("F").Replace(" ", "").Replace(":","");
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            ISheet sheet = null;
+            IWorkbook workbook = null;
+            FileStream fs = null;
 
-            #region  listview导出文本TXT
+            string fileName = path + title+time + "符合条件.xlsx";
+           
+            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
+                workbook = new XSSFWorkbook();
+            else if (fileName.IndexOf(".xls") > 0) // 2003版本
+                workbook = new HSSFWorkbook();
+
+            try
+            {
+                if (workbook != null)
+                {
+                    sheet = workbook.CreateSheet(sheetName);
+                    ICellStyle style = workbook.CreateCellStyle();
+                    style.FillPattern = FillPattern.SolidForeground;
+
+                }
+                else
+                {
+                    return -1;
+                }
+
+                if (isColumnWritten == true) //写入DataTable的列名
+                {
+                    IRow row = sheet.CreateRow(0);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
+
+                    }
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                for (i = 0; i < data.Rows.Count; ++i)
+                {
+                    IRow row = sheet.CreateRow(count);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());
+                    }
+                    ++count;
+                }
+                workbook.Write(fs); //写入到excel
+                workbook.Close();
+                fs.Close();
+                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
+                MessageBox.Show("数据导出完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return -1;
+            }
+        }
+
+        #endregion
+        #region  listview导出文本TXT
         public static void ListviewToTxt(ListView listview)
         {
             if (listview.Items.Count == 0)

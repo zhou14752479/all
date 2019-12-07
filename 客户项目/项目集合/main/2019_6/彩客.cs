@@ -63,7 +63,7 @@ namespace main._2019_6
             {
                 string url = "http://1x2d.win007.com/"+IDS[i]+".js";
                 string strhtml = method.GetUrl(url, "utf-8");
-                Match aaas = Regex.Match(strhtml, @"Bet 365\|([\s\S]*?)bet 365");
+                Match aaas = Regex.Match(strhtml, @"Bet 365\|([\s\S]*?)伟德");
                 //Match bbbs = Regex.Match(strhtml, @"Expekt\|([\s\S]*?)Expekt");
                 //Match cccs = Regex.Match(strhtml, @"Marathon\|([\s\S]*?)马博");
                 Match ddds = Regex.Match(strhtml, @"William Hill\|([\s\S]*?)威廉希尔");
@@ -108,7 +108,7 @@ namespace main._2019_6
                     //}
 
                     lv1.SubItems.Add(zhu.Groups[1].Value + "：" + ke.Groups[1].Value);
-                    lv1.SubItems.Add("bet365");  
+                    lv1.SubItems.Add("伟德");  
                     lv1.SubItems.Add(TIME);   //时间
 
                 }
@@ -230,6 +230,19 @@ namespace main._2019_6
         private void Button6_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void 彩客_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

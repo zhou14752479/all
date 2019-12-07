@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浏览器多账户管理", "2020_1\浏览器多账户管理\浏览器多账户管理.csproj", "{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商铺58", "商铺58\商铺58.csproj", "{5103A817-A6C5-44C1-B1D9-37E19941E85E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "一机一码", "一机一码\一机一码.csproj", "{B7B287A6-64AA-44EE-8875-2C0CEA310DB0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜索引擎", "搜索引擎\搜索引擎.csproj", "{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}"
 EndProject
@@ -29,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浙江移动", "浙江移�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "图片转字符图", "图片转字符图\图片转字符图.csproj", "{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,18 +37,10 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54F59A7F-6E42-43DB-89E7-F5E66E1F3103}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5103A817-A6C5-44C1-B1D9-37E19941E85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5103A817-A6C5-44C1-B1D9-37E19941E85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5103A817-A6C5-44C1-B1D9-37E19941E85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5103A817-A6C5-44C1-B1D9-37E19941E85E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7B287A6-64AA-44EE-8875-2C0CEA310DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7B287A6-64AA-44EE-8875-2C0CEA310DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7B287A6-64AA-44EE-8875-2C0CEA310DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7B287A6-64AA-44EE-8875-2C0CEA310DB0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F9E9AB2-09D9-4069-9C2D-03189DB1676C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +77,10 @@ Global
 		{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CEFC2DB-555B-4AE7-853D-0D9A344AFFEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

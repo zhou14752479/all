@@ -16,7 +16,7 @@ namespace 商标局浏览器
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form2());
+            Application.Run(new 管理());
         }
     }
 }

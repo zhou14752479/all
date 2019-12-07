@@ -59,8 +59,8 @@ namespace 浙江移动
                         string ahtml = method.GetUrl(url[1], "utf-8");
                         Match suiteId = Regex.Match(ahtml, @"suiteId"" value=""([\s\S]*?)""");
 
-
-                        for (int i = 0; i < 9999; i++)
+                    
+                        for (int i = 0; i < 1500; i++)
                         {
 
                             string URL = "http://wap.zj.10086.cn/shop/shop/goods/contractNumber/queryIndex.do?cityid=402881ea3286d488013286d756720002&currentPageNum=" + i + "&span1=&span2=&span3=&span4=&span5=&fuzzySpan=&span6=&span7=&span8=&span9=&span10=&teleCodePer=&suiteId=" + suiteId.Groups[1].Value.Replace("prepayInfoId=", "").Trim() + "&priceRangeId=&baseFeeId=&numRuleId=&orderBy=&isNofour=N&pageCount=100";
@@ -77,7 +77,7 @@ namespace 浙江移动
                             MatchCollection a5s = Regex.Matches(html, @"""inLen"":([\s\S]*?),");
 
                             if (a1s.Count == 0)
-                                break;
+                                continue;
 
 
                             for (int j = 0; j < a1s.Count; j++)

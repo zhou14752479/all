@@ -228,6 +228,7 @@
             this.Name = "彩客";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "彩客";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.彩客_FormClosing);
             this.Load += new System.EventHandler(this.彩客_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

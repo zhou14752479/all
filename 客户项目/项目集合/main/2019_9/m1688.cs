@@ -160,36 +160,46 @@ namespace main._2019_9
                     string url = "https://search.jd.com/Search?keyword="+System.Web.HttpUtility.UrlEncode(title)+ "&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&psort=3&click=0";
 
                     string html = method.GetUrl(url, "utf-8");
-
-                    Match geshu = Regex.Match(html, @"result_count:'([\s\S]*?)'");
-                    if (geshu.Groups[1].Value == "")
-                        continue;
-                    if (Convert.ToInt32(geshu.Groups[1].Value) <= Convert.ToInt32(textBox2.Text))
+                    if (html.Contains("没有找到"))
                     {
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
 
                         listViewItem.SubItems.Add(title);
                         listViewItem.SubItems.Add(taobao);
-                        listViewItem.SubItems.Add(geshu.Groups[1].Value);
-                        listViewItem.SubItems.Add("符合条件");
+                        listViewItem.SubItems.Add("0");
+                        listViewItem.SubItems.Add("不符合");
                     }
                     else
                     {
-                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                        Match geshu = Regex.Match(html, @"result_count:'([\s\S]*?)'");
+                        if (geshu.Groups[1].Value == "")
+                            continue;
+                        if (Convert.ToInt32(geshu.Groups[1].Value) <= Convert.ToInt32(textBox2.Text))
+                        {
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
 
-                        listViewItem.SubItems.Add(title);
-                        listViewItem.SubItems.Add(taobao);
-                        listViewItem.SubItems.Add(geshu.Groups[1].Value);
-                        listViewItem.SubItems.Add("不符合");
+                            listViewItem.SubItems.Add(title);
+                            listViewItem.SubItems.Add(taobao);
+                            listViewItem.SubItems.Add(geshu.Groups[1].Value);
+                            listViewItem.SubItems.Add("符合条件");
+                        }
+                        else
+                        {
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+
+                            listViewItem.SubItems.Add(title);
+                            listViewItem.SubItems.Add(taobao);
+                            listViewItem.SubItems.Add(geshu.Groups[1].Value);
+                            listViewItem.SubItems.Add("不符合");
+                        }
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+
+                        Thread.Sleep(Convert.ToInt32(textBox3.Text));
                     }
-
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                    }
-
-                    Thread.Sleep(Convert.ToInt32(textBox3.Text));
-
                 }
 
                 MessageBox.Show("采集完成");
@@ -217,7 +227,7 @@ namespace main._2019_9
         {
             button1.Enabled = false;
 
-            Thread thread = new Thread(new ThreadStart(run));
+            Thread thread = new Thread(new ThreadStart(jd));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
         }
@@ -235,7 +245,7 @@ namespace main._2019_9
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.DataTableToExcel2(method.listViewToDataTable(this.listView1), "Sheet1", true, Path.GetFileNameWithoutExtension(textBox1.Text));
         }
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
