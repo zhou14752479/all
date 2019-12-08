@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
+using MySql.Data.MySqlClient;
 
 namespace 浙江移动
 {
@@ -60,7 +61,7 @@ namespace 浙江移动
                         Match suiteId = Regex.Match(ahtml, @"suiteId"" value=""([\s\S]*?)""");
 
                     
-                        for (int i = 0; i < 1500; i++)
+                        for (int i = 0; i < 9999; i++)
                         {
 
                             string URL = "http://wap.zj.10086.cn/shop/shop/goods/contractNumber/queryIndex.do?cityid=402881ea3286d488013286d756720002&currentPageNum=" + i + "&span1=&span2=&span3=&span4=&span5=&fuzzySpan=&span6=&span7=&span8=&span9=&span10=&teleCodePer=&suiteId=" + suiteId.Groups[1].Value.Replace("prepayInfoId=", "").Trim() + "&priceRangeId=&baseFeeId=&numRuleId=&orderBy=&isNofour=N&pageCount=100";
@@ -337,13 +338,37 @@ namespace 浙江移动
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 20; i++)
+            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+            MySqlCommand cmd = new MySqlCommand("select * from vip where username='浙江移动'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+            if (reader.Read())
             {
-                Thread thread = new Thread(new ThreadStart(tiqu));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+
+                string password = reader["password"].ToString().Trim();
+
+                if (password != "浙江移动")
+
+                {
+                    MessageBox.Show("验证失败");
+
+                    Environment.Exit(0);
+                }
+
+
+                for (int i = 0; i < 20; i++)
+                {
+                    Thread thread = new Thread(new ThreadStart(tiqu));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
             }
-           
+
+
 
         }
 
