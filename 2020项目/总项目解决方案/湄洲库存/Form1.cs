@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -146,7 +147,7 @@ namespace 湄洲库存
         {
             try
             {
-                for (int i = start; i < 245897; i++)
+                for (int i = start; i < 999999999; i++)
                 {
 
                     string keyword = getkey(i);
@@ -264,9 +265,33 @@ namespace 湄洲库存
         {
             status = true;
             label2.Text = "开始采集中.....";
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+
+            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+            MySqlCommand cmd = new MySqlCommand("select * from vip where username='湄洲库存'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+            if (reader.Read())
+            {
+
+                string password = reader["password"].ToString().Trim();
+
+                if (password != "湄洲库存")
+
+                {
+                    MessageBox.Show("验证失败");
+
+                    Environment.Exit(0);
+                }
+
+
+                    Thread thread = new Thread(new ThreadStart(run));
+                    thread.Start();
+               
+            }
         }
 
         private void Button2_Click(object sender, EventArgs e)

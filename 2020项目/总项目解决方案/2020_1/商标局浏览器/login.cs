@@ -91,7 +91,7 @@ namespace 商标局浏览器
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+           
             try
             {
                 DateTime dt = DateTime.Now;
@@ -122,8 +122,8 @@ namespace 商标局浏览器
                     //判断密码
                     if (textBox2.Text.Trim() == password)
                     {                          
-                       Form2 fm2 = new Form2();
-                        fm2.Show();
+                       Form1 fm1 = new Form1();
+                        fm1.Show();
                         this.Hide();
                         mycon.Close();
                         return;

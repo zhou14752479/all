@@ -69,6 +69,15 @@ namespace 搜索引擎
 
         }
 
+        public string wei(string input)
+        {
+            string url = "http://tools33816.cn/api.php?key=";
+            string postdata = "info="+ System.Web.HttpUtility.UrlEncode(input) ;
+
+            string html = method.PostUrl(url,postdata,"","utf-8");
+            return html;
+        }
+
         public string IP = "";
         public static string COOKIE = "usid=07WwkCu3b_78aUPT; IPLOC=CN3213; SUV=00BA2DBC3159B8CD5D2585534E6EA580; CXID=5EA7E0DBFC0F423A95BC1EB511A405C7; SUID=CDB859313118960A000000005D25B077; ssuid=7291915575; pgv_pvi=5970681856; start_time=1562896518693; front_screen_resolution=1920*1080; wuid=AAElSJCaKAAAAAqMCGWoVQEAkwA=; FREQUENCY=1562896843272_13; sg_uuid=6358936283; newsCity=%u5BBF%u8FC1; sortcookie=1; sw_uuid=3118318168; ld=Hyllllllll2NmXZSlllllVLfKx9llllltm@ySyllll9lllll4Zlll5@@@@@@@@@@; sct=2; SNUID=D88B74083A3FAF46DECF61003A5B6CA1";
         #region GET请求
@@ -699,6 +708,7 @@ namespace 搜索引擎
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            
             zanting = false;
         }
 

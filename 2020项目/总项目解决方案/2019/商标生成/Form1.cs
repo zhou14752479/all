@@ -156,5 +156,10 @@ namespace 商标生成
         {
 
         }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

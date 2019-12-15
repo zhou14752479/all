@@ -232,12 +232,17 @@ namespace 商标局浏览器
                 string url = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=1&fa=0&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7";
 
                 string IP = GetUrl(url, "utf-8");
+               
+                if (IP.Contains("白名单"))
+                {
+                    textBox1.Text = DateTime.Now.ToString() + " 请添加当前IP";
+                }
 
-                if (IP.Contains(":"))
+                else if (IP.Contains(":"))
                 {
 
                     SetProxy(IP.Trim());
-                    
+
                     textBox1.Text += DateTime.Now.ToString() + "  重置成功" + "\r\n";
                 }
                 else

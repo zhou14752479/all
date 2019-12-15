@@ -79,6 +79,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -204,6 +205,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.panel1);
             this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Controls.Add(this.toolStrip3);
             this.tabPage3.Controls.Add(this.toolStrip2);
@@ -410,6 +412,7 @@
             this.toolStripButton11.Name = "toolStripButton11";
             this.toolStripButton11.Size = new System.Drawing.Size(76, 21);
             this.toolStripButton11.Text = "开始采集";
+            this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click);
             // 
             // toolStripButton15
             // 
@@ -486,6 +489,13 @@
             this.statusStrip1.Size = new System.Drawing.Size(1393, 22);
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(187, 94);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(295, 261);
+            this.panel1.TabIndex = 5;
             // 
             // Form1
             // 
@@ -571,6 +581,7 @@
         private System.Windows.Forms.ToolStripMenuItem 新建分组ToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
