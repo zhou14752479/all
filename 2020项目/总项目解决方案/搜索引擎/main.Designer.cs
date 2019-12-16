@@ -69,7 +69,6 @@
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.label17 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
@@ -89,6 +88,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -360,7 +360,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Size = new System.Drawing.Size(1021, 640);
-            this.splitContainer1.SplitterDistance = 777;
+            this.splitContainer1.SplitterDistance = 726;
             this.splitContainer1.TabIndex = 0;
             // 
             // listView1
@@ -379,7 +379,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(777, 640);
+            this.listView1.Size = new System.Drawing.Size(726, 640);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -420,12 +420,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.textBox15);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.textBox14);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.linkLabel2);
-            this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.textBox13);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.textBox12);
@@ -445,7 +445,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(240, 640);
+            this.groupBox2.Size = new System.Drawing.Size(291, 640);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行控制";
@@ -496,17 +496,6 @@
             this.linkLabel2.Text = "停止程序";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("黑体", 9F);
-            this.label17.ForeColor = System.Drawing.Color.Silver;
-            this.label17.Location = new System.Drawing.Point(11, 442);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(221, 12);
-            this.label17.TabIndex = 50;
-            this.label17.Text = "默认按照要求自动导出，也可以手动导出";
-            // 
             // textBox13
             // 
             this.textBox13.Location = new System.Drawing.Point(103, 418);
@@ -546,11 +535,11 @@
             // textBox11
             // 
             this.textBox11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox11.Location = new System.Drawing.Point(3, 457);
+            this.textBox11.Location = new System.Drawing.Point(3, 479);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
             this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox11.Size = new System.Drawing.Size(234, 180);
+            this.textBox11.Size = new System.Drawing.Size(285, 158);
             this.textBox11.TabIndex = 45;
             // 
             // button4
@@ -636,6 +625,7 @@
             this.checkBox1.TabIndex = 37;
             this.checkBox1.Text = "导入数据库";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             // 
             // label14
             // 
@@ -707,6 +697,18 @@
             // 
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("黑体", 11F);
+            this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.checkBox2.Location = new System.Drawing.Point(14, 445);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(106, 19);
+            this.checkBox2.TabIndex = 56;
+            this.checkBox2.Text = "开启伪原创";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // main
             // 
@@ -793,12 +795,12 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

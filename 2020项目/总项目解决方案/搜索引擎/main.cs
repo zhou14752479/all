@@ -68,7 +68,11 @@ namespace 搜索引擎
             fs1.Close();
 
         }
-
+        /// <summary>
+        /// 伪原创
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public string wei(string input)
         {
             string url = "http://tools33816.cn/api.php?key=";
@@ -250,15 +254,32 @@ namespace 搜索引擎
                                     }
                                     if (a4.Groups[1].Value.Length > 500)
                                     {
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                        listViewItem.SubItems.Add(a1.Groups[1].Value);
-                                        listViewItem.SubItems.Add(a2.Groups[1].Value);
-                                        listViewItem.SubItems.Add(a3.Groups[1].Value);
-                                        listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
-                                        listViewItem.SubItems.Add(keyword);
-                                        listViewItem.SubItems.Add(URL);
+                                        if (checkBox2.Checked == true)
+                                        {
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(wei(a1.Groups[1].Value));
+                                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                            listViewItem.SubItems.Add(wei(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim()));
+                                            listViewItem.SubItems.Add(keyword);
+                                            listViewItem.SubItems.Add(URL);
+                                            exportTXT(key.Replace(",", ""), wei(a1.Groups[1].Value), wei(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim()));
+                                        }
 
-                                        exportTXT(key.Replace(",",""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                        else
+                                        {
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(a1.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                            listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                            listViewItem.SubItems.Add(keyword);
+                                            listViewItem.SubItems.Add(URL);
+                                            exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                        }
+
+
+                                       
                                         while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -356,16 +377,32 @@ namespace 搜索引擎
 
                                     if (a4.Groups[2].Value.Length > 500)
                                     {
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                        listViewItem.SubItems.Add(a1.Groups[1].Value);
-                                        listViewItem.SubItems.Add(a2.Groups[1].Value);
-                                        listViewItem.SubItems.Add(a3.Groups[1].Value);
-                                        listViewItem.SubItems.Add(Regex.Replace(a4.Groups[2].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
-                                        listViewItem.SubItems.Add(keyword);
-                                        listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+                                        if (checkBox2.Checked == true)
+                                        {
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(wei(a1.Groups[1].Value));
+                                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                            listViewItem.SubItems.Add(wei(Regex.Replace(a4.Groups[2].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim()));
+                                            listViewItem.SubItems.Add(keyword);
+                                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
 
-                                        exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[2].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
-                                        while (this.zanting == false)
+                                            exportTXT(key.Replace(",", ""), wei(a1.Groups[1].Value), wei(Regex.Replace(a4.Groups[2].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim()));
+                                        }
+
+                                        else
+                                        {
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(a1.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                            listViewItem.SubItems.Add(Regex.Replace(a4.Groups[2].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
+                                            listViewItem.SubItems.Add(keyword);
+                                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+
+                                            exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[2].Value, "<(?!img|p|/p)[^>]*>", "").Replace("<!-- 政务处理 -->", "").Trim());
+                                        }
+                                            while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                         }
@@ -457,15 +494,31 @@ namespace 搜索引擎
 
                                     if (a4.Groups[1].Value.Length > 500)
                                     {
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                        listViewItem.SubItems.Add(a1.Groups[1].Value);
-                                        listViewItem.SubItems.Add(a2.Groups[1].Value);
-                                        listViewItem.SubItems.Add(a3.Groups[1].Value);
-                                        listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
-                                        listViewItem.SubItems.Add(keyword);
-                                        listViewItem.SubItems.Add(urls[j].Groups[2].Value);
-                                        exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
-                                        while (this.zanting == false)
+                                        if (checkBox2.Checked == true)
+                                        {
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(wei(a1.Groups[1].Value));
+                                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                            listViewItem.SubItems.Add(wei(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim()));
+                                            listViewItem.SubItems.Add(keyword);
+                                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+                                            exportTXT(key.Replace(",", ""), wei(a1.Groups[1].Value), wei(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim()));
+                                        }
+
+                                        else
+                                        {
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(a1.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                            listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                            listViewItem.SubItems.Add(keyword);
+                                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+                                            exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                        }
+
+                                            while (this.zanting == false)
                                         {
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                         }
@@ -553,16 +606,34 @@ namespace 搜索引擎
 
                                     if (a4.Groups[1].Value.Length > 500)
                                     {
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                        listViewItem.SubItems.Add(a1.Groups[1].Value);
-                                        listViewItem.SubItems.Add(a2.Groups[1].Value);
-                                        listViewItem.SubItems.Add(a3.Groups[1].Value);
-                                        //listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
-                                        listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Replace("原标题：","").Replace("(sinaads = window.sinaads || []).push({});", "").Trim());
-                                        listViewItem.SubItems.Add(keyword);
-                                        listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+                                        if (checkBox2.Checked == true)
+                                        {
 
-                                        exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Replace("原标题：", "").Replace("(sinaads = window.sinaads || []).push({});", "").Trim());
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(wei(a1.Groups[1].Value));
+                                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                            //listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                            listViewItem.SubItems.Add(wei(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Replace("原标题：", "").Replace("(sinaads = window.sinaads || []).push({});", "").Trim()));
+                                            listViewItem.SubItems.Add(keyword);
+                                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+                                            exportTXT(key.Replace(",", ""), wei(a1.Groups[1].Value), wei(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Replace("原标题：", "").Replace("(sinaads = window.sinaads || []).push({});", "").Trim()));
+                                        }
+                                        else
+                                        {
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(a1.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a2.Groups[1].Value);
+                                            listViewItem.SubItems.Add(a3.Groups[1].Value);
+                                            //listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<(?!img|p|/p)[^>]*>", "").Trim());
+                                            listViewItem.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Replace("原标题：", "").Replace("(sinaads = window.sinaads || []).push({});", "").Trim());
+                                            listViewItem.SubItems.Add(keyword);
+                                            listViewItem.SubItems.Add(urls[j].Groups[2].Value);
+                                            exportTXT(key.Replace(",", ""), a1.Groups[1].Value, Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Replace("原标题：", "").Replace("(sinaads = window.sinaads || []).push({});", "").Trim());
+                                        }
+                                      
+
+                                       
 
                                         while (this.zanting == false)
                                         {
