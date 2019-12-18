@@ -126,12 +126,12 @@ namespace 湄洲库存
 
         }
 
-        #region
+        #region 获取页码
 
         public string getpage(string key)
         {
             string url = "http://nddb.ic361.cn:8050/proc/b2b/mz_search";
-            string postdata = "para%5Bpz%5D=&para%5Bis_key%5D=0&para%5Bis_exc%5D=0&para%5Bpn%5D=" + key + "&para%5Bpage%5D=1&para%5Bpage_size%5D=30&token=&uid=-1";
+            string postdata = "para%5Bpz%5D=&para%5Bis_key%5D=0&para%5Bis_exact%5D=0&para%5Bpn%5D=" + key + "&para%5Bpage%5D=1&para%5Bpage_size%5D=30&token=&uid=-1";
             string cookie = "";
             string html = PostUrl(url, postdata, cookie, "utf-8");
 
@@ -169,7 +169,7 @@ namespace 湄洲库存
                     for (int j = 1; j <=page; j++)
                     {
                         string url = "http://nddb.ic361.cn:8050/proc/b2b/mz_search";
-                        string postdata = "para%5Bpz%5D=&para%5Bis_key%5D=0&para%5Bis_exc%5D=0&para%5Bpn%5D="+ keyword + "&para%5Bpage%5D="+j+"&para%5Bpage_size%5D=30&token=&uid=-1";
+                        string postdata = "para%5Bpz%5D=&para%5Bis_key%5D=0&para%5Bis_exact%5D=0&para%5Bpn%5D=" + keyword + "&para%5Bpage%5D="+j+"&para%5Bpage_size%5D=30&token=&uid=-1";
                         string cookie = "";
                         string html = PostUrl(url, postdata, cookie, "utf-8");
 
@@ -290,6 +290,7 @@ namespace 湄洲库存
 
                     Thread thread = new Thread(new ThreadStart(run));
                     thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
                
             }
         }
@@ -306,6 +307,7 @@ namespace 湄洲库存
 
         private void Button4_Click(object sender, EventArgs e)
         {
+          
             status = false;
         }
 

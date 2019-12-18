@@ -201,42 +201,19 @@ namespace main
 
         #endregion
 
+        bool denglu = false;
 
-        
 
         private void Button2_Click(object sender, EventArgs e)
         {
-
-            #region 通用登录
-
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php","utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
+            if (denglu == false)
             {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-                //--------登陆函数------------------
-                Thread thread = new Thread(new ThreadStart(huicong));
-                thread.Start();
-
-            }
-            else
-            {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com/denglu");
+                MessageBox.Show("请先登录您的账号！");
                 return;
             }
-            #endregion
+            Thread thread = new Thread(new ThreadStart(huicong));
+            thread.Start();
+
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -402,6 +379,59 @@ namespace main
         private void Button5_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+
+                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select * from vip where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+
+
+                if (reader.Read())
+                {
+
+                    string username = reader["username"].ToString().Trim();
+                    string password = reader["password"].ToString().Trim();
+
+                    //判断密码
+                    if (textBox2.Text.Trim() == password)
+                    {
+
+                        MessageBox.Show("登陆成功！");
+
+                        denglu = true;
+                        reader.Close();
+
+                    }
+                    else
+
+                    {
+                        MessageBox.Show("您的密码错误！");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("未查询到您的账户信息！");
+                    return;
+                }
+
+            }
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

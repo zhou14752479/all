@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 商标查询
+namespace 借款应用
 {
     static class Program
     {

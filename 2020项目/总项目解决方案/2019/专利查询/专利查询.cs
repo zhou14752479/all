@@ -251,37 +251,10 @@ namespace 专利查询
 
         private void button2_Click(object sender, EventArgs e)
         {
-            #region 通用验证
+            Thread thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
 
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == "8.8.8.8")
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-                Thread thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                thread.Start();
-
-
-            }
-            else
-            {
-                MessageBox.Show("IP不符");
-
-            }
-            #endregion
-           
         }
     }
 }
