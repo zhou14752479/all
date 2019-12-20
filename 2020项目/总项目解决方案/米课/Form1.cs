@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
+using MySql.Data.MySqlClient;
 
 namespace 米课
 {
@@ -30,21 +31,22 @@ namespace 米课
         }
         public void run()
         {
-
+           
             try
             {
 
                 string cookie = textBox2.Text;
-                string html = method.PostUrl("http://data.imiker.com/ajax_search", "m=hs&type=buy&country=all&content=" + textBox1.Text + "&sort=0", cookie, "utf-8");
+                string html = method.PostUrl("http://data.imiker.com/ajax_search", "m=hs&type=buy&country="+Country+"&content=" + textBox1.Text + "&sort=0", cookie, "utf-8");
                 Match datas = Regex.Match(html, @"data"":\[([\s\S]*?)\]");
-
+               
                 string[] data = datas.Groups[1].Value.Split(new string[] { "\"," }, StringSplitOptions.None);
               
                 for (int i = 0; i < 100; i++)
                 {
                     string postdata = "&list%5B" + 5 * i + "%5D=" + data[5 * i].Replace("&", "%26") + "&list%5B" + (5 * i + 1) + "%5D=" + data[5 * i + 1].Replace("&", "%26") + "&list%5B" + (5 * i + 2) + "%5D=" + data[5 * i + 2].Replace("&", "%26") + "&list%5B" + (5 * i + 3) + "%5D=" + data[5 * i + 3].Replace("&", "%26") + "&list%5B" + (5 * i + 4) + "%5D=" + data[5 * i + 4].Replace("&", "%26");
                     string postdata1 = "m=hs&type=buy&country=" + Country + "&content=" + textBox1.Text + postdata.Replace("\\/", "%2F").Replace("\"", "").Replace(" ", "+").Replace(",", "%2C").Replace("\\u6797", "%E6%9E%97").Replace("\\u2019", "%E2%80%99") + "&page=" + i;
-                    //textBox3.Text = postdata1;
+                    
+                   
                     string strhtml = method.PostUrl("http://data.imiker.com/ajax_list", postdata1, cookie, "utf-8");
 
                     //textBox2.Text = strhtml;
@@ -93,7 +95,7 @@ namespace 米课
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
         }
 
@@ -167,38 +169,34 @@ namespace 米课
                     break;
 
             }
+            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
 
-            #region 通用验证
+            MySqlCommand cmd = new MySqlCommand("select * from vip where username='米课'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
 
-            foreach (Match ip in ips)
+            if (reader.Read())
             {
-                if (ip.Groups[1].Value.Trim() == "26.26.26.26")
+
+                string password = reader["password"].ToString().Trim();
+
+                if (password != "米课")
+
                 {
-                    value = true;
-                    break;
+                    MessageBox.Show("验证失败");
+
+                    Environment.Exit(0);
                 }
 
-            }
-            if (value == true)
-            {
 
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
 
-
             }
-            else
-            {
-                MessageBox.Show("IP不符");
 
-            }
-            #endregion
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -39,6 +39,8 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,8 +49,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -144,6 +144,46 @@
             this.columnHeader8.Text = "网址";
             this.columnHeader8.Width = 200;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "全球",
+            "美国",
+            "哥伦比亚",
+            "秘鲁",
+            "巴拉圭",
+            "厄瓜多尔",
+            "俄罗斯",
+            "乌克兰",
+            "巴基斯坦",
+            "阿根廷",
+            "智利",
+            "乌拉圭",
+            "委内瑞拉",
+            "哥斯达黎加",
+            "巴拿马",
+            "印度",
+            "韩国",
+            "英国",
+            "德国",
+            "法国",
+            "日本"});
+            this.comboBox1.Location = new System.Drawing.Point(65, 69);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(100, 20);
+            this.comboBox1.TabIndex = 9;
+            this.comboBox1.Text = "全球";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "国家：";
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(287, 29);
@@ -217,46 +257,6 @@
             this.button1.Text = "开始";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "国家：";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "全球",
-            "美国",
-            "哥伦比亚",
-            "秘鲁",
-            "巴拉圭",
-            "厄瓜多尔",
-            "俄罗斯",
-            "乌克兰",
-            "巴基斯坦",
-            "阿根廷",
-            "智利",
-            "乌拉圭",
-            "委内瑞拉",
-            "哥斯达黎加",
-            "巴拿马",
-            "印度",
-            "韩国",
-            "英国",
-            "德国",
-            "法国",
-            "日本"});
-            this.comboBox1.Location = new System.Drawing.Point(65, 69);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 20);
-            this.comboBox1.TabIndex = 9;
-            this.comboBox1.Text = "全球";
             // 
             // Form1
             // 

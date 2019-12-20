@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox2.Text" xml:space="preserve">
-    <value>_ga=GA1.2.151934800.1574325850; PHPSESSID=gaul2c28bqgbaud9di94de9jo2; _gid=GA1.2.1295677337.1576718260; Hm_lvt_b3461b5638c378a8b059ee8786a50668=1574326247,1574392457,1575007138,1576718260; Hm_lpvt_b3461b5638c378a8b059ee8786a50668=1576718260; Qs_lvt_332393=1576718263; Qs_pv_332393=4446455968042453000</value>
-  </data>
 </root>
