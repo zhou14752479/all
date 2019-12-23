@@ -9,11 +9,13 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace 美团
 {
@@ -23,16 +25,47 @@ namespace 美团
         {
             InitializeComponent();
         }
+        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern bool InternetGetCookieEx(string pchURL, string pchCookieName, StringBuilder pchCookieData, ref System.UInt32 pcchCookieData, int dwFlags, IntPtr lpReserved);
+
+        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]    
+        static extern int InternetSetCookieEx(string lpszURL, string lpszCookieName, string lpszCookieData, int dwFlags, IntPtr dwReserved);
+
+        #region  获取cookie
+        /// <summary>
+        /// 获取cookie
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        private static string GetCookies(string url)
+        {
+            uint datasize = 256;
+            StringBuilder cookieData = new StringBuilder((int)datasize);
+            if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x2000, IntPtr.Zero))
+            {
+                if (datasize < 0)
+                    return null;
+
+
+                cookieData = new StringBuilder((int)datasize);
+                if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x00002000, IntPtr.Zero))
+                    return null;
+            }
+            return cookieData.ToString();
+        }
+
+        #endregion
 
         public string cookie;
         bool zanting = true;
         public static string username = "";
         private void Form1_Load(object sender, EventArgs e)
         {
+            method.SetWebBrowserFeatures(method.IeVersion.IE11);
             getCityName();
             label3.Text = username;
-            this.cookie = "__mta=216473129.1565052050597.1572417355133.1576658535492.9; _lxsdk_cuid=16bd4b88a38c8-0d297d6bd625d2-f353163-1fa400-16bd4b88a38c8; iuuid=F3B7CF367A381B6BDA09F29EB6CBD0809EA666DB1290BBF84995C104FBF57A65; _lxsdk=F3B7CF367A381B6BDA09F29EB6CBD0809EA666DB1290BBF84995C104FBF57A65; _hc.v=df1f9416-050a-6ffd-b8c9-62180be8d8d4.1564129261; webp=1; _ga=GA1.2.1573254713.1564129433; __mta=216473129.1565052050597.1572417349038.1572417355133.8; a2h=1; rvct=184%2C105%2C70%2C50%2C73%2C240%2C44%2C10%2C55%2C1; Hm_lvt_f66b37722f586a240d4621318a5a6ebe=1574064150; __utmz=74597006.1574219146.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); uuid=9b332445c7704d2abdaa.1576657440.1.0.0; lat=33.964894; lng=118.295325; JSESSIONID=2zpkvo09aqzi1kluvvdvhiho1; IJSESSIONID=2zpkvo09aqzi1kluvvdvhiho1; ci=60; cityname=%E9%9D%92%E5%B2%9B; i_extend=C_b1E253870844127717489401446706462871004063_v4757722928890516907Gimthomepagecategory12H__a100005__b1; idau=1; __utma=74597006.1573254713.1564129433.1574219146.1576658533.2; __utmc=74597006; __utmb=74597006.1.10.1576658533; webloc_geo=33.957693%2C118.284462%2Cwgs84%2C-1; latlng=33.957693,118.284462,1576658534998; _lxsdk_s=16f181b52d6-79d-6a-61e%7C%7C35";
-
+            webBrowser1.Navigate("https://hf.meituan.com/meishi/");
+            webBrowser1.ScriptErrorsSuppressed = true;
         }
 
         #region 获取数据库美团城市名称
@@ -314,6 +347,9 @@ namespace 美团
         private void Button1_Click(object sender, EventArgs e)
         {
            
+            this.cookie = GetCookies("https://hf.meituan.com/meishi/");
+          
+
             button1.Enabled = false;
             Thread search_thread = new Thread(new ThreadStart(this.Search));
             Control.CheckForIllegalCrossThreadCalls = false;
