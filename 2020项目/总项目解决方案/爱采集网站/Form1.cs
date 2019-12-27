@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,6 +100,50 @@ namespace 爱采集网站
             return "";
         }
         #endregion
+
+        #region 导入数据库
+
+        public string Insert(string title,string body)
+        {
+            DateTime dt = DateTime.Now;
+            string time = DateTime.Now.ToString();
+
+
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=acaiji;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO problems (title,body,date)VALUES('" + title + " ', '" + body + " ', '" + time + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+
+                    mycon.Close();
+                    return ("采集成功！");
+
+
+                }
+                else
+                {
+                    mycon.Close();
+                    return ("采集失败！");
+                }
+
+               
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return(ex.ToString());
+            }
+
+        }
+
+        #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -121,43 +166,42 @@ namespace 爱采集网站
             foreach (string list in lists)
 
             {
-                string charu1 = "<a href=\"\">美团商家采集软件</a>";
-                string charu2 = "<a href=\"\">商家外卖采集软件</a>";
-                string charu3 = "<a href=\"\">企业电话采集软件</a>";
-                string charu4 = "<a href=\"\">58同城采集软件</a>";
-                string charu = charu1 + charu2 + charu3 + charu4;
+                string charu1 = "<p><a href=\"http://www.acaiji.com\">"+textBox2.Text+"</a></p>";
+                string charu2 = "<p><a href=\"http://www.acaiji.com\">" + textBox3.Text + "</a></p>";
+                string charu3 = "<p><a href=\"http://www.acaiji.com\">" + textBox4.Text + "</a></p>";
+                string charu4 = "<p><a href=\"http://www.acaiji.com\">" + textBox5.Text + "</a></p>";
+                string charu5 = "<p><a href=\"http://www.acaiji.com\">" + textBox6.Text + "</a></p>";
+                string charu = charu1 + charu2 + charu3 + charu4+charu5;
 
                 string strhtml = GetUrl(list,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
                 Match title = Regex.Match(strhtml, @"""title"": ""([\s\S]*?)""");
                 Match description = Regex.Match(strhtml, @"""description"": ""([\s\S]*?)""");
                 Match body = Regex.Match(strhtml, @"站长之家编辑"">([\s\S]*?)<div id=""content-media2"">");
 
-                string biaoti = System.Web.HttpUtility.UrlEncode(title.Groups[1].Value, Encoding.GetEncoding("utf-8"));
-                string miaoshu = System.Web.HttpUtility.UrlEncode(description.Groups[1].Value, Encoding.GetEncoding("utf-8"));
+                string biaoti = title.Groups[1].Value;
 
-                string guanjianci = System.Web.HttpUtility.UrlEncode("美团商家采集软件,58同城采集,地图采集,营销软件,电话号码抓取,商家号码抓取,企业号码抓取", Encoding.GetEncoding("utf-8"));
-
-                string neirong = System.Web.HttpUtility.UrlEncode(charu+body.Groups[1].Value.Replace("站长之家", "爱采集网站")+ charu, Encoding.GetEncoding("utf-8")); 
+                string neirong = charu + body.Groups[1].Value.Replace("站长之家", "爱采集网站").Replace("http://www.chinaz.com", "http://www.acaiji.com") + charu;
                 
                 string date = System.Web.HttpUtility.UrlEncode(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Encoding.GetEncoding("utf-8"));
-                string url = "http://www.acaiji.com/admin/Index/write.html";
-                string postdata = "biaoti=" + biaoti + "&neirong=" + neirong + "&guanjianci=" + guanjianci + "&laiyuan=&zhaiyao=" + miaoshu + "&verification=8563c07a621ea96d3b640c1f2e71f4cb&suolvetu=&fabushijian=" + date + "&zhiding=0&tuijian=0&pinglun=1&xingshi=0";
-                string cookie = textBox1.Text;
-                string strhtml2 = PostUrl(url, postdata, cookie, "gb2312");
+                textBox1.Text += DateTime.Now.ToString()+"："+ Insert(biaoti,neirong)+"\r\n";
 
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread search_thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            search_thread.Start();
-
+            timer1.Start();
+            MessageBox.Show("已启动");
        
         }
 
-     
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            Thread search_thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            search_thread.Start();
+        }
     }
 }

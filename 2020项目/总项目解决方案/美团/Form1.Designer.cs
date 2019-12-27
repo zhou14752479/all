@@ -422,10 +422,10 @@
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
             this.linkLabel1.Location = new System.Drawing.Point(12, 9);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(498, 27);
+            this.linkLabel1.Size = new System.Drawing.Size(600, 27);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "思忆软件开发平台(VX：17606117606)";
+            this.linkLabel1.Text = "思忆软件开发平台(点击打开www.acaiji.com)";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // panel1
@@ -447,10 +447,10 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.Location = new System.Drawing.Point(51, 109);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(885, 442);
+            this.webBrowser1.Size = new System.Drawing.Size(633, 242);
             this.webBrowser1.TabIndex = 16;
             this.webBrowser1.Visible = false;
             // 

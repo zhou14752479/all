@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0D08DB38-D34F-4EB5-9651-36E956C71114}</ProjectGuid>
+    <ProjectGuid>{1A23E3FC-4B63-48E6-95B9-FFE9FD414296}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>爱采集网站</RootNamespace>
-    <AssemblyName>爱采集网站</AssemblyName>
+    <RootNamespace>股票统计</RootNamespace>
+    <AssemblyName>股票统计</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,12 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\商铺58\bin\Debug\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

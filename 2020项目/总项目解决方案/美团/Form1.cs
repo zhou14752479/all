@@ -64,7 +64,7 @@ namespace 美团
             method.SetWebBrowserFeatures(method.IeVersion.IE11);
             getCityName();
             label3.Text = username;
-            webBrowser1.Navigate("https://hf.meituan.com/meishi/");
+            webBrowser1.Navigate("https://i.meituan.com/wrapapi/poiinfo?poiId=150177929");
             webBrowser1.ScriptErrorsSuppressed = true;
         }
 
@@ -107,7 +107,7 @@ namespace 美团
 
                 request.Headers.Add("Cookie", COOKIE);
 
-
+                request.Referer = "https://i.meituan.com/wrapapi/poiinfo?poiId=150177929";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -211,8 +211,8 @@ namespace 美团
                             foreach (Match NextMatch in all)
                             {
 
-                                lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
-
+                                //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
+                                lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
                             }
 
                             if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
@@ -228,24 +228,28 @@ namespace 美团
                             {
                                
                                 string strhtml1 = meituan_GetUrl(list, this.cookie);  //定义的GetRul方法 返回 reader.ReadToEnd()
-                               
-                                Match name = Regex.Match(strhtml1, @"<h1 class=""dealcard-brand"">([\s\S]*?)</h1>");
-                                Match tell = Regex.Match(strhtml1, @"data-tele=""([\s\S]*?)""");
-                                Match addr = Regex.Match(strhtml1, @"addr:([\s\S]*?)&");
 
-                                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                listViewItem.SubItems.Add(name.Groups[1].Value);
-                                listViewItem.SubItems.Add(tell.Groups[1].Value);
-                                listViewItem.SubItems.Add(addr.Groups[1].Value);
-                                listViewItem.SubItems.Add(city);
-
-
-                                while (this.zanting == false)
+                                //Match name = Regex.Match(strhtml1, @"<h1 class=""dealcard-brand"">([\s\S]*?)</h1>");
+                                //Match tell = Regex.Match(strhtml1, @"data-tele=""([\s\S]*?)""");
+                                //Match addr = Regex.Match(strhtml1, @"addr:([\s\S]*?)&");
+                                Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
+                                Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
+                                Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
+                                if (name.Groups[1].Value != "")
                                 {
-                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                    listViewItem.SubItems.Add(name.Groups[1].Value);
+                                    listViewItem.SubItems.Add(tell.Groups[1].Value);
+                                    listViewItem.SubItems.Add(addr.Groups[1].Value);
+                                    listViewItem.SubItems.Add(city);
+
+
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+
                                 }
-
-
                                 Application.DoEvents();
                                 Thread.Sleep(1000);
 
@@ -347,9 +351,9 @@ namespace 美团
         private void Button1_Click(object sender, EventArgs e)
         {
            
-            this.cookie = GetCookies("https://hf.meituan.com/meishi/");
-          
+            this.cookie = GetCookies("https://i.meituan.com/wrapapi/poiinfo?poiId=150177929");
 
+           
             button1.Enabled = false;
             Thread search_thread = new Thread(new ThreadStart(this.Search));
             Control.CheckForIllegalCrossThreadCalls = false;

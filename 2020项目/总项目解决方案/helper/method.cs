@@ -11,6 +11,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -21,6 +22,37 @@ namespace helper
 {
     public class method
     {
+        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern bool InternetGetCookieEx(string pchURL, string pchCookieName, StringBuilder pchCookieData, ref System.UInt32 pcchCookieData, int dwFlags, IntPtr lpReserved);
+
+        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int InternetSetCookieEx(string lpszURL, string lpszCookieName, string lpszCookieData, int dwFlags, IntPtr dwReserved);
+
+        #region  获取cookie
+        /// <summary>
+        /// 获取cookie
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static string GetCookies(string url)
+        {
+            uint datasize = 256;
+            StringBuilder cookieData = new StringBuilder((int)datasize);
+            if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x2000, IntPtr.Zero))
+            {
+                if (datasize < 0)
+                    return null;
+
+
+                cookieData = new StringBuilder((int)datasize);
+                if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x00002000, IntPtr.Zero))
+                    return null;
+            }
+            return cookieData.ToString();
+        }
+
+        #endregion
+
         public static void ListViewToCSV(ListView listView, bool includeHidden)
         {
             //make header string
@@ -354,7 +386,7 @@ namespace helper
         #endregion
 
         #region NPOI导出表格默认时间为文件名
-        public static int DataTableToExcelTime(DataTable data, string sheetName, bool isColumnWritten,string fileName)
+        public static int DataTableToExcelTime(DataTable data, bool isColumnWritten,string fileName)
         {
             int i = 0;
             int j = 0;
@@ -385,7 +417,7 @@ namespace helper
             {
                 if (workbook != null)
                 {
-                    sheet = workbook.CreateSheet(sheetName);
+                    sheet = workbook.CreateSheet("sheet1");
                     ICellStyle style = workbook.CreateCellStyle();
                     style.FillPattern = FillPattern.SolidForeground;
 
@@ -423,7 +455,7 @@ namespace helper
                 workbook.Close();
                 fs.Close();
                 System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
-               
+                MessageBox.Show("数据导出完成！");
                 return 0;
             }
             catch (Exception ex)
