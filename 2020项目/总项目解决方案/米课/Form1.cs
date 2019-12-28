@@ -29,83 +29,15 @@ namespace 米课
         {
 
         }
+
+      
+
         public void run()
-        {
-           
-            try
-            {
-
-                string cookie = textBox2.Text;
-                string html = method.PostUrl("http://data.imiker.com/ajax_search", "m=hs&type=buy&country="+Country+"&content=" + textBox1.Text + "&sort=0", cookie, "utf-8");
-                Match datas = Regex.Match(html, @"data"":\[([\s\S]*?)\]");
-               
-                string[] data = datas.Groups[1].Value.Split(new string[] { "\"," }, StringSplitOptions.None);
-              
-                for (int i = 0; i < 100; i++)
-                {
-                    string postdata = "&list%5B" + 5 * i + "%5D=" + data[5 * i].Replace("&", "%26") + "&list%5B" + (5 * i + 1) + "%5D=" + data[5 * i + 1].Replace("&", "%26") + "&list%5B" + (5 * i + 2) + "%5D=" + data[5 * i + 2].Replace("&", "%26") + "&list%5B" + (5 * i + 3) + "%5D=" + data[5 * i + 3].Replace("&", "%26") + "&list%5B" + (5 * i + 4) + "%5D=" + data[5 * i + 4].Replace("&", "%26");
-                    string postdata1 = "m=hs&type=buy&country=" + Country + "&content=" + textBox1.Text + postdata.Replace("\\/", "%2F").Replace("\"", "").Replace(" ", "+").Replace(",", "%2C").Replace("\\u6797", "%E6%9E%97").Replace("\\u2019", "%E2%80%99") + "&page=" + i;
-                    
-                   
-                    string strhtml = method.PostUrl("http://data.imiker.com/ajax_list", postdata1, cookie, "utf-8");
-
-                    //textBox2.Text = strhtml;
-                    //MessageBox.Show("1");
-
-                   // MatchCollection matches = Regex.Matches(strhtml, @"<h2>([\s\S]*?)<a href=""/detailed/hs/buy/([\s\S]*?)""");
-                    MatchCollection matches = Regex.Matches(strhtml, @"""buy"",""([\s\S]*?)""");
-                    MatchCollection countrys = Regex.Matches(strhtml, @"<span class=""country"">([\s\S]*?)</span>");
-                    ArrayList lists = new ArrayList();
-                    foreach (Match NextMatch in matches)
-                    {
-
-                        lists.Add(NextMatch.Groups[1].Value+"/"+textBox1.Text.Trim());
-
-                    }
-
-                    for (int j = 0; j < lists.Count; j++)
-                    {
-
-                        string ahtml = method.GetUrlWithCookie("http://data.imiker.com/detailed_ajax?m=hs&type=buy&content=" + lists[j].ToString().Replace("/", "&des="), cookie, "utf-8");
-
-                        Match a1 = Regex.Match(ahtml, @"""importer"":""([\s\S]*?)""");
-
-                        Match a3 = Regex.Match(ahtml, @"""related_total"":([\s\S]*?),");
-                        Match a4 = Regex.Match(ahtml, @"""total"":([\s\S]*?),");
-                        Match a5 = Regex.Match(ahtml, @"""related_total"":([\s\S]*?)percent"":([\s\S]*?),");
-                        Match a6 = Regex.Match(ahtml, @"""end"":""([\s\S]*?)""");
-
-                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(a1.Groups[1].Value);
-                        listViewItem.SubItems.Add(countrys[j].Groups[1].Value);
-                        listViewItem.SubItems.Add(a3.Groups[1].Value);
-                        listViewItem.SubItems.Add(a4.Groups[1].Value);
-                        listViewItem.SubItems.Add(a5.Groups[2].Value);
-                        listViewItem.SubItems.Add(a6.Groups[1].Value);
-                        listViewItem.SubItems.Add("http://data.imiker.com/detailed/hs/buy/" + lists[j]);
-
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                        
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                ex.ToString();
-            }
-        }
-
-        public string Country = "all";
-        private void button1_Click(object sender, EventArgs e)
-        {
+        {    string Country = "imiker_ua";
             switch (comboBox1.Text)
             {
                 case "全球":
-                    Country="all";
+                    Country = "all";
                     break;
                 case "美国":
                     Country = "imiker_us";
@@ -169,6 +101,78 @@ namespace 米课
                     break;
 
             }
+            try
+            {
+                
+
+                string cookie = textBox2.Text;
+                string html = method.PostUrl("http://data.imiker.com/ajax_search", "m=des&type=buy&country="+Country+"&content=" + textBox1.Text + "&sort=0", cookie, "utf-8");
+                Match datas = Regex.Match(html, @"data"":\[([\s\S]*?)\]");
+               
+                string[] data = datas.Groups[1].Value.Split(new string[] { "\"," }, StringSplitOptions.None);
+              
+                for (int i = 0; i < 100; i++)
+                {
+                    string postdata = "&list%5B" + 5 * i + "%5D=" + data[5 * i].Replace("&", "%26") + "&list%5B" + (5 * i + 1) + "%5D=" + data[5 * i + 1].Replace("&", "%26") + "&list%5B" + (5 * i + 2) + "%5D=" + data[5 * i + 2].Replace("&", "%26") + "&list%5B" + (5 * i + 3) + "%5D=" + data[5 * i + 3].Replace("&", "%26") + "&list%5B" + (5 * i + 4) + "%5D=" + data[5 * i + 4].Replace("&", "%26");
+                    string postdata1 = "m=des&type=buy&country=" + Country + "&content=" + textBox1.Text + postdata.Replace("\\/", "%2F").Replace("\"", "").Replace(" ", "+").Replace(",", "%2C").Replace("\\u6797", "%E6%9E%97").Replace("\\u2019", "%E2%80%99") + "&page=" + i;
+                    
+                   
+                    string strhtml = method.PostUrl("http://data.imiker.com/ajax_list", postdata1, cookie, "utf-8");
+
+                    //textBox2.Text = strhtml;
+                    //MessageBox.Show("1");
+
+                   // MatchCollection matches = Regex.Matches(strhtml, @"<h2>([\s\S]*?)<a href=""/detailed/hs/buy/([\s\S]*?)""");
+                    MatchCollection matches = Regex.Matches(strhtml, @"""buy"",""([\s\S]*?)""");
+                    MatchCollection countrys = Regex.Matches(strhtml, @"<span class=""country"">([\s\S]*?)</span>");
+                    ArrayList lists = new ArrayList();
+                    foreach (Match NextMatch in matches)
+                    {
+
+                        lists.Add(NextMatch.Groups[1].Value+"/"+textBox1.Text.Trim());
+
+                    }
+
+                    for (int j = 0; j < lists.Count; j++)
+                    {
+
+                        string ahtml = method.GetUrlWithCookie("http://data.imiker.com/detailed_ajax?m=hs&type=buy&content=" + lists[j].ToString().Replace("/", "&des="), cookie, "utf-8");
+
+                        Match a1 = Regex.Match(ahtml, @"""importer"":""([\s\S]*?)""");
+
+                        Match a3 = Regex.Match(ahtml, @"""related_total"":([\s\S]*?),");
+                        Match a4 = Regex.Match(ahtml, @"""total"":([\s\S]*?),");
+                        Match a5 = Regex.Match(ahtml, @"""related_total"":([\s\S]*?)percent"":([\s\S]*?),");
+                        Match a6 = Regex.Match(ahtml, @"""end"":""([\s\S]*?)""");
+
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                        listViewItem.SubItems.Add(a1.Groups[1].Value);
+                        listViewItem.SubItems.Add(countrys[j].Groups[1].Value);
+                        listViewItem.SubItems.Add(a3.Groups[1].Value);
+                        listViewItem.SubItems.Add(a4.Groups[1].Value);
+                        listViewItem.SubItems.Add(a5.Groups[2].Value);
+                        listViewItem.SubItems.Add(a6.Groups[1].Value);
+                        listViewItem.SubItems.Add("http://data.imiker.com/detailed/hs/buy/" + lists[j]);
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ex.ToString();
+            }
+        }
+
+     
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
             string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();
