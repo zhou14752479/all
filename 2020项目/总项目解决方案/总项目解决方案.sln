@@ -21,13 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "米课", "米课\米课.csproj", "{85FB56ED-803B-4331-8488-9E787BB65BB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "阿里搜索", "阿里搜索\阿里搜索.csproj", "{ABB1D584-7687-4180-B9AF-B36C756ACC87}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "专辑", "专辑\专辑.csproj", "{5961A969-A7D8-46AE-B823-AF0654145B18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "爱采集网站", "爱采集网站\爱采集网站.csproj", "{0D08DB38-D34F-4EB5-9651-36E956C71114}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "股票统计", "股票统计\股票统计.csproj", "{1A23E3FC-4B63-48E6-95B9-FFE9FD414296}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "借款应用", "借款应用\借款应用.csproj", "{BFEC24CD-A253-42C6-AE25-2CDE50B5BBFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +71,6 @@ Global
 		{85FB56ED-803B-4331-8488-9E787BB65BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85FB56ED-803B-4331-8488-9E787BB65BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85FB56ED-803B-4331-8488-9E787BB65BB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABB1D584-7687-4180-B9AF-B36C756ACC87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABB1D584-7687-4180-B9AF-B36C756ACC87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABB1D584-7687-4180-B9AF-B36C756ACC87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABB1D584-7687-4180-B9AF-B36C756ACC87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5961A969-A7D8-46AE-B823-AF0654145B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5961A969-A7D8-46AE-B823-AF0654145B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5961A969-A7D8-46AE-B823-AF0654145B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +83,10 @@ Global
 		{1A23E3FC-4B63-48E6-95B9-FFE9FD414296}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A23E3FC-4B63-48E6-95B9-FFE9FD414296}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A23E3FC-4B63-48E6-95B9-FFE9FD414296}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFEC24CD-A253-42C6-AE25-2CDE50B5BBFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFEC24CD-A253-42C6-AE25-2CDE50B5BBFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFEC24CD-A253-42C6-AE25-2CDE50B5BBFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFEC24CD-A253-42C6-AE25-2CDE50B5BBFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

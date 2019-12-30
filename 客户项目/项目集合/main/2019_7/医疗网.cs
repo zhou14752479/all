@@ -217,15 +217,8 @@ namespace main._2019_7
 
                     {
                        
-
                         
-
-                        Match IP = Regex.Match(ahtml, @"ip"":""([\s\S]*?)""");
-                        Match PORT = Regex.Match(ahtml, @"port"":([\s\S]*?)\}");
-
-                        textBox2.Text = IP.Groups[1].Value;
-                        
-                        string strhtml = method.GetUrlwithIP(list,IP.Groups[1].Value+":"+PORT.Groups[1].Value);
+                        string strhtml = method.GetUrlwithIP(list,ahtml.Trim());
 
                         Match a1 = Regex.Match(strhtml, @"<title>([\s\S]*?)诚");
                         Match a2 = Regex.Match(strhtml, @"成立</li>([\s\S]*?)</li>");
@@ -350,6 +343,11 @@ namespace main._2019_7
         private void Button4_Click(object sender, EventArgs e)
         {
             status = false;
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

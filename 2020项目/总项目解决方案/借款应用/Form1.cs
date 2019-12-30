@@ -64,6 +64,44 @@ namespace 借款应用
                 MessageBox.Show(ex.ToString());
             }
         }
+
+
+        public void run1()
+        {
+
+            try
+            {
+
+
+                for (int i = 1; i <= Convert.ToInt32(textBox1.Text); i++)
+                {
+                    string url = "http://hb.fedayingsfew.biz/admin/user/index.html?page=" + i;
+
+                    string html = method.GetUrlWithCookie(url, cookie, "utf-8");
+
+                    MatchCollection matchs = Regex.Matches(html, @"<td align=""center"">([\s\S]*?)</td>");
+
+                    for (int j = 0; j < 25; j++)
+                    {
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                        listViewItem.SubItems.Add(matchs[(10 * j) + 1].Groups[1].Value.Trim());
+                        listViewItem.SubItems.Add(matchs[(10 * j) + 2].Groups[1].Value.Trim());
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                    }
+
+                    Thread.Sleep(1000);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -86,9 +124,18 @@ namespace 借款应用
                 MessageBox.Show("请先登录");
                 return;
             }
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            if (radioButton1.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+            else if (radioButton2.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(run1));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -104,6 +151,11 @@ namespace 借款应用
             }
            
             
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

@@ -85,6 +85,12 @@
     <Compile Include="登陆.Designer.cs">
       <DependentUpon>登陆.cs</DependentUpon>
     </Compile>
+    <Compile Include="美团附近.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="美团附近.Designer.cs">
+      <DependentUpon>美团附近.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +108,9 @@
     </Compile>
     <EmbeddedResource Include="登陆.resx">
       <DependentUpon>登陆.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="美团附近.resx">
+      <DependentUpon>美团附近.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
