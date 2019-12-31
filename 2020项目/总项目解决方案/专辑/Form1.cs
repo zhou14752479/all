@@ -53,6 +53,7 @@ namespace 专辑
                 for (int j = 0; j < matches.Count; j++)
                 {
                     string URL = "https://www.ximalaya.com" + matches[j].Groups[1].Value;
+                    //string URL = "https://www.ximalaya.com/shangye/12150424/";
                     string strhtml = method.GetUrl(URL, "utf-8");
                     Match zhuanji = Regex.Match(strhtml, @"""sourceKw"":""([\s\S]*?)""");
                     Match zhubo = Regex.Match(strhtml, @"""anchorName"":""([\s\S]*?)""");
@@ -134,23 +135,34 @@ namespace 专辑
 
 
                     Match jieshao1 = Regex.Match(strhtml, @"""agency_summay"":""([\s\S]*?)""");
-                    Match jieshao2 = Regex.Match(strhtml, @"<article class=""intro _lm"">([\s\S]*?)</article>");
+                    Match jieshao2 = Regex.Match(strhtml, @"介</th>([\s\S]*?)</tr>");
                     string jie1 = Regex.Replace(jieshao1.Groups[1].Value, "<[^>]+>", "");
                     string jie2 = Regex.Replace(jieshao2.Groups[1].Value, "<[^>]+>", "");
 
+                    Match qun = Regex.Match(strhtml, @"data-gc=""([\s\S]*?)""");
+                    MatchCollection shoujis = Regex.Matches(strhtml, @"<i class=""item-icon icon-font i-phone""></i>([\s\S]*?)</p>");
+
                     MatchCollection weixins = Regex.Matches(jie1 + jie2, @"[A-Za-z0-9]{5,20}");
                     StringBuilder sb = new StringBuilder();
+                    StringBuilder sb1 = new StringBuilder();
                     foreach (Match item in weixins)
                     {
                         sb.Append(item.Groups[0].Value + ",");
                     }
 
+                    foreach (Match item in shoujis)
+                    {
+                        sb1.Append(Regex.Replace(item.Groups[1].Value, "<[^>]+>", "").Trim() + ",");
+                    }
+
                     textBox4.Text += "正在采集" + zhuanji.Groups[1].Value + "\r\n";
-                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                    ListViewItem listViewItem = this.listView2.Items.Add((listView2.Items.Count + 1).ToString());
                     listViewItem.SubItems.Add(URL);
                     listViewItem.SubItems.Add(zhuanji.Groups[1].Value);
                     listViewItem.SubItems.Add(zhubo.Groups[1].Value);
                     listViewItem.SubItems.Add(sb.ToString());
+                    listViewItem.SubItems.Add(qun.Groups[1].Value);
+                    listViewItem.SubItems.Add(sb1.ToString());
                     listViewItem.SubItems.Add(textBox2.Text.Trim());
                     if (status == false)
                     {
@@ -164,7 +176,7 @@ namespace 专辑
             }
 
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true, path + DateTime.Now.ToString("yyyy-MM-dd") + textBox2.Text.Trim() + ".xlsx");
+            method.DataTableToExcelTime(method.listViewToDataTable(this.listView2), true, path + DateTime.Now.ToString("yyyy-MM-dd") + textBox2.Text.Trim() + ".xlsx");
 
         }
         private void Form1_Load(object sender, EventArgs e)

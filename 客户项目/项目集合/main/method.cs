@@ -426,15 +426,14 @@ namespace main
             //每行内容
             for (i = 0; i < lv.Items.Count; i++)
             {
-                if (lv.Items[i].SubItems[4].Text == "符合条件")
-                {
+              
                     dr = dt.NewRow();
                     for (j = 0; j < lv.Columns.Count; j++)
                     {
                         dr[j] = lv.Items[i].SubItems[j].Text.Trim();
                     }
                     dt.Rows.Add(dr);
-                }
+                
 
             }
 

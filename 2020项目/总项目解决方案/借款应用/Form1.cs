@@ -84,8 +84,8 @@ namespace 借款应用
                     for (int j = 0; j < 25; j++)
                     {
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(matchs[(10 * j) + 1].Groups[1].Value.Trim());
                         listViewItem.SubItems.Add(matchs[(10 * j) + 2].Groups[1].Value.Trim());
+                        listViewItem.SubItems.Add(matchs[(10 * j) + 1].Groups[1].Value.Trim());
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。

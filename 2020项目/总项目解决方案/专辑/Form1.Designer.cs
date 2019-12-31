@@ -37,6 +37,9 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,9 +61,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -82,7 +84,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(825, 534);
+            this.tabControl1.Size = new System.Drawing.Size(895, 534);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -91,7 +93,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(817, 508);
+            this.tabPage1.Size = new System.Drawing.Size(887, 508);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "     喜马拉雅     ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -117,7 +119,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Size = new System.Drawing.Size(811, 502);
+            this.splitContainer1.Size = new System.Drawing.Size(881, 502);
             this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -136,7 +138,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(811, 294);
+            this.listView1.Size = new System.Drawing.Size(881, 294);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -165,6 +167,29 @@
             // 
             this.columnHeader8.Text = "微信号";
             this.columnHeader8.Width = 200;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "关键字";
+            this.columnHeader12.Width = 80;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("宋体", 10F);
+            this.label5.Location = new System.Drawing.Point(546, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(105, 14);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "保存文件关键字";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox5.Location = new System.Drawing.Point(657, 23);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(98, 23);
+            this.textBox5.TabIndex = 8;
             // 
             // label3
             // 
@@ -231,7 +256,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(817, 508);
+            this.tabPage2.Size = new System.Drawing.Size(887, 508);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "     腾讯课堂     ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -255,7 +280,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.button5);
             this.splitContainer2.Panel2.Controls.Add(this.textBox2);
             this.splitContainer2.Panel2.Controls.Add(this.button6);
-            this.splitContainer2.Size = new System.Drawing.Size(811, 502);
+            this.splitContainer2.Size = new System.Drawing.Size(881, 502);
             this.splitContainer2.SplitterDistance = 294;
             this.splitContainer2.TabIndex = 5;
             // 
@@ -267,14 +292,16 @@
             this.columnHeader6,
             this.columnHeader9,
             this.columnHeader10,
-            this.columnHeader11});
+            this.columnHeader11,
+            this.columnHeader13,
+            this.columnHeader14});
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(0, 0);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(811, 294);
+            this.listView2.Size = new System.Drawing.Size(881, 294);
             this.listView2.TabIndex = 13;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -302,11 +329,11 @@
             // columnHeader10
             // 
             this.columnHeader10.Text = "微信号";
-            this.columnHeader10.Width = 150;
+            this.columnHeader10.Width = 100;
             // 
             // columnHeader11
             // 
-            this.columnHeader11.Text = "关键字";
+            this.columnHeader11.Text = "群号";
             this.columnHeader11.Width = 80;
             // 
             // label4
@@ -346,7 +373,6 @@
             this.button5.TabIndex = 2;
             this.button5.Text = "停止";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
             // 
             // textBox2
             // 
@@ -364,37 +390,22 @@
             this.button6.TabIndex = 0;
             this.button6.Text = "开始";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
-            // label5
+            // columnHeader13
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("宋体", 10F);
-            this.label5.Location = new System.Drawing.Point(546, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 14);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "保存文件关键字";
+            this.columnHeader13.Text = "手机号";
+            this.columnHeader13.Width = 100;
             // 
-            // textBox5
+            // columnHeader14
             // 
-            this.textBox5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox5.Location = new System.Drawing.Point(657, 23);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(98, 23);
-            this.textBox5.TabIndex = 8;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "关键字";
-            this.columnHeader12.Width = 80;
+            this.columnHeader14.Text = "关键字";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 534);
+            this.ClientSize = new System.Drawing.Size(895, 534);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -452,6 +463,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
     }
 }
 

@@ -149,5 +149,10 @@ namespace 美团
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("http://api.map.baidu.com/lbsapi/getpoint/index.html");
+        }
     }
 }
