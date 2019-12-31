@@ -53,7 +53,7 @@ namespace 专辑
                 for (int j = 0; j < matches.Count; j++)
                 {
                     string URL = "https://www.ximalaya.com" + matches[j].Groups[1].Value;
-                    //string URL = "https://www.ximalaya.com/shangye/12150424/";
+                    //string URL = "https://www.ximalaya.com/shangye/6571744/";
                     string strhtml = method.GetUrl(URL, "utf-8");
                     Match zhuanji = Regex.Match(strhtml, @"""sourceKw"":""([\s\S]*?)""");
                     Match zhubo = Regex.Match(strhtml, @"""anchorName"":""([\s\S]*?)""");
