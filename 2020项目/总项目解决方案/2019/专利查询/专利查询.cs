@@ -168,7 +168,7 @@ namespace 专利查询
                         {
                             listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
                         }
-                        Thread.Sleep(500);
+                        Thread.Sleep(1500);
 
 
 

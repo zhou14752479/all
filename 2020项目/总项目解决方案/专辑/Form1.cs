@@ -23,7 +23,7 @@ namespace 专辑
         }
         bool status = true;
         ArrayList wxs = new ArrayList();
-
+        ArrayList quns = new ArrayList();
         #region 喜马拉雅
         public void ximalya()
         {
@@ -154,22 +154,26 @@ namespace 专辑
                     {
                         sb1.Append(Regex.Replace(item.Groups[1].Value, "<[^>]+>", "").Trim() + ",");
                     }
+                    //if (!quns.Contains(qun.Groups[1].Value))
+                    //{
+                    //    quns.Add(qun.Groups[1].Value);
 
-                    textBox4.Text += "正在采集" + zhuanji.Groups[1].Value + "\r\n";
-                    ListViewItem listViewItem = this.listView2.Items.Add((listView2.Items.Count + 1).ToString());
-                    listViewItem.SubItems.Add(URL);
-                    listViewItem.SubItems.Add(zhuanji.Groups[1].Value);
-                    listViewItem.SubItems.Add(zhubo.Groups[1].Value);
-                    listViewItem.SubItems.Add(sb.ToString());
-                    listViewItem.SubItems.Add(qun.Groups[1].Value);
-                    listViewItem.SubItems.Add(sb1.ToString());
-                    listViewItem.SubItems.Add(textBox2.Text.Trim());
-                    if (status == false)
-                    {
-                        return;
-                    }
+                        textBox4.Text += "正在采集" + zhuanji.Groups[1].Value + "\r\n";
+                        ListViewItem listViewItem = this.listView2.Items.Add((listView2.Items.Count + 1).ToString());
+                        listViewItem.SubItems.Add(URL);
+                        listViewItem.SubItems.Add(zhuanji.Groups[1].Value);
+                        listViewItem.SubItems.Add(zhubo.Groups[1].Value);
+                        listViewItem.SubItems.Add(sb.ToString());
+                        listViewItem.SubItems.Add(qun.Groups[1].Value);
+                        listViewItem.SubItems.Add(sb1.ToString());
+                        listViewItem.SubItems.Add(textBox2.Text.Trim());
+                        if (status == false)
+                        {
+                            return;
+                        }
 
-                    Thread.Sleep(1000);
+                        Thread.Sleep(1000);
+                    
                 }
 
                 

@@ -23,6 +23,7 @@ namespace 借款应用
             InitializeComponent();
         }
         bool zanting = true;
+        ArrayList finishes = new ArrayList();
         private void Button4_Click(object sender, EventArgs e)
         {
             method.ListviewToTxt(listView1);
@@ -45,6 +46,7 @@ namespace 借款应用
 
                     for (int j = 0; j < 25; j++)
                     {
+                        finishes.Add(matchs[(11 * j) + 2].Groups[1].Value.Trim());
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(matchs[(11*j)+3].Groups[1].Value.Trim());
                         listViewItem.SubItems.Add(matchs[(11*j)+2].Groups[1].Value.Trim());
@@ -83,12 +85,15 @@ namespace 借款应用
 
                     for (int j = 0; j < 25; j++)
                     {
-                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(matchs[(10 * j) + 2].Groups[1].Value.Trim());
-                        listViewItem.SubItems.Add(matchs[(10 * j) + 1].Groups[1].Value.Trim());
-                        while (this.zanting == false)
+                        if (!finishes.Contains(matchs[(10 * j) + 1].Groups[1].Value.Trim()))
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(matchs[(10 * j) + 2].Groups[1].Value.Trim());
+                            listViewItem.SubItems.Add(matchs[(10 * j) + 1].Groups[1].Value.Trim());
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
                         }
                     }
 
@@ -124,18 +129,15 @@ namespace 借款应用
                 MessageBox.Show("请先登录");
                 return;
             }
-            if (radioButton1.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
-            else if (radioButton2.Checked == true)
-            {
-                Thread thread = new Thread(new ThreadStart(run1));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+
+            Thread thread1 = new Thread(new ThreadStart(run1));
+            thread1.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+
         }
 
         private void Button5_Click(object sender, EventArgs e)

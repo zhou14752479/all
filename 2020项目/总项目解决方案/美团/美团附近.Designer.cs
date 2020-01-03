@@ -272,6 +272,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(903, 454);
             this.webBrowser1.TabIndex = 26;
+            this.webBrowser1.Visible = false;
             // 
             // button6
             // 

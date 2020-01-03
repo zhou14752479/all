@@ -71,7 +71,7 @@ namespace 美团
 
                 {
 
-                    string Url = "https://www.meituan.com/meishi/api/poi/getNearPoiList?offset="+i+"&limit=100&cityId=60&lat=36.085461&lng=120.353488";
+                    string Url = "https://www.meituan.com/meishi/api/poi/getNearPoiList?offset="+i+ "&limit=100&cityId=184&lat=33.949188&lng=118.327505";
 
                     string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
