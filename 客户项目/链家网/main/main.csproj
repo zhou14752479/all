@@ -75,6 +75,12 @@
     <Compile Include="webbrowser.Designer.cs">
       <DependentUpon>webbrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="贝壳网.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="贝壳网.Designer.cs">
+      <DependentUpon>贝壳网.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +95,9 @@
     </Compile>
     <EmbeddedResource Include="webbrowser.resx">
       <DependentUpon>webbrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="贝壳网.resx">
+      <DependentUpon>贝壳网.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

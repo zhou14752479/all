@@ -43,7 +43,7 @@ namespace 股票统计
            
             Match a5 = Regex.Match(html, @"hometeam=""([\s\S]*?)""");
             Match a6 = Regex.Match(html, @"guestteam=""([\s\S]*?)""");
-           
+            
 
 
             label12.Text = a1.Groups[1].Value.Trim();
@@ -52,7 +52,7 @@ namespace 股票统计
             label15.Text = a3.Groups[1].Value.Trim();
             label16.Text = a5.Groups[1].Value.Trim();
             label17.Text = a6.Groups[1].Value.Trim();
-           
+            label41.Text = uid.Groups[0].Value;
 
 
             Match a8 = Regex.Match(ahtml, @",;([\s\S]*?);");
@@ -169,9 +169,11 @@ namespace 股票统计
             string a18 = textBox3.Text;
             string a19 = textBox4.Text;
             string a20 = textBox5.Text;
+            string ids = label41.Text;
 
-            string sql= "INSERT INTO datas VALUES( '" + a1 + "','" + a2 + "','" + a3 + "','" + a4 + "','" + a5 + "','" + a6 + "','" + a7 + "','" + a8 + "','" + a9 + "','" + a10 + "', '" + a11 + "', '" + a12+ "', '" + a13 + "', '" + a14 + "', '" + a15 + "', '" + a16 + "', '" + a17 + "', '" + a18 + "', '" + a19 + "', '" + a20 + "')";
+            string sql= "INSERT INTO datas VALUES( '" + a1 + "','" + a2 + "','" + a3 + "','" + a4 + "','" + a5 + "','" + a6 + "','" + a7 + "','" + a8 + "','" + a9 + "','" + a10 + "', '" + a11 + "', '" + a12+ "', '" + a13 + "', '" + a14 + "', '" + a15 + "', '" + a16 + "', '" + a17 + "', '" + a18 + "', '" + a19 + "', '" + a20 + "', '" + ids + "')";
             insertdata(sql);
+            MessageBox.Show("存储成功");
         }
         //查询
         public string chaxun(string sql)
@@ -187,7 +189,7 @@ namespace 股票统计
             Convert.ToInt32(cmd.ExecuteScalar()).ToString();
             return Convert.ToInt32(cmd.ExecuteScalar()).ToString();
 
-
+            
 
         }
 

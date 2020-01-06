@@ -10,3 +10,17 @@ C:\Users\zhou\Desktop\项目\小项目\语音播报\yuyin\obj\Debug\yuyin.csproj
 C:\Users\zhou\Desktop\项目\小项目\语音播报\yuyin\obj\Debug\yuyin.csproj.CoreCompileInputs.cache
 C:\Users\zhou\Desktop\项目\小项目\语音播报\yuyin\obj\Debug\yuyin.exe
 C:\Users\zhou\Desktop\项目\小项目\语音播报\yuyin\obj\Debug\yuyin.pdb
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\bin\Debug\yuyin.exe.config
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\bin\Debug\yuyin.exe
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\bin\Debug\yuyin.pdb
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.csprojAssemblyReference.cache
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\Interop.SpeechLib.dll
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.csproj.ResolveComReference.cache
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.Form1.resources
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.Properties.Resources.resources
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.语音王.resources
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.csproj.GenerateResource.cache
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.csproj.CoreCompileInputs.cache
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.exe
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.pdb
+C:\Users\86176\Desktop\all\小项目\语音播报\yuyin\obj\Debug\yuyin.新增文稿.resources

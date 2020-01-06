@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "专利查询", "2019\专利
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "常用代码管理软件", "2019\常用代码管理软件\常用代码管理软件.csproj", "{221AD148-A3E4-4A13-8740-A7E0E97A006A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{221AD148-A3E4-4A13-8740-A7E0E97A006A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{221AD148-A3E4-4A13-8740-A7E0E97A006A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{221AD148-A3E4-4A13-8740-A7E0E97A006A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{221AD148-A3E4-4A13-8740-A7E0E97A006A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
