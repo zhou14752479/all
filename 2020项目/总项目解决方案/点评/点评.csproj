@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7A27FD41-0674-4274-B8CC-7B6A490EEBC0}</ProjectGuid>
+    <ProjectGuid>{90F44618-2111-46B0-B0E8-7366375AE1CE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>网络游戏定单</RootNamespace>
-    <AssemblyName>网络游戏定单</AssemblyName>
+    <RootNamespace>点评</RootNamespace>
+    <AssemblyName>点评</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -88,7 +88,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\helper\helper.csproj">
+    <ProjectReference Include="..\helper\helper.csproj">
       <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
       <Name>helper</Name>
     </ProjectReference>

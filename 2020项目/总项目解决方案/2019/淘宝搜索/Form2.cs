@@ -43,16 +43,18 @@ namespace 淘宝搜索
                 MatchCollection prices = Regex.Matches(html, @"<p style=""line-height: 40px;"">([\s\S]*?)</p>");
                 MatchCollection status = Regex.Matches(html, @"订单状态：([\s\S]*?)</span>");
 
+                MatchCollection jines = Regex.Matches(html, @"padding-top:10px"">([\s\S]*?)</p>");
+
                 for (int j = 0; j < ids.Count; j++)
                 {
-                      string jinbi=  (Convert.ToDecimal(jinbis[j].Groups[2].Value) * Convert.ToInt32(prices[(3 * j + 1)].Groups[1].Value)).ToString();
+                     string jinbi=  (Convert.ToDecimal(jinbis[j].Groups[2].Value) * Convert.ToInt32(prices[(2* j +1)].Groups[1].Value)).ToString();
 
                     ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                     listViewItem.SubItems.Add(ids[j].Groups[1].Value);
                     listViewItem.SubItems.Add(times[j].Groups[1].Value);
                     listViewItem.SubItems.Add("魔兽世界"+fuwuqis[j].Groups[1].Value);
                     listViewItem.SubItems.Add(jinbi);
-                    listViewItem.SubItems.Add(prices[(3*j+2)].Groups[1].Value.Trim());
+                    listViewItem.SubItems.Add(jines[j].Groups[1].Value.Trim());
                     listViewItem.SubItems.Add(status[j].Groups[1].Value);
                     if (listView1.Items.Count > 2)
                     {

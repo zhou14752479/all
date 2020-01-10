@@ -43,9 +43,6 @@
     <Reference Include="System.Data.SQLite.EF6">
       <HintPath>..\湄洲库存\bin\Debug\System.Data.SQLite.EF6.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\湄洲库存\bin\Debug\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

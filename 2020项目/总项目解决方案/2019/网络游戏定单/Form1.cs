@@ -20,7 +20,7 @@ namespace 网络游戏定单
             InitializeComponent();
         }
         bool zanting = true;
-        #region 淘宝搜索
+        #region DD373
         public void run()
         {
             try
@@ -60,7 +60,7 @@ namespace 网络游戏定单
                     string postdata = "[" + sb.ToString() + "]";
 
                     string strhtml = method.PostUrl("https://game.dd373.com/Api/Game/GetGameInfoListByIds", postdata.Replace(",]", "]"), 登录.COOKIE, "utf-8");
-
+                  
                     MatchCollection names = Regex.Matches(strhtml, @"""Name"":""([\s\S]*?)""");
 
                     for (int j = 0; j < IDs.Count; j++)
@@ -75,6 +75,10 @@ namespace 网络游戏定单
                         if (status[j].Groups[1].Value == "1")
                         {
                             listViewItem.SubItems.Add("交易成功");
+                        }
+                        else if (status[j].Groups[1].Value == "11")
+                        {
+                            listViewItem.SubItems.Add("发货完成");
                         }
                         else
                         {
@@ -108,39 +112,11 @@ namespace 网络游戏定单
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用验证
+            button1.Enabled = false;
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == "20.20.20.20")
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-
-                button1.Enabled = false;
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-
-            }
-            else
-            {
-                MessageBox.Show("IP不符");
-
-            }
-            #endregion
-           
         }
 
         private void Button2_Click(object sender, EventArgs e)

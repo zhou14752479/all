@@ -34,7 +34,7 @@ namespace main
             {
 
 
-                for (int i = 1; i < 100; i++)
+                for (int i = 1; i < 101; i++)
                 {
                     string url = textBox1.Text + "pg"+i+"/";
                     Match city = Regex.Match(url, @"//([\s\S]*?)\.");
@@ -47,7 +47,7 @@ namespace main
                     ArrayList lists = new ArrayList();
                     foreach (Match NextMatch in matches)
                     {
-                        lists.Add("https://"+city.Groups[1].Value+".ke.com/ershoufang/co41c"+ NextMatch .Groups[1].Value+ "/");
+                        lists.Add("https://"+city.Groups[1].Value+".ke.com/ershoufang/co41"+sb.ToString().Trim()+"c"+ NextMatch .Groups[1].Value+ "/");
 
                     }
 
@@ -57,7 +57,7 @@ namespace main
 
                     for (int j = 0; j < lists.Count; j++)
                     {
-
+                        
                         string strhtml = method.GetHtmlSource(lists[j].ToString());
                         Match xiaoqu = Regex.Match(strhtml, @"<span class=""name"">([\s\S]*?)</span>");
                         MatchCollection zuidi = Regex.Matches(strhtml, @"data-price=""([\s\S]*?)""");  //最低价次低价
@@ -105,7 +105,7 @@ namespace main
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
-                        Thread.Sleep(500);
+                        Thread.Sleep(100);
                     }
 
 
@@ -125,8 +125,30 @@ namespace main
 
         }
 
+        StringBuilder sb = new StringBuilder();
         private void Button1_Click(object sender, EventArgs e)
         {
+            if (checkBox1.Checked == true)
+            {
+                sb.Append("sf1");
+            }
+
+            if (checkBox2.Checked == true)
+            {
+                sb.Append("sf1");
+            }
+
+            if (checkBox3.Checked == true)
+            {
+                sb.Append("sf1");
+            }
+
+            if (checkBox4.Checked == true)
+            {
+                sb.Append("lc2lc3");
+            }
+
+
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
