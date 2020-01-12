@@ -241,6 +241,8 @@ namespace 股票统计
 
             linkLabel7.Text = qiuhe();
 
+           double baifenbi= (Convert.ToInt32(linkLabel2.Text) + Convert.ToInt32(linkLabel3.Text) * 0.5) / (Convert.ToInt32(linkLabel2.Text) + Convert.ToInt32(linkLabel3.Text) * 0.5 + Convert.ToInt32(linkLabel6.Text) + Convert.ToInt32(linkLabel5.Text) * 0.5);
+            linkLabel8.Text = Convert.ToInt32(baifenbi * 100) + "%";
         }
 
         private void ComboBox8_SelectedIndexChanged(object sender, EventArgs e)
