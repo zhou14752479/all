@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using helper;
 
 namespace 点评
 {
@@ -30,13 +31,14 @@ namespace 点评
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            登录 dl = new 登录("https://account.dianping.com/login?redir=http://www.dianping.com");
-            dl.Show();
+           
            
 
         }
 
-       public static string COOKIE = "_lxsdk_cuid=16cb6dd4ef5c8-0ab1639fef8078-f353163-1fa400-16cb6dd4ef5c8; _lxsdk=16cb6dd4ef5c8-0ab1639fef8078-f353163-1fa400-16cb6dd4ef5c8; _hc.v=b4c63e9f-f96f-ca4a-2ad0-dfa8208e6726.1566436056; s_ViewType=10; ua=dpuser_5678141658; ctu=90a81cde43e1e0934a456ec54b747c9309c7243af5f8f610acaafc50d303f141; cityid=100; switchcityflashtoast=1; aburl=1; dper=0f2c70b22cd0a4b60f7c81b238310b7f2ddbe2791e360439a7159fb9145520c025dceb4ed31348d733a9a447e52b918da8535b20ceb8ed00d79812b369d0585e711de17fb4fc1b14e34417ab12400cb42c4c16b10177eb47fff35b7d3dff8019; ll=7fd06e815b796be3df069dec7836c3df; uamo=17606117606; cy=100; cye=suqian; _lxsdk_s=16f8839588c-a64-ad8-fae%7C%7C421";
+        string cate = "";
+
+        
         #region GET请求
         /// <summary>
         /// GET请求
@@ -54,7 +56,7 @@ namespace 点评
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
 
                 request.AllowAutoRedirect = true;
-                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Cookie", 登录.cookie);
                 request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.Timeout = 5000;
@@ -91,12 +93,13 @@ namespace 点评
                 {
 
 
-                    string Url = "http://www.dianping.com/suqian/ch70/r3876p" + i;
+                    string Url = "http://www.dianping.com/"+textBox1.Text.Trim()+"/"+cate+"p" + i;
 
                     string html = GetUrl(Url);
 
                     MatchCollection all = Regex.Matches(html, @"dealgrp_id.*\d{5,}");
-                    
+                    Match cityId = Regex.Match(html, @"'cityId': '([\s\S]*?)'");
+
                     //MatchCollection all = Regex.Matches(html, @"deal\/([\s\S]*?)""");
 
                     ArrayList lists = new ArrayList();
@@ -112,6 +115,8 @@ namespace 点评
 
                     }
 
+                   
+
                     if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                         break;
@@ -123,7 +128,7 @@ namespace 点评
 
                     {
 
-                        string strhtml1 = GetUrl("http://t.dianping.com/ajax/dealGroupShopDetail?dealGroupId=" + list + "&action=shops&page=1&regionId=0&cityId=100");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        string strhtml1 = GetUrl("http://t.dianping.com/ajax/dealGroupShopDetail?dealGroupId=" + list + "&action=shops&page=1&regionId=0&cityId="+cityId.Groups[1].Value);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
                         Match name = Regex.Match(strhtml1, @"shopName"":""([\s\S]*?)""");
@@ -151,7 +156,7 @@ namespace 点评
 
                         
                         Application.DoEvents();
-                        Thread.Sleep(100);
+                        Thread.Sleep(1000);
 
 
                     }
@@ -177,9 +182,97 @@ namespace 点评
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            if (comboBox1.Text == "美食")
+            {
+                cate = "ch10/";
+            }
+            else if (comboBox1.Text == "休闲娱乐")
+            {
+                cate = "ch30/";
+            }
+            else if (comboBox1.Text == "结婚")
+            {
+                cate = "ch55/";
+            }
+            else if (comboBox1.Text == "丽人")
+            {
+                cate = "ch50/";
+            }
+            else if (comboBox1.Text == "美发")
+            {
+                cate = "ch50/g157";
+            }
+            else if (comboBox1.Text == "美容")
+            {
+                cate = "ch50/g158";
+            }
+            else if (comboBox1.Text == "亲子")
+            {
+                cate = "ch70/";
+            }
+            else if (comboBox1.Text == "运动健身")
+            {
+                cate = "ch45/";
+            }
+            else if (comboBox1.Text == "购物")
+            {
+                cate = "ch20/";
+            }
+            else if (comboBox1.Text == "家装")
+            {
+                cate = "ch90/";
+            }
+            else if (comboBox1.Text == "学习培训")
+            {
+                cate = "ch75/";
+            }
+            else if (comboBox1.Text == "生活服务")
+            {
+                cate = "ch80/";
+            }
+            else if (comboBox1.Text == "医疗健康")
+            {
+                cate = "ch85/";
+            }
+            else if (comboBox1.Text == "爱车")
+            {
+                cate = "ch65/";
+            }
+            else if (comboBox1.Text == "宠物")
+            {
+                cate = "ch95/";
+            }
+
+
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            登录 dl = new 登录("https://account.dianping.com/login?redir=http://www.dianping.com");
+            dl.Show();
         }
     }
 }
