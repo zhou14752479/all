@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
+using MySql.Data.MySqlClient;
 
 namespace 官网邮箱提取
 {
@@ -131,10 +132,37 @@ namespace 官网邮箱提取
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+            MySqlCommand cmd = new MySqlCommand("select * from vip where username='官网邮箱提取'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+            if (reader.Read())
+            {
+
+                string password = reader["password"].ToString().Trim();
+
+                if (password != "官网邮箱提取")
+
+                {
+                    MessageBox.Show("验证失败");
+
+                    Environment.Exit(0);
+                }
+
+                else
+                {
+                    Thread thread = new Thread(new ThreadStart(run));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+
+
+            }
             
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
