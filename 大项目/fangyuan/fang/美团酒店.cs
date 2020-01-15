@@ -108,7 +108,7 @@ namespace fang
                         {
 
 
-                        string html = method.GetUrl("https://ihotel.meituan.com/hbsearch/HotelSearch?utm_medium=pc&version_name=999.9&cateId=20&attr_28=129&cityId="+cityid+"&areaId="+areaId+"&offset="+i+"&limit=20&startDay=20200112&endDay=20200112&q=&sort=defaults", "utf-8");
+                        string html = method.GetUrl("https://ihotel.meituan.com/hbsearch/HotelSearch?utm_medium=pc&version_name=999.9&cateId=20&attr_28=129&cityId="+cityid+"&areaId="+areaId+"&offset="+i+"&limit=20&startDay="+ DateTime.Now.ToString("yyyyMMdd") + "&endDay=" + DateTime.Now.ToString("yyyyMMdd") + "&q=&sort=defaults", "utf-8");
 
                         MatchCollection matchs = Regex.Matches(html, @"""realPoiId"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
                         MatchCollection prices = Regex.Matches(html, @"""lowestPrice"":([\s\S]*?),");
@@ -189,7 +189,8 @@ namespace fang
 
         private void skinButton2_Click(object sender, EventArgs e)
         {
-            status = true;
+            skinButton2.Enabled = false;
+             status = true;
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
             thread.Start();
@@ -217,6 +218,11 @@ namespace fang
         private void 美团酒店_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            skinButton2.Enabled = true;
         }
     }
 }

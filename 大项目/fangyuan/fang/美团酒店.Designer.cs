@@ -46,12 +46,12 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.skinButton2 = new CCWin.SkinControl.SkinButton();
-            this.skinButton4 = new CCWin.SkinControl.SkinButton();
-            this.skinButton6 = new CCWin.SkinControl.SkinButton();
-            this.skinButton7 = new CCWin.SkinControl.SkinButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.skinButton7 = new CCWin.SkinControl.SkinButton();
+            this.skinButton6 = new CCWin.SkinControl.SkinButton();
+            this.skinButton4 = new CCWin.SkinControl.SkinButton();
+            this.skinButton2 = new CCWin.SkinControl.SkinButton();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -103,7 +103,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.linkLabel1);
+            this.splitContainer1.Panel2.Controls.Add(this.linkLabel2);
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton7);
             this.splitContainer1.Panel2.Controls.Add(this.skinButton6);
@@ -130,6 +130,7 @@
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(800, 348);
@@ -180,56 +181,15 @@
             // 
             this.columnHeader2.Text = "价格";
             // 
-            // skinButton2
+            // textBox1
             // 
-            this.skinButton2.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton2.BaseColor = System.Drawing.Color.Silver;
-            this.skinButton2.BorderColor = System.Drawing.Color.Silver;
-            this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton2.DownBack = null;
-            this.skinButton2.Location = new System.Drawing.Point(213, 24);
-            this.skinButton2.MouseBack = null;
-            this.skinButton2.Name = "skinButton2";
-            this.skinButton2.NormlBack = null;
-            this.skinButton2.Size = new System.Drawing.Size(137, 38);
-            this.skinButton2.TabIndex = 8;
-            this.skinButton2.Text = "开始";
-            this.skinButton2.UseVisualStyleBackColor = false;
-            this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
-            // 
-            // skinButton4
-            // 
-            this.skinButton4.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton4.BaseColor = System.Drawing.Color.Silver;
-            this.skinButton4.BorderColor = System.Drawing.Color.Silver;
-            this.skinButton4.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton4.DownBack = null;
-            this.skinButton4.Location = new System.Drawing.Point(369, 24);
-            this.skinButton4.MouseBack = null;
-            this.skinButton4.Name = "skinButton4";
-            this.skinButton4.NormlBack = null;
-            this.skinButton4.Size = new System.Drawing.Size(140, 38);
-            this.skinButton4.TabIndex = 10;
-            this.skinButton4.Text = "导出";
-            this.skinButton4.UseVisualStyleBackColor = false;
-            this.skinButton4.Click += new System.EventHandler(this.skinButton4_Click);
-            // 
-            // skinButton6
-            // 
-            this.skinButton6.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton6.BaseColor = System.Drawing.Color.Silver;
-            this.skinButton6.BorderColor = System.Drawing.Color.Silver;
-            this.skinButton6.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton6.DownBack = null;
-            this.skinButton6.Location = new System.Drawing.Point(529, 24);
-            this.skinButton6.MouseBack = null;
-            this.skinButton6.Name = "skinButton6";
-            this.skinButton6.NormlBack = null;
-            this.skinButton6.Size = new System.Drawing.Size(122, 38);
-            this.skinButton6.TabIndex = 19;
-            this.skinButton6.Text = "清空采集内容";
-            this.skinButton6.UseVisualStyleBackColor = false;
-            this.skinButton6.Click += new System.EventHandler(this.skinButton6_Click);
+            this.textBox1.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Location = new System.Drawing.Point(3, 6);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(69, 92);
+            this.textBox1.TabIndex = 24;
+            this.textBox1.Text = "60";
             // 
             // skinButton7
             // 
@@ -248,25 +208,67 @@
             this.skinButton7.UseVisualStyleBackColor = false;
             this.skinButton7.Click += new System.EventHandler(this.skinButton7_Click);
             // 
-            // textBox1
+            // skinButton6
             // 
-            this.textBox1.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(3, 6);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(69, 92);
-            this.textBox1.TabIndex = 24;
-            this.textBox1.Text = "60";
+            this.skinButton6.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton6.BaseColor = System.Drawing.Color.Silver;
+            this.skinButton6.BorderColor = System.Drawing.Color.Silver;
+            this.skinButton6.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton6.DownBack = null;
+            this.skinButton6.Location = new System.Drawing.Point(529, 24);
+            this.skinButton6.MouseBack = null;
+            this.skinButton6.Name = "skinButton6";
+            this.skinButton6.NormlBack = null;
+            this.skinButton6.Size = new System.Drawing.Size(122, 38);
+            this.skinButton6.TabIndex = 19;
+            this.skinButton6.Text = "清空采集内容";
+            this.skinButton6.UseVisualStyleBackColor = false;
+            this.skinButton6.Click += new System.EventHandler(this.skinButton6_Click);
             // 
-            // linkLabel1
+            // skinButton4
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(78, 24);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(65, 12);
-            this.linkLabel1.TabIndex = 25;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "查看城市ID";
+            this.skinButton4.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton4.BaseColor = System.Drawing.Color.Silver;
+            this.skinButton4.BorderColor = System.Drawing.Color.Silver;
+            this.skinButton4.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton4.DownBack = null;
+            this.skinButton4.Location = new System.Drawing.Point(369, 24);
+            this.skinButton4.MouseBack = null;
+            this.skinButton4.Name = "skinButton4";
+            this.skinButton4.NormlBack = null;
+            this.skinButton4.Size = new System.Drawing.Size(140, 38);
+            this.skinButton4.TabIndex = 10;
+            this.skinButton4.Text = "导出";
+            this.skinButton4.UseVisualStyleBackColor = false;
+            this.skinButton4.Click += new System.EventHandler(this.skinButton4_Click);
+            // 
+            // skinButton2
+            // 
+            this.skinButton2.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton2.BaseColor = System.Drawing.Color.Silver;
+            this.skinButton2.BorderColor = System.Drawing.Color.Silver;
+            this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton2.DownBack = null;
+            this.skinButton2.Location = new System.Drawing.Point(213, 24);
+            this.skinButton2.MouseBack = null;
+            this.skinButton2.Name = "skinButton2";
+            this.skinButton2.NormlBack = null;
+            this.skinButton2.Size = new System.Drawing.Size(137, 38);
+            this.skinButton2.TabIndex = 8;
+            this.skinButton2.Text = "开始";
+            this.skinButton2.UseVisualStyleBackColor = false;
+            this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(78, 13);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(77, 12);
+            this.linkLabel2.TabIndex = 26;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "重置开始按钮";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // 美团酒店
             // 
@@ -308,11 +310,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.TextBox textBox1;
         private CCWin.SkinControl.SkinButton skinButton7;
         private CCWin.SkinControl.SkinButton skinButton6;
         private CCWin.SkinControl.SkinButton skinButton4;
         private CCWin.SkinControl.SkinButton skinButton2;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }

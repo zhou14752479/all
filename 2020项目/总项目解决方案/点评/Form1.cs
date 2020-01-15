@@ -38,7 +38,8 @@ namespace 点评
 
         string cate = "";
 
-        
+  
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -47,13 +48,16 @@ namespace 点评
         /// <returns></returns>
         public static string GetUrl(string Url)
         {
+            
+
+            
             try
             {
                 //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
                 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "https://news.sogou.com/news?query=site%3Asohu.com+%B4%F3%CA%FD%BE%DD&_ast=1571813760&_asf=news.sogou.com&time=0&w=03009900&sort=1&mode=1&manual=&dp=1";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
 
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", 登录.cookie);
@@ -81,6 +85,7 @@ namespace 点评
       
 
         bool zanting = true;
+       
         #region  点评主程序
         public void run()
         {
@@ -97,20 +102,20 @@ namespace 点评
 
                     string html = GetUrl(Url);
 
-                    MatchCollection all = Regex.Matches(html, @"dealgrp_id.*\d{5,}");
+                    MatchCollection all = Regex.Matches(html, @"data-shopid=""([\s\S]*?)""");
                     Match cityId = Regex.Match(html, @"'cityId': '([\s\S]*?)'");
 
-                    //MatchCollection all = Regex.Matches(html, @"deal\/([\s\S]*?)""");
+                  
 
                     ArrayList lists = new ArrayList();
                     foreach (Match NextMatch in all)
                     {
-                        Match uid = Regex.Match(NextMatch.Groups[0].Value, @"\d{5,}");
+                        
 
-                        if (!lists.Contains(uid.Groups[0].Value))
+                        if (!lists.Contains(NextMatch.Groups[1].Value))
                         {
 
-                            lists.Add(uid.Groups[0].Value);
+                            lists.Add(NextMatch.Groups[1].Value);
                         }
 
                     }
@@ -128,12 +133,12 @@ namespace 点评
 
                     {
 
-                        string strhtml1 = GetUrl("http://t.dianping.com/ajax/dealGroupShopDetail?dealGroupId=" + list + "&action=shops&page=1&regionId=0&cityId="+cityId.Groups[1].Value);  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        string strhtml1 = GetUrl("http://www.dianping.com/shop/"+list);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
-                        Match name = Regex.Match(strhtml1, @"shopName"":""([\s\S]*?)""");
-                        Match tel = Regex.Match(strhtml1, @"contactPhone"":""([\s\S]*?)""");
-                        Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
+                        Match name = Regex.Match(strhtml1, @"<title>([\s\S]*?)地址");
+                        Match tel = Regex.Match(strhtml1, @"itemprop=""tel"">([\s\S]*?)<");
+                        Match addr = Regex.Match(strhtml1, @"address"" title=""([\s\S]*?)""");
                         if (!tel.Groups[1].Value.Contains("-"))
                         {
                             textBox3.Text += "-->正在采集" + name.Groups[1].Value+"\r\n";
@@ -182,11 +187,12 @@ namespace 点评
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            if (comboBox1.Text == "美食")
-            {
-                cate = "ch10/";
-            }
-            else if (comboBox1.Text == "休闲娱乐")
+            zanting = true;
+            //if (comboBox1.Text == "美食")
+            //{
+            //    cate = "ch10/";
+            //}
+             if (comboBox1.Text == "休闲娱乐")
             {
                 cate = "ch30/";
             }
@@ -266,7 +272,7 @@ namespace 点评
 
         private void button6_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.ListviewToTxt(listView1,2);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

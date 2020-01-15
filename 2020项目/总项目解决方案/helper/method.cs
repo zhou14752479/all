@@ -468,7 +468,7 @@ namespace helper
         #endregion
 
         #region  listview导出文本TXT
-        public static void ListviewToTxt(ListView listview)
+        public static void ListviewToTxt(ListView listview,int i)
         {
             if (listview.Items.Count == 0)
             {
@@ -480,7 +480,7 @@ namespace helper
                 foreach (ListViewItem item in listview.Items)
                 {
                    
-                       list.Add(item.SubItems[2].Text);
+                       list.Add(item.SubItems[i].Text);
                    
                 }
                 Thread thexp = new Thread(() => export(list)) { IsBackground = true };

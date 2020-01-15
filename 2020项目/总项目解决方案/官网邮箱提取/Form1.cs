@@ -31,6 +31,8 @@ namespace 官网邮箱提取
 
 
         DataSet ds = new DataSet();
+
+      
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns.Clear();
@@ -63,6 +65,10 @@ namespace 官网邮箱提取
 
                 textBox1.Text = this.Ofile.FileName;
             }
+
+
+
+
         }
 
         bool zanting = true;
@@ -98,15 +104,25 @@ namespace 官网邮箱提取
                     Match tel2 = Regex.Match(strhtml, @"0\d{2,3}-\d{7,8}");
                    
                   
-                    Match mail = Regex.Match(strhtml, @"[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}");
+                    MatchCollection mails = Regex.Matches(strhtml, @"[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}");
                     ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        
+
+                    StringBuilder sbmail = new StringBuilder();
+                    foreach (Match mail in mails)
+                    {
+                        sbmail.Append(mail.Groups[0].Value+"，");
+                    }
+
+
+
+
+
                       
                         listViewItem.SubItems.Add(coname);
                         listViewItem.SubItems.Add(name);
                     listViewItem.SubItems.Add(url);
                     listViewItem.SubItems.Add(tel.Groups[0].Value+","+ tel2.Groups[0].Value);
-                    listViewItem.SubItems.Add(mail.Groups[0].Value);
+                    listViewItem.SubItems.Add(sbmail.ToString());
 
 
 
@@ -173,6 +189,11 @@ namespace 官网邮箱提取
         private void button4_Click(object sender, EventArgs e)
         {
             zanting = true;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }
