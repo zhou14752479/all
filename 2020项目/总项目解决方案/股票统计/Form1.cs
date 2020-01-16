@@ -218,10 +218,55 @@ namespace 股票统计
 
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+
+        public int getbaifenbi(string a1, string a2, string a3, string a4, string a5, string a6, string a7)
         {
            
-            string all = "select count(*) from datas where a10='" + comboBox1.Text + "' AND a11='" + comboBox2.Text + "' AND a12='" + comboBox3.Text + "' AND a13='" + comboBox4.Text + "' AND a14='" + comboBox5.Text + "' AND a15='" + comboBox6.Text + "' AND a16='" + comboBox7.Text + "'  AND a1> '" + DateTime.Now.AddDays(-100) + "'   ";
+
+            string ying = "select count(*) from datas where a10='" + a1 + "' AND a11='" + a2 + "' AND a12='" + a3 + "' AND a13='" + a4 + "' AND a14='" + a5 + "' AND a15='" + a6 + "' AND a16='" + a7 + "' AND a17='赢'   ";
+            string b2 = chaxun(ying);
+
+            string banying = "select count(*) from datas where a10='" + a1 + "' AND a11='" + a2 + "' AND a12='" + a3 + "' AND a13='" + a4 + "' AND a14='" + a5 + "' AND a15='" + a6 + "' AND a16='" + a7 + "' AND a17='半赢'   ";
+            string b3 = chaxun(banying);
+
+            string banshu = "select count(*) from datas where a10='" + a1 + "' AND a11='" + a2 + "' AND a12='" + a3 + "' AND a13='" + a4 + "' AND a14='" + a5 + "' AND a15='" + a6 + "' AND a16='" + a7 + "' AND a17='半输'   ";
+            string b5 = chaxun(banshu);
+
+            string shu = "select count(*) from datas where a10='" + a1 + "' AND a11='" + a2 + "' AND a12='" + a3 + "' AND a13='" + a4 + "' AND a14='" + a5 + "' AND a15='" + a6 + "' AND a16='" + a7 + "' AND a17='输'   ";
+            string b6 = chaxun(shu);
+
+            
+            if ((Convert.ToInt16(b2) + Convert.ToInt16(b3) * 0.5 + Convert.ToInt16(b6) + Convert.ToInt16(b5) * 0.5) != 0)
+            {
+                double baifenbi = (Convert.ToInt16(b2) + Convert.ToInt16(b3) * 0.5) / (Convert.ToInt16(b2) + Convert.ToInt16(b3) * 0.5 + Convert.ToInt16(b6) + Convert.ToInt16(b5) * 0.5);
+                return Convert.ToInt16(baifenbi * 100) ;
+            }
+
+            return 0;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (comboBox1.Text != "")
+            {
+                sb.Append(" a10='" + comboBox1.Text + "' AND ");
+            }
+
+
+
+
+
+
+
+
+
+
+
+            textBox6.Text = "";
+            string all = "select count(*) from datas where "+sb.ToString()+" a1> '" + DateTime.Now.AddDays(-100) + "'   ";
+           
+            MessageBox.Show(all);
             linkLabel1.Text = chaxun(all);
 
             string ying = "select count(*) from datas where a10='" + comboBox1.Text + "' AND a11='" + comboBox2.Text + "' AND a12='" + comboBox3.Text + "' AND a13='" + comboBox4.Text + "' AND a14='" + comboBox5.Text + "' AND a15='" + comboBox6.Text + "' AND a16='" + comboBox7.Text + "' AND a17='赢'   ";
@@ -240,9 +285,69 @@ namespace 股票统计
             linkLabel6.Text = chaxun(shu);
 
             linkLabel7.Text = qiuhe();
+            if ((Convert.ToInt16(linkLabel2.Text) + Convert.ToInt16(linkLabel3.Text) * 0.5 + Convert.ToInt16(linkLabel6.Text) + Convert.ToInt16(linkLabel5.Text) * 0.5) != 0)
+            {
+                double baifenbi = (Convert.ToInt16(linkLabel2.Text) + Convert.ToInt16(linkLabel3.Text) * 0.5) / (Convert.ToInt16(linkLabel2.Text) + Convert.ToInt16(linkLabel3.Text) * 0.5 + Convert.ToInt16(linkLabel6.Text) + Convert.ToInt16(linkLabel5.Text) * 0.5);
+                linkLabel8.Text = Convert.ToInt16(baifenbi * 100).ToString();
+            }
 
-           double baifenbi= (Convert.ToInt32(linkLabel2.Text) + Convert.ToInt32(linkLabel3.Text) * 0.5) / (Convert.ToInt32(linkLabel2.Text) + Convert.ToInt32(linkLabel3.Text) * 0.5 + Convert.ToInt32(linkLabel6.Text) + Convert.ToInt32(linkLabel5.Text) * 0.5);
-            linkLabel8.Text = Convert.ToInt32(baifenbi * 100) + "%";
+
+            //交叉比对
+
+            for (int a = 0; a < comboBox1.Items.Count; a++)
+            {
+                if (comboBox1.Items[a].ToString() != comboBox1.Text)
+                {
+                    int value = getbaifenbi(comboBox1.Items[a].ToString(), comboBox2.Text, comboBox3.Text, comboBox4.Text, comboBox5.Text, comboBox6.Text, comboBox7.Text) + Convert.ToInt16(linkLabel8.Text);
+                    textBox6.Text += "与"+comboBox1.Items[a].ToString() + "交叉比对值为" +value +"%,";
+                }
+            }
+
+            for (int a = 0; a < comboBox2.Items.Count; a++)
+            {
+                if (comboBox2.Items[a].ToString() != comboBox2.Text)
+                {
+                    int value = getbaifenbi(comboBox1.Text, comboBox2.Items[a].ToString(), comboBox3.Text, comboBox4.Text, comboBox5.Text, comboBox6.Text, comboBox7.Text) + Convert.ToInt16(linkLabel8.Text);
+                    textBox6.Text += "与" + comboBox2.Items[a].ToString() + "交叉比对值为" + value + "%,";
+                }
+            }
+
+            for (int a = 0; a < comboBox3.Items.Count; a++)
+            {
+                if (comboBox3.Items[a].ToString() != comboBox3.Text)
+                {
+                    int value = getbaifenbi(comboBox1.Text, comboBox2.Text, comboBox3.Items[a].ToString(), comboBox4.Text, comboBox5.Text, comboBox6.Text, comboBox7.Text) + Convert.ToInt16(linkLabel8.Text);
+                    textBox6.Text += "与" + comboBox3.Items[a].ToString() + "交叉比对值为" + value + "%,";
+                }
+            }
+            for (int a = 0; a < comboBox4.Items.Count; a++)
+            {
+                if (comboBox4.Items[a].ToString() != comboBox4.Text)
+                {
+                    int value = getbaifenbi(comboBox1.Text, comboBox2.Text, comboBox3.Text, comboBox4.Items[a].ToString(), comboBox5.Text, comboBox6.Text, comboBox7.Text) + Convert.ToInt16(linkLabel8.Text);
+                    textBox6.Text += "与" + comboBox4.Items[a].ToString() + "交叉比对值为" + value + "%,";
+                }
+            }
+
+            for (int a = 0; a < comboBox5.Items.Count; a++)
+            {
+                if (comboBox5.Items[a].ToString() != comboBox5.Text)
+                {
+                    int value = getbaifenbi(comboBox1.Text, comboBox2.Text, comboBox3.Text, comboBox4.Text, comboBox5.Items[a].ToString(), comboBox6.Text, comboBox7.Text) + Convert.ToInt16(linkLabel8.Text);
+                    textBox6.Text += "与" + comboBox5.Items[a].ToString() + "交叉比对值为" + value + "%,";
+                }
+            }
+
+
+            for (int a = 0; a < comboBox7.Items.Count; a++)
+            {
+                if (comboBox7.Items[a].ToString() != comboBox7.Text)
+                {
+                    int value = getbaifenbi(comboBox1.Text, comboBox2.Text, comboBox3.Text, comboBox4.Text, comboBox5.Text, comboBox6.Text, comboBox7.Items[a].ToString()) + Convert.ToInt16(linkLabel8.Text);
+                    textBox6.Text += "与" + comboBox7.Items[a].ToString() + "交叉比对值为" + value + "%,";
+                }
+            }
+
         }
 
         private void ComboBox8_SelectedIndexChanged(object sender, EventArgs e)
@@ -281,6 +386,12 @@ namespace 股票统计
             {
                 textBox5.Text = "-100";
             }
+
+          
+
+
+
+
         }
     }
 }

@@ -30,45 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.listView30 = new System.Windows.Forms.ListView();
-            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listView29 = new System.Windows.Forms.ListView();
-            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listView20 = new System.Windows.Forms.ListView();
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView21 = new System.Windows.Forms.ListView();
@@ -123,29 +86,71 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView31 = new System.Windows.Forms.ListView();
-            this.columnHeader36 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView32 = new System.Windows.Forms.ListView();
-            this.columnHeader37 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView33 = new System.Windows.Forms.ListView();
-            this.columnHeader38 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView34 = new System.Windows.Forms.ListView();
-            this.columnHeader39 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listView35 = new System.Windows.Forms.ListView();
             this.columnHeader40 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView34 = new System.Windows.Forms.ListView();
+            this.columnHeader39 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView33 = new System.Windows.Forms.ListView();
+            this.columnHeader38 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView32 = new System.Windows.Forms.ListView();
+            this.columnHeader37 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView31 = new System.Windows.Forms.ListView();
+            this.columnHeader36 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.listView30 = new System.Windows.Forms.ListView();
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listView29 = new System.Windows.Forms.ListView();
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -167,378 +172,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1307, 695);
             this.splitContainer1.SplitterDistance = 404;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(106, 404);
-            this.listView1.TabIndex = 13;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "手机号";
-            this.columnHeader1.Width = 100;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1021, 287);
-            this.tabControl1.TabIndex = 1;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.comboBox2);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.listView30);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.listView29);
-            this.tabPage1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabPage1.Location = new System.Drawing.Point(25, 4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(992, 279);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "扫号设置";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(150, 225);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 50;
-            this.button3.Text = "清空所有";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(146, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 14);
-            this.label5.TabIndex = 49;
-            this.label5.Text = "城市";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(144, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 14);
-            this.label4.TabIndex = 48;
-            this.label4.Text = "省份";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(187, 46);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(125, 22);
-            this.comboBox2.TabIndex = 47;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "全国",
-            "北京",
-            "上海",
-            "重庆",
-            "天津",
-            "山西省",
-            "内蒙古自治区",
-            "辽宁省",
-            "吉林省",
-            "黑龙江省",
-            "江苏省",
-            "浙江省",
-            "安徽省",
-            "福建省",
-            "江西省",
-            "山东省",
-            "河南省",
-            "湖北省",
-            "湖南省",
-            "广东省",
-            "广西省",
-            "海南省",
-            "四川省",
-            "贵州省",
-            "云南省",
-            "西藏自治区",
-            "陕西省",
-            "甘肃省",
-            "青海省",
-            "宁夏回族自治区",
-            "新疆维吾尔自治区",
-            "河北省"});
-            this.comboBox1.Location = new System.Drawing.Point(187, 17);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(125, 22);
-            this.comboBox1.TabIndex = 46;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(150, 166);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 45;
-            this.button2.Text = "添加任务";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // listView30
-            // 
-            this.listView30.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader30,
-            this.columnHeader31,
-            this.columnHeader32,
-            this.columnHeader33,
-            this.columnHeader34,
-            this.columnHeader35});
-            this.listView30.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listView30.FullRowSelect = true;
-            this.listView30.GridLines = true;
-            this.listView30.HideSelection = false;
-            this.listView30.Location = new System.Drawing.Point(323, 3);
-            this.listView30.Name = "listView30";
-            this.listView30.Size = new System.Drawing.Size(310, 273);
-            this.listView30.TabIndex = 44;
-            this.listView30.UseCompatibleStateImageBehavior = false;
-            this.listView30.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader30
-            // 
-            this.columnHeader30.Text = "ID";
-            this.columnHeader30.Width = 30;
-            // 
-            // columnHeader31
-            // 
-            this.columnHeader31.Text = "地区";
-            this.columnHeader31.Width = 120;
-            // 
-            // columnHeader32
-            // 
-            this.columnHeader32.Text = "卡种";
-            this.columnHeader32.Width = 100;
-            // 
-            // columnHeader33
-            // 
-            this.columnHeader33.Text = "次数";
-            this.columnHeader33.Width = 50;
-            // 
-            // columnHeader34
-            // 
-            this.columnHeader34.Width = 10;
-            // 
-            // columnHeader35
-            // 
-            this.columnHeader35.Width = 10;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox2.Location = new System.Drawing.Point(633, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 273);
-            this.groupBox2.TabIndex = 43;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "IP设置";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(241, 43);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(21, 14);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "ms";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(22, 95);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(323, 23);
-            this.textBox2.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 14);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "代理IP API地址：";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(177, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(58, 23);
-            this.textBox1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "定时换IP间隔时间：";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(231, 166);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "开始任务";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // listView29
-            // 
-            this.listView29.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader29});
-            this.listView29.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listView29.FullRowSelect = true;
-            this.listView29.GridLines = true;
-            this.listView29.HideSelection = false;
-            this.listView29.Location = new System.Drawing.Point(3, 3);
-            this.listView29.Name = "listView29";
-            this.listView29.Size = new System.Drawing.Size(134, 273);
-            this.listView29.TabIndex = 41;
-            this.listView29.UseCompatibleStateImageBehavior = false;
-            this.listView29.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader29
-            // 
-            this.columnHeader29.Text = "套餐名称";
-            this.columnHeader29.Width = 150;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.Location = new System.Drawing.Point(1021, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(286, 287);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "运行日志";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(3, 17);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(280, 267);
-            this.textBox3.TabIndex = 2;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(150, 196);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 51;
-            this.button4.Text = "暂停";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(231, 196);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 52;
-            this.button5.Text = "继续";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(231, 225);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 53;
-            this.button6.Text = "导出";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.复制ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 26);
-            // 
-            // 复制ToolStripMenuItem
-            // 
-            this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
-            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.复制ToolStripMenuItem.Text = "复制";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(75, 22);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(75, 23);
-            this.textBox4.TabIndex = 55;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.textBox4);
-            this.groupBox3.Location = new System.Drawing.Point(150, 82);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(162, 60);
-            this.groupBox3.TabIndex = 56;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "自定义规则";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 14);
-            this.label6.TabIndex = 56;
-            this.label6.Text = "必须包含";
             // 
             // tabControl2
             // 
@@ -587,21 +220,6 @@
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "第一页";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.listView35);
-            this.tabPage3.Controls.Add(this.listView34);
-            this.tabPage3.Controls.Add(this.listView33);
-            this.tabPage3.Controls.Add(this.listView32);
-            this.tabPage3.Controls.Add(this.listView31);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1193, 378);
-            this.tabPage3.TabIndex = 1;
-            this.tabPage3.Text = "第二页";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // listView20
             // 
@@ -1116,81 +734,20 @@
             this.columnHeader2.Text = "自定义规则";
             this.columnHeader2.Width = 100;
             // 
-            // listView31
+            // tabPage3
             // 
-            this.listView31.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader36});
-            this.listView31.FullRowSelect = true;
-            this.listView31.GridLines = true;
-            this.listView31.HideSelection = false;
-            this.listView31.Location = new System.Drawing.Point(3, 3);
-            this.listView31.Name = "listView31";
-            this.listView31.Size = new System.Drawing.Size(134, 125);
-            this.listView31.TabIndex = 49;
-            this.listView31.UseCompatibleStateImageBehavior = false;
-            this.listView31.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader36
-            // 
-            this.columnHeader36.Text = "双3夹1类型";
-            this.columnHeader36.Width = 200;
-            // 
-            // listView32
-            // 
-            this.listView32.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader37});
-            this.listView32.FullRowSelect = true;
-            this.listView32.GridLines = true;
-            this.listView32.HideSelection = false;
-            this.listView32.Location = new System.Drawing.Point(3, 124);
-            this.listView32.Name = "listView32";
-            this.listView32.Size = new System.Drawing.Size(134, 125);
-            this.listView32.TabIndex = 50;
-            this.listView32.UseCompatibleStateImageBehavior = false;
-            this.listView32.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader37
-            // 
-            this.columnHeader37.Text = "高山流水_递减";
-            this.columnHeader37.Width = 200;
-            // 
-            // listView33
-            // 
-            this.listView33.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader38});
-            this.listView33.FullRowSelect = true;
-            this.listView33.GridLines = true;
-            this.listView33.HideSelection = false;
-            this.listView33.Location = new System.Drawing.Point(3, 250);
-            this.listView33.Name = "listView33";
-            this.listView33.Size = new System.Drawing.Size(134, 125);
-            this.listView33.TabIndex = 51;
-            this.listView33.UseCompatibleStateImageBehavior = false;
-            this.listView33.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader38
-            // 
-            this.columnHeader38.Text = "尾号豹顺";
-            this.columnHeader38.Width = 200;
-            // 
-            // listView34
-            // 
-            this.listView34.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader39});
-            this.listView34.FullRowSelect = true;
-            this.listView34.GridLines = true;
-            this.listView34.HideSelection = false;
-            this.listView34.Location = new System.Drawing.Point(140, 3);
-            this.listView34.Name = "listView34";
-            this.listView34.Size = new System.Drawing.Size(134, 125);
-            this.listView34.TabIndex = 52;
-            this.listView34.UseCompatibleStateImageBehavior = false;
-            this.listView34.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader39
-            // 
-            this.columnHeader39.Text = "尾号双豹子";
-            this.columnHeader39.Width = 200;
+            this.tabPage3.Controls.Add(this.listView35);
+            this.tabPage3.Controls.Add(this.listView34);
+            this.tabPage3.Controls.Add(this.listView33);
+            this.tabPage3.Controls.Add(this.listView32);
+            this.tabPage3.Controls.Add(this.listView31);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1193, 378);
+            this.tabPage3.TabIndex = 1;
+            this.tabPage3.Text = "第二页";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // listView35
             // 
@@ -1211,6 +768,504 @@
             this.columnHeader40.Text = "步步高升递增";
             this.columnHeader40.Width = 200;
             // 
+            // listView34
+            // 
+            this.listView34.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader39});
+            this.listView34.FullRowSelect = true;
+            this.listView34.GridLines = true;
+            this.listView34.HideSelection = false;
+            this.listView34.Location = new System.Drawing.Point(140, 3);
+            this.listView34.Name = "listView34";
+            this.listView34.Size = new System.Drawing.Size(134, 125);
+            this.listView34.TabIndex = 52;
+            this.listView34.UseCompatibleStateImageBehavior = false;
+            this.listView34.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader39
+            // 
+            this.columnHeader39.Text = "尾号双豹子";
+            this.columnHeader39.Width = 200;
+            // 
+            // listView33
+            // 
+            this.listView33.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader38});
+            this.listView33.FullRowSelect = true;
+            this.listView33.GridLines = true;
+            this.listView33.HideSelection = false;
+            this.listView33.Location = new System.Drawing.Point(3, 250);
+            this.listView33.Name = "listView33";
+            this.listView33.Size = new System.Drawing.Size(134, 125);
+            this.listView33.TabIndex = 51;
+            this.listView33.UseCompatibleStateImageBehavior = false;
+            this.listView33.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader38
+            // 
+            this.columnHeader38.Text = "尾号豹顺";
+            this.columnHeader38.Width = 200;
+            // 
+            // listView32
+            // 
+            this.listView32.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader37});
+            this.listView32.FullRowSelect = true;
+            this.listView32.GridLines = true;
+            this.listView32.HideSelection = false;
+            this.listView32.Location = new System.Drawing.Point(3, 124);
+            this.listView32.Name = "listView32";
+            this.listView32.Size = new System.Drawing.Size(134, 125);
+            this.listView32.TabIndex = 50;
+            this.listView32.UseCompatibleStateImageBehavior = false;
+            this.listView32.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader37
+            // 
+            this.columnHeader37.Text = "高山流水_递减";
+            this.columnHeader37.Width = 200;
+            // 
+            // listView31
+            // 
+            this.listView31.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader36});
+            this.listView31.FullRowSelect = true;
+            this.listView31.GridLines = true;
+            this.listView31.HideSelection = false;
+            this.listView31.Location = new System.Drawing.Point(3, 3);
+            this.listView31.Name = "listView31";
+            this.listView31.Size = new System.Drawing.Size(134, 125);
+            this.listView31.TabIndex = 49;
+            this.listView31.UseCompatibleStateImageBehavior = false;
+            this.listView31.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader36
+            // 
+            this.columnHeader36.Text = "双3夹1类型";
+            this.columnHeader36.Width = 200;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(106, 404);
+            this.listView1.TabIndex = 13;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "手机号";
+            this.columnHeader1.Width = 100;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Multiline = true;
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1021, 287);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Controls.Add(this.button6);
+            this.tabPage1.Controls.Add(this.button5);
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.comboBox2);
+            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.listView30);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.listView29);
+            this.tabPage1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabPage1.Location = new System.Drawing.Point(25, 4);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(992, 279);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "扫号设置";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Location = new System.Drawing.Point(150, 82);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(162, 60);
+            this.groupBox3.TabIndex = 56;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "自定义规则";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 14);
+            this.label6.TabIndex = 56;
+            this.label6.Text = "必须包含";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(75, 22);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(75, 23);
+            this.textBox4.TabIndex = 55;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(231, 225);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 53;
+            this.button6.Text = "导出";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(231, 196);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 52;
+            this.button5.Text = "继续";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(150, 196);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 51;
+            this.button4.Text = "暂停";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(150, 225);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 50;
+            this.button3.Text = "清空所有";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(146, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 14);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "城市";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(144, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 14);
+            this.label4.TabIndex = 48;
+            this.label4.Text = "省份";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(187, 46);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(125, 22);
+            this.comboBox2.TabIndex = 47;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "全国",
+            "北京",
+            "上海",
+            "重庆",
+            "天津",
+            "山西省",
+            "内蒙古自治区",
+            "辽宁省",
+            "吉林省",
+            "黑龙江省",
+            "江苏省",
+            "浙江省",
+            "安徽省",
+            "福建省",
+            "江西省",
+            "山东省",
+            "河南省",
+            "湖北省",
+            "湖南省",
+            "广东省",
+            "广西省",
+            "海南省",
+            "四川省",
+            "贵州省",
+            "云南省",
+            "西藏自治区",
+            "陕西省",
+            "甘肃省",
+            "青海省",
+            "宁夏回族自治区",
+            "新疆维吾尔自治区",
+            "河北省"});
+            this.comboBox1.Location = new System.Drawing.Point(187, 17);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(125, 22);
+            this.comboBox1.TabIndex = 46;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(150, 166);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 45;
+            this.button2.Text = "添加任务";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // listView30
+            // 
+            this.listView30.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader30,
+            this.columnHeader31,
+            this.columnHeader32,
+            this.columnHeader33,
+            this.columnHeader34,
+            this.columnHeader35});
+            this.listView30.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listView30.FullRowSelect = true;
+            this.listView30.GridLines = true;
+            this.listView30.HideSelection = false;
+            this.listView30.Location = new System.Drawing.Point(323, 3);
+            this.listView30.Name = "listView30";
+            this.listView30.Size = new System.Drawing.Size(310, 273);
+            this.listView30.TabIndex = 44;
+            this.listView30.UseCompatibleStateImageBehavior = false;
+            this.listView30.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Text = "ID";
+            this.columnHeader30.Width = 30;
+            // 
+            // columnHeader31
+            // 
+            this.columnHeader31.Text = "地区";
+            this.columnHeader31.Width = 120;
+            // 
+            // columnHeader32
+            // 
+            this.columnHeader32.Text = "卡种";
+            this.columnHeader32.Width = 100;
+            // 
+            // columnHeader33
+            // 
+            this.columnHeader33.Text = "次数";
+            this.columnHeader33.Width = 50;
+            // 
+            // columnHeader34
+            // 
+            this.columnHeader34.Width = 10;
+            // 
+            // columnHeader35
+            // 
+            this.columnHeader35.Width = 10;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button7);
+            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Location = new System.Drawing.Point(633, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(356, 273);
+            this.groupBox2.TabIndex = 43;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "IP设置";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(241, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(21, 14);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "ms";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(22, 95);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(323, 23);
+            this.textBox2.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 70);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 14);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "代理IP API地址：";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(177, 40);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(58, 23);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "5000";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 14);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "定时换IP间隔时间：";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(231, 166);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 42;
+            this.button1.Text = "开始任务";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // listView29
+            // 
+            this.listView29.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader29});
+            this.listView29.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listView29.FullRowSelect = true;
+            this.listView29.GridLines = true;
+            this.listView29.HideSelection = false;
+            this.listView29.Location = new System.Drawing.Point(3, 3);
+            this.listView29.Name = "listView29";
+            this.listView29.Size = new System.Drawing.Size(134, 273);
+            this.listView29.TabIndex = 41;
+            this.listView29.UseCompatibleStateImageBehavior = false;
+            this.listView29.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Text = "套餐名称";
+            this.columnHeader29.Width = 150;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox1.Location = new System.Drawing.Point(1021, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(286, 287);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "运行日志";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox3.Location = new System.Drawing.Point(3, 17);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox3.Size = new System.Drawing.Size(280, 267);
+            this.textBox3.TabIndex = 2;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.复制ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 26);
+            // 
+            // 复制ToolStripMenuItem
+            // 
+            this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.复制ToolStripMenuItem.Text = "复制";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(108, 130);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(44, 23);
+            this.textBox5.TabIndex = 6;
+            this.textBox5.Text = "10";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 133);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(91, 14);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "最高线程数：";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(218, 130);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(44, 23);
+            this.textBox6.TabIndex = 8;
+            this.textBox6.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(166, 133);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 14);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "延时：";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(22, 182);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(116, 23);
+            this.button7.TabIndex = 9;
+            this.button7.Text = "宽带拨号";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1227,19 +1282,19 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1350,6 +1405,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader37;
         private System.Windows.Forms.ListView listView31;
         private System.Windows.Forms.ColumnHeader columnHeader36;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button7;
     }
 }
 

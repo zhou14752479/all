@@ -587,5 +587,11 @@ namespace 联通手机号
         {
             method.ListviewToTxt(listView1,0);
         }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            宽带拨号 bh = new 宽带拨号();
+            bh.Show();
+        }
     }
 }

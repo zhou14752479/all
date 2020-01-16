@@ -78,6 +78,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label42 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -98,7 +99,9 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
+            this.label43 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -390,7 +393,7 @@
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Location = new System.Drawing.Point(471, 35);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(478, 387);
+            this.groupBox2.Size = new System.Drawing.Size(539, 387);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "分类";
@@ -688,7 +691,7 @@
             this.button3.BackColor = System.Drawing.Color.Lime;
             this.button3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(808, 94);
+            this.button3.Location = new System.Drawing.Point(837, 67);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(133, 39);
             this.button3.TabIndex = 6;
@@ -698,6 +701,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.linkLabel9);
+            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.label43);
             this.groupBox3.Controls.Add(this.linkLabel8);
             this.groupBox3.Controls.Add(this.dateTimePicker2);
             this.groupBox3.Controls.Add(this.label42);
@@ -722,22 +728,33 @@
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Location = new System.Drawing.Point(34, 455);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(947, 165);
+            this.groupBox3.Size = new System.Drawing.Size(976, 203);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "查询结果";
             // 
+            // linkLabel8
+            // 
+            this.linkLabel8.AutoSize = true;
+            this.linkLabel8.Font = new System.Drawing.Font("宋体", 20F);
+            this.linkLabel8.Location = new System.Drawing.Point(513, 67);
+            this.linkLabel8.Name = "linkLabel8";
+            this.linkLabel8.Size = new System.Drawing.Size(26, 27);
+            this.linkLabel8.TabIndex = 27;
+            this.linkLabel8.TabStop = true;
+            this.linkLabel8.Text = "0";
+            // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(658, 103);
+            this.dateTimePicker2.Location = new System.Drawing.Point(720, 76);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(121, 21);
+            this.dateTimePicker2.Size = new System.Drawing.Size(111, 21);
             this.dateTimePicker2.TabIndex = 26;
             // 
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(635, 109);
+            this.label42.Location = new System.Drawing.Point(697, 82);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(17, 12);
             this.label42.TabIndex = 25;
@@ -745,9 +762,9 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(508, 103);
+            this.dateTimePicker1.Location = new System.Drawing.Point(587, 76);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(121, 21);
+            this.dateTimePicker1.Size = new System.Drawing.Size(104, 21);
             this.dateTimePicker1.TabIndex = 24;
             // 
             // label39
@@ -927,23 +944,42 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "0";
             // 
-            // linkLabel8
+            // label43
             // 
-            this.linkLabel8.AutoSize = true;
-            this.linkLabel8.Font = new System.Drawing.Font("宋体", 20F);
-            this.linkLabel8.Location = new System.Drawing.Point(513, 67);
-            this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(26, 27);
-            this.linkLabel8.TabIndex = 27;
-            this.linkLabel8.TabStop = true;
-            this.linkLabel8.Text = "0";
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label43.Location = new System.Drawing.Point(28, 121);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(142, 21);
+            this.label43.TabIndex = 28;
+            this.label43.Text = "交叉百分比：";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox6.Location = new System.Drawing.Point(166, 121);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(804, 56);
+            this.textBox6.TabIndex = 29;
+            // 
+            // linkLabel9
+            // 
+            this.linkLabel9.AutoSize = true;
+            this.linkLabel9.Font = new System.Drawing.Font("宋体", 20F);
+            this.linkLabel9.Location = new System.Drawing.Point(555, 70);
+            this.linkLabel9.Name = "linkLabel9";
+            this.linkLabel9.Size = new System.Drawing.Size(26, 27);
+            this.linkLabel9.TabIndex = 30;
+            this.linkLabel9.TabStop = true;
+            this.linkLabel9.Text = "%";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1038, 632);
+            this.ClientSize = new System.Drawing.Size(1038, 670);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -1038,6 +1074,9 @@
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.LinkLabel linkLabel8;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.LinkLabel linkLabel9;
     }
 }
 
