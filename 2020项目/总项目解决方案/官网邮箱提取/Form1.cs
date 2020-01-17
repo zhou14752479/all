@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +30,7 @@ namespace 官网邮箱提取
         }
         OpenFileDialog Ofile = new OpenFileDialog();
 
-
+        ArrayList finishes = new ArrayList();
         DataSet ds = new DataSet();
 
       
@@ -84,58 +85,65 @@ namespace 官网邮箱提取
                 for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
                     string coname = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                    string name = dataGridView1.Rows[i].Cells[1].Value.ToString();
-                    string url = "http://"+dataGridView1.Rows[i].Cells[2].Value.ToString().Replace("#",".").Replace("http://","").Replace("/", "");
-                    string html = method.GetUrl(url, "utf-8");
-                   
-                    Match lianxi = Regex.Match(html, @"<a.*>.*联系.*");
-                    string lxUrl = lianxi.Groups[0].Value;
-                    if(!lxUrl.Contains("www"))
-                {
-                    Match contact = Regex.Match(lianxi.Groups[0].Value, @"href=""([\s\S]*?)""");
-                    lxUrl = url + contact.Groups[1].Value;
-                }
-                    
-
-
-                    textBox3.Text += "正在抓取："+lxUrl+"\r\n";
-                    string strhtml = method.GetUrl(lxUrl, "utf-8");
-                    Match  tel = Regex.Match(strhtml, @"[1][3,4,5,7,8,9][0-9]{9}|0\d{2,3}-\d{7,8}");
-                    Match tel2 = Regex.Match(strhtml, @"0\d{2,3}-\d{7,8}");
-                   
-                  
-                    MatchCollection mails = Regex.Matches(strhtml, @"[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}");
-                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-
-                    StringBuilder sbmail = new StringBuilder();
-                    foreach (Match mail in mails)
+                    if (!finishes.Contains(coname))
                     {
-                        sbmail.Append(mail.Groups[0].Value+"，");
-                    }
+                        finishes.Add(coname);
+                        string name = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                        string url = "http://" + dataGridView1.Rows[i].Cells[2].Value.ToString().Replace("#", ".").Replace("http://", "").Replace("/", "");
+                        string html = method.GetUrl(url, "utf-8");
+
+                        Match lianxi = Regex.Match(html, @"<a.*>.*联系.*");
+                        string lxUrl = lianxi.Groups[0].Value;
+                        if (!lxUrl.Contains("www"))
+                        {
+                            Match contact = Regex.Match(lianxi.Groups[0].Value, @"href=""([\s\S]*?)""");
+                            lxUrl = url + contact.Groups[1].Value;
+                        }
+
+
+
+                        textBox3.Text += "正在抓取：" + lxUrl + "\r\n";
+                        string strhtml = method.GetUrl(lxUrl, "utf-8");
+                        Match tel = Regex.Match(strhtml, @"[1][3,4,5,7,8,9][0-9]{9}|0\d{2,3}-\d{7,8}");
+                        Match tel2 = Regex.Match(strhtml, @"0\d{2,3}-\d{7,8}");
+
+
+                        MatchCollection mails = Regex.Matches(strhtml, @"[0-9a-zA-Z_]{0,19}@[1-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}");
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+
+                        StringBuilder sbmail = new StringBuilder();
+                        foreach (Match mail in mails)
+                        {
+                            if (!sbmail.ToString().Contains(mail.Groups[0].Value))
+                            {
+                                sbmail.Append(mail.Groups[0].Value + "，");
+                            }
+                        }
 
 
 
 
 
-                      
+
                         listViewItem.SubItems.Add(coname);
                         listViewItem.SubItems.Add(name);
-                    listViewItem.SubItems.Add(url);
-                    listViewItem.SubItems.Add(tel.Groups[0].Value+","+ tel2.Groups[0].Value);
-                    listViewItem.SubItems.Add(sbmail.ToString());
+                        listViewItem.SubItems.Add(url);
+                        listViewItem.SubItems.Add(tel.Groups[0].Value + "," + tel2.Groups[0].Value);
+                        listViewItem.SubItems.Add(sbmail.ToString());
 
 
 
-                    while (this.zanting == false)
+                        while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
 
-                      
+                    }
                     
                 }
 
-                MessageBox.Show("采集完成");
+                textBox3.Text = "";
+                textBox3.Text = "线程一结束";
 
             }
 
@@ -171,9 +179,12 @@ namespace 官网邮箱提取
 
                 else
                 {
-                    Thread thread = new Thread(new ThreadStart(run));
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Thread thread = new Thread(new ThreadStart(run));
+                        thread.Start();
+                        Control.CheckForIllegalCrossThreadCalls = false;
+                    }
                 }
 
 

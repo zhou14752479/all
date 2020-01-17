@@ -121,6 +121,11 @@
             this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -133,11 +138,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -728,6 +728,7 @@
             this.listView2.TabIndex = 41;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
+           
             // 
             // columnHeader2
             // 
@@ -858,6 +859,7 @@
             this.listView1.TabIndex = 13;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseClick);
             // 
             // columnHeader1
             // 
@@ -1116,6 +1118,50 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "IP设置";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(22, 182);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(116, 23);
+            this.button7.TabIndex = 9;
+            this.button7.Text = "宽带拨号";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(218, 130);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(44, 23);
+            this.textBox6.TabIndex = 8;
+            this.textBox6.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(166, 133);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 14);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "延时：";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(108, 130);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(44, 23);
+            this.textBox5.TabIndex = 6;
+            this.textBox5.Text = "10";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 133);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(91, 14);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "最高线程数：";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -1221,50 +1267,6 @@
             this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
             this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.复制ToolStripMenuItem.Text = "复制";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(108, 130);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(44, 23);
-            this.textBox5.TabIndex = 6;
-            this.textBox5.Text = "10";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 133);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 14);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "最高线程数：";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(218, 130);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(44, 23);
-            this.textBox6.TabIndex = 8;
-            this.textBox6.Text = "0";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(166, 133);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 14);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "延时：";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(22, 182);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(116, 23);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "宽带拨号";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // Form1
             // 
