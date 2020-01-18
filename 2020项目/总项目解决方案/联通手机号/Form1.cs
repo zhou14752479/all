@@ -54,8 +54,13 @@ namespace 联通手机号
         private void listviewClick(object sender, EventArgs e)
         {
             ListView listview = (ListView)sender;
-           
-            Clipboard.SetText(listview.SelectedItems[0].SubItems[0].Text);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < listview.Items.Count; i++)
+            {
+                sb.Append(listview.Items[i].SubItems[0].Text+"\r\n");
+            }
+            // Clipboard.SetText(listview.SelectedItems[0].SubItems[0].Text);
+            Clipboard.SetText(sb.ToString());
         }
 
         public void run()
@@ -724,9 +729,26 @@ namespace 联通手机号
       
         private void ListView1_MouseClick(object sender, MouseEventArgs e)
         {
-            Clipboard.SetText(listView1.SelectedItems[0].SubItems[0].Text);
+            //Clipboard.SetText(listView1.SelectedItems[0].SubItems[0].Text);
+
+           
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                sb.Append(listView1.Items[i].SubItems[0].Text + "\r\n");
+            }
+           
+            Clipboard.SetText(sb.ToString());
 
         }
-       
+
+        private void 删除此任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView30.SelectedItems.Count>0)
+            {
+                listView30.Items.Remove(listView30.SelectedItems[0]);
+            }
+          
+        }
     }
 }

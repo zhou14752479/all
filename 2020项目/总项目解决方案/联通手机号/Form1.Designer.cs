@@ -138,6 +138,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除此任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -728,7 +729,6 @@
             this.listView2.TabIndex = 41;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
-           
             // 
             // columnHeader2
             // 
@@ -1059,6 +1059,7 @@
             this.columnHeader33,
             this.columnHeader34,
             this.columnHeader35});
+            this.listView30.ContextMenuStrip = this.contextMenuStrip1;
             this.listView30.Dock = System.Windows.Forms.DockStyle.Right;
             this.listView30.FullRowSelect = true;
             this.listView30.GridLines = true;
@@ -1258,15 +1259,21 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.复制ToolStripMenuItem});
+            this.删除此任务ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 26);
             // 
             // 复制ToolStripMenuItem
             // 
             this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
-            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.复制ToolStripMenuItem.Text = "复制";
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // 删除此任务ToolStripMenuItem
+            // 
+            this.删除此任务ToolStripMenuItem.Name = "删除此任务ToolStripMenuItem";
+            this.删除此任务ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除此任务ToolStripMenuItem.Text = "删除此任务";
+            this.删除此任务ToolStripMenuItem.Click += new System.EventHandler(this.删除此任务ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1412,6 +1419,7 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ToolStripMenuItem 删除此任务ToolStripMenuItem;
     }
 }
 
