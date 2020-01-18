@@ -32,7 +32,7 @@ namespace 股票统计
 
             string url = textBox1.Text.Trim();
             Match uid = Regex.Match(url, @"\d{5,}");
-            string URL = "http://info.win0168.com/analysis/odds/"+uid.Groups[0].Value+".htm?1577324575000";
+            string URL = "http://info.win0168.com/analysis/odds/"+uid.Groups[0].Value+ ".htm?1579317208000";
            
             string html = method.GetUrl(url,"utf-8");
             string ahtml = method.GetUrl(URL, "utf-8");
@@ -56,7 +56,9 @@ namespace 股票统计
 
 
             Match a8 = Regex.Match(ahtml, @",;([\s\S]*?);");
-            string[] texts = a8.Groups[1].Value.Trim().Split(new string[] { "," }, StringSplitOptions.None);
+            Match Crown = Regex.Match(ahtml, @"Crown;([\s\S]*?);([\s\S]*?);");
+
+            string[] texts = Crown.Groups[2].Value.Trim().Split(new string[] { "," }, StringSplitOptions.None);
             label19.Text = texts[11];
             label20.Text = texts[12];
             label21.Text = texts[13];
@@ -252,8 +254,30 @@ namespace 股票统计
             {
                 sb.Append(" a10='" + comboBox1.Text + "' AND ");
             }
-
-
+            if (comboBox2.Text != "")
+            {
+                sb.Append(" a11='" + comboBox2.Text + "' AND ");
+            }
+            if (comboBox3.Text != "")
+            {
+                sb.Append(" a12='" + comboBox3.Text + "' AND ");
+            }
+            if (comboBox4.Text != "")
+            {
+                sb.Append(" a13='" + comboBox4.Text + "' AND ");
+            }
+            if (comboBox5.Text != "")
+            {
+                sb.Append(" a14='" + comboBox5.Text + "' AND ");
+            }
+            if (comboBox6.Text != "")
+            {
+                sb.Append(" a15='" + comboBox6.Text + "' AND ");
+            }
+            if (comboBox7.Text != "")
+            {
+                sb.Append(" a16='" + comboBox7.Text + "' AND ");
+            }
 
 
 
@@ -264,24 +288,24 @@ namespace 股票统计
 
 
             textBox6.Text = "";
-            string all = "select count(*) from datas where "+sb.ToString()+" a1> '" + DateTime.Now.AddDays(-100) + "'   ";
+            string all = "select count(*) from datas where "+sb.ToString()+" a1< '" + DateTime.Now.AddDays(-100) + "'   ";
            
-            MessageBox.Show(all);
+           
             linkLabel1.Text = chaxun(all);
 
-            string ying = "select count(*) from datas where a10='" + comboBox1.Text + "' AND a11='" + comboBox2.Text + "' AND a12='" + comboBox3.Text + "' AND a13='" + comboBox4.Text + "' AND a14='" + comboBox5.Text + "' AND a15='" + comboBox6.Text + "' AND a16='" + comboBox7.Text + "' AND a17='赢'   ";
+            string ying = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='赢'   ";
             linkLabel2.Text = chaxun(ying);
 
-            string banying = "select count(*) from datas where a10='" + comboBox1.Text + "' AND a11='" + comboBox2.Text + "' AND a12='" + comboBox3.Text + "' AND a13='" + comboBox4.Text + "' AND a14='" + comboBox5.Text + "' AND a15='" + comboBox6.Text + "' AND a16='" + comboBox7.Text + "' AND a17='半赢'   ";
+            string banying = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='半赢'   ";
             linkLabel3.Text = chaxun(banying);
 
-            string ping = "select count(*) from datas where a10='" + comboBox1.Text + "' AND a11='" + comboBox2.Text + "' AND a12='" + comboBox3.Text + "' AND a13='" + comboBox4.Text + "' AND a14='" + comboBox5.Text + "' AND a15='" + comboBox6.Text + "' AND a16='" + comboBox7.Text + "' AND a17='平'   ";
+            string ping = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='平'   ";
             linkLabel4.Text = chaxun(ping);
 
-            string banshu = "select count(*) from datas where a10='" + comboBox1.Text + "' AND a11='" + comboBox2.Text + "' AND a12='" + comboBox3.Text + "' AND a13='" + comboBox4.Text + "' AND a14='" + comboBox5.Text + "' AND a15='" + comboBox6.Text + "' AND a16='" + comboBox7.Text + "' AND a17='半输'   ";
+            string banshu = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='半输'   ";
             linkLabel5.Text = chaxun(banshu);
 
-            string shu = "select count(*) from datas where a10='" + comboBox1.Text + "' AND a11='" + comboBox2.Text + "' AND a12='" + comboBox3.Text + "' AND a13='" + comboBox4.Text + "' AND a14='" + comboBox5.Text + "' AND a15='" + comboBox6.Text + "' AND a16='" + comboBox7.Text + "' AND a17='输'   ";
+            string shu = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='输'   ";
             linkLabel6.Text = chaxun(shu);
 
             linkLabel7.Text = qiuhe();
