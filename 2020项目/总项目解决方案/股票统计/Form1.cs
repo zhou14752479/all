@@ -288,24 +288,24 @@ namespace 股票统计
 
 
             textBox6.Text = "";
-            string all = "select count(*) from datas where "+sb.ToString()+" a1< '" + DateTime.Now.AddDays(-100) + "'   ";
+            string all = "select count(*) from datas where "+sb.ToString()+" 1> -5   ";
            
            
             linkLabel1.Text = chaxun(all);
 
-            string ying = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='赢'   ";
+            string ying = "select count(*) from datas where " + sb.ToString() + "  a17='赢'   ";
             linkLabel2.Text = chaxun(ying);
 
-            string banying = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='半赢'   ";
+            string banying = "select count(*) from datas where " + sb.ToString() + "   a17='半赢'   ";
             linkLabel3.Text = chaxun(banying);
 
-            string ping = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='平'   ";
+            string ping = "select count(*) from datas where " + sb.ToString() + " a17='平'   ";
             linkLabel4.Text = chaxun(ping);
 
-            string banshu = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='半输'   ";
+            string banshu = "select count(*) from datas where " + sb.ToString() + "   a17='半输'   ";
             linkLabel5.Text = chaxun(banshu);
 
-            string shu = "select count(*) from datas where " + sb.ToString() + " a1< '" + DateTime.Now.AddDays(-100) + "' AND a17='输'   ";
+            string shu = "select count(*) from datas where " + sb.ToString() + "  a17='输'   ";
             linkLabel6.Text = chaxun(shu);
 
             linkLabel7.Text = qiuhe();
