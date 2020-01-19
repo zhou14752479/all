@@ -120,6 +120,8 @@
             this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.删除此任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -136,9 +138,8 @@
             this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除此任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -149,9 +150,9 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -882,6 +883,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.button5);
@@ -934,7 +936,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(231, 225);
+            this.button6.Location = new System.Drawing.Point(237, 206);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 53;
@@ -944,7 +946,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(231, 196);
+            this.button5.Location = new System.Drawing.Point(237, 177);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 52;
@@ -954,7 +956,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(150, 196);
+            this.button4.Location = new System.Drawing.Point(156, 177);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 51;
@@ -964,7 +966,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(150, 225);
+            this.button3.Location = new System.Drawing.Point(156, 206);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 50;
@@ -1042,7 +1044,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(150, 166);
+            this.button2.Location = new System.Drawing.Point(156, 147);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 45;
@@ -1098,6 +1100,20 @@
             // columnHeader35
             // 
             this.columnHeader35.Width = 10;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.删除此任务ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 26);
+            // 
+            // 删除此任务ToolStripMenuItem
+            // 
+            this.删除此任务ToolStripMenuItem.Name = "删除此任务ToolStripMenuItem";
+            this.删除此任务ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.删除此任务ToolStripMenuItem.Text = "删除此任务";
+            this.删除此任务ToolStripMenuItem.Click += new System.EventHandler(this.删除此任务ToolStripMenuItem_Click);
             // 
             // groupBox2
             // 
@@ -1207,7 +1223,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(231, 166);
+            this.button1.Location = new System.Drawing.Point(237, 147);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 42;
@@ -1256,24 +1272,20 @@
             this.textBox3.Size = new System.Drawing.Size(280, 267);
             this.textBox3.TabIndex = 2;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.删除此任务ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 26);
-            // 
             // 复制ToolStripMenuItem
             // 
             this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
             this.复制ToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
-            // 删除此任务ToolStripMenuItem
+            // button8
             // 
-            this.删除此任务ToolStripMenuItem.Name = "删除此任务ToolStripMenuItem";
-            this.删除此任务ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除此任务ToolStripMenuItem.Text = "删除此任务";
-            this.删除此任务ToolStripMenuItem.Click += new System.EventHandler(this.删除此任务ToolStripMenuItem_Click);
+            this.button8.Location = new System.Drawing.Point(156, 235);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 57;
+            this.button8.Text = "导出一";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
@@ -1299,11 +1311,11 @@
             this.tabPage1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1420,6 +1432,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ToolStripMenuItem 删除此任务ToolStripMenuItem;
+        private System.Windows.Forms.Button button8;
     }
 }
 

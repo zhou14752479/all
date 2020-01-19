@@ -750,5 +750,10 @@ namespace 联通手机号
             }
           
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
     }
 }
