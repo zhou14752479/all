@@ -122,7 +122,8 @@ namespace 星巴克二维码
             try
 
             {
-                StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
+               
+               StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
                 string text = streamReader.ReadToEnd();
                 string[] array = text.Split(new string[]{"\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < array.Length ; i++)
@@ -136,6 +137,7 @@ namespace 星巴克二维码
                         string URL = "https://b2bcoupons.starbucks.com.cn/interFace/digitalcoupon.ashx?Action=getCouponInfo&coupon=" + uid.Groups[0].Value.Replace("coupon=", "").Trim();
 
                         string html = GetUrl(URL);
+                        textBox2.Text = html;
                         Match imagedata = Regex.Match(html, @"""msg"":""([\s\S]*?)""");
                         Match duihuan = Regex.Match(html, @"""status_name"":""([\s\S]*?)""");
                         if (duihuan.Groups[1].Value.Contains("未"))
