@@ -64,7 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeInfo.cs" />
+    <Compile Include="Dc.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
