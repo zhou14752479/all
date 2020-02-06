@@ -94,6 +94,23 @@ namespace helper
             result.AppendLine();
         }
 
+        #region GET请求获取cookie
+        public static string getUrlCookie(string url)
+        {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
+            request.Timeout = 10000;
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+            request.AllowAutoRedirect = true;
+
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+            string content = response.GetResponseHeader("Set-Cookie"); ;
+            return content;
+
+        }
+        #endregion
+
         #region POST请求
         /// <summary>
         /// POST请求

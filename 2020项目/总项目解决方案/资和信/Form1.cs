@@ -14,18 +14,305 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
+using tesseract;
 
 
 namespace 资和信
 {
     public partial class Form1 : Form
     {
+        [DllImport("AspriseOCR.dll", EntryPoint = "OCR", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr OCR(string file, int type);
+        [DllImport("AspriseOCR.dll", EntryPoint = "OCRpart", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr OCRpart(string file, int type, int startX, int startY, int width, int height);
+        [DllImport("AspriseOCR.dll", EntryPoint = "OCRBarCodes", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr OCRBarCodes(string file, int type);
+        [DllImport("AspriseOCR.dll", EntryPoint = "OCRpartBarCodes", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr OCRpartBarCodes(string file, int type, int startX, int startY, int width, int height);
+
+      
+
         public Form1()
         {
             InitializeComponent();
+            m_tesseract = new TesseractProcessor();
+            m_tesseract.Init(m_path, m_lang, (int)TesseractEngineMode.DEFAULT);
+            m_tesseract.SetVariable("tessedit_pageseg_mode", TesseractPageSegMode.PSM_AUTO.ToString());
         }
-       public string COOKIE = "CURRENT_WEB_SITE=17849; AREA_WEB_SITE=17849; CITY_ID=\"140100,350100,130200,130300,110100,330500,330400,450300,450400,450700,450900,451200,451300,150400,150700,150800,330900,331000,340200,340300,340600,340800,341200,341300,341500,341800,350400,350600,350900,360200,360500,360700,360800,360900,361100,370300,370500,370600,370800,370900,371100,371200,371400,371500,371700,330200,130400,130500,130800,130900,140200,140300,140500,140700,140800,141000,520100,520300,520400,522400,522600,540100,542200,542300,542500,542600,620700,620800,621100,621200,623000,632200,632500,632700,450200,450500,450800,451100,451400,141100,330800,331100,340400,340700,341100,341400,341700,350500,350800,360300,360600,11454,450600,451000,460200,340500,341000,341600,350300,350700,360400,361000,370400,370700,371000,371300,371600,330300,130700,131100,140400,140600,140900,520200,522200,522300,522700,542100,542400,620200,620900,622900,632100,632300,632600,632800,64449,340100,620100,620600,620300,620400,360100,630100,370200,370100,330600,330100,330700,620500,621000,130100,130600,131000,460100,450100,652100,84721,650100,650200,652200,652300,652700,652800,652900,653000,653100,653200,654000,654200,654300,659000,640300,640400,640500,640100,640200,84851\"; UM_distinctid=1700f9bb76a71a-09274190cc5ca2-2393f61-1fa400-1700f9bb76b4c2; CNZZDATA1277805780=1244728960-1580808540-%7C1580808540; Hm_lvt_1725624b4d904369c91c3755a88ea7e2=1580809828; JSESSIONID=BE693913EC22B178E3F0976850A8AFF7";
+
+
+        public enum TesseractEngineMode : int
+        {
+            /// <summary>
+            /// Run Tesseract only - fastest
+            /// </summary>
+            TESSERACT_ONLY = 0,
+
+            /// <summary>
+            /// Run Cube only - better accuracy, but slower
+            /// </summary>
+            CUBE_ONLY = 1,
+
+            /// <summary>
+            /// Run both and combine results - best accuracy
+            /// </summary>
+            TESSERACT_CUBE_COMBINED = 2,
+
+            /// <summary>
+            /// Specify this mode when calling init_*(),
+            /// to indicate that any of the above modes
+            /// should be automatically inferred from the
+            /// variables in the language-specific config,
+            /// command-line configs, or if not specified
+            /// in any of the above should be set to the
+            /// default OEM_TESSERACT_ONLY.
+            /// </summary>
+            DEFAULT = 3
+        }
+
+
+        public enum TesseractPageSegMode : int
+        {
+            /// <summary>
+            /// Fully automatic page segmentation
+            /// </summary>
+            PSM_AUTO = 0,
+
+            /// <summary>
+            /// Assume a single column of text of variable sizes
+            /// </summary>
+            PSM_SINGLE_COLUMN = 1,
+
+            /// <summary>
+            /// Assume a single uniform block of text (Default)
+            /// </summary>
+            PSM_SINGLE_BLOCK = 2,
+
+            /// <summary>
+            /// Treat the image as a single text line
+            /// </summary>
+            PSM_SINGLE_LINE = 3,
+
+            /// <summary>
+            /// Treat the image as a single word
+            /// </summary>
+            PSM_SINGLE_WORD = 4,
+
+            /// <summary>
+            /// Treat the image as a single character
+            /// </summary>
+            PSM_SINGLE_CHAR = 5
+        }
+
+
+        private TesseractProcessor m_tesseract = null;
+        private string m_path = Application.StartupPath + @"\tessdata\";
+        private string m_lang = "eng";
+
+        private string Ocr(Image image)
+        {
+            m_tesseract.Clear();
+            m_tesseract.ClearAdaptiveClassifier();
+            return m_tesseract.Apply(image);
+        }
+        public string imgdo(Bitmap img)
+        {
+            //去色
+            Bitmap btp = img;
+            Color c = new Color();
+            int rr, gg, bb;
+            for (int i = 0; i < btp.Width; i++)
+            {
+                for (int j = 0; j < btp.Height; j++)
+                {
+                    //取图片当前的像素点
+                    c = btp.GetPixel(i, j);
+                    rr = c.R; gg = c.G; bb = c.B;
+                    //改变颜色
+                    if (rr == 102 && gg == 0 && bb == 0)
+                    {
+                        //重新设置当前的像素点
+                        btp.SetPixel(i, j, Color.FromArgb(255, 255, 255, 255));
+                    }
+                    if (rr == 153 && gg == 0 && bb == 0)
+                    {
+                        //重新设置当前的像素点
+                        btp.SetPixel(i, j, Color.FromArgb(255, 255, 255, 255));
+                    }
+                    if (rr == 153 && gg == 0 && bb == 51)
+                    {
+                        //重新设置当前的像素点
+                        btp.SetPixel(i, j, Color.FromArgb(255, 255, 255, 255));
+                    }
+                    if (rr == 153 && gg == 43 && bb == 51)
+                    {
+                        //重新设置当前的像素点
+                        btp.SetPixel(i, j, Color.FromArgb(255, 255, 255, 255));
+                    }
+                    if (rr == 255 && gg == 255 && bb == 0)
+                    {
+                        //重新设置当前的像素点
+                        btp.SetPixel(i, j, Color.FromArgb(255, 255, 255, 255));
+                    }
+                    if (rr == 255 && gg == 255 && bb == 51)
+                    {
+                        //重新设置当前的像素点
+                        btp.SetPixel(i, j, Color.FromArgb(255, 255, 255, 255));
+                    }
+                }
+            }
+            // btp.Save("d:\\去除相关颜色.png");
+
+            // pictureBox2.Image = Image.FromFile("d:\\去除相关颜色.png");
+
+
+            //灰度
+            Bitmap bmphd = btp;
+            for (int i = 0; i < bmphd.Width; i++)
+            {
+                for (int j = 0; j < bmphd.Height; j++)
+                {
+                    //取图片当前的像素点
+                    var color = bmphd.GetPixel(i, j);
+
+                    var gray = (int)(color.R * 0.001 + color.G * 0.700 + color.B * 0.250);
+
+                    //重新设置当前的像素点
+                    bmphd.SetPixel(i, j, Color.FromArgb(gray, gray, gray));
+                }
+            }
+            //  bmphd.Save("d:\\灰度.png");
+            // pictureBox27.Image = Image.FromFile("d:\\灰度.png");
+
+
+            //二值化
+            Bitmap erzhi = bmphd;
+            Bitmap orcbmp;
+            int nn = 3;
+            int w = erzhi.Width;
+            int h = erzhi.Height;
+            BitmapData data = erzhi.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
+            unsafe
+            {
+                byte* p = (byte*)data.Scan0;
+                byte[,] vSource = new byte[w, h];
+                int offset = data.Stride - w * nn;
+
+                for (int y = 0; y < h; y++)
+                {
+                    for (int x = 0; x < w; x++)
+                    {
+                        vSource[x, y] = (byte)(((int)p[0] + (int)p[1] + (int)p[2]) / 3);
+                        p += nn;
+                    }
+                    p += offset;
+                }
+                erzhi.UnlockBits(data);
+
+                Bitmap bmpDest = new Bitmap(w, h, PixelFormat.Format24bppRgb);
+                BitmapData dataDest = bmpDest.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+                p = (byte*)dataDest.Scan0;
+                offset = dataDest.Stride - w * nn;
+                for (int y = 0; y < h; y++)
+                {
+                    for (int x = 0; x < w; x++)
+                    {
+                        p[0] = p[1] = p[2] = (int)vSource[x, y] > 161 ? (byte)255 : (byte)0;
+                        //p[0] = p[1] = p[2] = (int)GetAverageColor(vSource, x, y, w, h) > 50 ? (byte)255 : (byte)0;
+                        p += nn;
+
+                    }
+                    p += offset;
+                }
+                bmpDest.UnlockBits(dataDest);
+
+                orcbmp = bmpDest;
+                //  orcbmp.Save("d:\\二值化.png");
+                //pictureBox29.Image = Image.FromFile("d:\\二值化.png");
+            }
+
+            //OCR的值
+            if (orcbmp != null)
+            {
+                string result = Ocr(orcbmp);
+               return result.Replace("\n", "\r\n").Replace(" ", "");
+            }
+
+            return "";
+
+        }
+
+
+
+
+
+        #region 平均分割图片
+        /// <summary>
+        /// 平均分割图片
+        /// </summary>
+        /// <param name="RowNum">水平上分割数</param>
+        /// <param name="ColNum">垂直上分割数</param>
+        /// <returns>分割好的图片数组</returns>
+        public Bitmap[] GetSplitPics(Bitmap bmpobj, int RowNum, int ColNum)
+        {
+
+
+            for (int i = 0; i < bmpobj.Height; i++)
+            {
+                for (int j = 0; j < bmpobj.Width; j++)
+                {
+                    if (i < 1 || j < 1 || j > bmpobj.Width - 1 - 1 || i > bmpobj.Height - 1 - 1)
+                        bmpobj.SetPixel(j, i, Color.FromArgb(255, 255, 255));
+                }
+            }
+
+            if (RowNum == 0 || ColNum == 0)
+                return null;
+            int singW = bmpobj.Width / RowNum - 1;
+            int singH = bmpobj.Height / ColNum;
+            Bitmap[] PicArray = new Bitmap[RowNum * ColNum];
+
+            Rectangle cloneRect;
+            for (int i = 0; i < ColNum; i++)      //找有效区
+            {
+                for (int j = 0; j < RowNum; j++)
+                {
+                    cloneRect = new Rectangle(j * singW, i * singH, singW, singH);
+                    PicArray[i * RowNum + j] = bmpobj.Clone(cloneRect, bmpobj.PixelFormat);//复制小块图
+                }
+            }
+       
+
+
+            return PicArray;
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public string COOKIE = "";
      
+
+
         #region POST请求
         /// <summary>
         /// POST请求
@@ -77,8 +364,10 @@ namespace 资和信
 
         }
         #endregion
+
+        
         #region 获取数据流
-        public  Stream getStream(string Url)
+        public Stream getStream(string Url)
         {
 
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -97,7 +386,9 @@ namespace 资和信
 
         
 
-
+        /// <summary>
+        /// 主程序
+        /// </summary>
         public void run()
         {
             StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
@@ -108,11 +399,21 @@ namespace 资和信
                 if (array[i] != "")
                 {
                     Image image = Image.FromStream(getStream("https://www.zihexin.net/Verifycode2.do"));
-                   
-                    OCR ocr = new OCR();
-                    string value = ocr.Shibie("zhou14752479", "zhoukaige00", image);
 
-                   
+
+                    //通过超人打码识别
+                    OCR ocr = new OCR();
+                    string value = ocr.Shibie("zhou14752479", "zhoukaige00", image);  //通过超人打码识别
+
+
+                    //通过C#代码识别
+                    //pictureBox1.Image = image;
+                    //Bitmap bmp = new Bitmap(image);
+                    //string value= imgdo(bmp);
+
+
+
+
                     string html = getUrl("https://www.zihexin.net/client/card/inquiry.do?key=&index=index&card_no=" + array[i] + "&verify_code=" + value);
 
                
@@ -126,6 +427,10 @@ namespace 资和信
                     lv1.SubItems.Add(array[i]);
                     lv1.SubItems.Add(jine.Groups[1].Value.Replace("<dl>","").Replace("&nbsp;","").Trim());
                     lv1.SubItems.Add(date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim());
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
                 }
 
 
@@ -138,21 +443,19 @@ namespace 资和信
 
 
     
-        
-
-
-
-
-
+       
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.COOKIE = method.getUrlCookie("https://www.zihexin.net/Verifycode2.do");
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+         
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -175,6 +478,16 @@ namespace 资和信
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+        bool zanting = true;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            zanting = true;
         }
     }
 }
