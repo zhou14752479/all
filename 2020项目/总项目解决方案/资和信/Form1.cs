@@ -398,39 +398,50 @@ namespace 资和信
             {
                 if (array[i] != "")
                 {
-                    Image image = Image.FromStream(getStream("https://www.zihexin.net/Verifycode2.do"));
+                  
+                    string JINE = "";
+                    string DATE = "";
+                    int a = 0;
+                    while (JINE == "")
+                    {
+                        Image image = Image.FromStream(getStream("https://www.zihexin.net/Verifycode2.do"));
+
+                        //通过超人打码识别
+                        //OCR ocr = new OCR();
+                        //string value = ocr.Shibie("zhou14752479", "zhoukaige00", image);  //通过超人打码识别
+
+                        //通过C#代码识别
+                        //pictureBox1.Image = image;
+                        Bitmap bmp = new Bitmap(image);
+
+                        string value = imgdo(bmp);
+
+                        string html = getUrl("https://www.zihexin.net/client/card/inquiry.do?key=&index=index&card_no=" + array[i] + "&verify_code=" + value);
 
 
-                    //通过超人打码识别
-                    OCR ocr = new OCR();
-                    string value = ocr.Shibie("zhou14752479", "zhoukaige00", image);  //通过超人打码识别
+                        Match key = Regex.Match(html, @"key"" value=""([\s\S]*?)""");
 
 
-                    //通过C#代码识别
-                    //pictureBox1.Image = image;
-                    //Bitmap bmp = new Bitmap(image);
-                    //string value= imgdo(bmp);
+                        string strhtml = getUrl("https://www.zihexin.net/cardsearch/card/cardCheck.do?card_no=" + array[i] + "&key=" + key.Groups[1].Value);
+                        Match jine = Regex.Match(strhtml, @"余额:</h3>([\s\S]*?)</dl>");
+                        Match date = Regex.Match(strhtml, @"有效期:</h3>([\s\S]*?)</dl>");
 
-
-
-
-                    string html = getUrl("https://www.zihexin.net/client/card/inquiry.do?key=&index=index&card_no=" + array[i] + "&verify_code=" + value);
-
-               
-                    Match key = Regex.Match(html, @"key"" value=""([\s\S]*?)""");
-                   
-
-                    string strhtml = getUrl("https://www.zihexin.net/cardsearch/card/cardCheck.do?card_no=" + array[i] + "&key=" + key.Groups[1].Value);
-                    Match jine = Regex.Match(strhtml, @"余额:</h3>([\s\S]*?)</dl>");
-                    Match date = Regex.Match(strhtml, @"有效期:</h3>([\s\S]*?)</dl>");
+                        JINE = jine.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
+                        DATE = date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
+                        label1.Text = array[i] + "：正在第" + a + "次识别.....";
+                            a++;
+                    }
+                    label1.Text = array[i] + "：识别成功";
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     lv1.SubItems.Add(array[i]);
-                    lv1.SubItems.Add(jine.Groups[1].Value.Replace("<dl>","").Replace("&nbsp;","").Trim());
-                    lv1.SubItems.Add(date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim());
+                    lv1.SubItems.Add(JINE);
+                    lv1.SubItems.Add(DATE);
                     while (this.zanting == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
+
+
                 }
 
 
