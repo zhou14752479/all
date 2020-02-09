@@ -465,7 +465,11 @@ namespace 资和信
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("请导入卡号");
+                return;
+            }
          
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
@@ -499,6 +503,19 @@ namespace 资和信
         private void button4_Click(object sender, EventArgs e)
         {
             zanting = true;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

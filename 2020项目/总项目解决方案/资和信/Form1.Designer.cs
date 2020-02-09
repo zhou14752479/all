@@ -101,7 +101,6 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(280, 21);
             this.textBox1.TabIndex = 28;
-            this.textBox1.Text = "C:\\Users\\zhou\\Desktop\\888888888888888.txt";
             // 
             // 重新扫描ToolStripMenuItem
             // 
@@ -218,6 +217,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "资和信";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
