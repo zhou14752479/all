@@ -63,7 +63,7 @@ namespace main._2019_6
             {
                 string url = "http://1x2d.win007.com/"+IDS[i]+".js";
                 string strhtml = method.GetUrl(url, "utf-8");
-                Match aaas = Regex.Match(strhtml, @"Bet 365\|([\s\S]*?)伟德");
+                Match aaas = Regex.Match(strhtml, @"Vcbet\|([\s\S]*?)伟德");
                 //Match bbbs = Regex.Match(strhtml, @"Expekt\|([\s\S]*?)Expekt");
                 //Match cccs = Regex.Match(strhtml, @"Marathon\|([\s\S]*?)马博");
                 Match ddds = Regex.Match(strhtml, @"William Hill\|([\s\S]*?)威廉希尔");

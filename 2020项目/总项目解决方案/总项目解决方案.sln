@@ -21,13 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "点评", "点评\点评.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "星巴克二维码", "星巴克二维码\星巴克二维码.csproj", "{3B604980-F9FC-45F6-B0D7-6EA38DA36F26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "网络游戏定单", "2019\网络游戏定单\网络游戏定单.csproj", "{7A27FD41-0674-4274-B8CC-7B6A490EEBC0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝搜索", "2019\淘宝搜索\淘宝搜索.csproj", "{D90F3177-BA27-496A-AE00-3F24849FF9DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "官网邮箱提取", "官网邮箱提取\官网邮箱提取.csproj", "{E70A33AA-593A-459C-8CAE-396F2A951430}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "资和信", "资和信\资和信.csproj", "{CD28DD31-EF56-4317-9B89-D580D4C5A2EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "研修网下载", "研修网下载\研修网下载.csproj", "{53A5558D-87C7-456D-8165-210E6C88956A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +71,6 @@ Global
 		{3B604980-F9FC-45F6-B0D7-6EA38DA36F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B604980-F9FC-45F6-B0D7-6EA38DA36F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B604980-F9FC-45F6-B0D7-6EA38DA36F26}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A27FD41-0674-4274-B8CC-7B6A490EEBC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A27FD41-0674-4274-B8CC-7B6A490EEBC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A27FD41-0674-4274-B8CC-7B6A490EEBC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A27FD41-0674-4274-B8CC-7B6A490EEBC0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D90F3177-BA27-496A-AE00-3F24849FF9DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D90F3177-BA27-496A-AE00-3F24849FF9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D90F3177-BA27-496A-AE00-3F24849FF9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +83,10 @@ Global
 		{CD28DD31-EF56-4317-9B89-D580D4C5A2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD28DD31-EF56-4317-9B89-D580D4C5A2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD28DD31-EF56-4317-9B89-D580D4C5A2EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53A5558D-87C7-456D-8165-210E6C88956A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53A5558D-87C7-456D-8165-210E6C88956A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53A5558D-87C7-456D-8165-210E6C88956A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53A5558D-87C7-456D-8165-210E6C88956A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

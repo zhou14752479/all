@@ -107,6 +107,7 @@ namespace helper
 
             string content = response.GetResponseHeader("Set-Cookie"); ;
             return content;
+            
 
         }
         #endregion
@@ -530,18 +531,69 @@ namespace helper
         /// <param name="URLAddress">图片地址</param>
         /// <param name="subPath">图片所在文件夹</param>
         /// <param name="name">图片名称</param>
-        public static void downloadFile(string URLAddress, string subPath, string name)
+        public static void downloadFile(string URLAddress, string subPath, string name,string COOKIE)
         {
             string path = System.IO.Directory.GetCurrentDirectory();
 
             WebClient client = new WebClient();
-
+            client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
+            client.Headers.Add("Cookie", COOKIE);
             if (false == System.IO.Directory.Exists(subPath))
             {
                 //创建pic文件夹
                 System.IO.Directory.CreateDirectory(subPath);
             }
+           
             client.DownloadFile(URLAddress, subPath + "\\" + name);
+        }
+
+
+        /// <summary>
+        /// http下载文件
+        /// </summary>
+        /// <param name="url">下载文件地址</param>
+        /// <param name="path">文件存放地址，包含文件名</param>
+        /// <returns></returns>
+        public static void HttpDownload(string url, string path,string COOKIE)
+        {
+            string tempPath = System.IO.Path.GetDirectoryName(path) + @"\temp";
+            System.IO.Directory.CreateDirectory(tempPath);  //创建临时文件目录
+            string tempFile = tempPath + @"\" + System.IO.Path.GetFileName(path) + ".temp"; //临时文件
+            if (System.IO.File.Exists(tempFile))
+            {
+                System.IO.File.Delete(tempFile);    //存在则删除
+            }
+            try
+            {
+                FileStream fs = new FileStream(tempFile, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
+                // 设置参数
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                request.Headers.Add("Cookie", COOKIE);
+                //发送请求并获取相应回应数据
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                //直到request.GetResponse()程序才开始向目标网页发送Post请求
+                Stream responseStream = response.GetResponseStream();
+                //创建本地文件写入流
+                //Stream stream = new FileStream(tempFile, FileMode.Create);
+                byte[] bArr = new byte[1024];
+                int size = responseStream.Read(bArr, 0, (int)bArr.Length);
+                while (size > 0)
+                {
+                    //stream.Write(bArr, 0, size);
+                    fs.Write(bArr, 0, size);
+                    size = responseStream.Read(bArr, 0, (int)bArr.Length);
+                }
+                //stream.Close();
+                fs.Close();
+                responseStream.Close();
+                System.IO.File.Move(tempFile, path);
+                
+            }
+            catch (Exception ex)
+            {
+               
+            }
+
         }
 
         #endregion
