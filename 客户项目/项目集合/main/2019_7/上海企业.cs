@@ -32,7 +32,7 @@ namespace main._2019_7
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            webBrowser web = new webBrowser("http://yct.sh.gov.cn/namedeclare/check/check_biz1?self_id=&check_items=NAME&self_name=&check_nameApp=&check_nameRegOrgan=000000&check_nameApoOrgan=000000&check_nameDistrict=%E4%B8%8A%E6%B5%B7&check_nameTrad=%E9%A5%B0&check_tradPiny=&check_nameIndDesc=%E6%9C%89&check_indPhy=&check_industryCode=&check_ifBranch=");
+            Browser web = new Browser("http://yct.sh.gov.cn/namedeclare/check/check_biz1?self_id=&check_items=NAME&self_name=&check_nameApp=&check_nameRegOrgan=000000&check_nameApoOrgan=000000&check_nameDistrict=%E4%B8%8A%E6%B5%B7&check_nameTrad=%E9%A5%B0&check_tradPiny=&check_nameIndDesc=%E6%9C%89&check_indPhy=&check_industryCode=&check_ifBranch=");
             web.Show();
         }
 

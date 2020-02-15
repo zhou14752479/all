@@ -54,6 +54,7 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -249,7 +250,7 @@
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(16, 123);
+            this.groupBox2.Location = new System.Drawing.Point(16, 109);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(265, 100);
             this.groupBox2.TabIndex = 56;
@@ -259,41 +260,51 @@
             // webBrowser1
             // 
             this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 377);
+            this.webBrowser1.Location = new System.Drawing.Point(0, 215);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(614, 60);
+            this.webBrowser1.Size = new System.Drawing.Size(686, 337);
             this.webBrowser1.TabIndex = 58;
             // 
             // textBox6
             // 
-            this.textBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBox6.Font = new System.Drawing.Font("宋体", 10F);
-            this.textBox6.Location = new System.Drawing.Point(0, 229);
+            this.textBox6.Location = new System.Drawing.Point(296, 119);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
             this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox6.Size = new System.Drawing.Size(614, 148);
+            this.textBox6.Size = new System.Drawing.Size(374, 90);
             this.textBox6.TabIndex = 59;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Location = new System.Drawing.Point(315, 12);
+            this.groupBox3.Location = new System.Drawing.Point(296, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(249, 91);
+            this.groupBox3.Size = new System.Drawing.Size(374, 91);
             this.groupBox3.TabIndex = 61;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "运行";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(198, 23);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(73, 59);
+            this.button3.TabIndex = 41;
+            this.button3.Text = "停止";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(614, 437);
+            this.ClientSize = new System.Drawing.Size(686, 552);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.webBrowser1);
@@ -341,6 +352,7 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button3;
     }
 }
 

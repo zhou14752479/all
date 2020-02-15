@@ -220,7 +220,7 @@ namespace main._2019_4
 
         private void button4_Click(object sender, EventArgs e)
         {
-            webBrowser web = new webBrowser("http://crm.58.com/");
+            Browser web = new Browser("http://crm.58.com/");
             web.Show();
         }
 

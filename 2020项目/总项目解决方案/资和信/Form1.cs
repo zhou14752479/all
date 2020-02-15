@@ -430,6 +430,9 @@ namespace 资和信
                         DATE = date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
                         label1.Text = array[i] + "：正在第" + a + "次识别.....";
                             a++;
+
+                        if (a > 20)
+                            break;
                     }
                     label1.Text = array[i] + "：识别成功";
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
@@ -448,8 +451,9 @@ namespace 资和信
 
 
             }
-            
-
+            TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            string pathname = AppDomain.CurrentDomain.BaseDirectory + ts.TotalSeconds.ToString() + ".xlsx";
+            method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true, pathname);
         }
 
 

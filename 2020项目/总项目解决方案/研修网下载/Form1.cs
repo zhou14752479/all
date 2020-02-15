@@ -22,6 +22,15 @@ namespace 研修网下载
             InitializeComponent();
             webBrowser1.ScriptErrorsSuppressed = true;
         }
+
+
+
+
+
+
+
+
+
         #region 去掉路径中非法字符
         public string removeValid(string illegal)
         {
@@ -38,14 +47,16 @@ namespace 研修网下载
         bool zanting = true;
         string cookie = "";
         string path = AppDomain.CurrentDomain.BaseDirectory;
+        bool status = true;
         #region  主程序
         public void run()
         {
 
             try
             {
+              
 
-               
+
                 for (int i = Convert.ToInt32(textBox1.Text); i <= Convert.ToInt32(textBox2.Text); i = i + 1)
 
                 {
@@ -80,7 +91,7 @@ namespace 研修网下载
                             if (gs == "doc" || gs == "docx" || gs == "ppt" || gs == "pptx")
                             {
                                
-                                 method.downloadFile(downUrl, path + "下载文件\\", bt + "." + gs,cookie);
+                                 method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs,cookie);
                                
                                 textBox6.Text += DateTime.Now.ToString()+i+"下载成功：" + bt + "\r\n";
                             }
@@ -108,6 +119,10 @@ namespace 研修网下载
                     }
                 
                     Thread.Sleep(Convert.ToInt32(textBox3.Text)*1000);
+                    if (status == false)
+                    {
+                        return;
+                    }
 
                 }
 
@@ -206,9 +221,9 @@ namespace 研修网下载
                     Environment.Exit(0);
                 }
 
-
+                textBox6.Text += "开始下载";
                 cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
-
+                status = true;
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
@@ -307,7 +322,13 @@ namespace 研修网下载
               
             }
 
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button2.Enabled = true;
+            status = false;
+            textBox6.Text += "已停止";
         }
     }
 }

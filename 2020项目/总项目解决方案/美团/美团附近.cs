@@ -154,5 +154,10 @@ namespace 美团
         {
             webBrowser1.Navigate("http://api.map.baidu.com/lbsapi/getpoint/index.html");
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

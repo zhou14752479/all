@@ -217,7 +217,7 @@ namespace main._2019_4
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            webBrowser web1 = new webBrowser("https://qun.qq.com/member.html");
+            Browser web1 = new Browser("https://qun.qq.com/member.html");
             web1.Show();
 
         }

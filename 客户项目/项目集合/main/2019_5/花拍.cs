@@ -43,7 +43,7 @@ namespace main._2019_5
         
         public void run()
         {
-            COOKIE = webBrowser.cookie;
+            COOKIE = Browser.cookie;
             try
             {
 
@@ -101,7 +101,7 @@ namespace main._2019_5
         }
         private void Button4_Click(object sender, EventArgs e)
         {
-            webBrowser web = new webBrowser("https://seller.huapai.com/");
+            Browser web = new Browser("https://seller.huapai.com/");
             web.Show();
         }
 

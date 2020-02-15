@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace main
 {
-    public partial class webBrowser : Form
+    public partial class Browser : Form
     {
         public static string cookie { get; set; }
       
@@ -22,7 +22,7 @@ namespace main
 
 
 
-        public webBrowser(string URL)
+        public Browser(string URL)
         {
             InitializeComponent();
             this.url = URL;   //构造函数传参到成员变量

@@ -340,60 +340,28 @@ namespace main._2019_4
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用登录
-            if (textBox4.Text == "")
+            if (radioButton1.Checked == true)
             {
-                MessageBox.Show("请输入关键字");
-                return;
+                Thread thread = new Thread(new ThreadStart(baidu));
+                thread.Start();
             }
-                status = true;
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php","utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            else if (radioButton2.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(a360));
+                thread.Start();
+            }
+            else if (radioButton3.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(sougou));
+                thread.Start();
+            }
+            else if (radioButton4.Checked == true)
+            {
+                Thread thread = new Thread(new ThreadStart(shenma));
+                thread.Start();
+            }
 
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == localip.Trim())
-                {
-                    value = true;
-                    break;
-                }
 
-            }
-            if (value == true)
-            {
-                
-                if (radioButton1.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(baidu));
-                    thread.Start();
-                }
-                else if (radioButton2.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(a360));
-                    thread.Start();
-                }
-                else if (radioButton3.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(sougou));
-                    thread.Start();
-                }
-                else if (radioButton4.Checked == true)
-                {
-                    Thread thread = new Thread(new ThreadStart(shenma));
-                    thread.Start();
-                }
-            }
-            else
-            {
-                MessageBox.Show("请登录您的账号！");
-                System.Diagnostics.Process.Start("http://www.acaiji.com");
-                return;
-            }
-            #endregion
-            
-           
 
 
 

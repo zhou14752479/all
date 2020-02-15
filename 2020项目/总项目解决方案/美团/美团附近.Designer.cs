@@ -285,6 +285,7 @@
             this.button6.TabIndex = 27;
             this.button6.Text = "确认选择";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // 美团附近
             // 

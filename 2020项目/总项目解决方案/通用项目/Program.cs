@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_4
+namespace 通用项目
 {
     static class Program
     {
@@ -15,12 +14,9 @@ namespace main._2019_4
         [STAThread]
         static void Main()
         {
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           
-            Application.Run(new 搜索引擎());
+            Application.Run(new Form1());
         }
     }
-
 }

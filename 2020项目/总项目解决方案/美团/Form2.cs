@@ -17,6 +17,8 @@ namespace 美团
         public Form2()
         {
             InitializeComponent();
+           
+           
         }
         #region GET请求
         public static string meituan_GetUrl(string Url, string COOKIE)
@@ -51,10 +53,123 @@ namespace 美团
             }
             return "";
         }
+
+
         #endregion
-        private void Button1_Click(object sender, EventArgs e)
+        private void PanelReSize(object sender, EventArgs e)
         {
-            textBox1.Text = meituan_GetUrl("https://www.meituan.com/meishi/api/poi/getNearPoiList?offset=101&limit=100&cityId=60&lat=36.066888&lng=120.392581", "");
+            for (int i = 0; i < ActivePanel.Controls.Count; i++)
+            {
+                ActivePanel.Controls[i].Left = (ActivePanel.Width - ActivePanel.Controls[i].Width) / 2;
+            }
+
+        }
+        public System.Windows.Forms.Panel ActivePanel = new Panel();
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ActivePanel.Name == panel3.Name)
+                return;
+            ActivePanel = panel3;
+
+            button1.SendToBack();
+            button1.Dock = DockStyle.Top;
+
+            button2.SendToBack();
+            button2.Dock = DockStyle.Bottom;
+            button3.SendToBack();
+            button3.Dock = DockStyle.Bottom;
+            button4.SendToBack();
+            button4.Dock = DockStyle.Bottom;
+
+            panel2.SendToBack();
+            panel4.SendToBack();
+            panel5.SendToBack();
+            panel3.BringToFront();
+            panel3.Dock = DockStyle.Fill;
+
+            PanelReSize(this, e);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (ActivePanel.Name == panel2.Name)
+                return;
+            ActivePanel = panel2;
+
+            button2.Dock = DockStyle.Top;
+            button1.SendToBack();
+            button1.Dock = DockStyle.Top;
+
+            button3.SendToBack();
+            button3.Dock = DockStyle.Bottom;
+            button4.SendToBack();
+            button4.Dock = DockStyle.Bottom;
+
+            panel3.SendToBack();
+            panel4.SendToBack();
+            panel5.SendToBack();
+            panel2.BringToFront();
+            panel2.Dock = DockStyle.Fill;
+
+            PanelReSize(this, e);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (ActivePanel.Name == panel4.Name)
+                return;
+            ActivePanel = panel4;
+
+            button3.Dock = DockStyle.Top;
+            button2.SendToBack();
+            button2.Dock = DockStyle.Top;
+            button1.SendToBack();
+            button1.Dock = DockStyle.Top;
+
+            button4.Dock = DockStyle.Bottom;
+
+            panel2.SendToBack();
+            panel3.SendToBack();
+            panel5.SendToBack();
+            panel4.BringToFront();
+            panel4.Dock = DockStyle.Fill;
+
+            PanelReSize(this, e);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (ActivePanel.Name == panel5.Name)
+                return;
+            ActivePanel = panel5;
+
+            button4.Dock = DockStyle.Top;
+            button3.SendToBack();
+            button3.Dock = DockStyle.Top;
+            button2.SendToBack();
+            button2.Dock = DockStyle.Top;
+            button1.SendToBack();
+            button1.Dock = DockStyle.Top;
+
+            panel2.SendToBack();
+            panel3.SendToBack();
+            panel4.SendToBack();
+            panel5.BringToFront();
+            panel5.Dock = DockStyle.Fill;
+
+            PanelReSize(this, e);
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void skinTreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            //label6.Text = e.Node.Name;
+            //label14.Text = e.Node.Text;
+            //return;
         }
     }
 }

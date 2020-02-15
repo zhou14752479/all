@@ -251,24 +251,24 @@ namespace main._2019_8
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            webBrowser web = new webBrowser("http://" + yuming + "/admin/orders/defaults.html?orderId=&productText=&receiverName=&orderStatus=");
+            Browser web = new Browser("http://" + yuming + "/admin/orders/defaults.html?orderId=&productText=&receiverName=&orderStatus=");
             web.Show();
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            webBrowser web = new webBrowser("http://a22.fahuoyi.com/order/index?shopId=228152&tab=2&autoSyncOrder=true");
+            Browser web = new Browser("http://a22.fahuoyi.com/order/index?shopId=228152&tab=2&autoSyncOrder=true");
             web.Show();
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            textBox2.Text = webBrowser.cookie;
+            textBox2.Text = Browser.cookie;
         }
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            textBox3.Text = webBrowser.cookie;
+            textBox3.Text = Browser.cookie;
         }
 
         private void Fahuo_FormClosing(object sender, FormClosingEventArgs e)

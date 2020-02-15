@@ -94,13 +94,13 @@ namespace main._2019_6
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            webBrowser web = new webBrowser("https://home.jd.com/");
+            Browser web = new Browser("https://home.jd.com/");
             web.Show();
         }
 
         private void SplitContainer1_Panel1_MouseEnter(object sender, EventArgs e)
         {
-            textBox2.Text = webBrowser.cookie;
+            textBox2.Text = Browser.cookie;
         }
 
         private void Button1_Click(object sender, EventArgs e)

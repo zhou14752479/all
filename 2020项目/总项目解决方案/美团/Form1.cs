@@ -25,47 +25,16 @@ namespace 美团
         {
             InitializeComponent();
         }
-        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        static extern bool InternetGetCookieEx(string pchURL, string pchCookieName, StringBuilder pchCookieData, ref System.UInt32 pcchCookieData, int dwFlags, IntPtr lpReserved);
-
-        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]    
-        static extern int InternetSetCookieEx(string lpszURL, string lpszCookieName, string lpszCookieData, int dwFlags, IntPtr dwReserved);
-
-        #region  获取cookie
-        /// <summary>
-        /// 获取cookie
-        /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
-        private static string GetCookies(string url)
-        {
-            uint datasize = 256;
-            StringBuilder cookieData = new StringBuilder((int)datasize);
-            if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x2000, IntPtr.Zero))
-            {
-                if (datasize < 0)
-                    return null;
-
-
-                cookieData = new StringBuilder((int)datasize);
-                if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x00002000, IntPtr.Zero))
-                    return null;
-            }
-            return cookieData.ToString();
-        }
-
-        #endregion
-
+       
         public string cookie;
         bool zanting = true;
         public static string username = "";
         private void Form1_Load(object sender, EventArgs e)
         {
-            method.SetWebBrowserFeatures(method.IeVersion.IE11);
+           
             getCityName();
             label3.Text = username;
-            webBrowser1.Navigate("https://i.meituan.com/wrapapi/poiinfo?poiId=150177929");
-            webBrowser1.ScriptErrorsSuppressed = true;
+           
         }
 
         #region 获取数据库美团城市名称
@@ -95,7 +64,7 @@ namespace 美团
         #endregion
 
         #region GET请求
-        public static string meituan_GetUrl(string Url, string COOKIE)
+        public static string meituan_GetUrl(string Url)
         {
             try
             {
@@ -103,11 +72,12 @@ namespace 美团
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
-                request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
+                //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
 
-                request.Headers.Add("Cookie", COOKIE);
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/WIFI Language/zh_CN";
+               
 
-                request.Referer = "https://i.meituan.com/wrapapi/poiinfo?poiId=150177929";
+                request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -129,9 +99,9 @@ namespace 美团
         }
         #endregion
 
-        #region  获取数据库中城市名称对应的拼音
+        #region  获取数据库中城市名称对应的ID
 
-        public string Getpinyin(string city)
+        public string GetUid(string city)
         {
 
             try
@@ -140,7 +110,7 @@ namespace 美团
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select meituan_city_pinyin from meituan_city where meituan_city_name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("select uid from meituan_province_city where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
 
 
                 MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
@@ -148,7 +118,7 @@ namespace 美团
                 if (reader.Read())
                 {
 
-                    string citypinyin = reader["meituan_city_pinyin"].ToString().Trim();
+                    string citypinyin = reader["uid"].ToString().Trim();
                     return citypinyin;
                 }
                 mycon.Close();
@@ -168,7 +138,7 @@ namespace 美团
 
         #endregion
 
-        #region  不包含美食分类不分区域多城市多行业
+        #region  主程序
         public void Search()
         {
 
@@ -195,26 +165,25 @@ namespace 美团
 
                     {
                         
-                        for (int i = 1; i <= 50; i++)
+                        for (int i = 0; i <1100; i=i+32)
 
                         {
-
-
-                            string Url = "http://i.meituan.com/s/" + Getpinyin(city) + "-" + keyword + "?p=" + i;
-                            
-                            string html = meituan_GetUrl(Url, this.cookie);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-                          
-                            MatchCollection all = Regex.Matches(html, @"data-href=""//i.meituan.com/poi/([\s\S]*?)"">");
+                           
+                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/"+ GetUid(city)+"?uuid=84f079bf-70a3-48cc-8ea7-73b22c6d9f43&userid=-1&limit=32&offset="+i+"&cateId=-1&q=" + keyword;
+                           
+                            string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+                  
+                            MatchCollection all = Regex.Matches(html, @"false},{""id"":([\s\S]*?),");
 
                             ArrayList lists = new ArrayList();
                             foreach (Match NextMatch in all)
                             {
-
+                                //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
                                 //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
-                                lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
+                                //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
+                                lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId="+ NextMatch.Groups[1].Value + "&isDaoZong=false" );
                             }
-
+                            
                             if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                                 break;
@@ -226,8 +195,8 @@ namespace 美团
                             foreach (string list in lists)
 
                             {
-                               
-                                string strhtml1 = meituan_GetUrl(list, this.cookie);  //定义的GetRul方法 返回 reader.ReadToEnd()
+                                
+                                string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
                                 //Match name = Regex.Match(strhtml1, @"<h1 class=""dealcard-brand"">([\s\S]*?)</h1>");
                                 //Match tell = Regex.Match(strhtml1, @"data-tele=""([\s\S]*?)""");
@@ -235,23 +204,19 @@ namespace 美团
                                 Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                 Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                 Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
-                                if (name.Groups[1].Value != "")
-                                {
                                     ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                     listViewItem.SubItems.Add(name.Groups[1].Value);
                                     listViewItem.SubItems.Add(tell.Groups[1].Value);
                                     listViewItem.SubItems.Add(addr.Groups[1].Value);
                                     listViewItem.SubItems.Add(city);
 
-
                                     while (this.zanting == false)
                                     {
                                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                     }
 
-                                }
                                 Application.DoEvents();
-                                Thread.Sleep(1000);
+                                Thread.Sleep(1500);
 
 
                             }
@@ -269,7 +234,7 @@ namespace 美团
 
             catch (System.Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -351,7 +316,7 @@ namespace 美团
         private void Button1_Click(object sender, EventArgs e)
         {
            
-            this.cookie = GetCookies("https://i.meituan.com/wrapapi/poiinfo?poiId=150177929");
+         
 
            
             button1.Enabled = false;

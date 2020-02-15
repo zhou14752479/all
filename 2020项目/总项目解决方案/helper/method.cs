@@ -670,11 +670,11 @@ namespace helper
         {
             try
             {
-               //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "usid=07WwkCu3b_78aUPT; IPLOC=CN3213; SUV=00BA2DBC3159B8CD5D2585534E6EA580; CXID=5EA7E0DBFC0F423A95BC1EB511A405C7; SUID=CDB859313118960A000000005D25B077; ssuid=7291915575; pgv_pvi=5970681856; start_time=1562896518693; front_screen_resolution=1920*1080; wuid=AAElSJCaKAAAAAqMCGWoVQEAkwA=; FREQUENCY=1562896843272_13; sg_uuid=6358936283; newsCity=%u5BBF%u8FC1; SNUID=9FB9A0C8F8FC6C9FCB42F1E4F9BFB645; sortcookie=1; sw_uuid=3118318168; ld=3Zllllllll2NrO7hlllllVLmmtGlllllGqOxBkllllwlllllVklll5@@@@@@@@@@; sct=20";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "zg_did=%7B%22did%22%3A%20%2216caeebe11d120-0799fbb99275e-7373e61-1fa400-16caeebe11e242%22%7D; UM_distinctid=16caeebe1742a6-0b7ac70d3cde0f-7373e61-1fa400-16caeebe17511c; QCCSESSID=q72ar2bkfnqptns0ahadkfapb0; Hm_lvt_3456bee468c83cc63fb5147f119f1075=1581741357; Hm_lpvt_3456bee468c83cc63fb5147f119f1075=1581742026; zg_de1d1a35bfa24ce29bbf2c7eb17e6c4f=%7B%22sid%22%3A%201581746020971%2C%22updated%22%3A%201581746024407%2C%22info%22%3A%201581670998437%2C%22superProperty%22%3A%20%22%7B%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22www.qichacha.com%22%2C%22cuid%22%3A%20%229f0ad803714e45ea753a5d537b1d39f9%22%2C%22zs%22%3A%200%2C%22sc%22%3A%200%7D; acw_tc=73e74d2715817460697155323e6f1e772aa0ba26a03477b7e9d6ce2177; acw_sc__v2=5e479c84a816739851a16c1561cabd682281331a";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "https://news.sogou.com/news?query=site%3Asohu.com+%B4%F3%CA%FD%BE%DD&_ast=1571813760&_asf=news.sogou.com&time=0&w=03009900&sort=1&mode=1&manual=&dp=1";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
+                request.Referer = "http://hd.chinatax.gov.cn/nszx/InitCredit.html";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
 
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
