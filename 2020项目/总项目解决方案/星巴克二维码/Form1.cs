@@ -299,5 +299,10 @@ namespace 星巴克二维码
 
             this.listView1.SelectedItems[0].SubItems[2].Text = value;
         }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
