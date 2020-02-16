@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,6 +68,36 @@
             this.splitContainer1.SplitterDistance = 163;
             this.splitContainer1.TabIndex = 0;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(698, 48);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(108, 30);
+            this.button4.TabIndex = 30;
+            this.button4.Text = "停止";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(572, 48);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(108, 30);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "继续";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(446, 48);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(108, 30);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "暂停";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(28, 48);
@@ -94,7 +124,16 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(197, 21);
             this.textBox1.TabIndex = 24;
-            this.textBox1.Text = "C:\\Users\\86176\\Desktop\\QQ.txt";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(314, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(108, 30);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "开始运行";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // webBrowser1
             // 
@@ -109,46 +148,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(314, 48);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 30);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "开始运行";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(446, 48);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 30);
-            this.button2.TabIndex = 28;
-            this.button2.Text = "暂停";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(572, 48);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 30);
-            this.button3.TabIndex = 29;
-            this.button3.Text = "继续";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(698, 48);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(108, 30);
-            this.button4.TabIndex = 30;
-            this.button4.Text = "停止";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // Form1
             // 

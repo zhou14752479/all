@@ -80,6 +80,13 @@ namespace 通用项目
         {
             try
             {
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请添加QQ文本");
+                    return;
+                }
+
+
                
                 StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
                 string text = streamReader.ReadToEnd();
@@ -113,8 +120,8 @@ namespace 通用项目
 
                 }
 
-                
-                
+
+                MessageBox.Show("运行结束");
 
             }
             catch (Exception)
