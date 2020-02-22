@@ -150,6 +150,7 @@ namespace 联通手机号
             {
                 goodIds.Add("981909045640");
             }
+
             #endregion
 
 
@@ -436,6 +437,7 @@ namespace 联通手机号
             listView29.Items.Add("天神卡");
             listView29.Items.Add("钉钉大宝卡");
             listView29.Items.Add("钉钉小宝卡");
+            listView29.Items.Add("懂我卡畅享版");
 
             listView29.Items[0].Selected = true;
 

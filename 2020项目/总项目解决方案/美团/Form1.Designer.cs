@@ -30,14 +30,10 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel7 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -64,7 +60,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -84,10 +79,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.linkLabel11);
             this.groupBox2.Controls.Add(this.linkLabel9);
-            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.linkLabel4);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
@@ -101,6 +96,28 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数配置";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 10F);
+            this.label6.Location = new System.Drawing.Point(419, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(182, 14);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "购买问题联系QQ：852266010";
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.Location = new System.Drawing.Point(320, 30);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(53, 60);
+            this.button5.TabIndex = 11;
+            this.button5.Text = "停止";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(29, 97);
@@ -109,21 +126,10 @@
             this.textBox3.Size = new System.Drawing.Size(285, 38);
             this.textBox3.TabIndex = 10;
             // 
-            // linkLabel11
-            // 
-            this.linkLabel11.AutoSize = true;
-            this.linkLabel11.Location = new System.Drawing.Point(320, 84);
-            this.linkLabel11.Name = "linkLabel11";
-            this.linkLabel11.Size = new System.Drawing.Size(77, 12);
-            this.linkLabel11.TabIndex = 9;
-            this.linkLabel11.TabStop = true;
-            this.linkLabel11.Text = "重置开始按钮";
-            this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel11_LinkClicked);
-            // 
             // linkLabel9
             // 
             this.linkLabel9.AutoSize = true;
-            this.linkLabel9.Location = new System.Drawing.Point(320, 34);
+            this.linkLabel9.Location = new System.Drawing.Point(320, 97);
             this.linkLabel9.Name = "linkLabel9";
             this.linkLabel9.Size = new System.Drawing.Size(53, 12);
             this.linkLabel9.TabIndex = 7;
@@ -131,68 +137,10 @@
             this.linkLabel9.Text = "清空数据";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel9_LinkClicked);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.linkLabel8);
-            this.groupBox3.Controls.Add(this.linkLabel7);
-            this.groupBox3.Controls.Add(this.linkLabel6);
-            this.groupBox3.Controls.Add(this.linkLabel5);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox3.Location = new System.Drawing.Point(462, 17);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(166, 125);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "咨询与服务";
-            // 
-            // linkLabel8
-            // 
-            this.linkLabel8.AutoSize = true;
-            this.linkLabel8.Font = new System.Drawing.Font("宋体", 10F);
-            this.linkLabel8.Location = new System.Drawing.Point(15, 52);
-            this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(63, 14);
-            this.linkLabel8.TabIndex = 17;
-            this.linkLabel8.TabStop = true;
-            this.linkLabel8.Text = "软件代理";
-            // 
-            // linkLabel7
-            // 
-            this.linkLabel7.AutoSize = true;
-            this.linkLabel7.Font = new System.Drawing.Font("宋体", 10F);
-            this.linkLabel7.Location = new System.Drawing.Point(84, 52);
-            this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(63, 14);
-            this.linkLabel7.TabIndex = 16;
-            this.linkLabel7.TabStop = true;
-            this.linkLabel7.Text = "问题反馈";
-            // 
-            // linkLabel6
-            // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Font = new System.Drawing.Font("宋体", 10F);
-            this.linkLabel6.Location = new System.Drawing.Point(84, 28);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(63, 14);
-            this.linkLabel6.TabIndex = 15;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "联系客服";
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Font = new System.Drawing.Font("宋体", 10F);
-            this.linkLabel5.Location = new System.Drawing.Point(15, 28);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(63, 14);
-            this.linkLabel5.TabIndex = 14;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "充值续费";
-            // 
             // linkLabel4
             // 
             this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(320, 60);
+            this.linkLabel4.Location = new System.Drawing.Point(320, 123);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(53, 12);
             this.linkLabel4.TabIndex = 5;
@@ -360,20 +308,21 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(714, 13);
+            this.label3.Location = new System.Drawing.Point(614, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 14);
+            this.label3.Size = new System.Drawing.Size(186, 14);
             this.label3.TabIndex = 5;
-            this.label3.Text = "用户名";
+            this.label3.Text = "购买联系VX：17606117606";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(664, 15);
+            this.label2.Location = new System.Drawing.Point(618, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 4;
             this.label2.Text = "欢迎您：";
+            this.label2.Visible = false;
             // 
             // linkLabel3
             // 
@@ -413,6 +362,7 @@
             this.label1.Size = new System.Drawing.Size(790, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "免责声明：软件仅用于学习，请在法律允许的范围内使用，因采集引起的任何纠纷与本软件制作商无关！";
+            this.label1.Visible = false;
             // 
             // linkLabel1
             // 
@@ -426,6 +376,7 @@
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "思忆软件开发平台(点击打开www.acaiji.com)";
+            this.linkLabel1.Visible = false;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // panel1
@@ -463,8 +414,6 @@
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -479,13 +428,7 @@
         #endregion
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.LinkLabel linkLabel11;
         private System.Windows.Forms.LinkLabel linkLabel9;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.LinkLabel linkLabel8;
-        private System.Windows.Forms.LinkLabel linkLabel7;
-        private System.Windows.Forms.LinkLabel linkLabel6;
-        private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
@@ -512,6 +455,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label6;
     }
 }
 

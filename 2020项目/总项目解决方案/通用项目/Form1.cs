@@ -49,8 +49,10 @@ namespace 通用项目
                 }
 
 
+                //Thread thread = new Thread(new ThreadStart(run));
+                //thread.Start();
+                //Control.CheckForIllegalCrossThreadCalls = false;
                 run();
-               
 
             }
         }
@@ -76,7 +78,10 @@ namespace 通用项目
                 loading = false;//在加载完成后,将该变量置为false,下一次循环随即开始执行.
            
         }
+
+       
         public void run()
+
         {
             try
             {
@@ -94,16 +99,17 @@ namespace 通用项目
                 
                 for (int i = 0; i < array.Length; i++)
                 {
-
                     WebBrowser browser = new WebBrowser();
                     browser.ScriptErrorsSuppressed = true;
                     browser.Navigated += new WebBrowserNavigatedEventHandler(browser_Navigated);
                     loading = true;  //表示正在加载
-                    browser.Navigate("https://user.qzone.qq.com/"+array[i]);
+                    browser.Navigate("https://user.qzone.qq.com/" + array[i]);
+                   
 
                         textBox3.Text += "正在访问" + array[i] + "\r\n";
-
-                        while (loading)
+                    textBox3.Select(textBox3.Text.Length - 1, 0);
+                    textBox3.ScrollToCaret();
+                    while (loading)
                         {
                             Application.DoEvents();//等待本次加载完毕才执行下次循环.
                         }
@@ -116,7 +122,10 @@ namespace 通用项目
                     {
                         return;
                     }
+
                     Thread.Sleep(1000);
+                    browser.Dispose();
+                    
 
                 }
 

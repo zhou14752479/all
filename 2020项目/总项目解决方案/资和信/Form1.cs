@@ -290,20 +290,7 @@ namespace 资和信
         #endregion
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 
@@ -353,6 +340,7 @@ namespace 资和信
         }
 
         #endregion
+
         #region GET请求
         public  string getUrl(string url)
         {
@@ -485,29 +473,16 @@ namespace 资和信
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
-            if (flag)
-            {
-                this.textBox1.Text = this.openFileDialog1.FileName;
-            }
-        }
+      
 
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
         }
         bool zanting = true;
-        private void button1_Click(object sender, EventArgs e)
-        {
-            zanting = false;
-        }
+ 
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            zanting = true;
-        }
+ 
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -520,6 +495,30 @@ namespace 资和信
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                this.textBox1.Text = this.openFileDialog1.FileName;
+            }
+        }
+
+        private void 复制网址ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 复制串码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 重新扫描ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -18,6 +18,7 @@ namespace 网络游戏定单
         public Form1()
         {
             InitializeComponent();
+            
         }
         bool zanting = true;
         #region DD373
@@ -34,7 +35,7 @@ namespace 网络游戏定单
 
                     string html = method.GetUrlWithCookie(url, 登录.COOKIE, "utf-8");
 
-
+                    
 
 
                     MatchCollection IDs = Regex.Matches(html, @"""Id"":""([\s\S]*?)""");
@@ -58,13 +59,15 @@ namespace 网络游戏定单
 
 
                     string postdata = "[" + sb.ToString() + "]";
-
+                    
                     string strhtml = method.PostUrl("https://game.dd373.com/Api/Game/GetGameInfoListByIds", postdata.Replace(",]", "]"), 登录.COOKIE, "utf-8");
-                  
+                    
                     MatchCollection names = Regex.Matches(strhtml, @"""Name"":""([\s\S]*?)""");
 
                     for (int j = 0; j < IDs.Count; j++)
                     {
+                        string ahtml = method.GetUrlWithCookie("https://order.dd373.com/Api/Order/UserCenter/GetFormValues?OrderId="+IDs[j].Groups[1].Value, 登录.COOKIE, "utf-8");
+                        Match juese = Regex.Match(ahtml, @"""Value"":""([\s\S]*?)""");
 
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(IDs[j].Groups[1].Value);
@@ -84,6 +87,8 @@ namespace 网络游戏定单
                         {
                             listViewItem.SubItems.Add("交易取消");
                         }
+                        listViewItem.SubItems.Add(juese.Groups[1].Value);
+                        Thread.Sleep(1000);
 
                     }
 

@@ -123,16 +123,16 @@ namespace helper
         /// <returns></returns>
         public static string PostUrl(string url, string postData, string COOKIE, string charset)
         {
-           System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+           System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Post";
           // request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentType = "application/json";
+           request.ContentType = "application/json";
             request.ContentLength = postData.Length;
             //request.AllowAutoRedirect = true;
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
             request.Headers.Add("Cookie", COOKIE);
-            request.Referer = "http://data.imiker.com/all_search/hs/buy/all/621210";
+            request.Referer = "https://up.95516.com/unionadmin/system/index";
             StreamWriter sw = new StreamWriter(request.GetRequestStream());
             sw.Write(postData);
             sw.Flush();
@@ -548,6 +548,8 @@ namespace helper
         }
 
 
+
+
         /// <summary>
         /// http下载文件
         /// </summary>
@@ -660,20 +662,23 @@ namespace helper
         }
         #endregion
 
-        #region GET请求
+        #region GET请求解决基础连接关闭无法获取HTML
         /// <summary>
         /// GET请求
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        public static string GetUrl2(string Url, string charset)
         {
+            string outStr = "";
+            string tmpStr = "";
+
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "zg_did=%7B%22did%22%3A%20%2216caeebe11d120-0799fbb99275e-7373e61-1fa400-16caeebe11e242%22%7D; UM_distinctid=16caeebe1742a6-0b7ac70d3cde0f-7373e61-1fa400-16caeebe17511c; QCCSESSID=q72ar2bkfnqptns0ahadkfapb0; Hm_lvt_3456bee468c83cc63fb5147f119f1075=1581741357; Hm_lpvt_3456bee468c83cc63fb5147f119f1075=1581742026; zg_de1d1a35bfa24ce29bbf2c7eb17e6c4f=%7B%22sid%22%3A%201581746020971%2C%22updated%22%3A%201581746024407%2C%22info%22%3A%201581670998437%2C%22superProperty%22%3A%20%22%7B%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22www.qichacha.com%22%2C%22cuid%22%3A%20%229f0ad803714e45ea753a5d537b1d39f9%22%2C%22zs%22%3A%200%2C%22sc%22%3A%200%7D; acw_tc=73e74d2715817460697155323e6f1e772aa0ba26a03477b7e9d6ce2177; acw_sc__v2=5e479c84a816739851a16c1561cabd682281331a";
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "1s1k453=ysyk_web62; JSESSIONID=C38B6D4A827F086C722EA8DAC0E55D26; UM_distinctid=1704d60505528a-0f30e2260ef312-2393f61-1fa400-1704d6050576ae; CNZZDATA1253333710=885277478-1581844031-%7C1581995363; CNZZDATA1253416210=1453523664-1581844817-%7C1581992732";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "http://hd.chinatax.gov.cn/nszx/InitCredit.html";
+                request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
 
                 request.AllowAutoRedirect = true;
@@ -683,11 +688,65 @@ namespace helper
                 request.Timeout = 5000;
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
+                try
+                {
+                    while ((tmpStr = reader.ReadLine()) != null)
+                    {
+                        outStr += tmpStr;
+                    }
+                }
+                catch
+                {
+
+                }
+                reader.Close();
+                response.Close();
+                
+                return outStr;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
+
+
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
+        {
+          
+           
+            try
+            {
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "1s1k453=ysyk_web62; JSESSIONID=C38B6D4A827F086C722EA8DAC0E55D26; UM_distinctid=1704d60505528a-0f30e2260ef312-2393f61-1fa400-1704d6050576ae; CNZZDATA1253333710=885277478-1581844031-%7C1581995363; CNZZDATA1253416210=1453523664-1581844817-%7C1581992732";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Referer = "";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 5000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
                 string content = reader.ReadToEnd();
+
 
                 reader.Close();
                 response.Close();
                 return content;
+
+
 
             }
             catch (System.Exception ex)

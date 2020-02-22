@@ -183,3 +183,9 @@ postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
         }
 
         #endregion
+
+获取Listview选中项（contextmenustrip）
+  if (listView1.SelectedItems.Count > 0)
+            {
+                System.Diagnostics.Process.Start(listView1.SelectedItems[0].SubItems[5].Text);
+            }

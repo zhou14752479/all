@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,26 +86,32 @@ namespace 研修网下载
 
                     if (dx!= "" && dx != null)
                     {
-                        
-                        if (Convert.ToInt32(dx) >3)
+
+                        if (Convert.ToInt32(dx) > 3)
                         {
-                            if (gs == "doc" || gs == "docx" || gs == "ppt" || gs == "pptx")
-                            {
-                               
+                           
+
+                           
+                            //if (gs == "doc" || gs == "docx" || gs == "ppt" || gs == "pptx")
+                            //{
+                            if(geshiList.Contains(gs))
+                            { 
+
                                  method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs,cookie);
-                               
-                                textBox6.Text += DateTime.Now.ToString()+i+"下载成功：" + bt + "\r\n";
+
+                                 textBox6.Text += DateTime.Now.ToString()+i+"下载成功：" + bt + "\r\n";
                             }
 
                             else
                             {
                                 textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
                             }
-                               
+
+                        
                         }
                         else
                         {
-                            textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
+                            //textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
                         }
 
                     }
@@ -144,7 +151,9 @@ namespace 研修网下载
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             webBrowser1.Url = new Uri("http://i.yanxiu.com/");
+           
 
             foreach (Control ctr in groupBox1.Controls)
             {
@@ -197,9 +206,47 @@ namespace 研修网下载
             }
 
         }
-
+        ArrayList geshiList = new ArrayList();
         private void button2_Click(object sender, EventArgs e)
         {
+            if (checkBox1.Checked == true)
+            {
+                geshiList.Add("doc");
+            }
+            if (checkBox2.Checked == true)
+            {
+                geshiList.Add("docx");
+            }
+            if (checkBox3.Checked == true)
+            {
+                geshiList.Add("ppt");
+            }
+            if (checkBox4.Checked == true)
+            {
+                geshiList.Add("pptx");
+            }
+            if (checkBox5.Checked == true)
+            {
+                geshiList.Add("pdf");
+            }
+            if (checkBox6.Checked == true)
+            {
+                geshiList.Add("txt");
+            }
+            if (checkBox7.Checked == true)
+            {
+                geshiList.Add("rar");
+            }
+            if (checkBox8.Checked == true)
+            {
+                geshiList.Add("zip");
+            }
+
+
+
+
+
+
             string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();

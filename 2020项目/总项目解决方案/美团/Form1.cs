@@ -29,6 +29,7 @@ namespace 美团
         public string cookie;
         bool zanting = true;
         public static string username = "";
+        ArrayList tels = new ArrayList();
         private void Form1_Load(object sender, EventArgs e)
         {
            
@@ -37,6 +38,7 @@ namespace 美团
            
         }
 
+        bool status = true;
         #region 获取数据库美团城市名称
         public void getCityName()
         {
@@ -195,6 +197,7 @@ namespace 美团
                             foreach (string list in lists)
 
                             {
+
                                 
                                 string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
@@ -204,21 +207,30 @@ namespace 美团
                                 Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                 Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                 Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
-                                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                    listViewItem.SubItems.Add(name.Groups[1].Value);
-                                    listViewItem.SubItems.Add(tell.Groups[1].Value);
-                                    listViewItem.SubItems.Add(addr.Groups[1].Value);
-                                    listViewItem.SubItems.Add(city);
 
-                                    while (this.zanting == false)
+                                if (!tell.Groups[1].Value.Contains("-") || tell.Groups[1].Value == "")
+                                {
+                                    if (!tels.Contains(tell.Groups[1].Value))
                                     {
-                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                        tels.Add(tell.Groups[1].Value);
+                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                        listViewItem.SubItems.Add(name.Groups[1].Value);
+                                        listViewItem.SubItems.Add(tell.Groups[1].Value);
+                                        listViewItem.SubItems.Add(addr.Groups[1].Value);
+                                        listViewItem.SubItems.Add(city);
+
+                                        while (this.zanting == false)
+                                        {
+                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                        }
+                                        if (status == false)
+                                        {
+                                            return;
+                                        }
+                                        Application.DoEvents();
+                                        Thread.Sleep(1500);
                                     }
-
-                                Application.DoEvents();
-                                Thread.Sleep(1500);
-
-
+                                }
                             }
 
                         }
@@ -234,7 +246,7 @@ namespace 美团
 
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
         }
 
@@ -315,14 +327,39 @@ namespace 美团
 
         private void Button1_Click(object sender, EventArgs e)
         {
-           
-         
 
-           
-            button1.Enabled = false;
-            Thread search_thread = new Thread(new ThreadStart(this.Search));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            search_thread.Start();
+
+            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+            MySqlCommand cmd = new MySqlCommand("select * from vip where username='美团点评客户'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+            if (reader.Read())
+            {
+
+                string password = reader["password"].ToString().Trim();
+
+                if (password != "美团点评客户")
+
+                {
+                    MessageBox.Show("验证失败");
+
+                    Environment.Exit(0);
+                }
+
+
+
+                button1.Enabled = false;
+                Thread search_thread = new Thread(new ThreadStart(this.Search));
+                Control.CheckForIllegalCrossThreadCalls = false;
+                search_thread.Start();
+
+            }
+
+
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -362,6 +399,12 @@ namespace 美团
 
         private void LinkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            button1.Enabled = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            status = false;
             button1.Enabled = true;
         }
     }
