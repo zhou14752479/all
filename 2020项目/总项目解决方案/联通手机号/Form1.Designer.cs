@@ -101,6 +101,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -139,7 +140,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -372,7 +372,7 @@
             // 
             // columnHeader27
             // 
-            this.columnHeader27.Text = "全院5A";
+            this.columnHeader27.Text = "全段5A";
             this.columnHeader27.Width = 200;
             // 
             // listView28
@@ -543,7 +543,7 @@
             // 
             // columnHeader18
             // 
-            this.columnHeader18.Text = "全院4A";
+            this.columnHeader18.Text = "全段4A";
             this.columnHeader18.Width = 100;
             // 
             // listView19
@@ -597,6 +597,7 @@
             this.listView9.TabIndex = 48;
             this.listView9.UseCompatibleStateImageBehavior = false;
             this.listView9.View = System.Windows.Forms.View.Details;
+            this.listView9.SelectedIndexChanged += new System.EventHandler(this.listView9_SelectedIndexChanged);
             // 
             // columnHeader9
             // 
@@ -695,7 +696,7 @@
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "尾号3招1";
+            this.columnHeader4.Text = "尾号3托1";
             this.columnHeader4.Width = 100;
             // 
             // listView3
@@ -714,7 +715,7 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "全院3A";
+            this.columnHeader3.Text = "全段3A";
             this.columnHeader3.Width = 100;
             // 
             // listView2
@@ -906,6 +907,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "扫号设置";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(156, 235);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 57;
+            this.button8.Text = "导出一";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // groupBox3
             // 
@@ -1276,16 +1287,6 @@
             // 
             this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
             this.复制ToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(156, 235);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 57;
-            this.button8.Text = "导出一";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 

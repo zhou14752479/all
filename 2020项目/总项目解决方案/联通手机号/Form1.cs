@@ -263,29 +263,37 @@ namespace 联通手机号
 
                             ListViewItem listViewItem = this.listView1.Items.Add(haoma);
 
-                            Match match3 = Regex.Match(haoma, @"\d([0-9])(?!\1)([0-9])\2{2}\d");  //三连
-                            Match match7 = Regex.Match(haoma, @"\d{7}([0-9]012|[^0]123|[^1]234|[^2]345|[^3]456|[^4]567|[^5]678|[^6]789)");  // 尾号ABC
-                            Match match6 = Regex.Match(haoma, @"\d{6}([0-9])(?!\1)([0-9])\2(?!\2)([0-9])\3");   //尾号AABB
-                            Match match5 = Regex.Match(haoma, @"\d{7}([0-9])(?!\1)([0-9])\1\2");   //尾号ABAB
-                            Match match10 = Regex.Match(haoma, @"\d{5}(\d{3})\1");   //尾号ABCABC
-                            Match match8 = Regex.Match(haoma, @"\d{6}([\d])\1{2,}([\d])\2{0,}\1");   //尾号AAABA
+                            Match match3 = Regex.Match(haoma, @"([\d])\1{2}");  //三连
+                            Match match4 = Regex.Match(haoma, @"([\d])\1{2,}\d$");  //尾号3托1
+                            Match match7 = Regex.Match(haoma, @"^\d{8}(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){2}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){2})");  // 尾号ABC  
+                            Match match6 = Regex.Match(haoma, @"([\d])\1{1}([\d])\2{1}$");   //尾号AABB
+                            Match match5 = Regex.Match(haoma, @"^\d{7}(\d)(\d)\1\2");   //尾号ABAB
+                            Match match10 = Regex.Match(haoma, @"^\d{5}(\d)(\d)(\d)\1\2\3$");   //尾号ABCABC
+                           // Match match9 = Regex.Match(haoma, @"\d{6}([\d])\1{2,}([\d])\2{0,}\1");   //尾号8位A和B
+                            Match match8 = Regex.Match(haoma, @"\d{6}([\d])\1{2,}([\d])\2{0,}\1");   //尾号AAABA          我的
 
                             //第二排
-                            Match match19 = Regex.Match(haoma, @"\d{7}([0-9])(?!\1)([0-9])\2{2}");   //尾号AAA
-                            Match match18 = Regex.Match(haoma, @"\d([0-9])(?!\1)([0-9])\2{3}\d");   //四连
-
-                            Match match16 = Regex.Match(haoma, @"\d{7}0123|\d{7}1234|\d{7}2345|\d{7}3456|\d{7}4567|\d{7}5678|\d{7}6789");   //尾号ABCD
-                            Match match15 = Regex.Match(haoma, @"\d{4}([0-9])(?!\1)([0-9])\2(?!\2)([0-9])\3(?!\3)([0-9])\4");   //尾号AABBCC
-                            Match match13 = Regex.Match(haoma, @"(01234|12345|23456|34567|45678|56789)");   //中间ABCDE
-                            Match match11 = Regex.Match(haoma, @"\d{4}([0-9])(?!\1)([0-9])\2(?!\2)([0-9])\3(?!\3)([0-9])\4");
+                            Match match19 = Regex.Match(haoma, @"([\d])\1{2}$");   //尾号AAA
+                            Match match18 = Regex.Match(haoma, @"([\d])\1{3}");   //四连
+                            Match match17 = Regex.Match(haoma, @"([\d])\1{3}\d{0,2}$");   //四招1
+                            Match match16 = Regex.Match(haoma, @"^\d{7}(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){3}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){3})");   //尾号ABCD
+                            Match match15 = Regex.Match(haoma, @"(\d)\1{1}(\d)\2{1}(\d)\3{1}$");   //尾号AABBCC
+                           //Match match14 = Regex.Match(haoma, @"(\d)\1{1}(\d)\2{1}(\d)\3{1}$");   //6重
+                            Match match13 = Regex.Match(haoma, @"(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){4,}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){4,})\d");   //中间ABCDE
+                            Match match12 = Regex.Match(haoma, @"(\d)\1{2,}(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){3,}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){3,})\d");
+                            Match match11 = Regex.Match(haoma, @"(\d)\1{1}(\d)\2{1}(\d)\3{1}");
                             //第三排
 
-                            Match match28 = Regex.Match(haoma, @"\d{7}(0000)|\d{7}(1111)|\d{7}(2222)|\d{7}(3333)|\d{7}(4444)|\d{7}(5555)|\d{7}(6666)|\d{7}(7777)|\d{7}(8888)|\d{7}(9999)");
-                            Match match27 = Regex.Match(haoma, @"00000|11111|22222|33333|44444|55555|66666|77777|88888|99999");
-                            Match match25 = Regex.Match(haoma, @"\d{6}(01234|12345|23456|34567|45678|56789)");
-                            Match match24 = Regex.Match(haoma, @"\d{3}([0-9])\1([0-9])\2([0-9])\3([0-9])\4");
-                            Match match23 = Regex.Match(haoma, @"\d{3}(\d{4})\1");
-                            Match match22 = Regex.Match(haoma, @"\d{3}(\d{4})\1");
+                            Match match28 = Regex.Match(haoma, @"([\d])\1{3}$");
+                            Match match27 = Regex.Match(haoma, @"([\d])\1{4}");
+                            Match match26 = Regex.Match(haoma, @"^\d{3}(\d)(\d)(\d)(\d)\4\3\2\1");
+                        
+                            Match match25 = Regex.Match(haoma, @"\d{6}(01234|12345|23456|34567|45678|56789)");  //我的
+                            Match match24 = Regex.Match(haoma, @"^\d{3}(\d)\1(\d)\2(\d)\3(\d)\4");
+                            Match match23 = Regex.Match(haoma, @"^\d{3}(\d{4})\1{1}");
+                            Match match22 = Regex.Match(haoma, @"(\d)\1{2}\d{0,}(\d)\2{2}");
+                            Match match21 = Regex.Match(haoma, @"^\d{3}(\d)(\d)(\d)(\d)\1\2\3(?!\4)");
+                            Match match20 = Regex.Match(haoma, @"^\d{3}(\d)(\d)\1(\d)\1(\d)\1(\d)");
 
                             if (textBox4.Text != "" )
                             {
@@ -308,6 +316,10 @@ namespace 联通手机号
                             {
                                 this.listView3.Items.Add(haoma);
                             }
+                            if (match4.Groups[1].Value != "")
+                            {
+                                this.listView4.Items.Add(haoma);
+                            }
                             if (match7.Groups[1].Value != "")
                             {
                                 this.listView7.Items.Add(haoma);
@@ -324,6 +336,10 @@ namespace 联通手机号
                             {
                                 this.listView10.Items.Add(haoma);
                             }
+                            //if (match9.Groups[1].Value != "")
+                            //{
+                            //    this.listView9.Items.Add(haoma);
+                            //}
                             if (match8.Groups[1].Value != "")
                             {
                                 this.listView8.Items.Add(haoma);
@@ -337,6 +353,10 @@ namespace 联通手机号
                             {
                                 this.listView18.Items.Add(haoma);
                             }
+                            if (match17.Groups[1].Value != "")
+                            {
+                                this.listView17.Items.Add(haoma);
+                            }
 
 
                             if (match16.Groups[1].Value != "")
@@ -347,10 +367,18 @@ namespace 联通手机号
                             {
                                 this.listView15.Items.Add(haoma);
                             }
+                            //if (match14.Groups[1].Value != "")
+                            //{
+                            //    this.listView14.Items.Add(haoma);
+                            //}
 
                             if (match13.Groups[1].Value != "")
                             {
                                 this.listView13.Items.Add(haoma);
+                            }
+                            if (match12.Groups[1].Value != "")
+                            {
+                                this.listView12.Items.Add(haoma);
                             }
                             if (match11.Groups[1].Value != "")
                             {
@@ -365,7 +393,10 @@ namespace 联通手机号
                             {
                                 this.listView27.Items.Add(haoma);
                             }
-
+                            if (match26.Groups[1].Value != "")
+                            {
+                                this.listView26.Items.Add(haoma);
+                            }
                             if (match25.Groups[1].Value != "")
                             {
                                 this.listView25.Items.Add(haoma);
@@ -383,6 +414,14 @@ namespace 联通手机号
                             if (match22.Groups[1].Value != "")
                             {
                                 this.listView22.Items.Add(haoma);
+                            }
+                            if (match21.Groups[1].Value != "")
+                            {
+                                this.listView21.Items.Add(haoma);
+                            }
+                            if (match20.Groups[1].Value != "")
+                            {
+                                this.listView20.Items.Add(haoma);
                             }
 
 
@@ -756,6 +795,11 @@ namespace 联通手机号
         private void button8_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void listView9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
