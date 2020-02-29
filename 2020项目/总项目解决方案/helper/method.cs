@@ -126,21 +126,21 @@ namespace helper
            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Post";
-            // request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentType = "application/x-www-form-urlencoded";
             //添加头部
             //WebHeaderCollection headers = request.Headers;
             //headers.Add("appid:orders");
             //headers.Add("x-nike-visitid:5");
             //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
             //添加头部
-            request.ContentType = "application/json";
+           // request.ContentType = "application/json";
             request.ContentLength = postData.Length;
             request.AllowAutoRedirect = false;
             request.KeepAlive = true;
             
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
             request.Headers.Add("Cookie", COOKIE);
-            request.Headers.Add("origin","https://www.nike.com");
+            //request.Headers.Add("origin","https://www.nike.com");
             request.Referer = "https://www.nike.com/orders/gift-card-lookup";
             StreamWriter sw = new StreamWriter(request.GetRequestStream());
             sw.Write(postData);
@@ -652,9 +652,9 @@ namespace helper
         {
             try
             {
-                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.AllowAutoRedirect = false;
+                request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Referer = "http://chn.lottedfs.cn/kr/product/productDetail?prdNo=10001805265&prdOptNo=10001805265";
                 request.Headers.Add("Cookie", COOKIE);
