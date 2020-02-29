@@ -45,21 +45,22 @@ namespace 通用项目
         public void run()
         {
 
-            try
+
+            for (int i = Convert.ToInt32(textBox3.Text.Trim()); i < Convert.ToInt32(textBox4.Text.Trim()); i++)
             {
-                
-                for (int i = Convert.ToInt32(textBox3.Text.Trim()); i < Convert.ToInt32(textBox4.Text.Trim()); i++)
+                try
                 {
+
                     FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1);
                     sw.WriteLine(i.ToString());
                     sw.Close();
                     fs1.Close();
 
-                    
-                    string url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/showVersion1s1k.jspx?type=all&date=1568624403391&pageNo=" + i + "&yearMark="+year+"&sessionKey=PKSpcCwnXGPjaVHtZZ2D=";
+
+                    string url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/showVersion1s1k.jspx?type=all&date=1568624403391&pageNo=" + i + "&yearMark=" + year + "&sessionKey=PKSpcCwnXGPjaVHtZZ2D=";
                     string html = method.GetUrl2(url, "utf-8");
-                  
+
                     MatchCollection IDS = Regex.Matches(html, @"CASE_ID=([\s\S]*?),");
                     foreach (Match ID in IDS)
                     {
@@ -67,65 +68,66 @@ namespace 通用项目
                         string aurl = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?date=1581939217784&code=-1&sdResIdCaseId=" + ID.Groups[1].Value + "&flags=&guideId=&sk=&sessionKey=OL9YmN5uZwuHbYhX9ZYL";
                         string ahtml = method.GetUrl2(aurl, "utf-8");
                         Match title = Regex.Match(ahtml, @"<h1>([\s\S]*?)</h1>");
-                       // Match zuohe = Regex.Match(ahtml, @"<dt>([\s\S]*?)</dt>");
+                        // Match zuohe = Regex.Match(ahtml, @"<dt>([\s\S]*?)</dt>");
 
 
                         MatchCollection DocIds1 = Regex.Matches(ahtml, @"class=""docCode"" value=""doc-([\s\S]*?)""");
                         MatchCollection DocIds2 = Regex.Matches(ahtml, @"resId=doc-([\s\S]*?)&([\s\S]*?)>([\s\S]*?)<");
-                        
+
                         foreach (Match DocId in DocIds1)
                         {
-                         
-                            string bt = title.Groups[1].Value ;
+
+                            string bt = title.Groups[1].Value;
                             string downUrl = method.GetUrl2("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
 
                             Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
                             string gs = gs1.Groups[2].Value;
 
-                             method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
+                            method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
 
                             textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
-                           
+
                         }
                         foreach (Match DocId in DocIds2)
                         {
-                            
-                            string bt = DocId.Groups[3].Value ;
-                            string downUrl = method.GetUrl("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
+
+                            string bt = DocId.Groups[3].Value;
+                            string downUrl = method.GetUrl2("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
                             Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
                             string gs = gs1.Groups[2].Value;
 
-                             method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
+                            method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
 
                             textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
-                          
+
                         }
                         while (zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
 
-                        
+
                         if (status == false)
                         {
                             return;
                         }
 
-                        Thread.Sleep(Convert.ToInt32(textBox2.Text)*1000);
+                        Thread.Sleep(Convert.ToInt32(textBox2.Text) * 1000);
 
 
-                        
+
 
 
                     }
 
                 }
-            }
-            catch (Exception ex)
-            {
+                catch
+                {
 
-                MessageBox.Show(ex.ToString());
+                    continue;
+                }
             }
+          
 
 
         }
@@ -193,6 +195,24 @@ namespace 通用项目
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+
+            //string[] arrs = { "a", "b", "c" };
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    try
+            //    {
+            //        for (int j = 0; j < 4; j++)
+            //        {
+            //            MessageBox.Show(arrs[j]);
+            //        }
+            //    }
+            //    catch
+            //    {
+
+            //        continue;
+            //    }
+            //}
+
         }
 
         private void button3_Click(object sender, EventArgs e)

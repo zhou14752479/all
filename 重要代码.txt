@@ -189,3 +189,13 @@ postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
             {
                 System.Diagnostics.Process.Start(listView1.SelectedItems[0].SubItems[5].Text);
             }
+
+/// <summary>
+        /// 获取时间戳
+        /// </summary>
+        /// <returns></returns>
+        public string GetTimeStamp()
+        {
+            TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return Convert.ToInt64(ts.TotalSeconds).ToString();
+        }        

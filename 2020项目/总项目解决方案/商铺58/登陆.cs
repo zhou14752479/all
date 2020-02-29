@@ -138,13 +138,13 @@ namespace 商铺58
                     string password = reader["password"].ToString().Trim();
                     string mac = reader["mac"].ToString().Trim();
 
-                    //判断MAC地址
+                    ////判断MAC地址
 
-                    if (GetMacAddress().ToString().Trim() != mac)
-                    {
-                        MessageBox.Show("您使用的此台电脑未开通，如需开通此台电脑请联系客服购买！VX：17606117606");
-                        return;
-                    }
+                    //if (GetMacAddress().ToString().Trim() != mac)
+                    //{
+                    //    MessageBox.Show("您使用的此台电脑未开通，如需开通此台电脑请联系客服购买！VX：17606117606");
+                    //    return;
+                    //}
 
                     //判断密码
                     if (skinTextBox2.Text.Trim() == password)

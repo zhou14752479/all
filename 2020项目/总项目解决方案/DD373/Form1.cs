@@ -25,14 +25,43 @@ namespace DD373
         bool zanting = true;
         bool status = true;
 
+        public static string getUrl(string Url, string charset)
+        {
 
+
+            try
+            {
+
+                string COOKIE = "1s1k453=ysyk_web62; JSESSIONID=C38B6D4A827F086C722EA8DAC0E55D26; UM_distinctid=1704d60505528a-0f30e2260ef312-2393f61-1fa400-1704d6050576ae; CNZZDATA1253333710=885277478-1581844031-%7C1581995363; CNZZDATA1253416210=1453523664-1581844817-%7C1581992732";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url); 
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                request.Timeout = 5000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
         public static string GetUrl(string Url, string charset)
         {
 
 
             try
             {
-                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                
                 string COOKIE = "1s1k453=ysyk_web62; JSESSIONID=C38B6D4A827F086C722EA8DAC0E55D26; UM_distinctid=1704d60505528a-0f30e2260ef312-2393f61-1fa400-1704d6050576ae; CNZZDATA1253333710=885277478-1581844031-%7C1581995363; CNZZDATA1253416210=1453523664-1581844817-%7C1581992732";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "";
@@ -41,12 +70,10 @@ namespace DD373
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 request.KeepAlive = true;
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  
                 request.Timeout = 5000;
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); 
                 string content = reader.ReadToEnd();
-
-
                 reader.Close();
                 response.Close();
                 return content;
@@ -104,7 +131,7 @@ namespace DD373
                     for (int j = 0; j < ids.Count; j++)
                     {
                         
-                        if (!jianshu[j].Groups[1].Value.Trim().Contains("<"))
+                        if (!jianshu[j].Groups[1].Value.Trim().Contains("<") && !jbsl[j].Groups[1].Value.Trim().Contains("<"))
 
                         {
 
@@ -134,9 +161,9 @@ namespace DD373
                         for (int j = 0; j < ids.Count; j++)
                         {
 
-                            if (!jianshu[j].Groups[1].Value.Trim().Contains("<"))
+                            if (!jianshu[j].Groups[1].Value.Trim().Contains("<") && !jbsl[j].Groups[1].Value.Trim().Contains("<"))
 
-                            {
+                                {
 
                                 decimal jg = Convert.ToInt32(jbsl[j].Groups[2].Value.Trim());
                                 decimal sl = Convert.ToInt32(jianshu[j].Groups[1].Value.Trim());
@@ -224,9 +251,9 @@ namespace DD373
                     for (int j = 0; j < ids.Count; j++)
                     {
 
-                        if (!jianshu[j].Groups[1].Value.Trim().Contains("<"))
+                    if (!jianshu[j].Groups[1].Value.Trim().Contains("<") && !jbsl[j].Groups[1].Value.Trim().Contains("<"))
 
-                        {
+                    {
 
                             decimal jg = Convert.ToInt32(jbsl[j].Groups[2].Value.Trim());
                             decimal sl = Convert.ToInt32(jianshu[j].Groups[1].Value.Trim());
@@ -254,17 +281,17 @@ namespace DD373
                         for (int j = 0; j < ids.Count; j++)
                         {
 
-                            if (!jianshu[j].Groups[1].Value.Trim().Contains("<"))
+                        if (!jianshu[j].Groups[1].Value.Trim().Contains("<") && !jbsl[j].Groups[1].Value.Trim().Contains("<"))
 
-                            {
+                        {
 
-                                decimal jg = Convert.ToInt32(jbsl[j].Groups[2].Value.Trim());
+                            decimal jg = Convert.ToInt32(jbsl[j].Groups[2].Value.Trim());
                                 decimal sl = Convert.ToInt32(jianshu[j].Groups[1].Value.Trim());
 
                                 if (jg * sl > Convert.ToInt32(textBox4.Text))
                                 {
                                     textBox1.Text = DateTime.Now.ToString() + "正在搜索：【" + Regex.Replace(infos.Groups[1].Value, "<[^>]+>", "") + "】";
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString());    
                                     lv1.SubItems.Add(fuwuqi);
                                     lv1.SubItems.Add(jbsl[j].Groups[2].Value);
                                     lv1.SubItems.Add(jianshu[j].Groups[1].Value.Trim());

@@ -88,10 +88,13 @@ namespace CefSharp谷歌
 
 
         public ChromiumWebBrowser browser;
+      
+
+
         public void InitBrowser()
         {
             //Cef.Initialize(new CefSettings());
-            browser = new ChromiumWebBrowser("https://www.taobao.com");
+            browser = new ChromiumWebBrowser("https://chn.lps.lottedfs.cn/kr/member/login");
             browser.Parent = this.splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
 
@@ -117,6 +120,7 @@ namespace CefSharp谷歌
         private void Form1_Load(object sender, EventArgs e)
         {
             browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
+           
         }
 
 
@@ -295,6 +299,7 @@ namespace CefSharp谷歌
 
         private void Button2_Click(object sender, EventArgs e)
         {
+           
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.Description = "请选择文件路径";
             if (dialog.ShowDialog() == DialogResult.OK)

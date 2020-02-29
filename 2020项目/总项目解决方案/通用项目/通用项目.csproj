@@ -80,6 +80,18 @@
     <Compile Include="宝宝计划.Designer.cs">
       <DependentUpon>宝宝计划.cs</DependentUpon>
     </Compile>
+    <Compile Include="文件下载.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文件下载.Designer.cs">
+      <DependentUpon>文件下载.cs</DependentUpon>
+    </Compile>
+    <Compile Include="有信展业.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="有信展业.Designer.cs">
+      <DependentUpon>有信展业.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +115,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="宝宝计划.resx">
       <DependentUpon>宝宝计划.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文件下载.resx">
+      <DependentUpon>文件下载.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="有信展业.resx">
+      <DependentUpon>有信展业.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

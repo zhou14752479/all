@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace main._2019_4
+namespace main._2019_6
 {
     static class Program
     {
@@ -19,7 +19,7 @@ namespace main._2019_4
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            
-            Application.Run(new 搜索引擎());
+            Application.Run(new IOM());
         }
     }
 

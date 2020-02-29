@@ -56,9 +56,10 @@ namespace 订单流水
         {
             string start = DateTime.Now.ToString();
 
-          
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+            
 
-            string html = PostUrl("https://up.95516.com/unionadmin/tra/order/batchPayOrder/datagrid.json", "loginOrgId=QRA307256511I0H&orgType=12&multiSelect=false&startTime=2020-02-19++00%3A00%3A00&endTime=2020-02-19++23%3A59%3A59&feeType=CNY&page=1&rows=10", cookie, "utf-8");
+            string html = PostUrl("https://up.95516.com/unionadmin/tra/order/batchPayOrder/datagrid.json", "loginOrgId=QRA314553112SBB&orgType=12&multiSelect=false&startTime="+date+ "++00%3A00%3A00&endTime=" + date + "++23%3A59%3A59&tradeState=2&feeType=CNY&page=1&rows=10", cookie, "utf-8");
            MatchCollection a1s = Regex.Matches(html, @"""tradeTime"":""([\s\S]*?)""");
             MatchCollection a2s = Regex.Matches(html, @"""outTradeNo"":""([\s\S]*?)""");
             MatchCollection a3s = Regex.Matches(html, @"""orderNo"":""([\s\S]*?)""");
@@ -202,16 +203,30 @@ namespace 订单流水
 
         private void button1_Click(object sender, EventArgs e)
         {
-          cookie=  GetCookies("https://up.95516.com/unionadmin/system/index");
-            run();
-
+            MessageBox.Show("已启动");
+            timer1.Start();
 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            listView1.Items.Clear();
+            webBrowser1.Refresh();
+            cookie = GetCookies("https://up.95516.com/unionadmin/system/index");
             run();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            MessageBox.Show("已暂停");
         }
     }
 }

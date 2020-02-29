@@ -126,13 +126,22 @@ namespace helper
            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Post";
-          // request.ContentType = "application/x-www-form-urlencoded";
-           request.ContentType = "application/json";
+            // request.ContentType = "application/x-www-form-urlencoded";
+            //添加头部
+            //WebHeaderCollection headers = request.Headers;
+            //headers.Add("appid:orders");
+            //headers.Add("x-nike-visitid:5");
+            //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
+            //添加头部
+            request.ContentType = "application/json";
             request.ContentLength = postData.Length;
-            //request.AllowAutoRedirect = true;
+            request.AllowAutoRedirect = false;
+            request.KeepAlive = true;
+            
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
             request.Headers.Add("Cookie", COOKIE);
-            request.Referer = "https://up.95516.com/unionadmin/system/index";
+            request.Headers.Add("origin","https://www.nike.com");
+            request.Referer = "https://www.nike.com/orders/gift-card-lookup";
             StreamWriter sw = new StreamWriter(request.GetRequestStream());
             sw.Write(postData);
             sw.Flush();
@@ -533,18 +542,26 @@ namespace helper
         /// <param name="name">图片名称</param>
         public static void downloadFile(string URLAddress, string subPath, string name,string COOKIE)
         {
-            string path = System.IO.Directory.GetCurrentDirectory();
-
-            WebClient client = new WebClient();
-            client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
-            client.Headers.Add("Cookie", COOKIE);
-            if (false == System.IO.Directory.Exists(subPath))
+            try
             {
-                //创建pic文件夹
-                System.IO.Directory.CreateDirectory(subPath);
+                string path = System.IO.Directory.GetCurrentDirectory();
+
+                WebClient client = new WebClient();
+                client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
+                client.Headers.Add("Cookie", COOKIE);
+                if (false == System.IO.Directory.Exists(subPath))
+                {
+                    //创建pic文件夹
+                    System.IO.Directory.CreateDirectory(subPath);
+                }
+
+                client.DownloadFile(URLAddress, subPath + "\\" + name);
             }
-           
-            client.DownloadFile(URLAddress, subPath + "\\" + name);
+            catch (WebException ex)
+            {
+
+                ex.ToString();
+            }
         }
 
 
@@ -635,14 +652,14 @@ namespace helper
         {
             try
             {
-
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.AllowAutoRedirect = true;
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
-
+                request.AllowAutoRedirect = false;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Referer = "http://chn.lottedfs.cn/kr/product/productDetail?prdNo=10001805265&prdOptNo=10001805265";
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-
+                request.KeepAlive = true;
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                 string content = reader.ReadToEnd();
@@ -689,7 +706,7 @@ namespace helper
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                 try
-                {
+                {//循环获取
                     while ((tmpStr = reader.ReadLine()) != null)
                     {
                         outStr += tmpStr;
@@ -707,7 +724,7 @@ namespace helper
             }
             catch (System.Exception ex)
             {
-                ex.ToString();
+              return  ex.ToString();
 
             }
             return "";
@@ -727,14 +744,20 @@ namespace helper
            
             try
             {
-                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "1s1k453=ysyk_web62; JSESSIONID=C38B6D4A827F086C722EA8DAC0E55D26; UM_distinctid=1704d60505528a-0f30e2260ef312-2393f61-1fa400-1704d6050576ae; CNZZDATA1253333710=885277478-1581844031-%7C1581995363; CNZZDATA1253416210=1453523664-1581844817-%7C1581992732";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "";
+                request.Referer = "https://cn.bing.com/search?q=%e9%a6%99%e6%b8%af%e5%85%ad%e5%90%88%e5%bd%a9&qs=n&sp=-1&first=01&FORM=PORE";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
 
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("appid:orders");
+                //headers.Add("x-nike-visitid:5");
+                //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
+                //添加头部
                 request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.Timeout = 5000;
@@ -774,12 +797,13 @@ namespace helper
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
                 WebProxy proxy = new WebProxy(ip);
                 request.Proxy = proxy;
+                
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.Timeout = 8000;
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("gbk")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
                 string content = reader.ReadToEnd();
                 reader.Close();

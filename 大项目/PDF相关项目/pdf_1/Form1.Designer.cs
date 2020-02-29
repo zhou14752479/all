@@ -163,7 +163,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(276, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "思忆PDF转WORD(刘星专用版)";
+            this.label1.Text = "思忆PDF转WORD(张帅专用版)";
             // 
             // splitContainer2
             // 
