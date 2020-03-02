@@ -26,7 +26,8 @@ using System.ComponentModel;
 namespace main
 {
     class method
-    {/// <summary>
+    {
+        /// <summary>
      /// 创建或更新一个PPPOE连接(指定PPPOE名称)
      /// </summary>
         static void CreateOrUpdatePPPOE(string updatePPPOEname)
@@ -79,7 +80,7 @@ namespace main
         /// <param name="username">宽带账号</param>
         /// <param name="password">宽带密码</param>
         /// <returns></returns>
-        public static bool Connect(string PPPOEname, string username, string password, ref string msg)
+        public static bool Connect(string PPPOEname, string username, string password)
         {
             try
             {
@@ -97,7 +98,7 @@ namespace main
             }
             catch (RasException re)
             {
-                msg = re.ErrorCode + " " + re.Message;
+                MessageBox.Show(re.ErrorCode + " " + re.Message);
                 return false;
             }
         }
@@ -561,7 +562,7 @@ namespace main
 
         #endregion
 
-        #region NPOI自动导出导出表格
+               #region NPOI自动导出导出表格
         public static int DataTableToExcel2(DataTable data, string sheetName, bool isColumnWritten,string title)
         {
      
@@ -635,7 +636,7 @@ namespace main
         }
 
         #endregion
-        #region  listview导出文本TXT
+             #region  listview导出文本TXT
         public static void ListviewToTxt(ListView listview)
         {
             if (listview.Items.Count == 0)

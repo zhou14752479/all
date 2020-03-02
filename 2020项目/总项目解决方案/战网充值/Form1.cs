@@ -74,6 +74,7 @@ namespace 战网充值
         }
 
         #endregion
+        bool zanting = true;
         public void run()
 
         {
@@ -104,7 +105,10 @@ namespace 战网充值
                         textBox2.Text += user + "充值失败" + "\r\n";
                     }
 
-              
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
 
                     Thread.Sleep(1000);
                 }
@@ -124,10 +128,20 @@ namespace 战网充值
         private void button1_Click(object sender, EventArgs e)
         {
             //cookie = method.getUrlCookie("https://www.battlenet.com.cn/shop/zh/checkout/ebalance-claim");
-            cookie = "nr-browser=1; _st=1582967184971; JSESSIONID=38C1965DD401AC6B18E4FBD52B020054.blade05_cn_a_bnet_shop; web.id=CN-6bf7c1ca-592f-4823-a5c0-f1e36dceb124; _ga=GA1.3.2100474302.1582966974; _gid=GA1.3.339242375.1582966974; LPVID=VlMDVkZjk4MDUwOGY4NjUw; loc=zh-cn; optimizelyEndUserId=oeu1582967176045r0.9065126639076413; mprtcl-v4_CCA8AE13={'gs':{'ie':1|'dt':'719f10ea1d9f664eab8238c61651c212'|'cgid':'8c6a111b-7f3a-447a-95d9-bc05a0d09d1a'|'das':'765acb3b-19ec-42e9-a50c-e015a21810f6'|'csm':'WyI1MzkzODk1MDM0NDEzNDU3OTg5IiwiNjc3MjI0NTc3MDE0ODYzNDUzMiJd'}|'l':1|'1032215442762915510':{'fst':1582967000201|'csd':'eyI0MSI6MTU4Mjk2NzAwMDIwOCwiMTAzIjoxNTgyOTY3MDAwMjEwfQ=='|'lst':1582967101394}|'cu':'6772245770148634532'|'5393895034413457989':{'fst':1582967101395|'csd':'eyI0MSI6MTU4Mjk2NzEwMTQwMCwiMTAzIjoxNTgyOTY3MTAxNDAyfQ=='|'ui':'eyIxIjoiMTg2NjA2OTE2In0='|'lst':1582969677831}|'6772245770148634532':{'fst':1582969677834|'csd':'eyI0MSI6MTU4Mjk2OTY3NzgzOSwiMTAzIjoxNTgyOTY5Njc3ODQyfQ=='|'ui':'eyIxIjoiNTIyMjgwODE1In0='}}; BA-tassadar-login.key=efd17e3dd069ab24cee25cf8452c46f5; login.key=efd17e3dd069ab24cee25cf8452c46f5; opt=1; ticket-id=eyJzZXJ2aW5nSWQiOjE1ODI4NzE1MDYsImxhc3ROb3dTZXJ2aW5nU2VlbiI6MTU4Mjg3NDUwMiwicmVkaXJlY3RVcmwiOiJodHRwczovL3d3dy5iYXR0bGVuZXQuY29tLmNuL3Nob3AvemgvY2hlY2tvdXQvZWJhbGFuY2UtY2xhaW0/bnVsbCJ9|d68ad0c761a642267b5a3c41230cb6aa7737aef957cd46e5e88db961c120792f; loginChecked=1; _gat_UA-50249600-1=1; _gat_UA-50249600-81=1";
+            cookie = textBox3.Text;
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
         }
     }
 }
