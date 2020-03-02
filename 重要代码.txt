@@ -30,7 +30,7 @@ ctrl+ALT+++空格
                 
     
            Regex.Replace(url.Groups[1].Value, "<[^>]+>", "")  //去标签
-
+	Regex.Replace(article2.Groups[1].Value, "<(?!/?p)(?!br )[^>]*>", "")  //除了P <br />其他的去掉
 7、读取txt 写入TXT
         	if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {

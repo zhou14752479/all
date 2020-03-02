@@ -162,7 +162,7 @@ namespace 搜款网
                         MatchCollection zhupics = Regex.Matches(html, @"mid=""([\s\S]*?)""");                           //主图 缺少http:
                         MatchCollection xqpics = Regex.Matches(html, @"<img align=""absmiddle"" src=""([\s\S]*?)""");  //详情图
 
-                        MessageBox.Show(chimas.Count.ToString());
+                        //MessageBox.Show(chimas.Count.ToString());
 
 
 
