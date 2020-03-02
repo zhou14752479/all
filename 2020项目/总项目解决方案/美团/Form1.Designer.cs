@@ -322,7 +322,6 @@
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 4;
             this.label2.Text = "欢迎您：";
-            this.label2.Visible = false;
             // 
             // linkLabel3
             // 
@@ -362,7 +361,6 @@
             this.label1.Size = new System.Drawing.Size(790, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "免责声明：软件仅用于学习，请在法律允许的范围内使用，因采集引起的任何纠纷与本软件制作商无关！";
-            this.label1.Visible = false;
             // 
             // linkLabel1
             // 
@@ -376,7 +374,6 @@
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "思忆软件开发平台(点击打开www.acaiji.com)";
-            this.linkLabel1.Visible = false;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // panel1

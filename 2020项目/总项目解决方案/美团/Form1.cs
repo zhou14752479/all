@@ -329,26 +329,7 @@ namespace 美团
         {
 
 
-            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-            MySqlConnection mycon = new MySqlConnection(constr);
-            mycon.Open();
-
-            MySqlCommand cmd = new MySqlCommand("select * from vip where username='美团点评客户'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-            if (reader.Read())
-            {
-
-                string password = reader["password"].ToString().Trim();
-
-                if (password != "美团点评客户")
-
-                {
-                    MessageBox.Show("验证失败");
-
-                    Environment.Exit(0);
-                }
+          
 
 
 
@@ -357,7 +338,7 @@ namespace 美团
                 Control.CheckForIllegalCrossThreadCalls = false;
                 search_thread.Start();
 
-            }
+            
 
 
         }
