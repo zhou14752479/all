@@ -117,10 +117,10 @@ namespace 百度知道
                     
 
                 }
-                catch
+                catch(Exception ex)
                 {
 
-                    continue;
+                    MessageBox.Show(ex.ToString());
                 }
 
                 Thread.Sleep(1000);
@@ -262,6 +262,11 @@ namespace 百度知道
                 }
 
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

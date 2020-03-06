@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
+using MySql.Data.MySqlClient;
 
 namespace _58二手房
 {
@@ -49,6 +50,51 @@ namespace _58二手房
 
         }
 
+
+
+        ArrayList telList = new ArrayList();
+
+        ArrayList finishes = new ArrayList();
+        /// <summary>
+        /// 读取数据库
+        /// </summary>
+        public void getdata()
+        {
+            try
+            {
+
+                string path = System.Environment.CurrentDirectory; //获取当前程序运行文件夹
+
+                SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path + "\\data.db");
+                mycon.Open();
+
+                SQLiteCommand cmd = new SQLiteCommand("select tel from tels", mycon);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
+                DataTable table = new DataTable();
+                table.Load(rdr);
+                
+                for (int i = 0; i < table.Rows.Count; i++) // 遍历行
+                {
+
+                    telList.Add(table.Rows[i]["tel"]);
+
+                }
+                mycon.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+            }
+
+        }
+
+
+
+
+
+
+
         private void setChildNodeCheckedState(TreeNode currNode, bool state)
         {
             TreeNodeCollection nodes = currNode.Nodes;
@@ -78,14 +124,38 @@ namespace _58二手房
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
+         
 
+            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
 
-            Thread thread = new Thread(new ThreadStart(mobilerun));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            //string a1 = "测试";
-            //string sql = "INSERT INTO tels (tel) VALUES( '" + a1 + "')";
-            //insertdata(sql);
+            MySqlCommand cmd = new MySqlCommand("select * from vip where username='二手房'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+            if (reader.Read())
+            {
+
+                string password = reader["password"].ToString().Trim();
+
+                if (password != "二手房")
+
+                {
+                    MessageBox.Show("验证失败");
+
+                    Environment.Exit(0);
+                }
+
+                status = true;
+                button1.Enabled = false;
+                Thread thread = new Thread(new ThreadStart(mobilerun));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+            
+          
 
 
         }
@@ -132,6 +202,61 @@ namespace _58二手房
             return "";
         }
         #endregion
+
+        #region GET使用代理IP请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlwithIP(string Url, string ip)
+        {
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "Hm_lvt_c58e42b54acb40ab70d48af7b1ce0d6a=1563157838,1563157854; ASPSESSIONIDSCRDCDQB=NBHMLEHCKHKNFDMPGPGKFPNP; fikker-vMnk-0qnk=nyMU6OJy8iTIpYhmd5bST9RwBSD9TGV1; fikker-vMnk-0qnk=nyMU6OJy8iTIpYhmd5bST9RwBSD9TGV1; fikker-0epN-KaRa=dGd9KSVkZ7VSnSZSrIPidYtMDe0UVLOA; Hm_lvt_a2f6ee5c5c2efc17b10dc0659462df30=1563161043,1563259279,1563259736,1563259814; Hm_lpvt_a2f6ee5c5c2efc17b10dc0659462df30=1563262152";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1";
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
+
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 8000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
+
+
+
+        public string getcityId(string city)
+        {
+            string html = GetUrlwithIP("https://"+city+".58.com/", "tps185.kdlapi.com:15818");
+            Match value = Regex.Match(html, @"'area':'([\s\S]*?)'");
+            return value.Groups[1].Value;
+        }
+
+        public string getcityname(string city)
+        {
+            string html = GetUrlwithIP("https://" + city + ".58.com/", "tps185.kdlapi.com:15818");
+            Match value = Regex.Match(html, @"content=""58同城([\s\S]*?)分类");
+            return value.Groups[1].Value;
+        }
 
         /// <summary>
         /// 电脑端
@@ -181,39 +306,65 @@ namespace _58二手房
                 throw;
             }
         }
+        private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
+            
+        }
+
 
         /// <summary>
         /// 手机端列表直接
         /// </summary>
         public void  mobilerun()
         {
+            getdata();
             getnodes();
 
 
             foreach (string city in citys)
             {
-                for (int i = 1; i < 71; i++)
+                string cityId = getcityId(city);
+                string cityname = getcityname(city);
+                for (int i = 1; i < Convert.ToInt32(textBox1.Text); i++)
 
                 {
                     try
                     {
-                        string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id=2350&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&is_ax_partition=0&entry=11&select_type=0&city_id=2350&source_id=2&is_struct=1&page="+i+"&page_size=41";
-                        string html = GetUrl(url);
+                        string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id="+cityId+ "&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&is_ax_partition=0&entry=11&select_type=0&city_id=" + cityId + "&source_id=2&is_struct=1&page=" + i+"&page_size=41";
+                      
+                        string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+
                         MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
-                        foreach (Match tel in tels)
+                       // MatchCollection times = Regex.Matches(html, @"""post_date"":""([\s\S]*?)""");
+                        if (tels.Count == 0)
+                            break;
+
+
+                        for (int j = 0; j < tels.Count; j++)
                         {
-                            
 
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                            lv1.SubItems.Add(tel.Groups[1].Value);
-                            while (this.zanting == false)
+                            if (!telList.Contains(tels[j].Groups[1].Value))
                             {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-                            
-                            if (status == false)
+                                if (!finishes.Contains(tels[j].Groups[1].Value))
+                                {
+                                    finishes.Add(tels[j].Groups[1].Value);
+                                    insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                    lv1.SubItems.Add(tels[j].Groups[1].Value);
+                                    lv1.SubItems.Add("正在抓取" + cityname+ "第" + i + "页");
+                                    //lv1.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value).ToString());
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
 
-                                return;
+                                    if (status == false)
+
+                                        return;
+                                }
+                            }
                         }
                         Thread.Sleep(1000);
                     }
@@ -226,6 +377,8 @@ namespace _58二手房
                 }
 
             }
+
+            MessageBox.Show("抓取完成");
            
         }
 
@@ -289,7 +442,35 @@ namespace _58二手房
 
         private void button4_Click(object sender, EventArgs e)
         {
+            button1.Enabled = true;
             status = false;
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            foreach (TreeNode parentNode in skinTreeView1.Nodes)  //江苏省节点
+            {
+                parentNode.Checked = true;
+                foreach (TreeNode node in parentNode.Nodes)     //获取江苏省下的节点
+                {
+                    node.Checked = true;
+                }
+
+                }
+
+        }
+
+
+
     }
 }

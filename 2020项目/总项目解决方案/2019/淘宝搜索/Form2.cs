@@ -53,6 +53,7 @@ namespace 淘宝搜索
                 {
                     string ahtml = method.GetUrlWithCookie("https://www.uu898.com/ordertracking.aspx?ID=" + ids[j].Groups[1].Value, COOKIE, "utf-8");
                     Match juese = Regex.Match(ahtml, @"收货角色名：([\s\S]*?)</li>");
+                    Match fuwuqi = Regex.Match(ahtml, @"Server"" title=""([\s\S]*?)""");
 
 
                     string jinbi = (Convert.ToDecimal(jinbis[j].Groups[2].Value) * Convert.ToInt32(prices[(2 * j + 1)].Groups[1].Value)).ToString();
@@ -60,7 +61,8 @@ namespace 淘宝搜索
                     ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                     listViewItem.SubItems.Add(ids[j].Groups[1].Value);
                     listViewItem.SubItems.Add(times[j].Groups[1].Value);
-                    listViewItem.SubItems.Add("魔兽世界" + fuwuqis[j].Groups[1].Value);
+                    // listViewItem.SubItems.Add("魔兽世界" + fuwuqis[j].Groups[1].Value);
+                    listViewItem.SubItems.Add(fuwuqi.Groups[1].Value);
                     listViewItem.SubItems.Add(jinbi);
                     listViewItem.SubItems.Add(jines[j].Groups[1].Value.Trim());
                     listViewItem.SubItems.Add(status[j].Groups[1].Value);

@@ -82,17 +82,30 @@ namespace helper
             bool isFirstTime = true;
             for (int i = 0; i < itemsCount; i++)
             {
-                if (!isColumnNeeded(i))
+                try
+                {
+
+
+
+
+                    if (!isColumnNeeded(i))
+                        continue;
+
+                    if (!isFirstTime)
+                        result.Append(",");
+                    isFirstTime = false;
+
+                    result.Append(String.Format("\"{0}\"", columnValue(i)));
+                }
+                catch
+                {
                     continue;
-
-                if (!isFirstTime)
-                    result.Append(",");
-                isFirstTime = false;
-
-                result.Append(String.Format("\"{0}\"", columnValue(i)));
+                }
             }
+
             result.AppendLine();
         }
+
 
         #region GET请求获取cookie
         public static string getUrlCookie(string url)
@@ -196,6 +209,51 @@ namespace helper
 
         #endregion
 
+        public static void expotTxt(ListView lv1)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+
+                StringBuilder sb = new StringBuilder();
+                foreach (ListViewItem item in lv1.Items)
+                {
+                    try
+                    {
+                        List<string> list = new List<string>();
+                        string temp0 = item.SubItems[0].Text;
+                        string temp1 = item.SubItems[1].Text;
+                        string temp2 = item.SubItems[2].Text;
+                        string temp3 = item.SubItems[3].Text;
+                        string temp4 = item.SubItems[4].Text;
+                        string temp5 = item.SubItems[5].Text;
+                        string temp6 = item.SubItems[6].Text;
+                        string temp7 = item.SubItems[7].Text;
+                        string temp8 = item.SubItems[8].Text;
+                        list.Add(temp0+"#"+temp1 + "#" + temp2 + "#" + temp3 + "#" + temp4 + "#" + temp5 + "#" + temp6 + "#" + temp7 + "#" + temp8);
+                        foreach (string tel in list)
+                        {
+                            sb.AppendLine(tel);
+                        }
+
+                        string path = "";
+
+                        path = dialog.SelectedPath + "\\导出结果.txt";
+
+                        System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+                    }
+
+                    catch
+                    {
+                        continue;
+                    }
+                }
+                MessageBox.Show("导出完成");
+            }
+
+        }
+
 
         #region 获取公网IP
         public static string GetIP()
@@ -234,7 +292,7 @@ namespace helper
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
                 Cookie = COOKIE,
-                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
                 Referer = "https://live.500.com/wanchang.php",//来源URL     可选项  
@@ -748,8 +806,8 @@ namespace helper
                 string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "https://cn.bing.com/search?q=%e9%a6%99%e6%b8%af%e5%85%ad%e5%90%88%e5%bd%a9&qs=n&sp=-1&first=01&FORM=PORE";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-
+                //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 //添加头部

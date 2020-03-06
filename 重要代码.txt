@@ -149,6 +149,9 @@ ctrl+ALT+++空格
             return startTime.Add(toNow);
 
         }
+或者-----------
+	DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
 
 
 十七  正则替换TextBox里的内容

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 通用项目
+namespace 足球网站数据对比
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 通用项目
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 域名检测());
+            Application.Run(new Form1());
         }
     }
 }

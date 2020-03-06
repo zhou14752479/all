@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79B83235-643D-427A-B386-62FEB16FAA60}</ProjectGuid>
+    <ProjectGuid>{53FBB5F6-0EA1-40F2-9159-E85BD37F8E4B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>外网商城</RootNamespace>
-    <AssemblyName>外网商城</AssemblyName>
+    <RootNamespace>足球网站数据对比</RootNamespace>
+    <AssemblyName>足球网站数据对比</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

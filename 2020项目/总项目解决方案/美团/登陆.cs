@@ -115,103 +115,47 @@ namespace 美团
 
 
         #endregion
-       
-        #region  登陆函数
 
-        public void myLogin()
+
+        public void login()
         {
-
-
-            try
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+            if (html.Contains(skinTextBox1.Text) && html.Contains(skinTextBox2.Text))
             {
-                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
+                skinButton1.Text = "正在连接服务器......";
 
-                MySqlCommand cmd = new MySqlCommand("select * from vip where username='" + skinTextBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                Application.DoEvents();
+                System.Threading.Thread.Sleep(200);
 
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+                skinButton1.Text = "正在验证用户名和密码......";
+                Application.DoEvents();
+                System.Threading.Thread.Sleep(200);
 
-                if (reader.Read())
+
+
+                //记住账号密码
+                if (checkBox1.Checked == true)
                 {
-                    string username = reader["username"].ToString().Trim();
-                    string password = reader["password"].ToString().Trim();
-                    string mac = reader["mac"].ToString().Trim();
 
-                    //判断MAC地址
-
-                    if (GetMacAddress().ToString().Trim() != mac)
-                    {
-                        MessageBox.Show("您使用的此台电脑未开通，如需开通此台电脑请联系客服购买！VX：17606117606");
-                        return;
-                    }
-
-                    //判断密码
-                    if (skinTextBox2.Text.Trim() == password)
-
-                    {
-
-                        skinButton1.Text = "正在连接服务器......";
-
-                        Application.DoEvents();
-                        System.Threading.Thread.Sleep(200);
-
-                        skinButton1.Text = "正在验证用户名和密码......";
-                        Application.DoEvents();
-                        System.Threading.Thread.Sleep(200);
-
-
-
-                        //记住账号密码
-                        if (checkBox1.Checked == true)
-                        {
-
-                            FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-                            StreamWriter sw = new StreamWriter(fs1);
-                            sw.WriteLine(skinTextBox1.Text);
-                            sw.WriteLine(skinTextBox2.Text);
-                            sw.Close();
-                            fs1.Close();
-
-                        }
-                        Form1.username = skinTextBox1.Text;
-                        Form1 fm1 = new Form1();
-                        fm1.Show();
-                        this.Hide();
-
-                    }
-
-                    else
-
-                    {
-
-                        MessageBox.Show("您的密码错误！");
-                        return;
-                    }
-
+                    FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(skinTextBox1.Text);
+                    sw.WriteLine(skinTextBox2.Text);
+                    sw.Close();
+                    fs1.Close();
 
                 }
-
-
-
-                else
-                {
-                    MessageBox.Show("未查询到您的账户信息！请联系客服开通账号！");
-                    return;
-                }
-
-
+                Form1.username = skinTextBox1.Text;
+                Form1 fm1 = new Form1();
+                fm1.Show();
+                this.Hide();
             }
 
-            catch (System.Exception ex)
+            else
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("账户不存在或者密码错误");
             }
-
         }
-
-
-        #endregion
         private void skinButton1_Click(object sender, EventArgs e)
         {
             if (skinTextBox1.Text == "" || skinTextBox1.Text == "用户名或者手机号")
@@ -225,70 +169,61 @@ namespace 美团
                 return;
             }
 
-            myLogin();
+            login();
+
+            
         }
 
-        private void skinButton2_Click(object sender, EventArgs e)
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
         {
-            DateTime dt = DateTime.Now;
-            string time = DateTime.Now.ToString();
-            string ip = GetIP();
-            string mac = GetMacAddress();
-
-            if (skinTextBox3.Text == "" || skinTextBox4.Text == "" || skinTextBox5.Text == "")
-            {
-                MessageBox.Show("请完善账号信息！");
-                return;
-            }
-            if (skinTextBox3.Text.Length < 11)
-            {
-                MessageBox.Show("请输入十一位有效手机号！");
-                return;
-            }
-
-            if (skinTextBox5.Text.Trim() != Random())
-            {
-                MessageBox.Show("您的注册码错误！");
-                return;
-            }
 
 
             try
             {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Referer = "https://cn.bing.com/search?q=%e9%a6%99%e6%b8%af%e5%85%ad%e5%90%88%e5%bd%a9&qs=n&sp=-1&first=01&FORM=PORE";
+                //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("appid:orders");
+                //headers.Add("x-nike-visitid:5");
+                //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
+                //添加头部
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 5000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                string content = reader.ReadToEnd();
 
 
-                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
+                reader.Close();
+                response.Close();
+                return content;
 
-                string username = skinTextBox3.Text.Trim();
-                string password = skinTextBox4.Text.Trim();
-
-
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO vip (username,password,register_t,ip,mac)VALUES('" + username + " ', '" + password + " ', '" + time + " ', '" + ip + " ', '" + mac + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-                if (count > 0)
-                {
-                    MessageBox.Show("注册成功！");
-
-                    mycon.Close();
-
-                }
-                else
-                {
-                    MessageBox.Show("连接失败！");
-                }
 
 
             }
-
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
+
             }
+            return "";
         }
+        #endregion
+
+       
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -311,7 +246,7 @@ namespace 美团
 
                 skinTextBox1.Text = text[0];
                 skinTextBox2.Text = text[1];
-
+                sr.Close();
             }
         }
     }

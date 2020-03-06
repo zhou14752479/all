@@ -295,6 +295,84 @@ namespace 通用项目
         }
 
 
+        public void tongji(ListView lv)
+
+        {
+            try
+            {
+                int yi = 0;
+                int er = 0;
+                int san = 0;
+                int si = 0;
+                int wu = 0;
+                int liu = 0;
+                for (int i = 0; i < lv.Items.Count; i++)
+                {
+                    if (lv.Items[i].SubItems[4].Text == "1")
+                    {
+                        yi = yi + 1;
+                    }
+                    if (lv.Items[i].SubItems[4].Text == "2")
+                    {
+                        er = er + 1;
+                    }
+                    if (lv.Items[i].SubItems[4].Text == "3")
+                    {
+                        san = san + 1;
+                    }
+                    if (lv.Items[i].SubItems[4].Text == "4")
+                    {
+                        si = si + 1;
+                    }
+                    if (lv.Items[i].SubItems[4].Text == "5")
+                    {
+                        wu = wu + 1;
+                    }
+                    if (lv.Items[i].SubItems[4].Text == "6")
+                    {
+                        liu = liu + 1;
+                    }
+
+                   
+
+                }
+
+                ListViewItem lv1 = lv.Items.Add((lv.Items.Count).ToString()); //使用Listview展示数据   
+                lv1.SubItems.Add("1出现次数");
+                lv1.SubItems.Add("2出现次数" );
+                lv1.SubItems.Add("3出现次数");
+                lv1.SubItems.Add("------------");
+
+                ListViewItem lv11 = lv.Items.Add((lv.Items.Count).ToString()); //使用Listview展示数据   
+                lv11.SubItems.Add(yi.ToString());
+                lv11.SubItems.Add(er.ToString());
+                lv11.SubItems.Add(san.ToString());
+
+                lv11.SubItems.Add("------------");
+
+
+
+                ListViewItem lv2 = lv.Items.Add((lv.Items.Count).ToString()); //使用Listview展示数据   
+                lv2.SubItems.Add("4出现次数");
+                lv2.SubItems.Add("5出现次数");
+                lv2.SubItems.Add("6出现次数");
+                lv2.SubItems.Add("------------");
+
+                ListViewItem lv22 = lv.Items.Add((lv.Items.Count).ToString()); //使用Listview展示数据   
+                lv22.SubItems.Add(si.ToString());
+                lv22.SubItems.Add(wu.ToString());
+                lv22.SubItems.Add(liu.ToString());
+
+                lv22.SubItems.Add("------------");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
         public void buchong(ListView lv, string gua)
         {
             int min = 0;
@@ -358,17 +436,12 @@ namespace 通用项目
         {
 
 
-
-
-
-            jisuan(listView1, "无");
+              jisuan(listView1, "无");
             jisuan(listView2, "无");
 
             jisuan(listView3, "挂");
             jisuan(listView4, "挂");
             jisuan(listView5, "挂");
-
-
 
 
         }
@@ -387,6 +460,11 @@ namespace 通用项目
             buchong(listView4, "挂");
             buchong(listView5, "挂");
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            tongji(listView1); tongji(listView2); tongji(listView3); tongji(listView4); tongji(listView5);
         }
     }
 }

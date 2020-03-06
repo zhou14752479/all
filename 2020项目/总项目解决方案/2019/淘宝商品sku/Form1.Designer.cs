@@ -38,12 +38,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -55,12 +55,15 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(11, 84);
+            this.listView1.Location = new System.Drawing.Point(16, 94);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(393, 361);
+            this.listView1.Size = new System.Drawing.Size(708, 344);
             this.listView1.TabIndex = 26;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -78,8 +81,8 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "宝贝地址";
-            this.columnHeader3.Width = 400;
+            this.columnHeader3.Text = "价格";
+            this.columnHeader3.Width = 80;
             // 
             // label1
             // 
@@ -88,7 +91,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 27;
-            this.label1.Text = "输入店铺地址：";
+            this.label1.Text = "输入商品地址：";
             // 
             // textBox1
             // 
@@ -96,8 +99,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(617, 21);
             this.textBox1.TabIndex = 28;
-            this.textBox1.Text = "https://shop145672826.taobao.com/index.htm?spm=2013.1.w5002-18853258787.2.401567f" +
-    "fAsfLiN";
             // 
             // button1
             // 
@@ -131,29 +132,6 @@
             this.label3.Text = "×";
             this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader6});
-            this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(410, 84);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(314, 361);
-            this.listView2.TabIndex = 33;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "SKU名称";
-            this.columnHeader5.Width = 200;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "SKU价格";
-            this.columnHeader6.Width = 80;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -178,6 +156,19 @@
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "sku";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Url";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "商家名称";
+            this.columnHeader6.Width = 200;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -186,7 +177,6 @@
             this.ClientSize = new System.Drawing.Size(736, 450);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.listView2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -218,12 +208,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
 

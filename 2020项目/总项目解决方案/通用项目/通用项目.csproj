@@ -31,12 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\浙江移动\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,17 +83,35 @@
     <Compile Include="国家教育资源.Designer.cs">
       <DependentUpon>国家教育资源.cs</DependentUpon>
     </Compile>
+    <Compile Include="域名检测.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="域名检测.Designer.cs">
+      <DependentUpon>域名检测.cs</DependentUpon>
+    </Compile>
     <Compile Include="宝宝计划.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="宝宝计划.Designer.cs">
       <DependentUpon>宝宝计划.cs</DependentUpon>
     </Compile>
+    <Compile Include="抓数据用.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="抓数据用.Designer.cs">
+      <DependentUpon>抓数据用.cs</DependentUpon>
+    </Compile>
     <Compile Include="文件下载.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="文件下载.Designer.cs">
       <DependentUpon>文件下载.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文档页码读取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文档页码读取.Designer.cs">
+      <DependentUpon>文档页码读取.cs</DependentUpon>
     </Compile>
     <Compile Include="有信展业.cs">
       <SubType>Form</SubType>
@@ -113,15 +140,25 @@
     <EmbeddedResource Include="国家教育资源.resx">
       <DependentUpon>国家教育资源.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="域名检测.resx">
+      <DependentUpon>域名检测.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="宝宝计划.resx">
       <DependentUpon>宝宝计划.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="抓数据用.resx">
+      <DependentUpon>抓数据用.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="文件下载.resx">
       <DependentUpon>文件下载.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="文档页码读取.resx">
+      <DependentUpon>文档页码读取.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="有信展业.resx">
       <DependentUpon>有信展业.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

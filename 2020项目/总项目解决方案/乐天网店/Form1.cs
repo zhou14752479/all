@@ -93,6 +93,7 @@ namespace 乐天网店
                     lv1.SubItems.Add(zhekou.Groups[1].Value);
                     lv1.SubItems.Add(jifen.Groups[1].Value);
                     lv1.SubItems.Add(title.Groups[1].Value);
+                    lv1.SubItems.Add(DateTime.Now.ToString());
 
 
 
@@ -101,7 +102,7 @@ namespace 乐天网店
                         if (Convert.ToDecimal(zhekou.Groups[1].Value) <= Convert.ToDecimal(textBox5.Text))
 
                         {
-                            MessageBox.Show("网页值出现变化！");
+                            
                             textBox4.Text += "出现变化的网址：" + title.Groups[1].Value + "\r\n";
 
                             FileStream fs1 = new FileStream(path + "config.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
@@ -118,7 +119,7 @@ namespace 乐天网店
                         if (Convert.ToDecimal(jifen.Groups[1].Value.Replace("%", "")) <= Convert.ToDecimal(textBox6.Text))
 
                         {
-                            MessageBox.Show("网页值出现变化！");
+                            
                             textBox4.Text += "出现变化的网址：" + title.Groups[1].Value + "\r\n";
                             FileStream fs1 = new FileStream(path + "config.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                             StreamWriter sw = new StreamWriter(fs1);
@@ -165,9 +166,10 @@ namespace 乐天网店
 
             textBox4.Text = "监控已开启";
             timer1.Start();
+            timer2.Start();
 
-            
-            
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -183,7 +185,7 @@ namespace 乐天网店
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
-            webBrowser1.Refresh();
+          
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -217,6 +219,11 @@ namespace 乐天网店
         private void button2_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            webBrowser1.Refresh();
         }
     }
 }

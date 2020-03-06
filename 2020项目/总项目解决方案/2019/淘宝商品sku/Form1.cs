@@ -110,7 +110,7 @@ namespace 淘宝商品sku
 
                 for (int i = 0; i < names.Count; i++)
                 {
-                    ListViewItem lv1 = listView2.Items.Add((names[i].Groups[1].Value.Replace("<span>", "").Trim())); //使用Listview展示数据    
+                    ListViewItem lv1 = listView1.Items.Add((names[i].Groups[1].Value.Replace("<span>", "").Trim())); //使用Listview展示数据    
                     lv1.SubItems.Add(prices[i].Groups[1].Value);
                 }
                
@@ -160,7 +160,7 @@ namespace 淘宝商品sku
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            method.ListviewToTxt(listView1);
+            method.ListviewToTxt(listView1,1);
             listView1.Items.Clear();
         }
         private Point mPoint = new Point();

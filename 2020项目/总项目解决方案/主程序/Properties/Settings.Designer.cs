@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace 外网商城.Properties
+namespace 主程序.Properties
 {
 
 
