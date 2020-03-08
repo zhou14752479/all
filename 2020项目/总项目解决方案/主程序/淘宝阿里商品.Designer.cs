@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -42,8 +44,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,9 +69,29 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
+            this.splitContainer1.Size = new System.Drawing.Size(873, 451);
             this.splitContainer1.SplitterDistance = 185;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(626, 130);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "清空";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(534, 130);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "导出";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox1
             // 
@@ -81,7 +102,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(800, 97);
+            this.groupBox1.Size = new System.Drawing.Size(873, 97);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "输入网址";
@@ -136,6 +157,7 @@
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.columnHeader4,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader7,
@@ -147,13 +169,14 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(800, 261);
+            this.listView1.Size = new System.Drawing.Size(873, 262);
             this.listView1.TabIndex = 30;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
+            this.columnHeader1.DisplayIndex = 0;
             this.columnHeader1.Text = "序号";
             // 
             // columnHeader2
@@ -181,31 +204,17 @@
             this.columnHeader9.Text = "价格";
             this.columnHeader9.Width = 80;
             // 
-            // button2
+            // columnHeader4
             // 
-            this.button2.Location = new System.Drawing.Point(534, 130);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "导出";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(626, 130);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "清空";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.columnHeader4.DisplayIndex = 1;
+            this.columnHeader4.Text = "店铺名";
+            this.columnHeader4.Width = 150;
             // 
             // 淘宝阿里商品
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(873, 451);
             this.Controls.Add(this.splitContainer1);
             this.Name = "淘宝阿里商品";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -239,5 +248,6 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

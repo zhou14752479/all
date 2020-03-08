@@ -27,7 +27,7 @@ namespace 主程序
             {
 
                 string html = method.GetUrlWithCookie(url, COOKIE,"gbk");
-                
+                Match company = Regex.Match(html, @"<strong>([\s\S]*?)</strong>");
                 Match name = Regex.Match(html, @"<title>([\s\S]*?)-");
 
                 Match main = Regex.Match(html, @"skuList([\s\S]*?)salesProp");
@@ -50,7 +50,8 @@ namespace 主程序
 
 
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
-                    lv1.SubItems.Add(name.Groups[1].Value);
+                        lv1.SubItems.Add(company.Groups[1].Value);
+                        lv1.SubItems.Add(name.Groups[1].Value);
                     lv1.SubItems.Add(skus[i].Groups[1].Value);
                     lv1.SubItems.Add(text[0]);
                     lv1.SubItems.Add(text[1]);
@@ -89,10 +90,11 @@ namespace 主程序
             {
 
                 string html = method.gethtml(url, COOKIE);
+                Match company = Regex.Match(html, @"company-name"">([\s\S]*?)<");
                 Match name = Regex.Match(html, @"<h1 class=""d-title"">([\s\S]*?)</h1>");
 
-                Match  main = Regex.Match(html, @"skuMap:\{([\s\S]*?)end");
-                string zhu = "}," + main.Groups[1].Value;
+                Match  main = Regex.Match(html, @"skuMap([\s\S]*?)\{([\s\S]*?)end");
+                string zhu = "}," + main.Groups[2].Value;
 
               
                 MatchCollection xuanxiangs = Regex.Matches(zhu, @"\},""([\s\S]*?)""");
@@ -112,6 +114,7 @@ namespace 主程序
 
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(company.Groups[1].Value);
                         lv1.SubItems.Add(name.Groups[1].Value);
                         lv1.SubItems.Add(skus[i].Groups[1].Value);
                         lv1.SubItems.Add(text[0]);
@@ -185,7 +188,7 @@ namespace 主程序
 
         private void button2_Click(object sender, EventArgs e)
         {
-            method.ListViewToCSV(listView1, true);
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
         private void button3_Click(object sender, EventArgs e)

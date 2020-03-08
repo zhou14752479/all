@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -46,21 +49,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.BackColor = System.Drawing.Color.LightGray;
             this.button2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.Location = new System.Drawing.Point(718, 23);
             this.button2.Name = "button2";
@@ -70,23 +71,10 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.button3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(718, 63);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(131, 30);
-            this.button3.TabIndex = 28;
-            this.button3.Text = "停止分析";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.textBox6);
@@ -111,6 +99,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "输入数据";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Fuchsia;
+            this.button1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Location = new System.Drawing.Point(718, 188);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 30);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "填入结果";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(460, 8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "预测结果：";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -121,6 +130,15 @@
             this.label10.Size = new System.Drawing.Size(44, 12);
             this.label10.TabIndex = 14;
             this.label10.Text = "未开始";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox6.Location = new System.Drawing.Point(462, 23);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(241, 196);
+            this.textBox6.TabIndex = 30;
             // 
             // label9
             // 
@@ -251,23 +269,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "1：";
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(462, 23);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(241, 196);
-            this.textBox6.TabIndex = 30;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(475, 19);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 31;
-            this.label11.Text = "预测结果：";
-            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -312,17 +313,10 @@
             this.columnHeader5.Text = "结果";
             this.columnHeader5.Width = 300;
             // 
-            // button1
+            // timer1
             // 
-            this.button1.BackColor = System.Drawing.Color.Fuchsia;
-            this.button1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(718, 188);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 30);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "填入结果";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.timer1.Interval = 240000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -345,7 +339,6 @@
 
         #endregion
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
@@ -371,6 +364,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

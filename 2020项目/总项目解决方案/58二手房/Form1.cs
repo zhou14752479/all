@@ -124,36 +124,34 @@ namespace _58二手房
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
-         
+            #region 通用检测
 
-            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-            MySqlConnection mycon = new MySqlConnection(constr);
-            mycon.Open();
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            MySqlCommand cmd = new MySqlCommand("select * from vip where username='二手房'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-            if (reader.Read())
+            if (html.Contains(@"18254571301"))
             {
-
-                string password = reader["password"].ToString().Trim();
-
-                if (password != "二手房")
-
-                {
-                    MessageBox.Show("验证失败");
-
-                    Environment.Exit(0);
-                }
-
                 status = true;
                 button1.Enabled = false;
                 Thread thread = new Thread(new ThreadStart(mobilerun));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
 
+
             }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+
+
+
+          
+            
             
           
 
@@ -335,8 +333,8 @@ namespace _58二手房
                     {
                         string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id="+cityId+ "&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&is_ax_partition=0&entry=11&select_type=0&city_id=" + cityId + "&source_id=2&is_struct=1&page=" + i+"&page_size=41";
 
-                        // string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
-                        string html = GetUrl(url);
+                        string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+                       // string html = GetUrl(url);
                         MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
                         MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
                         MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
@@ -348,10 +346,10 @@ namespace _58二手房
                         for (int j = 0; j < tels.Count; j++)
                         {
 
-                            if (!telList.Contains(tels[j].Groups[1].Value))
-                            {
-                                if (!finishes.Contains(tels[j].Groups[1].Value))
-                                {
+                            //if (!telList.Contains(tels[j].Groups[1].Value))
+                            //{
+                            //    if (!finishes.Contains(tels[j].Groups[1].Value))
+                            //    {
                                     finishes.Add(tels[j].Groups[1].Value);
                                     insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
@@ -368,8 +366,8 @@ namespace _58二手房
                                     if (status == false)
 
                                         return;
-                                }
-                            }
+                            //    }
+                            //}
                         }
                         Thread.Sleep(1000);
                     }

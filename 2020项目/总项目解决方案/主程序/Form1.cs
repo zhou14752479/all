@@ -246,10 +246,11 @@ namespace 主程序
                 int value = getxiangsi(shuru, resultList[i].ToString());
 
                 label6.Text = "正在分析" + resultList[i];
-                if (value >7 && shuru!= resultList[i].ToString())
+                if (value >6 && shuru!= resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
                     textBox6.Text += resultList[i-1].ToString().Remove(resultList[i - 1].ToString().Length-6,6) + "\r\n";
+                    button2.Enabled = true;
                 }
 
                 if (status == false)
@@ -295,10 +296,11 @@ namespace 主程序
                 int value = getxiangsi(shuru, resultList[i].ToString());
 
                 label9.Text = "正在分析" + resultList[i];
-                if (value > 7 && shuru != resultList[i].ToString())
+                if (value > 6 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
                     textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                    button2.Enabled = true;
                 }
                 if (status == false)
                     return;
@@ -343,10 +345,11 @@ namespace 主程序
                 int value = getxiangsi(shuru, resultList[i].ToString());
 
                 label10.Text = "正在分析" + resultList[i];
-                if (value > 7 && shuru != resultList[i].ToString())
+                if (value > 6 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
                     textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                    button2.Enabled = true;
                 }
 
                 if (status == false)
@@ -391,10 +394,11 @@ namespace 主程序
                 int value = getxiangsi(shuru, resultList[i].ToString());
 
                 label7.Text = "正在分析" + resultList[i];
-                if (value > 7 && shuru != resultList[i].ToString())
+                if (value > 6 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
                     textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                    button2.Enabled = true;
                 }
 
                 if (status == false)
@@ -439,10 +443,11 @@ namespace 主程序
                 int value = getxiangsi(shuru, resultList[i].ToString());
 
                 label8.Text = "正在分析" + resultList[i];
-                if (value > 7 && shuru != resultList[i].ToString())
+                if (value > 6 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
                     textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                    button2.Enabled = true;
                 }
                 if (status == false)
                     return;
@@ -465,6 +470,8 @@ namespace 主程序
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+            timer1.Start();
 
             button2.Enabled = false;
             status = true;
@@ -512,6 +519,29 @@ namespace 主程序
         {
             listView1.Items.Clear();
             getnew();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            textBox6.Text = "";
+            listView1.Items.Clear();
+            getnew();
+            Thread thread1 = new Thread(new ThreadStart(run1));
+            thread1.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread2 = new Thread(new ThreadStart(run2));
+            thread2.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread3 = new Thread(new ThreadStart(run3));
+            thread3.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread4 = new Thread(new ThreadStart(run4));
+            thread4.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread5 = new Thread(new ThreadStart(run5));
+            thread5.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+
         }
     }
 }

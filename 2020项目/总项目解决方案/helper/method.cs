@@ -341,7 +341,17 @@ namespace helper
                 dr = dt.NewRow();
                 for (j = 0; j < lv.Columns.Count; j++)
                 {
-                    dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+                    try
+                    {
+                        dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+
+                    }
+                    catch 
+                    {
+
+                        continue;
+                    }
+                   
                 }
                 dt.Rows.Add(dr);
             }
