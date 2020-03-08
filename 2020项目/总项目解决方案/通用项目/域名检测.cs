@@ -171,7 +171,7 @@ namespace 通用项目
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
@@ -195,7 +195,7 @@ namespace 通用项目
             }
 
 
-
+            #endregion
         }
 
         private void button1_Click(object sender, EventArgs e)

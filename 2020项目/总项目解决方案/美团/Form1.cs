@@ -140,6 +140,61 @@ namespace 美团
 
         #endregion
 
+        #region  获取数据库中城市名称对应的拼音
+
+        public string GetPinyin(string city)
+        {
+
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select suoxie from meituan_province_city where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                if (reader.Read())
+                {
+
+                    string citypinyin = reader["suoxie"].ToString().Trim();
+                    return citypinyin;
+                }
+                mycon.Close();
+                reader.Close();
+                return "";
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
+
+        public ArrayList getareas(string city)
+        {
+            string Url = "https://"+city+".meituan.com/meishi/";
+
+            string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+            MatchCollection areas = Regex.Matches(html, @"""subAreas"":\[\{""id"":([\s\S]*?),");
+            ArrayList lists = new ArrayList();
+            foreach (Match item in areas)
+            {
+                lists.Add(item.Groups[1].Value);
+            }
+
+            return lists;
+        }
+
         #region  主程序
         public void Search()
         {
@@ -163,77 +218,100 @@ namespace 美团
 
                 foreach (string city in citys)
                 {
+
+                    ArrayList areas = getareas(GetPinyin(city));
+
+
+                    foreach (string areaId in  areas)
+                    {
+                      
+                      
+
+
                     foreach (string keyword in keywords)
 
                     {
-                        
-                        for (int i = 0; i <1100; i=i+32)
 
-                        {
-                           
-                            string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/"+ GetUid(city)+"?uuid=84f079bf-70a3-48cc-8ea7-73b22c6d9f43&userid=-1&limit=32&offset="+i+"&cateId=-1&q=" + keyword;
-                           
-                            string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
-                  
-                            MatchCollection all = Regex.Matches(html, @"false},{""id"":([\s\S]*?),");
+                                for (int i = 0; i < 751; i = i + 15)
 
-                            ArrayList lists = new ArrayList();
-                            foreach (Match NextMatch in all)
-                            {
-                                //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
-                                //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
-                                //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
-                                lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId="+ NextMatch.Groups[1].Value + "&isDaoZong=false" );
-                            }
-                            
-                            if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                                break;
-
-                            string tm1 = DateTime.Now.ToString();  //获取系统时间
-
-                            toolStripStatusLabel1.Text = tm1 + "-->正在采集" + city + "" + keyword + "第" + i + "页";
-                           
-                            foreach (string list in lists)
-
-                            {
-
-                                
-                                string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-                                //Match name = Regex.Match(strhtml1, @"<h1 class=""dealcard-brand"">([\s\S]*?)</h1>");
-                                //Match tell = Regex.Match(strhtml1, @"data-tele=""([\s\S]*?)""");
-                                //Match addr = Regex.Match(strhtml1, @"addr:([\s\S]*?)&");
-                                Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
-                                Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
-                                Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
-
-                                if (!tell.Groups[1].Value.Contains("-") || tell.Groups[1].Value == "")
                                 {
-                                    if (!tels.Contains(tell.Groups[1].Value))
-                                    {
-                                        tels.Add(tell.Groups[1].Value);
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                        listViewItem.SubItems.Add(name.Groups[1].Value);
-                                        listViewItem.SubItems.Add(tell.Groups[1].Value);
-                                        listViewItem.SubItems.Add(addr.Groups[1].Value);
-                                        listViewItem.SubItems.Add(city);
+                                try
+                                {
 
-                                        while (this.zanting == false)
-                                        {
-                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                        }
-                                        if (status == false)
-                                        {
-                                            return;
-                                        }
-                                        Application.DoEvents();
-                                        Thread.Sleep(1500);
-                                    }
+                                    string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+GetUid(city)+ "?riskLevel=71&areaId="+areaId+"&optimusCode=10&cateId=-1&sort=defaults&userid=-1&offset=" + i+"&limit=15&mypos=33.94110107421875%2C118.24806213378906&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&cityId="+GetUid(city)+"&q="+keyword;
+                                
+                                string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+                                
+                                MatchCollection all = Regex.Matches(html, @"poi""\,""id"":""([\s\S]*?)""");
+
+                                ArrayList lists = new ArrayList();
+                                foreach (Match NextMatch in all)
+                                {
+                                   
+                                    //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
+                                    //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
+                                    //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
+                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=false");
                                 }
+
+                                if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                    break;
+
+                                string tm1 = DateTime.Now.ToString();  //获取系统时间
+
+                                toolStripStatusLabel1.Text = tm1 + "-->正在采集" + city + "" + keyword + "第" + i + "页";
+
+                                foreach (string list in lists)
+
+                                {
+
+
+                                    string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                                    //Match name = Regex.Match(strhtml1, @"<h1 class=""dealcard-brand"">([\s\S]*?)</h1>");
+                                    //Match tell = Regex.Match(strhtml1, @"data-tele=""([\s\S]*?)""");
+                                    //Match addr = Regex.Match(strhtml1, @"addr:([\s\S]*?)&");
+                                    Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
+                                    Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
+                                    Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
+
+
+                                    tels.Add(tell.Groups[1].Value);
+                                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                    listViewItem.SubItems.Add(name.Groups[1].Value);
+                                    listViewItem.SubItems.Add(tell.Groups[1].Value);
+                                    listViewItem.SubItems.Add(addr.Groups[1].Value);
+                                    listViewItem.SubItems.Add(city);
+
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+                                    if (status == false)
+                                    {
+                                        return;
+                                    }
+                                    Application.DoEvents();
+                                    Thread.Sleep(1000);
+
+                                }
+
+                               
+
                             }
+
+                                catch
+                                {
+
+                                    continue;
+                                }
+
+                            }
+
 
                         }
+                        
                     }
 
 
@@ -327,9 +405,8 @@ namespace 美团
 
         private void Button1_Click(object sender, EventArgs e)
         {
+         
 
-
-          
 
 
 

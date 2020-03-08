@@ -215,15 +215,45 @@ namespace 乐天网店
         {
             e.Cancel = true;
         }
-
+        private void close360se()
+        {
+            System.Diagnostics.Process[] myProcesses;
+            myProcesses = System.Diagnostics.Process.GetProcessesByName("360se");
+            foreach (System.Diagnostics.Process instance in myProcesses)
+            {
+                instance.CloseMainWindow();
+            }
+        }
+        private void closeie()
+        {
+            System.Diagnostics.Process[] myProcesses;
+            myProcesses = System.Diagnostics.Process.GetProcessesByName("IEXPLORE");
+            foreach (System.Diagnostics.Process instance in myProcesses)
+            {
+                instance.CloseMainWindow();
+            }
+        }
+            private void closechrome()
+        {
+            System.Diagnostics.Process[] myProcesses;
+            myProcesses = System.Diagnostics.Process.GetProcessesByName("chrome");
+            foreach (System.Diagnostics.Process instance in myProcesses)
+            {
+                instance.CloseMainWindow();
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
+           
+                timer1.Stop();
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
             webBrowser1.Refresh();
+            closechrome();
+            closeie();
+            close360se();
         }
     }
 }

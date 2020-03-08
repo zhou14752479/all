@@ -172,12 +172,12 @@ namespace _58二手房
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "Hm_lvt_295da9254bbc2518107d846e1641908e=1582933513,1582983468; 58tj_uuid=6af0cab4-7088-4082-b9f8-7c7438d6ab59; new_uv=2; wmda_new_uuid=1; wmda_uuid=81b63df3f3c3e53f507fd2a66fea6a34; wmda_visited_projects=%3B6333604277682; m58comvp=t29v115.159.229.19; als=0; id58=e87rZV5ZpeYPc5QcCxJKAg==";
+               string COOKIE = "Hm_lvt_295da9254bbc2518107d846e1641908e=1582933513,1582983468; 58tj_uuid=6af0cab4-7088-4082-b9f8-7c7438d6ab59; new_uv=2; wmda_new_uuid=1; wmda_uuid=81b63df3f3c3e53f507fd2a66fea6a34; wmda_visited_projects=%3B6333604277682; m58comvp=t29v115.159.229.19; als=0; id58=e87rZV5ZpeYPc5QcCxJKAg==";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1";
 
-               request.AllowAutoRedirect = false;
+                request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
               
                request.KeepAlive = true;
@@ -246,7 +246,7 @@ namespace _58二手房
 
         public string getcityId(string city)
         {
-            string html = GetUrlwithIP("https://"+city+".58.com/", "tps185.kdlapi.com:15818");
+            string html = GetUrl("https://"+city+".58.com/");
             Match value = Regex.Match(html, @"'area':'([\s\S]*?)'");
             return value.Groups[1].Value;
         }
@@ -327,15 +327,18 @@ namespace _58二手房
             {
                 string cityId = getcityId(city);
                 string cityname = getcityname(city);
+               
                 for (int i = 1; i < Convert.ToInt32(textBox1.Text); i++)
 
                 {
                     try
                     {
                         string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id="+cityId+ "&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&is_ax_partition=0&entry=11&select_type=0&city_id=" + cityId + "&source_id=2&is_struct=1&page=" + i+"&page_size=41";
-                      
-                        string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
 
+                        // string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+                        string html = GetUrl(url);
+                        MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+                        MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
                         MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
                        // MatchCollection times = Regex.Matches(html, @"""post_date"":""([\s\S]*?)""");
                         if (tels.Count == 0)
@@ -352,6 +355,8 @@ namespace _58二手房
                                     finishes.Add(tels[j].Groups[1].Value);
                                     insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                    lv1.SubItems.Add(titles[j].Groups[1].Value);
+                                    lv1.SubItems.Add(names[j].Groups[2].Value);
                                     lv1.SubItems.Add(tels[j].Groups[1].Value);
                                     lv1.SubItems.Add("正在抓取" + cityname+ "第" + i + "页");
                                     //lv1.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value).ToString());

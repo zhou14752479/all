@@ -43,16 +43,25 @@ namespace 主程序
 
                 for (int i = 0; i < xuanxiangs.Count; i++)
                 {
-                    string[] text = xuanxiangs[i].Groups[1].Value.Split(new string[] { " " }, StringSplitOptions.None);
+                    try
+                    {
+                        string[] text = xuanxiangs[i].Groups[1].Value.Split(new string[] { " " }, StringSplitOptions.None);
 
 
 
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
                     lv1.SubItems.Add(name.Groups[1].Value);
+                    lv1.SubItems.Add(skus[i].Groups[1].Value);
                     lv1.SubItems.Add(text[0]);
                     lv1.SubItems.Add(text[1]);
+                    
                     lv1.SubItems.Add(prices[i].Groups[1].Value);
-                    lv1.SubItems.Add(skus[i].Groups[1].Value);
+                    }
+                    catch
+                    {
+
+                        continue;
+                    }
                 }
 
 
@@ -85,7 +94,7 @@ namespace 主程序
                 Match  main = Regex.Match(html, @"skuMap:\{([\s\S]*?)end");
                 string zhu = "}," + main.Groups[1].Value;
 
-
+              
                 MatchCollection xuanxiangs = Regex.Matches(zhu, @"\},""([\s\S]*?)""");
                 MatchCollection prices = Regex.Matches(zhu,@"""price"":""([\s\S]*?)""");
                 
@@ -95,16 +104,28 @@ namespace 主程序
               
                 for (int i = 0; i < xuanxiangs.Count; i++)
                 {
-                    string[] text = xuanxiangs[i].Groups[1].Value.Split(new string[] { "&gt;" }, StringSplitOptions.None);
+                    try
+                    {
+
+                        string[] text = xuanxiangs[i].Groups[1].Value.Split(new string[] { "&gt;" }, StringSplitOptions.None);
 
 
 
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据   
-                    lv1.SubItems.Add(name.Groups[1].Value);
-                    lv1.SubItems.Add(text[0]);
-                    lv1.SubItems.Add(text[1]);
-                    lv1.SubItems.Add(prices[i].Groups[1].Value);
-                    lv1.SubItems.Add(skus[i].Groups[1].Value);
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(name.Groups[1].Value);
+                        lv1.SubItems.Add(skus[i].Groups[1].Value);
+                        lv1.SubItems.Add(text[0]);
+                        lv1.SubItems.Add(text[1]);
+                        
+                        lv1.SubItems.Add(prices[i].Groups[1].Value);
+                       
+                    }
+                    catch
+                    {
+
+                        continue;
+                    }
+
                 }
 
 
@@ -117,7 +138,7 @@ namespace 主程序
             catch (System.Exception ex)
             {
 
-                ex.ToString();
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -130,18 +151,48 @@ namespace 主程序
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked == true)
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"\u6dd8\u5b9d\u963f\u91ccSKU"))
             {
-                taobao(textBox1.Text);
-            }
-            else if(radioButton2.Checked == true)
-            {
-                alibab(textBox2.Text);
+                if (radioButton1.Checked == true)
+                {
+                    taobao(textBox1.Text);
+                }
+                else if (radioButton2.Checked == true)
+                {
+                    alibab(textBox2.Text);
+
+                }
 
             }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+          
            
            
            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            method.ListViewToCSV(listView1, true);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            listView1.Items.Clear();
         }
     }
 }

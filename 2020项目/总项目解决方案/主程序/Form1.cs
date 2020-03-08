@@ -22,7 +22,7 @@ namespace 主程序
             InitializeComponent();
         }
 
-        
+
         //public void run()
 
         //{
@@ -52,7 +52,51 @@ namespace 主程序
 
         //    }
 
-        //}
+        public static long ConvertDateTimeToInt(System.DateTime time)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
+            long t = (time.Ticks - startTime.Ticks)/10000000 ;    
+            return t;
+        }
+
+        public void getnew()
+
+        {
+            DateTime time = Convert.ToDateTime(DateTime.Now.ToString("yyyy/M/d")+ " 0:0:0");
+           
+
+            string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp=" + ConvertDateTimeToInt(time);
+
+            
+                string html = method.GetUrl(url, "utf-8");
+                MatchCollection qishus = Regex.Matches(html, @"""period"":""([\s\S]*?)""");
+                MatchCollection dates = Regex.Matches(html, @"""date"":""([\s\S]*?)""");
+                MatchCollection times = Regex.Matches(html, @"""time"":""([\s\S]*?)""");
+                MatchCollection results = Regex.Matches(html, @"""result"":""([\s\S]*?)""");
+
+                for (int j = 0; j < qishus.Count; j++)
+                {
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                lv1.SubItems.Add(qishus[j].Groups[1].Value);
+                lv1.SubItems.Add(dates[j].Groups[1].Value);
+                lv1.SubItems.Add(times[j].Groups[1].Value);
+                lv1.SubItems.Add(results[j].Groups[1].Value);
+
+            
+                }
+
+            if (qishus.Count > 3)
+
+            {
+                textBox2.Text = results[0].Groups[1].Value;
+                textBox3.Text = results[1].Groups[1].Value;
+                textBox4.Text = results[2].Groups[1].Value;
+                textBox5.Text = results[3].Groups[1].Value;
+            }
+
+            
+
+        }
         /// <summary>
         /// 插入数据库
         /// </summary>
@@ -113,6 +157,7 @@ namespace 主程序
 
         }
 
+        bool status = true;
         private DateTime ConvertStringToDateTime(string timeStamp)
         {
             DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
@@ -120,20 +165,299 @@ namespace 主程序
 
 
         }
-        
 
-
-        public void run()
+        public int getxiangsi(string s,string y)
         {
-            //  getdata();
+            string[] shuru = s.Split(new string[] { "," }, StringSplitOptions.None);
+            string[] yuan = y.Split(new string[] { "," }, StringSplitOptions.None);
 
+            int geshu = 0;
+         
+                if (shuru[0] == yuan[0])
+                {
+                    geshu = geshu + 1;
+                }
+               
+                if (shuru[1] == yuan[1])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[2] == yuan[2])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[3] == yuan[3])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[4] == yuan[4])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[5] == yuan[5])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[6] == yuan[6])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[7] == yuan[7])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[8] == yuan[8])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[9] == yuan[9])
+                {
+                    geshu = geshu + 1;
+                }
             
-            foreach (var a in textBox1.Text)
+            return geshu;
+        }
+        #region run1
+        public void run1()
+        {
+            if (textBox1.Text == "")
             {
-                MessageBox.Show(a.ToString());
+                MessageBox.Show("值为空");
+                return;
+            }
+            string shuru = "";
+            if (textBox1.Text.Contains(","))
+            {
+                shuru = textBox1.Text.Trim();
+            }
+            else
+            {
+                foreach (var item in textBox1.Text.Trim())
+                {
+                    shuru += item + ",";
+                }
+                shuru = shuru.Remove(shuru.Length-1,1);
+                
             }
 
+            
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                int value = getxiangsi(shuru, resultList[i].ToString());
+
+                label6.Text = "正在分析" + resultList[i];
+                if (value >7 && shuru!= resultList[i].ToString())
+                {
+                    //textBox6.Text += resultList[i].ToString() + "\r\n";
+                    textBox6.Text += resultList[i-1].ToString().Remove(resultList[i - 1].ToString().Length-6,6) + "\r\n";
+                }
+
+                if (status == false)
+                    return;
+
+                if (textBox6.Lines.Length >7)
+                    return;
+            }
+
+           
+
+
         }
+
+        #endregion
+
+        #region run4
+        public void run4()
+        {
+            if (textBox4.Text == "")
+            {
+                MessageBox.Show("值为空");
+                return;
+            }
+            string shuru = "";
+            if (textBox4.Text.Contains(","))
+            {
+                shuru = textBox4.Text.Trim();
+            }
+            else
+            {
+                foreach (var item in textBox4.Text.Trim())
+                {
+                    shuru += item + ",";
+                }
+                shuru = shuru.Remove(shuru.Length - 1, 1);
+
+            }
+
+
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                int value = getxiangsi(shuru, resultList[i].ToString());
+
+                label9.Text = "正在分析" + resultList[i];
+                if (value > 7 && shuru != resultList[i].ToString())
+                {
+                    //textBox6.Text += resultList[i].ToString() + "\r\n";
+                    textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                }
+                if (status == false)
+                    return;
+
+                if (textBox6.Lines.Length > 7)
+                    return;
+            }
+
+
+
+
+        }
+
+        #endregion
+
+        #region run5
+        public void run5()
+        {
+            if (textBox5.Text == "")
+            {
+                MessageBox.Show("值为空");
+                return;
+            }
+                string shuru = "";
+            if (textBox5.Text.Contains(","))
+            {
+                shuru = textBox5.Text.Trim();
+            }
+            else
+            {
+                foreach (var item in textBox5.Text.Trim())
+                {
+                    shuru += item + ",";
+                }
+                shuru = shuru.Remove(shuru.Length - 1, 1);
+
+            }
+
+
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                int value = getxiangsi(shuru, resultList[i].ToString());
+
+                label10.Text = "正在分析" + resultList[i];
+                if (value > 7 && shuru != resultList[i].ToString())
+                {
+                    //textBox6.Text += resultList[i].ToString() + "\r\n";
+                    textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                }
+
+                if (status == false)
+                    return;
+                if (textBox6.Lines.Length > 7)
+                    return;
+            }
+
+
+
+
+        }
+
+        #endregion
+
+        #region run2
+        public void run2()
+        {
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("值为空");
+                return;
+            }
+            string shuru = "";
+            if (textBox2.Text.Contains(","))
+            {
+                shuru = textBox2.Text.Trim();
+            }
+            else
+            {
+                foreach (var item in textBox2.Text.Trim())
+                {
+                    shuru += item + ",";
+                }
+                shuru = shuru.Remove(shuru.Length - 1, 1);
+
+            }
+
+
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                int value = getxiangsi(shuru, resultList[i].ToString());
+
+                label7.Text = "正在分析" + resultList[i];
+                if (value > 7 && shuru != resultList[i].ToString())
+                {
+                    //textBox6.Text += resultList[i].ToString() + "\r\n";
+                    textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                }
+
+                if (status == false)
+                    return;
+                if (textBox6.Lines.Length > 7)
+                    return;
+            }
+
+
+
+
+        }
+
+        #endregion
+
+        #region run3
+        public void run3()
+        {
+            if (textBox3.Text == "")
+            {
+                MessageBox.Show("值为空");
+                return;
+            }
+            string shuru = "";
+            if (textBox3.Text.Contains(","))
+            {
+                shuru = textBox3.Text.Trim();
+            }
+            else
+            {
+                foreach (var item in textBox3.Text.Trim())
+                {
+                    shuru += item + ",";
+                }
+                shuru = shuru.Remove(shuru.Length - 1, 1);
+
+            }
+
+
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                int value = getxiangsi(shuru, resultList[i].ToString());
+
+                label8.Text = "正在分析" + resultList[i];
+                if (value > 7 && shuru != resultList[i].ToString())
+                {
+                    //textBox6.Text += resultList[i].ToString() + "\r\n";
+                    textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                }
+                if (status == false)
+                    return;
+
+                if (textBox6.Lines.Length > 7)
+                    return;
+            }
+
+
+
+
+        }
+
+        #endregion
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -142,10 +466,52 @@ namespace 主程序
         private void button2_Click(object sender, EventArgs e)
         {
 
+            button2.Enabled = false;
+            status = true;
+            getdata();
 
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
+            Thread thread1 = new Thread(new ThreadStart(run1));
+            thread1.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread2 = new Thread(new ThreadStart(run2));
+            thread2.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread3 = new Thread(new ThreadStart(run3));
+            thread3.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread4 = new Thread(new ThreadStart(run4));
+            thread4.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread5 = new Thread(new ThreadStart(run5));
+            thread5.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+            button2.Enabled = true;
+            status = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            getnew();
         }
     }
 }

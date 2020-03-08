@@ -54,6 +54,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -61,7 +62,6 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -296,6 +296,11 @@
             this.columnHeader5.Text = "标题";
             this.columnHeader5.Width = 200;
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "时间";
+            this.columnHeader6.Width = 100;
+            // 
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(110, 61);
@@ -366,11 +371,6 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "折扣：";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "时间";
-            this.columnHeader6.Width = 100;
             // 
             // timer2
             // 
