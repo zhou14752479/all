@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -95,11 +96,12 @@ namespace 通用项目
                             string downUrl = method.GetUrl2("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
                             Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
                             string gs = gs1.Groups[2].Value;
+                            if (geshiList.Contains(gs))
+                            {
+                                method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
 
-                            method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
-
-                            textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
-
+                                textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
+                            }
                         }
                         while (zanting == false)
                         {
@@ -167,7 +169,7 @@ namespace 通用项目
 
             }
         }
-
+        ArrayList geshiList = new ArrayList();
         private void button1_Click(object sender, EventArgs e)
         {
             switch (comboBox1.Text)
@@ -190,28 +192,66 @@ namespace 通用项目
 
             }
 
-            button1.Enabled = false;
-            status = true;
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+           
+            if (checkBox1.Checked == true)
+            {
+                geshiList.Add("doc");
+            }
+            if (checkBox2.Checked == true)
+            {
+                geshiList.Add("docx");
+            }
+            if (checkBox3.Checked == true)
+            {
+                geshiList.Add("ppt");
+            }
+            if (checkBox4.Checked == true)
+            {
+                geshiList.Add("pptx");
+            }
+            if (checkBox5.Checked == true)
+            {
+                geshiList.Add("pdf");
+            }
+            if (checkBox6.Checked == true)
+            {
+                geshiList.Add("txt");
+            }
+            if (checkBox7.Checked == true)
+            {
+                geshiList.Add("rar");
+            }
+            if (checkBox8.Checked == true)
+            {
+                geshiList.Add("zip");
+            }
 
-            //string[] arrs = { "a", "b", "c" };
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    try
-            //    {
-            //        for (int j = 0; j < 4; j++)
-            //        {
-            //            MessageBox.Show(arrs[j]);
-            //        }
-            //    }
-            //    catch
-            //    {
 
-            //        continue;
-            //    }
-            //}
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"guojiajiaoyu"))
+            {
+                button1.Enabled = false;
+                status = true;
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+         
+
+           
 
         }
 

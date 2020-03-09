@@ -136,37 +136,46 @@ namespace helper
         /// <returns></returns>
         public static string PostUrl(string url, string postData, string COOKIE, string charset)
         {
-           System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "Post";
-            request.ContentType = "application/x-www-form-urlencoded";
-            //添加头部
-            //WebHeaderCollection headers = request.Headers;
-            //headers.Add("appid:orders");
-            //headers.Add("x-nike-visitid:5");
-            //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
-            //添加头部
-           // request.ContentType = "application/json";
-            request.ContentLength = postData.Length;
-            request.AllowAutoRedirect = false;
-            request.KeepAlive = true;
-            
-            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-            request.Headers.Add("Cookie", COOKIE);
-            //request.Headers.Add("origin","https://www.nike.com");
-            request.Referer = "https://www.nike.com/orders/gift-card-lookup";
-            StreamWriter sw = new StreamWriter(request.GetRequestStream());
-            sw.Write(postData);
-            sw.Flush();
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                request.ContentType = "application/x-www-form-urlencoded";
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("appid:orders");
+                //headers.Add("x-nike-visitid:5");
+                //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
+                //添加头部
+                // request.ContentType = "application/json";
+                request.ContentLength = postData.Length;
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
 
-            HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-            response.GetResponseHeader("Set-Cookie");
-            StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+                //request.Headers.Add("origin","https://www.nike.com");
+                request.Referer = "https://accounts.ebay.com/acctxs/user";
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
 
-            string html = reader.ReadToEnd();
-            reader.Close();
-            response.Close();
-            return html;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string html = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+          
             
         }
 
@@ -676,7 +685,7 @@ namespace helper
                 System.IO.File.Move(tempFile, path);
                 
             }
-            catch (Exception ex)
+            catch 
             {
                
             }
@@ -795,7 +804,7 @@ namespace helper
               return  ex.ToString();
 
             }
-            return "";
+            
         }
         #endregion
 

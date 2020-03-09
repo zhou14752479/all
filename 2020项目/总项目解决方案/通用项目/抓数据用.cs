@@ -246,5 +246,10 @@ namespace 通用项目
         {
             zanting = true;
         }
+
+        private void 抓数据用_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
