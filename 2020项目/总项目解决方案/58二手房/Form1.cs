@@ -251,7 +251,7 @@ namespace _58二手房
 
         public string getcityname(string city)
         {
-            string html = GetUrlwithIP("https://" + city + ".58.com/", "tps185.kdlapi.com:15818");
+            string html = GetUrl("https://" + city + ".58.com/");
             Match value = Regex.Match(html, @"content=""58同城([\s\S]*?)分类");
             return value.Groups[1].Value;
         }
@@ -317,7 +317,7 @@ namespace _58二手房
         /// </summary>
         public void  mobilerun()
         {
-            getdata();
+           // getdata();
             getnodes();
 
 
@@ -333,8 +333,8 @@ namespace _58二手房
                     {
                         string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id="+cityId+ "&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&is_ax_partition=0&entry=11&select_type=0&city_id=" + cityId + "&source_id=2&is_struct=1&page=" + i+"&page_size=41";
 
-                        string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
-                       // string html = GetUrl(url);
+                       // string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+                        string html = GetUrl(url);
                         MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
                         MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
                         MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
@@ -351,7 +351,7 @@ namespace _58二手房
                             //    if (!finishes.Contains(tels[j].Groups[1].Value))
                             //    {
                                     finishes.Add(tels[j].Groups[1].Value);
-                                    insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                                   // insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                                     lv1.SubItems.Add(titles[j].Groups[1].Value);
                                     lv1.SubItems.Add(names[j].Groups[2].Value);

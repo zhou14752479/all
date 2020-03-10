@@ -59,6 +59,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -79,6 +80,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.textBox3);
@@ -393,6 +395,16 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseMove);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(422, 114);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(179, 23);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "验证";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -454,6 +466,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button6;
     }
 }
 
