@@ -63,12 +63,13 @@ namespace 主程序
 
         {
             DateTime time = Convert.ToDateTime(DateTime.Now.ToString("yyyy/M/d")+ " 0:0:0");
-           
 
-            string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp=" + ConvertDateTimeToInt(time);
 
-            
-                string html = method.GetUrl(url, "utf-8");
+            string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp="+ ConvertDateTimeToInt(time);
+
+            //string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp=1583856000";
+
+            string html = method.GetUrl(url, "utf-8");
                 MatchCollection qishus = Regex.Matches(html, @"""period"":""([\s\S]*?)""");
                 MatchCollection dates = Regex.Matches(html, @"""date"":""([\s\S]*?)""");
                 MatchCollection times = Regex.Matches(html, @"""time"":""([\s\S]*?)""");
@@ -249,14 +250,14 @@ namespace 主程序
                 if (value >6 && shuru!= resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    textBox6.Text += resultList[i-1].ToString().Remove(resultList[i - 1].ToString().Length-6,6) + "\r\n";
+                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count+1).ToString()+":"+ resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));  
                     button2.Enabled = true;
                 }
 
                 if (status == false)
                     return;
 
-                if (textBox6.Lines.Length >7)
+                if (listView2.Items.Count > 6)
                     return;
             }
 
@@ -299,13 +300,13 @@ namespace 主程序
                 if (value > 6 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
                     button2.Enabled = true;
                 }
                 if (status == false)
                     return;
 
-                if (textBox6.Lines.Length > 7)
+                if (listView2.Items.Count > 6)
                     return;
             }
 
@@ -348,13 +349,13 @@ namespace 主程序
                 if (value > 6 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
                     button2.Enabled = true;
                 }
 
                 if (status == false)
                     return;
-                if (textBox6.Lines.Length > 7)
+                if (listView2.Items.Count > 6)
                     return;
             }
 
@@ -397,13 +398,13 @@ namespace 主程序
                 if (value > 6 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
                     button2.Enabled = true;
                 }
 
                 if (status == false)
                     return;
-                if (textBox6.Lines.Length > 7)
+                if (listView2.Items.Count > 6)
                     return;
             }
 
@@ -446,13 +447,13 @@ namespace 主程序
                 if (value > 6 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    textBox6.Text += resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6) + "\r\n";
+                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
                     button2.Enabled = true;
                 }
                 if (status == false)
                     return;
 
-                if (textBox6.Lines.Length > 7)
+                if (listView2.Items.Count >6)
                     return;
             }
 
@@ -523,7 +524,7 @@ namespace 主程序
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox6.Text = "";
+            listView2.Items.Clear();
             listView1.Items.Clear();
             getnew();
             Thread thread1 = new Thread(new ThreadStart(run1));

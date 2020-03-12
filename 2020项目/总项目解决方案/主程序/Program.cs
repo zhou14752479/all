@@ -16,7 +16,7 @@ namespace 主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ebay());
+            Application.Run(new Form1());
         }
     }
 }

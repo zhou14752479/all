@@ -65,6 +65,9 @@ namespace 启动程序
             return "";
         }
         #endregion
+
+        bool zanting = true;
+        bool status = true;
         public 论坛抓取()
         {
             InitializeComponent();
@@ -83,39 +86,46 @@ namespace 启动程序
 
                     for (int j = 0; j < 100; j++)
                     {
-                        string URL = url.Replace("-Hyatt", "-o"+j+"0-Hyatt");
+                        Match k = Regex.Match(url, @"k.*?-");
+                        
+                        string URL = Regex.Replace(url, @"k.*?-", k.Groups[0].Value+ "o"+j+"0-");
+                      
                         string html = GetUrl(URL, "utf-8");
                        
-                        MatchCollection ahtmls = Regex.Matches(html, @"<div class=""postBadge badge"">([\s\S]*?)<div class='postBody'>");
-                        if (ahtmls.Count==0)
-                            break;
-                        MatchCollection persons = Regex.Matches(html, @"Person""\,""name"":""([\s\S]*?)""");
+                        MatchCollection ahtmls = Regex.Matches(html, @"<div class='profile'>([\s\S]*?)<div class='toolLinks'>");
+                        
+                        
+                        Match title = Regex.Match(html, @"<title>([\s\S]*?)-");
 
-                        Match title = Regex.Match(html, @"""text"":""([\s\S]*?)"",""");
-                        MatchCollection bodys = Regex.Matches(html, @"""Answer"",""text"":""([\s\S]*?)"",""");
-
-
+                     
 
                         for (int i = 0; i < ahtmls.Count; i++)
                         {
                             try
                             {
+                                Match location = Regex.Match(ahtmls[i].Groups[1].Value, @"<div class='location'>([\s\S]*?)</div>");
+                                Match postdate = Regex.Match(ahtmls[i].Groups[1].Value, @"<div class='postDate'>([\s\S]*?)</div>");
+                                Match body = Regex.Match(ahtmls[i].Groups[1].Value, @"<div class='postBody'>([\s\S]*?)<div class=""postTools"">");
+                                Match person = Regex.Match(ahtmls[i].Groups[1].Value, @"forum""><span>([\s\S]*?)</span>");
 
                                 MatchCollection posts = Regex.Matches(ahtmls[i].Groups[1].Value, @"<span class=""badgeText"">([\s\S]*?) ");
 
                                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                lv1.SubItems.Add(Regex.Replace(persons[i].Groups[1].Value, "<[^>]+>", "").Trim());
-                                if (i == 0)
-                                {
-                                    lv1.SubItems.Add(Regex.Replace(title.Groups[1].Value, "<[^>]+>", "").Trim());
-                                }
-                                else
-                                {
-                                    lv1.SubItems.Add(bodys[i - 1].Groups[1].Value.Trim());
-                                }
+                                lv1.SubItems.Add(title.Groups[1].Value);                      
+                                lv1.SubItems.Add(Regex.Replace(person.Groups[1].Value, "<[^>]+>", "").Trim());
+                                lv1.SubItems.Add(location.Groups[1].Value);
+                                lv1.SubItems.Add(Regex.Replace(body.Groups[1].Value, "<[^>]+>", "").Trim());
+                                lv1.SubItems.Add(postdate.Groups[1].Value);
+
                                 lv1.SubItems.Add(Regex.Replace(posts[0].Groups[1].Value, "<[^>]+>", "").Trim());
                                 lv1.SubItems.Add(Regex.Replace(posts[1].Groups[1].Value, "<[^>]+>", "").Trim());
                                 lv1.SubItems.Add(Regex.Replace(posts[2].Groups[1].Value, "<[^>]+>", "").Trim());
+
+
+
+
+
+
 
 
                             }
@@ -125,12 +135,21 @@ namespace 启动程序
                                 continue;
                             }
 
-
+                            while (zanting == false)
+                            {
+                                Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                            }
+                            if (status == false)
+                                return;
 
 
                         }
+
+                        if (ahtmls.Count <10)
+                            break;
                     }
                 }
+                MessageBox.Show("抓取完成");
             }
 
             catch (Exception)
@@ -146,14 +165,51 @@ namespace 启动程序
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread thread1 = new Thread(new ThreadStart(run));
-            thread1.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"tripadvisor"))
+            {
+                status = true;
+                button1.Enabled = false;
+                zanting = true;
+                Thread thread1 = new Thread(new ThreadStart(run));
+                thread1.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+           
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true ;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            status = false;
+            button1.Enabled = true;
         }
     }
 }
