@@ -202,3 +202,7 @@ postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
             TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return Convert.ToInt64(ts.TotalSeconds).ToString();
         }        
+
+
+//弹出输入框 using Microsoft.VisualBasic;
+string str = Interaction.InputBox("提示信息","标题","文本内容",-1,-1);
