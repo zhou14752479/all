@@ -1300,6 +1300,7 @@
             treeNode278});
             this.skinTreeView1.Size = new System.Drawing.Size(220, 303);
             this.skinTreeView1.TabIndex = 13;
+            this.skinTreeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.SkinTreeView1_AfterCheck);
             // 
             // splitContainer1
             // 
@@ -1335,6 +1336,7 @@
             this.ClientSize = new System.Drawing.Size(651, 450);
             this.Controls.Add(this.splitContainer1);
             this.Name = "赶集二手房";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "赶集二手房";
             this.Load += new System.EventHandler(this.赶集二手房_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
