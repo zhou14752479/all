@@ -465,7 +465,7 @@ namespace 主程序
 
         #endregion
 
-        bool qidong = false;
+        //bool qidong = false;
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -474,19 +474,19 @@ namespace 主程序
         private void button2_Click(object sender, EventArgs e)
         {
            
-            if (qidong == false)
-            {
-                string str = Interaction.InputBox("请输入启动密码", "加密启动", "启动密码", -1, -1);
-                if (str == "147258369")
-                {
-                    qidong = true;
-                }
-                else
-                {
-                    MessageBox.Show("启动失败，密码错误");
-                    return;
-                }
-            }
+            //if (qidong == false)
+            //{
+            //    string str = Interaction.InputBox("请输入启动密码", "加密启动", "启动密码", -1, -1);
+            //    if (str == "147258369")
+            //    {
+            //        qidong = true;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("启动失败，密码错误");
+            //        return;
+            //    }
+            //}
             
 
             timer1.Start();

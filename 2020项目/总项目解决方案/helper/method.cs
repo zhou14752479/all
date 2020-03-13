@@ -634,10 +634,10 @@ namespace helper
 
                 client.DownloadFile(URLAddress, subPath + "\\" + name);
             }
-            catch (WebException ex)
+            catch 
             {
 
-                ex.ToString();
+               
             }
         }
 

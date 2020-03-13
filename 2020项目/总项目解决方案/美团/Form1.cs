@@ -339,25 +339,20 @@ namespace 美团
 
                         {
 
-                            for (int i = 0; i < 51; i++)
+                            for (int i = 0; i < 2000; i=i+32)
 
                             {
                              
                                
-                                    string Url = "http://i.meituan.com/s/"+quanpin+"-"+keyword+"?bid="+areaId+"&p="+i;
+                                    string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/"+GetUid(city)+"?uuid=21fc011d2d2e4ac2a70a.1583825095.1.0.0&userid=-1&limit=32&offset="+i+"&cateId=-1&q="+keyword+"&areaId="+areaId;
 
-                                    string html = GetUrlwithIP(Url, "tps185.kdlapi.com:15818"); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
+                                    string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
-                                if (html.Contains("验证中心"))
-
-                                {
-                                    System.Diagnostics.Process.Start("https://verify.meituan.com/v2/web/general_page?action=spiderindefence&requestCode=763d086012a14bb4b7cb0fb7245677dd&platform=1000&adaptor=auto&succCallbackUrl=https%3A%2F%2Foptimus-mtsi.meituan.com%2Foptimus%2FverifyResult%3ForiginUrl%3Dhttp%253A%252F%252Fi.meituan.com%252Fs%252Fbaiyin-%2525E7%252581%2525AB%2525E9%252594%252585%253Fcevent%253Dimt%25252Fsearch%25252Fhot%25252F%2525E7%252581%2525AB%2525E9%252594%252585");
-                                    MessageBox.Show("请前往网站验证！然后回来点击确认");
-                                }
-                                    // MatchCollection all = Regex.Matches(html, @"poi""\,""id"":""([\s\S]*?)""");
-                                    MatchCollection all = Regex.Matches(html, @"data-href=""\/\/i\.meituan\.com\/poi\/([\s\S]*?)""");
-
+                               
+                                    
+                                    MatchCollection all = Regex.Matches(html, @"false\}\,\{""id"":([\s\S]*?),");
+                               
                                     ArrayList lists = new ArrayList();
                                     foreach (Match NextMatch in all)
                                     {

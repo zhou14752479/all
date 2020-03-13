@@ -473,7 +473,9 @@ namespace _58二手房
 
         }
 
+        private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
 
-
+        }
     }
 }

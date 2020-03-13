@@ -195,8 +195,7 @@ namespace _58二手房
         /// </summary>
         public void run()
         {
-            // getdata();
-            //getnodes();
+            
 
             try
             {
@@ -215,7 +214,7 @@ namespace _58二手房
                         string url = "http://"+city+".ganji.com/ershoufang/0/pn"+i+"/";
                         
                         string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
-                       
+                          
                        
                         MatchCollection urls = Regex.Matches(html, @"<dd class=""dd-item title"">([\s\S]*?)<a href=""([\s\S]*?)""");
                       
@@ -281,9 +280,16 @@ namespace _58二手房
             {
                 status = true;
                 button1.Enabled = false;
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                getdata();
+                getnodes();
+                for (int i = 0; i < 20; i++)
+                {
+                    Thread thread = new Thread(new ThreadStart(run));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+
+                }
+                
 
 
             }
@@ -371,6 +377,44 @@ namespace _58二手房
                     }
                 }
             }
+        }
+
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            foreach (TreeNode parentNode in skinTreeView1.Nodes)  //江苏省节点
+            {
+                parentNode.Checked = true;
+                foreach (TreeNode node in parentNode.Nodes)     //获取江苏省下的节点
+                {
+                    node.Checked = true;
+                }
+
+            }
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            status = false;
         }
     }
 }

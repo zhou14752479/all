@@ -83,26 +83,34 @@ namespace 通用项目
 
                             Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
                             string gs = gs1.Groups[2].Value;
+                            string counter = "1";
 
-                            method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
-
+                            string dizhi = path + "下载文件\\" + removeValid(bt) + counter + "." + gs;
+                            while (System.IO.File.Exists(dizhi))
+                            {
+                                counter = (Convert.ToInt32(counter) + 1).ToString();
+                                dizhi = path + "下载文件\\" + removeValid(bt) + counter + "." + gs;
+                            }
+                            
+                            method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + counter + "." + gs, cookie);
+                            
                             textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
 
                         }
-                        foreach (Match DocId in DocIds2)
-                        {
+                        //foreach (Match DocId in DocIds2)
+                        //{
 
-                            string bt = DocId.Groups[3].Value;
-                            string downUrl = method.GetUrl2("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
-                            Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
-                            string gs = gs1.Groups[2].Value;
-                            if (geshiList.Contains(gs))
-                            {
-                                method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
+                        //    string bt = DocId.Groups[3].Value;
+                        //    string downUrl = method.GetUrl2("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
+                        //    Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
+                        //    string gs = gs1.Groups[2].Value;
+                        //    if (geshiList.Contains(gs))
+                        //    {
+                        //        method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
 
-                                textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
-                            }
-                        }
+                        //        textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
+                        //    }
+                        //}
                         while (zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -123,10 +131,10 @@ namespace 通用项目
                     }
 
                 }
-                catch
+                catch(Exception ex)
                 {
-
-                    continue;
+                    MessageBox.Show(ex.ToString());
+                   // continue;
                 }
             }
           
