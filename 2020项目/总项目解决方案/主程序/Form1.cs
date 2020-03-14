@@ -22,8 +22,109 @@ namespace 主程序
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 大小
+        /// </summary>
+        /// <param name="dan"></param>
+        public void daxiao()
+
+        {
+            DateTime time = Convert.ToDateTime(DateTime.Now.ToString("yyyy/M/d") + " 0:0:0");
 
 
+            string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp="+ ConvertDateTimeToInt(time);
+
+            //string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp=1583856000";
+
+            string html = method.GetUrl(url, "utf-8");
+            MatchCollection qishus = Regex.Matches(html, @"""period"":""([\s\S]*?)""");
+            MatchCollection dates = Regex.Matches(html, @"""date"":""([\s\S]*?)""");
+            MatchCollection times = Regex.Matches(html, @"""time"":""([\s\S]*?)""");
+            MatchCollection results = Regex.Matches(html, @"""result"":""([\s\S]*?)""");
+
+            for (int j = 0; j < qishus.Count; j++)
+            {
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                lv1.SubItems.Add(qishus[j].Groups[1].Value);
+                lv1.SubItems.Add(dates[j].Groups[1].Value);
+                lv1.SubItems.Add(times[j].Groups[1].Value);
+
+                StringBuilder sb = new StringBuilder();
+                string[] text = results[j].Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
+                for (int a = 0; a < text.Length; a++)
+                {
+                    if (Convert.ToInt32(text[a]) < 6)
+                    {
+                        sb.Append("小 ");
+                    }
+                    else
+                    {
+                        sb.Append("大 ");
+                    }
+
+                }
+
+                lv1.SubItems.Add(sb.ToString());
+
+
+            }
+
+           
+
+        }
+
+        /// <summary>
+        /// 单双
+        /// </summary>
+        /// <param name="dan"></param>
+        public void danshuang()
+
+        {
+            DateTime time = Convert.ToDateTime(DateTime.Now.ToString("yyyy/M/d") + " 0:0:0");
+
+
+            string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp="+ ConvertDateTimeToInt(time);
+
+           // string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp=1583856000";
+
+            string html = method.GetUrl(url, "utf-8");
+            MatchCollection qishus = Regex.Matches(html, @"""period"":""([\s\S]*?)""");
+            MatchCollection dates = Regex.Matches(html, @"""date"":""([\s\S]*?)""");
+            MatchCollection times = Regex.Matches(html, @"""time"":""([\s\S]*?)""");
+            MatchCollection results = Regex.Matches(html, @"""result"":""([\s\S]*?)""");
+
+            for (int j = 0; j < qishus.Count; j++)
+            {
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                lv1.SubItems.Add(qishus[j].Groups[1].Value);
+                lv1.SubItems.Add(dates[j].Groups[1].Value);
+                lv1.SubItems.Add(times[j].Groups[1].Value);
+
+                StringBuilder sb = new StringBuilder();
+                string[] text = results[j].Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
+                for (int a = 0; a < text.Length; a++)
+                {
+                    if (Convert.ToInt32(text[a]) % 2 == 1)
+                    {
+                        sb.Append("单 ");
+                    }
+                    else
+                    {
+                        sb.Append("双 ");
+                    }
+
+                }
+
+                lv1.SubItems.Add(sb.ToString());
+
+
+            }
+
+
+
+
+
+        }
         //public void run()
 
         //{
@@ -68,7 +169,7 @@ namespace 主程序
 
             string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp="+ ConvertDateTimeToInt(time);
 
-            //string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp=1583856000";
+           // string url = "https://mocdn.1394x.com/xyft/History?version=3000&timestamp=1583856000";
 
             string html = method.GetUrl(url, "utf-8");
                 MatchCollection qishus = Regex.Matches(html, @"""period"":""([\s\S]*?)""");
@@ -561,6 +662,18 @@ namespace 主程序
             thread5.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
 
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+            daxiao();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+            danshuang();
         }
     }
 }

@@ -305,8 +305,8 @@ namespace helper
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
                 Referer = "https://live.500.com/wanchang.php",//来源URL     可选项  
-                //Allowautoredirect = False,//是否根据３０１跳转     可选项  
-                //AutoRedirectCookie = False,//是否自动处理Cookie     可选项  
+                Allowautoredirect = true,//是否根据３０１跳转     可选项  
+                AutoRedirectCookie = true,//是否自动处理Cookie     可选项  
                                            //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
                                            //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
                 Postdata = "",//Post数据     可选项GET时不需要写  

@@ -26,6 +26,73 @@ namespace 主程序
             try
             {
 
+                string html = method.GetUrlWithCookie(url, COOKIE, "gbk");
+                Match company = Regex.Match(html, @"<strong>([\s\S]*?)</strong>");
+                Match name = Regex.Match(html, @"<title>([\s\S]*?)-");
+
+                Match main = Regex.Match(html, @"挑选宝贝([\s\S]*?)\}数量");
+                string zhu = main.Groups[1].Value;
+
+
+                MatchCollection xuanxiangs = Regex.Matches(zhu, @"""names"":""([\s\S]*?)""");
+
+
+                MatchCollection prices = Regex.Matches(html, @"""price"":""([\s\S]*?)""");
+
+                MatchCollection skus = Regex.Matches(html, @"""skuId"":""([\s\S]*?)""");
+
+
+
+                for (int i = 0; i < skus.Count; i++)
+                {
+                    try
+                    {
+                     
+
+
+
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(Regex.Replace(company.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(name.Groups[1].Value);
+                        lv1.SubItems.Add(skus[i].Groups[1].Value);
+                        //lv1.SubItems.Add(text[0]);
+                        //lv1.SubItems.Add(text[1]);
+                        lv1.SubItems.Add("");
+                        lv1.SubItems.Add("");
+
+                        lv1.SubItems.Add(prices[i].Groups[1].Value);
+                    }
+                    catch
+                    {
+
+                        continue;
+                    }
+                }
+
+
+
+
+
+            }
+
+
+            catch (System.Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
+
+        #endregion
+
+        #region 天猫
+        public void tmall(string url)
+        {
+
+            try
+            {
+
                 string html = method.GetUrlWithCookie(url, COOKIE,"gbk");
                 Match company = Regex.Match(html, @"<strong>([\s\S]*?)</strong>");
                 Match name = Regex.Match(html, @"<title>([\s\S]*?)-");
@@ -95,7 +162,7 @@ namespace 主程序
 
                 Match  main = Regex.Match(html, @"skuMap([\s\S]*?)\{([\s\S]*?)end");
                 string zhu = "}," + main.Groups[2].Value;
-
+              
               
                 MatchCollection xuanxiangs = Regex.Matches(zhu, @"\},""([\s\S]*?)""");
                 MatchCollection prices = Regex.Matches(zhu,@"""price"":""([\s\S]*?)""");
@@ -154,19 +221,27 @@ namespace 主程序
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+            
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
             if (html.Contains(@"\u6dd8\u5b9d\u963f\u91ccSKU"))
             {
+                COOKIE = helper.Form1.cookie;
                 if (radioButton1.Checked == true)
                 {
-                    taobao(textBox1.Text);
+                    tmall(textBox1.Text);
                 }
                 else if (radioButton2.Checked == true)
                 {
                     alibab(textBox2.Text);
+
+                }
+                else if (radioButton3.Checked == true)
+                {
+                    taobao(textBox3.Text);
 
                 }
 
@@ -196,6 +271,12 @@ namespace 主程序
             textBox1.Text = "";
             textBox2.Text = "";
             listView1.Items.Clear();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            helper.Form1 fm1 = new helper.Form1();
+            fm1.Show();
         }
     }
 }

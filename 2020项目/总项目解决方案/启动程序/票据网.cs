@@ -34,7 +34,7 @@ namespace 启动程序
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("authorization: Bearer 3083b786-7136-4de2-8afe-4e4b7ea9bf8d");
+                headers.Add("authorization: Bearer "+ token);
                 //request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
@@ -68,6 +68,7 @@ namespace 启动程序
         }
 
         #endregion
+        static string token = "";
         public 票据网()
         {
             InitializeComponent();
@@ -79,8 +80,8 @@ namespace 启动程序
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate("https://www.tcpjw.com/login");
         }
-        string cookie = "acw_tc=7ae122a815838193382281610e86d056e328d7c7d2fe41333a9d5c3744; _uab_collina=158381933872993440554626; access_token=3083b786-7136-4de2-8afe-4e4b7ea9bf8d";
-
+        string cookie = "acw_tc=7ae441a815841759523841345e11e30e045c67ba73bf25becd41ff0f46; _uab_collina=158417595243757712526626; access_token=23442933-b9cd-4c13-b51f-2693e4ec7774";
+       // string cookie = "";
         public string getdealPrice(string ticketId)
         {
             string url = "https://www.tcpjw.com/order-web/orderInfo/getQuoteOrderInfo";
@@ -122,11 +123,19 @@ namespace 启动程序
 
         public void run()
         {
+            //cookie = method.GetCookies("https://www.tcpjw.com/tradingHall");
+            if (cookie == "")
+            {
+                MessageBox.Show("未登录");
+            }
+            Match tk = Regex.Match(cookie, @"access_token=.*");
+            token = tk.Groups[0].Value.Replace("access_token=","");
+           
 
             try
             {
                 string url = "https://www.tcpjw.com/order-web/orderInfo/getTradingOrderInfo";
-                string postdata = "{\"source\":\"HTML\",\"version\":\"3.5\",\"channel\":\"01\",\"pageNum\":1,\"pageSize\":15,\"tradeStatus\":null,\"payType\":null,\"bid\":null,\"bankName\":null,\"lastTime\":null,\"lastTimeStart\":null,\"lastTimeEnd\":null,\"startDate\":null,\"endDate\":null,\"flawStatus\":\"\",\"priceType\":null,\"priceSp\":null,\"priceEp\":null,\"yearQuote\":null,\"msw\":null,\"mswStart\":null,\"mswEnd\":null,\"orderColumn\":null,\"sortType\":\"\",\"depositPay\":null}";
+                string postdata = "{\"source\":\"HTML\",\"version\":\"3.5\",\"channel\":\"01\",\"pageNum\":1,\"pageSize\":15,\"tradeStatus\":null,\"payType\":"+paytype+",\"bid\":"+bid+",\"bankName\":null,\"lastTime\":"+lasttime+",\"lastTimeStart\":null,\"lastTimeEnd\":null,\"startDate\":null,\"endDate\":null,\"flawStatus\":\""+flawStatus+"\",\"priceType\":"+pricetype+",\"priceSp\":null,\"priceEp\":null,\"yearQuote\":null,\"msw\":null,\"mswStart\":null,\"mswEnd\":null,\"orderColumn\":null,\"sortType\":\"\",\"depositPay\":"+depositPay+"}";
                 
                 string html = PostUrl(url,postdata,cookie,"utf-8");
                 
@@ -154,13 +163,13 @@ namespace 启动程序
 
                     string ticketid = ids[i].Groups[1].Value;
                     string ThousandCharge = a5s[i].Groups[1].Value;
-                    string paytype = "1";
+                    string payt = "1";
                     string endorseId = "15858";
                     string yearrate= a6s[i].Groups[1].Value;
                     string dealPrice=a3s[i].Groups[1].Value;
                     string ticketPrice=a3s[i].Groups[1].Value;
                     string ticketType = "2";  //默认2 银行不存在则3
-                    //buy(ticketid, ThousandCharge,  paytype,  endorseId,  yearrate,  ticketPrice,  ticketType);
+                    //buy(ticketid, ThousandCharge,  payt,  endorseId,  yearrate,  ticketPrice,  ticketType);
                 }
 
                 }
@@ -171,9 +180,180 @@ namespace 启动程序
             }
         }
 
+        StringBuilder bids = new StringBuilder();
+
+
+        string paytype = "null";
+        string depositPay = "null";
+        string bid = "null";
+        string pricetype = "null";
+        string lasttime = "null";
+        string flawStatus = "";
         private void Button1_Click(object sender, EventArgs e)
         {
-          
+            
+            if (radioButton1.Checked == true)
+            {
+                paytype="\"1\"";
+            }
+            if (radioButton2.Checked == true)
+            {
+                paytype = "\"2\"";
+            }
+            if (radioButton3.Checked == true)
+            {
+                paytype = "\"3\"";
+            }
+            //保证金
+            if (radioButton4.Checked == true)
+            {
+                depositPay="true";
+            }
+            if (radioButton5.Checked == true)
+            {
+                depositPay = "false";
+            }
+
+            //承兑人类型
+            if (checkBox1.Checked == true)
+            {
+                bids.Append("\"1\",");
+                bid = "["+bids.ToString().Remove(bids.Length-1,1)+"]";
+               
+            }
+            if (checkBox2.Checked == true)
+            {
+                bids.Append("\"9\",");
+                bid = "[" + bids.ToString().Remove(bids.Length - 1, 1) + "]";
+                
+            }
+            if (checkBox3.Checked == true)
+            {
+                bids.Append("\"2\",");
+                bid = "[" + bids.ToString().Remove(bids.Length - 1, 1) + "]";
+               
+            }
+            if (checkBox4.Checked == true)
+            {
+                bids.Append("\"3\",");
+                bid = "[" + bids.ToString().Remove(bids.Length - 1, 1) + "]";
+               
+            }
+            if (checkBox5.Checked == true)
+            {
+                bids.Append("\"6\",");
+                bid = "[" + bids.ToString().Remove(bids.Length - 1, 1) + "]";
+                
+            }
+            if (checkBox6.Checked == true)
+            {
+                bids.Append("\"7\",");
+                bid = "[" + bids.ToString().Remove(bids.Length - 1, 1) + "]";
+                
+            }
+            if (checkBox7.Checked == true)
+            {
+                bids.Append("\"10\",");
+                bid = "[" + bids.ToString().Remove(bids.Length - 1, 1) + "]";
+                
+            }
+            if (checkBox8.Checked == true)
+            {
+                bids.Append("\"4\",");
+                bid = "[" + bids.ToString().Remove(bids.Length - 1, 1) + "]";
+                
+            }
+            if (checkBox9.Checked == true)
+            {
+                bids.Append("\"8\",");
+                bid = "[" + bids.ToString().Remove(bids.Length - 1, 1) + "]";
+               
+            }
+         
+            //票面金额
+
+            if (radioButton6.Checked == true)
+            {
+                pricetype = "\"1\"";
+            }
+            if (radioButton7.Checked == true)
+            {
+                pricetype = "\"2\"";
+            }
+            if (radioButton8.Checked == true)
+            {
+                pricetype = "\"3\"";
+            }
+            if (radioButton9.Checked == true)
+            {
+                pricetype = "\"4\"";
+            }
+
+
+            //剩余天数
+
+            if (radioButton10.Checked == true)
+            {
+                pricetype = "\"1\"";
+            }
+            if (radioButton11.Checked == true)
+            {
+                pricetype = "\"2\"";
+            }
+            if (radioButton12.Checked == true)
+            {
+                pricetype = "\"3\"";
+            }
+            if (radioButton13.Checked == true)
+            {
+                pricetype = "\"4\"";
+            }
+            if (radioButton14.Checked == true)
+            {
+                pricetype = "\"5\"";
+            }
+
+            //瑕疵
+            if (radioButton15.Checked == true)
+            {
+                flawStatus = "0";
+            }
+            if (radioButton16.Checked == true)
+            {
+                flawStatus = "46";
+            }
+            if (radioButton17.Checked == true)
+            {
+                flawStatus = "47";
+            }
+            if (radioButton18.Checked == true)
+            {
+                flawStatus = "48";
+            }
+
+            if (radioButton19.Checked == true)
+            {
+                flawStatus = "2";
+            }
+            if (radioButton20.Checked == true)
+            {
+                flawStatus = "3";
+            }
+            if (radioButton21.Checked == true)
+            {
+                flawStatus = "4";
+            }
+            if (radioButton22.Checked == true)
+            {
+                flawStatus = "5";
+            }
+            if (radioButton23.Checked == true)
+            {
+                flawStatus = "6";
+            }
+
+
+
             Thread thread1 = new Thread(new ThreadStart(run));
             thread1.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
