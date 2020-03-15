@@ -75,6 +75,7 @@
             // timer1
             // 
             this.timer1.Interval = 240000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // listView2
             // 
@@ -350,6 +351,8 @@
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "澳洲幸运10";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

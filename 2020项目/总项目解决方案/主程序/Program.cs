@@ -16,7 +16,7 @@ namespace 主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 淘宝阿里商品());
+            Application.Run(new 禁止启动());
         }
     }
 }

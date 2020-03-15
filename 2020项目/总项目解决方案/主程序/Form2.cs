@@ -52,10 +52,10 @@ namespace 主程序
             if (qishus.Count > 3)
 
             {
-                textBox2.Text = results[0].Groups[1].Value;
-                textBox3.Text = results[1].Groups[1].Value;
-                textBox4.Text = results[2].Groups[1].Value;
-                textBox5.Text = results[3].Groups[1].Value;
+                textBox2.Text = results[0].Groups[1].Value.Replace("01","1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
+                textBox3.Text = results[1].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
+                textBox4.Text = results[2].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
+                textBox5.Text = results[3].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
             }
 
 
@@ -545,9 +545,44 @@ namespace 主程序
 
         }
 
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+        }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            listView2.Items.Clear();
+            listView1.Items.Clear();
+            getnew();
+            Thread thread1 = new Thread(new ThreadStart(run1));
+            thread1.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread2 = new Thread(new ThreadStart(run2));
+            thread2.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread3 = new Thread(new ThreadStart(run3));
+            thread3.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread4 = new Thread(new ThreadStart(run4));
+            thread4.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread5 = new Thread(new ThreadStart(run5));
+            thread5.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+        }
 
+        private void Form2_Load(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
