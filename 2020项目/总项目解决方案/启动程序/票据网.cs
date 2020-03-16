@@ -80,8 +80,8 @@ namespace 启动程序
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate("https://www.tcpjw.com/login");
         }
-        string cookie = "acw_tc=7ae441a815841759523841345e11e30e045c67ba73bf25becd41ff0f46; _uab_collina=158417595243757712526626; access_token=23442933-b9cd-4c13-b51f-2693e4ec7774";
-       // string cookie = "";
+
+       string cookie = "";
         public string getdealPrice(string ticketId)
         {
             string url = "https://www.tcpjw.com/order-web/orderInfo/getQuoteOrderInfo";
@@ -169,7 +169,8 @@ namespace 启动程序
                     string dealPrice=a3s[i].Groups[1].Value;
                     string ticketPrice=a3s[i].Groups[1].Value;
                     string ticketType = "2";  //默认2 银行不存在则3
-                    //buy(ticketid, ThousandCharge,  payt,  endorseId,  yearrate,  ticketPrice,  ticketType);
+                    buy(ticketid, ThousandCharge,  payt,  endorseId,  yearrate,  ticketPrice,  ticketType);
+                    
                 }
 
                 }
@@ -191,7 +192,7 @@ namespace 启动程序
         string flawStatus = "";
         private void Button1_Click(object sender, EventArgs e)
         {
-            
+            cookie = method.GetCookies("https://www.tcpjw.com/login");
             if (radioButton1.Checked == true)
             {
                 paytype="\"1\"";
@@ -354,6 +355,12 @@ namespace 启动程序
 
 
 
+            timer1.Start();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
             Thread thread1 = new Thread(new ThreadStart(run));
             thread1.Start();
             Control.CheckForIllegalCrossThreadCalls = false;

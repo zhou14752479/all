@@ -53,6 +53,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="八爪盒子.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="八爪盒子.Designer.cs">
+      <DependentUpon>八爪盒子.cs</DependentUpon>
+    </Compile>
+    <Compile Include="奇趣分分彩.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="奇趣分分彩.Designer.cs">
+      <DependentUpon>奇趣分分彩.cs</DependentUpon>
+    </Compile>
+    <Compile Include="微博转赞评.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="微博转赞评.Designer.cs">
+      <DependentUpon>微博转赞评.cs</DependentUpon>
+    </Compile>
+    <Compile Include="添加微博.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="添加微博.Designer.cs">
+      <DependentUpon>添加微博.cs</DependentUpon>
+    </Compile>
     <Compile Include="票据网.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +101,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="八爪盒子.resx">
+      <DependentUpon>八爪盒子.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="奇趣分分彩.resx">
+      <DependentUpon>奇趣分分彩.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="微博转赞评.resx">
+      <DependentUpon>微博转赞评.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="添加微博.resx">
+      <DependentUpon>添加微博.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="票据网.resx">
       <DependentUpon>票据网.cs</DependentUpon>
     </EmbeddedResource>

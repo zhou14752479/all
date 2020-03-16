@@ -135,7 +135,7 @@ namespace main._2019_6
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                for (int a = 0; a < text.Length - 1; a++)
+                for (int a = 0; a < text.Length ; a++)
                 {
                     
                         string url = text[a];
@@ -164,8 +164,8 @@ namespace main._2019_6
                             {
                                
                                 
-                                bool jiage = Convert.ToDouble(prices[j].Groups[1].Value.Trim()) > Convert.ToInt32(textBox3.Text) && Convert.ToDouble(prices[j].Groups[1].Value.Trim()) < Convert.ToInt32(textBox4.Text);
-                                bool pinglun = Convert.ToInt32(comments[j].Groups[1].Value.Trim()) > Convert.ToInt32(textBox5.Text) && Convert.ToInt32(comments[j].Groups[1].Value.Trim()) < Convert.ToInt32(textBox6.Text);
+                                bool jiage = Convert.ToDouble(prices[j].Groups[1].Value.Trim()) >= Convert.ToInt32(textBox3.Text) && Convert.ToDouble(prices[j].Groups[1].Value.Trim()) <= Convert.ToInt32(textBox4.Text);
+                                bool pinglun = Convert.ToInt32(comments[j].Groups[1].Value.Trim()) >= Convert.ToInt32(textBox5.Text) && Convert.ToInt32(comments[j].Groups[1].Value.Trim()) <= Convert.ToInt32(textBox6.Text);
 
                                 if (jiage && pinglun)
                                 {
@@ -175,6 +175,8 @@ namespace main._2019_6
                                     lv1.SubItems.Add(comments[j].Groups[1].Value.Trim());
                                     lv1.SubItems.Add(catids[j].Groups[1].Value.Trim());
                                     lv1.SubItems.Add("https://item.jd.com/" + uids[j].Groups[1].Value + ".html");
+
+                                    lv1.SubItems.Add(url);
                                     while (this.zanting == false)
                                     {
                                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
