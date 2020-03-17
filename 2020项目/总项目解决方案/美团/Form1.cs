@@ -110,9 +110,12 @@ namespace 美团
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 string COOKIE = "__mta=216473129.1565052050597.1583818626848.1583818731643.25; _lxsdk_cuid=16bd4b88a38c8-0d297d6bd625d2-f353163-1fa400-16bd4b88a38c8; iuuid=F3B7CF367A381B6BDA09F29EB6CBD0809EA666DB1290BBF84995C104FBF57A65; _lxsdk=F3B7CF367A381B6BDA09F29EB6CBD0809EA666DB1290BBF84995C104FBF57A65; _hc.v=df1f9416-050a-6ffd-b8c9-62180be8d8d4.1564129261; webp=1; _ga=GA1.2.1573254713.1564129433; __mta=216473129.1565052050597.1572417349038.1572417355133.8; a2h=1; Hm_lvt_f66b37722f586a240d4621318a5a6ebe=1574064150; __utmz=74597006.1574219146.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); uuid=a4e700a6c1c84328a796.1583806511.1.0.0; rvct=184; lat=36.684199; lng=117.061944; JSESSIONID=1qkdmt10h0iksa0rzwxj5n6uy; IJSESSIONID=1qkdmt10h0iksa0rzwxj5n6uy; __utmc=74597006; ci=96; cityname=%E6%B5%8E%E5%8D%97; idau=1; __utma=74597006.1573254713.1564129433.1583807166.1583818213.5; i_extend=C133821980007841839627568335826373356080_b1_e2750553022450266608_v4837406441626188694_a%e4%b8%bd%e4%ba%ba_f181539753E126791890114317345528428946634289901095_v4837409378594186279_e3091222610447599364_a%e4%b8%bd%e4%ba%baGimthomepagecategory12H__a100005__b5; webloc_geo=33.960173%2C118.275532%2Cwgs84%2C-1; latlng=33.960173,118.275532,1583818614791; __utmb=74597006.4.10.1583818213; _lxsdk_s=170c2ebe787-369-736-b45%7C%7C14";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.11(0x17000b21) NetType/4G Language/zh_CN";
                 request.Headers.Add("Cookie", COOKIE);
-                request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
+                request.Headers.Add("token", "qayAmk04G6EvdItDp6GHVZUDg8gAAAAAagkAAJM_kYnReUzwieeFee3FiVFOGnq41qxDzT9WdNjTti_60YjsS4SwrMIdppEobrF2dw");
+                request.Headers.Add("open_id", "oJVP50IRqKIIshugSqrvYE3OHJKQ");
+                request.Headers.Add("uuid", "E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
+                request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/350/page-frame.html";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -304,6 +307,7 @@ namespace 美团
             return "";
         }
         #endregion
+
         #region  主程序
         public void Search()
         {
@@ -339,19 +343,19 @@ namespace 美团
 
                         {
 
-                            for (int i = 0; i < 2000; i=i+32)
+                            for (int i = 0; i < 1000; i=i+15)
 
                             {
                              
                                
-                                    string Url = "https://apimobile.meituan.com/group/v4/poi/pcsearch/"+GetUid(city)+"?uuid=21fc011d2d2e4ac2a70a.1583825095.1.0.0&userid=-1&limit=32&offset="+i+"&cateId=-1&q="+keyword+"&areaId="+areaId;
+                                    string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+GetUid(city)+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword+"&requestType=filter&cityId="+GetUid(city)+"&areaId="+areaId;
 
                                     string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
                                
                                     
-                                    MatchCollection all = Regex.Matches(html, @"false\}\,\{""id"":([\s\S]*?),");
+                                    MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
                                
                                     ArrayList lists = new ArrayList();
                                     foreach (Match NextMatch in all)

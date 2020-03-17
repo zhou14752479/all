@@ -35,10 +35,9 @@ namespace 启动程序
                 request.Method = "Post";
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("authorization: Bearer "+ token);
-                //request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentType = "application/json";
-                request.ContentLength = postData.Length;
-                request.AllowAutoRedirect = false;
+                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                //request.ContentLength = postData.Length;
                 request.KeepAlive = true;
 
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
@@ -123,22 +122,24 @@ namespace 启动程序
 
         public void run()
         {
-            //cookie = method.GetCookies("https://www.tcpjw.com/tradingHall");
+            cookie = method.GetCookies("https://www.tcpjw.com/tradingHall");
             if (cookie == "")
             {
                 MessageBox.Show("未登录");
             }
             Match tk = Regex.Match(cookie, @"access_token=.*");
-            token = tk.Groups[0].Value.Replace("access_token=","");
-           
+            string tk1 = tk.Groups[0].Value.Replace("access_token=", "");
 
+            token = Regex.Replace(tk1, @";.*", "");
+           
+          
             try
             {
                 string url = "https://www.tcpjw.com/order-web/orderInfo/getTradingOrderInfo";
-                string postdata = "{\"source\":\"HTML\",\"version\":\"3.5\",\"channel\":\"01\",\"pageNum\":1,\"pageSize\":15,\"tradeStatus\":null,\"payType\":"+paytype+",\"bid\":"+bid+",\"bankName\":null,\"lastTime\":"+lasttime+",\"lastTimeStart\":null,\"lastTimeEnd\":null,\"startDate\":null,\"endDate\":null,\"flawStatus\":\""+flawStatus+"\",\"priceType\":"+pricetype+",\"priceSp\":null,\"priceEp\":null,\"yearQuote\":null,\"msw\":null,\"mswStart\":null,\"mswEnd\":null,\"orderColumn\":null,\"sortType\":\"\",\"depositPay\":"+depositPay+"}";
+                string postdata = "{\"source\":\"HTML\",\"version\":\"3.5\",\"channel\":\"01\",\"pageNum\":1,\"pageSize\":15,\"tradeStatus\":null,\"payType\":"+paytype+",\"bid\":"+bid+",\"bankName\":"+bankName+",\"lastTime\":"+lasttime+",\"lastTimeStart\":null,\"lastTimeEnd\":null,\"startDate\":null,\"endDate\":null,\"flawStatus\":\""+flawStatus+"\",\"priceType\":"+pricetype+",\"priceSp\":"+priceSp+",\"priceEp\":"+priceEp+",\"yearQuote\":"+yearQuote+",\"msw\":"+msw+",\"mswStart\":null,\"mswEnd\":null,\"orderColumn\":null,\"sortType\":\"\",\"depositPay\":"+depositPay+"}";
                 
                 string html = PostUrl(url,postdata,cookie,"utf-8");
-                
+              
                 MatchCollection ids = Regex.Matches(html, @"""ticketId"":([\s\S]*?),");
 
                 MatchCollection a1s = Regex.Matches(html, @"""publishTime"":""([\s\S]*?)""");
@@ -169,7 +170,7 @@ namespace 启动程序
                     string dealPrice=a3s[i].Groups[1].Value;
                     string ticketPrice=a3s[i].Groups[1].Value;
                     string ticketType = "2";  //默认2 银行不存在则3
-                    buy(ticketid, ThousandCharge,  payt,  endorseId,  yearrate,  ticketPrice,  ticketType);
+                    //buy(ticketid, ThousandCharge,  payt,  endorseId,  yearrate,  ticketPrice,  ticketType);
                     
                 }
 
@@ -190,9 +191,41 @@ namespace 启动程序
         string pricetype = "null";
         string lasttime = "null";
         string flawStatus = "";
+        
+        string priceSp = "null";
+        string priceEp = "null";
+
+        string msw = "null";
+        string yearQuote = "null";
+        string bankName = "null";
         private void Button1_Click(object sender, EventArgs e)
         {
-            cookie = method.GetCookies("https://www.tcpjw.com/login");
+
+             
+           
+            if (textBox2.Text!="")
+            {
+                priceSp = "\"" + textBox2.Text.Trim() + "\"";
+                priceEp = "\"" + textBox3.Text.Trim() + "\"";
+
+
+            }
+            if (textBox4.Text != "")
+            {
+                yearQuote = "\"" + textBox4.Text.Trim() + "\"";
+                msw = "\"" + textBox5.Text.Trim() + "\"";
+
+
+            }
+
+            if (textBox1.Text != "")
+            {
+                bankName = "\"" + textBox1.Text.Trim() + "\"";
+              
+
+            }
+
+            
             if (radioButton1.Checked == true)
             {
                 paytype="\"1\"";
@@ -364,6 +397,11 @@ namespace 启动程序
             Thread thread1 = new Thread(new ThreadStart(run));
             thread1.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
         }
     }
 }
