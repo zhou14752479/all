@@ -115,78 +115,92 @@ namespace 启动程序
         public void run()
 
         {
-            string url1 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxffc&num=1";
-            string url2 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxsfc&num=1";
-            string url3 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxwfc&num=1";
-            string url4 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxysfc&num=1";
+            listView1.Items.Clear();
+            string url1 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxffc&num=50";
+            string url2 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxsfc&num=50";
+            string url3 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxwfc&num=50";
+            string url4 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxysfc&num=50";
 
             string html1= GetUrlWithCookie(url1, cookie);
             string html2 = GetUrlWithCookie(url2, cookie);
             string html3 = GetUrlWithCookie(url3, cookie);
             string html4 = GetUrlWithCookie(url4, cookie);
 
-            Match result1 = Regex.Match(html1, @"""openCode"":""([\s\S]*?)""");
-            Match result2 = Regex.Match(html2, @"""openCode"":""([\s\S]*?)""");
-            Match result3 = Regex.Match(html3, @"""openCode"":""([\s\S]*?)""");
-            Match result4 = Regex.Match(html4, @"""openCode"":""([\s\S]*?)""");
 
 
-            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-
-            string r1 = result1.Groups[1].Value.Trim();
-            string r2 = result2.Groups[1].Value.Trim();
-            string r3= result3.Groups[1].Value.Trim();
-            string r4 = result4.Groups[1].Value.Trim();
-            lv1.SubItems.Add(r1);
-            lv1.SubItems.Add(r2);
-            lv1.SubItems.Add(r3);
-            lv1.SubItems.Add(r4);
-            textBox1.Text = r1;
-            textBox2.Text = r2;
-            textBox3.Text = r3;
-            textBox4.Text = r4;
-
-            textBox1.ForeColor = Color.Black;
-            textBox2.ForeColor = Color.Black;
-            textBox3.ForeColor = Color.Black;
-            textBox4.ForeColor = Color.Black;
+            MatchCollection expect1 = Regex.Matches(html1, @"""expect"":""([\s\S]*?)""");
+            MatchCollection expect2 = Regex.Matches(html2, @"""expect"":""([\s\S]*?)""");
+            MatchCollection expect3 = Regex.Matches(html3, @"""expect"":""([\s\S]*?)""");
+            MatchCollection expect4 = Regex.Matches(html4, @"""expect"":""([\s\S]*?)""");
 
 
-            if (r1 == r2)
+
+            MatchCollection result1 = Regex.Matches(html1, @"""openCode"":""([\s\S]*?)""");
+            MatchCollection result2 = Regex.Matches(html2, @"""openCode"":""([\s\S]*?)""");
+            MatchCollection result3 = Regex.Matches(html3, @"""openCode"":""([\s\S]*?)""");
+            MatchCollection result4 = Regex.Matches(html4, @"""openCode"":""([\s\S]*?)""");
+
+            for (int i = 0; i < result1.Count; i++)
             {
-                textBox1.ForeColor= Color.Red;
-                textBox2.ForeColor = Color.Red;
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据   
 
-            }
-            if (r1 == r3)
-            {
+                string r1 = result1[i].Groups[1].Value.Trim();
+                string r2 = result2[i].Groups[1].Value.Trim();
+                string r3 = result3[i].Groups[1].Value.Trim();
+                string r4 = result4[i].Groups[1].Value.Trim();
 
-                textBox1.ForeColor = Color.Red;
-                textBox3.ForeColor = Color.Red;
-            }
-            if (r1 == r4)
-            {
+                lv1.SubItems.Add(expect1[i].Groups[1].Value);
+                lv1.SubItems.Add(r1);
+                lv1.SubItems.Add(expect2[i].Groups[1].Value);
+                lv1.SubItems.Add(r2);
+                lv1.SubItems.Add(expect3[i].Groups[1].Value);
+                lv1.SubItems.Add(r3);
+                lv1.SubItems.Add(expect4[i].Groups[1].Value);
+                lv1.SubItems.Add(r4);
 
-                textBox1.ForeColor = Color.Red;
-                textBox4.ForeColor = Color.Red;
-            }
-            if (r2== r3)
-            {
 
-                textBox2.ForeColor = Color.Red;
-                textBox3.ForeColor = Color.Red;
-            }
-            if (r2 == r4)
-            {
 
-                textBox2.ForeColor = Color.Red;
-                textBox4.ForeColor = Color.Red;
-            }
-            if (r3 == r4)
-            {
 
-                textBox3.ForeColor = Color.Red;
-                textBox4.ForeColor = Color.Red;
+
+
+
+                //textBox1.ForeColor = Color.Black;
+                //textBox2.ForeColor = Color.Black;
+                //textBox3.ForeColor = Color.Black;
+                //textBox4.ForeColor = Color.Black;
+                lv1.BackColor = Color.White;
+
+                if (r1 == r2)
+                {
+                    lv1.BackColor = Color.Red;
+
+                }
+                if (r1 == r3)
+                {
+
+                    lv1.BackColor = Color.Red;
+                }
+                if (r1 == r4)
+                {
+
+                    lv1.BackColor = Color.Red;
+                }
+                if (r2 == r3)
+                {
+
+                    lv1.BackColor = Color.Red;
+                }
+                if (r2 == r4)
+                {
+
+                    lv1.BackColor = Color.Red;
+                }
+                if (r3 == r4)
+                {
+
+                    lv1.BackColor = Color.Red;
+                }
+
             }
 
 

@@ -16,7 +16,7 @@ namespace 启动程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 票据网());
+            Application.Run(new 奇趣分分彩());
         }
     }
 }
