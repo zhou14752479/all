@@ -190,6 +190,7 @@ namespace _58二手房
         }
         bool zanting = true;
         bool status = true;
+       
         /// <summary>
         /// 赶集网
         /// </summary>
@@ -203,65 +204,65 @@ namespace _58二手房
           
             foreach (string city in citys)
             {
-                
-                string cityname = "";
+                  
+                        string cityname = "";
 
-                for (int i = 1; i < Convert.ToInt32(textBox1.Text); i++)
+                        for (int i = 1; i < Convert.ToInt32(textBox1.Text); i++)
 
-                {
-                    try
-                    {
-                        string url = "http://"+city+".ganji.com/ershoufang/0/pn"+i+"/";
-                        
-                        string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
-                          
-                       
-                        MatchCollection urls = Regex.Matches(html, @"<dd class=""dd-item title"">([\s\S]*?)<a href=""([\s\S]*?)""");
-                      
-                        if (urls.Count == 0)
-                            break;
-
-
-                        for (int j = 0; j < urls.Count; j++)
                         {
-                            string ahtml = GetUrlwithIP("http:" + urls[j].Groups[2].Value, "tps185.kdlapi.com:15818");
-                            Match tel = Regex.Match(ahtml, @"<a class=""phone_num([\s\S]*?)>([\s\S]*?)</a>");
-
-                            if (!telList.Contains(tel.Groups[2].Value))
+                            try
                             {
-                                if (!finishes.Contains(tel.Groups[2].Value))
+                                string url = "http://" + city + ".ganji.com/ershoufang/0/pn" + i + "/";
+
+                                string html = GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+
+
+                                MatchCollection urls = Regex.Matches(html, @"<dd class=""dd-item title"">([\s\S]*?)<a href=""([\s\S]*?)""");
+
+                                if (urls.Count == 0)
+                                    break;
+
+
+                                for (int j = 0; j < urls.Count; j++)
                                 {
-                                    finishes.Add(tel.Groups[1].Value);
-                                  //  insertdata("INSERT INTO tels (tel) VALUES( '" + tel.Groups[2].Value + "')");
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                    string ahtml = GetUrlwithIP("http:" + urls[j].Groups[2].Value, "tps185.kdlapi.com:15818");
+                                    Match tel = Regex.Match(ahtml, @"<a class=""phone_num([\s\S]*?)>([\s\S]*?)</a>");
 
-                                    lv1.SubItems.Add(tel.Groups[2].Value);
-                                    lv1.SubItems.Add("正在抓取" + cityname + "第" + i + "页");
-                                  
-                                    while (this.zanting == false)
+                                    if (!telList.Contains(tel.Groups[2].Value))
                                     {
-                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                        if (!finishes.Contains(tel.Groups[2].Value))
+                                        {
+                                            finishes.Add(tel.Groups[1].Value);
+                                            insertdata("INSERT INTO tels (tel) VALUES( '" + tel.Groups[2].Value + "')");
+                                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+
+                                            lv1.SubItems.Add(tel.Groups[2].Value);
+                                            lv1.SubItems.Add("正在抓取" + cityname + "第" + i + "页");
+
+                                            while (this.zanting == false)
+                                            {
+                                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                            }
+
+                                            if (status == false)
+
+                                                return;
+                                        }
                                     }
-
-                                    if (status == false)
-
-                                        return;
                                 }
+
                             }
+                            catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+
                         }
-                       
+
+                        }
                     }
-                    catch
-                    {
-                        continue;
+            
 
-                    }
-
-                }
-
-            }
-
-            MessageBox.Show("抓取完成");
+          
             }
             catch (Exception ex)
             {
@@ -280,16 +281,19 @@ namespace _58二手房
             {
                 status = true;
                 button1.Enabled = false;
-                getdata();
-                getnodes();
-                for (int i = 0; i < 20; i++)
+                if (checkBox1.Checked == true)
                 {
-                    Thread thread = new Thread(new ThreadStart(run));
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-
+                    getdata();
                 }
-                
+                if (checkBox1.Checked == false)
+                {
+                    
+                }
+                getnodes();
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
 
 
             }
@@ -415,6 +419,15 @@ namespace _58二手房
         private void Button4_Click(object sender, EventArgs e)
         {
             status = false;
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == false)
+            {
+                
+                telList.Clear();
+            }
         }
     }
 }
