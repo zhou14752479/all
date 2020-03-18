@@ -396,6 +396,22 @@ namespace 美团
                                         listViewItem.SubItems.Add(tell.Groups[1].Value);
                                         listViewItem.SubItems.Add(addr.Groups[1].Value);
                                         listViewItem.SubItems.Add(city);
+                                    if (tell.Groups[1].Value != "")
+                                    {
+                                        if (yidong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                        {
+                                            listViewItem.SubItems.Add("移动");
+                                        }
+                                        if (liantong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                        {
+                                            listViewItem.SubItems.Add("联通");
+                                        }
+                                        if (dianxin.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                        {
+                                            listViewItem.SubItems.Add("电信");
+                                        }
+                                    }
+                                     
 
                                         while (this.zanting == false)
                                         {
@@ -510,6 +526,10 @@ namespace 美团
             path.CloseFigure();//闭合曲线
             return path;
         }
+
+        string[] yidong = {"134", "135", "136", "137", "138", "139", "150", "151", "152", "157", "158", "159", "182", "187", "188" };
+        string[] dianxin = { "133", "153", "180", "189", "134"};
+        string[] liantong = { "130", "131", "132", "155", "156", "186", "185", "176" };
 
         private void Button1_Click(object sender, EventArgs e)
         {

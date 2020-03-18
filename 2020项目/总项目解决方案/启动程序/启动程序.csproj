@@ -65,6 +65,12 @@
     <Compile Include="奇趣分分彩.Designer.cs">
       <DependentUpon>奇趣分分彩.cs</DependentUpon>
     </Compile>
+    <Compile Include="宝钢价格.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="宝钢价格.Designer.cs">
+      <DependentUpon>宝钢价格.cs</DependentUpon>
+    </Compile>
     <Compile Include="微博转赞评.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="奇趣分分彩.resx">
       <DependentUpon>奇趣分分彩.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="宝钢价格.resx">
+      <DependentUpon>宝钢价格.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="微博转赞评.resx">
       <DependentUpon>微博转赞评.cs</DependentUpon>
