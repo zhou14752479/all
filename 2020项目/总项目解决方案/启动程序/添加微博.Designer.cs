@@ -133,7 +133,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(522, 20);
+            this.textBox7.Location = new System.Drawing.Point(425, 20);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(43, 21);
             this.textBox7.TabIndex = 9;
@@ -150,14 +150,14 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(333, 20);
+            this.textBox5.Location = new System.Drawing.Point(236, 20);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(43, 21);
             this.textBox5.TabIndex = 9;
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(425, 20);
+            this.textBox8.Location = new System.Drawing.Point(531, 20);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(43, 21);
             this.textBox8.TabIndex = 7;
@@ -184,7 +184,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(236, 20);
+            this.textBox6.Location = new System.Drawing.Point(342, 20);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(43, 21);
             this.textBox6.TabIndex = 7;
@@ -256,7 +256,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(522, 20);
+            this.textBox9.Location = new System.Drawing.Point(45, 20);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(43, 21);
             this.textBox9.TabIndex = 9;
@@ -273,14 +273,14 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(333, 20);
+            this.textBox10.Location = new System.Drawing.Point(142, 20);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(43, 21);
             this.textBox10.TabIndex = 9;
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(425, 20);
+            this.textBox11.Location = new System.Drawing.Point(236, 20);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(43, 21);
             this.textBox11.TabIndex = 7;
@@ -301,13 +301,13 @@
             this.label12.Font = new System.Drawing.Font("宋体", 11F);
             this.label12.Location = new System.Drawing.Point(392, 26);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(37, 15);
+            this.label12.Size = new System.Drawing.Size(30, 15);
             this.label12.TabIndex = 6;
-            this.label12.Text = "评：";
+            this.label12.Text = "评:";
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(236, 20);
+            this.textBox12.Location = new System.Drawing.Point(343, 20);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(43, 21);
             this.textBox12.TabIndex = 7;
@@ -324,7 +324,7 @@
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(142, 20);
+            this.textBox13.Location = new System.Drawing.Point(425, 20);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(43, 21);
             this.textBox13.TabIndex = 5;
@@ -341,7 +341,7 @@
             // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(45, 20);
+            this.textBox14.Location = new System.Drawing.Point(531, 20);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(43, 21);
             this.textBox14.TabIndex = 3;
@@ -381,6 +381,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "确定添加";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // 添加微博
             // 

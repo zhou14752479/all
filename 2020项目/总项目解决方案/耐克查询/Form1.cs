@@ -35,7 +35,7 @@ namespace 耐克查询
         /// <returns></returns>
         public static string PostUrl(string url, string postData, string COOKIE, string charset)
         {
-            var httpStatusCode = 200;
+            
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条

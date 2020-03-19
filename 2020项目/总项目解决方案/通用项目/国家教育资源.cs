@@ -312,6 +312,7 @@ namespace 通用项目
 
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

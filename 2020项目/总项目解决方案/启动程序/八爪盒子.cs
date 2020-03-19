@@ -162,6 +162,7 @@ namespace 启动程序
                         }
                         if (status == false)
                             return;
+                        Thread.Sleep(1000);
                     }
                 }
             }

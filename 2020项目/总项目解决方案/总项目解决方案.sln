@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "启动程序", "启动程序\启动程序.csproj", "{9FC2337F-76E5-476A-9D80-D356E63A3D41}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "澳洲幸运10安装程序", "澳洲幸运10安装程序\澳洲幸运10安装程序.vdproj", "{1BA85159-ED66-474E-BD91-3FB993A0BB72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "耐克查询", "耐克查询\耐克查询.csproj", "{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{9FC2337F-76E5-476A-9D80-D356E63A3D41}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1BA85159-ED66-474E-BD91-3FB993A0BB72}.Debug|Any CPU.ActiveCfg = Debug
 		{1BA85159-ED66-474E-BD91-3FB993A0BB72}.Release|Any CPU.ActiveCfg = Release
+		{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

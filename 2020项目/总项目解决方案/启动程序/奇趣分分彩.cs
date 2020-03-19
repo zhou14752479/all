@@ -68,35 +68,7 @@ namespace 启动程序
         public static string cookie="";
 
 
-        #region  分分彩
-        public void ffc(string cai)
-
-        {
-           
-            string url = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName="+cai+"&num=50";
-
-            string html = GetUrlWithCookie(url, cookie);
-            
-            MatchCollection qishus = Regex.Matches(html, @"""expect"":""([\s\S]*?)""");
-           
-            MatchCollection times = Regex.Matches(html, @"""openTime"":""([\s\S]*?)""");
-            MatchCollection results = Regex.Matches(html, @"""openCode"":""([\s\S]*?)""");
-
-            for (int j = 0; j < qishus.Count; j++)
-            {
-                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据   
-                lv2.SubItems.Add(qishus[j].Groups[1].Value);
-               
-                lv2.SubItems.Add(times[j].Groups[1].Value);
-                lv2.SubItems.Add(results[j].Groups[1].Value);
-
-
-            }
-
-          
-        }
-
-        #endregion
+        
 
         private void 奇趣分分彩_Load(object sender, EventArgs e)
         {
@@ -116,49 +88,46 @@ namespace 启动程序
 
         {
             listView1.Items.Clear();
-            string url1 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxffc&num=50";
-            string url2 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxsfc&num=50";
-            string url3 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxwfc&num=50";
-            string url4 = "http://wawa.xinjy01.com/ct-data/openCodeList?shortName=qqtxysfc&num=50";
+            string url = "https://yx-668.com/APIV2/GraphQL?l=zh-cn";
+            string postdata1 = "{\"operationName\":\"GetLotteryCycle\",\"variables\":{\"game_id\":190,\"row_count\":50},\"query\":\"query GetLotteryCycle($game_id: Int!, $row_count: Int) {\n LotteryGame(game_id: $game_id) {\n game_value\n game_id\n base_game\n start_number\n end_number\n number_count\n lottery_result_history(row_count: $row_count) {\n cycle_value\n game_result\n __typename\n    }\n trend_chart(row_count: $row_count) {\n titles\n __typename\n    }\n __typename\n  }\n}\n\"}";
+            string postdata2 = "{\"operationName\":\"GetLotteryCycle\",\"variables\":{\"game_id\":237,\"row_count\":50},\"query\":\"query GetLotteryCycle($game_id: Int!, $row_count: Int) {\n LotteryGame(game_id: $game_id) {\n game_value\n game_id\n base_game\n start_number\n end_number\n number_count\n lottery_result_history(row_count: $row_count) {\n cycle_value\n game_result\n __typename\n    }\n trend_chart(row_count: $row_count) {\n titles\n __typename\n    }\n __typename\n  }\n}\n\"}";
+            string postdata3 = "{\"operationName\":\"GetLotteryCycle\",\"variables\":{\"game_id\":191,\"row_count\":50},\"query\":\"query GetLotteryCycle($game_id: Int!, $row_count: Int) {\n LotteryGame(game_id: $game_id) {\n game_value\n game_id\n base_game\n start_number\n end_number\n number_count\n lottery_result_history(row_count: $row_count) {\n cycle_value\n game_result\n __typename\n    }\n trend_chart(row_count: $row_count) {\n titles\n __typename\n    }\n __typename\n  }\n}\n\"}";
+            string postdata4 = "{\"operationName\":\"GetLotteryCycle\",\"variables\":{\"game_id\":192,\"row_count\":50},\"query\":\"query GetLotteryCycle($game_id: Int!, $row_count: Int) {\n LotteryGame(game_id: $game_id) {\n game_value\n game_id\n base_game\n start_number\n end_number\n number_count\n lottery_result_history(row_count: $row_count) {\n cycle_value\n game_result\n __typename\n    }\n trend_chart(row_count: $row_count) {\n titles\n __typename\n    }\n __typename\n  }\n}\n\"}";
 
-            string html1= GetUrlWithCookie(url1, cookie);
-            string html2 = GetUrlWithCookie(url2, cookie);
-            string html3 = GetUrlWithCookie(url3, cookie);
-            string html4 = GetUrlWithCookie(url4, cookie);
-
-
-
-            MatchCollection expect1 = Regex.Matches(html1, @"""expect"":""([\s\S]*?)""");
-            MatchCollection expect2 = Regex.Matches(html2, @"""expect"":""([\s\S]*?)""");
-            MatchCollection expect3 = Regex.Matches(html3, @"""expect"":""([\s\S]*?)""");
-            MatchCollection expect4 = Regex.Matches(html4, @"""expect"":""([\s\S]*?)""");
+            string html1 = method.PostUrl(url,postdata1, "","utf-8");
+            string html2 = method.PostUrl(url, postdata2, "", "utf-8");
+            string html3 = method.PostUrl(url, postdata3, "", "utf-8");
+            string html4 = method.PostUrl(url, postdata4, "", "utf-8");
 
 
+            MatchCollection result1 = Regex.Matches(html1, @"game_result"":\[([\s\S]*?)\]");
+            MatchCollection result2 = Regex.Matches(html2, @"game_result"":\[([\s\S]*?)\]");
+            MatchCollection result3 = Regex.Matches(html3, @"game_result"":\[([\s\S]*?)\]");
+            MatchCollection result4 = Regex.Matches(html4, @"game_result"":\[([\s\S]*?)\]");
 
-            MatchCollection result1 = Regex.Matches(html1, @"""openCode"":""([\s\S]*?)""");
-            MatchCollection result2 = Regex.Matches(html2, @"""openCode"":""([\s\S]*?)""");
-            MatchCollection result3 = Regex.Matches(html3, @"""openCode"":""([\s\S]*?)""");
-            MatchCollection result4 = Regex.Matches(html4, @"""openCode"":""([\s\S]*?)""");
+            MatchCollection qishu1 = Regex.Matches(html1, @"""cycle_value"":""([\s\S]*?)""");
+            MatchCollection qishu2 = Regex.Matches(html2, @"""cycle_value"":""([\s\S]*?)""");
+            MatchCollection qishu3 = Regex.Matches(html3, @"""cycle_value"":""([\s\S]*?)""");
+            MatchCollection qishu4 = Regex.Matches(html4, @"""cycle_value"":""([\s\S]*?)""");
+
 
             for (int i = 0; i < result1.Count; i++)
             {
                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据   
 
-                string r1 = result1[i].Groups[1].Value.Trim();
-                string r2 = result2[i].Groups[1].Value.Trim();
-                string r3 = result3[i].Groups[1].Value.Trim();
-                string r4 = result4[i].Groups[1].Value.Trim();
+                string r1 = result1[i].Groups[1].Value.Trim().Replace("\"","");
+                string r2 = result2[i].Groups[1].Value.Trim().Replace("\"", "");
+                string r3 = result3[i].Groups[1].Value.Trim().Replace("\"", "");
+                string r4 = result4[i].Groups[1].Value.Trim().Replace("\"", "");
 
-                lv1.SubItems.Add(expect1[i].Groups[1].Value);
+                lv1.SubItems.Add(qishu1[i].Groups[1].Value);
                 lv1.SubItems.Add(r1);
-                lv1.SubItems.Add(expect2[i].Groups[1].Value);
+                lv1.SubItems.Add(qishu2[i].Groups[1].Value);
                 lv1.SubItems.Add(r2);
-                lv1.SubItems.Add(expect3[i].Groups[1].Value);
+                lv1.SubItems.Add(qishu3[i].Groups[1].Value);
                 lv1.SubItems.Add(r3);
-                lv1.SubItems.Add(expect4[i].Groups[1].Value);
+                lv1.SubItems.Add(qishu4[i].Groups[1].Value);
                 lv1.SubItems.Add(r4);
-
-
 
 
 
@@ -170,36 +139,36 @@ namespace 启动程序
                 //textBox4.ForeColor = Color.Black;
                 lv1.BackColor = Color.White;
 
-                if (r1 == r2)
-                {
-                    lv1.BackColor = Color.Red;
+                //if (r1 == r2)
+                //{
+                //    lv1.BackColor = Color.Red;
 
-                }
-                if (r1 == r3)
-                {
+                //}
+                //if (r1 == r3)
+                //{
 
-                    lv1.BackColor = Color.Red;
-                }
-                if (r1 == r4)
-                {
+                //    lv1.BackColor = Color.Red;
+                //}
+                //if (r1 == r4)
+                //{
 
-                    lv1.BackColor = Color.Red;
-                }
-                if (r2 == r3)
-                {
+                //    lv1.BackColor = Color.Red;
+                //}
+                //if (r2 == r3)
+                //{
 
-                    lv1.BackColor = Color.Red;
-                }
-                if (r2 == r4)
-                {
+                //    lv1.BackColor = Color.Red;
+                //}
+                //if (r2 == r4)
+                //{
 
-                    lv1.BackColor = Color.Red;
-                }
-                if (r3 == r4)
-                {
+                //    lv1.BackColor = Color.Red;
+                //}
+                //if (r3 == r4)
+                //{
 
-                    lv1.BackColor = Color.Red;
-                }
+                //    lv1.BackColor = Color.Red;
+                //}
 
             }
 
@@ -219,8 +188,10 @@ namespace 启动程序
                 cookie = helper.Form1.cookie;
 
 
-                timer1.Start();
-
+                //   timer1.Start();
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
 
 
             }
@@ -237,39 +208,11 @@ namespace 启动程序
            
         }
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            listView1.Items[1].SubItems[1].BackColor = Color.Red;
-            listView2.Items.Clear();
-            cookie = helper.Form1.cookie;
-
-            ffc("qqtxffc");
-        }
-
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            listView2.Items.Clear();
-            cookie = helper.Form1.cookie;
-            ffc("qqtxsfc");
-        }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            listView2.Items.Clear();
-            cookie = helper.Form1.cookie;
-            ffc("qqtxwfc");
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            listView2.Items.Clear();
-            cookie = helper.Form1.cookie;
-            ffc("qqtxysfc");
-        }
+      
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            cookie = helper.Form1.cookie;
+            
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;

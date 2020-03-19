@@ -16,7 +16,7 @@ namespace 启动程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 八爪盒子());
+            Application.Run(new 微博转赞评());
         }
     }
 }

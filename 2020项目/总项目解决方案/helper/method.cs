@@ -141,14 +141,14 @@ namespace helper
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.ContentType = "application/x-www-form-urlencoded";
+                //request.ContentType = "application/x-www-form-urlencoded";
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("appid:orders");
                 //headers.Add("x-nike-visitid:5");
                 //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
                 //添加头部
-                // request.ContentType = "application/json";
+                 request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;

@@ -76,7 +76,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(288, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(377, 46);
+            this.groupBox1.Size = new System.Drawing.Size(520, 46);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "API设置";
@@ -85,7 +85,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(260, 18);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
+            this.textBox2.Size = new System.Drawing.Size(243, 21);
             this.textBox2.TabIndex = 3;
             // 
             // label2
@@ -268,6 +268,7 @@
             this.listView1.TabIndex = 38;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseEnter += new System.EventHandler(this.ListView1_MouseEnter);
             // 
             // columnHeader1
             // 
@@ -290,12 +291,12 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "当前次数";
+            this.columnHeader6.Text = "总计";
             this.columnHeader6.Width = 80;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "总计";
+            this.columnHeader7.Text = "当前次数";
             this.columnHeader7.Width = 80;
             // 
             // button1
@@ -383,6 +384,8 @@
             this.Name = "微博转赞评";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "微博转赞评";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.微博转赞评_FormClosing);
+            this.Load += new System.EventHandler(this.微博转赞评_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

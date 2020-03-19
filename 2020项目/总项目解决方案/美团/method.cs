@@ -136,7 +136,17 @@ namespace 美团
                     dr = dt.NewRow();
                     for (j = 0; j < lv.Columns.Count; j++)
                     {
+                    try
+                    {
                         dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+                    }
+                    catch 
+                    {
+
+                       continue;
+                    }
+                       
+
                     }
                     dt.Rows.Add(dr);
                 }
