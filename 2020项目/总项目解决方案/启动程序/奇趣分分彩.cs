@@ -23,10 +23,10 @@ namespace 启动程序
             InitializeComponent();
         }
 
-        
 
 
-        
+
+
 
         #region GET请求带COOKIE
         /// <summary>
@@ -42,7 +42,7 @@ namespace 启动程序
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                
+
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
@@ -65,18 +65,18 @@ namespace 启动程序
         }
         #endregion
 
-        public static string cookie="";
+        public static string cookie = "";
 
 
-        
+
 
         private void 奇趣分分彩_Load(object sender, EventArgs e)
         {
-           
+
         }
 
-      
-       
+
+
         private void Button1_Click(object sender, EventArgs e)
         {
 
@@ -84,10 +84,44 @@ namespace 启动程序
             fm1.Show();
         }
 
+
+        public void chongfu()
+
+        {
+
+           
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)//得到总行数并在之内循环  
+            {
+                
+                for (int z= 0; z< dataGridView1.Rows.Count; z++)//得到总行数并在之内循环  
+                    {
+                        if (dataGridView1.Rows[z].Cells[3].Value == dataGridView1.Rows[i].Cells[1].Value)
+                        {
+                            dataGridView1.Rows[z].Cells[3].Style.BackColor = Color.Red;
+                        dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.Red;
+
+                    }
+                    }
+
+                
+            }
+
+
+
+
+        }
+
+
+
+        
         public void run()
 
         {
-            listView1.Items.Clear();
+
+            int index = 0;
+            dataGridView1.Rows.Clear();
+
+
             string url = "https://yx-668.com/APIV2/GraphQL?l=zh-cn";
             string postdata1 = "{\"operationName\":\"GetLotteryCycle\",\"variables\":{\"game_id\":190,\"row_count\":50},\"query\":\"query GetLotteryCycle($game_id: Int!, $row_count: Int) {\n LotteryGame(game_id: $game_id) {\n game_value\n game_id\n base_game\n start_number\n end_number\n number_count\n lottery_result_history(row_count: $row_count) {\n cycle_value\n game_result\n __typename\n    }\n trend_chart(row_count: $row_count) {\n titles\n __typename\n    }\n __typename\n  }\n}\n\"}";
             string postdata2 = "{\"operationName\":\"GetLotteryCycle\",\"variables\":{\"game_id\":237,\"row_count\":50},\"query\":\"query GetLotteryCycle($game_id: Int!, $row_count: Int) {\n LotteryGame(game_id: $game_id) {\n game_value\n game_id\n base_game\n start_number\n end_number\n number_count\n lottery_result_history(row_count: $row_count) {\n cycle_value\n game_result\n __typename\n    }\n trend_chart(row_count: $row_count) {\n titles\n __typename\n    }\n __typename\n  }\n}\n\"}";
@@ -113,31 +147,27 @@ namespace 启动程序
 
             for (int i = 0; i < result1.Count; i++)
             {
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据   
+                index = this.dataGridView1.Rows.Add();
+               
 
                 string r1 = result1[i].Groups[1].Value.Trim().Replace("\"","");
                 string r2 = result2[i].Groups[1].Value.Trim().Replace("\"", "");
                 string r3 = result3[i].Groups[1].Value.Trim().Replace("\"", "");
                 string r4 = result4[i].Groups[1].Value.Trim().Replace("\"", "");
 
-                lv1.SubItems.Add(qishu1[i].Groups[1].Value);
-                lv1.SubItems.Add(r1);
-                lv1.SubItems.Add(qishu2[i].Groups[1].Value);
-                lv1.SubItems.Add(r2);
-                lv1.SubItems.Add(qishu3[i].Groups[1].Value);
-                lv1.SubItems.Add(r3);
-                lv1.SubItems.Add(qishu4[i].Groups[1].Value);
-                lv1.SubItems.Add(r4);
+                dataGridView1.Rows[index].Cells[0].Value = qishu1[i].Groups[1].Value;
+                dataGridView1.Rows[index].Cells[1].Value = r1;
+                dataGridView1.Rows[index].Cells[2].Value = qishu2[i].Groups[1].Value;
+                dataGridView1.Rows[index].Cells[3].Value = r2;
+                dataGridView1.Rows[index].Cells[4].Value = qishu3[i].Groups[1].Value;
+                dataGridView1.Rows[index].Cells[5].Value = r3;
+                dataGridView1.Rows[index].Cells[6].Value = qishu4[i].Groups[1].Value;
+                dataGridView1.Rows[index].Cells[7].Value = r4;
 
+               // dataGridView1.CurrentCell = dataGridView1.Rows[index].Cells[0];  //让datagridview滚动到当前行
 
-
-
-
-                //textBox1.ForeColor = Color.Black;
-                //textBox2.ForeColor = Color.Black;
-                //textBox3.ForeColor = Color.Black;
-                //textBox4.ForeColor = Color.Black;
-                lv1.BackColor = Color.White;
+             
+              
 
                 //if (r1 == r2)
                 //{
@@ -220,6 +250,7 @@ namespace 启动程序
 
         private void Button7_Click(object sender, EventArgs e)
         {
+            chongfu();
             MessageBox.Show("监控已关闭");
             timer1.Stop();
         }

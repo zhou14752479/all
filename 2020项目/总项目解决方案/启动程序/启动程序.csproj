@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,6 +78,12 @@
     <Compile Include="微博转赞评.Designer.cs">
       <DependentUpon>微博转赞评.cs</DependentUpon>
     </Compile>
+    <Compile Include="淘宝信息.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="淘宝信息.Designer.cs">
+      <DependentUpon>淘宝信息.cs</DependentUpon>
+    </Compile>
     <Compile Include="添加微博.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="微博转赞评.resx">
       <DependentUpon>微博转赞评.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="淘宝信息.resx">
+      <DependentUpon>淘宝信息.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="添加微博.resx">
       <DependentUpon>添加微博.cs</DependentUpon>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -117,8 +118,10 @@ namespace 启动程序
             string html = PostUrl(url, postdata, cookie, "utf-8");
             MessageBox.Show(html);
         }
-        
 
+
+
+        ArrayList xiadans = new ArrayList(); 
 
         public void run()
         {
@@ -170,7 +173,13 @@ namespace 启动程序
                     string dealPrice=a3s[i].Groups[1].Value;
                     string ticketPrice=a3s[i].Groups[1].Value;
                     string ticketType = "2";  //默认2 银行不存在则3
-                    //buy(ticketid, ThousandCharge,  payt,  endorseId,  yearrate,  ticketPrice,  ticketType);
+                    if (!xiadans.Contains(ticketid))
+                    {
+                        xiadans.Add(ticketid);
+                        buy(ticketid, ThousandCharge, payt, endorseId, yearrate, ticketPrice, ticketType);
+
+                    }
+                  
                     
                 }
 
