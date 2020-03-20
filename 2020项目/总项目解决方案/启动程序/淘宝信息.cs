@@ -77,6 +77,14 @@ namespace 启动程序
             return time.Groups[1].Value;
         }
 
+        public string getcreattime(string userid)
+        {
+            string url = "https://shop.taobao.com/getShopInfo.htm?shopId="+userid+"&_ksTS=1584693969776_37&callback=jsonp38";
+            string html = GetUrl(url, "utf-8");
+            Match time = Regex.Match(html, @"""starts"":""([\s\S]*?)""");
+            return time.Groups[1].Value;
+        }
+
 
         public void run()
         {
@@ -91,6 +99,8 @@ namespace 启动程序
                         string html = GetUrl(url,"utf-8");
 
                         Match userid= Regex.Match(html, @"encryptedUserId\\"":\\""([\s\S]*?)\\""");
+                        Match uid = Regex.Match(html, @"shopUrl"":""\/\/shop([\s\S]*?)\.");
+
                         Match sold = Regex.Match(html, @"""totalsold"":([\s\S]*?),");
                         Match procnt = Regex.Match(html, @"""procnt"":([\s\S]*?),");
                       
@@ -99,10 +109,12 @@ namespace 启动程序
                         lv1.SubItems.Add(sold.Groups[1].Value);
                         lv1.SubItems.Add(procnt.Groups[1].Value);
                         lv1.SubItems.Add(gettime(userid.Groups[1].Value));
+                        lv1.SubItems.Add("无");
+                        lv1.SubItems.Add(getcreattime(uid.Groups[1].Value));
 
-                        caijiweb();
-                        lv1.SubItems.Add(time1);
-                        lv1.SubItems.Add(time2);
+                        // caijiweb();
+                       
+                        lv1.SubItems.Add("无");
 
                         while (this.zanting == false)
                         {
@@ -168,10 +180,10 @@ namespace 启动程序
         {
          
             button1.Enabled = false;
-            //Thread thread = new Thread(new ThreadStart(run));
-            //thread.Start();
-            //Control.CheckForIllegalCrossThreadCalls = false;
-            run();
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+           
         }
     }
 }
