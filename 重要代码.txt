@@ -206,3 +206,11 @@ postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
 
 //弹出输入框 using Microsoft.VisualBasic;
 string str = Interaction.InputBox("提示信息","标题","文本内容",-1,-1);
+
+//获取分辨率 可以控制界面的位置
+ Rectangle rect = new Rectangle();
+            rect = Screen.GetWorkingArea(this);
+            //MessageBox.Show("本机器的分辨率是" + rect.Width.ToString() + "*" + rect.Height.ToString());
+
+ child.Left = rect.Width-300;  距离左侧位置减去界面的宽度
+            child.Top = 0;        距离上侧位置

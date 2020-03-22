@@ -429,10 +429,14 @@ namespace main
             {
               
                     dr = dt.NewRow();
-                    for (j = 0; j < lv.Columns.Count; j++)
-                    {
-                        dr[j] = lv.Items[i].SubItems[j].Text.Trim();
-                    }
+                for (j = 0; j < lv.Columns.Count; j++)
+                {
+                    dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+                    //dr[0] = lv.Items[i].SubItems[1].Text.Trim();
+                    //dr[1] = lv.Items[i].SubItems[2].Text.Trim();
+                    //dr[2] = lv.Items[i].SubItems[3].Text.Trim();
+                    //dr[3] = lv.Items[i].SubItems[4].Text.Trim();
+                }
                     dt.Rows.Add(dr);
                 
 
@@ -575,7 +579,7 @@ namespace main
             IWorkbook workbook = null;
             FileStream fs = null;
 
-            string fileName = path + title+time + "符合条件.xlsx";
+            string fileName = path + title+time + "符合条件.xls";
            
             fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             if (fileName.IndexOf(".xlsx") > 0) // 2007版本

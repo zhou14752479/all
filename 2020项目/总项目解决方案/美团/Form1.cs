@@ -262,6 +262,7 @@ namespace 美团
 
             MatchCollection areas = Regex.Matches(html, @"""subAreas"":\[\{""id"":([\s\S]*?),");
             ArrayList lists = new ArrayList();
+
             foreach (Match item in areas)
             {
                 lists.Add(item.Groups[1].Value);
@@ -308,6 +309,8 @@ namespace 美团
         }
         #endregion
 
+
+
         #region  主程序
         public void Search()
         {
@@ -322,13 +325,26 @@ namespace 美团
                     return;
                 }
 
-                if (textBox2.Text.Trim() == "")
+                //if (textBox2.Text.Trim() == "")
+                //{
+                //    MessageBox.Show("请输入关键字!");
+                //    return;
+                //}
+
+
+
+                
+
+                if (textBox2.Text == "")
                 {
-                    MessageBox.Show("请输入关键字!");
-                    return;
+                    textBox2.Text =  "美食, 火锅, 烧烤, 麻辣烫, 面包, 蛋糕, 奶茶, 快餐, 面条, 西餐, 中餐,小吃, 自助餐, 烤鱼, 海鲜, 甜点, 炒菜" ;
                 }
+
+
+
                 string[] keywords = textBox2.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
 
+                textBox2.Text = "";
                 foreach (string city in citys)
                 {
 
@@ -348,7 +364,7 @@ namespace 美团
                             {
                              
                                
-                                    string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+GetUid(city)+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword+"&requestType=filter&cityId="+GetUid(city)+"&areaId="+areaId;
+                                    string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+GetUid(city)+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+GetUid(city)+"&areaId="+areaId;
 
                                     string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
 
@@ -382,48 +398,86 @@ namespace 美团
 
                                         string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                                        //Match name = Regex.Match(strhtml1, @"<h1 class=""dealcard-brand"">([\s\S]*?)</h1>");
-                                        //Match tell = Regex.Match(strhtml1, @"data-tele=""([\s\S]*?)""");
-                                        //Match addr = Regex.Match(strhtml1, @"addr:([\s\S]*?)&");
                                         Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                         Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                         Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
 
-
-                                        tels.Add(tell.Groups[1].Value);
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                        listViewItem.SubItems.Add(name.Groups[1].Value);
-                                        listViewItem.SubItems.Add(tell.Groups[1].Value);
-                                        listViewItem.SubItems.Add(addr.Groups[1].Value);
-                                        listViewItem.SubItems.Add(city);
-                                    if (tell.Groups[1].Value != "")
+                                    if (!tels.Contains(tell.Groups[1].Value))
                                     {
-                                        if (yidong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+
+                                        if (checkBox1.Checked == true)
                                         {
-                                            listViewItem.SubItems.Add("移动");
+                                            if (!tell.Groups[1].Value.Contains("-"))
+                                            { 
+                                                tels.Add(tell.Groups[1].Value);
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(name.Groups[1].Value);
+                                            listViewItem.SubItems.Add(tell.Groups[1].Value);
+                                            listViewItem.SubItems.Add(addr.Groups[1].Value);
+                                            listViewItem.SubItems.Add(city);
+                                            if (tell.Groups[1].Value != "")
+                                            {
+
+                                                if (yidong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                                {
+                                                    listViewItem.SubItems.Add("移动");
+                                                }
+                                                if (liantong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                                {
+                                                    listViewItem.SubItems.Add("联通");
+                                                }
+                                                if (dianxin.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                                {
+                                                    listViewItem.SubItems.Add("电信");
+                                                }
+                                            }
                                         }
-                                        if (liantong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                        }
+
+                                        else
                                         {
-                                            listViewItem.SubItems.Add("联通");
+                                            tels.Add(tell.Groups[1].Value);
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(name.Groups[1].Value);
+                                            listViewItem.SubItems.Add(tell.Groups[1].Value);
+                                            listViewItem.SubItems.Add(addr.Groups[1].Value);
+                                            listViewItem.SubItems.Add(city);
+                                            if (tell.Groups[1].Value != "")
+                                            {
+
+                                                if (yidong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                                {
+                                                    listViewItem.SubItems.Add("移动");
+                                                }
+                                                if (liantong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                                {
+                                                    listViewItem.SubItems.Add("联通");
+                                                }
+                                                if (dianxin.Contains(tell.Groups[1].Value.Substring(0, 3)))
+                                                {
+                                                    listViewItem.SubItems.Add("电信");
+                                                }
+                                            }
                                         }
-                                        if (dianxin.Contains(tell.Groups[1].Value.Substring(0, 3)))
-                                        {
-                                            listViewItem.SubItems.Add("电信");
-                                        }
-                                    }
-                                     
+
+
+
 
                                         while (this.zanting == false)
-                                        {
-                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                        }
-                                        if (status == false)
-                                        {
-                                            return;
-                                        }
-                                        Application.DoEvents();
-                                        Thread.Sleep(1000);
+                                            {
+                                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                            }
+                                            if (status == false)
+                                            {
+                                                return;
+                                            }
 
+                                            Thread.Sleep(1000);
+                                        }
+                                       
+
+
+                                   
                                     }
 
                                 Thread.Sleep(2000);
@@ -580,7 +634,54 @@ namespace 美团
 
         private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            method.ListviewToTxt(listView1);
+            if (listView1.Items.Count == 0)
+            {
+                MessageBox.Show("列表为空!");
+            }
+            else
+            {
+                List<string> list = new List<string>();
+                foreach (ListViewItem item in listView1.Items)
+                {
+                    if (textBox4.Text == "")
+                    {
+                        list.Add(item.SubItems[2].Text);
+
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (item.SubItems[5].Text == textBox4.Text.Trim())
+                            {
+                                list.Add(item.SubItems[2].Text);
+                            }
+                        }
+                        catch 
+                        {
+
+                            continue;
+                        }
+                       
+                    }
+                   
+                }
+                Thread thexp = new Thread(() => export(list)) { IsBackground = true };
+                thexp.Start();
+            }
+        }
+
+        private static void export(List<string> list)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "导出_" + Guid.NewGuid().ToString() + ".txt";
+
+            StringBuilder sb = new StringBuilder();
+            foreach (string tel in list)
+            {
+                sb.AppendLine(tel);
+            }
+            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            MessageBox.Show("文件导出成功!文件地址:" + path);
         }
 
         private void LinkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -594,9 +695,11 @@ namespace 美团
             button1.Enabled = true;
         }
 
-        private void Button6_Click(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://verify.meituan.com/v2/web/general_page?action=spiderindefence&requestCode=763d086012a14bb4b7cb0fb7245677dd&platform=1000&adaptor=auto&succCallbackUrl=https%3A%2F%2Foptimus-mtsi.meituan.com%2Foptimus%2FverifyResult%3ForiginUrl%3Dhttp%253A%252F%252Fi.meituan.com%252Fs%252Fbaiyin-%2525E7%252581%2525AB%2525E9%252594%252585%253Fcevent%253Dimt%25252Fsearch%25252Fhot%25252F%2525E7%252581%2525AB%2525E9%252594%252585");
+            
         }
+
+
     }
 }

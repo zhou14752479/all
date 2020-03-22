@@ -28,46 +28,57 @@ namespace main._2019_9
         private void button5_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns.Clear();
-           
+
 
             this.ds.Tables.Clear();
             this.Ofile.FileName = "";
             this.dataGridView1.DataSource = "";
             this.Ofile.ShowDialog();
             string fileName = this.Ofile.FileName;
-            if (fileName != null && fileName != "")
+
+            if (fileName.Trim().ToUpper().EndsWith("xls"))//判断所要的?展名?型；
             {
-                string connectionString = " Provider = Microsoft.Jet.OLEDB.4.0 ; Data Source = " + fileName + "; Extended Properties='Excel 8.0;HDR=YES;IMEX=1'";
-                OleDbConnection oleDbConnection = new OleDbConnection(connectionString);
-                oleDbConnection.Open();
-                DataTable oleDbSchemaTable = oleDbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[]
+                if (fileName != null && fileName != "")
                 {
+                    string connectionString = " Provider = Microsoft.Jet.OLEDB.4.0 ; Data Source = " + fileName + "; Extended Properties='Excel 8.0;HDR=YES;IMEX=1'";
+                    OleDbConnection oleDbConnection = new OleDbConnection(connectionString);
+                    oleDbConnection.Open();
+                    DataTable oleDbSchemaTable = oleDbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[]
+                    {
                     null,
                     null,
                     null,
                     "TABLE"
-                });
-                string str = oleDbSchemaTable.Rows[0]["TABLE_NAME"].ToString();
-                string selectCommandText = "select * from [" + str + "]";
-                OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(selectCommandText, oleDbConnection);
-                oleDbDataAdapter.Fill(this.ds, "temp");
-                oleDbConnection.Close();
-                this.dataGridView1.DataSource = this.ds.Tables[0];
+                    });
+                    string str = oleDbSchemaTable.Rows[0]["TABLE_NAME"].ToString();
+                    string selectCommandText = "select * from [" + str + "]";
+                    OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(selectCommandText, oleDbConnection);
+                    oleDbDataAdapter.Fill(this.ds, "temp");
+                    oleDbConnection.Close();
+                    this.dataGridView1.DataSource = this.ds.Tables[0];
 
-
-                //DataColumn column = new DataColumn();
-                //column.ColumnName = "序号";
-                //column.AutoIncrement = true;
-                //column.AutoIncrementSeed = 1;
-                //column.AutoIncrementStep = 1;
-                //ds.Tables[0].Columns.Add(column);
-                //dataGridView1.Columns["序号"].DisplayIndex = 0;//调整列顺序
-
-
-
-                textBox1.Text = this.Ofile.FileName;
+                    string csvDir = openFileDialog1.FileName.ToString();
+                }
             }
-        }
+
+                if (fileName.Trim().ToUpper().EndsWith("CSV"))//判断所要的?展名?型；
+                {
+                    int ipos = fileName.LastIndexOf("\\");
+                    string filePath = fileName.Substring(0, ipos + 1);
+                    string connStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='text;HDR=YES;FMT=Delimited;'";//有列?的
+                    string commandText = "select * from " + fileName.Replace(filePath, "");//SQL?句；
+                    OleDbConnection olconn = new OleDbConnection(connStr);
+                    olconn.Open();
+                    OleDbDataAdapter odp = new OleDbDataAdapter(commandText, olconn);
+                    DataTable dt = new DataTable();
+                    odp.Fill(dt);
+                    dataGridView1.AutoGenerateColumns = true;//有列?的
+                    dataGridView1.DataSource = dt.DefaultView;//有列?的
+
+                }
+
+
+            }
         bool zanting = true;
         #region  1688
         public void run()

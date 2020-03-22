@@ -30,8 +30,10 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
@@ -51,6 +53,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,7 +63,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -81,8 +83,10 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.textBox4);
             this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.checkBox2);
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.linkLabel9);
@@ -99,25 +103,44 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数配置";
             // 
-            // button6
+            // textBox4
             // 
-            this.button6.Location = new System.Drawing.Point(422, 114);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(179, 23);
-            this.button6.TabIndex = 13;
-            this.button6.Text = "验证";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            this.textBox4.Location = new System.Drawing.Point(505, 90);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(73, 21);
+            this.textBox4.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("宋体", 10F);
-            this.label6.Location = new System.Drawing.Point(419, 62);
+            this.label6.Location = new System.Drawing.Point(422, 96);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(182, 14);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "购买问题联系QQ：852266010";
+            this.label6.Size = new System.Drawing.Size(77, 12);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "导出运营商：";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(422, 62);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(72, 16);
+            this.checkBox2.TabIndex = 15;
+            this.checkBox2.Text = "去除重复";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(422, 30);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(72, 16);
+            this.checkBox1.TabIndex = 14;
+            this.checkBox1.Text = "去除座机";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button5
             // 
@@ -301,6 +324,10 @@
             this.columnHeader5.Text = "城市";
             this.columnHeader5.Width = 100;
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "运营商";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -407,10 +434,6 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseMove);
             // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "运营商";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -471,9 +494,11 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label6;
     }
 }
 
