@@ -16,7 +16,7 @@ namespace 启动程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new YY检测());
+            Application.Run(new Form1());
         }
     }
 }
