@@ -20,6 +20,10 @@ namespace 启动程序
         {
             InitializeComponent();
         }
+
+
+
+
         bool zanting = true;
         /// <summary>
         /// 主程序
@@ -31,6 +35,8 @@ namespace 启动程序
             string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
 
+            string[] ips = method.GetUrl(textBox2.Text, "utf-8").Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            int iptime = 0;
 
             for (int i = 0; i < array.Length; i++)
             {
@@ -38,14 +44,19 @@ namespace 启动程序
                 {
                     string[] values = array[i].Split(new string[] { "----" }, StringSplitOptions.None);
 
-                    string html =method.GetUrl("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account="+values[0].Trim()+"&busifrom=&appid=1&yyapi=false", "utf-8" );
+                    
+                    string html =method.GetUrlwithIP("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account="+values[0].Trim()+"&busifrom=&appid=1&yyapi=false", ips[iptime]);
+                    while (html.Contains("IP验证次数过多"))
+                    {
+                        iptime = iptime + 1;
+                        html = method.GetUrlwithIP("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account=" + values[0].Trim() + "&busifrom=&appid=1&yyapi=false", ips[iptime]);
 
-
-                       // Match key = Regex.Match(html, @"key"" value=""([\s\S]*?)""");
+                    }
 
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     lv1.SubItems.Add(array[i]);
 
+                    label1.Text = "正在检测" + array[i];
                     if (html.Contains("LEVEL5_BAN"))
                     {
                         lv1.SubItems.Add("手机类型");
@@ -78,7 +89,7 @@ namespace 启动程序
                     {
                         lv1.SubItems.Add("其他类型");
                     }
-
+                    //lv1.SubItems.Add(ips[iptime]);
                     while (this.zanting == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -137,6 +148,12 @@ namespace 启动程序
                     return;
                 }
 
+                if (textBox2.Text == "")
+                {
+                    MessageBox.Show("请导入代理IP链接");
+                    return;
+                }
+                button2.Enabled = false;
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
@@ -158,6 +175,11 @@ namespace 启动程序
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            button2.Enabled = true;
         }
     }
 }

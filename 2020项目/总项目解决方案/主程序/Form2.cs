@@ -184,209 +184,17 @@ namespace 主程序
                 int value = getxiangsi(shuru, resultList[i].ToString());
 
                 label6.Text = "正在分析" + resultList[i];
-                if (value > 6 && shuru != resultList[i].ToString())
-                {
-                    //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
-                    button2.Enabled = true;
-                }
-
-                if (status == false)
-                    return;
-
-                if (listView2.Items.Count > 6)
-                    return;
-            }
-
-
-
-
-        }
-
-        #endregion
-
-        #region run4
-        public void run4()
-        {
-            if (textBox4.Text == "")
-            {
-                MessageBox.Show("值为空");
-                return;
-            }
-            string shuru = "";
-            if (textBox4.Text.Contains(","))
-            {
-                shuru = textBox4.Text.Trim();
-            }
-            else
-            {
-                foreach (var item in textBox4.Text.Trim())
-                {
-                    shuru += item + ",";
-                }
-                shuru = shuru.Remove(shuru.Length - 1, 1);
-
-            }
-
-
-            for (int i = 0; i < resultList.Count; i++)
-            {
-                int value = getxiangsi(shuru, resultList[i].ToString());
-
-                label9.Text = "正在分析" + resultList[i];
-                if (value > 6 && shuru != resultList[i].ToString())
-                {
-                    //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
-                    button2.Enabled = true;
-                }
-                if (status == false)
-                    return;
-
-                if (listView2.Items.Count > 6)
-                    return;
-            }
-
-
-
-
-        }
-
-        #endregion
-
-        #region run5
-        public void run5()
-        {
-            if (textBox5.Text == "")
-            {
-                MessageBox.Show("值为空");
-                return;
-            }
-            string shuru = "";
-            if (textBox5.Text.Contains(","))
-            {
-                shuru = textBox5.Text.Trim();
-            }
-            else
-            {
-                foreach (var item in textBox5.Text.Trim())
-                {
-                    shuru += item + ",";
-                }
-                shuru = shuru.Remove(shuru.Length - 1, 1);
-
-            }
-
-
-            for (int i = 0; i < resultList.Count; i++)
-            {
-                int value = getxiangsi(shuru, resultList[i].ToString());
-
-                label10.Text = "正在分析" + resultList[i];
-                if (value > 6 && shuru != resultList[i].ToString())
-                {
-                    //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
-                    button2.Enabled = true;
-                }
-
-                if (status == false)
-                    return;
-                if (listView2.Items.Count > 6)
-                    return;
-            }
-
-
-
-
-        }
-
-        #endregion
-
-        #region run2
-        public void run2()
-        {
-            if (textBox2.Text == "")
-            {
-                MessageBox.Show("值为空");
-                return;
-            }
-            string shuru = "";
-            if (textBox2.Text.Contains(","))
-            {
-                shuru = textBox2.Text.Trim();
-            }
-            else
-            {
-                foreach (var item in textBox2.Text.Trim())
-                {
-                    shuru += item + ",";
-                }
-                shuru = shuru.Remove(shuru.Length - 1, 1);
-
-            }
-
-
-            for (int i = 0; i < resultList.Count; i++)
-            {
-                int value = getxiangsi(shuru, resultList[i].ToString());
-
                 label7.Text = "正在分析" + resultList[i];
-                if (value > 6 && shuru != resultList[i].ToString())
-                {
-                    //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
-                    button2.Enabled = true;
-                }
-
-                if (status == false)
-                    return;
-                if (listView2.Items.Count > 6)
-                    return;
-            }
-
-
-
-
-        }
-
-        #endregion
-
-        #region run3
-        public void run3()
-        {
-            if (textBox3.Text == "")
-            {
-                MessageBox.Show("值为空");
-                return;
-            }
-            string shuru = "";
-            if (textBox3.Text.Contains(","))
-            {
-                shuru = textBox3.Text.Trim();
-            }
-            else
-            {
-                foreach (var item in textBox3.Text.Trim())
-                {
-                    shuru += item + ",";
-                }
-                shuru = shuru.Remove(shuru.Length - 1, 1);
-
-            }
-
-
-            for (int i = 0; i < resultList.Count; i++)
-            {
-                int value = getxiangsi(shuru, resultList[i].ToString());
-
                 label8.Text = "正在分析" + resultList[i];
-                if (value > 6 && shuru != resultList[i].ToString())
+                label9.Text = "正在分析" + resultList[i];
+                label10.Text = "正在分析" + resultList[i];
+                if (value > 4 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
                     ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
                     button2.Enabled = true;
                 }
+
                 if (status == false)
                     return;
 
@@ -400,6 +208,14 @@ namespace 主程序
         }
 
         #endregion
+
+        
+
+        
+
+        
+
+        
         private void button2_Click(object sender, EventArgs e)
         {
             timer1.Start();
@@ -411,18 +227,7 @@ namespace 主程序
             Thread thread1 = new Thread(new ThreadStart(run1));
             thread1.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
-            Thread thread2 = new Thread(new ThreadStart(run2));
-            thread2.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            Thread thread3 = new Thread(new ThreadStart(run3));
-            thread3.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            Thread thread4 = new Thread(new ThreadStart(run4));
-            thread4.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            Thread thread5 = new Thread(new ThreadStart(run5));
-            thread5.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+    
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -566,18 +371,7 @@ namespace 主程序
             Thread thread1 = new Thread(new ThreadStart(run1));
             thread1.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
-            Thread thread2 = new Thread(new ThreadStart(run2));
-            thread2.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            Thread thread3 = new Thread(new ThreadStart(run3));
-            thread3.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            Thread thread4 = new Thread(new ThreadStart(run4));
-            thread4.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            Thread thread5 = new Thread(new ThreadStart(run5));
-            thread5.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+   
         }
 
         private void Form2_Load(object sender, EventArgs e)
