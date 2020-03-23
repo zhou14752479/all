@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
@@ -28,13 +29,16 @@ namespace 启动程序
             StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
             string text = streamReader.ReadToEnd();
             string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+
+
             for (int i = 0; i < array.Length; i++)
             {
                 if (array[i] != "")
                 {
-                    int a = 0;
-                   
-                        string html =method.GetUrl("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account="+array[i].Trim()+"&busifrom=&appid=1&yyapi=false", "utf-8" );
+                    string[] values = array[i].Split(new string[] { "----" }, StringSplitOptions.None);
+
+                    string html =method.GetUrl("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account="+values[0].Trim()+"&busifrom=&appid=1&yyapi=false", "utf-8" );
 
 
                        // Match key = Regex.Match(html, @"key"" value=""([\s\S]*?)""");
@@ -42,21 +46,37 @@ namespace 启动程序
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     lv1.SubItems.Add(array[i]);
 
-                    if (html.Contains("LEVEL2"))
+                    if (html.Contains("LEVEL5_BAN"))
                     {
                         lv1.SubItems.Add("手机类型");
 
                     }
-                    if (html.Contains("账号不存在"))
+                    else if (html.Contains("账号不存在"))
                     {
                         lv1.SubItems.Add("账号不存在");
 
                     }
 
-                    if (html.Contains("未设置密保"))
+                    else if (html.Contains("未设置密保"))
                     {
                         lv1.SubItems.Add("未设置密保");
 
+                    }
+
+                    else if (html.Contains("LEVEL5_NORMAL"))
+                    {
+                        lv1.SubItems.Add("密保问题");
+
+                    }
+                    else if (html.Contains("LEVEL3_EMAIL"))
+                    {
+                        lv1.SubItems.Add("邮箱类型");
+
+                    }
+
+                    else
+                    {
+                        lv1.SubItems.Add("其他类型");
                     }
 
                     while (this.zanting == false)
@@ -64,22 +84,80 @@ namespace 启动程序
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
 
-
                 }
 
 
 
 
             }
-            TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            string pathname = AppDomain.CurrentDomain.BaseDirectory + ts.TotalSeconds.ToString() + ".xlsx";
-            method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true, pathname);
+            
         }
 
 
         private void YY检测_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                this.textBox1.Text = this.openFileDialog1.FileName;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"yyjiance"))
+            {
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请导入卡号");
+                    return;
+                }
+
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+          
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

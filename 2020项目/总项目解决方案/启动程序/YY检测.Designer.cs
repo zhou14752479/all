@@ -61,6 +61,7 @@
             this.button5.TabIndex = 38;
             this.button5.Text = "清空";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox1
             // 
@@ -124,7 +125,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "账号";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
@@ -148,6 +149,7 @@
             this.button1.TabIndex = 39;
             this.button1.Text = "导入";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
@@ -157,6 +159,7 @@
             this.button3.TabIndex = 36;
             this.button3.Text = "暂停";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -166,6 +169,7 @@
             this.button2.TabIndex = 35;
             this.button2.Text = "开始";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button4
             // 
@@ -175,6 +179,7 @@
             this.button4.TabIndex = 41;
             this.button4.Text = "继续";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button6
             // 
@@ -182,8 +187,9 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(114, 29);
             this.button6.TabIndex = 42;
-            this.button6.Text = "清空";
+            this.button6.Text = "导出结果";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // YY检测
             // 
