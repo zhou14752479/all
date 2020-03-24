@@ -47,6 +47,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
             this.textBox25 = new System.Windows.Forms.TextBox();
             this.textBox26 = new System.Windows.Forms.TextBox();
@@ -107,7 +108,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -280,7 +280,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 417);
+            this.groupBox1.Location = new System.Drawing.Point(12, 483);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(560, 225);
             this.groupBox1.TabIndex = 1;
@@ -352,16 +352,26 @@
             this.groupBox2.Controls.Add(this.textBox12);
             this.groupBox2.Location = new System.Drawing.Point(12, 32);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(560, 379);
+            this.groupBox2.Size = new System.Drawing.Size(560, 445);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数设置";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(461, 415);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 67;
+            this.button2.Text = "保存";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label34
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("宋体", 35F);
-            this.label34.Location = new System.Drawing.Point(80, 325);
+            this.label34.Location = new System.Drawing.Point(80, 388);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(44, 47);
             this.label34.TabIndex = 66;
@@ -369,7 +379,7 @@
             // 
             // textBox25
             // 
-            this.textBox25.Location = new System.Drawing.Point(140, 352);
+            this.textBox25.Location = new System.Drawing.Point(140, 415);
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new System.Drawing.Size(156, 21);
             this.textBox25.TabIndex = 65;
@@ -377,7 +387,7 @@
             // 
             // textBox26
             // 
-            this.textBox26.Location = new System.Drawing.Point(461, 316);
+            this.textBox26.Location = new System.Drawing.Point(461, 379);
             this.textBox26.Name = "textBox26";
             this.textBox26.Size = new System.Drawing.Size(55, 21);
             this.textBox26.TabIndex = 64;
@@ -386,7 +396,7 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("宋体", 15F);
-            this.label35.Location = new System.Drawing.Point(426, 317);
+            this.label35.Location = new System.Drawing.Point(426, 380);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(29, 20);
             this.label35.TabIndex = 63;
@@ -394,7 +404,7 @@
             // 
             // textBox27
             // 
-            this.textBox27.Location = new System.Drawing.Point(360, 316);
+            this.textBox27.Location = new System.Drawing.Point(360, 379);
             this.textBox27.Name = "textBox27";
             this.textBox27.Size = new System.Drawing.Size(55, 21);
             this.textBox27.TabIndex = 62;
@@ -403,7 +413,7 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("宋体", 15F);
-            this.label36.Location = new System.Drawing.Point(325, 317);
+            this.label36.Location = new System.Drawing.Point(325, 380);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(29, 20);
             this.label36.TabIndex = 61;
@@ -413,7 +423,7 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("宋体", 15F);
-            this.label37.Location = new System.Drawing.Point(302, 316);
+            this.label37.Location = new System.Drawing.Point(302, 379);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(29, 20);
             this.label37.TabIndex = 60;
@@ -421,7 +431,7 @@
             // 
             // textBox28
             // 
-            this.textBox28.Location = new System.Drawing.Point(241, 316);
+            this.textBox28.Location = new System.Drawing.Point(241, 379);
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new System.Drawing.Size(55, 21);
             this.textBox28.TabIndex = 59;
@@ -430,7 +440,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("宋体", 15F);
-            this.label38.Location = new System.Drawing.Point(206, 317);
+            this.label38.Location = new System.Drawing.Point(206, 380);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(29, 20);
             this.label38.TabIndex = 58;
@@ -444,7 +454,7 @@
             "白银",
             "铂金",
             "钯金"});
-            this.comboBox5.Location = new System.Drawing.Point(140, 316);
+            this.comboBox5.Location = new System.Drawing.Point(140, 379);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(60, 20);
             this.comboBox5.TabIndex = 57;
@@ -454,7 +464,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("宋体", 15F);
-            this.label39.Location = new System.Drawing.Point(116, 316);
+            this.label39.Location = new System.Drawing.Point(116, 379);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(29, 20);
             this.label39.TabIndex = 56;
@@ -464,7 +474,7 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("宋体", 11F);
-            this.label40.Location = new System.Drawing.Point(29, 341);
+            this.label40.Location = new System.Drawing.Point(29, 404);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(45, 15);
             this.label40.TabIndex = 55;
@@ -474,7 +484,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("宋体", 35F);
-            this.label10.Location = new System.Drawing.Point(80, 250);
+            this.label10.Location = new System.Drawing.Point(80, 313);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 47);
             this.label10.TabIndex = 54;
@@ -482,7 +492,7 @@
             // 
             // textBox21
             // 
-            this.textBox21.Location = new System.Drawing.Point(140, 277);
+            this.textBox21.Location = new System.Drawing.Point(140, 340);
             this.textBox21.Name = "textBox21";
             this.textBox21.Size = new System.Drawing.Size(156, 21);
             this.textBox21.TabIndex = 53;
@@ -490,7 +500,7 @@
             // 
             // textBox22
             // 
-            this.textBox22.Location = new System.Drawing.Point(461, 241);
+            this.textBox22.Location = new System.Drawing.Point(461, 304);
             this.textBox22.Name = "textBox22";
             this.textBox22.Size = new System.Drawing.Size(55, 21);
             this.textBox22.TabIndex = 52;
@@ -499,7 +509,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("宋体", 15F);
-            this.label11.Location = new System.Drawing.Point(426, 242);
+            this.label11.Location = new System.Drawing.Point(426, 305);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(29, 20);
             this.label11.TabIndex = 51;
@@ -507,7 +517,7 @@
             // 
             // textBox23
             // 
-            this.textBox23.Location = new System.Drawing.Point(360, 241);
+            this.textBox23.Location = new System.Drawing.Point(360, 304);
             this.textBox23.Name = "textBox23";
             this.textBox23.Size = new System.Drawing.Size(55, 21);
             this.textBox23.TabIndex = 50;
@@ -516,7 +526,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("宋体", 15F);
-            this.label29.Location = new System.Drawing.Point(325, 242);
+            this.label29.Location = new System.Drawing.Point(325, 305);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(29, 20);
             this.label29.TabIndex = 49;
@@ -526,7 +536,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("宋体", 15F);
-            this.label30.Location = new System.Drawing.Point(302, 241);
+            this.label30.Location = new System.Drawing.Point(302, 304);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(29, 20);
             this.label30.TabIndex = 48;
@@ -534,7 +544,7 @@
             // 
             // textBox24
             // 
-            this.textBox24.Location = new System.Drawing.Point(241, 241);
+            this.textBox24.Location = new System.Drawing.Point(241, 304);
             this.textBox24.Name = "textBox24";
             this.textBox24.Size = new System.Drawing.Size(55, 21);
             this.textBox24.TabIndex = 47;
@@ -543,7 +553,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("宋体", 15F);
-            this.label31.Location = new System.Drawing.Point(206, 242);
+            this.label31.Location = new System.Drawing.Point(206, 305);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(29, 20);
             this.label31.TabIndex = 46;
@@ -557,7 +567,7 @@
             "白银",
             "铂金",
             "钯金"});
-            this.comboBox4.Location = new System.Drawing.Point(140, 241);
+            this.comboBox4.Location = new System.Drawing.Point(140, 304);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(60, 20);
             this.comboBox4.TabIndex = 45;
@@ -567,7 +577,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("宋体", 15F);
-            this.label32.Location = new System.Drawing.Point(116, 241);
+            this.label32.Location = new System.Drawing.Point(116, 304);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(29, 20);
             this.label32.TabIndex = 44;
@@ -577,7 +587,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("宋体", 11F);
-            this.label33.Location = new System.Drawing.Point(29, 266);
+            this.label33.Location = new System.Drawing.Point(29, 329);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(45, 15);
             this.label33.TabIndex = 43;
@@ -587,7 +597,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("宋体", 35F);
-            this.label23.Location = new System.Drawing.Point(80, 174);
+            this.label23.Location = new System.Drawing.Point(80, 237);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(44, 47);
             this.label23.TabIndex = 42;
@@ -595,7 +605,7 @@
             // 
             // textBox17
             // 
-            this.textBox17.Location = new System.Drawing.Point(140, 201);
+            this.textBox17.Location = new System.Drawing.Point(140, 264);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(156, 21);
             this.textBox17.TabIndex = 41;
@@ -603,7 +613,7 @@
             // 
             // textBox18
             // 
-            this.textBox18.Location = new System.Drawing.Point(461, 165);
+            this.textBox18.Location = new System.Drawing.Point(461, 228);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(55, 21);
             this.textBox18.TabIndex = 40;
@@ -612,7 +622,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("宋体", 15F);
-            this.label24.Location = new System.Drawing.Point(426, 166);
+            this.label24.Location = new System.Drawing.Point(426, 229);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(29, 20);
             this.label24.TabIndex = 39;
@@ -620,7 +630,7 @@
             // 
             // textBox19
             // 
-            this.textBox19.Location = new System.Drawing.Point(360, 165);
+            this.textBox19.Location = new System.Drawing.Point(360, 228);
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(55, 21);
             this.textBox19.TabIndex = 38;
@@ -629,7 +639,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("宋体", 15F);
-            this.label25.Location = new System.Drawing.Point(325, 166);
+            this.label25.Location = new System.Drawing.Point(325, 229);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(29, 20);
             this.label25.TabIndex = 37;
@@ -639,7 +649,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("宋体", 15F);
-            this.label26.Location = new System.Drawing.Point(302, 165);
+            this.label26.Location = new System.Drawing.Point(302, 228);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(29, 20);
             this.label26.TabIndex = 36;
@@ -647,7 +657,7 @@
             // 
             // textBox20
             // 
-            this.textBox20.Location = new System.Drawing.Point(241, 165);
+            this.textBox20.Location = new System.Drawing.Point(241, 228);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(55, 21);
             this.textBox20.TabIndex = 35;
@@ -656,7 +666,7 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("宋体", 15F);
-            this.label27.Location = new System.Drawing.Point(206, 166);
+            this.label27.Location = new System.Drawing.Point(206, 229);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(29, 20);
             this.label27.TabIndex = 34;
@@ -670,7 +680,7 @@
             "白银",
             "铂金",
             "钯金"});
-            this.comboBox3.Location = new System.Drawing.Point(140, 165);
+            this.comboBox3.Location = new System.Drawing.Point(140, 228);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(60, 20);
             this.comboBox3.TabIndex = 33;
@@ -680,7 +690,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("宋体", 15F);
-            this.label28.Location = new System.Drawing.Point(116, 165);
+            this.label28.Location = new System.Drawing.Point(116, 228);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(29, 20);
             this.label28.TabIndex = 32;
@@ -904,7 +914,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("宋体", 11F);
-            this.label12.Location = new System.Drawing.Point(29, 190);
+            this.label12.Location = new System.Drawing.Point(29, 253);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(45, 15);
             this.label12.TabIndex = 4;
@@ -917,16 +927,6 @@
             this.textBox12.Size = new System.Drawing.Size(42, 21);
             this.textBox12.TabIndex = 1;
             this.textBox12.Text = "金 料";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(461, 352);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 67;
-            this.button2.Text = "保存";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // timer1
             // 
@@ -953,7 +953,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 645);
+            this.ClientSize = new System.Drawing.Size(605, 720);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

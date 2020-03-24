@@ -34,7 +34,7 @@ namespace 启动程序
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "thw=cn; ali_ab=49.94.92.171.1563332665663.4; _uab_collina=156618524287232013003586; x=e%3D1%26p%3D*%26s%3D0%26c%3D0%26f%3D0%26g%3D0%26t%3D0%26__ll%3D-1%26_ato%3D0; hng=CN%7Czh-CN%7CCNY%7C156; enc=rY0GpAFgrh5bXXfBXutSHaQSm6aOCly2Ov5qI2xvmmRLzA74CWx0R1R%2FH4RXdUTECCRII572ywPqHDXt8ypRKg%3D%3D; cna=8QJMFUu4DhACATFZv2JYDtwd; t=027e7e2bc53b51842bd6d63b5b90ab8a; lgc=zkg852266010; tracknick=zkg852266010; tg=0; mt=ci=63_1; _m_h5_tk=7bc702bcca4431eefd560ecf8a0938ad_1584681947986; _m_h5_tk_enc=a024b195c52b59158251c10a935b6626; cookie2=1644edd26db6fe8f4dbc3e268dff59f3; _tb_token_=e3383353e8033; _samesite_flag_=true; sgcookie=EDkMtym1wc4VCVmSBf9%2FO; unb=1052347548; uc3=lg2=U%2BGCWk%2F75gdr5Q%3D%3D&id2=UoH62EAv27BqSg%3D%3D&nk2=GcOvCmiKUSBXqZNU&vt3=F8dBxd9kpKPnTfpzi80%3D; csg=7f388fbf; cookie17=UoH62EAv27BqSg%3D%3D; dnk=zkg852266010; skt=cda756620c075f46; existShop=MTU4NDY4MTMxNA%3D%3D; uc4=nk4=0%40GwrkntVPltPB9cR46GnfGpyYaNHCZKE%3D&id4=0%40UOnlZ%2FcoxCrIUsehKGOmUFp6RdwI; _cc_=VFC%2FuZ9ajQ%3D%3D; _l_g_=Ug%3D%3D; sg=080; _nk_=zkg852266010; cookie1=Vvj8uMJubtxirKFtxaDmWPxYCP5sb7EKtrFe1w68JDk%3D; tfstk=cDHCBNqKvwbIxDqCTbtaUokNRuwPZcjbVBanAfZq-e2hxonCiEW4oOesZaBTMl1..; v=0; alitrackid=www.taobao.com; lastalitrackid=www.taobao.com; uc1=cookie16=Vq8l%2BKCLySLZMFWHxqs8fwqnEw%3D%3D&pas=0&cookie21=UIHiLt3xSixwH1aenGUFEQ%3D%3D&cookie15=U%2BGCWk%2F75gdr5Q%3D%3D&cookie14=UoTUPvbF7xQkVA%3D%3D&existShop=true; JSESSIONID=52C82B5A65966CCF54F1B40D929BD28A; isg=BMPDN2h5mV7Y7FVQJ2ht_VJQUodtOFd6yQeh2vWhziKZtOHWfQ3EyuliLkT6FK9y; l=dBTc_4AlQLoCc3G3BOfiR42gwx79aIdbzsPrE67l5ICP9pCp5-V5WZ4-A9T9CnGVnsO6R3oWYJ1uBJLlYyCq3Tt-CeE8Ggxqed8h.";
+                string COOKIE = "thw=cn; ali_ab=49.94.92.171.1563332665663.4; x=e%3D1%26p%3D*%26s%3D0%26c%3D0%26f%3D0%26g%3D0%26t%3D0%26__ll%3D-1%26_ato%3D0; hng=CN%7Czh-CN%7CCNY%7C156; enc=rY0GpAFgrh5bXXfBXutSHaQSm6aOCly2Ov5qI2xvmmRLzA74CWx0R1R%2FH4RXdUTECCRII572ywPqHDXt8ypRKg%3D%3D; cna=8QJMFUu4DhACATFZv2JYDtwd; t=027e7e2bc53b51842bd6d63b5b90ab8a; lgc=zkg852266010; tracknick=zkg852266010; tg=0; mt=ci=63_1; supportWebp=false; cookie2=181b7711d7188a4bf736421e46826527; v=0; _tb_token_=383ee4e63403e; _m_h5_tk=eaabe168a8a3da31a078c6669247fae5_1585038353892; _m_h5_tk_enc=197614bc1237cb71b05a49a23fe5899b; _samesite_flag_=true; sgcookie=ERqatv88zb%2BPY8JCJq%2Fjp; unb=1052347548; uc3=vt3=F8dBxd9gD5V4rEegPZI%3D&lg2=Vq8l%2BKCLz3%2F65A%3D%3D&id2=UoH62EAv27BqSg%3D%3D&nk2=GcOvCmiKUSBXqZNU; csg=b1b73a7c; cookie17=UoH62EAv27BqSg%3D%3D; dnk=zkg852266010; skt=dd5b1a74db8ad860; existShop=MTU4NTAzMDQ2NQ%3D%3D; uc4=nk4=0%40GwrkntVPltPB9cR46GnfGp2j032Mblg%3D&id4=0%40UOnlZ%2FcoxCrIUsehKGOnx0nF9v3J; _cc_=Vq8l%2BKCLiw%3D%3D; _l_g_=Ug%3D%3D; sg=080; _nk_=zkg852266010; cookie1=Vvj8uMJubtxirKFtxaDmWPxYCP5sb7EKtrFe1w68JDk%3D; tfstk=cRlNBV4bbCdwNQ9HF7P455uiLs0OZy0io6z7IYuYifzhMyyGiBsYRXj88rZJtRf..; uc1=cookie16=URm48syIJ1yk0MX2J7mAAEhTuw%3D%3D&pas=0&existShop=true&tag=8&cookie15=Vq8l%2BKCLz3%2F65A%3D%3D&lng=zh_CN&cookie21=URm48syIZJfmZ9wVCtpzEQ%3D%3D&cookie14=UoTUP2Kh859I0Q%3D%3D; l=dBTc_4AlQLoCcqlYBOCgd42gwx79vIRAgukoSa2vi_5pN6L_5mbOoP9XRFp6cjWftjLB40tUd_v9-etkwQHmndB81VtX1xDc.; linezing_session=7nVvX8QUXPX7G3Z9oqSTAvmk_1585033747182t5Uv_25; isg=BJKSSWP7GFRKA2RfTuOMmrtr41h0o5Y9kGywFVzrOcUwbzNpRDfcTdCd2cvTBA7V";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "https://shopsearch.taobao.com/search?q=alphastyle%E6%97%97%E8%88%B0%E5%BA%97&js=1&initiative_id=staobaoz_20200320&ie=utf8";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
@@ -95,19 +95,19 @@ namespace 启动程序
                 {
                     if (array[i] != "")
                     {
-                        string url = "https://shopsearch.taobao.com/search?q="+ System.Web.HttpUtility.UrlEncode(array[i])+"&js=1&initiative_id=staobaoz_20200320&ie=utf8";
+                        string url = "http://shop.m.taobao.com/shop/shop_search.htm?q="+array[i]+"&_input_charset=utf-8&topSearch=1&atype=b&sid=&searchfrom=&action=RedirectAppAction&event_submit_do_search_shop=%E6%90%9C+%E7%B4%A2";
                         string html = GetUrl(url,"utf-8");
 
-                        Match userid= Regex.Match(html, @"encryptedUserId\\"":\\""([\s\S]*?)\\""");
-                        Match uid = Regex.Match(html, @"shopUrl"":""\/\/shop([\s\S]*?)\.");
+                        Match userid= Regex.Match(html, @"do\?userid=([\s\S]*?)""");
+                        Match uid = Regex.Match(html, @"shop_id=([\s\S]*?)""");
 
-                        Match sold = Regex.Match(html, @"""totalsold"":([\s\S]*?),");
-                        Match procnt = Regex.Match(html, @"""procnt"":([\s\S]*?),");
+                        Match sold = Regex.Match(html, @"<p class=""d-main"">已售([\s\S]*?)笔</p>");
+                        //Match procnt = Regex.Match(html, @"""procnt"":([\s\S]*?),");
                       
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据  
                         lv1.SubItems.Add(array[i]);
                         lv1.SubItems.Add(sold.Groups[1].Value);
-                        lv1.SubItems.Add(procnt.Groups[1].Value);
+                        lv1.SubItems.Add("无");
                         lv1.SubItems.Add(gettime(userid.Groups[1].Value));
                         lv1.SubItems.Add("无");
                         lv1.SubItems.Add(getcreattime(uid.Groups[1].Value));
