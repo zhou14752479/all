@@ -36,6 +36,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -53,7 +54,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -74,6 +77,9 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.label7);
+            this.splitContainer1.Panel2.Controls.Add(this.textBox7);
+            this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.textBox5);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.textBox6);
@@ -144,9 +150,14 @@
             this.columnHeader6.Text = "链接";
             this.columnHeader6.Width = 300;
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "店铺链接";
+            this.columnHeader7.Width = 300;
+            // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(641, 40);
+            this.textBox5.Location = new System.Drawing.Point(521, 61);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(67, 21);
             this.textBox5.TabIndex = 24;
@@ -156,7 +167,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 11F);
-            this.label5.Location = new System.Drawing.Point(714, 46);
+            this.label5.Location = new System.Drawing.Point(594, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 15);
             this.label5.TabIndex = 23;
@@ -164,7 +175,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(757, 42);
+            this.textBox6.Location = new System.Drawing.Point(637, 63);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(67, 21);
             this.textBox6.TabIndex = 22;
@@ -172,7 +183,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(757, 13);
+            this.textBox4.Location = new System.Drawing.Point(637, 34);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(67, 21);
             this.textBox4.TabIndex = 21;
@@ -182,7 +193,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 11F);
-            this.label4.Location = new System.Drawing.Point(714, 19);
+            this.label4.Location = new System.Drawing.Point(594, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 15);
             this.label4.TabIndex = 20;
@@ -190,7 +201,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(641, 13);
+            this.textBox3.Location = new System.Drawing.Point(521, 34);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(67, 21);
             this.textBox3.TabIndex = 19;
@@ -200,7 +211,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 11F);
-            this.label3.Location = new System.Drawing.Point(567, 42);
+            this.label3.Location = new System.Drawing.Point(447, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 15);
             this.label3.TabIndex = 18;
@@ -210,7 +221,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 11F);
-            this.label2.Location = new System.Drawing.Point(567, 16);
+            this.label2.Location = new System.Drawing.Point(447, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 17;
@@ -219,7 +230,7 @@
             // button5
             // 
             this.button5.ForeColor = System.Drawing.Color.Blue;
-            this.button5.Location = new System.Drawing.Point(745, 103);
+            this.button5.Location = new System.Drawing.Point(745, 80);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(185, 26);
             this.button5.TabIndex = 16;
@@ -230,7 +241,7 @@
             // button4
             // 
             this.button4.ForeColor = System.Drawing.Color.Blue;
-            this.button4.Location = new System.Drawing.Point(745, 71);
+            this.button4.Location = new System.Drawing.Point(745, 48);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(185, 26);
             this.button4.TabIndex = 15;
@@ -264,13 +275,13 @@
             this.textBox2.Location = new System.Drawing.Point(4, 75);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(258, 55);
+            this.textBox2.Size = new System.Drawing.Size(393, 55);
             this.textBox2.TabIndex = 12;
             // 
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.Blue;
-            this.button2.Location = new System.Drawing.Point(554, 103);
+            this.button2.Location = new System.Drawing.Point(745, 110);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(185, 26);
             this.button2.TabIndex = 11;
@@ -281,7 +292,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(554, 69);
+            this.button1.Location = new System.Drawing.Point(745, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(185, 28);
             this.button1.TabIndex = 10;
@@ -301,10 +312,35 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // columnHeader7
+            // label6
             // 
-            this.columnHeader7.Text = "店铺链接";
-            this.columnHeader7.Width = 200;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 11F);
+            this.label6.Location = new System.Drawing.Point(452, 103);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 15);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "每个店铺抓取前：";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox7.Location = new System.Drawing.Point(585, 94);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(61, 25);
+            this.textBox7.TabIndex = 26;
+            this.textBox7.Text = "60";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 11F);
+            this.label7.Location = new System.Drawing.Point(652, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(22, 15);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "个";
             // 
             // jd
             // 
@@ -353,5 +389,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label6;
     }
 }

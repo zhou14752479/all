@@ -16,7 +16,7 @@ namespace 启动程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 淘宝信息());
+            Application.Run(new 宝钢价格());
         }
     }
 }

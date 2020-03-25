@@ -22,7 +22,19 @@ namespace _58二手房
         {
             InitializeComponent();
         }
+        public string getcityId(string city)
+        {
+            string html = GetUrl("https://" + city + ".58.com/");
+            Match value = Regex.Match(html, @"'area':'([\s\S]*?)'");
+            return value.Groups[1].Value;
+        }
 
+        public string getcityname(string city)
+        {
+            string html = GetUrl("https://" + city + ".58.com/");
+            Match value = Regex.Match(html, @"content=""58同城([\s\S]*?)分类");
+            return value.Groups[1].Value;
+        }
         #region GET请求
         /// <summary>
         /// GET请求
@@ -79,7 +91,7 @@ namespace _58二手房
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
                 string COOKIE = "Hm_lvt_c58e42b54acb40ab70d48af7b1ce0d6a=1563157838,1563157854; ASPSESSIONIDSCRDCDQB=NBHMLEHCKHKNFDMPGPGKFPNP; fikker-vMnk-0qnk=nyMU6OJy8iTIpYhmd5bST9RwBSD9TGV1; fikker-vMnk-0qnk=nyMU6OJy8iTIpYhmd5bST9RwBSD9TGV1; fikker-0epN-KaRa=dGd9KSVkZ7VSnSZSrIPidYtMDe0UVLOA; Hm_lvt_a2f6ee5c5c2efc17b10dc0659462df30=1563161043,1563259279,1563259736,1563259814; Hm_lpvt_a2f6ee5c5c2efc17b10dc0659462df30=1563262152";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36";
                 WebProxy proxy = new WebProxy(ip);
                 request.Proxy = proxy;
 
@@ -190,85 +202,78 @@ namespace _58二手房
         }
         bool zanting = true;
         bool status = true;
-       
+
         /// <summary>
-        /// 赶集网
+        /// 手机端列表直接
         /// </summary>
         public void run()
         {
-            
+         
+            getnodes();
 
-            try
-            {
 
-          
             foreach (string city in citys)
             {
-                  
-                        string cityname = "";
+                string cityId = getcityId(city);
+                string cityname = getcityname(city);
 
-                        for (int i = 1; i < Convert.ToInt32(textBox1.Text); i++)
+                for (int i = 2; i < Convert.ToInt32(textBox1.Text); i++)
 
+                {
+                    try
+                    {
+                        string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id=" + cityId + "&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&is_ax_partition=0&entry=11&select_type=0&city_id=" + cityId + "&source_id=2&is_struct=1&page=" + i + "&page_size=41";
+
+                        string html = GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+                        //string html = GetUrl(url);
+                        MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+                        MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
+                        MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
+                        // MatchCollection times = Regex.Matches(html, @"""post_date"":""([\s\S]*?)""");
+                        if (tels.Count == 0)
+                            break;
+
+
+                        for (int j = 0; j < tels.Count; j++)
                         {
-                            try
+
+                            if (!telList.Contains(tels[j].Groups[1].Value))
                             {
-                                string url = "http://" + city + ".ganji.com/ershoufang/0/pn" + i + "/";
-
-                                string html = GetUrlwithIP(url, "tps185.kdlapi.com:15818");
-
-
-                                MatchCollection urls = Regex.Matches(html, @"<dd class=""dd-item title"">([\s\S]*?)<a href=""([\s\S]*?)""");
-
-                                if (urls.Count == 0)
-                                    break;
-
-
-                                for (int j = 0; j < urls.Count; j++)
+                                if (!finishes.Contains(tels[j].Groups[1].Value))
                                 {
-                                    string ahtml = GetUrlwithIP("http:" + urls[j].Groups[2].Value, "tps185.kdlapi.com:15818");
-                                    Match tel = Regex.Match(ahtml, @"<a class=""phone_num([\s\S]*?)>([\s\S]*?)</a>");
-
-                                    if (!telList.Contains(tel.Groups[2].Value))
-                                    {
-                                        if (!finishes.Contains(tel.Groups[2].Value))
-                                        {
-                                            finishes.Add(tel.Groups[1].Value);
-                                            insertdata("INSERT INTO tels (tel) VALUES( '" + tel.Groups[2].Value + "')");
-                                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-
-                                            lv1.SubItems.Add(tel.Groups[2].Value);
-                                            lv1.SubItems.Add("正在抓取" + cityname + "第" + i + "页");
-
-                                            while (this.zanting == false)
-                                            {
-                                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                            }
-
-                                            if (status == false)
-
-                                                return;
-                                        }
-                                    }
-                                }
-
+                                    finishes.Add(tels[j].Groups[1].Value);
+                            insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                            //lv1.SubItems.Add(titles[j].Groups[1].Value);
+                            //lv1.SubItems.Add(names[j].Groups[2].Value);
+                            lv1.SubItems.Add(tels[j].Groups[1].Value);
+                            lv1.SubItems.Add("正在抓取" + cityname + "第" + (i-1) + "页");
+                               //lv1.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value).ToString());
+                                    Thread.Sleep(300);
+                                    while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
-                            catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.ToString());
 
-                        }
+                            if (status == false)
 
+                                return;
+                                }
+                            }
                         }
+                        Thread.Sleep(1000);
                     }
-            
+                    catch
+                    {
+                        continue;
 
-          
-            }
-            catch (Exception ex)
-            {
+                    }
 
-                MessageBox.Show(ex.ToString());
+                }
+
             }
+
+            MessageBox.Show("抓取完成");
 
         }
         private void Button1_Click(object sender, EventArgs e)
@@ -290,6 +295,8 @@ namespace _58二手房
                     
                 }
                 getnodes();
+
+              
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;

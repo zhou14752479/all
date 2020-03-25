@@ -35,7 +35,7 @@ namespace main._2019_9
             this.dataGridView1.DataSource = "";
             this.Ofile.ShowDialog();
             string fileName = this.Ofile.FileName;
-
+            textBox1.Text = fileName;
             if (fileName.Trim().ToUpper().EndsWith("xls"))//判断所要的?展名?型；
             {
                 if (fileName != null && fileName != "")
@@ -61,21 +61,21 @@ namespace main._2019_9
                 }
             }
 
-                if (fileName.Trim().ToUpper().EndsWith("CSV"))//判断所要的?展名?型；
-                {
-                    int ipos = fileName.LastIndexOf("\\");
-                    string filePath = fileName.Substring(0, ipos + 1);
-                    string connStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='text;HDR=YES;FMT=Delimited;'";//有列?的
-                    string commandText = "select * from " + fileName.Replace(filePath, "");//SQL?句；
-                    OleDbConnection olconn = new OleDbConnection(connStr);
-                    olconn.Open();
-                    OleDbDataAdapter odp = new OleDbDataAdapter(commandText, olconn);
-                    DataTable dt = new DataTable();
-                    odp.Fill(dt);
-                    dataGridView1.AutoGenerateColumns = true;//有列?的
-                    dataGridView1.DataSource = dt.DefaultView;//有列?的
+                //if (fileName.Trim().ToUpper().EndsWith("CSV"))//判断所要的?展名?型；
+                //{
+                //    int ipos = fileName.LastIndexOf("\\");
+                //    string filePath = fileName.Substring(0, ipos + 1);
+                //    string connStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='text;HDR=YES;FMT=Delimited;'";//有列?的
+                //    string commandText = "select * from " + fileName.Replace(filePath, "");//SQL?句；
+                //    OleDbConnection olconn = new OleDbConnection(connStr);
+                //    olconn.Open();
+                //    OleDbDataAdapter odp = new OleDbDataAdapter(commandText, olconn);
+                //    DataTable dt = new DataTable();
+                //    odp.Fill(dt);
+                //    dataGridView1.AutoGenerateColumns = true;//有列?的
+                //    dataGridView1.DataSource = dt.DefaultView;//有列?的
 
-                }
+                //}
 
 
             }

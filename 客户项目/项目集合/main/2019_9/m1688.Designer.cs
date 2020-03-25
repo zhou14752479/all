@@ -329,7 +329,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "m1688";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "京东相同标题检测软件";
+            this.Text = "1688相同标题检测软件";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.M1688_FormClosing);
             this.Load += new System.EventHandler(this.m1688_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

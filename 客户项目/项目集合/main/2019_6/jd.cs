@@ -124,7 +124,7 @@ namespace main._2019_6
         }
 
         #endregion
-
+       
 
         #region  手机端
         public void run1()
@@ -137,8 +137,8 @@ namespace main._2019_6
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int a = 0; a < text.Length ; a++)
                 {
-                    
-                        string url = text[a];
+                    int xianzhi = 0;
+                    string url = text[a];
                     textBox2.Text += "正在抓取"+url+"\r\n";
                         Match shopID = Regex.Match(url, @"index-([\s\S]*?)\.");
                     for (int i = 0; i < 999; i++)
@@ -154,6 +154,7 @@ namespace main._2019_6
                         MatchCollection comments = Regex.Matches(html, @"commentcount"": ""([\s\S]*?)""");
                         MatchCollection uids = Regex.Matches(html, @"wareid"": ""([\s\S]*?)""");
                         MatchCollection catids = Regex.Matches(html, @"catid"": ""([\s\S]*?)""");
+                      
 
                         if (Names.Count == 0)
                             break;
@@ -162,14 +163,16 @@ namespace main._2019_6
                         {
                             if (prices[j].Groups[1].Value != "" && comments[j].Groups[1].Value != "" && prices[j].Groups[1].Value != null && comments[j].Groups[1].Value != null)
                             {
-                               
-                                
+                                xianzhi = xianzhi + 1;
+                                if (xianzhi > Convert.ToInt32(textBox7.Text))
+                                    break;
+
                                 bool jiage = Convert.ToDouble(prices[j].Groups[1].Value.Trim()) >= Convert.ToInt32(textBox3.Text) && Convert.ToDouble(prices[j].Groups[1].Value.Trim()) <= Convert.ToInt32(textBox4.Text);
                                 bool pinglun = Convert.ToInt32(comments[j].Groups[1].Value.Trim()) >= Convert.ToInt32(textBox5.Text) && Convert.ToInt32(comments[j].Groups[1].Value.Trim()) <= Convert.ToInt32(textBox6.Text);
 
                                 if (jiage && pinglun)
                                 {
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据      
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据      
                                     lv1.SubItems.Add(Names[j].Groups[1].Value.Trim());
                                     lv1.SubItems.Add(prices[j].Groups[1].Value.Trim());
                                     lv1.SubItems.Add(comments[j].Groups[1].Value.Trim());

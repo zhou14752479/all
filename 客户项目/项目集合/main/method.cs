@@ -420,22 +420,22 @@ namespace main
                 dt.Clear();
                 dt.Columns.Clear();
                 //生成DataTable列头
-                for (i = 0; i < lv.Columns.Count; i++)
+                for (i = 1; i < lv.Columns.Count; i++)
                 {
                     dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
                 }
             //每行内容
-            for (i = 0; i < lv.Items.Count; i++)
+            for (i = 1; i < lv.Items.Count; i++)
             {
               
                     dr = dt.NewRow();
                 for (j = 0; j < lv.Columns.Count; j++)
                 {
-                    dr[j] = lv.Items[i].SubItems[j].Text.Trim();
-                    //dr[0] = lv.Items[i].SubItems[1].Text.Trim();
-                    //dr[1] = lv.Items[i].SubItems[2].Text.Trim();
-                    //dr[2] = lv.Items[i].SubItems[3].Text.Trim();
-                    //dr[3] = lv.Items[i].SubItems[4].Text.Trim();
+                    // dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+                    dr[0] = lv.Items[i].SubItems[1].Text.Trim();
+                    dr[1] = lv.Items[i].SubItems[2].Text.Trim();
+                    dr[2] = lv.Items[i].SubItems[3].Text.Trim();
+                    dr[3] = lv.Items[i].SubItems[4].Text.Trim();
                 }
                     dt.Rows.Add(dr);
                 
@@ -571,7 +571,7 @@ namespace main
         {
      
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            string time = DateTime.Now.ToString("F").Replace(" ", "").Replace(":","");
+            //string time = DateTime.Now.ToString("F").Replace(" ", "").Replace(":","");
             int i = 0;
             int j = 0;
             int count = 0;
@@ -579,8 +579,9 @@ namespace main
             IWorkbook workbook = null;
             FileStream fs = null;
 
-            string fileName = path + title+time + "符合条件.xls";
-           
+            string fileName = path + title + "符合条件.xls";
+            // string fileName = path + title+time + "符合条件.xls";
+
             fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             if (fileName.IndexOf(".xlsx") > 0) // 2007版本
                 workbook = new XSSFWorkbook();
