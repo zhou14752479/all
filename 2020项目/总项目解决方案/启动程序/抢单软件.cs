@@ -135,7 +135,12 @@ namespace 启动程序
                 return;
                
             }
-            textBox3.Text += DateTime.Now.ToString()+ html + "\r\n";
+            if (textBox3.Lines.Length >1000)
+            {
+                textBox3.Text = "";
+            }
+
+                textBox3.Text += DateTime.Now.ToString()+ html + "\r\n";
             textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
             Thread.Sleep(1);
             textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
@@ -148,6 +153,8 @@ namespace 启动程序
             Thread.Sleep(1);
             textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
             return;
+
+           
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -159,6 +166,7 @@ namespace 启动程序
             if (html.Contains(@"qiangdan"))
             {
                 timer1.Start();
+                timer1.Interval = Convert.ToInt32(textBox5.Text);
 
             }
 
