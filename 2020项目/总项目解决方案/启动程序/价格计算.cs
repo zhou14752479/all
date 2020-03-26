@@ -94,13 +94,15 @@ namespace 启动程序
         public static Double price3;
         public static Double price4;
         public static Double price5;
+        public static Double price6;
+
 
         public static Double jieguo1;
         public static Double jieguo2;
         public static Double jieguo3;
         public static Double jieguo4;
         public static Double jieguo5;
-
+        public static Double jieguo6;
 
         #region 获取网站价格
         public void getPrice()
@@ -196,13 +198,6 @@ namespace 启动程序
 
         {
             
-
-
-
-
-
-
-
 
 
 
@@ -307,11 +302,38 @@ namespace 启动程序
 
 
 
+            if (comboBox6.Text.Trim() == "黄金")
+            {
+                price6 = hjPrice;
+            }
+            else if (comboBox6.Text.Trim() == "白银")
+            {
+                price6 = byPrice;
+            }
+            else if (comboBox6.Text.Trim() == "铂金")
+            {
+                price6 = bojPrice;
+            }
+
+            else if (comboBox6.Text.Trim() == "钯金")
+            {
+                price6 = bajPrice;
+            }
+
+
+
+
+
+
+
+
+
             double jisuan1 = (price1 + Convert.ToDouble(textBox7.Text)) * Convert.ToDouble(textBox8.Text) + Convert.ToDouble(textBox9.Text);
             double jisuan2 = (price2 + Convert.ToDouble(textBox15.Text)) * Convert.ToDouble(textBox14.Text) + Convert.ToDouble(textBox13.Text);
             double jisuan3 = (price3 + Convert.ToDouble(textBox20.Text)) * Convert.ToDouble(textBox19.Text) + Convert.ToDouble(textBox18.Text);
             double jisuan4 = (price4 + Convert.ToDouble(textBox24.Text)) * Convert.ToDouble(textBox23.Text) + Convert.ToDouble(textBox22.Text);
             double jisuan5 = (price5 + Convert.ToDouble(textBox28.Text)) * Convert.ToDouble(textBox27.Text) + Convert.ToDouble(textBox26.Text);
+            double jisuan6 = (price6 + Convert.ToDouble(textBox32.Text)) * Convert.ToDouble(textBox31.Text) + Convert.ToDouble(textBox30.Text);
 
 
             //判断人工输入框是否为空
@@ -364,10 +386,41 @@ namespace 启动程序
             }
 
 
-          
+            if (jisuan6 > Convert.ToDouble(textBox29.Text))
+            {
+                jieguo6 = jisuan6;
+            }
+            else
+            {
+                jieguo6 = Convert.ToDouble(textBox29.Text);
+            }
 
-          
-           
+
+
+
+            //保留小数
+            //保留小数
+            //保留小数
+            //if (comboBox7.Text == "0")
+            //{
+            //    jieguo1 = Math.Round(jieguo1, 0);
+            //}
+            //else if (comboBox7.Text == "1")
+            //{
+            //    jieguo1 = Math.Round(jieguo1, 1);
+            //}
+            //else if (comboBox7.Text == "2")
+            //{
+            //    jieguo1 = Math.Round(jieguo1, 2);
+            //}
+
+
+
+
+
+
+
+
 
         }
 

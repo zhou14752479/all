@@ -70,15 +70,10 @@ namespace 美团
         {
             try
             {
-
-
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-
                 //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
-
                 request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/WIFI Language/zh_CN";
                
-
                 request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
@@ -270,46 +265,22 @@ namespace 美团
 
             return lists;
         }
-        #region GET使用代理IP请求
-        /// <summary>
-        /// GET请求
-        /// </summary>
-        /// <param name="Url">网址</param>
-        /// <returns></returns>
-        public static string GetUrlwithIP(string Url, string ip)
-        {
-            try
-            {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "Hm_lvt_c58e42b54acb40ab70d48af7b1ce0d6a=1563157838,1563157854; ASPSESSIONIDSCRDCDQB=NBHMLEHCKHKNFDMPGPGKFPNP; fikker-vMnk-0qnk=nyMU6OJy8iTIpYhmd5bST9RwBSD9TGV1; fikker-vMnk-0qnk=nyMU6OJy8iTIpYhmd5bST9RwBSD9TGV1; fikker-0epN-KaRa=dGd9KSVkZ7VSnSZSrIPidYtMDe0UVLOA; Hm_lvt_a2f6ee5c5c2efc17b10dc0659462df30=1563161043,1563259279,1563259736,1563259814; Hm_lpvt_a2f6ee5c5c2efc17b10dc0659462df30=1563262152";
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1";
-                WebProxy proxy = new WebProxy(ip);
-                request.Proxy = proxy;
+        //if (tell.Groups[1].Value != "")
+        //{
 
-                request.AllowAutoRedirect = true;
-                request.Headers.Add("Cookie", COOKIE);
-                request.KeepAlive = true;
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                request.Timeout = 8000;
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
-
-                string content = reader.ReadToEnd();
-                reader.Close();
-                response.Close();
-                return content;
-
-            }
-            catch (System.Exception ex)
-            {
-                ex.ToString();
-
-            }
-            return "";
-        }
-        #endregion
-
-
+        //    if (yidong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+        //    {
+        //        listViewItem.SubItems.Add("移动");
+        //    }
+        //    if (liantong.Contains(tell.Groups[1].Value.Substring(0, 3)))
+        //    {
+        //        listViewItem.SubItems.Add("联通");
+        //    }
+        //    if (dianxin.Contains(tell.Groups[1].Value.Substring(0, 3)))
+        //    {
+        //        listViewItem.SubItems.Add("电信");
+        //    }
+        //}
 
         #region  主程序
         public void Search()
@@ -325,26 +296,14 @@ namespace 美团
                     return;
                 }
 
-                //if (textBox2.Text.Trim() == "")
-                //{
-                //    MessageBox.Show("请输入关键字!");
-                //    return;
-                //}
-
-
-
-                
-
                 if (textBox2.Text == "")
                 {
                     textBox2.Text =  "美食, 火锅, 烧烤, 麻辣烫, 面包, 蛋糕, 奶茶, 快餐, 面条, 西餐, 中餐,小吃, 自助餐, 烤鱼, 海鲜, 甜点, 炒菜" ;
                 }
 
-
-
                 string[] keywords = textBox2.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
 
-                textBox2.Text = "";
+               
                 foreach (string city in citys)
                 {
 
@@ -353,8 +312,7 @@ namespace 美团
 
                     foreach (string areaId in areas)
                     {
-                       
-                        
+                                   
                         foreach (string keyword in keywords)
 
                         {
@@ -367,20 +325,18 @@ namespace 美团
                                     string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+GetUid(city)+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+GetUid(city)+"&areaId="+areaId;
 
                                     string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-
-                               
-                                    
+                                
                                     MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
                                
                                     ArrayList lists = new ArrayList();
                                     foreach (Match NextMatch in all)
                                     {
 
-                                        //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
-                                        //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
-                                        //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
-                                        lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=false");
+                                    //https://apimobile.meituan.com/group/v1/poi/194905459?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng
+                                    //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
+                                    //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
+                                    //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
+                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=false");  
                                     }
 
                                     if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
@@ -395,7 +351,6 @@ namespace 美团
 
                                     {
 
-
                                         string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
                                         Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
@@ -405,80 +360,30 @@ namespace 美团
                                     if (!tels.Contains(tell.Groups[1].Value))
                                     {
 
-                                        if (checkBox1.Checked == true)
-                                        {
-                                            if (!tell.Groups[1].Value.Contains("-"))
-                                            { 
-                                                tels.Add(tell.Groups[1].Value);
+                                      
                                             ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                             listViewItem.SubItems.Add(name.Groups[1].Value);
                                             listViewItem.SubItems.Add(tell.Groups[1].Value);
                                             listViewItem.SubItems.Add(addr.Groups[1].Value);
                                             listViewItem.SubItems.Add(city);
-                                            if (tell.Groups[1].Value != "")
-                                            {
-
-                                                if (yidong.Contains(tell.Groups[1].Value.Substring(0, 3)))
-                                                {
-                                                    listViewItem.SubItems.Add("移动");
-                                                }
-                                                if (liantong.Contains(tell.Groups[1].Value.Substring(0, 3)))
-                                                {
-                                                    listViewItem.SubItems.Add("联通");
-                                                }
-                                                if (dianxin.Contains(tell.Groups[1].Value.Substring(0, 3)))
-                                                {
-                                                    listViewItem.SubItems.Add("电信");
-                                                }
-                                            }
-                                        }
-                                        }
-
-                                        else
-                                        {
-                                            tels.Add(tell.Groups[1].Value);
-                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                            listViewItem.SubItems.Add(name.Groups[1].Value);
-                                            listViewItem.SubItems.Add(tell.Groups[1].Value);
-                                            listViewItem.SubItems.Add(addr.Groups[1].Value);
-                                            listViewItem.SubItems.Add(city);
-                                            if (tell.Groups[1].Value != "")
-                                            {
-
-                                                if (yidong.Contains(tell.Groups[1].Value.Substring(0, 3)))
-                                                {
-                                                    listViewItem.SubItems.Add("移动");
-                                                }
-                                                if (liantong.Contains(tell.Groups[1].Value.Substring(0, 3)))
-                                                {
-                                                    listViewItem.SubItems.Add("联通");
-                                                }
-                                                if (dianxin.Contains(tell.Groups[1].Value.Substring(0, 3)))
-                                                {
-                                                    listViewItem.SubItems.Add("电信");
-                                                }
-                                            }
-                                        }
-
-
 
 
                                         while (this.zanting == false)
-                                            {
-                                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                            }
-                                            if (status == false)
-                                            {
-                                                return;
-                                            }
-
-                                            Thread.Sleep(1000);
+                                        {
+                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                         }
-                                       
+                                        if (status == false)
+                                        {
+                                            return;
+                                        }
 
-
-                                   
+                                        Thread.Sleep(1000);
                                     }
+
+
+
+
+                                }
 
                                 Thread.Sleep(2000);
                             }

@@ -38,6 +38,11 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -52,11 +57,11 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +71,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(201, 434);
+            this.button5.Location = new System.Drawing.Point(193, 408);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(168, 29);
             this.button5.TabIndex = 38;
@@ -136,137 +141,6 @@
             this.columnHeader1.Text = "序号";
             this.columnHeader1.Width = 40;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 344);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "未开始";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(347, 272);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(62, 23);
-            this.button1.TabIndex = 39;
-            this.button1.Text = "导入";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(201, 398);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(168, 30);
-            this.button3.TabIndex = 36;
-            this.button3.Text = "导出";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(27, 398);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(168, 29);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "开始";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(438, 316);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(329, 22);
-            this.textBox2.TabIndex = 41;
-            this.textBox2.Text = "3876024c48faaa92d8e5327803b0126e";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(436, 301);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 12);
-            this.label2.TabIndex = 42;
-            this.label2.Text = "企查查TOKEN";
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12});
-            this.listView2.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(0, 488);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(936, 185);
-            this.listView2.TabIndex = 43;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "序号";
-            this.columnHeader10.Width = 40;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "名称";
-            this.columnHeader11.Width = 300;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "名称1";
-            this.columnHeader12.Width = 200;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(389, 398);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(168, 30);
-            this.button4.TabIndex = 44;
-            this.button4.Text = "导出文本";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(581, 398);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(168, 30);
-            this.button6.TabIndex = 45;
-            this.button6.Text = "导出cv";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(29, 434);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(71, 29);
-            this.button7.TabIndex = 46;
-            this.button7.Text = "暂停";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(124, 434);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(71, 29);
-            this.button8.TabIndex = 47;
-            this.button8.Text = "继续";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "ID";
@@ -291,11 +165,176 @@
             this.columnHeader6.Text = "链接";
             this.columnHeader6.Width = 1000;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 344);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "输入型号：";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(347, 272);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(62, 23);
+            this.button1.TabIndex = 39;
+            this.button1.Text = "导入";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(193, 372);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(168, 30);
+            this.button3.TabIndex = 36;
+            this.button3.Text = "导出";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(19, 372);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(168, 29);
+            this.button2.TabIndex = 35;
+            this.button2.Text = "开始";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(438, 274);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(329, 22);
+            this.textBox2.TabIndex = 41;
+            this.textBox2.Text = "3876024c48faaa92d8e5327803b0126e";
+            this.textBox2.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(436, 259);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 12);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "企查查TOKEN";
+            this.label2.Visible = false;
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader14});
+            this.listView2.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(0, 455);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(936, 218);
+            this.listView2.TabIndex = 43;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "序号";
+            this.columnHeader10.Width = 40;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Application";
+            this.columnHeader11.Width = 100;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "weight";
+            this.columnHeader12.Width = 100;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(386, 372);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(168, 30);
+            this.button4.TabIndex = 44;
+            this.button4.Text = "导出文本";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(578, 372);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(168, 30);
+            this.button6.TabIndex = 45;
+            this.button6.Text = "导出cv";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(21, 408);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(71, 29);
+            this.button7.TabIndex = 46;
+            this.button7.Text = "暂停";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(116, 408);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(71, 29);
+            this.button8.TabIndex = 47;
+            this.button8.Text = "继续";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "package-size";
+            this.columnHeader7.Width = 100;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "price-ebay";
+            this.columnHeader8.Width = 100;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "price-Amazon";
+            this.columnHeader9.Width = 100;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "price-Aliexpress";
+            this.columnHeader14.Width = 150;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(98, 341);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(342, 21);
+            this.textBox3.TabIndex = 48;
+            // 
             // 抓数据用
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 673);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -349,5 +388,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

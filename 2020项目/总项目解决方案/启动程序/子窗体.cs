@@ -24,6 +24,7 @@ namespace 启动程序
             label6.Text = 价格计算.jieguo3.ToString();
             label7.Text = 价格计算.jieguo4.ToString();
             label8.Text = 价格计算.jieguo5.ToString();
+            label9.Text = 价格计算.jieguo6.ToString();
 
             label1.Text = 价格计算.time+" 停盘";
         }
@@ -47,6 +48,8 @@ namespace 启动程序
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+
+
             价格计算 js = new 价格计算();
             js.Show();
         }

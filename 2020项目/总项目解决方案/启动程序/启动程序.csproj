@@ -96,6 +96,12 @@
     <Compile Include="微博转赞评.Designer.cs">
       <DependentUpon>微博转赞评.cs</DependentUpon>
     </Compile>
+    <Compile Include="抢单软件.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="抢单软件.Designer.cs">
+      <DependentUpon>抢单软件.cs</DependentUpon>
+    </Compile>
     <Compile Include="淘宝信息.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="微博转赞评.resx">
       <DependentUpon>微博转赞评.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="抢单软件.resx">
+      <DependentUpon>抢单软件.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="淘宝信息.resx">
       <DependentUpon>淘宝信息.cs</DependentUpon>

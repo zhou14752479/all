@@ -427,18 +427,22 @@ namespace main
             //每行内容
             for (i = 1; i < lv.Items.Count; i++)
             {
-              
-                    dr = dt.NewRow();
-                for (j = 0; j < lv.Columns.Count; j++)
+                if (lv.Items[i].SubItems[4].Text == "符合条件")
                 {
-                    // dr[j] = lv.Items[i].SubItems[j].Text.Trim();
-                    dr[0] = lv.Items[i].SubItems[1].Text.Trim();
-                    dr[1] = lv.Items[i].SubItems[2].Text.Trim();
-                    dr[2] = lv.Items[i].SubItems[3].Text.Trim();
-                    dr[3] = lv.Items[i].SubItems[4].Text.Trim();
-                }
+
+                    dr = dt.NewRow();
+                    for (j = 0; j < lv.Columns.Count; j++)
+                    {
+
+                        // dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+                        dr[0] = lv.Items[i].SubItems[1].Text.Trim();
+                        dr[1] = lv.Items[i].SubItems[2].Text.Trim();
+                        dr[2] = lv.Items[i].SubItems[3].Text.Trim();
+                        dr[3] = lv.Items[i].SubItems[4].Text.Trim();
+
+                    }
                     dt.Rows.Add(dr);
-                
+                }
 
             }
 

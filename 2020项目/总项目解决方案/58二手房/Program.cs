@@ -16,7 +16,7 @@ namespace _58二手房
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 赶集二手房());
+            Application.Run(new 商家采集());
         }
     }
 }

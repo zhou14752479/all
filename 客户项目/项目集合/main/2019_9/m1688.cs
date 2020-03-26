@@ -61,27 +61,27 @@ namespace main._2019_9
                 }
             }
 
-                //if (fileName.Trim().ToUpper().EndsWith("CSV"))//判断所要的?展名?型；
-                //{
-                //    int ipos = fileName.LastIndexOf("\\");
-                //    string filePath = fileName.Substring(0, ipos + 1);
-                //    string connStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='text;HDR=YES;FMT=Delimited;'";//有列?的
-                //    string commandText = "select * from " + fileName.Replace(filePath, "");//SQL?句；
-                //    OleDbConnection olconn = new OleDbConnection(connStr);
-                //    olconn.Open();
-                //    OleDbDataAdapter odp = new OleDbDataAdapter(commandText, olconn);
-                //    DataTable dt = new DataTable();
-                //    odp.Fill(dt);
-                //    dataGridView1.AutoGenerateColumns = true;//有列?的
-                //    dataGridView1.DataSource = dt.DefaultView;//有列?的
-
-                //}
-
+            if (fileName.Trim().ToUpper().EndsWith("CSV"))//判断所要的?展名?型；
+            {
+                int ipos = fileName.LastIndexOf("\\");
+                string filePath = fileName.Substring(0, ipos + 1);
+                string connStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='text;HDR=YES;FMT=Delimited;'";//有列?的
+                string commandText = "select * from " + fileName.Replace(filePath, "");//SQL?句；
+                OleDbConnection olconn = new OleDbConnection(connStr);
+                olconn.Open();
+                OleDbDataAdapter odp = new OleDbDataAdapter(commandText, olconn);
+                DataTable dt = new DataTable();
+                odp.Fill(dt);
+                dataGridView1.AutoGenerateColumns = true;//有列?的
+                dataGridView1.DataSource = dt.DefaultView;//有列?的
 
             }
+
+
+        }
         bool zanting = true;
         #region  1688
-        public void run()
+        public void run1688()
         {
             try
             {
@@ -238,7 +238,7 @@ namespace main._2019_9
         {
             button1.Enabled = false;
 
-            Thread thread = new Thread(new ThreadStart(jd));
+            Thread thread = new Thread(new ThreadStart(run1688));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
         }
