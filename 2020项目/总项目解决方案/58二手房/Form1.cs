@@ -215,7 +215,7 @@ namespace _58二手房
                 string COOKIE = "uid=; apn=\"WWAN\"; id58=e87rZV59klVl+fsBEuUpAg==; 58openudid=\"A0659638 - A5A8 - 4068 - 8BF0 - 4F59C28ED81B\"; 58ua=58app; Accept-Encoding=\"deflate,gzip\"; channelid=\"80000\"; charset=\"UTF - 8\"; cid=\"2350\"; cimei=\"0f607264fc6318a92b9e13c65db7cd3c\"; coordinatesystem=GCJ-02; cversion=\"9.7.1\"; dirname=\"suqian\"; f=\"58\"; locationaccuracy=65.000000; ltext=\" % E5 % AE % BF % E8 % BF % 81 -% E5 % AE % BF % E5 % 9F % 8E\"; m=\"0f607264fc6318a92b9e13c65db7cd3c\"; mcity=\"2350\"; netType=4g; openudid=\"bc7859f092322c90d7919f0427f7552e9a07154b\"; os=\"ios\"; osv=\"12.3.1\"; platform=\"iphone\"; productorid=\"3\"; r=\"414_736\"; sid=\"0\"; tokenid=8d0823fddf07e56c07f61c75bced60d1bd57de286ec7aba2e880386fe11321cd; ua=\"iPhone 7P_iOS 12.3.1\"; uploadtime=\"20200327134226\"; uuid=\"4B910935 - EB59 - 4535 - ACBF - CEB9E77C7AE1\"; webviewType=\"wkwebview\"; lat=\"33.965890\"; locationstate=\"1\"; lon=\"118.286450\"; maptype=\"1\"; owner=\"google\"; messId=cdfd51df-2e32-4e81-9fed-c9ee466cf5da";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1";
-                request.UserAgent = " 58tongcheng/9.7.1 (iPhone; iOS 12.3.1; Scale/3.00)";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.12(0x17000c23) NetType/4G Language/zh_CN";
                 WebProxy proxy = new WebProxy(ip);
 
                 request.Proxy = proxy;
@@ -337,7 +337,7 @@ namespace _58二手房
                 {
                     try
                     {
-                        string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id="+cityId+"&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&page="+i+"&page_size=41&city_id="+cityId+"&is_ax_partition=0&select_type=0&entry=11&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&lat=33.961416&source_id=2&lng=118.274390&is_struct=1";
+                        string url = "https://miniapp.58.com/sale/property/list?cid="+cityId+"&from=58_ershoufang&app=i-wb&platform=ios&b=iPhone&s=iOS12.3.1&t=1585296563&cv=5.0&wcv=5.0&wv=7.0.12&sv=2.10.3&batteryLevel=69&muid=33369ab43c140f725624e8ed4aa4ccaf&weapp_version=1.0.0&user_id=&oid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&udid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&page="+i+"&page_size=25&open_id=&union_id=&token=&source_id=2&orderby=6&entry=1003&city_id="+cityId;
                         
                        string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
                         //string html = GetUrl(url);
