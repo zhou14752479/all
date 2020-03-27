@@ -320,7 +320,7 @@ namespace 主程序
             
             return geshu;
         }
-        #region run1
+        #region run1  
         public void run1()
         {
             if (textBox1.Text == "")
@@ -353,10 +353,12 @@ namespace 主程序
                 label8.Text = "正在分析" + resultList[i];
                 label9.Text = "正在分析" + resultList[i];
                 label10.Text = "正在分析" + resultList[i];
-                if (value >4 && shuru!= resultList[i].ToString())
+                if (value >5 && shuru!= resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count+1).ToString()+":"+ resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));  
+                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 10, 10));
+                    ListViewItem lv3 = listView3.Items.Add((listView3.Items.Count+1).ToString()+":"+ resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
+                    ListViewItem lv4 = listView4.Items.Add((listView4.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 2, 2));
                     button2.Enabled = true;
                 }
 

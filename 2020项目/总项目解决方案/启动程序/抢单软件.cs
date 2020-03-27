@@ -135,23 +135,24 @@ namespace 启动程序
                 return;
                
             }
-            if (textBox3.Lines.Length >1000)
+            if (textBox3.Lines.Length >20)
             {
                 textBox3.Text = "";
             }
 
                 textBox3.Text += DateTime.Now.ToString()+ html + "\r\n";
             textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
-            Thread.Sleep(1);
+            
+            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
+            
+            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
+            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
+            
+            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
+            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
+            
             textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
             Thread.Sleep(1);
-            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
-            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
-            Thread.Sleep(1);
-            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
-            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
-            Thread.Sleep(1);
-            textBox3.Text += DateTime.Now.ToString() + html + "\r\n";
             return;
 
            
@@ -187,7 +188,7 @@ namespace 启动程序
             Thread thread1 = new Thread(new ThreadStart(run));
             thread1.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
-
+           
 
 
         }

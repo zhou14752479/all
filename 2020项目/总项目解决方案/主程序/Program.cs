@@ -16,7 +16,7 @@ namespace 主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 数据管理());
+            Application.Run(new Form1());
         }
     }
 }

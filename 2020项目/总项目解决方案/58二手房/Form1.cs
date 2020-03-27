@@ -212,10 +212,12 @@ namespace _58二手房
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "Hm_lvt_c58e42b54acb40ab70d48af7b1ce0d6a=1563157838,1563157854; ASPSESSIONIDSCRDCDQB=NBHMLEHCKHKNFDMPGPGKFPNP; fikker-vMnk-0qnk=nyMU6OJy8iTIpYhmd5bST9RwBSD9TGV1; fikker-vMnk-0qnk=nyMU6OJy8iTIpYhmd5bST9RwBSD9TGV1; fikker-0epN-KaRa=dGd9KSVkZ7VSnSZSrIPidYtMDe0UVLOA; Hm_lvt_a2f6ee5c5c2efc17b10dc0659462df30=1563161043,1563259279,1563259736,1563259814; Hm_lpvt_a2f6ee5c5c2efc17b10dc0659462df30=1563262152";
+                string COOKIE = "uid=; apn=\"WWAN\"; id58=e87rZV59klVl+fsBEuUpAg==; 58openudid=\"A0659638 - A5A8 - 4068 - 8BF0 - 4F59C28ED81B\"; 58ua=58app; Accept-Encoding=\"deflate,gzip\"; channelid=\"80000\"; charset=\"UTF - 8\"; cid=\"2350\"; cimei=\"0f607264fc6318a92b9e13c65db7cd3c\"; coordinatesystem=GCJ-02; cversion=\"9.7.1\"; dirname=\"suqian\"; f=\"58\"; locationaccuracy=65.000000; ltext=\" % E5 % AE % BF % E8 % BF % 81 -% E5 % AE % BF % E5 % 9F % 8E\"; m=\"0f607264fc6318a92b9e13c65db7cd3c\"; mcity=\"2350\"; netType=4g; openudid=\"bc7859f092322c90d7919f0427f7552e9a07154b\"; os=\"ios\"; osv=\"12.3.1\"; platform=\"iphone\"; productorid=\"3\"; r=\"414_736\"; sid=\"0\"; tokenid=8d0823fddf07e56c07f61c75bced60d1bd57de286ec7aba2e880386fe11321cd; ua=\"iPhone 7P_iOS 12.3.1\"; uploadtime=\"20200327134226\"; uuid=\"4B910935 - EB59 - 4535 - ACBF - CEB9E77C7AE1\"; webviewType=\"wkwebview\"; lat=\"33.965890\"; locationstate=\"1\"; lon=\"118.286450\"; maptype=\"1\"; owner=\"google\"; messId=cdfd51df-2e32-4e81-9fed-c9ee466cf5da";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1";
+                //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1";
+                request.UserAgent = " 58tongcheng/9.7.1 (iPhone; iOS 12.3.1; Scale/3.00)";
                 WebProxy proxy = new WebProxy(ip);
+
                 request.Proxy = proxy;
 
                 request.AllowAutoRedirect = true;
@@ -317,7 +319,11 @@ namespace _58二手房
         /// </summary>
         public void  mobilerun()
         {
-           // getdata();
+            if (checkBox1.Checked == true)
+            {
+                 getdata();
+            }
+
             getnodes();
 
 
@@ -331,10 +337,11 @@ namespace _58二手房
                 {
                     try
                     {
-                        string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id="+cityId+ "&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&is_ax_partition=0&entry=11&select_type=0&city_id=" + cityId + "&source_id=2&is_struct=1&page=" + i+"&page_size=41";
-
+                        string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id="+cityId+"&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&page="+i+"&page_size=41&city_id="+cityId+"&is_ax_partition=0&select_type=0&entry=11&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&lat=33.961416&source_id=2&lng=118.274390&is_struct=1";
+                        
                        string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
                         //string html = GetUrl(url);
+                        
                         MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
                         MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
                         MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
@@ -346,12 +353,12 @@ namespace _58二手房
                         for (int j = 0; j < tels.Count; j++)
                         {
 
-                            //if (!telList.Contains(tels[j].Groups[1].Value))
-                            //{
-                            //    if (!finishes.Contains(tels[j].Groups[1].Value))
-                            //    {
+                            if (!telList.Contains(tels[j].Groups[1].Value))
+                            {
+                                if (!finishes.Contains(tels[j].Groups[1].Value))
+                                {
                                     finishes.Add(tels[j].Groups[1].Value);
-                                   // insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                                   insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                                     lv1.SubItems.Add(titles[j].Groups[1].Value);
                                     lv1.SubItems.Add(names[j].Groups[2].Value);
@@ -366,8 +373,8 @@ namespace _58二手房
                                     if (status == false)
 
                                         return;
-                            //    }
-                            //}
+                                }
+                            }
                         }
                         Thread.Sleep(1000);
                     }

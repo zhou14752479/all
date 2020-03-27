@@ -224,8 +224,8 @@ namespace _58二手房
 
                     try
                     {
-                        string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id=" + cityId + "&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&is_ax_partition=0&entry=11&select_type=0&city_id=" + cityId + "&source_id=2&is_struct=1&page=" + i + "&page_size=41";
-                       
+                        string url = "https://appsale.58.com/mobile/v5/sale/property/list?ajk_city_id=" + cityId + "&app=i-wb&udid2=bc7859f092322c90d7919f0427f7552e9a07154b&v=12.3.1&page=" + i + "&page_size=41&city_id=" + cityId + "&is_ax_partition=0&select_type=0&entry=11&uuid=bc7859f092322c90d7919f0427f7552e9a07154b&lat=33.961416&source_id=2&lng=118.274390&is_struct=1";
+
                         string html = GetUrlwithIP(url, "tps185.kdlapi.com:15818");
                         //string html = GetUrl(url);
                         MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");

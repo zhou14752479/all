@@ -1,4 +1,4 @@
-ctrl+ALT+++空格
+ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
 
 一、Unicode转中文
 
