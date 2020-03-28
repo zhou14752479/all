@@ -63,6 +63,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -87,6 +88,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(243, 21);
             this.textBox2.TabIndex = 3;
+            this.textBox2.Text = "83885e9c12dde6e000f343e2166c436c";
             // 
             // label2
             // 
@@ -103,6 +105,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 21);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "60397";
             // 
             // label1
             // 
@@ -144,6 +147,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(57, 21);
             this.textBox5.TabIndex = 5;
+            this.textBox5.Text = "688479";
             // 
             // label6
             // 
@@ -156,10 +160,11 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(186, 18);
+            this.textBox3.Location = new System.Drawing.Point(72, 18);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(57, 21);
             this.textBox3.TabIndex = 3;
+            this.textBox3.Text = "772028";
             // 
             // label4
             // 
@@ -172,10 +177,11 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(72, 18);
+            this.textBox4.Location = new System.Drawing.Point(186, 18);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(57, 21);
             this.textBox4.TabIndex = 1;
+            this.textBox4.Text = "688465";
             // 
             // label5
             // 
@@ -203,7 +209,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(303, 18);
+            this.textBox6.Location = new System.Drawing.Point(72, 18);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(57, 21);
             this.textBox6.TabIndex = 5;
@@ -235,7 +241,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(72, 18);
+            this.textBox8.Location = new System.Drawing.Point(303, 18);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(57, 21);
             this.textBox8.TabIndex = 1;
@@ -329,6 +335,7 @@
             this.button3.TabIndex = 42;
             this.button3.Text = "开始/暂停";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // listView2
             // 
@@ -367,11 +374,20 @@
             this.columnHeader10.Text = "运行状态";
             this.columnHeader10.Width = 500;
             // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(270, 212);
+            this.textBox9.Multiline = true;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(328, 85);
+            this.textBox9.TabIndex = 44;
+            // 
             // 微博转赞评
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 584);
+            this.Controls.Add(this.textBox9);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -434,5 +450,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }

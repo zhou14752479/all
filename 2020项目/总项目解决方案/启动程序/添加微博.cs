@@ -16,7 +16,7 @@ namespace 启动程序
         {
             InitializeComponent();
         }
-        public static string beizhu ;
+        public static string beizhu="" ;
         public static string url;
         public static string jishua;
         public static string rengong;
@@ -45,9 +45,9 @@ namespace 启动程序
            
         }
 
+        private void 添加微博_Load(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }

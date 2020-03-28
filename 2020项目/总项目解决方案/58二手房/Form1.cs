@@ -173,7 +173,7 @@ namespace _58二手房
                string COOKIE = "Hm_lvt_295da9254bbc2518107d846e1641908e=1582933513,1582983468; 58tj_uuid=6af0cab4-7088-4082-b9f8-7c7438d6ab59; new_uv=2; wmda_new_uuid=1; wmda_uuid=81b63df3f3c3e53f507fd2a66fea6a34; wmda_visited_projects=%3B6333604277682; m58comvp=t29v115.159.229.19; als=0; id58=e87rZV5ZpeYPc5QcCxJKAg==";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "";
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.12(0x17000c23) NetType/4G Language/zh_CN";
 
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
@@ -339,8 +339,8 @@ namespace _58二手房
                     {
                         string url = "https://miniapp.58.com/sale/property/list?cid="+cityId+"&from=58_ershoufang&app=i-wb&platform=ios&b=iPhone&s=iOS12.3.1&t=1585296563&cv=5.0&wcv=5.0&wv=7.0.12&sv=2.10.3&batteryLevel=69&muid=33369ab43c140f725624e8ed4aa4ccaf&weapp_version=1.0.0&user_id=&oid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&udid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&page="+i+"&page_size=25&open_id=&union_id=&token=&source_id=2&orderby=6&entry=1003&city_id="+cityId;
                         
-                       string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
-                        //string html = GetUrl(url);
+                      // string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+                        string html = GetUrl(url);
                         
                         MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
                         MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
@@ -353,12 +353,12 @@ namespace _58二手房
                         for (int j = 0; j < tels.Count; j++)
                         {
 
-                            if (!telList.Contains(tels[j].Groups[1].Value))
-                            {
-                                if (!finishes.Contains(tels[j].Groups[1].Value))
-                                {
+                            //if (!telList.Contains(tels[j].Groups[1].Value))
+                            //{
+                            //    if (!finishes.Contains(tels[j].Groups[1].Value))
+                            //    {
                                     finishes.Add(tels[j].Groups[1].Value);
-                                   insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                                  // insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                                     lv1.SubItems.Add(titles[j].Groups[1].Value);
                                     lv1.SubItems.Add(names[j].Groups[2].Value);
@@ -373,10 +373,10 @@ namespace _58二手房
                                     if (status == false)
 
                                         return;
-                                }
-                            }
+                            //    }
+                            //}
                         }
-                        Thread.Sleep(1000);
+                        Thread.Sleep(3500);
                     }
                     catch 
                     {
@@ -483,6 +483,19 @@ namespace _58二手房
         private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

@@ -33,37 +33,13 @@ namespace 美团
         private void Form1_Load(object sender, EventArgs e)
         {
            
-            getCityName();
+          
             label3.Text = username;
            
         }
 
         bool status = true;
-        #region 获取数据库美团城市名称
-        public void getCityName()
-        {
-            ArrayList list = new ArrayList();
-            try
-            {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                string str = "SELECT name from meituan_province_city ";
-                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                DataTable dt = ds.Tables[0];
-                foreach (DataRow dr in dt.Rows)
-                {
-                    list.Add(dr[0].ToString().Trim());
-                }
-            }
-            catch (MySqlException ee)
-            {
-                MessageBox.Show(ee.Message.ToString());
-            }
-            comboBox1.DataSource = list;
-
-        }
-        #endregion
+        
 
         #region GET请求
         public static string meituan_GetUrl(string Url)
@@ -132,33 +108,18 @@ namespace 美团
         }
         #endregion
 
-        #region  获取数据库中城市名称对应的ID
+        #region  获取城市ID
 
-        public string GetUid(string city)
+        public string GetcityId(string city)
         {
 
             try
             {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
+                string url = "https://apimobile.meituan.com/group/v1/area/search/"+ System.Web.HttpUtility.UrlEncode(city);
+                string html = GetUrl(url);
+                Match cityId = Regex.Match(html, @"""cityId"":([\s\S]*?),");
 
-                MySqlCommand cmd = new MySqlCommand("select uid from meituan_province_city where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                if (reader.Read())
-                {
-
-                    string citypinyin = reader["uid"].ToString().Trim();
-                    return citypinyin;
-                }
-                mycon.Close();
-                reader.Close();
-                return "";
-
-
+                return cityId.Groups[1].Value;
             }
 
             catch (System.Exception ex)
@@ -166,38 +127,22 @@ namespace 美团
                 return ex.ToString();
             }
 
-
         }
 
         #endregion
 
-        #region  获取数据库中城市名称对应的拼音
+        #region  获取城市拼音缩写
 
         public string Getsuoxie(string city)
         {
 
             try
             {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
+                string url = "https://apimobile.meituan.com/group/v1/area/search/"+System.Web.HttpUtility.UrlEncode(city);
+                string html = GetUrl(url);
+                Match suoxie = Regex.Match(html, @"""cityAcronym"":""([\s\S]*?)""");
 
-                MySqlCommand cmd = new MySqlCommand("select suoxie from meituan_province_city where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                if (reader.Read())
-                {
-
-                    string citypinyin = reader["suoxie"].ToString().Trim();
-                    return citypinyin;
-                }
-                mycon.Close();
-                reader.Close();
-                return "";
-
-
+                return suoxie.Groups[1].Value;
             }
 
             catch (System.Exception ex)
@@ -210,45 +155,8 @@ namespace 美团
 
         #endregion
 
-        #region  获取数据库中城市名称对应的全拼
 
-        public string GetPinyin(string city)
-        {
-
-            try
-            {
-                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-                MySqlCommand cmd = new MySqlCommand("select pinyin from meituan_province_city where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                if (reader.Read())
-                {
-
-                    string citypinyin = reader["pinyin"].ToString().Trim();
-                    return citypinyin;
-                }
-                mycon.Close();
-                reader.Close();
-                return "";
-
-
-            }
-
-            catch (System.Exception ex)
-            {
-                return ex.ToString();
-            }
-
-
-        }
-
-        #endregion
-
+        #region 获取区域
         public ArrayList getareas(string city)
         {
             string Url = "https://"+city+".meituan.com/meishi/";
@@ -265,6 +173,9 @@ namespace 美团
 
             return lists;
         }
+
+        #endregion
+
         //if (tell.Groups[1].Value != "")
         //{
 
@@ -283,7 +194,7 @@ namespace 美团
         //}
 
         #region  主程序
-        public void Search()
+        public void run()
         {
 
             try
@@ -308,11 +219,11 @@ namespace 美团
                 {
 
                     ArrayList areas = getareas(Getsuoxie(city));
-                    string quanpin = GetPinyin(city);
-
+                    
+                    string cityId = GetcityId(city);
                     foreach (string areaId in areas)
                     {
-                                   
+                        
                         foreach (string keyword in keywords)
 
                         {
@@ -322,8 +233,9 @@ namespace 美团
                             {
                              
                                
-                                    string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+GetUid(city)+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+GetUid(city)+"&areaId="+areaId;
+                                    string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+cityId+"&areaId="+ areaId;
 
+                               
                                     string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
                                 
                                     MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
@@ -498,7 +410,7 @@ namespace 美团
 
             status = true;
                 button1.Enabled = false;
-                Thread search_thread = new Thread(new ThreadStart(this.Search));
+                Thread search_thread = new Thread(new ThreadStart(run));
                 Control.CheckForIllegalCrossThreadCalls = false;
                 search_thread.Start();
 
@@ -522,10 +434,7 @@ namespace 美团
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBox1.Text += comboBox1.SelectedItem.ToString() + ",";
-        }
+     
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
