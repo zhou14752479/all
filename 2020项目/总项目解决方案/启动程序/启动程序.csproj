@@ -114,6 +114,12 @@
     <Compile Include="添加微博.Designer.cs">
       <DependentUpon>添加微博.cs</DependentUpon>
     </Compile>
+    <Compile Include="电商抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="电商抓取.Designer.cs">
+      <DependentUpon>电商抓取.cs</DependentUpon>
+    </Compile>
     <Compile Include="票据网.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="添加微博.resx">
       <DependentUpon>添加微博.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="电商抓取.resx">
+      <DependentUpon>电商抓取.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="票据网.resx">
       <DependentUpon>票据网.cs</DependentUpon>

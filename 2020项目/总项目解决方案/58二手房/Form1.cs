@@ -194,7 +194,7 @@ namespace _58二手房
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
 
             }
             return "";
@@ -339,8 +339,8 @@ namespace _58二手房
                     {
                         string url = "https://miniapp.58.com/sale/property/list?cid="+cityId+"&from=58_ershoufang&app=i-wb&platform=ios&b=iPhone&s=iOS12.3.1&t=1585296563&cv=5.0&wcv=5.0&wv=7.0.12&sv=2.10.3&batteryLevel=69&muid=33369ab43c140f725624e8ed4aa4ccaf&weapp_version=1.0.0&user_id=&oid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&udid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&page="+i+"&page_size=25&open_id=&union_id=&token=&source_id=2&orderby=6&entry=1003&city_id="+cityId;
                         
-                      // string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
-                        string html = GetUrl(url);
+                       string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+                      //  string html = GetUrl(url);
                         
                         MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
                         MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
@@ -353,12 +353,12 @@ namespace _58二手房
                         for (int j = 0; j < tels.Count; j++)
                         {
 
-                            //if (!telList.Contains(tels[j].Groups[1].Value))
-                            //{
-                            //    if (!finishes.Contains(tels[j].Groups[1].Value))
-                            //    {
+                            if (!telList.Contains(tels[j].Groups[1].Value))
+                            {
+                                if (!finishes.Contains(tels[j].Groups[1].Value))
+                                {
                                     finishes.Add(tels[j].Groups[1].Value);
-                                  // insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                                   insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                                     lv1.SubItems.Add(titles[j].Groups[1].Value);
                                     lv1.SubItems.Add(names[j].Groups[2].Value);
@@ -373,8 +373,8 @@ namespace _58二手房
                                     if (status == false)
 
                                         return;
-                            //    }
-                            //}
+                                }
+                            }
                         }
                         Thread.Sleep(3500);
                     }
