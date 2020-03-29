@@ -101,17 +101,17 @@ namespace _58二手房
             
             if (radioButton1.Checked == true)
             {
-                page = 1;
+                page = 3;
                
             }
             else if (radioButton2.Checked == true)
             {
-                page = 5;
+                page = 10;
 
             }
            else  if (radioButton3.Checked == true)
             {
-                page = 10;
+                page = 20;
 
             }
 
