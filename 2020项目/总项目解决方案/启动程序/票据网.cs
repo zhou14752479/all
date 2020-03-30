@@ -117,9 +117,10 @@ namespace 启动程序
             string postdata = "{\"SOURCE\":\"HTML\",\"VERSION\":\"3.5\",\"CHANNEL\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+ paytype + ",\"endorseId\":"+ endorseId + ",\"yearRate\":"+yearrate+",\"dealPrice\":"+ dealPrice + ",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false}";
 
 
-            textBox1.Text = postdata;
+            
             string html = PostUrl(url, postdata, cookie, "utf-8");
-            MessageBox.Show(html);
+            textBox6.Text += DateTime.Now.ToString()+"："+ html + "\r\n";
+            //MessageBox.Show(html);
         }
 
 
