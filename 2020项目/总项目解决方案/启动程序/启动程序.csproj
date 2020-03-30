@@ -192,6 +192,9 @@
     <EmbeddedResource Include="电商抓取.resx">
       <DependentUpon>电商抓取.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="社保查询.resx">
+      <DependentUpon>社保查询.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="票据网.resx">
       <DependentUpon>票据网.cs</DependentUpon>
     </EmbeddedResource>

@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -960,5 +961,24 @@ namespace helper
             }
             return mode;
         }
+
+
+        #region  获取32位MD5加密
+        public static string GetMD5(string myString)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = System.Text.Encoding.UTF8.GetBytes(myString);//
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x");
+            }
+
+            return byte2String;
+        }
+
+        #endregion
     }
 }
