@@ -30,7 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.radioButton23 = new System.Windows.Forms.RadioButton();
             this.radioButton22 = new System.Windows.Forms.RadioButton();
             this.radioButton21 = new System.Windows.Forms.RadioButton();
@@ -88,17 +99,8 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -118,6 +120,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.linkLabel1);
             this.splitContainer1.Panel1.Controls.Add(this.label14);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
@@ -130,6 +133,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(1239, 737);
             this.splitContainer1.SplitterDistance = 273;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("宋体", 10F);
+            this.label14.Location = new System.Drawing.Point(732, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(147, 14);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "承兑人类型(空格隔开)";
             // 
             // groupBox1
             // 
@@ -188,6 +201,93 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "筛选(默认全部)";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("宋体", 11F);
+            this.label13.Location = new System.Drawing.Point(391, 224);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(22, 15);
+            this.label13.TabIndex = 48;
+            this.label13.Text = "元";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox5.Location = new System.Drawing.Point(341, 221);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(44, 24);
+            this.textBox5.TabIndex = 47;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("宋体", 11F);
+            this.label12.Location = new System.Drawing.Point(216, 228);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(121, 15);
+            this.label12.TabIndex = 46;
+            this.label12.Text = "%+ 每十万手续费";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox4.Location = new System.Drawing.Point(160, 224);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(44, 24);
+            this.textBox4.TabIndex = 45;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("宋体", 11F);
+            this.label11.Location = new System.Drawing.Point(125, 227);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 15);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "年化";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(676, 138);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(17, 12);
+            this.label10.TabIndex = 43;
+            this.label10.Text = "万";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(626, 130);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(44, 21);
+            this.textBox3.TabIndex = 42;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(603, 133);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(17, 12);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "至";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(587, 137);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(17, 12);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "万";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(537, 129);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(44, 21);
+            this.textBox2.TabIndex = 39;
             // 
             // radioButton23
             // 
@@ -765,102 +865,20 @@
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // textBox2
+            // linkLabel1
             // 
-            this.textBox2.Location = new System.Drawing.Point(537, 129);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(44, 21);
-            this.textBox2.TabIndex = 39;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(735, 81);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "导入文本";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
-            // label8
+            // openFileDialog1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(587, 137);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(17, 12);
-            this.label8.TabIndex = 40;
-            this.label8.Text = "万";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(603, 133);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(17, 12);
-            this.label9.TabIndex = 41;
-            this.label9.Text = "至";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(676, 138);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(17, 12);
-            this.label10.TabIndex = 43;
-            this.label10.Text = "万";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(626, 130);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(44, 21);
-            this.textBox3.TabIndex = 42;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("宋体", 11F);
-            this.label11.Location = new System.Drawing.Point(125, 227);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 15);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "年化";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox4.Location = new System.Drawing.Point(160, 224);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(44, 24);
-            this.textBox4.TabIndex = 45;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("宋体", 11F);
-            this.label12.Location = new System.Drawing.Point(216, 228);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(121, 15);
-            this.label12.TabIndex = 46;
-            this.label12.Text = "%+ 每十万手续费";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox5.Location = new System.Drawing.Point(341, 221);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(44, 24);
-            this.textBox5.TabIndex = 47;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("宋体", 11F);
-            this.label13.Location = new System.Drawing.Point(391, 224);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(22, 15);
-            this.label13.TabIndex = 48;
-            this.label13.Text = "元";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("宋体", 10F);
-            this.label14.Location = new System.Drawing.Point(732, 28);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(147, 14);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "承兑人类型(空格隔开)";
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // 票据网
             // 
@@ -958,5 +976,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

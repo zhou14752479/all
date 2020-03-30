@@ -920,7 +920,7 @@
             // skinTreeView1
             // 
             this.skinTreeView1.Font = new System.Drawing.Font("宋体", 10F);
-            this.skinTreeView1.Location = new System.Drawing.Point(370, 112);
+            this.skinTreeView1.Location = new System.Drawing.Point(406, 106);
             this.skinTreeView1.Name = "skinTreeView1";
             treeNode1.Name = "bj";
             treeNode1.Text = "北京市";

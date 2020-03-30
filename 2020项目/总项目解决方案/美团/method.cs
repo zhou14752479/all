@@ -334,11 +334,11 @@ namespace 美团
                     List<string> list = new List<string>();
                     foreach (ListViewItem item in listview.Items)
                     {
-                    //for (int i = 0; i < item.SubItems.Count; i++)
-                    //{
-                    //    list.Add(item.SubItems[i].Text + "，");
-                    //}
-                    list.Add(item.SubItems[2].Text);
+                    for (int i = 0; i < item.SubItems.Count; i++)
+                    {
+                        list.Add(item.SubItems[i].Text + "#");
+                    }
+                    // list.Add(item.SubItems[2].Text);
                 }
                     Thread thexp = new Thread(() => export(list)) { IsBackground = true };
                     thexp.Start();

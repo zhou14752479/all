@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -114,7 +115,9 @@ namespace 启动程序
             string dealPrice = getdealPrice(ticketId);
             string url = "https://www.tcpjw.com/order-web/orderFlow/quoteOrder";
             string postdata = "{\"SOURCE\":\"HTML\",\"VERSION\":\"3.5\",\"CHANNEL\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+ paytype + ",\"endorseId\":"+ endorseId + ",\"yearRate\":"+yearrate+",\"dealPrice\":"+ dealPrice + ",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false}";
-           
+
+
+            textBox1.Text = postdata;
             string html = PostUrl(url, postdata, cookie, "utf-8");
             MessageBox.Show(html);
         }
@@ -412,5 +415,26 @@ namespace 启动程序
         {
             timer1.Stop();
         }
+       
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                for (int i = 0; i < text.Length; i++)
+                {
+
+                    textBox1.Text += text[i]+" ";
+
+                }
+            }
+        }
+
+
+
     }
 }

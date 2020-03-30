@@ -514,6 +514,9 @@ namespace 美团
             
         }
 
-
+        private void LinkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.ListviewToTxt(listView1);
+        }
     }
 }

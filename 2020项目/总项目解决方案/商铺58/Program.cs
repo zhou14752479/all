@@ -16,7 +16,7 @@ namespace 商铺58
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 二手车());
+            Application.Run(new Form1());
         }
     }
 }
