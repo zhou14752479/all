@@ -91,7 +91,7 @@ namespace 启动程序
 
         private void PictureBox1_MouseEnter(object sender, EventArgs e)
         {
-            pictureBox1.BackColor = Color.Gray;
+            pictureBox1.BackColor = Color.Red;
         }
 
         private void PictureBox1_MouseLeave(object sender, EventArgs e)
@@ -103,6 +103,11 @@ namespace 启动程序
         {
             价格计算 js = new 价格计算();
             js.Show();
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

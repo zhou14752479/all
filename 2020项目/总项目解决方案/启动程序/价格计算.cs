@@ -420,10 +420,10 @@ namespace 启动程序
             //保留小数
             jieguo1 = Math.Round(jieguo1, Convert.ToInt32(textBox34.Text.Trim()));
             jieguo2 = Math.Round(jieguo2, Convert.ToInt32(textBox35.Text.Trim()));
-            jieguo3 = Math.Round(jieguo3, Convert.ToInt32(textBox36.Text.Trim()));
-            jieguo4 = Math.Round(jieguo4, Convert.ToInt32(textBox37.Text.Trim()));
-            jieguo5 = Math.Round(jieguo5, Convert.ToInt32(textBox38.Text.Trim()));
-            jieguo6 = Math.Round(jieguo6, Convert.ToInt32(textBox39.Text.Trim()));
+            jieguo3 = Math.Round(jieguo3, Convert.ToInt32(textBox37.Text.Trim()));
+            jieguo4 = Math.Round(jieguo4, Convert.ToInt32(textBox38.Text.Trim()));
+            jieguo5 = Math.Round(jieguo5, Convert.ToInt32(textBox39.Text.Trim()));
+            jieguo6 = Math.Round(jieguo6, Convert.ToInt32(textBox36.Text.Trim()));
 
 
 
