@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商铺58", "商铺58\商铺
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "58二手房", "58二手房\58二手房.csproj", "{271C6A15-D138-4260-938F-A2156411FD55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "足球网站数据对比", "足球网站数据对比\足球网站数据对比.csproj", "{53FBB5F6-0EA1-40F2-9159-E85BD37F8E4B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序", "主程序\主程序.csproj", "{33D6A0D3-1483-47BF-90D0-D9CC3CD9DA57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "启动程序", "启动程序\启动程序.csproj", "{9FC2337F-76E5-476A-9D80-D356E63A3D41}"
@@ -24,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "耐克查询", "耐克查询\耐克查询.csproj", "{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序1", "主程序1\主程序1.csproj", "{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "生意参谋", "生意参谋\生意参谋.csproj", "{4C6BE31B-179E-40AE-B6DF-C73158C8019F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +55,6 @@ Global
 		{271C6A15-D138-4260-938F-A2156411FD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{271C6A15-D138-4260-938F-A2156411FD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{271C6A15-D138-4260-938F-A2156411FD55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53FBB5F6-0EA1-40F2-9159-E85BD37F8E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53FBB5F6-0EA1-40F2-9159-E85BD37F8E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53FBB5F6-0EA1-40F2-9159-E85BD37F8E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53FBB5F6-0EA1-40F2-9159-E85BD37F8E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33D6A0D3-1483-47BF-90D0-D9CC3CD9DA57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33D6A0D3-1483-47BF-90D0-D9CC3CD9DA57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33D6A0D3-1483-47BF-90D0-D9CC3CD9DA57}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,6 +71,10 @@ Global
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

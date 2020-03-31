@@ -143,6 +143,7 @@ namespace helper
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
                 //request.ContentType = "application/x-www-form-urlencoded";
+                
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("appid:orders");
@@ -151,6 +152,7 @@ namespace helper
                 //添加头部
                  request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
+                //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
 
@@ -962,23 +964,24 @@ namespace helper
             return mode;
         }
 
-
         #region  获取32位MD5加密
-        public static string GetMD5(string myString)
+        public string GetMD5(string txt)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData = System.Text.Encoding.UTF8.GetBytes(myString);//
-            byte[] targetData = md5.ComputeHash(fromData);
-            string byte2String = null;
-
-            for (int i = 0; i < targetData.Length; i++)
+            using (MD5 mi = MD5.Create())
             {
-                byte2String += targetData[i].ToString("x");
+                byte[] buffer = Encoding.Default.GetBytes(txt);
+                //开始加密
+                byte[] newBuffer = mi.ComputeHash(buffer);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < newBuffer.Length; i++)
+                {
+                    sb.Append(newBuffer[i].ToString("x2"));
+                }
+                return sb.ToString();
             }
-
-            return byte2String;
         }
 
         #endregion
+
     }
 }

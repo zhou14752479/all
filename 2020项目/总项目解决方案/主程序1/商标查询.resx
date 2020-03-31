@@ -117,18 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>李冬强	330482199411060619
-封岳	330482199602180955
-封岳	330482199602180955
-李跃强	330482199603243911
-沈嘉祺	330482199807300631
-钟秀凤	33048319840601162X
-钟秀凤	33048319840601162X
-宋胜杰	330483198407281816
-何海杰	330483198604226015
-何海杰	330483198604226015
-薄峰亚	330483198612204027
-</value>
-  </data>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

@@ -190,6 +190,7 @@
             this.Name = "京东";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "京东";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.京东_FormClosing);
             this.Load += new System.EventHandler(this.京东_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);

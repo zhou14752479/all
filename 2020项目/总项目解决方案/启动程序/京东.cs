@@ -123,5 +123,18 @@ namespace 启动程序
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
+
+        private void 京东_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+        }
     }
 }

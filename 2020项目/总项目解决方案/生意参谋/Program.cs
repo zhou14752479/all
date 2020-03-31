@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序1
+namespace 生意参谋
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 商标查询());
+            Application.Run(new Form1());
         }
     }
 }

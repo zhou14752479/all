@@ -89,8 +89,8 @@ namespace DD373
             return "";
         }
 
-       
- 
+
+
 
         public void run()
         {
@@ -114,7 +114,7 @@ namespace DD373
                     {
                         MessageBox.Show("抓取被屏蔽");
                         MessageBox.Show("点击继续运行");
-                       html= GetUrl(Url, "utf-8");
+                        html = GetUrl(Url, "utf-8");
                         infos = Regex.Match(html, @"为您找到：([\s\S]*?)</a>");
                         ids = Regex.Matches(html, @"buy\/third-([\s\S]*?)\.");
                         jbsl = Regex.Matches(html, @"class=""titleText([\s\S]*?)title=""([\s\S]*?)金");
@@ -122,15 +122,16 @@ namespace DD373
                         jianshu = Regex.Matches(html, @"<div class=""num left"">([\s\S]*?)</div>");
 
                     }
-                    
-                    
-                    
-                    string fuwuqi = Regex.Replace(infos.Groups[1].Value, "<[^>]+>", "").Replace("魔兽世界怀旧服-游戏币-","").Replace("-","/");
+
+
+
+                    string fuwuqi = Regex.Replace(infos.Groups[1].Value, "<[^>]+>", "").Replace("魔兽世界怀旧服-游戏币-", "").Replace("-", "/");
 
                     bool tiaojian = false;
                     for (int j = 0; j < ids.Count; j++)
                     {
-                        
+
+
                         if (!jianshu[j].Groups[1].Value.Trim().Contains("<") && !jbsl[j].Groups[1].Value.Trim().Contains("<"))
 
                         {
@@ -151,10 +152,13 @@ namespace DD373
                                 tiaojian = true;
                                 break;
                             }
-                            
+
 
                         }
                     }
+
+
+
 
                     if (tiaojian == false)
                     {
@@ -163,7 +167,7 @@ namespace DD373
 
                             if (!jianshu[j].Groups[1].Value.Trim().Contains("<") && !jbsl[j].Groups[1].Value.Trim().Contains("<"))
 
-                                {
+                            {
 
                                 decimal jg = Convert.ToInt32(jbsl[j].Groups[2].Value.Trim());
                                 decimal sl = Convert.ToInt32(jianshu[j].Groups[1].Value.Trim());
@@ -201,7 +205,12 @@ namespace DD373
                     }
 
                     Thread.Sleep(100);
+
+
                 }
+
+            
+            
             }
 
 
@@ -511,6 +520,10 @@ namespace DD373
             dic.Add("五区/阿鲁高/联盟", "https://www.dd373.com/s/eja7u2-3fk9tg-s363n4-5afktx-0-0-jk5sj0-0-0-0-0-su-0-0-0.html");
             dic.Add("五区/湖畔镇/部落", "https://www.dd373.com/s/eja7u2-3fk9tg-dm98t9-w28na6-0-0-jk5sj0-0-0-0-0-su-0-0-0.html");
             dic.Add("五区/湖畔镇/联盟", "https://www.dd373.com/s/eja7u2-3fk9tg-dm98t9-8qcm9u-0-0-jk5sj0-0-0-0-0-su-0-0-0.html");
+            dic.Add("八区/阿拉希/部落", "https://www.dd373.com/s/eja7u2-ht6h6g-8kttb0-uq3wwt-0-0-jk5sj0-0-0-0-0-0-0-0-0.html");
+            dic.Add("八区/阿拉希/联盟", "https://www.dd373.com/s/eja7u2-ht6h6g-8kttb0-jemr40-0-0-jk5sj0-0-0-0-0-0-0-0-0.html");
+
+
             #endregion
         }
 

@@ -152,13 +152,30 @@ namespace 启动程序
                         StreamReader sr = new StreamReader(path + ctr.Name + ".txt", Encoding.GetEncoding("utf-8"));
                         //一次性读取完 
                         string texts = sr.ReadToEnd();
-                        ctr.Text = texts;
+                        ctr.Text = texts.Trim();
                         sr.Close();
                     }
                 }
             }
 
+            foreach (Control ctr in groupBox1.Controls)
+            {
 
+                if (ctr is TextBox)
+                {
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
+                    if (File.Exists(path + ctr.Name + ".txt"))
+                    {
+
+                        StreamReader sr = new StreamReader(path + ctr.Name + ".txt", Encoding.GetEncoding("utf-8"));
+                        //一次性读取完 
+                        string texts = sr.ReadToEnd();
+                        ctr.Text = texts.Trim();
+                        sr.Close();
+                    }
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -328,12 +345,12 @@ namespace 启动程序
 
 
 
-            double jisuan1 = (price1 + Convert.ToDouble(textBox7.Text)) * Convert.ToDouble(textBox8.Text) + Convert.ToDouble(textBox9.Text);
-            double jisuan2 = (price2 + Convert.ToDouble(textBox15.Text)) * Convert.ToDouble(textBox14.Text) + Convert.ToDouble(textBox13.Text);
-            double jisuan3 = (price3 + Convert.ToDouble(textBox20.Text)) * Convert.ToDouble(textBox19.Text) + Convert.ToDouble(textBox18.Text);
-            double jisuan4 = (price4 + Convert.ToDouble(textBox24.Text)) * Convert.ToDouble(textBox23.Text) + Convert.ToDouble(textBox22.Text);
-            double jisuan5 = (price5 + Convert.ToDouble(textBox28.Text)) * Convert.ToDouble(textBox27.Text) + Convert.ToDouble(textBox26.Text);
-            double jisuan6 = (price6 + Convert.ToDouble(textBox32.Text)) * Convert.ToDouble(textBox31.Text) + Convert.ToDouble(textBox30.Text);
+            double jisuan1 = (price1 + Convert.ToDouble(textBox7.Text.Trim())) * Convert.ToDouble(textBox8.Text.Trim()) + Convert.ToDouble(textBox9.Text.Trim());
+            double jisuan2 = (price2 + Convert.ToDouble(textBox15.Text.Trim())) * Convert.ToDouble(textBox14.Text.Trim()) + Convert.ToDouble(textBox13.Text.Trim());
+            double jisuan3 = (price3 + Convert.ToDouble(textBox20.Text.Trim())) * Convert.ToDouble(textBox19.Text.Trim()) + Convert.ToDouble(textBox18.Text.Trim());
+            double jisuan4 = (price4 + Convert.ToDouble(textBox24.Text.Trim())) * Convert.ToDouble(textBox23.Text.Trim()) + Convert.ToDouble(textBox22.Text.Trim());
+            double jisuan5 = (price5 + Convert.ToDouble(textBox28.Text.Trim())) * Convert.ToDouble(textBox27.Text.Trim()) + Convert.ToDouble(textBox26.Text.Trim());
+            double jisuan6 = (price6 + Convert.ToDouble(textBox32.Text.Trim())) * Convert.ToDouble(textBox31.Text.Trim()) + Convert.ToDouble(textBox30.Text.Trim());
 
 
             //判断人工输入框是否为空
@@ -401,19 +418,12 @@ namespace 启动程序
             //保留小数
             //保留小数
             //保留小数
-            //if (comboBox7.Text == "0")
-            //{
-            //    jieguo1 = Math.Round(jieguo1, 0);
-            //}
-            //else if (comboBox7.Text == "1")
-            //{
-            //    jieguo1 = Math.Round(jieguo1, 1);
-            //}
-            //else if (comboBox7.Text == "2")
-            //{
-            //    jieguo1 = Math.Round(jieguo1, 2);
-            //}
-
+            jieguo1 = Math.Round(jieguo1, Convert.ToInt32(textBox34.Text.Trim()));
+            jieguo2 = Math.Round(jieguo2, Convert.ToInt32(textBox35.Text.Trim()));
+            jieguo3 = Math.Round(jieguo3, Convert.ToInt32(textBox36.Text.Trim()));
+            jieguo4 = Math.Round(jieguo4, Convert.ToInt32(textBox37.Text.Trim()));
+            jieguo5 = Math.Round(jieguo5, Convert.ToInt32(textBox38.Text.Trim()));
+            jieguo6 = Math.Round(jieguo6, Convert.ToInt32(textBox39.Text.Trim()));
 
 
 
@@ -428,7 +438,7 @@ namespace 启动程序
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+           
             timer2.Start();
         }
 
@@ -445,6 +455,23 @@ namespace 启动程序
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             foreach (Control ctr in groupBox2.Controls)
+            {
+                if (ctr is TextBox)
+                {
+
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
+                    FileStream fs1 = new FileStream(path + ctr.Name + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(ctr.Text.Trim());
+                    sw.Close();
+                    fs1.Close();
+
+                }
+            }
+
+
+            foreach (Control ctr in groupBox1.Controls)
             {
                 if (ctr is TextBox)
                 {
