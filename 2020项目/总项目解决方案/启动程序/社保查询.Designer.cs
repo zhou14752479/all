@@ -28,23 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(社保查询));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -78,75 +77,6 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.button5);
-            this.splitContainer1.Panel1.Controls.Add(this.button4);
-            this.splitContainer1.Panel1.Controls.Add(this.button3);
-            this.splitContainer1.Panel1.Controls.Add(this.button2);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.SplitContainer1_Panel1_Paint);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(822, 545);
-            this.splitContainer1.SplitterDistance = 234;
-            this.splitContainer1.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(103, 465);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 66);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "开始运行";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(3, 429);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(92, 30);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "暂停";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(3, 465);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 30);
-            this.button3.TabIndex = 36;
-            this.button3.Text = "继续";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(101, 429);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(92, 30);
-            this.button4.TabIndex = 37;
-            this.button4.Text = "停止";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(3, 501);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(94, 30);
-            this.button5.TabIndex = 40;
-            this.button5.Text = "导出数据";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "姓名";
@@ -173,6 +103,29 @@
             // 
             this.columnHeader7.Text = "联系地址";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.button5);
+            this.splitContainer1.Panel1.Controls.Add(this.button4);
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
+            this.splitContainer1.Panel1.Controls.Add(this.button2);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.SplitContainer1_Panel1_Paint);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.listView1);
+            this.splitContainer1.Size = new System.Drawing.Size(822, 545);
+            this.splitContainer1.SplitterDistance = 234;
+            this.splitContainer1.TabIndex = 3;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox1);
@@ -190,9 +143,59 @@
             this.textBox1.Location = new System.Drawing.Point(3, 17);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(228, 403);
             this.textBox1.TabIndex = 40;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(3, 501);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(94, 30);
+            this.button5.TabIndex = 40;
+            this.button5.Text = "导出数据";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(101, 429);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(92, 30);
+            this.button4.TabIndex = 37;
+            this.button4.Text = "停止";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(3, 465);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(94, 30);
+            this.button3.TabIndex = 36;
+            this.button3.Text = "继续";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 429);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 30);
+            this.button2.TabIndex = 35;
+            this.button2.Text = "暂停";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(103, 465);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 66);
+            this.button1.TabIndex = 34;
+            this.button1.Text = "开始运行";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // 社保查询
             // 

@@ -112,8 +112,9 @@ namespace 启动程序
         public string sign = "";
 
         public string ggsjpt_sign = "";
-        
 
+        bool zanting = true;
+        bool status = true;
         public void run()
         {
             string[] array = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -143,7 +144,12 @@ namespace 启动程序
                 lv1.SubItems.Add(cc.Groups[1].Value);
 
                 Thread.Sleep(1000);
-
+                while (zanting == false)
+                {
+                    Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                }
+                if (status == false)
+                    return;
             }
 
 
@@ -157,16 +163,56 @@ namespace 启动程序
 
         private void button1_Click(object sender, EventArgs e)
         {
-            time = GetTimeStamp();
-            sign = GetMD5("qyylbacbrypc"+time);
-            ggsjpt_sign = GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74995e00df72f14bbcb7833a9ca063adef" + time);
+           
+            #region 通用检测
 
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"shebaochaxun"))
+            {
+                status = true;
+                button1.Enabled = false;
+                time = GetTimeStamp();
+                sign = GetMD5("qyylbacbrypc" + time);
+                ggsjpt_sign = GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74995e00df72f14bbcb7833a9ca063adef" + time);
+
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+           
         }
 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
 
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
 
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
+            status = false;
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
     }
 }

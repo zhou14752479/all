@@ -233,3 +233,27 @@ string str = Interaction.InputBox("提示信息","标题","文本内容",-1,-1);
 
 
 【小数保留位数】Math.Round(1.236, 0)
+
+
+【数据统计】【数据统计】【数据统计】【数据统计】
+ Dictionary<string, int> dic = new Dictionary<string, int>();
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                string value = listView1.Items[i].SubItems[2].Text.Trim();
+                if (!dic.ContainsKey(value))
+                {
+                    dic.Add(value, 1);   //1代表只有1个
+
+                }
+                else
+                { 
+                    dic[value]++;       //包含了则增加1
+                }
+                                                             
+            }
+
+            foreach (KeyValuePair<string, int> item in dic)
+            {
+                textBox1.Text += item.Key + " " + item.Value+"\r\n";
+                   
+            }

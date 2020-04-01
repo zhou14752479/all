@@ -60,12 +60,6 @@
     <Compile Include="YY检测.Designer.cs">
       <DependentUpon>YY检测.cs</DependentUpon>
     </Compile>
-    <Compile Include="京东.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="京东.Designer.cs">
-      <DependentUpon>京东.cs</DependentUpon>
-    </Compile>
     <Compile Include="价格计算.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +138,12 @@
     <Compile Include="论坛抓取.Designer.cs">
       <DependentUpon>论坛抓取.cs</DependentUpon>
     </Compile>
+    <Compile Include="题库抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="题库抓取.Designer.cs">
+      <DependentUpon>题库抓取.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,9 +158,6 @@
     </Compile>
     <EmbeddedResource Include="YY检测.resx">
       <DependentUpon>YY检测.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="京东.resx">
-      <DependentUpon>京东.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="价格计算.resx">
       <DependentUpon>价格计算.cs</DependentUpon>
@@ -200,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="论坛抓取.resx">
       <DependentUpon>论坛抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="题库抓取.resx">
+      <DependentUpon>题库抓取.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
