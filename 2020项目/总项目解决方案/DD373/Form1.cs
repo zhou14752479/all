@@ -135,6 +135,9 @@ namespace DD373
                         if (!jianshu[j].Groups[1].Value.Trim().Contains("<") && !jbsl[j].Groups[1].Value.Trim().Contains("<"))
 
                         {
+                            try
+                            {
+
 
                             decimal jg = Convert.ToInt32(jbsl[j].Groups[2].Value.Trim());
                             decimal sl = Convert.ToInt32(jianshu[j].Groups[1].Value.Trim());
@@ -153,6 +156,13 @@ namespace DD373
                                 break;
                             }
 
+                            }
+                            catch 
+                            {
+
+                                continue;
+                            }
+
 
                         }
                     }
@@ -168,28 +178,37 @@ namespace DD373
                             if (!jianshu[j].Groups[1].Value.Trim().Contains("<") && !jbsl[j].Groups[1].Value.Trim().Contains("<"))
 
                             {
-
-                                decimal jg = Convert.ToInt32(jbsl[j].Groups[2].Value.Trim());
-                                decimal sl = Convert.ToInt32(jianshu[j].Groups[1].Value.Trim());
-
-                                if (jg * sl > Convert.ToInt32(textBox4.Text))
+                                try
                                 {
-                                    textBox1.Text = DateTime.Now.ToString() + "正在搜索：【" + Regex.Replace(infos.Groups[1].Value, "<[^>]+>", "") + "】";
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                    lv1.SubItems.Add(fuwuqi);
-                                    lv1.SubItems.Add(jbsl[j].Groups[2].Value);
-                                    lv1.SubItems.Add(jianshu[j].Groups[1].Value.Trim());
-                                    lv1.SubItems.Add("0" + danjia1[j].Groups[1].Value);
 
-                                    lv1.SubItems.Add("https://www.dd373.com/buy/third-" + ids[j].Groups[1].Value + ".html");
-                                    tiaojian = true;
-                                    break;
+                                    decimal jg = Convert.ToInt32(jbsl[j].Groups[2].Value.Trim());
+                                    decimal sl = Convert.ToInt32(jianshu[j].Groups[1].Value.Trim());
+
+                                    if (jg * sl > Convert.ToInt32(textBox4.Text))
+                                    {
+                                        textBox1.Text = DateTime.Now.ToString() + "正在搜索：【" + Regex.Replace(infos.Groups[1].Value, "<[^>]+>", "") + "】";
+                                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                        lv1.SubItems.Add(fuwuqi);
+                                        lv1.SubItems.Add(jbsl[j].Groups[2].Value);
+                                        lv1.SubItems.Add(jianshu[j].Groups[1].Value.Trim());
+                                        lv1.SubItems.Add("0" + danjia1[j].Groups[1].Value);
+
+                                        lv1.SubItems.Add("https://www.dd373.com/buy/third-" + ids[j].Groups[1].Value + ".html");
+                                        tiaojian = true;
+                                        break;
+                                    }
+
+
+                                }
+                                catch
+                                {
+
+                                    continue;
                                 }
 
-
                             }
-                        }
 
+                        }
                     }
 
 

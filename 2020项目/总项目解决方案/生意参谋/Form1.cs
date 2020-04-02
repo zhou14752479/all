@@ -36,6 +36,9 @@ namespace 生意参谋
         private void Form1_Load(object sender, EventArgs e)
         {
             time = GetTimeStamp();
+            webBrowser1.Navigate("https://login.taobao.com/member/login.jhtml");
+            method.SetWebBrowserFeatures(method.IeVersion.IE10);
+            webBrowser1.ScriptErrorsSuppressed = true;
         }
 
         #region GET请求带COOKIE
@@ -106,16 +109,21 @@ namespace 生意参谋
 
             string[] ahtml = html.Split(new string[] { "\"},{\"" }, StringSplitOptions.None);
 
-          
-            if (ahtml.Length <2)
+
+                if (ahtml.Length < 2)
+                
                     return;
+                
                
 
                 for (int j = 0; j < ahtml.Length; j++)
                 {
-                    
 
 
+                    try
+                    {
+
+   
                     Match laiyuan = Regex.Match(ahtml[j]+"\"", @"srcGrpName"":""([\s\S]*?)""");
                     Match time = Regex.Match(ahtml[j] + "\"", @"visitTime"":""([\s\S]*?)""");
                     Match key = Regex.Match(ahtml[j] + "\"", @"preSeKeyword"":""([\s\S]*?)""");
@@ -156,14 +164,47 @@ namespace 生意参谋
                             }
                         }
                     }
+                    }
+                    catch 
+                    {
+
+                        continue;
+                    }
+
                 }
 
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
-
+            
 
         }
 
+
+        public void tongji()
+
+        {
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                string value = listView1.Items[i].SubItems[2].Text.Trim();
+                if (!dic.ContainsKey(value))
+                {
+                    dic.Add(value, 1);   //1代表只有1个
+
+                }
+                else
+                {
+                    dic[value]++;       //包含了则增加1
+                }
+
+            }
+
+            foreach (KeyValuePair<string, int> item in dic)
+            {
+                textBox1.Text += item.Key + " " + item.Value + "\r\n";
+
+            }
+        }
         private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -173,7 +214,7 @@ namespace 生意参谋
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            
+            button1.Enabled = false;
             if (radioButton1.Checked == true)
             {
                 timer1.Interval = 600000;
@@ -191,14 +232,42 @@ namespace 生意参谋
                 timer1.Interval = 3600000;
                 minutes = 60;
             }
+            if (radioButton4.Checked == true)
+            {
+                timer1.Interval = 600000;
+                minutes = 99999999;
+            }
 
 
+            #region 通用检测
 
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"shengyicanmou"))
+            {
+                
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+
+            cookie = method.GetCookies("https://sycm.taobao.com/ipoll/visitor.htm?spm=a21ag.7622617.LeftMenu.d181.1fde1be9h1T7Pt#/");
+            listView1.Items.Clear();
+            textBox1.Text = "";
+            token = getToken();
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
             timer1.Start();
 
-            token = getToken();
-            cookie = "thw=cn; ali_ab=49.94.92.171.1563332665663.4; x=e%3D1%26p%3D*%26s%3D0%26c%3D0%26f%3D0%26g%3D0%26t%3D0%26__ll%3D-1%26_ato%3D0; hng=CN%7Czh-CN%7CCNY%7C156; enc=rY0GpAFgrh5bXXfBXutSHaQSm6aOCly2Ov5qI2xvmmRLzA74CWx0R1R%2FH4RXdUTECCRII572ywPqHDXt8ypRKg%3D%3D; t=027e7e2bc53b51842bd6d63b5b90ab8a; cna=8QJMFUu4DhACATFZv2JYDtwd; lgc=zkg852266010; tracknick=zkg852266010; tg=0; _euacm_ac_l_uid_=1052347548; 1052347548_euacm_ac_c_uid_=1052347548; 1052347548_euacm_ac_rs_uid_=1052347548; cc_gray=1; cookie2=1f6531a4fd93f6e9d02880217ffba454; v=0; _tb_token_=ea3ed371fa41e; _samesite_flag_=true; sgcookie=EReFThaf0L%2BNDHqzm6%2Fd1; unb=1052347548; uc3=lg2=Vq8l%2BKCLz3%2F65A%3D%3D&nk2=GcOvCmiKUSBXqZNU&vt3=F8dBxdAR%2B5k0M6RYGH8%3D&id2=UoH62EAv27BqSg%3D%3D; csg=0d6aac58; cookie17=UoH62EAv27BqSg%3D%3D; dnk=zkg852266010; skt=2bcdb8e7dcffabd2; existShop=MTU4NTcwODY2OQ%3D%3D; uc4=id4=0%40UOnlZ%2FcoxCrIUsehKGOnwB8wL3Ij&nk4=0%40GwrkntVPltPB9cR46GnfGp2kZlFXQ6s%3D; _cc_=URm48syIZQ%3D%3D; _l_g_=Ug%3D%3D; sg=080; _nk_=zkg852266010; cookie1=Vvj8uMJubtxirKFtxaDmWPxYCP5sb7EKtrFe1w68JDk%3D; tfstk=cofRBb95FoqkTB1De_eDOnwJhsEGZHrpc4tn9y_0YCEZ83cdih1G_6v3FeiJMrC..; _euacm_ac_rs_sid_=145672826; mt=ci=62_1; _m_h5_tk=4bc70155c1b8fe62f695c9ce32c08ac4_1585729795142; _m_h5_tk_enc=4a65bab378f43bd47d7a84729eead8d7; uc1=cookie16=VT5L2FSpNgq6fDudInPRgavC%2BQ%3D%3D&cookie21=UIHiLt3xSixwH1aenGUFEQ%3D%3D&cookie15=UtASsssmOIJ0bQ%3D%3D&existShop=true&pas=0&cookie14=UoTUP2WAJWxT4w%3D%3D&tag=8&lng=zh_CN; l=dBTc_4AlQLoCcdb8BOfMS42gwx7twLRXcsPrE67l5ICPO96hlAZVWZfJ1HxMCnGVnsCpW3oWYJ1uB58Thy4EhtikBBrsDOsI2dTh.; isg=BNraYy3gUFFNndx31nvUcrNzK4D8C17liETo_eRZMG3sV2qRyZkb9JfhJyNLh9Z9";
-            run();
+
+
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -211,38 +280,45 @@ namespace 生意参谋
      
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            run();
-
+            textBox1.Text = "";
+            listView1.Items.Clear();
+            cookie = method.GetCookies("https://sycm.taobao.com/ipoll/live/visitor/getRtVisitor.json?_=1585793637702&device=2&limit=20&page=1&token=");
+            token = getToken();
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
         }
 
         private void Button2_Click_1(object sender, EventArgs e)
         {
-            Dictionary<string, int> dic = new Dictionary<string, int>();
-            for (int i = 0; i < listView1.Items.Count; i++)
-            {
-                string value = listView1.Items[i].SubItems[2].Text.Trim();
-                if (!dic.ContainsKey(value))
-                {
-                    dic.Add(value, 1);   //1代表只有1个
-
-                }
-                else
-                { 
-                    dic[value]++;       //包含了则增加1
-                }
-                                                             
-            }
-
-            foreach (KeyValuePair<string, int> item in dic)
-            {
-                textBox1.Text += item.Key + " " + item.Value+"\r\n";
-                   
-            }
-
-            
+            button1.Enabled = true;
+           
 
             timer1.Stop();
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            tongji();
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

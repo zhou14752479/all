@@ -19,6 +19,16 @@ namespace 启动程序
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            label2.Text = 价格计算.value1;
+            label3.Text = 价格计算.value2;
+            label10.Text = 价格计算.value3;
+
+
+
+
+
+
+
             label4.Text = 价格计算.jieguo1.ToString();
             label5.Text = 价格计算.jieguo2.ToString();
             label6.Text = 价格计算.jieguo3.ToString();
@@ -108,6 +118,27 @@ namespace 启动程序
         private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
+        }
+        private Point mPoint = new Point();
+        private void 子窗体_MouseDown(object sender, MouseEventArgs e)
+        {
+            mPoint.X = e.X;
+            mPoint.Y = e.Y;
+        }
+
+        private void 子窗体_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Point myPosittion = MousePosition;
+                myPosittion.Offset(-mPoint.X, -mPoint.Y);
+                Location = myPosittion;
+            }
+        }
+
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;//最小化 
         }
     }
 }

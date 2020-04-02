@@ -238,6 +238,7 @@
             this.linkLabel3.TabIndex = 80;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "__";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
             // 
             // 子窗体
             // 
@@ -269,7 +270,9 @@
             this.Text = "主程序";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.子窗体_FormClosing);
             this.Load += new System.EventHandler(this.子窗体_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.子窗体_MouseDown);
             this.MouseEnter += new System.EventHandler(this.子窗体_MouseEnter);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.子窗体_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

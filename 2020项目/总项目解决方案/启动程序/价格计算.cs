@@ -434,11 +434,17 @@ namespace 启动程序
 
         }
 
-
+        public static string value1="金 料";
+        public static string value2 = "成 品";
+        public static string value3 = "零 售";
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            value1 = textBox12.Text;
+            value2 = textBox16.Text;
+            value3 = textBox33.Text;
+
+
             timer2.Start();
         }
 
@@ -447,8 +453,15 @@ namespace 启动程序
             getPrice();
         }
 
+      
+
         private void timer2_Tick(object sender, EventArgs e)
         {
+
+
+
+
+
             jisuan();
         }
 

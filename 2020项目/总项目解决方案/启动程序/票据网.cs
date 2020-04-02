@@ -407,9 +407,10 @@ namespace 启动程序
         private void Timer1_Tick(object sender, EventArgs e)
         {
             listView1.Items.Clear();
-            Thread thread1 = new Thread(new ThreadStart(run));
-            thread1.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            //Thread thread1 = new Thread(new ThreadStart(run));
+            //thread1.Start();
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            run();
         }
 
         private void button4_Click(object sender, EventArgs e)
