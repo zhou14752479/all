@@ -182,7 +182,7 @@ namespace 主程序1
                 lv1.SubItems.Add("");
                 lv1.SubItems.Add("");
 
-                    MessageBox.Show(array[i]);
+                    
                     if (array[i] == "")
                         break;
 

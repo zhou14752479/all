@@ -47,7 +47,7 @@ namespace 通用项目
         {
 
 
-            for (int i = Convert.ToInt32(textBox3.Text.Trim()); i < Convert.ToInt32(textBox4.Text.Trim()); i++)
+            for (long i = Convert.ToInt64(textBox3.Text.Trim()); i < Convert.ToInt64(textBox4.Text.Trim()); i++)
             {
                 try
                 {
