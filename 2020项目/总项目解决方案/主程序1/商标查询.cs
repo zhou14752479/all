@@ -116,7 +116,7 @@ namespace 主程序1
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
 
             }
             return "";
@@ -125,45 +125,132 @@ namespace 主程序1
 
         public void run()
         {
-            //StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
-            //string text = streamReader.ReadToEnd();
-            //string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-          
+           
+                StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
+            string text = streamReader.ReadToEnd();
+            string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < array.Length; i++)
+            {
                 try
                 {
-                string name = "广东思诺伟智能技术有限公司";
-                    string url = "https://wx.xcwz.com.cn/applet/getTMPages.do?searchKey="+name+"&searchType=3&pageNo=3&t=1585621054635";
-                    
-                    string html = GetUrl(url,"utf-8");
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
+                lv1.SubItems.Add(""); 
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
 
-                textBox2.Text = html;
-                  
-                    MatchCollection names = Regex.Matches(html, @"""stringCls"":""([\s\S]*?)""");
-
-                for (int i = 0; i < names.Count; i++)
-                {
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                    lv1.SubItems.Add(names[i].Groups[1].Value);
-                    
-
-                }
+                    MessageBox.Show(array[i]);
+                    if (array[i] == "")
+                        break;
 
 
-                while (zanting == false)
+
+                    string name = array[i];
+                    Dictionary<int, int> dic = new Dictionary<int, int>();
+                    for (int a = 1; a < 99; a++)
+                    {
+
+                        string url = "https://wx.xcwz.com.cn/applet/getTMPages.do?searchKey=" + name + "&searchType=3&pageNo=" + a + "&t=1585621054635";
+                        string html = GetUrl(url, "utf-8");
+                        MatchCollection items = Regex.Matches(html, @"""intCls"":""([\s\S]*?)""");
+
+                        for (int j = 0; j < items.Count; j++)
+                        {
+                            int value = Convert.ToInt32(items[j].Groups[1].Value);
+                            if (!dic.ContainsKey(value))
+                            {
+                                dic.Add(value, 1);   //1代表只有1个
+
+                            }
+                            else
+                            {
+                                dic[value]++;       //包含了则增加1
+                            }
+
+                        }
+                        if (items.Count == 0)
+                        {
+
+                            foreach (KeyValuePair<int, int> item in dic)
+                            {
+                              
+                                lv1.SubItems[1].Text = name;
+                                lv1.SubItems[2].Text = DateTime.Now.ToShortDateString();
+                                lv1.SubItems[item.Key + 2].Text = item.Value.ToString();
+
+                            }
+
+
+                            break;
+                        }
+
+
+
+
+                    }
+
+
+
+
+                    while (zanting == false)
                     {
                         Application.DoEvents();//等待本次加载完毕才执行下次循环.
                     }
-
+                    Thread.Sleep(Convert.ToInt32(textBox4.Text));
                 }
-                catch (Exception ex)
+
+                catch
                 {
-                MessageBox.Show(ex.ToString());
-                    
+                    continue;
+
                 }
 
+            }
+           
 
-            
         }
         private void 商标查询_Load(object sender, EventArgs e)
         {
@@ -172,9 +259,70 @@ namespace 主程序1
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            if (textBox2.Text != "qwe14752479")
+            {
+                MessageBox.Show("平台sign验证失败");
+                return;
+            }
+            
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"shangbiaochaxun"))
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+            
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                this.textBox1.Text = this.openFileDialog1.FileName;
+            }
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void 商标查询_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

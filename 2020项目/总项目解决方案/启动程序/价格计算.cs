@@ -107,6 +107,16 @@ namespace 启动程序
         #region 获取网站价格
         public void getPrice()
         {
+            timer1.Start();
+            timer1.Interval = Convert.ToInt32(textBox6.Text) * 1000;
+            value1 = textBox12.Text;
+            value2 = textBox16.Text;
+            value3 = textBox33.Text;
+
+
+            timer2.Start();
+
+
             string url = "https://www.jzj9999.com/pricedata/getdata.aspx?tmp=93861584761821632";
             string html = GetUrl(url);
 
@@ -156,6 +166,23 @@ namespace 启动程序
                         sr.Close();
                     }
                 }
+
+                if (ctr is ComboBox)
+                {
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
+                    if (File.Exists(path + ctr.Name + ".txt"))
+                    {
+
+                        StreamReader sr = new StreamReader(path + ctr.Name + ".txt", Encoding.GetEncoding("utf-8"));
+                        //一次性读取完 
+                        string texts = sr.ReadToEnd();
+                        ctr.Text = texts.Trim();
+                        sr.Close();
+                    }
+                }
+
+
             }
 
             foreach (Control ctr in groupBox1.Controls)
@@ -458,10 +485,6 @@ namespace 启动程序
         private void timer2_Tick(object sender, EventArgs e)
         {
 
-
-
-
-
             jisuan();
         }
 
@@ -481,6 +504,21 @@ namespace 启动程序
                     fs1.Close();
 
                 }
+
+                if (ctr is ComboBox)
+                {
+
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
+                    FileStream fs1 = new FileStream(path + ctr.Name + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(ctr.Text.Trim());
+                    sw.Close();
+                    fs1.Close();
+
+                }
+
+
             }
 
 
