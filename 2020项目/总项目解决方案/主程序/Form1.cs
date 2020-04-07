@@ -408,10 +408,10 @@ namespace 主程序
             //}
             
 
-            timer1.Start();
+            //timer1.Start();
 
-            button2.Enabled = false;
-            status = true;
+            //button2.Enabled = false;
+            //status = true;
             getdata();
 
             Thread thread1 = new Thread(new ThreadStart(run1));

@@ -72,6 +72,12 @@
     <Compile Include="八爪盒子.Designer.cs">
       <DependentUpon>八爪盒子.cs</DependentUpon>
     </Compile>
+    <Compile Include="图片下载.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="图片下载.Designer.cs">
+      <DependentUpon>图片下载.cs</DependentUpon>
+    </Compile>
     <Compile Include="奇趣分分彩.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="八爪盒子.resx">
       <DependentUpon>八爪盒子.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="图片下载.resx">
+      <DependentUpon>图片下载.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="奇趣分分彩.resx">
       <DependentUpon>奇趣分分彩.cs</DependentUpon>

@@ -16,7 +16,7 @@ namespace 主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 京东());
+            Application.Run(new Form1());
         }
     }
 }

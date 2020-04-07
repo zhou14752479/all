@@ -47,7 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2B3AEEE15A5FF313C4FBCB1CF7ED1BF4F978A1CF</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8EB9283AB835B5EEE1C0603D73369E622FB8859D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>主程序_TemporaryKey.pfx</ManifestKeyFile>

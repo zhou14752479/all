@@ -88,7 +88,7 @@ namespace 主程序1
 
             try
             {
-                StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
+                StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.GetEncoding("utf-8"));
                 string text = streamReader.ReadToEnd();
                 string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < array.Length; i++)
@@ -99,7 +99,7 @@ namespace 主程序1
 
 
                     string html = GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-                    textBox2.Text = html;
+                    
                     MatchCollection urls = Regex.Matches(html, @"aId=""([\s\S]*?)""");
 
 
@@ -114,7 +114,8 @@ namespace 主程序1
                         Match body = Regex.Match(strhtml1, @"<div class=""resolved-cnt src-import"">([\s\S]*?)<div class=""mod-added");
 
                         string main = Regex.Replace(body.Groups[1].Value, "<(?!/?p)(?!br )[^>]*>", "");  //除了P <br />其他的去掉
-                        sb.Append(main);
+
+                        sb.Append(main.Replace("<p>","").Replace("</p>","\r\n").Replace("<br />", "\r\n"));
 
                         while (this.zanting == false)
                         {
@@ -125,11 +126,18 @@ namespace 主程序1
                             return;
                         }
 
+
+                        textBox2.Text += "正在下载"+ array[i] + "第"+j+"篇文章"+"\r\n";
+
                         Thread.Sleep(1000);
                     }
+
+                    textBox2.Text += "正在保存"+ array[i] + "文章 "+"\r\n";
                     saveTxt(array[i], sb.ToString());
 
                 }
+
+                textBox2.Text += "已完成";
 
             }
 
@@ -149,11 +157,25 @@ namespace 主程序1
 
         private void Button2_Click(object sender, EventArgs e)
         {
-         
+            #region 通用检测
 
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html","utf-8");
+
+            if (!html.Contains(@"360wenda"))
+            {
+
+                MessageBox.Show("验证失败");
+                return;
+
+
+            }
+
+            #endregion
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+
+
         }
 
         private void Button1_Click(object sender, EventArgs e)

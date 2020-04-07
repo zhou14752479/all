@@ -613,7 +613,7 @@ namespace helper
 
         #endregion
 
-        #region 下载文件
+        #region 下载文件  【好用】
         /// <summary>
         /// 下载图片
         /// </summary>
@@ -629,6 +629,7 @@ namespace helper
                 WebClient client = new WebClient();
                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
                 client.Headers.Add("Cookie", COOKIE);
+                client.Headers.Add("Referer", "https://m.mm131.net/chemo/89_5.html");
                 if (false == System.IO.Directory.Exists(subPath))
                 {
                     //创建pic文件夹
@@ -646,6 +647,8 @@ namespace helper
 
 
 
+        #endregion
+
 
         /// <summary>
         /// http下载文件
@@ -653,7 +656,7 @@ namespace helper
         /// <param name="url">下载文件地址</param>
         /// <param name="path">文件存放地址，包含文件名</param>
         /// <returns></returns>
-        public static void HttpDownload(string url, string path,string COOKIE)
+        public static void HttpDownload(string url, string path, string COOKIE)
         {
             string tempPath = System.IO.Path.GetDirectoryName(path) + @"\temp";
             System.IO.Directory.CreateDirectory(tempPath);  //创建临时文件目录
@@ -686,16 +689,14 @@ namespace helper
                 fs.Close();
                 responseStream.Close();
                 System.IO.File.Move(tempFile, path);
-                
+
             }
-            catch 
+            catch
             {
-               
+
             }
 
         }
-
-        #endregion
 
         #region datagriview转datatable
         public static DataTable DgvToTable(DataGridView dgv)
@@ -772,8 +773,8 @@ namespace helper
 
             try
             {
-                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "1s1k453=ysyk_web62; JSESSIONID=C38B6D4A827F086C722EA8DAC0E55D26; UM_distinctid=1704d60505528a-0f30e2260ef312-2393f61-1fa400-1704d6050576ae; CNZZDATA1253333710=885277478-1581844031-%7C1581995363; CNZZDATA1253416210=1453523664-1581844817-%7C1581992732";
+               // System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "1s1k453=ysyk_web41; JSESSIONID=B60EE23B15521D87DF4CF1168CB25BE1; UM_distinctid=1704d60505528a-0f30e2260ef312-2393f61-1fa400-1704d6050576ae; CNZZDATA1253333710=885277478-1581844031-%7C1582260061; CNZZDATA1253416210=1453523664-1581844817-%7C1582261788";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
@@ -804,6 +805,7 @@ namespace helper
             }
             catch (System.Exception ex)
             {
+                MessageBox.Show(ex.ToString());
               return  ex.ToString();
 
             }

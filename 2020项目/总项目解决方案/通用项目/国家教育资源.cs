@@ -60,8 +60,10 @@ namespace 通用项目
 
 
                     string url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/showVersion1s1k.jspx?type=all&date=1568624403391&pageNo=" + i + "&yearMark=" + year + "&sessionKey=PKSpcCwnXGPjaVHtZZ2D=";
-                    string html = method.GetUrl2(url, "utf-8");
+                   
 
+                    string html = method.GetUrl2(url, "utf-8");
+                  ;
                     MatchCollection IDS = Regex.Matches(html, @"CASE_ID=([\s\S]*?),");
                     foreach (Match ID in IDS)
                     {
@@ -74,13 +76,15 @@ namespace 通用项目
 
                         MatchCollection DocIds1 = Regex.Matches(ahtml, @"class=""docCode"" value=""doc-([\s\S]*?)""");
                         MatchCollection DocIds2 = Regex.Matches(ahtml, @"resId=doc-([\s\S]*?)&([\s\S]*?)>([\s\S]*?)<");
-
+                       
                         foreach (Match DocId in DocIds1)
                         {
 
                             string bt = title.Groups[1].Value;
                             string downUrl = method.GetUrl2("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
 
+
+                           
                             Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
                             string gs = gs1.Groups[2].Value;
                             string counter = "1";

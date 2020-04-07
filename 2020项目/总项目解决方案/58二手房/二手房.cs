@@ -89,6 +89,8 @@ namespace _58二手房
             return value.Groups[1].Value;
         }
 
+     
+
         ArrayList citys = new ArrayList();
         /// <summary>
         /// 手机端列表直接
@@ -116,10 +118,11 @@ namespace _58二手房
             }
 
             getnodes();
-
+            int tongji = 0;
 
             foreach (string city in citys)
             {
+                int counts = 0;
                 string cityId = getcityId(city);
                 string cityname = getcityname(city);
 
@@ -143,7 +146,7 @@ namespace _58二手房
 
                         for (int j = 0; j < tels.Count; j++)
                         {
-
+                            counts = counts + 1;
 
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                             lv1.SubItems.Add(titles[j].Groups[1].Value);
@@ -160,6 +163,9 @@ namespace _58二手房
 
                                 return;
                            
+
+                            //if(counts>)
+
                         }
                         Thread.Sleep(3500);
                     }

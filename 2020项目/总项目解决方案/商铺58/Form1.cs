@@ -23,8 +23,7 @@ namespace 商铺58
             InitializeComponent();
         }
 
-        string city = "bj";
-        string cityName = "北京";
+       
         public static string username = "";
 
         #region GET请求
@@ -65,83 +64,80 @@ namespace 商铺58
             return "";
         }
         #endregion
-
+        ArrayList citys = new ArrayList();
 
         #region  生意转让、商铺出租、商铺出售
         public void shangpu(object item)
         {
-           
+            getnodes();
 
             try
             {
 
-               
 
-                if (city == "")
+                foreach (string city in citys)
                 {
-                    MessageBox.Show("请选择城市！");
-                    return;
-                }
 
-                for (int i = 1; i <= 70; i++)
-                {
-                    String Url = "https://" + city + ".58.com/" + item.ToString() + "/0/pn" + i + "/";
-                
-                    string html = GetUrl(Url);
-
-                    MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-
-                    ArrayList lists = new ArrayList();
-
-                    foreach (Match NextMatch in TitleMatchs)
+                    for (int i = 1; i <= 70; i++)
                     {
-                        if (!lists.Contains(NextMatch.Groups[0].Value))
+                        String Url = "https://" + city + ".58.com/" + item.ToString() + "/0/pn" + i + "/";
+
+                        string html = GetUrl(Url);
+
+                        MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+
+                        ArrayList lists = new ArrayList();
+
+                        foreach (Match NextMatch in TitleMatchs)
                         {
-                            lists.Add(NextMatch.Groups[0].Value);
-                        }
-                    }
-               
-
-                    foreach (string list in lists)
-                    {
-                        string tm1 = DateTime.Now.ToString();  //获取系统时间
-                        toolStripStatusLabel1.Text = tm1 + "正在采集：" + cityName + list;
-                        Match uid = Regex.Match(list, @"\d{10,}");
-                      
-                        string strhtml = GetUrl("https://miniappfang.58.com/shop/plugin/v1/shopdetail?infoId="+uid.Groups[0].Value+"&openId=77AA769A2A2C8740ECF1EDB47CD855A04C573D57DAF470CD8AD018A504661F6A");  //定义的GetRul方法 返回 reader.ReadToEnd()
-                        
-                        Match title = Regex.Match(strhtml, @"""title"":""([\s\S]*?)""");
-                        Match contacts = Regex.Match(strhtml, @"""brokerName"":""([\s\S]*?)""");
-                        Match tel = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
-                        Match region = Regex.Match(strhtml, @"""quyu"":""([\s\S]*?)""");
-                        Match dizhi = Regex.Match(strhtml, @"""dizhi"":""([\s\S]*?)""");
-
-                        Match date= Regex.Match(strhtml, @"""postDate"":""([\s\S]*?)""");
-                        Match description = Regex.Match(strhtml, @"""description"":""([\s\S]*?)""");
-
-                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        listViewItem.SubItems.Add(title.Groups[1].Value);
-                        listViewItem.SubItems.Add(contacts.Groups[1].Value);
-                        listViewItem.SubItems.Add(tel.Groups[1].Value);
-                        listViewItem.SubItems.Add(region.Groups[1].Value);
-                        listViewItem.SubItems.Add(dizhi.Groups[1].Value);
-                        listViewItem.SubItems.Add(date.Groups[1].Value);
-                        listViewItem.SubItems.Add(description.Groups[1].Value);
-
-
-
-                        Application.DoEvents();
-                        Thread.Sleep(1000);   //内容获取间隔，可变量
-
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            if (!lists.Contains(NextMatch.Groups[0].Value))
+                            {
+                                lists.Add(NextMatch.Groups[0].Value);
+                            }
                         }
 
-                    }
-                   toolStripStatusLabel1.Text = "抓取完成";
 
+                        foreach (string list in lists)
+                        {
+                            string tm1 = DateTime.Now.ToString();  //获取系统时间
+                            toolStripStatusLabel1.Text = tm1 + "正在采集：" + city + list;
+                            Match uid = Regex.Match(list, @"\d{10,}");
+
+                            string strhtml = GetUrl("https://miniappfang.58.com/shop/plugin/v1/shopdetail?infoId=" + uid.Groups[0].Value + "&openId=77AA769A2A2C8740ECF1EDB47CD855A04C573D57DAF470CD8AD018A504661F6A");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                            Match title = Regex.Match(strhtml, @"""title"":""([\s\S]*?)""");
+                            Match contacts = Regex.Match(strhtml, @"""brokerName"":""([\s\S]*?)""");
+                            Match tel = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
+                            Match region = Regex.Match(strhtml, @"""quyu"":""([\s\S]*?)""");
+                            Match dizhi = Regex.Match(strhtml, @"""dizhi"":""([\s\S]*?)""");
+
+                            Match date = Regex.Match(strhtml, @"""postDate"":""([\s\S]*?)""");
+                            Match description = Regex.Match(strhtml, @"""description"":""([\s\S]*?)""");
+
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(title.Groups[1].Value);
+                            listViewItem.SubItems.Add(contacts.Groups[1].Value);
+                            listViewItem.SubItems.Add(tel.Groups[1].Value);
+                            listViewItem.SubItems.Add(region.Groups[1].Value);
+                            listViewItem.SubItems.Add(dizhi.Groups[1].Value);
+                            listViewItem.SubItems.Add(date.Groups[1].Value);
+                            listViewItem.SubItems.Add(description.Groups[1].Value);
+
+
+
+                            Application.DoEvents();
+                            Thread.Sleep(1000);   //内容获取间隔，可变量
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+                        }
+                        toolStripStatusLabel1.Text = "抓取完成";
+
+                    }
                 }
 
 
@@ -163,6 +159,22 @@ namespace 商铺58
         #endregion
         private void button1_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
+
+            if (!html.Contains(@"18254571301"))
+            {
+
+                MessageBox.Show("验证失败");
+                return;
+
+
+            }
+
+            #endregion
+
+
             skinTreeView1.Visible = false;
             button1.Enabled = false;
 
@@ -198,8 +210,7 @@ namespace 商铺58
 
         private void skinTreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            city = e.Node.Name;
-            cityName = e.Node.Text;
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -209,6 +220,7 @@ namespace 商铺58
 
         private void button3_Click(object sender, EventArgs e)
         {
+            button1.Enabled = true;
             zanting = true;
         }
 
@@ -229,7 +241,7 @@ namespace 商铺58
             else if (skinTreeView1.Visible == true)
             {
                 skinTreeView1.Visible = false;
-                button5.Text = "快速选择城市";
+                button5.Text = "选择城市";
                 button5.ForeColor = Color.White;
             }
 
@@ -328,7 +340,7 @@ namespace 商铺58
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label3.Text = username;
+          
         }
 
         private void LinkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -424,6 +436,69 @@ namespace 商铺58
         private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
+        }
+
+        private void setChildNodeCheckedState(TreeNode currNode, bool state)
+        {
+            TreeNodeCollection nodes = currNode.Nodes;
+            if (nodes.Count > 0)
+            {
+                foreach (TreeNode tn in nodes)
+                {
+                    tn.Checked = state;
+                    setChildNodeCheckedState(tn, state);
+                }
+            }
+        }
+        private void setParentNodeCheckedState(TreeNode currNode, bool state)
+        {
+            TreeNode parentNode = currNode.Parent;
+            parentNode.Checked = state;
+            if (currNode.Parent.Parent != null)
+            {
+                setParentNodeCheckedState(currNode.Parent, state);
+            }
+        }
+        public void getnodes()
+        {
+            foreach (TreeNode parentNode in skinTreeView1.Nodes)  //江苏省节点
+            {
+                foreach (TreeNode node in parentNode.Nodes)     //获取江苏省下的节点
+                {
+                    if (node.Checked)
+                    {
+                        if (!citys.Contains(node.Name))
+                        {
+                            citys.Add(node.Name);
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+        private void skinTreeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Action == TreeViewAction.ByMouse)
+            {
+
+                if (e.Node.Checked == true)
+                {
+                    //选中节点之后，选中该节点所有的子节点
+                    setChildNodeCheckedState(e.Node, true);
+                }
+                else if (e.Node.Checked == false)
+                {
+                    //取消节点选中状态之后，取消该节点所有子节点选中状态
+                    setChildNodeCheckedState(e.Node, false);
+                    //如果节点存在父节点，取消父节点的选中状态
+                    if (e.Node.Parent != null)
+                    {
+                        setParentNodeCheckedState(e.Node, false);
+                    }
+                }
+            }
         }
     }
 }
