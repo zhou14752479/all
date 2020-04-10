@@ -63,6 +63,16 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -241,7 +251,17 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader6,
+            this.columnHeader28,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader24,
+            this.columnHeader25,
+            this.columnHeader26,
+            this.columnHeader27});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
@@ -327,13 +347,59 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "教育背景";
+            this.columnHeader7.Text = "教育开始时间";
             this.columnHeader7.Width = 100;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "项目经历";
+            this.columnHeader8.Text = "教育结束时间";
             this.columnHeader8.Width = 100;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "学历1";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "专业1";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "工作开始时间";
+            this.columnHeader10.Width = 100;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "工作结束时间";
+            this.columnHeader11.Width = 100;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "就职公司";
+            this.columnHeader12.Width = 100;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Text = "公司类型";
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Text = "就职岗位";
+            this.columnHeader25.Width = 100;
+            // 
+            // columnHeader26
+            // 
+            this.columnHeader26.Text = "薪资";
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.Text = "职责";
+            this.columnHeader27.Width = 100;
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Text = "学校名称";
+            this.columnHeader28.Width = 100;
             // 
             // 八爪盒子
             // 
@@ -387,5 +453,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.ColumnHeader columnHeader25;
+        private System.Windows.Forms.ColumnHeader columnHeader26;
+        private System.Windows.Forms.ColumnHeader columnHeader27;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
     }
 }

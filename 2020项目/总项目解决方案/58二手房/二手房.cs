@@ -89,8 +89,8 @@ namespace _58二手房
             return value.Groups[1].Value;
         }
 
-     
 
+        int tongji = 0;
         ArrayList citys = new ArrayList();
         /// <summary>
         /// 手机端列表直接
@@ -103,22 +103,23 @@ namespace _58二手房
             
             if (radioButton1.Checked == true)
             {
-                page = 3;
+                page = 7;
+                tongji = 70;
                
             }
             else if (radioButton2.Checked == true)
             {
-                page = 10;
+                page = 20;
 
             }
            else  if (radioButton3.Checked == true)
             {
-                page = 20;
+                page = 30;
 
             }
 
             getnodes();
-            int tongji = 0;
+            
 
             foreach (string city in citys)
             {
@@ -162,10 +163,13 @@ namespace _58二手房
                             if (status == false)
 
                                 return;
-                           
+                                       
 
-                            //if(counts>)
+                        }
 
+                        if (counts > tongji)
+                        {
+                            break;
                         }
                         Thread.Sleep(3500);
                     }

@@ -24,7 +24,7 @@ namespace 启动程序
         bool status = true;
         bool zanting = true;
 
-        string[] months = {"202001", "202002", "202003", "202004" };
+        
 
      
         public ArrayList getliushui(string patten)
@@ -43,6 +43,7 @@ namespace 启动程序
             return lists;
         }
 
+        string month = "";
         #region HRB
         public void HRB()
         {
@@ -52,8 +53,7 @@ namespace 启动程序
             string[] kuandus = {"700-899", "900-999", "1000-1800", "1801-2100", };
             try
             {
-                foreach (string month in months)
-                {
+              
                     foreach (string liushui in liushuis)
                     {
                         string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode="+pinzhong+"&seqNum="+liushui;
@@ -108,7 +108,7 @@ namespace 启动程序
 
                     }
                 }
-            }
+            
 
             catch (Exception)
             {
@@ -128,8 +128,7 @@ namespace 启动程序
             string[] kuandus = { "700-799", "800-899", "900-999", "1000-1800", "1801-2100", };
             try
             {
-                foreach (string month in months)
-                {
+              
                     foreach (string liushui in liushuis)
                     {
                         string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode=" + pinzhong + "&seqNum=" + liushui;
@@ -184,7 +183,7 @@ namespace 启动程序
 
                     }
                 }
-            }
+            
 
             catch (Exception ex)
             {
@@ -206,8 +205,7 @@ namespace 启动程序
            
             try
             {
-                foreach (string month in months)
-                {
+              
                     foreach (string liushui in liushuis)
                     {
                         string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode=" + pinzhong + "&seqNum=" + liushui;
@@ -263,7 +261,7 @@ namespace 启动程序
 
                     }
                 }
-            }
+            
 
             catch (Exception ex)
             {
@@ -285,8 +283,7 @@ namespace 启动程序
 
             try
             {
-                foreach (string month in months)
-                {
+               
                     foreach (string liushui in liushuis)
                     {
                         string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode=" + pinzhong + "&seqNum=" + liushui;
@@ -343,7 +340,7 @@ namespace 启动程序
 
                     }
                 }
-            }
+            
 
             catch (Exception ex)
             {
@@ -364,8 +361,7 @@ namespace 启动程序
 
             try
             {
-                foreach (string month in months)
-                {
+              
                     foreach (string liushui in liushuis)
                     {
                         string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode=" + pinzhong + "&seqNum=" + liushui;
@@ -422,7 +418,7 @@ namespace 启动程序
 
                     }
                 }
-            }
+            
 
             catch (Exception ex)
             {
@@ -432,6 +428,11 @@ namespace 启动程序
         }
 
         #endregion
+
+
+
+
+
 
 
         #region N00
@@ -444,8 +445,7 @@ namespace 启动程序
 
             try
             {
-                foreach (string month in months)
-                {
+               
                     foreach (string liushui in liushuis)
                     {
                         string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode=" + pinzhong + "&seqNum=" + liushui;
@@ -502,7 +502,7 @@ namespace 启动程序
 
                     }
                 }
-            }
+            
 
             catch (Exception ex)
             {
@@ -524,8 +524,7 @@ namespace 启动程序
 
             try
             {
-                foreach (string month in months)
-                {
+              
                     foreach (string liushui in liushuis)
                     {
                         string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode=" + pinzhong + "&seqNum=" + liushui;
@@ -558,8 +557,8 @@ namespace 启动程序
 
                                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
                                 lv1.SubItems.Add(month);
-                                lv1.SubItems.Add(pinzhong);
-                                lv1.SubItems.Add(liushui+"彩涂");
+                                lv1.SubItems.Add(pinzhong + "彩涂");
+                                lv1.SubItems.Add(liushui);
                                 lv1.SubItems.Add("TDC51D+Z   (Q/BQB 440-2009) ");
                                 lv1.SubItems.Add(lists[i].ToString());
                                 lv1.SubItems.Add(kuandu);
@@ -581,7 +580,7 @@ namespace 启动程序
                         }
 
                     }
-                }
+                
             }
 
             catch (Exception ex)
@@ -594,7 +593,163 @@ namespace 启动程序
         #endregion
 
 
-        
+        #region S00
+        public void S00()
+        {
+
+            string pinzhong = "S00";
+            ArrayList liushuis = getliushui(@"'S00','([\s\S]*?)'");
+            string[] kuandus = { "800-899", "900-999", "1000-1099", "1100-1199", "1200-1250", "1251-1280" };
+
+            try
+            {
+               
+                    foreach (string liushui in liushuis)
+                    {
+                        string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode=" + pinzhong + "&seqNum=" + liushui;
+
+                        string html = method.GetUrl(url, "GBK");
+
+                        MatchCollection paihao = Regex.Matches(html, @"width:51pt'>B([\s\S]*?)</td>");
+
+                        
+                        MatchCollection prices = Regex.Matches(html, @"border-left:none' x:num>([\s\S]*?)</td>");
+
+
+
+
+                        ArrayList lists = new ArrayList();
+
+                        for (int i = 0; i < paihao.Count; i++)
+                        {
+
+                            lists.Add(paihao[i].Groups[1].Value);
+                        }
+
+
+
+                        for (int i = 0; i < lists.Count; i++)
+                        {
+                            int j = 0;
+                            foreach (string kuandu in kuandus)
+                            {
+
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                                lv1.SubItems.Add(month);
+                                lv1.SubItems.Add(pinzhong + "无取向电工钢");
+                                lv1.SubItems.Add(liushui );
+                                lv1.SubItems.Add("B"+lists[i].ToString()); //牌号
+                                lv1.SubItems.Add("无");  //厚度
+                                lv1.SubItems.Add(kuandu);
+                                lv1.SubItems.Add(prices[6* i +  j].Groups[1].Value.Trim());
+                                lv1.SubItems.Add("表列价格厚度公差为PT.A交货价格，按PT.B交货的加价50元/吨,按PT.C交货的加价200元/吨。表列价格宽度公差为PW.A交货价格，按PW.B交货的加价50元 / 吨（仅针对毛边板)。仅针对钢板不平度为PF.A交货不加价，按PF.B交货的加价100元 / 吨。");
+                                lv1.SubItems.Add("BQB标准+α加价100元/吨。精整卷、平整卷加价100元 / 吨毛边板、商品卷加价100元 / 吨切边板、切边卷加价200元 / 吨");
+                                //lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
+                                //lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
+                                j = j + 1;
+
+                                while (zanting == false)
+                                {
+                                    Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                                }
+                                if (status == false)
+                                    return;
+
+                            }
+                        }
+
+                    }
+                }
+            
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        #endregion
+
+        #region S0C
+        public void S0C()
+        {
+
+            string pinzhong = "S0C";
+            ArrayList liushuis = getliushui(@"'S0C','([\s\S]*?)'");
+            string[] kuandus = { "800-899", "900-999", "1000-1099", "1100-1199", "1200-1250", "1251-1280" };
+
+            try
+            {
+               
+                    foreach (string liushui in liushuis)
+                    {
+                       
+                        string url = "http://ecommerce.ibaosteel.com/baosteel_csm/ne/productPriceQueryMainCas.cas?functionCode=productPriceQueryMainCas&month=" + month + "&prodCode=" + pinzhong + "&seqNum=" + liushui;
+                       
+                        string html = method.GetUrl(url, "GBK");
+
+                        MatchCollection paihao = Regex.Matches(html, @"width:50pt'>([\s\S]*?)</td>");
+
+
+                        MatchCollection prices = Regex.Matches(html, @"border-left:none' x:num>([\s\S]*?)</td>");
+
+
+                        MessageBox.Show(paihao.Count.ToString());
+
+                        ArrayList lists = new ArrayList();
+
+                        for (int i = 2; i < paihao.Count-2; i++)
+                        {
+
+                            lists.Add(paihao[i].Groups[1].Value);
+                        }
+
+
+
+                        for (int i = 0; i < lists.Count; i++)
+                        {
+                            int j = 0;
+                            foreach (string kuandu in kuandus)
+                            {
+
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                                lv1.SubItems.Add(month);
+                                lv1.SubItems.Add(pinzhong + "青山基地无取向电工钢");
+                                lv1.SubItems.Add(liushui);
+                                lv1.SubItems.Add( lists[i].ToString()); //牌号
+                                lv1.SubItems.Add("无");  //厚度
+                                lv1.SubItems.Add(kuandu);
+                                lv1.SubItems.Add(prices[6 * i + j].Groups[1].Value.Trim());
+                                lv1.SubItems.Add("表列价格厚度公差为PT.A交货价格，按PT.B交货的加价50元/吨,按PT.C交货的加价200元/吨。表列价格宽度公差为PW.A交货价格，按PW.B交货的加价50元 / 吨（仅针对毛边板)。仅针对钢板不平度为PF.A交货不加价，按PF.B交货的加价100元 / 吨。");
+                                lv1.SubItems.Add("BQB标准+α加价100元/吨。精整卷、平整卷加价100元 / 吨毛边板、商品卷加价100元 / 吨切边板、切边卷加价200元 / 吨");
+                                //lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
+                                //lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
+                                j = j + 1;
+
+                                while (zanting == false)
+                                {
+                                    Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                                }
+                                if (status == false)
+                                    return;
+
+                            }
+                        }
+
+                    }
+                }
+            
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        #endregion
+
 
         private void 宝钢价格_Load(object sender, EventArgs e)
         {
@@ -609,6 +764,7 @@ namespace 启动程序
 
             if (html.Contains(@"baogangjiage"))
             {
+                month = textBox1.Text.Trim();
                 button1.Enabled = false;
                 status = true;
                 if (checkBox1.Checked == true)
@@ -656,7 +812,19 @@ namespace 启动程序
                     Control.CheckForIllegalCrossThreadCalls = false;
                 }
 
-            
+                if (checkBox9.Checked == true)
+                {
+                    Thread thread1 = new Thread(new ThreadStart(S00));
+                    thread1.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+
+                if (checkBox10.Checked == true)
+                {
+                    Thread thread1 = new Thread(new ThreadStart(S0C));
+                    thread1.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
 
             }
 

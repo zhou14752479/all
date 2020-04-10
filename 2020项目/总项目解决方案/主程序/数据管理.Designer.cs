@@ -30,26 +30,27 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -65,6 +66,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button8);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
@@ -79,6 +81,56 @@
             this.splitContainer1.Size = new System.Drawing.Size(912, 535);
             this.splitContainer1.SplitterDistance = 461;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Location = new System.Drawing.Point(712, 15);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 31;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "启动";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(28, 68);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(65, 26);
+            this.button7.TabIndex = 32;
+            this.button7.Text = "锁定";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(28, 21);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "解锁密码：";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(110, 68);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(65, 26);
+            this.button6.TabIndex = 30;
+            this.button6.Text = "解锁";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(28, 41);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
+            this.textBox3.Size = new System.Drawing.Size(147, 21);
+            this.textBox3.TabIndex = 28;
             // 
             // button4
             // 
@@ -123,7 +175,7 @@
             this.button2.Font = new System.Drawing.Font("宋体", 10F);
             this.button2.Location = new System.Drawing.Point(418, 90);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(258, 33);
+            this.button2.Size = new System.Drawing.Size(100, 33);
             this.button2.TabIndex = 26;
             this.button2.Text = "查询数据";
             this.button2.UseVisualStyleBackColor = true;
@@ -139,6 +191,17 @@
             this.button1.Text = "去重并导入数据库";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 129);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(912, 332);
+            this.dataGridView1.TabIndex = 24;
             // 
             // button5
             // 
@@ -167,66 +230,16 @@
             this.textBox1.Size = new System.Drawing.Size(312, 21);
             this.textBox1.TabIndex = 21;
             // 
-            // dataGridView1
+            // button8
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 129);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(912, 332);
-            this.dataGridView1.TabIndex = 24;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Location = new System.Drawing.Point(712, 15);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
-            this.groupBox1.TabIndex = 31;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "启动";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(28, 41);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(147, 21);
-            this.textBox3.TabIndex = 28;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(110, 68);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(65, 26);
-            this.button6.TabIndex = 30;
-            this.button6.Text = "解锁";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 12);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "解锁密码：";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(28, 68);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(65, 26);
-            this.button7.TabIndex = 32;
-            this.button7.Text = "锁定";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            this.button8.Font = new System.Drawing.Font("宋体", 10F);
+            this.button8.Location = new System.Drawing.Point(576, 90);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(100, 33);
+            this.button8.TabIndex = 32;
+            this.button8.Text = "导出数据";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
             // 
             // 数据管理
             // 
@@ -242,9 +255,9 @@
             this.splitContainer1.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -267,5 +280,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }

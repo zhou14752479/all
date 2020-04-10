@@ -54,6 +54,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TxtoExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TxtoExcel.Designer.cs">
+      <DependentUpon>TxtoExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="YY检测.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     </Compile>
     <Compile Include="宝钢价格.Designer.cs">
       <DependentUpon>宝钢价格.cs</DependentUpon>
+    </Compile>
+    <Compile Include="广东快乐十分.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="广东快乐十分.Designer.cs">
+      <DependentUpon>广东快乐十分.cs</DependentUpon>
     </Compile>
     <Compile Include="微博转赞评.cs">
       <SubType>Form</SubType>
@@ -138,6 +150,12 @@
     <Compile Include="票据网.Designer.cs">
       <DependentUpon>票据网.cs</DependentUpon>
     </Compile>
+    <Compile Include="群抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="群抓取.Designer.cs">
+      <DependentUpon>群抓取.cs</DependentUpon>
+    </Compile>
     <Compile Include="论坛抓取.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +180,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TxtoExcel.resx">
+      <DependentUpon>TxtoExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="YY检测.resx">
       <DependentUpon>YY检测.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +204,9 @@
     <EmbeddedResource Include="宝钢价格.resx">
       <DependentUpon>宝钢价格.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="广东快乐十分.resx">
+      <DependentUpon>广东快乐十分.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="微博转赞评.resx">
       <DependentUpon>微博转赞评.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="票据网.resx">
       <DependentUpon>票据网.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="群抓取.resx">
+      <DependentUpon>群抓取.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="论坛抓取.resx">
       <DependentUpon>论坛抓取.cs</DependentUpon>

@@ -187,6 +187,7 @@ namespace 启动程序
 
         private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+           
             this.WindowState = FormWindowState.Minimized;//最小化 
         }
 

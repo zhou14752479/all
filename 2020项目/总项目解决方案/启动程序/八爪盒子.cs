@@ -40,8 +40,8 @@ namespace 启动程序
                 request.ContentType = "application/x-www-form-urlencoded";
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("Authorization:Basic NzAyNzkwNzc5ZDU4NjJjMmMzYmRlOWVmOWFhZjA1NzQ6MzZiNDA4YTljODJlMWUzYjc4Nzc2ODY2ODk4MzFjNDI=");
-                headers.Add("Agent-info: client=ios;osVersion=12.3.1;screenWidth=1242;screenHeight=2208;appVersion=5.1");
+                headers.Add("Authorization: Basic ZjMwNWMzNjBlNThmMWRiMDFmNGJhY2Q2MmU2ODFmYzk6ZTE1NDUxYmZiZjdjMzk0YzEyOTI2ODhhOTc3YjUxYTk=");
+                headers.Add("Agent-info: client=ios;osVersion=12.3.1;screenWidth=1242;screenHeight=2208;appVersion");
                 headers.Add("Agent-Info2: BaZhuaHeZiOK");
                 //添加头部
                
@@ -87,6 +87,15 @@ namespace 启动程序
         }
         bool zanting = true;
         bool status = true;
+
+        private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            long mTime = long.Parse(timeStamp + "0000");
+            TimeSpan toNow = new TimeSpan(mTime);
+            return startTime.Add(toNow);
+
+        }
         public void run()
 
         {
@@ -102,7 +111,7 @@ namespace 启动程序
                     string url = "https://api.ibole.net/candidate/mine";
                     string postdata = "offset="+i+"&pageSize=10&storageDateEnd=" + textBox2.Text + "%2023%3A59%3A59&storageDateStart=" + textBox1.Text + "%2000%3A00%3A00";
                     string html = PostUrl(url, postdata);
-
+                   
                     MatchCollection uids = Regex.Matches(html, @"""candidateId"":""([\s\S]*?)""");
 
                     if (uids.Count == 0)
@@ -110,7 +119,7 @@ namespace 启动程序
                     foreach (Match uid in uids)
                     {
                         string strhtml = PostUrl("https://api.ibole.net/candidate/detail", "candidateId=" + uid.Groups[1].Value);
-
+                       
                         Match a1 = Regex.Match(strhtml, @"""realName"":""([\s\S]*?)""");
                         Match a2 = Regex.Match(strhtml, @"职位：([\s\S]*?)\\r");
                         Match a3 = Regex.Match(strhtml, @"地址：([\s\S]*?)\\r");
@@ -129,30 +138,96 @@ namespace 启动程序
                         //Match a16 = Regex.Match(strhtml, @"语言技能\\r\\n([\s\S]*?) ");
 
 
-                        Match jiaoyus = Regex.Match(strhtml, @"教育背景\\r\\n([\s\S]*?)求职意向");
-                        Match xiangmus = Regex.Match(strhtml, @"工作经验\\r\\n([\s\S]*?)""");
-                        //string[] jiaoyu = jiaoyus.Groups[1].Value.Split(new string[] { "\\r\\n" }, StringSplitOptions.None);
+                        Match jiaoyus = Regex.Match(strhtml, @"""eduList"":\[([\s\S]*?)\],");
 
 
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(a1.Groups[1].Value);
-                        lv1.SubItems.Add(a2.Groups[1].Value);
-                        lv1.SubItems.Add(a3.Groups[1].Value);
-                        lv1.SubItems.Add(a4.Groups[1].Value);
-                        lv1.SubItems.Add(a5.Groups[1].Value);
-                        lv1.SubItems.Add(a6.Groups[1].Value);
-                        lv1.SubItems.Add(a7.Groups[1].Value);
-                        lv1.SubItems.Add(a8.Groups[1].Value);
-                        lv1.SubItems.Add(a9.Groups[1].Value);
-                        lv1.SubItems.Add(a10.Groups[1].Value);
-                        lv1.SubItems.Add(a11.Groups[1].Value);
-                        lv1.SubItems.Add(a12.Groups[1].Value);
-                        lv1.SubItems.Add(a13.Groups[1].Value);
-                        lv1.SubItems.Add(a14.Groups[1].Value);
-                        lv1.SubItems.Add(a14.Groups[2].Value);
+                        MatchCollection jiaoyu1 = Regex.Matches(jiaoyus.Groups[1].Value, @"startDate"":([\s\S]*?)\}");
+                        MatchCollection jiaoyu2 = Regex.Matches(jiaoyus.Groups[1].Value, @"endDate"":([\s\S]*?),");
+                        MatchCollection jiaoyu3 = Regex.Matches(jiaoyus.Groups[1].Value, @"degree"":([\s\S]*?),");
+                        MatchCollection jiaoyu4 = Regex.Matches(jiaoyus.Groups[1].Value, @"schoolName"":""([\s\S]*?)""");
+                        MatchCollection jiaoyu5 = Regex.Matches(jiaoyus.Groups[1].Value, @"majorName"":""([\s\S]*?)""");
 
-                        lv1.SubItems.Add(Regex.Replace(jiaoyus.Groups[1].Value, @"语言技能。*", ""));
-                        lv1.SubItems.Add(xiangmus.Groups[1].Value);
+
+
+
+
+
+                        Match xiangmus = Regex.Match(strhtml, @"workList"":\[([\s\S]*?)\]");
+
+                        MatchCollection xiangmu1 = Regex.Matches(xiangmus.Groups[1].Value, @"startDate"":([\s\S]*?)\,");
+                        MatchCollection xiangmu2 = Regex.Matches(xiangmus.Groups[1].Value, @"endDate"":([\s\S]*?)\,");
+                        MatchCollection xiangmu3 = Regex.Matches(xiangmus.Groups[1].Value, @"companyName"":""([\s\S]*?)""");
+                        MatchCollection xiangmu4 = Regex.Matches(xiangmus.Groups[1].Value, @"companyType"":([\s\S]*?)\,");
+                        MatchCollection xiangmu5 = Regex.Matches(xiangmus.Groups[1].Value, @"title"":""([\s\S]*?)""");
+                        MatchCollection xiangmu6 = Regex.Matches(xiangmus.Groups[1].Value, @"salary"":([\s\S]*?)\,");
+                        MatchCollection xiangmu7 = Regex.Matches(xiangmus.Groups[1].Value, @"responsibility"":""([\s\S]*?)""");
+
+                        int value = jiaoyu1.Count > xiangmu1.Count ? jiaoyu1.Count : xiangmu1.Count;
+
+                        for (int z = 0; z < value; z++)
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
+                            for (int j = 0; j < 27; j++)
+                            {
+                                lv1.SubItems.Add("");
+
+                            }
+
+                            if (z == 0)
+                            {
+                                lv1.SubItems[1].Text = a1.Groups[1].Value;
+                                lv1.SubItems[2].Text = a2.Groups[1].Value;
+                                lv1.SubItems[3].Text = a3.Groups[1].Value;
+                                lv1.SubItems[4].Text = a4.Groups[1].Value;
+                                lv1.SubItems[5].Text = a5.Groups[1].Value;
+                                lv1.SubItems[6].Text = a6.Groups[1].Value;
+                                lv1.SubItems[7].Text = a7.Groups[1].Value;
+                                lv1.SubItems[8].Text = a8.Groups[1].Value;
+                                lv1.SubItems[9].Text = a9.Groups[1].Value;
+                                lv1.SubItems[10].Text = a10.Groups[1].Value;
+                                lv1.SubItems[11].Text = a11.Groups[1].Value;
+                                lv1.SubItems[12].Text = a12.Groups[1].Value;
+                                lv1.SubItems[13].Text = a13.Groups[1].Value;
+                                lv1.SubItems[14].Text = a14.Groups[1].Value;
+                                lv1.SubItems[15].Text = a14.Groups[2].Value;
+
+                            }
+
+                           
+                            if (z<jiaoyu1.Count)
+                            {
+
+                                lv1.SubItems[16].Text = ConvertStringToDateTime(jiaoyu1[z].Groups[1].Value).ToString();
+                                lv1.SubItems[17].Text = ConvertStringToDateTime(jiaoyu2[z].Groups[1].Value).ToString();
+                                lv1.SubItems[18].Text = jiaoyu3[z].Groups[1].Value;
+                                lv1.SubItems[19].Text = jiaoyu4[z].Groups[1].Value;
+                                lv1.SubItems[20].Text = jiaoyu5[z].Groups[1].Value;
+                            }
+
+                            if (z < xiangmu1.Count)
+                            {
+
+                                lv1.SubItems[21].Text = ConvertStringToDateTime(xiangmu1[z].Groups[1].Value).ToString();
+                                lv1.SubItems[22].Text = ConvertStringToDateTime(xiangmu2[z].Groups[1].Value).ToString();
+                                lv1.SubItems[23].Text = xiangmu3[z].Groups[1].Value;
+                                lv1.SubItems[24].Text = xiangmu4[z].Groups[1].Value;
+                                lv1.SubItems[25].Text = xiangmu5[z].Groups[1].Value;
+                                lv1.SubItems[26].Text = xiangmu6[z].Groups[1].Value;
+                                lv1.SubItems[27].Text = xiangmu7[z].Groups[1].Value;
+
+                            }
+                        }
+
+
+
+
+
+
+
+
+
+
+                     
                         yi = yi + 1;
                         label6.Text = yi.ToString();
 
@@ -166,10 +241,10 @@ namespace 启动程序
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.ToString());
             }
 
         }

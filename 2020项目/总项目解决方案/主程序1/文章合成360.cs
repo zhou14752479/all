@@ -68,6 +68,9 @@ namespace 主程序1
             return "";
         }
         #endregion
+
+       
+
         bool zanting = true;
         bool status = true;
         string path = AppDomain.CurrentDomain.BaseDirectory;
@@ -88,7 +91,7 @@ namespace 主程序1
 
             try
             {
-                StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.GetEncoding("utf-8"));
+                StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
                 string text = streamReader.ReadToEnd();
                 string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < array.Length; i++)
@@ -125,9 +128,12 @@ namespace 主程序1
                         {
                             return;
                         }
+                        if (j < 5)
+                        {
+                            textBox2.Text += "正在下载" + array[i] + "第" + (j+1) + "篇文章" + "\r\n";
+                        }
 
-
-                        textBox2.Text += "正在下载"+ array[i] + "第"+j+"篇文章"+"\r\n";
+                      
 
                         Thread.Sleep(1000);
                     }

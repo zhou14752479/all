@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using helper;
 
 namespace 主程序
 {
@@ -280,6 +281,11 @@ namespace 主程序
             {
                 MessageBox.Show("密码错误");
             }
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.DgvToTable(dataGridView1), "sheet1",true);
         }
     }
 }
