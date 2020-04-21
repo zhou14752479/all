@@ -170,7 +170,7 @@ namespace 启动程序
         {
             #region 通用检测
 
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "");
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
             if (html.Contains(@"tupianxiazai"))
             {

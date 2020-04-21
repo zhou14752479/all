@@ -491,9 +491,19 @@ namespace helper
         }
 
         #endregion
-
+        
+        /// <summary>
+        /// 获取时间戳  秒
+        /// </summary>
+        /// <returns></returns>
+        public static string GetTimeStamp()
+        {
+            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long a = Convert.ToInt64(tss.TotalSeconds);
+            return a.ToString();
+        }
         #region NPOI导出表格默认时间为文件名
-        public static int DataTableToExcelTime(DataTable data, bool isColumnWritten,string fileName)
+        public static int DataTableToExcelTime(DataTable data, bool isColumnWritten)
         {
             int i = 0;
             int j = 0;
@@ -501,6 +511,13 @@ namespace helper
             ISheet sheet = null;
             IWorkbook workbook = null;
             FileStream fs = null;
+            //string fileName = GetTimeStamp() + ".xlsx";
+            //string fileName= DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")+".xlsx";
+            string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".xlsx";
+
+
+
+
             // bool disposed;
             //SaveFileDialog sfd = new SaveFileDialog();
             //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
@@ -638,10 +655,10 @@ namespace helper
 
                 client.DownloadFile(URLAddress, subPath + "\\" + name);
             }
-            catch 
+            catch (Exception ex)
             {
 
-               
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -737,7 +754,7 @@ namespace helper
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                request.Referer = "http://chn.lottedfs.cn/kr/product/productDetail?prdNo=10001805265&prdOptNo=10001805265";
+                request.Referer = "https://pvp.qq.com/web201605/artdetail.shtml";
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
@@ -983,6 +1000,46 @@ namespace helper
             }
         }
 
+        #endregion
+
+        #region base64加密
+        public static string Base64Encode(Encoding encodeType, string source)
+        {
+            string encode = string.Empty;
+            byte[] bytes = encodeType.GetBytes(source);
+            try
+            {
+                encode = Convert.ToBase64String(bytes);
+            }
+            catch
+            {
+                encode = source;
+            }
+            return encode;
+        }
+        #endregion
+
+        #region base64解密
+        /// <summary>
+        /// Base64解密
+        /// </summary>
+        /// <param name="encodeType">解密采用的编码方式，注意和加密时采用的方式一致</param>
+        /// <param name="result">待解密的密文</param>
+        /// <returns>解密后的字符串</returns>
+        public static string Base64Decode(Encoding encodeType, string result)
+        {
+            string decode = string.Empty;
+            byte[] bytes = Convert.FromBase64String(result);
+            try
+            {
+                decode = encodeType.GetString(bytes);
+            }
+            catch
+            {
+                decode = result;
+            }
+            return decode;
+        }
         #endregion
 
     }

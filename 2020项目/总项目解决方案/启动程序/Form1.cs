@@ -13,9 +13,9 @@ using helper;
 
 namespace 启动程序
 {
-    public partial class Form1 : Form
+    public partial class 厦门大学 : Form
     {
-        public Form1()
+        public 厦门大学()
         {
             InitializeComponent();
         }
@@ -30,7 +30,7 @@ namespace 启动程序
             try
             {
 
-                string cookie = "route=bb1b53f4cfec6b792761ca9b6e203366; JSESSIONID=4D6914A33CA1628B98DEBDE9446D9B8F; iPlanetDirectoryPro=AQIC5wM2LY4Sfcx0rHwUBkNH2dYer582GMqdPNlhDk0Uk1Y%3D%40AAJTSQACMDI%3D%23";
+                string cookie = method.GetCookies("http://moa.xmu.edu.cn/km/imissive/km_imissive_sign_main/kmImissiveSignMain.do?method=listChildren&categoryId=&q.s_raq=0.012296960934379708&pageno=2&rowsize=15&orderby=docCreateTime&ordertype=down&s_ajax=true"); ;
                 string url = "http://moa.xmu.edu.cn/km/review/km_review_index/kmReviewIndex.do?method=list&q.s_raq=0.08639820153425903&pageno=1&rowsize=999&orderby=docCreateTime&ordertype=down&s_ajax=true";
                 string html = method.GetUrlWithCookie(url, cookie, "utf-8");
                 MatchCollection uids = Regex.Matches(html, @"fdId"",""value"":""([\s\S]*?)""");
@@ -88,7 +88,7 @@ namespace 启动程序
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
 
-                        Thread.Sleep(1000);
+                        
                     }
                 }
 
@@ -107,6 +107,7 @@ namespace 启动程序
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            webBrowser1.Visible = false;
             Thread thread1 = new Thread(new ThreadStart(run));
             thread1.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -125,6 +126,12 @@ namespace 启动程序
         private void button4_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Visible = true;
+            webBrowser1.Navigate("http://ids.xmu.edu.cn/authserver/login?service=http://moa.xmu.edu.cn/index.jsp");
         }
     }
 }

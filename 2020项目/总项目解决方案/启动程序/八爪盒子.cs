@@ -40,7 +40,7 @@ namespace 启动程序
                 request.ContentType = "application/x-www-form-urlencoded";
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("Authorization: Basic ZjMwNWMzNjBlNThmMWRiMDFmNGJhY2Q2MmU2ODFmYzk6ZTE1NDUxYmZiZjdjMzk0YzEyOTI2ODhhOTc3YjUxYTk=");
+                headers.Add("Authorization: Basic ZTk1ZTY2MDMxNDJjMzU5NTRhYTM0NWViZDY4Y2UwMTU6MWVlNjE1ZTJmZGY5YmY4MTZmM2U3NjNjZTMxYjg2MmQ=");
                 headers.Add("Agent-info: client=ios;osVersion=12.3.1;screenWidth=1242;screenHeight=2208;appVersion");
                 headers.Add("Agent-Info2: BaZhuaHeZiOK");
                 //添加头部
@@ -136,7 +136,7 @@ namespace 启动程序
                         Match a14 = Regex.Match(strhtml, @"求职意向\\r\\n([\s\S]*?)  ([\s\S]*?) ");
                         //Match a15 = Regex.Match(strhtml, @"自我评价：([\s\S]*?)\\r");
                         //Match a16 = Regex.Match(strhtml, @"语言技能\\r\\n([\s\S]*?) ");
-
+                        Match jilu = Regex.Match(strhtml, @"inquiryList([\s\S]*?)content"":""([\s\S]*?)""");
 
                         Match jiaoyus = Regex.Match(strhtml, @"""eduList"":\[([\s\S]*?)\],");
 
@@ -167,7 +167,7 @@ namespace 启动程序
                         for (int z = 0; z < value; z++)
                         {
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
-                            for (int j = 0; j < 27; j++)
+                            for (int j = 0; j < 28; j++)
                             {
                                 lv1.SubItems.Add("");
 
@@ -190,7 +190,7 @@ namespace 启动程序
                                 lv1.SubItems[13].Text = a13.Groups[1].Value;
                                 lv1.SubItems[14].Text = a14.Groups[1].Value;
                                 lv1.SubItems[15].Text = a14.Groups[2].Value;
-
+                                lv1.SubItems[28].Text = jilu.Groups[2].Value;
                             }
 
                            
@@ -198,7 +198,7 @@ namespace 启动程序
                             {
 
                                 lv1.SubItems[16].Text = ConvertStringToDateTime(jiaoyu1[z].Groups[1].Value).ToString();
-                                lv1.SubItems[17].Text = ConvertStringToDateTime(jiaoyu2[z].Groups[1].Value).ToString();
+                                lv1.SubItems[17].Text = ConvertStringToDateTime(jiaoyu2[z].Groups[1].Value).ToString().Replace("9999/12/31 0:00:00","");
                                 lv1.SubItems[18].Text = jiaoyu3[z].Groups[1].Value;
                                 lv1.SubItems[19].Text = jiaoyu4[z].Groups[1].Value;
                                 lv1.SubItems[20].Text = jiaoyu5[z].Groups[1].Value;
@@ -208,7 +208,7 @@ namespace 启动程序
                             {
 
                                 lv1.SubItems[21].Text = ConvertStringToDateTime(xiangmu1[z].Groups[1].Value).ToString();
-                                lv1.SubItems[22].Text = ConvertStringToDateTime(xiangmu2[z].Groups[1].Value).ToString();
+                                lv1.SubItems[22].Text = ConvertStringToDateTime(xiangmu2[z].Groups[1].Value).ToString().Replace("9999/12/31 0:00:00", "");
                                 lv1.SubItems[23].Text = xiangmu3[z].Groups[1].Value;
                                 lv1.SubItems[24].Text = xiangmu4[z].Groups[1].Value;
                                 lv1.SubItems[25].Text = xiangmu5[z].Groups[1].Value;

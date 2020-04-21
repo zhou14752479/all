@@ -430,11 +430,6 @@ namespace 启动程序
         #endregion
 
 
-
-
-
-
-
         #region N00
         public void N00()
         {

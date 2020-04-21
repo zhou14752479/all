@@ -177,6 +177,8 @@ namespace 商标局浏览器
     }
 
         #endregion
+
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -215,6 +217,7 @@ namespace 商标局浏览器
             return "";
         }
         #endregion
+
         internal static class NativeMethods
     {
         [DllImport("WinInet.dll", SetLastError = true, CharSet = CharSet.Auto)]
@@ -231,19 +234,23 @@ namespace 商标局浏览器
                 SetProxy("");
                 string url = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=1&fa=0&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7";
 
-                string IP = GetUrl(url, "utf-8");
-               
-                if (IP.Contains("白名单"))
+                string html = GetUrl(url, "utf-8");
+                
+                if (html.Contains("不是白名单"))
                 {
-                    textBox1.Text = DateTime.Now.ToString() + " 请添加当前IP";
+                    GetUrl("http://h.xunlianip.com/Users-whiteIpAddNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0&whiteip="+GetIP(), "utf-8");
+
+                    textBox1.Text = "请重新点击更换IP";
                 }
 
-                else if (IP.Contains(":"))
+                else if (html.Contains(":"))
                 {
 
-                    SetProxy(IP.Trim());
+                    SetProxy(html.Trim());
 
-                    textBox1.Text += DateTime.Now.ToString() + "  重置成功" + "\r\n";
+                    textBox1.Text = DateTime.Now.ToString() + "  重置成功" + "\r\n";
+                    textBox1.Text += DateTime.Now.ToString() + "  当前IP："+ html+ "\r\n";
+                    textBox1.Text += DateTime.Now.ToString() + "  可以使用了"+"\r\n";
                 }
                 else
                 {
@@ -285,8 +292,10 @@ namespace 商标局浏览器
 
         #endregion
 
+        
         private void Form1_Load(object sender, EventArgs e)
         {
+          
             label3.Text = GetIP();
         }
 
@@ -307,7 +316,7 @@ namespace 商标局浏览器
 
         private void Label2_Click(object sender, EventArgs e)
         {
-            SetProxy("");
+           
         }
 
         int i = 100;
@@ -326,11 +335,16 @@ namespace 商标局浏览器
             {
                 i = 100;
                 button1.Enabled = true;
-                button1.Text = "重置状态";
+                button1.Text = "更换IP";
                 timer1.Stop();
             }
 
            
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SetProxy("");
         }
     }
 }

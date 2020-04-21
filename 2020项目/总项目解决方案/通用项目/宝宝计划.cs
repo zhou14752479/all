@@ -232,12 +232,12 @@ namespace 通用项目
         {
             
 
-            string path = AppDomain.CurrentDomain.BaseDirectory+ DateTime.Now.ToString("m")+"-";
-            method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true,path+"1.xlsx");
-            method.DataTableToExcelTime(method.listViewToDataTable(this.listView2), true, path + "2.xlsx");
-            method.DataTableToExcelTime(method.listViewToDataTable(this.listView3), true, path + "3.xlsx");
-            method.DataTableToExcelTime(method.listViewToDataTable(this.listView4), true, path + "4.xlsx");
-            method.DataTableToExcelTime(method.listViewToDataTable(this.listView5), true, path + "5.xlsx");
+            //string path = AppDomain.CurrentDomain.BaseDirectory+ DateTime.Now.ToString("m")+"-";
+            //method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true,path+"1.xlsx");
+            //method.DataTableToExcelTime(method.listViewToDataTable(this.listView2), true, path + "2.xlsx");
+            //method.DataTableToExcelTime(method.listViewToDataTable(this.listView3), true, path + "3.xlsx");
+            //method.DataTableToExcelTime(method.listViewToDataTable(this.listView4), true, path + "4.xlsx");
+            //method.DataTableToExcelTime(method.listViewToDataTable(this.listView5), true, path + "5.xlsx");
 
         }
 

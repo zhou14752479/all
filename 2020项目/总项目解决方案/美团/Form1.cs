@@ -176,22 +176,9 @@ namespace 美团
 
         #endregion
 
-        //if (tell.Groups[1].Value != "")
-        //{
 
-        //    if (yidong.Contains(tell.Groups[1].Value.Substring(0, 3)))
-        //    {
-        //        listViewItem.SubItems.Add("移动");
-        //    }
-        //    if (liantong.Contains(tell.Groups[1].Value.Substring(0, 3)))
-        //    {
-        //        listViewItem.SubItems.Add("联通");
-        //    }
-        //    if (dianxin.Contains(tell.Groups[1].Value.Substring(0, 3)))
-        //    {
-        //        listViewItem.SubItems.Add("电信");
-        //    }
-        //}
+
+
 
         #region  主程序
         public void run()
@@ -199,8 +186,8 @@ namespace 美团
 
             try
             {
-                string[] citys = textBox1.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
-
+                 string[] citys = textBox1.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
+               
                 if (textBox1.Text.Trim() == "")
                 {
                     MessageBox.Show("请输入城市！");
@@ -219,11 +206,11 @@ namespace 美团
                 {
 
                     ArrayList areas = getareas(Getsuoxie(city));
-                    
+
                     string cityId = GetcityId(city);
                     foreach (string areaId in areas)
                     {
-                        
+
                         foreach (string keyword in keywords)
 
                         {
@@ -231,12 +218,12 @@ namespace 美团
                             for (int i = 0; i < 1000; i=i+15)
 
                             {
-                             
-                               
-                                    string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+cityId+"&areaId="+ areaId;
 
-                               
-                                    string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                             string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+cityId+"&areaId="+ areaId;
+                           
+
+                            string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
                                 
                                     MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
                                
@@ -308,7 +295,7 @@ namespace 美团
                     }
 
 
-                }
+               }
             }
 
 
@@ -320,6 +307,121 @@ namespace 美团
                 MessageBox.Show(ex.ToString());
             }
         
+
+        }
+
+        #endregion
+
+        #region  主程序
+        public void run1()
+        {
+
+            try
+            {
+                string[] citys = textBox3.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                string[] keywords = textBox2.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
+
+
+                foreach (string city in citys)
+                {
+                     string cityId = GetcityId(city);
+                    foreach (string keyword in keywords)
+
+                        {
+
+                            for (int i = 0; i < 1000; i = i + 15)
+
+                            {
+
+
+                                string Url = "https://apimobile.meituan.com/group/v4/poi/search/" + cityId + "?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset=" + i + "&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q=" + keyword.Trim() + "&requestType=filter&cityId=" + cityId;
+
+
+                                string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                            Match mainHtml = Regex.Match(html, @"searchResult([\s\S]*?)serverInfo");
+
+
+                            MatchCollection all = Regex.Matches(mainHtml.Groups[1].Value, @"""type"":""poi([\s\S]*?)id"":""([\s\S]*?)""");
+
+                                ArrayList lists = new ArrayList();
+                                foreach (Match NextMatch in all)
+                                {
+
+                                 
+                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[2].Value + "&isDaoZong=false");
+                                }
+
+                                if (lists.Count <2)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                    break;
+
+                                string tm1 = DateTime.Now.ToString();  //获取系统时间
+
+                                toolStripStatusLabel1.Text = tm1 + "-->正在采集" + city +  keyword + "第" + i + "页";
+
+                                foreach (string list in lists)
+
+                                {
+
+                                    string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                                    Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
+                                    Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
+                                    Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
+
+                                    if (!tels.Contains(tell.Groups[1].Value))
+                                    {
+
+
+                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                        listViewItem.SubItems.Add(name.Groups[1].Value);
+                                        listViewItem.SubItems.Add(tell.Groups[1].Value);
+                                        listViewItem.SubItems.Add(addr.Groups[1].Value);
+                                        listViewItem.SubItems.Add(city);
+
+
+                                        while (this.zanting == false)
+                                        {
+                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                        }
+                                        if (status == false)
+                                        {
+                                            return;
+                                        }
+
+                                        Thread.Sleep(1000);
+                                    }
+
+
+
+
+                                }
+
+                                Thread.Sleep(2000);
+                            }
+
+
+
+
+                        
+
+                    }
+
+
+                }
+            }
+
+
+
+
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
 
         }
 
@@ -398,9 +500,6 @@ namespace 美团
             return path;
         }
 
-        string[] yidong = {"134", "135", "136", "137", "138", "139", "150", "151", "152", "157", "158", "159", "182", "187", "188" };
-        string[] dianxin = { "133", "153", "180", "189", "134"};
-        string[] liantong = { "130", "131", "132", "155", "156", "186", "185", "176" };
 
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -409,12 +508,16 @@ namespace 美团
 
 
             status = true;
-                button1.Enabled = false;
-                Thread search_thread = new Thread(new ThreadStart(run));
-                Control.CheckForIllegalCrossThreadCalls = false;
-                search_thread.Start();
+            button1.Enabled = false;
+            Thread search_thread = new Thread(new ThreadStart(run));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            search_thread.Start();
 
-            
+            //status = true;
+            //button1.Enabled = false;
+            //Thread search_thread = new Thread(new ThreadStart(run1));
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            //search_thread.Start();
 
 
         }

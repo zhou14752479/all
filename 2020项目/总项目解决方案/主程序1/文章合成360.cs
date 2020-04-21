@@ -73,7 +73,7 @@ namespace 主程序1
 
         bool zanting = true;
         bool status = true;
-        string path = AppDomain.CurrentDomain.BaseDirectory;
+        string path = AppDomain.CurrentDomain.BaseDirectory+"文件\\";
         public void saveTxt(string title,string  body)
         {
            

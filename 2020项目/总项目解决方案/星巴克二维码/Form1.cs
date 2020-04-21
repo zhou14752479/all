@@ -26,7 +26,7 @@ namespace 星巴克二维码
         {
             InitializeComponent();
         }
-        string path= AppDomain.CurrentDomain.BaseDirectory+"image\\";
+        string path = AppDomain.CurrentDomain.BaseDirectory + "image\\";
 
         /// <summary>
         /// 识别图中二维码 Bitmap格式图片识别
@@ -62,8 +62,8 @@ namespace 星巴克二维码
             }
         }
 
-      
-      
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -80,7 +80,7 @@ namespace 星巴克二维码
         {
             try
             {
-                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
                 string COOKIE = "usid=07WwkCu3b_78aUPT; IPLOC=CN3213; SUV=00BA2DBC3159B8CD5D2585534E6EA580; CXID=5EA7E0DBFC0F423A95BC1EB511A405C7; SUID=CDB859313118960A000000005D25B077; ssuid=7291915575; pgv_pvi=5970681856; start_time=1562896518693; front_screen_resolution=1920*1080; wuid=AAElSJCaKAAAAAqMCGWoVQEAkwA=; FREQUENCY=1562896843272_13; sg_uuid=6358936283; newsCity=%u5BBF%u8FC1; SNUID=9FB9A0C8F8FC6C9FCB42F1E4F9BFB645; sortcookie=1; sw_uuid=3118318168; ld=3Zllllllll2NrO7hlllllVLmmtGlllllGqOxBkllllwlllllVklll5@@@@@@@@@@; sct=20";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "https://news.sogou.com/news?query=site%3Asohu.com+%B4%F3%CA%FD%BE%DD&_ast=1571813760&_asf=news.sogou.com&time=0&w=03009900&sort=1&mode=1&manual=&dp=1";
@@ -109,7 +109,7 @@ namespace 星巴克二维码
         }
         #endregion
 
-       
+
 
 
 
@@ -122,22 +122,22 @@ namespace 星巴克二维码
             try
 
             {
-               
-               StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
+
+                StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
                 string text = streamReader.ReadToEnd();
-                string[] array = text.Split(new string[]{"\r\n" }, StringSplitOptions.None);
-                for (int i = 0; i < array.Length ; i++)
+                string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < array.Length; i++)
                 {
                     if (array[i] != "")
                     {
                         string url = fanhuiurl(array[i]);
 
                         Match uid = Regex.Match(url, @"coupon=.*");
-
+                      
                         string URL = "https://b2bcoupons.starbucks.com.cn/interFace/digitalcoupon.ashx?Action=getCouponInfo&coupon=" + uid.Groups[0].Value.Replace("coupon=", "").Trim();
-
+                       
                         string html = GetUrl(URL);
-                        textBox2.Text = html;
+                        //textBox2.Text = html;
                         Match imagedata = Regex.Match(html, @"""msg"":""([\s\S]*?)""");
                         Match duihuan = Regex.Match(html, @"""status_name"":""([\s\S]*?)""");
                         if (duihuan.Groups[1].Value.Contains("未"))
@@ -156,8 +156,8 @@ namespace 星巴克二维码
                                 textBox2.Text += "正在抓取" + array[i] + "\r\n";
                                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                                 lv1.SubItems.Add(array[i]);
-                                lv1.SubItems.Add("二维码已保存");     
-                                bit.Save(path+i+".jpg");
+                                lv1.SubItems.Add("二维码已保存");
+                                bit.Save(path + i + ".jpg");
                             }
                         }
 
@@ -175,11 +175,14 @@ namespace 星巴克二维码
                         }
                         Thread.Sleep(500);
                     }
-                 }
-                    
                 }
 
-            
+
+                method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true);
+               
+            }
+
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -188,121 +191,105 @@ namespace 星巴克二维码
 
         #endregion
 
+
+      
         private void Button2_Click(object sender, EventArgs e)
         {
             
-           
-            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-            MySqlConnection mycon = new MySqlConnection(constr);
-            mycon.Open();
-
-            MySqlCommand cmd = new MySqlCommand("select * from vip where username='星巴克'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-            if (reader.Read())
-            {
-
-                string password = reader["password"].ToString().Trim();
-
-                if (password != "星巴克")
-
-                {
-                    MessageBox.Show("验证失败");
-
-                    Environment.Exit(0);
-                }
 
 
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
-            }
         }
+    
 
-        static string fanhuiurl(string cahxunurl)
-        {
+    static string fanhuiurl(string cahxunurl)
+    {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
             string url = "";
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(cahxunurl);
-            req.Method = "HEAD";
-            req.AllowAutoRedirect = false;
-            HttpWebResponse myResp = (HttpWebResponse)req.GetResponse();
-            if (myResp.StatusCode == HttpStatusCode.Redirect)
-            { url = myResp.GetResponseHeader("Location"); }
-            return url;
-        }
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(cahxunurl);
+        req.Method = "HEAD";
+        req.AllowAutoRedirect = false;
+        HttpWebResponse myResp = (HttpWebResponse)req.GetResponse();
+        if (myResp.StatusCode == HttpStatusCode.Redirect)
+        { url = myResp.GetResponseHeader("Location"); }
+        return url;
+    }
 
-        private void Button5_Click(object sender, EventArgs e)
+    private void Button5_Click(object sender, EventArgs e)
+    {
+        textBox2.Text = "";
+        listView1.Items.Clear();
+
+    }
+
+    private void Button1_Click(object sender, EventArgs e)
+    {
+        string url = fanhuiurl("http://s1se.cn/rqmyUrRyQB");
+
+        Match uid = Regex.Match(url, @"coupon=.*");
+        string URL = "https://b2bcoupons.starbucks.com.cn/interFace/digitalcoupon.ashx?Action=getCouponInfo&coupon=" + uid.Groups[0].Value.Replace("coupon=", "").Trim();
+
+        string html = GetUrl(URL);
+        Match imagedata = Regex.Match(html, @"""msg"":""([\s\S]*?)""");
+
+        string value = DecodeQrCode(Base64StringToImage(imagedata.Groups[1].Value));
+        MessageBox.Show(value);
+        zanting = false;
+    }
+
+    private void Button4_Click(object sender, EventArgs e)
+    {
+        zanting = true;
+    }
+
+    private void Button6_Click(object sender, EventArgs e)
+    {
+        bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+        if (flag)
         {
-            textBox2.Text = "";
-            listView1.Items.Clear();
-
+            this.textBox1.Text = this.openFileDialog1.FileName;
         }
+    }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            string url = fanhuiurl("http://s1se.cn/rqmyUrRyQB");
+    private void Button3_Click(object sender, EventArgs e)
+    {
+        method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+    }
 
-            Match uid = Regex.Match(url, @"coupon=.*");
-            string URL = "https://b2bcoupons.starbucks.com.cn/interFace/digitalcoupon.ashx?Action=getCouponInfo&coupon=" + uid.Groups[0].Value.Replace("coupon=", "").Trim();
+    private void 复制网址ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[1].Text);
+    }
 
-            string html = GetUrl(URL);
-            Match imagedata = Regex.Match(html, @"""msg"":""([\s\S]*?)""");
-            
-            string value = DecodeQrCode(Base64StringToImage(imagedata.Groups[1].Value));
-            MessageBox.Show(value);
-            zanting = false;
-        }
+    private void 复制串码ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[2].Text);
 
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            zanting = true;
-        }
+    }
 
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
-            if (flag)
-            {
-                this.textBox1.Text = this.openFileDialog1.FileName;
-            }
-        }
+    private void 重新扫描ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        string url = fanhuiurl(this.listView1.SelectedItems[0].SubItems[1].Text);
 
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-        }
+        Match uid = Regex.Match(url, @"coupon=.*");
+        string URL = "https://b2bcoupons.starbucks.com.cn/interFace/digitalcoupon.ashx?Action=getCouponInfo&coupon=" + uid.Groups[0].Value.Replace("coupon=", "").Trim();
 
-        private void 复制网址ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[1].Text);
-        }
+        string html = GetUrl(URL);
+        Match imagedata = Regex.Match(html, @"""msg"":""([\s\S]*?)""");
 
-        private void 复制串码ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[2].Text);
-           
-        }
+        string value = DecodeQrCode(Base64StringToImage(imagedata.Groups[1].Value));
 
-        private void 重新扫描ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string url = fanhuiurl(this.listView1.SelectedItems[0].SubItems[1].Text);
+        this.listView1.SelectedItems[0].SubItems[2].Text = value;
+    }
 
-            Match uid = Regex.Match(url, @"coupon=.*");
-            string URL = "https://b2bcoupons.starbucks.com.cn/interFace/digitalcoupon.ashx?Action=getCouponInfo&coupon=" + uid.Groups[0].Value.Replace("coupon=", "").Trim();
+    private void TextBox1_TextChanged(object sender, EventArgs e)
+    {
 
-            string html = GetUrl(URL);
-            Match imagedata = Regex.Match(html, @"""msg"":""([\s\S]*?)""");
+    }
 
-            string value = DecodeQrCode(Base64StringToImage(imagedata.Groups[1].Value));
 
-            this.listView1.SelectedItems[0].SubItems[2].Text = value;
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

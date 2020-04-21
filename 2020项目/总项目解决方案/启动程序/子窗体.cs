@@ -157,10 +157,10 @@ namespace 启动程序
         {
             pictureBox1.BackColor = Color.White;
         }
-
+        价格计算 js = new 价格计算();
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-            价格计算 js = new 价格计算();
+            
             js.Show();
         }
 
@@ -199,12 +199,12 @@ namespace 启动程序
 
             if (html.Contains(@"jiagejisuan"))
             {
-                价格计算 js = new 价格计算();
                 js.Show();
+               
                 js.getPrice();
-
+               js.jisuan();
                 js.Hide();
-
+                
 
             }
 

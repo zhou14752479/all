@@ -29,6 +29,7 @@ namespace 启动程序
         {
             InitializeComponent();
         }
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -117,7 +118,8 @@ namespace 启动程序
 
                 timer2.Start();
 
-
+            if (radioButton1.Checked == true)
+            {
                 string url = "https://www.jzj9999.com/pricedata/getdata.aspx?tmp=93861584761821632";
                 string html = GetUrl(url);
 
@@ -128,56 +130,79 @@ namespace 启动程序
                 Match a4 = Regex.Match(html, @"JZJ_pd"", ""askprice"": ""([\s\S]*?)""");
 
                 textBox1.Text = time.Groups[1].Value;
+                
                 textBox2.Text = a1.Groups[1].Value;
                 textBox3.Text = a2.Groups[1].Value;
                 textBox4.Text = a3.Groups[1].Value;
                 textBox5.Text = a4.Groups[1].Value;
+                if (a1.Groups[1].Value == "" || a1.Groups[1].Value == null)
+                {
+                    textBox2.Text = "0";
+                }
+
+                if (a2.Groups[1].Value == "" || a2.Groups[1].Value == null)
+                {
+                    textBox3.Text = "0";
+                }
+
+                if (a3.Groups[1].Value == "" || a3.Groups[1].Value == null)
+                {
+                    textBox4.Text = "0";
+                }
+
+                if (a4.Groups[1].Value == "" || a4.Groups[1].Value == null)
+                {
+                    textBox5.Text = "0";
+                }
+
 
                 hjPrice = Convert.ToDouble(textBox2.Text);
-
                 byPrice = Convert.ToDouble(textBox3.Text);
                 bojPrice = Convert.ToDouble(textBox4.Text);
                 bajPrice = Convert.ToDouble(textBox5.Text);
 
                 价格计算.time = time.Groups[1].Value;
 
-          
-        }
-        #endregion
+            }
 
+            else if (radioButton2.Checked == true)
 
-
-        #region 获取网站价格1
-        public void getPrice1()
-        {
-            try
             {
-                timer1.Start();
-                timer1.Interval = Convert.ToInt32(textBox6.Text) * 1000;
-                value1 = textBox12.Text;
-                value2 = textBox16.Text;
-                value3 = textBox33.Text;
 
-
-                timer2.Start();
-
-
-                //string url = "https://www.jzj9999.com/pricedata/getdata.aspx?tmp=93861584761821632";
-                string url = "https://www.jzj9999.com/pricedata/getdata.aspx?tmp=72131586418315744";
+                string url = "http://www.lfgold.cn/inte/goldprice.ashx?m_t1587100063820";
                 string html = GetUrl(url);
 
-                Match time = Regex.Match(html, @"pubtime"":""([\s\S]*?)""");
-                Match a1 = Regex.Match(html, @"JZJ_au"",""askprice"":([\s\S]*?),");
-                Match a2 = Regex.Match(html, @"JZJ_ag"",""askprice"":([\s\S]*?),");
-                Match a3 = Regex.Match(html, @"JZJ_pt"",""askprice"":([\s\S]*?),");
-                Match a4 = Regex.Match(html, @"JZJ_pd"",""askprice"":([\s\S]*?),");
+                Match time = Regex.Match(html, @"UpTime"":""([\s\S]*?)""");
+                Match a1 = Regex.Match(html, @"黄金"",""BP"":([\s\S]*?),""SP"":([\s\S]*?),");
+                Match a2 = Regex.Match(html, @"白银"",""BP"":([\s\S]*?),""SP"":([\s\S]*?),");
+                Match a3 = Regex.Match(html, @"铂金"",""BP"":([\s\S]*?),""SP"":([\s\S]*?),");
+                Match a4 = Regex.Match(html, @"钯金"",""BP"":([\s\S]*?),""SP"":([\s\S]*?),");
+
 
                 textBox1.Text = time.Groups[1].Value;
-                textBox2.Text = a1.Groups[1].Value;
-                textBox3.Text = a2.Groups[1].Value;
-                textBox4.Text = a3.Groups[1].Value;
-                textBox5.Text = a4.Groups[1].Value;
+                textBox2.Text = a1.Groups[2].Value;
+                textBox3.Text = a2.Groups[2].Value;
+                textBox4.Text = a3.Groups[2].Value;
+                textBox5.Text = a4.Groups[2].Value;
+                if (a1.Groups[1].Value == "" || a1.Groups[1].Value == null)
+                {
+                    textBox2.Text = "0";
+                }
 
+                if (a2.Groups[1].Value == "" || a2.Groups[1].Value == null)
+                {
+                    textBox3.Text = "0";
+                }
+
+                if (a3.Groups[1].Value == "" || a3.Groups[1].Value == null)
+                {
+                    textBox4.Text = "0";
+                }
+
+                if (a4.Groups[1].Value == "" || a4.Groups[1].Value == null)
+                {
+                    textBox5.Text = "0";
+                }
                 hjPrice = Convert.ToDouble(textBox2.Text);
 
                 byPrice = Convert.ToDouble(textBox3.Text);
@@ -185,16 +210,15 @@ namespace 启动程序
                 bajPrice = Convert.ToDouble(textBox5.Text);
 
                 价格计算.time = time.Groups[1].Value;
-
             }
-            catch (Exception ex)
-            {
-                ex.ToString();
 
-            }
 
         }
         #endregion
+
+
+
+        
         private void 价格计算_Load(object sender, EventArgs e)
         {
            

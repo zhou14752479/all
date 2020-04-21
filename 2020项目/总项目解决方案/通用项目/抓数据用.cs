@@ -140,7 +140,7 @@ namespace 通用项目
 
                     if (html.Contains("已失效"))
                     {
-                        ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据   
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                         lv1.SubItems.Add(array[i]);
                         lv1.SubItems.Add("失效");
                         MessageBox.Show("已失效");
@@ -157,7 +157,7 @@ namespace 通用项目
                             sb.Append(t.Groups[1].Value + "#");
                         }
 
-                        ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据   
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                         lv1.SubItems.Add(array[i]);
                         lv1.SubItems.Add(sb.ToString());
                     }
@@ -311,10 +311,68 @@ namespace 通用项目
             }
         }
 
+        string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
+        #region 去掉路径中非法字符
+        public string removeValid(string illegal)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+            foreach (char c in invalid)
+            {
+                illegal = illegal.Replace(c.ToString(), "");
+            }
+            return illegal;
+        }
+
+        #endregion
+        /// <summary>
+        /// 抓数据
+        /// </summary>
+        public void zhuashuju()
+        {
+
+            for (int i = 1; i < 48653; i++)
+            {
+                string url = "http://www.mitan.com.cn/question/"+i+".html";
+
+                string html = GetUrl(url, "utf-8");
+
+                Match title = Regex.Match(html, @"<title>([\s\S]*?)-");
+                Match body= Regex.Match(html, @"<div class=""detail-content"">([\s\S]*?)<div class=""more-operate mb20"">");
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                lv1.SubItems.Add(removeValid(title.Groups[1].Value.Trim()));
+
+                string body1 = Regex.Replace(body.Groups[1].Value, "<[^>]+>", "").Replace("pcqad1()", "").Trim();
+
+                FileStream fs1 = new FileStream(path + removeValid(title.Groups[1].Value.Trim()) + ".docx", FileMode.Create, FileAccess.Write);//创建写入文件 
+                StreamWriter sw = new StreamWriter(fs1);
+                sw.WriteLine(title.Groups[1].Value.Trim());
+                sw.WriteLine(body1);
+                sw.Close();
+                fs1.Close();
 
 
+            }
+        }
+
+        /// <summary>
+        /// 抓数据
+        /// </summary>
+        public void zhuashuju1()
+        {
+
+            StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
+            string text = streamReader.ReadToEnd();
+            MatchCollection shis = Regex.Matches(text, @"卷([\s\S]*?)卷");
+
+            for (int i = 0; i < shis.Count; i++)
+            {
+
+                MessageBox.Show(shis[i].Groups[1].Value);
+            }
 
 
+        }
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -332,7 +390,7 @@ namespace 通用项目
             //thread.Start();
             //Control.CheckForIllegalCrossThreadCalls = false;
 
-            Thread thread = new Thread(new ThreadStart(alibaba));
+            Thread thread = new Thread(new ThreadStart(zhuashuju1));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
         }

@@ -35,13 +35,13 @@ namespace 启动程序
             dic.Clear();
             string url = "https://manfenzhengzhi.ixunke.cn/api/questions_member?myQBank=true&page=1&pageSize=10&app=true&token=" + token;
             string html = method.GetUrl(url, "utf-8");
-           
-            MatchCollection  items = Regex.Matches(html, @"\{""id"":([\s\S]*?)\,""title"":""([\s\S]*?)""");
 
-           
+            MatchCollection items = Regex.Matches(html, @"\{""id"":([\s\S]*?)\,""title"":""([\s\S]*?)""");
+
+
             for (int i = 0; i < items.Count; i++)
             {
-               
+
                 comboBox1.Items.Add(items[i].Groups[2].Value);
                 dic.Add(items[i].Groups[2].Value, items[i].Groups[1].Value);
             }
@@ -52,15 +52,15 @@ namespace 启动程序
         {
             comboBox2.Items.Clear();
             dic2.Clear();
-            string url = "https://manfenzhengzhi.ixunke.cn/api/chapter?qBankId="+BankID+"&app=true&token=" + token;
+            string url = "https://manfenzhengzhi.ixunke.cn/api/chapter?qBankId=" + BankID + "&app=true&token=" + token;
             string html = method.GetUrl(url, "utf-8");
-            
+
             MatchCollection items = Regex.Matches(html, @"\{""id"":([\s\S]*?)\,""qBankId"":([\s\S]*?)\,""title"":""([\s\S]*?)""");
 
-          
+
             for (int i = 0; i < items.Count; i++)
             {
-               
+
                 comboBox2.Items.Add(items[i].Groups[3].Value);
                 dic2.Add(items[i].Groups[3].Value, items[i].Groups[1].Value);
             }
@@ -86,21 +86,21 @@ namespace 启动程序
                     src = "";
                 }
 
-   
-                    string url = "https://manfenzhengzhi.ixunke.cn/api/question?app=true&token="+token+"&qBankId="+bankId+"&chapterId="+chapterId+"&practise=1&studentAnswer=true";
+
+                string url = "https://manfenzhengzhi.ixunke.cn/api/question?app=true&token=" + token + "&qBankId=" + bankId + "&chapterId=" + chapterId + "&practise=1&studentAnswer=true";
 
 
-                    string html = method.GetUrl(url, "utf-8");
-                    MatchCollection questions = Regex.Matches(html, @"""stem"":""([\s\S]*?)""\,");
+                string html = method.GetUrl(url, "utf-8");
+                MatchCollection questions = Regex.Matches(html, @"""stem"":""([\s\S]*?)""\,");
 
-                    MatchCollection options = Regex.Matches(html, @"""options"":\[([\s\S]*?)""\]");
-                    MatchCollection analysis = Regex.Matches(html, @"""analysis"":""([\s\S]*?)""\,");
-                    MatchCollection anwsers = Regex.Matches(html, @"""answer"":\[([\s\S]*?)\]");
-                    for (int j = 0; j < questions.Count; j++)
-                    {
+                MatchCollection options = Regex.Matches(html, @"""options"":\[([\s\S]*?)""\]");
+                MatchCollection analysis = Regex.Matches(html, @"""analysis"":""([\s\S]*?)""\,");
+                MatchCollection anwsers = Regex.Matches(html, @"""answer"":\[([\s\S]*?)\]");
+                for (int j = 0; j < questions.Count; j++)
+                {
                     try
                     {
-                       
+
 
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
@@ -114,12 +114,12 @@ namespace 启动程序
                         lv1.SubItems.Add(option[2]);
                         lv1.SubItems.Add(option[3]);
                     }
-                    catch 
+                    catch
                     {
 
                         continue;
                     }
-                       
+
 
 
                 }
@@ -164,7 +164,7 @@ namespace 启动程序
 
 
             #endregion
-           
+
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -176,7 +176,7 @@ namespace 启动程序
         {
             button1.Enabled = true;
             listView1.Items.Clear();
-          
+
 
         }
 
@@ -187,21 +187,21 @@ namespace 启动程序
 
         public static void ceshi()
         {
-         
-                method.GetUrl("http://www.baidu.com", "utf-8");
+
+            method.GetUrl("http://www.baidu.com", "utf-8");
 
             MessageBox.Show("1");
-            
+
         }
 
-      
+
         private void Timer1_Tick(object sender, EventArgs e)
         {
             //Thread thread = new Thread(new ThreadStart(ceshi));
             //thread.Start();
             //Control.CheckForIllegalCrossThreadCalls = false;
             ceshi();
-            
+
 
         }
     }

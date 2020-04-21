@@ -54,6 +54,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QQbase64.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QQbase64.Designer.cs">
+      <DependentUpon>QQbase64.cs</DependentUpon>
+    </Compile>
     <Compile Include="TxtoExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,12 @@
     <Compile Include="YY检测.Designer.cs">
       <DependentUpon>YY检测.cs</DependentUpon>
     </Compile>
+    <Compile Include="东方财富.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="东方财富.Designer.cs">
+      <DependentUpon>东方财富.cs</DependentUpon>
+    </Compile>
     <Compile Include="价格计算.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +89,12 @@
     </Compile>
     <Compile Include="八爪盒子.Designer.cs">
       <DependentUpon>八爪盒子.cs</DependentUpon>
+    </Compile>
+    <Compile Include="兴盛优选.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="兴盛优选.Designer.cs">
+      <DependentUpon>兴盛优选.cs</DependentUpon>
     </Compile>
     <Compile Include="图片下载.cs">
       <SubType>Form</SubType>
@@ -102,12 +120,6 @@
     <Compile Include="宝钢价格.Designer.cs">
       <DependentUpon>宝钢价格.cs</DependentUpon>
     </Compile>
-    <Compile Include="广东快乐十分.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="广东快乐十分.Designer.cs">
-      <DependentUpon>广东快乐十分.cs</DependentUpon>
-    </Compile>
     <Compile Include="微博转赞评.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,23 +132,35 @@
     <Compile Include="抢单软件.Designer.cs">
       <DependentUpon>抢单软件.cs</DependentUpon>
     </Compile>
-    <Compile Include="淘宝信息.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="淘宝信息.Designer.cs">
-      <DependentUpon>淘宝信息.cs</DependentUpon>
-    </Compile>
     <Compile Include="添加微博.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="添加微博.Designer.cs">
       <DependentUpon>添加微博.cs</DependentUpon>
     </Compile>
+    <Compile Include="王者荣耀.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="王者荣耀.Designer.cs">
+      <DependentUpon>王者荣耀.cs</DependentUpon>
+    </Compile>
     <Compile Include="电商抓取.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="电商抓取.Designer.cs">
       <DependentUpon>电商抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="百度搜索.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="百度搜索.Designer.cs">
+      <DependentUpon>百度搜索.cs</DependentUpon>
+    </Compile>
+    <Compile Include="短标题采集.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="短标题采集.Designer.cs">
+      <DependentUpon>短标题采集.cs</DependentUpon>
     </Compile>
     <Compile Include="社保查询.cs">
       <SubType>Form</SubType>
@@ -155,6 +179,12 @@
     </Compile>
     <Compile Include="群抓取.Designer.cs">
       <DependentUpon>群抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="群抓取1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="群抓取1.Designer.cs">
+      <DependentUpon>群抓取1.cs</DependentUpon>
     </Compile>
     <Compile Include="论坛抓取.cs">
       <SubType>Form</SubType>
@@ -180,17 +210,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="QQbase64.resx">
+      <DependentUpon>QQbase64.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TxtoExcel.resx">
       <DependentUpon>TxtoExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YY检测.resx">
       <DependentUpon>YY检测.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="东方财富.resx">
+      <DependentUpon>东方财富.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="价格计算.resx">
       <DependentUpon>价格计算.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="八爪盒子.resx">
       <DependentUpon>八爪盒子.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="兴盛优选.resx">
+      <DependentUpon>兴盛优选.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="图片下载.resx">
       <DependentUpon>图片下载.cs</DependentUpon>
@@ -204,23 +243,26 @@
     <EmbeddedResource Include="宝钢价格.resx">
       <DependentUpon>宝钢价格.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="广东快乐十分.resx">
-      <DependentUpon>广东快乐十分.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="微博转赞评.resx">
       <DependentUpon>微博转赞评.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="抢单软件.resx">
       <DependentUpon>抢单软件.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="淘宝信息.resx">
-      <DependentUpon>淘宝信息.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="添加微博.resx">
       <DependentUpon>添加微博.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="王者荣耀.resx">
+      <DependentUpon>王者荣耀.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="电商抓取.resx">
       <DependentUpon>电商抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="百度搜索.resx">
+      <DependentUpon>百度搜索.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="短标题采集.resx">
+      <DependentUpon>短标题采集.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="社保查询.resx">
       <DependentUpon>社保查询.cs</DependentUpon>
@@ -230,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="群抓取.resx">
       <DependentUpon>群抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="群抓取1.resx">
+      <DependentUpon>群抓取1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="论坛抓取.resx">
       <DependentUpon>论坛抓取.cs</DependentUpon>

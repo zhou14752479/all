@@ -80,41 +80,37 @@ namespace 百度知道
                     string html = GetUrl(URL,"GBK");
                     
                     MatchCollection uids = Regex.Matches(html, @"data-rank=""([\s\S]*?):([\s\S]*?)""");
-
-                    string url0 = "https://zhidao.baidu.com/question/"+ uids[0].Groups[2].Value+ ".html";
-                    string url1 = "https://zhidao.baidu.com/question/" + uids[1].Groups[2].Value + ".html";
-                    string url2 = "https://zhidao.baidu.com/question/" + uids[2].Groups[2].Value + ".html";
-
-
-
-                    string html0 = GetUrl(url0,"gbk");
-                    string html1 = GetUrl(url1,"gbk");
-                    string html2 = GetUrl(url2, "gbk");
-                    textBox2.Text +=DateTime.Now.ToString()+ "：正在抓取"+ array[i]+"\r\n";
-
-                    Match article0= Regex.Match(html0, @"<span class=""wgt-best-arrowdown""></span>([\s\S]*?)<div class=""quality-content-view-more mb-15"">");
-                    Match article1 = Regex.Match(html1, @"<span class=""wgt-best-arrowdown""></span>([\s\S]*?)<div class=""quality-content-view-more mb-15"">");
-                    Match article2 = Regex.Match(html2, @"<span class=""wgt-best-arrowdown""></span>([\s\S]*?)<div class=""quality-content-view-more mb-15"">");
-
                     StringBuilder sb = new StringBuilder();
-                    sb.Append(Regex.Replace(article0.Groups[1].Value.Replace("</p>","\r\n").Replace("<br />", "\r\n"), "<[^>]+>", ""));
-                    
-                    sb.Append(Regex.Replace(article1.Groups[1].Value.Replace("</p>", "\r\n").Replace("<br />", "\r\n"), "<[^>]+>", ""));
-                    
-                    sb.Append(Regex.Replace(article2.Groups[1].Value.Replace("</p>", "\r\n").Replace("<br />", "\r\n"), "<[^>]+>", ""));
+                    for (int j = 0; j < 8; j++)
+                    {
+                        string url = "https://zhidao.baidu.com/question/" + uids[j].Groups[2].Value + ".html";
+                      
 
-                   
-                    FileStream fs1 = new FileStream(path + array[i].Trim()+".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                        string ahtml = GetUrl(url, "gbk");
+                       
+                        textBox2.Text += DateTime.Now.ToString() + "：正在抓取" + array[i]+"第"+(j+1) +"篇"+ "\r\n";
+
+                        Match article = Regex.Match(ahtml, @"<span class=""wgt-best-arrowdown""></span>([\s\S]*?)<div class=""quality-content-view-more mb-15"">");
+
+                        string article1 = Regex.Replace(article.Groups[1].Value.Replace("</p>", "\r\n").Replace("<br />", ""), "<[^>]+>", "");
+                        string article2 = Regex.Replace(article1, "([0-9]|[a-z]){10,}", "");
+                        sb.Append(article2);
+
+                      
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        Thread.Sleep(1000);
+
+                    }
+                    FileStream fs1 = new FileStream(path+"文件\\"+ array[i].Trim() + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1);
                     sw.WriteLine(sb.ToString());
                     sw.Close();
                     fs1.Close();
 
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                    }
-                    
 
                 }
                 catch(Exception ex)
@@ -131,121 +127,32 @@ namespace 百度知道
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-            MySqlConnection mycon = new MySqlConnection(constr);
-            mycon.Open();
+            #region 通用检测
 
-            MySqlCommand cmd = new MySqlCommand("select * from vip where username='百度知道'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-            if (reader.Read())
+            if (!html.Contains(@"360wenda"))
             {
 
-                string password = reader["password"].ToString().Trim();
+                MessageBox.Show("验证失败");
+                return;
 
-                if (password != "百度知道")
-
-                {
-                    MessageBox.Show("验证失败");
-
-                    Environment.Exit(0);
-                }
-
-                button1.Enabled = false;
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
 
             }
-           
-        }
-        /// <summary>
-        /// 创建或更新一个PPPOE连接(指定PPPOE名称)
-        /// </summary>
-        static void CreateOrUpdatePPPOE(string updatePPPOEname)
-        {
-            RasDialer dialer = new RasDialer();
-            RasPhoneBook allUsersPhoneBook = new RasPhoneBook();
-            string path = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
-            allUsersPhoneBook.Open(path);
-            // 如果已经该名称的PPPOE已经存在，则更新这个PPPOE服务器地址
-            if (allUsersPhoneBook.Entries.Contains(updatePPPOEname))
-            {
-                allUsersPhoneBook.Entries[updatePPPOEname].PhoneNumber = " ";
-                // 不管当前PPPOE是否连接，服务器地址的更新总能成功，如果正在连接，则需要PPPOE重启后才能起作用
-                allUsersPhoneBook.Entries[updatePPPOEname].Update();
-            }
-            // 创建一个新PPPOE
-            else
-            {
-                string adds = string.Empty;
-                ReadOnlyCollection<RasDevice> readOnlyCollection = RasDevice.GetDevices();
-                //                foreach (var col in readOnlyCollection)
-                //                {
-                //                    adds += col.Name + ":" + col.DeviceType.ToString() + "|||";
-                //                }
-                //                _log.Info("Devices are : " + adds);
-                // Find the device that will be used to dial the connection.
-                RasDevice device = RasDevice.GetDevices().Where(o => o.DeviceType == RasDeviceType.PPPoE).First();
-                RasEntry entry = RasEntry.CreateBroadbandEntry(updatePPPOEname, device);    //建立宽带连接Entry
-                entry.PhoneNumber = " ";
-                allUsersPhoneBook.Entries.Add(entry);
-            }
+
+            #endregion
+            button1.Enabled = false;
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+
         }
 
-        /// <summary>
-        /// 断开 宽带连接
-        /// </summary>
-        public static void Disconnect()
-        {
-            ReadOnlyCollection<RasConnection> conList = RasConnection.GetActiveConnections();
-            foreach (RasConnection con in conList)
-            {
-                con.HangUp();
-            }
-        }
-        /// <summary>
-        /// 宽带连接，成功返回true,失败返回 false
-        /// </summary>
-        /// <param name="PPPOEname">宽带连接名称</param>
-        /// <param name="username">宽带账号</param>
-        /// <param name="password">宽带密码</param>
-        /// <returns></returns>
-        public static bool Connect(string PPPOEname, string username, string password)
-        {
-            try
-            {
-                CreateOrUpdatePPPOE(PPPOEname);
-                using (RasDialer dialer = new RasDialer())
-                {
-                    dialer.EntryName = PPPOEname;
-                    dialer.AllowUseStoredCredentials = true;
-                    dialer.Timeout = 1000;
-                    dialer.PhoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
-                    dialer.Credentials = new NetworkCredential(username, password);
-                    dialer.Dial();
-                    return true;
-                }
-            }
-            catch (RasException re)
-            {
-                //MessageBox.Show(re.ErrorCode + " " + re.Message);
-                return false;
-            }
-        }
 
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("开启成功");
-            timer1.Start();
-        }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            Connect("宽带连接",textBox3.Text,textBox4.Text);
-            
-        }
+
+
+    
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -268,5 +175,7 @@ namespace 百度知道
         {
 
         }
+
+       
     }
 }

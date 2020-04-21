@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,17 +28,36 @@ namespace 主程序
             {
 
                 string html = method.GetUrlWithCookie(url, COOKIE, "gbk");
-                Match company = Regex.Match(html, @"<strong>([\s\S]*?)</strong>");
+                Match company = Regex.Match(html, @"请进入([\s\S]*?)的([\s\S]*?)实力");
                 Match name = Regex.Match(html, @"<title>([\s\S]*?)-");
 
-                Match main = Regex.Match(html, @"挑选宝贝([\s\S]*?)\}数量");
-                string zhu = main.Groups[1].Value;
+                MatchCollection main = Regex.Matches(html, @"<dl class=""J_Prop([\s\S]*?)</dl>");
+                ArrayList xxs = new ArrayList();
+ 
+                if (main.Count > 1)
+                {
+                    string zhu = main[0].Groups[1].Value;
+                    string zhu1 = main[1].Groups[1].Value;
+
+                    MatchCollection xuanxiangs1 = Regex.Matches(zhu, @"<span>([\s\S]*?)</span>");
+                    MatchCollection xuanxiangs2 = Regex.Matches(zhu1, @"<span>([\s\S]*?)</span>");
+                    foreach (Match match1 in xuanxiangs1)
+                    {
+                        foreach (Match match2 in xuanxiangs2)
+                        {
+                            xxs.Add(match1.Groups[1].Value+","+ match2.Groups[1].Value);
+                        }
+                    }
+
+                }
 
 
-                MatchCollection xuanxiangs = Regex.Matches(zhu, @"""names"":""([\s\S]*?)""");
+                
 
 
-                MatchCollection prices = Regex.Matches(html, @"""price"":""([\s\S]*?)""");
+
+
+                MatchCollection prices = Regex.Matches(html, @"\{""price"":""([\s\S]*?)""");
 
                 MatchCollection skus = Regex.Matches(html, @"""skuId"":""([\s\S]*?)""");
 
@@ -47,18 +67,17 @@ namespace 主程序
                 {
                     try
                     {
-                     
 
 
+                        string[] text = xxs[i].ToString().Split(new string[] { "," }, StringSplitOptions.None);
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(Regex.Replace(company.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(company.Groups[2].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(name.Groups[1].Value);
                         lv1.SubItems.Add(skus[i].Groups[1].Value);
-                        //lv1.SubItems.Add(text[0]);
-                        //lv1.SubItems.Add(text[1]);
-                        lv1.SubItems.Add("");
-                        lv1.SubItems.Add("");
+                     
+                        lv1.SubItems.Add(text[0]);
+                        lv1.SubItems.Add(text[1]);
 
                         lv1.SubItems.Add(prices[i].Groups[1].Value);
                     }
@@ -79,7 +98,7 @@ namespace 主程序
             catch (System.Exception ex)
             {
 
-                ex.ToString();
+              MessageBox.Show( ex.ToString());
             }
 
         }

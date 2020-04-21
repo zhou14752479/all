@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,8 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +76,25 @@
             this.splitContainer1.Size = new System.Drawing.Size(375, 598);
             this.splitContainer1.SplitterDistance = 246;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox5.Location = new System.Drawing.Point(77, 140);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(119, 23);
+            this.textBox5.TabIndex = 10;
+            this.textBox5.Text = "10";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("宋体", 10F);
+            this.label5.Location = new System.Drawing.Point(24, 143);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 14);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "间隔";
             // 
             // label4
             // 
@@ -112,8 +131,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(256, 23);
             this.textBox4.TabIndex = 5;
-            this.textBox4.Text = "__cdnuid_s=9cc8210de80e1328b1941c0b4ce481cf; ICITICO=0v01b6kkai7n7bh1g5elko3qm6; " +
-    "security_session_verify=567b88794e7ca49f3f0bd997cda17d8e";
             // 
             // button1
             // 
@@ -178,25 +195,6 @@
             // 
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("宋体", 10F);
-            this.textBox5.Location = new System.Drawing.Point(77, 140);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(119, 23);
-            this.textBox5.TabIndex = 10;
-            this.textBox5.Text = "10";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("宋体", 10F);
-            this.label5.Location = new System.Drawing.Point(24, 143);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 14);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "间隔";
             // 
             // 抢单软件
             // 

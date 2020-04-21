@@ -163,7 +163,7 @@ namespace 商铺58
 
             string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
 
-            if (!html.Contains(@"18254571301"))
+            if (!html.Contains(@"13616928755"))
             {
 
                 MessageBox.Show("验证失败");
@@ -499,6 +499,11 @@ namespace 商铺58
                     }
                 }
             }
+        }
+
+        private void linkLabel5_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://suqian.58.com/shangpucz/");
         }
     }
 }

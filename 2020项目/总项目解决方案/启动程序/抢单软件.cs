@@ -128,7 +128,7 @@ namespace 启动程序
             string cookie = textBox4.Text;
             string postdata = "id="+textBox1.Text.Trim()+ "if&type=0&password=" + textBox2.Text.Trim();
             string html = PostUrl(url,postdata,cookie);
-            if (!html.Contains("不存在"))
+            if (html.Contains("購買成功"))
             {
                 label4.Text = "成功，已暂停";
                 timer1.Stop();
@@ -160,26 +160,9 @@ namespace 启动程序
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
+            timer1.Start();
+            timer1.Interval = Convert.ToInt32(textBox5.Text);
 
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (html.Contains(@"qiangdan"))
-            {
-                timer1.Start();
-                timer1.Interval = Convert.ToInt32(textBox5.Text);
-
-            }
-
-            else
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
-
-
-            #endregion
-           
         }
 
         private void Timer1_Tick(object sender, EventArgs e)

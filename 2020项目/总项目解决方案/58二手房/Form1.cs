@@ -128,7 +128,7 @@ namespace _58二手房
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            if (html.Contains(@"18254571301"))
+            if (html.Contains(@"ershoufanglinshi"))
             {
                 status = true;
                 button1.Enabled = false;
@@ -358,7 +358,7 @@ namespace _58二手房
                                 if (!finishes.Contains(tels[j].Groups[1].Value))
                                 {
                                     finishes.Add(tels[j].Groups[1].Value);
-                                    insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                                   // insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                                     lv1.SubItems.Add(titles[j].Groups[1].Value);
                                     lv1.SubItems.Add(names[j].Groups[2].Value);

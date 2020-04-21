@@ -47,10 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C355C5B193687A353E7207866FDF95615BD85426</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>2428D8C872A1AE6078FD48C745F16AD11EC1E9E9</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>主程序_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>主程序_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -161,6 +161,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="主程序_1_TemporaryKey.pfx" />
+    <None Include="主程序_2_TemporaryKey.pfx" />
     <None Include="主程序_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

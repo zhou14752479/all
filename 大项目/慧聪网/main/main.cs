@@ -35,7 +35,7 @@ namespace main
 
             catch (System.Exception ex)
             {
-             textBox1.Text= ex.ToString();
+             ex.ToString();
             }
         }
 
@@ -201,18 +201,31 @@ namespace main
 
         #endregion
 
-        bool denglu = false;
+       
 
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            if (denglu == false)
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"huicong"))
             {
-                MessageBox.Show("请先登录您的账号！");
+                Thread thread = new Thread(new ThreadStart(huicong));
+                thread.Start();
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
                 return;
             }
-            Thread thread = new Thread(new ThreadStart(huicong));
-            thread.Start();
+
+
+            #endregion
+           
 
         }
 
@@ -381,57 +394,6 @@ namespace main
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-
-
-                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-                MySqlCommand cmd = new MySqlCommand("select * from vip where username='" + textBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-
-
-                if (reader.Read())
-                {
-
-                    string username = reader["username"].ToString().Trim();
-                    string password = reader["password"].ToString().Trim();
-
-                    //判断密码
-                    if (textBox2.Text.Trim() == password)
-                    {
-
-                        MessageBox.Show("登陆成功！");
-
-                        denglu = true;
-                        reader.Close();
-
-                    }
-                    else
-
-                    {
-                        MessageBox.Show("您的密码错误！");
-                        return;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("未查询到您的账户信息！");
-                    return;
-                }
-
-            }
-
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+     
     }
 }

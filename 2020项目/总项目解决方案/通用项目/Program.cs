@@ -16,7 +16,7 @@ namespace 通用项目
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 国家教育资源());
+            Application.Run(new 抓数据用());
         }
     }
 }

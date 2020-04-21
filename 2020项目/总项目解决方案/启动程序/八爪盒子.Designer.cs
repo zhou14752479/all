@@ -64,6 +64,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,7 +73,7 @@
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1405, 132);
+            this.groupBox1.Size = new System.Drawing.Size(1382, 132);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数设置";
@@ -261,15 +262,16 @@
             this.columnHeader24,
             this.columnHeader25,
             this.columnHeader26,
-            this.columnHeader27});
+            this.columnHeader27,
+            this.columnHeader29});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 153);
+            this.listView1.Location = new System.Drawing.Point(0, 156);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1405, 452);
+            this.listView1.Size = new System.Drawing.Size(1382, 452);
             this.listView1.TabIndex = 35;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -359,6 +361,11 @@
             // 
             this.columnHeader6.Text = "学历1";
             // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Text = "学校名称";
+            this.columnHeader28.Width = 100;
+            // 
             // columnHeader9
             // 
             this.columnHeader9.Text = "专业1";
@@ -396,16 +403,16 @@
             this.columnHeader27.Text = "职责";
             this.columnHeader27.Width = 100;
             // 
-            // columnHeader28
+            // columnHeader29
             // 
-            this.columnHeader28.Text = "学校名称";
-            this.columnHeader28.Width = 100;
+            this.columnHeader29.Text = "寻访记录";
+            this.columnHeader29.Width = 100;
             // 
             // 八爪盒子
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1405, 605);
+            this.ClientSize = new System.Drawing.Size(1382, 608);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox1);
             this.Name = "八爪盒子";
@@ -463,5 +470,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader26;
         private System.Windows.Forms.ColumnHeader columnHeader27;
         private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
     }
 }
