@@ -21,6 +21,8 @@ namespace 启动程序
         {
             InitializeComponent();
         }
+
+        static string token="";
         #region POST请求
         /// <summary>
         /// POST请求
@@ -40,7 +42,8 @@ namespace 启动程序
                 request.ContentType = "application/x-www-form-urlencoded";
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("Authorization: Basic ZTk1ZTY2MDMxNDJjMzU5NTRhYTM0NWViZDY4Y2UwMTU6MWVlNjE1ZTJmZGY5YmY4MTZmM2U3NjNjZTMxYjg2MmQ=");
+                headers.Add(""+token+"");
+               
                 headers.Add("Agent-info: client=ios;osVersion=12.3.1;screenWidth=1242;screenHeight=2208;appVersion");
                 headers.Add("Agent-Info2: BaZhuaHeZiOK");
                 //添加头部
@@ -253,7 +256,7 @@ namespace 启动程序
 
         private void 八爪盒子_Load(object sender, EventArgs e)
         {
-
+            token = textBox3.Text.Trim();
         }
 
         private void Button5_Click(object sender, EventArgs e)

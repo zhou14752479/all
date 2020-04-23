@@ -88,18 +88,17 @@ namespace 通用项目
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "ali_apache_id=11.9.134.78.1562220413259.182473.2; t=196a840aec96a0b0eaf06ec105e442f8; cna=8QJMFUu4DhACATFZv2JYDtwd; tfstk=cR0PB0VQUULy5FtDfPzUdS_ZkXrRZplotZP_qcYy_PH93crliP6LGqXTgWw9ouf..; acs_usuc_t=acs_rt=d11d3a621aa843dcb59aee559a88d2e1; _m_h5_tk=e6264148d11cd21258e70c9fefba68b5_1585022581073; _m_h5_tk_enc=2020cd223596a802c67a94d19e3423b9; v=0; cookie2=178f844925ada1d21cb8b57e2547da62; _tb_token_=7e97e5e37631; _samesite_flag_=true; _hvn_login=4; xman_us_t=ctoken=bpaxluccx0lf&l_source=alibaba&x_user=tXfZ9/bOsEdPP7MDmir80bF/xmduLijhx7wabENBR64=&x_lid=cn1360010753xkqd&sign=y&need_popup=y; xman_us_f=x_locale=zh_CN&x_l=1&last_popup_time=1585014363116&x_user=CN|sherry|zhao|cgs|978609901&no_popup_today=n; intl_locale=zh_CN; intl_common_forever=zksRQwkaNWVKhfIiQ9Frb0wlj5d4f51s+uAlej5Nd5imToXDglX5+w==; xman_f=vY3TdyEgKByUPDz/KPmGgrzSa98uQLlMeEC1UdRZU+YVfsr6GAubwUcDFbNCeY/NCNggIxW1aD91IVzMyGvqKwRVQXe7ewCt51L2l8LhfovrU5qW1Z/rv9NtC+FCbsgT56Wp9jUJtXQXHr7RFAP1DDbO6eAbKq0MBqW30Mfak4GopGopi+Zch3B7lwYofwpeBKHTILScvEIvASVc5mqPDbq8fpxO2jfrrYwezwDxIX/Wk8gzeIclOxjvHTOfMi2gNbGuTh2S5YWZK7tEd815m3Kf+yuSv+vAN6+W5XaWqvH45WFXE6v0RyY1myvgYY1KfZqJipMIOCA2Q2wg++3IWv6hcHqzf1jlQ0Ru8o7b1waTcaABMOjQL6J3E8yHPJLQ4N1TZer95W5JlGd/OmIAcsIE33/yNFvq; ali_apache_tracktmp=W_signed=Y; csg=8f24cc4e; ali_apache_track=ms=|mt=3|mid=cn1360010753xkqd; l=dBgBNOcqqmaTCs8EBOfGC42gwx7T1tdjMsPrE67l5IB1t6bn9dL9tHwEqemJj3QQEt5vfFxrVHyCZR3MWD4LRxZsp3vdDNsjuapw8e1..; isg=BLGxXrc-SzlNH-TYJLipU_P9wD1LniUQl9nzUJPvRXscuuUM3ezx4JaY3E7ccr1I; xman_t=dlkTFlWElabXfmqy8JktQZZGqn/iQwWoxbTQIQvywCFrKvvlfuKQrzELJGm4nKP8qlacRgRSV8yA0s77q3CDe0Ejkh7WLRgD+U02xUg/QGm21UMZpckEcYJ5fSICxAErVTddgLgtsEGbvZxQHGcV7eadYsXOxnihx26GrMNE3Ryxs1Ti/JHJ5jH/jaBTnWmOnMTufACGGrCTlPaRfsyyqdtvP/4AaI845kTj/p0WtBXZGS0joJhot4BSjVLF/67m9WxawUy/6cB7glhhsIHOMgS+7vAduRuM8Dd4/x8zH/YdZwoTmFuDdIt3g8bXbaqwsuokgDWDr2PP1lCRfqIeAK+hLQ9TT7w1MLoHZOnSR3kF4X6k+NMsGLCuEh1kRrVGu4lszGwRiRCaUpFLEF4DfF0QBB1WIp9VUBwi3NONFzwmnMzg7jxfyqNJ9CTBzzMsSdt6EET0KFwJNuX/Jjw1NmLJzeJdHev9nc/lYf/83hk+K/nwP6egOviT4fkLRMUpB/t4h96tCtq2ZuHW6CiHFgD3TZAGIUGUmNDudb4n//OXrShRo9nLtKQPvSkUEYqbVRrZYTRW7eHZpigmxngSUACVVOzJ0Dnyhp5gJxsZuIjN1A07+ppvK4NAySB1k4js4CxPZtjbmsDW49hCHf+Fvcrq1pyS8eA0reBdgiUGdgnJzNXTe5UdXl0HRXKmy6KUpOnCjOYAPqs=";
+                string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "https://cn.bing.com/search?q=%e9%a6%99%e6%b8%af%e5%85%ad%e5%90%88%e5%bd%a9&qs=n&sp=-1&first=01&FORM=PORE";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
+                request.Referer = "https://servicewechat.com/wx734c1ad7b3562129/164/page-frame.html";
+                //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.12(0x17000c2c) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 //添加头部
-                //WebHeaderCollection headers = request.Headers;
-                //headers.Add("appid:orders");
-                //headers.Add("x-nike-visitid:5");
-                //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("openid:D-7ZGWvO2JerjFo_AUjVuOXQvaaLjsnT029qPSVy6_0");
+               
                 //添加头部
                 request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -326,31 +325,48 @@ namespace 通用项目
 
         #endregion
         /// <summary>
-        /// 抓数据
+        /// 大众点评评论
         /// </summary>
-        public void zhuashuju()
+        public void dianpingpinglun()
         {
-
-            for (int i = 1; i < 48653; i++)
+            string[] shopIds = {"66366387", "606519877", "125068110", "125885672", "510595484", "128486667", "129820986", "112606619", "129237543", "110626213", "129227238", "90958839", "130453671", "123152141", "97211570", "131518954", "114891056" };
+            foreach (var item in shopIds)
             {
-                string url = "http://www.mitan.com.cn/question/"+i+".html";
 
-                string html = GetUrl(url, "utf-8");
+                for (int i = 0; i < 9999; i = i + 10)
+                {
+                    string url = "https://m.dianping.com/ugc/review/reviewlist?tagType=1&tag=%E5%85%A8%E9%83%A8&offset="+i+"&shopUuid="+ item + "&optimus_uuid=168b6aa9d06c8-87a2a9932defc-0-0-168b6aa9d06c8&optimus_platform=13&optimus_partner=203&optimus_risk_level=71&optimus_code=10&pullDown=false&reLoad=false";
 
-                Match title = Regex.Match(html, @"<title>([\s\S]*?)-");
-                Match body= Regex.Match(html, @"<div class=""detail-content"">([\s\S]*?)<div class=""more-operate mb20"">");
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                lv1.SubItems.Add(removeValid(title.Groups[1].Value.Trim()));
+                    string html = GetUrl(url, "utf-8");
+                    
+                    MatchCollection bodys = Regex.Matches(html, @"""reviewBody""([\s\S]*?)honour");
+                    MatchCollection years = Regex.Matches(html, @"""lastTime"":""([\s\S]*?)-");
+                    MatchCollection times = Regex.Matches(html, @"""lastTimeStr"":""([\s\S]*?)""");
+                    MatchCollection stars = Regex.Matches(html, @"accurateStar"":([\s\S]*?),");
 
-                string body1 = Regex.Replace(body.Groups[1].Value, "<[^>]+>", "").Replace("pcqad1()", "").Trim();
+                    if (bodys.Count == 0)
+                        break;
 
-                FileStream fs1 = new FileStream(path + removeValid(title.Groups[1].Value.Trim()) + ".docx", FileMode.Create, FileAccess.Write);//创建写入文件 
-                StreamWriter sw = new StreamWriter(fs1);
-                sw.WriteLine(title.Groups[1].Value.Trim());
-                sw.WriteLine(body1);
-                sw.Close();
-                fs1.Close();
+                    for (int j = 0; j < bodys.Count; j++)
+                    {
+                        MatchCollection reviews = Regex.Matches(bodys[j].Groups[1].Value, @"""text"":""([\s\S]*?)""");
+                        StringBuilder sb = new StringBuilder();
+                        for (int a = 0; a < reviews.Count; a++)
+                        {
+                            sb.Append(reviews[a].Groups[1].Value);
+                        }
 
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(item);
+                        lv1.SubItems.Add(sb.ToString());
+                        lv1.SubItems.Add(years[j].Groups[1].Value+"年"+times[j].Groups[1].Value);
+                        lv1.SubItems.Add(stars[j].Groups[1].Value);
+                    }
+
+                   
+                    Thread.Sleep(1000);
+                    
+                }
 
             }
         }
@@ -390,7 +406,7 @@ namespace 通用项目
             //thread.Start();
             //Control.CheckForIllegalCrossThreadCalls = false;
 
-            Thread thread = new Thread(new ThreadStart(zhuashuju1));
+            Thread thread = new Thread(new ThreadStart(dianpingpinglun));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
         }

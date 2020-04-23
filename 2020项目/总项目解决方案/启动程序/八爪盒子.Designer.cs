@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,6 +81,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -99,6 +103,25 @@
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数设置";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 11F);
+            this.label7.Location = new System.Drawing.Point(34, 111);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 15);
+            this.label7.TabIndex = 52;
+            this.label7.Text = "TOKEN：";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(122, 105);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(222, 21);
+            this.textBox3.TabIndex = 51;
+            this.textBox3.Text = "Authorization: Basic YzRiN2UyZjNiYTcyZDkzOGFiNjIyZjYxMDYzNjMyZjI6YWM2MDViYjU3ZTZl" +
+    "ZTQzOTBhYjhiYzc5NjczYTZhNWQ=";
             // 
             // label6
             // 
@@ -176,7 +199,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(222, 21);
             this.textBox1.TabIndex = 43;
-            this.textBox1.Text = "2019-01-01";
+            this.textBox1.Text = "2019-02-01";
             // 
             // button6
             // 
@@ -471,5 +494,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader27;
         private System.Windows.Forms.ColumnHeader columnHeader28;
         private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

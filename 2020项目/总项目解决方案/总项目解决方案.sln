@@ -21,19 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "耐克查询", "耐克查�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序1", "主程序1\主程序1.csproj", "{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "生意参谋", "生意参谋\生意参谋.csproj", "{4C6BE31B-179E-40AE-B6DF-C73158C8019F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "加密", "加密\加密.csproj", "{FD629116-C4BB-497F-9D86-46D69DEEEF26}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百度知道", "百度知道\百度知道.csproj", "{E6A7485A-9F1D-46BD-AF59-6B411237E13E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "58二手房", "58二手房\58二手房.csproj", "{271C6A15-D138-4260-938F-A2156411FD55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "星巴克二维码", "星巴克二维码\星巴克二维码.csproj", "{3B604980-F9FC-45F6-B0D7-6EA38DA36F26}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "东方财富", "东方财富\东方财富.csproj", "{4B528B78-0781-4E91-82E3-D39FDF8235E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "权限管理", "权限管理\权限管理.csproj", "{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}"
 EndProject
@@ -79,18 +73,10 @@ Global
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD629116-C4BB-497F-9D86-46D69DEEEF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD629116-C4BB-497F-9D86-46D69DEEEF26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD629116-C4BB-497F-9D86-46D69DEEEF26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD629116-C4BB-497F-9D86-46D69DEEEF26}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E6A7485A-9F1D-46BD-AF59-6B411237E13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6A7485A-9F1D-46BD-AF59-6B411237E13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6A7485A-9F1D-46BD-AF59-6B411237E13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -103,10 +89,6 @@ Global
 		{3B604980-F9FC-45F6-B0D7-6EA38DA36F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B604980-F9FC-45F6-B0D7-6EA38DA36F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B604980-F9FC-45F6-B0D7-6EA38DA36F26}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B528B78-0781-4E91-82E3-D39FDF8235E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B528B78-0781-4E91-82E3-D39FDF8235E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B528B78-0781-4E91-82E3-D39FDF8235E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B528B78-0781-4E91-82E3-D39FDF8235E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}.Release|Any CPU.ActiveCfg = Release|Any CPU

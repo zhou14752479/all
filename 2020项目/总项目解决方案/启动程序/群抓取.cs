@@ -243,27 +243,35 @@ namespace 启动程序
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
+            string tokenhtml = method.PostUrl("http://app.jiaqun8.cn/portal/user/login", "{\"username\":\"17606117606\",\"password\":\"zhoukaige00\"}", cookie, "utf-8");
 
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+            Match token = Regex.Match(tokenhtml, @"data"":""([\s\S]*?)""");
+            this.token = token.Groups[1].Value;
+            webBrowser1.Navigate("http://app.jiaqun8.cn/#/home/list","",null, "x-access-token:" + token+"");
 
-            if (html.Contains(@"qunzhuaqu"))
-            {
-                button1.Enabled = false;
-                Thread thread = new Thread(new ThreadStart(wxqun));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+            //#region 通用检测
 
-            }
+            //string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            else
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
+            //if (html.Contains(@"qunzhuaqu"))
+            //{
+            //    button1.Enabled = false;
+            //    Thread thread = new Thread(new ThreadStart(wxqun));
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+
+            //}
+
+            //else
+            //{
+            //    MessageBox.Show("验证失败");
+            //    return;
+            //}
 
 
-            #endregion
+            //#endregion
+
+
         }
 
         private void ceshi(object sender, EventArgs e)

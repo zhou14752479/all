@@ -81,28 +81,37 @@ namespace 百度知道
                     
                     MatchCollection uids = Regex.Matches(html, @"data-rank=""([\s\S]*?):([\s\S]*?)""");
                     StringBuilder sb = new StringBuilder();
-                    for (int j = 0; j < 8; j++)
+                    for (int j = 0; j < 10; j++)
                     {
-                        string url = "https://zhidao.baidu.com/question/" + uids[j].Groups[2].Value + ".html";
-                      
-
-                        string ahtml = GetUrl(url, "gbk");
-                       
-                        textBox2.Text += DateTime.Now.ToString() + "：正在抓取" + array[i]+"第"+(j+1) +"篇"+ "\r\n";
-
-                        Match article = Regex.Match(ahtml, @"<span class=""wgt-best-arrowdown""></span>([\s\S]*?)<div class=""quality-content-view-more mb-15"">");
-
-                        string article1 = Regex.Replace(article.Groups[1].Value.Replace("</p>", "\r\n").Replace("<br />", ""), "<[^>]+>", "");
-                        string article2 = Regex.Replace(article1, "([0-9]|[a-z]){10,}", "");
-                        sb.Append(article2);
-
-                      
-
-                        while (this.zanting == false)
+                        try
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            string url = "https://zhidao.baidu.com/question/" + uids[j].Groups[2].Value + ".html";
+
+
+                            string ahtml = GetUrl(url, "gbk");
+
+                            textBox2.Text += DateTime.Now.ToString() + "：正在抓取" + array[i] + "第" + (j + 1) + "篇" + "\r\n";
+
+                            Match article = Regex.Match(ahtml, @"<span class=""wgt-best-arrowdown""></span>([\s\S]*?)<div class=""quality-content-view-more mb-15"">");
+
+                            string article1 = Regex.Replace(article.Groups[1].Value.Replace("</p>", "\r\n").Replace("<br />", ""), "<[^>]+>", "");
+                            string article2 = Regex.Replace(article1, "([0-9]|[a-z]){10,}", "");
+                            sb.Append(article2);
+
+
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            Thread.Sleep(1000);
                         }
-                        Thread.Sleep(1000);
+                        catch 
+                        {
+
+                            continue;
+                        }
+                      
 
                     }
                     FileStream fs1 = new FileStream(path+"文件\\"+ array[i].Trim() + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 

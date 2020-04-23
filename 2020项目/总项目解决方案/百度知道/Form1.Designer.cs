@@ -124,7 +124,6 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(144, 258);
             this.textBox1.TabIndex = 14;
-            this.textBox1.Text = "黑帽SEO";
             // 
             // textBox2
             // 
