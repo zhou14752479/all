@@ -355,5 +355,10 @@ namespace 启动程序
         {
             listView1.Items.Clear();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+           
+        }
     }
 }

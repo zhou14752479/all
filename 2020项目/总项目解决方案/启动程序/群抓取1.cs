@@ -203,6 +203,12 @@ namespace 启动程序
                        
                         string html = GetUrl(url, "utf-8", token.Groups[1].Value);
 
+                    if (html.Contains("人机验证"))
+                    {
+                        MessageBox.Show("请验证");
+                    }
+                    else
+                    {
                         Match time = Regex.Match(html, @"publishTime"":""([\s\S]*?)""");
                         Match image = Regex.Match(html, @"image"":""([\s\S]*?)""");
                         if (image.Groups[1].Value == "")
@@ -214,14 +220,16 @@ namespace 启动程序
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
                         lv1.SubItems.Add(time.Groups[1].Value);
                         lv1.SubItems.Add(image.Groups[1].Value);
-                      
+
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
-
                     }
-                
+
+
+                }
+
 
                 button4.Enabled = true;
             }
@@ -234,7 +242,9 @@ namespace 启动程序
 
         private void 群抓取1_Load(object sender, EventArgs e)
         {
-
+            tabPage2.Parent = null;
+            method.SetWebBrowserFeatures(method.IeVersion.IE10);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -300,6 +310,52 @@ namespace 启动程序
         private void button5_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabPage2.Parent = tabControl1;
+            webBrowser1.Navigate("http://app.jiaqun8.cn/#/login");
+
+            webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(getTitle);
+          
+        }
+
+        private void getTitle(object sender, EventArgs e)
+        {
+
+            HtmlDocument doc = this.webBrowser1.Document;
+            HtmlElementCollection es = doc.GetElementsByTagName("input"); //GetElementsByTagName返回集合
+
+            foreach (HtmlElement e1 in es)
+            {
+                if (e1.GetAttribute("type").ToLower() == "text")
+                {
+                    e1.SetAttribute("value", "17606117606");
+                   // e1.InvokeMember("click");
+                }
+                if (e1.GetAttribute("type").ToLower() == "password")
+                {
+                    e1.SetAttribute("value", "zhoukaige00");
+                    // e1.InvokeMember("click");
+                }
+
+            }
+
+            HtmlElementCollection es1 = doc.GetElementsByTagName("div"); //GetElementsByTagName返回集合
+
+            foreach (HtmlElement e1 in es1)
+            {
+                if (e1.GetAttribute("class").ToLower() == "weui-btn weui-btn_primary")
+                {
+                  
+                     e1.InvokeMember("click");
+                }
+              
+
+            }
+
+
         }
     }
 }
