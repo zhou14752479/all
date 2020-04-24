@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "星巴克二维码", "星�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "权限管理", "权限管理\权限管理.csproj", "{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "全网群采集", "全网群采集\全网群采集.csproj", "{13702C12-85E0-44A4-96B6-E884A1451E3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13702C12-85E0-44A4-96B6-E884A1451E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13702C12-85E0-44A4-96B6-E884A1451E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13702C12-85E0-44A4-96B6-E884A1451E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13702C12-85E0-44A4-96B6-E884A1451E3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

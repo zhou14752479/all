@@ -391,6 +391,41 @@ namespace 通用项目
         }
 
 
+        /// <summary>
+        /// 抓数据
+        /// </summary>
+        public void zhuashuju()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
+            string url = "https://www.icauto.com.cn/baike/";
+            string html = GetUrl(url, "utf-8");
+            Match  ahtml = Regex.Match(html, @"<div class=""carleft"">([\s\S]*?)id=""dMark""></div>");
+            MatchCollection urls = Regex.Matches(ahtml.Groups[1].Value, @"<li><a href=""([\s\S]*?)""");
+            for (int i = 0; i < urls.Count; i++)
+            {
+                string bhtml = GetUrl(urls[i].Groups[1].Value, "utf-8");
+                MatchCollection burls = Regex.Matches(bhtml, @"<div class=""carbk-title"">([\s\S]*?)href=""([\s\S]*?)""");
+                for (int j= 0; j < burls.Count; j++)
+                {
+                    string articlehtml= GetUrl(burls[i].Groups[1].Value, "utf-8");
+                    Match title = Regex.Match(articlehtml, @"<title>([\s\S]*?)_");
+                    Match body = Regex.Match(articlehtml, @"<div class=""article-body-y"">([\s\S]*?)</div>");
+                    Match item = Regex.Match(articlehtml, @"<div class=""position"">([\s\S]*?)</span>");
+
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(title.Groups[1].Value);
+                    lv1.SubItems.Add(Regex.Replace(item.Groups[1].Value, "<[^>]+>", ""));
+                    FileStream fs1 = new FileStream(path + removeValid(title.Groups[1].Value)+".docx", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(Regex.Replace(body.Groups[1].Value, "<[^>]+>","") );
+                    sw.Close();
+                    fs1.Close();
+                }
+            }
+
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;

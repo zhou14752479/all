@@ -745,6 +745,7 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.skinTreeView1 = new CCWin.SkinControl.SkinTreeView();
+            this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -755,7 +756,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -794,29 +794,32 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 316);
+            this.checkBox1.Font = new System.Drawing.Font("宋体", 11F);
+            this.checkBox1.Location = new System.Drawing.Point(15, 376);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 16);
+            this.checkBox1.Size = new System.Drawing.Size(146, 19);
             this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "去重采集";
+            this.checkBox1.Text = "数据库验证不重复";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(70, 350);
+            this.textBox1.Location = new System.Drawing.Point(137, 340);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(50, 21);
             this.textBox1.TabIndex = 18;
             this.textBox1.Text = "70";
+            this.textBox1.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 353);
+            this.label1.Location = new System.Drawing.Point(80, 343);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 17;
             this.label1.Text = "设置页码：";
+            this.label1.Visible = false;
             // 
             // linkLabel3
             // 
@@ -843,7 +846,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(93, 316);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 340);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 12);
             this.linkLabel1.TabIndex = 14;
@@ -1630,9 +1633,20 @@
             treeNode359,
             treeNode365,
             treeNode370});
-            this.skinTreeView1.Size = new System.Drawing.Size(262, 303);
+            this.skinTreeView1.Size = new System.Drawing.Size(262, 316);
             this.skinTreeView1.TabIndex = 13;
             this.skinTreeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.skinTreeView1_AfterCheck);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10F);
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(21, 96);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 14);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "未开始";
             // 
             // button4
             // 
@@ -1716,17 +1730,6 @@
             this.button1.Text = "开始运行";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(21, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 14);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "未开始";
             // 
             // Form1
             // 

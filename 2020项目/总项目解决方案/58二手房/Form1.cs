@@ -124,36 +124,12 @@ namespace _58二手房
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
+            status = true;
+            button1.Enabled = false;
+            Thread thread = new Thread(new ThreadStart(mobilerun));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (html.Contains(@"ershoufanglinshi"))
-            {
-                status = true;
-                button1.Enabled = false;
-                Thread thread = new Thread(new ThreadStart(mobilerun));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-
-            }
-
-            else
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
-
-
-            #endregion
-
-
-
-          
-            
-            
-          
 
 
         }
@@ -355,10 +331,11 @@ namespace _58二手房
 
                             if (!telList.Contains(tels[j].Groups[1].Value))
                             {
-                                if (!finishes.Contains(tels[j].Groups[1].Value))
+                                if (checkBox1.Checked == true)
                                 {
-                                    finishes.Add(tels[j].Groups[1].Value);
-                                   // insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                                    insertdata("INSERT INTO tels (tel) VALUES( '" + tels[j].Groups[1].Value + "')");
+                                }
+                                   
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                                     lv1.SubItems.Add(titles[j].Groups[1].Value);
                                     lv1.SubItems.Add(names[j].Groups[2].Value);
@@ -379,14 +356,14 @@ namespace _58二手房
 
                                         return;
                                     Thread.Sleep(100);
-                                }
+                                
                             
 
                             }
 
                             else
                             {
-                                label2.Text = "正在抓取" + cityname + "第" + i + "页";
+                                label2.Text = "正在抓取" + cityname + "第" + i + "页,数据库已包含，不添加";
                             }
 
 

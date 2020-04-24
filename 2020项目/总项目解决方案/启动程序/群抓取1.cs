@@ -188,7 +188,7 @@ namespace 启动程序
 
 
 
-            string tokenhtml = method.PostUrl("http://app.jiaqun8.cn/portal/user/login", "{\"username\":\"17606117606\",\"password\":\"zhoukaige00\"}", cookie, "utf-8");
+            string tokenhtml = method.PostUrl("http://app.jiaqun8.cn/portal/user/login", "{\"username\":\"17606117606\",\"password\":\"123456\"}", cookie, "utf-8");
 
             Match token = Regex.Match(tokenhtml, @"data"":""([\s\S]*?)""");
             this.token = token.Groups[1].Value;
