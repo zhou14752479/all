@@ -76,6 +76,7 @@
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -286,7 +287,8 @@
             this.columnHeader25,
             this.columnHeader26,
             this.columnHeader27,
-            this.columnHeader29});
+            this.columnHeader29,
+            this.columnHeader30});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
@@ -431,6 +433,11 @@
             this.columnHeader29.Text = "寻访记录";
             this.columnHeader29.Width = 100;
             // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Text = "期望行业";
+            this.columnHeader30.Width = 80;
+            // 
             // 八爪盒子
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -496,5 +503,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader29;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ColumnHeader columnHeader30;
     }
 }

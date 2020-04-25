@@ -141,6 +141,9 @@ namespace 启动程序
                         //Match a16 = Regex.Match(strhtml, @"语言技能\\r\\n([\s\S]*?) ");
                         Match jilu = Regex.Match(strhtml, @"inquiryList([\s\S]*?)content"":""([\s\S]*?)""");
 
+                       
+                        Match qwhy = Regex.Match(strhtml, @"""major"":""([\s\S]*?)""");
+
                         Match jiaoyus = Regex.Match(strhtml, @"""eduList"":\[([\s\S]*?)\],");
 
 
@@ -170,7 +173,7 @@ namespace 启动程序
                         for (int z = 0; z < value; z++)
                         {
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
-                            for (int j = 0; j < 28; j++)
+                            for (int j = 0; j < 29; j++)
                             {
                                 lv1.SubItems.Add("");
 
@@ -194,6 +197,8 @@ namespace 启动程序
                                 lv1.SubItems[14].Text = a14.Groups[1].Value;
                                 lv1.SubItems[15].Text = a14.Groups[2].Value;
                                 lv1.SubItems[28].Text = jilu.Groups[2].Value;
+                                
+                                lv1.SubItems[29].Text = qwhy.Groups[1].Value;
                             }
 
                            

@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "管理软件", "管理软�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "stockx网站价格\stockx网站价格.csproj", "{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
