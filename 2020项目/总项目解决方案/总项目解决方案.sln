@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序", "主程序\主�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "启动程序", "启动程序\启动程序.csproj", "{9FC2337F-76E5-476A-9D80-D356E63A3D41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "耐克查询", "耐克查询\耐克查询.csproj", "{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序1", "主程序1\主程序1.csproj", "{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "加密", "加密\加密.csproj", "{FD629116-C4BB-497F-9D86-46D69DEEEF26}"
@@ -32,6 +30,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "权限管理", "权限管理\权限管理.csproj", "{FABF48AE-8246-4A0A-AFDC-A0EF0FE128D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "全网群采集", "全网群采集\全网群采集.csproj", "{13702C12-85E0-44A4-96B6-E884A1451E3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "管理软件", "管理软件\管理软件.csproj", "{27446079-9068-412C-822A-74B5F225D7F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,10 +69,6 @@ Global
 		{9FC2337F-76E5-476A-9D80-D356E63A3D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FC2337F-76E5-476A-9D80-D356E63A3D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FC2337F-76E5-476A-9D80-D356E63A3D41}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,6 +97,14 @@ Global
 		{13702C12-85E0-44A4-96B6-E884A1451E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13702C12-85E0-44A4-96B6-E884A1451E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13702C12-85E0-44A4-96B6-E884A1451E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27446079-9068-412C-822A-74B5F225D7F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27446079-9068-412C-822A-74B5F225D7F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27446079-9068-412C-822A-74B5F225D7F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27446079-9068-412C-822A-74B5F225D7F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

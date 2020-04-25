@@ -196,3 +196,46 @@
 
 
         #endregion
+
+#region  注册函数
+
+        public void myLogin()
+        {
+
+ try
+            {
+
+
+                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                string username = skinTextBox3.Text.Trim();
+                string password = skinTextBox4.Text.Trim();
+
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO vip (username,password,register_t,ip,mac)VALUES('" + username + " ', '" + password + " ', '" + time + " ', '" + ip + " ', '" + mac + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+                    MessageBox.Show("注册成功！");
+
+                    mycon.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("连接失败！");
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+ #endregion

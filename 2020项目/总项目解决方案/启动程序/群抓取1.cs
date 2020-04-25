@@ -120,6 +120,15 @@ namespace 启动程序
 
         #endregion
 
+
+        private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
+
+
+        }
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -171,6 +180,9 @@ namespace 启动程序
         string type = "1";
         string token = "";
         string cookie = "Hm_lvt_5cf1009b3f74aa0e7508611f719e561c=1586663370; Hm_lpvt_5cf1009b3f74aa0e7508611f719e561c=1586663556";
+        /// <summary>
+        /// 加群小助手
+        /// </summary>
         public void wxqun()
         {
             if (radioButton1.Checked == true)
@@ -239,6 +251,57 @@ namespace 启动程序
                 MessageBox.Show(ex.ToString());
             }
         }
+        /// <summary>
+        /// http://itui.applinzi.com/
+        /// </summary>
+        public void wxqun1()
+        {
+          
+            try
+            {
+                
+                for (int j = 1; j < 9999; j++)
+                {
+
+
+                    string url = "http://106.15.180.217:8080/v1/api/qrcode/latest_ten?page="+j;
+
+                    string html = GetUrl(url, "utf-8","");
+
+        
+                        MatchCollection times = Regex.Matches(html, @"updateTime"":([\s\S]*?),");
+                        MatchCollection images = Regex.Matches(html, @"pic_url"": ""([\s\S]*?)""");
+                        if (images.Count==0)
+                        {
+
+                         return;
+                        }
+                    for (int i = 0; i < images.Count; i++)
+                    {
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
+                        lv1.SubItems.Add(ConvertStringToDateTime(times[i].Groups[1].Value).ToString());
+                        lv1.SubItems.Add(images[i].Groups[1].Value);
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                    }
+                      
+                    
+
+
+                }
+
+
+                button4.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         private void 群抓取1_Load(object sender, EventArgs e)
         {
@@ -256,7 +319,7 @@ namespace 启动程序
             if (html.Contains(@"qunzhuaqu"))
             {
                 button1.Enabled = false;
-                Thread thread = new Thread(new ThreadStart(wxqun));
+                Thread thread = new Thread(new ThreadStart(wxqun1));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
 
