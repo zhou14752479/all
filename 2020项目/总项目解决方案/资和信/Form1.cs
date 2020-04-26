@@ -441,7 +441,7 @@ namespace 资和信
             }
             TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
             string pathname = AppDomain.CurrentDomain.BaseDirectory + ts.TotalSeconds.ToString() + ".xlsx";
-            method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true, pathname);
+            //method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true, pathname);
         }
 
 
@@ -477,6 +477,12 @@ namespace 资和信
 
         private void button5_Click(object sender, EventArgs e)
         {
+            Image image = Image.FromStream(getStream("https://tiebapic.baidu.com/forum/w%3D580%3B/sign=2fa03d8e862397ddd679980c69b9b3b7/fcfaaf51f3deb48fc6cca5b7e71f3a292df57835.jpg"));
+
+            Bitmap bmp = new Bitmap(image);
+
+            string value = imgdo(bmp);
+            MessageBox.Show(value);
             listView1.Items.Clear();
         }
         bool zanting = true;
