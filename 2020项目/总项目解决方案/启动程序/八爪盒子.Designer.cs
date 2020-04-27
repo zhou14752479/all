@@ -109,7 +109,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 11F);
-            this.label7.Location = new System.Drawing.Point(34, 111);
+            this.label7.Location = new System.Drawing.Point(33, 31);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 15);
             this.label7.TabIndex = 52;
@@ -117,7 +117,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(122, 105);
+            this.textBox3.Location = new System.Drawing.Point(121, 25);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(222, 21);
             this.textBox3.TabIndex = 51;
@@ -134,6 +134,7 @@
             this.label6.Size = new System.Drawing.Size(17, 16);
             this.label6.TabIndex = 50;
             this.label6.Text = "0";
+            this.label6.Visible = false;
             // 
             // label5
             // 
@@ -145,6 +146,7 @@
             this.label5.Size = new System.Drawing.Size(17, 16);
             this.label5.TabIndex = 49;
             this.label5.Text = "0";
+            this.label5.Visible = false;
             // 
             // label4
             // 
@@ -155,6 +157,7 @@
             this.label4.Size = new System.Drawing.Size(97, 15);
             this.label4.TabIndex = 48;
             this.label4.Text = "已抓取数量：";
+            this.label4.Visible = false;
             // 
             // label3
             // 
@@ -165,42 +168,47 @@
             this.label3.Size = new System.Drawing.Size(112, 15);
             this.label3.TabIndex = 47;
             this.label3.Text = "当前数据总数：";
+            this.label3.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 11F);
-            this.label2.Location = new System.Drawing.Point(34, 74);
+            this.label2.Location = new System.Drawing.Point(33, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 46;
             this.label2.Text = "结束日期：";
+            this.label2.Visible = false;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(122, 68);
+            this.textBox2.Location = new System.Drawing.Point(121, 96);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(222, 21);
             this.textBox2.TabIndex = 45;
             this.textBox2.Text = "2019-12-31";
+            this.textBox2.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 11F);
-            this.label1.Location = new System.Drawing.Point(34, 31);
+            this.label1.Location = new System.Drawing.Point(33, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 15);
             this.label1.TabIndex = 44;
             this.label1.Text = "起始日期：";
+            this.label1.Visible = false;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(122, 25);
+            this.textBox1.Location = new System.Drawing.Point(121, 53);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(222, 21);
             this.textBox1.TabIndex = 43;
             this.textBox1.Text = "2019-02-01";
+            this.textBox1.Visible = false;
             // 
             // button6
             // 

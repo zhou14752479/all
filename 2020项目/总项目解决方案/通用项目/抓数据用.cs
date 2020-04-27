@@ -407,7 +407,7 @@ namespace 通用项目
                 MatchCollection burls = Regex.Matches(bhtml, @"<div class=""carbk-title"">([\s\S]*?)href=""([\s\S]*?)""");
                 for (int j= 0; j < burls.Count; j++)
                 {
-                    string articlehtml= GetUrl(burls[i].Groups[1].Value, "utf-8");
+                    string articlehtml= GetUrl(burls[i].Groups[2].Value, "utf-8");
                     Match title = Regex.Match(articlehtml, @"<title>([\s\S]*?)_");
                     Match body = Regex.Match(articlehtml, @"<div class=""article-body-y"">([\s\S]*?)</div>");
                     Match item = Regex.Match(articlehtml, @"<div class=""position"">([\s\S]*?)</span>");
@@ -441,7 +441,7 @@ namespace 通用项目
             //thread.Start();
             //Control.CheckForIllegalCrossThreadCalls = false;
 
-            Thread thread = new Thread(new ThreadStart(dianpingpinglun));
+            Thread thread = new Thread(new ThreadStart(zhuashuju));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
         }

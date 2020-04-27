@@ -42,8 +42,8 @@ namespace 启动程序
                 WebClient client = new WebClient();
                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
                 client.Headers.Add("Cookie", COOKIE);
-                client.Headers.Add("x-access-token", this.token);
-                client.Headers.Add("Referer", "http://app.jiaqun8.cn/");
+               // client.Headers.Add("x-access-token", this.token);
+               // client.Headers.Add("Referer", "http://app.jiaqun8.cn/");
                 if (false == System.IO.Directory.Exists(subPath))
                 {
                     //创建pic文件夹
@@ -179,7 +179,7 @@ namespace 启动程序
         bool zanting = true;
         string type = "1";
         string token = "";
-        string cookie = "Hm_lvt_5cf1009b3f74aa0e7508611f719e561c=1586663370; Hm_lpvt_5cf1009b3f74aa0e7508611f719e561c=1586663556";
+        string cookie = "BAIDUID=D5049657ADDEADD6C4D60D7802DC22B4:FG=1; PSTM=1561528830; BIDUPSID=76109653D77CDD2ACB1BF156ACA5E346; H_WISE_SIDS=133538_125704_133104_128699_129117_130510_128063_133676_120183_133895_132756_131602_133016_132909_133041_131246_132440_130763_132378_131518_118885_118866_118843_118822_118801_132841_132604_107312_133158_130125_133351_133302_129648_132251_124637_132539_133837_133473_131905_128891_133847_132551_133288_133839_132543_129646_133004_131423_133217_133414_134037_133664_110085_132353_127969_123289_131296_127316_127417_133544; __cfduid=d973e1f13e8422bab3c8cf6ae97395e4c1575447408; BDUSS=Hk5b3BJTlhXSm10akVzajc4MXlkMk95MzlrbXJyaFJSRzR6VTBocjRKakhFejFlSVFBQUFBJCQAAAAAAAAAAAEAAACys-e7cTg1MjI2NjAxMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMeGFV7HhhVeV; MCITY=-%3A; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; delPer=0; PSINO=5; H_PS_PSSID=1455_31326_21119_31428_31342_30908_31270_30823_31163_31471";
         /// <summary>
         /// 加群小助手
         /// </summary>
@@ -264,7 +264,7 @@ namespace 启动程序
                 {
 
 
-                    string url = "http://106.15.180.217:8080/v1/api/qrcode/latest_ten?page="+j;
+                    string url = "https://itui.yfdou.com/v1/api/qrcode/latest_ten?page=" + j;
 
                     string html = GetUrl(url, "utf-8","");
 
@@ -287,7 +287,7 @@ namespace 启动程序
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
                     }
-                      
+                    Thread.Sleep(1000);
                     
 
 
@@ -347,7 +347,7 @@ namespace 启动程序
             for (int i = 0; i < listView1.Items.Count; i++)
             {
                 label1.Text = "正在下载第" + i + "个二维码";
-                downloadFile(listView1.Items[i].SubItems[2].Text, path, i + ".jpg", "");
+                downloadFile(listView1.Items[i].SubItems[2].Text, path, i + ".jpg",cookie);
             }
             label1.Text = "下载完成";
         }

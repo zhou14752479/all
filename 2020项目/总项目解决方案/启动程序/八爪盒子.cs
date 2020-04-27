@@ -257,7 +257,172 @@ namespace 启动程序
 
         }
 
-       
+
+
+
+
+
+
+
+        public void run1()
+
+        {
+            
+            int yi = 0;
+
+            try
+            {
+                for (int i = 0; i < 1001; i = i + 10)
+                {
+
+
+                    string url = "https://api.ibole.net/candidate/mine";
+                    string postdata = "offset=" + i + "&pageSize=10";
+                    string html = PostUrl(url, postdata);
+
+                    MatchCollection uids = Regex.Matches(html, @"""candidateId"":""([\s\S]*?)""");
+
+                    if (uids.Count == 0)
+                        return;
+                    foreach (Match uid in uids)
+                    {
+                        string strhtml = PostUrl("https://api.ibole.net/candidate/detail", "candidateId=" + uid.Groups[1].Value);
+
+                        Match a1 = Regex.Match(strhtml, @"""realName"":""([\s\S]*?)""");
+                        Match a2 = Regex.Match(strhtml, @"职位：([\s\S]*?)\\r");
+                        Match a3 = Regex.Match(strhtml, @"地址：([\s\S]*?)\\r");
+                        Match a4 = Regex.Match(strhtml, @"工作年限：([\s\S]*?)\\r");
+                        Match a5 = Regex.Match(strhtml, @"性别：([\s\S]*?)\\r");
+                        Match a6 = Regex.Match(strhtml, @"生日：([\s\S]*?)\\r");
+                        Match a7 = Regex.Match(strhtml, @"""companyName"":""([\s\S]*?)""");
+                        Match a8 = Regex.Match(strhtml, @"""school"":""([\s\S]*?)""");
+                        Match a9 = Regex.Match(strhtml, @"专业：([\s\S]*?)\\r");
+                        Match a10 = Regex.Match(strhtml, @"学位：([\s\S]*?)\\r");
+                        Match a11 = Regex.Match(strhtml, @"手机：([\s\S]*?)\\r");
+                        Match a12 = Regex.Match(strhtml, @"邮箱：([\s\S]*?)\\r");
+                        Match a13 = Regex.Match(strhtml, @"自我评价：([\s\S]*?)\\r");
+                        Match a14 = Regex.Match(strhtml, @"求职意向\\r\\n([\s\S]*?)  ([\s\S]*?) ");
+                        //Match a15 = Regex.Match(strhtml, @"自我评价：([\s\S]*?)\\r");
+                        //Match a16 = Regex.Match(strhtml, @"语言技能\\r\\n([\s\S]*?) ");
+                        Match jilu = Regex.Match(strhtml, @"inquiryList([\s\S]*?)content"":""([\s\S]*?)""");
+
+
+                        Match qwhy = Regex.Match(strhtml, @"""major"":""([\s\S]*?)""");
+
+                        Match jiaoyus = Regex.Match(strhtml, @"""eduList"":\[([\s\S]*?)\],");
+
+
+                        MatchCollection jiaoyu1 = Regex.Matches(jiaoyus.Groups[1].Value, @"startDate"":([\s\S]*?)\}");
+                        MatchCollection jiaoyu2 = Regex.Matches(jiaoyus.Groups[1].Value, @"endDate"":([\s\S]*?),");
+                        MatchCollection jiaoyu3 = Regex.Matches(jiaoyus.Groups[1].Value, @"degree"":([\s\S]*?),");
+                        MatchCollection jiaoyu4 = Regex.Matches(jiaoyus.Groups[1].Value, @"schoolName"":""([\s\S]*?)""");
+                        MatchCollection jiaoyu5 = Regex.Matches(jiaoyus.Groups[1].Value, @"majorName"":""([\s\S]*?)""");
+
+
+
+
+
+
+                        Match xiangmus = Regex.Match(strhtml, @"workList"":\[([\s\S]*?)\]");
+
+                        MatchCollection xiangmu1 = Regex.Matches(xiangmus.Groups[1].Value, @"startDate"":([\s\S]*?)\,");
+                        MatchCollection xiangmu2 = Regex.Matches(xiangmus.Groups[1].Value, @"endDate"":([\s\S]*?)\,");
+                        MatchCollection xiangmu3 = Regex.Matches(xiangmus.Groups[1].Value, @"companyName"":""([\s\S]*?)""");
+                        MatchCollection xiangmu4 = Regex.Matches(xiangmus.Groups[1].Value, @"companyType"":([\s\S]*?)\,");
+                        MatchCollection xiangmu5 = Regex.Matches(xiangmus.Groups[1].Value, @"title"":""([\s\S]*?)""");
+                        MatchCollection xiangmu6 = Regex.Matches(xiangmus.Groups[1].Value, @"salary"":([\s\S]*?)\,");
+                        MatchCollection xiangmu7 = Regex.Matches(xiangmus.Groups[1].Value, @"responsibility"":""([\s\S]*?)""");
+
+                        int value = jiaoyu1.Count > xiangmu1.Count ? jiaoyu1.Count : xiangmu1.Count;
+
+                        for (int z = 0; z < value; z++)
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
+                            for (int j = 0; j < 29; j++)
+                            {
+                                lv1.SubItems.Add("");
+
+                            }
+
+                            if (z == 0)
+                            {
+                                lv1.SubItems[1].Text = a1.Groups[1].Value;
+                                lv1.SubItems[2].Text = a2.Groups[1].Value;
+                                lv1.SubItems[3].Text = a3.Groups[1].Value;
+                                lv1.SubItems[4].Text = a4.Groups[1].Value;
+                                lv1.SubItems[5].Text = a5.Groups[1].Value;
+                                lv1.SubItems[6].Text = a6.Groups[1].Value;
+                                lv1.SubItems[7].Text = a7.Groups[1].Value;
+                                lv1.SubItems[8].Text = a8.Groups[1].Value;
+                                lv1.SubItems[9].Text = a9.Groups[1].Value;
+                                lv1.SubItems[10].Text = a10.Groups[1].Value;
+                                lv1.SubItems[11].Text = a11.Groups[1].Value;
+                                lv1.SubItems[12].Text = a12.Groups[1].Value;
+                                lv1.SubItems[13].Text = a13.Groups[1].Value;
+                                lv1.SubItems[14].Text = a14.Groups[1].Value;
+                                lv1.SubItems[15].Text = a14.Groups[2].Value;
+                                lv1.SubItems[28].Text = jilu.Groups[2].Value;
+
+                                lv1.SubItems[29].Text = qwhy.Groups[1].Value;
+                            }
+
+
+                            if (z < jiaoyu1.Count)
+                            {
+
+                                lv1.SubItems[16].Text = ConvertStringToDateTime(jiaoyu1[z].Groups[1].Value).ToString();
+                                lv1.SubItems[17].Text = ConvertStringToDateTime(jiaoyu2[z].Groups[1].Value).ToString().Replace("9999/12/31 0:00:00", "");
+                                lv1.SubItems[18].Text = jiaoyu3[z].Groups[1].Value;
+                                lv1.SubItems[19].Text = jiaoyu4[z].Groups[1].Value;
+                                lv1.SubItems[20].Text = jiaoyu5[z].Groups[1].Value;
+                            }
+
+                            if (z < xiangmu1.Count)
+                            {
+
+                                lv1.SubItems[21].Text = ConvertStringToDateTime(xiangmu1[z].Groups[1].Value).ToString();
+                                lv1.SubItems[22].Text = ConvertStringToDateTime(xiangmu2[z].Groups[1].Value).ToString().Replace("9999/12/31 0:00:00", "");
+                                lv1.SubItems[23].Text = xiangmu3[z].Groups[1].Value;
+                                lv1.SubItems[24].Text = xiangmu4[z].Groups[1].Value;
+                                lv1.SubItems[25].Text = xiangmu5[z].Groups[1].Value;
+                                lv1.SubItems[26].Text = xiangmu6[z].Groups[1].Value;
+                                lv1.SubItems[27].Text = xiangmu7[z].Groups[1].Value;
+
+                            }
+                        }
+
+
+
+
+
+
+
+
+
+
+
+                        yi = yi + 1;
+                        label6.Text = yi.ToString();
+
+                        while (zanting == false)
+                        {
+                            Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                        }
+                        if (status == false)
+                            return;
+                        Thread.Sleep(1000);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+
 
         private void 八爪盒子_Load(object sender, EventArgs e)
         {
@@ -274,7 +439,7 @@ namespace 启动程序
             {
 
                 status = true;
-                Thread thread1 = new Thread(new ThreadStart(run));
+                Thread thread1 = new Thread(new ThreadStart(run1));
                 thread1.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
 

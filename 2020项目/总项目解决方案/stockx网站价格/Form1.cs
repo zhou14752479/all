@@ -200,12 +200,12 @@ namespace stockx网站价格
                     double price = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(values[j].Groups[1].Value);
 
                     lv2.SubItems.Add(price.ToString());
-                    ArrayList fees=getfee(skus[j].Groups[1].Value,values[j].Groups[1].Value);
+                    //ArrayList fees=getfee(skus[j].Groups[1].Value,values[j].Groups[1].Value);
 
-                    foreach (string item in fees)
-                    {
-                        lv2.SubItems.Add(item);
-                    }
+                    //foreach (string item in fees)
+                    //{
+                    //    lv2.SubItems.Add(item);
+                    //}
                 }
                 
 
@@ -225,9 +225,28 @@ namespace stockx网站价格
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            #region 通用检测
+
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"stocks"))
+            {
+
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+            
         }
     }
 }
