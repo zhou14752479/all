@@ -41,6 +41,9 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,8 +67,10 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(576, 122);
+            this.textBox1.Size = new System.Drawing.Size(201, 149);
             this.textBox1.TabIndex = 28;
+            this.textBox1.Text = "拼多多微信群\r\n拼多多\r\n拼多多砍价\r\n副业\r\n优惠券\r\n微商群\r\n内部优惠券\r\n购物券\r\n褥羊毛\r\n网上购物\r\n购物狂\r\n宝妈微信群\r\n宝妈群\r\n购物群\r\n拼多" +
+    "多砍价群\r\n宝妈微信群\r\n宝妈微信群二维码\r\n微商群聊\r\n王者荣耀微信群";
             // 
             // 重新扫描ToolStripMenuItem
             // 
@@ -76,14 +81,14 @@
             // 复制串码ToolStripMenuItem
             // 
             this.复制串码ToolStripMenuItem.Name = "复制串码ToolStripMenuItem";
-            this.复制串码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制串码ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.复制串码ToolStripMenuItem.Text = "复制串码";
             this.复制串码ToolStripMenuItem.Click += new System.EventHandler(this.复制串码ToolStripMenuItem_Click);
             // 
             // 复制网址ToolStripMenuItem
             // 
             this.复制网址ToolStripMenuItem.Name = "复制网址ToolStripMenuItem";
-            this.复制网址ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制网址ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.复制网址ToolStripMenuItem.Text = "复制网址";
             this.复制网址ToolStripMenuItem.Click += new System.EventHandler(this.复制网址ToolStripMenuItem_Click);
             // 
@@ -94,7 +99,7 @@
             this.复制串码ToolStripMenuItem,
             this.重新扫描ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
             // 
             // listView1
             // 
@@ -102,7 +107,9 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
@@ -110,7 +117,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(803, 376);
+            this.listView1.Size = new System.Drawing.Size(860, 376);
             this.listView1.TabIndex = 25;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -133,13 +140,33 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "wxcode";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 200;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "群名称";
+            this.columnHeader5.Width = 150;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "失效时间";
+            this.columnHeader6.Width = 150;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(246, 433);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "label1";
             // 
             // 全网群采集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 533);
+            this.ClientSize = new System.Drawing.Size(860, 533);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listView1);
@@ -167,5 +194,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Label label1;
     }
 }

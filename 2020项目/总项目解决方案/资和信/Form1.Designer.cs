@@ -45,7 +45,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -74,21 +76,21 @@
             // 重新扫描ToolStripMenuItem
             // 
             this.重新扫描ToolStripMenuItem.Name = "重新扫描ToolStripMenuItem";
-            this.重新扫描ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.重新扫描ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.重新扫描ToolStripMenuItem.Text = "重新扫描";
             this.重新扫描ToolStripMenuItem.Click += new System.EventHandler(this.重新扫描ToolStripMenuItem_Click);
             // 
             // 复制串码ToolStripMenuItem
             // 
             this.复制串码ToolStripMenuItem.Name = "复制串码ToolStripMenuItem";
-            this.复制串码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制串码ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.复制串码ToolStripMenuItem.Text = "复制串码";
             this.复制串码ToolStripMenuItem.Click += new System.EventHandler(this.复制串码ToolStripMenuItem_Click);
             // 
             // 复制网址ToolStripMenuItem
             // 
             this.复制网址ToolStripMenuItem.Name = "复制网址ToolStripMenuItem";
-            this.复制网址ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制网址ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.复制网址ToolStripMenuItem.Text = "复制网址";
             this.复制网址ToolStripMenuItem.Click += new System.EventHandler(this.复制网址ToolStripMenuItem_Click);
             // 
@@ -99,7 +101,7 @@
             this.复制串码ToolStripMenuItem,
             this.重新扫描ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
             // 
             // listView1
             // 
@@ -115,7 +117,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(429, 249);
+            this.listView1.Size = new System.Drawing.Size(1082, 249);
             this.listView1.TabIndex = 25;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -179,11 +181,20 @@
             this.label1.TabIndex = 33;
             this.label1.Text = "未开始";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(416, 303);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(409, 192);
+            this.pictureBox1.TabIndex = 34;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 485);
+            this.ClientSize = new System.Drawing.Size(1082, 628);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button5);
@@ -198,6 +209,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,6 +233,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

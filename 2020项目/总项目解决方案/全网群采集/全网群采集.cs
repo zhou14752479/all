@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -71,6 +72,48 @@ namespace 全网群采集
         }
         #endregion
 
+        #region POST请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public string PostUrl(string url, string postData)
+        {
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "Post";
+            request.ContentType = "application/x-www-form-urlencoded";
+            // request.ContentType = "application/json";
+            request.ContentLength = postData.Length;
+
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";
+            //request.Headers.Add("Cookie", COOKIE);
+
+            StreamWriter sw = new StreamWriter(request.GetRequestStream());
+            sw.Write(postData);
+            sw.Flush();
+
+
+            WebResponse response = request.GetResponse();
+            Stream s = response.GetResponseStream();
+            StreamReader sr = new StreamReader(s, Encoding.GetEncoding("utf-8"));
+            string html = sr.ReadToEnd();
+
+            sw.Dispose();
+            sw.Close();
+            sr.Dispose();
+            sr.Close();
+            s.Dispose();
+            s.Close();
+            return html;
+        }
+
+        #endregion
+
         #region  网络图片转Bitmap
         public static Bitmap UrlToBitmap(string url)
         {
@@ -86,7 +129,7 @@ namespace 全网群采集
         }
         #endregion
 
-
+        #region 识别图中二维码 Bitmap格式图片识别无二维码为空
         /// <summary>
         /// 识别图中二维码 Bitmap格式图片识别无二维码为空
         /// </summary>
@@ -99,38 +142,118 @@ namespace 全网群采集
             var result = reader.Decode(barcodeBitmap);
             return (result == null) ? null : result.Text;
         }
+
+        #endregion
         private void 全网群采集_Load(object sender, EventArgs e)
         {
 
         }
+        #region 识别二维码文字
+        public string shibie(string picurl)
+        {
+            string url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic";
+            string access_token = "24.7ab687deb57c3c8383bc71c22d54a57e.2592000.1590636917.282335-19639932";
+            string postdata = "access_token=" + access_token + "&url="+picurl;
 
-        public void run()
+
+            string html = PostUrl(url, postdata);
+            return html;
+        }
+        #endregion
+
+
+        #region  插入数据库
+
+        public string insert(string name, string picurl, string resource, string expiretime)
         {
 
             try
             {
-                for (int i = 0; i < 500; i=i+50)
-                {
-                    string url = "https://tieba.baidu.com/f?kw=%E6%8B%BC%E5%A4%9A%E5%A4%9A%E5%BE%AE%E4%BF%A1%E7%BE%A4&ie=utf-8&pn="+i;
-                    string html = GetUrl(url);
-                    
-                    MatchCollection pics = Regex.Matches(html, @"bpic=""([\s\S]*?)""");
-                    for (int j = 0; j< pics.Count; j++)
-                    {
-                        string vxcode = DecodeQrCode(UrlToBitmap(pics[j].Groups[1].Value));
 
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(pics[j].Groups[1].Value);
-                        lv1.SubItems.Add(vxcode);
-                        lv1.SubItems.Add(i.ToString());
+
+                string constr = "Host =111.229.244.97;Database=acaiji;Username=root;Password=root";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO quns (name,pic_url,resource,expiretime)VALUES('" + name + " ', '" + picurl + " ', '" + resource + " ', '" + expiretime + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+
+                    
+                    mycon.Close();
+                    return "成功";
+
+                }
+                else
+                {
+
+                    mycon.Close();
+                    return "失败";
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return(ex.ToString());
+            }
+
+        }
+
+            #endregion
+
+            public void run()
+        {
+
+            try
+            {
+                string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (string tieba in text)
+                {
+
+
+                    for (int i = 0; i < 500; i = i + 50)
+                    {
+                        string url = "https://tieba.baidu.com/f?kw="+ System.Web.HttpUtility.UrlEncode(tieba) +"&ie=utf-8&pn=" + i;
+                        string html = GetUrl(url);
+
+                        MatchCollection pics = Regex.Matches(html, @"bpic=""([\s\S]*?)""");
+                        for (int j = 0; j < pics.Count; j++)
+                        {
+                            label1.Text = DateTime.Now.ToString() + pics[j].Groups[1].Value;
+                            string vxcode = DecodeQrCode(UrlToBitmap(pics[j].Groups[1].Value));
+                            if (vxcode!="" && vxcode !=null)
+                            {
+                                if (vxcode.Contains("/g/"))
+                                {
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                    lv1.SubItems.Add(pics[j].Groups[1].Value);
+                                    lv1.SubItems.Add(tieba);
+                                    lv1.SubItems.Add(vxcode);
+                                    string wenzi = shibie(pics[j].Groups[1].Value);
+                                    Match name = Regex.Match(wenzi, @"""words"": ""([\s\S]*?)""");
+                                    Match time = Regex.Match(wenzi, @"该二维码7天内\(([\s\S]*?)前");
+                                    
+                                    lv1.SubItems.Add(name.Groups[1].Value);
+                                    lv1.SubItems.Add(time.Groups[1].Value);
+
+                                  label1.Text=  insert(name.Groups[1].Value, pics[j].Groups[1].Value,tieba,time.Groups[1].Value);
+                                }
+                            }
+
+                        }
                     }
                 }
                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.ToString());
             }
 
 

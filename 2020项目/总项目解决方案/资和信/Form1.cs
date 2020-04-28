@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -30,7 +31,7 @@ namespace 资和信
         [DllImport("AspriseOCR.dll", EntryPoint = "OCRpartBarCodes", CallingConvention = CallingConvention.Cdecl)]
         static extern IntPtr OCRpartBarCodes(string file, int type, int startX, int startY, int width, int height);
 
-      
+
 
         public Form1()
         {
@@ -235,7 +236,7 @@ namespace 资和信
             if (orcbmp != null)
             {
                 string result = Ocr(orcbmp);
-               return result.Replace("\n", "\r\n").Replace(" ", "");
+                return result.Replace("\n", "\r\n").Replace(" ", "");
             }
 
             return "";
@@ -281,7 +282,7 @@ namespace 资和信
                     PicArray[i * RowNum + j] = bmpobj.Clone(cloneRect, bmpobj.PixelFormat);//复制小块图
                 }
             }
-       
+
 
 
             return PicArray;
@@ -290,14 +291,14 @@ namespace 资和信
         #endregion
 
 
-        
+
 
 
 
 
 
         public string COOKIE = "";
-     
+
 
 
         #region POST请求
@@ -309,16 +310,17 @@ namespace 资和信
         /// <param name="COOKIE">cookie</param>
         /// <param name="charset">编码格式</param>
         /// <returns></returns>
-        public  string PostUrl(string url, string postData)
+        public string PostUrl(string url, string postData)
         {
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Post";
             request.ContentType = "application/x-www-form-urlencoded";
+            // request.ContentType = "application/json";
             request.ContentLength = postData.Length;
 
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";
-            request.Headers.Add("Cookie", COOKIE);
+            //request.Headers.Add("Cookie", COOKIE);
 
             StreamWriter sw = new StreamWriter(request.GetRequestStream());
             sw.Write(postData);
@@ -327,7 +329,7 @@ namespace 资和信
 
             WebResponse response = request.GetResponse();
             Stream s = response.GetResponseStream();
-            StreamReader sr = new StreamReader(s, Encoding.GetEncoding("GBK"));
+            StreamReader sr = new StreamReader(s, Encoding.GetEncoding("utf-8"));
             string html = sr.ReadToEnd();
 
             sw.Dispose();
@@ -342,7 +344,7 @@ namespace 资和信
         #endregion
 
         #region GET请求
-        public  string getUrl(string url)
+        public string getUrl(string url)
         {
 
             StreamReader reader = new StreamReader(getStream(url), Encoding.GetEncoding("GBK")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -353,7 +355,7 @@ namespace 资和信
         }
         #endregion
 
-        
+
         #region 获取数据流
         public Stream getStream(string Url)
         {
@@ -364,7 +366,7 @@ namespace 资和信
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
             request.AllowAutoRedirect = true;
             request.Headers.Add("Cookie", COOKIE);
-            
+
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
             return response.GetResponseStream();
 
@@ -372,7 +374,7 @@ namespace 资和信
         #endregion
 
 
-        
+
 
         /// <summary>
         /// 主程序
@@ -386,7 +388,7 @@ namespace 资和信
             {
                 if (array[i] != "")
                 {
-                  
+
                     string JINE = "";
                     string DATE = "";
                     int a = 0;
@@ -417,7 +419,7 @@ namespace 资和信
                         JINE = jine.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
                         DATE = date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
                         label1.Text = array[i] + "：正在第" + a + "次识别.....";
-                            a++;
+                        a++;
 
                         if (a > 20)
                             break;
@@ -445,14 +447,14 @@ namespace 资和信
         }
 
 
-    
-       
+
+
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
             this.COOKIE = method.getUrlCookie("https://www.zihexin.net/Verifycode2.do");
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -462,7 +464,7 @@ namespace 资和信
                 MessageBox.Show("请导入卡号");
                 return;
             }
-         
+
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -473,17 +475,78 @@ namespace 资和信
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-      
 
+        /// <summary>
+        /// 截取一张图片的指定部分
+        /// </summary>
+        /// <param name="bitmapPathAndName">原始图片路径名称</param>
+        /// <param name="width">截取图片的宽度</param>
+        /// <param name="height">截取图片的高度</param>
+        /// <param name="offsetX">开始截取图片的X坐标</param>
+        /// <param name="offsetY">开始截取图片的Y坐标</param>
+        /// <returns></returns>
+        public static Bitmap GetPartOfImageRec(Bitmap sourceBitmap, int offsetX, int offsetY, int width, int height)
+        {
+
+            Bitmap resultBitmap = new Bitmap(width, height);
+            using (Graphics g = Graphics.FromImage(resultBitmap))
+            {
+                Rectangle resultRectangle = new Rectangle(0, 0, width, height);
+                Rectangle sourceRectangle = new Rectangle(0 + offsetX, 0 + offsetY, width, height);
+                g.DrawImage(sourceBitmap, resultRectangle, sourceRectangle, GraphicsUnit.Pixel);
+            }
+            return resultBitmap;
+        }
+        public string MD5Encrypt(string password, int bit)
+        {
+            MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
+            byte[] hashedDataBytes;
+            hashedDataBytes = md5Hasher.ComputeHash(Encoding.GetEncoding("gb2312").GetBytes(password));
+            StringBuilder tmp = new StringBuilder();
+            foreach (byte i in hashedDataBytes)
+            {
+                tmp.Append(i.ToString("x2"));
+            }
+            if (bit == 16)
+                return tmp.ToString().Substring(8, 16);
+            else
+            if (bit == 32) return tmp.ToString();//默认情况
+            else return string.Empty;
+        }
+
+        /// <summary>
+        /// 获取时间戳毫秒
+        /// </summary>
+        /// <returns></returns>
+        public string GetTimeStamp()
+        {
+            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long a = Convert.ToInt64(tss.TotalMilliseconds);
+            return a.ToString();
+        }
+
+        public string gettoken()
+        {
+            string html = method.GetUrl("https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=Dzkwcvs0rA4VLlMzHFA9xdTs&client_secret=50ojTqxwohUALz6jMjp3WCmXVDBMeXZp", "utf-8");
+            Match token = Regex.Match(html, @"refresh_token"":""([\s\S]*?)""");
+            return token.Groups[1].Value;
+                
+        }
         private void button5_Click(object sender, EventArgs e)
         {
-            Image image = Image.FromStream(getStream("https://tiebapic.baidu.com/forum/w%3D580%3B/sign=2fa03d8e862397ddd679980c69b9b3b7/fcfaaf51f3deb48fc6cca5b7e71f3a292df57835.jpg"));
+            //Image image = Image.FromStream(getStream("http://tiebapic.baidu.com/forum/w%3D580%3B/sign=a1af523ae1246b607b0eb27cdbc31b4c/a044ad345982b2b7cf0435ad26adcbef76099b3b.jpg"));
 
-            Bitmap bmp = new Bitmap(image);
+            //Bitmap sourceBitmap = new Bitmap(image);
+            //Bitmap resultBitmap= GetPartOfImageRec(sourceBitmap,160,200,400,100);
+            //Image resultimage = resultBitmap;
+            //pictureBox1.Image = resultBitmap;
 
-            string value = imgdo(bmp);
-            MessageBox.Show(value);
-            listView1.Items.Clear();
+
+            //string value = imgdo(resultBitmap);
+            //MessageBox.Show(value);
+            //listView1.Items.Clear();
+          
+
         }
         bool zanting = true;
  
