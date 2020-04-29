@@ -21,7 +21,8 @@ namespace stockx网站价格
         {
             InitializeComponent();
         }
-        #region GET请求
+
+        #region GET请求解决基础连接关闭无法获取HTML
         /// <summary>
         /// GET请求
         /// </summary>
@@ -29,48 +30,50 @@ namespace stockx网站价格
         /// <returns></returns>
         public static string GetUrl(string Url, string charset)
         {
-
+            string outStr = "";
+            string tmpStr = "";
 
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "session-id=144-7450304-7580635; session-id-time=2082787201l; ubid-main=133-9411273-8184314; x-wl-uid=1AR+eCj1iY57TRhM7A2m5KF9SEb1ho13Om87l60jAFJAp10qHX8GNgnZcOFTknCbmNkftPnMho/k=; aws-priv=eyJ2IjoxLCJldSI6MCwic3QiOjB9; aws-target-static-id=1536650638823-915613; s_fid=16BD3861C3483809-386224FB67B4E94E; regStatus=pre-register; s_dslv=1536656308918; i18n-prefs=USD; lc-main=zh_CN; sp-cdn=\"L5Z9: CN\"; session-token=/8/yst6nJSzUghSOya1omO6MEhQ/Moyyq2FsFStf5zcm4cZPhl38RIpfC+UZyiw//J9HubG+McoZMSB4hRyykQZ0SH1X07eSi5nxcOjmHQshqSmCJD6tL8cgFOFCByRnF1EJMjmxRfVwTkZZ/4yLqjzBQ2Ik6WclU4tG1u7+4UCFeGDYa//WLb3fCGfB6RuU; csm-hit=tb:DT2JH7KAE9BTWY50PJA8+s-DT2JH7KAE9BTWY50PJA8|1585472314824&t:1585472314824&adb:adblk_no";
+                // System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "https://www.amazon.com/s?k=6Q0+959+856&__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&ref=nb_sb_noss";
+                request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
-                request.AllowAutoRedirect = true;
+
+                request.AllowAutoRedirect = false;
                 request.Headers.Add("Cookie", COOKIE);
-                //添加头部
-                WebHeaderCollection headers = request.Headers;
-                headers.Add("sec-fetch-mode:navigate");
-                headers.Add("sec-fetch-site:same-origin");
-                headers.Add("sec-fetch-user:?1");
-                headers.Add("upgrade-insecure-requests: 1");
-                //添加头部
-                // request.KeepAlive = true;
+                request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                request.Timeout = 5000;
+                request.Timeout = 10000;
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
-                string content = reader.ReadToEnd();
 
+                try
+                {//循环获取
+                    while ((tmpStr = reader.ReadLine()) != null)
+                    {
+                        outStr += tmpStr;
+                    }
+                }
+                catch
+                {
 
+                }
                 reader.Close();
                 response.Close();
-                return content;
 
-
+                return outStr;
 
             }
             catch (System.Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.ToString());
+                return ex.ToString();
 
             }
-            return "";
+
         }
         #endregion
-
         #region POST请求
         /// <summary>
         /// POST请求
@@ -130,8 +133,9 @@ namespace stockx网站价格
 
                 string url = "https://stockx.com/api/pricing?currency=USD&include_taxes=false";
                 string postdata = "{\"context\":\"buying\",\"products\":[{\"sku\":\"" + sku + "\",\"amount\":" + price + ",\"quantity\":1}],\"discountCodes\":[\"\"]}";
+                
                 string html = PostUrl(url, postdata);
-                MessageBox.Show(html);
+                
                 MatchCollection fee = Regex.Matches(html, @"""amount"":([\s\S]*?),");
 
                 foreach (Match item in fee)
@@ -165,55 +169,54 @@ namespace stockx网站价格
                     string html = PostUrl(url,postdata);
                 Match huo = Regex.Match(html, @"""url"":""([\s\S]*?)""");
                 string aurl = "https://stockx.com/api/products/"+huo.Groups[1].Value+"?includes=market,360&currency=USD&country=HK";
-
+                
 
                 string ahtml = GetUrl(aurl, "utf-8");
+                
                 Match highestBid = Regex.Match(ahtml, @"""highestBid"":([\s\S]*?),");
-
+              
 
                     MatchCollection skus = Regex.Matches(ahtml, @"""skuUuid"":([\s\S]*?),");
-                    MatchCollection sizes = Regex.Matches(ahtml, @"""lowestAskSize"":([\s\S]*?),");
-                MatchCollection values = Regex.Matches(ahtml, @"""lowestAsk"":([\s\S]*?),");
+
+
+                MatchCollection sizes = Regex.Matches(ahtml, @"""lowestAskSize"":([\s\S]*?),");
+                MatchCollection lows = Regex.Matches(ahtml, @"""lowestAsk"":([\s\S]*?),");
+                MatchCollection highs = Regex.Matches(ahtml, @"""highestBidFloat"":([\s\S]*?)}");
 
 
 
-
-                ListViewItem lv = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                lv.SubItems.Add("highestBid");
-
-                double price1 = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(highestBid.Groups[1].Value);
-                lv.SubItems.Add(price1.ToString());
+              
 
 
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                lv1.SubItems.Add("Lowest Ask");
-                double price2 = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(values[0].Groups[1].Value);
-                lv1.SubItems.Add(price2.ToString());
-
-
-                for (int j = 1; j < values.Count; j++)
+                for (int j = 1; j < lows.Count; j++)
                 {
 
                     ListViewItem lv2 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     lv2.SubItems.Add("US "+sizes[j].Groups[1].Value);
 
-                    double price = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(values[j].Groups[1].Value);
+                    double lowprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(lows[j].Groups[1].Value);
+                    double highprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(highs[j].Groups[1].Value);
 
-                    lv2.SubItems.Add(price.ToString());
-                    //ArrayList fees=getfee(skus[j].Groups[1].Value,values[j].Groups[1].Value);
+                    lv2.SubItems.Add(lowprice.ToString());
+                    lv2.SubItems.Add(highprice.ToString());
 
-                    //foreach (string item in fees)
-                    //{
-                    //    lv2.SubItems.Add(item);
-                    //}
+                   
+                    ArrayList fees = getfee(skus[j].Groups[1].Value.Replace("\"",""), lows[j].Groups[1].Value);
+
+                   //double fee1 = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(fees[0].ToString());
+                   //double fee2 = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(fees[1].ToString());
+                    lv2.SubItems.Add(fees[0].ToString());
+                    lv2.SubItems.Add(fees[1].ToString());
+
+                   
                 }
-                
+
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.ToString());
             }
 
 
