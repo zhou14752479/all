@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -204,47 +205,62 @@ namespace 全网群采集
 
         }
 
-            #endregion
+        #endregion
+
+        ArrayList finishes = new ArrayList();
 
             public void run()
         {
 
             try
             {
-                string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                
                 foreach (string tieba in text)
                 {
 
-
-                    for (int i = 0; i < 500; i = i + 50)
+                    if (!finishes.Contains(tieba))
                     {
-                        string url = "https://tieba.baidu.com/f?kw="+ System.Web.HttpUtility.UrlEncode(tieba) +"&ie=utf-8&pn=" + i;
-                        string html = GetUrl(url);
-
-                        MatchCollection pics = Regex.Matches(html, @"bpic=""([\s\S]*?)""");
-                        for (int j = 0; j < pics.Count; j++)
+                        finishes.Add(tieba);
+                        for (int i = 0; i < 500; i = i + 50)
                         {
-                            label1.Text = DateTime.Now.ToString() + pics[j].Groups[1].Value;
-                            string vxcode = DecodeQrCode(UrlToBitmap(pics[j].Groups[1].Value));
-                            if (vxcode!="" && vxcode !=null)
+                            string url = "https://tieba.baidu.com/f?kw=" + System.Web.HttpUtility.UrlEncode(tieba) + "&ie=utf-8&pn=" + i;
+                            string html = GetUrl(url);
+
+                            MatchCollection pics = Regex.Matches(html, @"bpic=""([\s\S]*?)""");
+                            for (int j = 0; j < pics.Count; j++)
                             {
-                                if (vxcode.Contains("/g/"))
+                                try
                                 {
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                    lv1.SubItems.Add(pics[j].Groups[1].Value);
-                                    lv1.SubItems.Add(tieba);
-                                    lv1.SubItems.Add(vxcode);
-                                    string wenzi = shibie(pics[j].Groups[1].Value);
-                                    Match name = Regex.Match(wenzi, @"""words"": ""([\s\S]*?)""");
-                                    Match time = Regex.Match(wenzi, @"该二维码7天内\(([\s\S]*?)前");
-                                    
-                                    lv1.SubItems.Add(name.Groups[1].Value);
-                                    lv1.SubItems.Add(time.Groups[1].Value);
+                                    label1.Text = DateTime.Now.ToString() + pics[j].Groups[1].Value;
+                                    string vxcode = DecodeQrCode(UrlToBitmap(pics[j].Groups[1].Value));
+                                    if (vxcode != "" && vxcode != null)
+                                    {
+                                        if (vxcode.Contains("/g/"))
+                                        {
+                                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                            lv1.SubItems.Add(pics[j].Groups[1].Value);
+                                            lv1.SubItems.Add(tieba);
+                                            lv1.SubItems.Add(vxcode);
+                                            string wenzi = shibie(pics[j].Groups[1].Value);
+                                            Match name = Regex.Match(wenzi, @"""words"": ""([\s\S]*?)""");
+                                            Match time = Regex.Match(wenzi, @"该二维码7天内\(([\s\S]*?)前");
 
-                                  label1.Text=  insert(name.Groups[1].Value, pics[j].Groups[1].Value,tieba,time.Groups[1].Value);
+                                            lv1.SubItems.Add(name.Groups[1].Value);
+                                            lv1.SubItems.Add(time.Groups[1].Value);
+
+                                            label1.Text=  insert(name.Groups[1].Value, pics[j].Groups[1].Value,tieba,time.Groups[1].Value);
+                                        }
+                                    }
                                 }
-                            }
+                                catch
+                                {
 
+                                    continue;
+                                }
+
+
+
+                            }
                         }
                     }
                 }
@@ -258,12 +274,17 @@ namespace 全网群采集
 
 
         }
-
+        string[] text = { };
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+           text  = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < 10; i++)
+            {
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+            
         }
 
         private void 复制网址ToolStripMenuItem_Click(object sender, EventArgs e)
