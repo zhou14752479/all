@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -113,6 +114,7 @@ namespace 管理软件
         public void run(string str,int value)
 
         {
+           
             try
             {
                
@@ -121,7 +123,11 @@ namespace 管理软件
                 {
                     for (int i = 0; i < value; i++)
                     {
-                        System.Diagnostics.Process.Start(textBox2.Text + url);
+                        webbrowser web = new webbrowser(textBox2.Text + url);
+                        web.Show();
+                        //Thread.Sleep(10000);
+                        //web.Close();
+                        //System.Diagnostics.Process.Start(textBox2.Text + url);
                     }
                    
 
@@ -138,8 +144,31 @@ namespace 管理软件
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string str = "SELECT url from aaa";
-            run(str,5);
+            if (checkBox1.Checked == true)
+            {
+                string str = "SELECT url from aaa";
+                run(str, Convert.ToInt32(textBox1.Text));
+            }
+
+            if (checkBox2.Checked == true)
+            {
+                string str = "SELECT url from bbb";
+                run(str, Convert.ToInt32(textBox2.Text));
+            }
+
+            if (checkBox3.Checked == true)
+            {
+                string str = "SELECT url from ccc";
+                run(str, Convert.ToInt32(textBox3.Text));
+            }
+
+
+            if (checkBox4.Checked == true)
+            {
+                string str = "SELECT url from ddd";
+                run(str, Convert.ToInt32(textBox4.Text));
+            }
+
         }
     }
 }

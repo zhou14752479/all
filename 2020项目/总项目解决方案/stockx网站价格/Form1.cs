@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CsharpHttpHelper;
+using CsharpHttpHelper.Enum;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,57 +24,41 @@ namespace stockx网站价格
             InitializeComponent();
         }
 
-        #region GET请求解决基础连接关闭无法获取HTML
-        /// <summary>
-        /// GET请求
-        /// </summary>
-        /// <param name="Url">网址</param>
-        /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        #region 苏飞请求
+        public static string gethtml(string url, string COOKIE)
         {
-            string outStr = "";
-            string tmpStr = "";
-
-            try
+            HttpHelper http = new HttpHelper();
+            HttpItem item = new HttpItem()
             {
-                // System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "";
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                URL = url,//URL     必需项  
+                Method = "GET",//URL     可选项 默认为Get  
+                Timeout = 100000,//连接超时时间     可选项默认为100000  
+                ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
+                IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
+                Cookie = COOKIE,
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
+                ContentType = "text/html",//返回类型    可选项有默认值  
+                Referer = "https://live.500.com/wanchang.php",//来源URL     可选项  
+                Allowautoredirect = true,//是否根据３０１跳转     可选项  
+                AutoRedirectCookie = true,//是否自动处理Cookie     可选项  
+                                          //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
+                                          //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
+                Postdata = "",//Post数据     可选项GET时不需要写  
+                              //ProxyIp = "192.168.1.105：2020",//代理服务器ID     可选项 不需要代理 时可以不设置这三个参数  
+                              //ProxyPwd = "123456",//代理服务器密码     可选项  
+                              //ProxyUserName = "administrator",//代理服务器账户名     可选项  
+                ResultType = ResultType.String,//返回数据类型，是Byte还是String  
+            };
+            HttpResult result = http.GetHtml(item);
+            string html = result.Html;
+            string cookie = result.Cookie;
 
-                request.AllowAutoRedirect = false;
-                request.Headers.Add("Cookie", COOKIE);
-                request.KeepAlive = true;
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                request.Timeout = 10000;
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
 
-                try
-                {//循环获取
-                    while ((tmpStr = reader.ReadLine()) != null)
-                    {
-                        outStr += tmpStr;
-                    }
-                }
-                catch
-                {
-
-                }
-                reader.Close();
-                response.Close();
-
-                return outStr;
-
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return ex.ToString();
-
-            }
+            return html;
 
         }
+
         #endregion
         #region POST请求
         /// <summary>
@@ -125,32 +111,32 @@ namespace stockx网站价格
 
         #endregion
 
-        public ArrayList getfee(string sku, string price)
-        {
-            ArrayList lists = new ArrayList();
-            try
-            {
+        //public ArrayList getfee(string sku, string price)
+        //{
+        //    ArrayList lists = new ArrayList();
+        //    try
+        //    {
 
-                string url = "https://stockx.com/api/pricing?currency=USD&include_taxes=false";
-                string postdata = "{\"context\":\"buying\",\"products\":[{\"sku\":\"" + sku + "\",\"amount\":" + price + ",\"quantity\":1}],\"discountCodes\":[\"\"]}";
+        //        string url = "https://stockx.com/api/pricing?currency=USD&include_taxes=false";
+        //        string postdata = "{\"context\":\"buying\",\"products\":[{\"sku\":\"" + sku + "\",\"amount\":" + price + ",\"quantity\":1}],\"discountCodes\":[\"\"]}";
                 
-                string html = PostUrl(url, postdata);
+        //        string html = PostUrl(url, postdata);
                 
-                MatchCollection fee = Regex.Matches(html, @"""amount"":([\s\S]*?),");
+        //        MatchCollection fee = Regex.Matches(html, @"""amount"":([\s\S]*?),");
 
-                foreach (Match item in fee)
-                {
-                    lists.Add(item.Groups[1].Value);
-                }
-                return lists;
-            }
-            catch (Exception)
-            {
+        //        foreach (Match item in fee)
+        //        {
+        //            lists.Add(item.Groups[1].Value);
+        //        }
+        //        return lists;
+        //    }
+        //    catch (Exception)
+        //    {
 
-                throw;
-            }
+        //        throw;
+        //    }
 
-        }
+        //}
 
 
 
@@ -169,10 +155,10 @@ namespace stockx网站价格
                     string html = PostUrl(url,postdata);
                 Match huo = Regex.Match(html, @"""url"":""([\s\S]*?)""");
                 string aurl = "https://stockx.com/api/products/"+huo.Groups[1].Value+"?includes=market,360&currency=USD&country=HK";
-                
 
-                string ahtml = GetUrl(aurl, "utf-8");
-                
+               
+               string ahtml = gethtml(aurl, "");
+               
                 Match highestBid = Regex.Match(ahtml, @"""highestBid"":([\s\S]*?),");
               
 
@@ -191,24 +177,29 @@ namespace stockx网站价格
                 for (int j = 1; j < lows.Count; j++)
                 {
 
-                    ListViewItem lv2 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                    lv2.SubItems.Add("US "+sizes[j].Groups[1].Value);
-
+                    ListViewItem lv2 = listView1.Items.Add("US " + sizes[j].Groups[1].Value.Replace("null", "-")); //使用Listview展示数据   
+                    
                     double lowprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(lows[j].Groups[1].Value);
                     double highprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(highs[j].Groups[1].Value);
 
                     lv2.SubItems.Add(lowprice.ToString());
                     lv2.SubItems.Add(highprice.ToString());
 
-                   
-                    ArrayList fees = getfee(skus[j].Groups[1].Value.Replace("\"",""), lows[j].Groups[1].Value);
 
-                   //double fee1 = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(fees[0].ToString());
-                   //double fee2 = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(fees[1].ToString());
-                    lv2.SubItems.Add(fees[0].ToString());
-                    lv2.SubItems.Add(fees[1].ToString());
+                    double fee1 = Convert.ToDouble(textBox2.Text) * 29.95;
 
-                   
+                    if (Convert.ToDouble(lows[j].Groups[1].Value) < 999)
+                    {
+                        fee1 = 0.03 * lowprice;
+                    }
+                     
+                    double fee2 = Convert.ToDouble(textBox2.Text) * 9 ;
+
+                    double zong1 = lowprice + fee1 + fee2;
+                    double zong2= highprice + fee1 + fee2;
+                    lv2.SubItems.Add(zong1.ToString());
+                    lv2.SubItems.Add(zong2.ToString());
+
                 }
 
 
@@ -230,26 +221,28 @@ namespace stockx网站价格
         {
             #region 通用检测
 
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+            string html = gethtml("http://www.acaiji.com/index/index/vip.html", "");
 
-            if (html.Contains(@"stocks"))
+            if (!html.Contains(@"stocks"))
             {
 
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-            }
-
-            else
-            {
                 MessageBox.Show("验证失败");
                 return;
+
+
             }
 
-
             #endregion
-            
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            button1.Enabled = false;
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
+            listView1.Items.Clear();
         }
     }
 }
