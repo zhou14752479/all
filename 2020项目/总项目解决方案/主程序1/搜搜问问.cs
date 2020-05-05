@@ -1,5 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +12,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DotRas;
-using System.Collections.ObjectModel;
 
-namespace 百度知道
+namespace 主程序1
 {
-    public partial class Form1 : Form
+    public partial class 搜搜问问 : Form
     {
-        public Form1()
+        public 搜搜问问()
         {
             InitializeComponent();
         }
@@ -30,7 +28,7 @@ namespace 百度知道
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url,string charset)
+        public static string GetUrl(string Url, string charset)
         {
 
 
@@ -44,7 +42,7 @@ namespace 百度知道
 
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
-  
+
                 request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.Timeout = 5000;
@@ -69,66 +67,93 @@ namespace 百度知道
         public void run()
         {
             string[] array = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < array.Length; i++)
+            for (int a = 0; a< array.Length; a++)
             {
                 try
                 {
                     StringBuilder sb = new StringBuilder();
-                    for (int a = 0; a < 11; a = a + 10)
+                    ArrayList articleList = new ArrayList();
+                    ArrayList titleList = new ArrayList();
+                    for (int i = 1;i < 4; i++)
                     {
 
-                        string URL = "https://zhidao.baidu.com/search?word="+ System.Web.HttpUtility.UrlEncode(array[i].Trim())+ "&ie=gbk&site=-1&sites=0&date=0&pn="+a ;
+                        string URL = "https://www.sogou.com/sogou?query="+System.Web.HttpUtility.UrlEncode(array[a])+"&insite=wenwen.sogou.com&pid=sogou-wsse-a9e18cb5dd9d3ab4&rcer=&page="+i+"&ie=utf8";
+                        string html = GetUrl(URL, "utf-8");
 
+                        MatchCollection uids = Regex.Matches(html, @"z%2F([\s\S]*?)&");
 
-                    string html = GetUrl(URL,"GBK");
-                    
-                    MatchCollection uids = Regex.Matches(html, @"data-rank=""([\s\S]*?):([\s\S]*?)""");
-                    
-
-
-                        for (int j = 0; j < 10; j++)
+                        for (int j = 0; j < uids.Count; j++)
                         {
-                            try
-                            {
-                                string url = "https://zhidao.baidu.com/question/" + uids[j].Groups[2].Value + ".html";
 
+                            string url = "https://wenwen.sogou.com/z/" + uids[j].Groups[1].Value;
+                            string ahtml = GetUrl(url, "utf-8");
+                            textBox2.Text += DateTime.Now.ToString() + "：正在抓取第"+i+"页第"+(j+1) +"篇"+ "\r\n";
 
-                                string ahtml = GetUrl(url, "gbk");
+                            Match title = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>");
+                            Match article = Regex.Match(ahtml, @"<pre class=""replay-info-txt answer_con"">([\s\S]*?)</pre>");
 
-                                int pian = a  + j + 1;
-                                textBox2.Text += DateTime.Now.ToString() + "：正在抓取" + array[i] + "第" +pian.ToString() + "篇" + "\r\n";
+                            titleList.Add(title.Groups[1].Value);
 
-                                Match article = Regex.Match(ahtml, @"<span class=""wgt-best-arrowdown""></span>([\s\S]*?)<div class=""quality-content-view-more mb-15"">");
-
-                                string article1 = Regex.Replace(article.Groups[1].Value.Replace("</p>", "\r\n").Replace("<br />", ""), "<[^>]+>", "");
-                                string article2 = Regex.Replace(article1, "([0-9]|[a-z]){10,}", "");
-                                sb.Append(article2);
-
-
-
-                                while (this.zanting == false)
-                                {
-                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                }
-                                Thread.Sleep(1000);
-                            }
-                            catch
-                            {
-
-                                continue;
-                            }
-
+                            string article1 = Regex.Replace(article.Groups[1].Value, "([0-9]|[a-z]){10,}", "");
+                            articleList.Add(Regex.Replace(article1, "<[^>]+>", ""));
+                           
+                            Thread.Sleep(1000);
                         }
+                       
+
+
+
+
                     }
-                    FileStream fs1 = new FileStream(path+"文件\\"+ array[i].Trim() + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    textBox2.Text = "正在合成..........." + "\r\n";
+
+                    sb.Append(articleList[1]);
+                    sb.Append("\r\n");
+
+                    sb.Append(titleList[0]); sb.Append("\r\n");
+                    sb.Append(articleList[0]);
+                    sb.Append("\r\n");
+
+                    sb.Append(articleList[5]);
+                    sb.Append("\r\n");
+
+                    sb.Append(articleList[14]);
+                    sb.Append("\r\n");
+
+                    sb.Append(articleList[18]);
+                    sb.Append("\r\n");
+
+                    sb.Append(articleList[22]);
+                    sb.Append("\r\n");
+
+                    sb.Append(titleList[12]); sb.Append("\r\n");
+                    sb.Append(articleList[12]);
+                    sb.Append("\r\n");
+
+                    sb.Append(articleList[10]);
+                    sb.Append("\r\n");
+
+                    sb.Append(articleList[4]);
+                    sb.Append("\r\n");
+
+                    sb.Append(titleList[19]); sb.Append("\r\n");
+                    sb.Append(articleList[19]);
+
+
+
+
+                    FileStream fs1 = new FileStream(path + "文件\\" + array[a].Trim() + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1);
                     sw.WriteLine(sb.ToString());
                     sw.Close();
                     fs1.Close();
 
-
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
 
                     MessageBox.Show(ex.ToString());
@@ -140,36 +165,7 @@ namespace 百度知道
 
 
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            #region 通用检测
-
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"360wenda"))
-            {
-
-                MessageBox.Show("验证失败");
-                return;
-
-
-            }
-
-            #endregion
-            button1.Enabled = false;
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-
-        }
-
-
-
-
-
-    
-
-        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
             if (flag)
@@ -186,22 +182,26 @@ namespace 百度知道
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            button1.Enabled = false;
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             button1.Enabled = true;
+            zanting = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            zanting = true;
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        private void 搜搜问问_Load(object sender, EventArgs e)
         {
 
         }

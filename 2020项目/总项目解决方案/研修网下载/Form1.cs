@@ -247,28 +247,22 @@ namespace 研修网下载
 
 
 
-            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-            MySqlConnection mycon = new MySqlConnection(constr);
-            mycon.Open();
+            #region 通用检测
 
-            MySqlCommand cmd = new MySqlCommand("select * from vip where username='研修网'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html","utf-8");
 
-            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-            if (reader.Read())
+            if (!html.Contains(@"yanxiuwang"))
             {
 
-                string password = reader["password"].ToString().Trim();
+                MessageBox.Show("验证失败");
+                return;
 
-                if (password != "研修网")
 
-                {
-                    MessageBox.Show("验证失败");
+            }
 
-                    Environment.Exit(0);
-                }
+            #endregion
 
-                textBox6.Text += "开始下载";
+                 textBox6.Text += "开始下载";
                 cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
                 status = true;
                 Thread thread = new Thread(new ThreadStart(run));
@@ -276,7 +270,7 @@ namespace 研修网下载
                 Control.CheckForIllegalCrossThreadCalls = false;
                 button2.Enabled = false;
 
-            }
+            
           
         }
 

@@ -88,6 +88,12 @@
     <Compile Include="商家采集.Designer.cs">
       <DependentUpon>商家采集.cs</DependentUpon>
     </Compile>
+    <Compile Include="商铺.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="商铺.Designer.cs">
+      <DependentUpon>商铺.cs</DependentUpon>
+    </Compile>
     <Compile Include="赶集二手房.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="商家采集.resx">
       <DependentUpon>商家采集.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="商铺.resx">
+      <DependentUpon>商铺.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="赶集二手房.resx">
       <DependentUpon>赶集二手房.cs</DependentUpon>

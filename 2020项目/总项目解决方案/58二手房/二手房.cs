@@ -90,104 +90,10 @@ namespace _58二手房
         }
 
 
-        int tongji = 0;
         ArrayList citys = new ArrayList();
-        /// <summary>
-        /// 手机端列表直接
-        /// </summary>
-        public void mobilerun()
-        {
 
-
-            int page = Convert.ToInt32(textBox1.Text);
-            
-            if (radioButton1.Checked == true)
-            {
-                page = 7;
-                tongji = 70;
-               
-            }
-            else if (radioButton2.Checked == true)
-            {
-                page = 20;
-
-            }
-           else  if (radioButton3.Checked == true)
-            {
-                page = 30;
-
-            }
-
-            getnodes();
-            
-
-            foreach (string city in citys)
-            {
-                int counts = 0;
-                string cityId = getcityId(city);
-                string cityname = getcityname(city);
-
-                for (int i = 1; i < page; i++)
-
-                {
-                    try
-                    {
-                        string url = "https://miniapp.58.com/sale/property/list?cid=" + cityId + "&from=58_ershoufang&app=i-wb&platform=ios&b=iPhone&s=iOS12.3.1&t=1585296563&cv=5.0&wcv=5.0&wv=7.0.12&sv=2.10.3&batteryLevel=69&muid=33369ab43c140f725624e8ed4aa4ccaf&weapp_version=1.0.0&user_id=&oid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&udid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&page=" + i + "&page_size=25&open_id=&union_id=&token=&source_id=2&orderby=6&entry=1003&city_id=" + cityId;
-
-                        // string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
-                        string html = GetUrl(url);
-
-                        MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
-                        MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
-                        MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
-                        // MatchCollection times = Regex.Matches(html, @"""post_date"":""([\s\S]*?)""");
-                        if (tels.Count == 0)
-                            break;
-
-
-                        for (int j = 0; j < tels.Count; j++)
-                        {
-                            counts = counts + 1;
-
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                            lv1.SubItems.Add(titles[j].Groups[1].Value);
-                            lv1.SubItems.Add(names[j].Groups[2].Value);
-                            lv1.SubItems.Add(tels[j].Groups[1].Value);
-                            lv1.SubItems.Add("正在抓取" + cityname + "第" + i + "页");
-                            //lv1.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value).ToString());
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-
-                            if (status == false)
-
-                                return;
-                                       
-
-                        }
-
-                        if (counts > tongji)
-                        {
-                            break;
-                        }
-                        Thread.Sleep(3500);
-                    }
-                    catch
-                    {
-                        continue;
-
-                    }
-
-                }
-
-            }
-
-            MessageBox.Show("抓取完成");
-
-        }
         bool zanting = true;
-        bool status = true;
+
        
         public void getnodes()
         {
@@ -220,6 +126,7 @@ namespace _58二手房
                 }
             }
         }
+
         private void setParentNodeCheckedState(TreeNode currNode, bool state)
         {
             TreeNode parentNode = currNode.Parent;
@@ -235,9 +142,9 @@ namespace _58二手房
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            if (html.Contains(@"58585858"))
+            if (html.Contains(@"58huiyuan"))
             {
-                status = true;
+               
                 button1.Enabled = false;
                 Thread thread = new Thread(new ThreadStart(mobilerun));
                 thread.Start();
@@ -293,7 +200,82 @@ namespace _58二手房
 
             }
         }
+        /// <summary>
+        /// 手机端列表直接
+        /// </summary>
+        public void mobilerun()
+        {
+          
 
+            getnodes();
+
+
+            foreach (string city in citys)
+            {
+                string cityId = getcityId(city);
+                string cityname = getcityname(city);
+
+                for (int i = 1; i < Convert.ToInt32(textBox1.Text); i++)
+
+                {
+                    try
+                    {
+                        string url = "https://miniapp.58.com/sale/property/list?cid=" + cityId + "&from=58_ershoufang&app=i-wb&platform=ios&b=iPhone&s=iOS12.3.1&t=1585296563&cv=5.0&wcv=5.0&wv=7.0.12&sv=2.10.3&batteryLevel=69&muid=33369ab43c140f725624e8ed4aa4ccaf&weapp_version=1.0.0&user_id=&oid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&udid=oIArb4tHXwSbAOMiJpA7LwxGVlY0&page=" + i + "&page_size=25&open_id=&union_id=&token=&source_id=2&orderby=6&entry=1003&city_id=" + cityId;
+
+                        // string html=   GetUrlwithIP(url, "tps185.kdlapi.com:15818");
+                        string html = GetUrl(url);
+
+                        MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+                        MatchCollection names = Regex.Matches(html, @"brokerId([\s\S]*?)name"":""([\s\S]*?)""");
+                        MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
+                        // MatchCollection times = Regex.Matches(html, @"""post_date"":""([\s\S]*?)""");
+                        if (tels.Count == 0)
+                            break;
+
+
+                        for (int j = 0; j < tels.Count; j++)
+                        {
+
+                  
+
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                lv1.SubItems.Add(titles[j].Groups[1].Value);
+                                lv1.SubItems.Add(names[j].Groups[2].Value);
+                                lv1.SubItems.Add(tels[j].Groups[1].Value);
+                                lv1.SubItems.Add("正在抓取" + cityname + "第" + i + "页");
+                               
+                                //lv1.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value).ToString());
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+                                if (listView1.Items.Count > 2)
+                                {
+                                    listView1.EnsureVisible(listView1.Items.Count - 1);
+                                }
+
+                                Thread.Sleep(100);
+
+
+
+                            }
+
+                                           
+                        Thread.Sleep(3500);
+                    }
+                    catch
+                    {
+                        continue;
+
+                    }
+
+                }
+
+            }
+
+            MessageBox.Show("抓取完成");
+
+        }
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);

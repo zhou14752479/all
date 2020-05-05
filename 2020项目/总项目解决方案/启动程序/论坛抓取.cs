@@ -72,10 +72,8 @@ namespace 启动程序
         {
             InitializeComponent();
         }
-        /// <summary>
-        /// 主程序
-        /// </summary>
-        public void run()
+        #region 主程序1
+        public void run1()
         {
 
             try
@@ -158,6 +156,181 @@ namespace 启动程序
                 throw;
             }
         }
+
+        #endregion
+
+        #region 主程序2
+        public void run2()
+        {
+
+            try
+            {
+                string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (string url in text)
+                {
+
+                   
+                        string html = GetUrl(url, "utf-8");
+
+                        MatchCollection ahtmls = Regex.Matches(html, @"<div class=""tpost"">([\s\S]*?)<!-- / post");
+
+
+                        Match title = Regex.Match(html, @"<title>([\s\S]*?)-");
+
+
+
+                    for (int i = 0; i < ahtmls.Count; i++)
+                    {
+                        try
+                        {
+                            // Match location = Regex.Match(ahtmls[i].Groups[1].Value, @"<div class='location'>([\s\S]*?)</div>");
+                            Match postdate = Regex.Match(ahtmls[i].Groups[1].Value, @"alt=""Old"" /></a>([\s\S]*?)<");
+                            Match body = Regex.Match(ahtmls[i].Groups[1].Value, @"<!-- message -->([\s\S]*?)<!-- / message -->");
+                            Match person = Regex.Match(ahtmls[i].Groups[1].Value, @"""name"":""([\s\S]*?)""");
+
+                            Match posts = Regex.Match(ahtmls[i].Groups[1].Value, @"Posts:([\s\S]*?)</div>");
+                            Match likes = Regex.Match(ahtmls[i].Groups[1].Value, @"Likes:([\s\S]*?)</div>");
+
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                            lv1.SubItems.Add(title.Groups[1].Value);
+                            lv1.SubItems.Add(Regex.Replace(person.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add("-");
+                            lv1.SubItems.Add(Regex.Replace(body.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(postdate.Groups[1].Value.Trim());
+
+                            lv1.SubItems.Add(Regex.Replace(posts.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add(Regex.Replace(posts.Groups[1].Value, "<[^>]+>", "").Trim());
+                            lv1.SubItems.Add("-");
+
+
+
+
+
+
+
+                        }
+                        catch
+                        {
+
+                            continue;
+                        }
+
+                        while (zanting == false)
+                        {
+                            Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                        }
+                        if (status == false)
+                            return;
+
+
+                    }
+
+                    if (ahtmls.Count < 10)
+                        break;
+                }
+
+                MessageBox.Show("抓取完成");
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion
+
+    
+
+        #region 主程序3
+        public void run3()
+        {
+
+            try
+            {
+                string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (string url in text)
+                {
+                    for (int j = 1; j < 100; j++)
+                    {
+
+                        string URL = Regex.Replace(url, @"gone", "gone-" + j);
+
+                        string html = GetUrl(URL, "utf-8");
+
+                        MatchCollection ahtmls = Regex.Matches(html, @"<div class=""tpost"">([\s\S]*?)<!-- / post");
+
+
+                        Match title = Regex.Match(html, @"<title>([\s\S]*?)-");
+
+
+
+                        for (int i = 0; i < ahtmls.Count; i++)
+                        {
+                            try
+                            {
+                                Match location = Regex.Match(ahtmls[i].Groups[1].Value, @">Location:([\s\S]*?)</div>");
+                                Match postdate = Regex.Match(ahtmls[i].Groups[1].Value, @"alt=""Old"" /></a>([\s\S]*?)<");
+                                Match body = Regex.Match(ahtmls[i].Groups[1].Value, @"<!-- message -->([\s\S]*?)<!-- / message -->");
+                                Match person = Regex.Match(ahtmls[i].Groups[1].Value, @"""name"":""([\s\S]*?)""");
+
+                                Match posts = Regex.Match(ahtmls[i].Groups[1].Value, @"Posts:([\s\S]*?)</div>");
+                                Match likes = Regex.Match(ahtmls[i].Groups[1].Value, @"Likes:([\s\S]*?)</div>");
+
+                               Match year = Regex.Match(postdate.Groups[1].Value, @",([\s\S]*?),"); ;
+                                string date = Regex.Replace(postdate.Groups[1].Value, ",.*,",",20"+year.Groups[1].Value.Trim()+",").Trim();
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                lv1.SubItems.Add(title.Groups[1].Value);
+                                lv1.SubItems.Add(Regex.Replace(person.Groups[1].Value, "<[^>]+>", "").Trim());
+                                lv1.SubItems.Add(location.Groups[1].Value.Trim());
+                                lv1.SubItems.Add(Regex.Replace(body.Groups[1].Value, "<[^>]+>", "").Trim());
+                                lv1.SubItems.Add(date);
+
+                                lv1.SubItems.Add(Regex.Replace(posts.Groups[1].Value, "<[^>]+>", "").Trim());
+                                lv1.SubItems.Add(Regex.Replace(posts.Groups[1].Value, "<[^>]+>", "").Trim());
+                                lv1.SubItems.Add("-");
+
+
+
+
+
+
+
+                            }
+                            catch
+                            {
+
+                                continue;
+                            }
+
+                            while (zanting == false)
+                            {
+                                Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                            }
+                            if (status == false)
+                                return;
+
+
+                        }
+
+                        if (ahtmls.Count < 15)
+                            break;
+                    }
+
+                    
+                }
+
+                MessageBox.Show("抓取完成");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion
         private void 论坛抓取_Load(object sender, EventArgs e)
         {
 
@@ -174,10 +347,25 @@ namespace 启动程序
                 status = true;
                 button1.Enabled = false;
                 zanting = true;
-                Thread thread1 = new Thread(new ThreadStart(run));
-                thread1.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
 
+                if (radioButton1.Checked == true)
+                {
+                    Thread thread1 = new Thread(new ThreadStart(run1));
+                    thread1.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+                if (radioButton2.Checked == true)
+                {
+                    Thread thread1 = new Thread(new ThreadStart(run2));
+                    thread1.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+                if (radioButton3.Checked == true)
+                {
+                    Thread thread1 = new Thread(new ThreadStart(run3));
+                    thread1.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
             }
 
             else
@@ -210,6 +398,12 @@ namespace 启动程序
         {
             status = false;
             button1.Enabled = true;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+            textBox1.Text = "";
         }
     }
 }

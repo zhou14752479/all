@@ -234,54 +234,8 @@ namespace _58二手房
             return value.Groups[1].Value;
         }
 
-        /// <summary>
-        /// 电脑端
-        /// </summary>
-        public void pcrun()
-        {
-            getnodes();
-            try
-            {
-              
-                foreach (string city in citys)
-                {
-                    for (int i = 1; i <31; i++)
-                    {
-                        string url = "https://"+city+".58.com/ershoufang/0/pn"+i+"/";
-                        string html = method.GetUrl(url,"utf-8");
-                        MatchCollection uids = Regex.Matches(html, @"esf_id:([\s\S]*?),");
-                        foreach (Match uid in uids)
-                        {
-                            string URL = "https://"+city+".58.com/ershoufang/"+uid.Groups[1].Value+"x.shtml";
-                            //string ahtml = method.GetUrlwithIP(URL,"tps185.kdlapi.com:15818");
-                            string ahtml = method.GetUrl(URL, "utf-8");
-
-                            Match  telUrl= Regex.Match(ahtml, @"privacyCallUrl = '([\s\S]*?)'");
-                            // Match tel= Regex.Match(method.GetUrlwithIP(telUrl.Groups[1].Value, "tps185.kdlapi.com:15818"), @"data"":""([\s\S]*?)""");
-                            Match tel = Regex.Match(method.GetUrl(telUrl.Groups[1].Value, "utf-8"), @"data"":""([\s\S]*?)""");
-
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                            lv1.SubItems.Add(tel.Groups[1].Value);
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-                            Thread.Sleep(1000);
-                            if (status == false)
-                               
-                                return;
-                        }
-
-                    }
-                }
-               
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
+      
+      
         private DateTime ConvertStringToDateTime(string timeStamp)
         {
             DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
