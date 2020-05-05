@@ -107,6 +107,11 @@ namespace 主程序1
                     }
                     textBox2.Text = "正在合成..........." + "\r\n";
 
+
+                    try
+                    {
+
+                  
                     sb.Append(articleList[1]);
                     sb.Append("\r\n");
 
@@ -139,7 +144,12 @@ namespace 主程序1
                     sb.Append(titleList[19]); sb.Append("\r\n");
                     sb.Append(articleList[19]);
 
+                    }
+                    catch
+                    {
 
+                        continue;
+                    }
 
 
                     FileStream fs1 = new FileStream(path + "文件\\" + array[a].Trim() + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 

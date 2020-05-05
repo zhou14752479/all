@@ -91,54 +91,53 @@ namespace 主程序1
 
             try
             {
-                StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
-                string text = streamReader.ReadToEnd();
-                string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string[] array = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < array.Length; i++)
                 {
-
-
-                    string Url = "https://wenda.so.com/search/?q="+ System.Web.HttpUtility.UrlEncode(array[i]); ;
-
-
-                    string html = GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-                    
-                    MatchCollection urls = Regex.Matches(html, @"aId=""([\s\S]*?)""");
-
-
                     StringBuilder sb = new StringBuilder();
-                    for (int j = 0; j < urls.Count; j++)
-       
+                    for (int a = 0; a <2; a++)
                     {
-                        string url = "https://wenda.so.com/q/" + urls[j].Groups[1].Value;
 
-                        string strhtml1 = GetUrl(url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                        Match body = Regex.Match(strhtml1, @"<div class=""resolved-cnt src-import"">([\s\S]*?)<div class=""mod-added");
+                        string Url = "https://wenda.so.com/search/?q=" + System.Web.HttpUtility.UrlEncode(array[i]) + "&pn=" + a;
 
-                        string main = Regex.Replace(body.Groups[1].Value, "<(?!/?p)(?!br )[^>]*>", "");  //除了P <br />其他的去掉
 
-                        sb.Append(main.Replace("<p>","").Replace("</p>","\r\n").Replace("<br />", "\r\n"));
+                        string html = GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                        while (this.zanting == false)
+                        MatchCollection urls = Regex.Matches(html, @"aId=""([\s\S]*?)""");
+
+
+                        
+                        for (int j = 0; j < urls.Count; j++)
+
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                        if (status == false)
-                        {
-                            return;
-                        }
-                        if (j < 5)
-                        {
-                            textBox2.Text += "正在下载" + array[i] + "第" + (j+1) + "篇文章" + "\r\n";
-                        }
+                            string url = "https://wenda.so.com/q/" + urls[j].Groups[1].Value;
 
-                      
+                            string strhtml1 = GetUrl(url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                        Thread.Sleep(1000);
+                            Match body = Regex.Match(strhtml1, @"<div class=""resolved-cnt src-import"">([\s\S]*?)<div class=""mod-added");
+
+                            string main = Regex.Replace(body.Groups[1].Value, "<(?!/?p)(?!br )[^>]*>", "");  //除了P <br />其他的去掉
+
+                            sb.Append(main.Replace("<p>", "").Replace("</p>", "\r\n").Replace("<br />", "\r\n"));
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+                            {
+                                return;
+                            }
+                            textBox2.Text += "正在下载" + array[i] + "第" + (10*a+j + 1) + "篇文章" + "\r\n";
+
+
+
+                            Thread.Sleep(1000);
+                        }
                     }
 
-                    textBox2.Text += "正在保存"+ array[i] + "文章 "+"\r\n";
+                    textBox2.Text = "正在保存"+ array[i] + "文章 "+"\r\n";
                     saveTxt(array[i], sb.ToString());
 
                 }
@@ -163,20 +162,7 @@ namespace 主程序1
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html","utf-8");
-
-            if (!html.Contains(@"360wenda"))
-            {
-
-                MessageBox.Show("验证失败");
-                return;
-
-
-            }
-
-            #endregion
+            button2.Enabled = false;
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -184,13 +170,29 @@ namespace 主程序1
 
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+     
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button2.Enabled = true;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
             if (flag)
             {
-                this.textBox1.Text = this.openFileDialog1.FileName;
+                StreamReader streamReader = new StreamReader(this.openFileDialog1.FileName, Encoding.Default);
+                string text = streamReader.ReadToEnd();
+                string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < array.Length; i++)
+                {
+                    textBox1.Text += array[i] + "\r\n";
+
+                }
+
             }
+
         }
     }
 }
