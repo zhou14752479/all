@@ -121,8 +121,8 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(222, 21);
             this.textBox3.TabIndex = 51;
-            this.textBox3.Text = "Authorization: Basic YzRiN2UyZjNiYTcyZDkzOGFiNjIyZjYxMDYzNjMyZjI6YWM2MDViYjU3ZTZl" +
-    "ZTQzOTBhYjhiYzc5NjczYTZhNWQ=";
+            this.textBox3.Text = "Authorization: Basic MzQ2YjA4MzgxMTRlYmQ2ZmRkYmEzNjRhNzJkNzQ5ZDc6NTljZDI0NDU2YjZh" +
+    "OGRhZjljYTZjMGQxZDVkMmVkNDE=";
             // 
             // label6
             // 

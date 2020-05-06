@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "stockx网站价格\stockx网站价格.csproj", "{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP通信", "TCP通信\TCP通信.csproj", "{EB7BE965-5098-4608-9E0F-6422DC058441}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB7BE965-5098-4608-9E0F-6422DC058441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB7BE965-5098-4608-9E0F-6422DC058441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB7BE965-5098-4608-9E0F-6422DC058441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB7BE965-5098-4608-9E0F-6422DC058441}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

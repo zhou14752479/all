@@ -30,11 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,10 +63,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "登录信息";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(92, 142);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(81, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(92, 93);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(157, 21);
             this.textBox2.TabIndex = 4;
             // 
@@ -98,16 +109,6 @@
             this.label2.Size = new System.Drawing.Size(89, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "用户名：";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(92, 142);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // 登录
             // 

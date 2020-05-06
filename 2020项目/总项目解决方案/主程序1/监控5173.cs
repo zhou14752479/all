@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -69,6 +70,9 @@ namespace 主程序1
             return "";
         }
         #endregion
+
+
+        string path = AppDomain.CurrentDomain.BaseDirectory;
         /// <summary>
         /// 主程序
         /// </summary>
@@ -77,31 +81,38 @@ namespace 主程序1
 
             try
             {
-                string url = "http://yxbmall.5173.com/gamegold-facade-frontend/services/goods/QueryAllCategoryGoods?t=1588512625251&callback=jQuery1520847470474957774_1588512624480&currentUrl=http%3A%2F%2Fs.5173.com%2Fsearch%2F858f058e63e74156a1d4dcf3239df20c-ahp3ma-205jbk-duj53o-sxldtr-wr1n3g-0-0-0-a-a-a-a-a-0-0-0-0.shtml&_=1588512625252";
-                string html = GetUrl(url, "utf-8");
+                StreamReader sr = new StreamReader(path+"区服网址.txt", Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-                Match price = Regex.Match(html, @"""unitPrice"":([\s\S]*?),");
-                Match count = Regex.Match(html, @"""sellableCount"":([\s\S]*?),");
-                if (price.Groups[1].Value.Trim() != textBox2.Text.Trim())
+                for (int i = 0; i < text.Length; i++)
                 {
-                    MessageBox.Show("出现价格变动");
-                    timer1.Stop();
+
+                    string url = "http://yxbmall.5173.com/gamegold-facade-frontend/services/goods/QueryAllCategoryGoods?t=1588512625251&callback=jQuery1520847470474957774_1588512624480&currentUrl="+ System.Web.HttpUtility.UrlEncode(text[i])+ "&_=1588512625252";
+                    string html = GetUrl(url, "utf-8");
+
+                    Match price = Regex.Match(html, @"""unitPrice"":([\s\S]*?),");
+                    Match count = Regex.Match(html, @"""sellableCount"":([\s\S]*?),");
+                    if (price.Groups[1].Value.Trim() != textBox2.Text.Trim() || count.Groups[1].Value.Trim() != textBox3.Text.Trim())
+                    {
+                        string ahtml = GetUrl(text[i], "gb2312");
+
+                        Match qu = Regex.Match(ahtml, @"urchinTracker\(""\/search\/([\s\S]*?)""");
+                        Match aprice = Regex.Match(ahtml, @"<ul class=""pdlist_unitprice"">([\s\S]*?)</ul>");
+
+                        string message = DateTime.Now.ToString()+qu.Groups[1].Value+"  "+ price.Groups[1].Value+"  "+ count.Groups[1].Value+"feishangcheng" + Regex.Replace(aprice.Groups[1].Value, "<[^>]+>", "").Trim();
+                        
+                        send(message);
+                    }
+
+                   
+
+                    textBox1.Text = DateTime.Now.ToString() + "：" + "\r\n" + "\r\n";
+                    textBox1.Text += "当前价格： " + price.Groups[1].Value + "\r\n" + "\r\n";
+                    textBox1.Text += "当前库存： " + count.Groups[1].Value + "\r\n";
+
                 }
-
-                if (count.Groups[1].Value.Trim() != textBox3.Text.Trim())
-                {
-                    MessageBox.Show("出现库存变动");
-                    timer1.Stop();
-                }
-                textBox1.Text = DateTime.Now.ToString() + "：" + "\r\n" + "\r\n";
-
-                textBox1.Text += "当前价格： "+ price.Groups[1].Value+ "\r\n" + "\r\n";
-
-                
-
-                textBox1.Text +="当前库存： " + count.Groups[1].Value+ "\r\n";
-
-              
             }
 
 
@@ -146,5 +157,36 @@ namespace 主程序1
         {
             run();
         }
+        TcpClient tcpclnt = new TcpClient();
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            StreamReader sr = new StreamReader(path + "ip.txt", Encoding.Default);
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+          
+            tcpclnt.Connect(text[0].Trim(), Convert.ToInt32(text[1].Trim()));
+
+            textBox1.Text = "已连接";
+
+        }
+
+        public void send(String str)
+        {
+
+            Stream stm = tcpclnt.GetStream();
+            // 发送字符串
+            ASCIIEncoding asen = new ASCIIEncoding();
+            byte[] ba = asen.GetBytes(str);
+            textBox1.Text += "传输中.....";
+            stm.Write(ba, 0, ba.Length);
+
+
+            // 关闭客户端连接
+            //tcpclnt.Close();
+        }
+
+
+
     }
 }

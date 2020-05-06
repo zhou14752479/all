@@ -27,7 +27,7 @@ namespace 权限管理
 
             try
             {
-                string constr = "Host =47.99.68.92;Database=qun;Username=root;Password=zhoukaige00.@*.";
+                string constr = "Host =111.229.244.97;Database=qun;Username=root;Password=root";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 

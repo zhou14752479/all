@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序1
+namespace TCP通信
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 监控5173());
+            Application.Run(new 服务端());
         }
     }
 }

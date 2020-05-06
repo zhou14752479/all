@@ -42,6 +42,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // button1
@@ -58,15 +59,15 @@
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBox1.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox1.Location = new System.Drawing.Point(0, 170);
+            this.textBox1.Location = new System.Drawing.Point(0, 169);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(316, 267);
+            this.textBox1.Size = new System.Drawing.Size(326, 267);
             this.textBox1.TabIndex = 1;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(229, 40);
+            this.button2.Location = new System.Drawing.Point(229, 42);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -165,11 +166,23 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "秒";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(229, 86);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel1.TabIndex = 12;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "连接服务器";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
+            // 
             // 监控5173
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 437);
+            this.ClientSize = new System.Drawing.Size(326, 436);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
@@ -206,5 +219,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
