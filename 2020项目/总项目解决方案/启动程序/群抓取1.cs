@@ -251,6 +251,8 @@ namespace 启动程序
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        DateTime dt;
         /// <summary>
         /// http://itui.applinzi.com/
         /// </summary>
@@ -269,26 +271,88 @@ namespace 启动程序
                     string html = GetUrl(url, "utf-8","");
 
         
-                        MatchCollection times = Regex.Matches(html, @"updateTime"":([\s\S]*?),");
+                        MatchCollection times = Regex.Matches(html, @"exp_time"":([\s\S]*?),");
                         MatchCollection images = Regex.Matches(html, @"pic_url"": ""([\s\S]*?)""");
                         if (images.Count==0)
                         {
-
-                         return;
+                        button4.Enabled = true;
+                        return;
                         }
+                    label1.Text = "正在抓取第"+j+"页";
                     for (int i = 0; i < images.Count; i++)
                     {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
-                        lv1.SubItems.Add(ConvertStringToDateTime(times[i].Groups[1].Value).ToString());
-                        lv1.SubItems.Add(images[i].Groups[1].Value);
+                        if (ConvertStringToDateTime(times[i].Groups[1].Value).Date == dt)
+                        {
+
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
+                            lv1.SubItems.Add(ConvertStringToDateTime(times[i].Groups[1].Value).ToString());
+                            lv1.SubItems.Add(images[i].Groups[1].Value);
+                        }
 
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
                     }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                     
+
+
+                }
+
+
+                button4.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+
+
+        public void wxqun2()
+        {
+
+            try
+            {
+
+                for (int j = 1; j < 9999; j++)
+                {
+
+
+                    string url = "https://itui.yfdou.com/v1/api/qrcode/latest_ten?page=" + j;
+
+                    string html = GetUrl(url, "utf-8", "");
+
+
+                    MatchCollection times = Regex.Matches(html, @"exp_time"":([\s\S]*?),");
+                    MatchCollection images = Regex.Matches(html, @"pic_url"": ""([\s\S]*?)""");
+                    if (images.Count == 0)
+                    {
+                        button4.Enabled = true;
+                        return;
+                    }
+                    label1.Text = "正在抓取第" + j + "页";
+                    for (int i = 0; i < images.Count; i++)
+                    {
+                        if (ConvertStringToDateTime(times[i].Groups[1].Value).Date < dt)
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
+                            lv1.SubItems.Add(ConvertStringToDateTime(times[i].Groups[1].Value).ToString());
+                            lv1.SubItems.Add(images[i].Groups[1].Value);
+
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                        }
+                    }
+                    Thread.Sleep(500);
+
 
 
                 }
@@ -318,10 +382,40 @@ namespace 启动程序
 
             if (html.Contains(@"qunzhuaqu"))
             {
-                button1.Enabled = false;
-                Thread thread = new Thread(new ThreadStart(wxqun1));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                if (radioButton1.Checked == true)
+                {
+                    dt = DateTime.Now.Date.AddDays(7);
+                    button1.Enabled = false;
+                    Thread thread = new Thread(new ThreadStart(wxqun1));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+
+                }
+
+
+                if (radioButton2.Checked == true)
+                {
+                    dt = DateTime.Now.Date.AddDays(6);
+                    button1.Enabled = false;
+                    Thread thread = new Thread(new ThreadStart(wxqun1));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+
+                }
+
+                if (radioButton3.Checked == true)
+                {
+                    dt = DateTime.Now.Date.AddDays(6);
+                    button1.Enabled = false;
+                    Thread thread = new Thread(new ThreadStart(wxqun2));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+
+                }
+
+
+
+
 
             }
 

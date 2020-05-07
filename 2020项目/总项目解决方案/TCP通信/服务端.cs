@@ -33,23 +33,23 @@ namespace TCP通信
                 myList.Start();
 
                 // 输出服务器启动信息
-                textBox1.Text += "在8001端口启动服务...";
-                textBox1.Text += "本地节点为:" + myList.LocalEndpoint;
-                textBox1.Text += "等待连接.....";
+                textBox2.Text += "在8001端口启动服务..."+"\r\n";
+                textBox2.Text += "本地节点为:" + myList.LocalEndpoint + "\r\n";
+                textBox2.Text += "等待连接....." + "\r\n";
 
 
 
                 // 等待处理接入连接请求
                 // 新建立的连接用套接字s表示
                 Socket s = myList.AcceptSocket();
-                textBox1.Text += "连接来自 " + s.RemoteEndPoint;
+                textBox2.Text += "连接来自 " + s.RemoteEndPoint + "\r\n";
 
                 while (true)
                 {
                     // 接收客户端信息
                     byte[] b = new byte[100];
                     int k = s.Receive(b);
-                    textBox1.Text += "已接收...";
+                    textBox2.Text += "已接收..." + "\r\n";
                     StringBuilder sb = new StringBuilder();
                     //for (int i = 0; i < k; i++)
                     //{
@@ -59,7 +59,7 @@ namespace TCP通信
                    
                     sb.Append(System.Text.Encoding.UTF8.GetString(b));
                   
-                    textBox2.Text= (sb.ToString());
+                    textBox1.Text+= (sb.ToString()+"\r\n");
                     //// 处理客户端请求，给客户端回应
                     //ASCIIEncoding asen = new ASCIIEncoding();
                     //s.Send(asen.GetBytes("The string was recieved by the server."));

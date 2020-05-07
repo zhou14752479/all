@@ -39,7 +39,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(297, 317);
+            this.button1.Location = new System.Drawing.Point(316, 123);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 30);
             this.button1.TabIndex = 0;
@@ -53,7 +53,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(441, 311);
+            this.groupBox1.Size = new System.Drawing.Size(441, 117);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "发送信息内容";
@@ -64,19 +64,19 @@
             this.textBox2.Location = new System.Drawing.Point(3, 17);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(435, 291);
+            this.textBox2.Size = new System.Drawing.Size(435, 97);
             this.textBox2.TabIndex = 4;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 353);
+            this.groupBox2.Location = new System.Drawing.Point(0, 159);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(441, 107);
+            this.groupBox2.Size = new System.Drawing.Size(441, 301);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "客户端连接状态";
+            this.groupBox2.Text = "客户端接收信息";
             // 
             // textBox1
             // 
@@ -84,7 +84,7 @@
             this.textBox1.Location = new System.Drawing.Point(3, 17);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(435, 87);
+            this.textBox1.Size = new System.Drawing.Size(435, 281);
             this.textBox1.TabIndex = 2;
             // 
             // 服务端

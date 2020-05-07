@@ -81,7 +81,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Size = new System.Drawing.Size(565, 603);
-            this.splitContainer1.SplitterDistance = 130;
+            this.splitContainer1.SplitterDistance = 138;
             this.splitContainer1.TabIndex = 5;
             // 
             // radioButton3
@@ -95,7 +95,6 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "更早发布";
             this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.Visible = false;
             // 
             // radioButton2
             // 
@@ -108,7 +107,6 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "昨天发布";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.Visible = false;
             // 
             // radioButton1
             // 
@@ -122,7 +120,6 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "当天发布";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.Visible = false;
             // 
             // button6
             // 
@@ -137,9 +134,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 10F);
+            this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(9, 111);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(49, 14);
             this.label1.TabIndex = 43;
             this.label1.Text = "未下载";
             // 
@@ -202,7 +201,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(565, 469);
+            this.tabControl1.Size = new System.Drawing.Size(565, 461);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -211,7 +210,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(557, 443);
+            this.tabPage1.Size = new System.Drawing.Size(557, 435);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "数据";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -228,7 +227,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(551, 437);
+            this.listView1.Size = new System.Drawing.Size(551, 429);
             this.listView1.TabIndex = 47;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -240,7 +239,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "发布时间";
+            this.columnHeader2.Text = "过期时间";
             this.columnHeader2.Width = 150;
             // 
             // columnHeader3

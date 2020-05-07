@@ -159,6 +159,7 @@ namespace 启动程序
 
         #endregion
 
+
         #region 主程序2
         public void run2()
         {
@@ -262,7 +263,7 @@ namespace 启动程序
                         MatchCollection ahtmls = Regex.Matches(html, @"<div class=""tpost"">([\s\S]*?)<!-- / post");
 
 
-                        Match title = Regex.Match(html, @"<title>([\s\S]*?)-");
+                        Match title = Regex.Match(html, @"<title>([\s\S]*?)</title>");
 
 
 
@@ -319,7 +320,7 @@ namespace 启动程序
                     }
 
                     
-                }
+              }
 
                 MessageBox.Show("抓取完成");
             }

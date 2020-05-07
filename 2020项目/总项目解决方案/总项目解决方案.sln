@@ -33,11 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "全网群采集", "全网�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "管理软件", "管理软件\管理软件.csproj", "{27446079-9068-412C-822A-74B5F225D7F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "商标局浏览器", "2020_1\商标局浏览器\商标局浏览器.csproj", "{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "stockx网站价格\stockx网站价格.csproj", "{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP通信", "TCP通信\TCP通信.csproj", "{EB7BE965-5098-4608-9E0F-6422DC058441}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝实时工具", "淘宝实时工具\淘宝实时工具.csproj", "{DD13F5F6-7D9E-4D90-8EC2-5354DE69C8B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "生意参谋", "生意参谋\生意参谋.csproj", "{4C6BE31B-179E-40AE-B6DF-C73158C8019F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,18 +105,18 @@ Global
 		{27446079-9068-412C-822A-74B5F225D7F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27446079-9068-412C-822A-74B5F225D7F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27446079-9068-412C-822A-74B5F225D7F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CD9BF74-F7C3-45D9-B30F-AF4178DF9688}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB7BE965-5098-4608-9E0F-6422DC058441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB7BE965-5098-4608-9E0F-6422DC058441}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB7BE965-5098-4608-9E0F-6422DC058441}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB7BE965-5098-4608-9E0F-6422DC058441}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD13F5F6-7D9E-4D90-8EC2-5354DE69C8B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD13F5F6-7D9E-4D90-8EC2-5354DE69C8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD13F5F6-7D9E-4D90-8EC2-5354DE69C8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD13F5F6-7D9E-4D90-8EC2-5354DE69C8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C6BE31B-179E-40AE-B6DF-C73158C8019F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

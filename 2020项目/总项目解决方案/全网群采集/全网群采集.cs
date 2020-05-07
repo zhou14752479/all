@@ -208,20 +208,15 @@ namespace 全网群采集
         #endregion
 
         ArrayList finishes = new ArrayList();
-
-            public void run()
+        #region 贴吧
+        public void run()
         {
 
             try
             {
-                
-                foreach (string tieba in text)
-                {
-
-                    if (!finishes.Contains(tieba))
-                    {
-                        finishes.Add(tieba);
-                        for (int i = 0; i < 500; i = i + 50)
+                string tieba = "拼多多";
+         
+                        for (int i = 0; i < 209651; i = i + 50)
                         {
                             string url = "https://tieba.baidu.com/f?kw=" + System.Web.HttpUtility.UrlEncode(tieba) + "&ie=utf-8&pn=" + i;
                             string html = GetUrl(url);
@@ -248,7 +243,7 @@ namespace 全网群采集
                                             lv1.SubItems.Add(name.Groups[1].Value);
                                             lv1.SubItems.Add(time.Groups[1].Value);
 
-                                            label1.Text=  insert(name.Groups[1].Value, pics[j].Groups[1].Value,tieba,time.Groups[1].Value);
+                                            //label1.Text=  insert(name.Groups[1].Value, pics[j].Groups[1].Value,tieba,time.Groups[1].Value);
                                         }
                                     }
                                 }
@@ -261,9 +256,7 @@ namespace 全网群采集
 
 
                             }
-                        }
-                    }
-                }
+                        }  
                
             }
             catch (Exception ex)
@@ -274,16 +267,91 @@ namespace 全网群采集
 
 
         }
+
+        #endregion
+
+        private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
+
+
+        }
+
+        bool zanting = true;
+        #region 同行
+        public void tonghang()
+        {
+
+            try
+            {
+
+                for (int j = 1; j < 9999; j++)
+                {
+
+
+                    string url = "https://itui.yfdou.com/v1/api/qrcode/latest_ten?page=" + j;
+
+                    string html = GetUrl(url);
+
+                    MatchCollection names = Regex.Matches(html, @"name"": ""([\s\S]*?)""");
+                    MatchCollection times = Regex.Matches(html, @"exp_time"":([\s\S]*?),");
+                    MatchCollection titles = Regex.Matches(html, @"title"": ""([\s\S]*?)""");
+                    MatchCollection images = Regex.Matches(html, @"pic_url"": ""([\s\S]*?)""");
+                   
+                    if (images.Count == 0)
+                    {
+
+                        return;
+                    }
+                    label1.Text = "正在抓取第" + j + "页";
+                    for (int i = 0; i < images.Count; i++)
+                    {
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
+                        lv1.SubItems.Add(images[i].Groups[1].Value);
+                        lv1.SubItems.Add(titles[i].Groups[1].Value);
+                        lv1.SubItems.Add("-");
+                        lv1.SubItems.Add(names[i].Groups[1].Value);
+                        lv1.SubItems.Add(ConvertStringToDateTime(times[i].Groups[1].Value).ToString());
+                        
+
+
+
+                        label1.Text = insert(names[i].Groups[1].Value, images[i].Groups[1].Value, titles[i].Groups[1].Value, times[i].Groups[1].Value);
+                       
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                    }
+                    Thread.Sleep(500);
+
+
+
+                }
+
+
+                
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+
+        }
+
+        #endregion
         string[] text = { };
         private void Button1_Click(object sender, EventArgs e)
         {
-           text  = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < 10; i++)
-            {
+          
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
-            }
+           
             
         }
 
@@ -295,6 +363,13 @@ namespace 全网群采集
         private void 复制串码ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[2].Text);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(tonghang));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
     }
 }

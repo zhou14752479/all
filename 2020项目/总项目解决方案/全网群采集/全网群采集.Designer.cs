@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.重新扫描ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.复制串码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.复制网址ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +43,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,24 +53,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(600, 477);
+            this.button1.Location = new System.Drawing.Point(32, 433);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(191, 27);
+            this.button1.Size = new System.Drawing.Size(83, 66);
             this.button1.TabIndex = 29;
             this.button1.Text = "开始";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(0, 382);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(201, 149);
-            this.textBox1.TabIndex = 28;
-            this.textBox1.Text = "拼多多微信群\r\n拼多多\r\n拼多多砍价\r\n副业\r\n优惠券\r\n微商群\r\n内部优惠券\r\n购物券\r\n褥羊毛\r\n网上购物\r\n购物狂\r\n宝妈微信群\r\n宝妈群\r\n购物群\r\n拼多" +
-    "多砍价群\r\n宝妈微信群\r\n宝妈微信群二维码\r\n微商群聊\r\n王者荣耀微信群";
             // 
             // 重新扫描ToolStripMenuItem
             // 
@@ -155,20 +144,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(232, 409);
+            this.label1.Location = new System.Drawing.Point(12, 401);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 30;
             this.label1.Text = "label1";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(168, 433);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(112, 66);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "同行网站抓取";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // 全网群采集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 533);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listView1);
             this.Name = "全网群采集";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -184,7 +183,6 @@
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStripMenuItem 重新扫描ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 复制串码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 复制网址ToolStripMenuItem;
@@ -197,5 +195,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -73,6 +73,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "停止监控";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // label1
             // 
@@ -169,12 +170,13 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(229, 86);
+            this.linkLabel1.Font = new System.Drawing.Font("宋体", 10F);
+            this.linkLabel1.Location = new System.Drawing.Point(13, 132);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel1.Size = new System.Drawing.Size(133, 14);
             this.linkLabel1.TabIndex = 12;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "连接服务器";
+            this.linkLabel1.Text = "第一步，连接服务器";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // 监控5173

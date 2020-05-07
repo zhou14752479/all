@@ -44,12 +44,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -139,7 +139,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(112, 30);
             this.button4.TabIndex = 38;
-            this.button4.Text = "停止";
+            this.button4.Text = "Stop";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
@@ -149,7 +149,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(112, 30);
             this.button3.TabIndex = 37;
-            this.button3.Text = "继续";
+            this.button3.Text = "Continue";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
@@ -159,7 +159,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 30);
             this.button2.TabIndex = 36;
-            this.button2.Text = "暂停";
+            this.button2.Text = "suspend";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -170,7 +170,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 30);
             this.button1.TabIndex = 34;
-            this.button1.Text = "开始运行";
+            this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -202,24 +202,39 @@
             this.splitContainer1.SplitterDistance = 188;
             this.splitContainer1.TabIndex = 2;
             // 
-            // label1
+            // linkLabel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(303, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 12);
-            this.label1.TabIndex = 41;
-            this.label1.Text = "一行一个链接：";
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("宋体", 10F);
+            this.linkLabel1.Location = new System.Drawing.Point(398, 10);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(70, 14);
+            this.linkLabel1.TabIndex = 45;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "wipe data";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // button5
+            // radioButton3
             // 
-            this.button5.Location = new System.Drawing.Point(169, 142);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(112, 30);
-            this.button5.TabIndex = 40;
-            this.button5.Text = "导出";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radioButton3.Location = new System.Drawing.Point(24, 106);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(97, 18);
+            this.radioButton3.TabIndex = 44;
+            this.radioButton3.Text = "flyertalk";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radioButton2.Location = new System.Drawing.Point(24, 70);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(73, 18);
+            this.radioButton2.TabIndex = 43;
+            this.radioButton2.Text = "fodors";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
@@ -234,39 +249,24 @@
             this.radioButton1.Text = "tripadvisor";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // label1
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton2.Location = new System.Drawing.Point(24, 70);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(73, 18);
-            this.radioButton2.TabIndex = 43;
-            this.radioButton2.Text = "fodors";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(303, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Line by line：";
             // 
-            // radioButton3
+            // button5
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton3.Location = new System.Drawing.Point(24, 106);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(97, 18);
-            this.radioButton3.TabIndex = 44;
-            this.radioButton3.Text = "flyertalk";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("宋体", 10F);
-            this.linkLabel1.Location = new System.Drawing.Point(398, 10);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(63, 14);
-            this.linkLabel1.TabIndex = 45;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "清空数据";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.button5.Location = new System.Drawing.Point(169, 142);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(112, 30);
+            this.button5.TabIndex = 40;
+            this.button5.Text = "Export data";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // 论坛抓取
             // 
@@ -276,7 +276,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "论坛抓取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "论坛抓取";
+            this.Text = "Forum capture";
             this.Load += new System.EventHandler(this.论坛抓取_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

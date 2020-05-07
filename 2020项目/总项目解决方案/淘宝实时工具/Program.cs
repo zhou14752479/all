@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 启动程序
+namespace 淘宝实时工具
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 启动程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 群抓取1());
+            Application.Run(new Form1());
         }
     }
 }

@@ -101,8 +101,8 @@ namespace 主程序1
                         Match qu = Regex.Match(ahtml, @"urchinTracker\(""\/search\/([\s\S]*?)""");
                         Match aprice = Regex.Match(ahtml, @"<ul class=""pdlist_unitprice"">([\s\S]*?)</ul>");
 
-                        string message = DateTime.Now.ToString()+qu.Groups[1].Value+"  "+ price.Groups[1].Value+"  "+ count.Groups[1].Value+"feishangcheng" + Regex.Replace(aprice.Groups[1].Value, "<[^>]+>", "").Trim();
-                        
+                        //string message = DateTime.Now.ToString()+qu.Groups[1].Value+"  "+ price.Groups[1].Value+"  "+ count.Groups[1].Value+"feishangcheng" + Regex.Replace(aprice.Groups[1].Value, "<[^>]+>", "").Trim();
+                        string message = DateTime.Now.ToString() + "  " + price.Groups[1].Value + "  " + count.Groups[1].Value +"\r\n";
                         send(message);
                     }
 
@@ -129,28 +129,15 @@ namespace 主程序1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (html.Contains(@"5173"))
-            {
+       
                 
                 Thread thread1 = new Thread(new ThreadStart(run));
                 thread1.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
                 timer1.Start();
                 timer1.Interval = Convert.ToInt32(textBox4.Text)*1000;
-            }
+           
 
-            else
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
-
-
-            #endregion
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -186,7 +173,9 @@ namespace 主程序1
             //tcpclnt.Close();
         }
 
-
-
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+        }
     }
 }
