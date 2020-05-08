@@ -145,7 +145,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(65, 24);
             this.textBox4.TabIndex = 10;
-            this.textBox4.Text = "2";
+            this.textBox4.Text = "120";
             // 
             // label5
             // 

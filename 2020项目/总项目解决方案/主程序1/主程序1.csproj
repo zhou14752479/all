@@ -77,6 +77,12 @@
     <Compile Include="文章合成360.Designer.cs">
       <DependentUpon>文章合成360.cs</DependentUpon>
     </Compile>
+    <Compile Include="新闻抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新闻抓取.Designer.cs">
+      <DependentUpon>新闻抓取.cs</DependentUpon>
+    </Compile>
     <Compile Include="监控5173.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="文章合成360.resx">
       <DependentUpon>文章合成360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新闻抓取.resx">
+      <DependentUpon>新闻抓取.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="监控5173.resx">
       <DependentUpon>监控5173.cs</DependentUpon>

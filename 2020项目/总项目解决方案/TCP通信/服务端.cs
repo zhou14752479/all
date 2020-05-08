@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -19,16 +20,24 @@ namespace TCP通信
         {
             InitializeComponent();
         }
+        string path = AppDomain.CurrentDomain.BaseDirectory;
 
-       
         public void connect()
         {
             try
-            { // 把IP地址转换为IPAddress的实例
-                IPAddress ipAd = IPAddress.Parse("192.168.8.118");
+                
+            {
+                StreamReader sr = new StreamReader(path + "ip.txt", Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+
+                // 把IP地址转换为IPAddress的实例
+                IPAddress ipAd = IPAddress.Parse(text[0]);
 
                 // 初始化监听器， 端口为8001
-                TcpListener myList = new TcpListener(ipAd, 8001);
+                TcpListener myList = new TcpListener(ipAd, Convert.ToInt32(text[1].Trim()));
                 // 开始监听服务器端口
                 myList.Start();
 

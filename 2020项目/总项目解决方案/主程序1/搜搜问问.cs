@@ -163,10 +163,10 @@ namespace 主程序1
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
 
-                    MessageBox.Show(ex.ToString());
+                    continue;
                 }
 
                 Thread.Sleep(1000);
