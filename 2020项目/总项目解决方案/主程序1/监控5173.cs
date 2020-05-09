@@ -100,10 +100,10 @@ namespace 主程序1
 
                         Match qu = Regex.Match(ahtml, @"urchinTracker\(""\/search\/([\s\S]*?)""");
                         Match aprice = Regex.Match(ahtml, @"<ul class=""pdlist_unitprice"">([\s\S]*?)</ul>");
-
-                        //string message = DateTime.Now.ToString()+qu.Groups[1].Value+"  "+ price.Groups[1].Value+"  "+ count.Groups[1].Value+"feishangcheng" + Regex.Replace(aprice.Groups[1].Value, "<[^>]+>", "").Trim();
-                        string message = DateTime.Now.ToString() + "  " + price.Groups[1].Value + "  " + count.Groups[1].Value +"\r\n";
-                        send(message);
+                        
+                        string message = DateTime.Now.ToString()+" "+qu.Groups[1].Value+"  "+ price.Groups[1].Value+"  "+ count.Groups[1].Value+"非商城：" + Regex.Replace(aprice.Groups[1].Value, "<[^>]+>", "").Trim();
+                       
+                        send(GetUnicode(message));
                     }
 
                    
@@ -126,7 +126,20 @@ namespace 主程序1
         {
 
         }
-
+        protected string GetUnicode(string text)
+        {
+            string result = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                if ((int)text[i] > 32 && (int)text[i] < 127)
+                {
+                    result += text[i].ToString();
+                }
+                else
+                    result += string.Format("\\u{0:x4}", (int)text[i]);
+            }
+            return result;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
        
@@ -176,6 +189,12 @@ namespace 主程序1
         private void Button2_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tcpclnt.Close();
+            MessageBox.Show("连接已断开");
         }
     }
 }

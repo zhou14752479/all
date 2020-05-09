@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,7 +22,11 @@ namespace TCP通信
             InitializeComponent();
         }
         string path = AppDomain.CurrentDomain.BaseDirectory;
-
+        public static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
+        }
         public void connect()
         {
             try
@@ -68,7 +73,7 @@ namespace TCP通信
                    
                     sb.Append(System.Text.Encoding.UTF8.GetString(b));
                   
-                    textBox1.Text+= (sb.ToString()+"\r\n");
+                    textBox1.Text+= Unicode2String(sb.ToString())+"\r\n";
                     //// 处理客户端请求，给客户端回应
                     //ASCIIEncoding asen = new ASCIIEncoding();
                     //s.Send(asen.GetBytes("The string was recieved by the server."));

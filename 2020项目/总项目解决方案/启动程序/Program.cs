@@ -16,7 +16,7 @@ namespace 启动程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 群抓取1());
+            Application.Run(new 论坛抓取());
         }
     }
 }

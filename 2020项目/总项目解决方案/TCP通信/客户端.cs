@@ -32,14 +32,28 @@ namespace TCP通信
             
             textBox1.Text += "已连接";
         }
-       
-        
+
+
+        protected string GetUnicode(string text)
+        {
+            string result = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                if ((int)text[i] > 32 && (int)text[i] < 127)
+                {
+                    result += text[i].ToString();
+                }
+                else
+                    result += string.Format("\\u{0:x4}", (int)text[i]);
+            }
+            return result;
+        }
         public void send()
         {
            
            
             // 读入字符串
-            String str = textBox2.Text;
+            String str = GetUnicode(textBox2.Text);
 
             // 得到客户端的流
 
@@ -69,6 +83,7 @@ namespace TCP通信
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            
             Thread thread = new Thread(new ThreadStart(send));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;

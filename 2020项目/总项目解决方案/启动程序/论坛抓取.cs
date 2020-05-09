@@ -118,7 +118,7 @@ namespace 启动程序
                                 lv1.SubItems.Add(Regex.Replace(posts[0].Groups[1].Value, "<[^>]+>", "").Trim());
                                 lv1.SubItems.Add(Regex.Replace(posts[1].Groups[1].Value, "<[^>]+>", "").Trim());
                                 lv1.SubItems.Add(Regex.Replace(posts[2].Groups[1].Value, "<[^>]+>", "").Trim());
-
+                                lv1.SubItems.Add(url);
 
 
 
@@ -202,7 +202,7 @@ namespace 启动程序
                             lv1.SubItems.Add(Regex.Replace(posts.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add(Regex.Replace(posts.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add("-");
-
+                            lv1.SubItems.Add(url);
 
 
 
@@ -256,7 +256,7 @@ namespace 启动程序
                     for (int j = 1; j < 100; j++)
                     {
 
-                        string URL = Regex.Replace(url, @"gone", "gone-" + j);
+                        string URL = Regex.Replace(url, @".html", "-" + j+".html");
 
                         string html = GetUrl(URL, "utf-8");
 
@@ -291,8 +291,7 @@ namespace 启动程序
                                 lv1.SubItems.Add(Regex.Replace(posts.Groups[1].Value, "<[^>]+>", "").Trim());
                                 lv1.SubItems.Add(Regex.Replace(posts.Groups[1].Value, "<[^>]+>", "").Trim());
                                 lv1.SubItems.Add("-");
-
-
+                                lv1.SubItems.Add(url);
 
 
 
@@ -339,12 +338,7 @@ namespace 启动程序
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (html.Contains(@"tripadvisor"))
-            {
+         
                 status = true;
                 button1.Enabled = false;
                 zanting = true;
@@ -367,16 +361,8 @@ namespace 启动程序
                     thread1.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
                 }
-            }
+           
 
-            else
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
-
-
-            #endregion
            
         }
 

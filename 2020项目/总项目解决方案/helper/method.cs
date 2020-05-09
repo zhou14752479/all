@@ -54,6 +54,11 @@ namespace helper
 
         #endregion
 
+        /// <summary>
+        /// 导出CSV
+        /// </summary>
+        /// <param name="listView"></param>
+        /// <param name="includeHidden"></param>
         public static void ListViewToCSV(ListView listView, bool includeHidden)
         {
             //make header string
