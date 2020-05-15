@@ -145,6 +145,7 @@ namespace 全网群采集
         }
 
         #endregion
+
         private void 全网群采集_Load(object sender, EventArgs e)
         {
 
@@ -243,7 +244,7 @@ namespace 全网群采集
                                             lv1.SubItems.Add(name.Groups[1].Value);
                                             lv1.SubItems.Add(time.Groups[1].Value);
 
-                                            //label1.Text=  insert(name.Groups[1].Value, pics[j].Groups[1].Value,tieba,time.Groups[1].Value);
+                                            label1.Text=  insert(name.Groups[1].Value, pics[j].Groups[1].Value,tieba,time.Groups[1].Value);
                                         }
                                     }
                                 }
@@ -370,6 +371,29 @@ namespace 全网群采集
             Thread thread = new Thread(new ThreadStart(tonghang));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            MessageBox.Show(shibie("http://czt.sc.gov.cn/kj/captcha.jpg?randdom=0.8007734420064332"));
+        }
+
+        private void 全网群采集_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("确认退出吗？", "退出询问"
+           , MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result != DialogResult.OK)
+            {
+                e.Cancel = true;//告诉窗体关闭这个任务取消
+
+            }
+            else
+            {
+              
+
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
         }
     }
 }

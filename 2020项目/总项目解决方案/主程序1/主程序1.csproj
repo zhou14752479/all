@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\主程序\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -64,6 +67,12 @@
     </Compile>
     <Compile Include="搜搜问问.Designer.cs">
       <DependentUpon>搜搜问问.cs</DependentUpon>
+    </Compile>
+    <Compile Include="收取5173.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="收取5173.Designer.cs">
+      <DependentUpon>收取5173.cs</DependentUpon>
     </Compile>
     <Compile Include="数据提取.cs">
       <SubType>Form</SubType>
@@ -106,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="搜搜问问.resx">
       <DependentUpon>搜搜问问.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="收取5173.resx">
+      <DependentUpon>收取5173.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="数据提取.resx">
       <DependentUpon>数据提取.cs</DependentUpon>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -71,6 +72,33 @@ namespace 主程序1
         }
         #endregion
 
+        string constr = "";
+        public void insertData(string value)
+        {
+           
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+
+
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO data (infos,date)VALUES('" + value + " ','" + DateTime.Now.ToString() + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+            int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+            if (count > 0)
+            {
+               
+
+                mycon.Close();
+
+            }
+            else
+            {
+
+                mycon.Close();
+            }
+
+        }
 
         string path = AppDomain.CurrentDomain.BaseDirectory;
         /// <summary>
@@ -79,51 +107,117 @@ namespace 主程序1
         public void run()
         {
 
-            try
-            {
-                StreamReader sr = new StreamReader(path+"区服网址.txt", Encoding.Default);
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
-                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-                for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            {
+
+                try
                 {
 
-                    string url = "http://yxbmall.5173.com/gamegold-facade-frontend/services/goods/QueryAllCategoryGoods?t=1588512625251&callback=jQuery1520847470474957774_1588512624480&currentUrl="+ System.Web.HttpUtility.UrlEncode(text[i])+ "&_=1588512625252";
-                    string html = GetUrl(url, "utf-8");
 
-                    Match price = Regex.Match(html, @"""unitPrice"":([\s\S]*?),");
-                    Match count = Regex.Match(html, @"""sellableCount"":([\s\S]*?),");
-                    if (price.Groups[1].Value.Trim() != textBox2.Text.Trim() || count.Groups[1].Value.Trim() != textBox3.Text.Trim())
+                    string infos = dataGridView1.Rows[i].Cells[1].Value.ToString().Trim() + dataGridView1.Rows[i].Cells[2].Value.ToString().Trim();
+
+
+                    string inurl = dataGridView1.Rows[i].Cells[0].Value.ToString().Trim();
+                    string inprice = dataGridView1.Rows[i].Cells[3].Value.ToString().Trim();
+                    string incount = dataGridView1.Rows[i].Cells[4].Value.ToString().Trim();
+                    if (inurl != "")
                     {
-                        string ahtml = GetUrl(text[i], "gb2312");
 
-                        Match qu = Regex.Match(ahtml, @"urchinTracker\(""\/search\/([\s\S]*?)""");
-                        Match aprice = Regex.Match(ahtml, @"<ul class=""pdlist_unitprice"">([\s\S]*?)</ul>");
-                        
-                        string message = DateTime.Now.ToString()+" "+qu.Groups[1].Value+"  "+ price.Groups[1].Value+"  "+ count.Groups[1].Value+"非商城：" + Regex.Replace(aprice.Groups[1].Value, "<[^>]+>", "").Trim();
-                       
-                        send(GetUnicode(message));
+                        string url = "http://yxbmall.5173.com/gamegold-facade-frontend/services/goods/QueryAllCategoryGoods?t=1588512625251&callback=jQuery1520847470474957774_1588512624480&currentUrl=" + System.Web.HttpUtility.UrlEncode(inurl) + "&_=1588512625252";
+                        string html = GetUrl(url, "utf-8");
+
+                        Match price = Regex.Match(html, @"""unitPrice"":([\s\S]*?),");
+                        Match count = Regex.Match(html, @"""sellableCount"":([\s\S]*?),");
+
+                        if (Convert.ToDouble(price.Groups[1].Value.Trim()) != Convert.ToDouble(inprice) || count.Groups[1].Value.Trim() != incount)
+                        {
+                            string ahtml = GetUrl(inurl, "gb2312");
+
+                            Match qu = Regex.Match(ahtml, @"urchinTracker\(""\/search\/([\s\S]*?)""");
+                            Match aprice = Regex.Match(ahtml, @"<ul class=""pdlist_unitprice"">([\s\S]*?)</ul>");
+
+
+                            Match bprice = Regex.Match(aprice.Groups[1].Value, @"</li><li>([\s\S]*?)元");
+
+                            double bili = Convert.ToDouble(bprice.Groups[1].Value) / Convert.ToDouble(price.Groups[1].Value);
+                            string message = DateTime.Now.ToString() + " " + qu.Groups[1].Value + "  " + price.Groups[1].Value + "  " + count.Groups[1].Value + "  非商城：" + Regex.Replace(aprice.Groups[1].Value, "<[^>]+>", "").Trim() + "  比例" + bili.ToString();
+                            label1.Text = "正在监控..." + infos;
+                            insertData(System.Web.HttpUtility.UrlEncode(message.Replace("?", "")));
+                            //send(GetUnicode(message));
+                        }
                     }
 
-                   
 
-                    textBox1.Text = DateTime.Now.ToString() + "：" + "\r\n" + "\r\n";
-                    textBox1.Text += "当前价格： " + price.Groups[1].Value + "\r\n" + "\r\n";
-                    textBox1.Text += "当前库存： " + count.Groups[1].Value + "\r\n";
+                    Thread.Sleep(Convert.ToInt32(textBox1.Text) * 1000);
 
                 }
+                catch
+                {
+                    continue;
+                }
+
             }
 
 
-            catch (Exception)
-            {
 
-                throw;
-            }
+
+
+
         }
         private void 监控5173_Load(object sender, EventArgs e)
         {
+
+            for (int i = 0; i < 100; i++)
+            {
+                dataGridView1.Rows.Add();
+            }
+
+
+
+
+
+
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            StreamReader srs = new StreamReader(path + "ip.txt", Encoding.Default);
+            //一次性读取完 
+            string ip = srs.ReadToEnd().Trim();
+            constr = "Host ="+ip+";Database=jiagejiankong;Username=jiagejiankong;Password=rsFFARtWZ27jWPhz";
+
+
+            foreach (Control ctr in this.Controls)
+            {
+
+                if (ctr is TextBox)
+                {
+
+                    
+                    if (File.Exists(path + ctr.Name + ".txt"))
+                    {
+
+                        StreamReader sr = new StreamReader(path + ctr.Name + ".txt", Encoding.GetEncoding("utf-8"));
+                        //一次性读取完 
+                        string texts = sr.ReadToEnd();
+                        ctr.Text = texts;
+                        sr.Close();
+                    }
+                }
+            }
+
+            StreamReader srqu = new StreamReader(path + "value.txt", Encoding.GetEncoding("utf-8"));
+            //一次性读取完 
+            string qus = srqu.ReadToEnd().Trim();
+            string[] text = qus.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < text.Length; i++)
+            {
+                string[] value = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
+                dataGridView1.Rows[i].Cells[0].Value = value[0].ToString();
+                dataGridView1.Rows[i].Cells[1].Value = value[1].ToString();
+                dataGridView1.Rows[i].Cells[2].Value = value[2].ToString();
+                dataGridView1.Rows[i].Cells[3].Value = value[3].ToString();
+                dataGridView1.Rows[i].Cells[4].Value = value[4].ToString();
+            }
+            srqu.Close();
 
         }
         protected string GetUnicode(string text)
@@ -158,18 +252,7 @@ namespace 主程序1
             run();
         }
         TcpClient tcpclnt = new TcpClient();
-        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            StreamReader sr = new StreamReader(path + "ip.txt", Encoding.Default);
-            //一次性读取完 
-            string texts = sr.ReadToEnd();
-            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-          
-            tcpclnt.Connect(text[0].Trim(), Convert.ToInt32(text[1].Trim()));
-
-            textBox1.Text = "已连接";
-
-        }
+      
 
         public void send(String str)
         {
@@ -178,7 +261,7 @@ namespace 主程序1
             // 发送字符串
             ASCIIEncoding asen = new ASCIIEncoding();
             byte[] ba = asen.GetBytes(str);
-            textBox1.Text += "传输中.....";
+            //textBox1.Text += "传输中.....";
             stm.Write(ba, 0, ba.Length);
 
 
@@ -188,13 +271,55 @@ namespace 主程序1
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            label1.Text = "停止监控...";
             timer1.Stop();
         }
 
-        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+       
+
+        private void 监控5173_FormClosing(object sender, FormClosingEventArgs e)
         {
-            tcpclnt.Close();
-            MessageBox.Show("连接已断开");
+            DialogResult result = MessageBox.Show("确认退出吗？", "退出询问"
+           , MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result != DialogResult.OK)
+            {
+                e.Cancel = true;//告诉窗体关闭这个任务取消
+
+            }
+            else
+            {
+                foreach (Control ctr in this.Controls)
+                {
+                    if (ctr is TextBox)
+                    {
+
+
+                        string path = AppDomain.CurrentDomain.BaseDirectory ;
+                        FileStream fs1 = new FileStream(path + ctr.Name + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                        StreamWriter sw = new StreamWriter(fs1);
+                        sw.WriteLine(ctr.Text.Trim());
+                        sw.Close();
+                        fs1.Close();
+
+                    }
+                }
+                string value = "";
+                for (int i = 0; i < dataGridView1.Rows.Count-1; i++)//得到总行数并在之内循环  
+                {
+                    
+                    value += dataGridView1.Rows[i].Cells[0].Value + "#" + dataGridView1.Rows[i].Cells[1].Value + "#" + dataGridView1.Rows[i].Cells[2].Value + "#" + dataGridView1.Rows[i].Cells[3].Value + "#" + dataGridView1.Rows[i].Cells[4].Value+"\r\n";//定位到相同的单元格  
+                        
+                    
+                }
+
+                FileStream fs11 = new FileStream(path + "value.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                StreamWriter sw1 = new StreamWriter(fs11);
+                sw1.WriteLine(value);
+                sw1.Close();
+                fs11.Close();
+
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
         }
     }
 }

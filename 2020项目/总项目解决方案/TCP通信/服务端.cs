@@ -60,29 +60,38 @@ namespace TCP通信
 
                 while (true)
                 {
-                    // 接收客户端信息
-                    byte[] b = new byte[100];
-                    int k = s.Receive(b);
-                    textBox2.Text += "已接收..." + "\r\n";
-                    StringBuilder sb = new StringBuilder();
-                    //for (int i = 0; i < k; i++)
-                    //{
-                    //    //sb.Append (Convert.ToChar(b[i]));
-                        
-                    //}
-                   
-                    sb.Append(System.Text.Encoding.UTF8.GetString(b));
-                  
-                    textBox1.Text+= Unicode2String(sb.ToString())+"\r\n";
-                    //// 处理客户端请求，给客户端回应
-                    //ASCIIEncoding asen = new ASCIIEncoding();
-                    //s.Send(asen.GetBytes("The string was recieved by the server."));
-                    //Console.WriteLine("/n已发送回应信息");
-                    //Console.Read();
+                    try
+                    {
+                        // 接收客户端信息
+                        byte[] b = new byte[100];
 
-                    //// 善后工作，释放资源
-                    // s.Close();
-                    //myList.Stop();
+                        int k = s.Receive(b);
+                        textBox2.Text += "已接收..." + "\r\n";
+                        StringBuilder sb = new StringBuilder();
+                        //for (int i = 0; i < k; i++)
+                        //{
+                        //    //sb.Append (Convert.ToChar(b[i]));
+
+                        //}
+
+                        sb.Append(System.Text.Encoding.UTF8.GetString(b));
+
+                        textBox1.Text += Unicode2String(sb.ToString()) + "\r\n";
+                        //// 处理客户端请求，给客户端回应
+                        //ASCIIEncoding asen = new ASCIIEncoding();
+                        //s.Send(asen.GetBytes("The string was recieved by the server."));
+                        //Console.WriteLine("/n已发送回应信息");
+                        //Console.Read();
+
+                        //// 善后工作，释放资源
+                        // s.Close();
+                        //myList.Stop();
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
+                   
                 }
             }
             catch (Exception ex)

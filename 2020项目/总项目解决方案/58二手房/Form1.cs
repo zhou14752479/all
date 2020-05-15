@@ -291,11 +291,12 @@ namespace _58二手房
                                 }
                                    
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                    lv1.SubItems.Add(titles[j].Groups[1].Value);
+                                  //  lv1.SubItems.Add(titles[j].Groups[1].Value);
                                     lv1.SubItems.Add(names[j].Groups[2].Value);
                                     lv1.SubItems.Add(tels[j].Groups[1].Value);
-                                    lv1.SubItems.Add("正在抓取" + cityname + "第" + i + "页");
-                                    label2.Text = "正在抓取" + cityname + "第" + i + "页";
+                                lv1.SubItems.Add(cityname);
+                                //  lv1.SubItems.Add("正在抓取" + cityname + "第" + i + "页");
+                                label2.Text = "正在抓取" + cityname + "第" + i + "页";
                                     //lv1.SubItems.Add(ConvertStringToDateTime(times[j].Groups[1].Value).ToString());
                                     while (this.zanting == false)
                                     {

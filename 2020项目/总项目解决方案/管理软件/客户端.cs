@@ -46,14 +46,15 @@ namespace 管理软件
 
         #endregion
 
+        string constr = "Host =111.229.244.97;Database=links;Username=root;Password=root";
         #region 获取所有连接
         public ArrayList geturls(string str)
         {
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =47.99.68.92;Database=links;Username=root;Password=zhoukaige00.@*.";
                 
+
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
@@ -80,7 +81,7 @@ namespace 管理软件
             ArrayList list = new ArrayList();
             try
             {
-                string constr = "Host =47.99.68.92;Database=links;Username=root;Password=zhoukaige00.@*.";
+               
                 string str = "SELECT ip from ips";
                 MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
                 DataSet ds = new DataSet();
@@ -123,6 +124,7 @@ namespace 管理软件
                 {
                     for (int i = 0; i < value; i++)
                     {
+                     
                         webbrowser web = new webbrowser(textBox2.Text + url);
                         web.Show();
                         //Thread.Sleep(10000);
@@ -147,6 +149,7 @@ namespace 管理软件
             if (checkBox1.Checked == true)
             {
                 string str = "SELECT url from aaa";
+                
                 run(str, Convert.ToInt32(textBox1.Text));
             }
 

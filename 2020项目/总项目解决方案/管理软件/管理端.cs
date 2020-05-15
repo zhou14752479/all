@@ -18,10 +18,11 @@ namespace 管理软件
         {
             InitializeComponent();
         }
+        string constr = "Host =111.229.244.97;Database=links;Username=root;Password=root";
         #region 获取数据库IP
         public void getips()
         {
-            string constr = "Host =47.99.68.92;Database=links;Username=root;Password=zhoukaige00.@*.";
+           
             MySqlDataAdapter sda = new MySqlDataAdapter("Select ip From ips ", constr);
             DataSet Ds = new DataSet();
             sda.Fill(Ds, "T_Class");
@@ -41,7 +42,7 @@ namespace 管理软件
             {
 
 
-                string constr = "Host =47.99.68.92;Database=links;Username=root;Password=zhoukaige00.@*.";
+                
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -80,11 +81,11 @@ namespace 管理软件
             {
 
 
-                string constr = "Host =47.99.68.92;Database=links;Username=root;Password=zhoukaige00.@*.";
+                
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO '" + biao + " ' (url)VALUES('" + url + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO " + biao + " VALUES('" + url + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
 
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
@@ -98,6 +99,7 @@ namespace 管理软件
                 else
                 {
                     MessageBox.Show("连接失败！");
+                    mycon.Close();
                 }
 
 
@@ -133,6 +135,35 @@ namespace 管理软件
         private void button5_Click(object sender, EventArgs e)
         {
             addurl("ddd", textBox5.Text.Trim());
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+
+
+            MySqlCommand cmd = new MySqlCommand("delete from ips", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+            int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+            if (count > 0)
+            {
+
+
+                mycon.Close();
+
+            }
+            else
+            {
+
+                mycon.Close();
+            }
+
+            getips();
+
+
         }
     }
 }

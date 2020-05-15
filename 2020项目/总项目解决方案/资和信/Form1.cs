@@ -534,18 +534,17 @@ namespace 资和信
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            //Image image = Image.FromStream(getStream("http://tiebapic.baidu.com/forum/w%3D580%3B/sign=a1af523ae1246b607b0eb27cdbc31b4c/a044ad345982b2b7cf0435ad26adcbef76099b3b.jpg"));
+            Image image = Image.FromStream(getStream("http://czt.sc.gov.cn/kj/captcha.jpg?randdom=0.8007734420064332"));
 
-            //Bitmap sourceBitmap = new Bitmap(image);
-            //Bitmap resultBitmap= GetPartOfImageRec(sourceBitmap,160,200,400,100);
-            //Image resultimage = resultBitmap;
-            //pictureBox1.Image = resultBitmap;
+            Bitmap sourceBitmap = new Bitmap(image);
+            
+            pictureBox1.Image = sourceBitmap;
 
 
-            //string value = imgdo(resultBitmap);
-            //MessageBox.Show(value);
-            //listView1.Items.Clear();
-          
+            string value = imgdo(sourceBitmap);
+            MessageBox.Show(value);
+            listView1.Items.Clear();
+
 
         }
         bool zanting = true;

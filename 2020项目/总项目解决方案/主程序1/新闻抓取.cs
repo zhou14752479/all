@@ -159,7 +159,7 @@ namespace 主程序1
                             
                         }
                         intLong = System.Text.Encoding.Default.GetByteCount(sb.ToString());
-                        if (intLong >500000)
+                        if (intLong >50000)
                         {
 
                             FileStream fs1 = new FileStream(path + a + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 

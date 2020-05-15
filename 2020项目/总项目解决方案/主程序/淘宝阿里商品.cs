@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
@@ -21,13 +23,13 @@ namespace 主程序
         }
         public static string COOKIE = "";
         #region 淘宝
-        public void taobao(string url)
+        public void taobao(object url)
         {
 
             try
             {
 
-                string html = method.GetUrlWithCookie(url, COOKIE, "gbk");
+                string html = method.GetUrlWithCookie(url.ToString(), COOKIE, "gbk");
                 Match company = Regex.Match(html, @"请进入([\s\S]*?)的([\s\S]*?)实力");
                 Match name = Regex.Match(html, @"<title>([\s\S]*?)-");
 
@@ -106,13 +108,13 @@ namespace 主程序
         #endregion
 
         #region 天猫
-        public void tmall(string url)
+        public void tmall(object url)
         {
 
             try
             {
 
-                string html = method.GetUrlWithCookie(url, COOKIE,"gbk");
+                string html = method.GetUrlWithCookie(url.ToString(), COOKIE,"gbk");
                 Match company = Regex.Match(html, @"<strong>([\s\S]*?)</strong>");
                 Match name = Regex.Match(html, @"<title>([\s\S]*?)-");
 
@@ -169,13 +171,14 @@ namespace 主程序
         #endregion
 
         #region 阿里巴巴
-        public void alibab(string url)
+        public void alibab(object url)
         {
 
             try
             {
 
-                string html = method.gethtml(url, COOKIE);
+                string html = method.GetUrlWithCookie(url.ToString(), COOKIE,"gb2312");
+                textBox1.Text = html;
                 Match company = Regex.Match(html, @"company-name"">([\s\S]*?)<");
                 Match name = Regex.Match(html, @"<h1 class=""d-title"">([\s\S]*?)</h1>");
 
@@ -238,46 +241,39 @@ namespace 主程序
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void run()
         {
-            
-            
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (html.Contains(@"\u6dd8\u5b9d\u963f\u91ccSKU"))
+            COOKIE = helper.Form1.cookie;
+            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < text.Length; i++)
             {
-                COOKIE = helper.Form1.cookie;
                 if (radioButton1.Checked == true)
                 {
-                    tmall(textBox1.Text);
+                    tmall(text[i]);
+
                 }
                 else if (radioButton2.Checked == true)
                 {
-                    alibab(textBox2.Text);
+                    alibab(text[i]);
 
                 }
                 else if (radioButton3.Checked == true)
                 {
-                    taobao(textBox3.Text);
-
+                    taobao(text[i]);
                 }
 
+                Thread.Sleep(3000);
             }
 
-            else
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
 
-            #endregion
-          
-           
-           
-           
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -288,7 +284,7 @@ namespace 主程序
         private void button3_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            textBox2.Text = "";
+            
             listView1.Items.Clear();
         }
 
@@ -296,6 +292,23 @@ namespace 主程序
         {
             helper.Form1 fm1 = new helper.Form1();
             fm1.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                StreamReader streamReader = new StreamReader(this.openFileDialog1.FileName, Encoding.Default);
+                string text = streamReader.ReadToEnd();
+                string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < array.Length; i++)
+                {
+                    textBox1.Text += array[i] + "\r\n";
+
+                }
+
+            }
         }
     }
 }

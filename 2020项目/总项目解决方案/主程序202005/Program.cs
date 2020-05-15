@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 通用项目
+namespace 主程序202005
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 通用项目
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 国家教育资源());
+            Application.Run(new 会计人员查询());
         }
     }
 }

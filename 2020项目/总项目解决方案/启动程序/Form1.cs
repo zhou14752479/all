@@ -60,6 +60,7 @@ namespace 启动程序
                     Match a16 = Regex.Match(ahtml, @"内日期([\s\S]*?)\<\/xformflag\>");
                     Match a17 = Regex.Match(ahtml, @"_Calculation"" value=""([\s\S]*?)""");
                     Match a18 = Regex.Match(ahtml, @"出访内容([\s\S]*?)\<\/xformflag\>");
+                    Match a19 = Regex.Match(ahtml, @"校领导意见([\s\S]*?)</div></div></TD></TR>");  //校领导意见
                     if (a1.Groups[1].Value != "")
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
@@ -81,7 +82,7 @@ namespace 启动程序
                         lv1.SubItems.Add(Regex.Replace(a16.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a17.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a18.Groups[1].Value, "<[^>]+>", "").Trim());
-
+                        lv1.SubItems.Add(Regex.Replace(a19.Groups[1].Value, "<[^>]+>", "").Replace("&nbsp", "").Trim());
 
                         while (this.zanting == false)
                         {

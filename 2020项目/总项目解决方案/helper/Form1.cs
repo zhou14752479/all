@@ -40,5 +40,10 @@ namespace helper
             string url = this.webBrowser1.StatusText;
             this.webBrowser1.Url = new Uri(url);
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

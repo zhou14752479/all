@@ -35,11 +35,11 @@ namespace _58二手房
             // Match title = Regex.Match(html, @"<title>([\s\S]*?)</title>");
             if (html.Contains("success login"))
             {
-                //Form1 fm1 = new Form1();
-                //fm1.Show();
+                Form1 fm1 = new Form1();
+                fm1.Show();
 
-                商铺 sp = new 商铺();
-                sp.Show();
+                //商铺 sp = new 商铺();
+                //sp.Show();
 
                 this.Hide();
             }
