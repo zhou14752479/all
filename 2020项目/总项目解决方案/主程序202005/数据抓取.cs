@@ -73,6 +73,7 @@ namespace 主程序202005
             return "";
         }
         #endregion
+
         #region 主程序
         public void run()
         {
@@ -85,13 +86,27 @@ namespace 主程序202005
 
 
                     string url = textBox1.Text.Trim()+"/" +i;
+                    if (radioButton2.Checked == true)
+                    {
+                        url = textBox2.Text.Trim();
+                        i = 98;
+
+                    }
+
 
                     string html = GetUrl(url,"utf-8");
                    
                     Match ahtml = Regex.Match(html, @"<td valign=([\s\S]*?)<td valign=");
                   
                     MatchCollection uids = Regex.Matches(ahtml.Groups[1].Value, @"<li> <a href=""/([\s\S]*?)""");
-                    
+
+                    if (radioButton2.Checked == true)
+                    {
+                        ahtml = Regex.Match(html, @"<div lang=""en""([\s\S]*?)<div class=""printfooter"">");
+                        uids = Regex.Matches(ahtml.Groups[1].Value, @"<li><a href=""/([\s\S]*?)""");
+                    }
+
+
                     if (uids.Count == 0)
                         return;
                 
@@ -100,11 +115,12 @@ namespace 主程序202005
                     for (int j = 0; j< uids.Count; j++)
                     {
                         string strhtml = GetUrl("https://foreign.mingluji.com/"+uids[j].Groups[1].Value, "utf-8");
+                        Match name = Regex.Match(strhtml, @"<span itemprop=""name"">([\s\S]*?)</span>");
                         Match email = Regex.Match(strhtml, @"\(电子邮件\):([\s\S]*?)</dd>");
                        
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
                        
-                        lv1.SubItems.Add(System.Web.HttpUtility.UrlDecode(uids[j].Groups[1].Value));
+                        lv1.SubItems.Add(name.Groups[1].Value);
                         lv1.SubItems.Add(Regex.Replace(email.Groups[1].Value, "<[^>]+>", ""));
 
 
@@ -151,6 +167,7 @@ namespace 主程序202005
 
             if (html.Contains(@"kuaijichaxun"))
             {
+                button1.Enabled = false;
                 status = true;
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
@@ -179,7 +196,8 @@ namespace 主程序202005
 
         private void button4_Click(object sender, EventArgs e)
         {
-            status = false;
+            button1.Enabled = true;
+           status = false;
         }
 
         private void button5_Click(object sender, EventArgs e)

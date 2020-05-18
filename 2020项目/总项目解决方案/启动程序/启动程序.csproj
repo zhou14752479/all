@@ -84,6 +84,12 @@
     <Compile Include="价格计算.Designer.cs">
       <DependentUpon>价格计算.cs</DependentUpon>
     </Compile>
+    <Compile Include="企业基础信息查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="企业基础信息查询.Designer.cs">
+      <DependentUpon>企业基础信息查询.cs</DependentUpon>
+    </Compile>
     <Compile Include="八爪盒子.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="价格计算.resx">
       <DependentUpon>价格计算.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="企业基础信息查询.resx">
+      <DependentUpon>企业基础信息查询.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="八爪盒子.resx">
       <DependentUpon>八爪盒子.cs</DependentUpon>

@@ -59,11 +59,23 @@
     <Compile Include="商品监控.Designer.cs">
       <DependentUpon>商品监控.cs</DependentUpon>
     </Compile>
+    <Compile Include="喜马拉雅.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="喜马拉雅.Designer.cs">
+      <DependentUpon>喜马拉雅.cs</DependentUpon>
+    </Compile>
     <Compile Include="数据抓取.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="数据抓取.Designer.cs">
       <DependentUpon>数据抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="道客巴巴过滤.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="道客巴巴过滤.Designer.cs">
+      <DependentUpon>道客巴巴过滤.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,8 +92,14 @@
     <EmbeddedResource Include="商品监控.resx">
       <DependentUpon>商品监控.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="喜马拉雅.resx">
+      <DependentUpon>喜马拉雅.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="数据抓取.resx">
       <DependentUpon>数据抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="道客巴巴过滤.resx">
+      <DependentUpon>道客巴巴过滤.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -187,10 +187,21 @@ postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
 
         #endregion
 
-获取Listview选中项（contextmenustrip）
+【获取Listview选中项】
+（contextmenustrip）
+ for (int i = 0; i < listView1.SelectedItems.Count; i++)
+            {
+                MessageBox.Show(listView1.SelectedItems[i].SubItems[1].Text);
+            }
   if (listView1.SelectedItems.Count > 0)
             {
                 System.Diagnostics.Process.Start(listView1.SelectedItems[0].SubItems[5].Text);
+            }
+
+【获取Listview勾选项】checkedBox 改为true
+for (int i = 0; i < listView1.CheckedItems.Count; i++)
+            {
+                MessageBox.Show(listView1.CheckedItems[i].SubItems[1].Text);
             }
 
   /// <summary>
@@ -261,3 +272,29 @@ string str = Interaction.InputBox("提示信息","标题","文本内容",-1,-1);
  this.textBox1.Focus();
                             this.textBox1.Select(this.textBox1.TextLength, 0);
                             this.textBox1.ScrollToCaret();
+
+#region  image转base64
+        public static string ImgToBase64String(Image image)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(image);
+                MemoryStream ms = new MemoryStream();
+                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] arr = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(arr, 0, (int)ms.Length);
+                ms.Close();
+                return Convert.ToBase64String(arr);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
+【执行另一个按钮函数】
+
+ button6.PerformClick();

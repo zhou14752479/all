@@ -65,11 +65,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(92, 142);
+            this.button1.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.ForeColor = System.Drawing.Color.Red;
+            this.button1.Location = new System.Drawing.Point(92, 131);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 23);
+            this.button1.Size = new System.Drawing.Size(157, 31);
             this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
+            this.button1.Text = "登录";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -83,9 +85,10 @@
             // 
             // textBox1
             // 
+            this.textBox1.Font = new System.Drawing.Font("楷体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox1.Location = new System.Drawing.Point(92, 49);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(157, 21);
+            this.textBox1.Size = new System.Drawing.Size(157, 23);
             this.textBox1.TabIndex = 3;
             // 
             // label3

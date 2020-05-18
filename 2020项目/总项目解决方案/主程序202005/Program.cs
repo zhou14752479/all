@@ -16,7 +16,7 @@ namespace 主程序202005
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 会计人员查询());
+            Application.Run(new 数据抓取());
         }
     }
 }

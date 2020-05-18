@@ -80,7 +80,7 @@ namespace 主程序202005
 
         #endregion
 
-        //图片转为base64编码的字符串
+        #region 图片转base64
         public static string ImgToBase64String(Bitmap bmp)
         {
             try
@@ -93,11 +93,13 @@ namespace 主程序202005
                 ms.Close();
                 return Convert.ToBase64String(arr);
             }
-            catch (Exception ex)
+            catch 
             {
                 return null;
             }
         }
+
+        #endregion
 
         public string shibie ()
         {

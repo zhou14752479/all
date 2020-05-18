@@ -18,9 +18,9 @@ namespace 权限管理
             InitializeComponent();
         }
 
-        public static string qid;
+      
 
-        #region  获取数据库中城市名称对应的拼音
+        #region  登陆函数
 
         public void login(string user,string pass)
         {
@@ -39,9 +39,12 @@ namespace 权限管理
                 if (reader.Read())
                 {
                     string password = reader["password"].ToString().Trim();
-                    qid= reader["qid"].ToString().Trim();
+                   string  qid= reader["qid"].ToString().Trim();
+                    string username = reader["username"].ToString().Trim();
                     if (pass.Trim() == password)
                     {
+                        主界面.qid = qid;
+                        主界面.username = username;
                         主界面 zhu = new 主界面();
                         zhu.Show();
                         this.Hide();
