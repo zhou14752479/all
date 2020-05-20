@@ -103,6 +103,12 @@
     <Compile Include="京东.Designer.cs">
       <DependentUpon>京东.cs</DependentUpon>
     </Compile>
+    <Compile Include="工厂针织服装软件.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工厂针织服装软件.Designer.cs">
+      <DependentUpon>工厂针织服装软件.cs</DependentUpon>
+    </Compile>
     <Compile Include="数据管理.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </Compile>
     <EmbeddedResource Include="京东.resx">
       <DependentUpon>京东.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工厂针织服装软件.resx">
+      <DependentUpon>工厂针织服装软件.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="数据管理.resx">
       <DependentUpon>数据管理.cs</DependentUpon>

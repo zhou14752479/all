@@ -62,73 +62,83 @@ namespace 研修网下载
 
                 {
 
-                   
-
-                   FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-                    StreamWriter sw = new StreamWriter(fs1);
-                    sw.WriteLine(i.ToString());
-                    sw.Close();
-                    fs1.Close();
-                   
-
-                    string Url = "http://q.yanxiu.com/upload/viewResource.tc?resId=" + i ;
-
-                    string html = method.GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-                    string downUrl = "http://q.yanxiu.com/uploadResource/DownloadServlet?type=res2&resId="+i;
-
-                    Match title = Regex.Match(html, @"<h1>([\s\S]*?)</h1>");
-                    Match geshi = Regex.Match(html, @"格式：</dt>([\s\S]*?)</dd>");
-                    Match daxiao = Regex.Match(html, @"<dd class=""w160"">([\s\S]*?)</dd>");
-
-                    string gs = geshi.Groups[1].Value.Replace("<dd>", "").Trim();
-                    string dx = daxiao.Groups[1].Value.Replace(".", "").Replace(" ","").Trim().Replace("M","00").Replace("K", "");
-                    string bt = title.Groups[1].Value.Replace(".", "").Replace("doc", "").Replace("docx", "").Replace("ppt", "").Replace("pptx", "").Replace(" ","").Trim();
-
-                    if (dx!= "" && dx != null)
+                    try
                     {
 
-                        if (Convert.ToInt32(dx) > 3)
+
+
+                        FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                        StreamWriter sw = new StreamWriter(fs1);
+                        sw.WriteLine(i.ToString());
+                        sw.Close();
+                        fs1.Close();
+
+
+                        string Url = "http://q.yanxiu.com/upload/viewResource.tc?resId=" + i;
+
+                        string html = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        string downUrl = "http://q.yanxiu.com/uploadResource/DownloadServlet?type=res2&resId=" + i;
+
+                        Match title = Regex.Match(html, @"<h1>([\s\S]*?)</h1>");
+                        Match geshi = Regex.Match(html, @"格式：</dt>([\s\S]*?)</dd>");
+                        Match daxiao = Regex.Match(html, @"<dd class=""w160"">([\s\S]*?)</dd>");
+
+                        string gs = geshi.Groups[1].Value.Replace("<dd>", "").Trim();
+                        string dx = daxiao.Groups[1].Value.Replace(".", "").Replace(" ", "").Trim().Replace("M", "00").Replace("K", "");
+                        string bt = title.Groups[1].Value.Replace(".", "").Replace("doc", "").Replace("docx", "").Replace("ppt", "").Replace("pptx", "").Replace(" ", "").Trim();
+
+                        if (dx != "" && dx != null)
                         {
-                           
 
-                           
-                            //if (gs == "doc" || gs == "docx" || gs == "ppt" || gs == "pptx")
-                            //{
-                            if(geshiList.Contains(gs))
-                            { 
+                            if (Convert.ToInt32(dx) > 3)
+                            {
 
-                                 method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs,cookie);
 
-                                 textBox6.Text += DateTime.Now.ToString()+i+"下载成功：" + bt + "\r\n";
+
+                                //if (gs == "doc" || gs == "docx" || gs == "ppt" || gs == "pptx")
+                                //{
+                                if (geshiList.Contains(gs))
+                                {
+
+                                    method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
+
+                                    textBox6.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
+                                }
+
+                                else
+                                {
+                                    textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
+                                }
+
+
                             }
-
                             else
                             {
-                                textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
+                                //textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
                             }
 
-                        
                         }
                         else
                         {
-                            //textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
+                            textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
+                        }
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+
+                        Thread.Sleep(Convert.ToInt32(textBox3.Text) * 1000);
+                        if (status == false)
+                        {
+                            return;
                         }
 
                     }
-                    else
+                    catch
                     {
-                        textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
-                    }
 
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                    }
-                
-                    Thread.Sleep(Convert.ToInt32(textBox3.Text)*1000);
-                    if (status == false)
-                    {
-                        return;
+                        continue;
                     }
 
                 }

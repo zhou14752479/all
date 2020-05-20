@@ -210,14 +210,14 @@ namespace 全网群采集
 
         ArrayList finishes = new ArrayList();
         #region 贴吧
-        public void run()
+        public void run(object tieba1)
         {
-
+            string tieba = tieba1.ToString();
             try
             {
-                string tieba = "拼多多";
+                
          
-                        for (int i = 0; i < 209651; i = i + 50)
+                        for (int i = 0; i < 1001; i = i + 50)
                         {
                             string url = "https://tieba.baidu.com/f?kw=" + System.Web.HttpUtility.UrlEncode(tieba) + "&ie=utf-8&pn=" + i;
                             string html = GetUrl(url);
@@ -348,12 +348,41 @@ namespace 全网群采集
         string[] text = { };
         private void Button1_Click(object sender, EventArgs e)
         {
-          
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-           
-            
+
+            Thread thread = new Thread(new ParameterizedThreadStart(run));
+            string o = "拼多多";
+            thread.Start((object)o);
+            Control.CheckForIllegalCrossThreadCalls = false;
+
+            Thread thread1 = new Thread(new ParameterizedThreadStart(run));
+            string o1 = "宝妈微信群";
+            thread1.Start((object)o1);
+
+            Thread thread2 = new Thread(new ParameterizedThreadStart(run));
+            string o2 = "宝妈群";
+            thread2.Start((object)o2);
+
+            Thread thread3= new Thread(new ParameterizedThreadStart(run));
+            string o3 = "微商群";
+            thread3.Start((object)o3);
+
+            Thread thread4= new Thread(new ParameterizedThreadStart(run));
+            string o4 = "拼多多砍价";
+            thread4.Start((object)o4);
+
+            Thread thread5 = new Thread(new ParameterizedThreadStart(run));
+            string o5 = "王者荣耀开黑";
+            thread5.Start((object)o5);
+
+
+            Thread thread6 = new Thread(new ParameterizedThreadStart(run));
+            string o6 = "交友";
+            thread6.Start((object)o6);
+
+            Thread thread7 = new Thread(new ParameterizedThreadStart(run));
+            string o7 = "交友";
+            thread7.Start((object)o7);
+
         }
 
         private void 复制网址ToolStripMenuItem_Click(object sender, EventArgs e)

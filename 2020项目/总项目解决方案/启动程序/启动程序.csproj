@@ -102,6 +102,12 @@
     <Compile Include="兴盛优选.Designer.cs">
       <DependentUpon>兴盛优选.cs</DependentUpon>
     </Compile>
+    <Compile Include="国家政务服务企业查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="国家政务服务企业查询.Designer.cs">
+      <DependentUpon>国家政务服务企业查询.cs</DependentUpon>
+    </Compile>
     <Compile Include="图片下载.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="兴盛优选.resx">
       <DependentUpon>兴盛优选.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="国家政务服务企业查询.resx">
+      <DependentUpon>国家政务服务企业查询.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="图片下载.resx">
       <DependentUpon>图片下载.cs</DependentUpon>

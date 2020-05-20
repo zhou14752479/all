@@ -16,7 +16,7 @@ namespace 主程序202005
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 数据抓取());
+            Application.Run(new 新浪爱问过滤());
         }
     }
 }

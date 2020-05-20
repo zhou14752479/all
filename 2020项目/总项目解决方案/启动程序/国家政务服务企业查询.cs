@@ -16,11 +16,16 @@ using helper;
 
 namespace 启动程序
 {
-    public partial class 企业基础信息查询 : Form
+    public partial class 国家政务服务企业查询 : Form
     {
-        public 企业基础信息查询()
+        public 国家政务服务企业查询()
         {
             InitializeComponent();
+        }
+
+        private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
         /// <summary>
         /// 获取时间戳毫秒
@@ -114,48 +119,48 @@ namespace 启动程序
             StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
             string text = streamReader.ReadToEnd();
             string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-      
+
             for (int i = 0; i < array.Length; i++)
             {
                 time = GetTimeStamp();
-                sign = GetMD5("qyjcxxcxpc" + time);
+                sign = GetMD5("qyjbxxcxzj" + time);
                 ggsjpt_sign = GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74995e00df72f14bbcb7833a9ca063adef" + time);
                 string card = array[i];
-                
-                string url = "http://app.gjzwfw.gov.cn/jmopen/interfaces/wxTransferPort.do?callback=jQuery18306037720505044832_"+time+"&requestUrl=http%3A%2F%2Fapp.gjzwfw.gov.cn%2Fjimps%2Flink.do&datas=dhzkh%22param%22%3A%22dhzkh%5C%22from%5C%22%3A%5C%221%5C%22%2C%5C%22key%5C%22%3A%5C%221e448cd40a784fbbaf142d9528785535%5C%22%2C%5C%22requestTime%5C%22%3A%5C%22"+time+"%5C%22%2C%5C%22sign%5C%22%3A%5C%22"+sign+"%5C%22%2C%5C%22zj_ggsjpt_app_key%5C%22%3A%5C%22ada72850-2b2e-11e7-985b-008cfaeb3d74%5C%22%2C%5C%22zj_ggsjpt_sign%5C%22%3A%5C%22"+ggsjpt_sign+"%5C%22%2C%5C%22zj_ggsjpt_time%5C%22%3A%5C%22"+time+"%5C%22%2C%5C%22NSRSBH%5C%22%3A%5C%22"+card+"%5C%22%2C%5C%22additional%5C%22%3A%5C%22%5C%22dhykh%22dhykh&heads=&_="+time;
 
+                string url= "http://app.gjzwfw.gov.cn/jimps/link.do?param=%7B%22from%22%3A%222%22%2C%22key%22%3A%22b4842fe0fadc44398d674c786a583f8e%22%2C%22requestTime%22%3A%22"+time+"%22%2C%22sign%22%3A%22"+sign+"%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22"+ggsjpt_sign+"%22%2C%22zj_ggsjpt_time%22%3A%22"+time+"%22%2C%22uniscId%22%3A%22"+card+"%22%2C%22companyName%22%3A%22%22%2C%22registerNo%22%3A%22%22%2C%22entType%22%3A%22E%22%2C%22additional%22%3A%22%22%7D";
+              
                 string html = GetUrl(url, "utf-8");
 
-                Match a1 = Regex.Match(html, @"""nSRSBH"":""([\s\S]*?)""");
-                Match a2 = Regex.Match(html, @"""sHXYDM"":""([\s\S]*?)""");
-                Match a3 = Regex.Match(html, @"""sCJYDZ"":""([\s\S]*?)""");
-                Match a4 = Regex.Match(html, @"""zCDZ"":""([\s\S]*?)""");
-                Match a5 = Regex.Match(html, @"""fDDBRXM"":""([\s\S]*?)""");
-                Match a6 = Regex.Match(html, @"""dJRQ"":""([\s\S]*?)""");
-                Match a7 = Regex.Match(html, @"""zZJG_DM"":""([\s\S]*?)""");
-                Match a8 = Regex.Match(html, @"""nSRZT"":""([\s\S]*?)""");
-                Match a9 = Regex.Match(html, @"""nSRMC"":""([\s\S]*?)""");
-                Match a10 = Regex.Match(html, @"""dJXH"":""([\s\S]*?)""");
-                Match a11 = Regex.Match(html, @"""dJZCLXMC"":""([\s\S]*?)""");
-                Match a12 = Regex.Match(html, @"""sWJGMC"":""([\s\S]*?)""");
-                Match a13 = Regex.Match(html, @"""fDDBRSFZJHM"":""([\s\S]*?)""");
+                Match a1 = Regex.Match(html, @"""companyName"":""([\s\S]*?)""");
+                Match a2 = Regex.Match(html, @"""companyType"":""([\s\S]*?)""");
+                Match a3 = Regex.Match(html, @"""companyAddr"":""([\s\S]*?)""");
+                Match a4 = Regex.Match(html, @"""country"":""([\s\S]*?)""");
+                Match a5 = Regex.Match(html, @"""estDate"":""([\s\S]*?)""");
+                Match a6 = Regex.Match(html, @"""uniscId"":""([\s\S]*?)""");
+                Match a7 = Regex.Match(html, @"""legalPerson"":""([\s\S]*?)""");
+                Match a8 = Regex.Match(html, @"""positionName"":""([\s\S]*?)""");
+                Match a9 = Regex.Match(html, @"""legalPersonPaperNo"":""([\s\S]*?)""");
+                Match a10 = Regex.Match(html, @"""registerAmount"":""([\s\S]*?)""");
+                Match a11 = Regex.Match(html, @"""regOrg"":""([\s\S]*?)""");
+                Match a12 = Regex.Match(html, @"""opScope"":""([\s\S]*?)""");
+            
 
 
                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
-                
                 lv1.SubItems.Add(a1.Groups[1].Value);
                 lv1.SubItems.Add(a2.Groups[1].Value);
-                lv1.SubItems.Add(a10.Groups[1].Value);
-                lv1.SubItems.Add(a6.Groups[1].Value);
-                lv1.SubItems.Add(a11.Groups[1].Value);
-                lv1.SubItems.Add(a13.Groups[1].Value);
-                lv1.SubItems.Add(a5.Groups[1].Value);
-                lv1.SubItems.Add(a9.Groups[1].Value);
-                lv1.SubItems.Add(a8.Groups[1].Value);
                 lv1.SubItems.Add(a3.Groups[1].Value);
-                lv1.SubItems.Add(a12.Groups[1].Value);
                 lv1.SubItems.Add(a4.Groups[1].Value);
+                lv1.SubItems.Add(a5.Groups[1].Value);
+                lv1.SubItems.Add(a6.Groups[1].Value);
                 lv1.SubItems.Add(a7.Groups[1].Value);
+                lv1.SubItems.Add(a8.Groups[1].Value);
+                lv1.SubItems.Add(a9.Groups[1].Value);
+                lv1.SubItems.Add(a10.Groups[1].Value);
+                lv1.SubItems.Add(a11.Groups[1].Value);
+                lv1.SubItems.Add(a12.Groups[1].Value);
+
+
 
 
 
@@ -169,53 +174,27 @@ namespace 启动程序
                 Thread.Sleep(1000);
             }
 
+            MessageBox.Show("抓取完成");
 
 
-        }
-        private void 企业基础信息查询_Load(object sender, EventArgs e)
-        {
 
         }
-
-        private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        private void 国家政务服务企业查询_Load(object sender, EventArgs e)
         {
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
+            status = true;
+            button1.Enabled = false;
+            //time = GetTimeStamp();
+            //sign = GetMD5("qyjcxxcxpc" + time);
+            //ggsjpt_sign = GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74995e00df72f14bbcb7833a9ca063adef" + time);
 
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (html.Contains(@"shebaochaxun"))
-            {
-                status = true;
-                button1.Enabled = false;
-                //time = GetTimeStamp();
-                //sign = GetMD5("qyjcxxcxpc" + time);
-                //ggsjpt_sign = GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74995e00df72f14bbcb7833a9ca063adef" + time);
-
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-
-            }
-
-            else
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
-
-
-            #endregion
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -230,7 +209,6 @@ namespace 启动程序
 
         private void button4_Click(object sender, EventArgs e)
         {
-            button1.Enabled = true;
             status = false;
         }
 
@@ -242,11 +220,6 @@ namespace 启动程序
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button7_Click(object sender, EventArgs e)

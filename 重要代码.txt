@@ -298,3 +298,9 @@ string str = Interaction.InputBox("提示信息","标题","文本内容",-1,-1);
 【执行另一个按钮函数】
 
  button6.PerformClick();
+
+【线程带参数】
+Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
+                string o = "shangpucz";
+                thread.Start((object)o);
+                Control.CheckForIllegalCrossThreadCalls = false;

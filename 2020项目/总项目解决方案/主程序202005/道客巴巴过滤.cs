@@ -82,15 +82,35 @@ namespace 主程序202005
         #endregion
 
 
-        
+        public bool panduan(string title)
+
+        {
+
+            string[] text = textBox8.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] != "")
+                {
+                    if (title.Contains(text[i]))
+                    {
+                        return true;
+                    }
+                }
+
+            }
+            return false;
+
+        }
+
 
         public void getdocs()
         {
 
             try
             {
-                for (int i = Convert.ToInt32(textBox1.Text.Trim()); i < Convert.ToInt32(textBox2.Text.Trim()); i++)
+                for (int i = Convert.ToInt32(textBox1.Text.Trim()); i <=Convert.ToInt32(textBox2.Text.Trim()); i++)
                 {
+                    textBox3.Text += "正在筛选第"+i+"页"+"\r\n";
                     string url = "https://www.doc88.com/uc/doc_manager.php?act=ajax_doc_list&curpage=" + i;
                     string postdata = "menuIndex=4&classify_id=all&folder_id=0&sort=&keyword=&show_index=1";
                    string html= PostUrl(url,postdata);
@@ -99,13 +119,18 @@ namespace 主程序202005
                     MatchCollection titles = Regex.Matches(html, @"class=""title"" title=""([\s\S]*?)""");
                     for (int j = 0; j < aids.Count; j++)
                     {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(aids[j].Groups[1].Value);
-                        lv1.SubItems.Add(uids[j].Groups[1].Value);
-                        lv1.SubItems.Add(titles[j].Groups[1].Value);
-                        lv1.SubItems.Add("--");
+                        if (panduan(titles[j].Groups[1].Value))
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                            lv1.SubItems.Add(aids[j].Groups[1].Value);
+                            lv1.SubItems.Add(uids[j].Groups[1].Value);
+                            lv1.SubItems.Add(titles[j].Groups[1].Value);
+                            lv1.SubItems.Add("--");
+                        }
                     }
                 }
+
+                MessageBox.Show("筛选结束");
 
             }
             catch (Exception ex)
@@ -142,14 +167,57 @@ namespace 主程序202005
         private void 道客巴巴过滤_Load(object sender, EventArgs e)
         {
             webBrowser1.Url = new Uri("https://www.doc88.com/member.php?act=login");
+           // webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(getTitle);
+        }
+
+        private void getTitle(object sender, EventArgs e)
+        {
+
+            System.IO.StreamReader getReader = new System.IO.StreamReader(this.webBrowser1.DocumentStream, System.Text.Encoding.GetEncoding("utf-8"));
+
+            string html = getReader.ReadToEnd();
+
+            Match count = Regex.Match(html, @"doc_count"">([\s\S]*?)</a>");
+            
+            if (html.Contains("个人中心"))
+            {
+                label4.Text =( Convert.ToInt32(count.Groups[1].Value.Trim())/15).ToString();
+                button6.Text = "登陆成功";
+                return;
+            }
+            else
+            {
+                button6.Text = "登陆失败";
+            }
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            COOKIE = method.GetCookies("https://www.doc88.com/uc/doc_manager.php?act=doc_list&state=all");
-            Thread thread = new Thread(new ThreadStart(getdocs));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"doc88"))
+            {
+                textBox3.Text = "";
+                COOKIE = method.GetCookies("https://www.doc88.com/uc/doc_manager.php?act=doc_list&state=all");
+                Thread thread = new Thread(new ThreadStart(getdocs));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+           
         }
 
         public void del()
@@ -162,6 +230,7 @@ namespace 主程序202005
                 textBox3.Text += uid + "：删除状态" + deletedocs(uid) + "\r\n";
                 Thread.Sleep(Convert.ToInt32(textBox4.Text) * 1000);
             }
+            MessageBox.Show("删除结束");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -221,6 +290,39 @@ namespace 主程序202005
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                StreamReader streamReader = new StreamReader(this.openFileDialog1.FileName, Encoding.Default);
+                string text = streamReader.ReadToEnd();
+                string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < array.Length; i++)
+                {
+                    textBox8.Text += array[i] + "\r\n";
+
+                }
+
+            }
+        }
+
+        private void 全选ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.Checked = true ;
+            }
+        }
+
+        private void 取消全选ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.Checked = false;
+            }
         }
     }
 }

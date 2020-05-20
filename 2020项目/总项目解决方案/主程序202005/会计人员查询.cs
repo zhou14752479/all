@@ -135,6 +135,10 @@ namespace 主程序202005
                 string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < text.Length; i++)
                 {
+                    try
+                    {
+
+       
 
 
                     string url = "http://czt.sc.gov.cn/kj/idxx";
@@ -144,11 +148,11 @@ namespace 主程序202005
                     if (!html.Contains("验证码不正确") && !html.Contains("身份证"))
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add("不存在此人信息");
-                        lv1.SubItems.Add(text[i].Trim());
+                            lv1.SubItems.Add("");
+                            lv1.SubItems.Add(text[i].Trim());
+                            lv1.SubItems.Add("不存在此人信息");
 
-                       
-                    }
+                        }
 
                     else
                     {
@@ -186,13 +190,13 @@ namespace 主程序202005
                             lv1.SubItems.Add(name.Groups[1].Value);
                             lv1.SubItems.Add(text[i].Trim());
 
-
+                            lv1.SubItems.Add(area.Groups[1].Value.Trim());
                             for (int j = result.Count - 1; j >= 0; j--)
                             {
 
                                 lv1.SubItems.Add(result[j].Groups[1].Value);
                             }
-                            lv1.SubItems.Add(area.Groups[1].Value.Trim());
+                            
                         }
 
 
@@ -211,6 +215,12 @@ namespace 主程序202005
 
 
 
+                    }
+                    catch 
+                    {
+
+                        continue;
+                    }
 
 
 
@@ -282,6 +292,23 @@ namespace 主程序202005
         private void button5_Click(object sender, EventArgs e)
         {
             status = false;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                StreamReader streamReader = new StreamReader(this.openFileDialog1.FileName, Encoding.Default);
+                string text = streamReader.ReadToEnd();
+                string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < array.Length; i++)
+                {
+                    textBox1.Text += array[i] + "\r\n";
+
+                }
+
+            }
         }
     }
 }

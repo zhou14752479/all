@@ -709,10 +709,10 @@ namespace helper
 
                 client.DownloadFile(URLAddress, subPath + "\\" + name);
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
         }
 

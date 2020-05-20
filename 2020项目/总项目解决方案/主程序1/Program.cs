@@ -16,7 +16,7 @@ namespace 主程序1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 监控5173());
+            Application.Run(new 新闻抓取());
         }
     }
 }

@@ -71,6 +71,18 @@
     <Compile Include="数据抓取.Designer.cs">
       <DependentUpon>数据抓取.cs</DependentUpon>
     </Compile>
+    <Compile Include="新浪爱问过滤.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新浪爱问过滤.Designer.cs">
+      <DependentUpon>新浪爱问过滤.cs</DependentUpon>
+    </Compile>
+    <Compile Include="淘豆网过滤.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="淘豆网过滤.Designer.cs">
+      <DependentUpon>淘豆网过滤.cs</DependentUpon>
+    </Compile>
     <Compile Include="道客巴巴过滤.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +109,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="数据抓取.resx">
       <DependentUpon>数据抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新浪爱问过滤.resx">
+      <DependentUpon>新浪爱问过滤.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="淘豆网过滤.resx">
+      <DependentUpon>淘豆网过滤.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="道客巴巴过滤.resx">
       <DependentUpon>道客巴巴过滤.cs</DependentUpon>
