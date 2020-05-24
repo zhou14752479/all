@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\主程序\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -65,6 +69,12 @@
     <Compile Include="喜马拉雅.Designer.cs">
       <DependentUpon>喜马拉雅.cs</DependentUpon>
     </Compile>
+    <Compile Include="库存监控.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="库存监控.Designer.cs">
+      <DependentUpon>库存监控.cs</DependentUpon>
+    </Compile>
     <Compile Include="数据抓取.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +92,18 @@
     </Compile>
     <Compile Include="淘豆网过滤.Designer.cs">
       <DependentUpon>淘豆网过滤.cs</DependentUpon>
+    </Compile>
+    <Compile Include="百度文库过滤.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="百度文库过滤.Designer.cs">
+      <DependentUpon>百度文库过滤.cs</DependentUpon>
+    </Compile>
+    <Compile Include="车牌查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="车牌查询.Designer.cs">
+      <DependentUpon>车牌查询.cs</DependentUpon>
     </Compile>
     <Compile Include="道客巴巴过滤.cs">
       <SubType>Form</SubType>
@@ -107,6 +129,9 @@
     <EmbeddedResource Include="喜马拉雅.resx">
       <DependentUpon>喜马拉雅.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="库存监控.resx">
+      <DependentUpon>库存监控.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="数据抓取.resx">
       <DependentUpon>数据抓取.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="淘豆网过滤.resx">
       <DependentUpon>淘豆网过滤.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="百度文库过滤.resx">
+      <DependentUpon>百度文库过滤.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="车牌查询.resx">
+      <DependentUpon>车牌查询.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="道客巴巴过滤.resx">
       <DependentUpon>道客巴巴过滤.cs</DependentUpon>

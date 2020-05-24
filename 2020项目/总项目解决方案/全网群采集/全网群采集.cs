@@ -239,7 +239,7 @@ namespace 全网群采集
                                             lv1.SubItems.Add(vxcode);
                                             string wenzi = shibie(pics[j].Groups[1].Value);
                                             Match name = Regex.Match(wenzi, @"""words"": ""([\s\S]*?)""");
-                                            Match time = Regex.Match(wenzi, @"该二维码7天内\(([\s\S]*?)前");
+                                            Match time = Regex.Match(wenzi, @"7天内\(([\s\S]*?)前");
 
                                             lv1.SubItems.Add(name.Groups[1].Value);
                                             lv1.SubItems.Add(time.Groups[1].Value);
@@ -405,7 +405,7 @@ namespace 全网群采集
         private void button3_Click(object sender, EventArgs e)
         {
             
-            MessageBox.Show(shibie("http://czt.sc.gov.cn/kj/captcha.jpg?randdom=0.8007734420064332"));
+            MessageBox.Show(shibie("http://tiebapic.baidu.com/forum/w%3D580%3B/sign=21a4aa5d0a950a7b75354ecc3aea63d9/bf096b63f6246b60619f431ffcf81a4c500fa2cc.jpg"));
         }
 
         private void 全网群采集_FormClosing(object sender, FormClosingEventArgs e)

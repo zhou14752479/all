@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202005
+namespace 保罗看水
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202005
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 车牌查询());
+            Application.Run(new main());
         }
     }
 }

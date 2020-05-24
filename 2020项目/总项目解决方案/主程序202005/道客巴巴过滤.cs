@@ -102,31 +102,58 @@ namespace 主程序202005
 
         }
 
-
+      
+        string menuindex = "4";
+        string classifyid = "all";
         public void getdocs()
         {
 
             try
             {
+                if (radioButton1.Checked == true)
+                {
+                    menuindex = "4";
+                    classifyid = "all";
+
+                }
+
+                if (radioButton2.Checked == true)
+                {
+                    menuindex = "3";
+                    classifyid = "private";
+
+                }
+
+
+
                 for (int i = Convert.ToInt32(textBox1.Text.Trim()); i <=Convert.ToInt32(textBox2.Text.Trim()); i++)
                 {
                     textBox3.Text += "正在筛选第"+i+"页"+"\r\n";
                     string url = "https://www.doc88.com/uc/doc_manager.php?act=ajax_doc_list&curpage=" + i;
-                    string postdata = "menuIndex=4&classify_id=all&folder_id=0&sort=&keyword=&show_index=1";
+                    string postdata = "menuIndex="+menuindex+"&classify_id="+classifyid+"&folder_id=0&sort=&keyword=&show_index=1";
                    string html= PostUrl(url,postdata);
                    MatchCollection aids = Regex.Matches(html, @"<a href=""\/p-([\s\S]*?)\.");
                     MatchCollection uids = Regex.Matches(html, @"deleteDoc\('([\s\S]*?)'");
                     MatchCollection titles = Regex.Matches(html, @"class=""title"" title=""([\s\S]*?)""");
                     for (int j = 0; j < aids.Count; j++)
                     {
-                        if (panduan(titles[j].Groups[1].Value))
+                        try
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                            if (panduan(titles[j].Groups[1].Value))
+                            {
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                             lv1.SubItems.Add(aids[j].Groups[1].Value);
                             lv1.SubItems.Add(uids[j].Groups[1].Value);
                             lv1.SubItems.Add(titles[j].Groups[1].Value);
                             lv1.SubItems.Add("--");
+                            }
                         }
+                        catch 
+                        {
+
+                            continue;
+                        }
+                       
                     }
                 }
 

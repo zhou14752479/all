@@ -184,6 +184,7 @@ namespace 主程序
 
         private void 工厂针织服装软件_Load(object sender, EventArgs e)
         {
+            
             #region 通用检测
 
             string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
