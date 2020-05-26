@@ -54,6 +54,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -281,6 +281,15 @@
             this.panel1.Size = new System.Drawing.Size(1023, 53);
             this.panel1.TabIndex = 15;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(680, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 12);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "购买授权V：17606117606";
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -486,15 +495,6 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "行业名称：";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(680, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "购买授权V：17606117606";
-            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -505,7 +505,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "思忆B2B抓取                                VX：17606117606";
+            this.Text = "思忆企业抓取                                VX：17606117606";
             this.Load += new System.EventHandler(this.Main_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

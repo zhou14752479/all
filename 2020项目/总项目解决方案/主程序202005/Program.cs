@@ -16,7 +16,7 @@ namespace 主程序202005
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 车牌查询());
+            Application.Run(new 猫耳FM());
         }
     }
 }

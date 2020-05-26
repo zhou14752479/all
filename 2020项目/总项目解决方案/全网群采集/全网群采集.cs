@@ -146,16 +146,12 @@ namespace 全网群采集
 
         #endregion
 
-        private void 全网群采集_Load(object sender, EventArgs e)
-        {
-
-        }
         #region 识别二维码文字
         public string shibie(string picurl)
         {
             string url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic";
             string access_token = "24.7ab687deb57c3c8383bc71c22d54a57e.2592000.1590636917.282335-19639932";
-            string postdata = "access_token=" + access_token + "&url="+picurl;
+            string postdata = "access_token=" + access_token + "&url=" + picurl;
 
 
             string html = PostUrl(url, postdata);
@@ -163,21 +159,51 @@ namespace 全网群采集
         }
         #endregion
 
+        private void 全网群采集_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        string constr = "Host =111.229.244.97;Database=acaiji;Username=root;Password=root";
+
+        ArrayList vxcodelist = new ArrayList();
+        #region 获取数据库vxcode集合
+        public void getvxcodes()
+        {
+            
+            try
+            {
+                
+                string str = "SELECT vxcode from quns";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    vxcodelist.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                MessageBox.Show(ee.Message.ToString());
+            }
+            
+
+        }
+        #endregion
         #region  插入数据库
 
-        public string insert(string name, string picurl, string resource, string expiretime)
+        public string insert(string name, string picurl, string resource, string expiretime,string vxcode)
         {
 
             try
             {
-
-
-                string constr = "Host =111.229.244.97;Database=acaiji;Username=root;Password=root";
+               
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO quns (name,pic_url,resource,expiretime)VALUES('" + name + " ', '" + picurl + " ', '" + resource + " ', '" + expiretime + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO quns (name,pic_url,resource,expiretime,vxcode)VALUES('" + name + " ', '" + picurl + " ', '" + resource + " ', '" + expiretime + " ', '" + vxcode + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
 
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
@@ -209,30 +235,54 @@ namespace 全网群采集
         #endregion
 
         ArrayList finishes = new ArrayList();
-        #region 贴吧
-        public void run(object tieba1)
-        {
-            string tieba = tieba1.ToString();
-            try
-            {
-                
-         
-                        for (int i = 0; i < 1001; i = i + 50)
-                        {
-                            string url = "https://tieba.baidu.com/f?kw=" + System.Web.HttpUtility.UrlEncode(tieba) + "&ie=utf-8&pn=" + i;
-                            string html = GetUrl(url);
 
-                            MatchCollection pics = Regex.Matches(html, @"bpic=""([\s\S]*?)""");
-                            for (int j = 0; j < pics.Count; j++)
+        string[] tiebas = { "拼多多微信群",
+"拼多多",
+"拼多多砍价",
+"副业",
+"优惠券",
+"微商群",
+"内部优惠券",
+"购物券",
+"褥羊毛",
+"网上购物",
+"购物狂",
+"宝妈微信群",
+"宝妈群",
+"购物群",
+"拼多多砍价群",
+"宝妈微信群",
+"宝妈微信群二维码",
+"微商群聊",
+"王者荣耀微信群",
+            "交友"};
+        #region 贴吧
+        public void run()
+        {
+            while (true)
+            {
+                foreach (string tieba in tiebas)
+                {
+                    getvxcodes();
+                    for (int i = 0; i < 51; i = i + 50)
+                    {
+                        string url = "https://tieba.baidu.com/f?kw=" + System.Web.HttpUtility.UrlEncode(tieba) + "&ie=utf-8&pn=" + i;
+                        string html = GetUrl(url);
+
+                        MatchCollection pics = Regex.Matches(html, @"bpic=""([\s\S]*?)""");
+                        for (int j = 0; j < pics.Count; j++)
+                        {
+                            try
                             {
-                                try
+
+                                string vxcode = DecodeQrCode(UrlToBitmap(pics[j].Groups[1].Value));
+                                if (vxcode != "" && vxcode != null)
                                 {
-                                    label1.Text = DateTime.Now.ToString() + pics[j].Groups[1].Value;
-                                    string vxcode = DecodeQrCode(UrlToBitmap(pics[j].Groups[1].Value));
-                                    if (vxcode != "" && vxcode != null)
+                                    if (vxcode.Contains("/g/"))
                                     {
-                                        if (vxcode.Contains("/g/"))
+                                        if (!vxcodelist.Contains(vxcode))
                                         {
+
                                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                                             lv1.SubItems.Add(pics[j].Groups[1].Value);
                                             lv1.SubItems.Add(tieba);
@@ -240,36 +290,42 @@ namespace 全网群采集
                                             string wenzi = shibie(pics[j].Groups[1].Value);
                                             Match name = Regex.Match(wenzi, @"""words"": ""([\s\S]*?)""");
                                             Match time = Regex.Match(wenzi, @"7天内\(([\s\S]*?)前");
+                                            if (time.Groups[1].Value.Contains("月") && time.Groups[1].Value.Contains("日"))
+                                            {
+                                                lv1.SubItems.Add(name.Groups[1].Value);
+                                                lv1.SubItems.Add(time.Groups[1].Value);
+                                                lv1.SubItems.Add(DateTime.Now.ToString());
+                                                insert(name.Groups[1].Value, pics[j].Groups[1].Value, tieba, time.Groups[1].Value, vxcode);
+                                            }
 
-                                            lv1.SubItems.Add(name.Groups[1].Value);
-                                            lv1.SubItems.Add(time.Groups[1].Value);
-
-                                            label1.Text=  insert(name.Groups[1].Value, pics[j].Groups[1].Value,tieba,time.Groups[1].Value);
+                                            else
+                                            {
+                                                lv1.SubItems.Add(name.Groups[1].Value);
+                                                lv1.SubItems.Add(time.Groups[1].Value);
+                                                lv1.SubItems.Add("false");
+                                            }
                                         }
                                     }
                                 }
-                                catch
-                                {
-
-                                    continue;
-                                }
-
-
-
                             }
-                        }  
-               
-            }
-            catch (Exception ex)
-            {
+                            catch
+                            {
 
-                MessageBox.Show(ex.ToString());
-            }
+                                continue;
+                            }
 
+
+
+                        }
+                    }
+                }
+            }
 
         }
-
+         
         #endregion
+
+
 
         private DateTime ConvertStringToDateTime(string timeStamp)
         {
@@ -280,110 +336,8 @@ namespace 全网群采集
         }
 
         bool zanting = true;
-        #region 同行
-        public void tonghang()
-        {
-
-            try
-            {
-
-                for (int j = 1; j < 9999; j++)
-                {
-
-
-                    string url = "https://itui.yfdou.com/v1/api/qrcode/latest_ten?page=" + j;
-
-                    string html = GetUrl(url);
-
-                    MatchCollection names = Regex.Matches(html, @"name"": ""([\s\S]*?)""");
-                    MatchCollection times = Regex.Matches(html, @"exp_time"":([\s\S]*?),");
-                    MatchCollection titles = Regex.Matches(html, @"title"": ""([\s\S]*?)""");
-                    MatchCollection images = Regex.Matches(html, @"pic_url"": ""([\s\S]*?)""");
-                   
-                    if (images.Count == 0)
-                    {
-
-                        return;
-                    }
-                    label1.Text = "正在抓取第" + j + "页";
-                    for (int i = 0; i < images.Count; i++)
-                    {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据  
-                        lv1.SubItems.Add(images[i].Groups[1].Value);
-                        lv1.SubItems.Add(titles[i].Groups[1].Value);
-                        lv1.SubItems.Add("-");
-                        lv1.SubItems.Add(names[i].Groups[1].Value);
-                        lv1.SubItems.Add(ConvertStringToDateTime(times[i].Groups[1].Value).ToString());
-                        
-
-
-
-                        label1.Text = insert(names[i].Groups[1].Value, images[i].Groups[1].Value, titles[i].Groups[1].Value, times[i].Groups[1].Value);
-                       
-
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                    }
-                    Thread.Sleep(500);
-
-
-
-                }
-
-
-                
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-
-
-        }
-
-        #endregion
-        string[] text = { };
-        private void Button1_Click(object sender, EventArgs e)
-        {
-
-            Thread thread = new Thread(new ParameterizedThreadStart(run));
-            string o = "拼多多";
-            thread.Start((object)o);
-            Control.CheckForIllegalCrossThreadCalls = false;
-
-            Thread thread1 = new Thread(new ParameterizedThreadStart(run));
-            string o1 = "宝妈微信群";
-            thread1.Start((object)o1);
-
-            Thread thread2 = new Thread(new ParameterizedThreadStart(run));
-            string o2 = "宝妈群";
-            thread2.Start((object)o2);
-
-            Thread thread3= new Thread(new ParameterizedThreadStart(run));
-            string o3 = "微商群";
-            thread3.Start((object)o3);
-
-            Thread thread4= new Thread(new ParameterizedThreadStart(run));
-            string o4 = "拼多多砍价";
-            thread4.Start((object)o4);
-
-            Thread thread5 = new Thread(new ParameterizedThreadStart(run));
-            string o5 = "王者荣耀开黑";
-            thread5.Start((object)o5);
-
-
-            Thread thread6 = new Thread(new ParameterizedThreadStart(run));
-            string o6 = "交友";
-            thread6.Start((object)o6);
-
-            Thread thread7 = new Thread(new ParameterizedThreadStart(run));
-            string o7 = "交友";
-            thread7.Start((object)o7);
-
-        }
+        
+ 
 
         private void 复制网址ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -395,18 +349,9 @@ namespace 全网群采集
             Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[2].Text);
         }
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(new ThreadStart(tonghang));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-        }
+   
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            
-            MessageBox.Show(shibie("http://tiebapic.baidu.com/forum/w%3D580%3B/sign=21a4aa5d0a950a7b75354ecc3aea63d9/bf096b63f6246b60619f431ffcf81a4c500fa2cc.jpg"));
-        }
+    
 
         private void 全网群采集_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -423,6 +368,18 @@ namespace 全网群采集
 
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

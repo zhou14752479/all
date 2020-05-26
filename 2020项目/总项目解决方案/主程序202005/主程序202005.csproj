@@ -93,11 +93,23 @@
     <Compile Include="淘豆网过滤.Designer.cs">
       <DependentUpon>淘豆网过滤.cs</DependentUpon>
     </Compile>
+    <Compile Include="猫耳FM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="猫耳FM.Designer.cs">
+      <DependentUpon>猫耳FM.cs</DependentUpon>
+    </Compile>
     <Compile Include="百度文库过滤.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="百度文库过滤.Designer.cs">
       <DependentUpon>百度文库过滤.cs</DependentUpon>
+    </Compile>
+    <Compile Include="豆丁过滤.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="豆丁过滤.Designer.cs">
+      <DependentUpon>豆丁过滤.cs</DependentUpon>
     </Compile>
     <Compile Include="车牌查询.cs">
       <SubType>Form</SubType>
@@ -141,8 +153,14 @@
     <EmbeddedResource Include="淘豆网过滤.resx">
       <DependentUpon>淘豆网过滤.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="猫耳FM.resx">
+      <DependentUpon>猫耳FM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="百度文库过滤.resx">
       <DependentUpon>百度文库过滤.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="豆丁过滤.resx">
+      <DependentUpon>豆丁过滤.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="车牌查询.resx">
       <DependentUpon>车牌查询.cs</DependentUpon>

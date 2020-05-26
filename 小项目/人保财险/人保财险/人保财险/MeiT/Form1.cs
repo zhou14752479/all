@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Net;
 using System.Text;
 using System.Runtime.InteropServices;
-using System.Data.SQLite;
+
 
 namespace MeiT
 {
@@ -163,16 +163,7 @@ namespace MeiT
                     dataGridView1.Rows[j].Cells[10].Value = jjs[j].Groups[1].Value;
                     dataGridView1.Rows[j].Cells[11].Value = kks[j].Groups[1].Value;
 
-                    SQLiteConnection mycon2 = new SQLiteConnection("Data Source=" + path + "\\data.db");
-                    mycon2.Open();
-
-
-                    string sql2 = "INSERT INTO datas (danhao,jigou,riqi1,chepai,chejia,ren,type,baofei,shui,baodan,riqi2)VALUES('" + aas[j].Groups[1].Value + " ','" + bbs[j].Groups[1].Value + "', '" + ccs[j].Groups[1].Value + " ', '" + dds[j].Groups[1].Value + " ', '" + ees[j].Groups[1].Value + " ','" + ffs[j].Groups[1].Value + " ','" + ggs[j].Groups[1].Value + " ','" + hhs[j].Groups[1].Value + " ','" + iis[j].Groups[1].Value + " ','" + jjs[j].Groups[1].Value + " ','" + kks[j].Groups[1].Value + " ')";
-
-                    SQLiteCommand cmd2 = new SQLiteCommand(sql2, mycon2);
-
-                    cmd2.ExecuteNonQuery();  //执行sql语句
-                    mycon2.Close();
+                 
 
                 }
 
