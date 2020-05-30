@@ -84,14 +84,18 @@ namespace 耐克查询
         {
             try
             {
-                string[] array = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                for (int i = 0; i < array.Length; i++)
+                // string[] array = textBox1.Text.Split(new string[] { " \r\n " }, StringSplitOptions.None);
+
+                MatchCollection array = Regex.Matches(textBox1.Text, @"60\d.*");
+               
+                for (int i = 0; i < array.Count; i++)
                 {
-                    if (array[i] != "")
+                   
+                    string[] value = array[i].Groups[0].Value.Replace("  "," ").Split(new string[] { " " }, StringSplitOptions.None);
+                    if (value.Length !=0)
                     {
-                        string[] value = array[i].Split(new string[] { " " }, StringSplitOptions.None);
                         string url = "https://api.nike.com/payment/giftcard_balance/v1/";
-                        string postdata = "{\"accountNumber\":\"" + value[0] + "\",\"currency\":\"USD\",\"pin\":\"" + value[1] + "\"}";
+                        string postdata = "{\"accountNumber\":\"" + value[0].Trim() + "\",\"currency\":\"USD\",\"pin\":\"" + value[1].Trim() + "\"}";
                         string cookie = "";
                         
                         string html = PostUrl(url, postdata, cookie, "utf-8");
@@ -109,7 +113,7 @@ namespace 耐克查询
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                             lv1.SubItems.Add(value[0]);
                             lv1.SubItems.Add(value[1]);
-                            lv1.SubItems.Add(key.Groups[1].Value);
+                            lv1.SubItems.Add(key.Groups[1].Value.Replace(",\"resourceType\":\"payment/giftcard_balance\"", ""));
                         }
                       
 
@@ -134,6 +138,9 @@ namespace 耐克查询
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+
+
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

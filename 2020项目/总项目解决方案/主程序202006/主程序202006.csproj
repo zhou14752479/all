@@ -4,13 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13702C12-85E0-44A4-96B6-E884A1451E3A}</ProjectGuid>
+    <ProjectGuid>{B9DDD006-8426-4603-A4E0-11A06426617B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>全网群采集</RootNamespace>
-    <AssemblyName>全网群采集</AssemblyName>
+    <RootNamespace>主程序202006</RootNamespace>
+    <AssemblyName>主程序202006</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,12 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\通用项目\bin\Debug\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,23 +42,33 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\zxing.dll</HintPath>
-    </Reference>
-    <Reference Include="zxing.presentation, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\zxing.presentation.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="全网群采集.cs">
+    <Compile Include="shopee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="全网群采集.Designer.cs">
-      <DependentUpon>全网群采集.cs</DependentUpon>
+    <Compile Include="shopee.Designer.cs">
+      <DependentUpon>shopee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="二手房58监控.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="二手房58监控.Designer.cs">
+      <DependentUpon>二手房58监控.cs</DependentUpon>
+    </Compile>
+    <Compile Include="微信域名检测.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="微信域名检测.Designer.cs">
+      <DependentUpon>微信域名检测.cs</DependentUpon>
+    </Compile>
+    <Compile Include="我的发票.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="我的发票.Designer.cs">
+      <DependentUpon>我的发票.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,8 +79,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="全网群采集.resx">
-      <DependentUpon>全网群采集.cs</DependentUpon>
+    <EmbeddedResource Include="shopee.resx">
+      <DependentUpon>shopee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="二手房58监控.resx">
+      <DependentUpon>二手房58监控.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="微信域名检测.resx">
+      <DependentUpon>微信域名检测.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="我的发票.resx">
+      <DependentUpon>我的发票.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -89,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\helper\helper.csproj">
+      <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
+      <Name>helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -181,5 +181,10 @@ namespace 启动程序
         {
             button2.Enabled = true;
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

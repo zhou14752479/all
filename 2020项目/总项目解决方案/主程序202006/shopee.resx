@@ -117,10 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>13, 12</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>142, 11</value>
-  </metadata>
+  <data name="textBox4.Text" xml:space="preserve">
+    <value>_gcl_au=1.1.1731279451.1590654195; SPC_F=eppWclLnXiVQq4REjxllqibC0jhEkBQX; SPC_SI=b1mey8d6k8soq3jr7skhhcr40spzzsu9; _ga=GA1.3.1452107404.1590654242; _gid=GA1.3.1574679831.1590654242; SC_DFP=U8lpXydaXAUvZb8UarSBAOPc2Z404xZN; SPC_T_F=1; _fbp=fb.2.1590669100622.488013518; SPC_SC_TK=287ef9b8cbb1716b2d6bdec167e66119; SPC_EC="EQC72j2KrhHoa4sqrL9meNgx1evu4ljvmblQoi4OmWxITyMfcN5b0lGkZOvCcPlgWOtq9tGTv9fOnoZsAY9HeT85pzRKao+/VxKiKPaL3napnvTsCVUqOpJeGYspUsnIBTld4Qm1yL8Y4mFpiEzTedhwsacchNgUvYUjutAE1Vk4vmGZrx2aA2pYhDFrb+Sn"; SPC_SC_UD=172424502; SPC_U=172424502; SPC_T_IV="6CxKt6pdRsuVCCjFa65yHQ=="; SPC_T_ID="hYpeUngoQq0sXImAgrKnQyGv/sgpNl1iUgaGaJSCG0Yf9iUXnCKgfPq+3KIDnzRR4Jfgf0BxFLvrQYA0OWXoLV5zdmOcwVhl1sjMr/HZ6a4="; SPC_R_T_ID="3TuV+0OFe3lu/ybAMqV/Hxlv8gxRmsOQSvQaHuPSjy5nqOt+GBSB8ceRMb09a9c04IscHjLBE8Xtf+MnVIh08pEyCJ6z9e3NAfLfxeU0RJY="; SPC_R_T_IV="UVclDmwXIkc8hCaBQkBbyA=="</value>
+  </data>
 </root>

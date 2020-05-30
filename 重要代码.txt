@@ -305,3 +305,12 @@ Thread thread = new Thread(new ParameterizedThreadStart(shangpu));
                 string o = "shangpucz";
                 thread.Start((object)o);
                 Control.CheckForIllegalCrossThreadCalls = false;
+
+【软件内打开网页】
+private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+{
+     //防止弹窗；
+    e.Cancel = true;
+    string url = this.webBrowser1.StatusText;
+    this.webBrowser1.Url = new Uri(url);
+}

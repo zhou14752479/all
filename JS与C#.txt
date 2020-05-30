@@ -1,0 +1,58 @@
+ //无返回值直接调用三者任选其一
+            //browser.GetBrowser().MainFrame.EvaluateScriptAsync("test_val=" + new Random().Next().ToString("F")); //设置页面上js的test_val变量为随机数
+            //browser.GetBrowser().MainFrame.EvaluateScriptAsync("testArg('123','我是NET' )");//运行页面上js的testArg带参数的方法
+            // browser.GetBrowser().MainFrame.EvaluateScriptAsync("alert(document.cookie)");//运行页面上js的test方法或者自己输入JS代码执行
+
+
+            //有返回值先和上面一样调用一次，然后在读取他的返回值，或者不执行，可以读取页面上自身的js函数返回值
+            browser.GetBrowser().MainFrame.EvaluateScriptAsync("function _func(){return document.cookie}");//运行页面上js的test方法
+            Task<CefSharp.JavascriptResponse> t = browser.EvaluateScriptAsync("_func()");   
+            t.Wait();// 等待js 方法执行完后，获取返回值 t.Result 是 CefSharp.JavascriptResponse 对象t.Result.Result 是一个 object 对象，来自js的 callTest2() 方法的返回值
+            if (t.Result.Result != null)
+            {
+                MessageBox.Show(t.Result.Result.ToString());
+            }
+
+
+
+
+在webbrowser浏览器里执行js代码并获取返回值，可以用于读取cookie
+  HtmlElement element2 = webBrowser1.Document.CreateElement("script");
+            element2.SetAttribute("type", "text/javascript");
+            element2.SetAttribute("text", "function _func(){return document.cookie}");   //这里写JS代码
+            HtmlElement head = webBrowser1.Document.Body.AppendChild(element2);
+
+            string str = webBrowser1.Document.InvokeScript("_func").ToString();
+            MessageBox.Show(str);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+JS代码转C#代码，用于JS加密的函数，省的转换C#代码，和上面的不一样不存在webbrowser浏览器
+
+            //Type obj = Type.GetTypeFromProgID("ScriptControl");
+            //if (obj == null) return; //单身？ 找不到对象啊，
+            //object ScriptControl = Activator.CreateInstance(obj);
+            //obj.InvokeMember("Language", BindingFlags.SetProperty, null, ScriptControl, new object[] { "JScript" });
+            //string js = "function time(){return new Date().getTime()}";
+            //obj.InvokeMember("AddCode", BindingFlags.InvokeMethod, null, ScriptControl, new object[] { js });
+            //string str = obj.InvokeMember("Eval", BindingFlags.InvokeMethod, null, ScriptControl, new object[] { "time()" }).ToString();
+            //MessageBox.Show(str);

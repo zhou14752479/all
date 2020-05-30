@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E4D9E3CD-BF2A-4B99-9E1B-99424A7FBC81}</ProjectGuid>
+    <ProjectGuid>{DE5637B4-A762-4A69-A29A-0ACCAFD6B71A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>耐克查询</RootNamespace>
-    <AssemblyName>耐克查询</AssemblyName>
+    <RootNamespace>百度链接抓取</RootNamespace>
+    <AssemblyName>百度链接抓取</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -76,12 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\helper\helper.csproj">
-      <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
-      <Name>helper</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -77,9 +77,10 @@ namespace 启动程序
 
         private void 票据网_Load(object sender, EventArgs e)
         {
-            method.SetWebBrowserFeatures(method.IeVersion.IE10);
+            method.SetWebBrowserFeatures(method.IeVersion.IE11);
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate("https://www.tcpjw.com/login");
+           
         }
 
        string cookie = "";
@@ -415,6 +416,7 @@ namespace 启动程序
 
         private void button4_Click(object sender, EventArgs e)
         {
+            
             timer1.Stop();
         }
        

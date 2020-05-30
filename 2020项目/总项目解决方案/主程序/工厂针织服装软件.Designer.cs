@@ -28,41 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("经编起绒织物");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("经编网服织物");
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("经编丝绒织物");
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("经编毛围织物");
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("经编", new System.Windows.Forms.TreeNode[] {
-            treeNode33,
-            treeNode34,
-            treeNode35,
-            treeNode36});
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("平针");
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("罗纹");
-            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("双反面");
-            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("原组织", new System.Windows.Forms.TreeNode[] {
-            treeNode38,
-            treeNode39,
-            treeNode40});
-            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("变化平针");
-            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("双罗纹");
-            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("变化组织", new System.Windows.Forms.TreeNode[] {
-            treeNode42,
-            treeNode43});
-            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("提花、衬垫、长毛绒等");
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("各种复合组织");
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("花色组织", new System.Windows.Forms.TreeNode[] {
-            treeNode45,
-            treeNode46});
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("纬编", new System.Windows.Forms.TreeNode[] {
-            treeNode41,
-            treeNode44,
-            treeNode47});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("经编起绒织物");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("经编网服织物");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("经编丝绒织物");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("经编毛圈织物");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("经编", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("平针");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("罗纹");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("双反面");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("原组织", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("变化平针");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("双罗纹");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("变化组织", new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("提花、衬垫、长毛绒等");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("各种复合组织");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("花色组织", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("纬编", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode12,
+            treeNode15});
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -72,8 +74,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -148,44 +148,65 @@
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(3, 17);
             this.treeView1.Name = "treeView1";
-            treeNode33.Name = "1";
-            treeNode33.Text = "经编起绒织物";
-            treeNode34.Name = "2";
-            treeNode34.Text = "经编网服织物";
-            treeNode35.Name = "3";
-            treeNode35.Text = "经编丝绒织物";
-            treeNode36.Name = "4";
-            treeNode36.Text = "经编毛围织物";
-            treeNode37.Name = "0";
-            treeNode37.Text = "经编";
-            treeNode38.Name = "7";
-            treeNode38.Text = "平针";
-            treeNode39.Name = "8";
-            treeNode39.Text = "罗纹";
-            treeNode40.Name = "9";
-            treeNode40.Text = "双反面";
-            treeNode41.Name = "6";
-            treeNode41.Text = "原组织";
-            treeNode42.Name = "11";
-            treeNode42.Text = "变化平针";
-            treeNode43.Name = "12";
-            treeNode43.Text = "双罗纹";
-            treeNode44.Name = "10";
-            treeNode44.Text = "变化组织";
-            treeNode45.Name = "14";
-            treeNode45.Text = "提花、衬垫、长毛绒等";
-            treeNode46.Name = "15";
-            treeNode46.Text = "各种复合组织";
-            treeNode47.Name = "13";
-            treeNode47.Text = "花色组织";
-            treeNode48.Name = "5";
-            treeNode48.Text = "纬编";
+            treeNode1.Name = "1";
+            treeNode1.Text = "经编起绒织物";
+            treeNode2.Name = "2";
+            treeNode2.Text = "经编网服织物";
+            treeNode3.Name = "3";
+            treeNode3.Text = "经编丝绒织物";
+            treeNode4.Name = "4";
+            treeNode4.Text = "经编毛圈织物";
+            treeNode5.Name = "0";
+            treeNode5.Text = "经编";
+            treeNode6.Name = "7";
+            treeNode6.Text = "平针";
+            treeNode7.Name = "8";
+            treeNode7.Text = "罗纹";
+            treeNode8.Name = "9";
+            treeNode8.Text = "双反面";
+            treeNode9.Name = "6";
+            treeNode9.Text = "原组织";
+            treeNode10.Name = "11";
+            treeNode10.Text = "变化平针";
+            treeNode11.Name = "12";
+            treeNode11.Text = "双罗纹";
+            treeNode12.Name = "10";
+            treeNode12.Text = "变化组织";
+            treeNode13.Name = "14";
+            treeNode13.Text = "提花、衬垫、长毛绒等";
+            treeNode14.Name = "15";
+            treeNode14.Text = "各种复合组织";
+            treeNode15.Name = "13";
+            treeNode15.Text = "花色组织";
+            treeNode16.Name = "5";
+            treeNode16.Text = "纬编";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode37,
-            treeNode48});
+            treeNode5,
+            treeNode16});
             this.treeView1.Size = new System.Drawing.Size(283, 526);
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(9, 511);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "点击修改";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("黑体", 12F);
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(218, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(104, 16);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "请先选择选项";
             // 
             // button2
             // 
@@ -265,27 +286,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("黑体", 12F);
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(218, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 16);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "请先选择选项";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(9, 511);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "点击修改";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // 工厂针织服装软件
             // 

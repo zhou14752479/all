@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace 全网群采集.Properties
+namespace 百度链接抓取.Properties
 {
 
 
