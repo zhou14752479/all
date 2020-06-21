@@ -549,57 +549,9 @@ namespace 美团
             listView1.Items.Clear();
         }
 
-        private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (listView1.Items.Count == 0)
-            {
-                MessageBox.Show("列表为空!");
-            }
-            else
-            {
-                List<string> list = new List<string>();
-                foreach (ListViewItem item in listView1.Items)
-                {
-                    if (textBox4.Text == "")
-                    {
-                        list.Add(item.SubItems[2].Text);
+       
 
-                    }
-                    else
-                    {
-                        try
-                        {
-                            if (item.SubItems[5].Text == textBox4.Text.Trim())
-                            {
-                                list.Add(item.SubItems[2].Text);
-                            }
-                        }
-                        catch 
-                        {
-
-                            continue;
-                        }
-                       
-                    }
-                   
-                }
-                Thread thexp = new Thread(() => export(list)) { IsBackground = true };
-                thexp.Start();
-            }
-        }
-
-        private static void export(List<string> list)
-        {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "导出_" + Guid.NewGuid().ToString() + ".txt";
-
-            StringBuilder sb = new StringBuilder();
-            foreach (string tel in list)
-            {
-                sb.AppendLine(tel);
-            }
-            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
-            MessageBox.Show("文件导出成功!文件地址:" + path);
-        }
+     
 
         private void LinkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

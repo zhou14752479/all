@@ -75,7 +75,7 @@ namespace 专利查询
                     Match a32 = Regex.Match(html, @"Currently No Basis:</div>([\s\S]*?)</div>");
                     Match a33 = Regex.Match(html, @"Filed No Basis:</div>([\s\S]*?)</div>");
                     Match a34 = Regex.Match(html, @"Owner Name:</div>([\s\S]*?)</div>");
-                    Match a35 = Regex.Match(html, @"Owner Address:</div>([\s\S]*?)</div>");
+                    Match a35 = Regex.Match(html, @"Owner Address:</div>([\s\S]*?)<div class=""double");
                     Match a36 = Regex.Match(html, @"Legal Entity Type:</div>([\s\S]*?)</div>");
                     Match a37 = Regex.Match(html, @"State or Country Where Organized:</div>([\s\S]*?)</div>");
                     Match a38 = Regex.Match(html, @"Correspondent Name/Address:</div>([\s\S]*?)</div>");

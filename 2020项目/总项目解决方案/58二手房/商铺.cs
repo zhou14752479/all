@@ -131,6 +131,15 @@ namespace _58二手房
             }
 
         }
+
+        public string gettel(string uid)
+        {
+            string url = "https://wxapp.58.com/phone/get?appCode=21&infoId="+uid+ "&cateCode=5&legoKey=&dataType=&slotid=&spm=&thirdKey=cPiqlW75eeKoDD6suboOUTdSPu9PN9oVhzPgTfRSCPGodBJ6YBOgmDIbhCnptTeg";
+            string html = GetUrl(url);
+            Match tel = Regex.Match(html, @"result\\"":\\""([\s\S]*?)\\""");
+            return tel.Groups[1].Value;
+        }
+
         bool zanting = true;
         ArrayList telList = new ArrayList();
         #region  生意转让、商铺出租、商铺出售
@@ -157,55 +166,45 @@ namespace _58二手房
 
                         string html = GetUrl(Url);
 
+                      
 
+                        MatchCollection TitleMatchs = Regex.Matches(html, @"<li logr=""([\s\S]*?)_([\s\S]*?)_([\s\S]*?)_([\s\S]*?)_", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                        MatchCollection titles = Regex.Matches(html, @"<span class=""title_des"">([\s\S]*?)</span>");
+                        MatchCollection contacts = Regex.Matches(html, @"<span class=""title_des"">([\s\S]*?)</span>");
 
-                        MatchCollection TitleMatchs = Regex.Matches(html, @"https://[a-z]+.58.com/[a-z]+/[0-9]+x.shtml", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                       // MatchCollection TitleMatchs = Regex.Matches(html, @"<div class=""pic"">([\s\S]*?)""", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                     
-                        ArrayList lists = new ArrayList();
-
-                        foreach (Match NextMatch in TitleMatchs)
-                        {
-                            if (!lists.Contains(NextMatch.Groups[0].Value))
-                            {
-                                lists.Add(NextMatch.Groups[0].Value);
-                            }
-                            
-                        }
-
-
-                        foreach (string list in lists)
+                        for (int j = 0; j <TitleMatchs.Count ; j++)
                         {
 
+   
                             try
                             {
 
-                            
-                            Match uid = Regex.Match(list, @"\d{10,}");
 
-                            string strhtml = GetUrl("https://miniappfang.58.com/shop/plugin/v1/shopdetail?infoId=" + uid.Groups[0].Value + "&openId=77AA769A2A2C8740ECF1EDB47CD855A04C573D57DAF470CD8AD018A504661F6A");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                                string uid = TitleMatchs[j].Groups[4].Value;
+                                string aurl = "https://miniappfang.58.com/shop/api/shopdetail?infoId="+uid+"&openId=o2FWZ5U7ujcAXk33UDDJnkI05yZE";
 
-                            Match title = Regex.Match(strhtml, @"""title"":""([\s\S]*?)""");
-                            Match contacts = Regex.Match(strhtml, @"""brokerName"":""([\s\S]*?)""");
-                            Match tel = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
+                            string strhtml = GetUrl(aurl);  //定义的GetRul方法 返回 reader.ReadToEnd()
+                               
+                                
+                            //    MatchCollection title = Regex.Matches(strhtml, @"""title"":""([\s\S]*?)""");
+                            //Match contacts = Regex.Match(strhtml, @"""brokerName"":""([\s\S]*?)""");
+                            //Match tel = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
                            
 
-
-                            if (!telList.Contains(tel.Groups[1].Value))
-                            {
-                                if (checkBox1.Checked == true)
-                                {
-                                    insertdata("INSERT INTO tels (tel) VALUES( '" + tel.Groups[1].Value + "')");
-                                }
+                                //if (checkBox1.Checked == true)
+                                //{
+                                //    insertdata("INSERT INTO tels (tel) VALUES( '" + tel.Groups[1].Value + "')");
+                                //}
                                 label2.Text = "正在抓取第" + i + "页";
                                 ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                listViewItem.SubItems.Add(title.Groups[1].Value);
-                                listViewItem.SubItems.Add(contacts.Groups[1].Value);
-                                listViewItem.SubItems.Add(tel.Groups[1].Value);
-                               
+                                listViewItem.SubItems.Add(titles[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(uid);
+                                // listViewItem.SubItems.Add(contacts.Groups[1].Value);
+                                listViewItem.SubItems.Add(gettel(uid));
+                                   
 
 
-                                Application.DoEvents();
+                                    Application.DoEvents();
                                 Thread.Sleep(1000);   //内容获取间隔，可变量
 
                                 while (this.zanting == false)
@@ -213,7 +212,7 @@ namespace _58二手房
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
                                 }
-                            }
+                            
                             catch 
                             {
 
@@ -409,6 +408,11 @@ namespace _58二手房
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://suqian.58.com/shangpucz/");
+        }
+
+        private void 商铺_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

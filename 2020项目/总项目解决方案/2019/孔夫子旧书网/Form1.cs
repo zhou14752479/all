@@ -137,7 +137,7 @@ namespace 孔夫子旧书网
                             listViewItem.SubItems.Add(picName);
 
 
-                           // method.downloadFile(picurl.Groups[1].Value, path, picName + ".jpg");
+                            method.downloadFile(picurl.Groups[1].Value, path, picName + ".jpg","");
 
                         }
 
@@ -225,9 +225,30 @@ namespace 孔夫子旧书网
             getIp();
         }
 
-        private void Button6_Click(object sender, EventArgs e)
+        private void groupBox2_Enter(object sender, EventArgs e)
         {
-            method.ListviewToTxt(listView1);
+            
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.ListViewToCSV(listView1, true);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("确认退出吗？", "退出询问"
+          , MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result != DialogResult.OK)
+            {
+                e.Cancel = true;//告诉窗体关闭这个任务取消
+
+            }
+            else
+            {
+
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
         }
     }
 }

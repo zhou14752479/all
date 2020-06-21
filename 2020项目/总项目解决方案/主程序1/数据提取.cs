@@ -88,5 +88,10 @@ namespace 主程序1
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
+
+        private void 数据提取_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

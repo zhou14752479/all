@@ -145,6 +145,10 @@ namespace 主程序202006
             string html = PostUrl(url,postdata);
             Match t = Regex.Match(html,@"""token"":""([\s\S]*?)""");
             token = t.Groups[1].Value;
+            if (token != "")
+            {
+                MessageBox.Show("登陆成功");
+            }
            
         }
 
@@ -166,7 +170,7 @@ namespace 主程序202006
 
             if (html.Contains(@"weixinyuming"))
             {
-                button1.Enabled = false;
+               
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;

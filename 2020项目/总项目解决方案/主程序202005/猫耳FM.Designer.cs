@@ -49,6 +49,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -138,6 +139,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
@@ -228,6 +230,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(743, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "label3";
+            // 
             // 猫耳FM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -270,5 +281,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
     }
 }

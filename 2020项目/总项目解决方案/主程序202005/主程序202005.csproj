@@ -99,6 +99,12 @@
     <Compile Include="猫耳FM.Designer.cs">
       <DependentUpon>猫耳FM.cs</DependentUpon>
     </Compile>
+    <Compile Include="百度文库下架.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="百度文库下架.Designer.cs">
+      <DependentUpon>百度文库下架.cs</DependentUpon>
+    </Compile>
     <Compile Include="百度文库过滤.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="猫耳FM.resx">
       <DependentUpon>猫耳FM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="百度文库下架.resx">
+      <DependentUpon>百度文库下架.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="百度文库过滤.resx">
       <DependentUpon>百度文库过滤.cs</DependentUpon>

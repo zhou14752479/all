@@ -55,6 +55,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="多线程下载.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="多线程下载.Designer.cs">
+      <DependentUpon>多线程下载.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -67,6 +73,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="多线程下载.resx">
+      <DependentUpon>多线程下载.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,7 +90,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\helper\helper.csproj">
+    <ProjectReference Include="..\..\helper\helper.csproj">
       <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
       <Name>helper</Name>
     </ProjectReference>

@@ -162,14 +162,12 @@ namespace 主程序202005
         public void getdocs()
         {
             string st = "5";
-            //if (radioButton1.Checked == true)
-            //{
+           
+            if (radioButton3.Checked == true)
+            {
+                 st = "7";
+            }
 
-            //}
-            //else if (radioButton2.Checked == true)
-            //{
-            //    st = "9";
-            //}
 
             try
             {
@@ -188,13 +186,153 @@ namespace 主程序202005
                     this.token = token.Groups[1].Value;
                     for (int j = 0; j < ids.Count; j++)
                     {
+                        try
+                        {
+                            if (checkBox1.Checked == true)
+                            {
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                lv1.SubItems.Add(ids[j].Groups[1].Value);
+
+                                lv1.SubItems.Add(titles[j].Groups[1].Value);
+                            }
+                            else
+                            {
+                                if (panduan(titles[j].Groups[1].Value))
+                                {
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                    lv1.SubItems.Add(ids[j].Groups[1].Value);
+
+                                    lv1.SubItems.Add(titles[j].Groups[1].Value);
+
+                                }
+                            }
+                        }
+
+
+                        catch
+                        {
+
+                            continue;
+                        }
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                    }
+                }
+
+                MessageBox.Show("筛选结束");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        /// <summary>
+        /// 共享文档
+        /// </summary>
+        public void getdocs2()
+        {
+            
+          
+
+            try
+            {
+                for (int i = Convert.ToInt32(textBox1.Text.Trim()); i <= Convert.ToInt32(textBox2.Text.Trim()); i++)
+                {
+                    textBox3.Text += "正在筛选第" + i + "页" + "\r\n";
+                    int pn = (i - 1) * 20;
+                    string url = "https://wenku.baidu.com/user/interface/getcontribution?st=9&pn="+pn;
+
+                    string html = GetUrl(url);
+
+                    MatchCollection ids = Regex.Matches(html, @"""doc_id"":""([\s\S]*?)""");
+                    Match token = Regex.Match(html, @"""new_token"":""([\s\S]*?)""");
+                    MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+
+                    this.token = token.Groups[1].Value;
+                    for (int j = 0; j < ids.Count; j++)
+                    {
+                        try
+                        {
+
+
+
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                            lv1.SubItems.Add(ids[j].Groups[1].Value);
+
+                            lv1.SubItems.Add(Unicode2String(titles[j].Groups[1].Value));
+
+
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                        }
+                        catch
+                        {
+
+                            continue;
+                        }
+
+
+                    }
+                }
+
+                MessageBox.Show("筛选结束");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
+        }
+
+        /// <summary>
+        /// 付费文档
+        /// </summary>
+        public void getfufeidocs()
+        {
+
+
+
+            try
+            {
+                for (int i = Convert.ToInt32(textBox1.Text.Trim()); i <= Convert.ToInt32(textBox2.Text.Trim()); i++)
+                {
+                    textBox3.Text += "正在筛选第" + i + "页" + "\r\n";
+                    int pn = (i - 1) * 20;
+                    string url = "https://wenku.baidu.com/user/interface/getuserpaydocs?range_time=1&pn="+pn;
+
+                    string html = GetUrl(url);
+
+                    MatchCollection ids = Regex.Matches(html, @"""doc_id"":""([\s\S]*?)""");
+                   
+                    MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+
+                   
+                    for (int j = 0; j < ids.Count; j++)
+                    {
                         if (panduan(titles[j].Groups[1].Value))
                         {
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                             lv1.SubItems.Add(ids[j].Groups[1].Value);
-                          
-                            lv1.SubItems.Add(titles[j].Groups[1].Value);
-                           
+
+                            lv1.SubItems.Add(Unicode2String(titles[j].Groups[1].Value));
+
                         }
 
                         while (this.zanting == false)
@@ -254,11 +392,40 @@ namespace 主程序202005
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox3.Text = "";
-            COOKIE = method.GetCookies("https://wenku.baidu.com/nduc/browse/uc?_page=home&_redirect=1#/mydocsupload");
-            Thread thread = new Thread(new ThreadStart(getdocs));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            if (radioButton4.Checked == true)
+            {
+                textBox3.Text = "";
+                COOKIE = method.GetCookies("https://wenku.baidu.com/nduc/browse/uc?_page=home&_redirect=1#/mydocsupload");
+               
+                Thread thread = new Thread(new ThreadStart(getfufeidocs));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+            else if(radioButton1.Checked==true  || radioButton3.Checked == true)
+            {
+                textBox3.Text = "";
+
+                COOKIE = method.GetCookies("https://wenku.baidu.com/nduc/browse/uc?_page=home&_redirect=1#/mydocsupload");
+
+                
+                Thread thread = new Thread(new ThreadStart(getdocs));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+            else if (radioButton2.Checked == true)
+                {
+                    textBox3.Text = "";
+                    COOKIE = method.GetCookies("https://wenku.baidu.com/nduc/browse/uc?_page=home&_redirect=1#/mydocsupload");
+               
+                Thread thread = new Thread(new ThreadStart(getdocs2));
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+
+
+           
         }
        
 
@@ -359,6 +526,11 @@ namespace 主程序202005
         private void button6_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

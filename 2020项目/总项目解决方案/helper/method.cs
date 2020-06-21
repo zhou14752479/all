@@ -196,7 +196,7 @@ namespace helper
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                //request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentType = "application/x-www-form-urlencoded";
                 
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
@@ -204,7 +204,7 @@ namespace helper
                 //headers.Add("x-nike-visitid:5");
                 //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
                 //添加头部
-                 request.ContentType = "application/json";
+                // request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
                 //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 request.AllowAutoRedirect = false;
@@ -212,8 +212,8 @@ namespace helper
 
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
-                //request.Headers.Add("origin","https://www.nike.com");
-                request.Referer = "https://accounts.ebay.com/acctxs/user";
+                
+                request.Referer = "https://esearch.ipd.gov.hk/nis-pos-view/tm";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -568,7 +568,7 @@ namespace helper
             //string fileName = GetTimeStamp() + ".xlsx";
             //string fileName= DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")+".xlsx";
             string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".xlsx";
-
+           
 
 
 
@@ -844,8 +844,8 @@ namespace helper
 
             try
             {
-               // System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "1s1k453=ysyk_web41; JSESSIONID=B60EE23B15521D87DF4CF1168CB25BE1; UM_distinctid=1704d60505528a-0f30e2260ef312-2393f61-1fa400-1704d6050576ae; CNZZDATA1253333710=885277478-1581844031-%7C1582260061; CNZZDATA1253416210=1453523664-1581844817-%7C1582261788";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                string COOKIE = "UM_distinctid=1722b6d63256fa-0d957a4cc62be8-6373664-1fa400-1722b6d6326fc; c846d1371fa646f180641dc334a81239=WyI2MDE0ODY4MTQiXQ; ck=a8f77499cd06af5b23c3b1432d54b2991591697419; CNZZDATA5916476=cnzz_eid%3D1513833111-1591696647-%26ntime%3D1591696647; rpk_dc0ba9777c06d718b1a0e8afc6822986=aFFOVg2V9%2BxTMlDrRmoq%2BbUVfnWOe9FJMEJCCnGzm92mrgXqXQA; eduyun_sessionid=3b8c3a9b-00b5-4950-9b42-c14baa810212; eduyun_qpsflag=1; PHPSESSID=ko7d3375p2rstm6ev7q0than74; remember_account=emhvdTE0NzUyNDc5; remember_keys=WmhvdWthaWdlMDA%3D; pullTime=300";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";

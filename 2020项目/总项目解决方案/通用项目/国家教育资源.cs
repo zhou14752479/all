@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -38,7 +39,60 @@ namespace 通用项目
         bool zanting = true;
         bool status = true;
         string year = "5";
-        string cookie = "";
+         string cookie= "UM_distinctid=1722b6d63256fa-0d957a4cc62be8-6373664-1fa400-1722b6d6326fc; c846d1371fa646f180641dc334a81239=WyI2MDE0ODY4MTQiXQ; ck=a8f77499cd06af5b23c3b1432d54b2991591697419; CNZZDATA5916476=cnzz_eid%3D1513833111-1591696647-%26ntime%3D1591696647; rpk_dc0ba9777c06d718b1a0e8afc6822986=aFFOVg2V9%2BxTMlDrRmoq%2BbUVfnWOe9FJMEJCCnGzm92mrgXqXQA; eduyun_sessionid=3b8c3a9b-00b5-4950-9b42-c14baa810212; eduyun_qpsflag=1; PHPSESSID=ko7d3375p2rstm6ev7q0than74; remember_account=emhvdTE0NzUyNDc5; remember_keys=WmhvdWthaWdlMDA%3D; pullTime=300";
+        #endregion
+
+        #region GET请求解决基础连接关闭无法获取HTML
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public  string GetUrl(string Url, string charset)
+        {
+            string outStr = "";
+            string tmpStr = "";
+
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+               
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Referer = "https://n.eduyun.cn/index.php?r=center/person/index";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie",cookie);
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 5000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                try
+                {//循环获取
+                    while ((tmpStr = reader.ReadLine()) != null)
+                    {
+                        outStr += tmpStr;
+                    }
+                }
+                catch
+                {
+
+                }
+                reader.Close();
+                response.Close();
+
+                return outStr;
+
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return ex.ToString();
+
+            }
+
+        }
         #endregion
         /// <summary>
         /// 主程序
@@ -59,17 +113,17 @@ namespace 通用项目
                     fs1.Close();
 
 
-                    string url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/showVersion1s1k.jspx?type=all&date=1568624403391&pageNo=" + i + "&yearMark=" + year + "&sessionKey=PKSpcCwnXGPjaVHtZZ2D=";
-                   
+                    string url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/showVersion1s1k.jspx?type=all&date=1568624403391&pageNo="+i+"&yearMark="+year+"&sessionKey=yVGaPfx0gjHEalQ9JOWr";
 
-                    string html = method.GetUrl2(url, "utf-8");
-                  ;
+                   
+                    string html = GetUrl(url, "utf-8");
+                  
                     MatchCollection IDS = Regex.Matches(html, @"CASE_ID=([\s\S]*?),");
                     foreach (Match ID in IDS)
                     {
 
                         string aurl = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?date=1581939217784&code=-1&sdResIdCaseId=" + ID.Groups[1].Value + "&flags=&guideId=&sk=&sessionKey=OL9YmN5uZwuHbYhX9ZYL";
-                        string ahtml = method.GetUrl2(aurl, "utf-8");
+                        string ahtml = GetUrl(aurl, "utf-8");
                         Match title = Regex.Match(ahtml, @"<h1>([\s\S]*?)</h1>");
                         // Match zuohe = Regex.Match(ahtml, @"<dt>([\s\S]*?)</dt>");
 
@@ -81,7 +135,7 @@ namespace 通用项目
                         {
 
                             string bt = title.Groups[1].Value;
-                            string downUrl = method.GetUrl2("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
+                            string downUrl = GetUrl("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
 
 
                            
@@ -101,20 +155,20 @@ namespace 通用项目
                             textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
 
                         }
-                        //foreach (Match DocId in DocIds2)
-                        //{
+                        foreach (Match DocId in DocIds2)
+                        {
 
-                        //    string bt = DocId.Groups[3].Value;
-                        //    string downUrl = method.GetUrl2("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
-                        //    Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
-                        //    string gs = gs1.Groups[2].Value;
-                        //    if (geshiList.Contains(gs))
-                        //    {
-                        //        method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
+                            string bt = DocId.Groups[3].Value;
+                            string downUrl = GetUrl("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
+                            Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
+                            string gs = gs1.Groups[2].Value;
+                            if (geshiList.Contains(gs))
+                            {
+                                method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
 
-                        //        textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
-                        //    }
-                        //}
+                                textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
+                            }
+                        }
                         while (zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。

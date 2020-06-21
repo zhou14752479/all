@@ -144,6 +144,39 @@ namespace 主程序1
                     sb.Append(titleList[19]); sb.Append("\r\n");
                     sb.Append(articleList[19]);
 
+                        sb.Append(titleList[11]); sb.Append("\r\n");
+                        sb.Append(articleList[11]);
+                        sb.Append("\r\n");
+
+
+                        sb.Append(titleList[2]); sb.Append("\r\n");
+                        sb.Append(articleList[2]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[3]); sb.Append("\r\n");
+                        sb.Append(articleList[3]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[6]); sb.Append("\r\n");
+                        sb.Append(articleList[6]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[7]); sb.Append("\r\n");
+                        sb.Append(articleList[7]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[8]); sb.Append("\r\n");
+                        sb.Append(articleList[8]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[9]); sb.Append("\r\n");
+                        sb.Append(articleList[9]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[13]); sb.Append("\r\n");
+                        sb.Append(articleList[13]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[15]); sb.Append("\r\n");
+                        sb.Append(articleList[15]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[16]); sb.Append("\r\n");
+                        sb.Append(articleList[16]);
+                        sb.Append("\r\n");
+
                     }
                     catch
                     {

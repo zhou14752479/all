@@ -16,7 +16,7 @@ namespace 主程序202005
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 猫耳FM());
+            Application.Run(new 豆丁过滤());
         }
     }
 }

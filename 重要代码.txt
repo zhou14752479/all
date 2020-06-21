@@ -314,3 +314,21 @@ private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
     string url = this.webBrowser1.StatusText;
     this.webBrowser1.Url = new Uri(url);
 }
+
+【时间转时间戳】
+ private int GetCreatetime(DateTime dt)
+        {
+
+            DateTime DateStart = new DateTime(1970, 1, 1, 8, 0, 0);
+
+            return Convert.ToInt32(( dt- DateStart).TotalSeconds);
+
+        }
+
+【label达到指定数量汉字自动换行】
+
+            string cc = textBox2.Text.Trim().Substring(0, 20);//取前20个字符
+            string dd = textBox2.Text.Trim().Substring(20);  //后面字符
+
+                        
+            label1.Text = cc.Trim() + "\n"+ dd.Trim();

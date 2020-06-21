@@ -52,6 +52,7 @@
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -68,7 +69,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -213,7 +213,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.linkLabel4);
             this.groupBox2.Controls.Add(this.linkLabel3);
             this.groupBox2.Controls.Add(this.linkLabel2);
             this.groupBox2.Controls.Add(this.textBox3);
@@ -236,6 +236,18 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数设置";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(721, 142);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel4.TabIndex = 66;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "导出表格二";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // linkLabel3
             // 
@@ -304,7 +316,7 @@
             // 
             this.button5.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button5.ForeColor = System.Drawing.Color.Blue;
-            this.button5.Location = new System.Drawing.Point(395, 126);
+            this.button5.Location = new System.Drawing.Point(395, 125);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(108, 29);
             this.button5.TabIndex = 59;
@@ -399,18 +411,6 @@
             this.timer1.Interval = 1200000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button6.ForeColor = System.Drawing.Color.Blue;
-            this.button6.Location = new System.Drawing.Point(637, 102);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(108, 29);
-            this.button6.TabIndex = 66;
-            this.button6.Text = "导 出 文 本";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -420,6 +420,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "孔夫子旧书网";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -469,9 +470,9 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ColumnHeader columnHeader20;
         private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel linkLabel3;
     }
 }
 

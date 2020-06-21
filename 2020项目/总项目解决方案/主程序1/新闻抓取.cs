@@ -108,6 +108,12 @@ namespace 主程序1
         }
         #endregion
 
+        public static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
+        }
+
         static bool isLuan(string txt)
         {
             var bytes = Encoding.UTF8.GetBytes(txt);
@@ -132,56 +138,51 @@ namespace 主程序1
         /// </summary>
         public void run()
         {
-          
-            string[] array = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < array.Length; i++)
-            {
-                
 
-                string html = GetUrl(array[i]);
-                MatchCollection hrefs = Regex.Matches(html, @"<a.*?href=""(.*?)"".*?>(.*?)</a>");
+            try
+            {
+
+
 
                 StringBuilder sb = new StringBuilder();
-                int intLong = 0;
-                int a = 1;
-                for (int j = 0; j < hrefs.Count; j++)
+                for (int i = 1; i < 51; i++)
+            {
+                string url = "https://feed.mix.sina.com.cn/api/roll/get?pageid=153&lid=2968&k=&num=50&page="+i+"&r=0.5994593305544764&callback=jQuery1112040224612137885263_1590907640770&_=1590907640781";
+
+                string html = GetUrl(url);
+                MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+
+               
+                //int intLong = 0;
+                //int a = 1;
+                for (int j = 0; j < titles.Count; j++)
                 {
-                    try
-                    {
-                        string URL = hrefs[j].Groups[1].Value;
-                        string ahtml = GetUrl(URL);
-                        Match title = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>");
-                        label2.Text = "正在采集："+title.Groups[1].Value;
-                        if (title.Groups[1].Value != "" && !lists.Contains(title.Groups[1].Value))
+                    string tt = Unicode2String(titles[j].Groups[1].Value);
+                       
+                        label2.Text = tt;
+                        if (tt != "" && !lists.Contains(tt))
                         {
-                            lists.Add(title.Groups[1].Value);
-                            sb.Append(title.Groups[1].Value + "\r\n");
+                            lists.Add(tt);
+                            sb.Append(tt + "\r\n");
                             
                         }
-                        intLong = System.Text.Encoding.Default.GetByteCount(sb.ToString());
-                        if (intLong >50000)
-                        {
+                        //intLong = System.Text.Encoding.Default.GetByteCount(sb.ToString());
+                        //if (intLong >50000)
+                        //{
 
-                            FileStream fs1 = new FileStream(path + a + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-                            StreamWriter sw = new StreamWriter(fs1);
-                            sw.WriteLine(sb.ToString());
-                            sw.Close();
-                            fs1.Close();
-                            a = a + 1;
-                            sb.Clear();
+                        //    FileStream fs1 = new FileStream(path + a + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                        //    StreamWriter sw = new StreamWriter(fs1);
+                        //    sw.WriteLine(sb.ToString());
+                        //    sw.Close();
+                        //    fs1.Close();
+                        //    a = a + 1;
+                        //    sb.Clear();
 
 
 
-                        }
-                       
-                       
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show(ex.ToString());
-                       // continue;
-                    }
+                        //}
+                              
+                
 
                     while (this.zanting == false)
                     {
@@ -189,8 +190,24 @@ namespace 主程序1
                     }
 
                 }
-              
+                    
 
+                }
+
+                label2.Text = "完毕";
+                FileStream fs1 = new FileStream(path +"结果.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                StreamWriter sw = new StreamWriter(fs1);
+                sw.WriteLine(sb.ToString());
+                sw.Close();
+                fs1.Close();
+               
+                sb.Clear();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
             }
 
         }

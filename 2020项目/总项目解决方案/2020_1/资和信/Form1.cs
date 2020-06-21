@@ -389,52 +389,62 @@ namespace 资和信
                 if (array[i] != "")
                 {
 
-                    string JINE = "";
-                    string DATE = "";
-                    int a = 0;
-                    while (JINE == "")
+
+                    try
                     {
-                        Image image = Image.FromStream(getStream("https://www.zihexin.net/Verifycode2.do"));
-
-                        //通过超人打码识别
-                        //OCR ocr = new OCR();
-                        //string value = ocr.Shibie("zhou14752479", "zhoukaige00", image);  //通过超人打码识别
-
-                        //通过C#代码识别
-                        //pictureBox1.Image = image;
-                        Bitmap bmp = new Bitmap(image);
-
-                        string value = imgdo(bmp);
-
-                        string html = getUrl("https://www.zihexin.net/client/card/inquiry.do?key=&index=index&card_no=" + array[i] + "&verify_code=" + value);
 
 
-                        Match key = Regex.Match(html, @"key"" value=""([\s\S]*?)""");
+                        string JINE = "";
+                        string DATE = "";
+                        int a = 0;
+                        while (JINE == "")
+                        {
+                            Image image = Image.FromStream(getStream("https://www.zihexin.net/Verifycode2.do"));
+
+                            //通过超人打码识别
+                            //OCR ocr = new OCR();
+                            //string value = ocr.Shibie("zhou14752479", "zhoukaige00", image);  //通过超人打码识别
+
+                            //通过C#代码识别
+                            //pictureBox1.Image = image;
+                            Bitmap bmp = new Bitmap(image);
+
+                            string value = imgdo(bmp);
+
+                            string html = getUrl("https://www.zihexin.net/client/card/inquiry.do?key=&index=index&card_no=" + array[i] + "&verify_code=" + value);
 
 
-                        string strhtml = getUrl("https://www.zihexin.net/cardsearch/card/cardCheck.do?card_no=" + array[i] + "&key=" + key.Groups[1].Value);
-                        Match jine = Regex.Match(strhtml, @"余额:</h3>([\s\S]*?)</dl>");
-                        Match date = Regex.Match(strhtml, @"有效期:</h3>([\s\S]*?)</dl>");
+                            Match key = Regex.Match(html, @"key"" value=""([\s\S]*?)""");
 
-                        JINE = jine.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
-                        DATE = date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
-                        label1.Text = array[i] + "：正在第" + a + "次识别.....";
-                        a++;
 
-                        if (a > 20)
-                            break;
+                            string strhtml = getUrl("https://www.zihexin.net/cardsearch/card/cardCheck.do?card_no=" + array[i] + "&key=" + key.Groups[1].Value);
+                            Match jine = Regex.Match(strhtml, @"余额:</h3>([\s\S]*?)</dl>");
+                            Match date = Regex.Match(strhtml, @"有效期:</h3>([\s\S]*?)</dl>");
+
+                            JINE = jine.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
+                            DATE = date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
+                            label1.Text = array[i] + "：正在第" + a + "次识别.....";
+                            a++;
+
+                            if (a > 20)
+                                break;
+                        }
+                        label1.Text = array[i] + "：识别成功";
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(array[i]);
+                        lv1.SubItems.Add(JINE);
+                        lv1.SubItems.Add(DATE);
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+
                     }
-                    label1.Text = array[i] + "：识别成功";
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                    lv1.SubItems.Add(array[i]);
-                    lv1.SubItems.Add(JINE);
-                    lv1.SubItems.Add(DATE);
-                    while (this.zanting == false)
+                    catch
                     {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+
+                        continue;
                     }
-
-
                 }
 
 
@@ -443,7 +453,7 @@ namespace 资和信
             }
             TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
             string pathname = AppDomain.CurrentDomain.BaseDirectory + ts.TotalSeconds.ToString() + ".xlsx";
-            //method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true, pathname);
+            method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true);
         }
 
 
@@ -534,16 +544,16 @@ namespace 资和信
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            Image image = Image.FromStream(getStream("http://czt.sc.gov.cn/kj/captcha.jpg?randdom=0.8007734420064332"));
+            //Image image = Image.FromStream(getStream("http://czt.sc.gov.cn/kj/captcha.jpg?randdom=0.8007734420064332"));
 
-            Bitmap sourceBitmap = new Bitmap(image);
+            //Bitmap sourceBitmap = new Bitmap(image);
             
-            pictureBox1.Image = sourceBitmap;
+            //pictureBox1.Image = sourceBitmap;
 
 
-            string value = imgdo(sourceBitmap);
-            MessageBox.Show(value);
-            listView1.Items.Clear();
+            //string value = imgdo(sourceBitmap);
+            //MessageBox.Show(value);
+            //listView1.Items.Clear();
 
 
         }

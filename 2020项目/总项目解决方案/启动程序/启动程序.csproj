@@ -168,12 +168,6 @@
     <Compile Include="百度搜索.Designer.cs">
       <DependentUpon>百度搜索.cs</DependentUpon>
     </Compile>
-    <Compile Include="短标题采集.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="短标题采集.Designer.cs">
-      <DependentUpon>短标题采集.cs</DependentUpon>
-    </Compile>
     <Compile Include="社保查询.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +203,12 @@
     </Compile>
     <Compile Include="题库抓取.Designer.cs">
       <DependentUpon>题库抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="题库抓取2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="题库抓取2.Designer.cs">
+      <DependentUpon>题库抓取2.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -279,9 +279,6 @@
     <EmbeddedResource Include="百度搜索.resx">
       <DependentUpon>百度搜索.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="短标题采集.resx">
-      <DependentUpon>短标题采集.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="社保查询.resx">
       <DependentUpon>社保查询.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="题库抓取.resx">
       <DependentUpon>题库抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="题库抓取2.resx">
+      <DependentUpon>题库抓取2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

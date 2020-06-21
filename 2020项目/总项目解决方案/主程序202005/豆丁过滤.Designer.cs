@@ -58,6 +58,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -87,11 +88,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.radioButton1);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.textBox8);
             this.groupBox2.Location = new System.Drawing.Point(11, 16);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(180, 185);
+            this.groupBox2.Size = new System.Drawing.Size(213, 185);
             this.groupBox2.TabIndex = 106;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "导入关键字";
@@ -179,19 +181,19 @@
             this.全选ToolStripMenuItem,
             this.取消全选ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
             // 
             // 全选ToolStripMenuItem
             // 
             this.全选ToolStripMenuItem.Name = "全选ToolStripMenuItem";
-            this.全选ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.全选ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.全选ToolStripMenuItem.Text = "全选";
             this.全选ToolStripMenuItem.Click += new System.EventHandler(this.全选ToolStripMenuItem_Click);
             // 
             // 取消全选ToolStripMenuItem
             // 
             this.取消全选ToolStripMenuItem.Name = "取消全选ToolStripMenuItem";
-            this.取消全选ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.取消全选ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.取消全选ToolStripMenuItem.Text = "取消全选";
             this.取消全选ToolStripMenuItem.Click += new System.EventHandler(this.取消全选ToolStripMenuItem_Click);
             // 
@@ -337,6 +339,18 @@
             this.label4.TabIndex = 111;
             this.label4.Text = "删除说明：";
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(120, 97);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(95, 16);
+            this.radioButton1.TabIndex = 56;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "不设置关键字";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // 豆丁过滤
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -403,5 +417,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

@@ -34,12 +34,12 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -115,6 +115,15 @@
             this.columnHeader2.Text = "问题";
             this.columnHeader2.Width = 200;
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "答案";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "解析";
+            this.columnHeader8.Width = 300;
+            // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "选项A";
@@ -135,19 +144,10 @@
             this.columnHeader6.Text = "选项D";
             this.columnHeader6.Width = 100;
             // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "答案";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "解析";
-            this.columnHeader8.Width = 300;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(192, 39);
+            this.label2.Location = new System.Drawing.Point(12, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 15;
@@ -156,7 +156,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(44, 39);
+            this.label1.Location = new System.Drawing.Point(12, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 14;
@@ -164,24 +164,26 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.Font = new System.Drawing.Font("宋体", 10F);
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(194, 57);
+            this.comboBox2.Location = new System.Drawing.Point(83, 61);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.Size = new System.Drawing.Size(252, 21);
             this.comboBox2.TabIndex = 13;
             // 
             // comboBox1
             // 
+            this.comboBox1.Font = new System.Drawing.Font("宋体", 10F);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(44, 57);
+            this.comboBox1.Location = new System.Drawing.Point(83, 17);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.Size = new System.Drawing.Size(252, 21);
             this.comboBox1.TabIndex = 12;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(639, 43);
+            this.button3.Location = new System.Drawing.Point(856, 39);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 34);
             this.button3.TabIndex = 9;
@@ -191,7 +193,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(500, 43);
+            this.button2.Location = new System.Drawing.Point(751, 39);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 34);
             this.button2.TabIndex = 8;
@@ -201,7 +203,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(348, 43);
+            this.button1.Location = new System.Drawing.Point(617, 39);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(128, 34);
             this.button1.TabIndex = 7;

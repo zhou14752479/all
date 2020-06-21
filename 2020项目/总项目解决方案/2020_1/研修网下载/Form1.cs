@@ -102,12 +102,12 @@ namespace 研修网下载
 
                                     method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
 
-                                    textBox6.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
+                                    textBox6.Text += DateTime.Now.ToString()+"  " + i + "成功：" + bt + "\r\n";
                                 }
 
                                 else
                                 {
-                                    textBox6.Text += DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
+                                    textBox6.Text = DateTime.Now.ToString() + "格式不符合跳过下载" + "\r\n";
                                 }
 
 
@@ -128,7 +128,7 @@ namespace 研修网下载
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
 
-                        Thread.Sleep(Convert.ToInt32(textBox3.Text) * 1000);
+                        Thread.Sleep(13000);
                         if (status == false)
                         {
                             return;
@@ -257,23 +257,11 @@ namespace 研修网下载
 
 
 
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html","utf-8");
-
-            if (!html.Contains(@"yanxiuwang"))
-            {
-
-                MessageBox.Show("验证失败");
-                return;
-
-
-            }
-
-            #endregion
+            
 
                  textBox6.Text += "开始下载";
                 cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
+            MessageBox.Show(cookie);
                 status = true;
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
@@ -368,9 +356,9 @@ namespace 研修网下载
             {
                 if (e1.GetAttribute("id") == "submit")
                 {
-                   e1.InvokeMember("click");
+                    e1.InvokeMember("click");
                 }
-              
+
             }
 
         }

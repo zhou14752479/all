@@ -16,7 +16,7 @@ namespace 主程序202006
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 二手房58监控());
+            Application.Run(new 工程项目());
         }
     }
 }

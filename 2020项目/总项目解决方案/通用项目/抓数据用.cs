@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CsharpHttpHelper;
 using helper;
 
 namespace 通用项目
@@ -88,19 +90,22 @@ namespace 通用项目
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "";
+                string COOKIE = "li_sugr=808db609-6aab-4657-9184-48a0ee7ae95c; bcookie=\"v = 2 & f300ec17 - 3a71 - 4df5 - 8d92 - 0e058b437d99\"; bscookie=\"v = 1 & 20200529085934da055298 - cc70 - 4cbc - 83bb - cca2122ba5c3AQHZ_KzKBYMEk6wfup9UvPd9PD0UcLG7\"; lissc=1; _ga=GA1.2.230708459.1591079163; aam_uuid=45122084896780640190261441493664391323; li_rm=AQFQU6LmywSLFwAAAXJzttu30xP9gvVwor7r6xU0IUgUvpnqC-7e3BIj-abF6oFJ98h_PXk26M-eLHH4xVNu3jv9eGExPJCH8YrhDVk7_UrZBwTCmbGyHp13; liap=true; wwepo=true; JSESSIONID=\"ajax: 8788234651069068391\"; _guid=0f5a842b-d3e8-4fdc-9c35-0daf78446164; li_cc=AQGG9wD_LyKU3wAAAXLJ_4uYZWWAupTYwVNqi_S_7AVFWE0zPCe_EHHkrY8VWnJz5xOyG4YRAg9y; li_at=AQEDASjHgrsDytrQAAABcnO2-K4AAAFy7uCfflYAGlZawAFgAo1fIDOc35D1ZZ30Bu5fbx2Bm-WoU7cSnGLW459_tDfv9OKZhcLtidcQzQJnxguCr3AoZZkuIdw5_tqzg_K_XqHmSb0HCFvcG1TDe3Sp; sl=\"v = 1 & O1hPx\"; UserMatchHistory=AQLJzh7fFZXsCwAAAXLK1Cchu6onIsM1pK4WY9GGC8PkibUNislc9BP8agW5zfYusjEpBWy7ZGGj17xzsZ8ixYxRNYCsG9_4ryRaOpWEsSd9DTkwYhuWuL0N4MeVs2TVhd_ah-vXjg; li_oatml=AQEPTrrMt2BY4QAAAXLK1ClMdhdCx850pO_3Vjfx0IUaDlT8Yx1VsQekQ1f0pUbBGPXaSopj6iWsgzWs-6hFzBRsBQO_zjXw; lang=v=2&lang=zh-cn; AMCVS_14215E3D5995C57C0A495C55%40AdobeOrg=1; AMCV_14215E3D5995C57C0A495C55%40AdobeOrg=-408604571%7CMCIDTS%7C18433%7CvVersion%7C4.6.0%7CMCMID%7C44905754066620073840247694249386775376%7CMCAAMLH-1593219847%7C11%7CMCAAMB-1593219847%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1592622247s%7CNONE%7CMCCIDH%7C-1461880369; UserMatchHistory=AQI9kUv26ioOPAAAAXLPgJnUnZ5lJfSPKwVbfx_z8KDrflGwlCynyKHSXV83dTKgOixTcGcJaEfUAOMbfMvsbbDt8033aZGUbCRk_3LJUhCHOPERmFJX042bprvi0KjlfwjkBQ4a6SjTOhxcKZyec_gFODqGWp6hm4UBvReKKTi256FtTjXBEM-AjR6Ix7Q9qc8e2Pbnq7-kVaalH9M2ifVDsGrVV64K_Puks0V9yHiypzu6mTlFpMDuRc0KKZwaduM6GfeutRyz4S9z3xYMk-jvVLSexc0aSaQ; lidc=\"b = OB71:s = O:r = O:g = 2077:u = 6:i = 1592619212:t = 1592628010:v = 1:sig = AQEJqMZYCVEErtygn7b5W0AjPLB9VOAc\"";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "https://servicewechat.com/wx734c1ad7b3562129/164/page-frame.html";
-                //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.12(0x17000c2c) NetType/4G Language/zh_CN";
+                request.Referer = "https://www.linkedin.com/search/results/all/?keywords=Ashley%20Alvarado%20Director%20of%20Community%20Engagement&origin=GLOBAL_SEARCH_HEADER";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.12(0x17000c2c) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("openid:D-7ZGWvO2JerjFo_AUjVuOXQvaaLjsnT029qPSVy6_0");
-               
+                headers.Add("csrf-token: ajax:8788234651069068391");
+                headers.Add("x-li-page-instance: urn:li:page:d_flagship3_search_srp_top;HFHbmRoHQqO4j9gAsoJOoQ==");
+                headers.Add("x-li-track: {\"clientVersion\":\"1.6.7328.1\",\"osName\":\"web\",\"timezoneOffset\":8,\"deviceFormFactor\":\"DESKTOP\",\"mpName\":\"voyager - web\",\"displayDensity\":1,\"displayWidth\":1920,\"displayHeight\":1080}");
+                headers.Add("x-restli-protocol-version: 2.0.0");
+
                 //添加头部
-                request.KeepAlive = true;
+               // request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.Timeout = 5000;
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -441,7 +446,7 @@ namespace 通用项目
             //thread.Start();
             //Control.CheckForIllegalCrossThreadCalls = false;
 
-            Thread thread = new Thread(new ThreadStart(zhuashuju));
+            Thread thread = new Thread(new ThreadStart(lingying));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
         }
@@ -475,6 +480,164 @@ namespace 通用项目
         private void 抓数据用_Load(object sender, EventArgs e)
         {
 
+        }
+        OpenFileDialog Ofile = new OpenFileDialog();
+
+
+        DataSet ds = new DataSet();
+
+
+        private string GetHttp20200621091830(string url)
+        {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+            HttpHelper http = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = url,
+                Method = "GET",
+                Host = "www.linkedin.com",
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36",
+                Referer = "https://www.linkedin.com/in/ashmalvarado/",
+                Cookie =textBox3.Text.Trim(),
+	};
+       
+	item.Header.Add("csrf-token","ajax:8788234651069068391");
+	item.Header.Add("x-restli-protocol-version","2.0.0");
+	item.Header.Add("x-li-lang","zh_CN");
+	item.Header.Add("x-li-page-instance","urn:li:page:d_UNKNOWN_ROUTE_search.error;VgBxhDrUSQaSPqakS+Gk9Q==");
+	
+	item.Header.Add("Sec-Fetch-Site","same-origin");
+	item.Header.Add("Sec-Fetch-Mode","cors");
+	item.Header.Add("Sec-Fetch-Dest","empty");
+	item.Header.Add("Accept-Encoding","gzip, deflate, br");
+	item.Header.Add("Accept-Language","zh-CN,zh;q=0.9");
+	HttpResult result = http.GetHtml(item);
+        string html = result.Html;
+	return html;
+}
+
+
+
+
+
+    #region  领英
+    public void  lingying()
+        {
+            try
+            {
+
+
+
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+
+                    
+                    string title = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    string name = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    string key = name + " " + title;
+
+                    
+                   // string url = "https://www.linkedin.com/search/results/all/?keywords="+ key.Replace(" ", "%20") + "&origin=GLOBAL_SEARCH_HEADER";
+
+                    string url = "https://www.linkedin.com/voyager/api/typeahead/hitsV2?keywords=" + key.Replace(" ", "%20") + "&origin=GLOBAL_SEARCH_HEADER&q=blended";
+                    string html = GetHttp20200621091830(url);
+                    textBox3.Text = html;
+                    return;
+                    Match a1 = Regex.Match(html, @"dms/image/([\s\S]*?)/");
+                    Match a2 = Regex.Match(html, @"beta&amp;t&#61;([\s\S]*?)&");
+
+                    string picurl = "https://media.licdn.cn/dms/image/"+ a1.Groups[1].Value + "/profile-displayphoto-shrink_100_100/0?e=1597881600&v=beta&t="+ a2.Groups[1].Value;
+
+                    if (a1.Groups[1].Value!="")
+                    {
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+
+                        listViewItem.SubItems.Add(name);
+                        listViewItem.SubItems.Add(title);
+                        listViewItem.SubItems.Add(picurl);
+                    }
+                    else
+                    {
+
+                        string url2 = "https://www.linkedin.com/voyager/api/typeahead/hitsV2?keywords=" + key.Replace(" ", "%20") + "&origin=GLOBAL_SEARCH_HEADER&q=blended";
+
+                        string html2 = GetHttp20200621091830(url2);
+
+                        Match a11 = Regex.Match(html2, @"dms/image/([\s\S]*?)/");
+                        Match a22 = Regex.Match(html2, @"beta&amp;t&#61;([\s\S]*?)&");
+
+                        
+                        string picurl2 = "https://media.licdn.cn/dms/image/" + a11.Groups[1].Value + "/profile-displayphoto-shrink_100_100/0?e=1597881600&v=beta&t=" + a22.Groups[1].Value;
+
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+
+                        listViewItem.SubItems.Add(name);
+                        listViewItem.SubItems.Add(title);
+                        listViewItem.SubItems.Add(picurl2);
+
+                    }
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+
+                    
+
+                }
+
+                MessageBox.Show("采集完成");
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+
+
+
+        #endregion
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Clear();
+
+
+            this.ds.Tables.Clear();
+            this.Ofile.FileName = "";
+            this.dataGridView1.DataSource = "";
+            this.Ofile.ShowDialog();
+            string fileName = this.Ofile.FileName;
+           
+
+                    string connectionString = " Provider = Microsoft.Jet.OLEDB.4.0 ; Data Source = " + fileName + "; Extended Properties='Excel 8.0;HDR=YES;IMEX=1'";
+                    OleDbConnection oleDbConnection = new OleDbConnection(connectionString);
+                    oleDbConnection.Open();
+                    DataTable oleDbSchemaTable = oleDbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[]
+                    {
+                    null,
+                    null,
+                    null,
+                    "TABLE"
+                    });
+                    string str = oleDbSchemaTable.Rows[0]["TABLE_NAME"].ToString();
+                    string selectCommandText = "select * from [" + str + "]";
+                    OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(selectCommandText, oleDbConnection);
+                    oleDbDataAdapter.Fill(this.ds, "temp");
+                    oleDbConnection.Close();
+                    this.dataGridView1.DataSource = this.ds.Tables[0];
+
+                    string csvDir = openFileDialog1.FileName.ToString();
+            
+        }
+
+        private void 复制网址ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(listView1.SelectedItems[0].SubItems[3].Text);
         }
     }
 }

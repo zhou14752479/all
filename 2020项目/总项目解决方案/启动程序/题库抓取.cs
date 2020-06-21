@@ -26,14 +26,14 @@ namespace 启动程序
 
         }
 
-        public string token = "VTJGc2RHVmtYMS9yU1lwV3hnaFVERy9zZXRJYTkvRHZwM2ozakhtdllnWlZFOS9ZUnJZcERFZThkVGo1UmNOV2Fhbk4zQkV5VzJUVzRhMnMxem9iQ2c9PSMxNTg1ODEwMTI3MDI0";
+        public string token = "VTJGc2RHVmtYMTlyQlN2RGJ5eE9xQnZzclNRRFcyK2NOTWdGN000bDl5TDJPT1B6L0RQTnpDd3Y1a3NVNCsxYWJaZXdIQ0wxYnNIUWdtMzdLdm96NGc9PSMxNTkyMjcwMDEzODY0";
 
         Dictionary<string, string> dic = new Dictionary<string, string>();
         public void getitems()
         {
             comboBox1.Items.Clear();
             dic.Clear();
-            string url = "https://manfenzhengzhi.ixunke.cn/api/questions_member?myQBank=true&page=1&pageSize=10&app=true&token=" + token;
+            string url = "https://manfenzhengzhi.ixunke.cn/api/questions_member?myQBank=true&page=1&pageSize=10&app=true&token=" + token;   //改变pagesize获取全部，目前是10不是全部题库
             string html = method.GetUrl(url, "utf-8");
 
             MatchCollection items = Regex.Matches(html, @"\{""id"":([\s\S]*?)\,""title"":""([\s\S]*?)""");
@@ -45,11 +45,23 @@ namespace 启动程序
                 comboBox1.Items.Add(items[i].Groups[2].Value);
                 dic.Add(items[i].Groups[2].Value, items[i].Groups[1].Value);
             }
+
+            //每次付费增加的题库
+            dic.Add("刷千题---马原", "21");
+            dic.Add("刷千题---史纲", "22");
+            dic.Add("刷千题---思修", "23");
+            dic.Add("刷千题---毛中特", "24");
+            comboBox1.Items.Add("刷千题---马原");
+            comboBox1.Items.Add("刷千题---史纲");
+            comboBox1.Items.Add("刷千题---思修");
+            comboBox1.Items.Add("刷千题---毛中特");
+
         }
 
         Dictionary<string, string> dic2 = new Dictionary<string, string>();
         public void getitems2(string BankID)
         {
+           
             comboBox2.Items.Clear();
             dic2.Clear();
             string url = "https://manfenzhengzhi.ixunke.cn/api/chapter?qBankId=" + BankID + "&app=true&token=" + token;
@@ -60,9 +72,11 @@ namespace 启动程序
 
             for (int i = 0; i < items.Count; i++)
             {
-
-                comboBox2.Items.Add(items[i].Groups[3].Value);
-                dic2.Add(items[i].Groups[3].Value, items[i].Groups[1].Value);
+                if (!dic2.ContainsKey(items[i].Groups[3].Value))
+                {
+                    comboBox2.Items.Add(items[i].Groups[3].Value);
+                    dic2.Add(items[i].Groups[3].Value, items[i].Groups[1].Value);
+                }
             }
         }
 
@@ -74,8 +88,8 @@ namespace 启动程序
         public void run()
         {
 
-            string bankId = dic[comboBox1.Text];
-            string chapterId = dic2[comboBox2.Text];
+            string bankId = dic[comboBox1.Text.Trim()];
+            string chapterId = dic2[comboBox2.Text.Trim()];
 
             try
             {
@@ -89,7 +103,7 @@ namespace 启动程序
 
                 string url = "https://manfenzhengzhi.ixunke.cn/api/question?app=true&token=" + token + "&qBankId=" + bankId + "&chapterId=" + chapterId + "&practise=1&studentAnswer=true";
 
-
+               
                 string html = method.GetUrl(url, "utf-8");
                 MatchCollection questions = Regex.Matches(html, @"""stem"":""([\s\S]*?)""\,");
 
@@ -108,7 +122,7 @@ namespace 启动程序
                         lv1.SubItems.Add(anwsers[j].Groups[1].Value);
                         lv1.SubItems.Add(analysis[j].Groups[1].Value);
 
-                        string[] option = options[j].Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
+                        string[] option = options[j].Groups[1].Value.Split(new string[] { "\"," }, StringSplitOptions.None);
                         lv1.SubItems.Add(option[0]);
                         lv1.SubItems.Add(option[1]);
                         lv1.SubItems.Add(option[2]);

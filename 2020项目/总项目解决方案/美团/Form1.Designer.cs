@@ -31,14 +31,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -83,14 +80,11 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.linkLabel5);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.linkLabel9);
-            this.groupBox2.Controls.Add(this.linkLabel4);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button2);
@@ -106,29 +100,13 @@
             // linkLabel5
             // 
             this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(420, 123);
+            this.linkLabel5.Location = new System.Drawing.Point(320, 123);
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.Size = new System.Drawing.Size(53, 12);
             this.linkLabel5.TabIndex = 18;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "导出所有";
             this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel5_LinkClicked);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(505, 90);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(73, 21);
-            this.textBox4.TabIndex = 17;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(422, 96);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 12);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "导出运营商：";
             // 
             // checkBox2
             // 
@@ -151,6 +129,7 @@
             this.checkBox1.TabIndex = 14;
             this.checkBox1.Text = "去除座机";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button5
@@ -184,17 +163,6 @@
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "清空数据";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel9_LinkClicked);
-            // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(320, 123);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel4.TabIndex = 5;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "导出电话";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel4_LinkClicked);
             // 
             // button4
             // 
@@ -464,7 +432,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.LinkLabel linkLabel9;
-        private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
@@ -490,8 +457,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.LinkLabel linkLabel5;

@@ -196,6 +196,7 @@
             this.Name = "数据提取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "数据提取";
+            this.Load += new System.EventHandler(this.数据提取_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

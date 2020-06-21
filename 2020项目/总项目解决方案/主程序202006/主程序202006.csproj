@@ -31,8 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\主程序202005\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,19 +49,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="shopee.cs">
+    <Compile Include="aliexpress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="shopee.Designer.cs">
-      <DependentUpon>shopee.cs</DependentUpon>
+    <Compile Include="aliexpress.Designer.cs">
+      <DependentUpon>aliexpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="heepsy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="heepsy.Designer.cs">
+      <DependentUpon>heepsy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trade Mark Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trade Mark Search.Designer.cs">
+      <DependentUpon>Trade Mark Search.cs</DependentUpon>
     </Compile>
     <Compile Include="二手房58监控.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="二手房58监控.Designer.cs">
       <DependentUpon>二手房58监控.cs</DependentUpon>
+    </Compile>
+    <Compile Include="工程项目.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工程项目.Designer.cs">
+      <DependentUpon>工程项目.cs</DependentUpon>
     </Compile>
     <Compile Include="微信域名检测.cs">
       <SubType>Form</SubType>
@@ -70,6 +93,24 @@
     <Compile Include="我的发票.Designer.cs">
       <DependentUpon>我的发票.cs</DependentUpon>
     </Compile>
+    <Compile Include="手机网页58.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="手机网页58.Designer.cs">
+      <DependentUpon>手机网页58.cs</DependentUpon>
+    </Compile>
+    <Compile Include="监控.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="监控.Designer.cs">
+      <DependentUpon>监控.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="aliexpress.resx">
+      <DependentUpon>aliexpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="heepsy.resx">
+      <DependentUpon>heepsy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -79,17 +120,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="shopee.resx">
-      <DependentUpon>shopee.cs</DependentUpon>
+    <EmbeddedResource Include="Trade Mark Search.resx">
+      <DependentUpon>Trade Mark Search.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="二手房58监控.resx">
       <DependentUpon>二手房58监控.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工程项目.resx">
+      <DependentUpon>工程项目.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="微信域名检测.resx">
       <DependentUpon>微信域名检测.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="我的发票.resx">
       <DependentUpon>我的发票.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="手机网页58.resx">
+      <DependentUpon>手机网页58.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="监控.resx">
+      <DependentUpon>监控.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -84,8 +84,6 @@ namespace 主程序202006
         public void run()
         {
 
-            while (status==true)
-            {
                 label2.Text = DateTime.Now.ToString() + "  ：正在监控...";
                 string cityId = textBox1.Text.Trim();
 
@@ -115,45 +113,47 @@ namespace 主程序202006
                 MatchCollection a2 = Regex.Matches(html, @"""hall_num"":""([\s\S]*?)""");  //户型
                 MatchCollection a3 = Regex.Matches(html, @"""toilet_num"":""([\s\S]*?)""");  //户型
 
-                for (int j = 0; j < titles.Count; j++)
-                {
-
+                int j = 0;
 
                     if (!lists.Contains(titles[j].Groups[1].Value))
                     {
-                        lists.Add(titles[j].Groups[1].Value);
 
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(titles[j].Groups[1].Value);
-                        lv1.SubItems.Add(names[j].Groups[2].Value);
-                        lv1.SubItems.Add(a1[j].Groups[1].Value + "-" + a2[j].Groups[1].Value + "-" + a3[j].Groups[1].Value);
-                        lv1.SubItems.Add(area_nums[j].Groups[1].Value);
-                        lv1.SubItems.Add(prices[j].Groups[1].Value);
-                        lv1.SubItems.Add(loucengs[j].Groups[1].Value);
-                        lv1.SubItems.Add(orients[j].Groups[1].Value);
-                        lv1.SubItems.Add(fitment_names[j].Groups[1].Value);
-                        lv1.SubItems.Add(shipTypeStrs[j].Groups[1].Value);
-                        lv1.SubItems.Add(address[j].Groups[1].Value);
+                try
+                {
+                    lists.Add(titles[j].Groups[1].Value);
 
-                        lv1.SubItems.Add(ConvertStringToDateTime(post_date[j].Groups[1].Value).AddSeconds(5).ToString());
-                        lv1.SubItems.Add(DateTime.Now.ToString());
+                    textBox2.Text = "标题:" + titles[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "小区:" + names[j].Groups[2].Value + "\r\n";
+                    textBox2.Text += "户型:" + a1[j].Groups[1].Value + "-" + a2[j].Groups[1].Value + "-" + a3[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "面积:" + area_nums[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "售价:" + prices[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "楼层:" + loucengs[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "朝向:" + orients[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "装修:" + fitment_names[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "类型:" + shipTypeStrs[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "位置:" + address[j].Groups[1].Value + "\r\n";
+                    textBox2.Text += "发布时间:" + ConvertStringToDateTime(post_date[j].Groups[1].Value).ToString() + "\r\n";
+                    textBox2.Text += "当前时间:" + DateTime.Now .ToString() + "\r\n";
+                    textBox2.Text += "联系信息:" + users[j].Groups[2].Value + mobiles[j].Groups[1].Value + "\r\n";
 
-                        lv1.SubItems.Add(users[j].Groups[2].Value + mobiles[j].Groups[1].Value);
 
 
-                        if (listView1.Items.Count > 2)
-                        {
-                            listView1.EnsureVisible(listView1.Items.Count - 1);
-                        }
+                    if (status == false)
+                        return;
 
-                        if (status == false)
-                            return;
-                    }
+                    string path = AppDomain.CurrentDomain.BaseDirectory + titles[j].Groups[1].Value + ".txt";
+                    System.IO.File.WriteAllText(path, textBox2.Text.Trim(), Encoding.UTF8);
                 }
+                catch 
+                {
 
-                Thread.Sleep(2000);
-
+                    
+                }
+                       
             }
+              
+
+            
 
 
         }
@@ -171,11 +171,32 @@ namespace 主程序202006
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+
             status = true;
-            button1.Enabled = false;
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            //button1.Enabled = false;
+            //Thread thread = new Thread(new ThreadStart(run));
+            //thread.Start();
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"ershoufangjiankong"))
+            {
+                timer1.Start();
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -183,19 +204,20 @@ namespace 主程序202006
             label2.Text = "停止监控";
             status = false;
             button1.Enabled = true;
+            timer1.Stop();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-        }
+        Thread thread;
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             
         }
 
-
-    
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+          
+            run();
+        }
     }
 }

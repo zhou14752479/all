@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(抓数据用));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -40,6 +41,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -51,7 +53,10 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button9 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -94,6 +99,7 @@
             this.复制网址ToolStripMenuItem.Name = "复制网址ToolStripMenuItem";
             this.复制网址ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.复制网址ToolStripMenuItem.Text = "复制网址";
+            this.复制网址ToolStripMenuItem.Click += new System.EventHandler(this.复制网址ToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -109,7 +115,8 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
@@ -129,13 +136,18 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "标题";
+            this.columnHeader2.Text = "name";
             this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "类目";
+            this.columnHeader3.Text = "title";
             this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "picurl";
+            this.columnHeader4.Width = 1000;
             // 
             // button1
             // 
@@ -239,19 +251,40 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(116, 458);
+            this.textBox3.Location = new System.Drawing.Point(68, 458);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(739, 191);
+            this.textBox3.Size = new System.Drawing.Size(293, 193);
             this.textBox3.TabIndex = 49;
-            this.textBox3.Text = "3876024c48faaa92d8e5327803b0126e";
+            this.textBox3.Text = resources.GetString("textBox3.Text");
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(386, 458);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(513, 203);
+            this.dataGridView1.TabIndex = 50;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(386, 429);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 51;
+            this.button9.Text = "导入";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // 抓数据用
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 673);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button8);
@@ -270,6 +303,7 @@
             this.Text = "抓数据用";
             this.Load += new System.EventHandler(this.抓数据用_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,5 +333,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

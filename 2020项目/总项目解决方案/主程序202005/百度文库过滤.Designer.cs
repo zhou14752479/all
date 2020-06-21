@@ -61,6 +61,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -95,6 +96,7 @@
             this.button5.TabIndex = 80;
             this.button5.Text = "清空";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -250,7 +252,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(598, 572);
+            this.tabPage2.Size = new System.Drawing.Size(826, 588);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "登录";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -261,7 +263,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(592, 566);
+            this.webBrowser1.Size = new System.Drawing.Size(820, 582);
             this.webBrowser1.TabIndex = 0;
             // 
             // openFileDialog1
@@ -289,11 +291,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.textBox8);
             this.groupBox2.Location = new System.Drawing.Point(12, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(180, 185);
+            this.groupBox2.Size = new System.Drawing.Size(206, 185);
             this.groupBox2.TabIndex = 87;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "导入关键字";
@@ -376,6 +379,16 @@
             this.radioButton4.Text = "付费文档";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(114, 102);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(96, 16);
+            this.checkBox1.TabIndex = 56;
+            this.checkBox1.Text = "不设置关键字";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // 百度文库过滤
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -450,5 +463,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

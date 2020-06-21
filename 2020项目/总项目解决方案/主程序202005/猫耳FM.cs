@@ -31,53 +31,49 @@ namespace 主程序202005
         public static string GetUrl(string Url)
         {
 
-           
-                HttpHelper http = new HttpHelper();
-                HttpItem item = new HttpItem()
-                {
-                    URL = Url,
-                    Method = "GET",
-                    Host = "www.missevan.com",
-                    UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36",
-                    Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-                    Cookie = "_uab_collina=159046363586457619328264; token=5ecc8d6a72769f13c2e00361%7C2637d423574f5506%7C1590463850%7C543ab637d70d22f6; MSESSID=49li2bipu07qk58iq8ufu6pahk; Hm_lvt_91a4e950402ecbaeb38bd149234eb7cc=1590463636,1590463825,1590482098; Hm_lpvt_91a4e950402ecbaeb38bd149234eb7cc=1590482098; SERVERID=832fef4323c87b883d6becf9932943f1|1590482201|1590482098",
-                };
-                item.Header.Add("Sec-Fetch-Site", "none");
-                item.Header.Add("Sec-Fetch-Mode", "navigate");
-                item.Header.Add("Sec-Fetch-User", "?1");
-                item.Header.Add("Sec-Fetch-Dest", "document");
-                item.Header.Add("Accept-Encoding", "gzip, deflate, br");
-                item.Header.Add("Accept-Language", "zh-CN,zh;q=0.9");
-                HttpResult result = http.GetHtml(item);
-                string html = result.Html;
-                return html;
-           
+
+            HttpHelper http = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = Url,
+                Method = "GET",
+                Host = "www.missevan.com",
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36",
+                Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+                Cookie = "_uab_collina=159046363586457619328264; token=5ecc8d6a72769f13c2e00361%7C2637d423574f5506%7C1590463850%7C543ab637d70d22f6; MSESSID=49li2bipu07qk58iq8ufu6pahk; Hm_lvt_91a4e950402ecbaeb38bd149234eb7cc=1590463636,1590463825,1590482098; Hm_lpvt_91a4e950402ecbaeb38bd149234eb7cc=1590482098; SERVERID=832fef4323c87b883d6becf9932943f1|1590482201|1590482098",
+                ProxyIp = "tps158.kdlapi.com:15818",
+
+            };
+
+
+            item.Header.Add("Sec-Fetch-Site", "none");
+            item.Header.Add("Sec-Fetch-Mode", "navigate");
+            item.Header.Add("Sec-Fetch-User", "?1");
+            item.Header.Add("Sec-Fetch-Dest", "document");
+            item.Header.Add("Accept-Encoding", "gzip, deflate, br");
+            item.Header.Add("Accept-Language", "zh-CN,zh;q=0.9");
+            HttpResult result = http.GetHtml(item);
+            string html = result.Html;
+            return html;
+
 
 
         }
         #endregion
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (html.Contains(@"ximalaya"))
-            {
+          
 
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
-            }
-
-            else
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
+          
 
 
-            #endregion
+          
         }
         public static string Unicode2String(string source)
         {
@@ -93,8 +89,15 @@ namespace 主程序202005
                 for (int i = Convert.ToInt32(textBox1.Text); i < Convert.ToInt32(textBox2.Text); i++)
                 {
                     string url = "https://www.missevan.com/dramaapi/filter?page="+i+"&filters=0_0_0_0_0&order=3&page_size=20";
-
+                    label3.Text = "正在抓取："+i;
                     string html = GetUrl(url);
+                    
+                    if (html.Contains("检测到异常"))
+                    {
+                        MessageBox.Show("异常");
+
+                    }
+                        
                     MatchCollection uids = Regex.Matches(html, @"""id"":([\s\S]*?),");
                  
 
@@ -102,6 +105,12 @@ namespace 主程序202005
                     {
                         string URL = "https://www.missevan.com/dramaapi/getdrama?drama_id=" + uids[j].Groups[1].Value;
                         string ahtml = GetUrl(URL);
+
+                        if (ahtml.Contains("检测到异常"))
+                        {
+                            MessageBox.Show("异常");
+
+                        }
                         Match tags = Regex.Match(ahtml, @"tags([\s\S]*?)\]");
                         Match zhizuos = Regex.Match(ahtml, @"""organization([\s\S]*?)}");
 
@@ -141,7 +150,11 @@ namespace 主程序202005
                                 for (int b = 1; b < 99; b++)
                                 {
                                     string vchtml = GetUrl("https://www.missevan.com/dramaapi/cvinfo?cv_id=" + cvids[a].Groups[1].Value + "&page=" + b);
-                                    
+                                    if (vchtml.Contains("检测到异常"))
+                                    {
+                                        MessageBox.Show("异常");
+
+                                    }
                                     Match zuozhe = Regex.Match(vchtml, @"""name"":""([\s\S]*?)""");
                                     zz = zuozhe.Groups[1].Value;
 
@@ -175,6 +188,11 @@ namespace 主程序202005
                                 for (int b = 1; b < 99; b++)
                                 {
                                     string vchtml = GetUrl("https://www.missevan.com/dramaapi/cvinfo?cv_id=" + cvids[a].Groups[1].Value + "&page=" + b);
+                                    if (vchtml.Contains("检测到异常"))
+                                    {
+                                        MessageBox.Show("异常");
+
+                                    }
                                     Match zuozhe = Regex.Match(vchtml, @"""name"":""([\s\S]*?)""");
                                     zz = zuozhe.Groups[1].Value;
                                     MatchCollection zuopins = Regex.Matches(vchtml, @"""drama""([\s\S]*?)""name"":""([\s\S]*?)""");
@@ -201,18 +219,8 @@ namespace 主程序202005
 
 
 
-
-
-
                           
                         }
-
-
-
-
-
-
-                      
 
 
 
