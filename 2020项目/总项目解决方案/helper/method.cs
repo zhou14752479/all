@@ -426,6 +426,23 @@ namespace helper
         }
         #endregion
 
+        #region 修改注册表信息使WebBrowser使用指定版本IE内核 传入11000是IE11
+        public static void SetFeatures(UInt32 ieMode)
+        {
+            //传入11000是IE11, 9000是IE9, 只不过当试着传入6000时, 理应是IE6, 可实际却是Edge, 这时进一步测试, 当传入除IE现有版本以外的一些数值时WebBrowser都使用Edge内核
+            if (LicenseManager.UsageMode != LicenseUsageMode.Runtime)
+            {
+                throw new ApplicationException();
+            }
+            //获取程序及名称
+            string appName = System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            string featureControlRegKey = "HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\";
+            //设置浏览器对应用程序(appName)以什么模式(ieMode)运行
+            Registry.SetValue(featureControlRegKey + "FEATURE_BROWSER_EMULATION", appName, ieMode, RegistryValueKind.DWord);
+            //不晓得设置有什么用
+            Registry.SetValue(featureControlRegKey + "FEATURE_ENABLE_CLIPCHILDREN_OPTIMIZATION", appName, 1, RegistryValueKind.DWord);
+        }
+        #endregion
 
         #region listview转datable筛选
         /// <summary>
@@ -804,9 +821,9 @@ namespace helper
         {
             try
             {
-                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                //request.AllowAutoRedirect = true;
+                request.AllowAutoRedirect = false;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Referer = "https://show.1688.com/zbb/front/index.html?spm=a260k.dacugeneral.home2019activity.d2.6633436cfcuXzb&refid=63506";
                 request.Headers.Add("Cookie", COOKIE);

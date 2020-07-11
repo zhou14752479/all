@@ -114,12 +114,13 @@ namespace 主程序1
                             string url = "https://wenda.so.com/q/" + urls[j].Groups[1].Value;
 
                             string strhtml1 = GetUrl(url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-                            Match body = Regex.Match(strhtml1, @"<div class=""resolved-cnt src-import"">([\s\S]*?)<div class=""mod-added");
+                            
+                            Match body = Regex.Match(strhtml1, @"<div class=""answer-content js-resolved-answer"">([\s\S]*?)<ul class=""answer-append");
 
                             string main = Regex.Replace(body.Groups[1].Value, "<(?!/?p)(?!br )[^>]*>", "");  //除了P <br />其他的去掉
 
                             sb.Append(main.Replace("<p>", "").Replace("</p>", "\r\n").Replace("<br />", "\r\n"));
+                            
 
                             while (this.zanting == false)
                             {
@@ -162,6 +163,23 @@ namespace 主程序1
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            if (textBox3.Text == "")
+            {
+                MessageBox.Show("请输入代理IP");
+                return;
+
+            }
+            else
+            {
+                string html = GetUrl(textBox3.Text, "utf-8");
+                if (!html.Contains("1"))
+                {
+                    MessageBox.Show("代理Ip地址有误");
+                    return;
+                }
+            }
+
+
             button2.Enabled = false;
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();

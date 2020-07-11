@@ -69,6 +69,12 @@
     <Compile Include="Trade Mark Search.Designer.cs">
       <DependentUpon>Trade Mark Search.cs</DependentUpon>
     </Compile>
+    <Compile Include="中策大数据.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="中策大数据.Designer.cs">
+      <DependentUpon>中策大数据.cs</DependentUpon>
+    </Compile>
     <Compile Include="二手房58监控.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,11 +105,23 @@
     <Compile Include="手机网页58.Designer.cs">
       <DependentUpon>手机网页58.cs</DependentUpon>
     </Compile>
+    <Compile Include="百家号发布.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="百家号发布.Designer.cs">
+      <DependentUpon>百家号发布.cs</DependentUpon>
+    </Compile>
     <Compile Include="监控.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="监控.Designer.cs">
       <DependentUpon>监控.cs</DependentUpon>
+    </Compile>
+    <Compile Include="飞机票信息记录.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="飞机票信息记录.Designer.cs">
+      <DependentUpon>飞机票信息记录.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="aliexpress.resx">
       <DependentUpon>aliexpress.cs</DependentUpon>
@@ -123,6 +141,9 @@
     <EmbeddedResource Include="Trade Mark Search.resx">
       <DependentUpon>Trade Mark Search.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="中策大数据.resx">
+      <DependentUpon>中策大数据.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="二手房58监控.resx">
       <DependentUpon>二手房58监控.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,8 +159,14 @@
     <EmbeddedResource Include="手机网页58.resx">
       <DependentUpon>手机网页58.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="百家号发布.resx">
+      <DependentUpon>百家号发布.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="监控.resx">
       <DependentUpon>监控.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="飞机票信息记录.resx">
+      <DependentUpon>飞机票信息记录.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

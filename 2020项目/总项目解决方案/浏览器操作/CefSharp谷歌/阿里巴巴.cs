@@ -67,7 +67,7 @@ namespace CefSharp谷歌
         }
     private void button2_Click(object sender, EventArgs e)
         {
-            //run();
+           
             browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(run);
 
         }

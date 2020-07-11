@@ -332,3 +332,5 @@ private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
 
                         
             label1.Text = cc.Trim() + "\n"+ dd.Trim();
+
+¡¾richTextBox1.Lines.Length  richTextBox1.Lines¡¾i¡¿¡¿

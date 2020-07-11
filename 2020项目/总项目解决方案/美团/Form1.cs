@@ -177,7 +177,31 @@ namespace 美团
         #endregion
 
 
+        #region  获取所有城市
 
+        public ArrayList GetAllcityName()
+        {
+            ArrayList lists = new ArrayList();
+            try
+            {
+                string url = "https://www.meituan.com/ptapi/getprovincecityinfo/";
+                string html = GetUrl(url);
+                MatchCollection cityId = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
+                foreach (Match match in cityId)
+                {
+                    lists.Add(match.Groups[1].Value);
+                }
+                return lists;
+            }
+
+            catch (System.Exception ex)
+            {
+                return lists;
+            }
+
+        }
+
+        #endregion
 
 
         #region  主程序
@@ -251,11 +275,11 @@ namespace 美团
                                     {
 
                                         string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
+                                   
                                         Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                         Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                         Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
-
+                                    Match score = Regex.Match(strhtml1, @"score"":([\s\S]*?),");
                                     if (!tels.Contains(tell.Groups[1].Value))
                                     {
 
@@ -265,6 +289,7 @@ namespace 美团
                                             listViewItem.SubItems.Add(tell.Groups[1].Value);
                                             listViewItem.SubItems.Add(addr.Groups[1].Value);
                                             listViewItem.SubItems.Add(city);
+                                        listViewItem.SubItems.Add(score.Groups[1].Value);
 
 
                                         while (this.zanting == false)
@@ -312,21 +337,34 @@ namespace 美团
 
         #endregion
 
-        #region  主程序
+        #region  自动全国
         public void run1()
         {
 
             try
             {
-                string[] citys = textBox3.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                ArrayList citys = GetAllcityName();
+
+               
+
+                if (textBox2.Text == "")
+                {
+                    textBox2.Text = "美食, 火锅, 烧烤, 麻辣烫, 面包, 蛋糕, 奶茶, 快餐, 面条, 西餐, 中餐,小吃, 自助餐, 烤鱼, 海鲜, 甜点, 炒菜";
+                }
 
                 string[] keywords = textBox2.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
 
 
                 foreach (string city in citys)
                 {
-                     string cityId = GetcityId(city);
-                    foreach (string keyword in keywords)
+
+                    ArrayList areas = getareas(Getsuoxie(city));
+
+                    string cityId = GetcityId(city);
+                    foreach (string areaId in areas)
+                    {
+
+                        foreach (string keyword in keywords)
 
                         {
 
@@ -335,31 +373,31 @@ namespace 美团
                             {
 
 
-                                string Url = "https://apimobile.meituan.com/group/v4/poi/search/" + cityId + "?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset=" + i + "&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q=" + keyword.Trim() + "&requestType=filter&cityId=" + cityId;
+                                string Url = "https://apimobile.meituan.com/group/v4/poi/search/" + cityId + "?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset=" + i + "&limit=15&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q=" + keyword.Trim() + "&requestType=filter&cityId=" + cityId + "&areaId=" + areaId;
 
 
                                 string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                            Match mainHtml = Regex.Match(html, @"searchResult([\s\S]*?)serverInfo");
-
-
-                            MatchCollection all = Regex.Matches(mainHtml.Groups[1].Value, @"""type"":""poi([\s\S]*?)id"":""([\s\S]*?)""");
+                                MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
 
                                 ArrayList lists = new ArrayList();
                                 foreach (Match NextMatch in all)
                                 {
 
-                                 
-                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[2].Value + "&isDaoZong=false");
+                                    //https://apimobile.meituan.com/group/v1/poi/194905459?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng
+                                    //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
+                                    //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
+                                    //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
+                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=false");
                                 }
 
-                                if (lists.Count <2)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+                                if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                                     break;
 
                                 string tm1 = DateTime.Now.ToString();  //获取系统时间
 
-                                toolStripStatusLabel1.Text = tm1 + "-->正在采集" + city +  keyword + "第" + i + "页";
+                                toolStripStatusLabel1.Text = tm1 + "-->正在采集" + city + areaId + keyword + "第" + i + "页";
 
                                 foreach (string list in lists)
 
@@ -370,7 +408,7 @@ namespace 美团
                                     Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                     Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                     Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
-
+                                    Match score = Regex.Match(strhtml1, @"score"":([\s\S]*?),");
                                     if (!tels.Contains(tell.Groups[1].Value))
                                     {
 
@@ -380,6 +418,7 @@ namespace 美团
                                         listViewItem.SubItems.Add(tell.Groups[1].Value);
                                         listViewItem.SubItems.Add(addr.Groups[1].Value);
                                         listViewItem.SubItems.Add(city);
+                                        listViewItem.SubItems.Add(score.Groups[1].Value);
 
 
                                         while (this.zanting == false)
@@ -405,7 +444,7 @@ namespace 美团
 
 
 
-                        
+                        }
 
                     }
 

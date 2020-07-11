@@ -100,6 +100,12 @@
     <Compile Include="百度文库自动上传.Designer.cs">
       <DependentUpon>百度文库自动上传.cs</DependentUpon>
     </Compile>
+    <Compile Include="速卖通.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="速卖通.Designer.cs">
+      <DependentUpon>速卖通.cs</DependentUpon>
+    </Compile>
     <Compile Include="阿里巴巴.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="百度文库自动上传.resx">
       <DependentUpon>百度文库自动上传.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="速卖通.resx">
+      <DependentUpon>速卖通.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="阿里巴巴.resx">
       <DependentUpon>阿里巴巴.cs</DependentUpon>

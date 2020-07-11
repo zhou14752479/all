@@ -78,16 +78,37 @@ namespace 一机一码
 
 
         #endregion
+
+        #region 修改注册表信息使WebBrowser使用指定版本IE内核 传入11000是IE11
+        public static void SetFeatures(UInt32 ieMode)
+        {
+            //传入11000是IE11, 9000是IE9, 只不过当试着传入6000时, 理应是IE6, 可实际却是Edge, 这时进一步测试, 当传入除IE现有版本以外的一些数值时WebBrowser都使用Edge内核
+            if (LicenseManager.UsageMode != LicenseUsageMode.Runtime)
+            {
+                throw new ApplicationException();
+            }
+            //获取程序及名称
+            string appName = System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            string featureControlRegKey = "HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\";
+            //设置浏览器对应用程序(appName)以什么模式(ieMode)运行
+            Registry.SetValue(featureControlRegKey + "FEATURE_BROWSER_EMULATION", appName, ieMode, RegistryValueKind.DWord);
+            //不晓得设置有什么用
+            Registry.SetValue(featureControlRegKey + "FEATURE_ENABLE_CLIPCHILDREN_OPTIMIZATION", appName, 1, RegistryValueKind.DWord);
+        }
+        #endregion
+
         public Form1()
         {
             InitializeComponent();
-            SetIE(IeVersion.强制ie10);
+            SetIE(IeVersion.标准ie10);
+            SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("https://zh.surebet.com/surebets?utf8=%E2%9C%93&selector%5Border%5D=profit&selector%5Boutcomes%5D%5B%5D=&selector%5Boutcomes%5D%5B%5D=2&selector%5Boutcomes%5D%5B%5D=3&selector%5Bmin_profit%5D=0.0&selector%5Bmax_profit%5D=&selector%5Bmin_roi%5D=&selector%5Bmax_roi%5D=&selector%5Bsettled_in%5D=0&selector%5Bbookies_settings%5D=0%3A66%3A%3A%3B0%3A69%3A%3A%3B0%3A72%3A%3A%3B4%3A65%3A%3A%3B0%3A71%3A%3A%3B0%3A70%3A%3A%3B0%3A68%3A%3A%3B0%3A117%3A%3A%3B0%3A109%3A%3A%3B4%3A21%3A%3A%3B0%3A26%3A%3A%3B0%3A23%3A%3A%3B4%3A0%3A%3A%3B0%3A32%3A%3A%3B0%3A99%3A%3A%3B0%3A29%3A%3A%3B0%3A10%3A%3A%3B0%3A45%3A%3A%3B0%3A58%3A%3A%3B0%3A14%3A%3A%3B0%3A11%3A%3A%3B0%3A38%3A%3A%3B0%3A55%3A%3A%3B0%3A33%3A%3A%3B4%3A120%3A%3A%3B0%3A49%3A%3A%3B0%3A62%3A%3A%3B0%3A12%3A%3A%3B0%3A46%3A%3A%3B0%3A112%3A%3A%3B0%3A24%3A%3A%3B0%3A82%3A%3A%3B0%3A124%3A%3A%3B4%3A103%3A%3A%3B4%3A5%3A%3A%3B4%3A102%3A%3A%3B0%3A6%3A%3A%3B4%3A4%3A%3A%3B0%3A30%3A%3A%3B0%3A15%3A%3A%3B0%3A123%3A%3A%3B0%3A50%3A%3A%3B0%3A9%3A%3A%3B4%3A41%3A%3A%3B4%3A3%3A%3A%3B0%3A8%3A%3A%3B0%3A113%3A%3A%3B0%3A83%3A%3A%3B0%3A119%3A%3A%3B4%3A63%3A%3A%3B4%3A61%3A%3A%3B0%3A39%3A%3A%3B4%3A31%3A%3A%3B0%3A51%3A%3A%3B0%3A2%3A%3A%3B0%3A7%3A%3A%3B0%3A106%3A%3A%3B4%3A1%3A%3A%3B0%3A105%3A%3A%3B4%3A101%3A%3A%3B0%3A118%3A%3A%3B0%3A25%3A%3A%3B0%3A114%3A%3A%3B0%3A40%3A%3A%3B0%3A43%3A%3A%3B4%3A18%3A%3A%3B0%3A59%3A%3A%3B0%3A115%3A%3A%3B4%3A122%3A%3A%3B0%3A86%3A%3A%3B0%3A17%3A%3A%3B0%3A104%3A%3A%3B0%3A53%3A%3A%3B0%3A28%3A%3A%3B4%3A44%3A%3A%3B4%3A27%3A%3A&selector%5Bexclude_sports_ids_str%5D=0+32+1+2+3+7+6+5+28+8+9+26+10+11+12+14+27+16+30+13+17+18+29+19+31+20+21+23+22+24+25&selector%5Bextra_filters%5D=&commit=%E8%BF%87%E6%BB%A4&narrow=");
-           webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.Navigate("https://zh.surebet.com/surebets?utf8=%E2%9C%93&selector%5Border%5D=profit&selector%5Boutcomes%5D%5B%5D=&selector%5Boutcomes%5D%5B%5D=2&selector%5Bmin_profit%5D=&selector%5Bmax_profit%5D=&selector%5Bmin_roi%5D=&selector%5Bmax_roi%5D=&selector%5Bsettled_in%5D=0&selector%5Bbookies_settings%5D=0%3A66%3A%3A%3B4%3A69%3A%3A%3B4%3A65%3A%3A%3B0%3A71%3A%3A%3B0%3A70%3A%3A%3B0%3A68%3A%3A%3B0%3A109%3A%3A%3B0%3A127%3A%3A%3B0%3A121%3A%3A%3B0%3A21%3A%3A%3B0%3A23%3A%3A%3B4%3A26%3A%3A%3B0%3A%3A%3A%3B0%3A32%3A%3A%3B0%3A99%3A%3A%3B0%3A29%3A%3A%3B0%3A10%3A%3A%3B0%3A45%3A%3A%3B0%3A58%3A%3A%3B0%3A14%3A%3A%3B0%3A11%3A%3A%3B0%3A38%3A%3A%3B4%3A55%3A%3A%3B0%3A33%3A%3A%3B0%3A120%3A%3A%3B0%3A49%3A%3A%3B0%3A62%3A%3A%3B0%3A12%3A%3A%3B0%3A46%3A%3A%3B0%3A112%3A%3A%3B0%3A24%3A%3A%3B0%3A82%3A%3A%3B0%3A124%3A%3A%3B0%3A103%3A%3A%3B0%3A5%3A%3A%3B0%3A102%3A%3A%3B0%3A6%3A%3A%3B0%3A4%3A%3A%3B0%3A30%3A%3A%3B0%3A15%3A%3A%3B0%3A123%3A%3A%3B0%3A50%3A%3A%3B0%3A9%3A%3A%3B0%3A41%3A%3A%3B0%3A125%3A%3A%3B0%3A128%3A%3A%3B0%3A3%3A%3A%3B0%3A8%3A%3A%3B0%3A113%3A%3A%3B0%3A83%3A%3A%3B0%3A119%3A%3A%3B0%3A63%3A%3A%3B0%3A61%3A%3A%3B0%3A39%3A%3A%3B0%3A31%3A%3A%3B0%3A51%3A%3A%3B0%3A2%3A%3A%3B4%3A7%3A%3A%3B0%3A1%3A%3A%3B0%3A105%3A%3A%3B0%3A101%3A%3A%3B0%3A118%3A%3A%3B4%3A25%3A%3A%3B0%3A114%3A%3A%3B0%3A43%3A%3A%3B0%3A18%3A%3A%3B0%3A59%3A%3A%3B0%3A80%3A%3A%3B0%3A115%3A%3A%3B0%3A122%3A%3A%3B0%3A86%3A%3A%3B0%3A17%3A%3A%3B0%3A104%3A%3A%3B0%3A53%3A%3A%3B4%3A28%3A%3A%3B0%3A44%3A%3A%3B0%3A27%3A%3A&selector%5Bexclude_sports_ids_str%5D=0+32+1+2+7+6+5+28+8+9+26+10+11+12+14+27+16+30+13+17+18+50+29+19+31+20+21+25&selector%5Bextra_filters%5D=&narrow=");
+           //webBrowser1.ScriptErrorsSuppressed = true;
         }
 
        

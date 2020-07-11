@@ -20,6 +20,8 @@ namespace CefSharp谷歌
         {
             InitializeComponent();
         }
+
+
         public ChromiumWebBrowser browser = new ChromiumWebBrowser("https://shopee.com.my/");
         private void 模拟点击_Load(object sender, EventArgs e)
         {

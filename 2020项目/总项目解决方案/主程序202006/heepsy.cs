@@ -69,6 +69,7 @@ namespace 主程序202006
         public void run()
         {
             
+          
             for (int i = Convert.ToInt32(textBox1.Text); i < 999; i++)
             {
                 label1.Text = i.ToString();

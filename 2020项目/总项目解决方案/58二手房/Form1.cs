@@ -124,11 +124,31 @@ namespace _58二手房
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
-            status = true;
-            button1.Enabled = false;
-            Thread thread = new Thread(new ThreadStart(mobilerun));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (html.Contains(@"58huiyuan"))
+            {
+
+                status = true;
+                button1.Enabled = false;
+                Thread thread = new Thread(new ThreadStart(mobilerun));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+
+            }
+
+            else
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+            #endregion
+           
 
 
 

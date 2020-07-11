@@ -20,7 +20,7 @@ namespace CefSharp谷歌
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 百度文库自动上传());
+            Application.Run(new 速卖通());
         }
 
 
