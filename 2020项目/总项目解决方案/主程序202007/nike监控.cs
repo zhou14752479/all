@@ -48,15 +48,20 @@ namespace 主程序202007
             return html;
         }
 
+        bool zhixing = false;
 
         Dictionary<string, string> dic = new Dictionary<string, string>();
         public void run()
         {
+            zhixing = true;
             string[] text = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
         
             foreach (string url in text)
             {
+                try
+                {
 
+   
 
                 //string url = "https://www.nike.com/cn/t/dbreak-%E5%A5%B3%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-BbTxmx/CK2351-007";
 
@@ -75,8 +80,10 @@ namespace 主程序202007
                 MatchCollection askus = Regex.Matches(availableHtml.Groups[1].Value, @"""id"":""([\s\S]*?)""");
                 for (int i = 0; i < skus.Count; i++)
                 {
-
-                    dic.Add(skus[i].Groups[1].Value, skus[i].Groups[2].Value);  //key为skuid
+                    if (!dic.ContainsKey(skus[i].Groups[1].Value))
+                    {
+                        dic.Add(skus[i].Groups[1].Value, skus[i].Groups[2].Value);  //key为skuid
+                    }
                 }
 
                 StringBuilder sb = new StringBuilder();
@@ -90,9 +97,16 @@ namespace 主程序202007
 
                 }
 
-                textBox1.Text += title.Groups[1].Value + ": 价格：" + price.Groups[1].Value + " 有货尺码：" + "\r\n" + sb.ToString()+"\r\n";
+                    textBox1.Text += title.Groups[1].Value + ": 价格：" + price.Groups[1].Value + " 有货尺码：" + "\r\n" + sb.ToString()+"\r\n";
+                }
+                catch 
+                {
+
+                    continue;
+                }
 
             }
+            zhixing = false;
 
         }
         private void nike监控_Load(object sender, EventArgs e)
@@ -116,16 +130,29 @@ namespace 主程序202007
 
 
             #endregion
+
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
             timer1.Start();
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox1.Text = "";
-            run();
+            if (zhixing == false)
+            {
+                textBox1.Text = "";
+               
+                Thread thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
+            }
+            else
+            {
+                //textBox1.Text += "函数未执行结束" + "\r\n";
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

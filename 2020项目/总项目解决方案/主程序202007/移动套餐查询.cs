@@ -83,6 +83,7 @@ namespace 主程序202007
                 string url = "https://h5.sd.chinamobile.com/cmtj/openingCard/consumer/campnInfo/getWorkBenchView";
                 string postdata = "{\"appId\" : \"100000056\", \"userId\" : \"1097395671845093378\",\"serialNumber\" : \""+i+"\"}";
                 string html = PostUrl(url,postdata);
+               // textBox3.Text = html;
                 Match chengxiao = Regex.Match(html, @"承消([\s\S]*?)元");
                 MatchCollection taocans = Regex.Matches(html, @"""campaignName"":""([\s\S]*?)""");
                 label3.Text = "正在查询：" + i;
@@ -108,7 +109,7 @@ namespace 主程序202007
                     label3.Text = "正在查询：" + i + " 不符合";
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
             }
 
             MessageBox.Show("查询完成");

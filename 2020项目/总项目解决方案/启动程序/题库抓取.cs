@@ -56,6 +56,19 @@ namespace 启动程序
             comboBox1.Items.Add("刷千题---思修");
             comboBox1.Items.Add("刷千题---毛中特");
 
+
+            dic.Add("30天70分马原", "33");
+            dic.Add("30天70分毛中特", "34");
+            dic.Add("30天70分思修", "35");
+            dic.Add("30天70分史纲", "36");
+            dic.Add("30天70分专项与综合训练", "37");
+            comboBox1.Items.Add("30天70分马原");
+            comboBox1.Items.Add("30天70分毛中特");
+            comboBox1.Items.Add("30天70分思修");
+            comboBox1.Items.Add("30天70分史纲");
+            comboBox1.Items.Add("30天70分专项与综合训练");
+
+
         }
 
         Dictionary<string, string> dic2 = new Dictionary<string, string>();

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace http03.Properties {
+namespace 淘宝商品抓取.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

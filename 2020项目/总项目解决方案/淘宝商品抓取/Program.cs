@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace http03
+namespace 淘宝商品抓取
 {
     static class Program
     {

@@ -275,6 +275,7 @@ namespace helper
 
         #endregion
 
+        #region 导出文本
         public static void expotTxt(ListView lv1)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -319,7 +320,7 @@ namespace helper
             }
 
         }
-
+        #endregion
 
         #region 获取公网IP
         public static string GetIP()
@@ -821,16 +822,17 @@ namespace helper
         {
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+               // System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.AllowAutoRedirect = false;
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                request.Referer = "https://show.1688.com/zbb/front/index.html?spm=a260k.dacugeneral.home2019activity.d2.6633436cfcuXzb&refid=63506";
+                //request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = "http://www.juxiangyou.com/fun/play/fun16/index";
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
-
+                request.Accept = "*/*";
+            
                 string content = reader.ReadToEnd();
                 reader.Close();
                 response.Close();
@@ -839,7 +841,7 @@ namespace helper
             }
             catch (System.Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.ToString());
 
 
 
@@ -862,10 +864,10 @@ namespace helper
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "UM_distinctid=1722b6d63256fa-0d957a4cc62be8-6373664-1fa400-1722b6d6326fc; c846d1371fa646f180641dc334a81239=WyI2MDE0ODY4MTQiXQ; ck=a8f77499cd06af5b23c3b1432d54b2991591697419; CNZZDATA5916476=cnzz_eid%3D1513833111-1591696647-%26ntime%3D1591696647; rpk_dc0ba9777c06d718b1a0e8afc6822986=aFFOVg2V9%2BxTMlDrRmoq%2BbUVfnWOe9FJMEJCCnGzm92mrgXqXQA; eduyun_sessionid=3b8c3a9b-00b5-4950-9b42-c14baa810212; eduyun_qpsflag=1; PHPSESSID=ko7d3375p2rstm6ev7q0than74; remember_account=emhvdTE0NzUyNDc5; remember_keys=WmhvdWthaWdlMDA%3D; pullTime=300";
+                string COOKIE = "UM_distinctid=1735b96c46615a-02d3c61005ab07-6373664-1fa400-1735b96c46743f; __root_domain_v=.juxiangyou.com; _qddaz=QD.yozua3.pr0ki3.kcpvn6ue; _qdda=3-1.1; _ga=GA1.2.1707749721.1594969475; _gid=GA1.2.568043681.1594969475; cookie_connect=s%3AjomyKNd7lqc-ZIPIsF-o-60xtBf8zsND.1Vk0xSQwUVtuMSy7QZzlXMZl4195g2VZ0PyuUT4n1aQ; cookie_userid=23901979; cookie_autokey=; cookie_tokenkey=83ee8dd31bc41522a9a5369aa6f122376eba86f7755f57102690825260ddcab2; play_ad_fc=1; cookie_userip=49.70.93.110; Hm_lvt_f37751c35528926bb0c6f2ecd1b3c648=1594969474,1594974672; _qddab=3-4rxk1z.kcpyqldk; _qddamta_2852150146=3-0; CNZZDATA5330249=cnzz_eid%3D290660917-1594969068-%26ntime%3D1594979868; Hm_lpvt_f37751c35528926bb0c6f2ecd1b3c648=1594979980";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Referer = "http://www.juxiangyou.com/fun/play/fun16/index";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
 
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);

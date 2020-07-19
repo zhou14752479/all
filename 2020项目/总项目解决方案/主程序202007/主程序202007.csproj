@@ -74,11 +74,23 @@
     <Compile Include="安居客房价.Designer.cs">
       <DependentUpon>安居客房价.cs</DependentUpon>
     </Compile>
+    <Compile Include="文件筛选.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文件筛选.Designer.cs">
+      <DependentUpon>文件筛选.cs</DependentUpon>
+    </Compile>
     <Compile Include="移动套餐查询.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="移动套餐查询.Designer.cs">
       <DependentUpon>移动套餐查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="聚享游监测.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="聚享游监测.Designer.cs">
+      <DependentUpon>聚享游监测.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="IE测试.resx">
       <DependentUpon>IE测试.cs</DependentUpon>
@@ -101,8 +113,14 @@
     <EmbeddedResource Include="安居客房价.resx">
       <DependentUpon>安居客房价.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="文件筛选.resx">
+      <DependentUpon>文件筛选.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="移动套餐查询.resx">
       <DependentUpon>移动套餐查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="聚享游监测.resx">
+      <DependentUpon>聚享游监测.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
