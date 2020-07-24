@@ -159,5 +159,10 @@ namespace 主程序202007
             Control.CheckForIllegalCrossThreadCalls = false;
 
         }
+
+        private void 文件筛选_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

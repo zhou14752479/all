@@ -93,11 +93,12 @@ namespace 淘宝商品抓取
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
-                        if (this.status == false)
-                        {
-                            return;
-                        }
+                        
                     }
+                }
+                if (status == false)
+                {
+                    return;
                 }
             }
            
@@ -229,6 +230,10 @@ namespace 淘宝商品抓取
                 string html = getHtml(URL);
                 getInfos(html);
                 Thread.Sleep(2000);
+                if (status == false)
+                {
+                    return;
+                }
             }
            
         }

@@ -49,6 +49,7 @@ namespace 孔夫子旧书网
         }
 
         #endregion
+
         bool zanting = true;
         bool status = true;
         string path = AppDomain.CurrentDomain.BaseDirectory + "images\\";

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 孔夫子旧书网
+namespace wordToPdf
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 孔夫子旧书网
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form2());
+            Application.Run(new Form1());
         }
     }
 }

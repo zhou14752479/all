@@ -39,10 +39,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,6 +157,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "筛选";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(107, 103);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(190, 23);
+            this.textBox4.TabIndex = 41;
+            this.textBox4.Text = "新建,www,党,法,研修,文档,u,U,";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -186,14 +194,6 @@
             this.textBox3.Size = new System.Drawing.Size(257, 204);
             this.textBox3.TabIndex = 40;
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(107, 103);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(190, 23);
-            this.textBox4.TabIndex = 41;
-            this.textBox4.Text = "%";
-            // 
             // 文件筛选
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -210,6 +210,7 @@
             this.Name = "文件筛选";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "文件筛选";
+            this.Load += new System.EventHandler(this.文件筛选_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
