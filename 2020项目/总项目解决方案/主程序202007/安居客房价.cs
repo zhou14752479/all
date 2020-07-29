@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,11 +36,11 @@ namespace 主程序202007
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "id58=e87rkF7Avuhk3KttMnJOAg==; sessid=078E9654-5BD1-5C12-76F1-127BF768709C; aQQ_ajkguid=FE727045-2366-4DC3-951F-EF154BFF845D; _ga=GA1.2.57638740.1591174134; 58tj_uuid=fce4cf3b-3044-430a-9e0b-ff27040ee0a2; als=0; __xsptplus8=8.3.1593845341.1593845417.6%232%7Cwww.baidu.com%7C%7C%7C%7C%23%235-9mYIfhlyFmK91Q_08vh_B6cQC5x9Vc%23; wmda_uuid=156ffb055b64faeb189e857f1f10e130; wmda_new_uuid=1; wmda_visited_projects=%3B6145577459763; lps=\" / xm / community /? from = tw_xqlb_xqlb | \"; wmda_session_id_6145577459763=1593852717272-cbe9eaaf-a369-4cc7; init_refer=; new_uv=3; new_session=0; xxzl_cid=eba0f015e41b4ec38117cacbe3ab4f54; xzuid=190e8c1e-a1f1-458c-9af4-33305910e1f6; ctid=19";
+                string COOKIE = "id58=e87rkF7Avuhk3KttMnJOAg==; sessid=078E9654-5BD1-5C12-76F1-127BF768709C; aQQ_ajkguid=FE727045-2366-4DC3-951F-EF154BFF845D; _ga=GA1.2.57638740.1591174134; 58tj_uuid=fce4cf3b-3044-430a-9e0b-ff27040ee0a2; als=0; wmda_uuid=156ffb055b64faeb189e857f1f10e130; wmda_new_uuid=1; wmda_visited_projects=%3B6145577459763; Ref=https%3A%2F%2Fm.anjuke.com%2Fxm%2Fmap%2F%3Fadr%3D%25E5%2585%25B4%25E6%25B8%25AF%25E4%25B8%2580%25E9%2587%258C176-279%25E5%258F%25B7%26lng%3D118.0324%26lat%3D24.492611%26tp%3Dcomm%26id%3D401355%26from%3Dxqdy_map; propertys=2dgr54t-qe263m_; lps=\" / xm / community / haicang /? p = 3 | \"; wmda_session_id_6145577459763=1595834026864-6a4e8d14-5538-e22d; new_uv=11; init_refer=; new_session=0; twe=2; _gid=GA1.2.1350016763.1595834539; ctid=195; __xsptplus8=8.9.1595834539.1595834548.3%232%7Cwww.baidu.com%7C%7C%7C%25E5%25AE%2589%25E5%25B1%2585%25E5%25AE%25A2%7C%23%23yjxS-ggwtji-K279gMlRCkkEU3NFuHon%23; xxzl_cid=eba0f015e41b4ec38117cacbe3ab4f54; xzuid=190e8c1e-a1f1-458c-9af4-33305910e1f6";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "https://www.amazon.com/s?k=6Q0+959+856&__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&ref=nb_sb_noss";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
+                request.Referer = "";
+                //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = false;
                 request.Headers.Add("Cookie", COOKIE);
             
@@ -66,18 +67,18 @@ namespace 主程序202007
         }
         #endregion
 
-
+        ArrayList uids = new ArrayList();
         
 
         public void run()
         {
-            //  string[] areas1 = { "siming", "huli", "jimei","haicang","tongana", "xiangana", "xiamenzhoubian" };
+            
          
 
-                for (int i = 1; i < 8; i++)
+                for (int i = 1; i < 99999; i++)
                 {
 
-                    string url = "https://m.anjuke.com/xm/community/xiangana/?p=" + i;
+                    string url = "https://m.anjuke.com/bj/community/?p=" + i;
                     
                     label1.Text = url;
                     string html = GetUrl(url, "utf-8");
@@ -86,7 +87,8 @@ namespace 主程序202007
                     MatchCollection urls = Regex.Matches(ahtml.Groups[1].Value, @"<a href=""([\s\S]*?)""");
                     MatchCollection areas = Regex.Matches(ahtml.Groups[1].Value, @"display:block;"">([\s\S]*?) ");
                     MatchCollection names = Regex.Matches(ahtml.Groups[1].Value, @"<strong class=""g-overflow"">([\s\S]*?)</strong>");
-                    if (urls.Count == 0)
+                MatchCollection buildates = Regex.Matches(ahtml.Groups[1].Value, @"<label class=""date"">([\s\S]*?)</label>");
+                if (urls.Count == 0)
                     {
                        
                         break;
@@ -95,8 +97,18 @@ namespace 主程序202007
                     for (int j = 0; j < urls.Count; j++)
                     {
 
-                        Match uid = Regex.Match(urls[j].Groups[1].Value, @"\d{4,7}");
+                        Match uid = Regex.Match(urls[j].Groups[1].Value, @"\d{5,7}");
 
+                    if (uids.Contains(uid.Groups[0].Value))
+                    {
+                        MessageBox.Show("查询完成");
+                        return;
+                    }
+
+                    else
+                    {
+                        uids.Add(uid.Groups[0].Value);
+                    }
                         string purl = "https://m.anjuke.com/ajax/trendency/price/all?comm_id=" + uid.Groups[0].Value;
                         string phtml = GetUrl(purl, "utf-8");
 
@@ -119,10 +131,11 @@ namespace 主程序202007
                                 lv1.SubItems.Add(names[j].Groups[1].Value);
                                 double pp = Math.Round(Convert.ToDouble(times[a].Groups[2].Value), 4) * 10000;
                                 lv1.SubItems.Add(pp.ToString());
-                                lv1.SubItems.Add("福建省厦门市"+addr.Groups[1].Value.Trim().Replace(" ","区"));
+                                lv1.SubItems.Add(addr.Groups[1].Value.Trim().Replace(" ","区"));
                                 lv1.SubItems.Add(lng.Groups[1].Value);
                                 lv1.SubItems.Add(lat.Groups[1].Value);
-                            }
+                            lv1.SubItems.Add(buildates[j].Groups[1].Value);
+                        }
                             catch (Exception)
                             {
 

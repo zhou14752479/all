@@ -54,6 +54,7 @@ namespace helper
 
         #endregion
 
+        #region  listView导出CSV
         /// <summary>
         /// 导出CSV
         /// </summary>
@@ -111,6 +112,8 @@ namespace helper
 
             result.AppendLine();
         }
+
+        #endregion
 
         #region GET请求
         /// <summary>
@@ -445,6 +448,35 @@ namespace helper
         }
         #endregion
 
+
+        #region 通过标签获取数据
+
+        public static void GetData(String address)
+        {
+            ////创建web对象
+            //WebClient wc = new WebClient();
+
+            ////将获取到的结果转换为byte字节类
+            //byte[] htmldata = wc.DownloadData(address);
+
+            ////设置编码格式 并 将 结果转化为string 类型
+            //string html = Encoding.UTF8.GetString(htmldata);
+
+            ////通过NSoupClient 对象解析
+            //Document doc = NSoupClient.Parse(html);
+
+            ////获取到对象中所需的元素值
+            //Elements p = doc.GetElementById("artContent").GetElementsByTag("p");
+
+
+            ////迭代出所需的值
+            //foreach (Element item in p)
+            //{
+            //    Console.WriteLine(item.Text());
+            //}
+        }
+        #endregion
+
         #region listview转datable筛选
         /// <summary>
         /// listview转datable
@@ -738,13 +770,14 @@ namespace helper
 
         #endregion
 
-
+        #region 下载文件 
         /// <summary>
         /// http下载文件
         /// </summary>
         /// <param name="url">下载文件地址</param>
         /// <param name="path">文件存放地址，包含文件名</param>
         /// <returns></returns>
+        /// 
         public static void HttpDownload(string url, string path, string COOKIE)
         {
             string tempPath = System.IO.Path.GetDirectoryName(path) + @"\temp";
@@ -786,6 +819,8 @@ namespace helper
             }
 
         }
+
+        #endregion
 
         #region datagriview转datatable
         public static DataTable DgvToTable(DataGridView dgv)
@@ -1064,6 +1099,43 @@ namespace helper
                 decode = result;
             }
             return decode;
+        }
+        #endregion
+
+        #region 按指定(字节)长度截取字符串
+        
+        private string CutStringByte(string str, int value)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return "";
+            }
+            if (System.Text.Encoding.Default.GetByteCount(str) <= value)
+            {
+                return str;
+            }
+            int i = 0;//字节数
+            int j = 0;//实际截取长度
+            foreach (char newChar in str)
+            {
+                if ((int)newChar > 127)
+                {
+                    //汉字
+                    i += 2;
+                }
+                else
+                {
+                    i++;
+                }
+
+                if (i <= value)
+                    j++;
+                else
+                    break;
+            }
+            //str = str.Substring(0, j) + "...";
+            str = str.Substring(0, j);
+            return str;
         }
         #endregion
 

@@ -89,11 +89,20 @@ namespace wordToPdf
         }
         static void ConvertWordToPdf(string wordFilePath, string pdfFilePath)
         {
-            new Aspose.Words.License().SetLicense(new MemoryStream(Convert.FromBase64String(Key)));
-            Aspose.Words.Document document = new Aspose.Words.Document(wordFilePath);
-            document.Save(pdfFilePath, Aspose.Words.SaveFormat.Pdf);
+            try
+            {
+                new Aspose.Words.License().SetLicense(new MemoryStream(Convert.FromBase64String(Key)));
+                Aspose.Words.Document document = new Aspose.Words.Document(wordFilePath);
+                document.Save(pdfFilePath, Aspose.Words.SaveFormat.Pdf);
+            }
+            catch (FileNotFoundException)
+            {
+
+                
+            }
+           
         }
-        List<string> listPDFs = new List<string>();
+     
 
         public const string Key =
             "PExpY2Vuc2U+DQogIDxEYXRhPg0KICAgIDxMaWNlbnNlZFRvPkFzcG9zZSBTY290bGFuZCB" +
@@ -118,27 +127,34 @@ namespace wordToPdf
 
         public void run()
         {
-
-            for (int i = 0; i < listPDFs.Count; i++)
+            progressBar1.Value = 0;
+            label2.Text = "0%";
+            for (int i = 0; i < listBox1.Items.Count; i++)
             {
-                string fileName = listPDFs[i];
-                string pdfPath = fileName.Replace("docx", "pdf").Replace("doc","pdf");
-
-                ConvertWordToPdf(listPDFs[i],pdfPath);
-                if (File.Exists(fileName))
+                string fileName = listBox1.Items[i].ToString();
+                if (fileName.Contains("doc") || fileName.Contains("docx"))
                 {
+                    string pdfPath = fileName.Replace("docx", "pdf").Replace("doc", "pdf");
 
-                    //删除文件
-                    File.Delete(fileName);
+                    ConvertWordToPdf(fileName, pdfPath);
+                    if (File.Exists(fileName))
+                    {
+
+                        //删除文件
+                        File.Delete(fileName);
+                    }
+
+                    
                 }
+                progressBar1.Maximum = 100000;//设置最大长度值
 
-                //progressBar1.Maximum = 100;//设置最大长度值
-                //progressBar1.Minimum = 0;//设置当前值
-                //progressBar1.Step = (100 / listPDFs.Count);//设置没次增长多少              
-                //progressBar1.PerformStep();
-
-
+                progressBar1.Step = (100000 / listBox1.Items.Count);//设置每次增长多少              
+                progressBar1.PerformStep();
+                label2.Text = (progressBar1.Value / 1000) + "%";
+                Thread.Sleep(1000);
             }
+            progressBar1.Value = progressBar1.Maximum;
+            label2.Text =  "100%";
         }
         private void listBox1_DragDrop(object sender, DragEventArgs e)
         {
@@ -155,7 +171,7 @@ namespace wordToPdf
             for (int i = 0; i < s.Length; i++)
             {
                 listBox1.Items.Add(s[i]);
-                listPDFs.Add(s[i]);
+               
             }
         }
 
@@ -167,15 +183,32 @@ namespace wordToPdf
                 e.Effect = DragDropEffects.None;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
-            listPDFs.Clear();
-        }
+     
 
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Parent = listBox1;
         }
+
+        private void 清除所有ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            
+        }
+
+        private void 清除此项ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItems.Count>0)
+            {
+                for (int i = 0; i < listBox1.SelectedItems.Count; i++)
+                {
+                    listBox1.Items.Remove(listBox1.SelectedItems[i]);
+                  
+                }
+            }
+        }
+
+
+
     }
 }

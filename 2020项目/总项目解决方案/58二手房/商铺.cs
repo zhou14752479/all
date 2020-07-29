@@ -184,7 +184,7 @@ namespace _58二手房
                                 string aurl = "https://miniappfang.58.com/shop/api/shopdetail?infoId="+uid+"&openId=o2FWZ5U7ujcAXk33UDDJnkI05yZE";
 
                             string strhtml = GetUrl(aurl);  //定义的GetRul方法 返回 reader.ReadToEnd()
-                               
+                                textBox2.Text = strhtml;
                                 
                             //    MatchCollection title = Regex.Matches(strhtml, @"""title"":""([\s\S]*?)""");
                             //Match contacts = Regex.Match(strhtml, @"""brokerName"":""([\s\S]*?)""");

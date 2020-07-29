@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="京东物流.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="京东物流.Designer.cs">
+      <DependentUpon>京东物流.cs</DependentUpon>
+    </Compile>
+    <Compile Include="仓库宝贝管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="仓库宝贝管理.Designer.cs">
+      <DependentUpon>仓库宝贝管理.cs</DependentUpon>
+    </Compile>
     <Compile Include="内容分列.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +99,12 @@
     <Compile Include="移动套餐查询.Designer.cs">
       <DependentUpon>移动套餐查询.cs</DependentUpon>
     </Compile>
+    <Compile Include="网页会员抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网页会员抓取.Designer.cs">
+      <DependentUpon>网页会员抓取.cs</DependentUpon>
+    </Compile>
     <Compile Include="聚享游监测.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +126,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="京东物流.resx">
+      <DependentUpon>京东物流.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="仓库宝贝管理.resx">
+      <DependentUpon>仓库宝贝管理.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="内容分列.resx">
       <DependentUpon>内容分列.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="移动套餐查询.resx">
       <DependentUpon>移动套餐查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网页会员抓取.resx">
+      <DependentUpon>网页会员抓取.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="聚享游监测.resx">
       <DependentUpon>聚享游监测.cs</DependentUpon>

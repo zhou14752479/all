@@ -145,7 +145,7 @@ namespace 数据抓取
                 //textBox1.Text = html;
 
 
-                string str9 = "42299348767003";
+                string str9 = "42877311224455";
 
                 string[] textArray1 = new string[6];
                 textArray1[0] = "_tdc=";
@@ -158,10 +158,11 @@ namespace 数据抓取
                 string str11 = string.Concat(textArray1);
                 str6 = this.getSign(str11);
                 str7 = "https://miniappfang.58.com/api/infodetail?" + str11 + "&_gxm=" + str6;
+                
                 item.URL = str7;
                 result = new HttpResult();
-                // textBox1.Text = helper.GetHtml(item).Html;
-                textBox1.Text = str7;
+                textBox1.Text = helper.GetHtml(item).Html;
+                
             }
             catch (Exception ex2)
             {
@@ -183,7 +184,7 @@ namespace 数据抓取
             ParameterModel param = new ParameterModel();
             param.Page = "10";
             param.CityId = "sh|2";
-          
+
             param.PageSize = "100";
             param.Category = "/ershoufang/pn(?)/?&source01=0";
 
@@ -191,8 +192,10 @@ namespace 数据抓取
             DomainModel dm = new DomainModel();
 
             dm.Cookies = "";
-            
+
             GetResponse(param, dm);
+
+
         }
     }
 }

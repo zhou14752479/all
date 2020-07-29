@@ -22,15 +22,16 @@ namespace helper
         private void Form1_Load(object sender, EventArgs e)
         {
             //method.SetWebBrowserFeatures(method.IeVersion.IE10);
-            method.SetFeatures(1100);
+            method.SetFeatures(8000);
             webBrowser1.ScriptErrorsSuppressed = true;
-            //webBrowser1.Navigate("https://login.1688.com/member/signin.htm?tracelog=member_signout_signin");
-            webBrowser1.Navigate("https://www.nike.com/cn/t/air-zoom-bb-nxt-ep-%E7%94%B7-%E5%A5%B3%E7%AF%AE%E7%90%83%E9%9E%8B-Wp9dZd/CK5708-001");
+            
+            webBrowser1.Navigate("https://login.taobao.com/member/login.jhtml");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cookie = method.GetCookies("https://www.nike.com/cn/t/air-zoom-bb-nxt-ep-%E7%94%B7-%E5%A5%B3%E7%AF%AE%E7%90%83%E9%9E%8B-Wp9dZd/CK5708-001");
+            //cookie = method.GetCookies("https://biz-wb.jdwl.com/business/waybillmanage/index?isFromTab=1&deliveryId=&orderId=&beginTime=2020-07-18+00%3A00%3A00&endTime=2020-07-25+23%3A59%3A59&goodsType=&waybillType=&receiveName=&receiveMobile=&senderName=&senderMobile=&orgId=&orderStatusId=&isRefuse=&receiveCompany=&senderCompany=&preallocationValue=&pageSize=10&printSize=100*113&boxCode=&senderProvinceId=&senderCityId=&senderCountyId=");
+            cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc");
             this.Hide();
 
         }

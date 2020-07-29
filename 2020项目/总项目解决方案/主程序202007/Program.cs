@@ -16,7 +16,7 @@ namespace 主程序202007
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 聚享游监测());
+            Application.Run(new 仓库宝贝管理());
         }
     }
 }

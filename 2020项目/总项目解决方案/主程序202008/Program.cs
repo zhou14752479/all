@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _58二手房
+namespace 主程序202008
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace _58二手房
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 二手房202008更新());
+            Application.Run(new Form1());
         }
     }
 }
