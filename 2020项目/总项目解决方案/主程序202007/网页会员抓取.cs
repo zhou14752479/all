@@ -79,7 +79,7 @@ namespace 主程序202007
         }
 
         #endregion
-      static  string cookie = "JSESSIONID=7HjUHXq1-eBba6dq-Ec53XXJtesWkecv8wVF7Riq.dsapi-ag";
+      static  string cookie = "JSESSIONID=jB6P_B2yFZjnefEt7PwsyxSegBF_VDiSGuBp4z1a.dsapi-ag";
 
         bool zanting = true;
         bool status = true;
@@ -87,36 +87,38 @@ namespace 主程序202007
         
         public void run()
         {
-            int start = int.Parse(textBox1.Text);
-            int end = int.Parse(textBox2.Text);
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string[] text = textBox3.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-            for (int i = start; i <=end; i++)
+            for (int i = 0; i < text.Length; i++)
             {
-                label1.Text = "正在抓取第： " + i + "页，数据量大请稍后...";
-                string url = "http://dsbet8888.com/dsapiag/app/accountManagement/accountList?code=e3a98e95-02e0-4861-bad8-d88aa8ebb976";
 
-                string postdata = "{\"code\":\"e3a98e95-02e0-4861-bad8-d88aa8ebb976\",\"status\":\"OPEN\",\"memberType\":\"MEMBER\",\"queryStr\":\"\",\"id\":\"0\",\"currencyId\":\"0\",\"pageNumber\":\""+i+"\",\"RecordsPage\":\"1000\",\"sortType\":\"USER_NAME\",\"zs\":\"ALL\"}";
-                string html = PostUrl(url,postdata);
-                
+                StringBuilder sb = new StringBuilder();
+                label1.Text = "正在抓取第： " +text[i] + "，数据量大请稍后..."+i;
+                string url = "https://kiosk.fruitfarm88.com/api/player/list?timeperiod=&startdate=2016-01-01&enddate=2020-08-07&viplevel=&kioskname=&page=1&perPage=100000&adminname=&sortby=signupdate" + text[i].Trim();
 
-                MatchCollection zhanghus = Regex.Matches(html, @"""userName"":""([\s\S]*?)""");
-                MatchCollection nichengs = Regex.Matches(html, @"""nickname"":""([\s\S]*?)""");
-                MatchCollection yues = Regex.Matches(html, @"""balance"":([\s\S]*?),");
+                string cookie = "kioskadmin_secret=62BE57BB77A80CAB39E364ECC05185D4; PHPSESSID=1a645b4aacaefe2074971464e6889d62; selected_kioskcode="+text[i];
+                string html = method.GetUrlWithCookie(url,cookie,"utf-8");
+
+
+                Match daili = Regex.Match(html, @"""KIOSKNAME"":""([\s\S]*?)""");
+
+                MatchCollection zhanghus = Regex.Matches(html, @"""PLAYERNAME"":""([\s\S]*?)""");
 
                 if (zhanghus.Count == 0)
-                {
-
-                    break;
-                }
+                    continue;
+                
 
                 for (int j = 0; j < zhanghus.Count; j++)
                 {
 
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                    //ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
-                    lv1.SubItems.Add(zhanghus[j].Groups[1].Value);
-                    lv1.SubItems.Add(nichengs[j].Groups[1].Value);
-                    lv1.SubItems.Add(yues[j].Groups[1].Value);
+                    //lv1.SubItems.Add(zhanghus[j].Groups[1].Value);
+                    //lv1.SubItems.Add(nichengs[j].Groups[1].Value);
+                    //lv1.SubItems.Add(yues[j].Groups[1].Value);
+                    sb.Append(zhanghus[j].Groups[1].Value+" # "+daili.Groups[1].Value + "\r\n");
+
                     while (this.zanting == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -127,9 +129,15 @@ namespace 主程序202007
                     }
                 }
 
-                
+
+                using (StreamWriter fs = new StreamWriter(path + "aaa.txt", true))
+                {
+                    fs.WriteLine(sb.ToString());
+                }
+                Thread.Sleep(2000);
             }
-            MessageBox.Show("查询完成");
+            
+            
         }
 
         private void 网页会员抓取_Load(object sender, EventArgs e)
@@ -153,6 +161,7 @@ namespace 主程序202007
 
 
             #endregion
+           
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -181,6 +190,12 @@ namespace 主程序202007
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            cookieBrowser co = new cookieBrowser("http://dsbet8888.com/dsapiLoginAg/app/frontpage");
+            co.Show();
         }
     }
 }

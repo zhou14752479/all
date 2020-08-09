@@ -131,7 +131,7 @@ namespace wordToPdf
             label2.Text = "0%";
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
-                string fileName = listBox1.Items[i].ToString();
+                string fileName = dicectory+"\\"+ listBox1.Items[i].ToString();
                 if (fileName.Contains("doc") || fileName.Contains("docx"))
                 {
                     string pdfPath = fileName.Replace("docx", "pdf").Replace("doc", "pdf");
@@ -156,6 +156,8 @@ namespace wordToPdf
             progressBar1.Value = progressBar1.Maximum;
             label2.Text =  "100%";
         }
+
+        string dicectory = "";
         private void listBox1_DragDrop(object sender, DragEventArgs e)
         {
             //string filePath = ((Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
@@ -170,7 +172,9 @@ namespace wordToPdf
 
             for (int i = 0; i < s.Length; i++)
             {
-                listBox1.Items.Add(s[i]);
+                dicectory = Path.GetDirectoryName(s[i]);
+                
+                listBox1.Items.Add(Path.GetFileName(s[i]));
                
             }
         }
@@ -187,7 +191,7 @@ namespace wordToPdf
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label1.Parent = listBox1;
+           
         }
 
         private void 清除所有ToolStripMenuItem_Click(object sender, EventArgs e)

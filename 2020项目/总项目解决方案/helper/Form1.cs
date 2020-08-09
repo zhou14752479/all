@@ -19,21 +19,31 @@ namespace helper
 
         public static string cookie = "";
 
+        public void getmseeage(string name)
+        {
+            MessageBox.Show(name);
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             //method.SetWebBrowserFeatures(method.IeVersion.IE10);
-            method.SetFeatures(8000);
+            method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
-            
-            webBrowser1.Navigate("https://login.taobao.com/member/login.jhtml");
+
+            webBrowser1.Navigate("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall");
+            //webBrowser1.Navigate("http://www.yanxiu.com/login.html?l=true");
         }
 
+        string path = AppDomain.CurrentDomain.BaseDirectory;
         private void button1_Click(object sender, EventArgs e)
         {
-            //cookie = method.GetCookies("https://biz-wb.jdwl.com/business/waybillmanage/index?isFromTab=1&deliveryId=&orderId=&beginTime=2020-07-18+00%3A00%3A00&endTime=2020-07-25+23%3A59%3A59&goodsType=&waybillType=&receiveName=&receiveMobile=&senderName=&senderMobile=&orgId=&orderStatusId=&isRefuse=&receiveCompany=&senderCompany=&preallocationValue=&pageSize=10&printSize=100*113&boxCode=&senderProvinceId=&senderCityId=&senderCountyId=");
-            cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc");
+
+            cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/table.htm");
+           // cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
             this.Hide();
 
+            System.IO.File.WriteAllText(path+textBox1.Text.Trim()+".txt",cookie, Encoding.UTF8);
         }
 
         private void webBrowser1_NewWindow(object sender, CancelEventArgs e)

@@ -145,7 +145,7 @@ namespace 数据抓取
                 //textBox1.Text = html;
 
 
-                string str9 = "42877311224455";
+                string str9 = "41736997343522";
 
                 string[] textArray1 = new string[6];
                 textArray1[0] = "_tdc=";

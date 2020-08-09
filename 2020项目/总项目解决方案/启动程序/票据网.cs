@@ -173,7 +173,8 @@ namespace 启动程序
                     string ticketid = ids[i].Groups[1].Value;
                     string ThousandCharge = a5s[i].Groups[1].Value;
                     string payt = "1";
-                    string endorseId = "15858";
+                    //string endorseId = "15858";
+                    string endorseId = "73408";
                     string yearrate= a6s[i].Groups[1].Value;
                     string dealPrice=a3s[i].Groups[1].Value;
                     string ticketPrice=a3s[i].Groups[1].Value;

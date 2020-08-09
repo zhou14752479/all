@@ -381,74 +381,75 @@ namespace 资和信
         /// </summary>
         public void run()
         {
-            StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
-            string text = streamReader.ReadToEnd();
-            string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < array.Length; i++)
+            
+            for (int i = 0; i < listView1.Items.Count; i++)
             {
-                if (array[i] != "")
+                if (listView1.Items[i].Checked == true)
                 {
-
-
-                    try
+                    string num = listView1.Items[i].SubItems[1].Text.Trim();
+                    if (listView1.Items[i].SubItems[1].Text != "")
                     {
 
 
-                        string JINE = "";
-                        string DATE = "";
-                        int a = 0;
-                        while (JINE == "")
+                        try
                         {
-                            Image image = Image.FromStream(getStream("https://www.zihexin.net/Verifycode2.do"));
-
-                            //通过超人打码识别
-                            //OCR ocr = new OCR();
-                            //string value = ocr.Shibie("zhou14752479", "zhoukaige00", image);  //通过超人打码识别
-
-                            //通过C#代码识别
-                            //pictureBox1.Image = image;
-                            Bitmap bmp = new Bitmap(image);
-
-                            string value = imgdo(bmp);
-
-                            string html = getUrl("https://www.zihexin.net/client/card/inquiry.do?key=&index=index&card_no=" + array[i] + "&verify_code=" + value);
 
 
-                            Match key = Regex.Match(html, @"key"" value=""([\s\S]*?)""");
+                            string JINE = "";
+                            string DATE = "";
+                            int a = 0;
+                            while (JINE == "")
+                            {
+                                Image image = Image.FromStream(getStream("https://www.zihexin.net/Verifycode2.do"));
+
+                                //通过超人打码识别
+                                //OCR ocr = new OCR();
+                                //string value = ocr.Shibie("zhou14752479", "zhoukaige00", image);  //通过超人打码识别
+
+                                //通过C#代码识别
+                                //pictureBox1.Image = image;
+                                Bitmap bmp = new Bitmap(image);
+
+                                string value = imgdo(bmp);
+
+                                string html = getUrl("https://www.zihexin.net/client/card/inquiry.do?key=&index=index&card_no=" + num + "&verify_code=" + value);
 
 
-                            string strhtml = getUrl("https://www.zihexin.net/cardsearch/card/cardCheck.do?card_no=" + array[i] + "&key=" + key.Groups[1].Value);
-                            Match jine = Regex.Match(strhtml, @"余额:</h3>([\s\S]*?)</dl>");
-                            Match date = Regex.Match(strhtml, @"有效期:</h3>([\s\S]*?)</dl>");
+                                Match key = Regex.Match(html, @"key"" value=""([\s\S]*?)""");
 
-                            JINE = jine.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
-                            DATE = date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
-                            label1.Text = array[i] + "：正在第" + a + "次识别.....";
-                            a++;
 
-                            if (a > 20)
-                                break;
+                                string strhtml = getUrl("https://www.zihexin.net/cardsearch/card/cardCheck.do?card_no=" + num + "&key=" + key.Groups[1].Value);
+                                Match jine = Regex.Match(strhtml, @"余额:</h3>([\s\S]*?)</dl>");
+                                Match date = Regex.Match(strhtml, @"有效期:</h3>([\s\S]*?)</dl>");
+
+                                JINE = jine.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
+                                DATE = date.Groups[1].Value.Replace("<dl>", "").Replace("&nbsp;", "").Trim();
+                                label1.Text = num + "：正在第" + a + "次识别.....";
+                                a++;
+
+                                if (a > 20)
+                                    break;
+                            }
+                            label1.Text = num + "：识别成功";
+
+                            listView1.Items[i].SubItems[2].Text = JINE;
+                            listView1.Items[i].SubItems[3].Text = DATE;
+                            listView1.Items[i].Checked = false;
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
                         }
-                        label1.Text = array[i] + "：识别成功";
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(array[i]);
-                        lv1.SubItems.Add(JINE);
-                        lv1.SubItems.Add(DATE);
-                        while (this.zanting == false)
+                        catch
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+
+                            continue;
                         }
-
                     }
-                    catch
-                    {
 
-                        continue;
-                    }
+
                 }
-
-
-
 
             }
             TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
@@ -469,11 +470,7 @@ namespace 资和信
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
-            {
-                MessageBox.Show("请导入卡号");
-                return;
-            }
+          
 
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
@@ -582,21 +579,147 @@ namespace 资和信
             {
                 this.textBox1.Text = this.openFileDialog1.FileName;
             }
+
+            StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
+            string text = streamReader.ReadToEnd();
+            string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < array.Length; i++)
+            {
+
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                lv1.SubItems.Add(array[i]);
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.Checked = true;
+            }
         }
 
-        private void 复制网址ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 复制选中ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StringBuilder sb = new StringBuilder();
+            foreach (ListViewItem lv in listView1.Items)
+            {
 
+                if (lv.Checked == true)
+                {
+                    sb.Append(lv.SubItems[1].Text+" "+ lv.SubItems[2].Text + " "+ lv.SubItems[3].Text+"\r\n");
+                }
+                
+
+            }
+
+            Clipboard.SetData(DataFormats.Text, sb.ToString());//复制内容到剪切板
         }
 
-        private void 复制串码ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 导入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                this.textBox1.Text = this.openFileDialog1.FileName;
+            }
 
+            StreamReader streamReader = new StreamReader(this.textBox1.Text, Encoding.Default);
+            string text = streamReader.ReadToEnd();
+            string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < array.Length; i++)
+            {
+
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                lv1.SubItems.Add(array[i]);
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.Checked = true;
+            }
         }
 
-        private void 重新扫描ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 粘贴导入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            IDataObject iData = Clipboard.GetDataObject();
 
+            // Determines whether the data is in a format you can use.
+            if (iData.GetDataPresent(DataFormats.Text))
+            { string value = (String)iData.GetData(DataFormats.Text);
+                string[] array = value.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < array.Length; i++)
+                {
+
+
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                    lv1.SubItems.Add(array[i]);
+                    lv1.SubItems.Add(" ");
+                    lv1.SubItems.Add(" ");
+                    lv1.Checked = true;
+                }
+               
+            }
+           
         }
+
+        private void 全选ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lv in listView1.Items)
+            {
+
+                lv.Checked = true;
+            }
+        }
+
+        private void 反选ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lv in listView1.Items)
+            {
+
+                if (lv.Checked == true)
+                {
+                    lv.Checked = false;
+                }
+                else
+                {
+                    lv.Checked = true;
+                }
+
+
+            }
+        }
+
+        private void 删除所有ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void 删除选中ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lv in listView1.Items)
+            {
+
+                if (lv.Checked == true)
+                {
+                    listView1.Items.Remove(lv);
+                }
+               
+
+            }
+        }
+
+        private void 导出勾选ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcelTime(method.listViewToDataTableSx(this.listView1), true);
+        }
+
+        private void 清除状态ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lv in listView1.Items)
+            {
+
+                lv.SubItems[2].Text = " ";
+                lv.SubItems[3].Text = " ";
+
+
+            }
+        }
+
+
+
     }
 }

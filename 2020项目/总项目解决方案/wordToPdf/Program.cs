@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace wordToPdf
 {
@@ -16,7 +17,19 @@ namespace wordToPdf
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            //string str = Interaction.InputBox("请输入登录密码", "验证窗口", "", -1, -1);
+            //if (str == "186092")
+            //{
+
+            //    Application.Run(new Form1());
+            //}
+            //else
+            //{
+            //    MessageBox.Show("密码错误");
+            //}
             Application.Run(new Form1());
+
         }
     }
 }

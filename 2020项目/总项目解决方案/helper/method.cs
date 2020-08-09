@@ -54,6 +54,21 @@ namespace helper
 
         #endregion
 
+        #region 获取页面跳转后Url
+        static string fanhuiurl(string originalAddress)
+        {
+            string redirectUrl;
+            WebRequest myRequest = WebRequest.Create(originalAddress);
+
+            WebResponse myResponse = myRequest.GetResponse();
+            redirectUrl = myResponse.ResponseUri.ToString();
+
+            myResponse.Close();
+            return redirectUrl;
+        }
+
+        #endregion
+
         #region  listView导出CSV
         /// <summary>
         /// 导出CSV
@@ -430,6 +445,45 @@ namespace helper
         }
         #endregion
 
+        #region listview转datable筛选
+        /// <summary>
+        /// listview转datable
+        /// </summary>
+        /// <param name="lv"></param>
+        /// <returns></returns>
+        public static DataTable listViewToDataTableSx(ListView lv)
+        {
+            int i, j;
+            DataTable dt = new DataTable();
+            DataRow dr;
+            dt.Clear();
+            dt.Columns.Clear();
+            //生成DataTable列头
+            for (i = 0; i < lv.Columns.Count; i++)
+            {
+                dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
+            }
+            //每行内容
+            for (i = 0; i < lv.Items.Count; i++)
+            {
+                if (lv.Items[i].Checked == true) //导出选中的行
+                {
+                    dr = dt.NewRow();
+                    for (j = 0; j < lv.Columns.Count; j++)
+                    {
+
+                        dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+
+
+                    }
+                    dt.Rows.Add(dr);
+                }
+            }
+
+            return dt;
+        }
+        #endregion
+
         #region 修改注册表信息使WebBrowser使用指定版本IE内核 传入11000是IE11
         public static void SetFeatures(UInt32 ieMode)
         {
@@ -477,42 +531,7 @@ namespace helper
         }
         #endregion
 
-        #region listview转datable筛选
-        /// <summary>
-        /// listview转datable
-        /// </summary>
-        /// <param name="lv"></param>
-        /// <returns></returns>
-        public static DataTable listViewToDataTableSx(ListView lv,string key)
-        {
-            int i, j;
-            DataTable dt = new DataTable();
-            DataRow dr;
-            dt.Clear();
-            dt.Columns.Clear();
-            //生成DataTable列头
-            for (i = 0; i < lv.Columns.Count; i++)
-            {
-                dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
-            }
-            //每行内容
-            for (i = 0; i < lv.Items.Count; i++)
-            {
-                dr = dt.NewRow();
-                for (j = 0; j < lv.Columns.Count; j++)
-                {
-                    if (lv.Items[i].SubItems[5].Text.Trim() == key.Trim())
-                    {
-                        dr[j] = lv.Items[i].SubItems[j].Text.Trim();
-                    }
-                    
-                }
-                dt.Rows.Add(dr);
-            }
-
-            return dt;
-        }
-        #endregion
+        
 
         #region NPOI导出表格
         public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
@@ -695,6 +714,8 @@ namespace helper
 
         #endregion
 
+        
+
         #region  listview导出文本TXT
         public static void ListviewToTxt(ListView listview,int i)
         {
@@ -867,7 +888,7 @@ namespace helper
                 request.KeepAlive = true;
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
                 request.Accept = "*/*";
-            
+                request.Timeout = 100000;
                 string content = reader.ReadToEnd();
                 reader.Close();
                 response.Close();
