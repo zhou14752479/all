@@ -277,16 +277,16 @@ namespace 美团
                                         string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
                                    
                                         Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
-                                        Match tell = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
+                                        Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                         Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
                                     Match score = Regex.Match(strhtml1, @"score"":([\s\S]*?),");
-                                    if (!tels.Contains(tell.Groups[1].Value))
+                                    if (!tels.Contains(tel.Groups[1].Value))
                                     {
-
+                                        tels.Add(tel.Groups[1].Value);
                                       
                                             ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                             listViewItem.SubItems.Add(name.Groups[1].Value);
-                                            listViewItem.SubItems.Add(tell.Groups[1].Value);
+                                            listViewItem.SubItems.Add(tel.Groups[1].Value);
                                             listViewItem.SubItems.Add(addr.Groups[1].Value);
                                             listViewItem.SubItems.Add(city);
                                         listViewItem.SubItems.Add(score.Groups[1].Value);
@@ -580,7 +580,7 @@ namespace 美团
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.acaiji.com");
+            //System.Diagnostics.Process.Start("http://www.acaiji.com");
         }
 
         private void LinkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

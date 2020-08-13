@@ -83,20 +83,20 @@ namespace 通用项目
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        public string GetUrl(string Url, string charset)
         {
 
 
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "li_sugr=808db609-6aab-4657-9184-48a0ee7ae95c; bcookie=\"v = 2 & f300ec17 - 3a71 - 4df5 - 8d92 - 0e058b437d99\"; bscookie=\"v = 1 & 20200529085934da055298 - cc70 - 4cbc - 83bb - cca2122ba5c3AQHZ_KzKBYMEk6wfup9UvPd9PD0UcLG7\"; lissc=1; _ga=GA1.2.230708459.1591079163; aam_uuid=45122084896780640190261441493664391323; li_rm=AQFQU6LmywSLFwAAAXJzttu30xP9gvVwor7r6xU0IUgUvpnqC-7e3BIj-abF6oFJ98h_PXk26M-eLHH4xVNu3jv9eGExPJCH8YrhDVk7_UrZBwTCmbGyHp13; liap=true; wwepo=true; JSESSIONID=\"ajax: 8788234651069068391\"; _guid=0f5a842b-d3e8-4fdc-9c35-0daf78446164; li_cc=AQGG9wD_LyKU3wAAAXLJ_4uYZWWAupTYwVNqi_S_7AVFWE0zPCe_EHHkrY8VWnJz5xOyG4YRAg9y; li_at=AQEDASjHgrsDytrQAAABcnO2-K4AAAFy7uCfflYAGlZawAFgAo1fIDOc35D1ZZ30Bu5fbx2Bm-WoU7cSnGLW459_tDfv9OKZhcLtidcQzQJnxguCr3AoZZkuIdw5_tqzg_K_XqHmSb0HCFvcG1TDe3Sp; sl=\"v = 1 & O1hPx\"; UserMatchHistory=AQLJzh7fFZXsCwAAAXLK1Cchu6onIsM1pK4WY9GGC8PkibUNislc9BP8agW5zfYusjEpBWy7ZGGj17xzsZ8ixYxRNYCsG9_4ryRaOpWEsSd9DTkwYhuWuL0N4MeVs2TVhd_ah-vXjg; li_oatml=AQEPTrrMt2BY4QAAAXLK1ClMdhdCx850pO_3Vjfx0IUaDlT8Yx1VsQekQ1f0pUbBGPXaSopj6iWsgzWs-6hFzBRsBQO_zjXw; lang=v=2&lang=zh-cn; AMCVS_14215E3D5995C57C0A495C55%40AdobeOrg=1; AMCV_14215E3D5995C57C0A495C55%40AdobeOrg=-408604571%7CMCIDTS%7C18433%7CvVersion%7C4.6.0%7CMCMID%7C44905754066620073840247694249386775376%7CMCAAMLH-1593219847%7C11%7CMCAAMB-1593219847%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1592622247s%7CNONE%7CMCCIDH%7C-1461880369; UserMatchHistory=AQI9kUv26ioOPAAAAXLPgJnUnZ5lJfSPKwVbfx_z8KDrflGwlCynyKHSXV83dTKgOixTcGcJaEfUAOMbfMvsbbDt8033aZGUbCRk_3LJUhCHOPERmFJX042bprvi0KjlfwjkBQ4a6SjTOhxcKZyec_gFODqGWp6hm4UBvReKKTi256FtTjXBEM-AjR6Ix7Q9qc8e2Pbnq7-kVaalH9M2ifVDsGrVV64K_Puks0V9yHiypzu6mTlFpMDuRc0KKZwaduM6GfeutRyz4S9z3xYMk-jvVLSexc0aSaQ; lidc=\"b = OB71:s = O:r = O:g = 2077:u = 6:i = 1592619212:t = 1592628010:v = 1:sig = AQEJqMZYCVEErtygn7b5W0AjPLB9VOAc\"";
+                
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "https://www.linkedin.com/search/results/all/?keywords=Ashley%20Alvarado%20Director%20of%20Community%20Engagement&origin=GLOBAL_SEARCH_HEADER";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.12(0x17000c2c) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
-                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Cookie",textBox3.Text.Trim());
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("csrf-token: ajax:8788234651069068391");
@@ -329,8 +329,9 @@ namespace 通用项目
         }
 
         #endregion
+
         /// <summary>
-        /// 大众点评评论
+        /// 大众点评评论小程序
         /// </summary>
         public void dianpingpinglun()
         {
@@ -343,7 +344,7 @@ namespace 通用项目
                     string url = "https://m.dianping.com/ugc/review/reviewlist?tagType=1&tag=%E5%85%A8%E9%83%A8&offset="+i+"&shopUuid="+ item + "&optimus_uuid=168b6aa9d06c8-87a2a9932defc-0-0-168b6aa9d06c8&optimus_platform=13&optimus_partner=203&optimus_risk_level=71&optimus_code=10&pullDown=false&reLoad=false";
 
                     string html = GetUrl(url, "utf-8");
-                    
+                    textBox3.Text = html;
                     MatchCollection bodys = Regex.Matches(html, @"""reviewBody""([\s\S]*?)honour");
                     MatchCollection years = Regex.Matches(html, @"""lastTime"":""([\s\S]*?)-");
                     MatchCollection times = Regex.Matches(html, @"""lastTimeStr"":""([\s\S]*?)""");
@@ -369,8 +370,75 @@ namespace 通用项目
                     }
 
                    
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                     
+                }
+
+            }
+        }
+
+       
+
+        /// <summary>
+        /// 电脑端大众点评评论切换cookie
+        /// </summary>
+        public void pcdppinglun()
+        {
+            string[] shopIds = { "FH10swRdQacK31RV", "HaDRwK0VZdFhkhHO", "G6ERGvkUdhipG6rt", "l5GeZ7Wfpq2F5Nfg", "k9D2ey7sOStjJRJv", "k6Aj28qXxArQ8BvY", "H3TEMbPK8SwlB7wf", "H6HuUeolwzD6qAHP" };
+            foreach (var item in shopIds)
+            {
+
+                for (int i = 1; i < 9999; i++)
+                {
+                    string url = "http://www.dianping.com/shop/" + item + "/review_all/p" + i;
+
+                    string html = GetUrl(url, "utf-8");
+                    
+
+
+                    MatchCollection bodys = Regex.Matches(html, @"<div class=""main-review"">([\s\S]*?)投诉</a>");
+
+                    Match shop = Regex.Match(html, @"<h1 class=""shop-name"">([\s\S]*?)</h1>");
+                    if (shop.Groups[1].Value == "")
+                    {
+                        i = i - 1;
+                        MessageBox.Show("验证");
+                        continue;
+
+                    }
+
+                    if (bodys.Count == 0)
+                        break;
+
+                    for (int j = 0; j < bodys.Count; j++)
+                    {
+
+                        
+                        Match time = Regex.Match(bodys[j].Groups[1].Value, @"<span class=""time"">([\s\S]*?)</span>");
+                        Match rank = Regex.Match(bodys[j].Groups[1].Value, @"<div class=""review-rank"">([\s\S]*?)str([\s\S]*?)star");
+                        Match neirong1 = Regex.Match(bodys[j].Groups[1].Value, @"<div class=""review-words"">([\s\S]*?)</div>");
+                        Match neirong2= Regex.Match(bodys[j].Groups[1].Value, @"<div class=""review-words Hide"">([\s\S]*?)<div class=""less-words"">");
+
+                        string neirong = "";
+                        neirong = neirong1.Groups[1].Value != "" ? Regex.Replace(neirong1.Groups[1].Value, "<[^>]+>", "") : Regex.Replace(neirong2.Groups[1].Value, "<[^>]+>", "");
+
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(shop.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(time.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(rank.Groups[2].Value.Trim());
+                       
+                        lv1.SubItems.Add(neirong.Trim());
+                        lv1.SubItems.Add(i.ToString());
+
+                        while (zanting == false)
+                        {
+                            Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                        }
+                    }
+
+
+                    Thread.Sleep(2000);
+
                 }
 
             }
@@ -442,13 +510,12 @@ namespace 通用项目
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Thread thread = new Thread(new ThreadStart(run));
-            //thread.Start();
-            //Control.CheckForIllegalCrossThreadCalls = false;
 
-            Thread thread = new Thread(new ThreadStart(lingying));
+
+            Thread thread = new Thread(new ThreadStart(pcdppinglun));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+
         }
 
         private void button3_Click(object sender, EventArgs e)

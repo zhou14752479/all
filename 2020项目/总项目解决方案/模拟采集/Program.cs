@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 启动程序
+namespace 模拟采集
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 启动程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 兴盛优选());
+            Application.Run(new 百度());
         }
     }
 }

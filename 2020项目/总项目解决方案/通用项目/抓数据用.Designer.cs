@@ -55,6 +55,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button9 = new System.Windows.Forms.Button();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -116,7 +118,9 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
@@ -124,7 +128,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(936, 249);
+            this.listView1.Size = new System.Drawing.Size(989, 249);
             this.listView1.TabIndex = 34;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -136,18 +140,17 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "name";
+            this.columnHeader2.Text = "店名";
             this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "title";
+            this.columnHeader3.Text = "时间";
             this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "picurl";
-            this.columnHeader4.Width = 1000;
+            this.columnHeader4.Text = "星级";
             // 
             // button1
             // 
@@ -251,11 +254,11 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(68, 458);
+            this.textBox3.Location = new System.Drawing.Point(68, 467);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(293, 193);
+            this.textBox3.Size = new System.Drawing.Size(293, 114);
             this.textBox3.TabIndex = 49;
             this.textBox3.Text = resources.GetString("textBox3.Text");
             // 
@@ -278,11 +281,20 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "内容";
+            this.columnHeader5.Width = 500;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "页码";
+            // 
             // 抓数据用
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 673);
+            this.ClientSize = new System.Drawing.Size(989, 673);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox3);
@@ -300,6 +312,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Name = "抓数据用";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "抓数据用";
             this.Load += new System.EventHandler(this.抓数据用_Load);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -336,5 +349,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

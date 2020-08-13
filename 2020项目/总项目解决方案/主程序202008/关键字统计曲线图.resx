@@ -117,13 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>643, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>791, 17</value>
-  </metadata>
-  <data name="textBox3.Text" xml:space="preserve">
-    <value>s_ViewType=10; _lxsdk_cuid=172415f6ef4c8-07c00d4610f257-6373664-1fa400-172415f6ef5c8; _lxsdk=172415f6ef4c8-07c00d4610f257-6373664-1fa400-172415f6ef5c8; _hc.v=74a96686-201e-3f1f-4ab7-70ae4116c00a.1590234674; ctu=47f5eba3de69acfd21b70c8ae58e405b8f180a9c755ef423f66cc840421b7d29; cityid=100; fspop=test; _lx_utm=utm_source%3DBaidu%26utm_medium%3Dorganic; switchcityflashtoast=1; _tr.u=qrWqQBJUaU5vLBXc; _tr.s=FLw6wOVOpTc2HA1V; info="{\"query_id\":\"fa334b77-183b-4ea9-82fb-c8e24786812d\",\"ab_id\":\"exp000095_a\"}"; m_flash2=1; default_ab=shop%3AA%3A11%7Cindex%3AA%3A3; cy=16; cye=wuhan; Hm_lvt_602b80cf8079ae6591966cc70a3940e7=1597014882,1597014894,1597104176,1597106165; dper=2714b63111215372e15e6caebcde1d9c7ce48940c1bf09044e043114fc8605835d2ccba301b57d4b97d1f2b662be23e7adf54730206637ce647859f207298510bf40e464babe8b3b18f260d7a7593d21fc546940b28773f0e3728e18626b1cab; ll=7fd06e815b796be3df069dec7836c3df; ua=%E5%91%A8%E5%87%AF%E6%AD%8C; uamo=17606117606; dplet=d51180fc9ef40caf2921309670c7200f; Hm_lpvt_602b80cf8079ae6591966cc70a3940e7=1597109212; _lxsdk_s=173dad3b8c9-b91-50f-e56%7C%7C1634</value>
-  </data>
 </root>

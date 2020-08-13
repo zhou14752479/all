@@ -33,7 +33,7 @@ namespace 启动程序
                 for (int i = 1; i < 9999; i++)
                 {
 
-                    string url = "https://mall-store.xsyxsc.com/mall-store/store/queryStoreList?page="+i+"&rows=100&storeName="+System.Web.HttpUtility.UrlEncode(textBox1.Text)+"&userKey=a2422d77-69a1-4f7b-aa1a-39bec2b2db44";
+                    string url = "https://mall-store.xsyxsc.com/mall-store/store/queryStoreList?page="+i+"&rows=100&storeName="+System.Web.HttpUtility.UrlEncode(textBox1.Text)+ "&userKey=48151f8c-d98c-4694-95cf-e22f54c93e94";
 
 
                     string html = method.GetUrl(url, "utf-8");

@@ -232,7 +232,7 @@ namespace 商标局浏览器
             try
             {
                 SetProxy("");
-                string url = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=1&fa=0&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7";
+                string url = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=7&fa=5&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7";
 
                 string html = GetUrl(url, "utf-8");
                 
