@@ -80,22 +80,31 @@ namespace 主程序202008
 
         ArrayList lists = new ArrayList();
 
-
+        /// <summary>
+        /// 获取时间戳  秒
+        /// </summary>
+        /// <returns></returns>
+        public string GetTimeStamp()
+        {
+            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long a = Convert.ToInt64(tss.TotalSeconds);
+            return a.ToString();
+        }
 
         public void run()
         {
 
-
+            //string timestamp = GetTimeStamp();
 
             //try
             //{
 
-            //    string url = "http://wwwamlhc.com/api/HistoryOpenInfo";
+            //    string url = "https://1216212.com:8444/api_trend/Trend/getTrendForPc";
             //    string nowdate = DateTime.Now.ToString("yyyy-MM-dd");
-            //    string postdata = "{\"lotteryId\":2032,\"issueNum\":\"" + nowdate + "\"}";
+            //    string postdata = "{\"nonce\":\"922d2881-853b-44b2-89fa-ad5775dd3094\",\"timestamp\":"+timestamp+",\"lotteryId\":\"71\",\"type\":100}";
 
             //    string html = PostUrl(url, postdata);
-
+            //    MessageBox.Show(html);
 
             //    MatchCollection issues = Regex.Matches(html, @"""issue"":""([\s\S]*?)""");
             //    MatchCollection items = Regex.Matches(html, @"""openCode"":""([\s\S]*?)""");
@@ -126,7 +135,7 @@ namespace 主程序202008
 
             //    MessageBox.Show(ex.ToString());
             //}
-
+           
             while (true)
             {
                 List<int> values = new List<int>();
@@ -151,7 +160,7 @@ namespace 主程序202008
                 }
 
                 string jieguo = sb.ToString().Replace(" ", "");
-              
+
                 if (!lists.Contains(jieguo))
                 {
                     lists.Add(jieguo);
@@ -164,16 +173,17 @@ namespace 主程序202008
         string path = AppDomain.CurrentDomain.BaseDirectory;
         private void amlhc_Load(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader(path+"data.txt", Encoding.GetEncoding("utf-8"));
+            StreamReader sr = new StreamReader(path + "data.txt", Encoding.GetEncoding("utf-8"));
             //一次性读取完 
             string texts = sr.ReadToEnd();
             string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
             for (int i = 0; i < text.Length; i++)
             {
-
-                ListViewItem lv2 = listView2.Items.Add(text[i]); //使用Listview展示数据
+                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
                
+ 
+                lv2.SubItems.Add(text[i]);
 
             }
 
@@ -198,6 +208,51 @@ namespace 主程序202008
         private void button2_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView2.Items.Count; i++)
+            {
+                if (listView2.Items[i].SubItems[0].Text.Contains(textBox1.Text.Trim()))
+                {
+                    listView2.Items[i].ForeColor = Color.Red;
+                }
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+            listViewItem.SubItems.Add(textBox1.Text);
+            listViewItem.SubItems.Add(textBox2.Text);
+            listViewItem.SubItems.Add(textBox3.Text);
+            listViewItem.SubItems.Add(textBox4.Text);
+            listViewItem.SubItems.Add(textBox5.Text);
+            listViewItem.SubItems.Add(textBox6.Text);
+            listViewItem.SubItems.Add(textBox7.Text);
+            listViewItem.SubItems.Add(textBox8.Text);
+            listViewItem.SubItems.Add(textBox9.Text);
+            listViewItem.SubItems.Add(textBox10.Text);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
+            textBox10.Text = "";
         }
     }
 }

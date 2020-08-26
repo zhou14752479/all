@@ -16,7 +16,7 @@ namespace 主程序1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 文章合成360());
+            Application.Run(new 搜搜问问());
         }
     }
 }

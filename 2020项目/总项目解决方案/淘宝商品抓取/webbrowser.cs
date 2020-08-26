@@ -69,12 +69,12 @@ namespace 淘宝商品抓取
         private void button1_Click(object sender, EventArgs e)
         {
             COOKIE = GetCookies("https://s.taobao.com/search?initiative_id=tbindexz_20170306&ie=utf8&spm=a21bo.2017.201856-taobao-item.2&sourceId=tb.index&search_type=item&ssid=s5-e&commend=all&imgfile=&q=%E6%89%8B%E6%9C%BA&suggest=history_7&_input_charset=utf-8&wq=&suggest_query=&source=suggest");
-            System.IO.StreamReader getReader = new System.IO.StreamReader(this.webBrowser1.DocumentStream, System.Text.Encoding.GetEncoding("gb2312"));
+           // System.IO.StreamReader getReader = new System.IO.StreamReader(this.webBrowser1.DocumentStream, System.Text.Encoding.GetEncoding("gb2312"));
 
-           string html = getReader.ReadToEnd();
+           //string html = getReader.ReadToEnd();
       
-            Match title = Regex.Match(html, @"mtb-nickname"" type=""hidden"" value=""([\s\S]*?)""");
-            tbName = title.Groups[1].Value;
+           // Match title = Regex.Match(html, @"mtb-nickname"" type=""hidden"" value=""([\s\S]*?)""");
+           // tbName = title.Groups[1].Value;
           
            this.Hide();
         }

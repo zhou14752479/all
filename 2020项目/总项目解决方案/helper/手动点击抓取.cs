@@ -194,7 +194,7 @@ namespace helper
 
                 page = i;
                 status = false;
-                webBrowser1.Navigate(textBox1.Text.Trim()+"&pageNumber=" + i);
+                webBrowser1.Navigate(textBox1.Text.Trim()+ "&pageNumber="+i);
 
                 while (this.status == false)
                 {

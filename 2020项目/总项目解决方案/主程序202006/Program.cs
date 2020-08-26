@@ -16,7 +16,7 @@ namespace 主程序202006
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 飞机票信息记录());
+            Application.Run(new 飞机票信息记录1());
         }
     }
 }

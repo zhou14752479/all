@@ -16,7 +16,7 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
                     Directory.CreateDirectory(sPath); //创建文件夹
                 }
 
-三、URL 解码
+三、URL 编码
 	System.Web.HttpUtility.UrlEncode(comboBox1.Text);
 	System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); 指定编码
 

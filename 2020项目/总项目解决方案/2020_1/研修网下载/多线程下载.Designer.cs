@@ -36,6 +36,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -49,9 +50,9 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button5 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -116,6 +117,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.button2);
@@ -127,6 +129,16 @@
             this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "运行";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(198, 22);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(94, 27);
+            this.button5.TabIndex = 42;
+            this.button5.Text = "导出";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button2
             // 
@@ -227,6 +239,11 @@
             // 
             this.columnHeader4.Text = "线程ID";
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "文件ID";
+            this.columnHeader5.Width = 100;
+            // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(676, 12);
@@ -236,20 +253,15 @@
             this.textBox4.TabIndex = 68;
             this.textBox4.Visible = false;
             // 
-            // columnHeader5
+            // button6
             // 
-            this.columnHeader5.Text = "文件ID";
-            this.columnHeader5.Width = 100;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(198, 22);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(94, 27);
-            this.button5.TabIndex = 42;
-            this.button5.Text = "导出";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button6.Location = new System.Drawing.Point(298, 59);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(69, 23);
+            this.button6.TabIndex = 43;
+            this.button6.Text = "清空";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // 多线程下载
             // 
@@ -299,5 +311,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

@@ -274,9 +274,9 @@ namespace helper
             //request.ContentType = "application/json";
             request.ContentLength = postData.Length;
            
-            request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523) NetType/3G Language/zh_CN";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
           
-            request.Referer = "https://servicewechat.com/wxb37374b344073551/19/page-frame.html";
+            request.Referer = "http://exx.goodsinfo.hscode.net/";
             StreamWriter sw = new StreamWriter(request.GetRequestStream());
             sw.Write(postData);
             sw.Flush();
@@ -402,6 +402,44 @@ namespace helper
 
         #endregion
 
+        #region 苏飞请求获取cookie
+        public static string getSFcookie(string url, string COOKIE,string data)
+        {
+            HttpHelper http = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = url,//URL     必需项  
+                Method = "GET",//URL     可选项 默认为Get  
+                Timeout = 100000,//连接超时时间     可选项默认为100000  
+                ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
+                IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
+                Cookie = COOKIE,
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
+                ContentType = "text/html",//返回类型    可选项有默认值  
+                Referer = "https://live.500.com/wanchang.php",//来源URL     可选项  
+                Allowautoredirect = true,//是否根据３０１跳转     可选项  
+                AutoRedirectCookie = true,//是否自动处理Cookie     可选项  
+                                          //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
+                                          //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
+                Postdata = data,//Post数据     可选项GET时不需要写  
+                              //ProxyIp = "192.168.1.105：2020",//代理服务器ID     可选项 不需要代理 时可以不设置这三个参数  
+                              //ProxyPwd = "123456",//代理服务器密码     可选项  
+                              //ProxyUserName = "administrator",//代理服务器账户名     可选项  
+                ResultType = ResultType.String,//返回数据类型，是Byte还是String  
+               
+            };
+            HttpResult result = http.GetHtml(item);
+            string html = result.Html;
+            string cookie = result.Cookie;
+
+
+            return cookie;
+
+        }
+
+        #endregion
+
         #region listview转datable
         /// <summary>
         /// listview转datable
@@ -415,6 +453,7 @@ namespace helper
             DataRow dr;
             dt.Clear();
             dt.Columns.Clear();
+            //lv.Columns.Count
             //生成DataTable列头
             for (i = 0; i < lv.Columns.Count; i++)
             {
@@ -614,7 +653,67 @@ namespace helper
         }
 
         #endregion
-        
+
+        #region NPOI表格导入
+        public void ReadFromExcelFile(string filePath,ListView listView)
+        {
+            //using (OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "Microsoft Excel files(*.xls)|*.xls;*.xlsx" })
+            //    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            //    {
+            //        ReadFromExcelFile(openFileDialog1.FileName);
+            //    }
+            IWorkbook wk = null;
+            string extension = System.IO.Path.GetExtension(filePath);
+            try
+            {
+                FileStream fs = File.OpenRead(filePath);
+                if (extension.Equals(".xls"))
+                {
+                    //把xls文件中的数据写入wk中
+                    wk = new HSSFWorkbook(fs);
+                }
+                else
+                {
+                    //把xlsx文件中的数据写入wk中
+                    wk = new XSSFWorkbook(fs);
+                }
+
+                fs.Close();
+                //读取当前表数据
+                ISheet sheet = wk.GetSheetAt(0);
+
+                IRow row = sheet.GetRow(0);  //读取当前行数据
+                                             //LastRowNum 是当前表的总行数-1（注意）
+                int offset = 0;
+                for (int i = 0; i <= sheet.LastRowNum; i++)
+                {
+                    row = sheet.GetRow(i);  //读取当前行数据
+                    if (row != null)
+                    {
+
+                        ListViewItem lv1 = listView.Items.Add((listView.Items.Count + 1).ToString());
+                        for (int j = 0; j < row.LastCellNum; j++) //LastCellNum 是当前行的总列数
+                        {
+
+                            //读取该行的第j列数据
+                            string value = row.GetCell(j).ToString();
+                            //textBox1.Text+=(value.ToString() + " ");
+
+                            lv1.SubItems.Add(value.ToString());
+                        }
+                        // textBox1.Text += "\r\n";
+                    }
+                }
+            }
+
+            catch (Exception e)
+            {
+                //只在Debug模式下才输出
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        #endregion
         /// <summary>
         /// 获取时间戳  秒
         /// </summary>
@@ -878,7 +977,7 @@ namespace helper
         {
             try
             {
-               // System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+               System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 //request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
@@ -960,7 +1059,30 @@ namespace helper
         #endregion
 
 
-        
+        #region  获取pdf文档的页数
+        /// <summary>
+        /// 获取pdf文档的页数
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns>-1表示文件不存在</returns>
+        public static int GetPDFofPageCount(string filePath)
+        {
+            int count = -1;//-1表示文件不存在
+            if (File.Exists(filePath))
+            {
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    StreamReader reader = new StreamReader(fs);
+                    //从流的当前位置到末尾读取流
+                    string pdfText = reader.ReadToEnd();
+                    Regex rgx = new Regex(@"/Type\s*/Page[^s]");
+                    MatchCollection matches = rgx.Matches(pdfText);
+                    count = matches.Count;
+                }
+            }
+            return count;
+        }
+        #endregion
 
         #region GET使用代理IP请求
         /// <summary>

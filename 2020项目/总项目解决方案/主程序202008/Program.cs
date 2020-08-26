@@ -16,7 +16,7 @@ namespace 主程序202008
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 关键字统计曲线图());
+            Application.Run(new amlhc());
         }
     }
 }

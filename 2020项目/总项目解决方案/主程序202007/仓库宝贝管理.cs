@@ -423,16 +423,8 @@ namespace 主程序202007
 
 
 
-                string newtitle = "";
-
-                if (qianzhuigeshu <= numericUpDown1.Value)
-                {
-                    newtitle = textBox2.Text.Trim() + lists[value].ToString() + textBox3.Text.Trim();
-                }
-                else
-                {
-                    newtitle =  lists[value].ToString();
-                }
+                string  newtitle = textBox2.Text.Trim() + lists[value].ToString() + textBox3.Text.Trim();
+               
                
 
 
@@ -503,6 +495,11 @@ namespace 主程序202007
             {
                 lv.Checked = true;
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }

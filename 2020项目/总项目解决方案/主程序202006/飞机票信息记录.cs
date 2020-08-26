@@ -50,8 +50,8 @@ namespace 主程序202006
                     {
 
 
-                        string url = "http://api.fly517.com:889/pidservicedetr.asmx/DetrJsonQueryId?UserAct=" + textBox4.Text.Replace("\r\n", "").Trim() + "&UserPwd=" + textBox5.Text.Replace("\r\n", "").Trim() + "&UserKey=" + textBox6.Text.Replace("\r\n", "").Trim() + "&InstructionType=TN&InstructionValue=" + i+ "&QueryId=";
-
+                        string url = "http://api.camucz.com:889/pidservicedetr.asmx/DetrJsonQueryId?UserAct=" + textBox4.Text.Replace("\r\n", "").Trim() + "&UserPwd=" + textBox5.Text.Replace("\r\n", "").Trim() + "&UserKey=" + textBox6.Text.Replace("\r\n", "").Trim() + "&InstructionType=TN&InstructionValue=" + i+ "&QueryId=";
+                        
                         string html = GetUrl(url, "utf-8");
 
                         Match a1 = Regex.Match(html, @"""PASSENGER"":""([\s\S]*?)""");
@@ -169,7 +169,7 @@ namespace 主程序202006
                     {
 
 
-                        string url = "http://api.fly517.com:889/pidservicedetr.asmx/DetrJsonQueryId?UserAct=" + textBox4.Text.Replace("\r\n","").Trim()+"&UserPwd="+textBox5.Text.Replace("\r\n", "").Trim()+"&UserKey="+textBox6.Text.Replace("\r\n", "").Trim()+"&InstructionType=TN&InstructionValue=" + array[i].Replace("\r\n", "").Trim()+ "&QueryId=";
+                        string url = "http://api.camucz.com:889/pidservicedetr.asmx/DetrJsonQueryId?UserAct=" + textBox4.Text.Replace("\r\n","").Trim()+"&UserPwd="+textBox5.Text.Replace("\r\n", "").Trim()+"&UserKey="+textBox6.Text.Replace("\r\n", "").Trim()+"&InstructionType=TN&InstructionValue=" + array[i].Replace("\r\n", "").Trim()+ "&QueryId=";
                         
                         string html = GetUrl(url, "utf-8");
                       
@@ -347,6 +347,62 @@ namespace 主程序202006
         private void button6_Click(object sender, EventArgs e)
         {
             method.ListViewToCSV(listView1, true);
+        }
+
+
+        #region 导出文本
+        public static void expotTxt(ListView lv1)
+        {
+
+            string path = AppDomain.CurrentDomain.BaseDirectory + "导出结果\\";
+
+
+                foreach (ListViewItem item in lv1.Items)
+                {
+             
+                    List<string> list = new List<string>();
+
+                    string temp1 = item.SubItems[1].Text;
+                    string temp2 = item.SubItems[2].Text;
+                    string temp3 = item.SubItems[3].Text;
+                    string temp4 = item.SubItems[4].Text;
+                    string temp5 = item.SubItems[5].Text;
+                    string temp6 = item.SubItems[6].Text;
+                    string temp7 = item.SubItems[7].Text;
+                    string temp8 = item.SubItems[8].Text;
+                    string temp9 = item.SubItems[9].Text;
+                    string value = temp1 + "---" + temp2 + "---" + temp3 + "---" + temp4 + "---" + temp5 + "---" + temp6 + "---" + temp7 + "---" + temp8 + "---" + temp9 ;
+                    string date = temp7;
+
+                if (date.Trim() == "")
+                {
+                    date = "空";
+                }
+                    if (!File.Exists(path + date + ".txt"))
+                    {
+                    FileStream fs1 = new FileStream(path + date + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(value);
+                    sw.Close();
+                    fs1.Close();
+                }
+                    else
+                    {
+                        StreamWriter fs = new StreamWriter(path + date + ".txt", true);
+                        fs.WriteLine(value);
+                        fs.Close();
+                    }
+
+          
+            }
+                MessageBox.Show("导出完成");
+            
+
+        }
+        #endregion
+        private void button7_Click(object sender, EventArgs e)
+        {
+            expotTxt(listView1);
         }
     }
 }

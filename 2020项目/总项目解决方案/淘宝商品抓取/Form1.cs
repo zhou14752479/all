@@ -228,6 +228,7 @@ namespace 淘宝商品抓取
                 int p = i * 44;
                 string URL = url + "&s=" + p.ToString()+sb.ToString();
                 string html = getHtml(URL);
+               
                 getInfos(html);
                 Thread.Sleep(2000);
                 if (status == false)

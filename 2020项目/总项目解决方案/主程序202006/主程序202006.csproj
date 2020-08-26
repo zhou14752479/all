@@ -123,6 +123,12 @@
     <Compile Include="飞机票信息记录.Designer.cs">
       <DependentUpon>飞机票信息记录.cs</DependentUpon>
     </Compile>
+    <Compile Include="飞机票信息记录1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="飞机票信息记录1.Designer.cs">
+      <DependentUpon>飞机票信息记录1.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="aliexpress.resx">
       <DependentUpon>aliexpress.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="飞机票信息记录.resx">
       <DependentUpon>飞机票信息记录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="飞机票信息记录1.resx">
+      <DependentUpon>飞机票信息记录1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -74,7 +74,7 @@ namespace 主程序1
                     StringBuilder sb = new StringBuilder();
                     ArrayList articleList = new ArrayList();
                     ArrayList titleList = new ArrayList();
-                    for (int i = 1;i < 4; i++)
+                    for (int i = 1;i < 5; i++)
                     {
 
                         string URL = "https://www.sogou.com/sogou?query="+System.Web.HttpUtility.UrlEncode(array[a])+"&insite=wenwen.sogou.com&pid=sogou-wsse-a9e18cb5dd9d3ab4&rcer=&page="+i+"&ie=utf8";
@@ -155,6 +155,12 @@ namespace 主程序1
                         sb.Append(titleList[3]); sb.Append("\r\n");
                         sb.Append(articleList[3]);
                         sb.Append("\r\n");
+                        sb.Append(titleList[4]); sb.Append("\r\n");
+                        sb.Append(articleList[4]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[5]); sb.Append("\r\n");
+                        sb.Append(articleList[5]);
+                        sb.Append("\r\n");
                         sb.Append(titleList[6]); sb.Append("\r\n");
                         sb.Append(articleList[6]);
                         sb.Append("\r\n");
@@ -167,6 +173,15 @@ namespace 主程序1
                         sb.Append(titleList[9]); sb.Append("\r\n");
                         sb.Append(articleList[9]);
                         sb.Append("\r\n");
+                        sb.Append(titleList[10]); sb.Append("\r\n");
+                        sb.Append(articleList[10]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[11]); sb.Append("\r\n");
+                        sb.Append(articleList[11]);
+                        sb.Append("\r\n");
+                        sb.Append(titleList[12]); sb.Append("\r\n");
+                        sb.Append(articleList[12]);
+                        sb.Append("\r\n");
                         sb.Append(titleList[13]); sb.Append("\r\n");
                         sb.Append(articleList[13]);
                         sb.Append("\r\n");
@@ -175,6 +190,22 @@ namespace 主程序1
                         sb.Append("\r\n");
                         sb.Append(titleList[16]); sb.Append("\r\n");
                         sb.Append(articleList[16]);
+                        sb.Append("\r\n");
+                        sb.Append(articleList[21]);
+                        sb.Append("\r\n");
+                        sb.Append(articleList[20]);
+                        sb.Append("\r\n");
+                        sb.Append(articleList[23]);
+                        sb.Append("\r\n");
+                        sb.Append(articleList[24]);
+                        sb.Append("\r\n");
+                        sb.Append(articleList[25]);
+                        sb.Append("\r\n");
+                        sb.Append(articleList[26]);
+                        sb.Append("\r\n");
+                        sb.Append(articleList[27]);
+                        sb.Append("\r\n");
+                        sb.Append(articleList[28]);
                         sb.Append("\r\n");
 
                     }
@@ -227,6 +258,11 @@ namespace 主程序1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!textBox3.Text.Contains("com"))
+            {
+                MessageBox.Show("请输入代理IP");
+                return;
+            }
             button1.Enabled = false;
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();

@@ -31,19 +31,21 @@ namespace helper
             method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
 
-            webBrowser1.Navigate("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall");
-            //webBrowser1.Navigate("http://www.yanxiu.com/login.html?l=true");
+            // webBrowser1.Navigate("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall");
+            //   webBrowser1.Navigate("http://www.yanxiu.com/login.html?l=true");
+            webBrowser1.Navigate("https://new-wl.jdwl.com/");
         }
 
         string path = AppDomain.CurrentDomain.BaseDirectory;
         private void button1_Click(object sender, EventArgs e)
         {
 
-            cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/table.htm");
-           // cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
+            // cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/table.htm");
+            //  cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
+            cookie = method.GetCookies("https://biz-wb.jdwl.com/business/waybillmanage/toDeliveryDetail");
             this.Hide();
 
-            System.IO.File.WriteAllText(path+textBox1.Text.Trim()+".txt",cookie, Encoding.UTF8);
+          //  System.IO.File.WriteAllText(path+textBox1.Text.Trim()+".txt",cookie, Encoding.UTF8);
         }
 
         private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
