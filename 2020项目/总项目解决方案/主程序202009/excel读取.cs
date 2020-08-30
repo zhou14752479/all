@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
 using System.Text.RegularExpressions;
+using System.Threading;
+using Microsoft.VisualBasic;
 
 namespace 主程序202009
 {
@@ -27,6 +29,15 @@ namespace 主程序202009
     
             public void ReadFromExcelFile(string filePath)
             {
+
+         
+
+
+
+
+
+
+
             //using (OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "Microsoft Excel files(*.xls)|*.xls;*.xlsx" })
             //    if (openFileDialog1.ShowDialog() == DialogResult.OK)
             //    {
@@ -60,18 +71,41 @@ namespace 主程序202009
                         row = sheet.GetRow(i);  //读取当前行数据
                         if (row != null)
                         {
-                       
-                        ListViewItem lv1 = listView1.Items.Add(row.GetCell(0).ToString()); 
+                        ListViewItem lv1;
+                        try
+                        {
+                            lv1 = listView1.Items.Add(row.GetCell(0).ToString());
+                        }
+                        catch (Exception)
+                        {
+
+                            return;
+                        }
+                      
+
+
                         for (int j = 1; j < row.LastCellNum; j++) //LastCellNum 是当前行的总列数
                         {
+                           var value = "";
+                            try
+                            {
+                                value= row.GetCell(j).ToString();
+                                lv1.SubItems.Add(value.ToString());
+
+                            }
+                            catch (Exception)
+                            {
+                                lv1.SubItems.Add(value.ToString());
+                                continue;
+                                
+                            }
+                           
                            
                                                                                                             //读取该行的第j列数据
-                            string value = row.GetCell(j).ToString();
-                                //textBox1.Text+=(value.ToString() + " ");
-                           
-                            lv1.SubItems.Add(value.ToString());
+                            
+                          
                         }
-                                // textBox1.Text += "\r\n";
+                               
                         }
                     }
                 }
@@ -85,7 +119,52 @@ namespace 主程序202009
             }
 
 
-        public void heduitupian()
+        /// <summary>
+        /// 核对索引
+        /// </summary>
+        public void jianchasuoyin()
+        {
+          
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("请先选择表格目录");
+                return;
+            }
+            textBox5.Text = "";
+            for (int i = 1; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].BackColor = Color.White;
+            }
+            for (int i = 1; i < listView1.Items.Count; i++)
+            {
+                try
+                {
+                    if (listView1.Items[i].SubItems[5].Text == "" && listView1.Items[i].SubItems[0].Text == "")
+                    {
+                        break;
+                    }
+
+                        if (listView1.Items[i].SubItems[5].Text != listView1.Items[i].SubItems[6].Text + "-" + listView1.Items[i].SubItems[0].Text)
+                        {
+                            listView1.Items[i].BackColor = Color.Red;
+                            textBox5.Text += listView1.Items[i].SubItems[5].Text + "【 索引 】错误" + "\r\n";
+                            continue;
+                        }
+                    
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+
+        }
+
+
+        /// <summary>
+        /// 核对页数
+        /// </summary>
+        public void jianchayeshu()
         {
             if (textBox2.Text == "")
             {
@@ -103,15 +182,19 @@ namespace 主程序202009
                 listView1.Items[i].BackColor = Color.White;
             }
 
-
-                List<String> lists = new List<string>();
+            int wenjianjiageshu = 0;
+            List<String> lists = new List<string>();
             DirectoryInfo root = new DirectoryInfo(textBox2.Text);
             DirectoryInfo[] di = root.GetDirectories();
+
             for (int i = 0; i < di.Length; i++)
             {
-               
-                lists.Add(di[i].FullName);
+
+                 wenjianjiageshu=wenjianjiageshu+ di[i].GetDirectories().Length;
+
+
             }
+
             //foreach (string ziDirectory in lists)
             //{
             //    MessageBox.Show(ziDirectory);
@@ -121,37 +204,42 @@ namespace 主程序202009
             int muluzongyeshu = 0;
             for (int i = 1; i < listView1.Items.Count; i++)
             {
-
-                
-
-
-
-                string zidicName=listView1.Items[i].SubItems[5].Text;
-              string zidicPath= textBox2.Text+"\\"+ zidicName;
-                if (listView1.Items[i].SubItems[5].Text != listView1.Items[i].SubItems[6].Text + "-" + listView1.Items[i].SubItems[0].Text)
+                try
                 {
-                    listView1.Items[i].BackColor = Color.Red;
-                    listView1.Items[i].SubItems[5].Text = listView1.Items[i].SubItems[6].Text + "-" + listView1.Items[i].SubItems[0].Text;
-                    textBox3.Text += zidicName + "【 索引 】错误" + "\r\n";
-                    continue;
+                    if (listView1.Items[i].SubItems[5].Text == "" && listView1.Items[i].SubItems[0].Text == "")
+                    {
+                        break;
+                    }
+                    string zidicName = listView1.Items[i].SubItems[6].Text + "\\" + listView1.Items[i].SubItems[5].Text;
+                    string zidicPath = textBox2.Text + "\\" + zidicName;
+                    
+                    int geshu = FileOrDirectorygeshu(zidicPath);  //文件夹的图片个数
+                    int biaogegeshu = listView1.Items[i].SubItems[3].Text=="" ? 0 : Convert.ToInt32(listView1.Items[i].SubItems[3].Text); //表格的图片个数
+
+
+                    tupianzongyeshu = tupianzongyeshu + geshu;
+                    muluzongyeshu = muluzongyeshu + biaogegeshu;
+
+                    if (geshu != biaogegeshu)
+                    {
+                        // listView1.Items[i].SubItems[3].Text = geshu.ToString();
+                        listView1.Items[i].BackColor = Color.Red;
+                        //textBox3.Text += listView1.Items[i].SubItems[5].Text + "【 页数 】错误" +zidicPath+"  "+geshu+"  "+biaogegeshu+ "\r\n";
+                        textBox3.Text += listView1.Items[i].SubItems[5].Text + "【 页数 】错误" + "\r\n";
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.ToString());
                 }
 
 
-                int geshu = FileOrDirectorygeshu(zidicPath);
-                tupianzongyeshu = tupianzongyeshu + geshu;
-                int biaogegeshu = Convert.ToInt32(listView1.Items[i].SubItems[3].Text);
-                muluzongyeshu = muluzongyeshu + biaogegeshu;
-                if (geshu != biaogegeshu)
-                {
-                    listView1.Items[i].SubItems[3].Text = geshu.ToString();
-                    listView1.Items[i].BackColor = Color.Red;
-                    textBox3.Text += zidicName+"【 页数 】错误"+"\r\n";
-                }
 
 
             }
 
-            textBox4.Text = "图片总页数："+tupianzongyeshu.ToString()+ "  目录总页数：" + muluzongyeshu.ToString()+" 条数共："+ listView1.Items.Count;
+            label2.Text = "图片总页数："+tupianzongyeshu.ToString()+ "  目录总页数：" + muluzongyeshu.ToString()+" 条数共："+ (listView1.Items.Count-1) + " 文件夹共：" + wenjianjiageshu;
             MessageBox.Show("完成");
 
         }
@@ -213,16 +301,28 @@ namespace 主程序202009
 
 
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            heduitupian();
-        }
+      
 
         private void button4_Click(object sender, EventArgs e)
         {
             for (int i = 1; i < listView1.Items.Count; i++)
             {
-                listView1.Items[i].SubItems[5].Text = listView1.Items[i].SubItems[6].Text +"-"+ listView1.Items[i].SubItems[0].Text;
+
+
+                string zidicName = listView1.Items[i].SubItems[5].Text;
+                string zidicPath = textBox2.Text + "\\" + zidicName;
+           
+                int geshu = FileOrDirectorygeshu(zidicPath);
+              
+                int biaogegeshu = Convert.ToInt32(listView1.Items[i].SubItems[3].Text);
+            
+                if (geshu != biaogegeshu)
+                {
+                     listView1.Items[i].SubItems[3].Text = geshu.ToString();
+                 
+                }
+
+
             }
             MessageBox.Show("已完成");
         }
@@ -264,7 +364,7 @@ namespace 主程序202009
         }
         private void button7_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(GetPDFofPageCount("C:\\Users\\zhou\\Documents\\Tencent Files\\852266010\\FileRecv\\pdf\\266-RS·0001-0001-10-1.pdf").ToString());
+            //MessageBox.Show(GetPDFofPageCount("C:\\Users\\zhou\\Documents\\Tencent Files\\852266010\\FileRecv\\pdf\\266-RS·0001-0001-10-1.pdf").ToString());
             listView1.Items.Clear();
         }
 
@@ -353,10 +453,34 @@ namespace 主程序202009
             }
         }
 
+
+
+
         #endregion
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(jianchayeshu));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(jianchasuoyin));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+        }
 
+        private void excel读取_Load(object sender, EventArgs e)
+        {
 
+        }
 
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+          
+            string str = Interaction.InputBox("输入正确索引", "修改索引", listView1.SelectedItems[0].SubItems[5].Text, -1, -1);
+            listView1.SelectedItems[0].SubItems[5].Text = str;
+        }
     }
 }

@@ -30,6 +30,9 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,9 +45,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,6 +86,42 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(1234, 459);
             this.webBrowser1.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1130, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 17);
+            this.label2.TabIndex = 62;
+            this.label2.Text = "站点：";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "美国",
+            "加拿大",
+            "英国",
+            "法国",
+            "西班牙",
+            "德国",
+            "意大利",
+            "日本"});
+            this.comboBox1.Location = new System.Drawing.Point(1133, 54);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(89, 25);
+            this.comboBox1.TabIndex = 61;
+            this.comboBox1.Text = "美国";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1144, 257);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 17);
+            this.label1.TabIndex = 60;
+            this.label1.Text = "未开始";
             // 
             // button3
             // 
@@ -186,41 +222,7 @@
             this.textBox1.Size = new System.Drawing.Size(136, 267);
             this.textBox1.TabIndex = 57;
             this.textBox1.Text = "Mens clothing\r\ncloth face mask";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1144, 257);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 17);
-            this.label1.TabIndex = 60;
-            this.label1.Text = "未开始";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "美国",
-            "加拿大",
-            "英国",
-            "法国",
-            "西班牙",
-            "德国",
-            "意大利"});
-            this.comboBox1.Location = new System.Drawing.Point(1133, 54);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(89, 25);
-            this.comboBox1.TabIndex = 61;
-            this.comboBox1.Text = "美国";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1130, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 17);
-            this.label2.TabIndex = 62;
-            this.label2.Text = "站点：";
+            this.textBox1.WordWrap = false;
             // 
             // amazon
             // 

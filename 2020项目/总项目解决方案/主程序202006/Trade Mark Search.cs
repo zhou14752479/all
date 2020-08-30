@@ -131,8 +131,8 @@ namespace 主程序202006
                         lv1.SubItems.Add(Regex.Replace(a8.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a9.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a10.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a11.Groups[2].Value, "<[^>]+>", "").Replace("\\\\n", " ").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a12.Groups[2].Value, "<[^>]+>", "").Replace("\\\\n", " ").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a11.Groups[2].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\","").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a12.Groups[2].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\", "").Trim());
 
                         while (this.zanting == false)
                         {

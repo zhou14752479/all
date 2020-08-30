@@ -34,6 +34,55 @@ namespace 主程序202008
         ArrayList bflists = new ArrayList();
 
         SpeechSynthesizer ss = new SpeechSynthesizer();
+
+
+        public string getIp()
+        {
+
+            string url = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=3&fa=0&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7";
+            return GetUrl(url,"utf-8");
+        }
+
+        #region GET使用代理IP请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlwithIP(string Url, string ip)
+        {
+            try
+            {
+
+                string COOKIE = "";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
+
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 3000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+            }
+            return "";
+        }
+        #endregion
+
+        string ip = "";
         /// <summary>
         /// 主程序
         /// </summary>
@@ -48,12 +97,12 @@ namespace 主程序202008
                     if (item != "")
                     {
                     string url = "http://mp.weixinbridge.com/mp/wapredirect?url=http://" + item + "&action=appmsg_redirect&uin=&biz=MzUxMTMxODc2MQ==&mid=100000007&idx=1&type=1&scene=0";
-                     string html = GetUrl(url, "utf-8");
+                     string html = GetUrlwithIP(url,ip);
 
                   
 
 
-                    if (html.Contains("如需浏览") || html.Contains("停止访问"))
+                    if (html.Contains("如需浏览") || html.Contains("停止访问") || html=="")
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(item);
@@ -180,13 +229,17 @@ namespace 主程序202008
                     lists.Add(text[i]);
                 }
             }
-
-             timer1.Start();
+            button1.Enabled = false;
+            ip = getIp();
+            timer1.Start();
+            timer2.Start();
             timer1.Interval = Convert.ToInt32(textBox2.Text)*60*1000;
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
             listView1.Items.Clear();
+
+            
         }
 
       
@@ -194,6 +247,8 @@ namespace 主程序202008
         private void button5_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            button1.Enabled = true;
+            timer2.Stop();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -206,6 +261,11 @@ namespace 主程序202008
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
             
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            ip = getIp();
         }
     }
 }

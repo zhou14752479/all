@@ -47,6 +47,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button4);
             this.splitContainer1.Panel2.Controls.Add(this.textBox4);
             this.splitContainer1.Panel2.Controls.Add(this.textBox3);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
@@ -145,11 +147,11 @@
             // textBox4
             // 
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox4.Location = new System.Drawing.Point(916, 116);
+            this.textBox4.Location = new System.Drawing.Point(916, 143);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(325, 159);
+            this.textBox4.Size = new System.Drawing.Size(325, 132);
             this.textBox4.TabIndex = 107;
             // 
             // textBox3
@@ -233,6 +235,16 @@
             // 
             this.columnHeader6.Text = "销量";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(949, 98);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(166, 23);
+            this.button4.TabIndex = 108;
+            this.button4.Text = "暂停/继续";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // 淘宝搜索
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -276,5 +288,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button4;
     }
 }

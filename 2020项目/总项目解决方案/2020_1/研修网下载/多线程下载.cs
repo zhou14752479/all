@@ -51,11 +51,11 @@ namespace 研修网下载
         public void run(object cook)
         {
 
-            string newpath = path + "下载文件\\" + Thread.CurrentThread.Name + "\\";
+            // string newpath = path + "下载文件\\" + Thread.CurrentThread.Name + "\\";
 
+            string newpath = path + "下载文件\\";
 
-
-         if (!Directory.Exists(newpath))
+            if (!Directory.Exists(newpath))
             {
                 Directory.CreateDirectory(newpath); //创建文件夹
             }
@@ -177,7 +177,24 @@ namespace 研修网下载
             
         private void 多线程下载_Load(object sender, EventArgs e)
         {
-         
+            foreach (Control ctr in groupBox2.Controls)
+            {
+
+                if (ctr is TextBox)
+                {
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
+                    if (File.Exists(path + ctr.Name + ".txt"))
+                    {
+
+                        StreamReader sr1 = new StreamReader(path + ctr.Name + ".txt", Encoding.GetEncoding("utf-8"));
+                        //一次性读取完 
+                        string texts1= sr1.ReadToEnd();
+                        ctr.Text = texts1;
+                        sr1.Close();
+                    }
+                }
+            }
 
             StreamReader sr = new StreamReader(path +  "config.txt", Encoding.GetEncoding("utf-8"));
             //一次性读取完 
@@ -205,7 +222,7 @@ namespace 研修网下载
 
 
 
-            for (int i = 1; i <=20; i++)
+            for (int i = 1; i <=10; i++)
             {
                 Thread thread = new Thread(new ParameterizedThreadStart(run));
                 string o = getCookie(i);

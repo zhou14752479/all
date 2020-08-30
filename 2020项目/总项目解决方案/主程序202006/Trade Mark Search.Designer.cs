@@ -33,6 +33,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -60,8 +62,6 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -103,6 +103,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(1205, 637);
             this.splitContainer1.SplitterDistance = 87;
             this.splitContainer1.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("宋体", 10F);
+            this.label5.Location = new System.Drawing.Point(814, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(329, 14);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "打开软件，浏览器页面显示网站页面即可点击search";
             // 
             // label4
             // 
@@ -222,6 +232,15 @@
             this.tabPage1.Text = "         浏览器              ";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(1191, 510);
+            this.webBrowser1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.listView1);
@@ -320,25 +339,6 @@
             // 
             this.columnHeader13.Text = "Address for Service";
             this.columnHeader13.Width = 500;
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(3, 3);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1191, 510);
-            this.webBrowser1.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("宋体", 10F);
-            this.label5.Location = new System.Drawing.Point(814, 55);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(329, 14);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "打开软件，浏览器页面显示网站页面即可点击search";
             // 
             // Trade_Mark_Search
             // 

@@ -44,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -174,6 +175,11 @@
             this.label3.TabIndex = 92;
             this.label3.Text = "分钟";
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 1500000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // 微信检测网上接口
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -218,5 +224,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Timer timer2;
     }
 }

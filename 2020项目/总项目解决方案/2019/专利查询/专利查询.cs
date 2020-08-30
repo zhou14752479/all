@@ -38,7 +38,7 @@ namespace 专利查询
                 for (int i = 0; i < listView2.Items.Count; i++)
                 {
                    
-                    string html = method.gethtml("https://tsdr.uspto.gov/statusview/sn" + listView2.Items[i].SubItems[1].Text, COOKIE);
+                    string html = method.gethtml("https://tsdr.uspto.gov/statusview/sn" + listView2.Items[i].SubItems[1].Text.Trim(), COOKIE);
                     label2.Text = "正在查询" + listView2.Items[i].SubItems[1].Text + "......";
                     Match a1 = Regex.Match(html, @"Generated on:</div>([\s\S]*?)</div>");
                     Match a2 = Regex.Match(html, @"Mark:</div>([\s\S]*?)</div>");

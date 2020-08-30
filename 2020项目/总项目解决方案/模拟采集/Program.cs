@@ -16,7 +16,7 @@ namespace 模拟采集
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 淘宝搜索());
+            Application.Run(new amazon());
         }
     }
 }

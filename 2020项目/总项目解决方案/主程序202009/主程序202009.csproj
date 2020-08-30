@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NPOI">
       <HintPath>..\58二手房\bin\Debug\NPOI.dll</HintPath>
     </Reference>

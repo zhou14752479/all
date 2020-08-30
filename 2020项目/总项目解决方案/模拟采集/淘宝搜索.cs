@@ -100,6 +100,52 @@ namespace 模拟采集
         ArrayList pageKeyList = new ArrayList();
 
         string key = "";
+
+        public void main()
+        {
+            textBox4.Text += "正在查询......" + "\r\n";
+
+            string[] keywords = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            foreach (string keyword in keywords)
+            {
+
+
+                key = keyword;
+                for (int i = 0; i < 20; i++)
+                {
+                    textBox4.Text += "正在查询" + keyword + "第" + (i + 1) + "页" + "\r\n";
+                    this.textBox4.Focus();
+                    this.textBox4.Select(this.textBox1.TextLength, 0);
+                    this.textBox4.ScrollToCaret();
+
+                    if (shuju == false)
+                    {
+                        return;
+                    }
+                    int p = i * 44;
+
+                    status = false;
+                    webBrowser1.Navigate("https://s.taobao.com/search?q=" + System.Web.HttpUtility.UrlEncode(keyword) + "&s=" + p);
+
+
+                    while (this.status == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+
+                    while (zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    Thread.Sleep(3000);
+                }
+            }
+
+            textBox4.Text += "查询结束";
+            MessageBox.Show("查询结束");
+
+        }
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -115,46 +161,14 @@ namespace 模拟采集
 
 
 
-            #endregion
-
-            textBox4.Text += "正在查询......"+"\r\n";
-
-            string[] keywords = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-            foreach (string keyword in keywords)
-            {
-              
-
-                key = keyword;
-                for (int i = 0; i < 20; i++)
-                {
-                    textBox4.Text += "正在查询"+keyword+"第"+(i+1)+"页"+"\r\n";
-                    this.textBox4.Focus();
-                    this.textBox4.Select(this.textBox1.TextLength, 0);
-                    this.textBox4.ScrollToCaret();
-
-                    if (shuju == false)
-                    {
-                        return;
-                    }
-                    int p = i * 44;
-
-                    status = false;
-                    webBrowser1.Navigate("https://s.taobao.com/search?q=" + System.Web.HttpUtility.UrlEncode(keyword) + "&s=" + p);
-                   
-
-                    while (this.status == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                    }
-                    Thread.Sleep(5000);
-                }
+                #endregion
 
 
-            }
 
-           textBox4.Text += "查询结束";
-            MessageBox.Show("查询结束");
+                Thread thread = new Thread(new ThreadStart(main));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+           
         }
 
         private void 淘宝搜索_Load(object sender, EventArgs e)
@@ -204,5 +218,22 @@ namespace 模拟采集
 
             }
         }
+
+
+        bool zanting = true;
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
+        }
+
+       
     }
 }
