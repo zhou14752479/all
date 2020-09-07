@@ -21,6 +21,100 @@ namespace 主程序202008
         public amlhc()
         {
             InitializeComponent();
+            dic.Add(1, "鼠");
+            dic.Add(2, "猪");
+            dic.Add(3, "狗");
+            dic.Add(4, "鸡");
+            dic.Add(5, "猴");
+            dic.Add(6, "羊");
+            dic.Add(7, "马");
+            dic.Add(8, "蛇");
+            dic.Add(9, "龙");
+            dic.Add(10, "兔");
+            dic.Add(11, "虎");
+           
+
+
+
+            for (int i= 12; i<=49; i++)
+            {
+            
+                    switch (i % 12)
+                    {
+                        case 0:
+                            dic.Add(i,"牛");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 1:
+                            dic.Add(i, "鼠");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 2:
+                            dic.Add(i, "猪");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 3:
+                            dic.Add(i, "狗");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 4:
+                            dic.Add(i, "鸡");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 5:
+                            dic.Add(i, "猴");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 6:
+                            dic.Add(i, "羊");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 7:
+                            dic.Add(i, "马");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 8:
+                            dic.Add(i, "蛇");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 9:
+                            dic.Add(i, "龙");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 10:
+                            dic.Add(i, "兔");
+                            break;
+                    }
+                    switch (i % 12)
+                    {
+                        case 11:
+                            dic.Add(i, "虎");
+                            break;
+                    }
+
+                
+
+            }
         }
         #region POST请求
         /// <summary>
@@ -77,6 +171,8 @@ namespace 主程序202008
 
 
         string[] shengxiaos = { "鼠" ,"牛 " ,"虎" ,"兔" ,"龙" ,"蛇" ,"马" ,"羊" ,"猴" ,"鸡" ,"狗" ,"猪 " };
+        Dictionary<int, string> dic = new Dictionary<int, string>();
+      
 
         ArrayList lists = new ArrayList();
 
@@ -91,110 +187,112 @@ namespace 主程序202008
             return a.ToString();
         }
 
-        public void run()
-        {
-
-            //string timestamp = GetTimeStamp();
-
-            //try
-            //{
-
-            //    string url = "https://1216212.com:8444/api_trend/Trend/getTrendForPc";
-            //    string nowdate = DateTime.Now.ToString("yyyy-MM-dd");
-            //    string postdata = "{\"nonce\":\"922d2881-853b-44b2-89fa-ad5775dd3094\",\"timestamp\":"+timestamp+",\"lotteryId\":\"71\",\"type\":100}";
-
-            //    string html = PostUrl(url, postdata);
-            //    MessageBox.Show(html);
-
-            //    MatchCollection issues = Regex.Matches(html, @"""issue"":""([\s\S]*?)""");
-            //    MatchCollection items = Regex.Matches(html, @"""openCode"":""([\s\S]*?)""");
-            //    MatchCollection times = Regex.Matches(html, @"""openTime"":""([\s\S]*?)""");
-
-            //    if (items.Count == 0)
-            //        return;
-
-            //    for (int j = 0; j < items.Count; j++)
-            //    {
-
-
-            //        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-            //        listViewItem.SubItems.Add(issues[j].Groups[1].Value);
-            //        listViewItem.SubItems.Add(items[j].Groups[1].Value);
-            //        listViewItem.SubItems.Add(times[j].Groups[1].Value);
-
-
-
-            //    }
-
-
-            //}
-
-
-            //catch (Exception ex)
-            //{
-
-            //    MessageBox.Show(ex.ToString());
-            //}
-           
-            while (true)
-            {
-                List<int> values = new List<int>();
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < 999999999; i++)
-                {
-                    int a = new Random().Next(0, 12);
-                    if (!values.Contains(a))
-                    {
-                        values.Add(a);
-                    }
-
-                    if (values.Count == 6)
-                        break;
-                }
-                values = values.OrderBy(s => s).ToList();
-
-                for (int j = 0; j < values.Count; j++)
-                {
-                    sb.Append(shengxiaos[values[j]]);
-
-                }
-
-                string jieguo = sb.ToString().Replace(" ", "");
-
-                if (!lists.Contains(jieguo))
-                {
-                    lists.Add(jieguo);
-
-                    ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(jieguo);
-                }
-            }
-        }
-        string path = AppDomain.CurrentDomain.BaseDirectory;
+        int index;
+        string path = AppDomain.CurrentDomain.BaseDirectory+"\\data\\";
         private void amlhc_Load(object sender, EventArgs e)
         {
+          
+
+
+
+
+
+
+
+            foreach (Control ctr in groupBox1.Controls)
+            {
+
+                if (ctr is TextBox)
+                {
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "data\\";
+                    if (File.Exists(path + ctr.Name + ".txt"))
+                    {
+
+                        StreamReader sr11 = new StreamReader(path + ctr.Name + ".txt", Encoding.GetEncoding("utf-8"));
+                        //一次性读取完 
+                        string texts11 = sr11.ReadToEnd();
+                        ctr.Text = texts11;
+                        sr11.Close();
+                    }
+                }
+            }
+
+
+
+
+
             StreamReader sr = new StreamReader(path + "data.txt", Encoding.GetEncoding("utf-8"));
             //一次性读取完 
             string texts = sr.ReadToEnd();
             string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
+            
+
             for (int i = 0; i < text.Length; i++)
             {
-                ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-               
- 
-                lv2.SubItems.Add(text[i]);
+
+                ListViewItem lv1 = listView1.Items.Add(text[i]); //使用Listview展示数据
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(" ");
+              
 
             }
+            sr.Close();
+
+
+            StreamReader sr1 = new StreamReader(path + "luru.txt", Encoding.GetEncoding("utf-8"));
+            //一次性读取完 
+            string texts1 = sr1.ReadToEnd();
+
+            string[] text1 = texts1.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+
+            for (int i = 0; i < text1.Length; i++)
+            {
+                if (text1[i].Trim() == "")
+                {
+                    sr1.Close();
+                    return;
+                }
+
+                string[] value = text1[i].Split(new string[] { "#" }, StringSplitOptions.None);
+
+
+                this.index = this.dataGridView1.Rows.Add();
+
+                dataGridView1.Rows[index].Cells[0].Value = value[0];
+                dataGridView1.Rows[index].Cells[1].Value = value[1];
+                dataGridView1.Rows[index].Cells[2].Value = value[2];
+                dataGridView1.Rows[index].Cells[3].Value = value[3];
+                dataGridView1.Rows[index].Cells[4].Value = value[4];
+                dataGridView1.Rows[index].Cells[5].Value = value[5];
+                dataGridView1.Rows[index].Cells[6].Value = value[6];
+                dataGridView1.Rows[index].Cells[7].Value = value[7];
+                dataGridView1.Rows[index].Cells[8].Value = value[8];
+                dataGridView1.Rows[index].Cells[9].Value = value[9];
+
+            }
+            sr1.Close();
+
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread search_thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            search_thread.Start();
-
+            
 
 
 
@@ -205,21 +303,9 @@ namespace 主程序202008
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
-        }
+      
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < listView2.Items.Count; i++)
-            {
-                if (listView2.Items[i].SubItems[0].Text.Contains(textBox1.Text.Trim()))
-                {
-                    listView2.Items[i].ForeColor = Color.Red;
-                }
-            }
-        }
+       
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -228,17 +314,35 @@ namespace 主程序202008
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-            listViewItem.SubItems.Add(textBox1.Text);
-            listViewItem.SubItems.Add(textBox2.Text);
-            listViewItem.SubItems.Add(textBox3.Text);
-            listViewItem.SubItems.Add(textBox4.Text);
-            listViewItem.SubItems.Add(textBox5.Text);
-            listViewItem.SubItems.Add(textBox6.Text);
-            listViewItem.SubItems.Add(textBox7.Text);
-            listViewItem.SubItems.Add(textBox8.Text);
-            listViewItem.SubItems.Add(textBox9.Text);
-            listViewItem.SubItems.Add(textBox10.Text);
+            string a1 = textBox1.Text;
+            string a2 = textBox2.Text + dic[Convert.ToInt32(textBox2.Text.Trim())];
+            string a3 = textBox3.Text + dic[Convert.ToInt32(textBox3.Text.Trim())];
+            string a4 = textBox4.Text + dic[Convert.ToInt32(textBox4.Text.Trim())];
+            string a5 = textBox5.Text + dic[Convert.ToInt32(textBox5.Text.Trim())];
+            string a6 = textBox6.Text + dic[Convert.ToInt32(textBox6.Text.Trim())];
+            string a7 = textBox7.Text + dic[Convert.ToInt32(textBox7.Text.Trim())];
+            string a8 = textBox8.Text + dic[Convert.ToInt32(textBox8.Text.Trim())];
+            string a9 = textBox9.Text;
+            string a10 = textBox10.Text;
+
+
+            this.index = this.dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[index].Cells[0].Value = a1;
+            dataGridView1.Rows[index].Cells[1].Value = a2;
+            dataGridView1.Rows[index].Cells[2].Value = a3;
+            dataGridView1.Rows[index].Cells[3].Value = a4;
+            dataGridView1.Rows[index].Cells[4].Value = a5;
+            dataGridView1.Rows[index].Cells[5].Value = a6;
+            dataGridView1.Rows[index].Cells[6].Value = a7;
+            dataGridView1.Rows[index].Cells[7].Value = a8;
+            dataGridView1.Rows[index].Cells[8].Value = a9;
+            dataGridView1.Rows[index].Cells[9].Value = a10;
+
+
+           
+           
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -254,5 +358,117 @@ namespace 主程序202008
             textBox9.Text = "";
             textBox10.Text = "";
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
+
+        int c = 0;
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            
+
+
+        }
+
+        private void 查看ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int a = this.dataGridView1.CurrentRow.Index;
+            int j = this.dataGridView1.CurrentCell.ColumnIndex;
+            if (this.dataGridView1.CurrentRow.Cells[j].Value != null)
+            {
+               
+                string value = this.dataGridView1.CurrentRow.Cells[j].Value.ToString();
+                value = Regex.Replace(value, @"\d{1,}", "").Trim();
+
+                if (value != "")
+                {
+                    c = c + 1;
+                    listView1.Columns[c].Text = value;
+
+                    for (int i = 0; i < listView1.Items.Count; i++)
+                    {
+                        if (listView1.Items[i].SubItems[0].Text.Contains(value))
+                        {
+                            listView1.Items[i].SubItems[c].Text = "√";
+
+
+                        }
+                        else
+                        {
+                            listView1.Items[i].SubItems[c].Text = "×";
+                        }
+                    }
+                }
+            }
+
+        }
+
+        private void amlhc_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("确认退出吗？", "退出询问"
+          , MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result != DialogResult.OK)
+            {
+                e.Cancel = true;//告诉窗体关闭这个任务取消
+
+            }
+            else
+            {
+                foreach (Control ctr in groupBox1.Controls)
+                {
+                    if (ctr is TextBox)
+                    {
+
+
+                        string path = AppDomain.CurrentDomain.BaseDirectory + "data\\";
+                        FileStream fs1 = new FileStream(path + ctr.Name + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                        StreamWriter sw = new StreamWriter(fs1);
+                        sw.WriteLine(ctr.Text);
+                        sw.Close();
+                        fs1.Close();
+
+                    }
+                }
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[0].Value != null )
+                    {
+                        string a1 = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                        string a2 = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                        string a3 = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                        string a4 = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                        string a5 = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                        string a6 = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                        string a7 = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                        string a8 = dataGridView1.Rows[i].Cells[7].Value.ToString();
+                        string a9 = dataGridView1.Rows[i].Cells[8].Value.ToString();
+                        string a10 = dataGridView1.Rows[i].Cells[9].Value.ToString();
+
+                        sb.Append(a1 + "#" + a2 + "#" + a3 + "#" + a4 + "#" + a5 + "#" + a6 + "#" + a7 + "#" + a8 + "#" + a9 + "#" + a10+"\r\n");
+                    }
+                }
+
+
+                FileStream fs2 = new FileStream(path + "luru.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                StreamWriter sw2 = new StreamWriter(fs2);
+                sw2.WriteLine(sb.ToString());
+                sw2.Close();
+                fs2.Close();
+
+
+
+
+
+
+            }
+        }
+
+
+
     }
 }

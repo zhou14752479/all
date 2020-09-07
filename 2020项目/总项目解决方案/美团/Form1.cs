@@ -48,8 +48,12 @@ namespace 美团
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/WIFI Language/zh_CN";
-               
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.13(0x17000d2a) NetType/4G Language/zh_CN";
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("uuid: E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
+                headers.Add("open_id: oJVP50IRqKIIshugSqrvYE3OHJKQ");
+                headers.Add("token: Vteo9CkJqIGMe30FC3iuvnvTr2YAAAAAygoAAMPHPyLNO16W1eYLn1hWsLhD40r-KnDdB70rrl9LN9OHUfVBGbTDt4PCDHH72xKkDA");
+                
                 request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
@@ -239,15 +243,16 @@ namespace 美团
 
                         {
 
-                            for (int i = 0; i < 1000; i=i+32)
+                            for (int i = 0; i < 1000; i=i+15)
 
                             {
 
 
-                             string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=32&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+cityId+"&areaId="+ areaId;
-                           
+                                // string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=32&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+cityId+"&areaId="+ areaId;
 
-                            string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
+                                string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=defaults&userid=-1&offset="+i+ "&limit=15&mypos=33.940975189208984%2C118.24801635742188&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&cityId=" + cityId + "&areaId=" + areaId;
+
+                                string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
                                 
                                     MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
                                
@@ -259,10 +264,12 @@ namespace 美团
                                     //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
                                     //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
                                     //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
-                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=false");  
+                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
                                     }
 
-                                    if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                               
+                                if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                                         break;
 
@@ -275,8 +282,8 @@ namespace 美团
                                     {
 
                                         string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
-                                   
-                                        Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
+                                    MessageBox.Show(strhtml1);
+                                    Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                         Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                         Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
                                     Match score = Regex.Match(strhtml1, @"score"":([\s\S]*?),");
@@ -301,10 +308,10 @@ namespace 美团
                                             return;
                                         }
 
-                                        Thread.Sleep(1000);
+                                        
                                     }
 
-
+                                    Thread.Sleep(1000);
 
 
                                 }

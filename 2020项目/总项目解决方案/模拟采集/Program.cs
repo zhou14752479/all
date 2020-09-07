@@ -16,7 +16,7 @@ namespace 模拟采集
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new amazon());
+            Application.Run(new 拼多多榜单());
         }
     }
 }

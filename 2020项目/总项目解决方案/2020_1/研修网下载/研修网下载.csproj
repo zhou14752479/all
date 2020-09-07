@@ -61,6 +61,12 @@
     <Compile Include="多线程下载.Designer.cs">
       <DependentUpon>多线程下载.cs</DependentUpon>
     </Compile>
+    <Compile Include="浏览器.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="浏览器.Designer.cs">
+      <DependentUpon>浏览器.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -75,6 +81,9 @@
     </Compile>
     <EmbeddedResource Include="多线程下载.resx">
       <DependentUpon>多线程下载.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="浏览器.resx">
+      <DependentUpon>浏览器.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

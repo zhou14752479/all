@@ -22,7 +22,7 @@ namespace 主程序202007
             InitializeComponent();
         }
         bool zanting = true;
-        string pubArgs = "YwHWsAlvxZzWTl3U2U/wipedbGUGw8CTlQPKD6+n5bqCWfeUSqE5NuqCDZjzwN8vsD/GNc6R0vxyAJO0FFv+TGES3ZEBgedlfTfAn1wC3P3OGOUd3bHQOwmreFgBWVpjmwhJDCZf+YavJuTxr40CF81ourkX+EMRh4MayAHoTPdgCHLRKD0Y0dFlvjnqU2yZR5yLpXX7uxUfzq51Z1V3kqSCSY46XR2o5mRyVfxsyd4z6AAGC/TBvg/N81+iI6w14QaMLnAGp+VtXV8kBII9z+8ZCzwR7UlX0Hl0VvhqZbY=";
+        string pubArgs = "YwHWsAlvxZzWTl3U2U/wipedbGUGw8CTdgNevSM48IR9wRbEu/XkQ2ic58+Wz6q7jkvPZlpokS6m1fZHKLHTICPzj71z5Cpr7Db1810h1+cMg86SuuMgSANYktusnes8XDAjyG9ckRRlZ1lXfchhlS99C8Aw/KJ2EWw/8LoS3znvmYnm7LCRe/0gkQy9B4BNf60XXcRsDaxLC1KundVi/4ePw5YIveVxLSsFDF3A+Cs9O0l/j9lS/Bpm5j21bI1Ul3HlpDkVGqU7qhNJA80cwYBfTO59bDIp5jFXi91xFCM=";
         #region POST请求
         /// <summary>
         /// POST请求
@@ -49,8 +49,9 @@ namespace 主程序202007
 
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("pubArgs",pubArgs);
-                
-                request.Referer = "";
+              
+
+               // request.Referer = "";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -83,7 +84,7 @@ namespace 主程序202007
                 string url = "https://h5.sd.chinamobile.com/cmtj/openingCard/consumer/campnInfo/getWorkBenchView";
                 string postdata = "{\"appId\" : \"100000056\", \"userId\" : \"1097395671845093378\",\"serialNumber\" : \""+i+"\"}";
                 string html = PostUrl(url,postdata);
-               // textBox3.Text = html;
+               textBox3.Text = html;
                 Match chengxiao = Regex.Match(html, @"承消([\s\S]*?)元");
                 MatchCollection taocans = Regex.Matches(html, @"""campaignName"":""([\s\S]*?)""");
                 label3.Text = "正在查询：" + i;

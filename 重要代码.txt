@@ -334,3 +334,18 @@ private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
             label1.Text = cc.Trim() + "\n"+ dd.Trim();
 
 【richTextBox1.Lines.Length  richTextBox1.Lines【i】】
+
+【追加写入txt】
+using (StreamWriter fs = new StreamWriter(path, true))
+                 {
+                    fs.WriteLine(strLog);
+                 }
+
+【获取网页动态源码】【重要】
+NuGet程序包引用Microsoft.mshtml
+  var htmldocument = (mshtml.HTMLDocument)webBrowser1.Document.DomDocument;
+
+            string html = htmldocument.documentElement.outerHTML;
+
+【获取包括动态加载内容】 textBox1.Text = webBrowser1.Document.Body.OuterHtml;
+【这个获取不包括动态加载内容，只是源码】  webBrowser1.DocumentText

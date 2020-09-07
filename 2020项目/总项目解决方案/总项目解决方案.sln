@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "模拟采集", "模拟采�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序1", "主程序1\主程序1.csproj", "{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝商品抓取", "淘宝商品抓取\淘宝商品抓取.csproj", "{45BB1693-E035-4611-93BE-73A9C7752352}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202007", "主程序202007\主程序202007.csproj", "{9C8DDCA3-3D7B-4698-BCA6-1F27B7770EF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202006", "主程序202006\主程序202006.csproj", "{B9DDD006-8426-4603-A4E0-11A06426617B}"
@@ -26,6 +24,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202009", "主程序202009\主程序202009.csproj", "{F00FDD2E-F931-48AE-AF7C-FEA740C2C751}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "专利查询", "2019\专利查询\专利查询.csproj", "{211B3F43-1EA5-4EB1-B338-7EEB1F108168}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "main", "..\..\大项目\慧聪网\main\main.csproj", "{3C3930FD-D114-45AE-8D9F-BF68F756F390}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "美团", "美团\美团.csproj", "{8C5F5C05-9A7A-482B-BF72-F023D47134D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +61,6 @@ Global
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E477CC-7FFE-4147-A1D6-1EC3B190AB39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45BB1693-E035-4611-93BE-73A9C7752352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45BB1693-E035-4611-93BE-73A9C7752352}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45BB1693-E035-4611-93BE-73A9C7752352}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45BB1693-E035-4611-93BE-73A9C7752352}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C8DDCA3-3D7B-4698-BCA6-1F27B7770EF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C8DDCA3-3D7B-4698-BCA6-1F27B7770EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C8DDCA3-3D7B-4698-BCA6-1F27B7770EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -79,6 +77,14 @@ Global
 		{211B3F43-1EA5-4EB1-B338-7EEB1F108168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{211B3F43-1EA5-4EB1-B338-7EEB1F108168}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{211B3F43-1EA5-4EB1-B338-7EEB1F108168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3930FD-D114-45AE-8D9F-BF68F756F390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3930FD-D114-45AE-8D9F-BF68F756F390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3930FD-D114-45AE-8D9F-BF68F756F390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3930FD-D114-45AE-8D9F-BF68F756F390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

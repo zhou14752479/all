@@ -169,6 +169,33 @@ namespace 主程序202007
             }
 
         }
+
+
+        /// <summary>
+        /// 获取完整标题
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public string getfulltitle(string item)
+        {
+            //2020-07-29 02:02:02
+            try
+            {
+                string url = "https://item.manager.taobao.com/taobao/manager/fastEdit.htm?optType=editTitle&action=render&itemId="+item;
+             
+                string html = getHtml(url);
+                Match title = Regex.Match(html, @"value"":{""title"":""([\s\S]*?)""");
+                return title.Groups[1].Value;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
         public ArrayList getNewtitles()
         {
             ArrayList titles = new ArrayList();
@@ -207,7 +234,8 @@ namespace 主程序202007
                         
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(items[j].Groups[1].Value);
-                        listViewItem.SubItems.Add(titles[j].Groups[2].Value);
+                        // listViewItem.SubItems.Add(titles[j].Groups[2].Value);
+                        listViewItem.SubItems.Add(getfulltitle(items[j].Groups[1].Value));
                         listViewItem.SubItems.Add("-");
                         listViewItem.SubItems.Add("-");
 
@@ -283,9 +311,10 @@ namespace 主程序202007
 
 
             cookie = Form1.cookie;
+           
             Match tok = Regex.Match(cookie, @"XSRF-TOKEN=.*");
             token = tok.Groups[0].Value.Replace("XSRF-TOKEN=", "");
-
+            MessageBox.Show(token);
 
             if (cookie == "")
             {

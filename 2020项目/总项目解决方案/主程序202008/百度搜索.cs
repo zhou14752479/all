@@ -186,6 +186,10 @@ namespace 主程序202008
 
                             //        }
                             //}
+                            if (listView1.Items.Count - 1 > 1)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);
+                            }
 
 
                             while (this.zanting == false)

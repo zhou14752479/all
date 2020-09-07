@@ -28,7 +28,7 @@ namespace 研修网下载
 
             foreach (char c in invalid)
             {
-                illegal = illegal.Replace(c.ToString(), "");
+                illegal = illegal.Replace(c.ToString(), "").Replace("&", "");
             }
             return illegal;
         }
@@ -159,6 +159,7 @@ namespace 研修网下载
 
 
 
+
             }
             catch (System.Exception ex)
             {
@@ -222,7 +223,7 @@ namespace 研修网下载
 
 
 
-            for (int i = 1; i <=10; i++)
+            for (int i = 1; i <=20; i++)
             {
                 Thread thread = new Thread(new ParameterizedThreadStart(run));
                 string o = getCookie(i);
@@ -266,7 +267,7 @@ namespace 研修网下载
         }
         private void button3_Click(object sender, EventArgs e)
         {
-
+            //MessageBox.Show(removeValid("789*.&"));
            // MessageBox.Show(btPanduan(textBox1.Text).ToString());
             status = false;
         }

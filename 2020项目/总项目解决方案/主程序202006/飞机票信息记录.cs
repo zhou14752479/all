@@ -79,6 +79,31 @@ namespace 主程序202006
                             lv1.SubItems.Add(a8.Groups[1].Value);
                             lv1.SubItems.Add(a9.Groups[1].Value);
                             lv1.SubItems.Add(a10.Groups[1].Value);
+
+                            //导出
+                            string date = a8.Groups[1].Value;
+
+                            if (date.Trim() == "")
+                            {
+                                date = "空";
+                            }
+                            string value = a1.Groups[1].Value.Replace(":", "").Trim() + "---"  + a2.Groups[1].Value + "---" + a3.Groups[1].Value + "---" + a4.Groups[1].Value + "---" + a5.Groups[1].Value + a6.Groups[1].Value + "---" + a7.Groups[1].Value + "---" + a8.Groups[1].Value + "---" + a9.Groups[1].Value + "---" + a10.Groups[1].Value;
+                            if (!File.Exists(path + date + ".txt"))
+                            {
+                                FileStream fs1 = new FileStream(path + date + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                                StreamWriter sw = new StreamWriter(fs1);
+                                sw.WriteLine(value);
+                                sw.Close();
+                                fs1.Close();
+                            }
+                            else
+                            {
+                                StreamWriter fs = new StreamWriter(path + date + ".txt", true);
+                                fs.WriteLine(value);
+                                fs.Close();
+                            }
+
+                            //导出
                         }
                     }
                     catch
@@ -198,6 +223,31 @@ namespace 主程序202006
                             lv1.SubItems.Add(a8.Groups[1].Value);
                             lv1.SubItems.Add(a9.Groups[1].Value);
                             lv1.SubItems.Add(a10.Groups[1].Value);
+
+                            //导出
+                            string date = a8.Groups[1].Value;
+
+                            if (date.Trim() == "")
+                            {
+                                date = "空";
+                            }
+                            string value = a1.Groups[1].Value.Replace(":", "").Trim() + "---" + a2.Groups[1].Value + "---" + a3.Groups[1].Value + "---" + a4.Groups[1].Value + "---" + a5.Groups[1].Value + a6.Groups[1].Value + "---" + a7.Groups[1].Value + "---" + a8.Groups[1].Value + "---" + a9.Groups[1].Value + "---" + a10.Groups[1].Value;
+                            if (!File.Exists(path + date + ".txt"))
+                            {
+                                FileStream fs1 = new FileStream(path + date + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                                StreamWriter sw = new StreamWriter(fs1);
+                                sw.WriteLine(value);
+                                sw.Close();
+                                fs1.Close();
+                            }
+                            else
+                            {
+                                StreamWriter fs = new StreamWriter(path + date + ".txt", true);
+                                fs.WriteLine(value);
+                                fs.Close();
+                            }
+
+                            //导出
                         }
                     }
                     catch
@@ -349,12 +399,13 @@ namespace 主程序202006
             method.ListViewToCSV(listView1, true);
         }
 
+        static string  path = AppDomain.CurrentDomain.BaseDirectory + "导出结果\\";
 
         #region 导出文本
         public static void expotTxt(ListView lv1)
         {
 
-            string path = AppDomain.CurrentDomain.BaseDirectory + "导出结果\\";
+           
 
 
                 foreach (ListViewItem item in lv1.Items)

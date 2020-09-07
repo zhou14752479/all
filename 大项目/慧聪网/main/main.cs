@@ -151,7 +151,8 @@ namespace main
                                 lv1.SubItems.Add(recordList1.createdate);
                                 lv1.SubItems.Add(recordList1.linkqq);
                                 lv1.SubItems.Add(recordList1.address);
-
+                                count = count + 1;
+                                toolStripStatusLabel2.Text = count.ToString();
 
                                 if (listView1.Items.Count - 1 > 1)
                                 {
@@ -169,9 +170,7 @@ namespace main
 
                             }
                         }
-                      
-
-               
+                             
 
                     }
                    
@@ -201,7 +200,7 @@ namespace main
 
         #endregion
 
-       
+        int count = 0;
 
 
         private void Button2_Click(object sender, EventArgs e)

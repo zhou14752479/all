@@ -69,10 +69,7 @@ namespace 主程序202007
                 this.textBox1.Text = DirPath;
                 path = DirPath;
             }
-            Thread thread = new Thread(new ThreadStart(getinfos));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-
+            getinfos();
 
 
 
@@ -104,7 +101,7 @@ namespace 主程序202007
                     {
                         File.Delete(filename);
                         count = count + 1;
-                        textBox3.Text += "文件过小删除：" + name + "\r\n";
+                       // textBox3.Text += "文件过小删除：" + name + "\r\n";
                         continue;
 
                     }
@@ -132,6 +129,7 @@ namespace 主程序202007
                 {
                     if (name.Contains(text))
                     {
+                      
                         File.Delete(filename);
                         count = count + 1;
                         textBox3.Text += "包含字符"+text+"删除：" + name + "\r\n";
@@ -157,6 +155,8 @@ namespace 主程序202007
             Thread thread = new Thread(new ThreadStart(deleteFile));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+
+
 
         }
 

@@ -20,6 +20,7 @@ namespace 美团
            
            
         }
+
         #region GET请求
         public static string meituan_GetUrl(string Url, string COOKIE)
         {
@@ -56,6 +57,7 @@ namespace 美团
 
 
         #endregion
+
         private void PanelReSize(object sender, EventArgs e)
         {
             for (int i = 0; i < ActivePanel.Controls.Count; i++)
@@ -65,6 +67,7 @@ namespace 美团
 
         }
         public System.Windows.Forms.Panel ActivePanel = new Panel();
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (ActivePanel.Name == panel3.Name)

@@ -446,16 +446,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.运行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.开始ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.暂停ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -469,8 +459,18 @@
             this.导出表格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出文本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空全部ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.skinTreeView1 = new CCWin.SkinControl.SkinTreeView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -495,7 +495,7 @@
             // panel5
             // 
             this.panel5.AutoScroll = true;
-            this.panel5.Location = new System.Drawing.Point(16, 47);
+            this.panel5.Location = new System.Drawing.Point(19, 28);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(135, 352);
             this.panel5.TabIndex = 9;
@@ -525,6 +525,109 @@
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // 运行ToolStripMenuItem
+            // 
+            this.运行ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.开始ToolStripMenuItem,
+            this.暂停ToolStripMenuItem,
+            this.继续ToolStripMenuItem,
+            this.停止ToolStripMenuItem});
+            this.运行ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("运行ToolStripMenuItem.Image")));
+            this.运行ToolStripMenuItem.Name = "运行ToolStripMenuItem";
+            this.运行ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
+            this.运行ToolStripMenuItem.Text = "软件运行";
+            // 
+            // 开始ToolStripMenuItem
+            // 
+            this.开始ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("开始ToolStripMenuItem.Image")));
+            this.开始ToolStripMenuItem.Name = "开始ToolStripMenuItem";
+            this.开始ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.开始ToolStripMenuItem.Text = "开始";
+            // 
+            // 暂停ToolStripMenuItem
+            // 
+            this.暂停ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("暂停ToolStripMenuItem.Image")));
+            this.暂停ToolStripMenuItem.Name = "暂停ToolStripMenuItem";
+            this.暂停ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.暂停ToolStripMenuItem.Text = "暂停";
+            // 
+            // 继续ToolStripMenuItem
+            // 
+            this.继续ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("继续ToolStripMenuItem.Image")));
+            this.继续ToolStripMenuItem.Name = "继续ToolStripMenuItem";
+            this.继续ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.继续ToolStripMenuItem.Text = "继续";
+            // 
+            // 停止ToolStripMenuItem
+            // 
+            this.停止ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("停止ToolStripMenuItem.Image")));
+            this.停止ToolStripMenuItem.Name = "停止ToolStripMenuItem";
+            this.停止ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.停止ToolStripMenuItem.Text = "停止";
+            // 
+            // 数据筛选ToolStripMenuItem
+            // 
+            this.数据筛选ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.去掉空白号码ToolStripMenuItem,
+            this.去掉固话ToolStripMenuItem,
+            this.去掉重复ToolStripMenuItem});
+            this.数据筛选ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("数据筛选ToolStripMenuItem.Image")));
+            this.数据筛选ToolStripMenuItem.Name = "数据筛选ToolStripMenuItem";
+            this.数据筛选ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
+            this.数据筛选ToolStripMenuItem.Text = "数据筛选";
+            // 
+            // 去掉空白号码ToolStripMenuItem
+            // 
+            this.去掉空白号码ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("去掉空白号码ToolStripMenuItem.Image")));
+            this.去掉空白号码ToolStripMenuItem.Name = "去掉空白号码ToolStripMenuItem";
+            this.去掉空白号码ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.去掉空白号码ToolStripMenuItem.Text = "去掉空白号码";
+            // 
+            // 去掉固话ToolStripMenuItem
+            // 
+            this.去掉固话ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("去掉固话ToolStripMenuItem.Image")));
+            this.去掉固话ToolStripMenuItem.Name = "去掉固话ToolStripMenuItem";
+            this.去掉固话ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.去掉固话ToolStripMenuItem.Text = "去掉固话";
+            // 
+            // 去掉重复ToolStripMenuItem
+            // 
+            this.去掉重复ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("去掉重复ToolStripMenuItem.Image")));
+            this.去掉重复ToolStripMenuItem.Name = "去掉重复ToolStripMenuItem";
+            this.去掉重复ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.去掉重复ToolStripMenuItem.Text = "去掉重复";
+            // 
+            // 数据导出ToolStripMenuItem
+            // 
+            this.数据导出ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.导出表格ToolStripMenuItem,
+            this.导出文本ToolStripMenuItem});
+            this.数据导出ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("数据导出ToolStripMenuItem.Image")));
+            this.数据导出ToolStripMenuItem.Name = "数据导出ToolStripMenuItem";
+            this.数据导出ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
+            this.数据导出ToolStripMenuItem.Text = "数据导出";
+            // 
+            // 导出表格ToolStripMenuItem
+            // 
+            this.导出表格ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("导出表格ToolStripMenuItem.Image")));
+            this.导出表格ToolStripMenuItem.Name = "导出表格ToolStripMenuItem";
+            this.导出表格ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.导出表格ToolStripMenuItem.Text = "导出表格";
+            // 
+            // 导出文本ToolStripMenuItem
+            // 
+            this.导出文本ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("导出文本ToolStripMenuItem.Image")));
+            this.导出文本ToolStripMenuItem.Name = "导出文本ToolStripMenuItem";
+            this.导出文本ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.导出文本ToolStripMenuItem.Text = "导出文本";
+            // 
+            // 清空全部ToolStripMenuItem
+            // 
+            this.清空全部ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("清空全部ToolStripMenuItem.Image")));
+            this.清空全部ToolStripMenuItem.Name = "清空全部ToolStripMenuItem";
+            this.清空全部ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
+            this.清空全部ToolStripMenuItem.Text = "清空全部";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -545,6 +648,27 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(76, 22);
             this.toolStripButton2.Text = "注册软件";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButton3.Text = "登陆软件";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButton4.Text = "点击购买";
             // 
             // splitContainer1
             // 
@@ -577,6 +701,22 @@
             this.panel3.Size = new System.Drawing.Size(171, 422);
             this.panel3.TabIndex = 11;
             // 
+            // panel4
+            // 
+            this.panel4.AutoScroll = true;
+            this.panel4.Location = new System.Drawing.Point(16, 47);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(126, 263);
+            this.panel4.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Location = new System.Drawing.Point(13, 47);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(126, 263);
+            this.panel2.TabIndex = 6;
+            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
@@ -588,14 +728,6 @@
             this.button2.Text = "选择行业";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(13, 47);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(126, 263);
-            this.panel2.TabIndex = 6;
             // 
             // button1
             // 
@@ -609,14 +741,6 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panel4
-            // 
-            this.panel4.AutoScroll = true;
-            this.panel4.Location = new System.Drawing.Point(16, 47);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(126, 263);
-            this.panel4.TabIndex = 5;
-            // 
             // toolStripButton1
             // 
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
@@ -624,130 +748,6 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(76, 22);
             this.toolStripButton1.Text = "连接数据库";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton3.Text = "登陆软件";
-            // 
-            // 运行ToolStripMenuItem
-            // 
-            this.运行ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.开始ToolStripMenuItem,
-            this.暂停ToolStripMenuItem,
-            this.继续ToolStripMenuItem,
-            this.停止ToolStripMenuItem});
-            this.运行ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("运行ToolStripMenuItem.Image")));
-            this.运行ToolStripMenuItem.Name = "运行ToolStripMenuItem";
-            this.运行ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
-            this.运行ToolStripMenuItem.Text = "软件运行";
-            // 
-            // 开始ToolStripMenuItem
-            // 
-            this.开始ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("开始ToolStripMenuItem.Image")));
-            this.开始ToolStripMenuItem.Name = "开始ToolStripMenuItem";
-            this.开始ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.开始ToolStripMenuItem.Text = "开始";
-            // 
-            // 暂停ToolStripMenuItem
-            // 
-            this.暂停ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("暂停ToolStripMenuItem.Image")));
-            this.暂停ToolStripMenuItem.Name = "暂停ToolStripMenuItem";
-            this.暂停ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.暂停ToolStripMenuItem.Text = "暂停";
-            // 
-            // 继续ToolStripMenuItem
-            // 
-            this.继续ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("继续ToolStripMenuItem.Image")));
-            this.继续ToolStripMenuItem.Name = "继续ToolStripMenuItem";
-            this.继续ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.继续ToolStripMenuItem.Text = "继续";
-            // 
-            // 停止ToolStripMenuItem
-            // 
-            this.停止ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("停止ToolStripMenuItem.Image")));
-            this.停止ToolStripMenuItem.Name = "停止ToolStripMenuItem";
-            this.停止ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.停止ToolStripMenuItem.Text = "停止";
-            // 
-            // 数据筛选ToolStripMenuItem
-            // 
-            this.数据筛选ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.去掉空白号码ToolStripMenuItem,
-            this.去掉固话ToolStripMenuItem,
-            this.去掉重复ToolStripMenuItem});
-            this.数据筛选ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("数据筛选ToolStripMenuItem.Image")));
-            this.数据筛选ToolStripMenuItem.Name = "数据筛选ToolStripMenuItem";
-            this.数据筛选ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
-            this.数据筛选ToolStripMenuItem.Text = "数据筛选";
-            // 
-            // 去掉空白号码ToolStripMenuItem
-            // 
-            this.去掉空白号码ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("去掉空白号码ToolStripMenuItem.Image")));
-            this.去掉空白号码ToolStripMenuItem.Name = "去掉空白号码ToolStripMenuItem";
-            this.去掉空白号码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.去掉空白号码ToolStripMenuItem.Text = "去掉空白号码";
-            // 
-            // 去掉固话ToolStripMenuItem
-            // 
-            this.去掉固话ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("去掉固话ToolStripMenuItem.Image")));
-            this.去掉固话ToolStripMenuItem.Name = "去掉固话ToolStripMenuItem";
-            this.去掉固话ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.去掉固话ToolStripMenuItem.Text = "去掉固话";
-            // 
-            // 去掉重复ToolStripMenuItem
-            // 
-            this.去掉重复ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("去掉重复ToolStripMenuItem.Image")));
-            this.去掉重复ToolStripMenuItem.Name = "去掉重复ToolStripMenuItem";
-            this.去掉重复ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.去掉重复ToolStripMenuItem.Text = "去掉重复";
-            // 
-            // 数据导出ToolStripMenuItem
-            // 
-            this.数据导出ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.导出表格ToolStripMenuItem,
-            this.导出文本ToolStripMenuItem});
-            this.数据导出ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("数据导出ToolStripMenuItem.Image")));
-            this.数据导出ToolStripMenuItem.Name = "数据导出ToolStripMenuItem";
-            this.数据导出ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
-            this.数据导出ToolStripMenuItem.Text = "数据导出";
-            // 
-            // 导出表格ToolStripMenuItem
-            // 
-            this.导出表格ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("导出表格ToolStripMenuItem.Image")));
-            this.导出表格ToolStripMenuItem.Name = "导出表格ToolStripMenuItem";
-            this.导出表格ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.导出表格ToolStripMenuItem.Text = "导出表格";
-            // 
-            // 导出文本ToolStripMenuItem
-            // 
-            this.导出文本ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("导出文本ToolStripMenuItem.Image")));
-            this.导出文本ToolStripMenuItem.Name = "导出文本ToolStripMenuItem";
-            this.导出文本ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.导出文本ToolStripMenuItem.Text = "导出文本";
-            // 
-            // 清空全部ToolStripMenuItem
-            // 
-            this.清空全部ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("清空全部ToolStripMenuItem.Image")));
-            this.清空全部ToolStripMenuItem.Name = "清空全部ToolStripMenuItem";
-            this.清空全部ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
-            this.清空全部ToolStripMenuItem.Text = "清空全部";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton4.Text = "点击购买";
             // 
             // skinTreeView1
             // 
@@ -1224,8 +1224,7 @@
             treeNode218,
             treeNode220});
             this.skinTreeView1.Size = new System.Drawing.Size(171, 422);
-            this.skinTreeView1.TabIndex = 10;
-            this.skinTreeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.skinTreeView1_AfterSelect);
+            this.skinTreeView1.TabIndex = 13;
             // 
             // Form2
             // 

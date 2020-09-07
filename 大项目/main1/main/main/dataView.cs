@@ -211,5 +211,10 @@ namespace main
             if (e.Control && e.KeyCode == Keys.X)
                 e.Handled = true;
         }
+
+        private void skinDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
