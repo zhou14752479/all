@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DA5D02B1-5CBF-4FC5-8A75-F4675BA32D9A}</ProjectGuid>
+    <ProjectGuid>{79B1E9E0-ED58-4CC6-BFA8-A7D40565AAA8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>模拟采集</RootNamespace>
-    <AssemblyName>模拟采集</AssemblyName>
+    <RootNamespace>模拟采集1</RootNamespace>
+    <AssemblyName>模拟采集1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,12 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Unofficial.Microsoft.mshtml.7.0.3300\lib\net40\Microsoft.mshtml.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\58二手房\bin\Debug\MySql.Data.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\58二手房\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,41 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="amazon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="amazon.Designer.cs">
-      <DependentUpon>amazon.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="拼多多榜单.cs">
+    <Compile Include="TTHttp.cs" />
+    <Compile Include="企查查.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="拼多多榜单.Designer.cs">
-      <DependentUpon>拼多多榜单.cs</DependentUpon>
+    <Compile Include="企查查.Designer.cs">
+      <DependentUpon>企查查.cs</DependentUpon>
     </Compile>
-    <Compile Include="快3.cs">
+    <Compile Include="搜索采集文章.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="快3.Designer.cs">
-      <DependentUpon>快3.cs</DependentUpon>
+    <Compile Include="搜索采集文章.Designer.cs">
+      <DependentUpon>搜索采集文章.cs</DependentUpon>
     </Compile>
-    <Compile Include="淘宝搜索.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="淘宝搜索.Designer.cs">
-      <DependentUpon>淘宝搜索.cs</DependentUpon>
-    </Compile>
-    <Compile Include="百度.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="百度.Designer.cs">
-      <DependentUpon>百度.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="amazon.resx">
-      <DependentUpon>amazon.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -96,19 +73,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="拼多多榜单.resx">
-      <DependentUpon>拼多多榜单.cs</DependentUpon>
+    <EmbeddedResource Include="企查查.resx">
+      <DependentUpon>企查查.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="快3.resx">
-      <DependentUpon>快3.cs</DependentUpon>
+    <EmbeddedResource Include="搜索采集文章.resx">
+      <DependentUpon>搜索采集文章.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="淘宝搜索.resx">
-      <DependentUpon>淘宝搜索.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="百度.resx">
-      <DependentUpon>百度.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

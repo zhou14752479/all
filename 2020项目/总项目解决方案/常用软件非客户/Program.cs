@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _202007
+namespace 常用软件非客户
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace _202007
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new yxw());
+            Application.Run(new 研修网扫号());
         }
     }
 }

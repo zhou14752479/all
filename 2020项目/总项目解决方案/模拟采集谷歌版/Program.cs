@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 模拟采集
+namespace 模拟采集谷歌版
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 模拟采集
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 快3());
+            Application.Run(new 拼多多后台());
         }
     }
 }

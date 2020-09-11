@@ -35,6 +35,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button9 = new System.Windows.Forms.Button();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.button8 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -127,7 +127,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "原标题";
-            this.columnHeader3.Width = 350;
+            this.columnHeader3.Width = 380;
             // 
             // columnHeader4
             // 
@@ -136,6 +136,17 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "定时上架";
+            // 
+            // button9
+            // 
+            this.button9.ForeColor = System.Drawing.Color.Red;
+            this.button9.Location = new System.Drawing.Point(193, 415);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 29);
+            this.button9.TabIndex = 28;
+            this.button9.Text = "导出标题";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // linkLabel2
             // 
@@ -359,17 +370,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // button9
-            // 
-            this.button9.ForeColor = System.Drawing.Color.Red;
-            this.button9.Location = new System.Drawing.Point(193, 415);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 29);
-            this.button9.TabIndex = 28;
-            this.button9.Text = "导出标题";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // 仓库宝贝管理
             // 

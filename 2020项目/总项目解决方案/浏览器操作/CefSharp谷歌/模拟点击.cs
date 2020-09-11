@@ -20,18 +20,52 @@ namespace CefSharp谷歌
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 在自己窗口打开链接
+        /// </summary>
+        internal class OpenPageSelf : ILifeSpanHandler
+        {
+            public bool DoClose(IWebBrowser browserControl, IBrowser browser)
+            {
+                return false;
+            }
 
+            public void OnAfterCreated(IWebBrowser browserControl, IBrowser browser)
+            {
+
+            }
+
+            public void OnBeforeClose(IWebBrowser browserControl, IBrowser browser)
+            {
+
+            }
+
+            public bool OnBeforePopup(IWebBrowser browserControl, IBrowser browser, IFrame frame, string targetUrl, string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures, IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
+            {
+                newBrowser = null;
+                var chromiumWebBrowser = (ChromiumWebBrowser)browserControl;
+                chromiumWebBrowser.Load(targetUrl);
+                return true; //Return true to cancel the popup creation copyright by codebye.com.
+            }
+        }
+
+
+       
 
         public ChromiumWebBrowser browser = new ChromiumWebBrowser("https://shopee.com.my/");
         private void 模拟点击_Load(object sender, EventArgs e)
         {
+            CefSharp.CefSettings settings = new CefSharp.CefSettings();
 
-           // browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
+            CefSharp.Cef.Initialize(settings);
+
+            // browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(FrameEndFunc);
             //browser.Load("https://shopee.com.my/");
             //browser.Parent = tabPage2;
             //browser.Dock = DockStyle.Fill;
             browser.Parent = tabPage2;
             browser.Dock = DockStyle.Fill;
+            browser.LifeSpanHandler = new OpenPageSelf();
         }
 
         public void run()

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -181,7 +182,7 @@ namespace helper
         #endregion
 
         #region GET请求获取cookie
-        public static string getUrlCookie(string url)
+        public static string getSetCookie(string url)
         {
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
@@ -1280,6 +1281,56 @@ namespace helper
             str = str.Substring(0, j);
             return str;
         }
+        #endregion
+
+
+        #region 根据图片地址获取图片的二进制流
+        /// <summary>
+        /// 根据图片地址获取图片的二进制流
+        /// </summary>
+        /// <param name="imageUrl"></param>
+        /// <returns></returns>
+        public static byte[] Getbyte(string imageUrl,string COOKIE)
+        {
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imageUrl);
+            request.Proxy = null;
+            request.Accept = "*/*";
+            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+            request.Referer = "";
+            request.Timeout = 30000;
+            request.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)";
+            request.Method = "GET";
+            request.Headers.Add("Cookie", COOKIE);
+            request.KeepAlive = false;
+            request.ProtocolVersion = HttpVersion.Version10;
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+            Stream resStream = response.GetResponseStream();
+            Bitmap bmp = new Bitmap(resStream);
+            response.Close();
+            request.Abort();
+
+            using (MemoryStream curImageStream = new MemoryStream())
+            {
+                bmp.Save(curImageStream, System.Drawing.Imaging.ImageFormat.Png);
+                curImageStream.Flush();
+                byte[] bmpBytes = curImageStream.ToArray();
+                return bmpBytes;
+            }
+        }
+
+        #endregion
+
+        #region 二进制转图片
+        public static Image ReturnPhoto(byte[] streamByte)
+        {
+            System.IO.MemoryStream ms = new System.IO.MemoryStream(streamByte);
+            System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+            return img;
+        }
+
         #endregion
 
     }

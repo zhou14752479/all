@@ -181,17 +181,53 @@ namespace 主程序202007
             //2020-07-29 02:02:02
             try
             {
-                string url = "https://item.manager.taobao.com/taobao/manager/fastEdit.htm?optType=editTitle&action=render&itemId="+item;
-             
-                string html = getHtml(url);
-                Match title = Regex.Match(html, @"value"":{""title"":""([\s\S]*?)""");
-                return title.Groups[1].Value;
+                int resource = 0;
+
+               
+
+                if (resource==0)
+                {
+                    string url = "https://item.manager.taobao.com/taobao/manager/fastEdit.htm?optType=editTitle&action=render&itemId=" + item;
+
+                    string html = getHtml(url);
+                    Match title = Regex.Match(html, @"value"":{""title"":""([\s\S]*?)""");
+                    if (title.Groups[1].Value != "")
+                    {
+
+                        return title.Groups[1].Value;
+                    }
+                    else
+                    {
+                        resource = 1;
+                    }
+                    
+                }
+                if(resource==1)
+                {
+                    string url = "https://item.upload.taobao.com/sell/publish.htm?itemId=" + item;
+
+                    string html = getHtml(url);
+                    Match title = Regex.Match(html, @",""title"":""([\s\S]*?)""");
+                    if (title.Groups[1].Value != "")
+                    {
+
+                        return title.Groups[1].Value;
+                    }
+                    else
+                    {
+                        resource = 0;
+                    }
+                }
+                return "";
+
             }
             catch (Exception)
             {
 
                 throw;
             }
+
+           
 
         }
 
@@ -245,8 +281,8 @@ namespace 主程序202007
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        } 
-                        
+                        }
+                        Thread.Sleep(1500);
                     }
 
                     Thread.Sleep(1000);
@@ -311,10 +347,14 @@ namespace 主程序202007
 
 
             cookie = Form1.cookie;
-           
+
+            
+
             Match tok = Regex.Match(cookie, @"XSRF-TOKEN=.*");
             token = tok.Groups[0].Value.Replace("XSRF-TOKEN=", "");
-            MessageBox.Show(token);
+
+            
+          
 
             if (cookie == "")
             {

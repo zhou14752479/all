@@ -66,11 +66,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="慧聪网.cs">
+    <Compile Include="币乎查找.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="慧聪网.Designer.cs">
-      <DependentUpon>慧聪网.cs</DependentUpon>
+    <Compile Include="币乎查找.Designer.cs">
+      <DependentUpon>币乎查找.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="excel读取.resx">
       <DependentUpon>excel读取.cs</DependentUpon>
@@ -84,8 +84,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="慧聪网.resx">
-      <DependentUpon>慧聪网.cs</DependentUpon>
+    <EmbeddedResource Include="币乎查找.resx">
+      <DependentUpon>币乎查找.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

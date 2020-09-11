@@ -71,17 +71,16 @@ namespace 美团
 
                 {
 
-                    string Url = "https://www.meituan.com/meishi/api/poi/getNearPoiList?offset="+i+ "&limit=100&cityId=184&lat=33.949188&lng=118.327505";
+                    string Url = "https://api.meituan.com/group/v5/deal/select/city/44/cate/21329?sort=start&mypos=&hasGroup=true&offset=" + i+"&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
 
                     string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
                     MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
-                    MatchCollection scores = Regex.Matches(html, @"""score"":([\s\S]*?),");
-                    MatchCollection avgPrices = Regex.Matches(html, @"""avgPrice"":([\s\S]*?),");
-                    MatchCollection address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
+                   
+                    MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
                     MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-                    MatchCollection sold = Regex.Matches(html, @"""sold"":([\s\S]*?),");
+                    MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
                    
 
 
@@ -96,11 +95,10 @@ namespace 美团
 
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                        listViewItem.SubItems.Add(scores[j].Groups[1].Value);
-                        listViewItem.SubItems.Add(avgPrices[j].Groups[1].Value);
+                      
                         listViewItem.SubItems.Add(address[j].Groups[1].Value);
                         listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                        listViewItem.SubItems.Add(sold[j].Groups[1].Value);
+                        listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
 
 
 
@@ -152,7 +150,7 @@ namespace 美团
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("http://api.map.baidu.com/lbsapi/getpoint/index.html");
+           
         }
 
         private void button6_Click(object sender, EventArgs e)

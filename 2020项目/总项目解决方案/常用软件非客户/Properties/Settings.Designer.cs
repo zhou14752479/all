@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _202007.Properties
+namespace 常用软件非客户.Properties
 {
 
 

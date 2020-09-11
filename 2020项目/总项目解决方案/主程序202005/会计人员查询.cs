@@ -22,6 +22,7 @@ namespace 主程序202005
             InitializeComponent();
         }
         string cookie = "";
+
         #region  网络图片转Bitmap
         public  Bitmap UrlToBitmap(string url)
         {

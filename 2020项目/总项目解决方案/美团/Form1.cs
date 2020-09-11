@@ -282,7 +282,7 @@ namespace 美团
                                     {
 
                                         string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
-                                    MessageBox.Show(strhtml1);
+                                   
                                     Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                         Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                         Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");

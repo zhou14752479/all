@@ -59,7 +59,7 @@ function getdata($wangwang,$cookies)
 
 $wangwang=$_GET["wangwang"];
 $cookies=getcookie("http://106.12.189.59/app/superscanPH/loginPH.jsp?m=login&username=18588777745&password=MUSHANG123&parcame=ajax");
-$result= getdata($wangwang,$cookies);
+$result= getdata(urlencode($wangwang),$cookies);
 
 
 ?>

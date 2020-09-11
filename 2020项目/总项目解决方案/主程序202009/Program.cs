@@ -16,7 +16,7 @@ namespace 主程序202009
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new excel读取());
+            Application.Run(new 币乎查找());
         }
     }
 }

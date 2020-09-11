@@ -16,7 +16,7 @@ namespace 美团
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 登陆());
+            Application.Run(new Form1());
         }
     }
 }
