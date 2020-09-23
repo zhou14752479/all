@@ -20,7 +20,7 @@ namespace CefSharp谷歌
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 速卖通());
+            Application.Run(new 阿里巴巴());
         }
 
 

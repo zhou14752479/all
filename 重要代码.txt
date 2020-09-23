@@ -17,7 +17,7 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
                 }
 
 三、URL 编码
-	System.Web.HttpUtility.UrlEncode(comboBox1.Text);
+	System.Web.HttpUtility.UrlEncode(comboBox1.Text)
 	System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); 指定编码
 
 四、遇到请求被终止未能创建SSL/TLS安全通道

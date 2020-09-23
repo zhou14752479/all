@@ -32,6 +32,19 @@ namespace 商标查询
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"shangbiaochaxun"))
+            {
+                MessageBox.Show("验证失败");
+                return;
+            }
+
+
+
+            #endregion
             Thread thread = new Thread(new ThreadStart(this.run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -58,8 +71,6 @@ namespace 商标查询
                     Match match3 = Regex.Match(input, "\"StateDate2017\":\"([\\s\\S]*?)\"");
                     Match match4 = Regex.Match(input, "\"AppPerson\":\"([\\s\\S]*?)\"");
                     Match match5 = Regex.Match(input, "\"Addr\":\"([\\s\\S]*?)\"");
-                    Match match6 = Regex.Match(input, "\"Addr\":\"([\\s\\S]*?)省");
-                    Match match7 = Regex.Match(input, "省([\\s\\S]*?)市");
                     Match match8 = Regex.Match(input, "\"AppDate\":\"([\\s\\S]*?)\"");
                     Match match9 = Regex.Match(input, "\"AgentName\":\"([\\s\\S]*?)\"");
                     string url2 = "https://zhiqingzhe.zqz510.com/api/tq/gti?uid=18f0514dacf94e9899136734417b7c83&an=" + array[i].Trim() + "&ic=" + match2.Groups[1].Value.Trim();
@@ -70,9 +81,7 @@ namespace 商标查询
                     listViewItem.SubItems.Add(match.Groups[1].Value);
                     listViewItem.SubItems.Add(match2.Groups[1].Value);
                     listViewItem.SubItems.Add(match4.Groups[1].Value);
-                    listViewItem.SubItems.Add("中国");
-                    listViewItem.SubItems.Add(match6.Groups[1].Value);
-                    listViewItem.SubItems.Add(match7.Groups[1].Value);
+              
                     listViewItem.SubItems.Add(match5.Groups[1].Value);
                     listViewItem.SubItems.Add(match8.Groups[1].Value);
                     listViewItem.SubItems.Add(match9.Groups[1].Value);
@@ -83,6 +92,7 @@ namespace 商标查询
                     }
                     Thread.Sleep(1000);
                 }
+                MessageBox.Show("抓取介绍");
             }
             catch (Exception ex)
             {
@@ -122,6 +132,11 @@ namespace 商标查询
             {
                 e.Cancel = true;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

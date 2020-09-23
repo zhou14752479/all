@@ -84,11 +84,7 @@ namespace 商标查询
                     lv1.SubItems.Add(a6.Groups[1].Value);
                     lv1.SubItems.Add(a7.Groups[1].Value);
                     lv1.SubItems.Add(aaa.Groups[2].Value + aaa.Groups[1].Value);//收发文日期
-                    FileStream fs1 = new FileStream(path + DateTime.Now.ToShortDateString().Replace("/","-") +".txt", FileMode.Append, FileAccess.Write);//创建写入文件 
-                    StreamWriter sw = new StreamWriter(fs1);
-                    sw.WriteLine(richTextBox1.Lines[a].Trim()+ "#"+a1.Groups[1].Value + "#" + a2.Groups[1].Value + "#" + a4.Groups[1].Value +"#中国"+ "#" + a51.Groups[1].Value + "#" + a52.Groups[1].Value + "#" + a5.Groups[1].Value + "#" + a6.Groups[1].Value + "#" + a7.Groups[1].Value+"#"+ aaa.Groups[2].Value + aaa.Groups[1].Value,Encoding.GetEncoding("utf-8"));
-                    sw.Close();
-                    fs1.Close();
+                   
                     while (this.zanting == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -147,30 +143,30 @@ namespace 商标查询
 
         private void shangBiao_Load(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader(weiPath, Encoding.Default);
-            //一次性读取完 
-            string texts = sr.ReadToEnd();
-            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            richTextBox1.Text = texts;
-            sr.Close();
+            //StreamReader sr = new StreamReader(weiPath, Encoding.Default);
+            ////一次性读取完 
+            //string texts = sr.ReadToEnd();
+            //string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            //richTextBox1.Text = texts;
+            //sr.Close();
 
-            FileSystemWatcher fileSystemWatcher1 = new FileSystemWatcher();
+            //FileSystemWatcher fileSystemWatcher1 = new FileSystemWatcher();
 
-            this.fileSystemWatcher1.Changed += new FileSystemEventHandler(fileSystemWatcher1_Changed);
+            //this.fileSystemWatcher1.Changed += new FileSystemEventHandler(fileSystemWatcher1_Changed);
 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.Path = path ;
-            this.fileSystemWatcher1.Filter = DateTime.Now.ToShortDateString().Replace("/", "-")+".txt";
-            this.fileSystemWatcher1.IncludeSubdirectories = false;//不监视子目录
+            //this.fileSystemWatcher1.EnableRaisingEvents = true;
+            //this.fileSystemWatcher1.Path = path ;
+            //this.fileSystemWatcher1.Filter = DateTime.Now.ToShortDateString().Replace("/", "-")+".txt";
+            //this.fileSystemWatcher1.IncludeSubdirectories = false;//不监视子目录
         }
 
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
 
-            FileStream fs = File.Open(path + DateTime.Now.ToShortDateString().Replace("/", "-") + ".txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            StreamReader sr = new StreamReader(fs, Encoding.Default);//流读取器
-            string texts = sr.ReadToEnd();
-            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            //FileStream fs = File.Open(path + DateTime.Now.ToShortDateString().Replace("/", "-") + ".txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            //StreamReader sr = new StreamReader(fs, Encoding.Default);//流读取器
+            //string texts = sr.ReadToEnd();
+            //string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
           
             
 
@@ -193,37 +189,9 @@ namespace 商标查询
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
-            #region 通用验证
-
-            bool value = false;
-            string html = method.GetUrl("http://acaiji.com/success/ip.php", "utf-8");
-            string localip = method.GetIP();
-            MatchCollection ips = Regex.Matches(html, @"<td style='color:red;'>([\s\S]*?)</td>", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            foreach (Match ip in ips)
-            {
-                if (ip.Groups[1].Value.Trim() == "16.16.16.16")
-                {
-                    value = true;
-                    break;
-                }
-
-            }
-            if (value == true)
-            {
-
-                Thread thread = new Thread(new ThreadStart(run));
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-
-            }
-            else
-            {
-                MessageBox.Show("IP不符");
-
-            }
-            #endregion
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void ToolStripButton2_Click(object sender, EventArgs e)

@@ -72,9 +72,10 @@ namespace 模拟采集
             for (int i = 0; i <= 100; i++)
             {
               
-                status = false;
+                status = false; //这个false很重要，因为浏览器初始化加载会触发run（）,status赋值true。
+               
                 webBrowser1.Navigate("https://www.baidu.com/s?wd=%E5%AE%BF%E8%BF%81&pn="+i+"0&oq=%E5%AE%BF%E8%BF%81&ie=utf-8");
-
+              
                 while (this.status == false)
                 {
                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。

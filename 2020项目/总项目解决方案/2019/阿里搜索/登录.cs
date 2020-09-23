@@ -27,7 +27,7 @@ namespace 阿里搜索
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            cookie =  method.GetCookies("https://www.1688.com/");
+            cookie =  method.GetCookies("https://dnzmjx.1688.com/page/contactinfo.htm");
             this.Hide();
         }
     }

@@ -32,6 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\美团\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\58二手房\bin\Debug\NPOI.dll</HintPath>
     </Reference>
@@ -72,6 +75,18 @@
     <Compile Include="币乎查找.Designer.cs">
       <DependentUpon>币乎查找.cs</DependentUpon>
     </Compile>
+    <Compile Include="悟空问答.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="悟空问答.Designer.cs">
+      <DependentUpon>悟空问答.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据处理mysql.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据处理mysql.Designer.cs">
+      <DependentUpon>数据处理mysql.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="excel读取.resx">
       <DependentUpon>excel读取.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +101,12 @@
     </Compile>
     <EmbeddedResource Include="币乎查找.resx">
       <DependentUpon>币乎查找.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="悟空问答.resx">
+      <DependentUpon>悟空问答.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据处理mysql.resx">
+      <DependentUpon>数据处理mysql.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

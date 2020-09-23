@@ -45,7 +45,7 @@ namespace 模拟采集
 
 
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO kuai3 (qishu,haoma,date)VALUES('" + qishu.Substring(4, 4) + " ', '" + value + " ', '" + date + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO kuai3 (qishu,haoma,date)VALUES('" + qishu.Substring(4, 4).Replace("\r\n","").Trim() + " ', '" + value.Replace("\r\n", "").Trim() + " ', '" + date.Replace("\r\n", "").Trim() + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
 
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
@@ -92,6 +92,7 @@ namespace 模拟采集
                 string qishu = qishus[0].Groups[1].Value;
                 ListViewItem lv1 = listView1.Items.Add(qishu.Substring(4, 4)); //使用Listview展示数据   
                 lv1.SubItems.Add(he);
+                
                insertData(qishu, he);
                 shangyiqi = qishu;
             }
@@ -101,7 +102,7 @@ namespace 模拟采集
         private void button1_Click(object sender, EventArgs e)
         {
            
-              timer1.Start();
+            timer1.Start();
 
         }
         
@@ -114,6 +115,7 @@ namespace 模拟采集
 
         private void button3_Click(object sender, EventArgs e)
         {
+           
             string url = comboBox1.Text.Trim();
 
             webBrowser1.Navigate(url);

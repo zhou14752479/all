@@ -120,13 +120,13 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "关键字";
+            this.columnHeader2.Text = "联系人";
             this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "店铺地址 ";
-            this.columnHeader3.Width = 500;
+            this.columnHeader3.Text = "手机";
+            this.columnHeader3.Width = 100;
             // 
             // button6
             // 
@@ -143,7 +143,7 @@
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.button5.Location = new System.Drawing.Point(596, 186);
+            this.button5.Location = new System.Drawing.Point(227, 11);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(117, 30);
             this.button5.TabIndex = 19;
@@ -216,6 +216,7 @@
             this.label4.Size = new System.Drawing.Size(28, 14);
             this.label4.TabIndex = 12;
             this.label4.Text = "---";
+            this.label4.Visible = false;
             // 
             // label3
             // 
@@ -226,6 +227,7 @@
             this.label3.Size = new System.Drawing.Size(28, 14);
             this.label3.TabIndex = 11;
             this.label3.Text = "---";
+            this.label3.Visible = false;
             // 
             // textBox3
             // 
@@ -234,6 +236,8 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(40, 23);
             this.textBox3.TabIndex = 10;
+            this.textBox3.Text = "999999";
+            this.textBox3.Visible = false;
             // 
             // label2
             // 
@@ -244,6 +248,7 @@
             this.label2.Size = new System.Drawing.Size(63, 14);
             this.label2.TabIndex = 9;
             this.label2.Text = "销量范围";
+            this.label2.Visible = false;
             // 
             // textBox4
             // 
@@ -253,6 +258,7 @@
             this.textBox4.Size = new System.Drawing.Size(40, 23);
             this.textBox4.TabIndex = 8;
             this.textBox4.Text = "0";
+            this.textBox4.Visible = false;
             // 
             // textBox2
             // 
@@ -261,7 +267,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(40, 23);
             this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "500";
+            this.textBox2.Text = "99999";
+            this.textBox2.Visible = false;
             // 
             // label1
             // 
@@ -272,6 +279,7 @@
             this.label1.Size = new System.Drawing.Size(63, 14);
             this.label1.TabIndex = 5;
             this.label1.Text = "价格范围";
+            this.label1.Visible = false;
             // 
             // button4
             // 
@@ -311,6 +319,7 @@
             this.textBox1.Size = new System.Drawing.Size(40, 23);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "0";
+            this.textBox1.Visible = false;
             // 
             // button1
             // 

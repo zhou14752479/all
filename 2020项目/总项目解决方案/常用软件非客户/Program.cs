@@ -16,7 +16,7 @@ namespace 常用软件非客户
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 研修网扫号());
+            Application.Run(new 浏览器cookie获取());
         }
     }
 }

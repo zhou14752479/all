@@ -16,7 +16,7 @@ namespace 模拟采集1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 企查查());
+            Application.Run(new 搜索采集文章());
         }
     }
 }

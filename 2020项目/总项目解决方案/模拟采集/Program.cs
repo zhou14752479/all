@@ -16,7 +16,7 @@ namespace 模拟采集
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 快3());
+            Application.Run(new 亚马逊商品页());
         }
     }
 }

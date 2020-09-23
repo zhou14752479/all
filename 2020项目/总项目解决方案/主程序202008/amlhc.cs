@@ -176,6 +176,106 @@ namespace 主程序202008
 
         ArrayList lists = new ArrayList();
 
+
+        public void duqu()
+        {
+            StreamReader sr = new StreamReader(path + "data.txt", Encoding.GetEncoding("utf-8"));
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+
+            ListViewItem lv1 = listView1.Items.Add("平码1");
+            ListViewItem lv2 =  listView1.Items.Add("平码2");
+            ListViewItem lv3 = listView1.Items.Add("平码3");
+            ListViewItem lv4 = listView1.Items.Add("平码4");
+            ListViewItem lv5 = listView1.Items.Add("平码5");
+            ListViewItem lv6 = listView1.Items.Add("平码6");
+
+           
+
+            listView1.Columns.Add("组名");
+            for (int i = 0; i < text.Length; i++)
+            {
+                listView1.Columns.Add( (i + 1).ToString());
+                listView1.Columns[i].Width = 40;
+                lv1.SubItems.Add(text[i].Substring(0, 1));
+                lv2.SubItems.Add(text[i].Substring(1, 1));
+                lv3.SubItems.Add(text[i].Substring(2, 1));
+                lv4.SubItems.Add(text[i].Substring(3, 1));
+                lv5.SubItems.Add(text[i].Substring(4, 1));
+                lv6.SubItems.Add(text[i].Substring(5, 1));
+
+                label1.Text = "正在载入第"+(i+1)+"组";
+
+                while (this.zanting == false)
+                {
+                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                }
+
+                if (i == text.Length - 1)
+                {
+                    MessageBox.Show("载入完成");
+                }
+
+
+            }
+            
+        }
+        int c = 5;
+        private void 查看ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            ListViewItem lv1 = listView1.Items.Add("  ");
+            for (int i = 0; i < listView1.Columns.Count; i++)
+            {
+                lv1.SubItems.Add(" 1");
+            }
+            c = c + 1;
+
+
+                int a = this.dataGridView1.CurrentRow.Index;
+            int j = this.dataGridView1.CurrentCell.ColumnIndex;
+            if (this.dataGridView1.CurrentRow.Cells[j].Value != null)
+            {
+
+                string value = this.dataGridView1.CurrentRow.Cells[j].Value.ToString();
+                value = Regex.Replace(value, @"\d{1,}", "").Trim();
+
+                if (value != "")
+                {
+
+                    for (j = 1; j < listView1.Columns.Count; j++)
+                    {
+                        for (int i = 0; i < 6; i++)
+                        {
+
+                        
+                            
+                            if (listView1.Items[i].SubItems[j].Text.Trim() == value)
+                            {
+                                listView1.Items[c].UseItemStyleForSubItems = false;
+                                listView1.Items[c].SubItems[j].Text = value+"√";
+                                listView1.Items[c].SubItems[j].ForeColor = Color.Red;
+                                break;
+
+                            }
+                            else
+                            {
+                                listView1.Items[c].SubItems[j].Text = value + "×";
+                                
+
+                            }
+
+                        }
+                    }
+
+
+                }
+            }
+
+        }
+
         /// <summary>
         /// 获取时间戳  秒
         /// </summary>
@@ -191,9 +291,10 @@ namespace 主程序202008
         string path = AppDomain.CurrentDomain.BaseDirectory+"\\data\\";
         private void amlhc_Load(object sender, EventArgs e)
         {
-          
 
-
+            Thread thread = new Thread(new ThreadStart(duqu));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
 
 
@@ -222,35 +323,7 @@ namespace 主程序202008
 
 
 
-            StreamReader sr = new StreamReader(path + "data.txt", Encoding.GetEncoding("utf-8"));
-            //一次性读取完 
-            string texts = sr.ReadToEnd();
-            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-            
-
-            for (int i = 0; i < text.Length; i++)
-            {
-
-                ListViewItem lv1 = listView1.Items.Add(text[i]); //使用Listview展示数据
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-                lv1.SubItems.Add(" ");
-              
-
-            }
-            sr.Close();
+           
 
 
             StreamReader sr1 = new StreamReader(path + "luru.txt", Encoding.GetEncoding("utf-8"));
@@ -289,10 +362,10 @@ namespace 主程序202008
 
 
         }
-
+        bool zanting = true;
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            zanting = false;
 
 
 
@@ -314,16 +387,16 @@ namespace 主程序202008
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string a1 = textBox1.Text;
-            string a2 = textBox2.Text + dic[Convert.ToInt32(textBox2.Text.Trim())];
-            string a3 = textBox3.Text + dic[Convert.ToInt32(textBox3.Text.Trim())];
-            string a4 = textBox4.Text + dic[Convert.ToInt32(textBox4.Text.Trim())];
-            string a5 = textBox5.Text + dic[Convert.ToInt32(textBox5.Text.Trim())];
-            string a6 = textBox6.Text + dic[Convert.ToInt32(textBox6.Text.Trim())];
-            string a7 = textBox7.Text + dic[Convert.ToInt32(textBox7.Text.Trim())];
-            string a8 = textBox8.Text + dic[Convert.ToInt32(textBox8.Text.Trim())];
-            string a9 = textBox9.Text;
-            string a10 = textBox10.Text;
+            string a1 = textBox1.Text.Trim();
+            string a2 = textBox2.Text.Trim() + dic[Convert.ToInt32(textBox2.Text.Trim())];
+            string a3 = textBox3.Text.Trim() + dic[Convert.ToInt32(textBox3.Text.Trim())];
+            string a4 = textBox4.Text.Trim() + dic[Convert.ToInt32(textBox4.Text.Trim())];
+            string a5 = textBox5.Text.Trim() + dic[Convert.ToInt32(textBox5.Text.Trim())];
+            string a6 = textBox6.Text.Trim() + dic[Convert.ToInt32(textBox6.Text.Trim())];
+            string a7 = textBox7.Text.Trim() + dic[Convert.ToInt32(textBox7.Text.Trim())];
+            string a8 = textBox8.Text.Trim() + dic[Convert.ToInt32(textBox8.Text.Trim())];
+            string a9 = textBox9.Text.Trim();
+            string a10 = textBox10.Text.Trim();
 
 
             this.index = this.dataGridView1.Rows.Add();
@@ -364,7 +437,7 @@ namespace 主程序202008
            
         }
 
-        int c = 0;
+       
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -373,39 +446,8 @@ namespace 主程序202008
 
 
         }
-
-        private void 查看ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int a = this.dataGridView1.CurrentRow.Index;
-            int j = this.dataGridView1.CurrentCell.ColumnIndex;
-            if (this.dataGridView1.CurrentRow.Cells[j].Value != null)
-            {
-               
-                string value = this.dataGridView1.CurrentRow.Cells[j].Value.ToString();
-                value = Regex.Replace(value, @"\d{1,}", "").Trim();
-
-                if (value != "")
-                {
-                    c = c + 1;
-                    listView1.Columns[c].Text = value;
-
-                    for (int i = 0; i < listView1.Items.Count; i++)
-                    {
-                        if (listView1.Items[i].SubItems[0].Text.Contains(value))
-                        {
-                            listView1.Items[i].SubItems[c].Text = "√";
-
-
-                        }
-                        else
-                        {
-                            listView1.Items[i].SubItems[c].Text = "×";
-                        }
-                    }
-                }
-            }
-
-        }
+       
+      
 
         private void amlhc_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -463,12 +505,9 @@ namespace 主程序202008
 
 
 
-
+                Environment.Exit(0);
 
             }
         }
-
-
-
     }
 }

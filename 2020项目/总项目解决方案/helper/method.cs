@@ -108,9 +108,6 @@ namespace helper
                 try
                 {
 
-
-
-
                     if (!isColumnNeeded(i))
                         continue;
 
@@ -215,7 +212,7 @@ namespace helper
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.ContentType = "application/x-www-form-urlencoded";
+                //request.ContentType = "application/x-www-form-urlencoded";
                 
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
@@ -223,7 +220,7 @@ namespace helper
                 //headers.Add("x-nike-visitid:5");
                 //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
                 //添加头部
-                // request.ContentType = "application/json";
+                 request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
                 //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 request.AllowAutoRedirect = false;
@@ -232,7 +229,7 @@ namespace helper
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
                 
-                request.Referer = "https://esearch.ipd.gov.hk/nis-pos-view/tm";
+                request.Referer = "";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -310,14 +307,8 @@ namespace helper
                         List<string> list = new List<string>();
                         string temp0 = item.SubItems[0].Text;
                         string temp1 = item.SubItems[1].Text;
-                        string temp2 = item.SubItems[2].Text;
-                        string temp3 = item.SubItems[3].Text;
-                        string temp4 = item.SubItems[4].Text;
-                        string temp5 = item.SubItems[5].Text;
-                        string temp6 = item.SubItems[6].Text;
-                        string temp7 = item.SubItems[7].Text;
-                        string temp8 = item.SubItems[8].Text;
-                        list.Add(temp0+"#"+temp1 + "#" + temp2 + "#" + temp3 + "#" + temp4 + "#" + temp5 + "#" + temp6 + "#" + temp7 + "#" + temp8);
+                       
+                        list.Add(temp0+temp1 );
                         foreach (string tel in list)
                         {
                             sb.AppendLine(tel);
@@ -685,7 +676,7 @@ namespace helper
 
                 IRow row = sheet.GetRow(0);  //读取当前行数据
                                              //LastRowNum 是当前表的总行数-1（注意）
-                int offset = 0;
+               // int offset = 0;
                 for (int i = 0; i <= sheet.LastRowNum; i++)
                 {
                     row = sheet.GetRow(i);  //读取当前行数据
@@ -997,7 +988,7 @@ namespace helper
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
 
 
 
