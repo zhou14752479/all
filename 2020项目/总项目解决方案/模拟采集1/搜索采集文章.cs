@@ -110,6 +110,46 @@ namespace 模拟采集1
             fs1.Close();
 
         }
+        /// <summary>
+        /// 谷歌翻译伪原创
+        /// </summary>
+        /// <param name="key"></param>
+        public void googleTranslate(string key)
+        {
+            StringBuilder sb = new StringBuilder();
+            string path1 = AppDomain.CurrentDomain.BaseDirectory;
+            StreamReader sr = new StreamReader(path1 + "jtn\\" + key + ".txt", Encoding.GetEncoding("utf-8"));
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] != "" && !text[i].Contains("<"))
+                {
+                    string yingwen = method.translate("zh-CN", "en", text[i]);
+                    Thread.Sleep(2000);
+                    string result = method.translate("en", "zh-CN", yingwen);
+                   
+                    if (result == "")
+                    {
+                        result = text[i];
+                    }
+
+                    sb.AppendLine(result);
+                }
+                else
+                {
+                    sb.AppendLine(text[i]);
+                }
+
+            }
+            sr.Close();
+
+            baocun(key,sb.ToString());
+
+            //neirong = method.translate("zh-CN", "en", neirong);
+
+        }
 
         /// <summary>
         /// 替换品牌词
@@ -133,9 +173,11 @@ namespace 模拟采集1
 
             for (int i = 0; i < text.Length; i++)
             {
+               
                 if (jtn.Length > 1)
                 {
-                    neirong.Replace(text[i], jtn[random.Next(0, jtn.Length - 1)]);
+                   
+                  neirong= neirong.Replace(text[i], jtn[random.Next(0, jtn.Length - 1)]);
                 }
             }
             sr0.Close();
@@ -205,6 +247,7 @@ namespace 模拟采集1
                 {
                     textBox2.Text += DateTime.Now.ToString() + "正在合成文章：" + keyword + "\r\n";
                     baocun(keyword, sb.ToString());
+                    googleTranslate(keyword);
                     break;
                 }
 
@@ -213,6 +256,8 @@ namespace 模拟采集1
                 string ahtml = GetUrl(aurl);
                 Match body = Regex.Match(ahtml, @"<div class=""pd_d_t_info"">([\s\S]*?)<div");
                 string neirong = Regex.Replace(body.Groups[1].Value, "<[^>]+>", "");
+
+
                 neirong = tihuan(neirong);//替换品牌词
 
                 string tupianName = charu();
@@ -294,16 +339,19 @@ namespace 模拟采集1
             }
 
     }
-
+        // neirong= method.translate("zh-CN", "en", neirong);
+        Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(getkeys));
+            thread = new Thread(getkeys);
             thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false; ;
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
+            
             zanting = false;
         }
 

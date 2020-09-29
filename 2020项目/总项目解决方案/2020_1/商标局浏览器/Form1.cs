@@ -232,7 +232,7 @@ namespace 商标局浏览器
             try
             {
                 SetProxy("");
-                string url = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=7&fa=5&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7";
+                string url = "http://47.106.170.4:8081/Index-generate_api_url.html?packid=7&fa=5&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=%E5%B9%BF%E4%B8%9C%E7%9C%81&city=%E5%B9%BF%E5%B7%9E%E5%B8%82&usertype=7";
 
                 string html = GetUrl(url, "utf-8");
                 
@@ -296,7 +296,7 @@ namespace 商标局浏览器
         private void Form1_Load(object sender, EventArgs e)
         {
           
-            label3.Text = GetIP();
+            
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -319,7 +319,7 @@ namespace 商标局浏览器
            
         }
 
-        int i = 100;
+        int i = 5;
         private void Timer1_Tick(object sender, EventArgs e)
         {
             if (i != 0)
@@ -329,7 +329,7 @@ namespace 商标局浏览器
 
                 button1.Enabled = false;
 
-
+                Thread.Sleep(1000);
             }
             else
             {
@@ -345,6 +345,11 @@ namespace 商标局浏览器
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             SetProxy("");
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SetProxy(textBox2.Text.Trim());
         }
     }
 }

@@ -38,6 +38,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,11 +63,10 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button8 = new System.Windows.Forms.Button();
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -184,6 +184,16 @@
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "导入运单号查询";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(193, 64);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(83, 26);
+            this.button8.TabIndex = 2;
+            this.button8.Text = "查询";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // textBox1
             // 
@@ -357,19 +367,10 @@
             this.columnHeader11.Text = "物品";
             this.columnHeader11.Width = 80;
             // 
-            // openFileDialog1
+            // columnHeader16
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(193, 64);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(83, 26);
-            this.button8.TabIndex = 2;
-            this.button8.Text = "查询";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.columnHeader16.Text = "状态";
+            this.columnHeader16.Width = 80;
             // 
             // contextMenuStrip1
             // 
@@ -381,14 +382,13 @@
             // 复制ToolStripMenuItem
             // 
             this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
-            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.复制ToolStripMenuItem.Text = "复制";
             this.复制ToolStripMenuItem.Click += new System.EventHandler(this.复制ToolStripMenuItem_Click);
             // 
-            // columnHeader16
+            // openFileDialog1
             // 
-            this.columnHeader16.Text = "状态";
-            this.columnHeader16.Width = 80;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // 京东物流全
             // 

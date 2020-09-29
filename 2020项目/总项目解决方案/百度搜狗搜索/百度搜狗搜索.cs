@@ -137,6 +137,7 @@ namespace 百度搜狗搜索
             if (titles.Count == 0)
             {
                 status = false;
+                return; //测试无内容 是否继续执行
             }
            
 

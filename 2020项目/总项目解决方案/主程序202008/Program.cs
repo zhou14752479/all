@@ -16,7 +16,7 @@ namespace 主程序202008
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new amlhc());
+            Application.Run(new 微信检测网上接口());
         }
     }
 }

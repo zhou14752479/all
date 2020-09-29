@@ -141,6 +141,7 @@ namespace 主程序202009
 
         }
 
+        Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -156,9 +157,11 @@ namespace 主程序202009
 
 
             #endregion
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+            }
         }
         string path = AppDomain.CurrentDomain.BaseDirectory + "\\data\\";
        

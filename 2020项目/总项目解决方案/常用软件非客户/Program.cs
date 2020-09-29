@@ -16,7 +16,7 @@ namespace 常用软件非客户
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 浏览器cookie获取());
+            Application.Run(new 文件名大小判断());
         }
     }
 }

@@ -141,19 +141,19 @@ namespace helper
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "session-id=144-7450304-7580635; session-id-time=2082787201l; ubid-main=133-9411273-8184314; x-wl-uid=1AR+eCj1iY57TRhM7A2m5KF9SEb1ho13Om87l60jAFJAp10qHX8GNgnZcOFTknCbmNkftPnMho/k=; aws-priv=eyJ2IjoxLCJldSI6MCwic3QiOjB9; aws-target-static-id=1536650638823-915613; s_fid=16BD3861C3483809-386224FB67B4E94E; regStatus=pre-register; s_dslv=1536656308918; i18n-prefs=USD; lc-main=zh_CN; sp-cdn=\"L5Z9: CN\"; session-token=/8/yst6nJSzUghSOya1omO6MEhQ/Moyyq2FsFStf5zcm4cZPhl38RIpfC+UZyiw//J9HubG+McoZMSB4hRyykQZ0SH1X07eSi5nxcOjmHQshqSmCJD6tL8cgFOFCByRnF1EJMjmxRfVwTkZZ/4yLqjzBQ2Ik6WclU4tG1u7+4UCFeGDYa//WLb3fCGfB6RuU; csm-hit=tb:DT2JH7KAE9BTWY50PJA8+s-DT2JH7KAE9BTWY50PJA8|1585472314824&t:1585472314824&adb:adblk_no";
+                string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "https://www.amazon.com/s?k=6Q0+959+856&__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&ref=nb_sb_noss";
+                request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
                 request.Headers.Add("Cookie", COOKIE);
                 //添加头部
-                WebHeaderCollection headers = request.Headers;
-                headers.Add("sec-fetch-mode:navigate");
-                headers.Add("sec-fetch-site:same-origin");
-                headers.Add("sec-fetch-user:?1");
-                headers.Add("upgrade-insecure-requests: 1");
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                //headers.Add("sec-fetch-site:same-origin");
+                //headers.Add("sec-fetch-user:?1");
+                //headers.Add("upgrade-insecure-requests: 1");
                 //添加头部
                 // request.KeepAlive = true;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -212,7 +212,7 @@ namespace helper
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                //request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentType = "application/x-www-form-urlencoded";
                 
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
@@ -220,7 +220,7 @@ namespace helper
                 //headers.Add("x-nike-visitid:5");
                 //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
                 //添加头部
-                 request.ContentType = "application/json";
+                // request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
                 //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 request.AllowAutoRedirect = false;
@@ -229,7 +229,7 @@ namespace helper
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
                 
-                request.Referer = "";
+                request.Referer = "https://wenku.baidu.com/view/9654c1385527a5e9856a561252d380eb62942371.html";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -372,7 +372,7 @@ namespace helper
                 UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
-                Referer = "https://live.500.com/wanchang.php",//来源URL     可选项  
+                Referer = "",//来源URL     可选项  
                 Allowautoredirect = true,//是否根据３０１跳转     可选项  
                 AutoRedirectCookie = true,//是否自动处理Cookie     可选项  
                                            //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
@@ -706,6 +706,8 @@ namespace helper
         }
 
         #endregion
+
+        #region 获取时间戳  秒
         /// <summary>
         /// 获取时间戳  秒
         /// </summary>
@@ -716,6 +718,8 @@ namespace helper
             long a = Convert.ToInt64(tss.TotalSeconds);
             return a.ToString();
         }
+        #endregion
+
         #region NPOI导出表格默认时间为文件名
         public static int DataTableToExcelTime(DataTable data, bool isColumnWritten)
         {
@@ -1321,6 +1325,32 @@ namespace helper
             System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
             return img;
         }
+
+        #endregion
+
+
+        #region  谷歌翻译
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="from">zh-CN</param>
+        /// 有道翻译zh-CHS
+        /// <param name="to">en</param>
+        /// <param name="neirong"></param>
+        /// <returns></returns>
+        public static string translate(string from,string to,string neirong)
+        {
+            // string url = "http://translate.google.cn/translate_a/single?client=gtx&dt=t&ie=UTF-8&oe=UTF-8&sl="+from+"&tl="+to+"&q="+neirong;
+            //string html= GetUrl2(url,"utf-8");
+            //Match result = Regex.Match(html,@"""([\s\S]*?)""");
+            //return result.Groups[1].Value;
+
+            string url = "https://aidemo.youdao.com/trans?q="+neirong+"&from="+from+"&to="+to;
+            string html = GetUrl(url, "utf-8");
+            Match result = Regex.Match(html, @"""translation"":\[""([\s\S]*?)""");
+            return result.Groups[1].Value;
+        }
+
 
         #endregion
 

@@ -98,7 +98,7 @@ namespace 主程序202008
         }
 
         bool zanting = true;
-
+        Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -114,14 +114,16 @@ namespace 主程序202008
 
 
             #endregion
-        
-            
 
 
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-           
+
+
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -16,7 +16,7 @@ namespace 主程序202009
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 数据处理mysql());
+            Application.Run(new 数据去重());
         }
     }
 }

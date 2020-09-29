@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百度搜狗搜索", "百�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "美团", "美团\美团.csproj", "{8C5F5C05-9A7A-482B-BF72-F023D47134D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "研修网下载", "2020_1\研修网下载\研修网下载.csproj", "{53A5558D-87C7-456D-8165-210E6C88956A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "地图采集器", "地图采集器\地图采集器.csproj", "{CE4A3C6F-D3B4-4E57-B13A-70746CE2BF86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,10 +75,10 @@ Global
 		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53A5558D-87C7-456D-8165-210E6C88956A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53A5558D-87C7-456D-8165-210E6C88956A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53A5558D-87C7-456D-8165-210E6C88956A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53A5558D-87C7-456D-8165-210E6C88956A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE4A3C6F-D3B4-4E57-B13A-70746CE2BF86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE4A3C6F-D3B4-4E57-B13A-70746CE2BF86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE4A3C6F-D3B4-4E57-B13A-70746CE2BF86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE4A3C6F-D3B4-4E57-B13A-70746CE2BF86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

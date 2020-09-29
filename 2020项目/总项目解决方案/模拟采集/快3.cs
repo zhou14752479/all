@@ -76,33 +76,49 @@ namespace 模拟采集
         string shangyiqi = "0";
             public void run()
         {
-            var htmldocument = (mshtml.HTMLDocument)webBrowser1.Document.DomDocument;
-
+            Invoke(new Action(() =>
+            {
+                var htmldocument = (mshtml.HTMLDocument)webBrowser1.Document.DomDocument;
+          
             string html = htmldocument.documentElement.outerHTML;
-            //textBox1.Text = html;
-           
+                //textBox1.Text = html;
+          
             MatchCollection qishus = Regex.Matches(html, @"lottery-name"" data-v-3648a589="""">([\s\S]*?)期");
             MatchCollection values = Regex.Matches(html, @"Dice Dice([\s\S]*?)""");
           
             string he= Convert.ToInt32(values[0].Groups[1].Value) + Convert.ToInt32(values[1].Groups[1].Value) + Convert.ToInt32(values[2].Groups[1].Value) + "\r\n";
 
 
-            if (shangyiqi != qishus[0].Groups[1].Value)
-            {
-                string qishu = qishus[0].Groups[1].Value;
-                ListViewItem lv1 = listView1.Items.Add(qishu.Substring(4, 4)); //使用Listview展示数据   
-                lv1.SubItems.Add(he);
-                
-               insertData(qishu, he);
-                shangyiqi = qishu;
-            }
+                if (shangyiqi != qishus[0].Groups[1].Value)
+                {
+                    string qishu = qishus[0].Groups[1].Value;
+
+                    ListViewItem lv1 = listView1.Items.Add(qishu.Substring(4, 4)); //使用Listview展示数据   
+                    lv1.SubItems.Add(he);
+
+
+                     insertData(qishu, he);
+                    shangyiqi = qishu;
+                }
+            }));
+        }
            
 
-        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
-           
-            timer1.Start();
+
+            if (timer1.Enabled == false)
+            {
+                timer1.Interval = 1;
+                timer1.Enabled = true;
+               
+            }
+            else
+            {
+                timer1.Enabled = false;
+                
+            }
 
         }
         
@@ -140,10 +156,16 @@ namespace 模拟采集
         {
 
         }
-
+        Thread Timerthread;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            run();
+            timer1.Interval = 30000;
+            if (Timerthread == null || !Timerthread.IsAlive)
+            {
+                Timerthread = new Thread(run);
+                Timerthread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
     }
 }

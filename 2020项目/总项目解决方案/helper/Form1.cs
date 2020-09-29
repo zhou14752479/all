@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,7 +19,7 @@ namespace helper
         }
 
         public static string cookie = "";
-
+        public static string SID= "";
         public void getmseeage(string name)
         {
             MessageBox.Show(name);
@@ -31,18 +32,24 @@ namespace helper
             method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
 
-             webBrowser1.Navigate("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall");
+            // webBrowser1.Navigate("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall");
             //   webBrowser1.Navigate("http://www.yanxiu.com/login.html?l=true");
-           // webBrowser1.Navigate("https://new-wl.jdwl.com/");
+            // webBrowser1.Navigate("https://new-wl.jdwl.com/");
+            webBrowser1.Navigate("https://mail.qq.com/");
         }
-
+        
         string path = AppDomain.CurrentDomain.BaseDirectory;
         private void button1_Click(object sender, EventArgs e)
         {
 
-             cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/table.htm");
+            // cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/table.htm");
             //  cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
-           // cookie = method.GetCookies("https://biz-wb.jdwl.com/business/waybillmanage/toDeliveryDetail");
+            //cookie = method.GetCookies("https://biz-wb.jdwl.com/business/waybillmanage/toDeliveryDetail");
+
+
+            cookie = method.GetCookies(webBrowser1.Url.ToString());
+            Match sid = Regex.Match(webBrowser1.Url.ToString(), @"sid=([\s\S]*?)&");
+            SID = sid.Groups[1].Value;
             this.Hide();
 
           //  System.IO.File.WriteAllText(path+textBox1.Text.Trim()+".txt",cookie, Encoding.UTF8);
@@ -55,9 +62,6 @@ namespace helper
             this.webBrowser1.Url = new Uri(url);
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }

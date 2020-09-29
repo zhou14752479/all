@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,6 +52,18 @@
     </Compile>
     <Compile Include="图片转ASCII.Designer.cs">
       <DependentUpon>图片转ASCII.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文件名大小判断.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文件名大小判断.Designer.cs">
+      <DependentUpon>文件名大小判断.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文库举报.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文库举报.Designer.cs">
+      <DependentUpon>文库举报.cs</DependentUpon>
     </Compile>
     <Compile Include="浏览器cookie获取.cs">
       <SubType>Form</SubType>
@@ -75,6 +88,12 @@
     </Compile>
     <EmbeddedResource Include="图片转ASCII.resx">
       <DependentUpon>图片转ASCII.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文件名大小判断.resx">
+      <DependentUpon>文件名大小判断.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文库举报.resx">
+      <DependentUpon>文库举报.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="浏览器cookie获取.resx">
       <DependentUpon>浏览器cookie获取.cs</DependentUpon>

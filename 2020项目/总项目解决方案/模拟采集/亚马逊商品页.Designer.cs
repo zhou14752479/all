@@ -37,15 +37,15 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -57,12 +57,13 @@
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Font = new System.Drawing.Font("宋体", 10F);
             this.textBox1.Location = new System.Drawing.Point(3, 17);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(136, 259);
             this.textBox1.TabIndex = 57;
-            this.textBox1.Text = "Mens clothing\r\ncloth face mask";
+            this.textBox1.Text = "Bluetooth Headphones";
             this.textBox1.WordWrap = false;
             // 
             // label2
@@ -157,6 +158,33 @@
             this.columnHeader2.Text = "Asin";
             this.columnHeader2.Width = 80;
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "title";
+            this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "review";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "stars";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "url";
+            this.columnHeader6.Width = 200;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "keyword";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "unavailable";
+            this.columnHeader8.Width = 80;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox1);
@@ -207,41 +235,15 @@
             this.splitContainer1.SplitterDistance = 442;
             this.splitContainer1.TabIndex = 4;
             // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "title";
-            this.columnHeader3.Width = 100;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "review";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "stars";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "url";
-            this.columnHeader6.Width = 200;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "keyword";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "unavailable";
-            this.columnHeader8.Width = 80;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(916, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 14);
+            this.label1.Size = new System.Drawing.Size(52, 14);
             this.label1.TabIndex = 63;
-            this.label1.Text = "label1";
+            this.label1.Text = "未开始";
             // 
             // 亚马逊商品页
             // 

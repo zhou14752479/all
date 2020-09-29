@@ -100,10 +100,10 @@ namespace 研修网下载
                             if (dx != "" && dx != null)
                             {
 
-                                if (Convert.ToInt32(dx) > 3)
+                                if (Convert.ToInt32(dx) >0 )
                                 {
 
-                                    if (gs == "doc" || gs == "docx" || gs == "ppt" || gs == "pptx" || gs == "pdf" )
+                                    if (gs == "doc" || gs == "docx" || gs == "ppt" || gs == "pptx" || gs == "pdf" || gs=="DOC" || gs=="DOCX" || gs=="PPT" || gs=="PPTX")
                                     {
                                         if (btPanduan(bt))
                                         {
@@ -254,7 +254,7 @@ namespace 研修网下载
                 return false;
 
             }
-            else if (bt.Contains("党") || bt.Contains("国") || bt.Contains("新建"))
+            else if (bt.Contains("党"))
             { 
 
                 return false;
