@@ -34,7 +34,7 @@ namespace main._2019_6
             //不和请求一块发送。
             client.UseDefaultCredentials = false;
             //验证发件人身份(发件人的邮箱，邮箱里的生成授权码);
-            client.Credentials = new NetworkCredential("1073689549@qq.com", "ehglpsmvzouhbdaa");   //这里的密码用授权码
+            client.Credentials = new NetworkCredential("1073689549@qq.com", "iqrgfhyrgeuobbgg");   //这里的密码用授权码
             //发送
             client.Send(mailMessage);
            // MessageBox.Show("发送成功");

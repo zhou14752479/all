@@ -22,6 +22,7 @@ namespace 模拟采集
 
         private void 百度_Load(object sender, EventArgs e)
         {
+            webBrowser1.Navigate("https://passport.meituan.com/account/unitivelogin?service=www&continue=https%3A%2F%2Fwww.meituan.com%2Faccount%2Fsettoken%3Fcontinue%3Dhttps%253A%252F%252Fhz.meituan.com%252F");
             method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(WB_DocumentCompleted);
@@ -69,21 +70,23 @@ namespace 模拟采集
         //site:www.pzboy.com inurl:app
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i <= 100; i++)
-            {
-              
-                status = false; //这个false很重要，因为浏览器初始化加载会触发run（）,status赋值true。
-               
-                webBrowser1.Navigate("https://www.baidu.com/s?wd=%E5%AE%BF%E8%BF%81&pn="+i+"0&oq=%E5%AE%BF%E8%BF%81&ie=utf-8");
-              
-                while (this.status == false)
-                {
-                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                }
+            //for (int i = 0; i <= 100; i++)
+            //{
 
-                Thread.Sleep(1000);
+            //    status = false; //这个false很重要，因为浏览器初始化加载会触发run（）,status赋值true。
 
-            }
+            //    webBrowser1.Navigate("https://www.baidu.com/s?wd=%E5%AE%BF%E8%BF%81&pn="+i+"0&oq=%E5%AE%BF%E8%BF%81&ie=utf-8");
+
+            //    while (this.status == false)
+            //    {
+            //        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+            //    }
+
+            //    Thread.Sleep(1000);
+
+            //}
+            webBrowser1.Navigate(textBox1.Text);
+           
         }
 
         private void button4_Click(object sender, EventArgs e)

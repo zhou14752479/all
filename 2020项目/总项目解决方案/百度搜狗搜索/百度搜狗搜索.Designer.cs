@@ -30,6 +30,9 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -42,7 +45,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.webBrowser2 = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,10 +63,13 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel1.Controls.Add(this.webBrowser2);
             this.splitContainer1.Panel1.Controls.Add(this.webBrowser1);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button5);
+            this.splitContainer1.Panel2.Controls.Add(this.button3);
             this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel2.Controls.Add(this.radioButton2);
             this.splitContainer1.Panel2.Controls.Add(this.radioButton1);
@@ -84,6 +90,38 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(1106, 449);
             this.webBrowser1.TabIndex = 3;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(1011, 24);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 30);
+            this.button5.TabIndex = 63;
+            this.button5.Text = "继续";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(930, 24);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 30);
+            this.button3.TabIndex = 62;
+            this.button3.Text = "暂停";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "百度",
+            "搜狗"});
+            this.comboBox1.Location = new System.Drawing.Point(144, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 61;
+            this.comboBox1.Text = "百度";
             // 
             // radioButton2
             // 
@@ -125,6 +163,7 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -169,9 +208,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(985, 40);
+            this.button4.Location = new System.Drawing.Point(849, 24);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(98, 23);
+            this.button4.Size = new System.Drawing.Size(75, 30);
             this.button4.TabIndex = 53;
             this.button4.Text = "清空";
             this.button4.UseVisualStyleBackColor = true;
@@ -179,9 +218,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(884, 40);
+            this.button2.Location = new System.Drawing.Point(755, 24);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 23);
+            this.button2.Size = new System.Drawing.Size(88, 30);
             this.button2.TabIndex = 49;
             this.button2.Text = "导出excel";
             this.button2.UseVisualStyleBackColor = true;
@@ -189,25 +228,23 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(766, 40);
+            this.button1.Location = new System.Drawing.Point(660, 24);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 23);
+            this.button1.Size = new System.Drawing.Size(91, 30);
             this.button1.TabIndex = 48;
             this.button1.Text = "开始抓取";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox1
+            // webBrowser2
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "百度",
-            "搜狗"});
-            this.comboBox1.Location = new System.Drawing.Point(144, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 61;
-            this.comboBox1.Text = "百度";
+            this.webBrowser2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser2.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser2.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser2.Name = "webBrowser2";
+            this.webBrowser2.Size = new System.Drawing.Size(1106, 449);
+            this.webBrowser2.TabIndex = 4;
+            this.webBrowser2.Visible = false;
             // 
             // 百度搜狗搜索
             // 
@@ -248,6 +285,9 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.WebBrowser webBrowser2;
     }
 }
 

@@ -66,7 +66,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(976, 649);
-            this.splitContainer1.SplitterDistance = 754;
+            this.splitContainer1.SplitterDistance = 753;
             this.splitContainer1.TabIndex = 1;
             // 
             // webBrowser1
@@ -75,7 +75,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 20);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(754, 629);
+            this.webBrowser1.Size = new System.Drawing.Size(753, 629);
             this.webBrowser1.TabIndex = 4;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
             // 
@@ -85,7 +85,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(0, 0);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(754, 20);
+            this.comboBox1.Size = new System.Drawing.Size(753, 20);
             this.comboBox1.TabIndex = 3;
             // 
             // listView1
@@ -99,7 +99,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 235);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(218, 414);
+            this.listView1.Size = new System.Drawing.Size(219, 414);
             this.listView1.TabIndex = 34;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -152,7 +152,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 50000;
+            this.timer1.Interval = 30000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // 腾讯分分彩

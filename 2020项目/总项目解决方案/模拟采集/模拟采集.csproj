@@ -67,6 +67,24 @@
     <Compile Include="亚马逊商品页.Designer.cs">
       <DependentUpon>亚马逊商品页.cs</DependentUpon>
     </Compile>
+    <Compile Include="亚马逊登录.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="亚马逊登录.Designer.cs">
+      <DependentUpon>亚马逊登录.cs</DependentUpon>
+    </Compile>
+    <Compile Include="亚马逊账户管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="亚马逊账户管理.Designer.cs">
+      <DependentUpon>亚马逊账户管理.cs</DependentUpon>
+    </Compile>
+    <Compile Include="拼多多图片评价最新日期.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="拼多多图片评价最新日期.Designer.cs">
+      <DependentUpon>拼多多图片评价最新日期.cs</DependentUpon>
+    </Compile>
     <Compile Include="拼多多榜单.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +129,15 @@
     </Compile>
     <EmbeddedResource Include="亚马逊商品页.resx">
       <DependentUpon>亚马逊商品页.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="亚马逊登录.resx">
+      <DependentUpon>亚马逊登录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="亚马逊账户管理.resx">
+      <DependentUpon>亚马逊账户管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="拼多多图片评价最新日期.resx">
+      <DependentUpon>拼多多图片评价最新日期.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="拼多多榜单.resx">
       <DependentUpon>拼多多榜单.cs</DependentUpon>

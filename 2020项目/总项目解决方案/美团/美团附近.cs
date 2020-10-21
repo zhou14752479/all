@@ -166,7 +166,7 @@ namespace 美团
         {
             string city = textBox1.Text.Trim();
            ArrayList keywords = new ArrayList();
-            keywords.Add("摄影");
+           
             if (textBox2.Text != "")
             {
                 keywords.Add(textBox2.Text.Trim());
@@ -289,6 +289,7 @@ namespace 美团
 
             foreach (string city in citys)
             {
+               
 
                 string cityId = GetcityId((city));
 
@@ -301,8 +302,8 @@ namespace 美团
                     {
 
                         string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityId + "/cate/"+cateid+"?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
-
-                        string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        
+                        string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
                         MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
@@ -335,7 +336,7 @@ namespace 美团
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
-                            Thread.Sleep(200);
+                           
                         }
                         Application.DoEvents();
                         Thread.Sleep(1000);
@@ -382,16 +383,22 @@ namespace 美团
                 case "休闲娱乐":
                     cateid = "2";
                     break;
+                case "美发":
+                    cateid = "74";
+                    break;
+                case "美容美体":
+                    cateid = "76";
+                    break;
 
             }
 
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-
-            //Thread thread1 = new Thread(new ThreadStart(run1));
-            //thread1.Start();
+            //Thread thread = new Thread(new ThreadStart(run));
+            //thread.Start();
             //Control.CheckForIllegalCrossThreadCalls = false;
+
+            Thread thread1 = new Thread(new ThreadStart(run1));
+            thread1.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
         }
 
@@ -449,6 +456,11 @@ namespace 美团
             {
                 
             }
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

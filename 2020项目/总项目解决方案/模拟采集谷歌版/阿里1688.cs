@@ -69,7 +69,7 @@ namespace 模拟采集谷歌版
         private void 拼多多后台_Load(object sender, EventArgs e)
         {
             browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
-            browser.Load("https://login.1688.com/member/signin.htm");
+            browser.Load("https://h5.waimai.meituan.com/waimai/mindex/menu?mtShopId=994689870377707&initialLat=30.316071&initialLng=120.338021&actualLat=&actualLng=&source=searchresult");
             browser.Parent = splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
             Control.CheckForIllegalCrossThreadCalls = false;

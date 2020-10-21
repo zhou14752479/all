@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -48,15 +50,16 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Silver;
             this.button1.Dock = System.Windows.Forms.DockStyle.Top;
             this.button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.ForeColor = System.Drawing.Color.Red;
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(1187, 45);
             this.button1.TabIndex = 0;
-            this.button1.Text = "确认登陆成功，点击此按钮获取";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "确认登陆成功，点击关闭";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // splitContainer1
@@ -77,6 +80,11 @@
             this.splitContainer1.Size = new System.Drawing.Size(1187, 762);
             this.splitContainer1.SplitterDistance = 87;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 60000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // cookieBrowser
             // 
@@ -103,5 +111,6 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

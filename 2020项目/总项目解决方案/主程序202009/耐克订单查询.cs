@@ -109,6 +109,20 @@ namespace 主程序202009
         }
         #endregion
 
+        /// <summary>
+        /// 获取快递单号
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public string getkuaidi(string order,string email)
+        {
+            string url = "https://api.nike.com/ship/user_shipments/v1?locale=zh-hans-cn&filter=orderNumber%28"+order+"%29&filter=email%28"+email.Replace("@", "%40") +"%29";
+            string html = nikeGetUrl(url,"utf-8");
+            Match ema = Regex.Match(html, @"""trackingNumber"":""([\s\S]*?)""");
+            return ema.Groups[1].Value;
+        }
+
 
         ArrayList orderList = new ArrayList();
 
@@ -147,6 +161,7 @@ namespace 主程序202009
 
                     string nikehtml = nikeGetUrl(nikeurl, "utf-8");
 
+                   string kuaidihao= getkuaidi(order,email);
                     Match a1 = Regex.Match(nikehtml, @"""itemDescription"":""([\s\S]*?),");  //商品名称
                     Match a2 = Regex.Match(nikehtml, @"""displaySize"":""([\s\S]*?)""");            //尺码
                     Match a3 = Regex.Match(nikehtml, @"""orderSubmitDate"":""([\s\S]*?)""");   //订单时间
@@ -196,6 +211,7 @@ namespace 主程序202009
                         lv1.SubItems.Add(a7.Groups[1].Value + "-" + a8.Groups[1].Value);
                         lv1.SubItems.Add(gift.ToString());
                         lv1.SubItems.Add("1");
+                        lv1.SubItems.Add(kuaidihao);
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。

@@ -90,7 +90,7 @@ namespace 百度搜狗搜索
         }
 
 
-
+        bool zanting = true;
 
         public static string html;
         bool status = false;
@@ -101,42 +101,61 @@ namespace 百度搜狗搜索
 
             SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser2.ScriptErrorsSuppressed = true;
             webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(WB_DocumentCompleted);
         }
         private void WB_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+           
 
-            if (webBrowser1.ReadyState != WebBrowserReadyState.Complete)
-                return;
-            if (e.Url.ToString() != webBrowser1.Url.ToString())
-                return;
+                if (webBrowser1.ReadyState != WebBrowserReadyState.Complete)
+                    return;
+                if (e.Url.ToString() != webBrowser1.Url.ToString())
+                    return;
 
-            if (webBrowser1.DocumentText.Contains("</html>") || webBrowser1.DocumentText.Contains("</HTML>"))
-            {
+                if (webBrowser1.DocumentText.Contains("</html>") || webBrowser1.DocumentText.Contains("</HTML>"))
+                {
+                    while (zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
 
-                html = webBrowser1.DocumentText;
-                run();
-                status = true;
-            }
-            else
-            {
-                Application.DoEvents();
-            }
+
+                    html = webBrowser1.DocumentText;
+                    if (comboBox1.Text == "百度")
+                    {
+
+                        baidurun();
+                    }
+                    if (comboBox1.Text == "搜狗")
+                    {
+
+                        sougourun();
+                    }
+
+                    status = true;
+
+                }
+                else
+                {
+                    Application.DoEvents();
+                }
+          
         }
 
 
         string laiyuanURL = "";
         /// <summary>
-        /// 主程序
+        /// 百度主程序
         /// </summary>
-        public void run()
+        public void baidurun()
         {
 
             MatchCollection titles = Regex.Matches(html, @"}""><!--s-text-->([\s\S]*?)<!");
             MatchCollection yumings = Regex.Matches(html, @"mu=""http([\s\S]*?)""");
             if (titles.Count == 0)
             {
-                status = false;
+                zanting = false;
                 return; //测试无内容 是否继续执行
             }
            
@@ -146,6 +165,33 @@ namespace 百度搜狗搜索
                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
                 lv1.SubItems.Add(titles[i].Groups[1].Value.Replace("<EM>","").Replace("</EM>", ""));
                 lv1.SubItems.Add("http"+yumings[i].Groups[1].Value);
+                lv1.SubItems.Add(laiyuanURL);
+
+            }
+
+
+        }
+
+        /// <summary>
+        /// 搜狗主程序
+        /// </summary>
+        public void sougourun()
+        {
+
+            MatchCollection titles = Regex.Matches(html, @"}""><!--s-text-->([\s\S]*?)<!");
+            MatchCollection yumings = Regex.Matches(html, @"mu=""http([\s\S]*?)""");
+            if (titles.Count == 0)
+            {
+                zanting = false;
+                return; //测试无内容 是否继续执行
+            }
+
+
+            for (int i = 0; i < titles.Count; i++)
+            {
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                lv1.SubItems.Add(titles[i].Groups[1].Value.Replace("<EM>", "").Replace("</EM>", ""));
+                lv1.SubItems.Add("http" + yumings[i].Groups[1].Value);
                 lv1.SubItems.Add(laiyuanURL);
 
             }
@@ -165,7 +211,7 @@ namespace 百度搜狗搜索
             long a = Convert.ToInt64(tss.TotalSeconds);
             return a.ToString();
         }
-        public void qishi()
+        public void baiduqishi()
         {
 
            
@@ -188,9 +234,9 @@ namespace 百度搜狗搜索
             {
                 foreach (Match city in citys)
                 {
+                    
 
-
-                  string  keyword1 = city.Groups[1].Value + keyword;
+                    string  keyword1 = city.Groups[1].Value + keyword;
 
                     status = false;
                     string url = "https://www.baidu.com/s?rtt=1&bsst=1&cl=2&tn=news&word=" + System.Web.HttpUtility.UrlEncode(keyword1) + "&pn=00&gpc=stf%3D"+start+"%2C"+now+"%7Cstftype%3D1&tfflag=1";
@@ -199,14 +245,54 @@ namespace 百度搜狗搜索
                     webBrowser1.Navigate(url);
 
                     laiyuanURL = url;
+
                     while (this.status == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
-
                     Thread.Sleep(2000);
                 }
                 
+            }
+        }
+
+        public void sougouqishi()
+        {
+
+
+        
+
+
+
+            string html = GetUrl("http://mr1024.hl98.cn/MrLiang_citys.txt", "gb2312");
+            MatchCollection citys = Regex.Matches(html, @"""citysName"": ""([\s\S]*?)""");
+
+
+
+            string[] keywords = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            foreach (string keyword in keywords)
+            {
+                foreach (Match city in citys)
+                {
+
+
+                    string keyword1 = city.Groups[1].Value + keyword;
+
+                    status = false;
+                    string url = "https://www.sogou.com/web?query=" + System.Web.HttpUtility.UrlEncode(keyword1);
+
+
+                    webBrowser1.Navigate(url);
+
+                    laiyuanURL = url;
+
+                    while (this.status == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    Thread.Sleep(2000);
+                }
+
             }
         }
         #region GET请求
@@ -258,6 +344,7 @@ namespace 百度搜狗搜索
             return "";
         }
         #endregion
+        Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -274,10 +361,23 @@ namespace 百度搜狗搜索
 
             #endregion
 
-            
-            Thread search_thread = new Thread(new ThreadStart(qishi));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            search_thread.Start();
+
+            if (thread == null || !thread.IsAlive)
+            {
+                if(comboBox1.Text=="百度")
+                {
+                    thread = new Thread(baiduqishi);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+                if (comboBox1.Text == "搜狗")
+                {
+                    thread = new Thread(sougouqishi);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -292,9 +392,36 @@ namespace 百度搜狗搜索
 
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
+         
             if (listView1.SelectedItems.Count > 0)
             {
-                webBrowser1.Navigate(listView1.SelectedItems[0].SubItems[2].Text);
+                webBrowser2.Visible = true;
+                webBrowser1.Visible = false;
+                webBrowser2.Navigate(listView1.SelectedItems[0].SubItems[3].Text);
+
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Visible = true;
+            webBrowser2.Visible = false;
+            zanting = true;
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            
+            if (listView1.SelectedItems.Count > 0)
+            {
+                webBrowser2.Visible = true;
+                webBrowser1.Visible = false;
+                webBrowser2.Navigate(listView1.SelectedItems[0].SubItems[2].Text);
 
             }
         }

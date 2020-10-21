@@ -480,5 +480,10 @@ namespace 地图采集器
         {
             thread.Abort();
         }
+
+        private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
     }
 }

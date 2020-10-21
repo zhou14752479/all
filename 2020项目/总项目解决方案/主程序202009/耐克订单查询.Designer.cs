@@ -53,6 +53,7 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -166,7 +167,8 @@
             this.columnHeader11,
             this.columnHeader12,
             this.columnHeader13,
-            this.columnHeader14});
+            this.columnHeader14,
+            this.columnHeader15});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -242,6 +244,11 @@
             // 
             this.columnHeader14.Text = "数量";
             // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "快递号";
+            this.columnHeader15.Width = 100;
+            // 
             // 耐克订单查询
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -294,5 +301,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
     }
 }

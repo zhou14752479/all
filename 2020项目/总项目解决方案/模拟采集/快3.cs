@@ -102,9 +102,8 @@ namespace 模拟采集
                 }
             }));
         }
-           
+       
 
-        
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -112,12 +111,12 @@ namespace 模拟采集
             {
                 timer1.Interval = 1;
                 timer1.Enabled = true;
-               
+
             }
             else
             {
                 timer1.Enabled = false;
-                
+
             }
 
         }

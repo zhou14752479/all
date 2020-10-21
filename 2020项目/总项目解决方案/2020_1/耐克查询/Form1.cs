@@ -99,6 +99,7 @@ namespace 耐克查询
                         string cookie = "";
                         
                         string html = PostUrl(url, postdata, cookie, "utf-8");
+                       
                         Match key = Regex.Match(html, @"""balance"":([\s\S]*?)\}");
                         if (key.Groups[1].Value=="")
                         {
@@ -121,7 +122,7 @@ namespace 耐克查询
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
-                        Thread.Sleep(1000);
+                        Thread.Sleep(5000);
                     }
                 }
             }

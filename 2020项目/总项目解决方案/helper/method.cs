@@ -30,6 +30,105 @@ namespace helper
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static extern int InternetSetCookieEx(string lpszURL, string lpszCookieName, string lpszCookieData, int dwFlags, IntPtr dwReserved);
 
+        #region 获取txt编码
+        //调用：EncodingType.GetTxtType(textBox1.Text)
+        public class EncodingType
+        {
+            /// <summary> 
+            /// 给定文件的路径，读取文件的二进制数据，判断文件的编码类型 
+            /// </summary> 
+            /// <param name=“FILE_NAME“>文件路径</param> 
+            /// <returns>文件的编码类型</returns> 
+            public static System.Text.Encoding GetTxtType(string FILE_NAME)
+            {
+                FileStream fs = new FileStream(FILE_NAME, FileMode.Open, FileAccess.Read);
+                Encoding r = GetType(fs);
+                fs.Close();
+                return r;
+            }
+
+            /// <summary> 
+            /// 通过给定的文件流，判断文件的编码类型 
+            /// </summary> 
+            /// <param name=“fs“>文件流</param> 
+            /// <returns>文件的编码类型</returns> 
+            public static System.Text.Encoding GetType(FileStream fs)
+            {
+                byte[] Unicode = new byte[] { 0xFF, 0xFE, 0x41 };
+                byte[] UnicodeBIG = new byte[] { 0xFE, 0xFF, 0x00 };
+                byte[] UTF8 = new byte[] { 0xEF, 0xBB, 0xBF }; //带BOM 
+                Encoding reVal = Encoding.Default;
+
+                BinaryReader r = new BinaryReader(fs, System.Text.Encoding.Default);
+                int i;
+                int.TryParse(fs.Length.ToString(), out i);
+                byte[] ss = r.ReadBytes(i);
+                if (IsUTF8Bytes(ss) || (ss[0] == 0xEF && ss[1] == 0xBB && ss[2] == 0xBF))
+                {
+                    reVal = Encoding.UTF8;
+                }
+                else if (ss[0] == 0xFE && ss[1] == 0xFF && ss[2] == 0x00)
+                {
+                    reVal = Encoding.BigEndianUnicode;
+                }
+                else if (ss[0] == 0xFF && ss[1] == 0xFE && ss[2] == 0x41)
+                {
+                    reVal = Encoding.Unicode;
+                }
+                r.Close();
+                return reVal;
+
+            }
+
+            /// <summary> 
+            /// 判断是否是不带 BOM 的 UTF8 格式 
+            /// </summary> 
+            /// <param name=“data“></param> 
+            /// <returns></returns> 
+            private static bool IsUTF8Bytes(byte[] data)
+            {
+                int charByteCounter = 1; //计算当前正分析的字符应还有的字节数 
+                byte curByte; //当前分析的字节. 
+                for (int i = 0; i < data.Length; i++)
+                {
+                    curByte = data[i];
+                    if (charByteCounter == 1)
+                    {
+                        if (curByte >= 0x80)
+                        {
+                            //判断当前 
+                            while (((curByte <<= 1) & 0x80) != 0)
+                            {
+                                charByteCounter++;
+                            }
+                            //标记位首位若为非0 则至少以2个1开始 如:110XXXXX...........1111110X 
+                            if (charByteCounter == 1 || charByteCounter > 6)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //若是UTF-8 此时第一位必须为1 
+                        if ((curByte & 0xC0) != 0x80)
+                        {
+                            return false;
+                        }
+                        charByteCounter--;
+                    }
+                }
+                if (charByteCounter > 1)
+                {
+                    throw new Exception("非预期的byte格式");
+                }
+                return true;
+            }
+        }
+
+        #endregion
+
+
         #region  获取cookie
         /// <summary>
         /// 获取cookie
@@ -229,7 +328,7 @@ namespace helper
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
                 
-                request.Referer = "https://wenku.baidu.com/view/9654c1385527a5e9856a561252d380eb62942371.html";
+                request.Referer = "";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -369,10 +468,10 @@ namespace helper
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
                 Cookie = COOKIE,
-                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
-                Referer = "",//来源URL     可选项  
+                Referer = "https://www.google.com/",//来源URL     可选项  
                 Allowautoredirect = true,//是否根据３０１跳转     可选项  
                 AutoRedirectCookie = true,//是否自动处理Cookie     可选项  
                                            //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
@@ -646,7 +745,7 @@ namespace helper
 
         #endregion
 
-        #region NPOI表格导入
+        #region NPOI读取表格导入
         public void ReadFromExcelFile(string filePath,ListView listView)
         {
             //using (OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "Microsoft Excel files(*.xls)|*.xls;*.xlsx" })
@@ -797,7 +896,7 @@ namespace helper
                 workbook.Close();
                 fs.Close();
                 System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
-                MessageBox.Show("数据导出完成！");
+               MessageBox.Show("数据导出完成！");
                 return 0;
             }
             catch (Exception ex)
@@ -975,9 +1074,9 @@ namespace helper
             {
                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                //request.AllowAutoRedirect = true;
+                request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
-                request.Referer = "http://www.juxiangyou.com/fun/play/fun16/index";
+                request.Referer = "https://best.aliexpress.com/";
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;

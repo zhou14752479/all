@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace 模拟采集
 {
@@ -75,10 +76,11 @@ namespace 模拟采集
         string shangyiqi = "0";
         public void run()
         {
-            var htmldocument = (mshtml.HTMLDocument)webBrowser1.Document.DomDocument;
+            //var htmldocument = (mshtml.HTMLDocument)webBrowser1.Document.DomDocument;
 
-            string html = htmldocument.documentElement.outerHTML;
+            //string html = htmldocument.documentElement.outerHTML;
            
+            string html= webBrowser1.Document.Body.OuterHtml;
             MatchCollection qishus = Regex.Matches(html, @"<span class=""lottery-name"" data-v-3648a589="""">([\s\S]*?)期");
             Match value = Regex.Match(html, @"<span class=""ball-style ballStyle_SSC"" data-v-3648a589="""">([\s\S]*?)<");
 
@@ -98,10 +100,12 @@ namespace 模拟采集
 
         }
 
+       
+
         private void button1_Click(object sender, EventArgs e)
         {
            
-            timer1.Start();
+           timer1.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -120,9 +124,16 @@ namespace 模拟采集
                 comboBox1.Text = webBrowser1.Document.ActiveElement.GetAttribute("href");
             }
         }
-
+        Thread Timerthread;
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //timer1.Interval = 30000;
+            //if (Timerthread == null || !Timerthread.IsAlive)
+            //{
+            //    Timerthread = new Thread(run);
+            //    Timerthread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
             run();
         }
     }

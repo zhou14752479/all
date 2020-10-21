@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -38,15 +39,18 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -63,13 +67,13 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(136, 259);
             this.textBox1.TabIndex = 57;
-            this.textBox1.Text = "Bluetooth Headphones";
+            this.textBox1.Text = "Bluetooth Headphones\r\nheadset";
             this.textBox1.WordWrap = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(892, 175);
+            this.label2.Location = new System.Drawing.Point(869, 175);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 14);
             this.label2.TabIndex = 62;
@@ -87,7 +91,7 @@
             "德国",
             "意大利",
             "日本"});
-            this.comboBox1.Location = new System.Drawing.Point(950, 172);
+            this.comboBox1.Location = new System.Drawing.Point(939, 172);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(89, 22);
             this.comboBox1.TabIndex = 61;
@@ -96,7 +100,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button3.Location = new System.Drawing.Point(1101, 218);
+            this.button3.Location = new System.Drawing.Point(1110, 208);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 59;
@@ -107,7 +111,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button2.Location = new System.Drawing.Point(986, 218);
+            this.button2.Location = new System.Drawing.Point(1029, 208);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 58;
@@ -118,11 +122,11 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(895, 218);
+            this.button1.Location = new System.Drawing.Point(867, 208);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 57;
-            this.button1.Text = "开始查询";
+            this.button1.Text = "开始采集";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -132,11 +136,10 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader9});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listView1.FullRowSelect = true;
@@ -163,14 +166,6 @@
             this.columnHeader3.Text = "title";
             this.columnHeader3.Width = 100;
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "review";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "stars";
-            // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "url";
@@ -179,11 +174,17 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "keyword";
+            this.columnHeader7.Width = 100;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "unavailable";
-            this.columnHeader8.Width = 80;
+            this.columnHeader8.Text = "review";
+            this.columnHeader8.Width = 100;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "stars";
+            this.columnHeader9.Width = 100;
             // 
             // groupBox1
             // 
@@ -221,7 +222,10 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.splitContainer1.Panel2.Controls.Add(this.button5);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.button4);
+            this.splitContainer1.Panel2.Controls.Add(this.textBox2);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel2.Controls.Add(this.button3);
@@ -235,15 +239,53 @@
             this.splitContainer1.SplitterDistance = 442;
             this.splitContainer1.TabIndex = 4;
             // 
+            // textBox2
+            // 
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox2.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox2.Location = new System.Drawing.Point(854, 0);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(386, 144);
+            this.textBox2.TabIndex = 63;
+            this.textBox2.WordWrap = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button4.Location = new System.Drawing.Point(948, 208);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 64;
+            this.button4.Text = "停止采集";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(916, 41);
+            this.label1.Location = new System.Drawing.Point(869, 247);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 14);
-            this.label1.TabIndex = 63;
+            this.label1.TabIndex = 65;
             this.label1.Text = "未开始";
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button5.Location = new System.Drawing.Point(1110, 243);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 66;
+            this.button5.Text = "继续采集";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // 亚马逊商品页
             // 
@@ -254,6 +296,7 @@
             this.Name = "亚马逊商品页";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "亚马逊商品页";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.亚马逊商品页_FormClosing);
             this.Load += new System.EventHandler(this.亚马逊商品页_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -281,11 +324,14 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button5;
     }
 }

@@ -26,14 +26,14 @@ namespace 主程序202009
         }
         string path = AppDomain.CurrentDomain.BaseDirectory + "\\data\\";
 
-
+       
         /// <summary>
         /// 获取用户名
         /// </summary>
         /// <returns></returns>
         public string getName(string id)
         {
-
+           
             string url = "https://gw.bihu.com/api/content/author/"+id+"/list?type=ARTICLE";
             
             string html = method.GetUrl(url,"utf-8");
@@ -211,8 +211,8 @@ namespace 主程序202009
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            
+          
+
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");

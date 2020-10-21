@@ -38,7 +38,7 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
+	
                 for (int i = 0; i < text.Length; i++)
                 {
                  
@@ -47,6 +47,8 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
 
                     
                 }
+		sr.close();  //只关闭流
+		sr.Dispose();   //销毁流内存
             }
 
 		一次性写入System.IO.File.WriteAllText(path, textBox1.Text.Trim(), Encoding.UTF8);
@@ -62,7 +64,8 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
       	StreamWriter sw = new StreamWriter(fs1);
     	 sw.WriteLine(text[i]);
       	 sw.Close();
-       	 fs1.Close();          
+       	 fs1.Close(); 
+	sw.Dispose();      
                    
 
 	
