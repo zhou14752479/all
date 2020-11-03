@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper, Version=2.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\大项目\58同城招聘\zhaopin_58\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\大项目\58同城招聘\zhaopin_58\bin\Debug\NPOI.dll</HintPath>
@@ -100,6 +104,18 @@
     <Compile Include="查询5G.Designer.cs">
       <DependentUpon>查询5G.cs</DependentUpon>
     </Compile>
+    <Compile Include="聚享游.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="聚享游.Designer.cs">
+      <DependentUpon>聚享游.cs</DependentUpon>
+    </Compile>
+    <Compile Include="豆瓣抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="豆瓣抓取.Designer.cs">
+      <DependentUpon>豆瓣抓取.cs</DependentUpon>
+    </Compile>
     <Compile Include="速卖通.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="查询5G.resx">
       <DependentUpon>查询5G.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="聚享游.resx">
+      <DependentUpon>聚享游.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="豆瓣抓取.resx">
+      <DependentUpon>豆瓣抓取.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="速卖通.resx">
       <DependentUpon>速卖通.cs</DependentUpon>

@@ -90,6 +90,8 @@ namespace 淘宝商品抓取
 
         public void getInfos(string html)
         {
+            string tm = "0";
+            
 
            
             MatchCollection shops = Regex.Matches(html, @"SHOPNAME\\"":\\""([\s\S]*?)\\""");
@@ -101,7 +103,10 @@ namespace 淘宝商品抓取
 
             for (int i = 0; i < shops.Count; i++)
             {
-
+                if (checkBox1.Checked == true)
+                {
+                    tm = "1";
+                }
 
                 string sell = Unicode2String(sells[i].Groups[1].Value).Replace("\\", "");
                 string xinyu = Unicode2String(grades[i].Groups[1].Value).Replace("\\", "");
@@ -110,7 +115,7 @@ namespace 淘宝商品抓取
 
                 try
                 {
-                    if (Convert.ToInt32(sell) > Convert.ToInt32(textBox2.Text) && Convert.ToInt32(xinyu) < Convert.ToInt32(textBox3.Text) && ismall=="0")
+                    if (Convert.ToInt32(sell) > Convert.ToInt32(textBox2.Text) && Convert.ToInt32(xinyu) < Convert.ToInt32(textBox3.Text) && ismall==tm)
                     {
                         if (!wangwangList.Contains(wangwang))
                         {
@@ -158,7 +163,7 @@ namespace 淘宝商品抓取
 
                 string url = "https://s.taobao.com/search?q=" + keyword;
 
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     label4.Text = "正在查询" + keyword + " 第" + (i + 1) + "页";
 

@@ -242,7 +242,7 @@ namespace helper
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
                 string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "";
+                request.Referer = "http://live.win007.com/";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
@@ -908,7 +908,92 @@ namespace helper
 
         #endregion
 
-        
+        #region NPOI导出表格输入文件名不弹窗
+        public static int DataTableToExcelName(DataTable data, string fileName, bool isColumnWritten)
+        {
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            ISheet sheet = null;
+            IWorkbook workbook = null;
+            FileStream fs = null;
+            //string fileName = GetTimeStamp() + ".xlsx";
+            //string fileName= DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")+".xlsx";
+           
+
+
+            // bool disposed;
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            //sfd.Title = "Excel文件导出";
+            //string fileName = "";
+
+            //if (sfd.ShowDialog() == DialogResult.OK)
+            //{
+            //    fileName = sfd.FileName;
+            //}
+            //else
+            //    return -1;
+
+            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
+                workbook = new XSSFWorkbook();
+            else if (fileName.IndexOf(".xls") > 0) // 2003版本
+                workbook = new HSSFWorkbook();
+
+            try
+            {
+                if (workbook != null)
+                {
+                    sheet = workbook.CreateSheet("sheet1");
+                    ICellStyle style = workbook.CreateCellStyle();
+                    style.FillPattern = FillPattern.SolidForeground;
+
+                }
+                else
+                {
+                    return -1;
+                }
+
+                if (isColumnWritten == true) //写入DataTable的列名
+                {
+                    IRow row = sheet.CreateRow(0);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
+
+                    }
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                for (i = 0; i < data.Rows.Count; ++i)
+                {
+                    IRow row = sheet.CreateRow(count);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());
+                    }
+                    ++count;
+                }
+                workbook.Write(fs); //写入到excel
+                workbook.Close();
+                fs.Close();
+                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
+               
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return -1;
+            }
+        }
+
+        #endregion
 
         #region  listview导出文本TXT
         public static void ListviewToTxt(ListView listview,int i)
@@ -1076,7 +1161,7 @@ namespace helper
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
-                request.Referer = "https://best.aliexpress.com/";
+                request.Referer = "http://www.juxiangyou.com/fun/play/crazy28/index";
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
@@ -1426,6 +1511,13 @@ namespace helper
         }
 
         #endregion
+
+        public static Image imageurltoimage(string url,string cookie)
+        {
+            byte[] streamByte = Getbyte(url,cookie);
+           Image img = ReturnPhoto(streamByte);
+            return img;
+        }
 
 
         #region  谷歌翻译

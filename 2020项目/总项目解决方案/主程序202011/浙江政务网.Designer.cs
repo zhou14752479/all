@@ -1,6 +1,6 @@
-﻿namespace 常用软件非客户
+﻿namespace 主程序202011
 {
-    partial class VIP转付费
+    partial class 浙江政务网
     {
         /// <summary>
         /// Required designer variable.
@@ -40,52 +40,52 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(88, 157);
+            this.button1.Location = new System.Drawing.Point(281, 48);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 64;
+            this.button1.TabIndex = 72;
             this.button1.Text = "开始";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(88, 31);
+            this.textBox2.Location = new System.Drawing.Point(88, 29);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 63;
+            this.textBox2.TabIndex = 71;
             this.textBox2.Text = "1472";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 34);
+            this.label2.Location = new System.Drawing.Point(35, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 62;
+            this.label2.TabIndex = 70;
             this.label2.Text = "起始页码";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(88, 5);
+            this.textBox1.Location = new System.Drawing.Point(88, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 61;
+            this.textBox1.TabIndex = 69;
             this.textBox1.Text = "16";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 8);
+            this.label1.Location = new System.Drawing.Point(35, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 60;
+            this.label1.TabIndex = 68;
             this.label1.Text = "价格：";
             // 
             // timer1
@@ -103,10 +103,10 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 192);
+            this.listView1.Location = new System.Drawing.Point(0, 125);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(553, 325);
-            this.listView1.TabIndex = 67;
+            this.listView1.Size = new System.Drawing.Size(800, 325);
+            this.listView1.TabIndex = 75;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
@@ -130,44 +130,29 @@
             this.columnHeader4.Text = "状态";
             this.columnHeader4.Width = 100;
             // 
-            // label3
+            // pictureBox1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 66;
-            this.label3.Text = "COOKIE：";
+            this.pictureBox1.Location = new System.Drawing.Point(472, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(158, 87);
+            this.pictureBox1.TabIndex = 76;
+            this.pictureBox1.TabStop = false;
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(88, 64);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(245, 87);
-            this.textBox3.TabIndex = 65;
-            this.textBox3.Text = "BDUSS=mVJcn45RjVPcUVqV2RLSmN4c2ItWm4zMDFsZnd0MWJ2MlpxYXk0eU1YT3JDWEJmSVFBQUFBJCQA" +
-    "AAAAAQAAAAEAAABio5cbemhvdTE0NzUyNDc5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-    "AAAAAAAAAAAAAAAAAAAAAAAAAKt8SF-rfEhfU";
-            // 
-            // VIP转付费
+            // 浙江政务网
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 517);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
-            this.Name = "VIP转付费";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VIP转付费";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VIP转付费_FormClosing);
-            this.Load += new System.EventHandler(this.VIP转付费_Load);
+            this.Name = "浙江政务网";
+            this.Text = "浙江政务网";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,8 +170,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

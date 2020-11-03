@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +70,15 @@
             this.groupBox1.TabIndex = 144;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "批量访问";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(560, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 168;
+            this.label3.Text = "正在查询：";
             // 
             // button5
             // 
@@ -208,15 +217,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(560, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 12);
-            this.label3.TabIndex = 168;
-            this.label3.Text = "正在查询：";
-            // 
             // 查询5G
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -226,6 +226,7 @@
             this.Name = "查询5G";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "查询5G";
+            this.Load += new System.EventHandler(this.查询5G_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

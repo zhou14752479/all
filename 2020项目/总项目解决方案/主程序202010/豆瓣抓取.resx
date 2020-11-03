@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>https://movie.douban.com/subject/33447642/
+https://movie.douban.com/subject/34463476/
+https://movie.douban.com/subject/26608230/
+https://movie.douban.com/subject/33393274/
+https://movie.douban.com/subject/35182499/
+https://movie.douban.com/subject/30413128/
+https://movie.douban.com/subject/34908020/
+https://movie.douban.com/subject/33404425/
+https://movie.douban.com/subject/30399268/
+https://movie.douban.com/subject/30318029/
+https://movie.douban.com/subject/34857296/
+https://movie.douban.com/subject/26986843/
+https://movie.douban.com/subject/30358061/
+https://movie.douban.com/subject/34815432/
+https://movie.douban.com/subject/33426097/
+https://movie.douban.com/subject/30463413/
+https://movie.douban.com/subject/34839179/
+https://movie.douban.com/subject/27180943/
+https://movie.douban.com/subject/34463197/
+https://movie.douban.com/subject/34863327/
+https://movie.douban.com/subject/33750574/
+https://movie.douban.com/subject/26915522/
+https://movie.douban.com/subject/27591191/
+https://movie.douban.com/subject/30488569/
+https://movie.douban.com/subject/34801099/
+https://movie.douban.com/subject/30354606/
+https://movie.douban.com/subject/34428631/
+https://movie.douban.com/subject/30486573/
+https://movie.douban.com/subject/30163759/
+https://movie.douban.com/subject/25931446/
+https://movie.douban.com/subject/35207865/
+https://movie.douban.com/subject/30446742/
+https://movie.douban.com/subject/30466817/
+https://movie.douban.com/subject/34429771/
+https://movie.douban.com/subject/33442331/
+https://movie.douban.com/subject/30291081/
+https://movie.douban.com/subject/33437015/
+https://movie.douban.com/subject/30463518/
+https://movie.douban.com/subject/30377784/
+https://movie.douban.com/subject/30481987/
+https://movie.douban.com/subject/30304036/
+https://movie.douban.com/subject/34925685/
+https://movie.douban.com/subject/34928093/
+https://movie.douban.com/subject/30327835/
+https://movie.douban.com/subject/34982917/
+https://movie.douban.com/subject/30291088/
+https://movie.douban.com/subject/30371563/
+https://movie.douban.com/subject/27073044/
+https://movie.douban.com/subject/34937939/
+https://movie.douban.com/subject/30474674/
+https://movie.douban.com/subject/30435906/
+https://movie.douban.com/subject/30176770/
+https://movie.douban.com/subject/30426829/
+https://movie.douban.com/subject/26759908/
+https://movie.douban.com/subject/30482003/
+https://movie.douban.com/subject/30463452/
+https://movie.douban.com/subject/30442663/
+https://movie.douban.com/subject/34845712/
+https://movie.douban.com/subject/34779817/
+https://movie.douban.com/subject/30483665/</value>
+  </data>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+</root>

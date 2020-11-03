@@ -28,13 +28,15 @@ namespace 模拟采集
 
         private void 拼多多图片评价最新日期_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //设置所在窗体属性keypreview为true
-            if (e.KeyChar == 13) //13表示回dao车键
-            {
-                webBrowser1.Navigate("https://"+textBox1.Text);
+            ////设置所在窗体属性keypreview为true
+            //if (e.KeyChar == 13) //13表示回dao车键
+            //{
+            //    webBrowser1.Navigate("https://"+textBox1.Text);
               
-            }
+            //}
         }
+
+        public static string cookie;
         #region GET请求
         /// <summary>
         /// GET请求
@@ -48,13 +50,13 @@ namespace 模拟采集
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "";
+                
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
-                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Cookie", cookie);
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add(token);
@@ -76,7 +78,7 @@ namespace 模拟采集
             }
             catch (System.Exception ex)
             {
-                ex.ToString();
+               MessageBox.Show(ex.ToString());
 
             }
             return "";
@@ -109,38 +111,47 @@ namespace 模拟采集
             //lv1.SubItems.Add(date.ToShortDateString());
             //lv1.SubItems.Add(textBox1.Text);
             Match goodid = Regex.Match(textBox1.Text, @"goods_id=([\s\S]*?)&");
-            
-            string cookie = method.GetCookies("https://mobile.yangkeduo.com/goods_comments.html?goods_id=1074110620");
-            Match t = Regex.Match(cookie, @"PDDAccessToken=.*");
-            if (t.Groups[0].Value == "")
+            Match goodid2 = Regex.Match(textBox1.Text, @"goods_id=.*");
+            string aid = goodid.Groups[1].Value;
+            if (aid == "")
             {
-                MessageBox.Show("请重新登陆");
-                return;
+                aid = goodid2.Groups[0].Value.Replace("goods_id=","");
             }
-            string token = "accesstoken: " + t.Groups[0].Value.Replace("PDDAccessToken=", "");
+           
 
+            cookie = method.GetCookies("https://mobile.yangkeduo.com/goods_comments.html?goods_id=26235689034");
+            Match t = Regex.Match(cookie, @"PDDAccessToken=.*");
+          
+            //if (t.Groups[0].Value == "")
+            //{
+            //    MessageBox.Show("请重新登陆");
+            //    return;
+            //}
+            string token = "accesstoken: " + t.Groups[0].Value.Replace("PDDAccessToken=", "");
+            token = "accesstoken: HZAJJLIMB423YWWL7GDCR6CSVXVZLM5RAVPP5C6ANZJKMWCP4YLQ112118b";
             for (int i = 1; i < 999; i++)
             {
 
 
 
-                string url = "https://mobile.yangkeduo.com/proxy/api/reviews/" + goodid.Groups[1].Value + "/list?pdduid=7312500755985&page="+i+"&size=10&enable_video=1&enable_group_review=1&label_id=100000000";
+                string url = "https://mobile.yangkeduo.com/proxy/api/reviews/" + aid + "/list?pdduid=7312500755985&page="+i+"&size=10&enable_video=1&enable_group_review=1&label_id=100000000";
 
 
 
                 string html = GetUrl(url, "utf-8", token);
-
+                
                 MatchCollection dates = Regex.Matches(html, @"review3/review/2([\s\S]*?)/");
+                MatchCollection picurls = Regex.Matches(html, @"review3/review/2([\s\S]*?)""");
                 if (dates.Count > 0)
                 {
                     for (int j = 0; j < dates.Count; j++)
                     {
                         ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据  
                         lv1.SubItems.Add("2"+dates[j].Groups[1].Value);
-                       
+                       lv1.SubItems.Add("https://review.pddpic.com/review3/review/2" + picurls[j].Groups[1].Value);
 
                     }
-                    textBox1.Text = "";
+                    
                 }
                 else
                 {
@@ -176,7 +187,8 @@ namespace 模拟采集
         Thread thread;
         private void 拼多多图片评价最新日期_Load(object sender, EventArgs e)
         {
-           
+            method.SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
 
             webBrowser1.Navigate("https://mobile.yangkeduo.com/personal.html");
         }

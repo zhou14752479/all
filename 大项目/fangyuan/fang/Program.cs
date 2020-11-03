@@ -20,7 +20,7 @@ namespace fang._2019
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form3());
+                Application.Run(new 圣才电子书());
 
             //}
             //catch (Exception ex)

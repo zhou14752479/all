@@ -47,6 +47,12 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -208,14 +214,20 @@
             this.columnHeader2,
             this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 79);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(915, 437);
+            this.listView1.Size = new System.Drawing.Size(915, 412);
             this.listView1.TabIndex = 25;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -233,21 +245,45 @@
             // columnHeader6
             // 
             this.columnHeader6.Text = "地址";
-            this.columnHeader6.Width = 200;
+            this.columnHeader6.Width = 100;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "电话";
-            this.columnHeader7.Width = 150;
+            this.columnHeader7.Width = 100;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "是否外卖";
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "分类";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "区域";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "商圈";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "销量";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "评分";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "城市";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 539);
+            this.label4.Location = new System.Drawing.Point(12, 509);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 12);
             this.label4.TabIndex = 26;
@@ -255,14 +291,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(93, 536);
+            this.textBox1.Location = new System.Drawing.Point(62, 497);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(264, 21);
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(124, 107);
             this.textBox1.TabIndex = 27;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(257, 567);
+            this.textBox2.Location = new System.Drawing.Point(303, 567);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 21);
             this.textBox2.TabIndex = 29;
@@ -270,7 +308,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 570);
+            this.label5.Location = new System.Drawing.Point(268, 549);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 12);
             this.label5.TabIndex = 28;
@@ -285,9 +323,9 @@
             "休闲娱乐",
             "美容美体",
             "美发"});
-            this.comboBox1.Location = new System.Drawing.Point(93, 570);
+            this.comboBox1.Location = new System.Drawing.Point(303, 541);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.Size = new System.Drawing.Size(102, 20);
             this.comboBox1.TabIndex = 30;
             // 
             // button5
@@ -322,6 +360,7 @@
             this.Name = "美团附近";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "美团附近";
+            this.Load += new System.EventHandler(this.美团附近_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -357,5 +396,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
     }
 }

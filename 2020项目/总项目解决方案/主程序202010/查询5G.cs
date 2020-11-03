@@ -112,5 +112,10 @@ namespace 主程序202010
         {
             listView1.Items.Clear();
         }
+
+        private void 查询5G_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

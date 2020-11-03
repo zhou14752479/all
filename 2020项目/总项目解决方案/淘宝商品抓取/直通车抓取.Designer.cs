@@ -212,9 +212,9 @@
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(328, 52);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(87, 21);
+            this.checkBox1.Size = new System.Drawing.Size(75, 21);
             this.checkBox1.TabIndex = 104;
-            this.checkBox1.Text = "非天猫店铺";
+            this.checkBox1.Text = "天猫店铺";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label4

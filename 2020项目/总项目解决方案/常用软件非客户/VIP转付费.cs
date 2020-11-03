@@ -22,6 +22,8 @@ namespace 常用软件非客户
             InitializeComponent();
         }
         string COOKIE = "";
+
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -119,7 +121,7 @@ namespace 常用软件非客户
 
         #endregion
 
-        public string zhuanhuan(string id,string name)
+        public string gaijiaAPI(string id,string name)
         {
             string price = textBox1.Text;
 
@@ -130,12 +132,26 @@ namespace 常用软件非客户
             return Tracecode;
 
         }
+        public string zhuanhuanAPI(string id, string name)
+        {
+            string price = textBox1.Text;
+
+            string url = "https://wenku.baidu.com/ndecommtob/api/doc/upload/updatepublicdoc";
+            string postdata = "{\"need_process_doc_info_list\":{\"" + id + "\":{\"title\":\"" + name + "\",\"summary\":null,\"tag_str\":\"\",\"flag\":10,\"cid1\":1,\"cid2\":9,\"cid3\":30,\"cid4\":0,\"fold_id\":\"1358364423\",\"old_cid1\":1,\"old_cid2\":9,\"old_cid3\":30,\"old_cid4\":0,\"new_cid1\":1,\"adoptStatus\":0,\"free_page\":999,\"downloadable\":1,\"pay_price\":" + price.Trim() + "00}}}";
+            string Tracecode = PostUrl(url, postdata);
+
+            return Tracecode;
+
+        }
 
         public static string Unicode2String(string source)
         {
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
                 source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
         }
+        /// <summary>
+        /// 付费改价
+        /// </summary>
         public void run()
         {
             for (int i = (Convert.ToInt32(textBox2.Text)*20)-20; i >0; i=i-20)
@@ -153,7 +169,7 @@ namespace 常用软件非客户
                     {
                         string docid = docids[j].Groups[1].Value.Trim();
                         string name = Unicode2String(names[j].Groups[1].Value).Trim();
-                        string zhuangtai = zhuanhuan(docid, name);
+                        string zhuangtai = gaijiaAPI(docid, name);
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
                         lv1.SubItems.Add(docid);
                         lv1.SubItems.Add(name);
@@ -173,6 +189,48 @@ namespace 常用软件非客户
 
 
         }
+
+        /// <summary>
+        /// VIP转付费
+        /// </summary>
+        public void viptofufei()
+        {
+            for (int i = 0; i < Convert.ToInt32(textBox2.Text) * 20; i=i+20)
+
+            {
+
+                string url = "https://wenku.baidu.com/user/interface/getcontribution?st=7&pn=" + i;
+                string html = GetUrl(url);
+
+                MatchCollection docids = Regex.Matches(html, @"""doc_id"":""([\s\S]*?)""");
+                MatchCollection names = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+
+                for (int j = 0; j < docids.Count; j++)
+                {
+                    try
+                    {
+                        string docid = docids[j].Groups[1].Value.Trim();
+                        string name = Unicode2String(names[j].Groups[1].Value).Trim();
+                        string zhuangtai = zhuanhuanAPI(docid, name);
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                        lv1.SubItems.Add(docid);
+                        lv1.SubItems.Add(name);
+                        lv1.SubItems.Add(zhuangtai);
+                        Thread.Sleep(5000);
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+
+                }
+
+            }
+
+
+
+        }
         private void VIP转付费_Load(object sender, EventArgs e)
         {
 
@@ -185,7 +243,7 @@ namespace 常用软件非客户
         
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(viptofufei);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

@@ -111,11 +111,19 @@ namespace 模拟采集
             lv1.SubItems.Add(review.Groups[1].Value.Trim());
             lv1.SubItems.Add(star.Groups[1].Value.Trim());
         }
+
+
+        Random rd = new Random();
+        
+
         public void main()
         {
             seconds = 0;
             status = true;
-           
+
+
+            int start = rd.Next(0, 20)*10;
+
             try
             {
 
@@ -125,7 +133,7 @@ namespace 模拟采集
             foreach (string keyword in keywords)
             {
 
-                for (int i = 0; i < 100001; i=i+10)
+                for (int i = start; i < 100001; i=i+10)
                 {
 
                        
@@ -186,6 +194,7 @@ namespace 模拟采集
 
                             for (int a = 0;a < title.Count; a++)
                             {
+                                Thread.Sleep(3000);
                                 try
                                 {
                                     if (avalable[a].Groups[1].Value.Trim().Contains(bukeshou) || avalable[a].Groups[1].Value.Contains("目前无货"))
@@ -199,7 +208,7 @@ namespace 模拟采集
                                         lv1.SubItems.Add(keyword);
                                         lv1.SubItems.Add(review[a].Groups[1].Value.Trim());
                                         lv1.SubItems.Add(star[a].Groups[1].Value.Trim());
-                                        Thread.Sleep(1000);
+                                        
                                         if (status == false)
                                         {
                                             label1.Text = "已停止";
@@ -207,6 +216,7 @@ namespace 模拟采集
                                         }
                                         while (zanting == false)
                                         {
+                                            seconds = 0;
                                             label1.Text = "暂停中.....点击继续 恢复采集";
                                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
 
@@ -331,8 +341,6 @@ namespace 模拟采集
 
         public void qishi()
         {
-            
-          
             
 
             string[] keywords = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -500,8 +508,8 @@ namespace 模拟采集
             if (dr == DialogResult.OK)
             {
                 GetUrl("http://111.229.244.97/do.php?method=xiugai&username=" + username + "&islogin=0", "utf-8");
-                Environment.Exit(0);
-                //System.Diagnostics.Process.GetCurrentProcess().Kill();
+                //Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
             else
             {
@@ -537,6 +545,7 @@ namespace 模拟采集
 
         private void button5_Click(object sender, EventArgs e)
         {
+            label1.Text = "采集中......";
             zanting = true;
         }
     }

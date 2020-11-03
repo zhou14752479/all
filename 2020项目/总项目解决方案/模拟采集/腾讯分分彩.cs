@@ -71,7 +71,7 @@ namespace 模拟采集
              {
                 method.SetFeatures(11000);
                 webBrowser1.ScriptErrorsSuppressed = true;
-                webBrowser1.Navigate("https://m.500fc99.com/openCenter/pastOpen?lcode=1009&ltype=SSC&ID=10");
+                webBrowser1.Navigate("https://m.598300.com/openCenter/pastOpen?lcode=1009&ltype=SSC&ID=10");
             }
         string shangyiqi = "0";
         public void run()

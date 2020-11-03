@@ -30,8 +30,8 @@ namespace 模拟采集
 
         public void run()
         {
+            string tm = "0";
             
-
             MatchCollection shops = Regex.Matches(html, @"SHOPNAME\\"":\\""([\s\S]*?)\\""");
             MatchCollection wangwangs = Regex.Matches(html, @"WANGWANGID\\"":\\""([\s\S]*?)\\""");
             MatchCollection grades = Regex.Matches(html, @"GRADE\\"":\\""([\s\S]*?)\\""");
@@ -48,6 +48,14 @@ namespace 模拟采集
            
             for (int i = 0; i < shops.Count; i++)
             {
+                if (checkBox1.Checked == true)
+                {
+                    tm = "1";
+                }
+                else
+                {
+                    tm = "0";
+                }
 
 
                 string sell = Unicode2String(sells[i].Groups[1].Value).Replace("\\", "");
@@ -57,19 +65,21 @@ namespace 模拟采集
 
                 try
                 {
-                    if (Convert.ToInt32(sell) >= Convert.ToInt32(textBox2.Text) && Convert.ToInt32(xinyu) <= Convert.ToInt32(textBox3.Text) && ismall == "0")
+                    if (Convert.ToInt32(sell) >= Convert.ToInt32(textBox2.Text) && Convert.ToInt32(sell) <= Convert.ToInt32(textBox5.Text) && Convert.ToInt32(xinyu) <= Convert.ToInt32(textBox3.Text))
                     {
                         if (!wangwangList.Contains(wangwang))
                         {
-                            wangwangList.Add(wangwang);
-                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                            listViewItem.SubItems.Add(wangwang);
-                            listViewItem.SubItems.Add(Unicode2String(shops[i].Groups[1].Value).Replace("\\", ""));
+                            if (ismall == tm)
+                            {
+                                wangwangList.Add(wangwang);
+                                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                listViewItem.SubItems.Add(wangwang);
+                                listViewItem.SubItems.Add(Unicode2String(shops[i].Groups[1].Value).Replace("\\", ""));
 
-                            listViewItem.SubItems.Add(xinyu);
-                            listViewItem.SubItems.Add(ismall);
-                            listViewItem.SubItems.Add(sell);
-
+                                listViewItem.SubItems.Add(xinyu);
+                                listViewItem.SubItems.Add(ismall);
+                                listViewItem.SubItems.Add(sell);
+                            }
 
                         }
                     }
@@ -112,7 +122,7 @@ namespace 模拟采集
 
 
                 key = keyword;
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < Convert.ToInt32(textBox6.Text); i++)
                 {
                     textBox4.Text += "正在查询" + keyword + "第" + (i + 1) + "页" + "\r\n";
                     this.textBox4.Focus();

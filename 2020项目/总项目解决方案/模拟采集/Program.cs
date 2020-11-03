@@ -16,7 +16,7 @@ namespace 模拟采集
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 拼多多图片评价最新日期());
+            Application.Run(new 广东5G查询());
         }
     }
 }

@@ -38,7 +38,7 @@ namespace 主程序202010
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "appkey=jiangsu; subject=s92; Hm_lvt_16e08538ac8544060b2c6accd6cdc877=1601945291,1601949380,1602667008; province=a11; subject_group=sg3; skb_user_token=YXsrJSdudGZvcGsnPyM2Ozw0PDY2ODs0PCYyJ3VieHd9c3hpJzsnaDg6ODk1Zz03amhrNWgyajs%2Fajw4N2M3amlmZztoZTUmMiZ5anh0bnN0Y29pJzsnNTc3ODw5MjY6NjY8OzwxNzcoMCh6aGppJkAmNzY4Mzw4NyYicTkp; shikaobang_img_code=16026682251618; Hm_lpvt_16e08538ac8544060b2c6accd6cdc877=1602668229";
+                string COOKIE = "province=a11; subject_group=sg3; skb_user_token=fDB%2BJSdudGZvcGsnPyM2Ozw0PDY2ODs0PCYyJ3VieHd9c3hpJzsnaDg6ODk1Zz03amhrNWgyajs%2Fajw4N2M3amlmZztoZTUmMiZ5anh0bnN0Y29pJzsnNTc3ODw5MjY6Njc9Njs2NzYoMCh6aGppJkAmNzY4Mzw4NyYiM11D; appkey=jiangsu; appkey=jiangsu; Hm_lvt_16e08538ac8544060b2c6accd6cdc877=1602749800,1603091749,1603716473,1603758057; subject=s92; Hm_lpvt_16e08538ac8544060b2c6accd6cdc877=1603762924; shikaobang_img_code=1603762928953";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "";
 
@@ -80,6 +80,7 @@ namespace 主程序202010
        
         Dictionary<string, string> dic = new Dictionary<string, string>();
         Dictionary<string, string> dic2 = new Dictionary<string, string>();
+        Dictionary<string, string> dic3 = new Dictionary<string, string>();
         public void getids()
         {
             dic.Clear();
@@ -124,14 +125,24 @@ namespace 主程序202010
             }
         }
 
+
+
         /// <summary>
         /// 主程序
         /// </summary>
         public void run()
         {
+            dic3.Add("图形推理", "p986,p987,p988,p995,p997,p998,p999,p1000,p1001,p1002,p1003,p1004,p1005,p1006,p1007,p1008,p1009,p1010,p1012");
+            
+            dic3.Add("定义判断", "p1016,p1015,p1019,p1020,p1021,p1022,p1023,p1024,p1025");
+            dic3.Add("逻辑推理", "p1026,p1027,p1028,p1029,p1030,p1031,p1032,p1033");
+            dic3.Add("类比推理", "p1057,p1059,p1060,p1061,p1062");
 
-           
-        
+            dic3.Add("片段阅读", "p1014,p1015,p1017,p1018,p1034,p1036,p1037,p1038");
+            dic3.Add("逻辑填空", "p1039,p1040,p1041,p1042");
+            dic3.Add("语句表达", "p1043,p1045,p1048,p1055,p1056,p1058");
+            dic3.Add("数字推理", "p1091,1093,p1094,p1096,p1097,p1099,p1102");
+            
             try
             {
                 if (comboBox2.Text == "")
@@ -139,10 +150,26 @@ namespace 主程序202010
                     MessageBox.Show("请选择分类");
                     return;
                 }
-               
-                    string uid = dic2[comboBox2.Text.Trim()];
-                    
-                    string url = "http://www.shikaobang.cn/1.0/jiangsu/question/questions?page=1&question_type=1&point="+uid+"&no_type=1&subject=s92&mod=point&appkey=jiangsu&direction=behind";
+
+                ArrayList uids = new ArrayList();
+                if (dic3.Keys.Contains(comboBox2.Text.Trim()))
+                {
+                    string[] text = dic3[comboBox2.Text.Trim()].Split(new string[] { "," }, StringSplitOptions.None);
+                    foreach (string item in text)
+                    {
+                        uids.Add(item);
+                    }
+
+                }
+                else
+                {
+                    uids.Add(dic2[comboBox2.Text.Trim()]);
+                }
+
+                foreach (string uid in uids)
+                {
+
+                    string url = "http://www.shikaobang.cn/1.0/jiangsu/question/questions?page=1&question_type=1&point=" + uid + "&no_type=1&subject=s92&mod=point&appkey=jiangsu&direction=behind";
                     string html = GetUrl(url);
 
 
@@ -156,14 +183,14 @@ namespace 主程序202010
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         try
                         {
-                        string title = Unicode2String(cs[0].Groups[1].Value).Replace("[img=", "").Replace("\\", "").Replace("]","");
-                       title= Regex.Replace(title, @"\(.*?\)", "");
+                            string title = Unicode2String(cs[0].Groups[1].Value).Replace("[img=", "").Replace("\\", "").Replace("]", "");
+                            title = Regex.Replace(title, @"\(.*?\)", "");
 
 
-                        string jiexi= Unicode2String(cs[5].Groups[1].Value).Replace("[img=", "").Replace("\\", "").Replace("]", "");
-                        jiexi = Regex.Replace(jiexi, @"\(.*?\)", "");
+                            string jiexi = Unicode2String(cs[5].Groups[1].Value).Replace("[img=", "").Replace("\\", "").Replace("]", "");
+                            jiexi = Regex.Replace(jiexi, @"\(.*?\)", "");
 
-                        lv1.SubItems.Add(title);
+                            lv1.SubItems.Add(title);
                             lv1.SubItems.Add(Unicode2String(cs[1].Groups[1].Value));
                             lv1.SubItems.Add(Unicode2String(cs[2].Groups[1].Value));
                             lv1.SubItems.Add(Unicode2String(cs[3].Groups[1].Value));
@@ -173,8 +200,8 @@ namespace 主程序202010
                             lv1.SubItems.Add(jiexi);
                             lv1.SubItems.Add("职测");
                             lv1.SubItems.Add(comboBox1.Text);
-                        lv1.SubItems.Add(comboBox2.Text);
-                    }
+                            lv1.SubItems.Add(comboBox2.Text);
+                        }
                         catch (Exception)
                         {
                             lv1.SubItems.Add("");
@@ -187,7 +214,7 @@ namespace 主程序202010
                         }
                     }
 
-
+                }
 
                 }
 
@@ -246,6 +273,14 @@ namespace 主程序202010
             listView1.Items.Clear();
         }
 
-      
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            
+        }
+
+
+
+
     }
 }

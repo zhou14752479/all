@@ -41,25 +41,34 @@ namespace 主程序202010
                     {
                         if (value[1] != "")
                         {
-                            string url = "http://www.wangdailin.com/bzppph.php?ppcont=" + value[1].Trim() + "&yn=undefined&sex=3";
-                            
-                            string html = method.GetUrl(url, "utf-8");
+                            try
+                            {
+                                string url = "http://www.wangdailin.com/bzppph.php?ppcont=" + value[1].Trim() + "&yn=undefined&sex=3";
 
-                            MatchCollection a1s = Regex.Matches(html, @"<tr style=""text-align:center;font-size:23px""><td></td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td>");
-                            Match a2 = Regex.Match(html, @"<font color=""#D9111B""><B>([\s\S]*?)</B>");
-                            MatchCollection a3s = Regex.Matches(html, @"<font color=""#D9111B"">([\s\S]*?)</font>");
+                                string html = method.GetUrl(url, "utf-8");
 
-                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(value[0].Trim());
-                            lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[1].Value, "<[^>]+>", "")+ Regex.Replace(a1s[1].Groups[1].Value, "<[^>]+>", ""));
-                            lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[2].Value, "<[^>]+>", "") + Regex.Replace(a1s[1].Groups[2].Value, "<[^>]+>", ""));
-                            lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[3].Value, "<[^>]+>", "") + Regex.Replace(a1s[1].Groups[3].Value, "<[^>]+>", ""));
+                                MatchCollection a1s = Regex.Matches(html, @"<tr style=""text-align:center;font-size:23px""><td></td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td>");
+                                Match a2 = Regex.Match(html, @"<font color=""#D9111B""><B>([\s\S]*?)</B>");
+                                MatchCollection a3s = Regex.Matches(html, @"<font color=""#D9111B"">([\s\S]*?)</font>");
 
-                            lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", ""));
-                            lv1.SubItems.Add(a3s[a3s.Count-1].Groups[1].Value);
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(value[0].Trim());
+                                lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[1].Value, "<[^>]+>", "") + Regex.Replace(a1s[1].Groups[1].Value, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[2].Value, "<[^>]+>", "") + Regex.Replace(a1s[1].Groups[2].Value, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[3].Value, "<[^>]+>", "") + Regex.Replace(a1s[1].Groups[3].Value, "<[^>]+>", ""));
+
+                                lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", ""));
+                                lv1.SubItems.Add(a3s[a3s.Count - 1].Groups[1].Value);
 
 
-                            Thread.Sleep(1000);
+                                Thread.Sleep(1000);
+                            }
+                            catch (Exception)
+                            {
+
+                                continue;
+                            }
+                          
                         }
                     }
                   

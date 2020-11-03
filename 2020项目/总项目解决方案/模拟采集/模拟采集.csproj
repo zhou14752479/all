@@ -79,6 +79,12 @@
     <Compile Include="亚马逊账户管理.Designer.cs">
       <DependentUpon>亚马逊账户管理.cs</DependentUpon>
     </Compile>
+    <Compile Include="广东5G查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="广东5G查询.Designer.cs">
+      <DependentUpon>广东5G查询.cs</DependentUpon>
+    </Compile>
     <Compile Include="拼多多图片评价最新日期.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="亚马逊账户管理.resx">
       <DependentUpon>亚马逊账户管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="广东5G查询.resx">
+      <DependentUpon>广东5G查询.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="拼多多图片评价最新日期.resx">
       <DependentUpon>拼多多图片评价最新日期.cs</DependentUpon>

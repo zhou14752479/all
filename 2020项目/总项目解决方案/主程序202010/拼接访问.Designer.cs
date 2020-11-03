@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -57,9 +60,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +87,34 @@
             this.groupBox1.TabIndex = 143;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "批量访问";
+            this.groupBox1.Visible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(172, 112);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 12);
+            this.label12.TabIndex = 163;
+            this.label12.Text = "毫秒";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(104, 109);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox10.Size = new System.Drawing.Size(62, 21);
+            this.textBox10.TabIndex = 161;
+            this.textBox10.Text = "1000";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 112);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(89, 12);
+            this.label11.TabIndex = 162;
+            this.label11.Text = "自定义通讯地址";
             // 
             // label10
             // 
@@ -346,33 +374,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(104, 109);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox10.Size = new System.Drawing.Size(62, 21);
-            this.textBox10.TabIndex = 161;
-            this.textBox10.Text = "1000";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 112);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(89, 12);
-            this.label11.TabIndex = 162;
-            this.label11.Text = "自定义通讯地址";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(172, 112);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(29, 12);
-            this.label12.TabIndex = 163;
-            this.label12.Text = "毫秒";
             // 
             // 拼接访问
             // 

@@ -184,9 +184,11 @@ namespace 美团
 
 
                 string cityId = GetcityId(city);
+               
                 ArrayList areas = getareas(Getsuoxie(city));
                 foreach (string areaId in areas)
                 {
+               
                     foreach (string keyword in keywords)
 
                     {
@@ -198,7 +200,7 @@ namespace 美团
 
 
                             string Url = "https://apimobile.meituan.com/group/v4/poi/search/" + cityId + "?riskLevel=71&optimusCode=10&cateId=-1&sort=defaults&userid=-1&offset=" + i + "&limit=15&mypos=33.940975189208984%2C118.24801635742188&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q=" + keyword.Trim() + "&cityId=" + cityId + "&areaId=" + areaId;
-
+                         
                             string html = meituan_GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
                           
                             MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
@@ -241,9 +243,8 @@ namespace 美团
                                     listViewItem.SubItems.Add(name.Groups[1].Value);
                                     listViewItem.SubItems.Add(addr.Groups[1].Value);
                                     listViewItem.SubItems.Add(tel.Groups[1].Value);
+                                  
                                    
-                            
-                                    listViewItem.SubItems.Add("1");
 
 
                                     while (this.zanting == false)
@@ -295,54 +296,66 @@ namespace 美团
 
                 try
                 {
-
-
-                    for (int i = 0; i < 10001; i = i + 100)
-
+                    string[] cateids = { "74","76","75","22","10","26","38","10","52","27","39", "20201", "20198", "20178", "2","112","17","3","67","65","20093","20252", "20007" };
+                    foreach (string cateid in cateids)
                     {
 
-                        string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityId + "/cate/"+cateid+"?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
-                        
-                        string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-
-                        MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
-
-                        MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
-                        MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-                        MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
-
-
-
-                        if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                            break;
-
-                        for (int j = 0; j < names.Count; j++)
-
+                        for (int i = 0; i < 100001; i = i + 100)
 
                         {
 
-                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                            listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                            string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityId + "/cate/" + cateid + "?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
 
-                            listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                            listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                            listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+                            string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
+                            MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
 
-                            while (this.zanting == false)
+                            MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
+                            MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
+                            MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
+
+                            MatchCollection cate = Regex.Matches(html, @"cateName"":""([\s\S]*?)""");
+                            MatchCollection area = Regex.Matches(html, @"areaName"":""([\s\S]*?)""");
+                            MatchCollection shangquan = Regex.Matches(html, @"mallName"":""([\s\S]*?)""");
+
+
+                            if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                break;
+
+                            for (int j = 0; j < names.Count; j++)
+
+
                             {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+
+                                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                listViewItem.SubItems.Add(names[j].Groups[1].Value);
+
+                                listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+
+                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+                                Random rd = new Random();
+                                listViewItem.SubItems.Add(rd.Next(100, 2000).ToString());
+                                listViewItem.SubItems.Add((rd.Next(1, 5) + rd.NextDouble()).ToString("F1"));
+                                listViewItem.SubItems.Add(city);
+
+
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+
                             }
-                           
+                            Application.DoEvents();
+                            Thread.Sleep(1000);
                         }
-                        Application.DoEvents();
-                        Thread.Sleep(1000);
+
                     }
-
-
                 }
                 catch (System.Exception ex)
                 {
@@ -353,9 +366,10 @@ namespace 美团
         }
 
 
-        string cateid = "1";
+        //string cateid = "1";
 
         #endregion
+
         private void Button1_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -372,33 +386,33 @@ namespace 美团
 
             #endregion
 
-            switch (comboBox1.Text)
-            {
-                case "餐饮美食":
-                    cateid = "1";
-                    break;
-                case "丽人":
-                    cateid = "22";
-                    break;
-                case "休闲娱乐":
-                    cateid = "2";
-                    break;
-                case "美发":
-                    cateid = "74";
-                    break;
-                case "美容美体":
-                    cateid = "76";
-                    break;
+            //switch (comboBox1.Text)
+            //{
+            //    case "餐饮美食":
+            //        cateid = "1";
+            //        break;
+            //    case "丽人":
+            //        cateid = "22";
+            //        break;
+            //    case "休闲娱乐":
+            //        cateid = "2";
+            //        break;
+            //    case "美发":
+            //        cateid = "74";
+            //        break;
+            //    case "美容美体":
+            //        cateid = "76";
+            //        break;
 
-            }
+            //}
 
-            //Thread thread = new Thread(new ThreadStart(run));
-            //thread.Start();
-            //Control.CheckForIllegalCrossThreadCalls = false;
-
-            Thread thread1 = new Thread(new ThreadStart(run1));
-            thread1.Start();
+            Thread thread = new Thread(new ThreadStart(run));
+            thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+
+            //Thread thread1 = new Thread(new ThreadStart(run1));
+            //thread1.Start();
+            //Control.CheckForIllegalCrossThreadCalls = false;
 
         }
 
@@ -461,6 +475,11 @@ namespace 美团
         private void button5_Click_1(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void 美团附近_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

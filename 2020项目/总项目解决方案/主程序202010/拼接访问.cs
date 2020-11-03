@@ -88,7 +88,7 @@ namespace 主程序202010
         }
         private void 拼接访问_Load(object sender, EventArgs e)
         {
-            //this.Height = 200;
+            this.Height = 200;
             // method.EncodingType.GetTxtType("path");
         }
         public void run()
@@ -132,7 +132,7 @@ namespace 主程序202010
         private void button1_Click(object sender, EventArgs e)
         {
             
-            string url = "http://219.146.167.66:2100/qdyx/bg/m/ReadCardResult.aspx?CPhone=" + textBox3.Text.Trim() + "&UNum=" + textBox4.Text.Trim() + "&ITime=" + textBox5.Text.Trim() + "&UType=1&UCardID=" + textBox6.Text.Trim() + "&UName=" + textBox2.Text.Trim() + "&UAddress=" + textBox7.Text.Trim() + "&UNational=汉族";
+            string url = "http://219.146.167.66:2100/qdyx/bg/m/ReadCardResult.aspx?CPhone=" + textBox3.Text.Trim() + "&UNum=37020496" + textBox4.Text.Trim() + "&ITime=" + textBox5.Text.Trim() + "&UType=1&UCardID=" + textBox6.Text.Trim() + "&UName=" + textBox2.Text.Trim() + "&UAddress=" + textBox7.Text.Trim() + "&UNational=汉族";
             string html = GetUrl(url);
             Match msg = Regex.Match(html, @"alert\('([\s\S]*?)'");
             MessageBox.Show(msg.Groups[1].Value);

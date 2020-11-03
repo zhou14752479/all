@@ -26,8 +26,8 @@ namespace 常用软件非客户
 
         private void 浏览器cookie获取_Load(object sender, EventArgs e)
         {
-            method.SetFeatures(11000);
-            webBrowser1.ScriptErrorsSuppressed = true;
+            method.SetFeatures(10000);
+           webBrowser1.ScriptErrorsSuppressed = true;
         }
 
         string url="";

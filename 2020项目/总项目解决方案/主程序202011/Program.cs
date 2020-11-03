@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 常用软件非客户
+namespace 主程序202011
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 常用软件非客户
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VIP转付费());
+            Application.Run(new 天眼查股权结构());
         }
     }
 }
