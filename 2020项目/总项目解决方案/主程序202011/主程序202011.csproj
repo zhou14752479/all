@@ -31,6 +31,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\大项目\58同城招聘\zhaopin_58\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\大项目\58同城招聘\zhaopin_58\bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\大项目\58同城招聘\zhaopin_58\bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\大项目\58同城招聘\zhaopin_58\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\大项目\58同城招聘\zhaopin_58\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -53,17 +75,71 @@
     <Compile Include="win007.Designer.cs">
       <DependentUpon>win007.cs</DependentUpon>
     </Compile>
+    <Compile Include="企查查发票信息.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="企查查发票信息.Designer.cs">
+      <DependentUpon>企查查发票信息.cs</DependentUpon>
+    </Compile>
     <Compile Include="天眼查股权结构.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="天眼查股权结构.Designer.cs">
       <DependentUpon>天眼查股权结构.cs</DependentUpon>
     </Compile>
-    <Compile Include="浙江政务网.cs">
+    <Compile Include="微博监控.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="浙江政务网.Designer.cs">
-      <DependentUpon>浙江政务网.cs</DependentUpon>
+    <Compile Include="微博监控.Designer.cs">
+      <DependentUpon>微博监控.cs</DependentUpon>
+    </Compile>
+    <Compile Include="惠州号码查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="惠州号码查询.Designer.cs">
+      <DependentUpon>惠州号码查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆继续教育.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆继续教育.Designer.cs">
+      <DependentUpon>新疆继续教育.cs</DependentUpon>
+    </Compile>
+    <Compile Include="淘宝付款筛选.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="淘宝付款筛选.Designer.cs">
+      <DependentUpon>淘宝付款筛选.cs</DependentUpon>
+    </Compile>
+    <Compile Include="移动办公抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="移动办公抓取.Designer.cs">
+      <DependentUpon>移动办公抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="表格日期监控1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表格日期监控1.Designer.cs">
+      <DependentUpon>表格日期监控1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="邮箱163抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="邮箱163抓取.Designer.cs">
+      <DependentUpon>邮箱163抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="邮箱登录.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="邮箱登录.Designer.cs">
+      <DependentUpon>邮箱登录.cs</DependentUpon>
+    </Compile>
+    <Compile Include="阿里采购.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="阿里采购.Designer.cs">
+      <DependentUpon>阿里采购.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,11 +153,38 @@
     <EmbeddedResource Include="win007.resx">
       <DependentUpon>win007.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="企查查发票信息.resx">
+      <DependentUpon>企查查发票信息.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="天眼查股权结构.resx">
       <DependentUpon>天眼查股权结构.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="浙江政务网.resx">
-      <DependentUpon>浙江政务网.cs</DependentUpon>
+    <EmbeddedResource Include="微博监控.resx">
+      <DependentUpon>微博监控.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="惠州号码查询.resx">
+      <DependentUpon>惠州号码查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆继续教育.resx">
+      <DependentUpon>新疆继续教育.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="淘宝付款筛选.resx">
+      <DependentUpon>淘宝付款筛选.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="移动办公抓取.resx">
+      <DependentUpon>移动办公抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表格日期监控1.resx">
+      <DependentUpon>表格日期监控1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="邮箱163抓取.resx">
+      <DependentUpon>邮箱163抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="邮箱登录.resx">
+      <DependentUpon>邮箱登录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="阿里采购.resx">
+      <DependentUpon>阿里采购.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

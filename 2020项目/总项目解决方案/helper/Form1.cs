@@ -33,9 +33,9 @@ namespace helper
             webBrowser1.ScriptErrorsSuppressed = true;
 
             // webBrowser1.Navigate("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall");
-            //   webBrowser1.Navigate("http://www.yanxiu.com/login.html?l=true");
+               webBrowser1.Navigate("http://www.yanxiu.com/login.html?l=true");
             // webBrowser1.Navigate("https://new-wl.jdwl.com/");
-            webBrowser1.Navigate("https://mail.qq.com/");
+           // webBrowser1.Navigate("https://mail.qq.com/");
         }
         
         string path = AppDomain.CurrentDomain.BaseDirectory;
@@ -43,16 +43,16 @@ namespace helper
         {
 
             // cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/table.htm");
-            //  cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
+              cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
             //cookie = method.GetCookies("https://biz-wb.jdwl.com/business/waybillmanage/toDeliveryDetail");
 
 
-            cookie = method.GetCookies(webBrowser1.Url.ToString());
-            Match sid = Regex.Match(webBrowser1.Url.ToString(), @"sid=([\s\S]*?)&");
-            SID = sid.Groups[1].Value;
-            this.Hide();
+            //cookie = method.GetCookies(webBrowser1.Url.ToString());
+            //Match sid = Regex.Match(webBrowser1.Url.ToString(), @"sid=([\s\S]*?)&");
+            //SID = sid.Groups[1].Value;
+            //this.Hide();
 
-          //  System.IO.File.WriteAllText(path+textBox1.Text.Trim()+".txt",cookie, Encoding.UTF8);
+            System.IO.File.WriteAllText(path+textBox1.Text.Trim()+".txt",cookie, Encoding.UTF8);
         }
 
         private void webBrowser1_NewWindow(object sender, CancelEventArgs e)

@@ -44,5 +44,13 @@ namespace helper
             webBrowser1.Refresh();
             cookie = method.GetCookies(webUrl);
         }
+
+        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+        {
+            //防止弹窗；
+            e.Cancel = true;
+            string url = this.webBrowser1.StatusText;
+            this.webBrowser1.Url = new Uri(url);
+        }
     }
 }

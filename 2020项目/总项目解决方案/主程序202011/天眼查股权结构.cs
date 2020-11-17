@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
+using static helper.method;
 
 namespace 主程序202011
 {
@@ -43,9 +44,9 @@ namespace 主程序202011
                 request.Headers.Add("Cookie", COOKIE);
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("Authorization:IH8lYFNLk5XshG1StUfhs5PWf6g0My0roJE2Gwcz+2s2NF5/KxunoTrlugkVC8ujGiJ+71Q2VYulUaWjBhfbpWBfWXrKKmniF5lSEfSjPtgumNDryHnW7h4IfhI1rxNV4CJAV/U7xK08K7l36bY5czzs70KGsU/MPYGO1CB7B/o=");
-                headers.Add("X-AUTH-TOKEN:eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzc3OTEwNDM0OSIsImlhdCI6MTYwNDM3MDUxNSwiZXhwIjoxNjY3NDQyNTE1fQ.dnjpREcE4Mt_ncRwS7GuKhRIrhGzhJZ7oxhvWghFLXCZG4YvFJa8rKhLbPDLNmTQSu7iano26oJZL5RJcXbNBw");
-                headers.Add("version:iOS 12.17.1");
+                headers.Add("Authorization: 0###oo34J0YSWR0ucFrTbNJwK7MpAWiE###1604448935309###2ed6a2ec3ab12c1623ccd098ee5711fd");
+                headers.Add("X-AUTH-TOKEN:eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzYwNjExNzYwNiIsImlhdCI6MTYwNDMxOTE3OCwiZXhwIjoxNjA2OTExMTc4fQ.7x29b7Nv3PW6MVB22QiNcSvmQBMCWHI5UV3wFVHPMe4mQST9zlD39nentfLcUerdi3IrBjPfTGcRgP4dj4sduA");
+                headers.Add("version:TYC-XCX-WX");
              
                 //添加头部
                 // request.KeepAlive = true;
@@ -114,8 +115,8 @@ namespace 主程序202011
 
         #endregion
 
-        #region 主程序
-        public void run()
+        #region 股权结构
+        public void guquan()
         {
             string[] aids= textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
@@ -193,7 +194,81 @@ namespace 主程序202011
 
         }
 
-       
+
+
+        #endregion
+
+
+        private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            long mTime = long.Parse(timeStamp + "0000");
+            TimeSpan toNow = new TimeSpan(mTime);
+            return startTime.Add(toNow);
+
+
+        }
+
+        #region 基本信息
+        public void run()
+        {
+            StreamReader keysr = new StreamReader(textBox1.Text, EncodingType.GetTxtType(textBox1.Text));
+
+            string ReadTxt = keysr.ReadToEnd();
+            string[] text = ReadTxt.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                foreach (string aid in text)
+            {
+                string shangshi = "否";
+                if (aid == "")
+                {
+                    ListViewItem listViewItem1= this.listView2.Items.Add((listView2.Items.Count + 1).ToString());
+                    listViewItem1.SubItems.Add("-");
+                    listViewItem1.SubItems.Add("-");
+                    listViewItem1.SubItems.Add("-");
+                    listViewItem1.SubItems.Add("-");
+                    listViewItem1.SubItems.Add("-");
+                    listViewItem1.SubItems.Add("-");
+
+                    continue;
+                }
+
+                string Url = "https://api9.tianyancha.com/services/v3/t/common/baseinfoV5/" + aid;
+                
+                string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+              
+                if (html.Contains("上市信息"))
+                {
+                    shangshi = "是";
+                }
+                Match name = Regex.Match(html, @"""name"":""([\s\S]*?)""");
+                Match time = Regex.Match(html, @"""estiblishTime"":([\s\S]*?),");
+                
+                Match ziben = Regex.Match(html, @"""regCapital"":""([\s\S]*?)""");
+                Match yewu = Regex.Match(html, @"""businessScope"":""([\s\S]*?)""");
+
+                ListViewItem listViewItem = this.listView2.Items.Add((listView2.Items.Count + 1).ToString());
+                listViewItem.SubItems.Add(aid);
+                listViewItem.SubItems.Add(name.Groups[1].Value);
+                listViewItem.SubItems.Add(ConvertStringToDateTime(time.Groups[1].Value).ToLongDateString());
+                listViewItem.SubItems.Add(ziben.Groups[1].Value);
+                listViewItem.SubItems.Add(shangshi);
+                listViewItem.SubItems.Add(yewu.Groups[1].Value);
+               
+                Application.DoEvents();
+                Thread.Sleep(10);
+
+                while (this.zanting == false)
+                {
+                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                }
+
+
+            }
+
+        }
+
+
 
         #endregion
 
@@ -225,6 +300,30 @@ namespace 主程序202011
         private void button3_Click(object sender, EventArgs e)
         {
             zanting = true;
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
+            if (flag)
+            {
+                this.textBox1.Text = this.openFileDialog1.FileName;
+            }
         }
     }
 }

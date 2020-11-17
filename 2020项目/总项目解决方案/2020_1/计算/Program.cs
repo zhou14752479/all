@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202011
+namespace 计算
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202011
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 表格日期监控1());
+            Application.Run(new Form1());
         }
     }
 }

@@ -154,6 +154,15 @@ namespace helper
 
         #endregion
 
+        #region unicode转中文
+        public static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
+        }
+
+        #endregion;
+
         #region 获取页面跳转后Url
         static string fanhuiurl(string originalAddress)
         {
@@ -242,7 +251,7 @@ namespace helper
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
                 string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "http://live.win007.com/";
+                request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
@@ -311,7 +320,7 @@ namespace helper
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.ContentType = "application/x-www-form-urlencoded";
+               // request.ContentType = "application/x-www-form-urlencoded";
                 
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
@@ -319,7 +328,7 @@ namespace helper
                 //headers.Add("x-nike-visitid:5");
                 //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
                 //添加头部
-                // request.ContentType = "application/json";
+                 request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
                 //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 request.AllowAutoRedirect = false;
@@ -328,7 +337,7 @@ namespace helper
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
                 
-                request.Referer = "";
+                request.Referer = "https://web.duanmatong.cn/";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -746,7 +755,7 @@ namespace helper
         #endregion
 
         #region NPOI读取表格导入
-        public void ReadFromExcelFile(string filePath,ListView listView)
+        public static void ReadFromExcelFile(string filePath,ListView listView)
         {
             //using (OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "Microsoft Excel files(*.xls)|*.xls;*.xlsx" })
             //    if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -785,12 +794,20 @@ namespace helper
                         ListViewItem lv1 = listView.Items.Add((listView.Items.Count + 1).ToString());
                         for (int j = 0; j < row.LastCellNum; j++) //LastCellNum 是当前行的总列数
                         {
+                            try
+                            {
+                                //读取该行的第j列数据
+                                string value = row.GetCell(j).ToString();
+                                //textBox1.Text+=(value.ToString() + " ");
 
-                            //读取该行的第j列数据
-                            string value = row.GetCell(j).ToString();
-                            //textBox1.Text+=(value.ToString() + " ");
+                                lv1.SubItems.Add(value.ToString());
+                            }
+                            catch (Exception)
+                            {
 
-                            lv1.SubItems.Add(value.ToString());
+                                continue;
+                            }
+                            
                         }
                         // textBox1.Text += "\r\n";
                     }
@@ -800,7 +817,7 @@ namespace helper
             catch (Exception e)
             {
                 //只在Debug模式下才输出
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.ToString());
             }
         }
 
