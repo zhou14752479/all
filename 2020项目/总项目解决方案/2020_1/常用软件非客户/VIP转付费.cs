@@ -144,6 +144,18 @@ namespace 常用软件非客户
 
         }
 
+        public string fufeiToVipAPI(string id, string name)
+        {
+            string price = textBox1.Text;
+
+            string url = "https://wenku.baidu.com/ndecommtob/api/doc/upload/updatepublicdoc";
+            string postdata = "{\"need_process_doc_info_list\":{\""+id+"\":{\"title\":\""+name+"\",\"summary\":null,\"tag_str\":\"\",\"flag\":28,\"cid1\":\"9\",\"cid2\":\"30\",\"cid3\":\"0\",\"fold_id\":\"1494085248\",\"old_cid1\":\"9\",\"old_cid2\":\"30\",\"old_cid3\":\"0\",\"new_cid1\":\"1\",\"adoptStatus\":1,\"downloadable\":\"1\"}}}";
+            string Tracecode = PostUrl(url, postdata);
+
+            return Tracecode;
+
+        }
+
         public static string Unicode2String(string source)
         {
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
@@ -232,7 +244,49 @@ namespace 常用软件非客户
 
         }
 
-     
+        /// <summary>
+        /// 付费转VIP
+        /// </summary>
+        public void fufeitovip()
+        {
+            for (int i = 0; i < Convert.ToInt32(textBox2.Text) * 20; i = i + 20)
+
+            {
+
+                string url = "https://wenku.baidu.com/user/interface/getuserpaydocs?range_time=1&pn=" + i;
+                string html = GetUrl(url);
+
+                MatchCollection docids = Regex.Matches(html, @"""doc_id"":""([\s\S]*?)""");
+                MatchCollection names = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+
+                for (int j = 0; j < docids.Count; j++)
+                {
+                    try
+                    {
+                        string docid = docids[j].Groups[1].Value.Trim();
+                        string name = Unicode2String(names[j].Groups[1].Value).Trim();
+                        string zhuangtai = fufeiToVipAPI(docid, name);
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                        lv1.SubItems.Add(docid);
+                        lv1.SubItems.Add(name);
+                        lv1.SubItems.Add(zhuangtai);
+                        Thread.Sleep(5000);
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+
+                }
+
+            }
+
+
+
+        }
+
+
         private void VIP转付费_Load(object sender, EventArgs e)
         {
 
@@ -245,7 +299,7 @@ namespace 常用软件非客户
         
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(viptofufei);
+                thread = new Thread(fufeitovip);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

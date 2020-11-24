@@ -77,6 +77,7 @@
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -89,7 +90,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(561, 122);
+            this.button2.Location = new System.Drawing.Point(558, 93);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(82, 39);
             this.button2.TabIndex = 158;
@@ -173,7 +174,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(565, 316);
+            this.tabPage2.Size = new System.Drawing.Size(642, 363);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "绝缘靴";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -193,7 +194,7 @@
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(3, 3);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(559, 310);
+            this.listView2.Size = new System.Drawing.Size(636, 357);
             this.listView2.TabIndex = 164;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -229,7 +230,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(565, 316);
+            this.tabPage3.Size = new System.Drawing.Size(642, 363);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "接地杆";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -249,7 +250,7 @@
             this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(3, 3);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(559, 310);
+            this.listView3.Size = new System.Drawing.Size(636, 357);
             this.listView3.TabIndex = 164;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
@@ -285,7 +286,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(565, 316);
+            this.tabPage4.Size = new System.Drawing.Size(642, 363);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "验电棒";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -305,7 +306,7 @@
             this.listView4.HideSelection = false;
             this.listView4.Location = new System.Drawing.Point(3, 3);
             this.listView4.Name = "listView4";
-            this.listView4.Size = new System.Drawing.Size(559, 310);
+            this.listView4.Size = new System.Drawing.Size(636, 357);
             this.listView4.TabIndex = 164;
             this.listView4.UseCompatibleStateImageBehavior = false;
             this.listView4.View = System.Windows.Forms.View.Details;
@@ -341,7 +342,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(565, 316);
+            this.tabPage5.Size = new System.Drawing.Size(642, 363);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "接地线";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -361,7 +362,7 @@
             this.listView5.HideSelection = false;
             this.listView5.Location = new System.Drawing.Point(3, 3);
             this.listView5.Name = "listView5";
-            this.listView5.Size = new System.Drawing.Size(559, 310);
+            this.listView5.Size = new System.Drawing.Size(636, 357);
             this.listView5.TabIndex = 164;
             this.listView5.UseCompatibleStateImageBehavior = false;
             this.listView5.View = System.Windows.Forms.View.Details;
@@ -487,11 +488,22 @@
             // 
             this.columnHeader33.Text = "临期";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(561, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 167;
+            this.button1.Text = "导出";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // 表格日期监控1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(650, 556);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
@@ -562,5 +574,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader31;
         private System.Windows.Forms.ColumnHeader columnHeader32;
         private System.Windows.Forms.ColumnHeader columnHeader33;
+        private System.Windows.Forms.Button button1;
     }
 }

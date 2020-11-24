@@ -104,8 +104,8 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
  DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
-               Environment.Exit(0);
-//System.Diagnostics.Process.GetCurrentProcess().Kill();
+              // Environment.Exit(0);
+System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
             else
             { 

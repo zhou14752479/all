@@ -66,14 +66,15 @@ namespace 主程序202011
                 {
                     string username = reader["username"].ToString().Trim();
                     string password = reader["password"].ToString().Trim();
+                    string salt = reader["salt"].ToString().Trim();
                     string timestamp= reader["jointime"].ToString().Trim();
-
+                   
                     int nowtime = GetCreatetime(DateTime.Now.Date);
                     if (nowtime < Convert.ToInt32(timestamp))
                     {
 
                         //判断密码
-                        if (GetMD5(GetMD5(textBox2.Text.Trim()) + "salt") == password)
+                        if (GetMD5(GetMD5(textBox2.Text.Trim()) + salt) == password)
 
                         {
 
@@ -145,6 +146,11 @@ namespace 主程序202011
             }
 
             myLogin();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.halou58.com/");
         }
     }
 }

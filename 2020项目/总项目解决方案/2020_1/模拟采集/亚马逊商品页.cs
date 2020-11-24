@@ -122,8 +122,9 @@ namespace 模拟采集
             status = true;
 
 
-            int start = rd.Next(0, 20)*10;
+            // int start = rd.Next(0, 20)*10;
 
+            int start = 0;
             try
             {
 
@@ -137,8 +138,8 @@ namespace 模拟采集
                 {
 
                        
-                        string url = "https://www.google.co.kr/search?q=site:www.amazon." + domain+ "/stores/+currently+unavailable+" + keyword + "&ei=LqaHX5CGHtbk-gTjpZ2wCA&start="+i+"&sa=N&ved=2ahUKEwiQ1eu7ubXsAhVWsp4KHeNSB4Y4qgEQ8tMDegQIBhBC&biw=1920&bih=936";
-
+                        string url = "https://www.google.co.kr/search?q=site:www.amazon." + domain+ "/stores/+"+bukeshou+"+" + keyword + "&ei=LqaHX5CGHtbk-gTjpZ2wCA&start="+i+"&sa=N&ved=2ahUKEwiQ1eu7ubXsAhVWsp4KHeNSB4Y4qgEQ8tMDegQIBhBC&biw=1920&bih=936";
+                        
                          string html = GetUrl(url, "utf-8");
                         //string html = method.gethtml(url, "");
 

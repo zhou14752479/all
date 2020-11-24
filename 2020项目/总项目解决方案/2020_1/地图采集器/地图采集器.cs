@@ -326,10 +326,10 @@ namespace 地图采集器
 
         private void 删除此项ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            for (int i = listView2.SelectedItems.Count - 1; i >= 0; i--)
+            for (int i = listView3.SelectedItems.Count - 1; i >= 0; i--)
             {
-                ListViewItem item = listView2.SelectedItems[i];
-                listView2.Items.Remove(item);
+                ListViewItem item = listView3.SelectedItems[i];
+                listView3.Items.Remove(item);
             }
         }
 

@@ -63,8 +63,8 @@ namespace 主程序202011
                 {
                     label3.Text = "正在查询：" + text[i];
                     string url = "https://www.hzydbsp.com:8085/WinSvcInterface/CL/GetCLProjectSearchQYWX.ashx?phone="+ text[i].Trim();
-                   
-                    string html = method.GetUrl(url, "utf-8");
+                    string cookie = "bsp.hz.gmcc.net=080875A6965A7AD944CE103F797516AF7CB02D058FB84DBE7C8CE3882D695E431E0A2591BF4C222CD4372F848EA701152F1E359C904693F7F5A11A3C5645D9C170736C10043DE8F17FD49569517F8ECC4C32B224CCF4E08507B1CCC859E81D6D9F9EAD1E19B11DD0D82981C3459180EA7D25759E; ASP.NET_SessionId=1vfb3x11hgsrvqmefk3aqgis";
+                    string html = method.GetUrlWithCookie(url,cookie ,"utf-8");
                    
                     Match name = Regex.Match(html, @"""RetMsg"":""([\s\S]*?)""");
                     label4.Text = "运行中";
@@ -155,6 +155,11 @@ namespace 主程序202011
                 }
                 
             }
+
+        }
+
+        private void 惠州号码查询_Load(object sender, EventArgs e)
+        {
 
         }
     }

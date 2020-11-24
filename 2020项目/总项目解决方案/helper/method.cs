@@ -1025,8 +1025,9 @@ namespace helper
                 foreach (ListViewItem item in listview.Items)
                 {
                    
-                       list.Add(item.SubItems[i].Text);
-                   
+                       list.Add(item.SubItems[i].Text+","+ item.SubItems[i + 1].Text + ","+ item.SubItems[i + 2].Text + "," + item.SubItems[i + 3].Text + "," + item.SubItems[i + 4].Text);
+                  
+
                 }
                 Thread thexp = new Thread(() => export(list)) { IsBackground = true };
                 thexp.Start();

@@ -302,8 +302,8 @@ namespace 主程序202011
         Thread t;
         private void button1_Click(object sender, EventArgs e)
         {
-            Match cod = Regex.Match("", @"code=([\s\S]*?)&");
-            Match cre = Regex.Match("", @"credential=([\s\S]*?)&");
+            Match cod = Regex.Match(textBox1.Text, @"code=([\s\S]*?)&");
+            Match cre = Regex.Match(textBox1.Text, @"credential=([\s\S]*?)&");
 
             code = cod.Groups[1].Value;
             credential = cre.Groups[1].Value;
@@ -355,8 +355,8 @@ namespace 主程序202011
             DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
-                Environment.Exit(0);
-                //System.Diagnostics.Process.GetCurrentProcess().Kill();
+               // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
             else
             {
@@ -384,10 +384,10 @@ namespace 主程序202011
 
                 for (int i = 0; i < text.Length; i++)
                 {
-                    string[] value = text[i].Split(new string[] { "----" }, StringSplitOptions.None);
-                    ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
-                    lv2.SubItems.Add(value[0].Trim());
-                    lv2.SubItems.Add(value[1].Trim());
+                    //string[] value = text[i].Split(new string[] { "----" }, StringSplitOptions.None);
+                    //ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
+                    //lv2.SubItems.Add(value[0].Trim());
+                    //lv2.SubItems.Add(value[1].Trim());
 
 
                 }

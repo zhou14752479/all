@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace 主程序202011
 {
     public partial class 表格日期监控1 : Form
@@ -22,7 +23,63 @@ namespace 主程序202011
         {
             InitializeComponent();
         }
+        #region  listView导出CSV
+        /// <summary>
+        /// 导出CSV
+        /// </summary>
+        /// <param name="listView"></param>
+        /// <param name="includeHidden"></param>
+        public static void ListViewToCSV(ListView listView, bool includeHidden)
+        {
+            //make header string
+            SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
 
+            //sfd.Title = "Excel文件导出";
+            string filePath = "";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                filePath = sfd.FileName + ".csv";
+            }
+            StringBuilder result = new StringBuilder();
+            WriteCSVRow(result, listView.Columns.Count, i => includeHidden || listView.Columns[i].Width > 0, i => listView.Columns[i].Text);
+
+            //export data rows
+            foreach (ListViewItem listItem in listView.Items)
+                WriteCSVRow(result, listView.Columns.Count, i => includeHidden || listView.Columns[i].Width > 0, i => listItem.SubItems[i].Text);
+
+            File.WriteAllText(filePath, result.ToString());
+            MessageBox.Show("导出成功");
+        }
+
+        private static void WriteCSVRow(StringBuilder result, int itemsCount, Func<int, bool> isColumnNeeded, Func<int, string> columnValue)
+        {
+            bool isFirstTime = true;
+            for (int i = 0; i < itemsCount; i++)
+            {
+                try
+                {
+
+                    if (!isColumnNeeded(i))
+                        continue;
+
+                    if (!isFirstTime)
+                        result.Append(",");
+                    isFirstTime = false;
+
+                    result.Append(String.Format("\"{0}\"", columnValue(i)));
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+
+            result.AppendLine();
+        }
+
+        #endregion
         string path = AppDomain.CurrentDomain.BaseDirectory;
 
         #region NPOI读取表格导入
@@ -201,6 +258,7 @@ namespace 主程序202011
 
 
         Thread thread;
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -250,6 +308,7 @@ namespace 主程序202011
             return "";
         }
         #endregion
+
         private void button2_Click(object sender, EventArgs e)
         {
             listView6.Items.Clear();
@@ -274,12 +333,18 @@ namespace 主程序202011
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
-            //run();
+           
         }
 
         private void 表格日期监控1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ListViewToCSV(listView6,true);
+            ListViewToCSV(listView7, true);
         }
     }
 }

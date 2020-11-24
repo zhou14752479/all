@@ -124,6 +124,11 @@ namespace 主程序202011
         /// </summary>
         public void run()
         {
+            if (checkBox7.Checked == false)
+            {
+                dateTimePicker1.Value = DateTime.Now.AddYears(-99);
+                dateTimePicker2.Value = DateTime.Now.AddYears(99);
+            }
 
 
             for (int i = 0; i < Convert.ToInt32(textBox3.Text); i++)
@@ -132,47 +137,116 @@ namespace 主程序202011
                 string url = "https://mail.163.com/js6/s?sid="+sid+"&func=mbox:listMessages&mbox_pager_next=1";
                 string postdata = "var=%3C%3Fxml%20version%3D%221.0%22%3F%3E%3Cobject%3E%3Cint%20name%3D%22fid%22%3E1%3C%2Fint%3E%3Cstring%20name%3D%22order%22%3Edate%3C%2Fstring%3E%3Cboolean%20name%3D%22desc%22%3Etrue%3C%2Fboolean%3E%3Cint%20name%3D%22limit%22%3E30%3C%2Fint%3E%3Cint%20name%3D%22start%22%3E" + start + "%3C%2Fint%3E%3Cboolean%20name%3D%22skipLockedFolders%22%3Efalse%3C%2Fboolean%3E%3Cstring%20name%3D%22topFlag%22%3Etop%3C%2Fstring%3E%3Cboolean%20name%3D%22returnTag%22%3Etrue%3C%2Fboolean%3E%3Cboolean%20name%3D%22returnTotal%22%3Etrue%3C%2Fboolean%3E%3C%2Fobject%3E";
                 string html = PostUrl(url, postdata, COOKIE, "utf-8");
-
+              
                 MatchCollection aids = Regex.Matches(html, @"<string name=""id"">([\s\S]*?)</string>");
                 MatchCollection titles = Regex.Matches(html, @"<string name=""subject"">([\s\S]*?)</string>");
                 MatchCollection times = Regex.Matches(html, @"<date name=""receivedDate"">([\s\S]*?)</date>");
-
+                MatchCollection yidus = Regex.Matches(html, @"<object name=""flags([\s\S]*?)</object>");
                 if (aids.Count == 0)
                 {
                     break;
 
                 }
+                
+
 
                 for (int j = 0; j < aids.Count; j++)
                 {
-                    total = total + 1;
-                    toolStripStatusLabel2.Text = total.ToString();
-                    string aurl = "https://mail.163.com/js6/read/readhtml.jsp?mid="+aids[j].Groups[1].Value+"&userType=ud";
+                    bool yiduweidu = true;
+
+                    if (checkBox3.Checked == false && !yidus[j].Groups[1].Value.Contains("read"))
+                    {
+                        yiduweidu = false;
+                    }
+                    if (checkBox8.Checked == false && yidus[j].Groups[1].Value.Contains("read"))
+                    {
+                        yiduweidu = false;
+                    }
+                    try
+                    {
+                        if (yiduweidu)
+                        {
+
+                            string aurl = "https://mail.163.com/js6/read/readhtml.jsp?mid="+aids[j].Groups[1].Value+"&userType=ud";
                     string ahtml = GetUrl(aurl);
 
                     Match name = Regex.Match(ahtml, @"font-weight:normal;"">([\s\S]*?)<");
                     Match age = Regex.Match(ahtml, @">（([\s\S]*?)）");
                     Match tel = Regex.Match(ahtml, @"手机号码：([\s\S]*?)</span>");
-                    if (name.Groups[1].Value != "")
-                    {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(name.Groups[1].Value);
-                        lv1.SubItems.Add(age.Groups[1].Value);
-                        lv1.SubItems.Add(Regex.Replace(tel.Groups[1].Value, "<[^>]+>", ""));
-                        lv1.SubItems.Add(titles[j].Groups[1].Value);
-                        lv1.SubItems.Add(times[j].Groups[1].Value);
+                            if (name.Groups[1].Value != "")
+                            {
+                                
+                                    string nianling = age.Groups[1].Value.Replace("女", "").Replace("男", "").Replace("，", "").Replace("岁", "");
+                                    if (Convert.ToInt32(nianling) > Convert.ToInt32(textBox1.Text) && Convert.ToInt32(nianling) < Convert.ToInt32(textBox2.Text))
+                                    {
 
-                        while (this.zanting == false)
+                                        if (Convert.ToDateTime(times[j].Groups[1].Value) > dateTimePicker1.Value && Convert.ToDateTime(times[j].Groups[1].Value) < dateTimePicker2.Value)
+                                        {
+                                            if (comboBox1.Text == "全部性别")
+                                            {
+                                                total = total + 1;
+                                                toolStripStatusLabel2.Text = total.ToString();
+                                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                                lv1.SubItems.Add(name.Groups[1].Value);
+                                                lv1.SubItems.Add(age.Groups[1].Value);
+                                                lv1.SubItems.Add(Regex.Replace(tel.Groups[1].Value, "<[^>]+>", ""));
+                                                lv1.SubItems.Add(titles[j].Groups[1].Value);
+                                                lv1.SubItems.Add(times[j].Groups[1].Value);
+                                            }
+                                            else
+                                            {
+                                                if (age.Groups[1].Value.Contains(comboBox1.Text.Trim()))
+                                                {
+                                                    total = total + 1;
+                                                    toolStripStatusLabel2.Text = total.ToString();
+                                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                                    lv1.SubItems.Add(name.Groups[1].Value);
+                                                    lv1.SubItems.Add(age.Groups[1].Value);
+                                                    lv1.SubItems.Add(Regex.Replace(tel.Groups[1].Value, "<[^>]+>", ""));
+                                                    lv1.SubItems.Add(titles[j].Groups[1].Value);
+                                                    lv1.SubItems.Add(times[j].Groups[1].Value);
+
+                                                }
+                                                else
+                                                {
+                                                    toolStripStatusLabel2.Text = "不符合性别要求";
+                                                }
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            toolStripStatusLabel2.Text = "不符合时间要求";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        toolStripStatusLabel2.Text = "不符合年龄要求";
+                                    }
+                                }
+                                Thread.Sleep(1000);
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+                                if (status == false)
+                                    return;
+                            }
+
+                        else
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            toolStripStatusLabel2.Text = "不符合已读未读筛选";
                         }
-                        if (status == false)
-                            return;
                     }
-                    Thread.Sleep(1000);
-                }
-               
+                    catch (Exception)
+                    {
 
+                        continue;
+                    }
+
+
+                }
+                
             }
             MessageBox.Show("抓取结束");
 
@@ -185,6 +259,7 @@ namespace 主程序202011
         string COOKIE = "";
         private void button1_Click(object sender, EventArgs e)
         {
+
             cookieBrowser cb = new cookieBrowser("https://mail.163.com/js6/s?sid=WCMjZlDUiyNqxrkjdXUUVOJCNlostwDI&func=mbox:listMessages&mbox_pager_next=1");
             cb.Show();
         }
@@ -192,10 +267,10 @@ namespace 主程序202011
         private void button4_Click(object sender, EventArgs e)
         {
             COOKIE = cookieBrowser.cookie;
-            //COOKIE = "_ntes_nnid=cd122851463bd744e423f21fad397a63,1590834443609; _ga=GA1.2.1033791233.1590834537; _ntes_nuid=cd122851463bd744e423f21fad397a63; UM_distinctid=173f54f7393232-0c87497a2723a2-6373664-1fa400-173f54f7394bb5; vjlast=1598164493.1598164493.30; vjuids=-1bbd9584b.1741a06e3f5.0.222433b9c83f6; locale=; face=js6; mail_psc_fingerprint=f9980414501707bee1035100250b2caf; vinfo_n_f_l_n3=9248c9d9cccd372d.1.6.1590834443622.1603713715708.1605315103536; NTES_hp_textlink1=old; starttime=; mail_upx_nf=; mail_idc=\"\"; secu_info=1; mail_host=mail.163.com; mail_style=js6; nts_mail_user=kao377632@163.com:-1:1; df=mail163_letter; mail_uid=kao377632@163.com; NTES_SESS=z7HRpkXG7.ZuTfLkbte.8f0YtceN1y1KrdDlWX_fpW0QpvFRpWZ9_iEFwjXeZ7EB9nekq0i.ptVTBTG.r9xjyfyiQ7nEyCfOx5nLqK0cgWxDuZfzFGm.sXHC1e5ipHGeNLpoTl_3YzdaXahYgb9cGw9mcWDIamQq1pZe2N4TeKc9jMIp63WyAoiihKu_.BKH0WHVagvPjcOvbHEvTcs_mLaRz1RQ3Zn28; S_INFO=1605499319|0|2&70##|kao377632; P_INFO=kao377632@163.com|1605499319|0|mail163|00&99|jis&1605499242&mail163#jis&321300#10#0#0|156499&0|mail163|kao377632@163.com; mail_upx=t2hz.mail.163.com|t3hz.mail.163.com|t4hz.mail.163.com|t7hz.mail.163.com|t8hz.mail.163.com|t1hz.mail.163.com|t4bj.mail.163.com|t1bj.mail.163.com|t2bj.mail.163.com|t3bj.mail.163.com; Coremail=187a9c6d2650d%WCMjZlDUiyNqxrkjdXUUVOJCNlostwDI%g1a113.mail.163.com; cm_last_info=dT1rYW8zNzc2MzIlNDAxNjMuY29tJmQ9aHR0cHMlM0ElMkYlMkZtYWlsLjE2My5jb20lMkZqczYlMkZtYWluLmpzcCUzRnNpZCUzRFdDTWpabERVaXlOcXhya2pkWFVVVk9KQ05sb3N0d0RJJnM9V0NNalpsRFVpeU5xeHJramRYVVVWT0pDTmxvc3R3REkmaD1odHRwcyUzQSUyRiUyRm1haWwuMTYzLmNvbSUyRmpzNiUyRm1haW4uanNwJTNGc2lkJTNEV0NNalpsRFVpeU5xeHJramRYVVVWT0pDTmxvc3R3REkmdz1odHRwcyUzQSUyRiUyRm1haWwuMTYzLmNvbSZsPS0xJnQ9LTEmYXM9dHJ1ZQ==; MAIL_SESS=z7HRpkXG7.ZuTfLkbte.8f0YtceN1y1KrdDlWX_fpW0QpvFRpWZ9_iEFwjXeZ7EB9nekq0i.ptVTBTG.r9xjyfyiQ7nEyCfOx5nLqK0cgWxDuZfzFGm.sXHC1e5ipHGeNLpoTl_3YzdaXahYgb9cGw9mcWDIamQq1pZe2N4TeKc9jMIp63WyAoiihKu_.BKH0WHVagvPjcOvbHEvTcs_mLaRz1RQ3Zn28; MAIL_SINFO=1605499319|0|2&70##|kao377632; MAIL_PINFO=kao377632@163.com|1605499319|0|mail163|00&99|jis&1605499242&mail163#jis&321300#10#0#0|156499&0|mail163|kao377632@163.com; mail_entry_sess=4c1ea39c08e18ca1d077896d862bb14ea7a45f246760d3d0f03a8508159efde5aca8b4cb38a18f7eb65f82ec8a923d8ac48262bd237e69e3f1044530c8f934547bb3c82f170e318687f57f597d50325457499d7c3ed9f30d02fc191716f9b3b7efa11295a2e08319e6e975a9081b83aa416a62d120df0871c0633b850ec3ae25a5c3d5914632c51b2816c28894a0cef24a5257955a5bc18e6a75e268f712588603f32e19cadbe56d2ac7332fab8ee48e91fc3d4c8118e16f006de7e42f5769fa; JSESSIONID=215EDD9CE56B0D1BB4C4B11820E5BC22; Coremail.sid=WCMjZlDUiyNqxrkjdXUUVOJCNlostwDI";
+            COOKIE = "_ntes_nnid=cd122851463bd744e423f21fad397a63,1590834443609; _ga=GA1.2.1033791233.1590834537; _ntes_nuid=cd122851463bd744e423f21fad397a63; UM_distinctid=173f54f7393232-0c87497a2723a2-6373664-1fa400-173f54f7394bb5; vjlast=1598164493.1598164493.30; vjuids=-1bbd9584b.1741a06e3f5.0.222433b9c83f6; locale=; face=js6; mail_psc_fingerprint=f9980414501707bee1035100250b2caf; vinfo_n_f_l_n3=9248c9d9cccd372d.1.6.1590834443622.1603713715708.1605315103536; gdxidpyhxdE=Vif%2F9lItVYjDH85LZC%5CzqsNbtgRRcTqvsryKy7OHb7lTQYhQbfp4zzMOwlhIbyvvjuSXvwyR2nOz%2F4cC5u3PZ5MUpHqYkP3dKNc02%2Fw6j%2Fkm2%2BHOez%2FQZT9u%2BPjjqYO8xMhOShXaVcUXk2D791MN2Dj4NDZN61upjUv2g2moj1SEolCx%3A1605842537545; _9755xjdesxxd_=32; starttime=; df=mail163_letter; mail_upx_nf=; mail_idc=\"\"; secu_info=1; mail_host=mail.163.com; mail_style=js6; NTES_SESS=HTAo_nnVud8Hld9.kLHvd.Eai1QNZXzkPM4mOLmWquuhqC5iqgFBt6mMg617sdXB83ieSgQGqhH0pu0Y4lPK32mnIvynFrXN3PAq6NM9M.T7CbhkljNjvftIJrWjHPBPyi5OENJvyFTotmOhPSz5OakN_zE4BZunv76Lz_JJcTsfNbZtDLI6KiVTom5BoQYDXVXDgTdXNVjz6; NTES_PASSPORT=LbYompA_wVrwEt9S7VF1iUnyWlyA1QQfEhJPa3VlNnhYNK67NXivTd_PXd.myx5v3q1sDCR2bOMDCxC4kZ2ANKvyNH8L5e4zTiLj9cHi5mGOEnrMtu85dBN2V52BpljeCHzriu2hidmPiU_5hzSV4Lj8K0d5FKtA1qV9aorNjm0UG6tURad9ICYwxX8Htpl8U; S_INFO=1605873606|0|3&80##|aa8898770; P_INFO=aa8898770@163.com|1605873606|1|mail163|00&99|gud&1605873301&mail163#jis&321300#10#0#0|&0|mail163|aa8898770@163.com; nts_mail_user=aa8898770@163.com:-1:1; mail_upx=t2hz.mail.163.com|t3hz.mail.163.com|t4hz.mail.163.com|t7hz.mail.163.com|t8hz.mail.163.com|t1hz.mail.163.com|t1bj.mail.163.com|t2bj.mail.163.com|t3bj.mail.163.com|t4bj.mail.163.com; Coremail=b7ee400a28731%nCJGMryVBfjkPqtTRTVVSUBkQIqejIRi%g1a123.mail.163.com; cm_last_info=dT1hYTg4OTg3NzAlNDAxNjMuY29tJmQ9aHR0cHMlM0ElMkYlMkZtYWlsLjE2My5jb20lMkZqczYlMkZtYWluLmpzcCUzRnNpZCUzRG5DSkdNcnlWQmZqa1BxdFRSVFZWU1VCa1FJcWVqSVJpJnM9bkNKR01yeVZCZmprUHF0VFJUVlZTVUJrUUlxZWpJUmkmaD1odHRwcyUzQSUyRiUyRm1haWwuMTYzLmNvbSUyRmpzNiUyRm1haW4uanNwJTNGc2lkJTNEbkNKR01yeVZCZmprUHF0VFJUVlZTVUJrUUlxZWpJUmkmdz1odHRwcyUzQSUyRiUyRm1haWwuMTYzLmNvbSZsPS0xJnQ9LTEmYXM9dHJ1ZQ==; MAIL_SESS=HTAo_nnVud8Hld9.kLHvd.Eai1QNZXzkPM4mOLmWquuhqC5iqgFBt6mMg617sdXB83ieSgQGqhH0pu0Y4lPK32mnIvynFrXN3PAq6NM9M.T7CbhkljNjvftIJrWjHPBPyi5OENJvyFTotmOhPSz5OakN_zE4BZunv76Lz_JJcTsfNbZtDLI6KiVTom5BoQYDXVXDgTdXNVjz6; MAIL_SINFO=1605873606|0|3&80##|aa8898770; MAIL_PINFO=aa8898770@163.com|1605873606|1|mail163|00&99|gud&1605873301&mail163#jis&321300#10#0#0|&0|mail163|aa8898770@163.com; MAIL_PASSPORT_INFO=aa8898770@163.com|1605873606|1; mail_entry_sess=10d48311a5ca245afe2d58ae75c8a298ba583fbd8f010dc49254f30c05a4ed2c39af8209e466312ab5264f42725a7955eb5873484ee40014fcca016986398912bf42f77cb1a8fdd9efaa7ff6514fd8babbe7f939042d93a5b17ebbc66fd4b540a92e6a57e231ddf799576411f09716c44bc93ae06a420a0b98fba0485094ab9076e69cb4d8f156ad6784d04039a084ea4149c2949d0ca0db2b19584abb5df4f6c6b07c8f689cc1bb191b026bcb3f0d9605fbfe9d629f879f8e73d01141d1c79c; JSESSIONID=1514DE6785FA4E501F03EF843833CA16; mail_uid=aa8898770@163.com; Coremail.sid=nCJGMryVBfjkPqtTRTVVSUBkQIqejIRi;";
             Match name = Regex.Match(COOKIE, @"Coremail\.sid=([\s\S]*?);");
             sid = name.Groups[1].Value;
-            MessageBox.Show(sid);
+         
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
@@ -231,6 +306,7 @@ namespace 主程序202011
 
         private void button6_Click(object sender, EventArgs e)
         {
+            
             status = false;
         }
 
@@ -241,7 +317,18 @@ namespace 主程序202011
 
         private void button3_Click(object sender, EventArgs e)
         {
+            total = 0;
             listView1.Items.Clear();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            method.ListviewToTxt(listView1,1);
+        }
+
+        private void 邮箱163抓取_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

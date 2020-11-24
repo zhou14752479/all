@@ -46,9 +46,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -211,6 +211,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "批量访问";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(608, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 16);
+            this.label4.TabIndex = 170;
+            this.label4.Text = "0";
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(278, 51);
@@ -226,17 +237,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(608, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 16);
-            this.label4.TabIndex = 170;
-            this.label4.Text = "0";
-            // 
             // 惠州号码查询
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -246,6 +246,7 @@
             this.Name = "惠州号码查询";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "惠州号码查询";
+            this.Load += new System.EventHandler(this.惠州号码查询_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

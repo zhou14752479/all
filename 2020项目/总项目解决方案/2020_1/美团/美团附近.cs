@@ -116,6 +116,27 @@ namespace 美团
 
         #endregion
 
+
+        #region 获取所有城市ID
+        public ArrayList getallcitys()
+        {
+            string Url = "https://www.meituan.com/changecity/";
+
+            string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+            MatchCollection ids = Regex.Matches(html, @"{""id"":([\s\S]*?),");
+            ArrayList lists = new ArrayList();
+
+            foreach (Match item in ids)
+            {
+                lists.Add(item.Groups[1].Value);
+            }
+
+            return lists;
+        }
+
+        #endregion
+
         #region 获取区域
         public ArrayList getareas(string city)
         {
@@ -161,7 +182,8 @@ namespace 美团
         #endregion
         bool zanting = true;
         ArrayList tels = new ArrayList();
-        #region  主程序
+
+        #region  主程序进入详情页
         public void run1()
         {
             string city = textBox1.Text.Trim();
@@ -322,14 +344,31 @@ namespace 美团
 
                                 break;
 
-                            for (int j = 0; j < names.Count; j++)
+                        for (int j = 0; j < names.Count; j++)
 
 
+                        {
+                            if (checkBox1.Checked == true)
                             {
+                                if (!phone[j].Groups[1].Value.Contains("-") && !phone[j].Groups[1].Value.Contains("400"))
+                                {
+                                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                    listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
 
+                                    listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+
+                                    listViewItem.SubItems.Add(city);
+                                }
+                            }
+                            else
+                            {
                                 ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                 listViewItem.SubItems.Add(names[j].Groups[1].Value);
-
                                 listViewItem.SubItems.Add(address[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(phone[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
@@ -337,22 +376,22 @@ namespace 美团
                                 listViewItem.SubItems.Add(cate[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(area[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
-                                Random rd = new Random();
-                                listViewItem.SubItems.Add(rd.Next(100, 2000).ToString());
-                                listViewItem.SubItems.Add((rd.Next(1, 5) + rd.NextDouble()).ToString("F1"));
+
                                 listViewItem.SubItems.Add(city);
 
+                            }
 
-                                while (this.zanting == false)
-                                {
-                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                }
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
                             if (status == false)
                                 return;
-                            }
-                            Application.DoEvents();
-                            Thread.Sleep(1000);
-                        
+                        }
+                        Application.DoEvents();
+                        Thread.Sleep(1000);
+
+
 
                     }
                 }
@@ -365,9 +404,130 @@ namespace 美团
         }
 
 
+      
+        #endregion
+
+
+        #region  全国饮品店
+        public void getall()
+        {
+            ArrayList cityids =getallcitys();
+
+            foreach (string cityid in cityids)
+            { 
+
+                try
+                {
+
+
+                    for (int i = 0; i < 100001; i = i + 100)
+
+                    {
+
+                        string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityid + "/cate/21329?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
+
+                        string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+
+                        MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
+
+                        MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
+                        MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
+                        MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
+
+                        MatchCollection cate = Regex.Matches(html, @"cateName"":""([\s\S]*?)""");
+                        MatchCollection area = Regex.Matches(html, @"areaName"":""([\s\S]*?)""");
+                        MatchCollection shangquan = Regex.Matches(html, @"mallName"":""([\s\S]*?)""");
+
+
+                        if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                            break;
+
+                        for (int j = 0; j < names.Count; j++)
+                        {
+
+                            if (!tels.Contains(phone[j].Groups[1].Value))
+                            {
+                                tels.Add(phone[j].Groups[1].Value);
+                                bool panduan = true;
+                                if (textBox2.Text == "" || names[j].Groups[1].Value.Contains(textBox2.Text.Trim()))
+                                {
+                                    panduan = true;
+                                }
+                               
+                                else
+                                {
+                                    panduan = false;
+                                }
+                                if (panduan)
+                                {
+                                    if (checkBox1.Checked == true)
+                                    {
+                                        if (!phone[j].Groups[1].Value.Contains("-") && !phone[j].Groups[1].Value.Contains("400"))
+                                        {
+
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+
+                                            listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                        listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+
+                                        listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+
+
+
+                                    }
+
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+                                    if (status == false)
+                                        return;
+                                }
+
+                                else
+                                {
+                                    toolStripStatusLabel1.Text = names[j].Groups[1].Value+"不符合条件";
+                                }
+                            }
+                        }
+                        Application.DoEvents();
+                        Thread.Sleep(1000);
+
+
+
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    ex.ToString();
+                }
+            }
+
+        }
+        #endregion
+
         string cateid = "1";
         bool status = true;
-        #endregion
+        Thread thread;
 
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -375,7 +535,7 @@ namespace 美团
 
             string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
 
-            if (!html.Contains(@"meituanfuzhou"))
+            if (!html.Contains(@"meituannaicha"))
             {
                 MessageBox.Show("验证失败");
                 return;
@@ -421,13 +581,19 @@ namespace 美团
 
             }
 
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(run);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
 
-            //Thread thread1 = new Thread(new ThreadStart(run1));
-            //thread1.Start();
-            //Control.CheckForIllegalCrossThreadCalls = false;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(getall);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
 
         }
 
@@ -507,6 +673,11 @@ namespace 美团
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.acaiji.com/");
         }
     }
 }

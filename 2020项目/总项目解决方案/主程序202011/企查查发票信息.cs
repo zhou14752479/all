@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CsharpHttpHelper;
 using helper;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
@@ -109,7 +110,7 @@ namespace 主程序202011
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "UM_distinctid=1723bfdea781bb-0f59b729ebc4ca-6373664-1fa400-1723bfdea7a274; zg_did=%7B%22did%22%3A%20%221723bfdeae577-036daa19ddf2ed-6373664-1fa400-1723bfdeae6329%22%7D; _uab_collina=159014439630515927715352; Hm_lvt_78f134d5a9ac3f92524914d0247e70cb=1597660456,1599549975,1599616422,1600244964; QCCSESSID=som979l87tslkmfl0sb4gg6uj7; acw_tc=7250181f16052552293351177e724c1819cc6112488bd6adc8ddd37125; hasShow=1; CNZZDATA1254842228=443465270-1590142224-%7C1605256630; zg_de1d1a35bfa24ce29bbf2c7eb17e6c4f=%7B%22sid%22%3A%201605255229424%2C%22updated%22%3A%201605256859906%2C%22info%22%3A%201605087806104%2C%22superProperty%22%3A%20%22%7B%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22%22%2C%22cuid%22%3A%20%22b924eb29800901c1435f40aa0f0d2da5%22%2C%22zs%22%3A%200%2C%22sc%22%3A%200%7D";
+                string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "https://www.qcc.com/search?key=%E6%B1%9F%E8%A5%BF%E6%B6%88%E9%98%B2%E8%AE%BE%E5%A4%87%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
@@ -139,31 +140,64 @@ namespace 主程序202011
             return "";
         }
         #endregion
+
+
+        public void gettoken()
+        {
+            string url = "https://xcx.qcc.com/mp-alipay/admin/getLastedLoginInfo?code=972917ffa0094702a1ac23f8da60PF72";
+            string html = GetUrl(url);
+            Match t = Regex.Match(html, @"sessionToken"":""([\s\S]*?)""");
+            token = t.Groups[1].Value;
+
+        }
+
+        string token = "";
         public void run()
         {
+            gettoken();
+            zanting = true;
             try
             {
 
+                
                 for (int i = 0; i < listView1.Items.Count; i++)
                 {
-
-                    string url = "https://www.qcc.com/gongsi_mindlist?type=mind&searchKey="+ listView1.Items[i].SubItems[2].Text + "&searchType=0&suggest=1";
-                    string html = GetUrl(url);
-                    Match aid = Regex.Match(html, @"/firm/([\s\S]*?)\.");
-                   
-                    if (aid.Groups[1].Value != "")
+                    try
                     {
-                        string aurl = "https://www.qcc.com/tax_view?keyno="+ aid.Groups[1].Value;
-                        string ahtml = GetUrl(aurl);
-                        Match bank = Regex.Match(ahtml, @"开户银行</label>([\s\S]*?)</p>");
+                        if (!listView1.Items[i].SubItems[2].Text.Contains("-"))
+                        {
+                            string url = "https://xcx.qcc.com/mp-alipay/forwardApp/v3/base/advancedSearch?token=" + token + "&t=1605660955000&searchKey=" + listView1.Items[i].SubItems[2].Text;
+                            string html = GetUrl(url);
+                            Match aid = Regex.Match(html, @"""KeyNo"":""([\s\S]*?)""");
+                            if (aid.Groups[1].Value == "")
+                            {
+                                MessageBox.Show("token过期");
+                                zanting = false;
+                            }
+                            if (aid.Groups[1].Value != "")
+                            {
+                                string aurl = "https://xcx.qcc.com/mp-alipay/forwardApp/v1/order/getInvoiceInfoByKeyno?token=" + token + "&t=1605664639000&unique=" + aid.Groups[1].Value;
+                                string ahtml = GetUrl(aurl);
 
-                        listView1.Items[i].SubItems[3].Text = Regex.Replace(bank.Groups[1].Value, "<[^>]+>", "").Trim();
+                                Match bank = Regex.Match(ahtml, @"""bank"":""([\s\S]*?)""");
+
+                                listView1.Items[i].SubItems[3].Text = Regex.Replace(bank.Groups[1].Value, "<[^>]+>", "").Trim();
+                                listView1.Items[i].ForeColor = Color.Red;
+                                label2.Text = "已查询数量：" + (i + 1);
+                            }
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            Thread.Sleep(1000);
+                        }
                     }
-                    while (this.zanting == false)
+                    catch (Exception)
                     {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+
+                        continue;
                     }
-                    Thread.Sleep(1000);
+                 
                 }
               
 
@@ -224,6 +258,7 @@ namespace 主程序202011
         {
             if (zanting == false)
             {
+               
                 zanting = true;
             }
             else
@@ -251,6 +286,14 @@ namespace 主程序202011
                 }
             }
             
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //fiddler.fiddlerUse fd = new fiddler.fiddlerUse();
+            //fd.Show();
+
+            gettoken();
         }
     }
 }

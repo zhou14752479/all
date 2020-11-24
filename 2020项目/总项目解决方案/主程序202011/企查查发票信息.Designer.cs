@@ -32,6 +32,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -40,8 +41,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // columnHeader3
@@ -70,16 +72,21 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 119);
+            this.listView1.Location = new System.Drawing.Point(0, 164);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(578, 332);
             this.listView1.TabIndex = 144;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "开户行";
+            this.columnHeader4.Width = 200;
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(205, 62);
+            this.button5.Location = new System.Drawing.Point(204, 91);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(86, 28);
             this.button5.TabIndex = 142;
@@ -89,7 +96,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(296, 62);
+            this.button4.Location = new System.Drawing.Point(295, 91);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(86, 28);
             this.button4.TabIndex = 141;
@@ -99,7 +106,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(111, 62);
+            this.button2.Location = new System.Drawing.Point(110, 91);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 28);
             this.button2.TabIndex = 140;
@@ -109,7 +116,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(19, 62);
+            this.button1.Location = new System.Drawing.Point(18, 91);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 28);
             this.button1.TabIndex = 139;
@@ -147,14 +154,9 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "开户行";
-            this.columnHeader4.Width = 200;
-            // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(417, 62);
+            this.button6.Location = new System.Drawing.Point(416, 91);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(119, 27);
             this.button6.TabIndex = 148;
@@ -162,11 +164,35 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("宋体", 10F);
+            this.button7.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.button7.Location = new System.Drawing.Point(63, 49);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(198, 29);
+            this.button7.TabIndex = 149;
+            this.button7.Text = "刷新token";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10F);
+            this.label2.Location = new System.Drawing.Point(15, 129);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 14);
+            this.label2.TabIndex = 150;
+            this.label2.Text = "已查询数量：";
+            // 
             // 企查查发票信息
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(578, 451);
+            this.ClientSize = new System.Drawing.Size(578, 496);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.listView1);
@@ -201,5 +227,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label2;
     }
 }

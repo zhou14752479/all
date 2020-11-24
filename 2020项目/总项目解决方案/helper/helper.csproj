@@ -35,6 +35,9 @@
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\客户项目\项目集合\main\bin\Debug\HttpHelper.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\大项目\main1\main\main\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\大项目\fangyuan\fang\bin\Debug\Newtonsoft.Json.dll</HintPath>
