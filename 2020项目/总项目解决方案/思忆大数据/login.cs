@@ -24,9 +24,14 @@ namespace 思忆大数据
                 MessageBox.Show("请输入账号密码");
                 return;
             }
+            if (textBox3.Text.Length < 10)
+            {
+                MessageBox.Show("请输入正确手机号");
+                return;
+            }
           string status=  md.register(textBox3.Text.Trim(), textBox4.Text.Trim());
             MessageBox.Show(status);
-            this.Hide();
+           
 
         }
 
@@ -38,8 +43,32 @@ namespace 思忆大数据
                 return;
             }
             string status= md.login(textBox1.Text.Trim(), textBox2.Text.Trim());
-            MessageBox.Show(status);
-            this.Hide();
+            if (status.Contains("true"))
+            {
+                method.username = textBox1.Text;
+                main ma = new main();
+                ma.Show();
+               
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show(status);
+            }
+           
+
+           
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.acaiji.com");
+            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.acaiji.com");
         }
     }
 }

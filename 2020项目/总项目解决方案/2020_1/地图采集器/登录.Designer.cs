@@ -77,6 +77,7 @@
             this.label2.Size = new System.Drawing.Size(175, 15);
             this.label2.TabIndex = 9;
             this.label2.Text = "http://www.acaiji.com";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label5
             // 

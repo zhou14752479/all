@@ -71,17 +71,11 @@
     <Compile Include="定时打开.Designer.cs">
       <DependentUpon>定时打开.cs</DependentUpon>
     </Compile>
-    <Compile Include="文件名大小判断.cs">
+    <Compile Include="文件筛选.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="文件名大小判断.Designer.cs">
-      <DependentUpon>文件名大小判断.cs</DependentUpon>
-    </Compile>
-    <Compile Include="文库举报.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="文库举报.Designer.cs">
-      <DependentUpon>文库举报.cs</DependentUpon>
+    <Compile Include="文件筛选.Designer.cs">
+      <DependentUpon>文件筛选.cs</DependentUpon>
     </Compile>
     <Compile Include="浏览器cookie获取.cs">
       <SubType>Form</SubType>
@@ -116,11 +110,8 @@
     <EmbeddedResource Include="定时打开.resx">
       <DependentUpon>定时打开.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="文件名大小判断.resx">
-      <DependentUpon>文件名大小判断.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="文库举报.resx">
-      <DependentUpon>文库举报.cs</DependentUpon>
+    <EmbeddedResource Include="文件筛选.resx">
+      <DependentUpon>文件筛选.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="浏览器cookie获取.resx">
       <DependentUpon>浏览器cookie获取.cs</DependentUpon>

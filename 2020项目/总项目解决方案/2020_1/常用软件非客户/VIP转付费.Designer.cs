@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VIP转付费));
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -147,7 +146,9 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(245, 87);
             this.textBox3.TabIndex = 65;
-            this.textBox3.Text = resources.GetString("textBox3.Text");
+            this.textBox3.Text = "BDUSS=khibWpUOFl6SG1ONlpVVUN4dUpNRkl1VTIzQkV0OXdaWGhHcFJPdng5QjFYMlZmSVFBQUFBJCQA" +
+    "AAAAAAAAAAEAAABVvFgjztK0-MnPzqjSuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+    "AAAAAAAAAAAAAAAAAAAAAAAAAHXSPV910j1fd";
             // 
             // VIP转付费
             // 

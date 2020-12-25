@@ -16,7 +16,7 @@ namespace 主程序202011
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 表格日期监控1());
+            Application.Run(new 抖音接口());
         }
     }
 }

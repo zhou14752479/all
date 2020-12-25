@@ -120,6 +120,7 @@ namespace 模拟采集
            
 
             cookie = method.GetCookies("https://mobile.yangkeduo.com/goods_comments.html?goods_id=26235689034");
+          
             Match t = Regex.Match(cookie, @"PDDAccessToken=.*");
           
             //if (t.Groups[0].Value == "")
@@ -127,8 +128,9 @@ namespace 模拟采集
             //    MessageBox.Show("请重新登陆");
             //    return;
             //}
-            string token = "accesstoken: " + t.Groups[0].Value.Replace("PDDAccessToken=", "");
-            token = "accesstoken: HZAJJLIMB423YWWL7GDCR6CSVXVZLM5RAVPP5C6ANZJKMWCP4YLQ112118b";
+            string token = t.Groups[0].Value.Replace("PDDAccessToken=", "");
+            token= "accesstoken: " +Regex.Replace(token, @";.*", "");
+            MessageBox.Show(token);
             for (int i = 1; i < 999; i++)
             {
 

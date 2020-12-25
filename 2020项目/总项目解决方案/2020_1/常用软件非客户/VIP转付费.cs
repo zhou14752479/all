@@ -207,7 +207,7 @@ namespace 常用软件非客户
         /// </summary>
         public void viptofufei()
         {
-            for (int i = 0; i < Convert.ToInt32(textBox2.Text) * 20; i=i+20)
+            for (int i = (Convert.ToInt32(textBox2.Text)-1) * 20; i>=0 ; i=i-20)
 
             {
 
@@ -221,8 +221,18 @@ namespace 常用软件非客户
                 {
                     try
                     {
+                       
+                       
+
+
                         string docid = docids[j].Groups[1].Value.Trim();
                         string name = Unicode2String(names[j].Groups[1].Value).Trim();
+                        int len = System.Text.Encoding.UTF8.GetBytes(name).Length;
+                    
+                        if (len < 13)
+                        {
+                            name = name + "教学文档";
+                        }
                         string zhuangtai = zhuanhuanAPI(docid, name);
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
                         lv1.SubItems.Add(docid);
@@ -299,7 +309,7 @@ namespace 常用软件非客户
         
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(fufeitovip);
+                thread = new Thread(viptofufei);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

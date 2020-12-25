@@ -154,5 +154,10 @@ namespace 地图采集器
         {
             System.Diagnostics.Process.Start("http://www.acaiji.com");
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -150,7 +150,14 @@ namespace 主程序202011
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.halou58.com/");
+            System.Diagnostics.Process.Start("http://www.halou58.cn/");
+        }
+
+       
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=577077543&site=qq&menu=yes&from=message&isappinstalled=0");
         }
     }
 }

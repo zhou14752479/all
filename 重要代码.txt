@@ -1,13 +1,29 @@
 ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
+【快速创建属性prop，propfull带验证属性】
 
-一、Unicode转中文
+
+***************使用频率高*****************
+string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+string path=AppDomain.CurrentDomain.BaseDirectory; 
+
+Regex.Replace(url.Groups[1].Value, "<[^>]+>", "") 
+
+
+***************使用频率高*****************
+
+
+
+【一、Unicode转中文】
 
  			public static string Unicode2String(string source)
      		   {
      	     	  return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
       	        	  source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
        		 }
-二、获取当前程序运行的文件夹带“\”
+
+【二、获取当前程序运行的文件夹带“\”】
+
 		AppDomain.CurrentDomain.BaseDirectory  
 
 	创建文件夹
@@ -16,50 +32,47 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
                     Directory.CreateDirectory(sPath); //创建文件夹
                 }
 
-三、URL 编码
+【三、URL 编码】
+
 	System.Web.HttpUtility.UrlEncode(comboBox1.Text)
 	System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); 指定编码
 
-四、遇到请求被终止未能创建SSL/TLS安全通道
+【四、遇到请求被终止未能创建SSL/TLS安全通道】
+
 	System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
 
-五、允许远程服务器连接数据  
+【五、允许远程服务器连接数据  】
+
 	grant all privileges on *.* to 'root'@'%' identified by 'root' with grant option; 
 
-六、去掉标签值
+【六、去掉标签值】
                 
-    
            Regex.Replace(url.Groups[1].Value, "<[^>]+>", "")  //去标签
 	Regex.Replace(article2.Groups[1].Value, "<(?!/?p)(?!br )[^>]*>", "")  //除了P <br />其他的去掉
-7、读取txt 写入TXT
+
+【7、读取txt 写入TXT】
         	if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-	
                 for (int i = 0; i < text.Length; i++)
-                {
-                 
+                {  
                         ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
-                        lv2.SubItems.Add(text[i]);
-
-                    
+                        lv2.SubItems.Add(text[i]);     
                 }
 		sr.close();  //只关闭流
 		sr.Dispose();   //销毁流内存
             }
-
 		一次性写入System.IO.File.WriteAllText(path, textBox1.Text.Trim(), Encoding.UTF8);
-八、
+【八、获取字符串字节长度】
 	System.Text.Encoding.Default.GetByteCount("字符串") 获取字符串字节长度
 
-	换行分割
-	string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+【***换行分割****】
+string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-
-九、写入TXT文件
+【九、写入TXT文件】
   	FileStream fs1 = new FileStream(path + "新文档.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
       	StreamWriter sw = new StreamWriter(fs1);
     	 sw.WriteLine(text[i]);
@@ -67,11 +80,7 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
        	 fs1.Close(); 
 	sw.Dispose();      
                    
-
-	
-
-
-十、NCR编码转中文汉字
+【十、NCR编码转中文汉字】
      public string NCRtoString(string str)
         {
             string outStr = "";
@@ -96,11 +105,7 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
          
         }
 
-十一、
-程序关闭后 终止所有进程 
- Environment.Exit(0);
-
-十二、弹窗口确定 取消
+【十二、弹窗口确定 取消】
  DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
@@ -112,7 +117,7 @@ System.Diagnostics.Process.GetCurrentProcess().Kill();
 	e.Cancel = true;//点取消的代码 
             }
 
-十三、获取所有txt文件
+【十三、获取所有txt文件】
    public ArrayList getFileName()
         {
             ArrayList lists = new ArrayList();
@@ -127,24 +132,9 @@ System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
 
 
-十四 
-关闭窗口提示框
- DialogResult result = MessageBox.Show("确认退出吗？", "退出询问"
-           , MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (result != DialogResult.OK)
-            {
-                e.Cancel = true;//告诉窗体关闭这个任务取消
-                
-            }
-            else
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
+【十五  、toolTip1.SetToolTip(label1,"点击访问");】
 
-
-十五  toolTip1.SetToolTip(label1,"点击访问");
-
-十六  时间戳转时间
+【十六 、 时间戳转时间】
  private DateTime ConvertStringToDateTime(string timeStamp)
         {
             DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
@@ -153,16 +143,16 @@ System.Diagnostics.Process.GetCurrentProcess().Kill();
             return startTime.Add(toNow);
 
         }
-或者-----------
+	时间戳转时间秒
 	DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
             return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
 
 
-十七  正则替换TextBox里的内容
+【十七  、正则替换TextBox里的内容】
 postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
 
 
-十八 打开选择文件夹
+【十八 、打开选择文件夹】
 
  System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
             dialog.Description = "请选择所在文件夹";
@@ -176,7 +166,7 @@ postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
 
                 textBox1.Text = dialog.SelectedPath;
             }
-十九去掉路径中非法字符
+【十九、去掉路径中非法字符】
        #region 去掉路径中非法字符
         public string removeValid(string illegal)
         {
@@ -191,7 +181,7 @@ postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");
 
         #endregion
 
-【获取Listview选中项】
+【二十、获取Listview选中项】
 （contextmenustrip）
  for (int i = 0; i < listView1.SelectedItems.Count; i++)
             {
@@ -331,9 +321,7 @@ private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
 【label达到指定数量汉字自动换行】
 
             string cc = textBox2.Text.Trim().Substring(0, 20);//取前20个字符
-            string dd = textBox2.Text.Trim().Substring(20);  //后面字符
-
-                        
+            string dd = textBox2.Text.Trim().Substring(20);  //后面字符               
             label1.Text = cc.Trim() + "\n"+ dd.Trim();
 
 【richTextBox1.Lines.Length  richTextBox1.Lines【i】】

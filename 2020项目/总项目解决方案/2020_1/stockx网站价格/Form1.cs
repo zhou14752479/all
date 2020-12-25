@@ -39,7 +39,7 @@ namespace stockx网站价格
                 UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
-                Referer = "https://live.500.com/wanchang.php",//来源URL     可选项  
+                Referer = "https://stockx.com/api/products/air-jordan-6-retro-dmp-2020?includes=market,360&currency=USD&country=HK",//来源URL     可选项  
                 Allowautoredirect = true,//是否根据３０１跳转     可选项  
                 AutoRedirectCookie = true,//是否自动处理Cookie     可选项  
                                           //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
@@ -60,6 +60,7 @@ namespace stockx网站价格
         }
 
         #endregion
+
         #region POST请求
         /// <summary>
         /// POST请求
@@ -119,9 +120,9 @@ namespace stockx网站价格
 
         //        string url = "https://stockx.com/api/pricing?currency=USD&include_taxes=false";
         //        string postdata = "{\"context\":\"buying\",\"products\":[{\"sku\":\"" + sku + "\",\"amount\":" + price + ",\"quantity\":1}],\"discountCodes\":[\"\"]}";
-                
+
         //        string html = PostUrl(url, postdata);
-                
+
         //        MatchCollection fee = Regex.Matches(html, @"""amount"":([\s\S]*?),");
 
         //        foreach (Match item in fee)
@@ -142,7 +143,7 @@ namespace stockx网站价格
 
 
 
-
+        string cookie = "__cfduid=d101e1ff3afc336393f36fb084d7187c21608772971; stockx_homepage=sneakers; language_code=en; stockx_market_country=CN; _ga=GA1.2.1838221857.1608772970; _gid=GA1.2.269794033.1608772970; _pxvid=8ba8ff94-4586-11eb-9e17-0242ac12000e; tracker_device=f9d941ec-1ac8-43da-a0ab-1007512f9fe4; is_gdpr=false; cookie_policy_accepted=true; stockx_ip_region=CN; stockx_session=ee492459-0f2b-4475-8312-d999c30acc62; below_retail_type=; bid_ask_button_type=; brand_tiles_version=v1; browse_page_tile_size_update_web=true; bulk_shipping_enabled=true; default_apple_pay=false; intl_payments=true; multi_edit_option=beatLowestAskBy; product_page_affirm_callout_enabled_web=false; related_products_length=v2; riskified_recover_updated_verbiage=true; show_all_as_number=false; show_bid_education=v2; show_bid_education_times=1; show_how_it_works=true; show_watch_modal=true; pdp_refactor_web=undefined; recently_viewed_web_home=false; ops_delay_messaging_pre_checkout_ask=false; ops_delay_messaging_post_checkout_ask=false; ops_delay_messaging_selling=false; ops_delay_messaging_buying=false; ops_delay_messaging_ask_status=false; ops_delay_messaging_bid_status=false; ops_delay_messaging_pre_checkout_buy=false; ops_delay_messaging_post_checkout_buy=false; salesforce_chatbot_prod=true; web_low_inv_checkout=v0; _gcl_au=1.1.1530951235.1608772975; IR_gbd=stockx.com; _scid=ed10bff8-b5f9-4e30-b363-15f3a949c074; _pk_ses.421.1a3e=*; stockx_selected_locale=en; stockx_selected_region=CN; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2020-12-24T01%3A22%3A56.989Z; stockx_dismiss_modal_expiration=2021-12-24T01%3A22%3A56.988Z; _px3=b162b7f8253b8750421128a69ca49870e23dad278d79495b85be0cbee9b7ac8a:6fVf1apjlCBExOUKoyDJsP57+KN+MfN+SU4iQysMtohqCJHedX8d+J5ykohyxLF0Tb9Bwlgr+G3pILuZmpxNfQ==:1000:kJyvzTcY8oUi0KOqdAU8nqquxlRidQ4e0ItTESIuHZID1+DBIAdfXLkraadd6A9ULXcTkUNKzcDpk/Ud5/E+OzQSZYGbuzHK5oh0FTOaJ3sVtPrL9RX9bGNaSjV2qoTLQYX3HssB2S/86Y28MnncnOVgfKiT45vNnpk9r+q0Qck=; _pk_id.421.1a3e=8ca7f79043af9b2c.1608772976.1.1608772981.1608772976.; IR_9060=1608772981305%7C0%7C1608772975834%7C%7C; IR_PI=03762d2a-0097-11eb-98c6-0684bff74260%7C1608859381305; lastRskxRun=1608773019133; rskxRunCookie=0; rCookie=jhbgt4gy0f9vgj90em797kj25x24f; QuantumMetricUserID=9fc849c3f1cc516e1d1fb915483fffe0; QuantumMetricSessionID=ac8a8358389363aa4ecde5374ddc1e5f; _dd_s=rum=1&id=bf087f68-02a3-4df8-88ee-ffe12b3d77d9&created=1608772972396&expire=1608774088065";
 
             public void run()
         {
@@ -153,12 +154,14 @@ namespace stockx网站价格
                     string url = "https://xw7sbct9v6-1.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20vanilla%20JavaScript%203.32.1&x-algolia-application-id=XW7SBCT9V6&x-algolia-api-key=6bfb5abee4dcd8cea8f0ca1ca085c2b3";
                 string postdata = "{\"params\":\"query="+textBox1.Text.Trim()+"&facets=*&filters=\"}";
                     string html = PostUrl(url,postdata);
+               
                 Match huo = Regex.Match(html, @"""url"":""([\s\S]*?)""");
                 string aurl = "https://stockx.com/api/products/"+huo.Groups[1].Value+"?includes=market,360&currency=USD&country=HK";
 
                
-               string ahtml = gethtml(aurl, "");
+               string ahtml = gethtml(aurl, cookie);
                
+            
                 Match highestBid = Regex.Match(ahtml, @"""highestBid"":([\s\S]*?),");
               
 

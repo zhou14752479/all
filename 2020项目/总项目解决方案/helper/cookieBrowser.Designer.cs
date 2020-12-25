@@ -52,6 +52,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(1187, 671);
             this.webBrowser1.TabIndex = 2;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
             // 
             // button1
@@ -94,27 +95,28 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(661, 49);
+            this.button2.Location = new System.Drawing.Point(817, 46);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(137, 32);
             this.button2.TabIndex = 5;
-            this.button2.Text = "确定";
+            this.button2.Text = "登  录";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.textBox2.Location = new System.Drawing.Point(555, 51);
+            this.textBox2.Location = new System.Drawing.Point(588, 51);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 27);
+            this.textBox2.PasswordChar = '*';
+            this.textBox2.Size = new System.Drawing.Size(138, 27);
             this.textBox2.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label2.Location = new System.Drawing.Point(480, 51);
+            this.label2.Location = new System.Drawing.Point(513, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 20);
             this.label2.TabIndex = 3;
@@ -125,7 +127,7 @@
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.textBox1.Location = new System.Drawing.Point(367, 51);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 27);
+            this.textBox1.Size = new System.Drawing.Size(128, 27);
             this.textBox1.TabIndex = 2;
             // 
             // label1
@@ -153,7 +155,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "cookieBrowser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "cookieBrowser";
             this.Load += new System.EventHandler(this.cookieBrowser_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

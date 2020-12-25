@@ -7,6 +7,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -21,6 +23,47 @@ namespace 主程序202011
         {
             InitializeComponent();
         }
+
+
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
+
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -71,7 +114,7 @@ namespace 主程序202011
         {
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
                 request.ContentType = "application/x-www-form-urlencoded";
@@ -107,248 +150,68 @@ namespace 主程序202011
         }
 
         #endregion
-        string code = "daa9ed7a7712475f4ff3ccd39fdab4cd";
-        string credential = "84363624-5558-4e4c-96f3-f92972f90953";
-        /// <summary>
-        /// 获取课程
-        /// </summary>
-        /// 
-        public void getlog()
-        {
-            textBox2.Text = "";
-            for (int year = 2014; year < 2021; year++)
-            {
 
+    
 
-                string url = "https://yun.xjrsjxjy.com/API/GetStudyCoursewares.ashx?code=" + code + "&credential=" + credential + "&year=" + year + "&isFree=false";
-
-                string html = GetUrl(url);
-                if (html.Contains("登录超时"))
-                {
-                    MessageBox.Show("账号已掉线");
-                    return;
-                }
-                MatchCollection ids = Regex.Matches(html, @"""Id"":""([\s\S]*?)""");
-                MatchCollection names = Regex.Matches(html, @"""Name"":""([\s\S]*?)""");
-                MatchCollection Progress = Regex.Matches(html, @"""LearningProgress"":([\s\S]*?),");
-
-                for (int j = 0; j < ids.Count; j++)
-                {
-
-                    textBox2.Text += DateTime.Now.ToString("MM-dd HH:mm") +"："+year + "年.." + names[j].Groups[1].Value.ToString() + "【" + (Convert.ToDouble(Progress[j].Groups[1].Value) * 100).ToString() + "%】"+"\r\n";
-
-
-                }
-
-
-            }
-        }
-        public void GetStudyCoursewares()
-        {
-           
-
-
-
-
-
-            for (int year = 2014; year < 2021; year++)
-            {
-
-
-                string url = "https://yun.xjrsjxjy.com/API/GetStudyCoursewares.ashx?code=" + code + "&credential=" + credential + "&year=" + year + "&isFree=false";
-
-                string html = GetUrl(url);
-                if (html.Contains("登录超时"))
-                {
-                    MessageBox.Show("账号已掉线");
-                    return;
-                }
-                MatchCollection ids = Regex.Matches(html, @"""Id"":""([\s\S]*?)""");
-                MatchCollection names = Regex.Matches(html, @"""Name"":""([\s\S]*?)""");
-                MatchCollection Progress = Regex.Matches(html, @"""LearningProgress"":([\s\S]*?),");
-                
-                for (int j = 0; j < ids.Count; j++)
-                {
-
-                  
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                        lv1.SubItems.Add(year.ToString());
-                        lv1.SubItems.Add(names[j].Groups[1].Value.ToString());
-                        lv1.SubItems.Add((Convert.ToDouble(Progress[j].Groups[1].Value) * 100).ToString() + "%");
-                        lv1.SubItems.Add(ids[j].Groups[1].Value.ToString());
-                   
-
-
-                }
-
-               
-        }
-    }
-
-
-
-        /// <summary>
-        /// 获取子课程
-        /// </summary>
-        public ArrayList GetChapters(string year, string coursewareId)
-        {
-            ArrayList list = new ArrayList();
-            string url = "https://yun.xjrsjxjy.com/API/GetChapters.ashx?code=" + code + "&credential=" + credential + "&year=" + year + "&coursewareId=" + coursewareId;
-
-            string html = GetUrl(url);
-            if (html.Contains("登录超时"))
-            {
-                //账号掉线
-                return null;
-            }
-            MatchCollection ids = Regex.Matches(html, @"""Id"":""([\s\S]*?)"",([\s\S]*?)""TotalSeconds"":([\s\S]*?)\}");
-            MatchCollection LearningProgress = Regex.Matches(html, @"""LearningProgress"":([\s\S]*?),");
-
-            for (int j = 0; j < ids.Count; j++)
-            {
-               
-                list.Add(ids[j].Groups[1].Value+"#"+ ids[j].Groups[3].Value+"#"+ LearningProgress[j].Groups[1].Value);
-               
-            }
-
-            return list;
-
-        }
-
-        public void study(object parame)
-        {
-           
-            string[] text = parame.ToString().Split(new string[] { "#" }, StringSplitOptions.None);
-            string year = text[0];
-            string coursewareId = text[1];
-            string chapterId = text[2];
-            
-            int totalseconds = (Convert.ToInt32(Convert.ToDouble(text[3])))+150;
-            
-            string url = "https://yun.xjrsjxjy.com/API/SaveLearningProgress.ashx";
-            string postdata = "code="+code+"&credential="+credential+"&year="+year+"&coursewareId="+ coursewareId + "&chapterId="+ chapterId + "&type=0&progress=0";
-            
-            string html = PostUrl(url,postdata);
-            for (int i = 1; i < totalseconds; i++)
-            {
-                string postdata1 = "code=" + code + "&credential=" + credential + "&year=" + year + "&coursewareId=" + coursewareId + "&chapterId=" + chapterId + "&type=1&progress="+i;
-            
-                if (i % 60 == 0)
-                {
-                    PostUrl(url, postdata1);
-                    getlog();
-                    //button2.PerformClick();
-                }
-                Thread.Sleep(1011);
-            }
-
-        }
-        
-        public void run()
-        {
-            if (listView1.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("请勾选需要学习的课程");
-                button1.Text = "开始学习";
-                return;
-            }
-
-
-            try
-            {
-                for (int i = 0; i < listView1.CheckedItems.Count; i++)
-                {
-                    string year = listView1.CheckedItems[i].SubItems[1].Text;
-                    string coursewareId = listView1.CheckedItems[i].SubItems[4].Text;
-                    ArrayList chapterIds = GetChapters(year,coursewareId);
-                    foreach (string values in chapterIds)
-                    {
-                        string[] value = values.Split(new string[] { "#" }, StringSplitOptions.None);
-                        
-                        string chapterId = value[0];
-                        string seconds = value[1];
-                        string LearningProgress = value[2];
-                        //Thread thread = new Thread(new ParameterizedThreadStart(study));
-                        //string o = year+","+coursewareId+","+chapterId;
-                        //thread.Start((object)o);
-                        //Control.CheckForIllegalCrossThreadCalls = false;
-                        
-                        if (LearningProgress.Trim() != "1")
-                        {
-                            string o = year + "#" + coursewareId + "#" + chapterId + "#" + seconds;
-                            study((object)o);
-                        }
-                        
-                       
-                       
-                    }
-
-                }
-
-                button1.Text = "学习完毕";
-                MessageBox.Show("已全部学习完毕");
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-        }
+       
         private void 新疆继续教育_Load(object sender, EventArgs e)
         {
-
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
-        Thread t;
-        private void button1_Click(object sender, EventArgs e)
+
+
+       
+
+        public string getcode()
         {
-            Match cod = Regex.Match(textBox1.Text, @"code=([\s\S]*?)&");
-            Match cre = Regex.Match(textBox1.Text, @"credential=([\s\S]*?)&");
+            string code = "";
+            while(code=="")
+            { 
+                GetUrl("http://49.232.195.69:8989/wxapi/setcode&key=BA7F17B2E43D1A54");
+                string html = GetUrl("http://49.232.195.69:8989/wxapi/getcode&key=BA7F17B2E43D1A54");
+                Match cod = Regex.Match(html, @"code"":""([\s\S]*?)""");
+                if (cod.Groups[1].Value != "")
+                {
+                    code = cod.Groups[1].Value;
+                    return code;
+                }
 
-            code = cod.Groups[1].Value;
-            credential = cre.Groups[1].Value;
 
-            listView1.Items.Clear();
-            GetStudyCoursewares();
-            for (int i = 0; i < listView1.Items.Count; i++)
+            }
+
+            return code;
+        }
+
+
+        public string login(string user,string pass,string code)
+        {
+            string cre = PostUrl("https://yun.xjrsjxjy.com/API/BindStudent.ashx", "code=" + code + "&idCardNumber=" + user + "&password=" + pass);
+            if (cre != "")
             {
-                listView1.Items[i].Checked = true;
+               string credential = cre.Replace("\"", "");
+                //写入config.ini配置文件
+                IniWriteValue("values", user, credential);
+
+                return credential;
+            }
+            else
+            {
+                return "";
             }
 
 
-
-            #region 通用检测
-
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
-
-            if (!html.Contains(@"xinjiang"))
-            {
-                MessageBox.Show("");
-                return;
-            }
-
-            #endregion
-
-            if (t == null || !t.IsAlive)
-            {
-                t = new Thread(run);
-                t.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-                button1.Text = "正在学习...";
-            }
         }
-        
-        private void button2_Click(object sender, EventArgs e)
+
+
+        public string getinfo( string newcode,string cre)
         {
-           
+            string html = GetUrl("https://yun.xjrsjxjy.com/API/GetStudent.ashx?code="+newcode+"&credential="+cre+"&year=2020 ");
+            Match name = Regex.Match(html, @"""Name"":""([\s\S]*?)""");
 
-           
+            return name.Groups[1].Value;
         }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-           
-        }
+     
+  
 
         private void 新疆继续教育_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -384,11 +247,14 @@ namespace 主程序202011
 
                 for (int i = 0; i < text.Length; i++)
                 {
-                    //string[] value = text[i].Split(new string[] { "----" }, StringSplitOptions.None);
-                    //ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
-                    //lv2.SubItems.Add(value[0].Trim());
-                    //lv2.SubItems.Add(value[1].Trim());
-
+                    string[] value = text[i].Split(new string[] { "----" }, StringSplitOptions.None);
+                    ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
+                    lv2.SubItems.Add(value[0].Trim());
+                    lv2.SubItems.Add(value[1].Trim());
+                    lv2.SubItems.Add("");
+                    lv2.SubItems.Add("");
+                    lv2.SubItems.Add("");
+                    lv2.SubItems.Add("");
 
                 }
             }
@@ -397,5 +263,148 @@ namespace 主程序202011
 
 
         }
+
+
+
+        xjstudy xj = new xjstudy();
+
+        Thread t;
+        public void denglu()
+        {
+            for (int i = 0; i < listView2.SelectedItems.Count; i++)
+            {
+                string card = listView2.SelectedItems[i].SubItems[1].Text;
+                string pass = listView2.SelectedItems[i].SubItems[2].Text;
+
+                if (ExistINIFile())
+                {
+
+                    string cre = IniReadValue("values", card);  //读取config.ini cre
+
+                    if (cre != "")
+                    {
+                        string newcode = xj.getcode(cre);
+                        string name = getinfo(newcode, cre);
+
+                        if (name != "")
+                        {
+                            listView2.SelectedItems[i].SubItems[3].Text = name;
+                            listView2.SelectedItems[i].SubItems[4].Text = "登录成功";
+                            listView2.SelectedItems[i].SubItems[5].Text = cre;
+                        }
+
+
+                        else
+                        {
+                           string code = getcode();
+                          string  cre1 = login(card, pass, code);
+
+                            string newcode1 = xj.getcode(cre1);
+                            if (cre != "")
+                            {
+                                name = getinfo(newcode1, cre1);
+                                listView2.SelectedItems[i].SubItems[3].Text = name;
+                                listView2.SelectedItems[i].SubItems[4].Text = "登录成功";
+                                listView2.SelectedItems[i].SubItems[5].Text = cre1;
+
+                            }
+                            else
+                            {
+
+                                listView2.SelectedItems[i].SubItems[4].Text = "登录失败";
+                                listView2.SelectedItems[i].SubItems[5].Text = cre;
+
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                        string code = getcode();
+                        cre = login(card, pass, code);
+
+                        string newcode = xj.getcode(cre);
+                        if (cre != "")
+                        {
+                            string name = getinfo(newcode, cre);
+                            listView2.SelectedItems[i].SubItems[3].Text = name;
+                            listView2.SelectedItems[i].SubItems[4].Text = "登录成功";
+                            listView2.SelectedItems[i].SubItems[5].Text = cre;
+
+                        }
+                        else
+                        {
+
+                            listView2.SelectedItems[i].SubItems[4].Text = "登录失败";
+                            listView2.SelectedItems[i].SubItems[5].Text = cre;
+
+                        }
+
+                    }
+
+                }
+
+
+
+
+            }
+        }
+
+        private void 登录ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            #region 通用检测
+
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
+
+            if (!html.Contains(@"xinjiang"))
+            {
+                MessageBox.Show("");
+                return;
+            }
+
+            #endregion
+
+            if (t == null || !t.IsAlive)
+            {
+
+                t = new Thread(denglu);
+                t.Start();
+                
+            }
+
+        }
+
+        private void 开始学习ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView2.SelectedItems.Count; i++)
+            {
+
+
+
+                string name = listView2.SelectedItems[i].SubItems[3].Text;
+                string cre = listView2.SelectedItems[i].SubItems[5].Text;
+                xjstudy xj = new xjstudy();
+
+                xj.getlogs += new xjstudy.GetLogs(setlog);  //先绑定委托在执行后面的方法
+
+
+
+                xj.credential = cre;
+                xj.newt();
+                xj.username = name;
+
+
+            }
+        }
+
+        public void setlog(string str)
+        {
+           
+            logtxt.Text += str + Environment.NewLine;
+        }
+
+
+
+
     }
 }

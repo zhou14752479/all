@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>https://v.douyin.com/JbcAaUF/ 
+https://v.douyin.com/Jbc6Y1U/ 
+https://v.douyin.com/JbckSqw/ 
+https://v.douyin.com/JbckHaU/ 
+https://v.douyin.com/JbcNNuu/ 
+https://v.douyin.com/JbcSMxV/ 
+https://v.douyin.com/Jbckd18/ 
+https://v.douyin.com/JbcYK5r/ 
+https://v.douyin.com/JbcNUjW/ 
+https://v.douyin.com/JbcPNyg/ 
+https://v.douyin.com/Jbcf3Q9/ 
+https://v.douyin.com/JbcLgMD/ 
+https://v.douyin.com/JbcA3g5/ 
+https://v.douyin.com/JbcPGc9/ 
+https://v.douyin.com/JbcJW5M/ 
+https://v.douyin.com/JbcLLtd/ 
+https://v.douyin.com/JbvoELp/ 
+https://v.douyin.com/JbcU76m/ 
+https://v.douyin.com/JbcAVGC/ 
+https://v.douyin.com/JbcPkBB/ 
+https://v.douyin.com/Jbc2Xb2/ 
+https://v.douyin.com/Jbc2Nxy/ 
+https://v.douyin.com/JbTnvWe/ 
+https://v.douyin.com/JbcB6qb/ 
+https://v.douyin.com/JbcBffM/ 
+https://v.douyin.com/Jbchgv4/ 
+https://v.douyin.com/JbchKMD/ 
+https://v.douyin.com/JbcByTJ/ 
+https://v.douyin.com/JbcYjv5/ 
+https://v.douyin.com/JbcDjB9/ 
+https://v.douyin.com/JbcFsj9/ 
+https://v.douyin.com/JbcUVUS/ 
+https://v.douyin.com/Jbce1Bh/ 
+https://v.douyin.com/JbcSFfM/ 
+https://v.douyin.com/JbcAmDp/ 
+https://v.douyin.com/JbcBxVe/ 
+https://v.douyin.com/Jbcy7E5/ 
+https://v.douyin.com/JbcACXc/ 
+https://v.douyin.com/JbcrXMq/ 
+https://v.douyin.com/JbcXQj2/ 
+https://v.douyin.com/JbcCPP7/ 
+https://v.douyin.com/Jbc9sUN/ 
+https://v.douyin.com/JbcGgMM/ 
+https://v.douyin.com/Jbcbjfx/ 
+https://v.douyin.com/JbcG6fT/ 
+https://v.douyin.com/JbctLPG/ 
+https://v.douyin.com/Jbc9EA5/ 
+https://v.douyin.com/JbcveKr/ 
+https://v.douyin.com/Jbcqedm/ 
+https://v.douyin.com/Jbc9Das/ 
+https://v.douyin.com/Jbc3Sdf/ 
+https://v.douyin.com/JbctVKF/ 
+https://v.douyin.com/JbcX5po/ 
+https://v.douyin.com/Jbcn41o/ 
+https://v.douyin.com/JbcvsXM/ 
+https://v.douyin.com/JbcH5G4/ 
+https://v.douyin.com/Jbc9LCr/ 
+https://v.douyin.com/Jbc4Sbn/ 
+https://v.douyin.com/Jbca6uf/ 
+https://v.douyin.com/JbctkME/ 
+https://v.douyin.com/JbcnhWv/ 
+https://v.douyin.com/JbcvsHk/ 
+https://v.douyin.com/JbcWGT2/ 
+https://v.douyin.com/JbcsbL9/ 
+https://v.douyin.com/Jbcxnuk/ 
+https://v.douyin.com/JbcW7DR/ 
+https://v.douyin.com/JbcxrSK/ 
+https://v.douyin.com/JbcX7q2/ 
+https://v.douyin.com/JbcGSuH/ 
+https://v.douyin.com/JbcaFve/ 
+https://v.douyin.com/JbcaVVd/ 
+https://v.douyin.com/Jbcg8GM/ 
+https://v.douyin.com/Jbc78HN/ 
+https://v.douyin.com/JbcXvS9/ 
+https://v.douyin.com/Jbc9Ndm/ 
+https://v.douyin.com/JbcaQ2M/ 
+https://v.douyin.com/JbcHt7J/ 
+https://v.douyin.com/JbcVXhT/ 
+https://v.douyin.com/JbcCPHh/ 
+https://v.douyin.com/JbcvhFY/ 
+https://v.douyin.com/JbcuVbf/ 
+https://v.douyin.com/Jbc5qPU/ 
+https://v.douyin.com/Jbc4ns3/ 
+https://v.douyin.com/JbcpJD6/ 
+https://v.douyin.com/Jbcp3or/ 
+https://v.douyin.com/JbcCxYu/ 
+https://v.douyin.com/Jbcbt8s/ 
+https://v.douyin.com/JbcakR8/ 
+https://v.douyin.com/Jbc4DfM/ 
+https://v.douyin.com/Jbc41EN/ 
+https://v.douyin.com/Jbc5fmu/ 
+https://v.douyin.com/Jbc4GsB/ 
+https://v.douyin.com/JbcH7cy/ 
+https://v.douyin.com/JbcHWG3/ 
+https://v.douyin.com/JbctDek/ 
+https://v.douyin.com/Jbc7rXC/ 
+https://v.douyin.com/JbcqhCb/ 
+https://v.douyin.com/JbcXHCH/ 
+https://v.douyin.com/JbcxUK8/ 
+https://v.douyin.com/JbctUBo/ 
+https://v.douyin.com/JbctrNA/ 
+https://v.douyin.com/JbcVuyH/ 
+https://v.douyin.com/JbcGLRN/ 
+https://v.douyin.com/Jbcp28a/ 
+https://v.douyin.com/JbcG8QD/ 
+https://v.douyin.com/JbcTLQj/ 
+https://v.douyin.com/JbcgEnB/ 
+https://v.douyin.com/Jbc9wTF/ 
+https://v.douyin.com/JbcmsK5/ 
+https://v.douyin.com/JbcW8Qj/ 
+https://v.douyin.com/JbcVkme/ 
+https://v.douyin.com/JbcGeDN/ 
+https://v.douyin.com/JbcH7ce/ 
+https://v.douyin.com/JbcnX6J/ 
+https://v.douyin.com/JbcHpUE/ 
+https://v.douyin.com/JbcmmXU/ 
+https://v.douyin.com/JbcCUmS/ 
+https://v.douyin.com/Jbc5uWU/ 
+https://v.douyin.com/Jbcto4d/ 
+https://v.douyin.com/Jbc7kf1/ 
+https://v.douyin.com/Jbc9u8X/ 
+https://v.douyin.com/JbcHUJu/ 
+https://v.douyin.com/Jbc7t6T/ 
+https://v.douyin.com/JbcGqWH/ 
+https://v.douyin.com/JbcpCqf/ 
+https://v.douyin.com/JbcgN95/ 
+https://v.douyin.com/JbcxeKn/ 
+https://v.douyin.com/JbcuLxw/ 
+https://v.douyin.com/JbctkG4/ 
+https://v.douyin.com/JbcVpAM/ 
+https://v.douyin.com/JbcsFAG/ 
+https://v.douyin.com/JbcxSga/ 
+https://v.douyin.com/JbcGJyE/ 
+https://v.douyin.com/JbcgLAS/ 
+https://v.douyin.com/Jbc53Cf/ 
+https://v.douyin.com/Jbcb4My/ 
+https://v.douyin.com/JbcHMt5/ 
+https://v.douyin.com/Jbc3H6b/ 
+https://v.douyin.com/Jbcpy2G/ 
+https://v.douyin.com/Jbcupmq/ 
+https://v.douyin.com/JbcqKJ1/ 
+https://v.douyin.com/Jbcaju5/ 
+https://v.douyin.com/Jbcuadt/ 
+https://v.douyin.com/JbcGgE7/ 
+https://v.douyin.com/Jbc44wB/ 
+https://v.douyin.com/JbcsTy4/ 
+https://v.douyin.com/Jbcaxyv/ 
+https://v.douyin.com/JbcbAGm/ 
+https://v.douyin.com/JbcpKcS/ 
+https://v.douyin.com/Jbc5bhn/ 
+https://v.douyin.com/Jbcqe9d/ 
+https://v.douyin.com/JbcXvAP/ 
+https://v.douyin.com/Jbc4qPp/ 
+https://v.douyin.com/Jbc76Tr/ 
+https://v.douyin.com/Jbc9q9C/ 
+https://v.douyin.com/JbcCS32/ 
+https://v.douyin.com/JbcapDQ/ 
+https://v.douyin.com/JbcWQtT/ 
+https://v.douyin.com/JbcvC2G/ 
+https://v.douyin.com/Jbc7xTm/ 
+https://v.douyin.com/JbcxC5C/ 
+https://v.douyin.com/JbcHbML/ 
+https://v.douyin.com/Jbctk9w/ 
+https://v.douyin.com/JbcWLP5/ 
+https://v.douyin.com/JbcpxRx/ 
+https://v.douyin.com/JbcqGu3/ 
+https://v.douyin.com/Jbcufud/ 
+https://v.douyin.com/Jbcb3v7/ 
+https://v.douyin.com/JbcGsQA/ 
+https://v.douyin.com/JbcpaeS/ 
+https://v.douyin.com/JbcvYEM/ 
+https://v.douyin.com/JbcXvNV/ 
+https://v.douyin.com/JbcXSh5/ 
+https://v.douyin.com/JbcmcFW/ 
+https://v.douyin.com/JbcvBdd/ 
+https://v.douyin.com/Jbcu1a9/ 
+https://v.douyin.com/Jbcb4oJ/ 
+https://v.douyin.com/JbcabS9/ 
+https://v.douyin.com/JbcGu2Q/ 
+https://v.douyin.com/JbcHf6e/ 
+https://v.douyin.com/Jbc5vo1/ 
+https://v.douyin.com/JbcuC9C/ 
+https://v.douyin.com/JbcnyGP/ 
+https://v.douyin.com/JbcHh8t/ 
+https://v.douyin.com/JbcxuEc/ 
+https://v.douyin.com/JbcTR4J/ 
+https://v.douyin.com/Jbc5Ja2/ 
+https://v.douyin.com/JbcqvyR/ 
+https://v.douyin.com/JbcVBFt/ 
+https://v.douyin.com/JbcVpaL/ 
+https://v.douyin.com/Jbc9oq8/ 
+https://v.douyin.com/JbcWJuc/ 
+https://v.douyin.com/Jbc7XuP/ 
+https://v.douyin.com/Jbcxwhj/ 
+https://v.douyin.com/JbcGvM1/ 
+https://v.douyin.com/Jbctps6/ 
+https://v.douyin.com/JbcWWcp/ 
+https://v.douyin.com/Jbcqw1G/ 
+https://v.douyin.com/Jbc7TJq/ 
+https://v.douyin.com/JbcvUFG/ 
+https://v.douyin.com/JbcHj6o/ 
+https://v.douyin.com/Jbcxpt9/ 
+https://v.douyin.com/Jbc7DNq/ 
+https://v.douyin.com/Jbcpuvv/ 
+https://v.douyin.com/Jbc33qB/ 
+https://v.douyin.com/Jbcvv83/ 
+https://v.douyin.com/Jbc7raL/ 
+https://v.douyin.com/Jbc9XDn/ 
+https://v.douyin.com/JbcHv2u/ 
+https://v.douyin.com/JbcmdNw/ 
+https://v.douyin.com/Jbcgwk1/ 
+https://v.douyin.com/JbcbHY7/ 
+https://v.douyin.com/JbcuUdL/ 
+https://v.douyin.com/Jbcby27/ 
+https://v.douyin.com/JbcvPha/ 
+https://v.douyin.com/Jbc56n8/ 
+https://v.douyin.com/Jbc74DA/ 
+https://v.douyin.com/JbcHpC2/ 
+https://v.douyin.com/JbcogjN/ 
+https://v.douyin.com/Jb3juqP/ 
+https://v.douyin.com/Jb3MvQa/ 
+https://v.douyin.com/Jb3L4nd/ </value>
+  </data>
+</root>

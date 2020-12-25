@@ -318,14 +318,13 @@ namespace 美团
 
                 try
                 {
-                   
                   
                         for (int i = 0; i < 100001; i = i + 100)
 
                         {
 
                             string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityId + "/cate/" + cateid + "?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
-
+                      
                             string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
@@ -531,19 +530,19 @@ namespace 美团
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
+            //#region 通用检测
 
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
+            //string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
 
-            if (!html.Contains(@"meituannaicha"))
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
+            //if (!html.Contains(@"meituannaicha"))
+            //{
+            //    MessageBox.Show("验证失败");
+            //    return;
+            //}
 
 
 
-            #endregion
+            //#endregion
 
             status = true;
             switch (comboBox1.Text)
@@ -578,22 +577,28 @@ namespace 美团
                 case "教育":
                     cateid = "20285";
                     break;
+                case "KTV":
+                    cateid = "10";
+                    break;
+                case "洗浴汗蒸":
+                    cateid = "112";
+                    break;
 
+            }
+
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
 
             //if (thread == null || !thread.IsAlive)
             //{
-            //    thread = new Thread(run);
+            //    thread = new Thread(getall);
             //    thread.Start();
             //    Control.CheckForIllegalCrossThreadCalls = false;
             //}
-
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(getall);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
 
         }
 

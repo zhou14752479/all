@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,12 @@ namespace helper
 {
     public partial class cookieBrowser : Form
     {
+
+        [DllImport("user32.dll", EntryPoint = "keybd_event", SetLastError = true)]
+        public static extern void keybd_event(Keys bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
+
+
+
         public static string webUrl = "";
         public static string cookie = "";
         public cookieBrowser(string url)
@@ -29,7 +36,7 @@ namespace helper
 
         private void cookieBrowser_Load(object sender, EventArgs e)
         {
-            webBrowser1.Visible = false;
+           webBrowser1.Visible = false;
             timer1.Start();
             button2.Enabled = true;
 
@@ -60,6 +67,7 @@ namespace helper
 
         public void myLogin()
         {
+            webBrowser1.Visible = true;
 
             try
 
@@ -75,32 +83,37 @@ namespace helper
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
                 if (count > 0)
                 {
-                    webBrowser1.Visible = true;
-
                     mycon.Close();
-                    HtmlDocument dc = webBrowser1.Document;
-                    HtmlElementCollection es = dc.GetElementsByTagName("input");   //GetElementsByTagName返回集合
-                    foreach (HtmlElement e1 in es)
-                    {
-                        if (e1.GetAttribute("name") == "email")
-                        {
-                            e1.SetAttribute("value", textBox1.Text.Trim());
-                        }
-                        if (e1.GetAttribute("name") == "password")
-                        {
-                            e1.SetAttribute("value", textBox2.Text.Trim());
-                        }
-                    }
 
-                    HtmlElementCollection es2 = dc.GetElementsByTagName("a");   //GetElementsByTagName返回集合
-                    foreach (HtmlElement e1 in es2)
-                    {
-                        if (e1.GetAttribute("id") == "dologin")
-                        {
-                            e1.InvokeMember("click");
-                        }
 
-                    }
+
+                    webBrowser1.Focus();
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+                    SendKeys.Send("{BACKSPACE}");
+
+
+
+
+                    Clipboard.SetDataObject(textBox1.Text.Trim());
+
+                   
+                    keybd_event(Keys.ControlKey, 0, 0, 0);
+                    keybd_event(Keys.V, 0, 0, 0);
+                    keybd_event(Keys.ControlKey, 0, KEYEVENTF_KEYUP, 0);
+
+                    keybd_event(Keys.Tab, 0, 0, 0);
+                    SendKeys.Send(textBox2.Text.Trim());
+                    SendKeys.Send("{ENTER}");
 
                 }
                 else
@@ -117,13 +130,32 @@ namespace helper
             }
         }
             #endregion
+
             private void button2_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == "" || textBox2.Text == "")
+            {
+                MessageBox.Show("请输入账号信息");
+                return;
+            }
+
             myLogin();
             webBrowser1.Visible = true;
-            button2.Enabled = false;
+         
+        }
+        public const int KEYEVENTF_KEYUP = 2;
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+          
+          
         }
 
-       
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+           
+        }
+
+     
     }
 }

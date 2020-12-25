@@ -106,5 +106,10 @@ namespace 主程序202011
                 zanting = false;
             }
         }
+
+        private void 阿里采购_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

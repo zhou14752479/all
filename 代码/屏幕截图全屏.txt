@@ -1,0 +1,31 @@
+private void SaveImage(Image image)
+        {
+            if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                string fileName = saveFileDialog1.FileName;
+                string extension = Path.GetExtension(fileName);
+                if (extension == ".jpg")
+                {
+                    image.Save(fileName, ImageFormat.Jpeg);
+                }
+                else
+                {
+                    image.Save(fileName, ImageFormat.Bmp);
+                }
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            //创建图象，保存将来截取的图象
+            Bitmap image = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            Graphics imgGraphics = Graphics.FromImage(image);
+            //设置截屏区域 柯乐义
+            imgGraphics.CopyFromScreen(0, 0, 0, 0, new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));
+            //保存
+            SaveImage(image);
+            listView1.Items.Clear();
+            //Bitmap bmp = new Bitmap();
+           // string url = DecodeQrCode(bmp);
+           // System.Diagnostics.Process.Start(url);
+        }

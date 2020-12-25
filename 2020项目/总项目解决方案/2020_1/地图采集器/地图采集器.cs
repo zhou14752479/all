@@ -24,6 +24,7 @@ namespace 地图采集器
         {
             InitializeComponent();
         }
+
         #region GET请求
         /// <summary>
         /// GET请求

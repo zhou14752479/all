@@ -76,7 +76,7 @@ namespace 研修网下载
 
                         string Url = "http://q.yanxiu.com/upload/viewResource.tc?resId=" + i;
 
-                        string html = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        string html = method.VerifyGet(Url,cookie, "yanxiuwang");  //定义的GetRul方法 返回 reader.ReadToEnd()
                         string downUrl = "http://q.yanxiu.com/uploadResource/DownloadServlet?type=res2&resId=" + i;
 
                         Match title = Regex.Match(html, @"<h1>([\s\S]*?)</h1>");
@@ -219,6 +219,7 @@ namespace 研修网下载
         ArrayList geshiList = new ArrayList();
         private void button2_Click(object sender, EventArgs e)
         {
+          
             if (checkBox1.Checked == true)
             {
                 geshiList.Add("doc");
@@ -252,16 +253,11 @@ namespace 研修网下载
                 geshiList.Add("zip");
             }
 
-
-
-
-
-
-            
+         
 
                  textBox6.Text += "开始下载";
                 cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
-            MessageBox.Show(cookie);
+          
                 status = true;
                 Thread thread = new Thread(new ThreadStart(run));
                 thread.Start();

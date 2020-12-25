@@ -11,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -129,6 +130,78 @@ namespace helper
         #endregion
 
 
+        #region verify 调用主请求
+        public static bool verify = false;
+        public static bool forbid = false;
+        public static string VerifyGet(string Url, string COOKIE,string project)
+        {
+            if (forbid == false)
+            {
+                if (verify == false)
+                {
+
+                    string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+                    if (html.Contains(project))
+                    {
+                        verify = true;
+                        string strhtml = Getverifyurl(Url, COOKIE);
+                        return strhtml;
+                    }
+                    else
+                    {
+                        forbid = true;
+                       // MessageBox.Show(" ");
+                        return "";
+
+                    }
+                }
+                else
+                {
+                    string strhtml = Getverifyurl(Url, COOKIE);
+                    return strhtml;
+
+                }
+            }
+            else
+            {
+                return "";
+            }
+        }
+        #endregion
+
+        #region verify geturl
+
+        public static string Getverifyurl(string Url,string COOKIE)
+        {
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Referer = "";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 5000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+            }
+        }
+
+        #endregion
+
         #region  获取cookie
         /// <summary>
         /// 获取cookie
@@ -177,6 +250,7 @@ namespace helper
         }
 
         #endregion
+       
 
         #region  listView导出CSV
         /// <summary>
@@ -184,6 +258,7 @@ namespace helper
         /// </summary>
         /// <param name="listView"></param>
         /// <param name="includeHidden"></param>
+        /// 
         public static void ListViewToCSV(ListView listView, bool includeHidden)
         {
             //make header string
@@ -207,7 +282,8 @@ namespace helper
             File.WriteAllText(filePath, result.ToString());
             MessageBox.Show("导出成功");
         }
-
+    
+       
         private static void WriteCSVRow(StringBuilder result, int itemsCount, Func<int, bool> isColumnNeeded, Func<int, string> columnValue)
         {
             bool isFirstTime = true;
@@ -540,6 +616,44 @@ namespace helper
 
         #endregion
 
+
+        #region 苏飞请求获取location【推荐】
+        public static string getSFlocation(string url, string COOKIE, string data)
+        {
+            HttpHelper http = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = url,//URL     必需项  
+                Method = "GET",//URL     可选项 默认为Get  
+                Timeout = 100000,//连接超时时间     可选项默认为100000  
+                ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
+                IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
+                Cookie = COOKIE,
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
+                ContentType = "text/html",//返回类型    可选项有默认值  
+                Referer = "https://live.500.com/wanchang.php",//来源URL     可选项  
+                Allowautoredirect = false,//获取跳转的链接 此项需要false   是否根据３０１跳转     可选项  
+                AutoRedirectCookie = true,//是否自动处理Cookie     可选项  
+                                          //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
+                                          //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
+                Postdata = data,//Post数据     可选项GET时不需要写  
+                                //ProxyIp = "192.168.1.105：2020",//代理服务器ID     可选项 不需要代理 时可以不设置这三个参数  
+                                //ProxyPwd = "123456",//代理服务器密码     可选项  
+                                //ProxyUserName = "administrator",//代理服务器账户名     可选项  
+                ResultType = ResultType.String,//返回数据类型，是Byte还是String  
+
+            };
+            HttpResult result = http.GetHtml(item);
+            string html = result.Html;
+            string RedirectUrl = result.RedirectUrl;
+
+
+            return RedirectUrl;
+
+        }
+
+        #endregion
         #region listview转datable
         /// <summary>
         /// listview转datable
@@ -670,7 +784,36 @@ namespace helper
         }
         #endregion
 
-        
+        #region 获取Mac地址
+        /// <summary>
+        /// 获取Mac地址
+        /// </summary>
+        /// <returns></returns>
+        public static string GetMacAddress()
+        {
+            try
+            {
+                string strMac = string.Empty;
+                ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+                ManagementObjectCollection moc = mc.GetInstances();
+                foreach (ManagementObject mo in moc)
+                {
+                    if ((bool)mo["IPEnabled"] == true)
+                    {
+                        strMac = mo["MacAddress"].ToString();
+                    }
+                }
+                moc = null;
+                mc = null;
+                return strMac;
+            }
+            catch
+            {
+                return "unknown";
+            }
+        }
+
+        #endregion
 
         #region NPOI导出表格
         public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
@@ -1179,7 +1322,7 @@ namespace helper
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
-                request.Referer = "http://www.juxiangyou.com/fun/play/crazy28/index";
+                request.Referer = "";
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
@@ -1194,12 +1337,12 @@ namespace helper
             }
             catch (System.Exception ex)
             {
-                ex.ToString();
+                return(ex.ToString());
 
 
 
             }
-            return "";
+           
         }
         #endregion
 
@@ -1321,7 +1464,7 @@ namespace helper
         }
         #endregion
 
-
+        #region  修改IE版本
         public enum IeVersion
         {
             IE7 = 7,
@@ -1383,6 +1526,8 @@ namespace helper
             }
             return mode;
         }
+
+        #endregion
 
         #region  获取32位MD5加密
         public string GetMD5(string txt)
@@ -1530,6 +1675,7 @@ namespace helper
 
         #endregion
 
+        #region  图片URL转image
         public static Image imageurltoimage(string url,string cookie)
         {
             byte[] streamByte = Getbyte(url,cookie);
@@ -1537,6 +1683,7 @@ namespace helper
             return img;
         }
 
+        #endregion
 
         #region  谷歌翻译
         /// <summary>
@@ -1561,6 +1708,20 @@ namespace helper
         }
 
 
+        #endregion
+
+        #region  获取跳转网址
+        public static string GetRedirectUrl(string url)
+        {
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "HEAD";
+            req.AllowAutoRedirect = false;
+            HttpWebResponse myResp = (HttpWebResponse)req.GetResponse();
+            if (myResp.StatusCode == HttpStatusCode.Redirect)
+            { url = myResp.GetResponseHeader("Location"); }
+            return url;
+        }
         #endregion
 
     }

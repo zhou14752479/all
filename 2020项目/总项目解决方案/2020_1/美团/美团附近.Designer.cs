@@ -59,7 +59,6 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -276,7 +275,6 @@
             this.label4.Size = new System.Drawing.Size(41, 12);
             this.label4.TabIndex = 26;
             this.label4.Text = "城市：";
-            this.label4.Visible = false;
             // 
             // textBox1
             // 
@@ -286,7 +284,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(124, 107);
             this.textBox1.TabIndex = 27;
-            this.textBox1.Visible = false;
+            this.textBox1.Text = "上海";
             // 
             // label5
             // 
@@ -296,7 +294,6 @@
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 28;
             this.label5.Text = "选择分类：";
-            this.label5.Visible = false;
             // 
             // comboBox1
             // 
@@ -311,12 +308,13 @@
             "美发",
             "婚纱摄影",
             "汽车",
-            "教育"});
+            "教育",
+            "KTV",
+            "洗浴汗蒸"});
             this.comboBox1.Location = new System.Drawing.Point(290, 506);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(126, 20);
             this.comboBox1.TabIndex = 30;
-            this.comboBox1.Visible = false;
             // 
             // button5
             // 
@@ -331,8 +329,6 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(232, 552);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(96, 16);
@@ -343,8 +339,6 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Location = new System.Drawing.Point(344, 552);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(72, 16);
@@ -360,7 +354,6 @@
             this.label6.Size = new System.Drawing.Size(65, 12);
             this.label6.TabIndex = 34;
             this.label6.Text = "(一行一个)";
-            this.label6.Visible = false;
             // 
             // textBox2
             // 
@@ -369,21 +362,11 @@
             this.textBox2.Size = new System.Drawing.Size(100, 21);
             this.textBox2.TabIndex = 35;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(461, 512);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(173, 12);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "指定抓取品牌(为空不限品牌)：";
-            // 
             // 美团附近
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 629);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.checkBox2);
@@ -446,6 +429,5 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label7;
     }
 }

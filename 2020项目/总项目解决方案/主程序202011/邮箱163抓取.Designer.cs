@@ -70,7 +70,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -490,19 +489,6 @@
             this.checkBox8.Text = "已读采集";
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton1.Location = new System.Drawing.Point(539, 391);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(81, 18);
-            this.radioButton1.TabIndex = 154;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "无痕采集";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
             // 邮箱163抓取
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -515,7 +501,6 @@
             this.Controls.Add(this.button8);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -529,6 +514,7 @@
             this.Name = "邮箱163抓取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "邮箱163抓取";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.邮箱163抓取_FormClosing);
             this.Load += new System.EventHandler(this.邮箱163抓取_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -587,6 +573,5 @@
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

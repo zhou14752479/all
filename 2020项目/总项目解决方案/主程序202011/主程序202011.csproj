@@ -79,6 +79,7 @@
     <Compile Include="win007.Designer.cs">
       <DependentUpon>win007.cs</DependentUpon>
     </Compile>
+    <Compile Include="xjstudy.cs" />
     <Compile Include="企查查发票信息.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +103,12 @@
     </Compile>
     <Compile Include="惠州号码查询.Designer.cs">
       <DependentUpon>惠州号码查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="抖音接口.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="抖音接口.Designer.cs">
+      <DependentUpon>抖音接口.cs</DependentUpon>
     </Compile>
     <Compile Include="新疆继续教育.cs">
       <SubType>Form</SubType>
@@ -168,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="惠州号码查询.resx">
       <DependentUpon>惠州号码查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="抖音接口.resx">
+      <DependentUpon>抖音接口.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="新疆继续教育.resx">
       <DependentUpon>新疆继续教育.cs</DependentUpon>

@@ -144,11 +144,14 @@ namespace 主程序202011
 
         public void gettoken()
         {
-            string url = "https://xcx.qcc.com/mp-alipay/admin/getLastedLoginInfo?code=972917ffa0094702a1ac23f8da60PF72";
+
+            Match code = Regex.Match(GetUrl("http://www.acaiji.com/index/index/vip"), @"code=([\s\S]*?)""");
+           
+            string url = "https://xcx.qcc.com/mp-alipay/admin/getLastedLoginInfo?code="+code.Groups[1].Value;
             string html = GetUrl(url);
             Match t = Regex.Match(html, @"sessionToken"":""([\s\S]*?)""");
             token = t.Groups[1].Value;
-
+           
         }
 
         string token = "";
@@ -167,6 +170,7 @@ namespace 主程序202011
                         if (!listView1.Items[i].SubItems[2].Text.Contains("-"))
                         {
                             string url = "https://xcx.qcc.com/mp-alipay/forwardApp/v3/base/advancedSearch?token=" + token + "&t=1605660955000&searchKey=" + listView1.Items[i].SubItems[2].Text;
+                            textBox1.Text = url;
                             string html = GetUrl(url);
                             Match aid = Regex.Match(html, @"""KeyNo"":""([\s\S]*?)""");
                             if (aid.Groups[1].Value == "")

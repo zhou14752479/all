@@ -168,7 +168,7 @@ namespace 主程序202011
                                     if (value2 == "在用")
                                     {
                                         guoqi = guoqi + 1;
-                                        MessageBox.Show(wupin+"："+aid);
+                                       MessageBox.Show(wupin+"："+aid);
                                         
                                     }
                                    
@@ -320,7 +320,7 @@ namespace 主程序202011
             listView4.Items.Clear();
             listView5.Items.Clear();
 
-            if (DateTime.Now.Date > Convert.ToDateTime("2020-12-15"))
+            if (DateTime.Now.Date > Convert.ToDateTime("2021-06-15"))
             {
                 MessageBox.Show("系统错误");
                 return;
