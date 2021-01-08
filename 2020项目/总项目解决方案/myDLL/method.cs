@@ -272,6 +272,75 @@ namespace myDLL
         #endregion
 
 
+        #region NPOI读取表格导入
+        public static void ReadFromExcelFile(string filePath, ListView listView)
+        {
+            //using (OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "Microsoft Excel files(*.xls)|*.xls;*.xlsx" })
+            //    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            //    {
+            //        ReadFromExcelFile(openFileDialog1.FileName);
+            //    }
+            IWorkbook wk = null;
+            string extension = System.IO.Path.GetExtension(filePath);
+            try
+            {
+                FileStream fs = File.OpenRead(filePath);
+                if (extension.Equals(".xls"))
+                {
+                    //把xls文件中的数据写入wk中
+                    wk = new HSSFWorkbook(fs);
+                }
+                else
+                {
+                    //把xlsx文件中的数据写入wk中
+                    wk = new XSSFWorkbook(fs);
+                }
+
+                fs.Close();
+                //读取当前表数据
+                ISheet sheet = wk.GetSheetAt(0);
+
+                IRow row = sheet.GetRow(0);  //读取当前行数据
+                                             //LastRowNum 是当前表的总行数-1（注意）
+                                             // int offset = 0;
+                for (int i = 0; i <= sheet.LastRowNum; i++)
+                {
+                    row = sheet.GetRow(i);  //读取当前行数据
+                    if (row != null)
+                    {
+
+                        ListViewItem lv1 = listView.Items.Add((listView.Items.Count + 1).ToString());
+                        for (int j = 0; j < row.LastCellNum; j++) //LastCellNum 是当前行的总列数
+                        {
+                            try
+                            {
+                                //读取该行的第j列数据
+                                string value = row.GetCell(j).ToString();
+                                //textBox1.Text+=(value.ToString() + " ");
+
+                                lv1.SubItems.Add(value.ToString());
+                            }
+                            catch (Exception)
+                            {
+
+                                continue;
+                            }
+
+                        }
+                        // textBox1.Text += "\r\n";
+                    }
+                }
+            }
+
+            catch (Exception e)
+            {
+                //只在Debug模式下才输出
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        #endregion
+
 
     }
 }

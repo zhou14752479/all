@@ -87,6 +87,7 @@ namespace 主程序202012
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
+            //method.ReadFromExcelFile(@"C:\Users\zhou\Desktop\TEST2 不翻译.xlsx",listView1);
             status = true;
             if (thread == null || !thread.IsAlive)
             {

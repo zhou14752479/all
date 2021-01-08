@@ -343,3 +343,4 @@ NuGet程序包引用Microsoft.mshtml
 
 【获取包括动态加载内容】 textBox1.Text = webBrowser1.Document.Body.OuterHtml;
 【这个获取不包括动态加载内容，只是源码】  webBrowser1.DocumentText
+【正则匹配最后一个空格后的内容】\s+(\S*)$

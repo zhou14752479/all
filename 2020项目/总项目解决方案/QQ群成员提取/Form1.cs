@@ -129,7 +129,7 @@ namespace QQ群成员提取
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            if (!html.Contains(@"qichachafapiao"))
+            if (!html.Contains(@"QQqunjiankong"))
             {
                 MessageBox.Show("验证失败");
                 return;

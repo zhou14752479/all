@@ -33,6 +33,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="myDLL">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="Selenium.WebDriverBackedSelenium, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriverBackedSelenium.4.0.0-alpha07\lib\net45\Selenium.WebDriverBackedSelenium.ref.dll</HintPath>
       <Private>True</Private>

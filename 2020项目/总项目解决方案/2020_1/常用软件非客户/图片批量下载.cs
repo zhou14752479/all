@@ -64,31 +64,47 @@ namespace 常用软件非客户
         ArrayList finishes = new ArrayList();
         public void download()
         {
-            try
+            //try
+            //{
+            //    for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            //    {
+            //        string filename = Path.GetFileName(richTextBox1.Lines[i]);
+            //        downloadFile(richTextBox1.Lines[i], path + "image//", filename, "");
+            //        textBox2.Text = "正在下载第：" + (i + 1);
+
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show(ex.ToString());
+            //}
+
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
             {
-                for (int i = 0; i < richTextBox1.Lines.Length; i++)
+                string[] text = richTextBox1.Lines[i].Split(new string[] { " " }, StringSplitOptions.None);
+
+                string newTxt = "";
+                for (int j = 0; j < text.Length-1; j++)
                 {
-                    string filename = Path.GetFileName(richTextBox1.Lines[i]);
-                    downloadFile(richTextBox1.Lines[i], path + "image//", filename, "");
-                    textBox2.Text = "正在下载第：" + (i + 1);
-
-
+                    newTxt += text[j] + " ";
                 }
-            }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show(ex.ToString());
+                richTextBox2.Text += newTxt + "\r\n";
+
+                button1.Text = richTextBox2.Lines.Length.ToString();
             }
         }
 
-       
+
         private void button1_Click(object sender, EventArgs e)
         {
 
             Thread thread = new Thread(download);
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
+
 
         }
 
