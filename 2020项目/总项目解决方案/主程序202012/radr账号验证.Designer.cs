@@ -39,8 +39,13 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.导入账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.快速导入会卡顿ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.普通导入不卡顿时间久ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导入密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导入账号和密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清空账号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清空密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清空所有ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -84,6 +89,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -122,7 +128,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(792, 445);
+            this.splitContainer1.Size = new System.Drawing.Size(792, 462);
             this.splitContainer1.SplitterDistance = 609;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -146,8 +152,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.label2);
             this.splitContainer2.Panel2.Controls.Add(this.textBox1);
             this.splitContainer2.Panel2.Controls.Add(this.label1);
-            this.splitContainer2.Size = new System.Drawing.Size(609, 445);
-            this.splitContainer2.SplitterDistance = 343;
+            this.splitContainer2.Size = new System.Drawing.Size(609, 462);
+            this.splitContainer2.SplitterDistance = 356;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -163,8 +169,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.listView2);
-            this.splitContainer3.Size = new System.Drawing.Size(609, 343);
-            this.splitContainer3.SplitterDistance = 270;
+            this.splitContainer3.Size = new System.Drawing.Size(609, 356);
+            this.splitContainer3.SplitterDistance = 277;
             this.splitContainer3.TabIndex = 0;
             // 
             // listView1
@@ -180,7 +186,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(270, 343);
+            this.listView1.Size = new System.Drawing.Size(277, 356);
             this.listView1.TabIndex = 22;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -210,16 +216,36 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.导入账号ToolStripMenuItem,
             this.导入密码ToolStripMenuItem,
-            this.导入账号和密码ToolStripMenuItem});
+            this.导入账号和密码ToolStripMenuItem,
+            this.清空账号ToolStripMenuItem,
+            this.清空密码ToolStripMenuItem,
+            this.清空所有ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 136);
             // 
             // 导入账号ToolStripMenuItem
             // 
+            this.导入账号ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.快速导入会卡顿ToolStripMenuItem,
+            this.普通导入不卡顿时间久ToolStripMenuItem});
             this.导入账号ToolStripMenuItem.Name = "导入账号ToolStripMenuItem";
             this.导入账号ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.导入账号ToolStripMenuItem.Text = "导入账号";
             this.导入账号ToolStripMenuItem.Click += new System.EventHandler(this.导入账号ToolStripMenuItem_Click);
+            // 
+            // 快速导入会卡顿ToolStripMenuItem
+            // 
+            this.快速导入会卡顿ToolStripMenuItem.Name = "快速导入会卡顿ToolStripMenuItem";
+            this.快速导入会卡顿ToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.快速导入会卡顿ToolStripMenuItem.Text = "快速导入(会卡顿)";
+            this.快速导入会卡顿ToolStripMenuItem.Click += new System.EventHandler(this.快速导入会卡顿ToolStripMenuItem_Click);
+            // 
+            // 普通导入不卡顿时间久ToolStripMenuItem
+            // 
+            this.普通导入不卡顿时间久ToolStripMenuItem.Name = "普通导入不卡顿时间久ToolStripMenuItem";
+            this.普通导入不卡顿时间久ToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.普通导入不卡顿时间久ToolStripMenuItem.Text = "普通导入(不卡顿,时间久)";
+            this.普通导入不卡顿时间久ToolStripMenuItem.Click += new System.EventHandler(this.普通导入不卡顿时间久ToolStripMenuItem_Click);
             // 
             // 导入密码ToolStripMenuItem
             // 
@@ -235,6 +261,27 @@
             this.导入账号和密码ToolStripMenuItem.Text = "导入账号和密码";
             this.导入账号和密码ToolStripMenuItem.Click += new System.EventHandler(this.导入账号和密码ToolStripMenuItem_Click);
             // 
+            // 清空账号ToolStripMenuItem
+            // 
+            this.清空账号ToolStripMenuItem.Name = "清空账号ToolStripMenuItem";
+            this.清空账号ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.清空账号ToolStripMenuItem.Text = "清空账号";
+            this.清空账号ToolStripMenuItem.Click += new System.EventHandler(this.清空账号ToolStripMenuItem_Click);
+            // 
+            // 清空密码ToolStripMenuItem
+            // 
+            this.清空密码ToolStripMenuItem.Name = "清空密码ToolStripMenuItem";
+            this.清空密码ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.清空密码ToolStripMenuItem.Text = "清空密码";
+            this.清空密码ToolStripMenuItem.Click += new System.EventHandler(this.清空密码ToolStripMenuItem_Click);
+            // 
+            // 清空所有ToolStripMenuItem
+            // 
+            this.清空所有ToolStripMenuItem.Name = "清空所有ToolStripMenuItem";
+            this.清空所有ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.清空所有ToolStripMenuItem.Text = "清空所有";
+            this.清空所有ToolStripMenuItem.Click += new System.EventHandler(this.清空所有ToolStripMenuItem_Click);
+            // 
             // listView2
             // 
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -249,7 +296,7 @@
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(0, 0);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(335, 343);
+            this.listView2.Size = new System.Drawing.Size(328, 356);
             this.listView2.TabIndex = 23;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -523,6 +570,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label9);
@@ -535,14 +583,14 @@
             this.groupBox2.Controls.Add(this.textBox7);
             this.groupBox2.Location = new System.Drawing.Point(14, 206);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(153, 236);
+            this.groupBox2.Size = new System.Drawing.Size(153, 244);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "运行设置";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(8, 191);
+            this.button2.Location = new System.Drawing.Point(8, 169);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(124, 30);
             this.button2.TabIndex = 11;
@@ -552,7 +600,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(8, 144);
+            this.button1.Location = new System.Drawing.Point(6, 133);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 30);
             this.button1.TabIndex = 10;
@@ -575,6 +623,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(58, 21);
             this.textBox8.TabIndex = 9;
+            this.textBox8.Text = "1";
             // 
             // label6
             // 
@@ -591,6 +640,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(58, 21);
             this.textBox5.TabIndex = 7;
+            this.textBox5.Text = "1";
             // 
             // label7
             // 
@@ -630,12 +680,22 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(8, 205);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(124, 30);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "停 止";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // radr账号验证
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(792, 445);
+            this.ClientSize = new System.Drawing.Size(792, 462);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -679,14 +739,8 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -728,5 +782,17 @@
         private System.Windows.Forms.ToolStripMenuItem 导入密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 导入账号和密码ToolStripMenuItem;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ToolStripMenuItem 清空账号ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 清空密码ToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ToolStripMenuItem 清空所有ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 快速导入会卡顿ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 普通导入不卡顿时间久ToolStripMenuItem;
+        private System.Windows.Forms.Button button3;
     }
 }

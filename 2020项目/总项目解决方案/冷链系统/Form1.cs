@@ -72,6 +72,7 @@ namespace 冷链系统
                 textBox1.Text = IniReadValue("values", "username");
                 textBox2.Text = IniReadValue("values", "password");
                 textBox7.Text = IniReadValue("values", "time");
+                textBox3.Text = IniReadValue("values", "data_ku");
                 textBox4.Text = IniReadValue("values", "url");
                 textBox5.Text = IniReadValue("values", "data_user");
                 textBox6.Text = IniReadValue("values", "data_pass");
@@ -91,8 +92,8 @@ namespace 冷链系统
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
 
-       
-            md.constr= "Host =" + textBox4.Text.Trim() + ";Database=datas;Username=" + textBox5.Text.Trim() + ";Password=" + textBox6.Text.Trim();
+          
+            md.constr= "Host =" + textBox4.Text.Trim() + ";Database="+textBox3.Text.Trim()+";Username=" + textBox5.Text.Trim() + ";Password=" + textBox6.Text.Trim();
            
             Control.CheckForIllegalCrossThreadCalls = false;
             md.getlogs += new method.GetLogs(setlog);
@@ -115,11 +116,13 @@ namespace 冷链系统
             IniWriteValue("values", "password", textBox2.Text.Trim());
             IniWriteValue("values", "time", textBox7.Text.Trim());
             IniWriteValue("values", "url", textBox4.Text.Trim());
+            IniWriteValue("values", "data_ku", textBox3.Text.Trim());
             IniWriteValue("values", "data_user", textBox5.Text.Trim());
             IniWriteValue("values", "data_pass", textBox6.Text.Trim());
 
 
-
+            md.adminuser = textBox1.Text.Trim();
+            md.adminpass = textBox2.Text.Trim();
             md.Authorization = md.login();
             if (md.Authorization != "")
             {
@@ -210,6 +213,8 @@ namespace 冷链系统
 
         private void button3_Click(object sender, EventArgs e)
         {
+            md.adminuser = textBox1.Text.Trim();
+            md.adminpass = textBox2.Text.Trim();
             md.Authorization = md.login();
             if (thread == null || !thread.IsAlive)
             {

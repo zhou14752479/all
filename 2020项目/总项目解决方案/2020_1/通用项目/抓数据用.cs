@@ -512,7 +512,7 @@ namespace 通用项目
         {
 
 
-            Thread thread = new Thread(new ThreadStart(pcdppinglun));
+            Thread thread = new Thread(new ThreadStart(dianpingpinglun));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
 

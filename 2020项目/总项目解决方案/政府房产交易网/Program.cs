@@ -16,7 +16,7 @@ namespace 政府房产交易网
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 房产交易信息());
+            Application.Run(new 舒城房产());
         }
     }
 }

@@ -654,6 +654,7 @@ namespace helper
         }
 
         #endregion
+
         #region listview转datable
         /// <summary>
         /// listview转datable
@@ -990,9 +991,9 @@ namespace helper
             FileStream fs = null;
             //string fileName = GetTimeStamp() + ".xlsx";
             //string fileName= DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")+".xlsx";
-            string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".xlsx";
-           
+            //   string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".xlsx";
 
+            string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH") + ".xlsx";
 
 
             // bool disposed;
@@ -1056,7 +1057,7 @@ namespace helper
                 workbook.Close();
                 fs.Close();
                 System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
-               MessageBox.Show("数据导出完成！");
+               //MessageBox.Show("数据导出完成！");
                 return 0;
             }
             catch (Exception ex)
@@ -1322,7 +1323,7 @@ namespace helper
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
-                request.Referer = "";
+                request.Referer = Url;
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;

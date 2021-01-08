@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
@@ -57,15 +59,37 @@ namespace 常用软件非客户
 
         #endregion
         string path = AppDomain.CurrentDomain.BaseDirectory;
+
+
+        ArrayList finishes = new ArrayList();
+        public void download()
+        {
+            try
+            {
+                for (int i = 0; i < richTextBox1.Lines.Length; i++)
+                {
+                    string filename = Path.GetFileName(richTextBox1.Lines[i]);
+                    downloadFile(richTextBox1.Lines[i], path + "image//", filename, "");
+                    textBox2.Text = "正在下载第：" + (i + 1);
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+       
         private void button1_Click(object sender, EventArgs e)
         {
-            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < text.Length; i++)
-            {
-               downloadFile(text[i], textBox2.Text, i+".jpg","");
-                
-            }
-            
+
+            Thread thread = new Thread(download);
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -85,10 +109,15 @@ namespace 常用软件非客户
             FolderBrowserDialog f = new FolderBrowserDialog();
             if (f.ShowDialog() == DialogResult.OK)
             {
-                String DirPath = f.SelectedPath;
-                this.textBox2.Text = DirPath;
-                path = DirPath;
+                DirectoryInfo folder = new DirectoryInfo(f.SelectedPath);
+                for (int i = 0; i < folder.GetFiles().Count(); i++)
+                {
+                    richTextBox1.Text += folder.GetFiles()[i].Name+"\r\n";
+                }
             }
+
+            
+           
         }
 
         private void 图片批量下载_Load(object sender, EventArgs e)

@@ -9,7 +9,7 @@ string path=AppDomain.CurrentDomain.BaseDirectory;
 
 Regex.Replace(url.Groups[1].Value, "<[^>]+>", "") 
 
-
+System.Web.HttpUtility.UrlEncode(comboBox1.Text)
 ***************使用频率高*****************
 
 
@@ -134,7 +134,7 @@ System.Diagnostics.Process.GetCurrentProcess().Kill();
 
 【十五  、toolTip1.SetToolTip(label1,"点击访问");】
 
-【十六 、 时间戳转时间】
+【十六 、 时间戳转时间  13位】
  private DateTime ConvertStringToDateTime(string timeStamp)
         {
             DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
@@ -143,10 +143,13 @@ System.Diagnostics.Process.GetCurrentProcess().Kill();
             return startTime.Add(toNow);
 
         }
-	时间戳转时间秒
+//时间戳转时间秒10位
+private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+	
 	DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
             return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
-
+}
 
 【十七  、正则替换TextBox里的内容】
 postdata=  Regex.Replace(postdata, @"\d{6,}","37788233");

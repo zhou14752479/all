@@ -113,6 +113,7 @@ namespace 政府房产交易网
 
         #endregion
 
+
         #region POST请求获取返回头
         /// <summary>
         /// POST请求
@@ -163,6 +164,7 @@ namespace 政府房产交易网
         }
 
         #endregion
+
 
         #region 追加写入csv
 
@@ -232,6 +234,7 @@ namespace 政府房产交易网
 
 
         #endregion
+
 
         #region 烟台
         public System.Timers.Timer yantai_1_Timer = new System.Timers.Timer();
@@ -425,7 +428,7 @@ namespace 政府房产交易网
             try
             {
                 DataTable table = new DataTable();
-                string[] columns = { "项目名称", "开发商", "项目位置", "建设规模", "总面积", "竣工时间", DateTime.Now.ToLongDateString() };
+                string[] columns = { "项目名称", "开发商", "项目位置", "建设规模", "总面积", "竣工时间","已售面积","已售价格", DateTime.Now.ToLongDateString() };
                 foreach (string column in columns)
                 {
                     table.Columns.Add(column, Type.GetType("System.String"));
@@ -466,7 +469,8 @@ namespace 政府房产交易网
                         Match a4 = Regex.Match(ahtml, @"item_area"">([\s\S]*?)<");
                         Match a5 = Regex.Match(ahtml, @"lb_area"">([\s\S]*?)<");
                         Match a6 = Regex.Match(ahtml, @"ew_date"">([\s\S]*?)<");
-
+                        Match a7 = Regex.Match(ahtml, @"count1_lb_y_area"">([\s\S]*?)<");
+                        Match a8 = Regex.Match(ahtml, @"count1_lb_z_price"">([\s\S]*?)<");
 
                         DataRow newRow = table.NewRow();
                         newRow["项目名称"] = a1.Groups[1].Value;
@@ -475,7 +479,8 @@ namespace 政府房产交易网
                         newRow["建设规模"] = a4.Groups[1].Value;
                         newRow["总面积"] = a5.Groups[1].Value;
                         newRow["竣工时间"] = a6.Groups[1].Value;
-
+                        newRow["已售面积"] = a7.Groups[1].Value;
+                        newRow["已售价格"] = a8.Groups[1].Value;
                         table.Rows.Add(newRow);
                         Thread.Sleep(100);
 
@@ -530,7 +535,7 @@ namespace 政府房产交易网
             try
             {
                 DataTable table = new DataTable();
-                string[] columns = { "项目名称", "开发商", "项目位置", "建设规模", "总面积", "竣工时间", DateTime.Now.ToLongDateString() };
+                string[] columns = { "项目名称", "开发商", "项目位置", "建设规模", "总面积", "竣工时间", "已售面积", "已售价格", DateTime.Now.ToLongDateString() };
                 foreach (string column in columns)
                 {
                     table.Columns.Add(column, Type.GetType("System.String"));
@@ -571,8 +576,9 @@ namespace 政府房产交易网
                         Match a4 = Regex.Match(ahtml, @"item_area"">([\s\S]*?)<");
                         Match a5 = Regex.Match(ahtml, @"lb_area"">([\s\S]*?)<");
                         Match a6 = Regex.Match(ahtml, @"ew_date"">([\s\S]*?)<");
+                        Match a7 = Regex.Match(ahtml, @"count1_lb_y_area"">([\s\S]*?)<");
+                        Match a8 = Regex.Match(ahtml, @"count1_lb_z_price"">([\s\S]*?)<");
 
-                       
                         DataRow newRow = table.NewRow();
                         newRow["项目名称"] = a1.Groups[1].Value;
                         newRow["开发商"] = a2.Groups[1].Value;
@@ -580,7 +586,8 @@ namespace 政府房产交易网
                         newRow["建设规模"] = a4.Groups[1].Value;
                         newRow["总面积"] = a5.Groups[1].Value;
                         newRow["竣工时间"] = a6.Groups[1].Value;
-
+                        newRow["已售面积"] = a7.Groups[1].Value;
+                        newRow["已售价格"] = a8.Groups[1].Value;
                         table.Rows.Add(newRow);
                         Thread.Sleep(100);
 
@@ -817,6 +824,7 @@ namespace 政府房产交易网
         {
             try
             {
+                getlogs(DateTime.Now.ToString() + "河南驻马店西平昨日成交正在抓取！");
                 DataTable table = new DataTable();
                 string[] columns = { "区域", "销售楼号", "成交套数", "成交面积", "成交均价", DateTime.Now.ToLongDateString() };
                 foreach (string column in columns)
@@ -846,7 +854,7 @@ namespace 政府房产交易网
             
 
                 WriteCsv(table, "河南驻马店西平", "hnzmdxpzrcj_" + DateTime.Now.ToString("yyyy-MM-dd"));
-                getlogs(DateTime.Now.ToString() + "河南驻马店西平导出csv成功！");
+                getlogs(DateTime.Now.ToString() + "河南驻马店西平昨日成交导出csv成功！");
             }
             catch (Exception ex)
             {
@@ -886,6 +894,7 @@ namespace 政府房产交易网
 
         public void hnzmdxpysxx()
         {
+            getlogs(DateTime.Now.ToString() + "河南驻马店西平预售许可信息正在抓取！");
             try
             {
                 DataTable table = new DataTable();
@@ -921,7 +930,7 @@ namespace 政府房产交易网
                         newRow["项目进度"] = values[6].Groups[1].Value;
                         newRow["预售证号"] = values[7].Groups[1].Value;
                         newRow["土地使用权证"] = Regex.Replace(values[8].Groups[1].Value, "<[^>]+>", "").Trim();
-                        newRow["土地权证类型"] = values[9].Groups[1].Value;
+                        newRow["土地权证类型"] = Regex.Replace(values[9].Groups[1].Value, "<[^>]+>", "").Trim();
                         newRow["建设用地批准书"] = values[10].Groups[1].Value;
                         newRow["规划许可证"] = values[11].Groups[1].Value;
                         newRow["施工许可证"] = values[12].Groups[1].Value;
@@ -981,27 +990,28 @@ namespace 政府房产交易网
             try
             {
                 DataTable table = new DataTable();
-                string[] columns = { "区域", "销售楼号", "成交套数", "成交面积", "成交均价", DateTime.Now.ToLongDateString() };
+                string[] columns = { "楼盘名称", "地区", "坐落", "预定套数", "交易套数", "交易均价",DateTime.Now.ToLongDateString() };
                 foreach (string column in columns)
                 {
                     table.Columns.Add(column, Type.GetType("System.String"));
                 }
 
 
-                string url = "http://120.194.81.163/WebIssue/ExternalServer/Samples/price.asp?QueryItem=%D7%F2%C8%D5%D7%A1%D5%AC%BE%F9%BC%DB";
+                string url = "http://gd.tmsf.com/hzfccs/spf/show.php";
                 string html = GetUrl(url, "gb2312");
 
 
-                MatchCollection values = Regex.Matches(html, @"font-size: 12px>([\s\S]*?)</td>");
+                MatchCollection values = Regex.Matches(html, @"<div align=""center""([\s\S]*?)</div>");
 
                 for (int i = 0; i < values.Count / 5; i++)
                 {
                     DataRow newRow = table.NewRow();
-                    newRow["区域"] = values[(5 * i)].Groups[1].Value;
-                    newRow["销售楼号"] = values[(5 * i) + 1].Groups[1].Value;
-                    newRow["成交套数"] = values[(5 * i) + 2].Groups[1].Value;
-                    newRow["成交面积"] = values[(5 * i) + 3].Groups[1].Value;
-                    newRow["成交均价"] = values[(5 * i) + 4].Groups[1].Value;
+                    newRow["楼盘名称"] = values[(6 * i)].Groups[1].Value.Replace(">","").Trim();
+                    newRow["地区"] = values[(6 * i) + 1].Groups[1].Value.Replace(">", "").Trim();
+                    newRow["坐落"] = values[(6 * i) + 2].Groups[1].Value.Replace(">", "").Trim();
+                    newRow["预定套数"] = values[(6 * i) + 3].Groups[1].Value.Replace(">", "").Trim();
+                    newRow["交易套数"] = values[(6 * i) + 4].Groups[1].Value.Replace(">", "").Trim();
+                    newRow["交易均价"] = values[(6 * i) + 5].Groups[1].Value.Replace("class=\"black\">", "").Trim();
                     table.Rows.Add(newRow);
                 }
 
@@ -1058,10 +1068,10 @@ namespace 政府房产交易网
                     table.Columns.Add(column, Type.GetType("System.String"));
                 }
 
-                for (int i = 1; i < 12; i++)
+                for (int i = 1; i < 28; i++)
                 {
 
-                    string url = "http://120.194.81.163/bit-xpxxzs/xmlpzs/webissue.asp?page=" + i;
+                    string url = "http://gd.tmsf.com/hzfccs/spf/index.php?page=" + i;
                     string html = GetUrl(url, "gb2312");
 
 
@@ -1084,7 +1094,7 @@ namespace 政府房产交易网
                         newRow["项目进度"] = values[6].Groups[1].Value;
                         newRow["预售证号"] = values[7].Groups[1].Value;
                         newRow["土地使用权证"] = Regex.Replace(values[8].Groups[1].Value, "<[^>]+>", "").Trim();
-                        newRow["土地权证类型"] = values[9].Groups[1].Value;
+                        newRow["土地权证类型"] = Regex.Replace(values[9].Groups[1].Value, "<[^>]+>", "").Trim();
                         newRow["建设用地批准书"] = values[10].Groups[1].Value;
                         newRow["规划许可证"] = values[11].Groups[1].Value;
                         newRow["施工许可证"] = values[12].Groups[1].Value;
@@ -1111,5 +1121,448 @@ namespace 政府房产交易网
 
         #endregion 
 
+
+        #region  11、枣庄
+       
+        public void zaozhuang()
+        {
+            try
+            {
+                DataTable table = new DataTable();
+                string[] columns = { "商品房网签套数", "商品房网签面积(㎡)", "商品房网签金额(万元)", "住宅网签套数", "住宅网签面积(㎡)", "住宅网签金额(万元)", "非住宅网签套数", "非住宅网签面积(㎡)", "非住宅网签金额(万元)", DateTime.Now.ToLongDateString() };
+                foreach (string column in columns)
+                {
+                    table.Columns.Add(column, Type.GetType("System.String"));
+                }
+
+
+                string url = "http://60.214.99.136:18602/tradewebissue/callData?label=jrwq&page=1&limit=10";
+                string html = GetUrl(url, "gb2312");
+
+
+                MatchCollection values1 = Regex.Matches(html, @"""qyts"":""([\s\S]*?)""");
+                MatchCollection values2 = Regex.Matches(html, @"""qymj"":""([\s\S]*?)""");
+                MatchCollection values3 = Regex.Matches(html, @"""qyje"":""([\s\S]*?)""");
+                MatchCollection values4 = Regex.Matches(html, @"""zzqyts"":""([\s\S]*?)""");
+                MatchCollection values5 = Regex.Matches(html, @"""zzqymj"":""([\s\S]*?)""");
+                MatchCollection values6 = Regex.Matches(html, @"""zzqyje"":""([\s\S]*?)""");
+                MatchCollection values7 = Regex.Matches(html, @"""fzzqyts"":""([\s\S]*?)""");
+                MatchCollection values8 = Regex.Matches(html, @"""fzzqymj"":""([\s\S]*?)""");
+                MatchCollection values9 = Regex.Matches(html, @"""fzzqyje"":""([\s\S]*?)""");
+
+                for (int i = 0; i < values1.Count ; i++)
+                {
+                    DataRow newRow = table.NewRow();
+                    newRow["商品房网签套数"] = values1[i].Groups[1].Value;
+                    newRow["商品房网签面积(㎡)"] = values2[i].Groups[1].Value;
+                    newRow["商品房网签金额(万元)"] = values3[i].Groups[1].Value;
+                    newRow["住宅网签套数"] = values4[i].Groups[1].Value;
+                    newRow["住宅网签面积(㎡)"] = values5[i].Groups[1].Value;
+                    newRow["住宅网签金额(万元)"] = values6[i].Groups[1].Value;
+                    newRow["非住宅网签套数"] = values7[i].Groups[1].Value;
+                    newRow["非住宅网签面积(㎡)"] = values8[i].Groups[1].Value;
+                    newRow["非住宅网签金额(万元)"] = values9[i].Groups[1].Value;
+                    table.Rows.Add(newRow);
+                }
+
+
+
+
+                WriteCsv(table, "枣庄", "zaozhuangtoday_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                getlogs(DateTime.Now.ToString() + "枣庄今日签约导出csv成功！");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+
+
+        #endregion
+
+        #region  12、淄博
+
+        public void zibo()
+        {
+            try
+            {
+                DataTable table = new DataTable();
+                string[] columns = { "商品房网签套数", "商品房网签面积(㎡)", "商品房网签金额(万元)", "住宅网签套数", "住宅网签面积(㎡)", "住宅网签金额(万元)", "非住宅网签套数", "非住宅网签面积(㎡)", "非住宅网签金额(万元)", DateTime.Now.ToLongDateString() };
+                foreach (string column in columns)
+                {
+                    table.Columns.Add(column, Type.GetType("System.String"));
+                }
+
+
+                string url = "http://60.214.99.136:18602/tradewebissue/callData?label=jrwq&page=1&limit=10";
+                string html = GetUrl(url, "gb2312");
+
+
+                MatchCollection values1 = Regex.Matches(html, @"""qyts"":""([\s\S]*?)""");
+                MatchCollection values2 = Regex.Matches(html, @"""qymj"":""([\s\S]*?)""");
+                MatchCollection values3 = Regex.Matches(html, @"""qyje"":""([\s\S]*?)""");
+                MatchCollection values4 = Regex.Matches(html, @"""zzqyts"":""([\s\S]*?)""");
+                MatchCollection values5 = Regex.Matches(html, @"""zzqymj"":""([\s\S]*?)""");
+                MatchCollection values6 = Regex.Matches(html, @"""zzqyje"":""([\s\S]*?)""");
+                MatchCollection values7 = Regex.Matches(html, @"""fzzqyts"":""([\s\S]*?)""");
+                MatchCollection values8 = Regex.Matches(html, @"""fzzqymj"":""([\s\S]*?)""");
+                MatchCollection values9 = Regex.Matches(html, @"""fzzqyje"":""([\s\S]*?)""");
+
+                for (int i = 0; i < values1.Count; i++)
+                {
+                    DataRow newRow = table.NewRow();
+                    newRow["商品房网签套数"] = values1[i].Groups[1].Value;
+                    newRow["商品房网签面积(㎡)"] = values2[i].Groups[1].Value;
+                    newRow["商品房网签金额(万元)"] = values3[i].Groups[1].Value;
+                    newRow["住宅网签套数"] = values4[i].Groups[1].Value;
+                    newRow["住宅网签面积(㎡)"] = values5[i].Groups[1].Value;
+                    newRow["住宅网签金额(万元)"] = values6[i].Groups[1].Value;
+                    newRow["非住宅网签套数"] = values7[i].Groups[1].Value;
+                    newRow["非住宅网签面积(㎡)"] = values8[i].Groups[1].Value;
+                    newRow["非住宅网签金额(万元)"] = values9[i].Groups[1].Value;
+                    table.Rows.Add(newRow);
+                }
+
+
+
+
+                WriteCsv(table, "枣庄", "zaozhuangtoday_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                getlogs(DateTime.Now.ToString() + "枣庄今日签约导出csv成功！");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+
+
+        #endregion 
+
+
+        #region 13、 曲阜
+
+
+
+
+        public void qufu()
+        {
+            try
+            {
+                DataTable table = new DataTable();
+                string[] columns = { "项目名称", "开发商", "项目位置", "建设规模", "总面积", "竣工时间", "已售面积", "已售价格", DateTime.Now.ToLongDateString() };
+                foreach (string column in columns)
+                {
+                    table.Columns.Add(column, Type.GetType("System.String"));
+                }
+                for (int i = 1; i < 2; i++)
+                {
+                    getlogs(DateTime.Now.ToString() + "抓取曲阜楼盘信息第 " + i + "页");
+                    string url = "http://www.qfsfc.com/qf_web_dremis/web_house_dir/Show_GoodsHouse_More_new.aspx";
+                    string htm = GetUrl(url, "utf-8");
+
+                    Match suiji1 = Regex.Match(htm, @"VIEWSTATE"" value=""([\s\S]*?)""");
+                    Match suiji2 = Regex.Match(htm, @"EVENTVALIDATION"" value=""([\s\S]*?)""");
+
+                    string postdata = "__EVENTTARGET=ctl00%24ContentPlaceHolder2%24AspNetPager1&__EVENTARGUMENT=" + i + "&__LASTFOCUS=&__VIEWSTATE=" + System.Web.HttpUtility.UrlEncode(suiji1.Groups[1].Value, Encoding.GetEncoding("utf-8")) + "&__VIEWSTATEGENERATOR=D817B387&__EVENTVALIDATION=" + System.Web.HttpUtility.UrlEncode(suiji2.Groups[1].Value, Encoding.GetEncoding("utf-8")) + "&ctl00%24login_xj%24tb_login_name=&ctl00%24login_xj%24tb_password=&ctl00%24ContentPlaceHolder2%24web_item_search1%24ddl_enterprice=0&ctl00%24ContentPlaceHolder2%24web_item_search1%24ddl_district=0&ctl00%24ContentPlaceHolder2%24web_item_search1%24tb_seat=&ctl00%24ContentPlaceHolder2%24GoodsHouse1%24tb_value=&ctl00%24ContentPlaceHolder2%24GoodsHouse1%24ddl_type=0";
+                    string html = PostUrl(url, postdata, "ASP.NET_SessionId=scr2wy45vchmwcb5a3tt5hen", "utf-8");
+
+                    MatchCollection IDs = Regex.Matches(html, @"<a id=""([\s\S]*?)doPostBack\('([\s\S]*?)'");
+                    if (IDs.Count == 0)
+                    {
+                        WriteCsv(table, "曲阜", "jining_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                        getlogs(DateTime.Now.ToString() + "曲阜楼盘信息导出csv成功！");
+                        return;
+                    }
+
+                    for (int j = 0; j < IDs.Count; j++)
+                    {
+
+                        string aurl = "http://www.qfsfc.com/qf_web_dremis/web_house_dir/Show_GoodsHouse_More_new.aspx";
+
+
+                        string posts = "__EVENTTARGET=" + System.Web.HttpUtility.UrlEncode(IDs[j].Groups[2].Value) + "&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=" + System.Web.HttpUtility.UrlEncode(suiji1.Groups[1].Value, Encoding.GetEncoding("utf-8")) + "&__VIEWSTATEGENERATOR=D817B387&__EVENTVALIDATION=" + System.Web.HttpUtility.UrlEncode(suiji2.Groups[1].Value, Encoding.GetEncoding("utf-8")) + "&ctl00%24login_xj%24tb_login_name=&ctl00%24login_xj%24tb_password=&ctl00%24ContentPlaceHolder2%24web_item_search1%24ddl_enterprice=0&ctl00%24ContentPlaceHolder2%24web_item_search1%24ddl_district=0&ctl00%24ContentPlaceHolder2%24web_item_search1%24tb_seat=&ctl00%24ContentPlaceHolder2%24GoodsHouse1%24tb_value=&ctl00%24ContentPlaceHolder2%24GoodsHouse1%24ddl_type=0";
+
+                        string ahtml = PostUrl(aurl, posts, " ASP.NET_SessionId=scr2wy45vchmwcb5a3tt5hen", "utf-8");
+
+                        Match a1 = Regex.Match(ahtml, @"item_name"">([\s\S]*?)<");
+                        Match a2 = Regex.Match(ahtml, @"enter_name"">([\s\S]*?)<");
+                        Match a3 = Regex.Match(ahtml, @"tem_seat"">([\s\S]*?)<");
+                        Match a4 = Regex.Match(ahtml, @"item_area"">([\s\S]*?)<");
+                        Match a5 = Regex.Match(ahtml, @"lb_area"">([\s\S]*?)<");
+                        Match a6 = Regex.Match(ahtml, @"ew_date"">([\s\S]*?)<");
+                        Match a7 = Regex.Match(ahtml, @"count1_lb_y_area"">([\s\S]*?)<");
+                        Match a8 = Regex.Match(ahtml, @"count1_lb_z_price"">([\s\S]*?)<");
+
+                        DataRow newRow = table.NewRow();
+                        newRow["项目名称"] = a1.Groups[1].Value;
+                        newRow["开发商"] = a2.Groups[1].Value;
+                        newRow["项目位置"] = a3.Groups[1].Value;
+                        newRow["建设规模"] = a4.Groups[1].Value;
+                        newRow["总面积"] = a5.Groups[1].Value;
+                        newRow["竣工时间"] = a6.Groups[1].Value;
+                        newRow["已售面积"] = a7.Groups[1].Value;
+                        newRow["已售价格"] = a8.Groups[1].Value;
+                        table.Rows.Add(newRow);
+                        Thread.Sleep(100);
+
+                    }
+
+
+                }
+
+                WriteCsv(table, "曲阜", "qufu_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                getlogs(DateTime.Now.ToString() + "曲阜楼盘信息导出csv成功！");
+            }
+            catch (Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
+
+        #endregion 济宁
+
+
+        #region 14、  金寨
+
+        public void jinzhai()
+        {
+
+            DataTable table = new DataTable();
+            string[] columns = { "滚动信息",  DateTime.Now.ToLongDateString() };
+            foreach (string column in columns)
+            {
+                table.Columns.Add(column, Type.GetType("System.String"));
+            }
+
+
+            string url = "http://www.ahjzfdc.cn/Web/Report/CountToday.aspx";
+            string html = GetUrl(url, "utf-8");
+
+
+            Match value= Regex.Match(html, @"<div id=""scroll_begin"">([\s\S]*?)</div>");
+
+           
+                DataRow newRow = table.NewRow();
+                newRow["滚动信息"] = Regex.Replace(value.Groups[1].Value, "<[^>]+>", "").Trim();
+
+            table.Rows.Add(newRow);
+            
+
+            WriteCsv(table, "金寨", "jinzhai_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                getlogs(DateTime.Now.ToString() + "金寨滚动信息导出csv成功！");
+           
+
+        }
+
+
+        public void jinzhai1()
+        {
+            try
+            {
+                DataTable table = new DataTable();
+                string[] columns = { "预售许可证编号", "项目名称", "坐落位置", "售房单位", "房屋用途性质", "预售对象", "开盘日期", "预售总建筑面积", "预售套数", "发证机关", "发证日期", "预售栋", DateTime.Now.ToLongDateString() };
+                foreach (string column in columns)
+                {
+                    table.Columns.Add(column, Type.GetType("System.String"));
+                }
+                for (int i = 1; i < 2; i++)
+                {
+                    getlogs(DateTime.Now.ToString() + "抓取金寨楼盘信息第 " + i + "页");
+                    string url = "http://www.ahjzfdc.cn/Web/PreSellInfo/ShowPreSellCertList.aspx";
+                    string htm = GetUrl(url, "utf-8");
+
+                    Match suiji1 = Regex.Match(htm, @"VIEWSTATE"" value=""([\s\S]*?)""");
+                    Match suiji2 = Regex.Match(htm, @"EVENTVALIDATION"" value=""([\s\S]*?)""");
+
+                    string postdata = "__EVENTTARGET=ctl00%24ContentPlaceHolder2%24AspNetPager1&__EVENTARGUMENT=" + i + "&__LASTFOCUS=&__VIEWSTATE=" + System.Web.HttpUtility.UrlEncode(suiji1.Groups[1].Value, Encoding.GetEncoding("utf-8")) + "&__VIEWSTATEGENERATOR=D817B387&__EVENTVALIDATION=" + System.Web.HttpUtility.UrlEncode(suiji2.Groups[1].Value, Encoding.GetEncoding("utf-8")) + "&ctl00%24login_xj%24tb_login_name=&ctl00%24login_xj%24tb_password=&ctl00%24ContentPlaceHolder2%24web_item_search1%24ddl_enterprice=0&ctl00%24ContentPlaceHolder2%24web_item_search1%24ddl_district=0&ctl00%24ContentPlaceHolder2%24web_item_search1%24tb_seat=&ctl00%24ContentPlaceHolder2%24GoodsHouse1%24tb_value=&ctl00%24ContentPlaceHolder2%24GoodsHouse1%24ddl_type=0";
+                    string html = PostUrl(url, postdata, "ASP.NET_SessionId=scr2wy45vchmwcb5a3tt5hen", "utf-8");
+
+                    MatchCollection IDs = Regex.Matches(html, @"DocID=([\s\S]*?)""");
+                    if (IDs.Count == 0)
+                    {
+                        WriteCsv(table, "金寨", "jinzhai1_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                        getlogs(DateTime.Now.ToString() + "金寨预售信息导出csv成功！");
+                        return;
+                    }
+
+                    for (int j = 0; j < IDs.Count; j++)
+                    {
+
+                        string aurl = "http://www.ahjzfdc.cn/Web/PreSellInfo/ShowPreSellCertInfo.aspx?DocID="+IDs[j].Groups[1].Value;
+
+                        string ahtml = GetUrl(aurl,"utf-8");
+
+                        Match a1 = Regex.Match(ahtml, @"<span id=""证书编号"">([\s\S]*?)</span>");
+                        Match a2 = Regex.Match(ahtml, @"<span id=""项目名称"">([\s\S]*?)</span>");
+                        Match a3 = Regex.Match(ahtml, @"<span id=""房地坐落"">([\s\S]*?)</span>");
+                        Match a4 = Regex.Match(ahtml, @"<span id=""预售单位"">([\s\S]*?)</span>");
+                        Match a5 = Regex.Match(ahtml, @"<span id=""性质"">([\s\S]*?)</span>");
+                        Match a6 = Regex.Match(ahtml, @"<span id=""预售对象"">([\s\S]*?)</span>");
+                        Match a7 = Regex.Match(ahtml, @"<span id=""开盘日期"">([\s\S]*?)</span>");
+                        Match a8 = Regex.Match(ahtml, @"<span id=""预售总建筑面积"">([\s\S]*?)</span>");
+                        Match a9 = Regex.Match(ahtml, @"<span id=""预售套数"">([\s\S]*?)</span>");
+                        Match a10 = Regex.Match(ahtml, @"<span id=""发证机关"">([\s\S]*?)</span>");
+                        Match a11 = Regex.Match(ahtml, @"<span id=""发证日期"">([\s\S]*?)</span>");
+                        Match a12 = Regex.Match(ahtml, @"<span id=""txtDong"">([\s\S]*?)</span>");
+
+                        DataRow newRow = table.NewRow();
+                        newRow["预售许可证编号"] = a1.Groups[1].Value;
+                        newRow["项目名称"] = a2.Groups[1].Value;
+                        newRow["坐落位置"] = a3.Groups[1].Value;
+                        newRow["售房单位"] = a4.Groups[1].Value;
+                        newRow["房屋用途性质"] = a5.Groups[1].Value;
+                        newRow["预售对象"] = a6.Groups[1].Value;
+                        newRow["开盘日期"] = a7.Groups[1].Value;
+                        newRow["预售总建筑面积"] = a8.Groups[1].Value;
+                        newRow["预售套数"] = a9.Groups[1].Value;
+                        newRow["发证机关"] = a10.Groups[1].Value;
+                        newRow["发证日期"] = a11.Groups[1].Value;
+                        newRow["预售栋"] = Regex.Replace(a12.Groups[1].Value, "<[^>]+>", "");
+                        table.Rows.Add(newRow);
+                        Thread.Sleep(100);
+
+                    }
+
+
+                }
+
+                WriteCsv(table, "金寨", "jinzhai1_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                getlogs(DateTime.Now.ToString() + "金寨楼盘信息导出csv成功！");
+            }
+            catch (Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
+
+        #endregion
+
+
+        #region 14、  舒城
+
+        public void shucheng()
+        {
+
+            DataTable table = new DataTable();
+            string[] columns = { "滚动信息", DateTime.Now.ToLongDateString() };
+            foreach (string column in columns)
+            {
+                table.Columns.Add(column, Type.GetType("System.String"));
+            }
+
+
+            string url = "http://www.ahscfdc.com/Web/Report/CountToday.aspx";
+            string html = GetUrl(url, "utf-8");
+
+
+            Match value = Regex.Match(html, @"<div id=""scroll_begin"">([\s\S]*?)</div>");
+
+
+            DataRow newRow = table.NewRow();
+            newRow["滚动信息"] = Regex.Replace(value.Groups[1].Value, "<[^>]+>", "").Trim();
+
+            table.Rows.Add(newRow);
+
+
+            WriteCsv(table, "舒城", "shucheng_" + DateTime.Now.ToString("yyyy-MM-dd"));
+            getlogs(DateTime.Now.ToString() + "舒城滚动信息导出csv成功！");
+
+
+        }
+
+
+        public void shucheng1()
+        {
+            try
+            {
+                DataTable table = new DataTable();
+                string[] columns = { "预售许可证编号", "项目名称", "坐落位置", "售房单位", "房屋用途性质", "预售对象", "开盘日期", "预售总建筑面积", "预售套数", "发证机关", "发证日期", "预售栋", DateTime.Now.ToLongDateString() };
+                foreach (string column in columns)
+                {
+                    table.Columns.Add(column, Type.GetType("System.String"));
+                }
+                for (int i = 1; i < 2; i++)
+                {
+                    getlogs(DateTime.Now.ToString() + "抓取舒城楼盘信息第 " + i + "页");
+                    string url = "http://www.ahscfdc.com/Web/PreSellInfo/ShowPreSellCertList.aspx";
+                    string htm = GetUrl(url, "utf-8");
+
+                    Match suiji1 = Regex.Match(htm, @"VIEWSTATE"" value=""([\s\S]*?)""");
+                    Match suiji2 = Regex.Match(htm, @"EVENTVALIDATION"" value=""([\s\S]*?)""");
+
+                    string postdata = "__EVENTTARGET=ctl00%24ContentPlaceHolder2%24AspNetPager1&__EVENTARGUMENT=" + i + "&__LASTFOCUS=&__VIEWSTATE=" + System.Web.HttpUtility.UrlEncode(suiji1.Groups[1].Value, Encoding.GetEncoding("utf-8")) + "&__VIEWSTATEGENERATOR=D817B387&__EVENTVALIDATION=" + System.Web.HttpUtility.UrlEncode(suiji2.Groups[1].Value, Encoding.GetEncoding("utf-8")) + "&ctl00%24login_xj%24tb_login_name=&ctl00%24login_xj%24tb_password=&ctl00%24ContentPlaceHolder2%24web_item_search1%24ddl_enterprice=0&ctl00%24ContentPlaceHolder2%24web_item_search1%24ddl_district=0&ctl00%24ContentPlaceHolder2%24web_item_search1%24tb_seat=&ctl00%24ContentPlaceHolder2%24GoodsHouse1%24tb_value=&ctl00%24ContentPlaceHolder2%24GoodsHouse1%24ddl_type=0";
+                    string html = PostUrl(url, postdata, "ASP.NET_SessionId=scr2wy45vchmwcb5a3tt5hen", "utf-8");
+
+                    MatchCollection IDs = Regex.Matches(html, @"DocID=([\s\S]*?)""");
+                    if (IDs.Count == 0)
+                    {
+                        WriteCsv(table, "舒城", "shucheng1_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                        getlogs(DateTime.Now.ToString() + "舒城预售信息导出csv成功！");
+                        return;
+                    }
+
+                    for (int j = 0; j < IDs.Count; j++)
+                    {
+
+                        string aurl = "http://www.ahscfdc.com/Web/PreSellInfo/ShowPreSellCertInfo.aspx?DocID= " + IDs[j].Groups[1].Value;
+
+                        string ahtml = GetUrl(aurl, "utf-8");
+
+                        Match a1 = Regex.Match(ahtml, @"<span id=""证书编号"">([\s\S]*?)</span>");
+                        Match a2 = Regex.Match(ahtml, @"<span id=""项目名称"">([\s\S]*?)</span>");
+                        Match a3 = Regex.Match(ahtml, @"<span id=""房地坐落"">([\s\S]*?)</span>");
+                        Match a4 = Regex.Match(ahtml, @"<span id=""预售单位"">([\s\S]*?)</span>");
+                        Match a5 = Regex.Match(ahtml, @"<span id=""性质"">([\s\S]*?)</span>");
+                        Match a6 = Regex.Match(ahtml, @"<span id=""预售对象"">([\s\S]*?)</span>");
+                        Match a7 = Regex.Match(ahtml, @"<span id=""开盘日期"">([\s\S]*?)</span>");
+                        Match a8 = Regex.Match(ahtml, @"<span id=""预售总建筑面积"">([\s\S]*?)</span>");
+                        Match a9 = Regex.Match(ahtml, @"<span id=""预售套数"">([\s\S]*?)</span>");
+                        Match a10 = Regex.Match(ahtml, @"<span id=""发证机关"">([\s\S]*?)</span>");
+                        Match a11 = Regex.Match(ahtml, @"<span id=""发证日期"">([\s\S]*?)</span>");
+                        Match a12 = Regex.Match(ahtml, @"<span id=""txtDong"">([\s\S]*?)</span>");
+
+                        DataRow newRow = table.NewRow();
+                        newRow["预售许可证编号"] = a1.Groups[1].Value;
+                        newRow["项目名称"] = a2.Groups[1].Value;
+                        newRow["坐落位置"] = a3.Groups[1].Value;
+                        newRow["售房单位"] = a4.Groups[1].Value;
+                        newRow["房屋用途性质"] = a5.Groups[1].Value;
+                        newRow["预售对象"] = a6.Groups[1].Value;
+                        newRow["开盘日期"] = a7.Groups[1].Value;
+                        newRow["预售总建筑面积"] = a8.Groups[1].Value;
+                        newRow["预售套数"] = a9.Groups[1].Value;
+                        newRow["发证机关"] = a10.Groups[1].Value;
+                        newRow["发证日期"] = a11.Groups[1].Value;
+                        newRow["预售栋"] = Regex.Replace(a12.Groups[1].Value, "<[^>]+>", "");
+                        table.Rows.Add(newRow);
+                        Thread.Sleep(100);
+
+                    }
+
+
+                }
+
+                WriteCsv(table, "舒城", "shucheng1_" + DateTime.Now.ToString("yyyy-MM-dd"));
+                getlogs(DateTime.Now.ToString() + "金寨楼盘信息导出csv成功！");
+            }
+            catch (Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
+
+        #endregion
     }
 }

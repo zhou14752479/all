@@ -173,7 +173,7 @@ namespace 主程序202012
         private void button4_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-            //method.ListViewToCSV(listView1,true);
+            method.ListViewToCSV(listView1,true);
         }
 
         private void button2_Click(object sender, EventArgs e)

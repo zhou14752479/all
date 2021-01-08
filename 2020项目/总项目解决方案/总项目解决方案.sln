@@ -25,9 +25,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "冷链系统", "冷链系�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTP服务器", "HTTP服务器\HTTP服务器.csproj", "{48FB0537-D757-4501-9572-BC4FA6D21A24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "..\..\..\8221023a\SimpleHttpServer\ConsoleApplication2.csproj", "{BB03DBC8-6395-4E7A-8922-5A9D72366048}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜图匹配", "搜图匹配\搜图匹配.csproj", "{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDLL", "myDLL\myDLL.csproj", "{BA236BE9-F18C-40F4-8015-1D3AE2E89448}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "通用项目", "2020_1\通用项目\通用项目.csproj", "{500A0B7D-FEB6-4A1F-BBB9-073D1ADFC47A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QQ群成员提取", "QQ群成员提取\QQ群成员提取.csproj", "{4B43461A-513D-4E3C-B908-BC6A1A69B810}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,14 +83,22 @@ Global
 		{48FB0537-D757-4501-9572-BC4FA6D21A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48FB0537-D757-4501-9572-BC4FA6D21A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48FB0537-D757-4501-9572-BC4FA6D21A24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB03DBC8-6395-4E7A-8922-5A9D72366048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB03DBC8-6395-4E7A-8922-5A9D72366048}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB03DBC8-6395-4E7A-8922-5A9D72366048}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB03DBC8-6395-4E7A-8922-5A9D72366048}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500A0B7D-FEB6-4A1F-BBB9-073D1ADFC47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500A0B7D-FEB6-4A1F-BBB9-073D1ADFC47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500A0B7D-FEB6-4A1F-BBB9-073D1ADFC47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500A0B7D-FEB6-4A1F-BBB9-073D1ADFC47A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

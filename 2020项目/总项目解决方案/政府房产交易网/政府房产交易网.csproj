@@ -51,11 +51,101 @@
     <Compile Include="fang_method.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="大连金普新区.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="大连金普新区.Designer.cs">
+      <DependentUpon>大连金普新区.cs</DependentUpon>
+    </Compile>
+    <Compile Include="大连高新区.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="大连高新区.Designer.cs">
+      <DependentUpon>大连高新区.cs</DependentUpon>
+    </Compile>
+    <Compile Include="安徽宣城广德.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="安徽宣城广德.Designer.cs">
+      <DependentUpon>安徽宣城广德.cs</DependentUpon>
+    </Compile>
     <Compile Include="房产交易信息.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="房产交易信息.Designer.cs">
       <DependentUpon>房产交易信息.cs</DependentUpon>
+    </Compile>
+    <Compile Include="曲阜房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="曲阜房产.Designer.cs">
+      <DependentUpon>曲阜房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="枣庄房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="枣庄房产.Designer.cs">
+      <DependentUpon>枣庄房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="沧州房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="沧州房产.Designer.cs">
+      <DependentUpon>沧州房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="河南驻马店西平.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="河南驻马店西平.Designer.cs">
+      <DependentUpon>河南驻马店西平.cs</DependentUpon>
+    </Compile>
+    <Compile Include="济宁房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="济宁房产.Designer.cs">
+      <DependentUpon>济宁房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="淄博房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="淄博房产.Designer.cs">
+      <DependentUpon>淄博房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="烟台房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="烟台房产.Designer.cs">
+      <DependentUpon>烟台房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="舒城房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="舒城房产.Designer.cs">
+      <DependentUpon>舒城房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="贺州房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="贺州房产.Designer.cs">
+      <DependentUpon>贺州房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="邹城房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="邹城房产.Designer.cs">
+      <DependentUpon>邹城房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="金寨房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="金寨房产.Designer.cs">
+      <DependentUpon>金寨房产.cs</DependentUpon>
+    </Compile>
+    <Compile Include="钦州房产.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="钦州房产.Designer.cs">
+      <DependentUpon>钦州房产.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,8 +156,44 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="大连金普新区.resx">
+      <DependentUpon>大连金普新区.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="大连高新区.resx">
+      <DependentUpon>大连高新区.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="安徽宣城广德.resx">
+      <DependentUpon>安徽宣城广德.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="房产交易信息.resx">
       <DependentUpon>房产交易信息.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="曲阜房产.resx">
+      <DependentUpon>曲阜房产.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="枣庄房产.resx">
+      <DependentUpon>枣庄房产.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="河南驻马店西平.resx">
+      <DependentUpon>河南驻马店西平.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="济宁房产.resx">
+      <DependentUpon>济宁房产.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="淄博房产.resx">
+      <DependentUpon>淄博房产.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="烟台房产.resx">
+      <DependentUpon>烟台房产.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="舒城房产.resx">
+      <DependentUpon>舒城房产.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="邹城房产.resx">
+      <DependentUpon>邹城房产.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="金寨房产.resx">
+      <DependentUpon>金寨房产.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

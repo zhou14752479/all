@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="zxing">
+      <HintPath>..\文件二维码\bin\Debug\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\文件二维码\bin\Debug\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JSON检测登录.cs">
@@ -58,11 +65,29 @@
     <Compile Include="radr账号验证.Designer.cs">
       <DependentUpon>radr账号验证.cs</DependentUpon>
     </Compile>
+    <Compile Include="syd数据抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="syd数据抓取.Designer.cs">
+      <DependentUpon>syd数据抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="京东药房.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="京东药房.Designer.cs">
+      <DependentUpon>京东药房.cs</DependentUpon>
+    </Compile>
     <Compile Include="网址JSON检测.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="网址JSON检测.Designer.cs">
       <DependentUpon>网址JSON检测.cs</DependentUpon>
+    </Compile>
+    <Compile Include="转转商品监控.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="转转商品监控.Designer.cs">
+      <DependentUpon>转转商品监控.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="JSON检测登录.resx">
       <DependentUpon>JSON检测登录.cs</DependentUpon>
@@ -79,8 +104,17 @@
     <EmbeddedResource Include="radr账号验证.resx">
       <DependentUpon>radr账号验证.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="syd数据抓取.resx">
+      <DependentUpon>syd数据抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="京东药房.resx">
+      <DependentUpon>京东药房.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="网址JSON检测.resx">
       <DependentUpon>网址JSON检测.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="转转商品监控.resx">
+      <DependentUpon>转转商品监控.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
