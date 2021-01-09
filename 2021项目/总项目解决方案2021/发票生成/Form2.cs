@@ -26,7 +26,7 @@ namespace 发票生成
             fm1.v3 = textBox3.Text.Trim();
             fm1.v4 = textBox4.Text.Trim();
             fm1.v5 = textBox5.Text.Trim();
-            fm1.v6 = textBox6.Text.Trim();
+            fm1.v6 = "020210010";
             fm1.v61 = "105";
             fm1.v7 = textBox7.Text.Trim();
             fm1.v8 = textBox8.Text.Trim();
@@ -53,12 +53,12 @@ namespace 发票生成
 
 
 
-            textBox1.Text = 1+ getRandom(1111111,9999999);
-            textBox3.Text = "0000" + getRandom(111111, 999999);
+           
+            textBox3.Text = "0000627" + getRandom(111, 999);
             textBox4.Text = 1 + getRandom(10, 99)+"G"+ getRandom(1, 9)+"BY";
             textBox5.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
-            textBox6.Text = "0" + getRandom(11111111, 99999999);
+           
            
         }
     }

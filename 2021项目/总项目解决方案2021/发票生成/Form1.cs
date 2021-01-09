@@ -64,7 +64,7 @@ namespace 发票生成
             label12.Text = v12.Trim();
             label14.Text = v13.Trim();
             string path = AppDomain.CurrentDomain.BaseDirectory;
-           pictureBox1.Image.Save(path+ GetTimeStamp()+".jpg");
+          // pictureBox1.Image.Save(path+ GetTimeStamp()+".jpg");
 
         }
 

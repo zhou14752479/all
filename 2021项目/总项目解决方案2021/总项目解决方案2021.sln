@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "发票生成", "发票生成\发票生成.csproj", "{D207686A-4015-421B-A92C-89D34F081BF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202101", "主程序202101\主程序202101.csproj", "{1CF3C0DA-F548-421C-9901-AFC9FC768EA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D207686A-4015-421B-A92C-89D34F081BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D207686A-4015-421B-A92C-89D34F081BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D207686A-4015-421B-A92C-89D34F081BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CF3C0DA-F548-421C-9901-AFC9FC768EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF3C0DA-F548-421C-9901-AFC9FC768EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF3C0DA-F548-421C-9901-AFC9FC768EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF3C0DA-F548-421C-9901-AFC9FC768EA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -75,6 +75,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(147, 23);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "14040120";
             // 
             // textBox2
             // 
@@ -156,8 +157,10 @@
             this.textBox6.Font = new System.Drawing.Font("宋体", 10F);
             this.textBox6.Location = new System.Drawing.Point(119, 221);
             this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(147, 23);
             this.textBox6.TabIndex = 11;
+            this.textBox6.Text = "020210010105";
             // 
             // label6
             // 
@@ -174,8 +177,10 @@
             this.textBox7.Font = new System.Drawing.Font("宋体", 10F);
             this.textBox7.Location = new System.Drawing.Point(119, 260);
             this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(147, 23);
             this.textBox7.TabIndex = 13;
+            this.textBox7.Text = "代收教材费";
             // 
             // label7
             // 
@@ -282,8 +287,10 @@
             this.textBox13.Font = new System.Drawing.Font("宋体", 10F);
             this.textBox13.Location = new System.Drawing.Point(414, 172);
             this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(188, 23);
             this.textBox13.TabIndex = 25;
+            this.textBox13.Text = "张雅馨";
             // 
             // label13
             // 
