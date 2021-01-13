@@ -60,7 +60,7 @@ namespace 主程序202012
                 user = textBox1.Text.Trim();
                  网址JSON检测 ma = new 网址JSON检测();
                 ma.Show();
-                xiugai(user, "1");
+               // xiugai(user, "1");
                 this.Hide();
             }
             else

@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using System.Collections.ObjectModel;
+using OpenQA.Selenium.Interactions;
 
 namespace CsharpSelenium
 {
@@ -67,6 +69,8 @@ namespace CsharpSelenium
            // Enter "webdriver" text and perform "ENTER" keyboard action
             driver.FindElement(By.Name("q")).SendKeys("webdriver" + Keys.Enter);
             options.AddUserProfilePreference("prefs", prefs);
+               ReadOnlyCollection<string> windows = driver.WindowHandles;
+                driver.SwitchTo().Window(windows[0]);//有新窗口弹出时切换
          */
 
         public class ChromeOptionsWithPrefs : ChromeOptions
@@ -86,7 +90,8 @@ namespace CsharpSelenium
            
             IWebDriver driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
-            for (int i = 0; i < listView1.Items.Count; i++)
+           
+            for (int i = 0; i < 1; i++)
             {
                 string url = listView1.Items[i].SubItems[1].Text;
                 string rename = listView1.Items[i].SubItems[2].Text;
@@ -109,23 +114,22 @@ namespace CsharpSelenium
                 //}
 
                 //Thread.Sleep(10000);
-
+                Actions action = new Actions(driver);
+              
+                action.KeyDown(OpenQA.Selenium.Keys.Control).SendKeys("s").KeyUp(OpenQA.Selenium.Keys.Control).Build().Perform();
+                action.SendKeys(OpenQA.Selenium.Keys.Control + "s").Build().Perform();
                 //keybd_event(System.Windows.Forms.Keys.ControlKey, 0, 0, 0);
                 //keybd_event(System.Windows.Forms.Keys.S, 0, 0, 0);
                 //keybd_event(System.Windows.Forms.Keys.S, 0, KEYEVENTF_KEYUP, 0);
                 //keybd_event(System.Windows.Forms.Keys.ControlKey, 0, KEYEVENTF_KEYUP, 0);
-                mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
-                Thread.Sleep(1000);
-                keybd_event(System.Windows.Forms.Keys.A, 0, 0, 0);
-                Thread.Sleep(1000);
-                SendKeys.Send("{ENTER}");
-               
-             
+
+
+
                 Thread.Sleep(1000);
                 
             }
 
-            driver.Quit();
+            //driver.Quit();
         }
 
 

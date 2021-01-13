@@ -47,33 +47,55 @@ namespace helper
 
         public string timegeshi(string date)
         {
-            
-            string newdate = "";
-            Match dates = Regex.Match(date, @"on .*");
-            string date1 = dates.Groups[0].Value.Replace("on", "").Trim();
-           date1= date1.Replace("January", "01,").Replace("February", "02,").Replace("March", "03,").Replace("April", "04,").Replace("May", "05,").Replace("June", "06,").Replace("July", "07,").Replace("August", "08,").Replace("September", "09,").Replace("October", "10,").Replace("November", "11,").Replace("December", "12,");
 
-           
-            string[] text = date1.Split(new string[] { "," }, StringSplitOptions.None);
+            //try
+            //{
 
-            if (text.Length > 2)
+            //    string newdate = "";
+            //    Match dates = Regex.Match(date, @"on .*");
+            //    string date1 = dates.Groups[0].Value.Replace("on", "").Trim();
+            //    date1 = date1.Replace("January", "01,").Replace("February", "02,").Replace("March", "03,").Replace("April", "04,").Replace("May", "05,").Replace("June", "06,").Replace("July", "07,").Replace("August", "08,").Replace("September", "09,").Replace("October", "10,").Replace("November", "11,").Replace("December", "12,");
+
+
+            //    string[] text = date1.Split(new string[] { "," }, StringSplitOptions.None);
+
+            //    if (text.Length > 2)
+            //    {
+            //        newdate = text[2] + "-" + text[0] + "-" + text[1].Trim();
+
+            //    }
+            //    else
+            //    {
+            //        date1 = date1.Replace(" ", ",");
+
+            //        text = date1.Split(new string[] { "," }, StringSplitOptions.None);
+            //        newdate = text[2] + "-" + text[1] + "-" + text[0].Trim();
+
+            //    }
+
+
+
+            //    return newdate;
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show(ex.ToString());
+            //    return "";
+            //}
+
+
+            try
             {
-                newdate = text[2] + "-" + text[0] + "-" + text[1].Trim();
-
+                string[] text = date.Split(new string[] { " " }, StringSplitOptions.None);
+                return text[0].Replace("年","-").Replace("月", "-").Replace("日", "");
             }
-            else
+            catch (Exception)
             {
-                date1 = date1.Replace(","," ");
-               text = date1.Split(new string[] { " " }, StringSplitOptions.None);
-                newdate = text[3] + "-" + text[1] + "-" + text[0].Trim();
-                
+
+                return date;
             }
-         
-            
-
-            return newdate;
-
-
 
         }
 

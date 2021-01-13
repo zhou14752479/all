@@ -3,6 +3,10 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
 
 
 ***************使用频率高*****************
+
+System.Diagnostics.Process.GetCurrentProcess().Kill();
+
+
 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
 string path=AppDomain.CurrentDomain.BaseDirectory; 

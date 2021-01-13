@@ -72,7 +72,7 @@ namespace QQ群成员提取
         {
             for (int i = 0; i < listView1.Items.Count; i++)
             {
-                if (listView1.Items[i].SubItems[1].Text.Trim() ==QQ.Trim())
+                if (listView1.Items[i].SubItems[1].Text.Trim()+ listView1.Items[i].SubItems[3].Text.Trim() == QQ.Trim())
                 {
                     return true;
                 }
@@ -87,35 +87,43 @@ namespace QQ群成员提取
             textBox3.Text =DateTime.Now.ToString()+ "：正在监控......";
             bkn = GetBkn().ToString();
 
-            string postdata = "gc="+comboBox1.Text.Trim()+"&st=0&end=20&sort=10&bkn="+bkn;
-            string html = method.PostUrl("https://qun.qq.com/cgi-bin/qun_mgr/search_group_members", postdata, COOKIE, "utf-8", "application/x-www-form-urlencoded", "https://qun.qq.com/member.html");
-            MatchCollection QQs = Regex.Matches(html, @"""uin"":([\s\S]*?),");
-            MatchCollection join_times = Regex.Matches(html, @"""join_time"":([\s\S]*?),");
-            for (int i = 0; i < QQs.Count; i++)
+            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int a= 0; a < text.Length; a++)
             {
-                textBox3.Text = DateTime.Now.ToString() + "：正在监控......";
-                try
+
+
+                string postdata = "gc=" + text[a].Trim()+ "&st=0&end=20&sort=10&bkn=" + bkn;
+                string html = method.PostUrl("https://qun.qq.com/cgi-bin/qun_mgr/search_group_members", postdata, COOKIE, "utf-8", "application/x-www-form-urlencoded", "https://qun.qq.com/member.html");
+                MatchCollection QQs = Regex.Matches(html, @"""uin"":([\s\S]*?),");
+                MatchCollection join_times = Regex.Matches(html, @"""join_time"":([\s\S]*?),");
+                for (int i = 0; i < QQs.Count; i++)
                 {
-                    long now = Convert.ToInt64(GetTimeStamp());
-                    long join = Convert.ToInt64(join_times[i].Groups[1].Value);
-                    // textBox3.Text += now +"---" + join+ "\r\n";
-                    if (now - join < 100)
+                    textBox3.Text = DateTime.Now.ToString() + "：正在监控......";
+                    try
                     {
-                        if (!panduan(QQs[i].Groups[1].Value))
+                        long now = Convert.ToInt64(GetTimeStamp());
+                        long join = Convert.ToInt64(join_times[i].Groups[1].Value);
+                        // textBox3.Text += now +"---" + join+ "\r\n";
+                        if (now - join < 200)
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(QQs[i].Groups[1].Value);
-                            lv1.SubItems.Add(ConvertStringToDateTime(join_times[i].Groups[1].Value).ToString());
+                            if (!panduan(QQs[i].Groups[1].Value+ text[a].Trim()))
+                            {
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(QQs[i].Groups[1].Value);
+                                lv1.SubItems.Add(ConvertStringToDateTime(join_times[i].Groups[1].Value).ToString());
+                                lv1.SubItems.Add(text[a].Trim());
+                            }
+
                         }
-
                     }
-                }
-                catch (Exception ex)
-                {
+                    catch (Exception ex)
+                    {
 
-                   continue;
-                }
+                        continue;
+                    }
 
+                }
+                Thread.Sleep(1000);
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -179,6 +187,14 @@ namespace QQ群成员提取
         {
             timer1.Stop();
             textBox3.Text = DateTime.Now.ToString() + "：停止监控......";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!textBox1.Text.Contains(comboBox1.Text))
+            {
+                textBox1.Text += comboBox1.Text.Trim()+"\r\n";
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202012
+namespace CF礼包领取
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202012
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new JSON检测登录());
+            Application.Run(new Form1());
         }
     }
 }

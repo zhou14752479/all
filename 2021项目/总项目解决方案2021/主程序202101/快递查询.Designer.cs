@@ -82,7 +82,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "号码";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 200;
             // 
             // button5
             // 
@@ -203,6 +203,8 @@
             this.Name = "快递查询";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "快递查询";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.快递查询_FormClosing);
+            this.Load += new System.EventHandler(this.快递查询_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

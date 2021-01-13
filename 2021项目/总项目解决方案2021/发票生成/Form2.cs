@@ -54,7 +54,7 @@ namespace 发票生成
 
 
            
-            textBox3.Text = "0000627" + getRandom(111, 999);
+            textBox3.Text = "00006277" + getRandom(90, 99);
             textBox4.Text = 1 + getRandom(10, 99)+"G"+ getRandom(1, 9)+"BY";
             textBox5.Text = DateTime.Now.ToString("yyyy-MM-dd");
 

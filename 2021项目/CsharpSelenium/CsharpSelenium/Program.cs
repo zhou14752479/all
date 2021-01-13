@@ -16,7 +16,7 @@ namespace CsharpSelenium
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 谷歌翻译保存());
+            Application.Run(new 数据爬取());
         }
     }
 }

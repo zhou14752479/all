@@ -55,7 +55,7 @@
             this.Controls.Add(this.webBrowser1);
             this.Name = "login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "login";
+            this.Text = "登录";
             this.Load += new System.EventHandler(this.login_Load);
             this.ResumeLayout(false);
 

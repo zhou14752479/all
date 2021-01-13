@@ -1,13 +1,17 @@
-﻿using NPOI.HSSF.UserModel;
+﻿using Microsoft.Win32;
+using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -66,6 +70,46 @@ namespace myDLL
            
         }
         #endregion
+
+
+        #region GET请求带COOKIE
+        /// <summary>
+        /// GET请求带COOKIE
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlWithCookie(string Url, string COOKIE, string charset)
+        {
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = Url;
+                request.Headers.Add("Cookie", COOKIE);
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.KeepAlive = true;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                request.Accept = "*/*";
+                request.Timeout = 100000;
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                return (ex.ToString());
+
+
+
+            }
+
+        }
+        #endregion
+
 
         #region POST请求
         /// <summary>
@@ -451,6 +495,86 @@ namespace myDLL
 
         #endregion;
 
+        #region  获取32位MD5加密
+        public static string GetMD5(string txt)
+        {
+            using (MD5 mi = MD5.Create())
+            {
+                byte[] buffer = Encoding.Default.GetBytes(txt);
+                //开始加密
+                byte[] newBuffer = mi.ComputeHash(buffer);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < newBuffer.Length; i++)
+                {
+                    sb.Append(newBuffer[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+        }
 
+        #endregion
+
+        #region 获取Mac地址
+        /// <summary>
+        /// 获取Mac地址
+        /// </summary>
+        /// <returns></returns>
+        public static string GetMacAddress()
+        {
+            try
+            {
+                string strMac = string.Empty;
+                ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+                ManagementObjectCollection moc = mc.GetInstances();
+                foreach (ManagementObject mo in moc)
+                {
+                    if ((bool)mo["IPEnabled"] == true)
+                    {
+                        strMac = mo["MacAddress"].ToString();
+                    }
+                }
+                moc = null;
+                mc = null;
+                return strMac;
+            }
+            catch
+            {
+                return "unknown";
+            }
+        }
+
+        #endregion
+
+        #region 获取时间戳  秒
+        /// <summary>
+        /// 获取时间戳  秒
+        /// </summary>
+        /// <returns></returns>
+        public static string GetTimeStamp()
+        {
+            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long a = Convert.ToInt64(tss.TotalSeconds);
+            return a.ToString();
+        }
+        #endregion
+
+
+        #region 修改注册表信息使WebBrowser使用指定版本IE内核 传入11000是IE11
+        public static void SetFeatures(UInt32 ieMode)
+        {
+            //传入11000是IE11, 9000是IE9, 只不过当试着传入6000时, 理应是IE6, 可实际却是Edge, 这时进一步测试, 当传入除IE现有版本以外的一些数值时WebBrowser都使用Edge内核
+            if (LicenseManager.UsageMode != LicenseUsageMode.Runtime)
+            {
+                throw new ApplicationException();
+            }
+            //获取程序及名称
+            string appName = System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            string featureControlRegKey = "HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\";
+            //设置浏览器对应用程序(appName)以什么模式(ieMode)运行
+            Registry.SetValue(featureControlRegKey + "FEATURE_BROWSER_EMULATION", appName, ieMode, RegistryValueKind.DWord);
+            //不晓得设置有什么用
+            Registry.SetValue(featureControlRegKey + "FEATURE_ENABLE_CLIPCHILDREN_OPTIMIZATION", appName, 1, RegistryValueKind.DWord);
+        }
+        #endregion
     }
 }

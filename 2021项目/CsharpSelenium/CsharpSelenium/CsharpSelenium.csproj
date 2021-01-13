@@ -83,6 +83,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="数据爬取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据爬取.Designer.cs">
+      <DependentUpon>数据爬取.cs</DependentUpon>
+    </Compile>
     <Compile Include="谷歌翻译保存.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="数据爬取.resx">
+      <DependentUpon>数据爬取.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="谷歌翻译保存.resx">
       <DependentUpon>谷歌翻译保存.cs</DependentUpon>
     </EmbeddedResource>

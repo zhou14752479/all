@@ -55,6 +55,9 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,7 +171,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton1.Location = new System.Drawing.Point(342, 30);
+            this.radioButton1.Location = new System.Drawing.Point(334, 30);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(60, 18);
             this.radioButton1.TabIndex = 175;
@@ -180,7 +183,7 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Checked = true;
             this.radioButton2.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton2.Location = new System.Drawing.Point(408, 30);
+            this.radioButton2.Location = new System.Drawing.Point(400, 30);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(60, 18);
             this.radioButton2.TabIndex = 176;
@@ -200,6 +203,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
@@ -216,7 +220,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(888, 110);
+            this.groupBox1.Size = new System.Drawing.Size(942, 110);
             this.groupBox1.TabIndex = 147;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "任务管理";
@@ -230,7 +234,7 @@
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox3.Size = new System.Drawing.Size(888, 62);
+            this.textBox3.Size = new System.Drawing.Size(942, 62);
             this.textBox3.TabIndex = 151;
             // 
             // columnHeader1
@@ -250,7 +254,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "源图";
-            this.columnHeader4.Width = 200;
+            this.columnHeader4.Width = 160;
             // 
             // columnHeader5
             // 
@@ -279,26 +283,47 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
+            this.columnHeader10,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader9});
+            this.columnHeader9,
+            this.columnHeader6});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 110);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(888, 336);
+            this.listView1.Size = new System.Drawing.Size(942, 336);
             this.listView1.TabIndex = 152;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "价格";
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton3.Location = new System.Drawing.Point(466, 30);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(60, 18);
+            this.radioButton3.TabIndex = 179;
+            this.radioButton3.Text = "类型L";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "源价格";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(888, 508);
+            this.ClientSize = new System.Drawing.Size(942, 508);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.groupBox1);
@@ -343,6 +368,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }
 
