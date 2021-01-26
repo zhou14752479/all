@@ -120,6 +120,18 @@
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>使用前需购买此软件会员！
+使用步骤：输入企业行业，选择地区点击开始搜索即可！
+
+账号分为初级会员和高级会员
+初级会员：可以采集大部分城市、省份、【支持每次单个行业】 1000￥
+高级会员：可以筛选并接入API，用于开发，自动拨号【支持批量多行业多地区】2000￥
+
+参考行业名称：
+机械  制造  五金  建材  家居  服装  贸易  加工  金属  材料  化工  纺织  包装  
+电子  塑料  农业  环保  科技  食品.......</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

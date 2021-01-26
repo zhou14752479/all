@@ -69,3 +69,77 @@
             }
 
 
+
+
+
+
+#region   dataGridView导出CSV带进度条，导出分列
+        public static void csv(DataGridView dgv)
+        {
+
+            if (dgv.Rows.Count == 0)
+            {
+                MessageBox.Show("No data available!", "Prompt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+                saveFileDialog.FilterIndex = 0;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.CreatePrompt = true;
+                saveFileDialog.FileName = null;
+                saveFileDialog.Title = "Save path of the file to be exported";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Stream myStream = saveFileDialog.OpenFile();
+                    StreamWriter sw = new StreamWriter(myStream, System.Text.Encoding.GetEncoding(-0));
+                    string strLine = "";
+                    try
+                    {
+                        //Write in the headers of the columns.
+                        for (int i = 0; i < dgv.ColumnCount; i++)
+                        {
+                            if (i > 0)
+                                strLine += ",";
+                            strLine += dgv.Columns[i].HeaderText;
+                        }
+                        strLine.Remove(strLine.Length - 1);
+                        sw.WriteLine(strLine);
+                        strLine = "";
+                        //Write in the content of the columns.
+                        for (int j = 0; j < dgv.Rows.Count; j++)
+                        {
+                            strLine = "";
+                            for (int k = 0; k < dgv.Columns.Count; k++)
+                            {
+                                if (k > 0)
+                                    strLine += ",";
+                                if (dgv.Rows[j].Cells[k].Value == null)
+                                    strLine += "";
+                                else
+                                {
+                                    string m = dgv.Rows[j].Cells[k].Value.ToString().Trim();
+                                    strLine += m.Replace(",", "，");
+                                }
+                            }
+                            strLine.Remove(strLine.Length - 1);
+                            sw.WriteLine(strLine);
+                            //Update the Progess Bar.
+                           
+                        }
+                        sw.Close();
+                        myStream.Close();
+                        MessageBox.Show("Data has been exported to：" + saveFileDialog.FileName.ToString(), "Exporting Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Exporting Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+
+        }
+        #endregion

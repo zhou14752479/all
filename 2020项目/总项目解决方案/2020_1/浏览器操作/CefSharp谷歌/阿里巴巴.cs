@@ -81,5 +81,10 @@ namespace CefSharp谷歌
         {
             method.ListViewToCSV(listView1, true);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            browser.Load(textBox1.Text);
+        }
     }
 }

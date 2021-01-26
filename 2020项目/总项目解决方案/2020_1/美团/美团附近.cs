@@ -182,7 +182,7 @@ namespace 美团
         #endregion
         bool zanting = true;
         ArrayList tels = new ArrayList();
-
+        ArrayList cateids = new ArrayList();
         #region  主程序进入详情页
         public void run1()
         {
@@ -312,91 +312,94 @@ namespace 美团
 
             foreach (string city in citys)
             {
-               
 
-                string cityId = GetcityId((city));
-
-                try
+                foreach (string cateid in cateids)
                 {
-                  
-                        for (int i = 0; i < 100001; i = i + 100)
+                    string cityId = GetcityId((city));
 
+                   
+                    try
                         {
 
-                            string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityId + "/cate/" + cateid + "?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
-                      
-                            string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+                            for (int i = 0; i < 100001; i = i + 100)
 
-
-                            MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
-
-                            MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
-                            MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-                            MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
-
-                            MatchCollection cate = Regex.Matches(html, @"cateName"":""([\s\S]*?)""");
-                            MatchCollection area = Regex.Matches(html, @"areaName"":""([\s\S]*?)""");
-                            MatchCollection shangquan = Regex.Matches(html, @"mallName"":""([\s\S]*?)""");
-
-
-                            if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                                break;
-
-                        for (int j = 0; j < names.Count; j++)
-
-
-                        {
-                            if (checkBox1.Checked == true)
                             {
-                                if (!phone[j].Groups[1].Value.Contains("-") && !phone[j].Groups[1].Value.Contains("400"))
+
+                                string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityId + "/cate/" + cateid + "?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
+
+                                string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+
+                                MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
+
+                                MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
+                                MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
+                                MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
+
+                                MatchCollection cate = Regex.Matches(html, @"cateName"":""([\s\S]*?)""");
+                                MatchCollection area = Regex.Matches(html, @"areaName"":""([\s\S]*?)""");
+                                MatchCollection shangquan = Regex.Matches(html, @"mallName"":""([\s\S]*?)""");
+
+
+                                if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                    break;
+
+                                for (int j = 0; j < names.Count; j++)
+
+
                                 {
-                                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                    listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                    listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                                    listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                    listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+                                    if (checkBox1.Checked == true)
+                                    {
+                                        if (!phone[j].Groups[1].Value.Contains("-") && !phone[j].Groups[1].Value.Contains("400"))
+                                        {
+                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                            listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
 
-                                    listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                    listViewItem.SubItems.Add(area[j].Groups[1].Value);
-                                    listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                                            listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
 
-                                    listViewItem.SubItems.Add(city);
+                                            listViewItem.SubItems.Add(city);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                        listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+
+                                        listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                                        listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+
+                                        listViewItem.SubItems.Add(city);
+
+                                    }
+
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+                                    if (status == false)
+                                        return;
                                 }
-                            }
-                            else
-                            {
-                                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+                                Application.DoEvents();
+                                Thread.Sleep(1000);
 
-                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(area[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
 
-                                listViewItem.SubItems.Add(city);
 
                             }
-
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-                            if (status == false)
-                                return;
                         }
-                        Application.DoEvents();
-                        Thread.Sleep(1000);
-
-
-
-                    }
-                }
-                catch (System.Exception ex)
-                {
-                    ex.ToString();
+                        catch (System.Exception ex)
+                        {
+                            ex.ToString();
+                        }
                 }
             }
 
@@ -524,7 +527,7 @@ namespace 美团
         }
         #endregion
 
-        string cateid = "1";
+      
         bool status = true;
         Thread thread;
 
@@ -545,47 +548,60 @@ namespace 美团
             //#endregion
 
             status = true;
-            switch (comboBox1.Text)
-            {
-                case "餐饮美食":
-                    cateid = "1";
-                    break;
-                case "丽人":
-                    cateid = "22";
-                    break;
-                case "休闲娱乐":
-                    cateid = "2";
-                    break;
-                case "饮品":
-                    cateid = "21329";
-                    break;
-                case "蛋糕甜点":
-                    cateid = "11";
-                    break;
-                case "美发":
-                    cateid = "74";
-                    break;
-                case "美容美体":
-                    cateid = "76";
-                    break;
-                case "婚纱摄影":
-                    cateid = "20178";
-                    break;
-                case "汽车":
-                    cateid = "27";
-                    break;
-                case "教育":
-                    cateid = "20285";
-                    break;
-                case "KTV":
-                    cateid = "10";
-                    break;
-                case "洗浴汗蒸":
-                    cateid = "112";
-                    break;
+            //switch (comboBox1.Text)
+            //{
+            //    case "餐饮美食":
+            //        cateid = "1";
+            //        break;
+            //    case "丽人":
+            //        cateid = "22";
+            //        break;
+            //    case "休闲娱乐":
+            //        cateid = "2";
+            //        break;
+            //    case "饮品":
+            //        cateid = "21329";
+            //        break;
+            //    case "蛋糕甜点":
+            //        cateid = "11";
+            //        break;
+            //    case "美发":
+            //        cateid = "74";
+            //        break;
+            //    case "美容美体":
+            //        cateid = "76";
+            //        break;
+            //    case "婚纱摄影":
+            //        cateid = "20178";
+            //        break;
+            //    case "汽车":
+            //        cateid = "27";
+            //        break;
+            //    case "教育":
+            //        cateid = "20285";
+            //        break;
+            //    case "KTV":
+            //        cateid = "10";
+            //        break;
+            //    case "洗浴汗蒸":
+            //        cateid = "112";
+            //        break;
+            //    case "宠物医院":
+            //        cateid = "20691";
+            //        break;
 
-            }
+            //}
 
+            cateids.Add("20691");
+            cateids.Add("67");
+            cateids.Add("32");
+            cateids.Add("20286");
+            cateids.Add("20289");
+            cateids.Add("20291");
+            cateids.Add("21472");
+            cateids.Add("21467");
+            cateids.Add("21462");
+            cateids.Add("21458");
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);

@@ -42,11 +42,13 @@ namespace QQ群成员提取
                 {
                     if (text[0] == "https://qun.qq.com/member.html")
                     {
+                        this.Hide();
                         timer1.Stop();
                         Form1 fm1 = new Form1();
-                        fm1.Show();
                         fm1.COOKIE = method.GetCookies("https://qun.qq.com/member.html");
-                        this.Hide();
+                        fm1.Show();
+                       
+                        
 
                     }
                 }

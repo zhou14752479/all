@@ -16,7 +16,7 @@ namespace 主程序202012
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new JSON检测登录());
+            Application.Run(new 网址JSON检测());
         }
     }
 }

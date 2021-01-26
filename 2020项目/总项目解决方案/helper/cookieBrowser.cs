@@ -36,16 +36,17 @@ namespace helper
 
         private void cookieBrowser_Load(object sender, EventArgs e)
         {
-           webBrowser1.Visible = false;
+        
             timer1.Start();
-            button2.Enabled = true;
+          
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             cookie = method.GetCookies(webUrl);
-            this.Hide();
+            textBox1.Text = cookie;
+            //this.Hide();
 
         }
 
@@ -63,93 +64,10 @@ namespace helper
             this.webBrowser1.Url = new Uri(url);
         }
 
-        #region  注册函数
+        
 
-        public void myLogin()
-        {
-            webBrowser1.Visible = true;
-
-            try
-
-            {
-
-                string constr = "Host =143.92.45.176;Database=fastadmin;Username=fastadmin;Password=cFfJA2SH3JeFKtj7";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO fa_mail_user (username,password)VALUES('" + textBox1.Text + " ', '" + textBox2.Text + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-                if (count > 0)
-                {
-                    mycon.Close();
-
-
-
-                    webBrowser1.Focus();
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-                    SendKeys.Send("{BACKSPACE}");
-
-
-
-
-                    Clipboard.SetDataObject(textBox1.Text.Trim());
-
-                   
-                    keybd_event(Keys.ControlKey, 0, 0, 0);
-                    keybd_event(Keys.V, 0, 0, 0);
-                    keybd_event(Keys.ControlKey, 0, KEYEVENTF_KEYUP, 0);
-
-                    keybd_event(Keys.Tab, 0, 0, 0);
-                    SendKeys.Send(textBox2.Text.Trim());
-                    SendKeys.Send("{ENTER}");
-
-                }
-                else
-                {
-                    MessageBox.Show("连接失败！");
-                }
-
-
-            }
-
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-            #endregion
-
-            private void button2_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text == "" || textBox2.Text == "")
-            {
-                MessageBox.Show("请输入账号信息");
-                return;
-            }
-
-            myLogin();
-            webBrowser1.Visible = true;
-         
-        }
-        public const int KEYEVENTF_KEYUP = 2;
-        private void button3_Click(object sender, EventArgs e)
-        {
-           
-          
-          
-        }
+        
+     
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {

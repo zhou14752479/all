@@ -34,6 +34,10 @@ namespace CF礼包领取
             button5.Click += new System.EventHandler(btn_Click);
             button6.Click += new System.EventHandler(btn_Click);
 
+
+
+            this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
+            this.tabControl2.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
         }
 
         protected void btn_Click(object sender, EventArgs e)
@@ -60,7 +64,60 @@ namespace CF礼包领取
 
         private void button1_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectedIndex = 0;
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // webBrowser1.BringToFront();   //将控件webBrowser展示在最前面
+            tabControl1.SelectedIndex = 1;
+        }
+
+
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 2;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 3;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 4;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 5;
+        }
+        private Point mPoint = new Point();
+     
+
+       
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            mPoint.X = e.X;
+            mPoint.Y = e.Y;
+        }
+
+        private void panel2_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Point myPosittion = MousePosition;
+                myPosittion.Offset(-mPoint.X, -mPoint.Y);
+                Location = myPosittion;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            comboBox1.Visible = true;
         }
     }
 }

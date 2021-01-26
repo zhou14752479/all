@@ -59,11 +59,15 @@ namespace CsharpSelenium
             driver.CurrentWindowHandle;
             driver.Quit();
             driver.FindElement(By.TagName("button")).Click();
+             driver.FindElement(By.Id("FP-addFriend-verifyinput")).SendKeys("你好");
+              driver.FindElement(By.Id("FP-addFriend-verifyinput")).Click();
             driver.SwitchTo().Frame("myframe");
             driver.Manage().Window.Size = new Size(1024, 768);
             driver.Manage().Window.Minimize();
             IWebElement searchbox = driver.FindElement(By.Name("q"));
             searchbox.SendKeys("webdriver");
+            driver.FindElement(By.XPath("//*[text()=\"立即升级\"]")).Click();
+            driver.FindElement(By.XPath("//a[contains(text(),\"加为好友\")]")).Click();//包含文字定位
              driver.FindElement(By.XPath("//*[@id=\"kw\"]")).SendKeys("测试");
             driver.FindElement(By.XPath("//*[@id=\"su\"]")).Click();
            // Enter "webdriver" text and perform "ENTER" keyboard action
@@ -82,20 +86,30 @@ namespace CsharpSelenium
         {
                     
             ChromeOptions options = new ChromeOptions();
-            //options.AddArgument("--lang=en"); 
-            options.AddArgument("--save-page-as-mhtml");
-            options.AddUserProfilePreference("download.default_directory", @"C:\Users\zhou\Desktop\");
-            options.AddUserProfilePreference("intl.accept_languages", "nl");
-            options.AddUserProfilePreference("disable-popup-blocking", "true");
-           
+            // options.AddArgument("--lang=en");
+            // options.AddArgument("--lang=CN");
+
+          
+            Dictionary<String, Object> prefs = new Dictionary<String, Object>();
+            Dictionary<String, Object> langs = new Dictionary<String, Object>();
+            langs.Add("en", "zh-CN");
+            prefs.Add("translate", "{'enabled ': true}");
+            prefs.Add("translate_whitelists", langs);
+           options.AddUserProfilePreference("prefs", prefs);
+
+         
+
+
+            //options.AddArgument("--save-page-as-mhtml");
+            //options.AddUserProfilePreference("download.default_directory", @"C:\Users\zhou\Desktop\");
+            //options.AddUserProfilePreference("intl.accept_languages", "nl");
+            //options.AddUserProfilePreference("disable-popup-blocking", "true");
+
             IWebDriver driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
            
-            for (int i = 0; i < 1; i++)
-            {
-                string url = listView1.Items[i].SubItems[1].Text;
-                string rename = listView1.Items[i].SubItems[2].Text;
-                driver.Navigate().GoToUrl(url);
+          
+                driver.Navigate().GoToUrl("file:///C:/Users/zhou/Desktop/%E7%BF%BB%E8%AF%91%E6%B5%8B%E8%AF%95.html");
 
                 //driver.Url = "http://www.baidu.com"是一样的
 
@@ -117,7 +131,7 @@ namespace CsharpSelenium
                 Actions action = new Actions(driver);
               
                 action.KeyDown(OpenQA.Selenium.Keys.Control).SendKeys("s").KeyUp(OpenQA.Selenium.Keys.Control).Build().Perform();
-                action.SendKeys(OpenQA.Selenium.Keys.Control + "s").Build().Perform();
+               action.SendKeys(OpenQA.Selenium.Keys.Control + "s").Build().Perform();
                 //keybd_event(System.Windows.Forms.Keys.ControlKey, 0, 0, 0);
                 //keybd_event(System.Windows.Forms.Keys.S, 0, 0, 0);
                 //keybd_event(System.Windows.Forms.Keys.S, 0, KEYEVENTF_KEYUP, 0);
@@ -130,7 +144,7 @@ namespace CsharpSelenium
             }
 
             //driver.Quit();
-        }
+        
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -151,7 +165,7 @@ namespace CsharpSelenium
 
         private void button2_Click(object sender, EventArgs e)
         {
-            method.ReadFromExcelFile(@"C:\Users\zhou\Desktop\TEST2 不翻译.xlsx", listView1);
+          
             runwithTranslate();
         }
     }

@@ -71,6 +71,12 @@
     <Compile Include="快递查询.Designer.cs">
       <DependentUpon>快递查询.cs</DependentUpon>
     </Compile>
+    <Compile Include="网站筛选.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="网站筛选.Designer.cs">
+      <DependentUpon>网站筛选.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -82,6 +88,9 @@
     </Compile>
     <EmbeddedResource Include="快递查询.resx">
       <DependentUpon>快递查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="网站筛选.resx">
+      <DependentUpon>网站筛选.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

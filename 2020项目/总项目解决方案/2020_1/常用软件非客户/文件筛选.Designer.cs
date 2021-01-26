@@ -167,7 +167,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(198, 21);
             this.textBox4.TabIndex = 41;
-            this.textBox4.Text = "新建,www,党,研修,复件,u,U,&";
+            this.textBox4.Text = "新建,www,党,研修,复件,·,&,•";
             // 
             // label2
             // 

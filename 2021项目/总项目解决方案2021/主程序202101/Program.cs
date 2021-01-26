@@ -16,7 +16,7 @@ namespace 主程序202101
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 快递查询());
+            Application.Run(new 网站筛选());
         }
     }
 }

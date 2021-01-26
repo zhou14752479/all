@@ -16,28 +16,7 @@ namespace main
 {
     public partial class main : Form
     {
-        public void insertData(string[] values)
-        {
-
-            try
-            {
-                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO companys (cname,linkman,province,city,phone,number,email,item,mainpro,ctime,qq,address)VALUES('" + values[0] + " ','" + values[1] + " ','" + values[2] + " ','" + values[3] + " ','" + values[4] + " ','" + values[5] + " ','" + values[6] + " ','" + values[7] + " ','" + values[8] + " ','" + values[9] + " ','" + values[10] + " ','" + values[11]+ "')", mycon);
-
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-
-                mycon.Close();
-                
-                
-            }
-
-            catch (System.Exception ex)
-            {
-             ex.ToString();
-            }
-        }
+       
 
 
         public main()
@@ -134,9 +113,7 @@ namespace main
                         foreach (recordList recordList1 in jsonParser.recordList)
                         {
 
-                            if (recordList1.linkmp != "null" && recordList1.linkmp != "")
-                            {
-
+                          
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                                 lv1.SubItems.Add(recordList1.companyname);
                                 lv1.SubItems.Add(recordList1.linkman);
@@ -168,7 +145,7 @@ namespace main
                                     Application.DoEvents();
                                 }
 
-                            }
+                            
                         }
                              
 
@@ -201,30 +178,33 @@ namespace main
         #endregion
 
         int count = 0;
-
+        Thread thread;
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            status = true;
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            if (html.Contains(@"huicong"))
-            {
-                Thread thread = new Thread(new ThreadStart(huicong));
-                thread.Start();
-
-            }
-
-            else
+            if (!html.Contains(@"huicong"))
             {
                 MessageBox.Show("验证失败");
                 return;
+
             }
+
+ 
 
 
             #endregion
-           
+            if (thread == null || !thread.IsAlive)
+            {
+
+                thread = new Thread(huicong);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
 
         }
 
@@ -393,6 +373,9 @@ namespace main
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-     
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
+        }
     }
 }

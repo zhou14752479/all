@@ -5,6 +5,16 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpSelenium", "CsharpSelenium\CsharpSelenium.csproj", "{0CC42F0D-973F-498C-A8C3-8C8B76319D5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{57E248CF-3627-4FDD-8FB7-CA9713201344}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QQ群成员提取", "..\..\2020项目\总项目解决方案\QQ群成员提取\QQ群成员提取.csproj", "{4B43461A-513D-4E3C-B908-BC6A1A69B810}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜图匹配", "..\..\2020项目\总项目解决方案\搜图匹配\搜图匹配.csproj", "{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "同城58", "..\..\2020项目\总项目解决方案\同城58\同城58.csproj", "{5E7229D9-8A2B-4A63-A62F-E878C880FB81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "常用软件非客户", "..\..\2020项目\总项目解决方案\2020_1\常用软件非客户\常用软件非客户.csproj", "{C18B562A-4D6F-4D9F-B1AF-5581F1B2B458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +25,26 @@ Global
 		{0CC42F0D-973F-498C-A8C3-8C8B76319D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CC42F0D-973F-498C-A8C3-8C8B76319D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CC42F0D-973F-498C-A8C3-8C8B76319D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57E248CF-3627-4FDD-8FB7-CA9713201344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E248CF-3627-4FDD-8FB7-CA9713201344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E248CF-3627-4FDD-8FB7-CA9713201344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E248CF-3627-4FDD-8FB7-CA9713201344}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F25EBF0-216A-442B-AB22-3877F9B1AD0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E7229D9-8A2B-4A63-A62F-E878C880FB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7229D9-8A2B-4A63-A62F-E878C880FB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7229D9-8A2B-4A63-A62F-E878C880FB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7229D9-8A2B-4A63-A62F-E878C880FB81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C18B562A-4D6F-4D9F-B1AF-5581F1B2B458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C18B562A-4D6F-4D9F-B1AF-5581F1B2B458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C18B562A-4D6F-4D9F-B1AF-5581F1B2B458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C18B562A-4D6F-4D9F-B1AF-5581F1B2B458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -259,7 +259,7 @@ namespace 政府房产交易网
         private void yantai_1_OnTimedEvent(object source, System.Timers.ElapsedEventArgs e)
         {
             string now = DateTime.Now.ToString("HH:mm:ss");
-            if (now == "22:00:00")
+            if (now == "10:20:00")
             {
                 try
                 {
@@ -293,7 +293,7 @@ namespace 政府房产交易网
 
                     }
                     WriteCsv(table,"烟台", "yantai_1");
-                    getlogs(DateTime.Now.ToString() + "烟台每日成交导出csv成功！");
+                    getlogs( "烟台每日成交导出csv成功！");
 
 
                 }
@@ -352,7 +352,7 @@ namespace 政府房产交易网
                     MatchCollection IDs = Regex.Matches(html, @"""ID"":""([\s\S]*?)""");
                     if (IDs.Count == 0)
                     {
-                        WriteCsv(table, "烟台", "yantai_2_" +DateTime.Now.ToString("yyyy-MM-dd"));
+                        WriteCsv(table, "烟台", "yantai_2_");
                         getlogs(DateTime.Now.ToString() + "烟台预售许可信息导出csv成功！");
                         return;
                     }

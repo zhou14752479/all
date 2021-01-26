@@ -131,6 +131,7 @@ namespace 启动程序
         public void run()
         {
             cookie = method.GetCookies("https://www.tcpjw.com/tradingHall");
+            
             if (cookie == "")
             {
                 MessageBox.Show("未登录");
@@ -139,17 +140,17 @@ namespace 启动程序
             string tk1 = tk.Groups[0].Value.Replace("access_token=", "");
 
             token = Regex.Replace(tk1, @";.*", "");
+
            
-          
             try
             {
                 string url = "https://www.tcpjw.com/order-web/orderInfo/getTradingOrderInfo";
                 string postdata = "{\"source\":\"HTML\",\"version\":\"3.5\",\"channel\":\"01\",\"pageNum\":1,\"pageSize\":15,\"tradeStatus\":null,\"payType\":"+paytype+",\"bid\":"+bid+",\"bankName\":"+bankName+",\"lastTime\":"+lasttime+",\"lastTimeStart\":null,\"lastTimeEnd\":null,\"startDate\":null,\"endDate\":null,\"flawStatus\":\""+flawStatus+"\",\"priceType\":"+pricetype+",\"priceSp\":"+priceSp+",\"priceEp\":"+priceEp+",\"yearQuote\":"+yearQuote+",\"msw\":"+msw+",\"mswStart\":null,\"mswEnd\":null,\"orderColumn\":null,\"sortType\":\"\",\"depositPay\":"+depositPay+"}";
                 
                 string html = PostUrl(url,postdata,cookie,"utf-8");
-              
+               
                 MatchCollection ids = Regex.Matches(html, @"""ticketId"":([\s\S]*?),");
-
+                
                 MatchCollection a1s = Regex.Matches(html, @"""publishTime"":""([\s\S]*?)""");
                 MatchCollection a2s = Regex.Matches(html, @"""bankName"":""([\s\S]*?)""");
                 MatchCollection a3s = Regex.Matches(html, @"""ticketPrice"":([\s\S]*?),");
@@ -158,6 +159,7 @@ namespace 启动程序
                 MatchCollection a6s = Regex.Matches(html, @"""yearQuote"":([\s\S]*?),");
                 MatchCollection a7s = Regex.Matches(html, @"""flawDescription"":""([\s\S]*?)""");
                 MatchCollection a8s = Regex.Matches(html, @"payName"":\[""([\s\S]*?)\]");
+             
                 for (int i = 0; i < a1s.Count; i++)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
@@ -174,7 +176,8 @@ namespace 启动程序
                     string ThousandCharge = a5s[i].Groups[1].Value;
                     string payt = "1";
                     //string endorseId = "15858";
-                    string endorseId = "73408";
+                    // string endorseId = "73408";
+                    string endorseId = "88717";
                     string yearrate= a6s[i].Groups[1].Value;
                     string dealPrice=a3s[i].Groups[1].Value;
                     string ticketPrice=a3s[i].Groups[1].Value;
@@ -402,17 +405,24 @@ namespace 启动程序
             }
 
 
-
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
             timer1.Start();
         }
-
+        Thread thread;
         private void Timer1_Tick(object sender, EventArgs e)
         {
             listView1.Items.Clear();
-            //Thread thread1 = new Thread(new ThreadStart(run));
-            //thread1.Start();
-            //Control.CheckForIllegalCrossThreadCalls = false;
-            run();
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)

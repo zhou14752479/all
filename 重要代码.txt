@@ -6,6 +6,7 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
 
 System.Diagnostics.Process.GetCurrentProcess().Kill();
 
+System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")); 指定编码
 
 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
@@ -16,7 +17,8 @@ Regex.Replace(url.Groups[1].Value, "<[^>]+>", "")
 System.Web.HttpUtility.UrlEncode(comboBox1.Text)
 ***************使用频率高*****************
 
-
+【设置控件显示在前面】
+ textBox1.BringToFront();
 
 【一、Unicode转中文】
 
@@ -348,3 +350,14 @@ NuGet程序包引用Microsoft.mshtml
 【获取包括动态加载内容】 textBox1.Text = webBrowser1.Document.Body.OuterHtml;
 【这个获取不包括动态加载内容，只是源码】  webBrowser1.DocumentText
 【正则匹配最后一个空格后的内容】\s+(\S*)$
+
+
+【正则超时引发异常处理】
+  try
+      {         
+      MatchCollection values = Regex.Matches(html, @"data-class=""rms_img"" data-src=""([\s\S]*?)""([\s\S]*?)br-standardPrice promoted"">([\s\S]*?)</div>([\s\S]*?)<span class=""br-sellersCite"" tabindex=""0"">([\s\S]*?)</span>", RegexOptions.IgnoreCase, TimeSpan.FromSeconds(5));
+       }
+       catch (RegexMatchTimeoutException ex)
+          {
+                 //MessageBox.Show(ex.ToString());      
+           }          

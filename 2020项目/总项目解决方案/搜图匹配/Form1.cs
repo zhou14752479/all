@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -20,6 +21,44 @@ namespace 搜图匹配
 {
     public partial class Form1 : Form
     {
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -146,8 +185,8 @@ namespace 搜图匹配
 
         
 
-        public static string APIKey = "4r4r9Y9GMNL9tqvOQlpoOmBt";
-        public static string SecretKey = "92SwzvYSrwodcuy3fmP779kvD62DsMmg";
+        public static string APIKey = "zkjaxGdsZvR0MnpIzH0zC4iL";
+        public static string SecretKey = "tjzhk56pj9O2FUQrBIInOH72gHGRIA0s";
         public static string access_token = "";
         public string domain;
         public string token = "";
@@ -322,20 +361,30 @@ namespace 搜图匹配
     public string getSourcepic(string key)
         {
 
-
-            string url = "https://"+domain+"/search?q="+key;
-            string html = GetUrl(url);
-
-            Match pic = Regex.Match(html, @"<img class=""list-view-item__image"" src=""([\s\S]*?)""");
-            Match price = Regex.Match(html, @"price-item--sale"">([\s\S]*?)</span>");
-            if (pic.Groups[1].Value != "" && price.Groups[1].Value != "")
+            try
             {
-                return "https:"+pic.Groups[1].Value.Replace("_95x95","")+"#"+ price.Groups[1].Value.Trim();
+                string url = "https://" + domain + "/search?q= " + key;
+                string html = GetUrl(url);
+
+                Match pic = Regex.Match(html, @"<img class=""list-view-item__image"" src=""([\s\S]*?)""");
+                Match price = Regex.Match(html, @"price-item--sale"">([\s\S]*?)</span>");
+                if (pic.Groups[1].Value != "" && price.Groups[1].Value != "")
+                {
+                    return "https:" + pic.Groups[1].Value.Replace("_95x95", "") + "#" + price.Groups[1].Value.Trim();
+                }
+                else
+                {
+                    Match pic1 = Regex.Match(html, @"<img src=""([\s\S]*?)""");
+                    Match price1 = Regex.Match(html, @"<span class=money>([\s\S]*?)</span>");
+                    return "https:" + pic1.Groups[1].Value.Replace("_95x95", "") + "#" + price1.Groups[1].Value.Trim();
+                }
             }
-            else
+            catch (Exception ex)
             {
+
                 return "";
             }
+           
        
 
         }
@@ -347,12 +396,12 @@ namespace 搜图匹配
         /// <returns></returns>
         public ArrayList google(string keyword)
         {
-
+            ArrayList lists = new ArrayList();
             try
             {
                 //string keyword = "Masked+Santa+Ornament+2020+For+Christmas+Tree";
                
-                ArrayList lists = new ArrayList();
+               
                 string url = "https://www.google.com/search?q=" + keyword.Trim() + "&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiZ3Mr0-IbuAhXRfXAKHQyuAP4Q_AUoAnoECA8QBA&biw=1920&bih=936";
                // textBox1.Text = url;
                 string html = GetUrl(url);
@@ -373,10 +422,113 @@ namespace 搜图匹配
             {
 
                 //MessageBox.Show(ex.ToString());
-                return null;
+                return lists;
             }
         }
 
+        Dictionary<string, string> dics = new Dictionary<string, string>();
+        /// <summary>
+        /// bing搜索
+        /// </summary>
+        /// <returns></returns>
+        public ArrayList bing(string keyword)
+        {
+            ArrayList lists = new ArrayList();
+           
+            try
+            {
+                //keyword = "Indoor Non-slip Thermal Socks";
+
+
+                string url = "https://www.bing.com/search?q="+keyword.Trim()+"&search=&form=QBLH";
+                // textBox1.Text = url;
+                string html = GetUrl(url);
+                // textBox3.Text = html;
+                MatchCollection values = Regex.Matches(html, @"data-priority=""2"" id=""([\s\S]*?)""([\s\S]*?)<strong>([\s\S]*?)</strong>([\s\S]*?)<cite>([\s\S]*?)</cite>");
+                MatchCollection pics = Regex.Matches(html, @"x=_ge\('([\s\S]*?)'\);if\(x\)\{x\.src='data:image\/jpeg;base64,([\s\S]*?)'");
+               
+
+                for (int i = 0; i < pics.Count; i++)
+                {
+                    dics.Add(pics[i].Groups[1].Value, pics[i].Groups[2].Value);
+                   
+                }
+
+                for (int i = 0; i < values.Count; i++)
+                {
+
+                   
+
+                  
+                     lists.Add(pics[i].Groups[1].Value + "*" + values[i].Groups[5].Value + "*" + values[i].Groups[3].Value);
+
+                }
+
+                return lists;
+            }
+            catch (Exception ex)
+            {
+               
+                //MessageBox.Show(ex.ToString());
+                return lists;
+            }
+        }
+
+
+        /// <summary>
+        /// bing搜索
+        /// </summary>
+        /// <returns></returns>
+        public ArrayList bing2(string keyword)
+        {
+            ArrayList lists = new ArrayList();
+
+            try
+            {
+                //keyword = "Indoor Non-slip Thermal Socks";
+
+
+                string url = "https://www.bing.com/shop?q="+keyword.Trim()+"&go=%E6%90%9C%E7%B4%A2&qs=ds&form=SHOPSB";
+                // textBox1.Text = url;
+                string html = GetUrl(url);
+                // textBox3.Text = html;
+
+                try
+                {
+                 
+                    MatchCollection values = Regex.Matches(html, @"data-class=""rms_img"" data-src=""([\s\S]*?)""([\s\S]*?)br-standardPrice promoted"">([\s\S]*?)</div>([\s\S]*?)<span class=""br-sellersCite"" tabindex=""0"">([\s\S]*?)</span>", RegexOptions.IgnoreCase, TimeSpan.FromSeconds(5));
+                   
+
+                    for (int i = 0; i < values.Count; i++)
+                    {
+
+
+                        if (values[i].Groups[1].Value.Contains("bing"))
+                        {
+
+                            lists.Add(values[i].Groups[1].Value + "*" + values[i].Groups[5].Value + "*" + values[i].Groups[3].Value);
+                        }
+
+                    }
+
+                    return lists;
+                }
+                catch (RegexMatchTimeoutException ex)
+                {
+                    //MessageBox.Show(ex.ToString());
+                    IniWriteValue("跳过关键词", "keyword", keyword.Trim());  //写入CONFIGini
+                    return lists;
+                }
+               
+          
+            }
+            catch (Exception ex)
+            {
+
+               
+                return lists;
+            }
+        }
 
         /// <summary>
         /// lazada搜索
@@ -417,7 +569,7 @@ namespace 搜图匹配
 
 
         // 商品检索—入库
-        public  string productAdd(string brief, string url)
+        public  string productAdd(string brief, string base64)
         {
           
             string host = "https://aip.baidubce.com/rest/2.0/image-classify/v1/realtime_search/product/add?access_token=" + token;
@@ -425,7 +577,7 @@ namespace 搜图匹配
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(host);
             request.Method = "post";
             request.KeepAlive = true;
-            string base64 = BitmapToBase64(UrlToBitmap(url));
+          
             String str = "brief="+ brief + "&image=" + HttpUtility.UrlEncode(base64);
             //String str = "brief=" + brief + "&url=" +base64;
             byte[] buffer = encoding.GetBytes(str);
@@ -517,71 +669,103 @@ namespace 搜图匹配
 
             for (int i = 1; i < text.Length; i++)
             {
-                string keyword = text[i].Replace(" ", "+");
-                ArrayList picsList = new ArrayList();
-                if (radioButton1.Checked == true || radioButton2.Checked == true)
+                try
                 {
-                    picsList = google(keyword);
-                }
-               if(radioButton3.Checked==true)
-
-                {
-                    picsList = lazada(keyword);
-                }
-                textBox3.Text += ("获取搜索图片成功:")+ "\r\n";
-                foreach (string item in picsList)
-                {
-                    try
-                    {
-                        string[] value = item.Split(new string[] { "*" }, StringSplitOptions.None);
-
-                        string picurl = value[0];
-                        string company = value[1];
-                        string price = value[2];
-
-                       
-                        string brief =   price+"#"+company+"#"+picurl;
-                       
-                        textBox3.Text += ("正在入库图片序号:") +picurl+ "\r\n";
-
-                        string result = productAdd(brief, picurl);
-                      
-                        if (result.Contains("cont_sign"))
-                        {
-                            textBox3.Text += ("入库智能云成功:") + brief + "\r\n";
-                            imagelists.Add(picurl);
-                        }
-
-                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(keyword);
-                        lv1.SubItems.Add("");
-                        lv1.SubItems.Add("");
-                        lv1.SubItems.Add(domain);
-                        lv1.SubItems.Add("");
-                        lv1.SubItems.Add(value[1]);
-                        lv1.SubItems.Add(value[0]);
-                        lv1.SubItems.Add("");
-                        lv1.SubItems.Add(value[2]);
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                        if (status == false)
-                            return;
-
-                    }
-                    catch (Exception)
-                    {
-
+                    if (text[i] == "")
                         continue;
+
+                    IniWriteValue("入库任务", "keyword", text[i]);  //写入CONFIGini
+                    IniWriteValue("入库任务", "finish", "false");  //写入CONFIGini
+
+                    string keyword = text[i].Replace(" ", "+");
+                    ArrayList picsList = new ArrayList();
+                    if (radioButton1.Checked == true)
+                    {
+                        picsList = google(keyword);
                     }
+                    if (radioButton2.Checked == true)
+                    {
+                        picsList = bing2(keyword);
+                    }
+                    if (radioButton3.Checked == true)
+
+                    {
+                        picsList = lazada(keyword);
+                    }
+                    textBox3.Text += ("获取搜索图片成功:") + "\r\n";
+                    foreach (string item in picsList)
+                    {
+                        try
+                        {
+                            string[] value = item.Split(new string[] { "*" }, StringSplitOptions.None);
+
+                            string picurl = value[0];
+                            string company = value[1];
+                            string price = value[2];
+
+
+                            string brief = price + "#" + company + "#" + picurl;
+
+
+                            //string base64 = "";
+                            //if (radioButton2.Checked == true)
+                            //{
+
+                            //    base64 = dics[picurl];
+                            //    textBox3.Text += ("正在入库图片序号:") + company + "\r\n";
+                            //}
+                            //else
+                            //{
+                            //    base64 = BitmapToBase64(UrlToBitmap(picurl));
+                            //    textBox3.Text += ("正在入库图片序号:") + picurl + "\r\n";
+                            //}
+                            string base64 = BitmapToBase64(UrlToBitmap(picurl));
+                            textBox3.Text += ("正在入库图片序号:") + picurl + "\r\n";
+                            string result = productAdd(brief, base64);
+                            //MessageBox.Show(result);
+                            if (result.Contains("cont_sign"))
+                            {
+                                textBox3.Text += ("入库智能云成功:") + brief + "\r\n";
+                                imagelists.Add(picurl);
+                            }
+
+                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(keyword);
+                            lv1.SubItems.Add("");
+                            lv1.SubItems.Add("");
+                            lv1.SubItems.Add(domain);
+                            lv1.SubItems.Add("");
+                            lv1.SubItems.Add(value[1]);
+                            lv1.SubItems.Add(value[0]);
+                            lv1.SubItems.Add("");
+                            lv1.SubItems.Add(value[2]);
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+                                return;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                            continue;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                   
+                    continue;
                 }
 
 
-                
+
             }
 
             textBox3.Text = "入库结束";
+            IniWriteValue("入库任务", "finish", "true");  //写入CONFIGini
         }
 
 
@@ -614,6 +798,11 @@ namespace 搜图匹配
 
             for (int i = 1; i < text.Length; i++)
             {
+                if (text[i] == "")
+                    continue;
+
+                IniWriteValue("查找任务", "keyword", text[i]);  //写入CONFIGini
+                IniWriteValue("查找任务", "finish", "false");  //写入CONFIGini
                 string keyword = text[i].Replace(" ", "+");
                 string[] sourcevalue = getSourcepic(keyword).Split(new string[] { "#" }, StringSplitOptions.None);
                
@@ -666,6 +855,8 @@ namespace 搜图匹配
                         }
                         if (count == 0)
                         {
+
+
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(keyword.Replace("+", " "));
                             lv1.SubItems.Add(count.ToString());
@@ -687,10 +878,23 @@ namespace 搜图匹配
                                 {
                                     try
                                     {
+
                                         string[] value = briefs[j].Groups[1].Value.Split(new string[] { "#" }, StringSplitOptions.None);
+                                      
+
                                         if (value.Length > 1)
                                         {
-                                            textBox3.Text += ("搜索成功:") + briefs[j].Groups[1].Value + "\r\n";
+                                            string tupiandizhi = "";
+                                            if (value[2].Contains("http"))
+                                            {
+                                                tupiandizhi = value[2];
+                                            }
+                                            else
+                                            {
+                                                tupiandizhi = "data:image/jpeg;base64,"+dics[value[2]];
+                                            }
+
+                                                textBox3.Text += ("搜索成功:") + briefs[j].Groups[1].Value + "\r\n";
 
                                             if (j == 0)
                                             {
@@ -701,20 +905,20 @@ namespace 搜图匹配
                                                 lv1.SubItems.Add(domain);
                                                 lv1.SubItems.Add(sourceprice);
                                                 lv1.SubItems.Add(value[1]);
-                                                lv1.SubItems.Add(value[2]);
+                                                lv1.SubItems.Add(tupiandizhi);
                                                 lv1.SubItems.Add(scores[j].Groups[1].Value);
                                                 lv1.SubItems.Add(value[0]);
                                             }
                                             else
                                             {
                                                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                                                lv1.SubItems.Add(" ");
+                                                lv1.SubItems.Add(keyword.Replace("+", " "));
                                                 lv1.SubItems.Add(" ");
                                                 lv1.SubItems.Add(" ");
                                                 lv1.SubItems.Add(" ");
                                                 lv1.SubItems.Add(" ");
                                                 lv1.SubItems.Add(value[1]);
-                                                lv1.SubItems.Add(value[2]);
+                                                lv1.SubItems.Add(tupiandizhi);
                                                 lv1.SubItems.Add(scores[j].Groups[1].Value);
                                                 lv1.SubItems.Add(value[0]);
 
@@ -783,8 +987,8 @@ namespace 搜图匹配
 
 
             }
-
-            MessageBox.Show("搜索结束");
+            IniWriteValue("查找任务", "finish", "true");  //写入CONFIGini
+            textBox3.Text="查找结束";
         }
 
 
@@ -853,9 +1057,18 @@ namespace 搜图匹配
         }
 
         #endregion
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (ExistINIFile())
+            {
+                APIKey = IniReadValue("百度API", "APIKey");
+                SecretKey = IniReadValue("百度API", "SecretKey");
+              
+            }
 
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -869,7 +1082,7 @@ namespace 搜图匹配
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-               
+
                 thread = new Thread(ruku);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;

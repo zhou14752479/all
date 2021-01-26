@@ -49,6 +49,9 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>..\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium.ref">
+      <HintPath>..\..\..\2021项目\CsharpSelenium\CsharpSelenium\bin\Debug\Selenium.WebDriverBackedSelenium.ref.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +63,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebDriver">
+      <HintPath>..\..\..\2021项目\CsharpSelenium\CsharpSelenium\bin\Debug\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\..\..\2021项目\CsharpSelenium\CsharpSelenium\bin\Debug\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs">

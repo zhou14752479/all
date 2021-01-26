@@ -42,6 +42,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -55,8 +57,9 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button9 = new System.Windows.Forms.Button();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -82,7 +85,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(329, 22);
             this.textBox1.TabIndex = 37;
-            this.textBox1.Text = "C:\\Users\\zhou\\Desktop\\企业88888888.txt";
+            this.textBox1.Text = "C:\\Users\\zhou\\Desktop\\点评ID.txt";
             // 
             // 重新扫描ToolStripMenuItem
             // 
@@ -119,8 +122,10 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
+            this.columnHeader8,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader7});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
@@ -140,17 +145,27 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "店名";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Text = "点评ID";
+            this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "时间";
+            this.columnHeader3.Text = "用户";
             this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "星级";
+            this.columnHeader4.Text = "等级";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "人均";
+            this.columnHeader5.Width = 100;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "时间";
+            this.columnHeader6.Width = 100;
             // 
             // button1
             // 
@@ -191,7 +206,6 @@
             this.textBox2.Size = new System.Drawing.Size(329, 22);
             this.textBox2.TabIndex = 41;
             this.textBox2.Text = "3876024c48faaa92d8e5327803b0126e";
-            this.textBox2.Visible = false;
             // 
             // label2
             // 
@@ -281,20 +295,30 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // columnHeader5
+            // columnHeader7
             // 
-            this.columnHeader5.Text = "内容";
-            this.columnHeader5.Width = 500;
+            this.columnHeader7.Text = "内容";
+            this.columnHeader7.Width = 200;
             // 
-            // columnHeader6
+            // columnHeader8
             // 
-            this.columnHeader6.Text = "页码";
+            this.columnHeader8.Text = "星级";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(68, 587);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox4.Size = new System.Drawing.Size(293, 74);
+            this.textBox4.TabIndex = 52;
             // 
             // 抓数据用
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 673);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox3);
@@ -351,5 +375,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

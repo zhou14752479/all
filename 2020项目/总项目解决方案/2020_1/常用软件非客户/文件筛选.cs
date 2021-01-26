@@ -155,24 +155,48 @@ namespace 常用软件非客户
             for (int i = 0; i < listView1.Items.Count; i++)
             {
 
-                string filpath = listView1.Items[i].SubItems[1].Text;
-                string houzhui = Path.GetExtension(filpath);
-
-                string oldname = Path.GetFileNameWithoutExtension(filpath);
-                string newname = "";
-               
-                int len = System.Text.Encoding.UTF8.GetBytes(oldname).Length;
-
-                if (len < 13)
+                try
                 {
-                    newname = oldname + addname;
-                    MyComputer.FileSystem.RenameFile(filpath, newname.Trim() + houzhui);
-                    listView1.Items[i].SubItems[2].Text = newname.Trim();
+                    string filpath = listView1.Items[i].SubItems[1].Text;
+                    string houzhui = Path.GetExtension(filpath);
+
+                    string oldname = Path.GetFileNameWithoutExtension(filpath);
+                    string newname = "";
+
+                    int len = System.Text.Encoding.UTF8.GetBytes(oldname).Length;
+
+                    if (len < 13)
+                    {
+                        newname = oldname + addname;
+                        MyComputer.FileSystem.RenameFile(filpath, newname.Trim() + houzhui);
+                        listView1.Items[i].SubItems[2].Text = newname.Trim();
+
+                    }
+                    if (len>80)
+                    {
+                        newname = oldname.Substring(0,20);
+                        MyComputer.FileSystem.RenameFile(filpath, newname.Trim() + houzhui);
+                        listView1.Items[i].SubItems[2].Text = newname.Trim();
+                    }
+
+                    if (oldname.Contains(" "))
+                    {
+                        newname = oldname.Replace(" ","");
+                        MyComputer.FileSystem.RenameFile(filpath, newname.Trim() + houzhui);
+                        listView1.Items[i].SubItems[2].Text = newname.Trim();
+                    }
+                    else
+                    {
+                        listView1.Items[i].SubItems[2].Text = "noneed";
+                    }
 
                 }
-                else
+                catch (Exception ex)
                 {
-                    listView1.Items[i].SubItems[2].Text = "noneed";
+                    File.Delete(listView1.Items[i].SubItems[1].Text);
+                    listView1.Items[i].SubItems[2].Text = "已删除";
+                    listView1.Items[i].BackColor = Color.Red;
+                    continue;
                 }
 
 
