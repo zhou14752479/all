@@ -9,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Management;
 using System.Net;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,11 +21,72 @@ namespace 思忆大数据
 {
     class method
     {
+
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
+
+
+        #region  获取32位MD5加密
+        public string GetMD5(string txt)
+        {
+            using (MD5 mi = MD5.Create())
+            {
+                byte[] buffer = Encoding.Default.GetBytes(txt);
+                //开始加密
+                byte[] newBuffer = mi.ComputeHash(buffer);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < newBuffer.Length; i++)
+                {
+                    sb.Append(newBuffer[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+        }
+
+        #endregion
+
         public string name { get; set; }
         public string phone { get; set; }
         public string address { get; set; }
 
         public string expiretime { get; set; }
+
+
         #region verify 
         public static bool verify = false;
         public static bool forbid = false;
@@ -156,62 +219,7 @@ namespace 思忆大数据
         }
         #endregion
 
-        /// <summary>
-        /// 注册
-        /// </summary>
-        /// <returns></returns>
-        public string register(string username,string password)
-        {
-            try
-            {
-                int shiyongtime = Convert.ToInt32(GetTimeStamp()) +1800;
-                string url = "http://acaiji.com/api/do.php?method=add&username="+ username + "&password="+password+"&time="+shiyongtime;
-                string html = GetUrl(url);
-                return html.Trim();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        /// <summary>
-        /// 登录
-        /// </summary>
-        /// <returns></returns>
-        public string login(string username, string password)
-        {
-            try
-            {
-                string url = "http://acaiji.com/api/do.php?method=login&username=" + username + "&password=" + password;
-                string html = GetUrl(url);
-                return html.Trim();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        #region 获取用户信息
-       public string getone(string username)
-        {
-            try
-            {
-                string url = "http://acaiji.com/api/do.php?method=getone&username=" + username;
-                string html = GetUrl(url);
-                Match expiretimestamp = Regex.Match(html, @"""expiretimestamp"":""([\s\S]*?)""");
-                expiretime = expiretimestamp.Groups[1].Value.Trim();
-                return ConvertStringToDateTime(expiretime).ToString("yyyy-MM-dd HH:mm:ss"); ;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-        #endregion
+      
 
 
         #region 获取Mac地址
@@ -244,6 +252,7 @@ namespace 思忆大数据
         }
 
         #endregion
+
         /// <summary>
         /// 获取经纬度
         /// </summary>
@@ -330,8 +339,7 @@ namespace 思忆大数据
 
                                 string url = "https://restapi.amap.com/v3/place/around?appname=1e3bb24ab8f75ba78a7cf8a9cc4734c6&key=1e3bb24ab8f75ba78a7cf8a9cc4734c6&keywords=" + System.Web.HttpUtility.UrlEncode(keyword) + "&location=" + lat + "&logversion=2.0&page=" + page + "&platform=WXJS&s=rsx&sdkversion=1.2.0";
                                 string html = VerifyGet(url,"",username);
-
-
+                              
 
                                 MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
                                 MatchCollection tels = Regex.Matches(html, @"""tel"":([\s\S]*?),");

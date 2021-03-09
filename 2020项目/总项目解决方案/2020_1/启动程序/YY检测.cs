@@ -45,11 +45,11 @@ namespace 启动程序
                     string[] values = array[i].Split(new string[] { "----" }, StringSplitOptions.None);
 
                     
-                    string html =method.GetUrlwithIP("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account="+values[0].Trim()+"&busifrom=&appid=1&yyapi=false", ips[iptime]);
+                    string html =method.GetUrlwithIP("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account="+values[0].Trim()+"&busifrom=&appid=1&yyapi=false", ips[iptime],"");
                     while (html.Contains("IP验证次数过多"))
                     {
                         iptime = iptime + 1;
-                        html = method.GetUrlwithIP("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account=" + values[0].Trim() + "&busifrom=&appid=1&yyapi=false", ips[iptime]);
+                        html = method.GetUrlwithIP("https://aq.yy.com/p/pwd/fgt/mnew/dpch.do?account=" + values[0].Trim() + "&busifrom=&appid=1&yyapi=false", ips[iptime],"");
 
                     }
 

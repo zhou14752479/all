@@ -19,6 +19,8 @@ namespace 思忆大数据
         {
             InitializeComponent();
         }
+
+        method md = new method();
         public void welcome()
         {
             label1.Text = "欢迎...";
@@ -39,28 +41,19 @@ namespace 思忆大数据
         }
         private void main_Load(object sender, EventArgs e)
         {
-          
-            usernamelabel.Text ="欢迎用户："+ method.username;
-            expiretimelabel.Text = md.getone(method.username);
+            
+            jiqima_txt.Text = md.GetMD5(md.GetMacAddress()).ToUpper();
+            usernamelabel.Text ="欢迎用户：";
+           
           Thread thread = new Thread(welcome);
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
-            timer1.Start();
+           
             ProvinceCity.ProvinceCity.BindProvince(comboBox5);
            
         }
 
-        private void registerbtn_Click(object sender, EventArgs e)
-        {
-            login lg = new login();
-            lg.Show();
-        }
-
-        private void loginbtn_Click(object sender, EventArgs e)
-        {
-            login lg = new login();
-            lg.Show();
-        }
+      
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -94,7 +87,7 @@ namespace 思忆大数据
         }
 
 
-        method md = new method();
+      
         Thread dituthread;
         private void button6_Click(object sender, EventArgs e)
         {
@@ -224,35 +217,9 @@ namespace 思忆大数据
 
        
 
-        private void 购买软件ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.acaiji.com/index/index/buy");
-           
-        }
+      
 
-        private void 售后问题ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-           
-            string nowtime = md.GetTimeStamp();
-            int shengyu = Convert.ToInt32(md.expiretime) - Convert.ToInt32(nowtime);
-            shengyulabel.Text = (shengyu / 86400) + "天" + ((shengyu % 86400) / 3600) + "小时" + ((shengyu % 86400) % 3600)/60+"分钟" + ((shengyu % 86400) % 3600) % 60 + "秒";
-            if (Convert.ToInt32(nowtime) > Convert.ToInt32(md.expiretime))
-            {
-                timer1.Stop();
-               
-                MessageBox.Show("账号已过期");
-               
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
-           
-        }
-
+     
         private void 视频教程ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.acaiji.com/index/index/help");
@@ -270,6 +237,30 @@ namespace 思忆大数据
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+     
+        private void 在线购买ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex==0)
+            {
+                wx300_pic.Visible = true;
+                wx500_pic.Visible = false;
+            }
+
+            else if(comboBox1.SelectedIndex == 1)
+            {
+                wx500_pic.Visible = true;
+                wx300_pic.Visible = false;
+            }
+
+
 
         }
     }

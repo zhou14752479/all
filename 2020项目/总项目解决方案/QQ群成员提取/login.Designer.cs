@@ -29,9 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // webBrowser1
             // 
@@ -40,12 +45,7 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(409, 340);
-            this.webBrowser1.TabIndex = 0;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.webBrowser1.TabIndex = 2;
             // 
             // login
             // 
@@ -62,8 +62,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

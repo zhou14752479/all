@@ -74,6 +74,11 @@ namespace QQ群成员提取
         long GetBkn()
         {
             string skey = Regex.Match(COOKIE, @"skey=([\s\S]*?);").Groups[1].Value;
+            if (skey == "")
+            {
+                skey = Regex.Match(COOKIE, @"skey=.*").Groups[0].Value.Replace("skey=", "").Trim();
+            }
+          
             var hash = 5381;
             for (int i = 0, len = skey.Length; i < len; ++i)
                 hash += (hash << 5) + (int)skey[i];
@@ -91,7 +96,9 @@ namespace QQ群成员提取
         public void getqunList()
         {
             bkn = GetBkn().ToString();
+          
             string html = method.PostUrl("https://qun.qq.com/cgi-bin/qun_mgr/get_group_list", "bkn="+bkn, COOKIE,"utf-8", "application/x-www-form-urlencoded", "https://qun.qq.com/member.html");
+        
             MatchCollection quns = Regex.Matches(html, @"""gc"":([\s\S]*?),");
             MatchCollection names = Regex.Matches(html, @"""gn"":""([\s\S]*?)""");
             for (int i = 0; i < quns.Count; i++)
@@ -186,13 +193,14 @@ namespace QQ群成员提取
         {
            
             getqunList();
-            ChromeOptions options = new ChromeOptions();
-            // 禁用图片
-            options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+
+            //ChromeOptions options = new ChromeOptions();
+            //// 禁用图片
+            //options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
 
 
-            driver = new ChromeDriver(options);
-            driver.Navigate().GoToUrl("https://i.qq.com/");
+            //driver = new ChromeDriver(options);
+            //driver.Navigate().GoToUrl("https://i.qq.com/");
         }
         Thread thread;
         Thread thread1;
@@ -225,7 +233,7 @@ namespace QQ群成员提取
             }
 
             timer1.Start();
-            timer2.Start();
+          //  timer2.Start();
         }
 
       
@@ -253,7 +261,7 @@ namespace QQ群成员提取
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            QQadduser();
+            //QQadduser();
         }
     }
 }

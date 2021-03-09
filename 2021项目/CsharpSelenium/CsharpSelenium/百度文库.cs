@@ -174,7 +174,7 @@ namespace CsharpSelenium
                 }
                 catch (Exception ex)
                 {
-
+                    ex.ToString();
                     driver.FindElement(By.XPath("//*[@id=\"app\"]/section/main/div[1]/div/div[1]/div[2]/button/span")).Click();
                 }
                 Thread.Sleep(1000);
@@ -276,6 +276,7 @@ namespace CsharpSelenium
                     {
 
                         logstxt.Text += DateTime.Now.ToShortTimeString() + "上传按钮异常" + "\r\n";
+                        ex.ToString();
                         continue;
                     }
                     Thread.Sleep(1000);
@@ -423,6 +424,9 @@ namespace CsharpSelenium
        
         private void 百度文库_Load(object sender, EventArgs e)
         {
+            dingshi_start();
+
+
             DriveInfo[] infos= DriveInfo.GetDrives();
             foreach (DriveInfo info in infos)
             {
@@ -449,8 +453,8 @@ namespace CsharpSelenium
             ListViewItem lv4 = listView2.Items.Add("zhou14752478"); 
             lv4.SubItems.Add("d-UkFjZVllSnNvd3lTTnZFbk5ZRFpFQWNHakRMYmFzdmRXbWdDSldKenlYMlZmSVFBQUFBJCQAAAAAAQAAAAEAAACbWKEeemhvdTE0NzUyNDc4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPLSPV~y0j1fbX");
 
-          //  ListViewItem lv5 = listView2.Items.Add("zhoukaige6668");
-           // lv5.SubItems.Add("i1aQXhYWC0zRGdRNkZCRGNpcGZKelBWVUVPN2hidU9FaTdmfnNoLU44allhVE5nSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANjcC2DY3Atgf");
+            ListViewItem lv5 = listView2.Items.Add("zhoukaige6668");
+           lv5.SubItems.Add("k5oODdzc05tZm5tcEpBVW5hbUlKSFJ5MFhUcWltUEFWcGhHd2ttU0h1WnMzRkpnSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxPK2BsTytgb");
 
         }
 
@@ -510,9 +514,18 @@ namespace CsharpSelenium
 
             private void button3_Click(object sender, EventArgs e)
         {
-            dingshi_start();
+            
         }
 
+        private void 文件处理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            文件筛选 wj = new 文件筛选();
+            wj.Show();
+        }
 
+        private void 工具ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

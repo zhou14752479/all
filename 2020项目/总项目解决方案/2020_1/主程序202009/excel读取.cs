@@ -12,10 +12,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+using myDLL;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.Devices;
 
 namespace 主程序202009
 {
@@ -481,6 +482,139 @@ namespace 主程序202009
           
             string str = Interaction.InputBox("输入正确索引", "修改索引", listView1.SelectedItems[0].SubItems[5].Text, -1, -1);
             listView1.SelectedItems[0].SubItems[5].Text = str;
+        }
+        Computer MyComputer = new Computer();
+
+        public void chongmingming()
+        {
+            DirectoryInfo folder = new DirectoryInfo(textBox2.Text);
+            FileInfo[] infos = folder.GetFiles();
+            int infocount = infos.Length;
+            foreach (FileInfo file in infos)
+            {
+                string filename = file.FullName;
+                string oldname = Path.GetFileNameWithoutExtension(filename);
+                string url = "http://m.dianping.com/shop/" + oldname;
+                string html = method.GetUrlWithCookie(url, "_lxsdk_cuid=172415f6ef4c8-07c00d4610f257-6373664-1fa400-172415f6ef5c8; _lxsdk=172415f6ef4c8-07c00d4610f257-6373664-1fa400-172415f6ef5c8; _hc.v=189a18fa-f5f0-a2d1-15fa-43abc1680af2.1602832655; s_ViewType=10; ta.uuid=1317006582533660762; isUuidUnion=true; iuuid=172415f6ef4c8-07c00d4610f257-6373664-1fa400-172415f6ef5c8; ua=%E5%91%A8%E5%87%AF%E6%AD%8C; ctu=47f5eba3de69acfd21b70c8ae58e405b7207c5996bee265edc60334adf04114e; ri=1000321300; m_set_info=%7B%22ri%22%3A%221000321300%22%2C%22rv%22%3A%221602833832189%22%2C%22ui%22%3A%22875973616%22%7D; rv=1602833832189; switchcityflashtoast=1; cityid=1; fspop=test; cy=1; cye=shanghai; default_ab=shop%3AA%3A11%7Cindex%3AA%3A3%7CshopList%3AC%3A5; Hm_lvt_602b80cf8079ae6591966cc70a3940e7=1611982670,1611991743,1612057762,1612073576; lgtoken=074b228ee-6ff9-48a1-a8ac-cb19caf6e114; dper=f5d33714d0e321796429cd6a313bb78ae622ca240f1a1302dc7c1713813edd405aba1710f7fcd2a2e8a928cb8481ccdc9d9e46369e3aa5498d4eea419c24116e742fc05981e4fb00174e50a23e6cfe10244005508f6007e0d6e4409400cddd97; ll=7fd06e815b796be3df069dec7836c3df; uamo=17606117606; dplet=f7a695e9118b65db0a3cc5a479b7c132; Hm_lpvt_602b80cf8079ae6591966cc70a3940e7=1612073826; _lxsdk_s=1775712a43a-4ae-fe9-16f%7C%7C175", "utf-8");
+                textBox5.Text = html;
+                Match name = Regex.Match(html, @"og:title"" content=""([\s\S]*?)""");
+                string newname = name.Groups[1].Value + Path.GetExtension(filename);
+
+                try
+                {
+                    MyComputer.FileSystem.RenameFile(filename, newname.Trim());
+                    Thread.Sleep(1000);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.ToString());
+                }
+               
+            }
+        }
+
+
+        public void riqishaixuan()
+        {
+            DirectoryInfo folder = new DirectoryInfo(textBox2.Text);
+            FileInfo[] infos = folder.GetFiles();
+            int infocount = infos.Length;
+            foreach (FileInfo file in infos)
+            {
+                string filePath = file.FullName;
+                
+                IWorkbook wk = null;
+                string extension = System.IO.Path.GetExtension(filePath);
+                try
+                {
+                    FileStream fs = File.OpenRead(filePath);
+                    if (extension.Equals(".xls"))
+                    {
+                        //把xls文件中的数据写入wk中
+                        wk = new HSSFWorkbook(fs);
+                    }
+                    else
+                    {
+                        //把xlsx文件中的数据写入wk中
+                        wk = new XSSFWorkbook(fs);
+                    }
+
+                    fs.Close();
+                    //读取当前表数据
+                    ISheet sheet = wk.GetSheetAt(0);
+
+                    IRow row = sheet.GetRow(0);  //读取当前行数据
+                                                 //LastRowNum 是当前表的总行数-1（注意）
+                                                 // int offset = 0;
+                    for (int i = 0; i <= sheet.LastRowNum; i++)
+                    {
+                        row = sheet.GetRow(i);  //读取当前行数据
+                        if (row != null)
+                        {
+                            ListViewItem lv1;
+                            try
+                            {
+                                lv1 = listView1.Items.Add(row.GetCell(0).ToString());
+                            }
+                            catch (Exception)
+                            {
+
+                                return;
+                            }
+                            //string value = row.GetCell(6).ToString();
+                            // MessageBox.Show(value);
+
+                            for (int j = 1; j < row.LastCellNum; j++) //LastCellNum 是当前行的总列数
+                            {
+                                var value = "";
+                                try
+                                {
+                                    value = row.GetCell(j).ToString();
+                                    lv1.SubItems.Add(value.ToString());
+
+                                }
+                                catch (Exception)
+                                {
+                                    lv1.SubItems.Add(value.ToString());
+                                    continue;
+
+                                }
+
+
+                                //读取该行的第j列数据
+
+
+                            }
+
+                        }
+                    }
+                }
+
+                catch (Exception e)
+                {
+                    //只在Debug模式下才输出
+                    MessageBox.Show(e.ToString());
+
+                }
+
+
+
+            }
+        }
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(chongmingming));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(riqishaixuan));
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
     }
 }

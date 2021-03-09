@@ -41,9 +41,10 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -57,8 +58,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button9 = new System.Windows.Forms.Button();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -121,7 +120,6 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
             this.columnHeader8,
             this.columnHeader5,
             this.columnHeader6,
@@ -153,9 +151,9 @@
             this.columnHeader3.Text = "用户";
             this.columnHeader3.Width = 100;
             // 
-            // columnHeader4
+            // columnHeader8
             // 
-            this.columnHeader4.Text = "等级";
+            this.columnHeader8.Text = "星级";
             // 
             // columnHeader5
             // 
@@ -166,6 +164,11 @@
             // 
             this.columnHeader6.Text = "时间";
             this.columnHeader6.Width = 100;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "内容";
+            this.columnHeader7.Width = 200;
             // 
             // button1
             // 
@@ -295,15 +298,6 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "内容";
-            this.columnHeader7.Width = 200;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "星级";
-            // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(68, 587);
@@ -338,6 +332,7 @@
             this.Name = "抓数据用";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "抓数据用";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.抓数据用_FormClosing);
             this.Load += new System.EventHandler(this.抓数据用_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -372,7 +367,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;

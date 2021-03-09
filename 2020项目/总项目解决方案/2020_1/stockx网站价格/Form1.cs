@@ -86,7 +86,10 @@ namespace stockx网站价格
 
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", "");
-                //request.Headers.Add("origin","https://www.nike.com");
+                //添加头部
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("x-algolia-api-key: 6b5e76b49705eb9f51a06d3c82f7acee");
+                headers.Add("x-algolia-application-id: XW7SBCT9V6");
                 request.Referer = "https://accounts.ebay.com/acctxs/user";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
@@ -150,11 +153,12 @@ namespace stockx网站价格
 
             try
             {
-                
-                    string url = "https://xw7sbct9v6-1.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20vanilla%20JavaScript%203.32.1&x-algolia-application-id=XW7SBCT9V6&x-algolia-api-key=6bfb5abee4dcd8cea8f0ca1ca085c2b3";
+
+             
+                string url = "https://xw7sbct9v6-2.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.8.4)%3B%20Browser";
                 string postdata = "{\"params\":\"query="+textBox1.Text.Trim()+"&facets=*&filters=\"}";
-                    string html = PostUrl(url,postdata);
-               
+                string html = PostUrl(url,postdata);
+             
                 Match huo = Regex.Match(html, @"""url"":""([\s\S]*?)""");
                 string aurl = "https://stockx.com/api/products/"+huo.Groups[1].Value+"?includes=market,360&currency=USD&country=HK";
 
@@ -213,33 +217,25 @@ namespace stockx网站价格
                 MessageBox.Show(ex.ToString());
             }
 
-
+            button1.Text = "点击获取";
+            button1.Enabled = true;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-
+        Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = gethtml("http://www.acaiji.com/index/index/vip.html", "");
-
-            if (!html.Contains(@"stocks"))
+            if (thread == null || !thread.IsAlive)
             {
-
-                MessageBox.Show("验证失败");
-                return;
-
-
+                button1.Text = "正在获取...";
+                button1.Enabled = false;
+               thread = new Thread(new ThreadStart(run));
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+              
             }
-
-            #endregion
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            button1.Enabled = false;
         }
 
         private void Button2_Click(object sender, EventArgs e)

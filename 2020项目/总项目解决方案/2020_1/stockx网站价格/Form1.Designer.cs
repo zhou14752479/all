@@ -75,9 +75,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 11F);
-            this.button2.Location = new System.Drawing.Point(71, 259);
+            this.button2.Location = new System.Drawing.Point(71, 230);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 30);
+            this.button2.Size = new System.Drawing.Size(144, 30);
             this.button2.TabIndex = 22;
             this.button2.Text = "清空";
             this.button2.UseVisualStyleBackColor = true;
@@ -116,9 +116,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 11F);
-            this.button1.Location = new System.Drawing.Point(71, 200);
+            this.button1.Location = new System.Drawing.Point(71, 185);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 30);
+            this.button1.Size = new System.Drawing.Size(144, 30);
             this.button1.TabIndex = 16;
             this.button1.Text = "点击获取";
             this.button1.UseVisualStyleBackColor = true;

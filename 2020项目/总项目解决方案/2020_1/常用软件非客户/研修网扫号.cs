@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+using myDLL;
 
 namespace 常用软件非客户
 {

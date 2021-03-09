@@ -32,12 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.思忆大数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registerbtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginbtn = new System.Windows.Forms.ToolStripMenuItem();
             this.视频教程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.在线咨询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.购买软件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.售后问题ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.在线购买ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usernamelabel = new System.Windows.Forms.ToolStripMenuItem();
             this.官方网站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -123,14 +119,16 @@
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.jihuoma_txt = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.jiqima_txt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.shengyulabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.wx300_pic = new System.Windows.Forms.PictureBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
@@ -139,10 +137,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.expiretimelabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.wx500_pic = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -164,8 +161,9 @@
             this.contextMenuStrip3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wx300_pic)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wx500_pic)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -173,7 +171,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.思忆大数据ToolStripMenuItem,
             this.视频教程ToolStripMenuItem,
-            this.在线咨询ToolStripMenuItem,
+            this.在线购买ToolStripMenuItem,
             this.usernamelabel,
             this.官方网站ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -184,26 +182,9 @@
             // 
             // 思忆大数据ToolStripMenuItem
             // 
-            this.思忆大数据ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registerbtn,
-            this.loginbtn});
             this.思忆大数据ToolStripMenuItem.Name = "思忆大数据ToolStripMenuItem";
             this.思忆大数据ToolStripMenuItem.Size = new System.Drawing.Size(76, 21);
             this.思忆大数据ToolStripMenuItem.Text = " 个人中心 ";
-            // 
-            // registerbtn
-            // 
-            this.registerbtn.Name = "registerbtn";
-            this.registerbtn.Size = new System.Drawing.Size(124, 22);
-            this.registerbtn.Text = "注册账号";
-            this.registerbtn.Click += new System.EventHandler(this.registerbtn_Click);
-            // 
-            // loginbtn
-            // 
-            this.loginbtn.Name = "loginbtn";
-            this.loginbtn.Size = new System.Drawing.Size(124, 22);
-            this.loginbtn.Text = "登录";
-            this.loginbtn.Click += new System.EventHandler(this.loginbtn_Click);
             // 
             // 视频教程ToolStripMenuItem
             // 
@@ -212,28 +193,12 @@
             this.视频教程ToolStripMenuItem.Text = "视频教程";
             this.视频教程ToolStripMenuItem.Click += new System.EventHandler(this.视频教程ToolStripMenuItem_Click);
             // 
-            // 在线咨询ToolStripMenuItem
+            // 在线购买ToolStripMenuItem
             // 
-            this.在线咨询ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.购买软件ToolStripMenuItem,
-            this.售后问题ToolStripMenuItem});
-            this.在线咨询ToolStripMenuItem.Name = "在线咨询ToolStripMenuItem";
-            this.在线咨询ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.在线咨询ToolStripMenuItem.Text = "在线咨询";
-            // 
-            // 购买软件ToolStripMenuItem
-            // 
-            this.购买软件ToolStripMenuItem.Name = "购买软件ToolStripMenuItem";
-            this.购买软件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.购买软件ToolStripMenuItem.Text = "购买软件";
-            this.购买软件ToolStripMenuItem.Click += new System.EventHandler(this.购买软件ToolStripMenuItem_Click);
-            // 
-            // 售后问题ToolStripMenuItem
-            // 
-            this.售后问题ToolStripMenuItem.Name = "售后问题ToolStripMenuItem";
-            this.售后问题ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.售后问题ToolStripMenuItem.Text = "售后问题";
-            this.售后问题ToolStripMenuItem.Click += new System.EventHandler(this.售后问题ToolStripMenuItem_Click);
+            this.在线购买ToolStripMenuItem.Name = "在线购买ToolStripMenuItem";
+            this.在线购买ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.在线购买ToolStripMenuItem.Text = "在线购买";
+            this.在线购买ToolStripMenuItem.Click += new System.EventHandler(this.在线购买ToolStripMenuItem_Click);
             // 
             // usernamelabel
             // 
@@ -1082,8 +1047,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.jihuoma_txt);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.jiqima_txt);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.shengyulabel);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.linkLabel4);
@@ -1093,7 +1060,6 @@
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.expiretimelabel);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.linkLabel1);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
             this.tabPage1.Name = "tabPage1";
@@ -1103,27 +1069,44 @@
             this.tabPage1.Text = "  欢迎页面    ";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // jihuoma_txt
+            // 
+            this.jihuoma_txt.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.jihuoma_txt.Location = new System.Drawing.Point(552, 234);
+            this.jihuoma_txt.Name = "jihuoma_txt";
+            this.jihuoma_txt.Size = new System.Drawing.Size(356, 29);
+            this.jihuoma_txt.TabIndex = 17;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("黑体", 12F);
+            this.label12.ForeColor = System.Drawing.Color.Navy;
+            this.label12.Location = new System.Drawing.Point(490, 240);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(72, 16);
+            this.label12.TabIndex = 16;
+            this.label12.Text = "激活码：";
+            // 
+            // jiqima_txt
+            // 
+            this.jiqima_txt.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.jiqima_txt.Location = new System.Drawing.Point(95, 234);
+            this.jiqima_txt.Name = "jiqima_txt";
+            this.jiqima_txt.ReadOnly = true;
+            this.jiqima_txt.Size = new System.Drawing.Size(356, 29);
+            this.jiqima_txt.TabIndex = 15;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("黑体", 12F);
             this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(17, 185);
+            this.label5.Location = new System.Drawing.Point(17, 240);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 16);
+            this.label5.Size = new System.Drawing.Size(72, 16);
             this.label5.TabIndex = 14;
-            this.label5.Text = "会员到期时间：";
-            // 
-            // shengyulabel
-            // 
-            this.shengyulabel.AutoSize = true;
-            this.shengyulabel.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Bold);
-            this.shengyulabel.ForeColor = System.Drawing.Color.Black;
-            this.shengyulabel.Location = new System.Drawing.Point(139, 185);
-            this.shengyulabel.Name = "shengyulabel";
-            this.shengyulabel.Size = new System.Drawing.Size(18, 18);
-            this.shengyulabel.TabIndex = 13;
-            this.shengyulabel.Text = "0";
+            this.label5.Text = "机器码：";
             // 
             // label3
             // 
@@ -1138,10 +1121,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.wx500_pic);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.wx300_pic);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(20, 284);
             this.groupBox1.Name = "groupBox1";
@@ -1173,19 +1157,22 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "普通版会员一年",
-            "完整版会员一年"});
+            "高级版会员一年"});
             this.comboBox1.Location = new System.Drawing.Point(20, 35);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(190, 24);
             this.comboBox1.TabIndex = 4;
             this.comboBox1.Text = "普通版会员一年";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Font = new System.Drawing.Font("黑体", 15F);
-            this.button1.ForeColor = System.Drawing.Color.Navy;
-            this.button1.Location = new System.Drawing.Point(20, 131);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(180)))), ((int)(((byte)(100)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(20, 144);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(190, 37);
             this.button1.TabIndex = 3;
@@ -1193,14 +1180,14 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pictureBox1
+            // wx300_pic
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(227, 35);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(148, 146);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.wx300_pic.Image = ((System.Drawing.Image)(resources.GetObject("wx300_pic.Image")));
+            this.wx300_pic.Location = new System.Drawing.Point(227, 35);
+            this.wx300_pic.Name = "wx300_pic";
+            this.wx300_pic.Size = new System.Drawing.Size(148, 146);
+            this.wx300_pic.TabIndex = 2;
+            this.wx300_pic.TabStop = false;
             // 
             // radioButton1
             // 
@@ -1242,7 +1229,7 @@
             this.banbenlabel.AutoSize = true;
             this.banbenlabel.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Bold);
             this.banbenlabel.ForeColor = System.Drawing.Color.Red;
-            this.banbenlabel.Location = new System.Drawing.Point(139, 228);
+            this.banbenlabel.Location = new System.Drawing.Point(443, 86);
             this.banbenlabel.Name = "banbenlabel";
             this.banbenlabel.Size = new System.Drawing.Size(84, 18);
             this.banbenlabel.TabIndex = 8;
@@ -1253,7 +1240,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("黑体", 12F);
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(17, 230);
+            this.label6.Location = new System.Drawing.Point(314, 86);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(120, 16);
             this.label6.TabIndex = 7;
@@ -1275,7 +1262,7 @@
             this.expiretimelabel.AutoSize = true;
             this.expiretimelabel.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Bold);
             this.expiretimelabel.ForeColor = System.Drawing.Color.Red;
-            this.expiretimelabel.Location = new System.Drawing.Point(143, 85);
+            this.expiretimelabel.Location = new System.Drawing.Point(92, 86);
             this.expiretimelabel.Name = "expiretimelabel";
             this.expiretimelabel.Size = new System.Drawing.Size(198, 18);
             this.expiretimelabel.TabIndex = 3;
@@ -1286,21 +1273,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 14);
+            this.label2.Size = new System.Drawing.Size(77, 14);
             this.label2.TabIndex = 2;
-            this.label2.Text = "您的过期时间为：";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("宋体", 13F);
-            this.linkLabel1.Location = new System.Drawing.Point(803, 497);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(107, 18);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "点击开通>>>";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.label2.Text = "当前时间：";
             // 
             // label1
             // 
@@ -1326,10 +1301,14 @@
             this.tabControl1.Size = new System.Drawing.Size(944, 560);
             this.tabControl1.TabIndex = 2;
             // 
-            // timer1
+            // wx500_pic
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.wx500_pic.Image = ((System.Drawing.Image)(resources.GetObject("wx500_pic.Image")));
+            this.wx500_pic.Location = new System.Drawing.Point(227, 35);
+            this.wx500_pic.Name = "wx500_pic";
+            this.wx500_pic.Size = new System.Drawing.Size(148, 146);
+            this.wx500_pic.TabIndex = 14;
+            this.wx500_pic.TabStop = false;
             // 
             // main
             // 
@@ -1379,8 +1358,9 @@
             this.tabPage1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wx300_pic)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.wx500_pic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1391,7 +1371,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 思忆大数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 视频教程ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 在线咨询ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 在线购买ToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1402,11 +1382,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label expiretimelabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox wx300_pic;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -1429,8 +1408,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader17;
-        private System.Windows.Forms.ToolStripMenuItem registerbtn;
-        private System.Windows.Forms.ToolStripMenuItem loginbtn;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox4;
@@ -1494,12 +1471,12 @@
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.ToolStripMenuItem usernamelabel;
         private System.Windows.Forms.ToolStripMenuItem 官方网站ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 购买软件ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 售后问题ToolStripMenuItem;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label shengyulabel;
+        private System.Windows.Forms.TextBox jihuoma_txt;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox jiqima_txt;
+        private System.Windows.Forms.PictureBox wx500_pic;
     }
 }

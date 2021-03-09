@@ -120,6 +120,7 @@
             this.Name = "定时打开";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "定时打开";
+            this.Load += new System.EventHandler(this.定时打开_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

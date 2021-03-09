@@ -115,42 +115,26 @@ namespace 点评项目
 
         public string  chuli(string font)
         {
-            if (font.Contains("&#xebf2;"))
-            {
-                font = font.Replace("&#xebf2;", "0");
-            }
-            if (font.Contains("&#xf023;"))
-            {
-                font = font.Replace("&#xf023;", "2");
-            }
-            if (font.Contains("&#xe1a6;"))
-            {
-                font = font.Replace("&#xe1a6;", "3");
-            }
-            if (font.Contains("&#xf8ff;"))
-            {
-                font = font.Replace("&#xf8ff;", "4");
-            }
-            if (font.Contains("&#xf6fe;"))
-            {
-                font = font.Replace("&#xf6fe;", "5");
-            }
-            if (font.Contains("&#xe273;"))
-            {
-                font = font.Replace("&#xe273;", "6");
-            }
-            if (font.Contains("&#xf7d4;"))
-            {
-                font = font.Replace("&#xf7d4;", "7");
-            }
-            if (font.Contains("&#xf04b;"))
-            {
-                font = font.Replace("&#xf04b;", "8");
-            }
-            if (font.Contains("&#xf4ab;"))
-            {
-                font = font.Replace("&#xf4ab;", "9");
-            }
+          
+                font = font.Replace("&#xf4a4;", "0");
+           
+                font = font.Replace("&#xe190;", "2");
+          
+                font = font.Replace("&#xe33d;", "3");
+           
+                font = font.Replace("&#xed37;", "4");
+           
+                font = font.Replace("&#xf36d;", "5");
+           
+                font = font.Replace("&#xecf5;", "6");
+          
+          
+                font = font.Replace("&#xf253;", "7");
+           
+                font = font.Replace("&#xf77f;", "8");
+           
+                font = font.Replace("&#xf7cf;", "9");
+            
 
             return font;
 
@@ -163,22 +147,24 @@ namespace 点评项目
             {
 
 
-                for (int i = 1; i < 51; i++)
+                for (int i = 1; i < 8; i++)
 
                 {
 
-                    string Url = "http://www.dianping.com/shanghai/ch10/r854p" + i;
+                    string Url = "http://www.dianping.com/shanghai/ch10/o11p" + i;
 
                     string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
                     MatchCollection names = Regex.Matches(html, @"data-hippo-type=""shop"" title=""([\s\S]*?)""");
+                    MatchCollection scores = Regex.Matches(html, @"star_score_sml"">([\s\S]*?)</div>");
+                    MatchCollection comments = Regex.Matches(html, @"<span class=""sear-highlight"">([\s\S]*?)</b>");
                     MatchCollection averages = Regex.Matches(html, @"mean-price([\s\S]*?)人均([\s\S]*?)</span>");
 
                     MatchCollection kw = Regex.Matches(html, @"口味<b>([\s\S]*?)</b>");
                     MatchCollection hj = Regex.Matches(html, @"环境<b>([\s\S]*?)</b>");
                     MatchCollection fw = Regex.Matches(html, @"服务<b>([\s\S]*?)</b>");
-
+                    MatchCollection tagurl = Regex.Matches(html, @"<div class=""tag-addr"">([\s\S]*?)""([\s\S]*?)""");
 
                     if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
@@ -188,15 +174,19 @@ namespace 点评项目
 
 
                     {
+                        string ahtml = GetUrl(tagurl[j].Groups[2].Value);  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        Match catename= Regex.Match(ahtml, @"【上海([\s\S]*?)】");
 
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                        listViewItem.SubItems.Add(chuli(Regex.Replace(scores[j].Groups[1].Value, "<[^>]+>", "")).Trim());
+                        listViewItem.SubItems.Add(chuli(Regex.Replace(comments[j].Groups[1].Value, "<[^>]+>", "")).Trim().Replace("<b>", ""));
                         listViewItem.SubItems.Add(chuli(Regex.Replace(averages[j].Groups[2].Value, "<[^>]+>", "")).Trim().Replace("￥", ""));
                         listViewItem.SubItems.Add(chuli(Regex.Replace(kw[j].Groups[1].Value, "<[^>]+>", "")));
                         listViewItem.SubItems.Add(chuli(Regex.Replace(hj[j].Groups[1].Value, "<[^>]+>", "")));
                         listViewItem.SubItems.Add(chuli(Regex.Replace(fw[j].Groups[1].Value, "<[^>]+>", "")));
-
-
+                        listViewItem.SubItems.Add(catename.Groups[1].Value);
+                        Thread.Sleep(1000);
                         if (status == false)
                             return;
                     }
@@ -245,12 +235,9 @@ namespace 点评项目
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            ListViewToCSV(listView1,true);
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            
-        }
+      
     }
 }

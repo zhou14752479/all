@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL">
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
@@ -95,6 +96,12 @@
     <Compile Include="数据爬取.Designer.cs">
       <DependentUpon>数据爬取.cs</DependentUpon>
     </Compile>
+    <Compile Include="文件筛选.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文件筛选.Designer.cs">
+      <DependentUpon>文件筛选.cs</DependentUpon>
+    </Compile>
     <Compile Include="百度文库.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="数据爬取.resx">
       <DependentUpon>数据爬取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文件筛选.resx">
+      <DependentUpon>文件筛选.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="百度文库.resx">
       <DependentUpon>百度文库.cs</DependentUpon>

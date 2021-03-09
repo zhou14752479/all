@@ -16,7 +16,7 @@ namespace 思忆大数据
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 阿里巴巴());
+            Application.Run(new main());
         }
     }
 }

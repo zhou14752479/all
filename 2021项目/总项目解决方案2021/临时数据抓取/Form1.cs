@@ -1,0 +1,540 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using CsharpHttpHelper;
+using CsharpHttpHelper.Enum;
+using myDLL;
+
+namespace 临时数据抓取
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        Thread thread;
+        bool zanting = true;
+        bool status = true;
+
+        string[] agents = {
+  "Mozilla/5.0 (Linux; U; Android 2.3.6; en-us; Nexus S Build/GRK39F) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+  "Avant Browser/1.2.789rel1 (http://www.avantbrowser.com)",
+  "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.249.0 Safari/532.5",
+  "Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/532.9 (KHTML, like Gecko) Chrome/5.0.310.0 Safari/532.9",
+  "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.7 (KHTML, like Gecko) Chrome/7.0.514.0 Safari/534.7",
+  "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/534.14 (KHTML, like Gecko) Chrome/9.0.601.0 Safari/534.14",
+  "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.14 (KHTML, like Gecko) Chrome/10.0.601.0 Safari/534.14",
+  "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.20 (KHTML, like Gecko) Chrome/11.0.672.2 Safari/534.20",
+  "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.27 (KHTML, like Gecko) Chrome/12.0.712.0 Safari/534.27",
+  "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.24 Safari/535.1",
+  "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.120 Safari/535.2",
+  "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.36 Safari/535.7",
+  "Mozilla/5.0 (Windows; U; Windows NT 6.0 x64; en-US; rv:1.9pre) Gecko/2008072421 Minefield/3.0.2pre",
+  "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.10) Gecko/2009042316 Firefox/3.0.10",
+  "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.0.11) Gecko/2009060215 Firefox/3.0.11 (.NET CLR 3.5.30729)",
+  "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6 GTB5",
+  "Mozilla/5.0 (Windows; U; Windows NT 5.1; tr; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8 ( .NET CLR 3.5.30729; .NET4.0E)",
+  "Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1",
+  "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:2.0.1) Gecko/20100101 Firefox/4.0.1",
+  "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0",
+  "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0a2) Gecko/20110622 Firefox/6.0a2",
+  "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1",
+  "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0b4pre) Gecko/20100815 Minefield/4.0b4pre",
+  "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0 )",
+  "Mozilla/4.0 (compatible; MSIE 5.5; Windows 98; Win 9x 4.90)",
+  "Mozilla/5.0 (Windows; U; Windows XP) Gecko MultiZilla/1.6.1.0a",
+  "Mozilla/2.02E (Win95; U)",
+  "Mozilla/3.01Gold (Win95; I)",
+  "Mozilla/4.8 [en] (Windows NT 5.1; U)",
+  "Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.4) Gecko Netscape/7.1 (ax)",
+  "HTC_Dream Mozilla/5.0 (Linux; U; Android 1.5; en-ca; Build/CUPCAKE) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+  "Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.2; U; de-DE) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/234.40.1 Safari/534.6 TouchPad/1.0",
+  "Mozilla/5.0 (Linux; U; Android 1.5; en-us; sdk Build/CUPCAKE) AppleWebkit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+  "Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17",
+  "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+  "Mozilla/5.0 (Linux; U; Android 1.5; en-us; htc_bahamas Build/CRB17) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+  "Mozilla/5.0 (Linux; U; Android 2.1-update1; de-de; HTC Desire 1.19.161.5 Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17",
+  "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Sprint APA9292KT Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+  "Mozilla/5.0 (Linux; U; Android 1.5; de-ch; HTC Hero Build/CUPCAKE) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+  "Mozilla/5.0 (Linux; U; Android 2.2; en-us; ADR6300 Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+  "Mozilla/5.0 (Linux; U; Android 2.1; en-us; HTC Legend Build/cupcake) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17",
+  "Mozilla/5.0 (Linux; U; Android 1.5; de-de; HTC Magic Build/PLAT-RC33) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1 FirePHP/0.3",
+  "Mozilla/5.0 (Linux; U; Android 1.6; en-us; HTC_TATTOO_A3288 Build/DRC79) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+  "Mozilla/5.0 (Linux; U; Android 1.0; en-us; dream) AppleWebKit/525.10  (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2",
+  "Mozilla/5.0 (Linux; U; Android 1.5; en-us; T-Mobile G1 Build/CRB43) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari 525.20.1",
+  "Mozilla/5.0 (Linux; U; Android 1.5; en-gb; T-Mobile_G2_Touch Build/CUPCAKE) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+  "Mozilla/5.0 (Linux; U; Android 2.0; en-us; Droid Build/ESD20) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17",
+  "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Droid Build/FRG22D) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+  "Mozilla/5.0 (Linux; U; Android 2.0; en-us; Milestone Build/ SHOLS_U2_01.03.1) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17",
+  "Mozilla/5.0 (Linux; U; Android 2.0.1; de-de; Milestone Build/SHOLS_U2_01.14.0) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17",
+  "Mozilla/5.0 (Linux; U; Android 3.0; en-us; Xoom Build/HRI39) AppleWebKit/525.10  (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2",
+  "Mozilla/5.0 (Linux; U; Android 0.5; en-us) AppleWebKit/522  (KHTML, like Gecko) Safari/419.3",
+  "Mozilla/5.0 (Linux; U; Android 1.1; en-gb; dream) AppleWebKit/525.10  (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2",
+  "Mozilla/5.0 (Linux; U; Android 2.0; en-us; Droid Build/ESD20) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17",
+  "Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17",
+  "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Sprint APA9292KT Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+  "Mozilla/5.0 (Linux; U; Android 2.2; en-us; ADR6300 Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+  "Mozilla/5.0 (Linux; U; Android 2.2; en-ca; GT-P1000M Build/FROYO) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+  "Mozilla/5.0 (Linux; U; Android 3.0.1; fr-fr; A500 Build/HRI66) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13",
+  "Mozilla/5.0 (Linux; U; Android 3.0; en-us; Xoom Build/HRI39) AppleWebKit/525.10  (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2",
+  "Mozilla/5.0 (Linux; U; Android 1.6; es-es; SonyEricssonX10i Build/R1FA016) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+  "Mozilla/5.0 (Linux; U; Android 1.6; en-us; SonyEricssonX10i Build/R1AA056) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+};
+
+        #region GET请求带COOKIE
+        /// <summary>
+        /// GET请求带COOKIE
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public string GetUrlWithCookie(string Url, string COOKIE, string charset)
+        {
+            try
+            {
+                Random rd = new Random();
+                int next = rd.Next(0, agents.Length);
+               System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                                                                                  //添加头部
+                WebHeaderCollection headers = request.Headers;
+              
+               // request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
+               // request.UserAgent = agents[next];
+                request.Referer = "https://www.tecalliance.cn/cn/search/1?q=71433";
+                request.Headers.Add("Cookie", COOKIE);
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.KeepAlive = true;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                request.Accept = "*/*";
+                request.Timeout = 100000;
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                return (ex.ToString());
+
+
+
+            }
+
+        }
+        #endregion
+
+        private string GetHttp20210301174102(string url)
+        {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+            HttpHelper http = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = url,//URL     必需项  
+                Method = "GET",//URL     可选项 默认为Get  
+                Timeout = 100000,//连接超时时间     可选项默认为100000  
+                ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
+                IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
+                Cookie = "",//字符串Cookie     可选项  
+                UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
+                ContentType = "text/html",//返回类型    可选项有默认值  
+                Referer = "http://www.sufeinet.com",//来源URL     可选项  
+              
+                                           //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
+                                           //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
+                Postdata = "",//Post数据     可选项GET时不需要写  
+                ProxyIp = "tps115.kdlapi.com:15818",//代理服务器ID     可选项 不需要代理 时可以不设置这三个参数  
+                              //ProxyPwd = "123456",//代理服务器密码     可选项  
+                              //ProxyUserName = "administrator",//代理服务器账户名     可选项  
+                ResultType = ResultType.String,//返回数据类型，是Byte还是String  
+            };
+            HttpResult result = http.GetHtml(item);
+            string html = result.Html;
+            return html;
+        }
+
+
+
+        #region tecalliance  检测UA
+        public void tecalliance()
+        {
+            
+
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+               
+                string n = richTextBox1.Lines[i].Trim();
+                if (richTextBox1.Lines[i].Trim().Length < 5)
+                {
+                    n = "0" + richTextBox1.Lines[i].Trim();
+
+                }
+
+                string url = "https://www.tecalliance.cn/cn/search/1?q="+n+ "&lbid=101&base=lbid";
+              
+
+               
+                string html = GetHttp20210301174102(url);
+                if (html.Trim() == "")
+                {
+                    MessageBox.Show("验证");
+                    i = i-1;
+                    continue;
+                }
+                Match num = Regex.Match(html, @"通过产品号查询:([\s\S]*?)</div>");
+
+                Match html1 = Regex.Match(html, @"<div class=""part-detail-item-body"" >([\s\S]*?)<div class=""m-sec"">");
+                Match html2= Regex.Match(html, @"<div class=""m-sec"">([\s\S]*?)info-body end");
+                Match img = Regex.Match(html, @"class=""brand-img"" src=""([\s\S]*?)""");
+
+                MatchCollection oems = Regex.Matches(html1.Groups[1].Value, @"<a href=""([\s\S]*?)"">([\s\S]*?)</a>");
+                MatchCollection canshus = Regex.Matches(html2.Groups[1].Value, @"<span>([\s\S]*?)</span>([\s\S]*?)<strong>([\s\S]*?)</strong>");
+                   
+                 StringBuilder sb = new StringBuilder();
+                for (int j = 0; j < oems.Count; j++)
+                {
+
+                    sb.Append(oems[j].Groups[2].Value.Trim()+"/");
+                }
+
+                StringBuilder sb1 = new StringBuilder();
+
+                for (int a = 0; a < canshus.Count; a++)
+                {
+
+                    sb1.Append(canshus[a].Groups[1].Value.Trim() + canshus[a].Groups[3].Value.Trim() + "/");
+                }
+
+                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                lv1.SubItems.Add(n);
+                lv1.SubItems.Add(num.Groups[1].Value.Trim());
+                lv1.SubItems.Add(sb.ToString());
+                lv1.SubItems.Add(sb1.ToString());
+                lv1.SubItems.Add(img.Groups[1].Value.Trim());
+               
+                while (this.zanting == false)
+                {
+                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                }
+                if (status == false)
+                    return;
+            }
+
+
+        }
+
+        #endregion
+
+
+        #region rockauto.com
+        public void rockauto()
+        {
+            // string ip = getip();
+            string ip = "tps115.kdlapi.com:15818";
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+                string n = richTextBox1.Lines[i].Trim();
+
+
+                string url = "https://www.rockauto.com/en/parts/mevotech," + n;
+
+                //string html = method.GetUrlwithIP(url, ip, "", "utf-8");
+                string html = GetHttp20210301174102(url);
+     
+                //string html = method.GetUrl(url, "utf-8");
+               
+                Match oem = Regex.Match(html, @"OE Part Numbers"">([\s\S]*?)</span>");
+                    Match img = Regex.Match(html, @"info\\\/([\s\S]*?)&");
+
+                //if (oem.Groups[1].Value.Trim()==""|| html.Trim() == "")
+                //{
+                //    ip = getip();
+                //    i = i - 1;
+                //    continue;
+                //}
+
+
+                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(n);
+                    lv1.SubItems.Add(" ");
+                    lv1.SubItems.Add(oem.Groups[1].Value.Trim());
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("http://www.rockauto.com/info/" + img.Groups[1].Value.Replace("__ra_t", "").Replace("\\", "").Trim());
+                    
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+               
+            }
+
+
+        }
+
+        #endregion
+
+        #region rockauto.com进入详情页
+        public void rockauto1()
+        {
+
+
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+                string n = richTextBox1.Lines[i].Trim();
+          
+
+                string url = "https://www.rockauto.com/en/parts/mevotech,"+n;
+
+
+
+                string html = method.GetUrl(url, "utf-8");
+
+                Match uid = Regex.Match(html, @"moreinfo\.php([\s\S]*?)""");
+
+
+                if (uid.Groups[1].Value != "")
+                {
+                    string aurl = "https://www.rockauto.com/en/moreinfo.php" + uid.Groups[1].Value;
+                    string ahtml = GetUrlWithCookie(aurl, "", "utf-8");
+                    Match oem = Regex.Match(ahtml, @"Number\(s\):([\s\S]*?)</td>");
+                    Match img = Regex.Match(ahtml, @"info\\\/([\s\S]*?)&");
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(n);
+                    lv1.SubItems.Add(" ");
+                    lv1.SubItems.Add(oem.Groups[1].Value.Trim());
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("http://www.rockauto.com/info/"+img.Groups[1].Value.Replace("__ra_t","").Replace("\\","").Trim());
+                    Thread.Sleep(100);
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+                }
+                else
+                {
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(n);
+
+                }
+            }
+
+
+        }
+
+        #endregion
+
+
+
+        public string getip()
+        {
+            // string html = method.GetUrl("http://47.106.170.4:8081/Index-generate_api_url.html?packid=7&fa=5&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7", "utf-8");
+            string html = method.GetUrl("http://47.106.170.4:8081/Index-generate_api_url.html?packid=7&fa=5&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7", "utf-8");
+            label1.Text = html;
+            return html;
+        }
+
+
+        #region tecalliance去重
+        public void tecalliancequchong()
+        {
+
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+                string n = richTextBox1.Lines[i].Trim();
+                string[] text = n.Split(new string[] { "/" }, StringSplitOptions.None);
+                ArrayList list = new ArrayList();
+                StringBuilder sb = new StringBuilder();
+                foreach (var item in text)
+                {
+                    if (!list.Contains(item) &&item!="")
+                    {
+                        list.Add(item);
+                        sb.Append(item+"/");
+                    }
+                  
+                }
+
+                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                lv1.SubItems.Add(sb.ToString());
+              
+
+
+
+
+            }
+
+
+        }
+
+        #endregion
+
+        #region Dorman.com
+        public void Dorman()
+        {
+
+            string ip = getip();
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+                string n = richTextBox1.Lines[i].Trim();
+                
+
+                string url = "https://www.dormanproducts.com/gsearch.aspx?type=oesearch&origin=oesearch&q=" + n;
+
+                string html = method.GetUrlwithIP(url,ip,"","utf-8");
+
+                if (html.Contains("SecurityForm") || html.Trim() == "")
+                {
+                    ip = getip();
+                    i = i - 1;
+                    continue;
+                }
+
+               MatchCollection dormanpartnumbers = Regex.Matches(html, @"class=""item-name"">([\s\S]*?)</span>");
+                Match nums = Regex.Match(html, @"<th scope=""row"">([\s\S]*?)</th>");
+                MatchCollection SYDs = Regex.Matches(html, @"<td style=""width:50%"">S([\s\S]*?)</td>");
+
+
+                Match descriptions = Regex.Match(html, @"<div style=""width:100%; display:block;"">([\s\S]*?)<h4>([\s\S]*?)</h4>");
+                Match uid = Regex.Match(html, @"<h2 class=""item-headline"">([\s\S]*?)<a href=""([\s\S]*?)""");
+                MatchCollection imgs = Regex.Matches(html, @"<div class=""searchItems-img"">([\s\S]*?)<img src=""([\s\S]*?)""");
+                string wutu = " ";
+                StringBuilder sb = new StringBuilder();
+               // StringBuilder sb1 = new StringBuilder();
+                StringBuilder sb2 = new StringBuilder();
+                for (int j = 0; j < SYDs.Count; j++)
+                {
+                     try
+                        {
+                            sb.Append(dormanpartnumbers[j].Groups[1].Value + ",");
+                           // sb1.Append(imgs[j].Groups[2].Value + ",");
+                        }
+                        catch (Exception)
+                        {
+                            wutu = "1";
+                            continue;
+                        }
+                      
+                    
+                }
+
+                //    string aurl = "https://www.dormanproducts.com/" + uid.Groups[2].Value;
+                //    string ahtml = method.GetUrlwithIP(aurl, ip, "", "utf-8");
+                //if (ahtml.Contains("SecurityForm") ||ahtml.Trim() == "")
+                //{
+                //    ip = getip();
+                //    ahtml = method.GetUrlwithIP(aurl, ip, "", "utf-8");
+                //}
+                //MatchCollection oems = Regex.Matches(ahtml, @"<th scope=""row"">([\s\S]*?)</th>");
+
+                //for (int a = 0; a < oems.Count; a++)
+                //{
+                //    sb2.Append(oems[a].Groups[1].Value + ",");
+
+                //}
+
+                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(n);
+                lv1.SubItems.Add(nums.Groups[1].Value);
+                lv1.SubItems.Add(sb.ToString());
+                lv1.SubItems.Add(descriptions.Groups[2].Value);
+                    lv1.SubItems.Add(sb2.ToString());
+                    lv1.SubItems.Add(wutu);
+                  
+                    Thread.Sleep(100);
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+                
+               
+            }
+
+
+        }
+
+        #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            status = true;
+            //tecalliance  检测UA
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(tecalliance);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+            // rockauto
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(rockauto);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+            //thread = new Thread(tecalliancequchong);
+            //thread.Start();
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            //Dorman
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(Dorman);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
+    }
+}

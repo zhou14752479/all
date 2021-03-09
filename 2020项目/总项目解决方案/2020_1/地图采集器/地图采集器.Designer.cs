@@ -580,7 +580,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(131, 25);
             this.comboBox1.TabIndex = 100;
-            this.comboBox1.Text = "只采集有联系方式";
+            this.comboBox1.Text = "全部采集";
             // 
             // textBox2
             // 

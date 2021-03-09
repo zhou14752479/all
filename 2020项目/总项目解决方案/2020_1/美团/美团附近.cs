@@ -182,7 +182,7 @@ namespace 美团
         #endregion
         bool zanting = true;
         ArrayList tels = new ArrayList();
-        ArrayList cateids = new ArrayList();
+        string cateid = "1";
         #region  主程序进入详情页
         public void run1()
         {
@@ -313,8 +313,7 @@ namespace 美团
             foreach (string city in citys)
             {
 
-                foreach (string cateid in cateids)
-                {
+              
                     string cityId = GetcityId((city));
 
                    
@@ -349,40 +348,24 @@ namespace 美团
 
 
                                 {
-                                    if (checkBox1.Checked == true)
-                                    {
-                                        if (!phone[j].Groups[1].Value.Contains("-") && !phone[j].Groups[1].Value.Contains("400"))
-                                        {
-                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                            listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
 
-                                            listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(area[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+                            if (waimai[j].Groups[1].Value == "1")
+                            {
+                                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
 
-                                            listViewItem.SubItems.Add(city);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                        listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
 
-                                        listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(area[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(city);
+                            }
 
-                                        listViewItem.SubItems.Add(city);
 
-                                    }
-
-                                    while (this.zanting == false)
+                            while (this.zanting == false)
                                     {
                                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                     }
@@ -401,7 +384,7 @@ namespace 美团
                             ex.ToString();
                         }
                 }
-            }
+            
 
         }
 
@@ -533,75 +516,69 @@ namespace 美团
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //#region 通用检测
+            #region 通用检测
 
-            //string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
 
-            //if (!html.Contains(@"meituannaicha"))
-            //{
-            //    MessageBox.Show("验证失败");
-            //    return;
-            //}
+            if (!html.Contains(@"147258369"))
+            {
+                MessageBox.Show("");
+                return;
+            }
 
 
 
-            //#endregion
+            #endregion
 
             status = true;
-            //switch (comboBox1.Text)
-            //{
-            //    case "餐饮美食":
-            //        cateid = "1";
-            //        break;
-            //    case "丽人":
-            //        cateid = "22";
-            //        break;
-            //    case "休闲娱乐":
-            //        cateid = "2";
-            //        break;
-            //    case "饮品":
-            //        cateid = "21329";
-            //        break;
-            //    case "蛋糕甜点":
-            //        cateid = "11";
-            //        break;
-            //    case "美发":
-            //        cateid = "74";
-            //        break;
-            //    case "美容美体":
-            //        cateid = "76";
-            //        break;
-            //    case "婚纱摄影":
-            //        cateid = "20178";
-            //        break;
-            //    case "汽车":
-            //        cateid = "27";
-            //        break;
-            //    case "教育":
-            //        cateid = "20285";
-            //        break;
-            //    case "KTV":
-            //        cateid = "10";
-            //        break;
-            //    case "洗浴汗蒸":
-            //        cateid = "112";
-            //        break;
-            //    case "宠物医院":
-            //        cateid = "20691";
-            //        break;
+            switch (comboBox1.Text)
+            {
+                case "餐饮美食":
+                    cateid = "1";
+                    break;
+                case "小吃快餐":
+                    cateid = "36";
+                    break;
+                case "丽人":
+                    cateid = "22";
+                    break;
+                case "休闲娱乐":
+                    cateid = "2";
+                    break;
+                case "饮品":
+                    cateid = "21329";
+                    break;
+                case "蛋糕甜点":
+                    cateid = "11";
+                    break;
+                case "美发":
+                    cateid = "74";
+                    break;
+                case "美容美体":
+                    cateid = "76";
+                    break;
+                case "婚纱摄影":
+                    cateid = "20178";
+                    break;
+                case "汽车":
+                    cateid = "27";
+                    break;
+                case "教育":
+                    cateid = "20285";
+                    break;
+                case "KTV":
+                    cateid = "10";
+                    break;
+                case "洗浴汗蒸":
+                    cateid = "112";
+                    break;
+                case "宠物医院":
+                    cateid = "20691";
+                    break;
 
-            //}
+            }
 
-            cateids.Add("20691");
-            cateids.Add("67");
-            cateids.Add("32");
-            cateids.Add("20286");
-            cateids.Add("20289");
-            cateids.Add("20291");
-            cateids.Add("21472");
-            cateids.Add("21467");
-            cateids.Add("21462");
-            cateids.Add("21458");
+          
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);

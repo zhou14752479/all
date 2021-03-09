@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+using myDLL;
 using NPOI.HSSF.UserModel;
 using NPOI.POIFS.FileSystem;
 using NPOI.SS.UserModel;

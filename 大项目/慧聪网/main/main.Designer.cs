@@ -33,6 +33,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -53,6 +54,8 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -65,8 +68,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -109,6 +111,13 @@
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
             this.toolStripStatusLabel4.Size = new System.Drawing.Size(284, 17);
             this.toolStripStatusLabel4.Text = "                                                                     ";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(164, 17);
+            this.toolStripStatusLabel3.Text = "请在法律允许的范围内使用！";
             // 
             // tabControl1
             // 
@@ -259,6 +268,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.linkLabel1);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.comboBox2);
@@ -279,6 +290,26 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "参数设置";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "(一行一个)";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(903, 62);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel1.TabIndex = 27;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "购买";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3
             // 
@@ -350,7 +381,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(332, 49);
+            this.button7.Location = new System.Drawing.Point(568, 52);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(95, 23);
             this.button7.TabIndex = 22;
@@ -360,7 +391,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(442, 49);
+            this.button6.Location = new System.Drawing.Point(678, 52);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(95, 23);
             this.button6.TabIndex = 21;
@@ -370,7 +401,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(547, 49);
+            this.button5.Location = new System.Drawing.Point(783, 52);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(95, 23);
             this.button5.TabIndex = 20;
@@ -380,7 +411,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(219, 49);
+            this.button4.Location = new System.Drawing.Point(455, 52);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(95, 23);
             this.button4.TabIndex = 19;
@@ -390,7 +421,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(116, 49);
+            this.button3.Location = new System.Drawing.Point(352, 52);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(95, 23);
             this.button3.TabIndex = 18;
@@ -400,7 +431,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(6, 49);
+            this.button2.Location = new System.Drawing.Point(242, 52);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(95, 23);
             this.button2.TabIndex = 9;
@@ -411,9 +442,12 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(75, 13);
+            this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 21);
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox3.Size = new System.Drawing.Size(110, 62);
             this.textBox3.TabIndex = 16;
+            this.textBox3.WordWrap = false;
             // 
             // label1
             // 
@@ -424,23 +458,12 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "行业名称：";
             // 
-            // linkLabel1
+            // textBox1
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(667, 59);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(29, 12);
-            this.linkLabel1.TabIndex = 27;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "购买";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(164, 17);
-            this.toolStripStatusLabel3.Text = "请在法律允许的范围内使用！";
+            this.textBox1.Location = new System.Drawing.Point(678, 21);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 21);
+            this.textBox1.TabIndex = 29;
             // 
             // main
             // 
@@ -453,6 +476,7 @@
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "企业大数据                                               QQ:852266010  版权所有 盗版必究 后台检测";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -510,5 +534,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

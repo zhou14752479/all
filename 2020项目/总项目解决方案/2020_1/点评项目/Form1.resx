@@ -120,4 +120,7 @@
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>navCtgScroll=0; navCtgScroll=0; _lxsdk_cuid=172415f6ef4c8-07c00d4610f257-6373664-1fa400-172415f6ef5c8; _lxsdk=172415f6ef4c8-07c00d4610f257-6373664-1fa400-172415f6ef5c8; _hc.v=189a18fa-f5f0-a2d1-15fa-43abc1680af2.1602832655; s_ViewType=10; ta.uuid=1317006582533660762; isUuidUnion=true; iuuid=172415f6ef4c8-07c00d4610f257-6373664-1fa400-172415f6ef5c8; ua=%E5%91%A8%E5%87%AF%E6%AD%8C; ctu=47f5eba3de69acfd21b70c8ae58e405b7207c5996bee265edc60334adf04114e; ri=1000321300; m_set_info=%7B%22ri%22%3A%221000321300%22%2C%22rv%22%3A%221602833832189%22%2C%22ui%22%3A%22875973616%22%7D; rv=1602833832189; switchcityflashtoast=1; cityid=1; fspop=test; cy=1; cye=shanghai; Hm_lvt_602b80cf8079ae6591966cc70a3940e7=1609903825,1611559956,1611565090,1611712844; msource=default; chwlsource=default; source=m_browser_test_33; default_ab=shop%3AA%3A11%7Cindex%3AA%3A3%7CshopList%3AC%3A5; Hm_lpvt_602b80cf8079ae6591966cc70a3940e7=1611714303; _lxsdk_s=17741924cfc-058-e0d-874%7C%7C368</value>
+  </data>
 </root>

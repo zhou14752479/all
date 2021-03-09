@@ -137,7 +137,7 @@ namespace 主程序202101
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            status = false;
         }
 
         private void 快递查询_Load(object sender, EventArgs e)

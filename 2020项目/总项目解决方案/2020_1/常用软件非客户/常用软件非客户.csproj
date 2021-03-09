@@ -32,6 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="myDLL">
+      <HintPath>..\..\myDLL\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -71,12 +74,6 @@
     <Compile Include="定时打开.Designer.cs">
       <DependentUpon>定时打开.cs</DependentUpon>
     </Compile>
-    <Compile Include="文件筛选.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="文件筛选.Designer.cs">
-      <DependentUpon>文件筛选.cs</DependentUpon>
-    </Compile>
     <Compile Include="浏览器cookie获取.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,9 +107,6 @@
     <EmbeddedResource Include="定时打开.resx">
       <DependentUpon>定时打开.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="文件筛选.resx">
-      <DependentUpon>文件筛选.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="浏览器cookie获取.resx">
       <DependentUpon>浏览器cookie获取.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,12 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\helper\helper.csproj">
-      <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
-      <Name>helper</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

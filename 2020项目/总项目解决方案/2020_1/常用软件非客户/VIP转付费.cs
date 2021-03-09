@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+
 
 namespace 常用软件非客户
 {
@@ -213,37 +213,49 @@ namespace 常用软件非客户
 
                 string url = "https://wenku.baidu.com/user/interface/getcontribution?st=7&pn=" + i;
                 string html = GetUrl(url);
-
+               
                 MatchCollection docids = Regex.Matches(html, @"""doc_id"":""([\s\S]*?)""");
                 MatchCollection names = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
-
+               
                 for (int j = 0; j < docids.Count; j++)
                 {
-                    try
+                    string docid = docids[j].Groups[1].Value.Trim();
+                    string name = Unicode2String(names[j].Groups[1].Value).Trim();
+                    int count = 0;
+
+                    foreach (var item in name)
                     {
-                       
-                       
-
-
-                        string docid = docids[j].Groups[1].Value.Trim();
-                        string name = Unicode2String(names[j].Groups[1].Value).Trim();
-                        int len = System.Text.Encoding.UTF8.GetBytes(name).Length;
-                    
-                        if (len < 13)
-                        {
-                            name = name + "教学文档";
-                        }
-                        string zhuangtai = zhuanhuanAPI(docid, name);
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                        lv1.SubItems.Add(docid);
-                        lv1.SubItems.Add(name);
-                        lv1.SubItems.Add(zhuangtai);
-                        Thread.Sleep(5000);
+                        count = count + 1;
                     }
-                    catch (Exception)
-                    {
 
-                        continue;
+                    if (count < 50 && count > 5)
+                    {
+                        try
+                        {
+
+
+
+
+                         
+                            int len = System.Text.Encoding.UTF8.GetBytes(name).Length;
+
+                            if (len < 13)
+                            {
+                                name = name + "教学文档";
+                            }
+                            string zhuangtai = zhuanhuanAPI(docid, name);
+                            textBox4.Text = docid;
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                            lv1.SubItems.Add(docid);
+                            lv1.SubItems.Add(name);
+                            lv1.SubItems.Add(zhuangtai);
+                            Thread.Sleep(5000);
+                        }
+                        catch (Exception)
+                        {
+
+                            continue;
+                        }
                     }
 
                 }
@@ -268,24 +280,37 @@ namespace 常用软件非客户
 
                 MatchCollection docids = Regex.Matches(html, @"""doc_id"":""([\s\S]*?)""");
                 MatchCollection names = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+               
+
 
                 for (int j = 0; j < docids.Count; j++)
                 {
-                    try
-                    {
-                        string docid = docids[j].Groups[1].Value.Trim();
-                        string name = Unicode2String(names[j].Groups[1].Value).Trim();
-                        string zhuangtai = fufeiToVipAPI(docid, name);
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                        lv1.SubItems.Add(docid);
-                        lv1.SubItems.Add(name);
-                        lv1.SubItems.Add(zhuangtai);
-                        Thread.Sleep(5000);
-                    }
-                    catch (Exception)
-                    {
+                    string docid = docids[j].Groups[1].Value.Trim();
+                    string name = Unicode2String(names[j].Groups[1].Value).Trim();
+                    int count = 0;
 
-                        continue;
+                    foreach (var item in name)
+                    {
+                        count = count + 1;
+                    }
+
+                    if (count < 50 &&count>6)
+                    {
+                        try
+                        {
+
+                            string zhuangtai = fufeiToVipAPI(docid, name);
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                            lv1.SubItems.Add(docid);
+                            lv1.SubItems.Add(name);
+                            lv1.SubItems.Add(zhuangtai);
+                            Thread.Sleep(5000);
+                        }
+                        catch (Exception)
+                        {
+
+                            continue;
+                        }
                     }
 
                 }

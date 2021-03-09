@@ -16,7 +16,7 @@ namespace 主程序202009
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 耐克订单查询());
+            Application.Run(new excel读取());
         }
     }
 }

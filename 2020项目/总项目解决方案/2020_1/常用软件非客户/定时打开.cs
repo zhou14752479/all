@@ -37,5 +37,10 @@ namespace 常用软件非客户
                 
             }
         }
+
+        private void 定时打开_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

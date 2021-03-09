@@ -55,7 +55,7 @@ namespace 同城58
                 {
                     Random rd1 = new Random();
                     double lagAdd = rd1.NextDouble();
-                    MessageBox.Show(lagAdd.ToString());
+                  
 
 
                    textBox3.Text += DateTime.Now.ToShortTimeString() + "：正在抓取" + textBox1.Text + "房产信息" + "\r\n";

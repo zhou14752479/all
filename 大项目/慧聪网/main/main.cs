@@ -70,7 +70,7 @@ namespace main
             try
             {
 
-                string[] keywords = textBox3.Text.Trim().Split(',');
+                string[] keywords = textBox3.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None); ;
 
 
                 string city = System.Web.HttpUtility.UrlEncode("中国:" + comboBox1.Text + ":" + comboBox2.Text);
@@ -98,7 +98,7 @@ namespace main
                     {
 
                         string Url = "https://esapi.org.hc360.com/interface/getinfos.html?pnum=" + i + "&psize=100&kwd=" + keyword + "&z=" + city + "&index=companyinfo&collapsef=providerid";
-
+                        textBox1.Text = Url;
                        
                         string strhtml = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
@@ -376,6 +376,12 @@ namespace main
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
+        }
+
+        private void main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+
         }
     }
 }

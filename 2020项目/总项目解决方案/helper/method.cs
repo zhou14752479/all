@@ -1523,12 +1523,12 @@ namespace helper
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrlwithIP(string Url, string ip)
+        public static string GetUrlwithIP(string Url, string ip,string cookie)
         {
             try
             {
 
-                string COOKIE = "";
+                string COOKIE = cookie;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
                 WebProxy proxy = new WebProxy(ip);

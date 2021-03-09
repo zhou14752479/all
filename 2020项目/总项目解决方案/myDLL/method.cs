@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Management;
 using System.Net;
@@ -14,6 +15,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace myDLL
@@ -35,29 +37,39 @@ namespace myDLL
         /// <returns></returns>
         public static string GetUrl(string Url, string charset)
         {
-
-
+            string html = "";
+            string COOKIE = "";
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-               
                 request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = Url;
                 request.Headers.Add("Cookie", COOKIE);
-               
-                request.KeepAlive = true;
+                request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                request.Timeout = 5000;
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
-                string content = reader.ReadToEnd();
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 100000;
+              
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
 
-
-                reader.Close();
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html= reader.ReadToEnd();
+                    reader.Close();
+                }
+               
                 response.Close();
-                return content;
+                return html;
 
 
 
@@ -67,7 +79,9 @@ namespace myDLL
                 return ex.ToString();
 
             }
-           
+
+
+
         }
         #endregion
 
@@ -80,6 +94,8 @@ namespace myDLL
         /// <returns></returns>
         public static string GetUrlWithCookie(string Url, string COOKIE, string charset)
         {
+            string html = "";
+          
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -88,11 +104,67 @@ namespace myDLL
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = Url;
                 request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
                 request.Accept = "*/*";
                 request.Timeout = 100000;
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+            }
+
+        }
+        #endregion
+
+        #region GET使用代理IP请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlwithIP(string Url, string ip, string cookie,string charset)
+        {
+            try
+            {
+
+                string COOKIE = cookie;
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
+                request.AllowAutoRedirect = true;
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.KeepAlive = true;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.Timeout = 3000;
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
                 string content = reader.ReadToEnd();
                 reader.Close();
                 response.Close();
@@ -101,15 +173,12 @@ namespace myDLL
             }
             catch (System.Exception ex)
             {
-                return (ex.ToString());
-
-
+               MessageBox.Show(ex.ToString());
 
             }
-
+            return "";
         }
         #endregion
-
 
         #region POST请求
         /// <summary>
@@ -127,11 +196,18 @@ namespace myDLL
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                //headers.Add("sec-fetch-site:same-origin");
+                //headers.Add("sec-fetch-user:?1");
+                //headers.Add("upgrade-insecure-requests: 1");
+                //添加头部
                 // request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentType = contentType;
                 //request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
-              
+                request.Headers.Add("Accept-Encoding", "gzip");
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
 
@@ -219,7 +295,8 @@ namespace myDLL
             FileStream fs = null;
             // bool disposed;
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            sfd.Filter = "xlsx|*.xlsx";
             sfd.Title = "Excel文件导出";
             string fileName = "";
 
@@ -317,75 +394,163 @@ namespace myDLL
         #endregion
 
 
-        #region NPOI读取表格导入
-        public static void ReadFromExcelFile(string filePath, ListView listView)
+        #region NPOI读取表格导入datatable 
+        /// <summary>  
+        /// 将excel导入到datatable  
+        /// </summary>  
+        /// <param name="filePath">excel路径</param>  
+        /// <param name="isColumnName">第一行是否是列名</param>  
+        /// <returns>返回datatable</returns>  
+        public static DataTable ExcelToDataTable(string filePath, bool isColumnName)
         {
-            //using (OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "Microsoft Excel files(*.xls)|*.xls;*.xlsx" })
-            //    if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            //    {
-            //        ReadFromExcelFile(openFileDialog1.FileName);
-            //    }
-            IWorkbook wk = null;
-            string extension = System.IO.Path.GetExtension(filePath);
+            DataTable dataTable = null;
+            FileStream fs = null;
+            DataColumn column = null;
+            DataRow dataRow = null;
+            IWorkbook workbook = null;
+            ISheet sheet = null;
+            IRow row = null;
+            ICell cell = null;
+            int startRow = 0;
             try
             {
-                FileStream fs = File.OpenRead(filePath);
-                if (extension.Equals(".xls"))
+                using (fs = File.OpenRead(filePath))
                 {
-                    //把xls文件中的数据写入wk中
-                    wk = new HSSFWorkbook(fs);
-                }
-                else
-                {
-                    //把xlsx文件中的数据写入wk中
-                    wk = new XSSFWorkbook(fs);
-                }
+                    // 2007版本  
+                    if (filePath.IndexOf(".xlsx") > 0)
+                        workbook = new XSSFWorkbook(fs);
+                    // 2003版本  
+                    else if (filePath.IndexOf(".xls") > 0)
+                        workbook = new HSSFWorkbook(fs);
 
-                fs.Close();
-                //读取当前表数据
-                ISheet sheet = wk.GetSheetAt(0);
-
-                IRow row = sheet.GetRow(0);  //读取当前行数据
-                                             //LastRowNum 是当前表的总行数-1（注意）
-                                             // int offset = 0;
-                for (int i = 0; i <= sheet.LastRowNum; i++)
-                {
-                    row = sheet.GetRow(i);  //读取当前行数据
-                    if (row != null)
+                    if (workbook != null)
                     {
-
-                        ListViewItem lv1 = listView.Items.Add((listView.Items.Count + 1).ToString());
-                        for (int j = 0; j < row.LastCellNum; j++) //LastCellNum 是当前行的总列数
+                        sheet = workbook.GetSheetAt(0);//读取第一个sheet，当然也可以循环读取每个sheet  
+                        dataTable = new DataTable();
+                        if (sheet != null)
                         {
-                            try
+                            int rowCount = sheet.LastRowNum;//总行数  
+                            if (rowCount > 0)
                             {
-                                //读取该行的第j列数据
-                                string value = row.GetCell(j).ToString();
-                                //textBox1.Text+=(value.ToString() + " ");
+                                IRow firstRow = sheet.GetRow(0);//第一行  
+                                int cellCount = firstRow.LastCellNum;//列数  
 
-                                lv1.SubItems.Add(value.ToString());
+                                //构建datatable的列  
+                                if (isColumnName)
+                                {
+                                    startRow = 1;//如果第一行是列名，则从第二行开始读取  
+                                    for (int i = firstRow.FirstCellNum; i < cellCount; ++i)
+                                    {
+                                        cell = firstRow.GetCell(i);
+                                        if (cell != null)
+                                        {
+                                            if (cell.StringCellValue != null)
+                                            {
+                                                column = new DataColumn(cell.StringCellValue);
+                                                dataTable.Columns.Add(column);
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    for (int i = firstRow.FirstCellNum; i < cellCount; ++i)
+                                    {
+                                        column = new DataColumn("column" + (i + 1));
+                                        dataTable.Columns.Add(column);
+                                    }
+                                }
+
+                                //填充行  
+                                for (int i = startRow; i <= rowCount; ++i)
+                                {
+                                    row = sheet.GetRow(i);
+                                    if (row == null) continue;
+
+                                    dataRow = dataTable.NewRow();
+                                    for (int j = row.FirstCellNum; j < cellCount; ++j)
+                                    {
+                                        cell = row.GetCell(j);
+                                        if (cell == null)
+                                        {
+                                            dataRow[j] = "";
+                                        }
+                                        else
+                                        {
+                                            //CellType(Unknown = -1,Numeric = 0,String = 1,Formula = 2,Blank = 3,Boolean = 4,Error = 5,)  
+                                            switch (cell.CellType)
+                                            {
+                                                case CellType.Blank:
+                                                    dataRow[j] = "";
+                                                    break;
+                                                case CellType.Numeric:
+                                                    short format = cell.CellStyle.DataFormat;
+                                                    //对时间格式（2015.12.5、2015/12/5、2015-12-5等）的处理  
+                                                    if (format == 14 || format == 31 || format == 57 || format == 58)
+                                                        dataRow[j] = cell.DateCellValue;
+                                                    else
+                                                        dataRow[j] = cell.NumericCellValue;
+                                                    break;
+                                                case CellType.String:
+                                                    dataRow[j] = cell.StringCellValue;
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                    dataTable.Rows.Add(dataRow);
+                                }
                             }
-                            catch (Exception)
-                            {
-
-                                continue;
-                            }
-
                         }
-                        // textBox1.Text += "\r\n";
                     }
                 }
+                return dataTable;
             }
-
-            catch (Exception e)
+            catch (Exception)
             {
-                //只在Debug模式下才输出
-                MessageBox.Show(e.ToString());
+                if (fs != null)
+                {
+                    fs.Close();
+                }
+                return null;
             }
         }
 
         #endregion
 
+        #region 读取datatable到ListView
+        public static void ShowDataInListView(DataTable dt, ListView lst)
+        {
+            lst.Clear();
+            //   lst.View=System.Windows.Forms.View.Details;
+            lst.AllowColumnReorder = true;//用户可以调整列的位置
+            lst.GridLines = true;
+          
+            int RowCount, ColCount, i, j;
+            DataRow dr = null;
+
+            if (dt == null) return;
+            RowCount = dt.Rows.Count;
+            ColCount = dt.Columns.Count;
+            //添加列标题名
+            for (i = 0; i < ColCount; i++)
+            {
+                lst.Columns.Add(dt.Columns[i].Caption.Trim(), lst.Width / ColCount, System.Windows.Forms.HorizontalAlignment.Left);
+            }
+
+            if (RowCount == 0) return;
+            for (i = 0; i < RowCount; i++)
+            {
+                dr = dt.Rows[i];
+                lst.Items.Add(dr[0].ToString().Trim());
+                for (j = 1; j < ColCount; j++)
+                {
+                    lst.Columns[j].Width = -2;
+                    lst.Items[i].SubItems.Add((string)dr[j].ToString().Trim());
+                }
+            }
+        }
+
+#endregion
 
         #region 获取txt编码
         //调用：EncodingType.GetTxtType(textBox1.Text)
@@ -576,5 +741,261 @@ namespace myDLL
             Registry.SetValue(featureControlRegKey + "FEATURE_ENABLE_CLIPCHILDREN_OPTIMIZATION", appName, 1, RegistryValueKind.DWord);
         }
         #endregion
+
+        #region NPOI导出表格输入文件名不弹窗
+        public static int DataTableToExcelName(DataTable data, string fileName, bool isColumnWritten)
+        {
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            ISheet sheet = null;
+            IWorkbook workbook = null;
+            FileStream fs = null;
+            //string fileName = GetTimeStamp() + ".xlsx";
+            //string fileName= DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")+".xlsx";
+
+
+
+            // bool disposed;
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            //sfd.Title = "Excel文件导出";
+            //string fileName = "";
+
+            //if (sfd.ShowDialog() == DialogResult.OK)
+            //{
+            //    fileName = sfd.FileName;
+            //}
+            //else
+            //    return -1;
+
+            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
+                workbook = new XSSFWorkbook();
+            else if (fileName.IndexOf(".xls") > 0) // 2003版本
+                workbook = new HSSFWorkbook();
+
+            try
+            {
+                if (workbook != null)
+                {
+                    sheet = workbook.CreateSheet("sheet1");
+                    ICellStyle style = workbook.CreateCellStyle();
+                    style.FillPattern = FillPattern.SolidForeground;
+
+                }
+                else
+                {
+                    return -1;
+                }
+
+                if (isColumnWritten == true) //写入DataTable的列名
+                {
+                    IRow row = sheet.CreateRow(0);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
+
+                    }
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                for (i = 0; i < data.Rows.Count; ++i)
+                {
+                    IRow row = sheet.CreateRow(count);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());
+                    }
+                    ++count;
+                }
+                workbook.Write(fs); //写入到excel
+                workbook.Close();
+                fs.Close();
+                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+               
+                Console.WriteLine("Exception: " + ex.Message);
+                return -1;
+            }
+        }
+
+        #endregion
+
+        #region  listView导出CSV
+        /// <summary>
+        /// 导出CSV
+        /// </summary>
+        /// <param name="listView"></param>
+        /// <param name="includeHidden"></param>
+        /// 
+        public static void ListViewToCSV(ListView listView, bool includeHidden)
+        {
+            //make header string
+            SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+
+            //sfd.Title = "Excel文件导出";
+            string filePath = "";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                filePath = sfd.FileName + ".csv";
+            }
+            StringBuilder result = new StringBuilder();
+            WriteCSVRow(result, listView.Columns.Count, i => includeHidden || listView.Columns[i].Width > 0, i => listView.Columns[i].Text);
+
+            //export data rows
+            foreach (ListViewItem listItem in listView.Items)
+                WriteCSVRow(result, listView.Columns.Count, i => includeHidden || listView.Columns[i].Width > 0, i => listItem.SubItems[i].Text);
+
+            File.WriteAllText(filePath, result.ToString(), Encoding.Default);
+            MessageBox.Show("导出成功");
+        }
+
+
+        private static void WriteCSVRow(StringBuilder result, int itemsCount, Func<int, bool> isColumnNeeded, Func<int, string> columnValue)
+        {
+            bool isFirstTime = true;
+            for (int i = 0; i < itemsCount; i++)
+            {
+                try
+                {
+
+                    if (!isColumnNeeded(i))
+                        continue;
+
+                    if (!isFirstTime)
+                        result.Append(",");
+                    isFirstTime = false;
+
+                    result.Append(String.Format("\"{0}\"", columnValue(i)));
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+
+            result.AppendLine();
+        }
+
+        #endregion
+
+        #region  修改IE版本
+        public enum IeVersion
+        {
+            IE7 = 7,
+            IE8 = 8,
+            IE9 = 9,
+            IE10 = 10,
+            IE11 = 11
+        };
+
+        /// <summary>  
+        /// 修改注册表信息来兼容当前程序
+        /// </summary>  
+        public static void SetWebBrowserFeatures(IeVersion ieVersion)
+        {
+            if (LicenseManager.UsageMode != LicenseUsageMode.Runtime) return;
+            //获取程序及名称  
+            string AppName = System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+
+            //得到浏览器的模式的值  
+            UInt32 ieMode = GeoEmulationModee((int)ieVersion);
+
+            string featureControlRegKey = @"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\FeatureControl\";
+            //设置浏览器对应用程序（appName）以什么模式（ieMode）运行  
+
+            Registry.SetValue(featureControlRegKey + "FEATURE_BROWSER_EMULATION", AppName, ieMode, RegistryValueKind.DWord);
+
+            Registry.SetValue(featureControlRegKey + "FEATURE_ENABLE_CLIPCHILDREN_OPTIMIZATION", AppName, 1, RegistryValueKind.DWord);
+            Registry.SetValue(featureControlRegKey + "FEATURE_AJAX_CONNECTIONEVENTS", AppName, 1, RegistryValueKind.DWord);
+            Registry.SetValue(featureControlRegKey + "FEATURE_GPU_RENDERING", AppName, 1, RegistryValueKind.DWord);
+            Registry.SetValue(featureControlRegKey + "FEATURE_WEBOC_DOCUMENT_ZOOM", AppName, 1, RegistryValueKind.DWord);
+            Registry.SetValue(featureControlRegKey + "FEATURE_NINPUT_LEGACYMODE", AppName, 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>  
+        /// 通过版本得到浏览器模式的值  
+        /// </summary>  
+        /// <param name="browserVersion"></param>  
+        /// <returns></returns>  
+        private static UInt32 GeoEmulationModee(int browserVersion)
+        {
+            UInt32 mode = 11000; // Internet Explorer 11. Webpages containing standards-based !DOCTYPE directives are displayed in IE11 Standards mode.   
+            switch (browserVersion)
+            {
+                case 7:
+                    mode = 7000; // Webpages containing standards-based !DOCTYPE directives are displayed in IE7 Standards mode.   
+                    break;
+                case 8:
+                    mode = 8000; // Webpages containing standards-based !DOCTYPE directives are displayed in IE8 mode.   
+                    break;
+                case 9:
+                    mode = 9000; // Internet Explorer 9. Webpages containing standards-based !DOCTYPE directives are displayed in IE9 mode.                      
+                    break;
+                case 10:
+                    mode = 10000; // Internet Explorer 10.  
+                    break;
+                case 11:
+                    mode = 11000; // Internet Explorer 11  
+                    break;
+            }
+            return mode;
+        }
+
+        #endregion
+
+        #region  listview导出文本TXT
+        public static void ListviewToTxt(ListView listview, int i)
+        {
+            if (listview.Items.Count == 0)
+            {
+                MessageBox.Show("列表为空!");
+            }
+            else
+            {
+                List<string> list = new List<string>();
+                foreach (ListViewItem item in listview.Items)
+                {
+
+                    list.Add(item.SubItems[i].Text);
+
+
+                }
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "txt|*.txt";
+                sfd.Title = "txt文件导出";
+                string fileName = "";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    fileName = sfd.FileName;
+                    StringBuilder sb = new StringBuilder();
+                    foreach (string tel in list)
+                    {
+                        sb.AppendLine(tel);
+                    }
+                    System.IO.File.WriteAllText(fileName, sb.ToString(), Encoding.UTF8);
+                    MessageBox.Show("文件导出成功!");
+                }
+            }
+        }
+
+
+     
+
+
+        #endregion
+
     }
 }

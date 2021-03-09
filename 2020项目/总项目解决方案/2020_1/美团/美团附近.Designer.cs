@@ -59,6 +59,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -358,16 +359,28 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(646, 505);
+            this.textBox2.Location = new System.Drawing.Point(463, 506);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 21);
             this.textBox2.TabIndex = 35;
+            this.textBox2.Visible = false;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(232, 574);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(84, 16);
+            this.checkBox3.TabIndex = 36;
+            this.checkBox3.Text = "只抓取外卖";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // 美团附近
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 629);
+            this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.checkBox2);
@@ -430,5 +443,6 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }

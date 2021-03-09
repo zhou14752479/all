@@ -120,6 +120,7 @@ namespace 美团
         public void login()
         {
             string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+           
             if (html.Contains(skinTextBox1.Text) && html.Contains(skinTextBox2.Text))
             {
                 skinButton1.Text = "正在连接服务器......";
@@ -146,8 +147,10 @@ namespace 美团
 
                 }
                 Form1.username = skinTextBox1.Text;
-                Form1 fm1 = new Form1();
-                fm1.Show();
+                //Form1 fm1 = new Form1();
+                //fm1.Show();
+                美团附近 mt = new 美团附近();
+                mt.Show();
                 this.Hide();
             }
 

@@ -181,6 +181,7 @@
             this.Name = "网站筛选";
             this.Text = "网站筛选";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.网站筛选_FormClosing);
+            this.Load += new System.EventHandler(this.网站筛选_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

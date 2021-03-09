@@ -17,6 +17,7 @@ namespace helper
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new cookieBrowser("https://wenku.baidu.com"));
+            //Application.Run(new 手动点击抓取());
         }
     }
 }

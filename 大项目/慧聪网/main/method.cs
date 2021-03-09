@@ -96,7 +96,8 @@ namespace main
             FileStream fs = null;
             // bool disposed;
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "xls|*.xls|xlsx|*.xlsx";
+            // sfd.Filter = "xls|*.xls|xlsx|*.xlsx";
+            sfd.Filter = "xlsx|*.xlsx";
             sfd.Title = "Excel文件导出";
             string fileName = "";
 

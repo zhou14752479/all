@@ -84,7 +84,12 @@ namespace QQ群成员提取
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new 激活());
             }
-            
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new 激活后台());
+
+
         }
     }
 }

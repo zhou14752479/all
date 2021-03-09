@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+using myDLL;
 namespace 主程序202009
 {
     public partial class QQ邮件获取 : Form
@@ -250,8 +250,8 @@ namespace 主程序202009
 
 
             #endregion
-            sid = Form1.SID;
-            COOKIE = Form1.cookie;
+            //sid = Form1.SID;
+            //COOKIE = Form1.cookie;
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -295,8 +295,8 @@ namespace 主程序202009
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Form1 fm1 = new Form1();
-            fm1.Show();
+            //Form1 fm1 = new Form1();
+            //fm1.Show();
         }
     }
 }
