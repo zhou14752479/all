@@ -75,6 +75,58 @@ namespace 主程序202103
 
         #endregion
 
+
+        #region 加拿大28
+        public void jianada28()
+        {
+
+
+            for (DateTime dt = dateTimePicker1.Value; dt < dateTimePicker2.Value; dt = dt.AddDays(1))
+            {
+
+
+                string url = "https://www.mtc25.com/static//data/" + dt.ToString("yyyyMMdd") + "41HistoryLottery.json?_=1615265002031";
+
+                string html = method.GetUrl(url, "utf-8");
+
+                MatchCollection times = Regex.Matches(html, @"""openTime"":""([\s\S]*?)""");
+                MatchCollection values = Regex.Matches(html, @"""openNum"":""([\s\S]*?)""");
+
+                for (int j = 0; j < times.Count; j++)
+                {
+
+                    try
+                    {
+                        string[] text = values[j].Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(times[j].Groups[1].Value);
+                        lv1.SubItems.Add(text[0]);
+                        lv1.SubItems.Add(text[1]);
+                        lv1.SubItems.Add(text[2]);
+                        //lv1.SubItems.Add(text[3]);
+                        //lv1.SubItems.Add(text[4]);
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+
+
+                }
+                Thread.Sleep(1000);
+            }
+
+        }
+
+        #endregion
         private void button4_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
@@ -123,7 +175,7 @@ namespace 主程序202103
 
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(jianada28);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

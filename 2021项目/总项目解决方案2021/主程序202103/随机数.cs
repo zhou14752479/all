@@ -40,6 +40,9 @@ namespace 主程序202103
         int cishu = 0;
         public void createShuLie()
         {
+            label7.Text = "未出现符合要求数列";
+            label7.ForeColor = Color.DeepSkyBlue;
+
             if (listView1.Items.Count == 0)
             {
                 for (int i = 0; i < Convert.ToInt32(textBox1.Text); i++)
@@ -166,6 +169,7 @@ namespace 主程序202103
         private void button2_Click(object sender, EventArgs e)
         {
             label7.Text = "未出现符合要求数列";
+            label7.ForeColor = Color.DeepSkyBlue;
             cishu = 0;
             listView1.Items.Clear();
         }

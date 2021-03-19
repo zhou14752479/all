@@ -217,7 +217,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label7.ForeColor = System.Drawing.Color.DeepSkyBlue;
             this.label7.Location = new System.Drawing.Point(20, 110);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(179, 18);

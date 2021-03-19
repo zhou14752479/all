@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using myDLL;
 
 namespace 美团
 {
@@ -21,6 +22,7 @@ namespace 美团
         {
             InitializeComponent();
         }
+
         #region GET请求
         public static string meituan_GetUrl(string Url)
         {
@@ -313,10 +315,8 @@ namespace 美团
             foreach (string city in citys)
             {
 
-              
                     string cityId = GetcityId((city));
-
-                   
+   
                     try
                         {
 
@@ -348,8 +348,26 @@ namespace 美团
 
 
                                 {
+                            if (checkBox1.Checked == true)
+                            {
+                                if (!phone[j].Groups[1].Value.Contains("-"))
+                                {
+                                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                    listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
 
-                            if (waimai[j].Groups[1].Value == "1")
+                                    listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+
+                                    listViewItem.SubItems.Add(city);
+                                }
+
+                            }
+
+                            else
                             {
                                 ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                 listViewItem.SubItems.Add(names[j].Groups[1].Value);
@@ -362,18 +380,18 @@ namespace 美团
                                 listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
 
                                 listViewItem.SubItems.Add(city);
+
                             }
-
-
                             while (this.zanting == false)
-                                    {
-                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                    }
-                                    if (status == false)
-                                        return;
-                                }
-                                Application.DoEvents();
-                                Thread.Sleep(1000);
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+                                return;
+                            Thread.Sleep(200);
+                        }
+                        Application.DoEvents();
+                          Thread.Sleep(1000);
 
 
 

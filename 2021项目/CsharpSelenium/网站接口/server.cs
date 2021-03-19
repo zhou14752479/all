@@ -456,6 +456,29 @@ namespace 网站接口
                 sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
             }
 
+            else if (requesturl.Contains("api/mt/mt_getdata"))
+            {
+                string neirong = "";
+                string userid = Regex.Match(requesturl, @"userid=([\s\S]*?)&").Groups[1].Value;
+                string cityid = Regex.Match(requesturl, @"cityid=([\s\S]*?)&").Groups[1].Value;
+                string cateid = Regex.Match(requesturl, @"cateid=([\s\S]*?)&").Groups[1].Value;
+                string page = Regex.Match(requesturl, @"page=([\s\S]*?)&").Groups[1].Value;
+                string timestamp = Regex.Match(requesturl, @"timestamp([\s\S]*?)&").Groups[1].Value;
+                string sign = Regex.Match(requesturl, @"sign=.*").Groups[0].Value.Replace("sign=","");
+                if (userid== "" || cityid=="" || cateid  =="" || page=="" || timestamp=="" ||sign=="")
+                {
+                    neirong = "{\"status\":0,\"msg\":\"参数错误\"}";
+
+                }
+                else
+                {
+                    string o = userid + "," +cityid+","+cateid + ","+page + ","+timestamp + ","+sign;
+                    neirong = md.mt_getdata(o);
+                }
+
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+
             else
             {
                 string neirong = "{\"status\":0,\"msg\":\"API不存在\"}";
@@ -492,8 +515,8 @@ namespace 网站接口
                                   + "Server: Atasoy Simple Web Server\r\n"
                                   + "Content-Length: " + bContent.Length.ToString() + "\r\n"
                                   + "Connection: close\r\n"
-                                   + "Access-Control-Allow-Origin: *\r\n"
-                                    + "Access-Control-Allow-Credentials：true\r\n"
+                                   + "Access-Control-Allow-Origin: * \r\n"
+                                    + "Access-Control-Allow-Credentials:true \r\n"
                                   + "Content-Type: " + contentType + "\r\n\r\n");
                 clientSocket.Send(bHeader);
                 clientSocket.Send(bContent);

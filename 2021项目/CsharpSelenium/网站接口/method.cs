@@ -793,5 +793,72 @@ namespace 网站接口
             }
         }
         #endregion
+
+
+
+        #region GET请求
+        public static string meituan_GetUrl(string Url)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.13(0x17000d2a) NetType/4G Language/zh_CN";
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("uuid: E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
+                headers.Add("open_id: oJVP50IRqKIIshugSqrvYE3OHJKQ");
+                headers.Add("token: Vteo9CkJqIGMe30FC3iuvnvTr2YAAAAAygoAAMPHPyLNO16W1eYLn1hWsLhD40r-KnDdB70rrl9LN9OHUfVBGbTDt4PCDHH72xKkDA");
+
+                request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+
+
+            }
+            return "";
+        }
+        #endregion
+
+        #region  美团获取数据
+        public string mt_getdata(object o)
+        {
+            string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+            string userid = text[0];
+            string cityid = text[1];
+            string cateid = text[2];
+            string page = text[3];
+            try
+            {
+
+                string url = "https://api.meituan.com/group/v5/deal/select/city/" + cityid + "/cate/" + cateid + "?sort=start&mypos=&hasGroup=true&offset=" + page + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
+                string html = meituan_GetUrl(url);
+                return html;
+
+            }
+
+
+            catch (Exception)
+            {
+                return "{\"status\":0,\"msg\":\"服务异常,请联系管理员\"}";
+            }
+
+
+        }
+
+
+
+        #endregion
     }
 }

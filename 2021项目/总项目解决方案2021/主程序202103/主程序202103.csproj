@@ -10,6 +10,7 @@
     <AssemblyName>主程序202103</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -29,14 +31,19 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper">
+      <HintPath>..\..\..\2020项目\总项目解决方案\2019\百佳网上超市\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bing搜索.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bing搜索.Designer.cs">
+      <DependentUpon>Bing搜索.cs</DependentUpon>
+    </Compile>
     <Compile Include="mtc25时时彩.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,11 +69,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trademarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trademarks.Designer.cs">
+      <DependentUpon>Trademarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="文本比对.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="文本比对.Designer.cs">
       <DependentUpon>文本比对.cs</DependentUpon>
+    </Compile>
+    <Compile Include="求购597mm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="求购597mm.Designer.cs">
+      <DependentUpon>求购597mm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="裕丰ERP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="裕丰ERP.Designer.cs">
+      <DependentUpon>裕丰ERP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="裕丰数据处理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="裕丰数据处理.Designer.cs">
+      <DependentUpon>裕丰数据处理.cs</DependentUpon>
     </Compile>
     <Compile Include="随机数.cs">
       <SubType>Form</SubType>
@@ -68,6 +105,9 @@
     <Compile Include="随机数.Designer.cs">
       <DependentUpon>随机数.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Bing搜索.resx">
+      <DependentUpon>Bing搜索.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mtc25时时彩.resx">
       <DependentUpon>mtc25时时彩.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,9 +119,22 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Trademarks.resx">
+      <DependentUpon>Trademarks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="文本比对.resx">
       <DependentUpon>文本比对.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="求购597mm.resx">
+      <DependentUpon>求购597mm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="裕丰ERP.resx">
+      <DependentUpon>裕丰ERP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="裕丰数据处理.resx">
+      <DependentUpon>裕丰数据处理.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="随机数.resx">
       <DependentUpon>随机数.cs</DependentUpon>

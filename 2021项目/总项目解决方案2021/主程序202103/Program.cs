@@ -16,7 +16,7 @@ namespace 主程序202103
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 随机数());
+            Application.Run(new 裕丰数据处理());
         }
     }
 }

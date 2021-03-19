@@ -59,16 +59,16 @@ System.Web.HttpUtility.UrlEncode(comboBox1.Text)
 【7、读取txt 写入TXT】
         	if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
+                StreamReader sr = new StreamReader(openFileDialog1.FileName, method.EncodingType.GetTxtType(textBox1.Text));
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < text.Length; i++)
                 {  
-                        ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
-                        lv2.SubItems.Add(text[i]);     
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(text[i]);     
                 }
-		sr.close();  //只关闭流
+		sr.Close();  //只关闭流
 		sr.Dispose();   //销毁流内存
             }
 		一次性写入System.IO.File.WriteAllText(path, textBox1.Text.Trim(), Encoding.UTF8);

@@ -16,7 +16,7 @@ namespace 主程序202102
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 园林苗木网集合());
+            Application.Run(new 中通快递查询());
         }
     }
 }

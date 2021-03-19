@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper">
+      <HintPath>..\主程序202103\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
@@ -52,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,6 +75,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="中通快递查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="中通快递查询.Designer.cs">
+      <DependentUpon>中通快递查询.cs</DependentUpon>
+    </Compile>
     <Compile Include="净水器日期监控.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +98,12 @@
     </Compile>
     <Compile Include="园林苗木网集合.Designer.cs">
       <DependentUpon>园林苗木网集合.cs</DependentUpon>
+    </Compile>
+    <Compile Include="模型监控抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="模型监控抓取.Designer.cs">
+      <DependentUpon>模型监控抓取.cs</DependentUpon>
     </Compile>
     <Compile Include="申通快递查询.cs">
       <SubType>Form</SubType>
@@ -110,6 +126,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="中通快递查询.resx">
+      <DependentUpon>中通快递查询.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="净水器日期监控.resx">
       <DependentUpon>净水器日期监控.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="园林苗木网集合.resx">
       <DependentUpon>园林苗木网集合.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="模型监控抓取.resx">
+      <DependentUpon>模型监控抓取.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="申通快递查询.resx">
       <DependentUpon>申通快递查询.cs</DependentUpon>

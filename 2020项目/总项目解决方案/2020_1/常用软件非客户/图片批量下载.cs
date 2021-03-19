@@ -38,6 +38,11 @@ namespace 常用软件非客户
                 string path = System.IO.Directory.GetCurrentDirectory();
 
                 WebClient client = new WebClient();
+                WebProxy proxy = new WebProxy();
+                proxy.UseDefaultCredentials = false;
+                proxy.Address = new Uri("http://tps115.kdlapi.com:15818"); 
+                client.Proxy = proxy;
+
                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
                 client.Headers.Add("Cookie", COOKIE);
                 client.Headers.Add("Referer", "");
@@ -52,7 +57,7 @@ namespace 常用软件非客户
             catch (WebException ex)
             {
 
-                MessageBox.Show(ex.ToString());
+               ex.ToString();
             }
         }
 
@@ -65,23 +70,26 @@ namespace 常用软件非客户
         ArrayList finishes = new ArrayList();
         public void download()
         {
-            try
-            {
+           
                 for (int i = 0; i < richTextBox1.Lines.Length; i++)
                 {
-                    //string filename = Path.GetFileName(richTextBox1.Lines[i]).Replace(" ","");
-                    string filename = richTextBox2.Lines[i] + ".jpg";
-                      downloadFile(richTextBox1.Lines[i], path + "image//", filename, "_ga=GA1.2.1596665716.1614240361; __ssds=2; __uzmaj2=fc75191e-2afd-4f10-ab0d-b4eb31f80a24; __uzmbj2=1614240381; _fbp=fb.1.1614646492681.1428262791; __ssuzjsr2=a9be0cd8e; __uzmcj2=7542920585999; __uzmdj2=1614758042");
-                    textBox2.Text = "正在下载第：" + (i + 1)+"   "+ richTextBox2.Lines[i];
-
+                try
+                {
+                    string filename = Path.GetFileName(richTextBox1.Lines[i]).Replace(" ", "");
+                    // string filename = richTextBox2.Lines[i] + ".jpg";
+                    downloadFile(richTextBox1.Lines[i], path + "image//", filename, "");
+                    textBox2.Text = "正在下载第：" + (i + 1);
 
                 }
-            }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
+                    textBox2.Text += richTextBox1.Lines[i] + "\r\n";
+                    continue;
+                }
+                   
 
-                MessageBox.Show(ex.ToString());
-            }
+                }
+          
 
             //for (int i = 0; i < richTextBox1.Lines.Length; i++)
             //{

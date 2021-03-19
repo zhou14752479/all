@@ -34,7 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="myDLL">
+    <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
@@ -102,6 +103,12 @@
     <Compile Include="文件筛选.Designer.cs">
       <DependentUpon>文件筛选.cs</DependentUpon>
     </Compile>
+    <Compile Include="琴房预约查找.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="琴房预约查找.Designer.cs">
+      <DependentUpon>琴房预约查找.cs</DependentUpon>
+    </Compile>
     <Compile Include="百度文库.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="文件筛选.resx">
       <DependentUpon>文件筛选.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="琴房预约查找.resx">
+      <DependentUpon>琴房预约查找.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="百度文库.resx">
       <DependentUpon>百度文库.cs</DependentUpon>

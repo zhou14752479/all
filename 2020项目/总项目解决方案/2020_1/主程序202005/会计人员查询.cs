@@ -116,6 +116,7 @@ namespace 主程序202005
 
                 Match result = Regex.Match(PostResult, @"result"":""([\s\S]*?)""");
                 return result.Groups[1].Value;
+                
             }
             catch (Exception ex)
             {
@@ -130,7 +131,7 @@ namespace 主程序202005
         {
             cookie = method.GetCookies("http://czt.sc.gov.cn/kj/captcha.jpg?randdom=0.8007734420064332");
             string yanzhengma = shibie();
-
+            
             try
             {
                 string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
