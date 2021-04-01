@@ -14,9 +14,10 @@ namespace 主程序202103
         [STAThread]
         static void Main()
         {
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 裕丰数据处理());
+            Application.Run(new 裕丰ERP());
         }
     }
 }

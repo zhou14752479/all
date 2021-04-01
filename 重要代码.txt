@@ -3,6 +3,7 @@ ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
 
 
 ***************使用频率高*****************
+System.Windows.Forms.Clipboard.SetText(jiqima_label.Text); //复制
 
 System.Diagnostics.Process.GetCurrentProcess().Kill();
 
@@ -13,6 +14,8 @@ string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 string path=AppDomain.CurrentDomain.BaseDirectory; 
 
 Regex.Replace(url.Groups[1].Value, "<[^>]+>", "") 
+
+System.Web.HttpUtility.UrlEncode(comboBox1.Text)
 
 System.Web.HttpUtility.UrlEncode(comboBox1.Text)
 ***************使用频率高*****************
@@ -366,3 +369,6 @@ NuGet程序包引用Microsoft.mshtml
  Random rd = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
                     int suiji = rd.Next(1, 9);
 // MessageBox.Show(Guid.NewGuid().ToString());  //结果是xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx结构的16进制数字
+
+【好用点击下一页】
+ driver.FindElement(By.XPath("//*[text()=\"下一页\"]")).Click();

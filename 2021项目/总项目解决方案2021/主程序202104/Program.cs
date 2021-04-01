@@ -16,7 +16,7 @@ namespace 主程序202104
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fineartamerica图片下载());
+            Application.Run(new DD373收货价格修改());
         }
     }
 }

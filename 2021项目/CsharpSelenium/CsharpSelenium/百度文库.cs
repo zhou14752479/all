@@ -129,116 +129,37 @@ namespace CsharpSelenium
 
             for (int a = 0; a < listView2.Items.Count; a++)
             {
-                string user = listView2.Items[a].SubItems[0].Text;
-                string usercookie = listView2.Items[a].SubItems[1].Text.Replace(" ","").Trim();
-        
-            
-                driver.Navigate().GoToUrl("https://wenku.baidu.com/");
-
-                Cookie cookie = new Cookie("BDUSS", usercookie, "", DateTime.Now.AddDays(9999));
-                driver.Manage().Cookies.AddCookie(cookie);
-                Thread.Sleep(200);
-                driver.Navigate().GoToUrl("https://wenku.baidu.com/shopmis#/commodityManage/documentation");
-                //浏览器初始化
-                Thread.Sleep(500);
 
 
-                if (driver.PageSource.Contains("同意并继续"))
-                {
-
-                    driver.FindElement(By.XPath("//*[text()=\"同意并继续\"]")).Click();
-                    Thread.Sleep(2000);
-                }
-
-                if (driver.PageSource.Contains("立即升级"))
-                {
-                    try
-                    {
-                        driver.FindElement(By.XPath("/html/body/section/section/main/div[3]/div/div[1]/button")).Click();
-                        Thread.Sleep(2000);
-                    }
-                    catch (Exception)
-                    {
-
-                        
-                    }
-                   
-                }
-
-                FileInfo[] fileInfos = getfiles();
-                logstxt.Text = DateTime.Now.ToShortTimeString() + "共读取到文件数量：" + fileInfos.Length.ToString();
-                int count = Convert.ToInt32(counttxt.Text);
                 try
                 {
-                    driver.FindElement(By.Id("global-uploader-btn")).Click();
-                }
-                catch (Exception ex)
-                {
-                    ex.ToString();
-                    driver.FindElement(By.XPath("//*[@id=\"app\"]/section/main/div[1]/div/div[1]/div[2]/button/span")).Click();
-                }
-                Thread.Sleep(1000);
-                setFilepath(textBox1.Text + "\\" + fileInfos[0].Name);
-                Thread.Sleep(1000);
-                if (driver.PageSource.Contains("文档上传量到达当日上限"))
-                {
-                    driver.Manage().Cookies.DeleteAllCookies();
-                    driver.Navigate().Refresh();
-                    continue;
-                }
-                while (true)
-                {
-                    
+                    string user = listView2.Items[a].SubItems[0].Text;
+                    string usercookie = listView2.Items[a].SubItems[1].Text.Replace(" ", "").Trim();
 
 
-                    if (driver.PageSource.Contains("删除"))
+                    driver.Navigate().GoToUrl("https://wenku.baidu.com/");
+
+                    Cookie cookie = new Cookie("BDUSS", usercookie, "", DateTime.Now.AddDays(9999));
+                    driver.Manage().Cookies.AddCookie(cookie);
+                    Thread.Sleep(200);
+                    driver.Navigate().GoToUrl("https://wenku.baidu.com/shopmis#/commodityManage/documentation");
+                    //浏览器初始化
+                    Thread.Sleep(500);
+
+
+                    if (driver.PageSource.Contains("同意并继续"))
                     {
-                        Thread.Sleep(1000);
-                        driver.FindElement(By.ClassName("btn-submit")).Click();
-                        Thread.Sleep(1000);
-                        driver.Navigate().Refresh();
-                        break;
-                    }
-                    else if (driver.PageSource.Contains("文档重复"))
-                    {
-                        Thread.Sleep(1000);
-                        driver.Navigate().Refresh();
-                        break;
-                    }
-                    else if (driver.PageSource.Contains("error-msg fl"))
-                    {
-                        Thread.Sleep(1000);
-                        driver.Navigate().Refresh();
-                        break;
+
+                        driver.FindElement(By.XPath("//*[text()=\"同意并继续\"]")).Click();
+                        Thread.Sleep(2000);
                     }
 
-                }
-
-   
-                if (File.Exists(textBox1.Text + "\\" + fileInfos[0].Name))
-                {
-                    listView1.Items.Clear();
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(fileInfos[0].Name);
-                    lv1.SubItems.Add("已上传，删除");
-                    lv1.SubItems.Add(user);
-                    //删除文件
-                    File.Delete(textBox1.Text + "\\" + fileInfos[0].Name);
-                }
-
-                //**************单个上传结束***************************************************
-
-
-
-
-                for (int i = 1; i < fileInfos.Length; i = i + count)
-                {
                     if (driver.PageSource.Contains("立即升级"))
                     {
                         try
                         {
                             driver.FindElement(By.XPath("/html/body/section/section/main/div[3]/div/div[1]/button")).Click();
-                            Thread.Sleep(1000);
+                            Thread.Sleep(2000);
                         }
                         catch (Exception)
                         {
@@ -248,169 +169,257 @@ namespace CsharpSelenium
 
                     }
 
-
-                    if (driver.PageSource.Contains("文档上传量到达当日上限"))
-                    {
-                        driver.Manage().Cookies.DeleteAllCookies();
-                        driver.Navigate().Refresh();
-                        break;
-                    }
-
-                    StringBuilder sb = new StringBuilder();
-                    for (int j = 0; j < count; j++)
-                    {
-                        sb.Append("\"" + fileInfos[i + j].Name + "\" ");
-                    }
+                    FileInfo[] fileInfos = getfiles();
+                    logstxt.Text = DateTime.Now.ToShortTimeString() + "共读取到文件数量：" + fileInfos.Length.ToString();
+                    int count = Convert.ToInt32(counttxt.Text);
                     try
                     {
-                        if (driver.PageSource.Contains("升级并完善"))
-                        {
-                            driver.FindElement(By.ClassName("base-close")).Click();
-                            
-                        }
-
-                        Thread.Sleep(10000);
                         driver.FindElement(By.Id("global-uploader-btn")).Click();
                     }
                     catch (Exception ex)
                     {
-
-                        logstxt.Text += DateTime.Now.ToShortTimeString() + "上传按钮异常" + "\r\n";
                         ex.ToString();
-                        continue;
+                        driver.FindElement(By.XPath("//*[@id=\"app\"]/section/main/div[1]/div/div[1]/div[2]/button/span")).Click();
                     }
                     Thread.Sleep(1000);
-                    setFilepath(sb.ToString());
+                    setFilepath(textBox1.Text + "\\" + fileInfos[0].Name);
                     Thread.Sleep(1000);
-
-                    int timecount = 1;
-                    int zero = 0;
+                    if (driver.PageSource.Contains("文档上传量到达当日上限"))
+                    {
+                        driver.Manage().Cookies.DeleteAllCookies();
+                        driver.Navigate().Refresh();
+                        continue;
+                    }
                     while (true)
                     {
 
 
+
+                        if (driver.PageSource.Contains("删除"))
+                        {
+                            Thread.Sleep(1000);
+                            driver.FindElement(By.ClassName("btn-submit")).Click();
+                            Thread.Sleep(1000);
+                            driver.Navigate().Refresh();
+                            break;
+                        }
+                        else if (driver.PageSource.Contains("文档重复"))
+                        {
+                            Thread.Sleep(1000);
+                            driver.Navigate().Refresh();
+                            break;
+                        }
+                        else if (driver.PageSource.Contains("error-msg fl"))
+                        {
+                            Thread.Sleep(1000);
+                            driver.Navigate().Refresh();
+                            break;
+                        }
+
+                    }
+
+
+                    if (File.Exists(textBox1.Text + "\\" + fileInfos[0].Name))
+                    {
+                        listView1.Items.Clear();
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(fileInfos[0].Name);
+                        lv1.SubItems.Add("已上传，删除");
+                        lv1.SubItems.Add(user);
+                        //删除文件
+                        File.Delete(textBox1.Text + "\\" + fileInfos[0].Name);
+                    }
+
+                    //**************单个上传结束***************************************************
+
+
+
+
+                    for (int i = 1; i < fileInfos.Length; i = i + count)
+                    {
+                        if (driver.PageSource.Contains("立即升级"))
+                        {
+                            try
+                            {
+                                driver.FindElement(By.XPath("/html/body/section/section/main/div[3]/div/div[1]/button")).Click();
+                                Thread.Sleep(1000);
+                            }
+                            catch (Exception)
+                            {
+
+
+                            }
+
+                        }
+
+
                         if (driver.PageSource.Contains("文档上传量到达当日上限"))
                         {
-                            status = false;
-                            break;
-                        }
-
-
-                        MatchCollection corrects = Regex.Matches(driver.PageSource, @"class=""delect-icon"">([\s\S]*?)</li>");
-                        MatchCollection errors = Regex.Matches(driver.PageSource, @"class=""error-msg fl"">([\s\S]*?)</div>");
-
-                        logstxt.Text = (corrects.Count.ToString()) + "       " + errors.Count.ToString();
-                        int allcount = corrects.Count + errors.Count+zero;
-                        if (errors.Count == count)
-                        {
-                            status = false;
+                            driver.Manage().Cookies.DeleteAllCookies();
                             driver.Navigate().Refresh();
                             break;
-
-                        }
-                        if (errors.Count == count- 1)
-                        {
-                            status = false;
-                            driver.Navigate().Refresh();
-                            break;
-
                         }
 
-                        if (allcount == count)
+                        StringBuilder sb = new StringBuilder();
+                        for (int j = 0; j < count; j++)
                         {
-                            zero = 0;
-                            Thread.Sleep(1000);
-                            driver.FindElement(By.Name("checkDocList")).Click();
-                            if (driver.PageSource.Contains("批量修改"))
+                            sb.Append("\"" + fileInfos[i + j].Name + "\" ");
+                        }
+                        try
+                        {
+                            if (driver.PageSource.Contains("升级并完善"))
                             {
-                                Thread.Sleep(1000);
-                                driver.FindElement(By.ClassName("btn-update-all")).Click();
+                                driver.FindElement(By.ClassName("base-close")).Click();
 
-                                Thread.Sleep(1000);
-                                driver.FindElement(By.XPath("//*[@id=\"upload-doc\"]/div/div[3]/div/div[2]/div/div[5]/div/div/label[3]")).Click();
-                                Thread.Sleep(1000);
-                                driver.FindElement(By.ClassName("save-update")).Click();
-                                Thread.Sleep(2000);
-                                driver.FindElement(By.ClassName("btn-submit")).Click();
-                                Thread.Sleep(1000);
-                                while (true)
-                                {
-                                    if (driver.PageSource.Contains("恭喜您"))
-                                    {
-                                        status = true;
-                                        break;
-                                    }
-                                    if (driver.PageSource.Contains("提交过于频繁"))
-                                    {
-                                        Thread.Sleep(5000);
-                                        driver.FindElement(By.ClassName("btn-submit")).Click();
-                                        
-                                    }
-                                    if (driver.PageSource.Contains("重新上传"))
-                                    {
+                            }
 
-                                        break;
-                                    }
-                                }
-                                driver.Navigate().Refresh();
+                            Thread.Sleep(10000);
+                            driver.FindElement(By.Id("global-uploader-btn")).Click();
+                        }
+                        catch (Exception ex)
+                        {
+
+                            logstxt.Text += DateTime.Now.ToShortTimeString() + "上传按钮异常" + "\r\n";
+                            ex.ToString();
+                            continue;
+                        }
+                        Thread.Sleep(1000);
+                        setFilepath(sb.ToString());
+                        Thread.Sleep(1000);
+
+                        int timecount = 1;
+                        int zero = 0;
+                        while (true)
+                        {
+
+
+                            if (driver.PageSource.Contains("文档上传量到达当日上限"))
+                            {
+                                status = false;
                                 break;
                             }
 
-                        }
 
-                        if (allcount == count - 1)
-                        {
-                           
-                            timecount = timecount + 1;
-                            Thread.Sleep(1000);
-                            label4.Text = timecount.ToString();
-                            if (timecount == 100)
+                            MatchCollection corrects = Regex.Matches(driver.PageSource, @"class=""delect-icon"">([\s\S]*?)</li>");
+                            MatchCollection errors = Regex.Matches(driver.PageSource, @"class=""error-msg fl"">([\s\S]*?)</div>");
+
+                            logstxt.Text = (corrects.Count.ToString()) + "       " + errors.Count.ToString();
+                            int allcount = corrects.Count + errors.Count + zero;
+                            if (errors.Count == count)
+                            {
+                                status = false;
+                                driver.Navigate().Refresh();
+                                break;
+
+                            }
+                            if (errors.Count == count - 1)
+                            {
+                                status = false;
+                                driver.Navigate().Refresh();
+                                break;
+
+                            }
+
+                            if (allcount == count)
+                            {
+                                zero = 0;
+                                Thread.Sleep(1000);
+                                driver.FindElement(By.Name("checkDocList")).Click();
+                                if (driver.PageSource.Contains("批量修改"))
+                                {
+                                    Thread.Sleep(1000);
+                                    driver.FindElement(By.ClassName("btn-update-all")).Click();
+
+                                    Thread.Sleep(1000);
+                                    driver.FindElement(By.XPath("//*[@id=\"upload-doc\"]/div/div[3]/div/div[2]/div/div[5]/div/div/label[3]")).Click();  //VIP
+                                                                                                                                                        //driver.FindElement(By.XPath("//*[@id=\"upload-doc\"]/div/div[3]/div/div[2]/div/div[5]/div/div/label[2]")).Click();  //付费
+                                    Thread.Sleep(1000);
+                                    driver.FindElement(By.ClassName("save-update")).Click();
+                                    Thread.Sleep(2000);
+                                    driver.FindElement(By.ClassName("btn-submit")).Click();
+                                    Thread.Sleep(1000);
+                                    while (true)
+                                    {
+                                        if (driver.PageSource.Contains("恭喜您"))
+                                        {
+                                            status = true;
+                                            break;
+                                        }
+                                        if (driver.PageSource.Contains("提交过于频繁"))
+                                        {
+                                            Thread.Sleep(5000);
+                                            driver.FindElement(By.ClassName("btn-submit")).Click();
+
+                                        }
+                                        if (driver.PageSource.Contains("重新上传"))
+                                        {
+
+                                            break;
+                                        }
+                                    }
+                                    driver.Navigate().Refresh();
+                                    break;
+                                }
+
+                            }
+
+                            if (allcount == count - 1)
                             {
 
-                                zero = 1;
-                                textBox2.Text = "【执行】"+DateTime.Now.ToShortTimeString() + " timecount：" + timecount + "  count：" + count;
-                                timecount = 1;
+                                timecount = timecount + 1;
+                                Thread.Sleep(1000);
+                                label4.Text = timecount.ToString();
+                                if (timecount == 100)
+                                {
+
+                                    zero = 1;
+                                    textBox2.Text = "【执行】" + DateTime.Now.ToShortTimeString() + " timecount：" + timecount + "  count：" + count;
+                                    timecount = 1;
+                                }
+
+
                             }
-                           
-                           
+
                         }
 
-                    }
-
-                    if (status == true)
-                    {
-                        for (int j = 0; j < count; j++)
+                        if (status == true)
                         {
-                            File.Delete(textBox1.Text + "\\" + fileInfos[i + j].Name);
-                            logstxt.Text += DateTime.Now.ToShortTimeString() + "删除文件：" + fileInfos[i + j].Name + "\r\n";
+                            for (int j = 0; j < count; j++)
+                            {
+                                File.Delete(textBox1.Text + "\\" + fileInfos[i + j].Name);
+                                logstxt.Text += DateTime.Now.ToShortTimeString() + "删除文件：" + fileInfos[i + j].Name + "\r\n";
 
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(fileInfos[i + j].Name);
-                            lv1.SubItems.Add("已上传，删除");
-                            lv1.SubItems.Add(user);
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(fileInfos[i + j].Name);
+                                lv1.SubItems.Add("已上传，删除");
+                                lv1.SubItems.Add(user);
+                            }
                         }
-                    }
-                    else if (status == false)
-                    {
-                        for (int j = 0; j < count; j++)
+                        else if (status == false)
                         {
-                            
-                            logstxt.Text += DateTime.Now.ToShortTimeString() + "不删除文件：" + fileInfos[i + j].Name + "\r\n";
+                            for (int j = 0; j < count; j++)
+                            {
 
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(fileInfos[i + j].Name);
-                            lv1.SubItems.Add("异常不删除");
-                            lv1.SubItems.Add(user);
+                                logstxt.Text += DateTime.Now.ToShortTimeString() + "不删除文件：" + fileInfos[i + j].Name + "\r\n";
+
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(fileInfos[i + j].Name);
+                                lv1.SubItems.Add("异常不删除");
+                                lv1.SubItems.Add(user);
+                            }
+
                         }
 
+
+
+
                     }
-
-
-
-
                 }
+                catch (Exception ex)
+                {
 
-
+                   MessageBox.Show(ex.ToString());
+                }
 
 
 
@@ -442,18 +451,18 @@ namespace CsharpSelenium
                     continue;
                 }
             }
-          
-           ListViewItem lv1 = listView2.Items.Add("13295270680"); 
+
+            ListViewItem lv1 = listView2.Items.Add("13295270680");
             lv1.SubItems.Add("zBYRXVHOUtPd3EzZ1BLRkZOeTNJNWxTS2k2RlJZOXY1T3FkYVZudXY1V0Jhek5nSVFBQUFBJCQAAAAAAAAAAAEAAABVvFgjztK0-MnPzqjSuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIHeC2CB3gtgT");
-            ListViewItem lv2 = listView2.Items.Add("zhou14752479"); 
+            ListViewItem lv2 = listView2.Items.Add("zhou14752479");
             lv2.SubItems.Add("mVJcn45RjVPcUVqV2RLSmN4c2ItWm4zMDFsZnd0MWJ2MlpxYXk0eU1YT3JDWEJmSVFBQUFBJCQAAAAAAQAAAAEAAABio5cbemhvdTE0NzUyNDc5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKt8SF-rfEhfU");
-            ListViewItem lv3 = listView2.Items.Add("q852266010"); 
+            ListViewItem lv3 = listView2.Items.Add("q852266010");
             lv3.SubItems.Add("DJJcDIxTXk4WnBPR0xISlpuVWhsRUtOem82c0t0SmNkUFQ4b2pqN1hxfndFaGxnSVFBQUFBJCQAAAAAAAAAAAEAAACys-e7cTg1MjI2NjAxMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCF8V~whfFfZ");
-            ListViewItem lv4 = listView2.Items.Add("zhou14752478"); 
+            ListViewItem lv4 = listView2.Items.Add("zhou14752478");
             lv4.SubItems.Add("d-UkFjZVllSnNvd3lTTnZFbk5ZRFpFQWNHakRMYmFzdmRXbWdDSldKenlYMlZmSVFBQUFBJCQAAAAAAQAAAAEAAACbWKEeemhvdTE0NzUyNDc4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPLSPV~y0j1fbX");
 
-            ListViewItem lv5 = listView2.Items.Add("zhoukaige6668");
-           lv5.SubItems.Add("k5oODdzc05tZm5tcEpBVW5hbUlKSFJ5MFhUcWltUEFWcGhHd2ttU0h1WnMzRkpnSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxPK2BsTytgb");
+            // ListViewItem lv5 = listView2.Items.Add("zhoukaige6668");
+            //lv5.SubItems.Add("k5oODdzc05tZm5tcEpBVW5hbUlKSFJ5MFhUcWltUEFWcGhHd2ttU0h1WnMzRkpnSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxPK2BsTytgb");
 
         }
 

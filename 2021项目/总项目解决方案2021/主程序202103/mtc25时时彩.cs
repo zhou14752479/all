@@ -85,13 +85,13 @@ namespace 主程序202103
             {
 
 
-                string url = "https://www.mtc25.com/static//data/" + dt.ToString("yyyyMMdd") + "41HistoryLottery.json?_=1615265002031";
+                string url = "https://www.mtc25.com/static//data/" + dt.ToString("yyyyMMdd") + "43HistoryLottery.json?_=1615265002031";
 
                 string html = method.GetUrl(url, "utf-8");
 
                 MatchCollection times = Regex.Matches(html, @"""openTime"":""([\s\S]*?)""");
                 MatchCollection values = Regex.Matches(html, @"""openNum"":""([\s\S]*?)""");
-
+               
                 for (int j = 0; j < times.Count; j++)
                 {
 
@@ -103,6 +103,8 @@ namespace 主程序202103
                         lv1.SubItems.Add(text[0]);
                         lv1.SubItems.Add(text[1]);
                         lv1.SubItems.Add(text[2]);
+                        int total = Convert.ToInt32(text[0])+ Convert.ToInt32(text[1])+ Convert.ToInt32(text[2]);
+                        lv1.SubItems.Add(total.ToString());
                         //lv1.SubItems.Add(text[3]);
                         //lv1.SubItems.Add(text[4]);
                         while (this.zanting == false)

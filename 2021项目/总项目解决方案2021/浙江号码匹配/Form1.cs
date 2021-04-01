@@ -252,23 +252,24 @@ namespace 浙江号码匹配
                                             if (loginnameauthLevel == loginname + authLevel)
                                             {
                                                 zfb = "true";
+                                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                                lv1.SubItems.Add(name);
+                                                lv1.SubItems.Add(idcard);
+                                                lv1.SubItems.Add(phonefull);
+                                                lv1.SubItems.Add(zfb);
+                                                while (this.zanting == false)
+                                                {
+                                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                                }
+
+                                                if (status == false)
+                                                    return;
+                                                if (zfb == "true")
+                                                    break;
                                             }
                                          
 
-                                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                            lv1.SubItems.Add(name);
-                                            lv1.SubItems.Add(idcard);
-                                            lv1.SubItems.Add(phonefull);
-                                            lv1.SubItems.Add(zfb);
-                                            while (this.zanting == false)
-                                            {
-                                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                            }
-
-                                            if (status == false)
-                                                return;
-                                            if (zfb == "true")
-                                                break;
+                                            
                                             Thread.Sleep(20);
                                           
                                         }
@@ -282,7 +283,7 @@ namespace 浙江号码匹配
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.ToString());
+                               // MessageBox.Show(ex.ToString());
                                 continue;
                                 
                             }
@@ -291,7 +292,7 @@ namespace 浙江号码匹配
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        //MessageBox.Show(ex.ToString());
                         continue;
 
                       
@@ -340,7 +341,7 @@ namespace 浙江号码匹配
 
             if (!html.Contains(@"VoWQXT"))
             {
-               
+
                 return;
             }
 

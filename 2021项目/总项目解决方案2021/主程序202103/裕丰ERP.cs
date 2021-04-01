@@ -94,9 +94,9 @@ namespace 主程序202103
                 string postdata = "page="+i+"&limit=20&number_code=4221&search%5Bfloor%5D%5B0%5D%5Bfield_key_name%5D=floor&search%5Bfloor%5D%5B0%5D%5Boption_value%5D=0%E5%B1%82%E8%87%B30%E5%B1%82&search%5Bfloor%5D%5B0%5D%5Bid%5D=0~0&search%5Broom%5D%5B0%5D%5Bfield_key_name%5D=room&search%5Broom%5D%5B0%5D%5Bid%5D=-1&search%5Broom%5D%5B0%5D%5Boption_value%5D=-1&search%5Bis_formal%5D%5B0%5D%5Bfield_key_name%5D=is_formal&search%5Bis_formal%5D%5B0%5D%5Bid%5D=1&search%5Bis_formal%5D%5B0%5D%5Boption_value%5D=is_formal&type_id=&city_id=16&phone_search=&like_search%5Btype%5D=1&like_search%5Boption_value%5D="+keyword+"&district_id="+ areaid + "&plate=&road=&plot_id=&tags="+tags+"&time_type%5Btime_search%5D%5Bfield_key_name%5D=create_time&time_type%5Btime_search%5D%5Boption_value%5D=+~+&font_file_index=0&is_perfect=&jz_city_id=";
                 
                 string html = method.PostUrl(url,postdata,cookie ,"utf-8", "application/x-www-form-urlencoded;", "http://121.14.195.7/house/house/search?tags=");
-               
+                
                 MatchCollection codes = Regex.Matches(html, @"""house_code"":""([\s\S]*?)""");
-                MatchCollection address = Regex.Matches(html, @"""full_address"":""([\s\S]*?)""");
+                MatchCollection address = Regex.Matches(html, @"""address_text"":""([\s\S]*?)""");
                 MatchCollection address2 = Regex.Matches(html, @"""address_text"":""([\s\S]*?)""");
 
 
@@ -117,8 +117,8 @@ namespace 主程序202103
                           
                             Match price1 = Regex.Match(ahtml, @"""price"":([\s\S]*?),");
                             Match price2 = Regex.Match(ahtml, @"""rental_price"":([\s\S]*?),");
-                            Match yezhuname = Regex.Match(ahtml, @"""name"":([\s\S]*?),");
-                            Match yezhutel = Regex.Match(ahtml, @"""mobile_number"":([\s\S]*?),");
+                            MatchCollection yezhunames = Regex.Matches(ahtml, @"""name"":([\s\S]*?),");
+                            MatchCollection yezhutels = Regex.Matches(ahtml, @"""mobile_number"":([\s\S]*?),");
 
                             Match active_record = Regex.Match(ahtml, @"""active_record"":([\s\S]*?)\]");
                             Match remark_list = Regex.Match(ahtml, @"""remark_list"":([\s\S]*?)\]");
@@ -127,6 +127,21 @@ namespace 主程序202103
                             MatchCollection jihuos= Regex.Matches(active_record.Groups[1].Value, @"""remark"":([\s\S]*?),");
                             MatchCollection remarks = Regex.Matches(remark_list.Groups[1].Value, @"""remarks"":""([\s\S]*?)""");
                             MatchCollection create_dates = Regex.Matches(remark_list.Groups[1].Value, @"""create_date"":""([\s\S]*?)""");
+
+
+
+                            StringBuilder yezhunamesb = new StringBuilder();
+                            foreach (Match yezhuname in yezhunames)
+                            {
+                                yezhunamesb.Append(method.Unicode2String(yezhuname.Groups[1].Value.Replace("\"", "")) + "  \r\n");
+                            }
+
+                            StringBuilder yezhutelsb = new StringBuilder();
+                            foreach (Match yezhutel in yezhutels)
+                            {
+                                yezhutelsb.Append(method.Unicode2String(yezhutel.Groups[1].Value.Replace("\"", "")) + "  \r\n");
+                            }
+
 
                             StringBuilder remarksb = new StringBuilder();
                             foreach (Match jihuo in jihuos)
@@ -140,7 +155,7 @@ namespace 主程序202103
                             {
                                 try
                                 {
-                                    remarksb2.Append( method.Unicode2String(create_dates[a].Groups[1].Value.Replace("\"", "")) +"："+ method.Unicode2String(remarks[a].Groups[1].Value.Replace("\"", "")) + "  \r\n");
+                                    remarksb2.Append( method.Unicode2String(create_dates[a].Groups[1].Value.Replace("\"", "")).Replace(" ", "") + "："+ method.Unicode2String(remarks[a].Groups[1].Value.Replace("\"", "")).Replace(" ","") + "  \r\n");
                                 }
                                 catch (Exception ex)
                                 {
@@ -156,8 +171,8 @@ namespace 主程序202103
                             lv1.SubItems.Add(price2.Groups[1].Value);
                             lv1.SubItems.Add(rooms[j].Groups[1].Value+"室"+ halls[j].Groups[1].Value+"厅"+ toilets[j].Groups[1].Value+"卫");
                             lv1.SubItems.Add(mianjis[j].Groups[1].Value);
-                            lv1.SubItems.Add(method.Unicode2String(yezhuname.Groups[1].Value.Replace("\"", "")));
-                            lv1.SubItems.Add(yezhutel.Groups[1].Value.Replace("\"", ""));
+                            lv1.SubItems.Add(yezhunamesb.ToString());
+                            lv1.SubItems.Add(yezhutelsb.ToString());
                             lv1.SubItems.Add(remarksb.ToString());
                             lv1.SubItems.Add(remarksb2.ToString());
                             Thread.Sleep(500);

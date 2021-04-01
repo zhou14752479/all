@@ -13,12 +13,13 @@ using myDLL;
 using System.Data;
 using Newtonsoft.Json;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace 网站接口
 {
     class method
     {
-        string constr = "Host =47.102.145.207;Database=siyi_data;Username=root;Password=c#kaifa6668.";
+        string constr = "Host =121.40.209.61;Database=siyi_data;Username=root;Password=c#kaifa6668.";
         myDLL.method md = new myDLL.method();
 
         private DateTime ConvertStringToDateTime(string timeStamp)
@@ -426,6 +427,149 @@ namespace 网站接口
         }
         #endregion
 
+        #region 美团注册
+        public string mtregister(object o)
+        {
+            string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+            string username = text[0];
+            string password = text[1];
+            string mac = text[2];
+            string time = DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss");
+            try
+            {
+                string sql = "INSERT INTO mtusers (username,password,registertime,mac)VALUES('" + username + " ', '" + password + " ','" + time + " ', '" + mac + " ')";
+                bool status = insertsql(sql);
+                if (status == true)
+                {
+                    return "{\"status\":1,\"msg\":\"注册成功\"}";
+                }
+                else
+                {
+                    return "{\"status\":0,\"msg\":\"注册异常，请联系客服\"}";
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return "{\"status\":0,\"msg\":\"注册异常，请联系客服\"}";
+            }
+        }
+        #endregion
+
+
+        #region 美团登录
+        public string mtlogin(object o)
+        {
+            string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+            string username = text[0];
+            string password = text[1];
+            string mac = text[2];
+            try
+            {
+                string sql = "select * from mtusers where username='" + username + "' ";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                if (reader.Read())
+                {
+                    string pass = reader["password"].ToString().Trim();
+                    string isvip = reader["isvip"].ToString().Trim();
+                    string registertime = reader["registertime"].ToString().Trim();
+                    string mac2 = reader["mac"].ToString().Trim();
+                    if (mac != mac2)
+                    {
+                        mycon.Close();
+                        reader.Close();
+                        return "{\"status\":0,\"msg\":\"登录失败，本机未注册\"}";
+                       
+                    }
+
+
+
+                    if (pass == password)
+                    {
+                        mycon.Close();
+                        reader.Close();
+                        return "{\"status\":1,\"msg\":\"true\",\"registertime\":\"" + registertime + "\",\"isvip\":\"" + isvip+ "\",\"code\":\"" + mac + "\"}";
+                    }
+                    else
+                    {
+                        mycon.Close();
+                        reader.Close();
+                        return "{\"status\":0,\"msg\":\"登录失败，请联系客服\"}";
+                    }
+
+                }
+                else
+                {
+                    mycon.Close();
+                    reader.Close();
+                    return "{\"status\":0,\"msg\":\"登录失败，请联系客服\"}";
+                }
+
+
+
+
+
+            }
+            catch (Exception)
+            {
+
+                return "{\"status\":0,\"msg\":\"登录异常，请联系客服\"}";
+            }
+        }
+        #endregion
+
+
+        #region 美团会员检测
+        public string mtjiance(string mac)
+        {
+           
+            try
+            {
+                string sql = "select * from mtusers where mac='" + mac + "' ";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                if (reader.Read())
+                {
+                   
+                    string isvip = reader["isvip"].ToString().Trim();
+
+                    return isvip;
+                  
+                }
+                else
+                {
+                    mycon.Close();
+                    reader.Close();
+                    return "false"; //没有此mac
+                }
+
+
+
+
+
+            }
+            catch (Exception)
+            {
+
+                return "{\"status\":0,\"msg\":\"登录异常，请联系客服\"}";
+            }
+        }
+        #endregion
+
         #region 登录
         public string login(object o)
         {
@@ -725,6 +869,16 @@ namespace 网站接口
         }
         #endregion
 
+        /// <summary>
+        /// 获取时间戳  秒
+        /// </summary>
+        /// <returns></returns>
+        public string GetTimeStamp()
+        {
+            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long a = Convert.ToInt64(tss.TotalSeconds);
+            return a.ToString();
+        }
 
         #region 下载文件获取
         public string downloadfiles_get(object o)
@@ -795,6 +949,24 @@ namespace 网站接口
         #endregion
 
 
+        #region  获取32位MD5加密
+        public static string GetMD5(string txt)
+        {
+            using (MD5 mi = MD5.Create())
+            {
+                byte[] buffer = Encoding.Default.GetBytes(txt);
+                //开始加密
+                byte[] newBuffer = mi.ComputeHash(buffer);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < newBuffer.Length; i++)
+                {
+                    sb.Append(newBuffer[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+        }
+
+        #endregion
 
         #region GET请求
         public static string meituan_GetUrl(string Url)
@@ -841,9 +1013,11 @@ namespace 网站接口
             string page = text[3];
             try
             {
+                
 
                 string url = "https://api.meituan.com/group/v5/deal/select/city/" + cityid + "/cate/" + cateid + "?sort=start&mypos=&hasGroup=true&offset=" + page + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
                 string html = meituan_GetUrl(url);
+                
                 return html;
 
             }

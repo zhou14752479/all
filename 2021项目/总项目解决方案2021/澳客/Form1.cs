@@ -55,7 +55,7 @@ namespace 澳客
             return File.Exists(inipath);
         }
 
-        #region GET使用代理IP请求
+        #region GET
         /// <summary>
         /// GET请求
         /// </summary>
@@ -521,6 +521,22 @@ namespace 澳客
 
         }
 
-       
+
+        public void addip()
+        {
+            string url = "http://h.xunlianip.com/Users-whiteIpListNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0";
+
+            string html = GetUrl(url,"utf-8");
+
+           string ahtml= Regex.Match(html, @"\[([\s\S]*?)]").Groups[1].Value;
+
+            GetUrl("http://h.xunlianip.com/Users-whiteIpDelNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0&whiteip="+ahtml.Replace("\"",""),"utf-8");
+            GetUrl("http://h.xunlianip.com/Users-whiteIpAddNew.html?appid=272&appkey=b821d79eb7b33c43965fa59fb21511e0&whiteip=" + textBox5.Text, "utf-8");
+            MessageBox.Show("成功");
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            addip();
+        }
     }
 }

@@ -88,20 +88,21 @@ namespace helper
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-          string  cookie1= method.GetCookies(webUrl);
-            string cookie2= method.GetCookies("https://sso.zto.com/security-services/billtrack/billinfo-query-preauth?bill_id=");
-            cookie = cookie1 +";"+ cookie2;
+
+            //string  cookie1= method.GetCookies(webUrl);
+            //  string cookie2= method.GetCookies("https://sso.zto.com/security-services/billtrack/billinfo-query-preauth?bill_id=");
+            //  cookie = cookie1 +";"+ cookie2;
+            string cookie = method.GetCookies("https://goods.dd373.com/Api/Receive/UserCenter/List?LastId=&GoodsType=&Status=-1&PageIndex=1&PageSize=20");
+
             textBox1.Text = cookie;
             //this.Hide();
             //写入config.ini配置文件
-            Match state = Regex.Match(webBrowser1.DocumentText, @"brws_img&state=([\s\S]*?)&");
-            IniWriteValue("values", "state", state.Groups[1].Value);
-            IniWriteValue("values", "cookie", cookie);
+
+            //IniWriteValue("values", "cookie", cookie);
 
             FileStream fs1 = new FileStream(path + "cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
             StreamWriter sw = new StreamWriter(fs1);
-            sw.WriteLine("state="+ state.Groups[1].Value+"&cookie="+cookie+"&");
+            sw.WriteLine("&cookie=" + cookie + "&");
             sw.Close();
             fs1.Close();
             sw.Dispose();

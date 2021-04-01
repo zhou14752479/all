@@ -160,6 +160,23 @@ namespace pdf_1
             }
 
         }
+
+
+        public static string PDFtoStr(string path)
+        {
+            using (PdfReader reader = new PdfReader(path))
+            {
+                StringBuilder sb= new StringBuilder();
+
+                for (int i = 1; i <= reader.NumberOfPages; i++)
+                {
+                    sb.Append(PdfTextExtractor.GetTextFromPage(reader, i));
+                }
+
+                return sb.ToString();
+            }
+
+        }
     }
 
 }

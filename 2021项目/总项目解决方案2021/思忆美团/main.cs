@@ -22,33 +22,73 @@ namespace 思忆美团
 
         Point mPoint = new Point();
         functions fc = new functions();
+       
+        private void main_Load(object sender, EventArgs e)
+        {
+            ProvinceCity.ProvinceCity.BindProvince(skinComboBox1);
+           fc.Getcates(skinComboBox3);
+          
+            fc.jiqima = fc.getjiqima();
+            vip_Item1.Text = "账号权限：  "+functions.vip;
+          
+        }
+
+
 
         #region  主程序
-        public void run()
+        public void run(object o)
 
         {
+           
+          
 
-            string[] citys = city_text.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            string[] cates = cate_text.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            string[] values = o.ToString().Split(new string[] { "#" }, StringSplitOptions.None);
+            string[] citys = values[0].Trim().Split(new string[] { "," }, StringSplitOptions.None);
+            string[] cates = values[1].Trim().Split(new string[] { "," }, StringSplitOptions.None);
 
             foreach (string city in citys)
             {
-                string cityId = fc.GetcityId((city));
-
+                
+                if (city == "")
+                    continue;
+                string citychuli = city.Replace("市", "").Replace("土家族苗族自治州", "");
+                string cityId = fc.GetcityId((citychuli));
+                if (cityId == "")
+                    continue;
                 foreach (string cateName in cates)
                 {
-                    string cateid = fc.catedic[cateName];
+                    if (cateName == "")
+                        continue;
+                    string cateid = "";
+                    try
+                    {
+                       cateid = fc.catedic[cateName];
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("类目输入有误") ;
+                        return;
+                    }
+                   
                     try
                     {
 
                         for (int i = 0; i < 100001; i = i + 100)
 
                         {
-
-                            string Url = "http://localhost:8080/api/mt/mt_getdata.html?userid=2&cityid="+ cityId + "&cateid="+ cateid + "&page=0&timestamp=1&sign=aaa";
-
+                            string timestamp = fc.GetTimeStamp();
+                           
+                            string Url = "http://www.acaiji.com:8080/api/mt/mt_getdata.html?userid=2&cityid=" + cityId + "&cateid=" + cateid + "&page="+i+"&code="+fc.jiqima+"&timestamp=" + timestamp + "&sign=" + fc.getsign(timestamp); ;
+                           
                             string html = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
+                            if (html.Contains("siyifalse"))
+                            {
+                                MessageBox.Show(html);
+                                return;
+                            }
                             MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
 
                             MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
@@ -67,7 +107,7 @@ namespace 思忆美团
                             for (int j = 0; j < names.Count; j++)
                             {
 
-                                ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                ListViewItem listViewItem = listView2.Items.Add((listView2.Items.Count + 1).ToString());
                                 listViewItem.SubItems.Add(names[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(address[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(phone[j].Groups[1].Value);
@@ -87,7 +127,7 @@ namespace 思忆美团
 
 
 
-                          
+
                             Thread.Sleep(200);
                         }
                         Application.DoEvents();
@@ -111,58 +151,8 @@ namespace 思忆美团
 
         #endregion
 
-        private void addtask_linklabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void top_panel_MouseDown(object sender, MouseEventArgs e)
-        {
-            mPoint.X = e.X;
-            mPoint.Y = e.Y;
-        }
-
-        private void top_panel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                Point myPosittion = MousePosition;
-                myPosittion.Offset(-mPoint.X, -mPoint.Y);
-                Location = myPosittion;
-            }
-        }
-
-        private void small_linklabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void close_linklabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (MessageBox.Show("是否退出？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-            {
-              
-            }
-            else
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
-        }
-
-        private void yincang_linklabel_MouseHover(object sender, EventArgs e)
-        {
-            toolTip1.IsBalloon = true;
-            toolTip1.SetToolTip(this.button1, "测试");
-        }
-
-        private void yincang_linklabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-            this.Hide();
-            notifyIcon1.Visible = true;//该控件可见
-            this.ShowInTaskbar = false;//在任务栏中显示该窗口
-
-        }
+  
+       
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -204,15 +194,7 @@ namespace 思忆美团
 
        
 
-        private void clear_data_btn_Click(object sender, EventArgs e)
-        {
-            listView1.Items.Clear();
-        }
-
-        private void exportdata_btn_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-        }
+   
 
         private void pauseContinue_btn_Click(object sender, EventArgs e)
         {
@@ -236,33 +218,235 @@ namespace 思忆美团
         Thread thread;
         bool zanting = true;
         bool status = true;
-        private void start_btn_Click(object sender, EventArgs e)
+   
+
+       
+    
+
+        private void skinMenuStrip1_MouseDown(object sender, MouseEventArgs e)
         {
-            status = true;
-            if (thread == null || !thread.IsAlive)
+            mPoint.X = e.X;
+            mPoint.Y = e.Y;
+        }
+
+        private void skinMenuStrip1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
             {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                Point myPosittion = MousePosition;
+                myPosittion.Offset(-mPoint.X, -mPoint.Y);
+                Location = myPosittion;
             }
-           
         }
 
-        private void main_Load(object sender, EventArgs e)
+        private void close_label_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            fc.Getcates(comboBox1);
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!cate_text.Text.Contains(comboBox1.Text))
+            if (MessageBox.Show("是否退出？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
             {
-                cate_text.Text += comboBox1.Text + "\r\n";
+
             }
             else
             {
-                MessageBox.Show("已经添加："+ comboBox1.Text+"，请勿重复","重复添加提示");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
         }
+
+        private void mini_label_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void skinComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProvinceCity.ProvinceCity.BindCity(skinComboBox1, skinComboBox2);
+            
+        }
+
+        private void skinButton1_Click(object sender, EventArgs e)
+        {
+            if (skinTextBox1.Text.Contains(skinComboBox2.Text))
+            {
+                MessageBox.Show(skinComboBox2.Text + "：请勿重复添加", "重复添加错误");
+                return;
+            }
+
+            skinTextBox1.Text += skinComboBox2.Text + ",";
+            string[] text = skinTextBox1.Text.Split(new string[] { "," }, StringSplitOptions.None);
+            label3.Text = "已选城市：" + (text.Length - 1);
+        }
+
+        private void skinButton2_Click(object sender, EventArgs e)
+        {
+          
+            for (int i = 0; i < skinComboBox2.Items.Count; i++)
+            {
+                skinTextBox1.Text += skinComboBox2.Items[i] + ",";
+            }
+          
+            string[] text = skinTextBox1.Text.Split(new string[] { "," }, StringSplitOptions.None);
+            label3.Text = "已选城市：" + (text.Length - 1);
+        }
+
+        private void skinButton4_Click(object sender, EventArgs e)
+        {
+            if (skinTextBox2.Text.Contains(skinComboBox3.Text))
+            {
+                MessageBox.Show(skinComboBox3.Text + "：请勿重复添加", "重复添加错误");
+                return;
+            }
+            skinTextBox2.Text += skinComboBox3.Text+",";
+            string[] text = skinTextBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
+            label4.Text = "已选类目：" + (text.Length-1);
+        }
+
+        private void skinButton3_Click(object sender, EventArgs e)
+        {
+            skinTextBox2.Text = "";
+            for (int i = 0; i < skinComboBox3.Items.Count; i++)
+            {
+                skinTextBox2.Text += skinComboBox3.Items[i] + ",";
+            }
+            string[] text = skinTextBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
+            label4.Text = "已选类目：" + (text.Length - 1);
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            skinTextBox1.Text = "";
+            label3.Text = "已选城市：0";
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            skinTextBox2.Text = "";
+            label4.Text = "已选类目：0" ;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (skinTextBox1.Text != "" && skinTextBox2.Text != "")
+            {
+
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                string taskname = DateTime.Now.ToString("yyyyMMddHHMMss");
+                lv1.SubItems.Add(taskname);
+                lv1.SubItems.Add(skinTextBox1.Text);
+                lv1.SubItems.Add(skinTextBox2.Text);
+
+                fc.IniWriteValue("values", "taskname", taskname);
+                fc.IniWriteValue("values", "city", skinTextBox1.Text);
+                fc.IniWriteValue("values", "cate", skinTextBox2.Text);
+
+            }
+            else
+            {
+                if (skinTextBox1.Text == "")
+                {
+                    MessageBox.Show("请选择地区", "未选择参数");
+                }
+
+                if (skinTextBox2.Text == "")
+                {
+                    MessageBox.Show("请选择类目", "未选择参数");
+                }
+
+            }
+        }
+
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            notifyIcon1.Visible = true;//该控件可见
+            this.ShowInTaskbar = false;//在任务栏中显示该窗口
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (listView1.CheckedItems.Count==0)
+            {
+                MessageBox.Show("未选择任务");
+                return;
+            }
+
+            status = true;
+            for (int i = 0; i < listView1.CheckedItems.Count; i++)
+            {
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(new ParameterizedThreadStart(run));
+                    string o = listView1.CheckedItems[i].SubItems[2].Text+"#"+ listView1.CheckedItems[i].SubItems[3].Text;
+                    thread.Start((object)o);
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
+
+        }
+
+        private void skinButton5_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+        private void skinButton6_Click(object sender, EventArgs e)
+        {
+            listView2.Items.Clear();
+        }
+
+        private void qq_label_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
+        }
+
+       
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            zanting = false;
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            zanting = true;
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            status = false;
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (listView1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("未选择任务");
+                return;
+            }
+
+            for (int i = 0; i < listView1.CheckedItems.Count; i++)
+            {
+                listView1.Items.RemoveAt(i);
+
+            }
+        }
+
+        private void skinButton7_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < skinComboBox1.Items.Count; i++)
+            {
+                skinComboBox1.Text= skinComboBox1.Items[i].ToString();
+                ProvinceCity.ProvinceCity.BindCity(skinComboBox1, skinComboBox2);
+                for (int j = 0; j < skinComboBox2.Items.Count; j++)
+                {
+                    if (!skinComboBox2.Items[j].ToString().Contains("区"))
+                    {
+                        skinTextBox1.Text += skinComboBox2.Items[j].ToString()+",";
+                    }
+                    
+                }
+            }
+        }
+
+
+
     }
 }

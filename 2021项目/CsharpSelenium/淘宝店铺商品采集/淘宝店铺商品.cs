@@ -33,7 +33,7 @@ namespace 淘宝店铺商品采集
             IWebDriver driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
 
-            string loginurl = "https://login.taobao.com/member/login.jhtml?redirectURL="+ textBox1.Text;
+            string loginurl = "https://login.taobao.com/member/login.jhtml";
 
             driver.Navigate().GoToUrl(loginurl);
 

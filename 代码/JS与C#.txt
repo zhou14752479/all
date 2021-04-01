@@ -1,3 +1,4 @@
+//谷歌浏览器
  //无返回值直接调用三者任选其一
             //browser.GetBrowser().MainFrame.EvaluateScriptAsync("test_val=" + new Random().Next().ToString("F")); //设置页面上js的test_val变量为随机数
             //browser.GetBrowser().MainFrame.EvaluateScriptAsync("testArg('123','我是NET' )");//运行页面上js的testArg带参数的方法
@@ -13,9 +14,7 @@
                 MessageBox.Show(t.Result.Result.ToString());
             }
 
-
-
-
+//iE浏览器
 在webbrowser浏览器里执行js代码并获取返回值，可以用于读取cookie
   HtmlElement element2 = webBrowser1.Document.CreateElement("script");
             element2.SetAttribute("type", "text/javascript");
@@ -27,16 +26,13 @@
 
 
 
+含参数的getaes JS函数输入参数430......118 获取返回值
 
+   webBrowser1.Document.InvokeScript("getaes", new object[] { "430111198706162118" });
+            string html = webBrowser1.Document.Body.OuterHtml;
+            textBox1.Text = html;
 
-
-
-
-
-
-
-
-
+或者webBrowser1.Document.InvokeScript("getaes", new object[] { "430111198706162118" }).ToString();
 
 
 

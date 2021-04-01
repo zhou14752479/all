@@ -207,10 +207,11 @@ namespace 网站接口
         method md = new method();
 
 
-       
 
+        Dictionary<string, string> uservipDic = new Dictionary<string, string>();
         private void sendOkResponse(Socket clientSocket, byte[] bContent, string contentType)
         {
+            #region  地图网站
             //   sendResponse(clientSocket, bContent, "200 OK", contentType); //展示本地html页面
             if (requesturl.Contains("creatHtml"))
             {
@@ -456,28 +457,124 @@ namespace 网站接口
                 sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
             }
 
+            #endregion
+
+
+
+            #region  美团软件
+
+            else if (requesturl.Contains("api/mt/register"))
+            {
+                string neirong = "";
+                string username = Regex.Match(requesturl, @"username=([\s\S]*?)&").Groups[1].Value;
+                string password = Regex.Match(requesturl, @"password=([\s\S]*?)&").Groups[1].Value;
+                string code = Regex.Match(requesturl, @"code=([\s\S]*?)&").Groups[1].Value;
+             
+                if (code == "" || username == "" || password== "" )
+                {
+                    neirong = "{\"status\":siyifalse,\"msg\":\"参数缺失\"}";
+
+                }
+              
+
+                else
+                {
+                    string o = username + "," + password + "," + code;
+                    neirong = md.mtregister(o);
+                }
+
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+
+
+            else if (requesturl.Contains("api/mt/login"))
+            {
+                string neirong = "";
+                string username = Regex.Match(requesturl, @"username=([\s\S]*?)&").Groups[1].Value;
+                string password = Regex.Match(requesturl, @"password=([\s\S]*?)&").Groups[1].Value;
+                string code = Regex.Match(requesturl, @"code=([\s\S]*?)&").Groups[1].Value;
+                if (code == "" || username == "" || password == "")
+                {
+                    neirong = "{\"status\":siyifalse,\"msg\":\"参数缺失\"}";
+
+                }
+               
+                else
+                {
+                    string o = username + "," + password + "," + code;
+                    neirong = md.mtlogin(o);
+                }
+
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+
+           
             else if (requesturl.Contains("api/mt/mt_getdata"))
             {
+               
                 string neirong = "";
                 string userid = Regex.Match(requesturl, @"userid=([\s\S]*?)&").Groups[1].Value;
                 string cityid = Regex.Match(requesturl, @"cityid=([\s\S]*?)&").Groups[1].Value;
                 string cateid = Regex.Match(requesturl, @"cateid=([\s\S]*?)&").Groups[1].Value;
                 string page = Regex.Match(requesturl, @"page=([\s\S]*?)&").Groups[1].Value;
-                string timestamp = Regex.Match(requesturl, @"timestamp([\s\S]*?)&").Groups[1].Value;
-                string sign = Regex.Match(requesturl, @"sign=.*").Groups[0].Value.Replace("sign=","");
-                if (userid== "" || cityid=="" || cateid  =="" || page=="" || timestamp=="" ||sign=="")
-                {
-                    neirong = "{\"status\":0,\"msg\":\"参数错误\"}";
 
+                string code = Regex.Match(requesturl, @"code=([\s\S]*?)&").Groups[1].Value;
+                string timestamp = Regex.Match(requesturl, @"timestamp=([\s\S]*?)&").Groups[1].Value;
+                string sign = Regex.Match(requesturl, @"sign=.*").Groups[0].Value.Replace("sign=","");
+                if (userid == "" || cityid == "" || cateid == "" || page == "" || code == "" || timestamp == "" || sign == "")
+                {
+                    neirong = "{\"status\":siyifalse,\"msg\":\"参数缺失\"}";
+                    sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+                    return;
                 }
+                long intime = Convert.ToInt64(timestamp) + 60;
+                if (intime < Convert.ToInt64(md.GetTimeStamp()))
+                {
+                    neirong = "{\"status\":siyifalse,\"msg\":\"timestamp参数错误\"}";
+                    sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+                    return;
+                }
+                if (method.GetMD5(code + timestamp).ToUpper() != sign)
+                {
+                    neirong = "{\"status\":siyifalse,\"msg\":\"sign参数错误\"}";
+                    sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+                   
+                }
+
                 else
                 {
-                    string o = userid + "," +cityid+","+cateid + ","+page + ","+timestamp + ","+sign;
-                    neirong = md.mt_getdata(o);
+                    string isvip = "";
+                    if (uservipDic.ContainsKey(code))
+                    {
+                        isvip = uservipDic[code];
+                    }
+                    else
+                    {
+                        isvip = md.mtjiance(code);
+                        uservipDic.Add(code, isvip);
+                    }
+
+
+                    string o = userid + "," + cityid + "," + cateid + "," + page + "," + timestamp + "," + sign;
+                  
+                    if (isvip == "普通会员" || isvip == "高级会员")
+                    {
+                        neirong = md.mt_getdata(o);
+                    }
+                    else
+                    {
+                        neirong = md.mt_getdata(o);
+                        //  neirong = Regex.Replace(neirong, @"phone"":""\d{4}", "phone\":\"****");
+                        neirong = Regex.Replace(neirong, @"\d{4}"",""areaName", "****\",\"areaName");
+                    }
+                    sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
                 }
 
-                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+               
             }
+            #endregion
+
+
 
             else
             {

@@ -16,7 +16,7 @@ namespace 思忆美团
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new main());
+            Application.Run(new login());
         }
     }
 }

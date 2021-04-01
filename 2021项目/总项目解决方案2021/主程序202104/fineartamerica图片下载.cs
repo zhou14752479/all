@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -75,11 +76,11 @@ namespace 主程序202104
         /// <param name="name">图片名称</param>
         public static void downloadFile(string URLAddress, string subPath, string name, string COOKIE)
         {
+            WebClient client = new WebClient();
             try
             {
                 string path = System.IO.Directory.GetCurrentDirectory();
-
-                WebClient client = new WebClient();
+                
                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
                 client.Headers.Add("Cookie", COOKIE);
                 client.Headers.Add("Referer", "");
@@ -88,19 +89,49 @@ namespace 主程序202104
                     //创建pic文件夹
                     System.IO.Directory.CreateDirectory(subPath);
                 }
-
                 client.DownloadFile(URLAddress, subPath + "\\" + name);
+                client.Dispose();
             }
-            catch (WebException ex)
+            catch (Exception ex)
             {
-
-               MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString());
+               
+                
             }
         }
 
 
 
         #endregion
+
+
+        public void GetImage(string url, string path)
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+
+            req.ServicePoint.Expect100Continue = false;
+            req.Method = "GET";
+            req.KeepAlive = true;
+
+            req.ContentType = "image/png";
+            HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+
+            System.IO.Stream stream = null;
+
+            try
+            {
+                // 以字符流的方式读取HTTP响应
+                stream = rsp.GetResponseStream();
+                Image.FromStream(stream).Save(path);
+            }
+            finally
+            {
+                // 释放资源
+                if (stream != null) stream.Close();
+                if (rsp != null) rsp.Close();
+            }
+        }
+
 
         #region 获取txt编码
         //调用：EncodingType.GetTxtType(textBox1.Text)
@@ -233,6 +264,7 @@ namespace 主程序202104
             }
         }
 
+        Dictionary<string, string> dics = new Dictionary<string, string>();
 
         public void run()
         {
@@ -251,8 +283,8 @@ namespace 主程序202104
             for (int i = 0; i < text.Length; i++)
             {
                 string url = text[i];
-                try
-                {
+               
+                    textBox3.Text = "正在下载："+url+"\r\n";
                     string html = GetUrl(url, "utf-8");
 
                     string id = Regex.Match(html, @"globalArtworkId = '([\s\S]*?)'").Groups[1].Value;
@@ -264,27 +296,58 @@ namespace 主程序202104
                     int height = Convert.ToInt32(heightmedium);
                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(url);
+                    downloadFile(suoluetu, textBox1.Text + "//" + id + "//", id+".jpg", "");
                     for (int x = 0; x < width; x=x+100)
                     {
-                        for (int y = 0; y < height; y=y+100)
+                    for (int y = 0; y < height; y = y + 100)
+                    {
+                        string imgurl = "https://render.fineartamerica.com/previewhighresolutionimage.php?artworkid=" + id + "&widthmedium=" + widthmedium + "&heightmedium=" + heightmedium + "&x=" + x + "&y=" + y + "&domainUrl=fineartamerica.com";
+                        try
                         {
-                           
-                            string imgurl = "https://render.fineartamerica.com/previewhighresolutionimage.php?artworkid="+id+"&widthmedium="+widthmedium+"&heightmedium="+heightmedium+"&x="+x+"&y="+y+"&domainUrl=fineartamerica.com";
-                            MessageBox.Show(imgurl);
-                            downloadFile(imgurl,textBox1.Text+"//"+id+"//",id+"_"+x+"_"+y+".jpg","");
+                            textBox3.Text += "正在下载：" + x + "_" + y + ".jpg" + "\r\n";
+                            
+
+                            //downloadFile(imgurl,textBox1.Text+"//"+id+"//",id+"_"+x+"_"+y+".jpg","");
+                            GetImage(imgurl, textBox1.Text + "//" + id + "//" + id + "_" + x + "_" + y + ".jpg");
 
                         }
 
+
+                        catch (Exception ex)
+                        {
+                         dics.Add(imgurl, textBox1.Text + "//" + id + "//" + id + "_" + x + "_" + y + ".jpg");
+                            continue;
+                        }
                     }
-                    lv1.SubItems.Add("完成");
-
-
                 }
-                catch (Exception ex)
+
+                while (dics.Count != 0)
                 {
+                    for (int a = 0; a < dics.Count; i++)
+                    {
+                        Thread.Sleep(1000);
+                        try
+                        {
+                           
+                            GetImage(dics.ElementAt(a).Key, dics.ElementAt(a).Value);
+                            dics.Remove(dics.ElementAt(a).Key);
 
-                    MessageBox.Show(ex.ToString());
+                        }
+                        catch (Exception)
+                        {
+                            if (!dics.ContainsKey(dics.ElementAt(a).Key))
+                            {
+                                dics.Add(dics.ElementAt(a).Key, dics.ElementAt(a).Value);
+                            }
+                            continue;
+                        }
+                    }
                 }
+                lv1.SubItems.Add("完成");
+
+                    if (status == false)
+                        return;
+              
 
                 Thread.Sleep(1000);
             }
@@ -303,11 +366,50 @@ namespace 主程序202104
 
         private void button1_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            string html = GetUrl("http://www.acaiji.com:8080/api/vip.html", "utf-8");
+
+            if (!html.Contains(@"WxcMBf"))
+            {
+                MessageBox.Show("");
+                return;
+            }
+
+
+
+            #endregion
+
+            status = true;
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
+
+        private void fineartamerica图片下载_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
             }
         }
     }

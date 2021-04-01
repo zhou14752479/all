@@ -211,6 +211,7 @@ namespace myDLL
         {
             try
             {
+                string html = "";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
@@ -239,10 +240,23 @@ namespace myDLL
 
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 response.GetResponseHeader("Set-Cookie");
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+              
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
 
-                string html = reader.ReadToEnd();
-                reader.Close();
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+       
                 response.Close();
                 return html;
             }
@@ -411,6 +425,23 @@ namespace myDLL
 
         #endregion
 
+        #region GET请求获取Set-cookie
+        public static string getSetCookie(string url)
+        {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
+            request.Timeout = 10000;
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+            request.AllowAutoRedirect = false;
+
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+            string content = response.GetResponseHeader("Set-Cookie"); ;
+            return content;
+
+
+        }
+        #endregion
 
         #region NPOI读取表格导入datatable 
         /// <summary>  
@@ -1011,10 +1042,85 @@ namespace myDLL
         }
 
 
-     
+
 
 
         #endregion
 
+        #region 下载文件  【好用】
+        /// <summary>
+        /// 下载图片
+        /// </summary>
+        /// <param name="URLAddress">图片地址</param>
+        /// <param name="subPath">图片所在文件夹</param>
+        /// <param name="name">图片名称</param>
+        public static void downloadFile(string URLAddress, string subPath, string name, string COOKIE)
+        {
+            try
+            {
+                string path = System.IO.Directory.GetCurrentDirectory();
+
+                WebClient client = new WebClient();
+                client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
+                client.Headers.Add("Cookie", COOKIE);
+                client.Headers.Add("Referer", "https://m.mm131.net/chemo/89_5.html");
+                if (false == System.IO.Directory.Exists(subPath))
+                {
+                    //创建pic文件夹
+                    System.IO.Directory.CreateDirectory(subPath);
+                }
+
+                client.DownloadFile(URLAddress, subPath + "\\" + name);
+            }
+            catch (WebException ex)
+            {
+
+                ex.ToString();
+            }
+        }
+
+
+
+        #endregion
+
+        #region base64加密
+        public static string Base64Encode(Encoding encodeType, string source)
+        {
+            string encode = string.Empty;
+            byte[] bytes = encodeType.GetBytes(source);
+            try
+            {
+                encode = Convert.ToBase64String(bytes);
+            }
+            catch
+            {
+                encode = source;
+            }
+            return encode;
+        }
+        #endregion
+
+        #region base64解密
+        /// <summary>
+        /// Base64解密
+        /// </summary>
+        /// <param name="encodeType">解密采用的编码方式，注意和加密时采用的方式一致</param>
+        /// <param name="result">待解密的密文</param>
+        /// <returns>解密后的字符串</returns>
+        public static string Base64Decode(Encoding encodeType, string result)
+        {
+            string decode = string.Empty;
+            byte[] bytes = Convert.FromBase64String(result);
+            try
+            {
+                decode = encodeType.GetString(bytes);
+            }
+            catch
+            {
+                decode = result;
+            }
+            return decode;
+        }
+        #endregion
     }
 }

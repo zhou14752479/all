@@ -31,11 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="myDLL">
+    <Reference Include="HttpHelper">
+      <HintPath>..\主程序202103\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DD373收货价格修改.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DD373收货价格修改.Designer.cs">
+      <DependentUpon>DD373收货价格修改.cs</DependentUpon>
+    </Compile>
     <Compile Include="fineartamerica图片下载.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,11 +66,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tradegov数据查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tradegov数据查询.Designer.cs">
+      <DependentUpon>tradegov数据查询.cs</DependentUpon>
+    </Compile>
     <Compile Include="数据分类.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="数据分类.Designer.cs">
       <DependentUpon>数据分类.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据处理excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据处理excel.Designer.cs">
+      <DependentUpon>数据处理excel.cs</DependentUpon>
     </Compile>
     <Compile Include="极速赛车.cs">
       <SubType>Form</SubType>
@@ -67,6 +90,15 @@
     <Compile Include="极速赛车.Designer.cs">
       <DependentUpon>极速赛车.cs</DependentUpon>
     </Compile>
+    <Compile Include="模型图片替换.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="模型图片替换.Designer.cs">
+      <DependentUpon>模型图片替换.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DD373收货价格修改.resx">
+      <DependentUpon>DD373收货价格修改.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fineartamerica图片下载.resx">
       <DependentUpon>fineartamerica图片下载.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,11 +111,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="tradegov数据查询.resx">
+      <DependentUpon>tradegov数据查询.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="数据分类.resx">
       <DependentUpon>数据分类.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="数据处理excel.resx">
+      <DependentUpon>数据处理excel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="极速赛车.resx">
       <DependentUpon>极速赛车.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="模型图片替换.resx">
+      <DependentUpon>模型图片替换.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
