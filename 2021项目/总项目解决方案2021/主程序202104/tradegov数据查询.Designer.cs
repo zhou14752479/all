@@ -84,6 +84,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -108,7 +111,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 10F);
-            this.button2.Location = new System.Drawing.Point(580, 68);
+            this.button2.Location = new System.Drawing.Point(554, 68);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(101, 23);
             this.button2.TabIndex = 264;
@@ -299,7 +302,8 @@
             this.columnHeader18,
             this.columnHeader19,
             this.columnHeader20,
-            this.columnHeader21});
+            this.columnHeader21,
+            this.columnHeader22});
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.Font = new System.Drawing.Font("宋体", 9F);
             this.listView2.FullRowSelect = true;
@@ -417,7 +421,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(557, 119);
+            this.button3.Location = new System.Drawing.Point(672, 108);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(124, 33);
             this.button3.TabIndex = 274;
@@ -427,7 +431,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(557, 168);
+            this.button5.Location = new System.Drawing.Point(672, 157);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(124, 33);
             this.button5.TabIndex = 273;
@@ -437,7 +441,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(425, 167);
+            this.button4.Location = new System.Drawing.Point(540, 156);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(126, 33);
             this.button4.TabIndex = 272;
@@ -447,7 +451,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(425, 119);
+            this.button1.Location = new System.Drawing.Point(540, 108);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(126, 33);
             this.button1.TabIndex = 271;
@@ -457,7 +461,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(286, 120);
+            this.button6.Location = new System.Drawing.Point(401, 109);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(133, 32);
             this.button6.TabIndex = 270;
@@ -484,7 +488,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(286, 169);
+            this.button7.Location = new System.Drawing.Point(401, 158);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(133, 32);
             this.button7.TabIndex = 277;
@@ -494,16 +498,16 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(117, 126);
+            this.textBox4.Location = new System.Drawing.Point(98, 120);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(112, 21);
+            this.textBox4.Size = new System.Drawing.Size(76, 21);
             this.textBox4.TabIndex = 279;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 10F);
-            this.label3.Location = new System.Drawing.Point(20, 128);
+            this.label3.Location = new System.Drawing.Point(20, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 14);
             this.label3.TabIndex = 278;
@@ -511,16 +515,16 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(117, 153);
+            this.textBox5.Location = new System.Drawing.Point(273, 120);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(112, 21);
+            this.textBox5.Size = new System.Drawing.Size(76, 21);
             this.textBox5.TabIndex = 281;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 10F);
-            this.label4.Location = new System.Drawing.Point(20, 155);
+            this.label4.Location = new System.Drawing.Point(190, 124);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 14);
             this.label4.TabIndex = 280;
@@ -528,26 +532,50 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(117, 180);
+            this.textBox6.Location = new System.Drawing.Point(273, 147);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(112, 21);
+            this.textBox6.Size = new System.Drawing.Size(76, 21);
             this.textBox6.TabIndex = 283;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 10F);
-            this.label5.Location = new System.Drawing.Point(20, 182);
+            this.label5.Location = new System.Drawing.Point(190, 151);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 14);
             this.label5.TabIndex = 282;
             this.label5.Text = "结束数字：";
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Text = "products";
+            this.columnHeader22.Width = 200;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(98, 151);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(76, 21);
+            this.textBox7.TabIndex = 285;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 10F);
+            this.label6.Location = new System.Drawing.Point(20, 153);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 14);
+            this.label6.TabIndex = 284;
+            this.label6.Text = "后缀字母：";
             // 
             // tradegov数据查询
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 625);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox5);
@@ -641,5 +669,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label6;
     }
 }

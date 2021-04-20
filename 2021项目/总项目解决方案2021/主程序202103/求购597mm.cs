@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -20,28 +24,64 @@ namespace 主程序202103
             InitializeComponent();
         }
         Thread thread;
-        string cookie = "bdshare_firstime=1613808835295; Hm_lvt_e6885059788fc2617b304f7df85469c8=1613808888,1614411582,1614740603; destoon_username=eyzj365; destoon_auth=U2ADZlE2DDIFMlVvAw1WYgV%2FV34BYQo%2FWjdbbgsNBmZUXAJnC2kFNFM2A2dWZgRjBzdRNQgwBDsMMwY0AThRNVMzAzVRYgxrBTRVMwNlVmMFMldhATgKOVpgW2MLNwZjVGQ%3D; Hm_lvt_7adeae9b43e0fbccb9b7537726ae8fb1=1614740561,1615183492,1615537780,1615688276; Hm_lpvt_7adeae9b43e0fbccb9b7537726ae8fb1=1615689441";
-        public bool panduan(string id)
+        string cookie = "bdshare_firstime=1613808835295; Hm_lvt_e6885059788fc2617b304f7df85469c8=1613808888,1614411582,1614740603; destoon_auth=UjQAPVNnUz9TMARpWwUCYAYoUy8COwBlAzYENQFYDDdTDg0wU2IBYlZnBDcAYAMyBmJVZFEwAW4AZwA2UDYNMlJnAG5TM1NmUzYENVttAmEGZVMwAmIAYwNhBDgBYgwyUzY%3D; Hm_lvt_7adeae9b43e0fbccb9b7537726ae8fb1=1615688276,1616582127,1617168224,1617948489; Hm_lpvt_7adeae9b43e0fbccb9b7537726ae8fb1=1617948918";
+        ArrayList finishes = new ArrayList();
+
+        #region GET请求带COOKIE
+        /// <summary>
+        /// GET请求带COOKIE
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlWithCookie(string Url, string COOKIE, string charset)
         {
-            if (checkBox2.Checked == true)
+            string html = "";
+
+            try
             {
-                for (int i = 0; i < listView1.Items.Count; i++)
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36";
+
+                request.Referer = Url;
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 100000;
+
+                if (response.Headers["Content-Encoding"] == "gzip")
                 {
-                    if (listView1.Items[i].SubItems[2].Text == id)
-                    {
-                        return true;
-                    }
 
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
                 }
-                return false;
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
             }
-            else
+            catch (System.Exception ex)
             {
-                return false;
+
+                return ex.ToString();
+
             }
+
         }
-
-
+        #endregion
         #region 主程序
         public void run()
         {
@@ -53,44 +93,44 @@ namespace 主程序202103
                     
                     string url = "http://www.597mm.com/buy/?page="+i;
 
-                    string html = method.GetUrlWithCookie(url,cookie ,"gbk");
+                    string html = GetUrlWithCookie(url,cookie ,"gbk");
 
                     MatchCollection uids = Regex.Matches(html, @"<u><a href=""([\s\S]*?)""");
 
 
                     for (int j = 0; j < uids.Count; j++)
                     {
-                    if (!panduan(uids[j].Groups[1].Value))
+                    if (!finishes.Contains(uids[j].Groups[1].Value))
                     {
+                        finishes.Add(uids[j].Groups[1].Value);
                         string aurl = uids[j].Groups[1].Value;
-                        string ahtml = method.GetUrlWithCookie(aurl, cookie, "gbk");
+                        string ahtml = GetUrlWithCookie(aurl, cookie, "gbk");
                         try
                         {
 
                             Match title = Regex.Match(ahtml, @"<h1 class=""title_trade"">([\s\S]*?)</h1>");
-                            Match lxr = Regex.Match(ahtml, @"联系人</span>([\s\S]*?)<");
-                            Match phone = Regex.Match(ahtml, @"电话</span>([\s\S]*?)</li>");
+                        
                             Match tel = Regex.Match(ahtml, @"手机</span>([\s\S]*?)</li>");
                             Match area = Regex.Match(ahtml, @"所在地</span>([\s\S]*?)</li>");
                             Match address = Regex.Match(ahtml, @"地址</span>([\s\S]*?)</li>");
                             Match date = Regex.Match(ahtml, @"class=""pubDate"">([\s\S]*?)</td>");
                             Match content= Regex.Match(ahtml, @"id=""content"">([\s\S]*?)<div");
-                            Match youxiaoqi = Regex.Match(ahtml, @"有效期至：</td>([\s\S]*?)</td>");
-                            if (Convert.ToDateTime(date.Groups[1].Value)< DateTime.Now.Date)
+                      
+                          
+                            if (Convert.ToDateTime(date.Groups[1].Value)< DateTime.Now.Date && i>1)
                             {
                                 textBox1.Text = DateTime.Now.ToString()+ "：本次抓取结束,等待下次执行...";
                                 return;
                             }
                             ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(title.Groups[1].Value);
-                            lv1.SubItems.Add(Regex.Replace(lxr.Groups[1].Value, "<[^>]+>", ""));
-                            lv1.SubItems.Add(Regex.Replace(phone.Groups[1].Value, "<[^>]+>", ""));
-                            lv1.SubItems.Add(Regex.Replace(tel.Groups[1].Value, "<[^>]+>", ""));
-                            lv1.SubItems.Add(Regex.Replace(area.Groups[1].Value, "<[^>]+>", "").Trim());
+                        
+                            lv1.SubItems.Add(Regex.Replace(tel.Groups[1].Value, "<[^>]+>", "").Replace(" ","").Trim());
+                            lv1.SubItems.Add(Regex.Replace(area.Groups[1].Value, "&nbsp;.*", "").Trim());
                             lv1.SubItems.Add(Regex.Replace(address.Groups[1].Value, "<[^>]+>", "").Trim());
                             lv1.SubItems.Add(Regex.Replace(date.Groups[1].Value, "<[^>]+>", ""));
-                            lv1.SubItems.Add(Regex.Replace(content.Groups[1].Value, "<[^>]+>", ""));
-                            lv1.SubItems.Add(Regex.Replace(youxiaoqi.Groups[1].Value, "<[^>]+>", ""));
+                            lv1.SubItems.Add(Regex.Replace(content.Groups[1].Value, "<[^>]+>", "").Replace("&nbsp;",""));
+                         
                             Thread.Sleep(10);
                         }
                         catch (Exception)
@@ -169,6 +209,11 @@ namespace 主程序202103
         private void 求购597mm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void 求购597mm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
     }
 }

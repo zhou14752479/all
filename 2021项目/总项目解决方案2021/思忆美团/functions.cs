@@ -212,7 +212,7 @@ namespace 思忆美团
         public string getsign(string timestamp)
         {
            
-            return GetMD5(jiqima+timestamp).ToUpper();
+            return GetMD5(jiqima+timestamp + "8o8osiyiruanjian.").ToUpper();
         }
 
 

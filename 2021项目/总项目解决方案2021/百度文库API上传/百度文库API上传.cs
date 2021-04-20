@@ -208,7 +208,10 @@ namespace 百度文库API上传
                     lv1.SubItems.Add(title);
                     lv1.SubItems.Add(html);
                     lv1.SubItems.Add(msg);
-                   
+                    if (html.Contains("fast"))
+                    {
+                        Thread.Sleep(5000);
+                    }
                     Thread.Sleep(1000);
                     File.Delete(filename);
                 }

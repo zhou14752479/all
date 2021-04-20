@@ -36,7 +36,7 @@ namespace 主程序202104
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
                 string COOKIE = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "";
+                request.Referer = "https://www.justeasy.cn/model/getmodeldetails?id=546544";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
@@ -190,6 +190,81 @@ namespace 主程序202104
         #endregion
 
 
+
+        public string getlarge(string id,int large)
+        {
+
+            try
+            {
+                string large1 = Regex.Match(GetUrl("https://3d.znzmo.com/3dmoxing/" + id + ".html", "utf-8"), @"""fileLength"":([\s\S]*?),").Groups[1].Value.Trim();
+
+                string large2 = Regex.Match(GetUrl("https://www.3d66.com/reshtml/sketchup/" + id.Substring(0, 4) + "/" + id + ".html", "utf-8"), @"大小：</span> <span>([\s\S]*?)MB").Groups[1].Value.Trim();
+
+                string large3 = Regex.Match(GetUrl("https://www.om.cn/models/detail/" + id + ".html", "utf-8"), @"</span> <span>([\s\S]*?)MB").Groups[1].Value.Trim();
+
+                string large4 = Regex.Match(GetUrl("https://www.justeasy.cn/model/getmodeldetails?id=" + id, "utf-8"), @"""size"":""([\s\S]*?)MB").Groups[1].Value.Trim();
+
+
+                if (large1 != "")
+                {
+                    if (Math.Abs(Convert.ToInt32(Convert.ToDouble(large1)) - large) <= 1)
+                    {
+
+                        return "1";
+                    }
+                }
+                if (large2 != "")
+                {
+                    if (Math.Abs(Convert.ToInt32(Convert.ToDouble(large2)) - large) <= 1)
+                    {
+
+                        return "2";
+                    }
+                }
+                if (large3 != "")
+                {
+                    if (Math.Abs(Convert.ToInt32(Convert.ToDouble(large3)) - large) <= 1)
+                    {
+                        return "3";
+                    }
+                }
+                if (large4 != "")
+                {
+                    if (Math.Abs(Convert.ToInt32(Convert.ToDouble(large4)) - large) <= 1)
+                    {
+                        return "4";
+                    }
+                }
+
+                if (large1 != "")
+                {
+                    return "1";
+                }
+                if (large2 != "")
+                {
+                    return "2";
+                }
+                if (large3 != "")
+                {
+                    return "3";
+                }
+                if (large4 != "")
+                {
+                    return "4";
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+
+                return ""; ;
+            }
+          
+        }
+
+
+
+
         public string getimg(string zipfile)
         {
             string imgpath = "";
@@ -220,14 +295,21 @@ namespace 主程序202104
             {
                 string file = lists[i].ToString();
                 FileInfo fi = new FileInfo(file);//---使用FileInfo类进行操作
+
                 if (fi.Extension == ".7z" || fi.Extension == ".zip" || fi.Extension == ".rar")
                 {
+                    int large = Convert.ToInt32(fi.Length /(1024*1024));
                     string zipid = Regex.Match(Path.GetFileNameWithoutExtension(file), @"\d{5,}").Groups[0].Value;
-                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(file);
-                    lv1.SubItems.Add(getimg(file));
-                    lv1.SubItems.Add(zipid);
-                    lv1.SubItems.Add("");
+                    if (zipid != "")
+                    {
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(file);
+                        lv1.SubItems.Add(large.ToString());
+                        lv1.SubItems.Add(getimg(file));
+                        lv1.SubItems.Add(zipid);
+                        lv1.SubItems.Add("");
+                        lv1.SubItems.Add("");
+                    }
                 }
             }
         }
@@ -237,48 +319,137 @@ namespace 主程序202104
         {
             for (int i = 0; i < listView1.Items.Count; i++)
             {
-                string id = listView1.Items[i].SubItems[3].Text;
-                string picpath = listView1.Items[i].SubItems[2].Text;
-                string zippath = listView1.Items[i].SubItems[1].Text;
-                string picurl = "";
+                try
+                {
+                    string id = listView1.Items[i].SubItems[4].Text;
+                    string picpath = listView1.Items[i].SubItems[3].Text;
+                    string zippath = listView1.Items[i].SubItems[1].Text;
+                    string picurl = "";
+                    string pingtainame = "";
+                    if (radioButton1.Checked == true)
+                    {
+                        picurl = run1(id);
+                        pingtainame = "知末";
+                    }
+                    if (radioButton2.Checked == true)
+                    {
+                        picurl = run2(id);
+                        pingtainame = "3D66";
+                    }
+                    if (radioButton3.Checked == true)
+                    {
+                        picurl = run3(id);
+                        pingtainame = "欧模";
+                    }
+                    if (radioButton4.Checked == true)
+                    {
+                        picurl = run4(id);
+                        pingtainame = "建易";
+                    }
 
-                if (radioButton1.Checked == true)
-                {
-                    picurl = run1(id);
-                }
-                if (radioButton2.Checked == true)
-                {
-                    picurl = run2(id);
-                }
-                if (radioButton3.Checked == true)
-                {
-                    picurl = run3(id);
-                }
-                if (radioButton4.Checked == true)
-                {
-                    picurl = run4(id);
-                }
+                    if (picurl != "")
+                    {
+                        if (picpath != "")
+                        {
+                            GetImage(picurl, picpath);
+                        }
+                        else
+                        {
+                            GetImage(picurl, zippath.Replace(".zip", ".jpg").Replace(".7z", ".jpg").Replace(".rar", ".jpg"));
+                        }
+                        listView1.Items[i].SubItems[5].Text = "替换成功";
+                        listView1.Items[i].SubItems[6].Text = pingtainame;
+                    }
+                    else
+                    {
+                        listView1.Items[i].SubItems[5].Text = "图片地址为空";
+                        listView1.Items[i].SubItems[6].Text = pingtainame;
+                    }
 
-                if (picpath != "")
-                {
-                    GetImage(picurl, picpath);
                 }
-                else
+                catch (Exception ex)
                 {
-                    GetImage(picurl, zippath.Replace(".zip",".jpg").Replace(".7z", ".jpg").Replace(".rar", ".jpg"));
+
+                   continue;
                 }
-
-
-                listView1.Items[i].SubItems[4].Text = "替换成功";
+               
                
                
             }
 
         }
 
+
+
+        public void run2()
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                try
+                {
+                    string id = listView1.Items[i].SubItems[4].Text;
+                    string picpath = listView1.Items[i].SubItems[3].Text;
+                    string zippath = listView1.Items[i].SubItems[1].Text;
+                    int large = Convert.ToInt32(listView1.Items[i].SubItems[2].Text);
+                    string picurl = "";
+
+                    string pingtai = getlarge(id, large);
+                    string pingtainame = "";
+                    if (pingtai == "1")
+                    {
+                        picurl = run1(id);
+                        pingtainame = "知末";
+                    }
+                    if (pingtai == "2")
+                    {
+                        picurl = run2(id);
+                        pingtainame = "3D66";
+                    }
+                    if (pingtai == "3")
+                    {
+                        picurl = run3(id);
+                        pingtainame = "欧模";
+                    }
+                    if (pingtai == "4")
+                    {
+                        picurl = run4(id);
+                        pingtainame = "建易";
+                    }
+                    if (picurl != "")
+                    {
+
+                        if (picpath != "")
+                        {
+                            GetImage(picurl, picpath);
+                        }
+                        else
+                        {
+                            GetImage(picurl, zippath.Replace(".zip", ".jpg").Replace(".7z", ".jpg").Replace(".rar", ".jpg"));
+                        }
+
+
+                        listView1.Items[i].SubItems[5].Text = "替换成功";
+                        listView1.Items[i].SubItems[6].Text = pingtainame;
+                    }
+                    else
+                    {
+                        listView1.Items[i].SubItems[5].Text = "图片地址为空";
+                        listView1.Items[i].SubItems[6].Text = pingtainame;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                   continue;
+                }
+
+            }
+
+        }
+
         private void 模型图片替换_Load(object sender, EventArgs e)
         {
-
+            radioButton5.Checked = true;
         }
 
 
@@ -299,13 +470,26 @@ namespace 主程序202104
 
 
             #endregion
-            if (thread == null || !thread.IsAlive)
+
+
+            if (radioButton5.Checked == true)
+            {
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(run2);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
+            else
+            {
+                if (thread == null || !thread.IsAlive)
                 {
                     thread = new Thread(run);
                     thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
                 }
-
+            }
             
         }
 
@@ -331,6 +515,8 @@ namespace 主程序202104
 
         private void button4_Click(object sender, EventArgs e)
         {
+           
+          
             if (textBox1.Text == "")
             {
                 MessageBox.Show("请选择目录");

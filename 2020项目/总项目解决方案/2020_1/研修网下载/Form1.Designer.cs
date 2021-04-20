@@ -211,7 +211,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(95, 21);
             this.textBox4.TabIndex = 52;
-            this.textBox4.Text = "13137238875";
             // 
             // label6
             // 
@@ -228,7 +227,6 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(95, 21);
             this.textBox5.TabIndex = 54;
-            this.textBox5.Text = "xxj123456";
             // 
             // label7
             // 

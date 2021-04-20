@@ -76,7 +76,7 @@ namespace 研修网下载
 
                         string Url = "http://q.yanxiu.com/upload/viewResource.tc?resId=" + i;
 
-                        string html = method.VerifyGet(Url,cookie, "yanxiuwang");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                        string html = method.VerifyGet(Url,cookie, "yanxiu");  //定义的GetRul方法 返回 reader.ReadToEnd()
                         string downUrl = "http://q.yanxiu.com/uploadResource/DownloadServlet?type=res2&resId=" + i;
 
                         Match title = Regex.Match(html, @"<h1>([\s\S]*?)</h1>");

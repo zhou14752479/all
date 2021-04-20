@@ -147,7 +147,7 @@ namespace 主程序202011
         {
             string code = getcode(credential);
 
-            for (int year = 2014; year < 2021; year++)
+            for (int year = 2014; year <= 2021; year++)
             {
 
 
@@ -222,8 +222,8 @@ namespace 主程序202011
                 if (i % 60 == 0)
                 {
                     PostUrl(url, postdata1);
-                   
-                 
+                    getlogs("【"+username + "】正在学习...当前课程进度："+i);
+
                 }
                 Thread.Sleep(1011);
             }

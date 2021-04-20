@@ -89,10 +89,7 @@ namespace helper
         private void button1_Click(object sender, EventArgs e)
         {
 
-            //string  cookie1= method.GetCookies(webUrl);
-            //  string cookie2= method.GetCookies("https://sso.zto.com/security-services/billtrack/billinfo-query-preauth?bill_id=");
-            //  cookie = cookie1 +";"+ cookie2;
-            string cookie = method.GetCookies("https://goods.dd373.com/Api/Receive/UserCenter/List?LastId=&GoodsType=&Status=-1&PageIndex=1&PageSize=20");
+            string cookie = method.GetCookies("https://dian.ysbang.cn/index.html#/indexContent?searchKey=%E9%B9%BF%E5%B7%9D%E6%B4%BB%E7%BB%9C%E8%83%B6%E5%9B%8A&_t=1618453221608");
 
             textBox1.Text = cookie;
             //this.Hide();

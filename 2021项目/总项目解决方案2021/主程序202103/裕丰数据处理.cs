@@ -72,6 +72,10 @@ namespace 主程序202103
                     string huxing = dr[4].ToString();
                     string mianji = dr[5].ToString();
 
+                    string shi = Regex.Match(huxing,@"\d室").Groups[0].Value.Replace("室","");
+                    string ting = Regex.Match(huxing, @"\d厅").Groups[0].Value.Replace("厅", "");
+                    string wei= Regex.Match(huxing, @"\d卫").Groups[0].Value.Replace("卫", "");
+
                     string genjin = dr[9].ToString();
                     string tupian = dr[10].ToString();
                     bool baohan = IsIncludeData(dt1, "地址", address);
@@ -130,7 +134,11 @@ namespace 主程序202103
                         lv1.SubItems.Add(dr[9].ToString());
                         lv1.SubItems.Add(dr[10].ToString());
 
-                        lv1.SubItems.Add(huxing);
+                        lv1.SubItems.Add(shi);
+                        lv1.SubItems.Add(ting);
+                        lv1.SubItems.Add(wei);
+
+
                         lv1.SubItems.Add(mianji);
                         lv1.SubItems.Add(csprice);
                         lv1.SubItems.Add(czprice);

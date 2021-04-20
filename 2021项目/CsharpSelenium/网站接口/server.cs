@@ -534,7 +534,7 @@ namespace 网站接口
                     sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
                     return;
                 }
-                if (method.GetMD5(code + timestamp).ToUpper() != sign)
+                if (method.GetMD5(code + timestamp + "8o8osiyiruanjian.").ToUpper() != sign)
                 {
                     neirong = "{\"status\":siyifalse,\"msg\":\"sign参数错误\"}";
                     sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");

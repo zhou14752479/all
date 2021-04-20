@@ -61,6 +61,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.skinPictureBox2 = new CCWin.SkinControl.SkinPictureBox();
             this.skinTabPage2 = new CCWin.SkinControl.SkinTabPage();
+            this.skinButton8 = new CCWin.SkinControl.SkinButton();
+            this.skinButton9 = new CCWin.SkinControl.SkinButton();
             this.label12 = new System.Windows.Forms.Label();
             this.skinComboBox4 = new CCWin.SkinControl.SkinComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -80,13 +82,13 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.skinButton6 = new CCWin.SkinControl.SkinButton();
             this.skinButton5 = new CCWin.SkinControl.SkinButton();
             this.skinTabPage1 = new CCWin.SkinControl.SkinTabPage();
+            this.skinButton7 = new CCWin.SkinControl.SkinButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -128,8 +130,6 @@
             this.mini_label = new System.Windows.Forms.LinkLabel();
             this.close_label = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.skinButton7 = new CCWin.SkinControl.SkinButton();
             this.contextMenuStrip1.SuspendLayout();
             this.skinMenuStrip1.SuspendLayout();
             this.skinTabPage3.SuspendLayout();
@@ -541,6 +541,8 @@
             // skinTabPage2
             // 
             this.skinTabPage2.BackColor = System.Drawing.Color.White;
+            this.skinTabPage2.Controls.Add(this.skinButton8);
+            this.skinTabPage2.Controls.Add(this.skinButton9);
             this.skinTabPage2.Controls.Add(this.label12);
             this.skinTabPage2.Controls.Add(this.skinComboBox4);
             this.skinTabPage2.Controls.Add(this.groupBox1);
@@ -554,6 +556,36 @@
             this.skinTabPage2.TabIndex = 1;
             this.skinTabPage2.TabItemImage = null;
             this.skinTabPage2.Text = "数据管理";
+            // 
+            // skinButton8
+            // 
+            this.skinButton8.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton8.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton8.DownBack = null;
+            this.skinButton8.Location = new System.Drawing.Point(699, 90);
+            this.skinButton8.MouseBack = null;
+            this.skinButton8.Name = "skinButton8";
+            this.skinButton8.NormlBack = null;
+            this.skinButton8.Size = new System.Drawing.Size(97, 29);
+            this.skinButton8.TabIndex = 105;
+            this.skinButton8.Text = "停止";
+            this.skinButton8.UseVisualStyleBackColor = false;
+            this.skinButton8.Click += new System.EventHandler(this.skinButton8_Click);
+            // 
+            // skinButton9
+            // 
+            this.skinButton9.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton9.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton9.DownBack = null;
+            this.skinButton9.Location = new System.Drawing.Point(596, 90);
+            this.skinButton9.MouseBack = null;
+            this.skinButton9.Name = "skinButton9";
+            this.skinButton9.NormlBack = null;
+            this.skinButton9.Size = new System.Drawing.Size(97, 29);
+            this.skinButton9.TabIndex = 104;
+            this.skinButton9.Text = "暂停/继续";
+            this.skinButton9.UseVisualStyleBackColor = false;
+            this.skinButton9.Click += new System.EventHandler(this.skinButton9_Click);
             // 
             // label12
             // 
@@ -729,9 +761,7 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader9,
             this.columnHeader10,
-            this.columnHeader11,
             this.columnHeader12,
             this.columnHeader13});
             this.listView2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -765,21 +795,20 @@
             this.columnHeader8.Text = "电话";
             this.columnHeader8.Width = 100;
             // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "是否外卖";
-            // 
             // columnHeader10
             // 
             this.columnHeader10.Text = "分类";
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "区域";
+            this.columnHeader10.Width = 100;
             // 
             // columnHeader12
             // 
             this.columnHeader12.Text = "商圈";
+            this.columnHeader12.Width = 100;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "城市";
+            this.columnHeader13.Width = 100;
             // 
             // skinButton6
             // 
@@ -855,6 +884,21 @@
             this.skinTabPage1.TabIndex = 0;
             this.skinTabPage1.TabItemImage = null;
             this.skinTabPage1.Text = "任务管理";
+            // 
+            // skinButton7
+            // 
+            this.skinButton7.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton7.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton7.DownBack = null;
+            this.skinButton7.Location = new System.Drawing.Point(239, 14);
+            this.skinButton7.MouseBack = null;
+            this.skinButton7.Name = "skinButton7";
+            this.skinButton7.NormlBack = null;
+            this.skinButton7.Size = new System.Drawing.Size(86, 23);
+            this.skinButton7.TabIndex = 94;
+            this.skinButton7.Text = "选择全国";
+            this.skinButton7.UseVisualStyleBackColor = false;
+            this.skinButton7.Click += new System.EventHandler(this.skinButton7_Click);
             // 
             // listView1
             // 
@@ -1367,7 +1411,7 @@
             this.skinTabControl1.PageHover = ((System.Drawing.Image)(resources.GetObject("skinTabControl1.PageHover")));
             this.skinTabControl1.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Left;
             this.skinTabControl1.PageNorml = null;
-            this.skinTabControl1.SelectedIndex = 0;
+            this.skinTabControl1.SelectedIndex = 1;
             this.skinTabControl1.Size = new System.Drawing.Size(902, 537);
             this.skinTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.skinTabControl1.TabIndex = 4;
@@ -1413,25 +1457,6 @@
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "隐藏";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "城市";
-            // 
-            // skinButton7
-            // 
-            this.skinButton7.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton7.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton7.DownBack = null;
-            this.skinButton7.Location = new System.Drawing.Point(239, 14);
-            this.skinButton7.MouseBack = null;
-            this.skinButton7.Name = "skinButton7";
-            this.skinButton7.NormlBack = null;
-            this.skinButton7.Size = new System.Drawing.Size(86, 23);
-            this.skinButton7.TabIndex = 94;
-            this.skinButton7.Text = "选择全国";
-            this.skinButton7.UseVisualStyleBackColor = false;
-            this.skinButton7.Click += new System.EventHandler(this.skinButton7_Click);
             // 
             // main
             // 
@@ -1547,9 +1572,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox8;
@@ -1578,5 +1601,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private CCWin.SkinControl.SkinButton skinButton7;
+        private CCWin.SkinControl.SkinButton skinButton8;
+        private CCWin.SkinControl.SkinButton skinButton9;
     }
 }

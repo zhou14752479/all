@@ -85,8 +85,8 @@ namespace 主程序202104
                     DataRow dr = dt.Rows[i];
                     string shuru = System.Web.HttpUtility.UrlEncode(dr[0].ToString());
 
-                    string url = "https://trade.gov.ng/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=SC&method%3Asearch=Search";
-                 
+                    //string url = "https://trade.gov.ng/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=SC&method%3Asearch=Search";
+                    string url = "https://trade.gov.ng/son/print.do?type=SC&number="+shuru;
                     string html = Request_trade_gov_ng(url);
                   
                     Match a1 =  Regex.Match(html, @"Exporter's Name:</td>([\s\S]*?)</td>");
@@ -100,7 +100,16 @@ namespace 主程序202104
                     Match a8 = Regex.Match(html, @"Country of Origin:<br>([\s\S]*?)</td>");
                     Match a9 = Regex.Match(html, @"BL or AWB No.:<br>([\s\S]*?)</td>");
                     Match a10 = Regex.Match(html, @"Carrier: <br>([\s\S]*?)</td>");
-                    //Match a11 = Regex.Match(html, @"Exporter's Name:</td>([\s\S]*?)</td>");
+
+                    string ahtml= Regex.Match(html, @"soncap-bg items"">([\s\S]*?)</div>").Groups[1].Value;
+                    MatchCollection products = Regex.Matches(ahtml, @"<td>([\s\S]*?)</td>");
+
+                    StringBuilder sb = new StringBuilder();
+                    for (int a = 0; a < products.Count/3; a++)
+                    {
+                        sb.Append(products[3*a].Groups[1].Value+"  "+ products[(3 * a)+1].Groups[1].Value+"  "+ products[(3 * a)+2].Groups[1].Value+"\r\n");
+                    }
+
                     if (address.Count > 1)
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
@@ -117,7 +126,7 @@ namespace 主程序202104
                         lv1.SubItems.Add(Regex.Replace(a8.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a9.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a10.Groups[1].Value, "<[^>]+>", "").Trim());
-
+                        lv1.SubItems.Add(sb.ToString());
                         Thread.Sleep(Convert.ToInt32(textBox3.Text) * 1000);
                         while (this.zanting == false)
                         {
@@ -132,7 +141,7 @@ namespace 主程序202104
 
 
                 }
-
+                method.DataTableToExcelTime(method.listViewToDataTable(this.listView1), true);
             }
             catch (Exception ex)
             {
@@ -157,8 +166,8 @@ namespace 主程序202104
                     DataRow dr = dt.Rows[i];
                     string shuru =System.Web.HttpUtility.UrlEncode(dr[0].ToString());
 
-                    string url = "https://trade.gov.ng/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=PC&method%3Asearch=Search";
-
+                    // string url = "https://trade.gov.ng/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=PC&method%3Asearch=Search";
+                    string url = "https://trade.gov.ng/son/print.do?type=PC&number="+shuru;
                     string html = Request_trade_gov_ng(url);
 
                     Match a1 = Regex.Match(html, @"Product Certificate No.:</td>([\s\S]*?)</td>");
@@ -169,8 +178,18 @@ namespace 主程序202104
                     Match a5 = Regex.Match(html, @"Issued by</strong>:</td>([\s\S]*?)</td>");
 
 
+                    string ahtml = Regex.Match(html, @"soncap-bg items"">([\s\S]*?)</div>").Groups[1].Value;
+                    MatchCollection products = Regex.Matches(ahtml, @"<td>([\s\S]*?)</td>");
+
+                    StringBuilder sb = new StringBuilder();
+                    for (int a = 0; a < products.Count / 4; a++)
+                    {
+                        sb.Append(products[4 * a].Groups[1].Value + "  " + products[(4 * a) + 1].Groups[1].Value + "  " + products[(4 * a) + 2].Groups[1].Value + "  " + products[(4 * a) + 3].Groups[1].Value + "\r\n");
+                    }
+
+
                     ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(dr[1].ToString());
+                    lv1.SubItems.Add(dr[0].ToString());
                     lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
 
                     lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
@@ -178,6 +197,7 @@ namespace 主程序202104
                     lv1.SubItems.Add(Regex.Replace(a3.Groups[1].Value, "<[^>]+>", "").Trim());
                     lv1.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Trim());
                     lv1.SubItems.Add(Regex.Replace(a5.Groups[1].Value, "<[^>]+>", "").Trim());
+                    lv1.SubItems.Add(sb.ToString());
 
                     Thread.Sleep(Convert.ToInt32(textBox3.Text) * 1000);
                     while (this.zanting == false)
@@ -192,7 +212,7 @@ namespace 主程序202104
 
 
                 }
-
+                method.DataTableToExcelTime(method.listViewToDataTable(this.listView2), true);
             }
             catch (Exception ex)
             {
@@ -244,6 +264,8 @@ namespace 主程序202104
                             if (status == false)
                                 return;
                         }
+
+                        method.DataTableToExcelTime(method.listViewToDataTable(this.listView3), true);
                     }
                     catch (Exception ex)
                     {
@@ -349,6 +371,7 @@ namespace 主程序202104
 
             #endregion
 
+           
             if (radioButton1.Checked == true)
             {
                 method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
@@ -379,7 +402,7 @@ namespace 主程序202104
         private void button7_Click(object sender, EventArgs e)
         {
 
-            if (textBox4.Text == ""|| textBox5.Text == "" || textBox5.Text == "")
+            if (textBox4.Text == ""|| textBox5.Text == "" || textBox6.Text == "")
             {
                 MessageBox.Show("请输入组合");
                 return;
@@ -395,7 +418,7 @@ namespace 主程序202104
             {
                 DataRow newRow  = dt.NewRow();
 
-                newRow[0] = textBox4.Text+i;
+                newRow[0] = textBox4.Text+i+textBox7.Text;
                 dt.Rows.Add(newRow);
             }
 

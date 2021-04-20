@@ -16,7 +16,7 @@ namespace 临时数据抓取
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 阿里巴巴1688());
+            Application.Run(new 饿了么());
         }
     }
 }

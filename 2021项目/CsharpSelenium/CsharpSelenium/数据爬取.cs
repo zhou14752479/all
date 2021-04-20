@@ -210,6 +210,53 @@ namespace CsharpSelenium
            
         }
         #endregion
+
+
+        #region 双色球
+        public void shaungseqiu()
+        {
+
+            ChromeOptions options = new ChromeOptions();
+            //options.AddArgument("--lang=en"); 
+
+
+            IWebDriver driver = new ChromeDriver(options);
+            options.AddArgument(string.Format("--user-agent={0}", "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.2(0x18000239) NetType/4G Language/zh_CN"));
+           // driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl("https://h5.duoduoyoucai.com/lottery/pages/expert/expert");
+
+            Thread.Sleep(180000);
+
+           
+            //for (int i = 0; i < 400; i++)
+            //{
+
+
+
+            //    MatchCollection titles = Regex.Matches(driver.PageSource, @"ColID=xmgk&amp;Id=([\s\S]*?)""");
+
+            //    Match page = Regex.Match(driver.PageSource, @"lblCurrentPage"" class=""list_page_statis"">([\s\S]*?)</span>");
+
+            //    for (int j = 0; j < titles.Count; j++)
+            //    {
+            //        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+
+
+            //        lv1.SubItems.Add(titles[j].Groups[1].Value);
+            //        lv1.SubItems.Add(page.Groups[1].Value);
+
+
+            //    }
+
+
+
+            //    // Thread.Sleep(1000);
+            //    driver.FindElement(By.Id("ctl00_masterContent_lbtNextPage")).Click();
+            //}
+
+
+        }
+        #endregion
         private void 数据爬取_Load(object sender, EventArgs e)
         {
 
@@ -237,7 +284,7 @@ namespace CsharpSelenium
             if (thread == null || !thread.IsAlive)
             {
                 timer1.Start();
-                thread = new Thread(guangdong);
+                thread = new Thread(shaungseqiu);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

@@ -34,6 +34,7 @@
     <Reference Include="HttpHelper">
       <HintPath>..\主程序202103\bin\Debug\HttpHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
@@ -64,6 +65,12 @@
     <Compile Include="fineartamerica图片下载.Designer.cs">
       <DependentUpon>fineartamerica图片下载.cs</DependentUpon>
     </Compile>
+    <Compile Include="MD5加密.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MD5加密.Designer.cs">
+      <DependentUpon>MD5加密.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tradegov数据查询.cs">
@@ -71,6 +78,12 @@
     </Compile>
     <Compile Include="tradegov数据查询.Designer.cs">
       <DependentUpon>tradegov数据查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="京东搜索结果查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="京东搜索结果查询.Designer.cs">
+      <DependentUpon>京东搜索结果查询.cs</DependentUpon>
     </Compile>
     <Compile Include="数据分类.cs">
       <SubType>Form</SubType>
@@ -96,11 +109,20 @@
     <Compile Include="模型图片替换.Designer.cs">
       <DependentUpon>模型图片替换.cs</DependentUpon>
     </Compile>
+    <Compile Include="药师帮.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="药师帮.Designer.cs">
+      <DependentUpon>药师帮.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DD373收货价格修改.resx">
       <DependentUpon>DD373收货价格修改.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fineartamerica图片下载.resx">
       <DependentUpon>fineartamerica图片下载.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MD5加密.resx">
+      <DependentUpon>MD5加密.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -114,6 +136,9 @@
     <EmbeddedResource Include="tradegov数据查询.resx">
       <DependentUpon>tradegov数据查询.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="京东搜索结果查询.resx">
+      <DependentUpon>京东搜索结果查询.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="数据分类.resx">
       <DependentUpon>数据分类.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="模型图片替换.resx">
       <DependentUpon>模型图片替换.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="药师帮.resx">
+      <DependentUpon>药师帮.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

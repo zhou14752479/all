@@ -94,7 +94,7 @@ namespace 主程序202011
             }
             catch (System.Exception ex)
             {
-              textBox3.Text+=DateTime.Now.ToString()+"： "+ ex.ToString()+"\r\n";
+             ex.ToString();
 
             }
             return "";
@@ -156,36 +156,42 @@ namespace 主程序202011
        
         private void 新疆继续教育_Load(object sender, EventArgs e)
         {
+          
+            webBrowser1.ScriptErrorsSuppressed = true;
+
+            webBrowser1.Url = new Uri("http://www.xjrsjxjy.com/");
+
+
+
             Control.CheckForIllegalCrossThreadCalls = false;
         }
 
 
-       
 
+        ArrayList codelist = new ArrayList();
+        int codeindex = 0;
         public string getcode()
         {
-            string code = "";
-            while(code=="")
-            { 
-                GetUrl("http://49.232.195.69:8989/wxapi/setcode&key=BA7F17B2E43D1A54");
-                string html = GetUrl("http://49.232.195.69:8989/wxapi/getcode&key=BA7F17B2E43D1A54");
-                Match cod = Regex.Match(html, @"code"":""([\s\S]*?)""");
-                if (cod.Groups[1].Value != "")
-                {
-                    code = cod.Groups[1].Value;
-                    return code;
-                }
-
-
+            GetUrl("http://47.102.145.207/index.php?codenum=1");
+            string codehtml = GetUrl("http://47.102.145.207/getcode.txt");
+            string code = Regex.Match(codehtml, @"[A-Za-z0-9]{10,}").Groups[0].Value;
+            while (code=="")
+            {
+                codehtml = GetUrl("http://47.102.145.207/getcode.txt");
+                code = Regex.Match(codehtml, @"[A-Za-z0-9]{10,}").Groups[0].Value;
             }
+          
+            return code ;
 
-            return code;
         }
 
 
         public string login(string user,string pass,string code)
         {
+           
             string cre = PostUrl("https://yun.xjrsjxjy.com/API/BindStudent.ashx", "code=" + code + "&idCardNumber=" + user + "&password=" + pass);
+          
+           
             if (cre != "")
             {
                string credential = cre.Replace("\"", "");
@@ -271,48 +277,52 @@ namespace 主程序202011
         Thread t;
         public void denglu()
         {
-            for (int i = 0; i < listView2.SelectedItems.Count; i++)
+           
+            for (int i = 0; i < listView2.CheckedItems.Count; i++)
             {
-                string card = listView2.SelectedItems[i].SubItems[1].Text;
-                string pass = listView2.SelectedItems[i].SubItems[2].Text;
+               
+                string card = listView2.CheckedItems[i].SubItems[1].Text;
+                string pass = listView2.CheckedItems[i].SubItems[2].Text;
 
                 if (ExistINIFile())
                 {
+
 
                     string cre = IniReadValue("values", card);  //读取config.ini cre
 
                     if (cre != "")
                     {
+                       
                         string newcode = xj.getcode(cre);
                         string name = getinfo(newcode, cre);
 
                         if (name != "")
                         {
-                            listView2.SelectedItems[i].SubItems[3].Text = name;
-                            listView2.SelectedItems[i].SubItems[4].Text = "登录成功";
-                            listView2.SelectedItems[i].SubItems[5].Text = cre;
+                            listView2.CheckedItems[i].SubItems[3].Text = name;
+                            listView2.CheckedItems[i].SubItems[4].Text = "登录成功";
+                            listView2.CheckedItems[i].SubItems[5].Text = cre;
                         }
 
 
                         else
                         {
-                           string code = getcode();
-                          string  cre1 = login(card, pass, code);
+                            string code = getcode();
+                            string cre1 = login(card, pass, code);
 
                             string newcode1 = xj.getcode(cre1);
                             if (cre != "")
                             {
                                 name = getinfo(newcode1, cre1);
-                                listView2.SelectedItems[i].SubItems[3].Text = name;
-                                listView2.SelectedItems[i].SubItems[4].Text = "登录成功";
-                                listView2.SelectedItems[i].SubItems[5].Text = cre1;
+                                listView2.CheckedItems[i].SubItems[3].Text = name;
+                                listView2.CheckedItems[i].SubItems[4].Text = "登录成功";
+                                listView2.CheckedItems[i].SubItems[5].Text = cre1;
 
                             }
                             else
                             {
 
-                                listView2.SelectedItems[i].SubItems[4].Text = "登录失败";
-                                listView2.SelectedItems[i].SubItems[5].Text = cre;
+                                listView2.CheckedItems[i].SubItems[4].Text = "登录失败";
+                                listView2.CheckedItems[i].SubItems[5].Text = cre;
 
                             }
                         }
@@ -320,28 +330,34 @@ namespace 主程序202011
                     else
                     {
 
+                      
                         string code = getcode();
+
                         cre = login(card, pass, code);
 
                         string newcode = xj.getcode(cre);
                         if (cre != "")
                         {
                             string name = getinfo(newcode, cre);
-                            listView2.SelectedItems[i].SubItems[3].Text = name;
-                            listView2.SelectedItems[i].SubItems[4].Text = "登录成功";
-                            listView2.SelectedItems[i].SubItems[5].Text = cre;
+                            listView2.CheckedItems[i].SubItems[3].Text = name;
+                            listView2.CheckedItems[i].SubItems[4].Text = "登录成功";
+                            listView2.CheckedItems[i].SubItems[5].Text = cre;
 
                         }
                         else
                         {
 
-                            listView2.SelectedItems[i].SubItems[4].Text = "登录失败";
-                            listView2.SelectedItems[i].SubItems[5].Text = cre;
+                            listView2.CheckedItems[i].SubItems[4].Text = "登录失败";
+                            listView2.CheckedItems[i].SubItems[5].Text = cre;
 
                         }
 
                     }
 
+                }
+                else
+                {
+                    MessageBox.Show("不存在ini文件");
                 }
 
 
@@ -354,18 +370,19 @@ namespace 主程序202011
         {
             #region 通用检测
 
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
-
+            string html = GetUrl("http://www.acaiji.com:8080/api/vip.html");
+       
             if (!html.Contains(@"xinjiang"))
             {
-                MessageBox.Show("");
+                MessageBox.Show("8080");
                 return;
             }
 
             #endregion
-
+        
             if (t == null || !t.IsAlive)
             {
+              
 
                 t = new Thread(denglu);
                 t.Start();
@@ -376,13 +393,11 @@ namespace 主程序202011
 
         private void 开始学习ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView2.SelectedItems.Count; i++)
+            for (int i = 0; i < listView2.CheckedItems.Count; i++)
             {
 
-
-
-                string name = listView2.SelectedItems[i].SubItems[3].Text;
-                string cre = listView2.SelectedItems[i].SubItems[5].Text;
+                string name = listView2.CheckedItems[i].SubItems[3].Text;
+                string cre = listView2.CheckedItems[i].SubItems[5].Text;
                 xjstudy xj = new xjstudy();
 
                 xj.getlogs += new xjstudy.GetLogs(setlog);  //先绑定委托在执行后面的方法
@@ -403,8 +418,53 @@ namespace 主程序202011
             logtxt.Text += str + Environment.NewLine;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+
+            for (int i = 0; i < listView2.Items.Count; i++)
+            {
+                listView2.Items[i].Checked = true;
+            }
+
+            if (t == null || !t.IsAlive)
+            {
+
+
+                t = new Thread(denglu);
+                t.Start();
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView2.Items.Count; i++)
+            {
+                listView2.Items[i].Checked = true;
+            }
+            for (int i = 0; i < listView2.CheckedItems.Count; i++)
+            {
+
+                string name = listView2.CheckedItems[i].SubItems[3].Text;
+                string cre = listView2.CheckedItems[i].SubItems[5].Text;
+                xjstudy xj = new xjstudy();
+
+                xj.getlogs += new xjstudy.GetLogs(setlog);  //先绑定委托在执行后面的方法
 
 
 
+                xj.credential = cre;
+                xj.newt();
+                xj.username = name;
+
+
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listView2.Items.Clear();
+        }
     }
 }

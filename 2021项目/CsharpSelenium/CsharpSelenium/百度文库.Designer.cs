@@ -50,6 +50,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -121,7 +123,7 @@
             // 文件处理ToolStripMenuItem
             // 
             this.文件处理ToolStripMenuItem.Name = "文件处理ToolStripMenuItem";
-            this.文件处理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.文件处理ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.文件处理ToolStripMenuItem.Text = "文件处理";
             this.文件处理ToolStripMenuItem.Click += new System.EventHandler(this.文件处理ToolStripMenuItem_Click);
             // 
@@ -165,6 +167,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.listView2);
             this.groupBox1.Controls.Add(this.counttxt);
             this.groupBox1.Controls.Add(this.label3);
@@ -209,7 +213,7 @@
             // 
             this.counttxt.Location = new System.Drawing.Point(79, 60);
             this.counttxt.Name = "counttxt";
-            this.counttxt.Size = new System.Drawing.Size(158, 21);
+            this.counttxt.Size = new System.Drawing.Size(51, 21);
             this.counttxt.TabIndex = 7;
             this.counttxt.Text = "20";
             // 
@@ -260,6 +264,23 @@
             this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "选择文件夹：";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(227, 60);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(51, 21);
+            this.textBox3.TabIndex = 153;
+            this.textBox3.Text = "15";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(140, 63);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 12);
+            this.label5.TabIndex = 152;
+            this.label5.Text = "时间间隔(秒)：";
             // 
             // 百度文库
             // 
@@ -312,5 +333,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label5;
     }
 }

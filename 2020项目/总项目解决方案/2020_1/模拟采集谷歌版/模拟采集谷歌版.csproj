@@ -44,6 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\CefSharp.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="myDLL">
+      <HintPath>..\..\..\..\2021项目\总项目解决方案2021\思忆美团\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -60,6 +63,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="京东一元SKU抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="京东一元SKU抓取.Designer.cs">
+      <DependentUpon>京东一元SKU抓取.cs</DependentUpon>
+    </Compile>
     <Compile Include="阿里1688.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +85,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="京东一元SKU抓取.resx">
+      <DependentUpon>京东一元SKU抓取.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="阿里1688.resx">
       <DependentUpon>阿里1688.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,7 +105,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\helper\helper.csproj">
+    <ProjectReference Include="..\..\helper\helper.csproj">
       <Project>{4ab3b912-e9f2-4425-82c0-505bda466258}</Project>
       <Name>helper</Name>
     </ProjectReference>

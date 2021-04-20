@@ -87,6 +87,12 @@
     <Compile Include="求购597mm.Designer.cs">
       <DependentUpon>求购597mm.cs</DependentUpon>
     </Compile>
+    <Compile Include="求购miaomucom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="求购miaomucom.Designer.cs">
+      <DependentUpon>求购miaomucom.cs</DependentUpon>
+    </Compile>
     <Compile Include="裕丰ERP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="求购597mm.resx">
       <DependentUpon>求购597mm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="求购miaomucom.resx">
+      <DependentUpon>求购miaomucom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="裕丰ERP.resx">
       <DependentUpon>裕丰ERP.cs</DependentUpon>

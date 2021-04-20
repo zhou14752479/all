@@ -1015,7 +1015,7 @@ namespace 网站接口
             {
                 
 
-                string url = "https://api.meituan.com/group/v5/deal/select/city/" + cityid + "/cate/" + cateid + "?sort=start&mypos=&hasGroup=true&offset=" + page + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
+                string url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=_QxWJiL40O5OBuwxDs_dNGnTh5MAAAAARw0AANSnFIx1-1YZfFNJU8wxZzPgc9iHV1JbbKdr3YVHLD0GFlVaysjxJhAPM1tOved7gg&cityid="+cityid+"&cateid=22&categoryids="+cateid+"&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=oJVP50IRqKIIshugSqrvYE3OHJKQ&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start="+page+"&limit=100&areaid=-3&distance=&subwaylineid=&subwaystationid=&sort=2";
                 string html = meituan_GetUrl(url);
                 
                 return html;

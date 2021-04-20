@@ -18,7 +18,7 @@ namespace 临时数据抓取
     public partial class 饿了么 : Form
     {
 
-        string cookie = "SID=IQAAAAARpFEJ6AYKAACejBoMOqRxU8o8jX08xdkMzf_XUX5AgMZIL5ll; USERID=295981321";
+        string cookie = "JSESSIONID=960DFE0B425EA25DFD7CF1468455D970; Hm_lvt_7c0ab5b0ae856f8774afb3952e172f5d=1618274809; acw_tc=2760821916182767899946687ea4d33b42c671822bcb2bf18d9fccc6b13399; Hm_lpvt_7c0ab5b0ae856f8774afb3952e172f5d=1618276813";
         public 饿了么()
         {
             InitializeComponent();
@@ -117,6 +117,105 @@ namespace 临时数据抓取
 
         #endregion
 
+        Dictionary<string, string> dics = new Dictionary<string, string>();
+
+        #region 上海律师
+        public void run()
+        {
+
+            for (int page = Convert.ToInt32(textBox2.Text); page < Convert.ToInt32(textBox3.Text); page++)
+            {
+
+                string url = "http://credit.lawyers.org.cn/lawyer-list.jsp?page=" + page;
+
+                string html = method.GetUrlWithCookie(url, cookie, "utf-8");
+
+                MatchCollection uids = Regex.Matches(html, @"id=([\s\S]*?)""");
+            
+                if (uids.Count == 0)
+                    continue;
+                for (int j = 0; j < uids.Count; j++)
+                {
+
+
+                    try
+                    {
+                        string aurl = "http://credit.lawyers.org.cn/lawyer.jsp?id=" + uids[j].Groups[1].Value.Trim();
+                        string ahtml = GetUrlWithCookie(aurl, cookie, "utf-8");
+
+                        Match name = Regex.Match(ahtml, @"<dd class=""name"">([\s\S]*?)</dd>");
+                        Match zyzh = Regex.Match(ahtml, @"执业证号：</span>([\s\S]*?)</dd>");
+                        Match xb = Regex.Match(ahtml, @"性别：</label>([\s\S]*?)</li>");
+                        Match nl = Regex.Match(ahtml, @"年龄：</label>([\s\S]*?)</li>");
+                        Match sf = Regex.Match(ahtml, @"所内身份：</label>([\s\S]*?)</li>");
+                        Match email = Regex.Match(ahtml, @"email：</label>([\s\S]*?)</li>");
+                        MatchCollection zyzts = Regex.Matches(ahtml, @"<div class=""credit-level([\s\S]*?)>([\s\S]*?)</div>");
+
+                        string bhtml = "";
+                        string bid = Regex.Match(ahtml, @"执业机构：</span><a href=""([\s\S]*?)""").Groups[1].Value;
+                        if (dics.ContainsKey(bid))
+                        {
+                            bhtml = dics[bid];
+                        }
+                        else
+                        {
+                            string burl = "http://credit.lawyers.org.cn/" + bid;
+                            bhtml = GetUrlWithCookie(burl, cookie, "utf-8");
+                            dics.Add(bid, bhtml);
+                        }
+
+
+
+
+
+                        Match area = Regex.Match(bhtml, @"主管司法局：</label>([\s\S]*?)</li>");
+                        Match bname = Regex.Match(bhtml, @"<dd class=""name"">([\s\S]*?)</dd>");
+                        MatchCollection bzyzts = Regex.Matches(bhtml, @"<div class=""credit-level([\s\S]*?)>([\s\S]*?)</div>");
+                        Match addr = Regex.Match(bhtml, @"办公地址：</span>([\s\S]*?)</dd>");
+                        Match tel = Regex.Match(bhtml, @"联系电话：</label>([\s\S]*?)</li>");
+
+
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(area.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(bname.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(bzyzts[0].Groups[2].Value.Trim());
+                        lv1.SubItems.Add(bzyzts[1].Groups[2].Value.Trim());
+                        lv1.SubItems.Add(addr.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(tel.Groups[1].Value.Trim());
+
+                        lv1.SubItems.Add(name.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(zyzh.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(xb.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(nl.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(sf.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(email.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(zyzts[0].Groups[2].Value.Trim());
+                        lv1.SubItems.Add(zyzts[1].Groups[2].Value.Trim());
+                        lv1.SubItems.Add(page.ToString());
+
+
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+                        Thread.Sleep(100);
+                    }
+                    catch (Exception ex)
+                    {
+                        textBox1.Text += uids[j].Groups[1].Value + "\r\n";
+                       continue;
+                    }
+
+                }
+            }
+
+
+        }
+
+        #endregion
 
         Thread thread;
         bool status = true;
@@ -158,10 +257,15 @@ namespace 临时数据抓取
         {
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(ele);
+                thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+        }
+
+        private void 饿了么_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }

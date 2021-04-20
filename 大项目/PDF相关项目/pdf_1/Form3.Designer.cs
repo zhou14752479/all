@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,10 +64,10 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button5);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.button6);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
@@ -80,9 +80,45 @@
             this.splitContainer1.SplitterDistance = 167;
             this.splitContainer1.TabIndex = 2;
             // 
-            // openFileDialog1
+            // button4
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.button4.Location = new System.Drawing.Point(383, 78);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(79, 33);
+            this.button4.TabIndex = 261;
+            this.button4.Text = "导出数据";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(187, 78);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(79, 32);
+            this.button3.TabIndex = 260;
+            this.button3.Text = "停止";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(286, 78);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(79, 33);
+            this.button5.TabIndex = 259;
+            this.button5.Text = "清空";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(93, 78);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(79, 32);
+            this.button6.TabIndex = 256;
+            this.button6.Text = "开始";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // textBox1
             // 
@@ -112,46 +148,6 @@
             this.label1.TabIndex = 253;
             this.label1.Text = "PDF目录：";
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(263, 77);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(79, 32);
-            this.button3.TabIndex = 260;
-            this.button3.Text = "停止";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(348, 77);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(79, 33);
-            this.button5.TabIndex = 259;
-            this.button5.Text = "清空";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(178, 77);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 32);
-            this.button1.TabIndex = 257;
-            this.button1.Text = "暂停/继续";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(93, 78);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(79, 32);
-            this.button6.TabIndex = 256;
-            this.button6.Text = "开始";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -173,17 +169,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "--PDF列表--";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.listView2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(755, 304);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "---数据---";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // listView1
             // 
@@ -215,6 +200,17 @@
             this.columnHeader3.Text = "状态";
             this.columnHeader3.Width = 100;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.listView2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(755, 304);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "---数据---";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // listView2
             // 
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -226,14 +222,17 @@
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
             // 
-            // button4
+            // openFileDialog1
             // 
-            this.button4.Location = new System.Drawing.Point(433, 78);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(79, 33);
-            this.button4.TabIndex = 261;
-            this.button4.Text = "导出数据";
-            this.button4.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(584, 34);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(167, 76);
+            this.textBox2.TabIndex = 262;
             // 
             // Form3
             // 
@@ -266,7 +265,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -277,5 +275,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

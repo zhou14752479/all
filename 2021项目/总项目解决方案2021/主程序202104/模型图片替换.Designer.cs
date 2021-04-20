@@ -41,11 +41,14 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button4 = new System.Windows.Forms.Button();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // radioButton1
@@ -56,7 +59,6 @@
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(165, 18);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "3d.znzmo.com（知末）";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -148,7 +150,7 @@
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBox2.Location = new System.Drawing.Point(0, 502);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(804, 21);
+            this.textBox2.Size = new System.Drawing.Size(960, 21);
             this.textBox2.TabIndex = 257;
             // 
             // listView1
@@ -156,9 +158,11 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
+            this.columnHeader6,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader7});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
@@ -166,7 +170,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 215);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(804, 287);
+            this.listView1.Size = new System.Drawing.Size(960, 287);
             this.listView1.TabIndex = 258;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -181,6 +185,11 @@
             this.columnHeader2.Text = "压缩包名";
             this.columnHeader2.Width = 280;
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "压缩包大小";
+            this.columnHeader6.Width = 80;
+            // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "图片名";
@@ -190,6 +199,11 @@
             // 
             this.columnHeader4.Text = "ID";
             this.columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "状态";
+            this.columnHeader5.Width = 100;
             // 
             // button4
             // 
@@ -201,11 +215,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "状态";
-            this.columnHeader5.Width = 100;
-            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(428, 156);
@@ -216,11 +225,27 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "平台";
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton5.Location = new System.Drawing.Point(523, 36);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(207, 18);
+            this.radioButton5.TabIndex = 262;
+            this.radioButton5.Text = "是否根据压缩包大小确定平台";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
             // 模型图片替换
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 523);
+            this.ClientSize = new System.Drawing.Size(960, 523);
+            this.Controls.Add(this.radioButton5);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.listView1);
@@ -265,5 +290,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.RadioButton radioButton5;
     }
 }

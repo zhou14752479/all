@@ -165,8 +165,10 @@ namespace 主程序202103
                                
                             }
 
+                            string addr1 = Regex.Replace(method.Unicode2String(address[j].Groups[1].Value), "<[^>]+>", "");
+                            string addr2 = Regex.Replace(addr1, "&.*?;", "");
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(method.Unicode2String(address[j].Groups[1].Value));
+                            lv1.SubItems.Add(addr2);
                             lv1.SubItems.Add(price1.Groups[1].Value.Replace("\"",""));
                             lv1.SubItems.Add(price2.Groups[1].Value);
                             lv1.SubItems.Add(rooms[j].Groups[1].Value+"室"+ halls[j].Groups[1].Value+"厅"+ toilets[j].Groups[1].Value+"卫");

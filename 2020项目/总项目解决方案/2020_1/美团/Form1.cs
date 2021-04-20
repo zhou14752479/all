@@ -33,8 +33,9 @@ namespace 美团
         ArrayList tels = new ArrayList();
         private void Form1_Load(object sender, EventArgs e)
         {
-           
-          
+            ProvinceCity.ProvinceCity.BindProvince(comboBox1);
+         
+
             label3.Text = username;
            
         }
@@ -85,12 +86,10 @@ namespace 美团
 
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                string COOKIE = "__mta=216473129.1565052050597.1583818626848.1583818731643.25; _lxsdk_cuid=16bd4b88a38c8-0d297d6bd625d2-f353163-1fa400-16bd4b88a38c8; iuuid=F3B7CF367A381B6BDA09F29EB6CBD0809EA666DB1290BBF84995C104FBF57A65; _lxsdk=F3B7CF367A381B6BDA09F29EB6CBD0809EA666DB1290BBF84995C104FBF57A65; _hc.v=df1f9416-050a-6ffd-b8c9-62180be8d8d4.1564129261; webp=1; _ga=GA1.2.1573254713.1564129433; __mta=216473129.1565052050597.1572417349038.1572417355133.8; a2h=1; Hm_lvt_f66b37722f586a240d4621318a5a6ebe=1574064150; __utmz=74597006.1574219146.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); uuid=a4e700a6c1c84328a796.1583806511.1.0.0; rvct=184; lat=36.684199; lng=117.061944; JSESSIONID=1qkdmt10h0iksa0rzwxj5n6uy; IJSESSIONID=1qkdmt10h0iksa0rzwxj5n6uy; __utmc=74597006; ci=96; cityname=%E6%B5%8E%E5%8D%97; idau=1; __utma=74597006.1573254713.1564129433.1583807166.1583818213.5; i_extend=C133821980007841839627568335826373356080_b1_e2750553022450266608_v4837406441626188694_a%e4%b8%bd%e4%ba%ba_f181539753E126791890114317345528428946634289901095_v4837409378594186279_e3091222610447599364_a%e4%b8%bd%e4%ba%baGimthomepagecategory12H__a100005__b5; webloc_geo=33.960173%2C118.275532%2Cwgs84%2C-1; latlng=33.960173,118.275532,1583818614791; __utmb=74597006.4.10.1583818213; _lxsdk_s=170c2ebe787-369-736-b45%7C%7C14";
+                string COOKIE = "_lxsdk_cuid=178002168e9c8-00e8f9125e0e71-31346d-1fa400-178002168e9c8; ci=10; rvct=10; _hc.v=952fc3ea-25d0-cec1-62e1-9a56ab2e59a2.1614909934; lsu=; uuid=4ef9319dd9244bbcbcdf.1617534879.1.0.0; client-id=73fb7eb2-350c-4ae3-9e9a-9a73a18ab4a0; mtcdn=K; userTicket=JzGrdcygAcyTyIDLaigkMKfBeZOCJyUvrTiBvRrK; u=875973616; n=Ffv936639060; lt=QFH95uMMd36fvDI3nPrQxkS-o2IAAAAARg0AAELcAP5AJZ4UzP3ttwmALKlBnmZAxy3m2LcrH038FvTFcHxX18W_Hh5yx8YAh6LvZw; mt_c_token=QFH95uMMd36fvDI3nPrQxkS-o2IAAAAARg0AAELcAP5AJZ4UzP3ttwmALKlBnmZAxy3m2LcrH038FvTFcHxX18W_Hh5yx8YAh6LvZw; token=QFH95uMMd36fvDI3nPrQxkS-o2IAAAAARg0AAELcAP5AJZ4UzP3ttwmALKlBnmZAxy3m2LcrH038FvTFcHxX18W_Hh5yx8YAh6LvZw; token2=QFH95uMMd36fvDI3nPrQxkS-o2IAAAAARg0AAELcAP5AJZ4UzP3ttwmALKlBnmZAxy3m2LcrH038FvTFcHxX18W_Hh5yx8YAh6LvZw; firstTime=1618139245041; unc=Ffv936639060; _lxsdk_s=178c09d69ca-699-c47-5fd%7C%7C3";
                 request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.11(0x17000b21) NetType/4G Language/zh_CN";
                 request.Headers.Add("Cookie", COOKIE);
-                request.Headers.Add("token", "qayAmk04G6EvdItDp6GHVZUDg8gAAAAAagkAAJM_kYnReUzwieeFee3FiVFOGnq41qxDzT9WdNjTti_60YjsS4SwrMIdppEobrF2dw");
-                request.Headers.Add("open_id", "oJVP50IRqKIIshugSqrvYE3OHJKQ");
-                request.Headers.Add("uuid", "E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
+                request.Headers.Add("openIdCipher", "AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADhS4d+zREPZw1PQNF/0Zp8SLSbtYsmCKZFYbIjL5Ty7FJZwQ/bkMIGOGHHGqk1Nld5+rcxtuifNmA==");
                 request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/350/page-frame.html";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
@@ -120,11 +119,11 @@ namespace 美团
 
             try
             {
-                string url = "https://apimobile.meituan.com/group/v1/area/search/"+ System.Web.HttpUtility.UrlEncode(city);
+                string url = "https://apimobile.meituan.com/group/v1/area/search/"+ System.Web.HttpUtility.UrlEncode(city.Replace("市",""));
                 string html = GetUrl(url);
-                Match cityId = Regex.Match(html, @"""cityId"":([\s\S]*?),");
-
-                return cityId.Groups[1].Value;
+                string cityId = Regex.Match(html, @"""cityId"":([\s\S]*?),").Groups[1].Value;
+               
+                return cityId;
             }
 
             catch (System.Exception ex)
@@ -145,9 +144,9 @@ namespace 美团
             {
                 string url = "https://apimobile.meituan.com/group/v1/area/search/"+System.Web.HttpUtility.UrlEncode(city);
                 string html = GetUrl(url);
-                Match suoxie = Regex.Match(html, @"""cityAcronym"":""([\s\S]*?)""");
-
-                return suoxie.Groups[1].Value;
+                string suoxie = Regex.Match(html, @"""cityAcronym"":""([\s\S]*?)""").Groups[1].Value;
+              
+                return suoxie;
             }
 
             catch (System.Exception ex)
@@ -171,8 +170,13 @@ namespace 美团
             MatchCollection areas = Regex.Matches(html, @"""subAreas"":\[\{""id"":([\s\S]*?),");
             ArrayList lists = new ArrayList();
 
+            if (areas.Count == 0)
+            {
+               toolStripStatusLabel1.Text=("获取区域失败");
+            }
             foreach (Match item in areas)
             {
+               
                 lists.Add(item.Groups[1].Value);
             }
 
@@ -215,7 +219,7 @@ namespace 美团
 
             try
             {
-                 string[] citys = textBox1.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
+                 string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
                
                 if (textBox1.Text.Trim() == "")
                 {
@@ -223,23 +227,19 @@ namespace 美团
                     return;
                 }
 
-                if (textBox2.Text == "")
-                {
-                    textBox2.Text =  "美食, 火锅, 烧烤, 麻辣烫, 面包, 蛋糕, 奶茶, 快餐, 面条, 西餐, 中餐,小吃, 自助餐, 烤鱼, 海鲜, 甜点, 炒菜" ;
-                }
+             
 
-                string[] keywords = textBox2.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
+                string[] keywords = textBox2.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
                
                 foreach (string city in citys)
                 {
 
-                    ArrayList areas = getareas(Getsuoxie(city));
+                   // ArrayList areas = getareas(Getsuoxie(city));
 
                     string cityId = GetcityId(city);
-                    foreach (string areaId in areas)
-                    {
-
+                  
+                    string areaId = "";
                         foreach (string keyword in keywords)
 
                         {
@@ -247,16 +247,14 @@ namespace 美团
                             for (int i = 0; i < 1000; i=i+15)
 
                             {
+                                toolStripStatusLabel1.Text = "正在抓取："+city+","+keyword;
 
-
-                                // string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=default&userid=-1&offset="+i+"&limit=32&mypos=33.94108581542969%2C118.24807739257812&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&requestType=filter&cityId="+cityId+"&areaId="+ areaId;
-
-                                string Url = "https://apimobile.meituan.com/group/v4/poi/search/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=defaults&userid=-1&offset="+i+ "&limit=15&mypos=33.940975189208984%2C118.24801635742188&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q="+keyword.Trim()+"&cityId=" + cityId + "&areaId=" + areaId;
-                                MessageBox.Show(Url);
+                                string Url = "https://apimobile.meituan.com/group/v4/poi/search/miniprogram/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=defaults&userid=-1&offset="+i+"&limit=15&mypos=33.94123077392578%2C118.24799346923828&uuid=178c0a12928c8-18eda8e20c814f-0-0-178c0a12928c8&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&openId=oJVP50IRqKIIshugSqrvYE3OHJKQ&cityId="+cityId+"&q="+keyword+"&areaId="+areaId;
+                              
                                 string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
                                
                                     MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
-                               
+                             
                                     ArrayList lists = new ArrayList();
                                     foreach (Match NextMatch in all)
                                     {
@@ -264,8 +262,8 @@ namespace 美团
                                     //https://apimobile.meituan.com/group/v1/poi/194905459?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng
                                     //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
                                     //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
-                                    //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
-                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
+                                    lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
+                                    //lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
                                     }
 
 
@@ -283,7 +281,7 @@ namespace 美团
                                     {
 
                                         string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
-                                   
+                                    
                                     Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                         Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                         Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
@@ -328,7 +326,7 @@ namespace 美团
                     }
 
 
-               }
+               
             }
 
 
@@ -360,7 +358,7 @@ namespace 美团
                     textBox2.Text = "美食, 火锅, 烧烤, 麻辣烫, 面包, 蛋糕, 奶茶, 快餐, 面条, 西餐, 中餐,小吃, 自助餐, 烤鱼, 海鲜, 甜点, 炒菜";
                 }
 
-                string[] keywords = textBox2.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
+                string[] keywords = textBox2.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
 
                 foreach (string city in citys)
@@ -550,7 +548,19 @@ namespace 美团
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            #region 通用检测
 
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
+
+            if (!html.Contains(@"147258369"))
+            {
+                MessageBox.Show("");
+                return;
+            }
+
+
+
+            #endregion
 
 
 
@@ -571,20 +581,20 @@ namespace 美团
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            zanting = false;
+            if (zanting == false)
+            {
+
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
         }
 
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            zanting = true;
-        }
+    
 
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-        }
-
-     
+      
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -616,9 +626,37 @@ namespace 美团
             
         }
 
-        private void LinkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+       
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            method.ListviewToTxt(listView1,3);
+            ProvinceCity.ProvinceCity.BindCity(comboBox1, comboBox2);
+        }
+
+       
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Contains(comboBox2.Text))
+            {
+                MessageBox.Show(comboBox2.Text + "：请勿重复添加", "重复添加错误");
+                return;
+            }
+            textBox1.Text += comboBox2.Text + "\r\n";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+           
+            for (int i = 0; i <comboBox2.Items.Count; i++)
+            {
+                textBox1.Text += comboBox2.Items[i] + "\r\n";
+            }
         }
     }
 }

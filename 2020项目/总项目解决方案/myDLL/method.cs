@@ -225,7 +225,8 @@ namespace myDLL
                 // request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentType = contentType;
                 //request.ContentType = "application/json";
-                request.ContentLength = postData.Length;
+                request.ContentLength=Encoding.UTF8.GetBytes(postData).Length;
+               // request.ContentLength = postData.Length;
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
@@ -592,7 +593,7 @@ namespace myDLL
             {
                 dr = dt.Rows[i];
                 lst.Items.Add(dr[0].ToString().Trim());
-                for (j = 1; j < ColCount; j++)
+                for (j = 0; j < ColCount; j++)
                 {
                     lst.Columns[j].Width = -2;
                     lst.Items[i].SubItems.Add((string)dr[j].ToString().Trim());
@@ -873,6 +874,95 @@ namespace myDLL
             catch (Exception ex)
             {
                
+                Console.WriteLine("Exception: " + ex.Message);
+                return -1;
+            }
+        }
+
+        #endregion
+
+        #region NPOI导出表格默认时间为文件名
+        public static int DataTableToExcelTime(DataTable data, bool isColumnWritten)
+        {
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            ISheet sheet = null;
+            IWorkbook workbook = null;
+            FileStream fs = null;
+            //string fileName = GetTimeStamp() + ".xlsx";
+            //string fileName= DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")+".xlsx";
+            //   string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".xlsx";
+
+            string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH") + ".xlsx";
+
+
+            // bool disposed;
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            //sfd.Title = "Excel文件导出";
+            //string fileName = "";
+
+            //if (sfd.ShowDialog() == DialogResult.OK)
+            //{
+            //    fileName = sfd.FileName;
+            //}
+            //else
+            //    return -1;
+
+            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
+                workbook = new XSSFWorkbook();
+            else if (fileName.IndexOf(".xls") > 0) // 2003版本
+                workbook = new HSSFWorkbook();
+
+            try
+            {
+                if (workbook != null)
+                {
+                    sheet = workbook.CreateSheet("sheet1");
+                    ICellStyle style = workbook.CreateCellStyle();
+                    style.FillPattern = FillPattern.SolidForeground;
+
+                }
+                else
+                {
+                    return -1;
+                }
+
+                if (isColumnWritten == true) //写入DataTable的列名
+                {
+                    IRow row = sheet.CreateRow(0);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
+
+                    }
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                for (i = 0; i < data.Rows.Count; ++i)
+                {
+                    IRow row = sheet.CreateRow(count);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());
+                    }
+                    ++count;
+                }
+                workbook.Write(fs); //写入到excel
+                workbook.Close();
+                fs.Close();
+                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
+                //MessageBox.Show("数据导出完成！");
+                return 0;
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine("Exception: " + ex.Message);
                 return -1;
             }

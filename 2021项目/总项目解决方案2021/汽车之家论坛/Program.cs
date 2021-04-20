@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 新疆继续教育网页版
+namespace 汽车之家论坛
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 新疆继续教育网页版
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 新疆继续教育网页版());
+            Application.Run(new 汽车之家论坛());
         }
     }
 }

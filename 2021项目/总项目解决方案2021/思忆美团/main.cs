@@ -75,7 +75,7 @@ namespace 思忆美团
                     try
                     {
 
-                        for (int i = 0; i < 100001; i = i + 100)
+                        for (int i = 0; i < 1001; i = i + 100)
 
                         {
                             string timestamp = fc.GetTimeStamp();
@@ -89,15 +89,14 @@ namespace 思忆美团
                                 MessageBox.Show(html);
                                 return;
                             }
-                            MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
+                            MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
 
-                            MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
+                            MatchCollection address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
                             MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-                            MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
-
-                            MatchCollection cate = Regex.Matches(html, @"cateName"":""([\s\S]*?)""");
-                            MatchCollection area = Regex.Matches(html, @"areaName"":""([\s\S]*?)""");
-                            MatchCollection shangquan = Regex.Matches(html, @"mallName"":""([\s\S]*?)""");
+                     
+                            MatchCollection cate = Regex.Matches(html, @"mainCategoryName"":""([\s\S]*?)""");
+                     
+                            MatchCollection shangquan = Regex.Matches(html, @"""areaName"":""([\s\S]*?)""");
 
 
                             if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
@@ -111,10 +110,10 @@ namespace 思忆美团
                                 listViewItem.SubItems.Add(names[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(address[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
+                           
 
                                 listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(area[j].Groups[1].Value);
+                              
                                 listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
                                 listViewItem.SubItems.Add(city);
                                 while (zanting == false)
@@ -446,7 +445,21 @@ namespace 思忆美团
             }
         }
 
+        private void skinButton9_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
+        }
 
-
+        private void skinButton8_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
     }
 }

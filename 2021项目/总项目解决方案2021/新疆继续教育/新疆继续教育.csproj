@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DAA8BF83-8150-44CA-98D6-AFA5CA533ECF}</ProjectGuid>
+    <ProjectGuid>{6D1E28EB-55E2-4D5E-B481-7E458CFF09FE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>新疆继续教育网页版</RootNamespace>
-    <AssemblyName>新疆继续教育网页版</AssemblyName>
+    <RootNamespace>新疆继续教育</RootNamespace>
+    <AssemblyName>新疆继续教育</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,17 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="新疆继续教育网页版.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="新疆继续教育网页版.Designer.cs">
-      <DependentUpon>新疆继续教育网页版.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="新疆继续教育网页版.resx">
-      <DependentUpon>新疆继续教育网页版.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="xjstudy.cs" />
+    <Compile Include="单个版.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="单个版.Designer.cs">
+      <DependentUpon>单个版.cs</DependentUpon>
+    </Compile>
+    <Compile Include="多个版.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="多个版.Designer.cs">
+      <DependentUpon>多个版.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -64,6 +68,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="单个版.resx">
+      <DependentUpon>单个版.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="多个版.resx">
+      <DependentUpon>多个版.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

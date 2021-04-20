@@ -60,7 +60,7 @@ namespace _58.临时软件
                         strPath = ofd.FileName;
                         string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;" + "data source=" + strPath + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1'";//关键是红色区域
                         OleDbConnection Con = new OleDbConnection(strCon);//建立连接
-                        string strSql = "select * from [Sheet3$]";//表名的写法也应注意不同，对应的excel表为sheet1，在这里要在其后加美元符号$，并用中括号
+                        string strSql = "select * from [Sheet1$]";//表名的写法也应注意不同，对应的excel表为sheet1，在这里要在其后加美元符号$，并用中括号
                         OleDbCommand Cmd = new OleDbCommand(strSql, Con);//建立要执行的命令
                         OleDbDataAdapter da = new OleDbDataAdapter(Cmd);//建立数据适配器
                         DataSet ds = new DataSet();//新建数据集

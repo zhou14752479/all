@@ -273,7 +273,7 @@ namespace CsharpSelenium
 
                             }
 
-                            Thread.Sleep(10000);
+                            Thread.Sleep(Convert.ToInt32(textBox3.Text)*1000);
                             driver.FindElement(By.Id("global-uploader-btn")).Click();
                         }
                         catch (Exception ex)
@@ -447,7 +447,7 @@ namespace CsharpSelenium
                 }
                 else
                 {
-                    textBox1.Text = "F:\\不重复文档";
+                    textBox1.Text = "F:\\下载文件4";
                     continue;
                 }
             }

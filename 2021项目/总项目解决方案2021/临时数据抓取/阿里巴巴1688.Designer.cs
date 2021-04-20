@@ -122,7 +122,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 167);
+            this.panel1.Size = new System.Drawing.Size(882, 167);
             this.panel1.TabIndex = 208;
             // 
             // textBox2
@@ -163,7 +163,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 167);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(800, 283);
+            this.listView1.Size = new System.Drawing.Size(882, 283);
             this.listView1.TabIndex = 210;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -202,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(882, 450);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Name = "阿里巴巴1688";

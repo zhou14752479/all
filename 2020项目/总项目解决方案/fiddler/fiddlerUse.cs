@@ -1,9 +1,11 @@
 ﻿using Fiddler;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -57,6 +59,8 @@ namespace fiddler
             FiddlerApplication.Startup(8888, true, true, true);//0:端口号1:是否注册系统代理2：是否应解密安全通信。如果为true，则需要应用程序文件夹中的MakeCert.exe 3：是否接受来自远程计算机的连接
                                                                // FiddlerApplication.Startup(8888,null);
         }
+
+        string head = "";
         /// <summary>
         /// 会话事件
         /// </summary>
@@ -82,7 +86,7 @@ namespace fiddler
             if (CaptureConfiguration.IgnoreResources)
             {
                 string url = sess.fullUrl.ToLower();
-
+                head = url;
                 var extensions = CaptureConfiguration.ExtensionFilterExclusions;
                 foreach (var ext in extensions)
                 {
@@ -105,6 +109,8 @@ namespace fiddler
             var reqBody = Encoding.UTF8.GetString(sess.RequestBody);
             var resPonseBody = Encoding.UTF8.GetString(sess.ResponseBody);
 
+
+           
             // if you wanted to capture the response
             //string respHeaders = session.oResponse.headers.ToString();
             //var respBody = Encoding.UTF8.GetString(session.ResponseBody);
@@ -120,28 +126,56 @@ namespace fiddler
                             (!string.IsNullOrEmpty(reqBody) ? reqBody + "\r\n" : string.Empty) +
                             Separator + "\r\n\r\n" + Separator + "\r\n" + (!string.IsNullOrEmpty(resPonseBody) ? resPonseBody + "\r\n" : string.Empty) + "\r\n\r\n";
 
+           
             // 跨线程更新UI
             BeginInvoke(new Action<string>((text) =>
             {
 
                 textBox1.AppendText(text);
-                datas = datas + text;  //公共值用于其他软件
-
+                // datas = datas + text;  //公共值用于其他软件,累加抓包数据
+                datas = text; //不累加抓包数据
             }), output);
            
         }
+        string path = AppDomain.CurrentDomain.BaseDirectory;
 
+        ArrayList codelist = new ArrayList();
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (datas.Contains("code"))
+            //textBox3.Text = head;
+            //if (datas.Contains("code"))
+            //{
+            //    //Stop();
+            //    //timer1.Stop();
+
+            //   string code = Regex.Match(datas, @"code=([\s\S]*?)&").Groups[1].Value.Trim();
+            //    if (!codelist.Contains(code)&&code.Trim()!="")
+            //    {
+            //        codelist.Add(code);
+            //        textBox3.Text += code + "\r\n";
+            //        FileStream fs1 = new FileStream(path + "getcode.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+            //        StreamWriter sw = new StreamWriter(fs1);
+            //        sw.WriteLine(code);
+            //        sw.Close();
+            //        fs1.Close();
+            //        sw.Dispose();
+            //    }
+
+            //}
+            if (datas.Contains("userId"))
             {
-                Stop();
-                timer1.Stop();
-                Match url = Regex.Match(datas, @"GET([\s\S]*?)HTTP");
-                textBox1.Text = url.Groups[1].Value.Trim();
-             //   this.Hide();
-                
+              
+
+                string userId = Regex.Match(datas, @"userId"":([\s\S]*?)}").Groups[1].Value.Trim();
+                if (!codelist.Contains("userId") && userId.Trim() != "")
+                {
+                    codelist.Add(userId);
+                    textBox3.Text += userId + "\r\n";
+                  
+                }
+
             }
+
         }
 
         private void fiddlerUse_Load(object sender, EventArgs e)
@@ -154,5 +188,7 @@ namespace fiddler
             Stop();
             timer1.Stop();
         }
+
+       
     }
 }
