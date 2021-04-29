@@ -85,6 +85,9 @@ namespace 地图采集器
                 Location = myPosittion;
             }
         }
+
+
+        Dictionary<string, string> areadics = new Dictionary<string, string>();
         /// <summary>
         /// 获取经纬度
         /// </summary>
@@ -106,6 +109,7 @@ namespace 地图采集器
                 {
                     areas.Add(values[i].Groups[1].Value.Replace("，","%2C").Trim());
                 }
+               
             }
             return areas;
         }
@@ -179,6 +183,9 @@ namespace 地图采集器
 
                                 for (int i = 0; i < names.Count; i++)
                                 {
+                                    if (textBox1.Text != "" && !areas[i].Groups[1].Value.Replace("\"", "").Contains(textBox1.Text.Trim()))
+                                        continue;
+
                                     if (comboBox1.Text == "全部采集")
                                     {
 
@@ -282,9 +289,9 @@ namespace 地图采集器
 
             string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
 
-            if (!html.Contains(@"dituhuiyuan"))
+            if (!html.Contains(@"Xzn0x"))
             {
-                MessageBox.Show("验证失败");
+                MessageBox.Show("");
                 return;
             }
 
@@ -315,10 +322,7 @@ namespace 地图采集器
             }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            panel2.Visible = true;
-        }
+      
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
@@ -327,10 +331,10 @@ namespace 地图采集器
 
         private void 删除此项ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            for (int i = listView3.SelectedItems.Count - 1; i >= 0; i--)
+            for (int i = listView2.SelectedItems.Count - 1; i >= 0; i--)
             {
-                ListViewItem item = listView3.SelectedItems[i];
-                listView3.Items.Remove(item);
+                ListViewItem item = listView2.SelectedItems[i];
+                listView2.Items.Remove(item);
             }
         }
 
@@ -466,23 +470,47 @@ namespace 地图采集器
 
         #endregion
 
-       
-        private void button6_Click(object sender, EventArgs e)
+        #region  listview导出文本TXT
+        public static void ListviewToTxt(ListView listview, int i)
         {
-
-            citys.Clear();
-            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int i = 0; i < text.Length; i++)
+            if (listview.Items.Count == 0)
             {
-                if (!citys.Contains(text[i].Trim()) && text[i].Trim() != "")
+                MessageBox.Show("列表为空!");
+            }
+            else
+            {
+                List<string> list = new List<string>();
+                foreach (ListViewItem item in listview.Items)
                 {
-                    citys.Add(text[i].Trim());
-                    ListViewItem lv2 = listView2.Items.Add(text[i].Trim());
+
+                    list.Add(item.SubItems[i].Text + "," + item.SubItems[i + 1].Text + "," + item.SubItems[i + 2].Text + "," + item.SubItems[i + 3].Text + "," + item.SubItems[i + 4].Text);
+
 
                 }
+                Thread thexp = new Thread(() => export(list)) { IsBackground = true };
+                thexp.Start();
             }
-            panel2.Visible = false;
         }
+
+
+        private static void export(List<string> list)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "导出_" + Guid.NewGuid().ToString() + ".txt";
+
+            StringBuilder sb = new StringBuilder();
+            foreach (string tel in list)
+            {
+                sb.AppendLine(tel);
+            }
+            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            MessageBox.Show("文件导出成功!文件地址:" + path);
+        }
+
+
+
+        #endregion
+
+       
 
         private void 地图采集器_Load(object sender, EventArgs e)
         {
@@ -493,27 +521,25 @@ namespace 地图采集器
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             ProvinceCity.ProvinceCity.BindCity(comboBox2, comboBox3);
-            for (int i = 0; i < comboBox3.Items.Count; i++)
-            {
-                textBox1.Text += comboBox3.Items[i] + "\r\n";
-            }
+           
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBox1.Text += comboBox3.Text + "\r\n";
-        }
+       
 
         private void button2_Click(object sender, EventArgs e)
         {
-            zanting = false;
+            if (zanting == false)
+            {
+
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            zanting = true;
-        }
-
+       
         private void button4_Click(object sender, EventArgs e)
         {
             thread.Abort();
@@ -522,6 +548,28 @@ namespace 地图采集器
         private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ListviewToTxt(listView1,0);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            webbrowser web = new webbrowser();
+            web.Show();
+
+            if (!citys.Contains(comboBox3.Text))
+            {
+                listView2.Items.Add(comboBox3.Text);
+                citys.Add(comboBox3.Text);
+            }
+            else
+            {
+                MessageBox.Show(comboBox3.Text+"已添加");
+            }
+           
         }
     }
 }

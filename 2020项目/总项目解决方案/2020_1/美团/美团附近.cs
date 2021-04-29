@@ -22,7 +22,18 @@ namespace 美团
         {
             InitializeComponent();
         }
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cityId = GetcityId((comboBox3.Text.Replace("市","")));
+            getareas(cityId);
 
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProvinceCity.ProvinceCity.BindCity(comboBox2, comboBox3);
+
+        }
         #region GET请求
         public static string meituan_GetUrl(string Url)
         {
@@ -139,22 +150,41 @@ namespace 美团
 
         #endregion
 
+        Dictionary<string, string> areadics = new Dictionary<string, string>();
+
         #region 获取区域
-        public ArrayList getareas(string city)
+        public void getareas(string cityid)
         {
-            string Url = "https://" + city + ".meituan.com/meishi/";
+            areadics.Clear();
+            comboBox4.Items.Clear();
+            string Url = "https://i.meituan.com/wrapapi/search/filters?riskLevel=71&optimusCode=10&ci="+cityid;
 
             string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-            MatchCollection areas = Regex.Matches(html, @"""subAreas"":\[\{""id"":([\s\S]*?),");
-            ArrayList lists = new ArrayList();
+            MatchCollection areas = Regex.Matches(html, @"{""id"":([\s\S]*?),([\s\S]*?)""name"":""([\s\S]*?)""");
+          
 
-            foreach (Match item in areas)
+            for (int i = 0; i < areas.Count; i++)
             {
-                lists.Add(item.Groups[1].Value);
+
+                if (areas[i].Groups[3].Value.Contains("区") || areas[i].Groups[3].Value.Contains("县"))
+                {
+                    if (!areas[i].Groups[3].Value.Contains("小区") && !areas[i].Groups[3].Value.Contains("街区") && !areas[i].Groups[3].Value.Contains("商业区") && !areas[i].Groups[3].Value.Contains("城区") && !areas[i].Groups[3].Value.Contains("市区") && !areas[i].Groups[3].Value.Contains("地区") && !areas[i].Groups[3].Value.Contains("社区") && areas[i].Groups[3].Value.Length<5)
+                    {
+                        if (!areadics.ContainsKey(areas[i].Groups[3].Value))
+                        {
+                            areadics.Add(areas[i].Groups[3].Value, areas[i].Groups[1].Value);
+                            if (!comboBox4.Items.Contains(areas[i].Groups[3].Value))
+                            {
+                                comboBox4.Items.Add(areas[i].Groups[3].Value);
+                            }
+                        }
+                    }
+                }
+                   
             }
 
-            return lists;
+          
         }
 
         #endregion
@@ -182,34 +212,39 @@ namespace 美团
         }
 
         #endregion
+
         bool zanting = true;
+        bool status = true;
         ArrayList tels = new ArrayList();
         string cateid = "1";
+        string cityId = "1";
+
+        ArrayList finishes = new ArrayList();
         #region  主程序进入详情页
         public void run1()
         {
-            string city = textBox1.Text.Trim();
+            string city = "";
            ArrayList keywords = new ArrayList();
            
-            if (textBox2.Text != "")
-            {
-                keywords.Add(textBox2.Text.Trim());
-            }
+            //if (textBox2.Text != "")
+            //{
+            //    keywords.Add(textBox2.Text.Trim());
+            //}
             try
             {
 
 
-                if (textBox1.Text.Trim() == "")
-                {
-                    MessageBox.Show("请输入城市！");
-                    return;
-                }
+                //if (textBox1.Text.Trim() == "")
+                //{
+                //    MessageBox.Show("请输入城市！");
+                //    return;
+                //}
 
 
 
                 string cityId = GetcityId(city);
                
-                ArrayList areas = getareas(Getsuoxie(city));
+                ArrayList areas = null;
                 foreach (string areaId in areas)
                 {
                
@@ -310,99 +345,133 @@ namespace 美团
         #region  主程序
         public void run()
         {
-            string[] citys = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-            foreach (string city in citys)
+            ArrayList areaidlist = new ArrayList();
+
+            if (comboBox4.Text == "")
+            {
+                foreach (string item in comboBox4.Items)
+                {
+                    areaidlist.Add(areadics[item]);
+                }
+            }
+
+            else
+            {
+                areaidlist.Add(areadics[comboBox4.Text]);
+            }
+
+
+
+            try
             {
 
-                    string cityId = GetcityId((city));
-   
-                    try
+                foreach (string areaid in areaidlist)
+                {
+                    string[] catenames = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                    foreach (string catename in catenames)
+                    {
+
+                        switch (catename)
                         {
+                            case "餐饮美食":
+                                cateid = "1";
+                                break;
+                            case "小吃快餐":
+                                cateid = "36";
+                                break;
+                            case "丽人":
+                                cateid = "22";
+                                break;
+                            case "休闲娱乐":
+                                cateid = "2";
+                                break;
+                            case "饮品":
+                                cateid = "21329";
+                                break;
+                            case "蛋糕甜点":
+                                cateid = "11";
+                                break;
+                            case "美发":
+                                cateid = "74";
+                                break;
+                            case "美容美体":
+                                cateid = "76";
+                                break;
+                            case "婚纱摄影":
+                                cateid = "20178";
+                                break;
+                            case "汽车":
+                                cateid = "27";
+                                break;
+                            case "教育":
+                                cateid = "20285";
+                                break;
+                            case "KTV":
+                                cateid = "10";
+                                break;
+                            case "足疗":
+                                cateid = "52";
+                                break;
+                            case "洗浴汗蒸":
+                                cateid = "112";
+                                break;
+                            case "宠物医院":
+                                cateid = "20691";
+                                break;
 
-                            for (int i = 0; i < 100001; i = i + 100)
+                        }
+                        for (int i = 0; i < 1001; i = i + 100)
+
+                        {
+                            string Url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityId + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + i + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
+                          
+                            string html = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                            MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
+                            MatchCollection address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
+                            MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
+                            MatchCollection cate = Regex.Matches(html, @"mainCategoryName"":""([\s\S]*?)""");
+                            MatchCollection shangquan = Regex.Matches(html, @"""areaName"":""([\s\S]*?)""");
+
+                            if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                break;
+
+                            for (int j = 0; j < names.Count; j++)
 
                             {
-
-                                string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityId + "/cate/" + cateid + "?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
-
-                                string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-
-                                MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
-
-                                MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
-                                MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-                                MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
-
-                                MatchCollection cate = Regex.Matches(html, @"cateName"":""([\s\S]*?)""");
-                                MatchCollection area = Regex.Matches(html, @"areaName"":""([\s\S]*?)""");
-                                MatchCollection shangquan = Regex.Matches(html, @"mallName"":""([\s\S]*?)""");
-
-
-                                if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                                    break;
-
-                                for (int j = 0; j < names.Count; j++)
-
-
+                                if (!finishes.Contains(phone[j].Groups[1].Value))
                                 {
-                            if (checkBox1.Checked == true)
-                            {
-                                if (!phone[j].Groups[1].Value.Contains("-"))
-                                {
-                                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                    finishes.Add(phone[j].Groups[1].Value);
+                                    ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                     listViewItem.SubItems.Add(names[j].Groups[1].Value);
                                     listViewItem.SubItems.Add(address[j].Groups[1].Value);
                                     listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                    listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
-
                                     listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                    listViewItem.SubItems.Add(area[j].Groups[1].Value);
                                     listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
-
-                                    listViewItem.SubItems.Add(city);
+                                    listViewItem.SubItems.Add(comboBox2.Text);
                                 }
-
                             }
 
-                            else
-                            {
-                                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
-
-                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(area[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
-
-                                listViewItem.SubItems.Add(city);
-
-                            }
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
                             if (status == false)
                                 return;
-                            Thread.Sleep(200);
+                            Thread.Sleep(1000);
                         }
-                        Application.DoEvents();
-                          Thread.Sleep(1000);
+                    }
 
-
-
-                            }
-                        }
-                        catch (System.Exception ex)
-                        {
-                            ex.ToString();
-                        }
                 }
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+            }
             
+
 
         }
 
@@ -454,19 +523,10 @@ namespace 美团
                             {
                                 tels.Add(phone[j].Groups[1].Value);
                                 bool panduan = true;
-                                if (textBox2.Text == "" || names[j].Groups[1].Value.Contains(textBox2.Text.Trim()))
-                                {
-                                    panduan = true;
-                                }
-                               
-                                else
-                                {
-                                    panduan = false;
-                                }
+                        
                                 if (panduan)
                                 {
-                                    if (checkBox1.Checked == true)
-                                    {
+                                  
                                         if (!phone[j].Groups[1].Value.Contains("-") && !phone[j].Groups[1].Value.Contains("400"))
                                         {
 
@@ -481,22 +541,7 @@ namespace 美团
                                             listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
 
                                         }
-                                    }
-                                    else
-                                    {
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                        listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
-
-                                        listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(area[j].Groups[1].Value);
-                                        listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
-
-
-
-                                    }
+                          
 
                                     while (this.zanting == false)
                                     {
@@ -529,7 +574,7 @@ namespace 美团
         #endregion
 
       
-        bool status = true;
+    
         Thread thread;
 
         private void Button1_Click(object sender, EventArgs e)
@@ -538,7 +583,7 @@ namespace 美团
 
             string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
 
-            if (!html.Contains(@"147258369"))
+            if (!html.Contains(@"MBfRdu"))
             {
                 MessageBox.Show("");
                 return;
@@ -549,52 +594,7 @@ namespace 美团
             #endregion
 
             status = true;
-            switch (comboBox1.Text)
-            {
-                case "餐饮美食":
-                    cateid = "1";
-                    break;
-                case "小吃快餐":
-                    cateid = "36";
-                    break;
-                case "丽人":
-                    cateid = "22";
-                    break;
-                case "休闲娱乐":
-                    cateid = "2";
-                    break;
-                case "饮品":
-                    cateid = "21329";
-                    break;
-                case "蛋糕甜点":
-                    cateid = "11";
-                    break;
-                case "美发":
-                    cateid = "74";
-                    break;
-                case "美容美体":
-                    cateid = "76";
-                    break;
-                case "婚纱摄影":
-                    cateid = "20178";
-                    break;
-                case "汽车":
-                    cateid = "27";
-                    break;
-                case "教育":
-                    cateid = "20285";
-                    break;
-                case "KTV":
-                    cateid = "10";
-                    break;
-                case "洗浴汗蒸":
-                    cateid = "112";
-                    break;
-                case "宠物医院":
-                    cateid = "20691";
-                    break;
-
-            }
+           
 
           
             if (thread == null || !thread.IsAlive)
@@ -635,15 +635,6 @@ namespace 美团
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-        private void Button5_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -676,14 +667,10 @@ namespace 美团
             }
         }
 
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-            listView1.Items.Clear();
-        }
-
+      
         private void 美团附近_Load(object sender, EventArgs e)
         {
-
+            ProvinceCity.ProvinceCity.BindProvince(comboBox2);
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -694,6 +681,16 @@ namespace 美团
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.acaiji.com/");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox1.Text += comboBox1.Text + "\r\n";
         }
     }
 }

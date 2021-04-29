@@ -16,7 +16,7 @@ namespace 地图采集器
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 登录());
+            Application.Run(new 地图采集器());
         }
     }
 }

@@ -114,5 +114,10 @@ namespace 淘宝店铺商品采集
         {
             listView1.Items.Clear();
         }
+
+        private void 淘宝店铺商品_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

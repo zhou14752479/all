@@ -16,7 +16,7 @@ namespace 模拟采集谷歌版
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 京东一元SKU抓取());
+            Application.Run(new 发货易());
         }
     }
 }

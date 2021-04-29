@@ -67,8 +67,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1070, 650);
-            this.splitContainer1.SplitterDistance = 198;
+            this.splitContainer1.Size = new System.Drawing.Size(1060, 650);
+            this.splitContainer1.SplitterDistance = 196;
             this.splitContainer1.TabIndex = 5;
             // 
             // listView1
@@ -83,7 +83,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 291);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(198, 359);
+            this.listView1.Size = new System.Drawing.Size(196, 359);
             this.listView1.TabIndex = 62;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -158,7 +158,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(868, 27);
+            this.panel1.Size = new System.Drawing.Size(860, 27);
             this.panel1.TabIndex = 0;
             // 
             // button5
@@ -183,7 +183,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1070, 650);
+            this.ClientSize = new System.Drawing.Size(1060, 650);
             this.Controls.Add(this.splitContainer1);
             this.Name = "京东一元SKU抓取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -42,13 +42,13 @@
             this.button6 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,6 +173,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "导入文本";
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(133, 208);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(393, 172);
+            this.textBox2.TabIndex = 172;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -228,15 +237,7 @@
             // timer1
             // 
             this.timer1.Interval = 1000;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(133, 208);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(393, 172);
-            this.textBox2.TabIndex = 172;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // 数据爬取
             // 

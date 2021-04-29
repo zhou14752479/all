@@ -137,7 +137,7 @@ namespace 主程序202104
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show(ex.ToString());
+                      ex.ToString();
                     }
 
                 }
@@ -158,7 +158,7 @@ namespace 主程序202104
         {
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                for (int page = 1; page < 100; page++)
+                for (int page = 1; page < 2; page++)
                 {
                     try
                     {
@@ -233,7 +233,7 @@ namespace 主程序202104
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show(ex.ToString());
+                       ex.ToString();
                     }
 
                 }
@@ -304,7 +304,7 @@ namespace 主程序202104
                     Control.CheckForIllegalCrossThreadCalls = false;
                 }
             }
-            else
+            if (checkBox2.Checked == true)
             {
                 if (thread == null || !thread.IsAlive)
                 {

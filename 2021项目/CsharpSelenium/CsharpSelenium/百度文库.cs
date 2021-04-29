@@ -270,7 +270,7 @@ namespace CsharpSelenium
                             if (driver.PageSource.Contains("升级并完善"))
                             {
                                 driver.FindElement(By.ClassName("base-close")).Click();
-
+                               
                             }
 
                             Thread.Sleep(Convert.ToInt32(textBox3.Text)*1000);

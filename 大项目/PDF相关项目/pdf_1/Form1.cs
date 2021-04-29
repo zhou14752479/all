@@ -28,7 +28,7 @@ namespace pdf_1
 
         public string geshi { get; set; }
 
-
+        string DeskPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); //获取桌面路径
         List<string> listPDFs = new List<string>();
         private object thread;
 
@@ -63,7 +63,7 @@ namespace pdf_1
             }
 
 
-            string DeskPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); //获取桌面路径
+           
             if (!Directory.Exists(DeskPath + "\\PDF转换结果\\"))
             {
                 Directory.CreateDirectory(DeskPath + "\\PDF转换结果\\");
@@ -127,6 +127,25 @@ namespace pdf_1
                 myPosittion.Offset(-mPoint.X, -mPoint.Y);
                 Location = myPosittion;
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(DeskPath + "\\PDF转换结果\\");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("文件夹不存在");
+            }
+           
         }
     }
 }

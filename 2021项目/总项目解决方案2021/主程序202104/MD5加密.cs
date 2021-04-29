@@ -20,7 +20,34 @@ namespace 主程序202104
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox2.Text = method.GetMD5(textBox1.Text.Trim()+"siyiruanjian");
+           string md5 = method.GetMD5(textBox1.Text.Trim()+"siyiruanjian");
+           int timestamp = Convert.ToInt32(method.GetTimeStamp());
+            int guoqi = 0;
+            if (radioButton1.Checked == true)
+            {
+                guoqi = timestamp + 86400;
+            }
+            if (radioButton2.Checked == true)
+            {
+                guoqi = timestamp + 86400*7;
+            }
+            if (radioButton3.Checked == true)
+            {
+                guoqi = timestamp + 86400*30;
+            }
+            if (radioButton4.Checked == true)
+            {
+                guoqi = timestamp + 86400*90;
+            }
+            if (radioButton5.Checked == true)
+            {
+                guoqi = timestamp + 86400*180;
+            }
+            if (radioButton6.Checked == true)
+            {
+                guoqi = timestamp + 86400*360;
+            }
+            textBox2.Text = md5 +"asd"+ guoqi;
         }
     }
 }

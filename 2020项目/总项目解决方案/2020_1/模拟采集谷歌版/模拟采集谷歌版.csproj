@@ -69,6 +69,12 @@
     <Compile Include="京东一元SKU抓取.Designer.cs">
       <DependentUpon>京东一元SKU抓取.cs</DependentUpon>
     </Compile>
+    <Compile Include="发货易.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="发货易.Designer.cs">
+      <DependentUpon>发货易.cs</DependentUpon>
+    </Compile>
     <Compile Include="阿里1688.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="京东一元SKU抓取.resx">
       <DependentUpon>京东一元SKU抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="发货易.resx">
+      <DependentUpon>发货易.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="阿里1688.resx">
       <DependentUpon>阿里1688.cs</DependentUpon>

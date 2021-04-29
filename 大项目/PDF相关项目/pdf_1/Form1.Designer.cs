@@ -54,6 +54,7 @@
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -161,9 +162,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(276, 19);
+            this.label1.Size = new System.Drawing.Size(360, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "思忆PDF转WORD(张帅专用版)";
+            this.label1.Text = "思忆PDF转WORD(抖音粉丝免费专享版)";
             // 
             // splitContainer2
             // 
@@ -211,6 +212,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label4
             // 
@@ -252,6 +254,7 @@
             // 
             // splitContainer3.Panel2
             // 
+            this.splitContainer3.Panel2.Controls.Add(this.button5);
             this.splitContainer3.Panel2.Controls.Add(this.button4);
             this.splitContainer3.Panel2.Controls.Add(this.button3);
             this.splitContainer3.Panel2.Controls.Add(this.textBox1);
@@ -259,14 +262,14 @@
             this.splitContainer3.Panel2.Controls.Add(this.radioButton3);
             this.splitContainer3.Panel2.Controls.Add(this.button2);
             this.splitContainer3.Size = new System.Drawing.Size(228, 390);
-            this.splitContainer3.SplitterDistance = 167;
+            this.splitContainer3.SplitterDistance = 118;
             this.splitContainer3.TabIndex = 0;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton2.Location = new System.Drawing.Point(38, 100);
+            this.radioButton2.Location = new System.Drawing.Point(38, 83);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(114, 20);
             this.radioButton2.TabIndex = 2;
@@ -278,7 +281,7 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton1.Location = new System.Drawing.Point(38, 61);
+            this.radioButton1.Location = new System.Drawing.Point(38, 57);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(122, 20);
             this.radioButton1.TabIndex = 1;
@@ -314,11 +317,11 @@
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(38, 146);
+            this.button4.Location = new System.Drawing.Point(38, 137);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(151, 49);
+            this.button4.Size = new System.Drawing.Size(127, 34);
             this.button4.TabIndex = 6;
-            this.button4.Text = "转  换";
+            this.button4.Text = "转换";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -326,7 +329,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.White;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(171, 117);
+            this.button3.Location = new System.Drawing.Point(171, 108);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(45, 23);
             this.button3.TabIndex = 5;
@@ -335,7 +338,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(38, 119);
+            this.textBox1.Location = new System.Drawing.Point(38, 110);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(127, 21);
             this.textBox1.TabIndex = 4;
@@ -344,7 +347,7 @@
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton4.Location = new System.Drawing.Point(38, 95);
+            this.radioButton4.Location = new System.Drawing.Point(38, 84);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(106, 20);
             this.radioButton4.TabIndex = 3;
@@ -378,6 +381,19 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "输出目录";
             this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(38, 177);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(127, 34);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "打开目录";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
@@ -438,6 +454,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button5;
     }
 }
 

@@ -17,7 +17,7 @@ namespace 主程序202103
            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 裕丰ERP());
+            Application.Run(new 求购597mm());
         }
     }
 }

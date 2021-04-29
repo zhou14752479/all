@@ -65,6 +65,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="webbrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="webbrowser.Designer.cs">
+      <DependentUpon>webbrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="地图采集器.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="webbrowser.resx">
+      <DependentUpon>webbrowser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="地图采集器.resx">
       <DependentUpon>地图采集器.cs</DependentUpon>
     </EmbeddedResource>

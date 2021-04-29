@@ -165,6 +165,7 @@
             this.Name = "淘宝店铺商品";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "淘宝店铺商品";
+            this.Load += new System.EventHandler(this.淘宝店铺商品_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

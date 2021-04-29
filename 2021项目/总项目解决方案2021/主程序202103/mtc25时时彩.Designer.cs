@@ -33,8 +33,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -44,7 +42,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,9 +56,7 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader8});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("宋体", 10F);
             this.listView1.FullRowSelect = true;
@@ -68,7 +64,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 137);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(605, 305);
+            this.listView1.Size = new System.Drawing.Size(654, 305);
             this.listView1.TabIndex = 206;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -85,15 +81,8 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "第一球";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "第二球";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "第三球";
+            this.columnHeader3.Text = "号码";
+            this.columnHeader3.Width = 300;
             // 
             // button5
             // 
@@ -138,7 +127,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(605, 137);
+            this.panel1.Size = new System.Drawing.Size(654, 137);
             this.panel1.TabIndex = 205;
             // 
             // dateTimePicker2
@@ -191,20 +180,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // columnHeader6
+            // columnHeader8
             // 
-            this.columnHeader6.Text = "总和";
+            this.columnHeader8.Text = "总和";
+            this.columnHeader8.Width = 100;
             // 
             // mtc25时时彩
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 442);
+            this.ClientSize = new System.Drawing.Size(654, 442);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Name = "mtc25时时彩";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "mtc25加拿大28";
+            this.Text = "mtc25幸运快乐8";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mtc25时时彩_FormClosing);
             this.Load += new System.EventHandler(this.mtc25时时彩_Load);
             this.panel1.ResumeLayout(false);
@@ -224,12 +214,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }

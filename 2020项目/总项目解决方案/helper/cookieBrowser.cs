@@ -89,7 +89,7 @@ namespace helper
         private void button1_Click(object sender, EventArgs e)
         {
 
-            string cookie = method.GetCookies("https://dian.ysbang.cn/index.html#/indexContent?searchKey=%E9%B9%BF%E5%B7%9D%E6%B4%BB%E7%BB%9C%E8%83%B6%E5%9B%8A&_t=1618453221608");
+            string cookie = method.GetCookies("http://www.jszwfw.gov.cn/jsjis/admin/verifyCode.do?code=4&var=rand&width=90&height=45&random=0.08807624779516066;");
 
             textBox1.Text = cookie;
             //this.Hide();

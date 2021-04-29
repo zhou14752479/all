@@ -204,7 +204,7 @@ namespace 主程序202104
 
                 string large4 = Regex.Match(GetUrl("https://www.justeasy.cn/model/getmodeldetails?id=" + id, "utf-8"), @"""size"":""([\s\S]*?)MB").Groups[1].Value.Trim();
 
-
+                MessageBox.Show(large1+"#"+ large2 + "#"+ large3 + "#"+ large4 + "#");
                 if (large1 != "")
                 {
                     if (Math.Abs(Convert.ToInt32(Convert.ToDouble(large1)) - large) <= 1)
@@ -252,12 +252,12 @@ namespace 主程序202104
                 {
                     return "4";
                 }
-                return "";
+                return "未匹配到";
             }
             catch (Exception ex)
             {
 
-                return ""; ;
+                return "异常"; ;
             }
           
         }
@@ -394,6 +394,7 @@ namespace 主程序202104
                     string picurl = "";
 
                     string pingtai = getlarge(id, large);
+                    MessageBox.Show(pingtai);
                     string pingtainame = "";
                     if (pingtai == "1")
                     {
