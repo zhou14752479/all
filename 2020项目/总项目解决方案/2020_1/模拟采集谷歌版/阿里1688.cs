@@ -69,7 +69,7 @@ namespace 模拟采集谷歌版
         private void 拼多多后台_Load(object sender, EventArgs e)
         {
             browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
-            browser.Load("https://h5.waimai.meituan.com/waimai/mindex/menu?mtShopId=994689870377707&initialLat=30.316071&initialLng=120.338021&actualLat=&actualLng=&source=searchresult");
+            browser.Load("https://h5.waimai.meituan.com/waimai/mindex/menu?dpShopId=&mtShopId=857036183426974");
             browser.Parent = splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -110,7 +110,7 @@ namespace 模拟采集谷歌版
                         if (response.Result != null)
                         {
                             string resultStr = response.Result.ToString();
-                         
+                            textBox1.Text = resultStr;
                                 MatchCollection ids = Regex.Matches(resultStr, @"<div class=""company-tag-row""><a href=""https([\s\S]*?)1688");
 
                                 if (ids.Count == 0)
@@ -152,41 +152,10 @@ namespace 模拟采集谷歌版
 
         private void button2_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"1688917"))
-            {
-                MessageBox.Show("验证失败");
-                return;
-            }
+            
 
 
-
-            #endregion
-
-            for (int i = 1; i < 4; i++)
-            {
-
-
-                status = false;
-                browser.Load("https://s.1688.com/company/company_search.htm?keywords="+ System.Web.HttpUtility.UrlEncode(textBox2.Text) + "&n=y&netType=16&spm=a260k.dacugeneral.search.0&beginPage="+i+"#sm-filtbar");
-
-
-
-                while (status == false)
-                {
-                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                }
-                
-            }
-
-            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-
-
-            Thread thread = new Thread(new ThreadStart(getrun));
+            Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
 

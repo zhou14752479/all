@@ -75,12 +75,28 @@ namespace 股票统计
         {
 
         }
-
+        Thread thread;
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"juuoQ"))
+            {
+               
+                return;
+            }
+
+
+
+            #endregion
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
         /// <summary>
         /// 插入数据库
@@ -109,31 +125,7 @@ namespace 股票统计
         }
         private void Button2_Click(object sender, EventArgs e)
         {
-            string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
-            MySqlConnection mycon = new MySqlConnection(constr);
-            mycon.Open();
-
-            MySqlCommand cmd = new MySqlCommand("select * from vip where username='股票统计'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-            if (reader.Read())
-            {
-
-                string password = reader["password"].ToString().Trim();
-
-                if (password != "股票统计")
-
-                {
-                    MessageBox.Show("验证失败");
-
-                    Environment.Exit(0);
-                }
-
-
-              
-
-            }
+       
 
 
 

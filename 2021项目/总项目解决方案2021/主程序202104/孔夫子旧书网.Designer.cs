@@ -41,12 +41,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "售价";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 80;
             // 
             // columnHeader3
             // 
@@ -69,7 +70,8 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
@@ -158,6 +160,11 @@
             this.label2.TabIndex = 317;
             this.label2.Text = "未开始";
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "定价";
+            this.columnHeader5.Width = 80;
+            // 
             // 孔夫子旧书网
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -196,5 +203,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

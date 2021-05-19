@@ -83,7 +83,7 @@ string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
 【九、写入TXT文件】
   	FileStream fs1 = new FileStream(path + "新文档.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-      	StreamWriter sw = new StreamWriter(fs1);
+      	StreamWriter sw = new StreamWriter(fs1,Encoding.GetEncoding("UTF-8"));
     	 sw.WriteLine(text[i]);
       	 sw.Close();
        	 fs1.Close(); 

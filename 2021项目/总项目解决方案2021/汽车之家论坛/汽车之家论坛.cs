@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using myDLL;
 
 
 namespace 汽车之家论坛
@@ -33,7 +34,7 @@ namespace 汽车之家论坛
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.AllowAutoRedirect = true;
+                request.AllowAutoRedirect = false;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36";
                 request.Referer = Url;
                 request.Headers.Add("Cookie", COOKIE);
@@ -81,10 +82,18 @@ namespace 汽车之家论坛
 
             string html2 = GetUrlWithCookie(url, "", "GBK");
             string page = Regex.Match(html2, @">\.\.\.([\s\S]*?)<").Groups[1].Value;
-            return Convert.ToInt32(page) + 1;
+            if (page != "")
+            {
+                return Convert.ToInt32(page) + 1;
+            }
+            else
+            {
+                return 10;
+            }
+           
         }
 
-     string xcarcookie="nguv=c_16193174932884344823461721897756308; __jsluid_s=c0e6f58bf0b66681dd8c3d8c046a5583; _Xdwuv=6084d2f5d1594; _Xdwnewuv=1; _PVXuv=6084d2f5699df; Hm_lvt_53eb54d089f7b5dd4ae2927686b183e0=1619317494,1619488210; TY_SESSION_ID=db8894e1-0f5c-4122-9434-2cd9fba27256; iwt_uuid=6ed099db-84d8-4543-8d9e-2f38dc5a2257; _locationInfo_=%7Burl%3A%22http%3A%2F%2Fsuqian.xcar.com.cn%2F%22%2Ccity_id%3A%22643%22%2Cprovince_id%3A%2225%22%2C%20city_name%3A%22%25E5%25AE%25BF%25E8%25BF%2581%22%7D; _newLocationInfo=%7B%22url%22%3A%22http%3A%2F%2Fsuqian.xcar.com.cn%2F%22%2C%22city_id%22%3A%22643%22%2C%22province_id%22%3A%2225%22%2C%20%22city_name%22%3A%22%25E5%25AE%25BF%25E8%25BF%2581%22%7D; isRemoveCookie=1; uv_firstv_refers=https%3A//www.xcar.com.cn/bbs/forumdisplay.php%3Ffid%3D542%26orderby%3Ddateline%26filter%3D%26ondigest%3D0; fw_slc=1%3A1619488211%3B1%3A1619493478%3B1%3A1619493484%3B1%3A1619493490%3B1%3A1619493491; fw_pvc=1%3A1619488209%3B1%3A1619493475%3B1%3A1619493484%3B1%3A1619493506%3B1%3A1619493523; fw_exc=1%3A1619488216%3B1%3A1619493487%3B1%3A1619493516%3B1%3A1619493522%3B1%3A1619493531; fw_clc=1%3A1619493483%3B1%3A1619493505%3B1%3A1619493522%3B1%3A1619493531%3B1%3A1619493539; bbs_visitedfid=542; bbs_abtest=a; zg_did=%7B%22did%22%3A%20%2217906d80eee993-032adcf45170d8-d7e163f-1fa400-17906d80eef2ac%22%7D; zg_8f3d0255011c4bc5bae66beca6584825=%7B%22sid%22%3A%201619493475919%2C%22updated%22%3A%201619494180768%2C%22info%22%3A%201619317493496%2C%22superProperty%22%3A%20%22%7B%5C%22platform_type%5C%22%3A%20%5C%22PC%5C%22%2C%5C%22login_id%5C%22%3A%20null%2C%5C%22project_name%5C%22%3A%20%5C%22XCAR%5C%22%2C%5C%22login_status%5C%22%3A%200%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22%22%2C%22zs%22%3A%200%2C%22sc%22%3A%200%2C%22firstScreen%22%3A%201619493475919%7D; _Xdwstime=1619494183; Hm_lpvt_53eb54d089f7b5dd4ae2927686b183e0=1619494181";
+        string xcarcookie = "TY_SESSION_ID=cb444e47-8a9e-4c4c-8214-eda6402ac9e6; nguv=c_16193174932884344823461721897756308; __jsluid_s=c0e6f58bf0b66681dd8c3d8c046a5583; _Xdwuv=6084d2f5d1594; _Xdwnewuv=1; _PVXuv=6084d2f5699df; bbs_abtest=a; bbs_visitedfid=493D542; iwt_uuid=6ed099db-84d8-4543-8d9e-2f38dc5a2257; Hm_lvt_53eb54d089f7b5dd4ae2927686b183e0=1619317494,1619488210,1619596604,1619748123; uv_firstv_refers=https%3A//www.xcar.com.cn/bbs/forumdisplay.php%3Ffid%3D493%26orderby%3Ddateline%26filter%3D%26ondigest%3D0; fw_slc=1%3A1619748159%3B1%3A1619748174%3B1%3A1619748175%3B1%3A1619748177%3B1%3A1619748203; orderby=1; fw_clc=1%3A1619748161%3B1%3A1619748201%3B1%3A1619748236; _Xdwstime=1619748261; zg_did=%7B%22did%22%3A%20%2217906d80eee993-032adcf45170d8-d7e163f-1fa400-17906d80eef2ac%22%7D; zg_8f3d0255011c4bc5bae66beca6584825=%7B%22sid%22%3A%201619748122800%2C%22updated%22%3A%201619748259128%2C%22info%22%3A%201619317493496%2C%22superProperty%22%3A%20%22%7B%5C%22platform_type%5C%22%3A%20%5C%22PC%5C%22%2C%5C%22login_id%5C%22%3A%20null%2C%5C%22project_name%5C%22%3A%20%5C%22XCAR%5C%22%2C%5C%22login_status%5C%22%3A%200%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22%22%2C%22zs%22%3A%200%2C%22sc%22%3A%200%2C%22firstScreen%22%3A%201619748122800%7D; fw_pvc=1%3A1619748122%3B1%3A1619748162%3B1%3A1619748202%3B1%3A1619748237%3B1%3A1619748259; Hm_lpvt_53eb54d089f7b5dd4ae2927686b183e0=1619748259; fw_exc=1%3A1619748161%3B1%3A1619748201%3B1%3A1619748236%3B1%3A1619748237%3B1%3A1619748307";
         public int xcargetpage(string url)
         {
 
@@ -109,10 +118,10 @@ namespace 汽车之家论坛
         {
 
             
-            for (int i = 0; i <richTextBox1.Lines.Length;i++)
+            for (int i = 0; i <textBox1.Lines.Length;i++)
             {
                
-                string startUrl = richTextBox1.Lines[i].ToString().Trim();
+                string startUrl = textBox1.Lines[i].ToString().Trim();
                 int totalpage = autohomegetpage(startUrl);
 
                 for (int page = 1; page < totalpage; page++)
@@ -165,8 +174,8 @@ namespace 汽车之家论坛
 
                        
                     }
-                  
 
+                    Thread.Sleep(2000);
                     Dictionary<string, string> dics = new Dictionary<string, string>();
                     string aurl = "https://clubajax.autohome.com.cn/topic/rv?fun=jsonprv&callback=jsonprv&ids="+sb.ToString()+"&r=Thu+Apr+01+2021+12%3A27%3A32+GMT%2B0800+(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)&callback=jsonprv&_=1617251252573";
                     string ahtml = GetUrlWithCookie(aurl, "", "gb2312");
@@ -229,6 +238,7 @@ namespace 汽车之家论坛
                             lv1.SubItems.Add(text[10]);
                             lv1.SubItems.Add(anames[j].Groups[2].Value.Trim());
                             lv1.SubItems.Add(adates[j].Groups[1].Value.Trim());
+                            lv1.SubItems.Add("汽车之家");
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -243,7 +253,7 @@ namespace 汽车之家论坛
                         }
                     }
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(3000);
                 }
             }
 
@@ -257,10 +267,10 @@ namespace 汽车之家论坛
         {
 
 
-            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            for (int i = 0; i < textBox1.Lines.Length; i++)
             {
 
-                string startUrl = richTextBox1.Lines[i].ToString().Trim();
+                string startUrl = textBox1.Lines[i].ToString().Trim();
                 int totalpage = yichegetpage(startUrl);
 
                 for (int page = 1; page < totalpage; page++)
@@ -273,7 +283,7 @@ namespace 汽车之家论坛
                     if (ahtmls.Count == 0)
                         break;
 
-                    for (int j = 0; j < ahtmls.Count; j++)
+                    for (int j = 5; j < ahtmls.Count; j++)
                     {
                         try
                         {
@@ -302,6 +312,7 @@ namespace 汽车之家论坛
                             lv1.SubItems.Add(fatieren[0].Groups[2].Value.Trim());
                             lv1.SubItems.Add(lastfatieren.Trim());
                             lv1.SubItems.Add(lastfatietime.Trim());
+                            lv1.SubItems.Add("易车");
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -330,10 +341,10 @@ namespace 汽车之家论坛
         {
 
 
-            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            for (int i = 0; i < textBox1.Lines.Length; i++)
             {
 
-                string startUrl = richTextBox1.Lines[i].ToString().Trim();
+                string startUrl = textBox1.Lines[i].ToString().Trim();
                 string fid = Regex.Match(startUrl, @"\d{3,}").Groups[0].Value;
 
                 int totalpage = pcautogetpage(startUrl);
@@ -346,7 +357,8 @@ namespace 汽车之家论坛
                     string html = GetUrlWithCookie(url,"","GBK");
                     MatchCollection ahtmls = Regex.Matches(html, @"<tr onmouseout([\s\S]*?)</tbody>");
                     MatchCollection uids = Regex.Matches(html, @"<th class=""title checkbox_title2"" tid=""([\s\S]*?)""");
-
+                    if (ahtmls.Count == 0)
+                        break;
                     StringBuilder sb = new StringBuilder();
                     Dictionary<string, string> dics = new Dictionary<string, string>();
                    
@@ -371,8 +383,7 @@ namespace 汽车之家论坛
                     }
 
 
-                    if (ahtmls.Count == 0)
-                        break;
+                   
 
                     for (int j = 0; j < ahtmls.Count; j++)
                     {
@@ -404,6 +415,7 @@ namespace 汽车之家论坛
                             lv1.SubItems.Add(fatieren[0].Groups[1].Value.Trim());
                             lv1.SubItems.Add(lastfatieren.Trim());
                             lv1.SubItems.Add(lastfatietime.Trim());
+                            lv1.SubItems.Add("太平洋汽车");
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -432,16 +444,16 @@ namespace 汽车之家论坛
         {
 
 
-            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            for (int i = 0; i < textBox1.Lines.Length; i++)
             {
 
-                string startUrl = richTextBox1.Lines[i].ToString().Trim();
+                string startUrl = textBox1.Lines[i].ToString().Trim();
                 int totalpage = xcargetpage(startUrl);
 
                 for (int page = 1; page < totalpage; page++)
                 {
 
-                    string url = startUrl + "&page="+page;
+                    string url = startUrl + "&orderby=dateline&filter=&ondigest=0&page=" + page;
                   
                     string html = GetUrlWithCookie(url, xcarcookie, "utf-8");
                     MatchCollection ahtmls = Regex.Matches(html, @"<dl class=""list_dl"">([\s\S]*?)</dl>");
@@ -495,6 +507,7 @@ namespace 汽车之家论坛
                             lv1.SubItems.Add(fatieren[0].Groups[1].Value.Trim());
                             lv1.SubItems.Add(lastfatieren.Trim());
                             lv1.SubItems.Add(lastfatietime.Trim());
+                            lv1.SubItems.Add("爱卡汽车");
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -524,14 +537,23 @@ namespace 汽车之家论坛
         public void autohometiezi()
         {
 
-            for (int i = 0; i < richTextBox2.Lines.Length; i++)
+            for (int i = 0; i < textBox2.Lines.Length; i++)
             {
-                string url = richTextBox2.Lines[i].ToString().Trim();
+                string url = textBox2.Lines[i].ToString().Trim();
                 string id= Regex.Match(url, @"\d{5,}").Groups[0].Value;
                 string html = GetUrlWithCookie(url, "", "utf-8");
 
                 string ahtml= GetUrlWithCookie("https://club.autohome.com.cn/frontapi/getclicksandreplys?topicids="+id, "", "utf-8");
-            
+
+                if (html.Contains("主楼已被删除"))
+                {
+                    ListViewItem lv= listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv.SubItems.Add("被删除");
+                    lv.SubItems.Add(url);
+                    continue;
+                }
+                string title = Regex.Match(html, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+                string type = Regex.Match(html, @"<span class=""post-title-mark"">([\s\S]*?)</span>").Groups[1].Value;
                 string liulan = Regex.Match(ahtml, @"""views"":([\s\S]*?),").Groups[1].Value;
                 string huifu = Regex.Match(ahtml, @"""replys"":([\s\S]*?),").Groups[1].Value;
                 string fabutime = Regex.Match(html, @"发表于<strong>([\s\S]*?)</strong>").Groups[1].Value;
@@ -539,11 +561,17 @@ namespace 汽车之家论坛
 
                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
 
-                lv1.SubItems.Add("");
+                lv1.SubItems.Add(title);
                 lv1.SubItems.Add(url);
                 lv1.SubItems.Add(liulan.Trim());
                 lv1.SubItems.Add(huifu.Trim());
                 lv1.SubItems.Add(fabutime.Trim());
+                lv1.SubItems.Add(type.Trim());
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("汽车之家");
                 while (this.zanting == false)
                 {
                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -559,26 +587,43 @@ namespace 汽车之家论坛
         public void yichetiezi()
         {
 
-            for (int i = 0; i < richTextBox2.Lines.Length; i++)
+            for (int i = 0; i < textBox2.Lines.Length; i++)
             {
-                string url = richTextBox2.Lines[i].ToString().Trim();
+                string url = textBox2.Lines[i].ToString().Trim();
                 string id = Regex.Match(url, @"\d{5,}").Groups[0].Value;
                 string html = GetUrlWithCookie(url, "", "utf-8");
 
-              
-
+               
+                string title = Regex.Match(html, @"<title>([\s\S]*?)_").Groups[1].Value;
+                string type = Regex.Match(html, @"<i class=""post-tiwen"">([\s\S]*?)</i>").Groups[1].Value;
                 string liulan = Regex.Match(html, @"<span class=""view-num"">浏览([\s\S]*?)</span>").Groups[1].Value;
                 string huifu = Regex.Match(html, @"<i id=""huiNumber"">([\s\S]*?)</i>").Groups[1].Value;
                 string fabutime = Regex.Match(html, @"<span class=""post-time"">发表于([\s\S]*?)</span>").Groups[1].Value;
 
 
+                if (title=="")
+                {
+                    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv.SubItems.Add("被删除");
+                    lv.SubItems.Add(url);
+                    continue;
+                }
+
+
                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
 
-                lv1.SubItems.Add("");
+                lv1.SubItems.Add(title);
                 lv1.SubItems.Add(url);
                 lv1.SubItems.Add(liulan.Trim());
                 lv1.SubItems.Add(huifu.Trim());
                 lv1.SubItems.Add(fabutime.Trim());
+                lv1.SubItems.Add(type.Trim());
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+            
+                lv1.SubItems.Add("易车");
                 while (this.zanting == false)
                 {
                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -594,26 +639,39 @@ namespace 汽车之家论坛
         public void pcautotiezi()
         {
 
-            for (int i = 0; i < richTextBox2.Lines.Length; i++)
+            for (int i = 0; i < textBox2.Lines.Length; i++)
             {
-                string url = richTextBox2.Lines[i].ToString().Trim();
+                string url = textBox2.Lines[i].ToString().Trim();
                 string id = Regex.Match(url, @"\d{5,}").Groups[0].Value;
                 string html = GetUrlWithCookie(url, "", "GBK");
               
                 string ahtml = GetUrlWithCookie("https://bbs.pcauto.com.cn/intf/topic/counter.ajax?tid=" + id, "u=4118ym2c; u4ad=417x48ct; pcsuv=1618476965044.a.175645191; pcLocate=%7B%22proCode%22%3A%22320000%22%2C%22pro%22%3A%22%E6%B1%9F%E8%8B%8F%E7%9C%81%22%2C%22cityCode%22%3A%22321300%22%2C%22city%22%3A%22%E5%AE%BF%E8%BF%81%E5%B8%82%22%2C%22dataType%22%3A%22ipJson%22%2C%22expires%22%3A1619772964958%7D; PClocation=390; pcautoLocate=%7B%22proId%22%3A1%2C%22cityId%22%3A390%2C%22url%22%3A%22%2F%2Fwww.pcauto.com.cn%2Fqcbj%2Fsuqian%2F%22%2C%22dataTypeAuto%22%3A%22region_ipArea%22%7D; favCar=%E5%9D%A6%E5%85%8B300_26541; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2217906df8ac15a-0a8094cfae8018-d7e163f-2073600-17906df8ac2b68%22%2C%22first_id%22%3A%22%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%2217906df8ac15a-0a8094cfae8018-d7e163f-2073600-17906df8ac2b68%22%7D; visitedfid=16040; ivy_look_number_475946_688267=1; iwt_uuid=90f3ba2f-e423-4d4f-8169-08664dd8f91f; __v24d714fb2336ae1477023d674cbf81fd=1; ivy_look_number_208004_700160=1; ivy_look_number_503894_667468=1; channel=9630; ivy_look_number_509339_650703=1; __v704088=2; __v708856=1; __v707639=1; __v708786=3; __v707559=1; __v704001=3; __v708787=1; __v708859=3; ivy_look_number_106349_658972=2; ivy_look_number_222090_692657=2; pcuvdata=lastAccessTime=1619596160506|visits=11", "utf-8");
-             
+                string title = Regex.Match(html, @"<title>([\s\S]*?)_").Groups[1].Value;
+                string type = Regex.Match(html, @"<div class=""post_r_tit"">([\s\S]*?)</a>").Groups[1].Value;
                 string liulan = Regex.Match(ahtml, @"""views"":([\s\S]*?)}").Groups[1].Value;
                 string huifu = Regex.Match(html, @"<span class=""yh"">([\s\S]*?)</span>").Groups[1].Value;
                 string fabutime = Regex.Match(html, @"发表于([\s\S]*?)</div>").Groups[1].Value;
-
+                if (title == "")
+                {
+                    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv.SubItems.Add("被删除");
+                    lv.SubItems.Add(url);
+                    continue;
+                }
 
                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
 
-                lv1.SubItems.Add("");
+                lv1.SubItems.Add(title.Trim());
                 lv1.SubItems.Add(url);
                 lv1.SubItems.Add(liulan.Trim());
                 lv1.SubItems.Add(huifu.Trim());
                 lv1.SubItems.Add(fabutime.Trim());
+                lv1.SubItems.Add(Regex.Replace(type.Trim(), "<[^>]+>", ""));
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("太平洋汽车");
                 while (this.zanting == false)
                 {
                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -629,14 +687,21 @@ namespace 汽车之家论坛
         public void xcartiezi()
         {
 
-            for (int i = 0; i < richTextBox2.Lines.Length; i++)
+            for (int i = 0; i < textBox2.Lines.Length; i++)
             {
-                string url = richTextBox2.Lines[i].ToString().Trim();
+                string url = textBox2.Lines[i].ToString().Trim();
                 string id = Regex.Match(url, @"\d{5,}").Groups[0].Value;
                 string html = GetUrlWithCookie(url, xcarcookie, "utf-8");
 
-              
-
+                if (html.Contains("被删除"))
+                {
+                    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv.SubItems.Add("被删除");
+                    lv.SubItems.Add(url);
+                    continue;
+                }
+                string title = Regex.Match(html, @"<title>([\s\S]*?)-").Groups[1].Value;
+               
                 string liulan = Regex.Match(html, @"<span>查看([\s\S]*?)<").Groups[1].Value;
                 string huifu = Regex.Match(html, @"</i>回复([\s\S]*?)<").Groups[1].Value;
                 string fabutime = Regex.Match(html, @"发表于([\s\S]*?)<").Groups[1].Value;
@@ -644,11 +709,17 @@ namespace 汽车之家论坛
 
                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
 
-                lv1.SubItems.Add("");
+                lv1.SubItems.Add(title);
                 lv1.SubItems.Add(url);
                 lv1.SubItems.Add(liulan.Trim());
                 lv1.SubItems.Add(huifu.Trim());
                 lv1.SubItems.Add(fabutime.Trim());
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("爱卡汽车");
                 while (this.zanting == false)
                 {
                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -680,14 +751,15 @@ namespace 汽车之家论坛
 
             #endregion
 
+            status = true;
             if (tabControl1.SelectedIndex == 0)
             {
-                if (richTextBox1.Text == "")
+                if (textBox1.Text == "")
                 {
                     MessageBox.Show("论坛地址为空");
                     return;
                 }
-                if (richTextBox1.Text.Contains("autohome"))
+                if (textBox1.Text.Contains("autohome"))
                 {
                     if (thread == null || !thread.IsAlive)
                     {
@@ -696,7 +768,7 @@ namespace 汽车之家论坛
                         Control.CheckForIllegalCrossThreadCalls = false;
                     }
                 }
-                else if (richTextBox1.Text.Contains("yiche"))
+                else if (textBox1.Text.Contains("yiche"))
                 {
 
                     if (thread == null || !thread.IsAlive)
@@ -707,7 +779,7 @@ namespace 汽车之家论坛
                     }
                 }
 
-                else if (richTextBox1.Text.Contains("pcauto"))
+                else if (textBox1.Text.Contains("pcauto"))
                 {
                     if (thread == null || !thread.IsAlive)
                     {
@@ -716,7 +788,7 @@ namespace 汽车之家论坛
                         Control.CheckForIllegalCrossThreadCalls = false;
                     }
                 }
-                else if (richTextBox1.Text.Contains("xcar"))
+                else if (textBox1.Text.Contains("xcar"))
                 {
                     if (thread == null || !thread.IsAlive)
                     {
@@ -728,13 +800,13 @@ namespace 汽车之家论坛
             }
             if (tabControl1.SelectedIndex == 1)
             {
-                if (richTextBox2.Text == "")
+                if (textBox2.Text == "")
                 {
                     MessageBox.Show("帖子地址为空");
                     return;
                 }
                 
-                if (richTextBox2.Text.Contains("autohome"))
+                if (textBox2.Text.Contains("autohome"))
                 {
                     if (thread == null || !thread.IsAlive)
                     {
@@ -743,7 +815,7 @@ namespace 汽车之家论坛
                         Control.CheckForIllegalCrossThreadCalls = false;
                     }
                 }
-                else if (richTextBox2.Text.Contains("yiche"))
+                else if (textBox2.Text.Contains("yiche"))
                 {
 
                     if (thread == null || !thread.IsAlive)
@@ -754,7 +826,7 @@ namespace 汽车之家论坛
                     }
                 }
 
-                else if (richTextBox2.Text.Contains("pcauto"))
+                else if (textBox2.Text.Contains("pcauto"))
                 {
                     if (thread == null || !thread.IsAlive)
                     {
@@ -763,7 +835,7 @@ namespace 汽车之家论坛
                         Control.CheckForIllegalCrossThreadCalls = false;
                     }
                 }
-                else if (richTextBox2.Text.Contains("xcar"))
+                else if (textBox2.Text.Contains("xcar"))
                 {
                     if (thread == null || !thread.IsAlive)
                     {
@@ -860,7 +932,8 @@ namespace 汽车之家论坛
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ListViewToCSV(listView1,true);
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            //ListViewToCSV(listView1,true);
         }
 
         private void button5_Click(object sender, EventArgs e)

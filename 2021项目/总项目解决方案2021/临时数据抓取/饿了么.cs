@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using MySql.Data.MySqlClient;
 
 namespace 临时数据抓取
 {
@@ -217,6 +218,104 @@ namespace 临时数据抓取
 
         #endregion
 
+        public void insert(string a1, string a2, string a3, string a4, string a5, string a6)
+        {
+
+            try
+            {
+                string constr = "Host =localhost;Database=yanxiu_user;Username=root;Password=c#kaifa6668.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO datas (name,card,phone,uid,nickname,json)VALUES('" + a1 + " ', '" + a2 + " ', '" + a3 + " ', '" + a4 + " ', '" + a5 + " ', '" + a6 + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+
+                    mycon.Close();
+
+                }
+
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+               textBox1.Text=DateTime.Now.ToString()+ (ex.ToString());
+            }
+        }
+
+
+            List<int> lists = new List<int>();
+        #region 研修网用户
+
+        public void yanxiu(object o)
+        {
+
+            string[] text =o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+            int start = Convert.ToInt32(text[0]);
+            int end = Convert.ToInt32(text[1]);
+            for (int i = start; i < end; i++)
+            {
+                label1.Text = i.ToString();
+                try
+                {
+                 
+                        string url = "http://uc.yanxiu.com/ucn/platform/data.api?method=user.getUserInfoByLoginName&loginName=" + i;
+
+                        string html = method.GetUrl(url, "utf-8");
+
+                        string name = Regex.Match(html, @"""realName"":""([\s\S]*?)""").Groups[1].Value;
+                        string card = Regex.Match(html, @"""idCard"":""([\s\S]*?)""").Groups[1].Value;
+                        string phone = Regex.Match(html, @"""mobile"":""([\s\S]*?)""").Groups[1].Value;
+                        string nickname = Regex.Match(html, @"""nickName"":""([\s\S]*?)""").Groups[1].Value;
+
+                        if (card == "")
+                            continue;
+
+                    insert(name,card,phone,i.ToString(),nickname,html);
+                        //ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        //lv1.SubItems.Add(name);
+                        //lv1.SubItems.Add(card);
+                        //lv1.SubItems.Add(phone);
+                        //lv1.SubItems.Add(i.ToString());
+                        //lv1.SubItems.Add(nickname);
+                        //lv1.SubItems.Add(html);
+
+
+
+                    while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+                    
+                }
+                catch (Exception)
+                {
+
+                   continue;
+                }
+                
+            }
+
+            richTextBox1.Text += "结束"+start+"----"+end+"\r\n";
+
+
+        }
+
+        #endregion
+
+        
+        
+        
+        
+        
         Thread thread;
         bool status = true;
         bool zanting = true;
@@ -255,12 +354,57 @@ namespace 临时数据抓取
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(run);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+
+
+
+
+            Thread thread = new Thread(new ParameterizedThreadStart(yanxiu));
+            string o = "8000000,20000000";
+            thread.Start((object)o);
+            Control.CheckForIllegalCrossThreadCalls = false;
+
+            //Thread t1 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o1 = "1000000,2000000";
+            //t1.Start((object)o1);
+
+            //Thread t2 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o2 = "2000000,3000000";
+            //t2.Start((object)o2);
+
+
+            //Thread t3 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o3 = "3000000,4000000";
+            //t3.Start((object)o3);
+
+            //Thread t4 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o4 = "4000000,5000000";
+            //t4.Start((object)o4);
+
+
+            //Thread t5 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o5 = "5000000,6000000";
+            //t5.Start((object)o5);
+            //Thread t6 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o6 = "6000000,7000000";
+            //t6.Start((object)o6);
+            //Thread t7 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o7 = "7000000,8000000";
+            //t7.Start((object)o7);
+            //Thread t8 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o8 = "8000000,9000000";
+            //t8.Start((object)o8);
+            //Thread t9 = new Thread(new ParameterizedThreadStart(yanxiu));
+            //string o9 = "9000000,10000000";
+            //t9.Start((object)o9);
+           
+
+
         }
 
         private void 饿了么_FormClosing(object sender, FormClosingEventArgs e)

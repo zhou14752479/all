@@ -88,15 +88,43 @@ namespace 地图采集器
 
 
         Dictionary<string, string> areadics = new Dictionary<string, string>();
+        ///// <summary>
+        ///// 获取经纬度
+        ///// </summary>
+        ///// <param name="city"></param>
+        ///// <returns></returns>
+        //public ArrayList getlat(string city)
+        //{
+        //    ArrayList areas = new ArrayList();
+        //    string url = "http://www.jsons.cn/lngcode/?keyword="+ System.Web.HttpUtility.UrlEncode(city) + "&txtflag=0";
+        //    string html = GetUrl(url);
+
+        //    Match ahtml = Regex.Match(html, @"<table class=""table table-bordered table-hover"">([\s\S]*?)</table>");
+
+        //    MatchCollection values = Regex.Matches(ahtml.Groups[1].Value, @"<td>([\s\S]*?)</td>");
+
+        //    for (int i = 0; i < values.Count; i++)
+        //    {
+        //        if (values[i].Groups[1].Value.Contains("1"))
+        //        {
+        //            areas.Add(values[i].Groups[1].Value.Replace("，","%2C").Trim());
+        //        }
+
+        //    }
+        //    return areas;
+        //}
+
+
+        Dictionary<string, string> dics = new Dictionary<string, string>();
         /// <summary>
-        /// 获取经纬度
+        /// 获取地区
         /// </summary>
         /// <param name="city"></param>
         /// <returns></returns>
-        public ArrayList getlat(string city)
+        public ArrayList getarea(string city)
         {
             ArrayList areas = new ArrayList();
-            string url = "http://www.jsons.cn/lngcode/?keyword="+ System.Web.HttpUtility.UrlEncode(city) + "&txtflag=0";
+            string url = "http://www.jsons.cn/lngcode/?keyword=" + System.Web.HttpUtility.UrlEncode(city) + "&txtflag=0";
             string html = GetUrl(url);
 
             Match ahtml = Regex.Match(html, @"<table class=""table table-bordered table-hover"">([\s\S]*?)</table>");
@@ -105,14 +133,23 @@ namespace 地图采集器
 
             for (int i = 0; i < values.Count; i++)
             {
-                if (values[i].Groups[1].Value.Contains("1"))
+                //MessageBox.Show(values[i].Groups[1].Value);
+                if (values[i].Groups[1].Value.Contains("区") || values[i].Groups[1].Value.Contains("县"))
                 {
-                    areas.Add(values[i].Groups[1].Value.Replace("，","%2C").Trim());
+                    if (!comboBox4.Items.Contains(values[i].Groups[1].Value.Trim()))
+                    {
+                        comboBox4.Items.Add(values[i].Groups[1].Value.Trim());
+                        dics.Add(values[i].Groups[1].Value.Trim(), values[i + 1].Groups[1].Value.Replace("，", "%2C").Trim());
+                    }
                 }
-               
+
             }
             return areas;
         }
+
+
+       
+      
         /// <summary>
         /// 获取关键词
         /// </summary>
@@ -127,7 +164,7 @@ namespace 地图采集器
             }
             return keywords;
         }
-        ArrayList citys = new ArrayList();
+       
         /// <summary>
         /// 主程序
         /// </summary>
@@ -144,22 +181,16 @@ namespace 地图采集器
             try
             {
               
-                if (citys.Count == 0)
-                {
-                    MessageBox.Show("请添加城市");
-                    return;
-                }
+              
 
                 foreach (string keyword in keywords)
                 {
 
-                    foreach (string city in citys)
-                    {
-                        ArrayList areaLats = getlat(city);
 
-                        foreach (string lat in areaLats)
-                        {
-                           
+
+                    for (int a = 0; a < listView2.Items.Count; a++)
+                    {
+                        string lat = dics[listView2.Items[a].Text];
 
                             for (int page = 1; page < 100; page++)
                             {
@@ -183,8 +214,7 @@ namespace 地图采集器
 
                                 for (int i = 0; i < names.Count; i++)
                                 {
-                                    if (textBox1.Text != "" && !areas[i].Groups[1].Value.Replace("\"", "").Contains(textBox1.Text.Trim()))
-                                        continue;
+                                  
 
                                     if (comboBox1.Text == "全部采集")
                                     {
@@ -230,7 +260,7 @@ namespace 地图采集器
                             }
                         }
                     }
-                }
+                
             }
             catch (Exception)
             {
@@ -557,19 +587,30 @@ namespace 地图采集器
 
         private void button3_Click(object sender, EventArgs e)
         {
-            webbrowser web = new webbrowser();
-            web.Show();
+            for (int i = 0; i < comboBox4.Items.Count; i++)
+            {
+                listView2.Items.Add(comboBox4.Items[i].ToString());
+            }
 
-            if (!citys.Contains(comboBox3.Text))
-            {
-                listView2.Items.Add(comboBox3.Text);
-                citys.Add(comboBox3.Text);
-            }
-            else
-            {
-                MessageBox.Show(comboBox3.Text+"已添加");
-            }
+         
            
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getarea(comboBox3.SelectedItem.ToString().Replace("市",""));
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            listView2.Items.Add(comboBox4.Text);
+
+
         }
     }
 }

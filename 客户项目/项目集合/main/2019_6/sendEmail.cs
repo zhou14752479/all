@@ -24,7 +24,7 @@ namespace main._2019_6
             mailMessage.Subject = subject;
             //邮件内容。
             mailMessage.Body = body;
-
+            mailMessage.IsBodyHtml = true;
             //实例化一个SmtpClient类。
             SmtpClient client = new SmtpClient();
             //在这里我使用的是qq邮箱，所以是smtp.qq.com，如果你使用的是126邮箱，那么就是smtp.126.com。
@@ -34,7 +34,7 @@ namespace main._2019_6
             //不和请求一块发送。
             client.UseDefaultCredentials = false;
             //验证发件人身份(发件人的邮箱，邮箱里的生成授权码);
-            client.Credentials = new NetworkCredential("1073689549@qq.com", "iqrgfhyrgeuobbgg");   //这里的密码用授权码
+            client.Credentials = new NetworkCredential("1073689549@qq.com", "nlubektsumvmbbdd");   //这里的密码用授权码
             //发送
             client.Send(mailMessage);
            // MessageBox.Show("发送成功");

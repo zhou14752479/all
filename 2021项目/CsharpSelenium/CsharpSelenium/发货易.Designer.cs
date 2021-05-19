@@ -36,11 +36,11 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button2
@@ -121,6 +121,10 @@
             this.columnHeader3.Text = "商品";
             this.columnHeader3.Width = 200;
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "数量";
+            // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "收件人";
@@ -139,10 +143,6 @@
             // 
             this.columnHeader7.Text = "快递单号";
             this.columnHeader7.Width = 110;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "数量";
             // 
             // 发货易
             // 

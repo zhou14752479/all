@@ -49,8 +49,33 @@ namespace 主程序202103
 
         }
 
+        public void run1()
+        {
+            DataTable dt1 = method.ExcelToDataTable(textBox2.Text, true);
+            DataTable dt = method.ExcelToDataTable(textBox3.Text, true);
 
-        DataTable dt=null;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow dr = dt.Rows[i];
+                string name = dr[0].ToString();
+                string address = dr[1].ToString();
+
+                string phone = dr[2].ToString();
+
+                bool baohan = IsIncludeData(dt1, "电话", phone);
+                if (baohan == false)
+                {
+                    ListViewItem lv1 = listView4.Items.Add((listView4.Items.Count + 1).ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(name);
+                    lv1.SubItems.Add(address);
+                    lv1.SubItems.Add(phone);
+                }
+
+            }
+
+         }
+
+            DataTable dt=null;
         public void run()
         {
            DataTable dt1 = method.ExcelToDataTable(textBox2.Text, true);
@@ -198,7 +223,7 @@ namespace 主程序202103
         {
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run1);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -320,9 +345,10 @@ namespace 主程序202103
 
         private void button1_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
-            method.DataTableToExcel(method.listViewToDataTable(this.listView3), "Sheet1", true);
+            //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            //method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+            //method.DataTableToExcel(method.listViewToDataTable(this.listView3), "Sheet1", true);
+            method.DataTableToExcel(method.listViewToDataTable(this.listView4), "Sheet1", true);
         }
 
         private void button5_Click(object sender, EventArgs e)

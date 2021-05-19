@@ -419,6 +419,9 @@ namespace 美团
                             case "宠物医院":
                                 cateid = "20691";
                                 break;
+                            case "瑜伽舞蹈":
+                                cateid = "220";
+                                break;
 
                         }
                         for (int i = 0; i < 1001; i = i + 100)

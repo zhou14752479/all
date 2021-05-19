@@ -16,7 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
-
+using System.Diagnostics;
 
 namespace 美团
 {
@@ -27,7 +27,7 @@ namespace 美团
             InitializeComponent();
         }
        
-        public string cookie;
+        public string cookie="";
         bool zanting = true;
         public static string username = "";
         ArrayList tels = new ArrayList();
@@ -79,14 +79,14 @@ namespace 美团
         #endregion
 
         #region GET请求2
-        public static string GetUrl(string Url)
+        public string GetUrl(string Url)
         {
             try
             {
 
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                string COOKIE = "_lxsdk_cuid=178002168e9c8-00e8f9125e0e71-31346d-1fa400-178002168e9c8; ci=10; rvct=10; _hc.v=952fc3ea-25d0-cec1-62e1-9a56ab2e59a2.1614909934; lsu=; uuid=4ef9319dd9244bbcbcdf.1617534879.1.0.0; client-id=73fb7eb2-350c-4ae3-9e9a-9a73a18ab4a0; mtcdn=K; userTicket=JzGrdcygAcyTyIDLaigkMKfBeZOCJyUvrTiBvRrK; u=875973616; n=Ffv936639060; lt=QFH95uMMd36fvDI3nPrQxkS-o2IAAAAARg0AAELcAP5AJZ4UzP3ttwmALKlBnmZAxy3m2LcrH038FvTFcHxX18W_Hh5yx8YAh6LvZw; mt_c_token=QFH95uMMd36fvDI3nPrQxkS-o2IAAAAARg0AAELcAP5AJZ4UzP3ttwmALKlBnmZAxy3m2LcrH038FvTFcHxX18W_Hh5yx8YAh6LvZw; token=QFH95uMMd36fvDI3nPrQxkS-o2IAAAAARg0AAELcAP5AJZ4UzP3ttwmALKlBnmZAxy3m2LcrH038FvTFcHxX18W_Hh5yx8YAh6LvZw; token2=QFH95uMMd36fvDI3nPrQxkS-o2IAAAAARg0AAELcAP5AJZ4UzP3ttwmALKlBnmZAxy3m2LcrH038FvTFcHxX18W_Hh5yx8YAh6LvZw; firstTime=1618139245041; unc=Ffv936639060; _lxsdk_s=178c09d69ca-699-c47-5fd%7C%7C3";
+                string COOKIE = cookie;
                 request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.11(0x17000b21) NetType/4G Language/zh_CN";
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("openIdCipher", "AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADhS4d+zREPZw1PQNF/0Zp8SLSbtYsmCKZFYbIjL5Ty7FJZwQ/bkMIGOGHHGqk1Nld5+rcxtuifNmA==");
@@ -164,7 +164,7 @@ namespace 美团
         public ArrayList getareas(string city)
         {
             string Url = "https://"+city+".meituan.com/meishi/";
-
+          
             string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
             MatchCollection areas = Regex.Matches(html, @"""subAreas"":\[\{""id"":([\s\S]*?),");
@@ -177,9 +177,10 @@ namespace 美团
             foreach (Match item in areas)
             {
                
+               
                 lists.Add(item.Groups[1].Value);
             }
-
+          
             return lists;
         }
 
@@ -231,70 +232,74 @@ namespace 美团
 
                 string[] keywords = textBox2.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-               
+
                 foreach (string city in citys)
                 {
 
-                   // ArrayList areas = getareas(Getsuoxie(city));
+                    ArrayList areas = getareas(Getsuoxie(city));
 
                     string cityId = GetcityId(city);
-                  
-                    string areaId = "";
-                        foreach (string keyword in keywords)
 
+
+                    foreach (string keyword in keywords)
+
+                    {
+
+                        foreach (string areaId in areas)
                         {
 
-                            for (int i = 0; i < 1000; i=i+15)
+
+                            for (int i = 0; i < 1000; i = i + 15)
 
                             {
-                                toolStripStatusLabel1.Text = "正在抓取："+city+","+keyword;
+                                toolStripStatusLabel1.Text = "正在抓取：" + city + "," + keyword;
 
-                                string Url = "https://apimobile.meituan.com/group/v4/poi/search/miniprogram/"+cityId+"?riskLevel=71&optimusCode=10&cateId=-1&sort=defaults&userid=-1&offset="+i+"&limit=15&mypos=33.94123077392578%2C118.24799346923828&uuid=178c0a12928c8-18eda8e20c814f-0-0-178c0a12928c8&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&openId=oJVP50IRqKIIshugSqrvYE3OHJKQ&cityId="+cityId+"&q="+keyword+"&areaId="+areaId;
-                              
+                                string Url = "https://apimobile.meituan.com/group/v4/poi/search/miniprogram/" + cityId + "?riskLevel=71&optimusCode=10&cateId=-1&sort=defaults&userid=-1&offset=" + i + "&limit=15&mypos=33.94123077392578%2C118.24799346923828&uuid=178c0a12928c8-18eda8e20c814f-0-0-178c0a12928c8&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&openId=oJVP50IRqKIIshugSqrvYE3OHJKQ&cityId=" + cityId + "&q=" + keyword + "&areaId=" + areaId;
+
                                 string html = GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
-                               
-                                    MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
-                             
-                                    ArrayList lists = new ArrayList();
-                                    foreach (Match NextMatch in all)
-                                    {
+
+                                MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
+
+                                ArrayList lists = new ArrayList();
+                                foreach (Match NextMatch in all)
+                                {
 
                                     //https://apimobile.meituan.com/group/v1/poi/194905459?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng
                                     //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
                                     //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
                                     lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
                                     //lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
-                                    }
+                                }
 
 
-                               
+
                                 if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
-                                        break;
+                                    break;
 
-                                    string tm1 = DateTime.Now.ToString();  //获取系统时间
+                                string tm1 = DateTime.Now.ToString();  //获取系统时间
 
-                                    toolStripStatusLabel1.Text = tm1 + "-->正在采集" + city +areaId+ keyword + "第" + i + "页";
+                                toolStripStatusLabel1.Text = tm1 + "-->正在采集" + city + areaId + keyword + "第" + i + "页";
 
-                                    foreach (string list in lists)
+                                foreach (string list in lists)
 
-                                    {
+                                {
 
-                                        string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
-                                    
+                                    string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
+
                                     Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
-                                        Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
-                                        Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
+                                    Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
+                                    Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
                                     Match score = Regex.Match(strhtml1, @"score"":([\s\S]*?),");
                                     if (!tels.Contains(tel.Groups[1].Value))
                                     {
                                         tels.Add(tel.Groups[1].Value);
-                                      
-                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                            listViewItem.SubItems.Add(name.Groups[1].Value);
-                                            listViewItem.SubItems.Add(tel.Groups[1].Value);
-                                            listViewItem.SubItems.Add(addr.Groups[1].Value);
-                                            listViewItem.SubItems.Add(city);
+
+                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                        listViewItem.SubItems.Add(name.Groups[1].Value);
+                                        listViewItem.SubItems.Add(tel.Groups[1].Value);
+                                        listViewItem.SubItems.Add(addr.Groups[1].Value);
+                                        listViewItem.SubItems.Add(city);
                                         listViewItem.SubItems.Add(score.Groups[1].Value);
 
 
@@ -307,7 +312,7 @@ namespace 美团
                                             return;
                                         }
 
-                                        
+
                                     }
 
                                     Thread.Sleep(1000);
@@ -324,7 +329,7 @@ namespace 美团
                         }
 
                     }
-
+                }
 
                
             }
@@ -563,6 +568,37 @@ namespace 美团
             #endregion
 
 
+            try 
+            {
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                if (File.Exists(path + "cookie.txt"))
+                {
+
+                    StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
+                    //一次性读取完 
+                    string texts = sr.ReadToEnd();
+
+                    cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
+                    sr.Close();  //只关闭流
+                    sr.Dispose();   //销毁流内存
+                    if (cookie == "")
+                    {
+
+                        Process.Start(path + "helper.exe");
+                        return;
+                    }
+                }
+                else
+                {
+                    Process.Start(path + "helper.exe");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
 
             status = true;
             button1.Enabled = false;
@@ -642,21 +678,39 @@ namespace 美团
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (comboBox1.Text.Contains("上海"))
+            {
+                textBox1.Text += "上海";
+                return;
+            }
+
+
             if (textBox1.Text.Contains(comboBox2.Text))
             {
                 MessageBox.Show(comboBox2.Text + "：请勿重复添加", "重复添加错误");
                 return;
             }
             textBox1.Text += comboBox2.Text + "\r\n";
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-           
+            if (comboBox1.Text.Contains("上海"))
+            {
+                textBox1.Text += "上海";
+                return;
+            }
+
             for (int i = 0; i <comboBox2.Items.Count; i++)
             {
                 textBox1.Text += comboBox2.Items[i] + "\r\n";
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

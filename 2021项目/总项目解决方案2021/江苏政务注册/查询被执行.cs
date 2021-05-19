@@ -364,7 +364,7 @@ namespace 江苏政务注册
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                   // MessageBox.Show(ex.ToString());
                     continue;
                 }
 

@@ -474,6 +474,122 @@ namespace 临时数据抓取
 
         #endregion
 
+
+        #region tecdoc.com
+        public void tecdoc()
+        {
+
+          
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+                string n = richTextBox1.Lines[i].Trim();
+                label1.Text = i.ToString();
+
+                string url = "https://mx.tecdoc.net/search?q="+n+"&lang=en-US";
+
+                string html = method.GetUrl(url, "utf-8");
+
+
+                MatchCollection aurls = Regex.Matches(html, @"<td class=""text-center text-nowrap hidden-xs hidden-sm""><a href=""([\s\S]*?)""><span class=""highlight"">([\s\S]*?)</span>");
+                MatchCollection anames = Regex.Matches(html, @"<h4>([\s\S]*?)</h4>");
+                if (aurls.Count == 0)
+                {
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(n);
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    lv1.SubItems.Add("空");
+                    continue;
+                }
+                //MessageBox.Show(aurls.Count.ToString());
+                //MessageBox.Show(anames.Count.ToString());
+                for (int j = 0; j < aurls.Count; j++)
+                {
+                    try
+                    {
+                        string aurl = "https://mx.tecdoc.net"+aurls[j].Groups[1].Value;
+                        if (aurls[j].Groups[2].Value == n && anames[j].Groups[1].Value.Contains("SYD"))
+                        {
+                            string ahtml = method.GetUrl(aurl, "utf-8");
+                            string title = Regex.Match(ahtml, @"<h1 itemprop=""name"" class=""media-heading"">([\s\S]*?)<").Groups[1].Value.Trim();
+                            string Number = Regex.Match(ahtml, @"<span itemprop=""mpn"">([\s\S]*?)<").Groups[1].Value.Trim();
+                            string PartType = Regex.Match(ahtml, @"Part Type:</strong></small>([\s\S]*?)<").Groups[1].Value.Trim();
+                            string Position = Regex.Match(ahtml, @"Fitting Position</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
+                            string Length = Regex.Match(ahtml, @"Length</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
+                            string Width = Regex.Match(ahtml, @"Width</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
+                            string Height = Regex.Match(ahtml, @"Height</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
+                            string Weight = Regex.Match(ahtml, @"Weight</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
+
+
+
+                            string[] html2s = ahtml.Split(new string[] { "<td rows" }, StringSplitOptions.None); ;
+
+
+
+                            for (int a = 0; a < html2s.Length; a++)
+                            {
+
+                                if (html2s[a].Contains("pan=\""))
+                                {
+                                    string name = Regex.Match(html2s[a], @"<b>([\s\S]*?)</b>").Groups[1].Value.Trim();
+                                    MatchCollection values = Regex.Matches(html2s[a], @"<a href=""/search\?q=([\s\S]*?)""");
+
+                                    for (int b = 0; b < values.Count; b++)
+                                    {
+                                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                        lv1.SubItems.Add(n);
+                                        lv1.SubItems.Add(title);
+                                        lv1.SubItems.Add(Number);
+                                        lv1.SubItems.Add(PartType);
+                                        lv1.SubItems.Add(Position);
+                                        lv1.SubItems.Add(Length);
+                                        lv1.SubItems.Add(Width);
+                                        lv1.SubItems.Add(Height);
+                                        lv1.SubItems.Add(Weight);
+                                        lv1.SubItems.Add(name);
+                                        lv1.SubItems.Add(values[b].Groups[1].Value);
+
+                                        while (this.zanting == false)
+                                        {
+                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                        }
+                                        if (status == false)
+                                            return;
+                                    }
+
+                                }
+
+                            }
+
+
+                        }
+
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                        continue;
+                    }
+
+
+                }
+  
+
+            }
+
+
+        }
+
+        #endregion
+
         private void button1_Click(object sender, EventArgs e)
         {
             status = true;
@@ -487,7 +603,7 @@ namespace 临时数据抓取
             // rockauto
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(rockauto);
+                thread = new Thread(tecdoc);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

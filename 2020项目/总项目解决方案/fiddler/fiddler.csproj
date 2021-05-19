@@ -40,6 +40,9 @@
     <Reference Include="FiddlerCore4">
       <HintPath>..\..\..\..\苏飞主页（fiddler例子）\FiddlerCore4.dll</HintPath>
     </Reference>
+    <Reference Include="myDLL">
+      <HintPath>..\..\..\2021项目\CsharpSelenium\CsharpSelenium\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\抓包测试\抓包测试\抓包测试\bin\Debug\Newtonsoft.Json.dll</HintPath>

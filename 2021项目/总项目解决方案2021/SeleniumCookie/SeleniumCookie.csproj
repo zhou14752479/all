@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="myDLL">
+      <HintPath>..\..\CsharpSelenium\CsharpSelenium\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
     <Reference Include="Selenium.WebDriverBackedSelenium.ref, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Selenium.WebDriverBackedSelenium.ref.dll</HintPath>

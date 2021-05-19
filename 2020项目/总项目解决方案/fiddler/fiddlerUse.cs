@@ -11,6 +11,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using myDLL;
+using System.Threading;
 
 namespace fiddler
 {
@@ -140,44 +142,58 @@ namespace fiddler
         string path = AppDomain.CurrentDomain.BaseDirectory;
 
         ArrayList codelist = new ArrayList();
+        Thread thread;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //textBox3.Text = head;
-            //if (datas.Contains("code"))
-            //{
-            //    //Stop();
-            //    //timer1.Stop();
-
-            //   string code = Regex.Match(datas, @"code=([\s\S]*?)&").Groups[1].Value.Trim();
-            //    if (!codelist.Contains(code)&&code.Trim()!="")
-            //    {
-            //        codelist.Add(code);
-            //        textBox3.Text += code + "\r\n";
-            //        FileStream fs1 = new FileStream(path + "getcode.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
-            //        StreamWriter sw = new StreamWriter(fs1);
-            //        sw.WriteLine(code);
-            //        sw.Close();
-            //        fs1.Close();
-            //        sw.Dispose();
-            //    }
-
-            //}
-            if (datas.Contains("userId"))
+            if (thread == null || !thread.IsAlive)
             {
-              
+                thread = new Thread(readtxt);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
 
-                string userId = Regex.Match(datas, @"userId"":([\s\S]*?)}").Groups[1].Value.Trim();
-                if (!codelist.Contains("userId") && userId.Trim() != "")
+
+
+            if (datas.Contains("mobile_id"))
+            {
+                //Stop();
+                //timer1.Stop();
+
+                string code = Regex.Match(datas, @"cookie:([\s\S]*?)R").Groups[1].Value.Trim();
+                if (!codelist.Contains(code) && code.Trim() != "")
                 {
-                    codelist.Add(userId);
-                    textBox3.Text += userId + "\r\n";
                   
+                    textBox3.Text = code + "\r\n";
+                    FileStream fs1 = new FileStream(path + "getcode.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(code);
+                    sw.Close();
+                    fs1.Close();
+                    sw.Dispose();
                 }
 
             }
 
-        }
 
+        }
+        public void readtxt()
+        {
+            if (File.Exists(path + "code.txt"))
+            {
+                StreamReader sr = new StreamReader(path + "code.txt", myDLL.method.EncodingType.GetTxtType(path + "code.txt"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+                File.Delete(path + "code.txt");
+                // System.Diagnostics.Process.Start(@"‪C:\Users\Administrator\Desktop\农行微缴费.lnk");
+
+                System.Diagnostics.Process.Start(path + "农行微缴费.lnk");
+
+
+            }
+        }
         private void fiddlerUse_Load(object sender, EventArgs e)
         {
             datas = "";

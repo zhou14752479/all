@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(地图采集器));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,13 +61,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.删除此项ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,7 +83,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.contextMenuStrip3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -102,6 +107,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Controls.Add(this.linkLabel1);
+            this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -110,10 +117,32 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(970, 50);
+            this.panel1.Size = new System.Drawing.Size(975, 71);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("黑体", 20F, System.Drawing.FontStyle.Bold);
+            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel1.LinkColor = System.Drawing.Color.White;
+            this.linkLabel1.Location = new System.Drawing.Point(86, 4);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(273, 27);
+            this.linkLabel1.TabIndex = 106;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "商家大数据采集系统";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(12, 4);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(68, 64);
+            this.pictureBox5.TabIndex = 105;
+            this.pictureBox5.TabStop = false;
             // 
             // label4
             // 
@@ -126,6 +155,7 @@
             this.label4.Size = new System.Drawing.Size(389, 27);
             this.label4.TabIndex = 104;
             this.label4.Text = "大数据采集系统 | 数据全、速度快、信息准";
+            this.label4.Visible = false;
             // 
             // label3
             // 
@@ -136,6 +166,7 @@
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 103;
             this.label3.Text = "试用账号";
+            this.label3.Visible = false;
             // 
             // label2
             // 
@@ -146,6 +177,7 @@
             this.label2.Size = new System.Drawing.Size(68, 17);
             this.label2.TabIndex = 102;
             this.label2.Text = "欢迎用户：";
+            this.label2.Visible = false;
             // 
             // zuixiaohua_btn
             // 
@@ -154,7 +186,7 @@
             this.zuixiaohua_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.zuixiaohua_btn.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.zuixiaohua_btn.LinkColor = System.Drawing.Color.Black;
-            this.zuixiaohua_btn.Location = new System.Drawing.Point(920, 0);
+            this.zuixiaohua_btn.Location = new System.Drawing.Point(925, 0);
             this.zuixiaohua_btn.Name = "zuixiaohua_btn";
             this.zuixiaohua_btn.Size = new System.Drawing.Size(24, 22);
             this.zuixiaohua_btn.TabIndex = 3;
@@ -169,7 +201,7 @@
             this.close_btn.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.close_btn.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.close_btn.LinkColor = System.Drawing.Color.Black;
-            this.close_btn.Location = new System.Drawing.Point(944, 0);
+            this.close_btn.Location = new System.Drawing.Point(949, 0);
             this.close_btn.Name = "close_btn";
             this.close_btn.Size = new System.Drawing.Size(26, 26);
             this.close_btn.TabIndex = 2;
@@ -207,9 +239,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 50);
+            this.listView1.Location = new System.Drawing.Point(0, 71);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(970, 367);
+            this.listView1.Size = new System.Drawing.Size(975, 367);
             this.listView1.TabIndex = 92;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -280,9 +312,9 @@
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 417);
+            this.groupBox1.Location = new System.Drawing.Point(0, 438);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(168, 209);
+            this.groupBox1.Size = new System.Drawing.Size(168, 210);
             this.groupBox1.TabIndex = 93;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "选择地图";
@@ -377,7 +409,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.button8);
+            this.groupBox2.Controls.Add(this.comboBox4);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.comboBox2);
@@ -386,42 +419,12 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox2.Location = new System.Drawing.Point(168, 417);
+            this.groupBox2.Location = new System.Drawing.Point(168, 438);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(363, 209);
+            this.groupBox2.Size = new System.Drawing.Size(363, 210);
             this.groupBox2.TabIndex = 94;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "当前选择城市";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(85, 93);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 100;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label7.Location = new System.Drawing.Point(5, 92);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 20);
-            this.label7.TabIndex = 99;
-            this.label7.Text = "指定区：";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button3.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(85, 128);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 35);
-            this.button3.TabIndex = 97;
-            this.button3.Text = "添加城市";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // comboBox2
             // 
@@ -442,27 +445,6 @@
             this.label5.Size = new System.Drawing.Size(79, 20);
             this.label5.TabIndex = 3;
             this.label5.Text = "选择城市：";
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10});
-            this.listView2.ContextMenuStrip = this.contextMenuStrip2;
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(226, 19);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(134, 187);
-            this.listView2.TabIndex = 93;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "城市名";
-            this.columnHeader10.Width = 200;
             // 
             // contextMenuStrip2
             // 
@@ -504,6 +486,7 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(117, 23);
             this.comboBox3.TabIndex = 1;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -511,9 +494,9 @@
             this.groupBox3.Controls.Add(this.key_tbox);
             this.groupBox3.Controls.Add(this.listView3);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox3.Location = new System.Drawing.Point(531, 417);
+            this.groupBox3.Location = new System.Drawing.Point(531, 438);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(157, 209);
+            this.groupBox3.Size = new System.Drawing.Size(157, 210);
             this.groupBox3.TabIndex = 95;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "当前搜索词";
@@ -596,7 +579,7 @@
             this.button2.BackColor = System.Drawing.Color.DodgerBlue;
             this.button2.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(845, 527);
+            this.button2.Location = new System.Drawing.Point(845, 505);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(113, 35);
             this.button2.TabIndex = 97;
@@ -609,7 +592,7 @@
             this.button4.BackColor = System.Drawing.Color.DodgerBlue;
             this.button4.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(845, 579);
+            this.button4.Location = new System.Drawing.Point(845, 549);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(113, 35);
             this.button4.TabIndex = 99;
@@ -649,6 +632,7 @@
             this.button7.TabIndex = 105;
             this.button7.Text = "TXT";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // checkBox1
@@ -661,12 +645,91 @@
             this.checkBox1.Text = "去除重复";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(85, 89);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(117, 25);
+            this.comboBox4.TabIndex = 106;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label7.Location = new System.Drawing.Point(2, 87);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 20);
+            this.label7.TabIndex = 105;
+            this.label7.Text = "选择地区：";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button3.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(85, 120);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 35);
+            this.button3.TabIndex = 97;
+            this.button3.Text = "添加全部";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "城市名";
+            this.columnHeader10.Width = 200;
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10});
+            this.listView2.ContextMenuStrip = this.contextMenuStrip2;
+            this.listView2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(226, 19);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(134, 188);
+            this.listView2.TabIndex = 93;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button6.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(845, 590);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(113, 35);
+            this.button6.TabIndex = 106;
+            this.button6.Text = "清空";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button8.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.button8.ForeColor = System.Drawing.Color.White;
+            this.button8.Location = new System.Drawing.Point(85, 161);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(113, 35);
+            this.button8.TabIndex = 107;
+            this.button8.Text = "添加选中";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // 地图采集器
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(970, 626);
+            this.ClientSize = new System.Drawing.Size(975, 648);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button5);
@@ -690,6 +753,7 @@
             this.Load += new System.EventHandler(this.地图采集器_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.contextMenuStrip3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -723,8 +787,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button addKey;
         private System.Windows.Forms.TextBox key_tbox;
@@ -763,8 +825,14 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button8;
     }
 }

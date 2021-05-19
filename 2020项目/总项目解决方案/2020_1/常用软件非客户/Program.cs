@@ -16,7 +16,7 @@ namespace 常用软件非客户
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 图片批量下载());
+            Application.Run(new VIP转付费());
         }
     }
 }

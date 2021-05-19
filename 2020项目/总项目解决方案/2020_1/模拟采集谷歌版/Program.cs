@@ -16,7 +16,7 @@ namespace 模拟采集谷歌版
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 发货易());
+            Application.Run(new 阿里1688());
         }
     }
 }

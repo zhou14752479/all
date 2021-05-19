@@ -157,8 +157,10 @@ namespace 新疆继续教育
             {
                 codehtml = GetUrl("http://47.102.145.207/getcode.txt");
                 code = Regex.Match(codehtml, @"[A-Za-z0-9]{10,}").Groups[0].Value;
-            }
+               
 
+            }
+            
             return code;
 
         }
@@ -218,7 +220,7 @@ namespace 新疆继续教育
 
                     string newcode = getcode(cre);
                     string name = getinfo(newcode, cre);
-
+                   
                     if (name != "")
                     {
                         logtxt.Text = name + "：登录成功";
@@ -229,13 +231,14 @@ namespace 新疆继续教育
                     else
                     {
                         string code = getcode();
+                      
                         string cre1 = login(card, pass, code);
 
                         string newcode1 = getcode(cre1);
                         if (cre1 != "")
                         {
                             name = getinfo(newcode1, cre1);
-
+                         
                             logtxt.Text = name + "：登录成功";
                             CRE = cre1;
                         }
@@ -259,6 +262,7 @@ namespace 新疆继续教育
                     if (cre != "")
                     {
                         string name = getinfo(newcode, cre);
+                       
                         logtxt.Text = name + "：登录成功";
                         CRE = cre;
 

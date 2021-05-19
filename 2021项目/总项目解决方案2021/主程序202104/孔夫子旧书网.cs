@@ -25,6 +25,15 @@ namespace 主程序202104
         bool zanting = true;
         bool status = true;
 
+
+
+        public string getdingjia(string url)
+        {
+           
+            string html = method.GetUrl(url, "utf-8");
+           string price = Regex.Match(html, @"orgprice"" content=""([\s\S]*?)""").Groups[1].Value;
+            return price;
+        }
         /// <summary>
         /// 全部价格
         /// </summary>
@@ -42,7 +51,7 @@ namespace 主程序202104
                     string url = "http://shop.kongfz.com/" + id + "/all/0_50_0_0_" + page + "_sort_desc_0_0/";
 
                     string html = method.GetUrl(url, "utf-8");
-
+                    MatchCollection aids = Regex.Matches(html, @"<div class=""item-row clearfix""([\s\S]*?)itemid=""([\s\S]*?)""");
                     MatchCollection uids = Regex.Matches(html, @"<div class=""item-row clearfix""([\s\S]*?)isbn=""([\s\S]*?)""");
                     MatchCollection names = Regex.Matches(html, @"class=""row-name"">([\s\S]*?)</a>");
                     MatchCollection prices = Regex.Matches(html, @"<div class=""row-price"">([\s\S]*?)</div>");
@@ -53,17 +62,34 @@ namespace 主程序202104
                         label2.Text = "采集结束";
                         break;
                     }
-                        
 
                     for (int j = 0; j < names.Count; j++)
                     {
+                        
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(Regex.Replace(uids[j].Groups[2].Value.Trim(), "<[^>]+>", ""));
                         lv1.SubItems.Add(Regex.Replace(names[j].Groups[1].Value.Trim(), "<[^>]+>", ""));
                         lv1.SubItems.Add(Regex.Replace(prices[j].Groups[1].Value.Trim(), "<[^>]+>", ""));
 
+                        string aurl = "http://book.kongfz.com/" + id + "/" + aids[j].Groups[2].Value + "/";
+                        //Thread t=  new Thread(() =>
+                        //{
+                        //    try
+                        //    {
+                        //        string aurl = "http://book.kongfz.com/" + id + "/" + aids[j].Groups[2].Value + "/";
+                        //        lv1.SubItems.Add(getdingjia(aurl));
+                        //    }
+                        //    catch (Exception ex)
+                        //    {
 
+                        //        lv1.SubItems.Add(""); ;
+                        //    }
+
+                        //  });
+                        //  t.Start();
+
+                        lv1.SubItems.Add(getdingjia(aurl));
 
                         while (this.zanting == false)
                         {
@@ -82,7 +108,7 @@ namespace 主程序202104
                 catch (Exception ex)
                 {
 
-                    ex.ToString();
+                    //MessageBox.Show(ex.ToString());
                 }
 
             }
