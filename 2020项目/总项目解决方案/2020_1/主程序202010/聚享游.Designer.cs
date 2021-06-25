@@ -110,6 +110,11 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -199,8 +204,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.t1);
             this.splitContainer1.Panel2.Controls.Add(this.t0);
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(928, 608);
-            this.splitContainer1.SplitterDistance = 211;
+            this.splitContainer1.Size = new System.Drawing.Size(933, 661);
+            this.splitContainer1.SplitterDistance = 229;
             this.splitContainer1.TabIndex = 3;
             // 
             // button4
@@ -239,7 +244,7 @@
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Location = new System.Drawing.Point(15, 7);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(547, 50);
+            this.groupBox3.Size = new System.Drawing.Size(154, 50);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "登录网站";
@@ -258,9 +263,9 @@
             // 
             this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 126);
+            this.groupBox2.Location = new System.Drawing.Point(0, 144);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(928, 85);
+            this.groupBox2.Size = new System.Drawing.Size(933, 85);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "今日盈亏";
@@ -340,18 +345,23 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton10);
+            this.groupBox1.Controls.Add(this.radioButton9);
+            this.groupBox1.Controls.Add(this.radioButton8);
+            this.groupBox1.Controls.Add(this.radioButton7);
+            this.groupBox1.Controls.Add(this.radioButton6);
             this.groupBox1.Controls.Add(this.radioButton5);
             this.groupBox1.Controls.Add(this.radioButton4);
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(585, 7);
+            this.groupBox1.Location = new System.Drawing.Point(197, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(331, 50);
+            this.groupBox1.Size = new System.Drawing.Size(692, 50);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "选择算法";
+            this.groupBox1.Text = "杀三余                                                     杀一尾";
             // 
             // radioButton5
             // 
@@ -958,9 +968,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(471, 0);
+            this.listView1.Location = new System.Drawing.Point(476, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(457, 393);
+            this.listView1.Size = new System.Drawing.Size(457, 428);
             this.listView1.TabIndex = 113;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -988,12 +998,72 @@
             this.timer1.Interval = 90000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.radioButton6.ForeColor = System.Drawing.Color.Black;
+            this.radioButton6.Location = new System.Drawing.Point(370, 20);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(56, 16);
+            this.radioButton6.TabIndex = 5;
+            this.radioButton6.Text = "算法1";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.radioButton7.ForeColor = System.Drawing.Color.Black;
+            this.radioButton7.Location = new System.Drawing.Point(432, 20);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(56, 16);
+            this.radioButton7.TabIndex = 6;
+            this.radioButton7.Text = "算法2";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.radioButton8.ForeColor = System.Drawing.Color.Black;
+            this.radioButton8.Location = new System.Drawing.Point(498, 20);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(56, 16);
+            this.radioButton8.TabIndex = 7;
+            this.radioButton8.Text = "算法3";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.AutoSize = true;
+            this.radioButton9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.radioButton9.ForeColor = System.Drawing.Color.Black;
+            this.radioButton9.Location = new System.Drawing.Point(560, 20);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(56, 16);
+            this.radioButton9.TabIndex = 8;
+            this.radioButton9.Text = "算法4";
+            this.radioButton9.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.radioButton10.ForeColor = System.Drawing.Color.Black;
+            this.radioButton10.Location = new System.Drawing.Point(622, 20);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.Size = new System.Drawing.Size(56, 16);
+            this.radioButton10.TabIndex = 9;
+            this.radioButton10.Text = "算法5";
+            this.radioButton10.UseVisualStyleBackColor = true;
+            // 
             // 聚享游
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(928, 608);
+            this.ClientSize = new System.Drawing.Size(933, 661);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -1099,5 +1169,10 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.RadioButton radioButton10;
+        private System.Windows.Forms.RadioButton radioButton9;
+        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.RadioButton radioButton7;
+        private System.Windows.Forms.RadioButton radioButton6;
     }
 }

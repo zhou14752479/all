@@ -45,9 +45,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,15 +208,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数设置";
             // 
-            // radioButton1
+            // checkBox1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(15, 56);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(71, 16);
-            this.radioButton1.TabIndex = 330;
-            this.radioButton1.Text = "导出全部";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(145, 22);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(72, 16);
+            this.checkBox1.TabIndex = 332;
+            this.checkBox1.Text = "去除重复";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
@@ -230,17 +232,15 @@
             this.radioButton2.Text = "导出号码";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // radioButton1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(145, 22);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 16);
-            this.checkBox1.TabIndex = 332;
-            this.checkBox1.Text = "去除重复";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(15, 56);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(71, 16);
+            this.radioButton1.TabIndex = 330;
+            this.radioButton1.Text = "导出全部";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // 贴吧用户发言查找
             // 
@@ -261,6 +261,7 @@
             this.Name = "贴吧用户发言查找";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "贴吧用户发言查找";
+            this.Load += new System.EventHandler(this.贴吧用户发言查找_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

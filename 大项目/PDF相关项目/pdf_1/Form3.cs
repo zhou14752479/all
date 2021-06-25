@@ -180,7 +180,7 @@ namespace pdf_1
         {
             #region 通用检测
 
-            if (DateTime.Now > Convert.ToDateTime("2021-06-06"))
+            if (DateTime.Now > Convert.ToDateTime("2022-06-06"))
             {
                 MessageBox.Show("时间错误");
                 return;

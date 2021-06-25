@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Management;
 using System.Net;
@@ -320,45 +321,51 @@ namespace helper
         /// <returns></returns>
         public static string GetUrl(string Url, string charset)
         {
-
-
+            string html = "";
+            string COOKIE = "";
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Referer = "";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.10(0x17000a21) NetType/4G Language/zh_CN";
                 request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = Url;
                 request.Headers.Add("Cookie", COOKIE);
-                //添加头部
-                //WebHeaderCollection headers = request.Headers;
-                //headers.Add("sec-fetch-mode:navigate");
-                //headers.Add("sec-fetch-site:same-origin");
-                //headers.Add("sec-fetch-user:?1");
-                //headers.Add("upgrade-insecure-requests: 1");
-                //添加头部
-                // request.KeepAlive = true;
+                request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                request.Timeout = 5000;
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
-                string content = reader.ReadToEnd();
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 100000;
 
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
 
-                reader.Close();
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
                 response.Close();
-                return content;
+                return html;
 
 
 
             }
             catch (System.Exception ex)
             {
-                ex.ToString();
+                return ex.ToString();
 
             }
-            return "";
+
+
+
         }
         #endregion
 
@@ -1259,8 +1266,11 @@ namespace helper
                 List<string> list = new List<string>();
                 foreach (ListViewItem item in listview.Items)
                 {
-                   
-                       list.Add(item.SubItems[i].Text+","+ item.SubItems[i + 1].Text + ","+ item.SubItems[i + 2].Text + "," + item.SubItems[i + 3].Text + "," + item.SubItems[i + 4].Text);
+                    if (item.SubItems[i].Text.Trim() != "")
+                    {
+
+                        list.Add(item.SubItems[i].Text);
+                    }
                   
 
                 }

@@ -85,7 +85,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(425, 113);
+            this.button4.Location = new System.Drawing.Point(371, 115);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(83, 28);
             this.button4.TabIndex = 361;
@@ -122,7 +122,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(425, 78);
+            this.button3.Location = new System.Drawing.Point(371, 80);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(83, 28);
             this.button3.TabIndex = 356;
@@ -132,7 +132,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(333, 113);
+            this.button5.Location = new System.Drawing.Point(279, 115);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(83, 28);
             this.button5.TabIndex = 355;
@@ -142,7 +142,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(333, 77);
+            this.button1.Location = new System.Drawing.Point(279, 79);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 28);
             this.button1.TabIndex = 354;
@@ -152,7 +152,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(244, 77);
+            this.button6.Location = new System.Drawing.Point(190, 79);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(83, 27);
             this.button6.TabIndex = 353;
@@ -202,6 +202,7 @@
             this.label3.Size = new System.Drawing.Size(35, 12);
             this.label3.TabIndex = 365;
             this.label3.Text = "账号:";
+            this.label3.Visible = false;
             // 
             // textBox1
             // 
@@ -210,6 +211,7 @@
             this.textBox1.Size = new System.Drawing.Size(99, 21);
             this.textBox1.TabIndex = 366;
             this.textBox1.Text = "18961188123";
+            this.textBox1.Visible = false;
             // 
             // textBox3
             // 
@@ -219,6 +221,7 @@
             this.textBox3.Size = new System.Drawing.Size(99, 21);
             this.textBox3.TabIndex = 368;
             this.textBox3.Text = "s7758521";
+            this.textBox3.Visible = false;
             // 
             // label4
             // 
@@ -228,10 +231,11 @@
             this.label4.Size = new System.Drawing.Size(35, 12);
             this.label4.TabIndex = 367;
             this.label4.Text = "密码:";
+            this.label4.Visible = false;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(244, 115);
+            this.button7.Location = new System.Drawing.Point(190, 117);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(83, 28);
             this.button7.TabIndex = 369;

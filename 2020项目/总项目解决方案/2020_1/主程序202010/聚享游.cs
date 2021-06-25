@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -24,6 +26,58 @@ namespace 主程序202010
             InitializeComponent();
            
         }
+
+        #region POST请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrl(string url, string postData, string COOKIE, string charset)
+        {
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                request.ContentType = "application/x-www-form-urlencoded";
+
+                //request.ContentType = "application/json";
+                request.ContentLength = postData.Length;
+                //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+
+                request.Referer = "https://web.duanmatong.cn/";
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string html = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
 
 
         public void getyingkui()
@@ -105,39 +159,80 @@ namespace 主程序202010
 
         public string Qihao= "";
         public string Content = "";
+        string yuceInfoId = "4";
         public void getYuce()
         {
             try
             {
+               
                 string suanfaId = "1";
+                
                 if (radioButton1.Checked == true)
                 {
+                    yuceInfoId = "4";
                     suanfaId = "1";
+
                 }
                 if (radioButton2.Checked == true)
                 {
+                    yuceInfoId = "4";
                     suanfaId = "2";
                 }
                 if (radioButton3.Checked == true)
                 {
+                    yuceInfoId = "4";
                     suanfaId = "3";
                 }
                 if (radioButton4.Checked == true)
                 {
+                    yuceInfoId = "4";
                     suanfaId = "4";
                 }
                 if (radioButton5.Checked == true)
                 {
+                    yuceInfoId = "4";
                     suanfaId = "5";
                 }
 
+
+
+
+                if (radioButton6.Checked == true)
+                {
+                    yuceInfoId = "14";
+                    suanfaId = "1";
+
+                }
+                if (radioButton7.Checked == true)
+                {
+                    yuceInfoId = "14";
+                    suanfaId = "2";
+                }
+                if (radioButton8.Checked == true)
+                {
+                    yuceInfoId = "14";
+                    suanfaId = "3";
+                }
+                if (radioButton9.Checked == true)
+                {
+                    yuceInfoId = "14";
+                    suanfaId = "4";
+                }
+                if (radioButton10.Checked == true)
+                {
+                    yuceInfoId = "14";
+                    suanfaId = "5";
+                }
                 string url = "https://www.28iq.com/api/yuce/indexYuce";
-                string postdata = "gameId=32&yuceInfoId=4&suanfaId=" + suanfaId;
-                string html = method.PostUrl(url, postdata, "", "utf-8");
+                string postdata = "gameId=32&yuceInfoId="+yuceInfoId+"&suanfaId=" + suanfaId;
+                string html = PostUrl(url, postdata, "", "utf-8");
+               
                 Match qihao = Regex.Match(html, @"""qihao"":([\s\S]*?),");
                 Match content = Regex.Match(html, @"""content"":""([\s\S]*?)""");
                 Qihao = qihao.Groups[1].Value.Trim();
                 Content= content.Groups[1].Value.Trim();
+
+              
             }
             catch (Exception ex)
             {
@@ -168,43 +263,356 @@ namespace 主程序202010
             string v0 = "0", v1 = "0", v2 = "0", v3 = "0", v4 = "0", v5 = "0", v6 = "0", v7 = "0", v8 = "0", v9 = "0", v10 = "0", v11 = "0", v12 = "0", v13 = "0", v14 = "0", v15 = "0", v16 = "0", v17 = "0", v18 = "0", v19 = "0", v20 = "0", v21 = "0", v22 = "0", v23 = "0", v24 = "0", v25 = "0", v26 = "0", v27 = "0";
             try
             {
-               
-                switch (Content)
+                if (yuceInfoId == "4")//杀三余
                 {
-                    case "杀3N0":
-                        v0 = t0.Text.Trim();
-                        v3 = t3.Text.Trim();
-                        v6 = t6.Text.Trim();
-                        v9 = t9.Text.Trim();
-                        v12 = t12.Text.Trim();
-                        v15 = t15.Text.Trim();
-                        v18 = t18.Text.Trim();
-                        v21 = t21.Text.Trim();
-                        v24 = t24.Text.Trim();
-                        v27= t27.Text.Trim();
-                        break;
-                    case "杀3N1":
-                        v1 = t1.Text.Trim();
-                        v4 = t4.Text.Trim();
-                        v7 = t7.Text.Trim();
-                        v10 = t10.Text.Trim();
-                        v13 = t13.Text.Trim();
-                        v16 = t16.Text.Trim();
-                        v19 = t19.Text.Trim();
-                        v22 = t22.Text.Trim();
-                        v25 = t25.Text.Trim();
-                        break;
-                    case "杀3N2":
-                        v2 = t2.Text.Trim();
-                        v5 = t5.Text.Trim();
-                        v8 = t8.Text.Trim();
-                        v11 = t11.Text.Trim();
-                        v14= t14.Text.Trim();
-                        v17= t17.Text.Trim();
-                        v20 = t20.Text.Trim();
-                        v23 = t23.Text.Trim();
-                        v26 = t26.Text.Trim();
-                        break;
+                    switch (Content)
+                    {
+                        case "杀3N0":
+                            v0 = t0.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v15 = t15.Text.Trim();
+                            v18 = t18.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+                        case "杀3N1":
+                            v1 = t1.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            break;
+                        case "杀3N2":
+                            v2 = t2.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v23 = t23.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            break;
+                    }
+                }
+
+                if (yuceInfoId == "14")//杀一尾
+                {
+
+                    switch (Content)
+                    {
+                        case "杀0尾":
+                            //v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                          //  v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v15= t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v18= t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                         //   v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v23= t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();  
+                            break;
+                        case "杀1尾":
+                            v0 = t0.Text.Trim();
+                           // v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                           // v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v15 = t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v18 = t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                           // v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v23 = t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+                        case "杀2尾":
+                            v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                           // v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                           // v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v15 = t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v18 = t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                           // v22 = t22.Text.Trim();
+                            v23 = t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+                        case "杀3尾":
+                            v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                           // v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                          //  v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v15 = t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v18 = t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                           // v23 = t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+                        case "杀4尾":
+                            v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                           // v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                           // v14 = t14.Text.Trim();
+                            v15 = t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v18 = t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v23 = t23.Text.Trim();
+                          //  v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+                        case "杀5尾":
+                            v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                           // v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                           // v15 = t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v18 = t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v23 = t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            //v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+                        case "杀6尾":
+                            v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                           // v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v15 = t15.Text.Trim();
+                           // v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v18 = t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v23 = t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                           // v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+                        case "杀7尾":
+                            v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                          //  v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v15 = t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                          //  v17 = t17.Text.Trim();
+                            v18 = t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v23 = t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                           // v27 = t27.Text.Trim();
+                            break;
+                        case "杀8尾":
+                            v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                           // v8 = t8.Text.Trim();
+                            v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v15 = t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                           // v18 = t18.Text.Trim();
+                            v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v23 = t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+                        case "杀9尾":
+                            v0 = t0.Text.Trim();
+                            v1 = t1.Text.Trim();
+                            v2 = t2.Text.Trim();
+                            v3 = t3.Text.Trim();
+                            v4 = t4.Text.Trim();
+                            v5 = t5.Text.Trim();
+                            v6 = t6.Text.Trim();
+                            v7 = t7.Text.Trim();
+                            v8 = t8.Text.Trim();
+                          //  v9 = t9.Text.Trim();
+                            v10 = t10.Text.Trim();
+                            v11 = t11.Text.Trim();
+                            v12 = t12.Text.Trim();
+                            v13 = t13.Text.Trim();
+                            v14 = t14.Text.Trim();
+                            v15 = t15.Text.Trim();
+                            v16 = t16.Text.Trim();
+                            v17 = t17.Text.Trim();
+                            v18 = t18.Text.Trim();
+                          //  v19 = t19.Text.Trim();
+                            v20 = t20.Text.Trim();
+                            v21 = t21.Text.Trim();
+                            v22 = t22.Text.Trim();
+                            v23 = t23.Text.Trim();
+                            v24 = t24.Text.Trim();
+                            v25 = t25.Text.Trim();
+                            v26 = t26.Text.Trim();
+                            v27 = t27.Text.Trim();
+                            break;
+
+                    }
+
+
                 }
                 long nowtime = GetTimeStamp();
                 string xsign = Jinzhi36(nowtime);
@@ -239,6 +647,7 @@ namespace 主程序202010
                 sb.Append("%2c" + v27+ "%5d");
 
                 string inpudata = sb.ToString();
+               
                 //160387578541
                 string postdata = "jxy_parameter=%7B%22fun%22%3A%22lottery%22%2C%22c%22%3A%22quiz%22%2C%22items%22%3A%22crazy28%22%2C%22lssue%22%3A"+Qihao+"%2C%22lotteryData%22%3A"+inpudata+ "%7D&timestamp="+nowtime;
                
@@ -263,7 +672,18 @@ namespace 主程序202010
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            #region 通用检测
+
+
+            string html = method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"xcMBfR"))
+            {
+
+                return;
+            }
+
+            #endregion
             getyingkui();
             timer1.Start();
             if (thread == null || !thread.IsAlive)
@@ -323,6 +743,7 @@ namespace 主程序202010
 
         private void button2_Click(object sender, EventArgs e)
         {
+          
             //MessageBox.Show(Jinzhi36(1603935897158));
             MessageBox.Show("已停止");
             timer1.Stop();

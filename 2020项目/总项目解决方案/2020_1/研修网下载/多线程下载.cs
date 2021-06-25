@@ -116,24 +116,24 @@ namespace 研修网下载
                                         }
                                         else
                                         {
-                                            textBox4.Text = DateTime.Now.ToString() + "标题【" + bt + "】不符" + "\r\n";
+                                            textBox4.Text = DateTime.Now.ToString() +"   "+i+ "标题【" + bt + "】不符" + "\r\n";
                                         }
 
                                     }
                                     else
                                     {
-                                        textBox4.Text = DateTime.Now.ToString() + "格式【"+gs+"】不符" + "\r\n";
+                                        textBox4.Text = DateTime.Now.ToString() + "   " + i + "格式【" +gs+"】不符" + "\r\n";
                                     }
                                 }
                                 else
                                 {
-                                    textBox4.Text = DateTime.Now.ToString() + "大小不符合跳过下载" + "\r\n";
+                                    textBox4.Text = DateTime.Now.ToString() + "  " + i + "大小不符合跳过下载" + "\r\n";
                                 }
 
                             }
                             else
                             {
-                                textBox4.Text = DateTime.Now.ToString() + "大小为空跳过下载" + "\r\n";
+                                textBox4.Text = DateTime.Now.ToString() + "  " + i + "大小为空跳过下载" + "\r\n";
                             }
 
                             while (this.zanting == false)

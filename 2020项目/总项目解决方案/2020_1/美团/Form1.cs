@@ -27,7 +27,7 @@ namespace 美团
             InitializeComponent();
         }
        
-        public string cookie="";
+        public string cookie= "_lxsdk_cuid=178002168e9c8-00e8f9125e0e71-31346d-1fa400-178002168e9c8; _hc.v=952fc3ea-25d0-cec1-62e1-9a56ab2e59a2.1614909934; iuuid=5ABBD748F10D7D43BC85FC9A175AA637BE6D53DCFCAD8E6A9288E639A883BE86; isid=wdDnkGS0cKe4o6R8vWfMZRKlyzwAAAAASg0AAH-mOkBAv1T2k0dxjzBjWO-uBTucKnGdGRrV9dg1cMSoFfV5MiArYB-zINeWnfGXHQ; logintype=normal; cityname=%E5%AE%BF%E8%BF%81; webp=1; _lxsdk=5ABBD748F10D7D43BC85FC9A175AA637BE6D53DCFCAD8E6A9288E639A883BE86; __utma=74597006.1034064235.1618288921.1618288921.1618288921.1; __utmz=74597006.1618288921.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); i_extend=C_b1Gimthomepagecategory11H__a; ci=10; rvct=10%2C184%2C56; wm_order_channel=default; lsu=; uuid=2cf4930eac7d40098af2.1622003918.1.0.0; __mta=55425684.1614909900927.1622167521874.1622512936250.22; client-id=5495ec2e-e905-4693-856d-55cd4a1e5796; mtcdn=K; u=875973616; n=Ffv936639060; lt=XnzgHn320zBj-UR-NxUAdC5ASZkAAAAArQ0AAM3qGbpxqlQ57s3u6nAup6ywraPDROIPbKkS_3g1eRHX0eZJb6vgoJHDE2ncVtRpHg; mt_c_token=XnzgHn320zBj-UR-NxUAdC5ASZkAAAAArQ0AAM3qGbpxqlQ57s3u6nAup6ywraPDROIPbKkS_3g1eRHX0eZJb6vgoJHDE2ncVtRpHg; token=XnzgHn320zBj-UR-NxUAdC5ASZkAAAAArQ0AAM3qGbpxqlQ57s3u6nAup6ywraPDROIPbKkS_3g1eRHX0eZJb6vgoJHDE2ncVtRpHg; token2=XnzgHn320zBj-UR-NxUAdC5ASZkAAAAArQ0AAM3qGbpxqlQ57s3u6nAup6ywraPDROIPbKkS_3g1eRHX0eZJb6vgoJHDE2ncVtRpHg; firstTime=1622512943858; unc=Ffv936639060; _lxsdk_s=179c54ea3e6-631-acd-8cf%7C%7C4";
         bool zanting = true;
         public static string username = "";
         ArrayList tels = new ArrayList();
@@ -173,6 +173,7 @@ namespace 美团
             if (areas.Count == 0)
             {
                toolStripStatusLabel1.Text=("获取区域失败");
+                Process.Start(path + "helper.exe");
             }
             foreach (Match item in areas)
             {
@@ -271,7 +272,7 @@ namespace 美团
                                     //lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
                                 }
 
-
+                             
 
                                 if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
@@ -286,7 +287,7 @@ namespace 美团
                                 {
 
                                     string strhtml1 = meituan_GetUrl(list);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
+                                  
                                     Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                     Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                     Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
@@ -549,8 +550,9 @@ namespace 美团
             path.CloseFigure();//闭合曲线
             return path;
         }
-
-
+        string path = AppDomain.CurrentDomain.BaseDirectory;
+        Thread thread;
+        
         private void Button1_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -570,7 +572,7 @@ namespace 美团
 
             try 
             {
-                string path = AppDomain.CurrentDomain.BaseDirectory;
+          
                 if (File.Exists(path + "cookie.txt"))
                 {
 
@@ -601,11 +603,13 @@ namespace 美团
             }
 
             status = true;
-            button1.Enabled = false;
-            Thread search_thread = new Thread(new ThreadStart(run));
-            Control.CheckForIllegalCrossThreadCalls = false;
-            search_thread.Start();
-
+            //button1.Enabled = false;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
             //status = true;
             //button1.Enabled = false;
             //Thread search_thread = new Thread(new ThreadStart(run1));
@@ -710,7 +714,8 @@ namespace 美团
 
         private void button6_Click(object sender, EventArgs e)
         {
-            
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            Process.Start(path + "helper.exe");
         }
     }
 }

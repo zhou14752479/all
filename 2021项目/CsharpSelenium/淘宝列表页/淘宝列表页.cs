@@ -26,7 +26,7 @@ namespace 淘宝列表页
         bool status = true;
         List<string> lists = new List<string>();
 
-        #region 琴房预约
+        #region 淘宝列表页
         public void run()
         {
 
@@ -90,13 +90,74 @@ namespace 淘宝列表页
 
         }
         #endregion
+
+        #region 淘宝评论
+        public void taobaoComment()
+        {
+
+          
+           // driver.Manage().Window.Maximize();
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("Object.defineProperties(navigator, {webdriver:{get:()=>undefined}});");
+           
+           // js.ExecuteScript("Object.defineProperties(navigator, {webdriver:{get:()=>undefined}});");
+            driver.Navigate().GoToUrl(textBox1.Text);
+            Thread.Sleep(10000);
+           driver.FindElement(By.XPath("//*[text()=\"累计评价\"]")).Click();
+            js.ExecuteScript("Object.defineProperties(navigator, {webdriver:{get:()=>undefined}});");
+            for (int i = 0; i < 100; i++)
+                {
+
+                    MatchCollection contents;
+                    while (true)
+                    {
+                    contents = Regex.Matches(driver.PageSource, @"<div class=""tm-rate-fulltxt"">([\s\S]*?)</div>");
+                        if (contents.Count > 0)
+                            break;
+                        if (status == false)
+                            return;
+                    }
+            
+                    foreach (Match content in contents)
+                    {
+                        if (!lists.Contains(content.Groups[1].Value))
+                        {
+                            lists.Add(content.Groups[1].Value);
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(content.Groups[1].Value);
+                        }
+                    }
+                    if (status == false)
+                        return;
+
+                    Random rd = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
+                    int second = rd.Next(3,8);
+                    Thread.Sleep((second * 1000));
+                    try
+                    {
+                        driver.FindElement(By.XPath("//*[text()=\"下一页>>\"]")).Click();
+                    js.ExecuteScript("Object.defineProperties(navigator, {webdriver:{get:()=>undefined}});");
+                }
+                    catch (Exception ex)
+                    {
+
+
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            
+
+
+
+        }
+        #endregion
         private void button6_Click(object sender, EventArgs e)
         {
             status = true;
             if (thread == null || !thread.IsAlive)
             {
 
-                thread = new Thread(run);
+                thread = new Thread(taobaoComment);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -115,6 +176,15 @@ namespace 淘宝列表页
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+        IWebDriver driver;
+        private void 淘宝列表页_Load(object sender, EventArgs e)
+        {
+            ChromeOptions options = new ChromeOptions();
+           driver = new ChromeDriver(options);
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("Object.defineProperties(navigator, {webdriver:{get:()=>undefined}});");
+            driver.Navigate().GoToUrl("https://login.taobao.com/member/login.jhtml");
         }
     }
 }

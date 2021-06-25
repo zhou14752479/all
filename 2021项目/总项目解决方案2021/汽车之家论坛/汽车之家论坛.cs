@@ -51,6 +51,7 @@ namespace 汽车之家论坛
             }
             catch (System.Exception ex)
             {
+               
                 return (ex.ToString());
 
 
@@ -93,7 +94,7 @@ namespace 汽车之家论坛
            
         }
 
-        string xcarcookie = "TY_SESSION_ID=cb444e47-8a9e-4c4c-8214-eda6402ac9e6; nguv=c_16193174932884344823461721897756308; __jsluid_s=c0e6f58bf0b66681dd8c3d8c046a5583; _Xdwuv=6084d2f5d1594; _Xdwnewuv=1; _PVXuv=6084d2f5699df; bbs_abtest=a; bbs_visitedfid=493D542; iwt_uuid=6ed099db-84d8-4543-8d9e-2f38dc5a2257; Hm_lvt_53eb54d089f7b5dd4ae2927686b183e0=1619317494,1619488210,1619596604,1619748123; uv_firstv_refers=https%3A//www.xcar.com.cn/bbs/forumdisplay.php%3Ffid%3D493%26orderby%3Ddateline%26filter%3D%26ondigest%3D0; fw_slc=1%3A1619748159%3B1%3A1619748174%3B1%3A1619748175%3B1%3A1619748177%3B1%3A1619748203; orderby=1; fw_clc=1%3A1619748161%3B1%3A1619748201%3B1%3A1619748236; _Xdwstime=1619748261; zg_did=%7B%22did%22%3A%20%2217906d80eee993-032adcf45170d8-d7e163f-1fa400-17906d80eef2ac%22%7D; zg_8f3d0255011c4bc5bae66beca6584825=%7B%22sid%22%3A%201619748122800%2C%22updated%22%3A%201619748259128%2C%22info%22%3A%201619317493496%2C%22superProperty%22%3A%20%22%7B%5C%22platform_type%5C%22%3A%20%5C%22PC%5C%22%2C%5C%22login_id%5C%22%3A%20null%2C%5C%22project_name%5C%22%3A%20%5C%22XCAR%5C%22%2C%5C%22login_status%5C%22%3A%200%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22%22%2C%22zs%22%3A%200%2C%22sc%22%3A%200%2C%22firstScreen%22%3A%201619748122800%7D; fw_pvc=1%3A1619748122%3B1%3A1619748162%3B1%3A1619748202%3B1%3A1619748237%3B1%3A1619748259; Hm_lpvt_53eb54d089f7b5dd4ae2927686b183e0=1619748259; fw_exc=1%3A1619748161%3B1%3A1619748201%3B1%3A1619748236%3B1%3A1619748237%3B1%3A1619748307";
+        string xcarcookie = "TY_SESSION_ID=b09485ab-daaa-48c8-9331-702fd1526842; nguv=c_16193174932884344823461721897756308; __jsluid_s=c0e6f58bf0b66681dd8c3d8c046a5583; _Xdwuv=6084d2f5d1594; _PVXuv=6084d2f5699df; bbs_abtest=a; bbs_visitedfid=542; _Xdwnewuv=1; uv_firstv_refers=; iwt_uuid=6ed099db-84d8-4543-8d9e-2f38dc5a2257; Hm_lvt_53eb54d089f7b5dd4ae2927686b183e0=1622617419; fw_slc=1%3A1622617419%3B1%3A1622617424%3B1%3A1622617478%3B1%3A1622617540%3B1%3A1622617542; zg_did=%7B%22did%22%3A%20%2217906d80eee993-032adcf45170d8-d7e163f-1fa400-17906d80eef2ac%22%7D; zg_8f3d0255011c4bc5bae66beca6584825=%7B%22sid%22%3A%201622617419028%2C%22updated%22%3A%201622617603243%2C%22info%22%3A%201622617419034%2C%22superProperty%22%3A%20%22%7B%5C%22platform_type%5C%22%3A%20%5C%22PC%5C%22%2C%5C%22login_id%5C%22%3A%20null%2C%5C%22project_name%5C%22%3A%20%5C%22XCAR%5C%22%2C%5C%22login_status%5C%22%3A%200%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22%22%2C%22zs%22%3A%200%2C%22sc%22%3A%200%2C%22firstScreen%22%3A%201622617419028%7D; fw_pvc=1%3A1622617419%3B1%3A1622617424%3B1%3A1622617539%3B1%3A1622617603; _Xdwstime=1622617604; Hm_lpvt_53eb54d089f7b5dd4ae2927686b183e0=1622617604; fw_clc=1%3A1622617691; fw_exc=1%3A1622617423%3B1%3A1622617602%3B1%3A1622617691";
         public int xcargetpage(string url)
         {
 
@@ -455,9 +456,10 @@ namespace 汽车之家论坛
 
                     string url = startUrl + "&orderby=dateline&filter=&ondigest=0&page=" + page;
                   
-                    string html = GetUrlWithCookie(url, xcarcookie, "utf-8");
+                    string html = method.GetUrlWithCookie(url, xcarcookie, "utf-8");
+                 
                     MatchCollection ahtmls = Regex.Matches(html, @"<dl class=""list_dl"">([\s\S]*?)</dl>");
-
+               
                     if (ahtmls.Count == 0)
                         break;
 

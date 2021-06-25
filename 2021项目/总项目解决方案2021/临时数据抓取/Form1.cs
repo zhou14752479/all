@@ -517,6 +517,7 @@ namespace 临时数据抓取
                         string aurl = "https://mx.tecdoc.net"+aurls[j].Groups[1].Value;
                         if (aurls[j].Groups[2].Value == n && anames[j].Groups[1].Value.Contains("SYD"))
                         {
+                           
                             string ahtml = method.GetUrl(aurl, "utf-8");
                             string title = Regex.Match(ahtml, @"<h1 itemprop=""name"" class=""media-heading"">([\s\S]*?)<").Groups[1].Value.Trim();
                             string Number = Regex.Match(ahtml, @"<span itemprop=""mpn"">([\s\S]*?)<").Groups[1].Value.Trim();
@@ -527,11 +528,27 @@ namespace 临时数据抓取
                             string Height = Regex.Match(ahtml, @"Height</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
                             string Weight = Regex.Match(ahtml, @"Weight</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
 
-
+                            
 
                             string[] html2s = ahtml.Split(new string[] { "<td rows" }, StringSplitOptions.None); ;
+                          
+                            if (html2s.Length == 1)
+                            {
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(n);
+                                lv1.SubItems.Add(title);
+                                lv1.SubItems.Add(Number);
+                                lv1.SubItems.Add(PartType);
+                                lv1.SubItems.Add(Position);
+                                lv1.SubItems.Add(Length);
+                                lv1.SubItems.Add(Width);
+                                lv1.SubItems.Add(Height);
+                                lv1.SubItems.Add(Weight);
+                                lv1.SubItems.Add("空");
+                                lv1.SubItems.Add("空");
 
-
+                                continue;
+                            }
 
                             for (int a = 0; a < html2s.Length; a++)
                             {

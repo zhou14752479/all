@@ -23,8 +23,12 @@ namespace 模拟采集谷歌版
     {
         public 阿里1688()
         {
-            browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(WB_DocumentCompleted);
+            
+          
             InitializeComponent();
+        
+
+           // browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(WB_DocumentCompleted);
         }
        
 
@@ -62,18 +66,36 @@ namespace 模拟采集谷歌版
 
 
 
+        public ChromiumWebBrowser browser;
+      //  public ChromiumWebBrowser browser = new ChromiumWebBrowser("https://login.1688.com/member/signin.htm");
+   
+        
 
-        public ChromiumWebBrowser browser = new ChromiumWebBrowser("https://login.1688.com/member/signin.htm");
+
 
 
         private void 拼多多后台_Load(object sender, EventArgs e)
         {
-            browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
-            browser.Load("https://h5.waimai.meituan.com/waimai/mindex/menu?dpShopId=&mtShopId=857036183426974");
+            var settings = new CefSettings();
+
+            settings.CachePath = "cache";
+
+            settings.CefCommandLineArgs.Add("proxy-server", "222.37.125.51:46603");
+
+            Cef.Initialize(settings);
+
+
+            //browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
+            //browser.Load("https://login.1688.com/member/signin.htm");
+            //browser.Parent = splitContainer1.Panel2;
+            //browser.Dock = DockStyle.Fill;
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            browser = new ChromiumWebBrowser("https://api.ipify.org/?format=jsonp");
             browser.Parent = splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
-            Control.CheckForIllegalCrossThreadCalls = false;
-           
+
+
+
             // browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(run);
         }
         private void WB_DocumentCompleted(object sender, FrameLoadEndEventArgs e)

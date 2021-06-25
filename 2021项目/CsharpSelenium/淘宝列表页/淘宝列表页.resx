@@ -120,9 +120,6 @@
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1207, 17</value>
   </metadata>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>https://s.taobao.com/search?initiative_id=tbindexz_20170306&amp;ie=utf8&amp;spm=a21bo.2017.201856-taobao-item.2&amp;sourceId=tb.index&amp;search_type=item&amp;ssid=s5-e&amp;commend=all&amp;imgfile=&amp;q=immi&amp;suggest=history_1&amp;_input_charset=utf-8&amp;wq=&amp;suggest_query=&amp;source=suggest&amp;sort=sale-desc</value>
-  </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1297, 17</value>
   </metadata>

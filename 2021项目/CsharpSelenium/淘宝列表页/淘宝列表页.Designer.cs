@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(淘宝列表页));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,9 +57,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 211);
+            this.listView1.Location = new System.Drawing.Point(3, 114);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(801, 325);
+            this.listView1.Size = new System.Drawing.Size(782, 414);
             this.listView1.TabIndex = 149;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -87,7 +86,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(807, 539);
+            this.groupBox1.Size = new System.Drawing.Size(788, 531);
             this.groupBox1.TabIndex = 150;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "输入网址(一行一个)";
@@ -95,12 +94,12 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(74, 18);
-            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(673, 142);
+            this.textBox1.Size = new System.Drawing.Size(673, 21);
             this.textBox1.TabIndex = 171;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
+            this.textBox1.Text = "https://detail.tmall.com/item.htm?spm=a230r.1.14.63.38c53769tzcjlk&id=54581173676" +
+    "4&ns=1&abbucket=12&sku_properties=31480:3226219";
             this.textBox1.WordWrap = false;
             // 
             // label1
@@ -114,7 +113,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(168, 166);
+            this.button3.Location = new System.Drawing.Point(171, 62);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(88, 31);
             this.button3.TabIndex = 169;
@@ -124,7 +123,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(356, 166);
+            this.button5.Location = new System.Drawing.Point(359, 62);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(88, 31);
             this.button5.TabIndex = 167;
@@ -134,7 +133,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(262, 166);
+            this.button4.Location = new System.Drawing.Point(265, 62);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(88, 31);
             this.button4.TabIndex = 166;
@@ -144,7 +143,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(74, 166);
+            this.button6.Location = new System.Drawing.Point(77, 62);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(88, 31);
             this.button6.TabIndex = 163;
@@ -160,10 +159,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 539);
+            this.ClientSize = new System.Drawing.Size(788, 531);
             this.Controls.Add(this.groupBox1);
             this.Name = "淘宝列表页";
             this.Text = "淘宝列表页";
+            this.Load += new System.EventHandler(this.淘宝列表页_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

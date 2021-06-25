@@ -61,8 +61,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.删除此项ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,13 +89,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView2 = new System.Windows.Forms.ListView();
             this.button6 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.contextMenuStrip3.SuspendLayout();
@@ -426,6 +426,50 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "当前选择城市";
             // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button8.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.button8.ForeColor = System.Drawing.Color.White;
+            this.button8.Location = new System.Drawing.Point(85, 161);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(113, 35);
+            this.button8.TabIndex = 107;
+            this.button8.Text = "添加选中";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(85, 89);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(117, 25);
+            this.comboBox4.TabIndex = 106;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label7.Location = new System.Drawing.Point(2, 87);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 20);
+            this.label7.TabIndex = 105;
+            this.label7.Text = "选择地区：";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button3.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(85, 120);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 35);
+            this.button3.TabIndex = 97;
+            this.button3.Text = "添加全部";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // comboBox2
             // 
             this.comboBox2.Font = new System.Drawing.Font("宋体", 11F);
@@ -445,6 +489,27 @@
             this.label5.Size = new System.Drawing.Size(79, 20);
             this.label5.TabIndex = 3;
             this.label5.Text = "选择城市：";
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10});
+            this.listView2.ContextMenuStrip = this.contextMenuStrip2;
+            this.listView2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(226, 19);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(134, 188);
+            this.listView2.TabIndex = 93;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "城市名";
+            this.columnHeader10.Width = 200;
             // 
             // contextMenuStrip2
             // 
@@ -645,58 +710,6 @@
             this.checkBox1.Text = "去除重复";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(85, 89);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(117, 25);
-            this.comboBox4.TabIndex = 106;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label7.Location = new System.Drawing.Point(2, 87);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 20);
-            this.label7.TabIndex = 105;
-            this.label7.Text = "选择地区：";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button3.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(85, 120);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 35);
-            this.button3.TabIndex = 97;
-            this.button3.Text = "添加全部";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "城市名";
-            this.columnHeader10.Width = 200;
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10});
-            this.listView2.ContextMenuStrip = this.contextMenuStrip2;
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(226, 19);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(134, 188);
-            this.listView2.TabIndex = 93;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.DodgerBlue;
@@ -709,19 +722,6 @@
             this.button6.Text = "清空";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button8.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(85, 161);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(113, 35);
-            this.button8.TabIndex = 107;
-            this.button8.Text = "添加选中";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // 地图采集器
             // 

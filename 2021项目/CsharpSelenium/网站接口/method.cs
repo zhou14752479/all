@@ -19,7 +19,9 @@ namespace 网站接口
 {
     class method
     {
-        string constr = "Host =121.40.209.61;Database=siyi_data;Username=root;Password=c#kaifa6668.";
+
+        //string constr = "Host =121.40.209.61;Database=siyi_data;Username=root;Password=c#kaifa6668.";
+        string constr = "Host=localhost;Database=siyi_data;Username=root;Password=c#kaifa6668.";
         myDLL.method md = new myDLL.method();
 
         private DateTime ConvertStringToDateTime(string timeStamp)
@@ -60,21 +62,21 @@ namespace 网站接口
             }
         }
         #endregion
-
+        string COOKIE = "";
         #region GET请求
         /// <summary>
         /// GET请求
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        public  string GetUrl(string Url, string charset)
         {
 
 
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "";
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
+               
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
@@ -98,7 +100,7 @@ namespace 网站接口
             }
             catch (System.Exception ex)
             {
-               MessageBox.Show("ex"+ex.ToString()) ;
+               //MessageBox.Show("ex"+ex.ToString()) ;
                 return "";
 
             }
@@ -165,8 +167,9 @@ namespace 网站接口
 
             }
 
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
+               // MessageBox.Show(ex.ToString());
                 return false;
 
             }
@@ -427,7 +430,7 @@ namespace 网站接口
         }
         #endregion
 
-        #region 美团注册
+        #region 客户注册
         public string mtregister(object o)
         {
             string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
@@ -437,7 +440,7 @@ namespace 网站接口
             string time = DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss");
             try
             {
-                string sql = "INSERT INTO mtusers (username,password,registertime,mac)VALUES('" + username + " ', '" + password + " ','" + time + " ', '" + mac + " ')";
+                string sql = "INSERT INTO mtusers (username,password,registertime)VALUES('" + username + " ', '" + password + " ','" + time + " ')";
                 bool status = insertsql(sql);
                 if (status == true)
                 {
@@ -445,26 +448,24 @@ namespace 网站接口
                 }
                 else
                 {
-                    return "{\"status\":0,\"msg\":\"注册异常，请联系客服\"}";
+                    return "{\"status\":0,\"msg\":\"注册失败，请联系客服\"}";
                 }
 
             }
             catch (Exception)
             {
 
-                return "{\"status\":0,\"msg\":\"注册异常，请联系客服\"}";
+                return "{\"status\":0,\"msg\":\"注册失败，请联系客服\"}";
             }
         }
         #endregion
-
-
-        #region 美团登录
+        #region 客户登录
         public string mtlogin(object o)
         {
             string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
             string username = text[0];
             string password = text[1];
-            string mac = text[2];
+         
             try
             {
                 string sql = "select * from mtusers where username='" + username + "' ";
@@ -481,22 +482,14 @@ namespace 网站接口
                     string pass = reader["password"].ToString().Trim();
                     string isvip = reader["isvip"].ToString().Trim();
                     string registertime = reader["registertime"].ToString().Trim();
-                    string mac2 = reader["mac"].ToString().Trim();
-                    if (mac != mac2)
-                    {
-                        mycon.Close();
-                        reader.Close();
-                        return "{\"status\":0,\"msg\":\"登录失败，本机未注册\"}";
-                       
-                    }
-
+               
 
 
                     if (pass == password)
                     {
                         mycon.Close();
                         reader.Close();
-                        return "{\"status\":1,\"msg\":\"true\",\"registertime\":\"" + registertime + "\",\"isvip\":\"" + isvip+ "\",\"code\":\"" + mac + "\"}";
+                        return "{\"status\":1,\"msg\":\"登录成功\",\"registertime\":\"" + registertime + "\",\"isvip\":\"" + isvip+ "\"}";
                     }
                     else
                     {
@@ -525,6 +518,187 @@ namespace 网站接口
             }
         }
         #endregion
+        #region 客户查询
+        public string mtall()
+        {
+
+            try
+            {
+
+                MySqlDataAdapter sda = new MySqlDataAdapter("Select * From mtusers", constr);
+                DataSet Ds = new DataSet();
+                sda.Fill(Ds, "T_Class"); //表名字随便起，第0个就是Ds.Tables[0]
+                string json = JsonConvert.SerializeObject(Ds.Tables[0], Formatting.Indented);
+
+                if (json != "")
+                {
+
+                    return "{ \"count\":" + Ds.Tables[0].Rows.Count + ",\"status\":1,\"data\":" + json + "}";
+                }
+
+                else
+                {
+                    return "{ \"count\":" + Ds.Tables[0].Rows.Count + ",\"status\":1,\"data\":" + json + "}";
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+        #endregion
+        #region 客户删除
+        public string mtdel(object o)
+        {
+            string userid = o.ToString().Trim();
+            try
+            {
+                string sql = "DELETE FROM mtusers where id ='" + userid + "'";
+         
+                bool status = insertsql(sql);
+                if (status == true)
+                {
+                    return "{\"status\":1,\"msg\":\"删除成功\"}";
+                }
+                else
+                {
+                    return "{\"status\":0,\"msg\":\"删除失败，请联系客服\"}";
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return "{\"status\":0,\"msg\":\"删除异常，请联系客服\"}";
+            }
+        }
+        #endregion
+        #region 客户软件信息更新
+        public string updatesoftinfo(object o)
+        {
+            string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+            string name = text[0];
+            string tel= text[1];
+            string logo= text[2];
+            string erweima = text[3];
+            try
+            {
+              
+                string sql = "UPDATE softinfos set softname ='" + name + "' , contacts ='" + tel+ "',logo='" + logo + "' ,erweima='" + erweima + "'";
+
+                bool status = insertsql(sql);
+                if (status == true)
+                {
+                    return "{\"status\":1,\"msg\":\"修改成功\"}";
+                }
+                else
+                {
+                    return "{\"status\":0,\"msg\":\"修改失败\"}";
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return "{\"status\":0,\"msg\":\"修改失败\"}";
+            }
+        }
+        #endregion
+        #region 客户软件信息获取
+        public string getsoftinfo()
+        {
+            try
+            {
+
+                MySqlDataAdapter sda = new MySqlDataAdapter("Select * From softinfos", constr);
+                DataSet Ds = new DataSet();
+                sda.Fill(Ds, "T_Class"); //表名字随便起，第0个就是Ds.Tables[0]
+                string json = JsonConvert.SerializeObject(Ds.Tables[0], Formatting.Indented);
+
+                if (json != "")
+                {
+
+                    return "{ \"count\":" + Ds.Tables[0].Rows.Count + ",\"status\":1,\"data\":" + json + "}";
+                }
+
+                else
+                {
+                    return "{ \"count\":" + Ds.Tables[0].Rows.Count + ",\"status\":1,\"data\":" + json + "}";
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+        #endregion
+        #region 邮箱简历获取
+        public string mtjianliall()
+        {
+
+            try
+            {
+
+                MySqlDataAdapter sda = new MySqlDataAdapter("Select * From jianlis", constr);
+                DataSet Ds = new DataSet();
+                sda.Fill(Ds, "T_Class"); //表名字随便起，第0个就是Ds.Tables[0]
+                string json = JsonConvert.SerializeObject(Ds.Tables[0], Formatting.Indented);
+
+                if (json != "")
+                {
+
+                    return "{ \"count\":" + Ds.Tables[0].Rows.Count + ",\"status\":1,\"data\":" + json + "}";
+                }
+
+                else
+                {
+                    return "{ \"count\":" + Ds.Tables[0].Rows.Count + ",\"status\":1,\"data\":" + json + "}";
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+        #endregion
+        #region 邮箱简历插入
+        public string mtjianliregister(object o)
+        {
+            string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+           
+            try
+            {
+                string sql = "INSERT INTO jianlis (name,sex,age,birthday,phone,area,job,time,username)VALUES('" + text[0]+ " ', '" +text[1] + " ','" + text[2] + " ','" + text[3] + " ','" + text[4] + " ','" + text[5] + " ','" + text[6] + " ','" + text[7] + " ','" + text[8] + " ')";
+                bool status = insertsql(sql);
+                if (status == true)
+                {
+                    return "{\"status\":1,\"msg\":\"注册成功\"}";
+                }
+                else
+                {
+                    return "{\"status\":0,\"msg\":\"注册失败，请联系客服\"}";
+                }
+
+            }
+            catch (Exception )
+            {
+               
+
+                return "{\"status\":0,\"msg\":\"注册失败，请联系客服\"}";
+            }
+        }
+        #endregion
+
+
 
 
         #region 美团会员检测
@@ -1032,6 +1206,95 @@ namespace 网站接口
         }
 
 
+
+        #endregion
+
+        #region  旺旺查询
+
+        public  string getSetCookie(string url)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
+                request.Timeout = 10000;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.AllowAutoRedirect = true;
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                string content = response.GetResponseHeader("Set-Cookie"); ;
+                return content;
+            }
+            catch (Exception ex)
+            {
+               
+                return "";
+                
+            }
+          
+
+
+        }
+        baiduOCR ocr = new baiduOCR();
+        public string getwangwang(string wangwang)
+        {
+
+           
+            
+            try
+            {
+                if (wangwang != "")
+                {
+                    string url = "http://139.159.141.200/app/superscanPH/opQuery.jsp?m=queryAliim&aliim=" + wangwang;
+                    string html= GetUrl(url,"utf-8").Trim();
+                    if (!html.Contains("baseImg"))
+                    {
+                        COOKIE = getSetCookie("http://139.159.141.200/app/superscanPH/loginPH.jsp?m=login&username=18588777745&password=MUSHANG123&parcame=ajax");
+                        html = GetUrl(url, "utf-8").Trim();
+                    }
+
+                    //if (html== "")
+                    //{
+                    //    //判断主用IP是否可用，切换备用IP
+                    //    url = "http://106.12.189.59/app/superscanPH/opQuery.jsp?m=queryAliim&aliim=" + wangwang;
+                    //    html = GetUrl(url, "utf-8");
+
+                    //}
+
+
+
+                    string baseimgUrl = Regex.Match(html, @"baseImg"":""([\s\S]*?)""").Groups[1].Value;
+                    string downimgUrl = Regex.Match(html, @"downImg"":""([\s\S]*?)""").Groups[1].Value;
+                    string result = ocr.shibie(baseimgUrl);
+
+
+                    string sex = "男";
+                    string downNum = "0";
+                    if (result.Contains("女"))
+                    {
+                        sex = "女";
+                    }
+                    string buyerCre = Regex.Match(result, @"买家信誉:([\s\S]*?)""").Groups[1].Value;
+                    string sellerCredit = Regex.Match(result, @"商家信誉:([\s\S]*?)""").Groups[1].Value;
+
+                    string json = "{\"sex\":\"" + sex + "\",\"buyerCre\":\"" + buyerCre + "\",\"sellerCredit\":\"" + sellerCredit + "\",\"downNum\":" + downNum + "}";
+                    return json;
+
+                }
+                else
+                {
+                    return "旺旺为空";
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+      
 
         #endregion
     }

@@ -64,6 +64,12 @@
     <Compile Include="淘宝列表页.Designer.cs">
       <DependentUpon>淘宝列表页.cs</DependentUpon>
     </Compile>
+    <Compile Include="阿里代发.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="阿里代发.Designer.cs">
+      <DependentUpon>阿里代发.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +81,9 @@
     </Compile>
     <EmbeddedResource Include="淘宝列表页.resx">
       <DependentUpon>淘宝列表页.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="阿里代发.resx">
+      <DependentUpon>阿里代发.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

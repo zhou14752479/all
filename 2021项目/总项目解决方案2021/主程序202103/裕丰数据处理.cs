@@ -233,8 +233,8 @@ namespace 主程序202103
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Title = "打开excel文件";
-            // openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
-            openFileDialog1.Filter = "excel07文件(*.xlsx)|*.xlsx";
+            openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
+            
             openFileDialog1.InitialDirectory = @"C:\Users\Administrator\Desktop";
             openFileDialog1.RestoreDirectory = true;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)

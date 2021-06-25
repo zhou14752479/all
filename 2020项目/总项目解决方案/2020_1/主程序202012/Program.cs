@@ -16,7 +16,7 @@ namespace 主程序202012
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 网址JSON检测());
+            Application.Run(new 京东药房());
         }
     }
 }

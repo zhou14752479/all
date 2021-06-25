@@ -276,5 +276,10 @@ namespace 主程序202105
         {
             listView1.Items.Clear();
         }
+
+        private void 贴吧用户发言查找_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

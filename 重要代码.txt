@@ -22,7 +22,14 @@ System.Web.HttpUtility.UrlEncode(comboBox1.Text)
 
 【设置控件显示在前面】
  textBox1.BringToFront();
-
+【双击获取listview选中行内容】
+private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count == 0)
+                return;
+System.Diagnostics.Process.Start(listView1.SelectedItems[0].SubItems[5].Text);
+            MessageBox.Show(listView1.SelectedItems[0].SubItems[5].Text);
+        }
 【一、Unicode转中文】
 
  			public static string Unicode2String(string source)
@@ -275,6 +282,14 @@ string str = Interaction.InputBox("提示信息","标题","文本内容",-1,-1);
                    
             }
 【tetbox滚动到当前行】
+private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            this.textBox5.SelectionStart = this.textBox5.Text.Length;
+            this.textBox5.SelectionLength = 0;
+            this.textBox5.ScrollToCaret();
+        }
+
+
  this.textBox1.Focus();
                             this.textBox1.Select(this.textBox1.TextLength, 0);
                             this.textBox1.ScrollToCaret();
@@ -372,3 +387,7 @@ NuGet程序包引用Microsoft.mshtml
 
 【好用点击下一页】
  driver.FindElement(By.XPath("//*[text()=\"下一页\"]")).Click();
+【弹窗三秒后自动关闭】
+[DllImport("user32.dll")]
+        public static extern int MessageBoxTimeoutA(IntPtr hWnd,string msg,string Caps,int type,int Id,int time);//引用DLL
+MessageBoxTimeoutA((IntPtr )0,"3秒后自动关闭","消息框",0,0,3000);// 直接调用  3秒后自动关闭 父窗口句柄没有直接用0代替

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="myDLL">
+      <HintPath>..\..\myDLL\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\浙江移动\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>

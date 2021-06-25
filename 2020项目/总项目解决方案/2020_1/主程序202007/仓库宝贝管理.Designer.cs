@@ -59,6 +59,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,6 +82,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBox6);
             this.splitContainer1.Panel2.Controls.Add(this.button9);
             this.splitContainer1.Panel2.Controls.Add(this.linkLabel2);
             this.splitContainer1.Panel2.Controls.Add(this.button8);
@@ -151,7 +154,7 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(13, 351);
+            this.linkLabel2.Location = new System.Drawing.Point(13, 383);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(56, 17);
             this.linkLabel2.TabIndex = 27;
@@ -180,6 +183,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.textBox5);
             this.groupBox2.Controls.Add(this.label3);
@@ -221,11 +225,11 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(154, 102);
+            this.button7.Location = new System.Drawing.Point(29, 102);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(118, 25);
             this.button7.TabIndex = 24;
-            this.button7.Text = "开始设置定时上架";
+            this.button7.Text = "定时上架";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -317,7 +321,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 379);
+            this.linkLabel1.Location = new System.Drawing.Point(107, 383);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(80, 17);
             this.linkLabel1.TabIndex = 16;
@@ -331,7 +335,7 @@
             this.button4.ForeColor = System.Drawing.Color.Blue;
             this.button4.Location = new System.Drawing.Point(9, 415);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 29);
+            this.button4.Size = new System.Drawing.Size(95, 29);
             this.button4.TabIndex = 15;
             this.button4.Text = "登录淘宝";
             this.button4.UseVisualStyleBackColor = false;
@@ -370,6 +374,24 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(9, 309);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(259, 71);
+            this.textBox6.TabIndex = 29;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(163, 105);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(75, 21);
+            this.checkBox1.TabIndex = 28;
+            this.checkBox1.Text = "完整标题";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // 仓库宝贝管理
             // 
@@ -430,5 +452,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

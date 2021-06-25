@@ -141,7 +141,7 @@ namespace 主程序202011
                 string url = "https://mail.163.com/js6/s?sid="+sid+"&func=mbox:listMessages&mbox_pager_next=1";
                 string postdata = "var=%3C%3Fxml%20version%3D%221.0%22%3F%3E%3Cobject%3E%3Cint%20name%3D%22fid%22%3E1%3C%2Fint%3E%3Cstring%20name%3D%22order%22%3Edate%3C%2Fstring%3E%3Cboolean%20name%3D%22desc%22%3Etrue%3C%2Fboolean%3E%3Cint%20name%3D%22limit%22%3E30%3C%2Fint%3E%3Cint%20name%3D%22start%22%3E" + start + "%3C%2Fint%3E%3Cboolean%20name%3D%22skipLockedFolders%22%3Efalse%3C%2Fboolean%3E%3Cstring%20name%3D%22topFlag%22%3Etop%3C%2Fstring%3E%3Cboolean%20name%3D%22returnTag%22%3Etrue%3C%2Fboolean%3E%3Cboolean%20name%3D%22returnTotal%22%3Etrue%3C%2Fboolean%3E%3C%2Fobject%3E";
                 string html = PostUrl(url, postdata, COOKIE, "utf-8");
-              
+                MessageBox.Show(html);
                 MatchCollection aids = Regex.Matches(html, @"<string name=""id"">([\s\S]*?)</string>");
                 MatchCollection titles = Regex.Matches(html, @"<string name=""subject"">([\s\S]*?)</string>");
                 MatchCollection times = Regex.Matches(html, @"<date name=""receivedDate"">([\s\S]*?)</date>");
@@ -264,7 +264,7 @@ namespace 主程序202011
         private void button1_Click(object sender, EventArgs e)
         {
 
-            cookieBrowser cb = new cookieBrowser("https://mail.163.com/js6/s?sid=WCMjZlDUiyNqxrkjdXUUVOJCNlostwDI&func=mbox:listMessages&mbox_pager_next=1");
+            cookieBrowser cb = new cookieBrowser("https://mail.163.com/");
           
             cb.Show();
         }

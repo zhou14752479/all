@@ -22,11 +22,13 @@ namespace 商标局浏览器
         {
             InitializeComponent();
         }
+
+
+        #region 设置IE全局代理
         public static bool UnsetProxy()
         {
             return SetProxy(null, null);
         }
-
         public static bool SetProxy(string strProxy)
         {
             return SetProxy(strProxy, null);
@@ -178,6 +180,13 @@ namespace 商标局浏览器
 
         #endregion
 
+        internal static class NativeMethods
+        {
+            [DllImport("WinInet.dll", SetLastError = true, CharSet = CharSet.Auto)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool InternetSetOption(IntPtr hInternet, InternetOption dwOption, IntPtr lpBuffer, int dwBufferLength);
+        }
+        #endregion
 
         #region GET请求
         /// <summary>
@@ -218,12 +227,7 @@ namespace 商标局浏览器
         }
         #endregion
 
-        internal static class NativeMethods
-    {
-        [DllImport("WinInet.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool InternetSetOption(IntPtr hInternet, InternetOption dwOption, IntPtr lpBuffer, int dwBufferLength);
-    }
+      
 
         private void Button1_Click(object sender, EventArgs e)
         {

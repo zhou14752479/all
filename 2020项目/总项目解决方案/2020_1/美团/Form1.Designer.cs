@@ -37,6 +37,7 @@
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -169,6 +170,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.button3);
@@ -186,6 +188,16 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数配置";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(33, 98);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 52);
+            this.button6.TabIndex = 26;
+            this.button6.Text = "登录美团";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button4
             // 
@@ -272,6 +284,7 @@
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(117, 117);
             this.textBox2.TabIndex = 4;
+            this.textBox2.Text = "咖啡店";
             // 
             // textBox1
             // 
@@ -281,6 +294,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(124, 117);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "上海";
             // 
             // listView1
             // 
@@ -492,6 +506,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button6;
     }
 }
 

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -62,10 +62,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -82,10 +78,10 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button7);
-            this.splitContainer1.Panel1.Controls.Add(this.button6);
             this.splitContainer1.Panel1.Controls.Add(this.textBox6);
             this.splitContainer1.Panel1.Controls.Add(this.label13);
+            this.splitContainer1.Panel1.Controls.Add(this.button7);
+            this.splitContainer1.Panel1.Controls.Add(this.button6);
             this.splitContainer1.Panel1.Controls.Add(this.textBox5);
             this.splitContainer1.Panel1.Controls.Add(this.label12);
             this.splitContainer1.Panel1.Controls.Add(this.textBox4);
@@ -116,6 +112,26 @@
             this.splitContainer1.SplitterDistance = 107;
             this.splitContainer1.TabIndex = 0;
             // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(429, 67);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(258, 23);
+            this.textBox6.TabIndex = 45;
+            this.textBox6.Text = "8871b94e1cb849edaa5cd0842e240255";
+            this.textBox6.Visible = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label13.Location = new System.Drawing.Point(375, 68);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 20);
+            this.label13.TabIndex = 44;
+            this.label13.Text = "key:";
+            this.label13.Visible = false;
+            // 
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(810, 67);
@@ -124,6 +140,7 @@
             this.button7.TabIndex = 43;
             this.button7.Text = "导出文本";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
@@ -134,33 +151,16 @@
             this.button6.TabIndex = 42;
             this.button6.Text = "导出数据2";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(394, 65);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(293, 23);
-            this.textBox6.TabIndex = 41;
-            this.textBox6.Text = "8871b94e1cb849edaa5cd0842e240255";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label13.Location = new System.Drawing.Point(340, 66);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 20);
-            this.label13.TabIndex = 40;
-            this.label13.Text = "key:";
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(236, 66);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 23);
+            this.textBox5.Size = new System.Drawing.Size(134, 23);
             this.textBox5.TabIndex = 39;
-            this.textBox5.Text = "400111lfhLFH";
+            this.textBox5.Text = "SHALM2021052414";
             // 
             // label12
             // 
@@ -178,7 +178,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 23);
             this.textBox4.TabIndex = 37;
-            this.textBox4.Text = "shalumeng02";
+            this.textBox4.Text = "SHALM";
             // 
             // label11
             // 
@@ -344,7 +344,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 23);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "7842400024884";
+            this.textBox1.Text = "7815283815454";
             // 
             // label1
             // 
@@ -364,11 +364,7 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader10,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9});
+            this.columnHeader6});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -386,45 +382,28 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "PASSENGER";
+            this.columnHeader2.Text = "rETKD";
             this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "DETRTN";
+            this.columnHeader3.Text = "ORG/DST";
             this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "AirFromCode";
+            this.columnHeader4.Text = "PASSENGER";
             this.columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "AirToCode";
+            this.columnHeader5.Text = "FM";
             this.columnHeader5.Width = 100;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "AirFlightNo";
+            this.columnHeader6.Text = "USED/FLOWN ";
             this.columnHeader6.Width = 100;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "AirSeat";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "AirDate";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "AirTime";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "AirTicketStatus";
-            this.columnHeader9.Width = 100;
             // 
             // openFileDialog1
             // 
@@ -462,10 +441,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -485,13 +460,13 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label13;
     }
 }

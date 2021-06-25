@@ -21,7 +21,7 @@ namespace 淘宝商品抓取
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 直通车抓取());
+            Application.Run(new Form1());
         }
 
         public static void getCookie(string url)

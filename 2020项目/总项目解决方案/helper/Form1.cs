@@ -32,8 +32,8 @@ namespace helper
             method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
 
-            // webBrowser1.Navigate("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall");
-               webBrowser1.Navigate("http://www.yanxiu.com/login.html?l=true");
+             webBrowser1.Navigate("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall");
+              // webBrowser1.Navigate("http://www.yanxiu.com/login.html?l=true");
             // webBrowser1.Navigate("https://new-wl.jdwl.com/");
            // webBrowser1.Navigate("https://mail.qq.com/");
         }
@@ -42,8 +42,8 @@ namespace helper
         private void button1_Click(object sender, EventArgs e)
         {
 
-            // cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/table.htm");
-              cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
+             cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/render.htm?pagination.current=1&pagination.pageSize=20&tab=in_stock&table.sort.endDate_m=desc");
+            // cookie = method.GetCookies("http://i.yanxiu.com/?j=true&fl=true");
             //cookie = method.GetCookies("https://biz-wb.jdwl.com/business/waybillmanage/toDeliveryDetail");
 
 
@@ -51,8 +51,8 @@ namespace helper
             //Match sid = Regex.Match(webBrowser1.Url.ToString(), @"sid=([\s\S]*?)&");
             //SID = sid.Groups[1].Value;
             //this.Hide();
-
-            System.IO.File.WriteAllText(path+textBox1.Text.Trim()+".txt",cookie, Encoding.UTF8);
+            textBox1.Text = cookie;
+            //System.IO.File.WriteAllText(path+textBox1.Text.Trim()+".txt",cookie, Encoding.UTF8);
         }
 
         private void webBrowser1_NewWindow(object sender, CancelEventArgs e)

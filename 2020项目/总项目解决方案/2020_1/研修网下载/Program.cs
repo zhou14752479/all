@@ -16,7 +16,7 @@ namespace 研修网下载
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new 多线程下载());
         }
     }
 }

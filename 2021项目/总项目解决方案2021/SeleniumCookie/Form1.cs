@@ -63,20 +63,14 @@ namespace SeleniumCookie
         {
             InitializeComponent();
         }
-       
 
+        IWebDriver driver =new ChromeDriver();
         public void getCookies()
         {
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://www.abchina.com/cn");
-            //options.AddArgument("--lang=en"); 
+          
 
+            StringBuilder sb = new StringBuilder();
 
-            StringBuilder sb;
-
-            while (true)
-            {
-                sb = new StringBuilder();
                 var _cookies = driver.Manage().Cookies.AllCookies;
 
                 foreach (Cookie cookie in _cookies)
@@ -85,78 +79,33 @@ namespace SeleniumCookie
                     sb.Append(cookie.Name + "=" + cookie.Value + ";");
                     // driver.Manage().Cookies.AddCookie(cookie);
                 }
-
-                //if (sb.ToString().Contains("WD_SESSION"))
-                //{
-
-                //    break;
-                //}
-                if (sb.ToString()!="")
-                {
-
-                    break;
-                }
-            }
+            
             //driver.Quit();
             //this.Hide();
             IniWriteValue("COOKIES","cookie", sb.ToString());
             textBox1.Text = sb.ToString();
            
         }
-        IWebDriver driver = new ChromeDriver();
-        public void getdata()
-        {
-
-          MatchCollection values = Regex.Matches(driver.PageSource, @"<div class=""_3l4JHq4ytfakvwEz50UU4w"">([\s\S]*?)</div>([\s\S]*?)¥</span>([\s\S]*?)<");
-           string cate = Regex.Match(driver.PageSource, @"<dt class=""_2ErFNcTzenYRc7Gvn7SM-b"">([\s\S]*?)<").Groups[1].Value;
-            for (int i = 0; i < values.Count; i++)
-            {
-                try
-                {
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(values[i].Groups[1].Value);
-                    lv1.SubItems.Add(values[i].Groups[3].Value);
-                    lv1.SubItems.Add(cate);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("");
-                    continue;
-                }
-            }
-
-
-        }
+       
+       
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            driver.Navigate().GoToUrl("https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc");
         }
         Thread thread;
 
         private void button1_Click(object sender, EventArgs e)
         {
-            driver.Navigate().GoToUrl("https://h5.waimai.meituan.com/waimai/mindex/menu?dpShopId=&mtShopId=857036183426974");
-            //if (thread == null || !thread.IsAlive)
-            //{
-            //    thread = new Thread(getCookies);
-            //    thread.Start();
-            //    Control.CheckForIllegalCrossThreadCalls = false;
-            //}
-        }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(getdata);
+                thread = new Thread(getCookies);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-        }
+       
+      
     }
 }

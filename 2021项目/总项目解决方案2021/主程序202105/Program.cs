@@ -16,7 +16,7 @@ namespace 主程序202105
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 网站公告推送());
+            Application.Run(new 中石化油卡查询());
         }
     }
 }

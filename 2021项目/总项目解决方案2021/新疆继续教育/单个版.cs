@@ -150,18 +150,18 @@ namespace 新疆继续教育
        
         public string getcode()
         {
-            GetUrl("http://47.102.145.207/index.php?codenum=1");
-            string codehtml = GetUrl("http://47.102.145.207/getcode.txt");
-            string code = Regex.Match(codehtml, @"[A-Za-z0-9]{10,}").Groups[0].Value;
-            while (code == "")
-            {
-                codehtml = GetUrl("http://47.102.145.207/getcode.txt");
-                code = Regex.Match(codehtml, @"[A-Za-z0-9]{10,}").Groups[0].Value;
+            //GetUrl("http://47.102.145.207/index.php?codenum=1");
+            //string codehtml = GetUrl("http://47.102.145.207/getcode.txt");
+            //string code = Regex.Match(codehtml, @"[A-Za-z0-9]{10,}").Groups[0].Value;
+            //while (code == "")
+            //{
+            //    codehtml = GetUrl("http://47.102.145.207/getcode.txt");
+            //    code = Regex.Match(codehtml, @"[A-Za-z0-9]{10,}").Groups[0].Value;
                
 
-            }
-            
-            return code;
+            //}
+           // return "091zHk000xgfQL1gF13008Lgvm2zHk0F";
+            return  textBox3.Text;
 
         }
 
@@ -363,12 +363,9 @@ namespace 新疆继续教育
         {
             if (t == null || !t.IsAlive)
             {
-
-
                 t = new Thread(denglu);
                 t.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
-
             }
         }
         public void setlog(string str)
@@ -471,15 +468,9 @@ namespace 新疆继续教育
 
         }
 
+        private void 单个版_Load(object sender, EventArgs e)
+        {
 
-
-
-
-
-
-
-
-
-
+        }
     }
 }

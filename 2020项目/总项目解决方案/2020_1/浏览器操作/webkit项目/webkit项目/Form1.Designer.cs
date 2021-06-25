@@ -28,19 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.webKitBrowser1 = new WebKit.WebKitBrowser();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.webKitBrowser1 = new WebKit.WebKitBrowser();
             this.SuspendLayout();
-            // 
-            // webKitBrowser1
-            // 
-            this.webKitBrowser1.BackColor = System.Drawing.Color.White;
-            this.webKitBrowser1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.webKitBrowser1.Location = new System.Drawing.Point(0, 68);
-            this.webKitBrowser1.Name = "webKitBrowser1";
-            this.webKitBrowser1.Size = new System.Drawing.Size(1022, 682);
-            this.webKitBrowser1.TabIndex = 0;
-            this.webKitBrowser1.Url = null;
             // 
             // button1
             // 
@@ -52,13 +43,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(468, 13);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // webKitBrowser1
+            // 
+            this.webKitBrowser1.BackColor = System.Drawing.Color.White;
+            this.webKitBrowser1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.webKitBrowser1.Location = new System.Drawing.Point(0, 68);
+            this.webKitBrowser1.Name = "webKitBrowser1";
+            this.webKitBrowser1.Size = new System.Drawing.Size(1022, 682);
+            this.webKitBrowser1.TabIndex = 3;
+            this.webKitBrowser1.Url = null;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 750);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.webKitBrowser1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -67,9 +79,9 @@
         }
 
         #endregion
-
-        private WebKit.WebKitBrowser webKitBrowser1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private WebKit.WebKitBrowser webKitBrowser1;
     }
 }
 

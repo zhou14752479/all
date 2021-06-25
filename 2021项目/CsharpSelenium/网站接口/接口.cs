@@ -60,16 +60,24 @@ namespace 网站接口
             textBox1.Text = DateTime.Now.ToString("HH:MM:ss") + "API已停止";
         }
 
+
+
+        method md = new method();
         public void ceshi()
         {
-            method md = new method();
-            // string fileName = @"C:/Users/zhou/Desktop/1/"  + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".xlsx";
-            
-            // string o = "39,84,二手车,"+fileName;
-            //md.exportExcel(o);
-            string o = "39,84,%e5%ae%bf%e8%bf%81,%e7%be%8e%e5%ae%b9";
-            md.Amap(o);
+            //baiduOCR ocr = new baiduOCR();
+            //string result = ocr.shibie("http://i.cy1788.com/data/20210625/10538cf20cec45cea595c0b5b3d35475.png");
+            try
+            {
 
+               
+                textBox1.Text = md.getwangwang("tb10879579"); ;
+            }
+            catch (Exception ex) 
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
         private void button3_Click(object sender, EventArgs e)
         {

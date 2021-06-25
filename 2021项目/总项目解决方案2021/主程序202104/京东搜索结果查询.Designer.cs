@@ -225,6 +225,7 @@
             this.Name = "京东搜索结果查询";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "京东搜索结果查询";
+            this.Load += new System.EventHandler(this.京东搜索结果查询_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -70,6 +70,7 @@ namespace helper
         }
 
         #endregion
+
         #region 图片转base64
         public static string ImgToBase64String(Bitmap bmp)
         {

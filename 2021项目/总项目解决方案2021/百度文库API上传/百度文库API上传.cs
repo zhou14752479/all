@@ -171,9 +171,12 @@ namespace 百度文库API上传
         #endregion
 
 
+        bool status = false;
        
         public void run()
         {
+            status = true;
+            label1.Text = "正在上传.......";
             DirectoryInfo directory = new DirectoryInfo(textBox1.Text);
             FileInfo[] fileinfo = directory.GetFiles();
             //fileinfo.Length
@@ -197,10 +200,11 @@ namespace 百度文库API上传
                         msg = "false";
                        
                     }
+                   
                     if (html.Contains("max") || html.Contains("Max"))
                     {
                        label1.Text= "上传上限";
-                        timer1.Start();
+                        status = false;
                         return;
                         
                     }
@@ -227,7 +231,7 @@ namespace 百度文库API上传
         }
         private void 百度文库API上传_Load(object sender, EventArgs e)
         {
-            
+            timer1.Start();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -273,10 +277,11 @@ namespace 百度文库API上传
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (DateTime.Now.ToString("HH:mm:ss") == "00:10:00")
+            if (status==false)
             {
                 if (thread == null || !thread.IsAlive)
                 {
+                    
                     thread = new Thread(run);
                     thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;

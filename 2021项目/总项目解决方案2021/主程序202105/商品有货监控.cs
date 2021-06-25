@@ -142,7 +142,7 @@ namespace 主程序202105
 
         public string getip()
         {
-            string ip = method.GetUrl("http://47.106.170.4:8081/Index-generate_api_url.html?packid=1&fa=0&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7","utf-8");
+            string ip = method.GetUrl("http://47.106.170.4:8081/Index-generate_api_url.html?packid=1&fa=0&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7", "utf-8");
             label4.Text = "当前IP："+ip;
             return ip;
         }

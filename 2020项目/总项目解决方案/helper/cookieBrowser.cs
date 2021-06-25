@@ -71,7 +71,7 @@ namespace helper
             InitializeComponent();
             webUrl = url;
             method.SetFeatures(11000);
-            webBrowser1.ScriptErrorsSuppressed = true;
+           webBrowser1.ScriptErrorsSuppressed = true;
 
             //webBrowser1.Url = new Uri(webUrl);
              webBrowser1.Navigate(webUrl);
@@ -89,9 +89,10 @@ namespace helper
         private void button1_Click(object sender, EventArgs e)
         {
 
-            //string cookie = method.GetCookies("http://www.jszwfw.gov.cn/jsjis/admin/verifyCode.do?code=4&var=rand&width=90&height=45&random=0.08807624779516066;");
 
-            string cookie = method.GetCookies(webUrl);
+
+            //string cookie = method.GetCookies("https://enjoy.abchina.com/jf-pcweb/transPay/getPayInfo");
+            string cookie = method.GetCookies("https://mail.163.com/");
             textBox1.Text = cookie;
             
             //写入config.ini配置文件
@@ -104,7 +105,7 @@ namespace helper
             sw.Close();
             fs1.Close();
             sw.Dispose();
-            this.Hide();
+           // this.Hide();
 
         }
 

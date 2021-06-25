@@ -486,6 +486,35 @@ namespace 网站接口
                 sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
             }
 
+            else if (requesturl.Contains("api/mt/mtjianliregister"))
+            {
+                string neirong = "";
+                string name = Regex.Match(requesturl, @"name=([\s\S]*?)&").Groups[1].Value;
+                string sex = Regex.Match(requesturl, @"sex=([\s\S]*?)&").Groups[1].Value;
+                string age = Regex.Match(requesturl, @"age=([\s\S]*?)&").Groups[1].Value;
+                string birthday = Regex.Match(requesturl, @"birthday=([\s\S]*?)&").Groups[1].Value;
+                string phone = Regex.Match(requesturl, @"phone=([\s\S]*?)&").Groups[1].Value;
+                string area = Regex.Match(requesturl, @"area=([\s\S]*?)&").Groups[1].Value;
+                string job = Regex.Match(requesturl, @"job=([\s\S]*?)&").Groups[1].Value;
+                string time = Regex.Match(requesturl, @"time=([\s\S]*?)&").Groups[1].Value;
+                string username = Regex.Match(requesturl, @"username=([\s\S]*?)&").Groups[1].Value;
+
+                if (name == "" || sex == "" || birthday == "" || phone == "" || area == "" || job == "" || time== "" || username == "")
+                {
+                    neirong = "{\"status\":siyifalse,\"msg\":\"参数缺失\"}";
+
+                }
+
+
+                else
+                {
+                    string o = name + "," + sex + "," + age + "," + birthday + "," + phone + "," + area + "," + job+ "," + time + "," + username;
+                    neirong = md.mtjianliregister(o);
+                }
+
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+
 
             else if (requesturl.Contains("api/mt/login"))
             {
@@ -507,8 +536,72 @@ namespace 网站接口
 
                 sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
             }
+            else if (requesturl.Contains("api/mt/getall"))
+            {
+                string neirong = "";
+                  
+                  neirong = md.mtall();
+                
 
-           
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+            else if (requesturl.Contains("api/mt/mtjianliall"))
+            {
+                string neirong = "";
+
+                neirong = md.mtjianliall();
+
+
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+
+            else if (requesturl.Contains("api/mt/del"))
+            {
+                string neirong = "";
+                string userid= Regex.Match(requesturl, @"userid=([\s\S]*?)&").Groups[1].Value;
+            
+                if (userid == "" )
+                {
+                    neirong = "{\"status\":siyifalse,\"msg\":\"参数缺失\"}";
+
+                }
+
+                else
+                {
+                    string o = userid + ",";
+                    neirong = md.mtdel(o);
+                }
+
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+
+
+
+            else if (requesturl.Contains("api/mt/updatesoftinfo"))
+            {
+                string neirong = "";
+                string name = Regex.Match(requesturl, @"softname=([\s\S]*?)&").Groups[1].Value;
+                string tel= Regex.Match(requesturl, @"tel=([\s\S]*?)&").Groups[1].Value;
+                string logo = Regex.Match(requesturl, @"logo=([\s\S]*?)&").Groups[1].Value;
+                string erweima = Regex.Match(requesturl, @"erweima=([\s\S]*?)&").Groups[1].Value;
+
+
+                string o = name + "," + tel + "," + logo + "," + erweima;
+                neirong = md.updatesoftinfo(o);
+
+
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+
+            else if (requesturl.Contains("api/mt/getsoftinfo"))
+            {
+                string neirong = "";
+
+                neirong = md.getsoftinfo();
+
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
+            }
+
             else if (requesturl.Contains("api/mt/mt_getdata"))
             {
                
@@ -570,7 +663,20 @@ namespace 网站接口
                     sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
                 }
 
+
+
+
                
+            }
+
+            else if (requesturl.Contains("api/getwangwang"))
+            {
+                string neirong = "";
+                string wangwang = Regex.Match(requesturl, @"wangwang=.*").Groups[0].Value.Replace("wangwang=","");
+
+                neirong = md.getwangwang(wangwang);
+                
+                sendResponse(clientSocket, neirong, "200 OK", "application/json;charset=utf-8");
             }
             #endregion
 

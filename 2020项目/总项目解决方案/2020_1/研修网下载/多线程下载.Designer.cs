@@ -60,9 +60,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(198, 55);
+            this.button3.Location = new System.Drawing.Point(100, 20);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 27);
+            this.button3.Size = new System.Drawing.Size(75, 29);
             this.button3.TabIndex = 41;
             this.button3.Text = "停止";
             this.button3.UseVisualStyleBackColor = true;
@@ -123,18 +123,18 @@
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Location = new System.Drawing.Point(296, 6);
+            this.groupBox3.Location = new System.Drawing.Point(299, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(374, 97);
+            this.groupBox3.Size = new System.Drawing.Size(265, 97);
             this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "运行";
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(298, 59);
+            this.button6.Location = new System.Drawing.Point(181, 20);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(69, 23);
+            this.button6.Size = new System.Drawing.Size(69, 29);
             this.button6.TabIndex = 43;
             this.button6.Text = "清空";
             this.button6.UseVisualStyleBackColor = true;
@@ -142,9 +142,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(198, 22);
+            this.button5.Location = new System.Drawing.Point(181, 55);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(94, 27);
+            this.button5.Size = new System.Drawing.Size(69, 27);
             this.button5.TabIndex = 42;
             this.button5.Text = "导出";
             this.button5.UseVisualStyleBackColor = true;
@@ -152,9 +152,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(24, 20);
+            this.button2.Location = new System.Drawing.Point(7, 20);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(168, 29);
+            this.button2.Size = new System.Drawing.Size(87, 29);
             this.button2.TabIndex = 36;
             this.button2.Text = "开始";
             this.button2.UseVisualStyleBackColor = true;
@@ -162,7 +162,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(24, 55);
+            this.button1.Location = new System.Drawing.Point(7, 55);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(87, 27);
             this.button1.TabIndex = 39;
@@ -172,7 +172,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(117, 55);
+            this.button4.Location = new System.Drawing.Point(100, 55);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 27);
             this.button4.TabIndex = 40;
@@ -223,9 +223,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 117);
+            this.listView1.Location = new System.Drawing.Point(0, 123);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(861, 473);
+            this.listView1.Size = new System.Drawing.Size(861, 467);
             this.listView1.TabIndex = 67;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -256,10 +256,12 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(676, 12);
+            this.textBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.textBox4.Location = new System.Drawing.Point(570, 0);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(162, 91);
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox4.Size = new System.Drawing.Size(291, 123);
             this.textBox4.TabIndex = 68;
             // 
             // 多线程下载

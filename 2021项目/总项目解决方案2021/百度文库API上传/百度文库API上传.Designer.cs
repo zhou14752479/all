@@ -67,7 +67,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(218, 21);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "F:\\400万之前";
+            this.textBox1.Text = "D:\\多线程下载\\下载文件";
             // 
             // button2
             // 
@@ -138,7 +138,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 3600000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // button5

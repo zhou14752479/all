@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -128,15 +129,15 @@ namespace 主程序202105
                     label1.Text = "正在查询："+text[i];
                     if (text[i] != "")
                     {
-                       // string url = "https://enjoy.abchina.com/jf-pcweb/transPay/getPayInfo ";
-                        string url = "https://enjoy.abchina.com/jf-openweb/transPay/getPayInfo";
-                       // string postdata = "{\"host\":\"https://enjoy.abchina.com/\",\"codEpay\":\""+codEpay+"\",\"userInput\":{\"input1\":\"" + text[i] + "\"}}";
-                        string postdata = "{\"codEpay\":\""+codEpay+"\",\"userInput\":{\"input1\":\""+text[i]+"\"}}";
+                        string url = "https://enjoy.abchina.com/jf-pcweb/transPay/getPayInfo ";
+                        //string url = "https://enjoy.abchina.com/jf-openweb/transPay/getPayInfo";
+                       string postdata = "{\"host\":\"https://enjoy.abchina.com/\",\"codEpay\":\""+codEpay+"\",\"userInput\":{\"input1\":\"" + text[i] + "\"}}";
+                        //string postdata = "{\"codEpay\":\""+codEpay+"\",\"userInput\":{\"input1\":\""+text[i]+"\"}}";
                         
                         string html = PostUrl(url, postdata, cookie);
-                        if (html.Contains("过期"))
+                        if (html.Contains("logout"))
                         {
-                            MessageBox.Show("登录已过期，请重新点击登录");
+                            MessageBox.Show("登录已过期，请重新点击登录，然后点击获取cookie");
                             i = i - 1;
                             zanting = false;
                             continue;
@@ -193,7 +194,7 @@ namespace 主程序202105
 
             #endregion
 
-       
+            getcookies();
             if (radioButton1.Checked==true)
             {
                 codEpay = "JF-EPAY2017061903141";
@@ -213,9 +214,30 @@ namespace 主程序202105
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
+        string path = AppDomain.CurrentDomain.BaseDirectory;
+        public void getcookies()
+        {
+            try
+            {
+               
+                StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+              
+                cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+              
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.ToString());
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
+            getcookies();
             if (zanting == false)
             {
 
@@ -260,13 +282,15 @@ namespace 主程序202105
         }
         public void getcode()
         {
-            method.GetUrl("http://47.102.145.207/index.php?codenum=1","utf-8");
-            string codehtml = method.GetUrl("http://47.102.145.207/getcode.txt", "utf-8");
-           
+            method.GetUrl("http://www.acaiji.com/xiaochengxu/index.php?codenum=1", "utf-8");
+            string codehtml = method.GetUrl("http://www.acaiji.com/xiaochengxu/getcode.txt", "utf-8");
+
+
             while (!codehtml.Contains("mobile_id"))
             {
-                codehtml = method.GetUrl("http://47.102.145.207/getcode.txt", "utf-8");
-                
+                codehtml = method.GetUrl("http://www.acaiji.com/xiaochengxu/getcode.txt", "utf-8");
+
+
             }
           
             cookie=codehtml;
@@ -279,11 +303,13 @@ namespace 主程序202105
         }
         private void button7_Click(object sender, EventArgs e)
         {
-           
-                Thread thread = new Thread(getcode);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            Process.Start(path + "helper.exe");
+
+            //Thread thread = new Thread(getcode);
+            //thread.Start();
+            //Control.CheckForIllegalCrossThreadCalls = false;
+
         }
     }
 }

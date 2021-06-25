@@ -170,14 +170,23 @@ namespace 主程序202105
             return sb.ToString().Remove(sb.ToString().Length-1,1) ;
         }
 
+
+        List<string> titleslist= new List<string>();
         public void sendmsg(string title, string neirong)
         {
-            string uids = getuids();
-            string url = "http://wxpusher.zjiecode.com/api/send/message";
-            string postdata = "{\"appToken\":\"AT_Zwbx5uVZTIpxJ2OPaCGXXOZNuiWHmTKQ\",\"content\":\"" + title+neirong+"\",\"contentType\":1,\"uids\":["+uids+"]}";
-            string html = PostUrl(url,postdata);
-           
-            textBox1.Text += DateTime.Now.ToString("HH:mm:ss") + "：出现新公告，已发送"+"\r\n";
+            if (title.Trim() != "")
+            {
+                if (!titleslist.Contains(title.Trim()))
+                {
+                    titleslist.Add(title.Trim());
+                    string uids = getuids();
+                    string url = "http://wxpusher.zjiecode.com/api/send/message";
+                    string postdata = "{\"appToken\":\"AT_Zwbx5uVZTIpxJ2OPaCGXXOZNuiWHmTKQ\",\"content\":\"" + title + neirong + "\",\"contentType\":1,\"uids\":[" + uids + "]}";
+                    string html = PostUrl(url, postdata);
+
+                    textBox1.Text += DateTime.Now.ToString("HH:mm:ss") + "：出现新公告，已发送" + "\r\n";
+                }
+            }
         }
 
 
@@ -193,7 +202,7 @@ namespace 主程序202105
 
             try
             {
-                string url = "https://www.huobi.pe/support/zh-cn/list/360000039481";
+                string url =textBox2.Text.Trim();
                 string html = GetUrl(url, "utf-8");
                 Match title = Regex.Match(html, @"title:""([\s\S]*?)""([\s\S]*?)id:([\s\S]*?)}");
                 string link = "https://www.huobi.pe/support/zh-cn/detail/" + title.Groups[3].Value;
@@ -231,7 +240,7 @@ namespace 主程序202105
         {
             try
             {
-                string url = "https://www.okex.win/support/hc/zh-cn/sections/360000030652-%E6%9C%80%E6%96%B0%E5%85%AC%E5%91%8A";
+                string url = textBox3.Text.Trim();
                 string html = GetUrl(url, "utf-8");
                string title = Regex.Match(html, @"class=""article-list-link"">([\s\S]*?)<").Groups[1].Value;
                 string link = "https://www.okex.win/support"+Regex.Match(html, @"<li class=""article-list-item([\s\S]*?)<a href=""([\s\S]*?)""").Groups[2].Value;
@@ -270,7 +279,7 @@ namespace 主程序202105
         {
             try
             {
-                string url = "https://www.binancezh.co/zh-CN/support/announcement/c-48?navId=48#/48";
+                string url = textBox4.Text.Trim();
                 string html = GetUrl(url, "utf-8");
              
                 string title = Regex.Match(html, @"class=""css-1ej4hfo"">([\s\S]*?)<").Groups[1].Value;
@@ -311,7 +320,7 @@ namespace 主程序202105
         {
             try
             {
-                string url = "https://www.gateio.rocks/cn/articlelist/ann";
+                string url = textBox5.Text.Trim();
                 string html = GetUrl(url, "utf-8");
                 string title = Regex.Match(html, @"<h3>([\s\S]*?)<").Groups[1].Value;
                 string link = "https://www.gateio.rocks" + Regex.Match(html, @"<div class=""entry"">([\s\S]*?)<a href=""([\s\S]*?)""").Groups[2].Value;
@@ -351,7 +360,7 @@ namespace 主程序202105
         {
             try
             {
-                string url = "https://support.mxc-exchange.com/hc/zh-cn/sections/360000679912-%E6%9C%80%E6%96%B0%E5%85%AC%E5%91%8A";
+                string url = textBox6.Text.Trim();
                 string html = GetUrl(url, "utf-8");
                 string title = Regex.Match(html, @"article-list-link"">([\s\S]*?)<").Groups[1].Value;
                 string link = "https://support.mxc-exchange.com/hc/zh-cn/articles/" + Regex.Match(html, @"<a href=""/hc/zh-cn/articles/([\s\S]*?)""").Groups[1].Value;

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -69,6 +70,80 @@ namespace 主程序202006
         ArrayList finish = new ArrayList();
 
         ArrayList lists = new ArrayList();
+
+        #region POST请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrl(string url, string postData)
+        {
+            try
+            {
+                string html = "";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                //headers.Add("sec-fetch-site:same-origin");
+                //headers.Add("sec-fetch-user:?1");
+                //headers.Add("upgrade-insecure-requests: 1");
+                //添加头部
+                // request.ContentType = "application/x-www-form-urlencoded";
+               
+                request.ContentType = "application/json";
+                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                // request.ContentLength = postData.Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", "");
+
+                request.Referer = "";
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding("utf-8"));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+
+                response.Close();
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
         /// <summary>
         /// 主程序
         /// </summary>
@@ -308,92 +383,275 @@ namespace 主程序202006
 
 
         }
+
+
+
+        /// <summary>
+        /// 主程序2新2021-05-29
+        /// </summary>
+        public void run2()
+        {
+
+            long min = Convert.ToInt64(textBox1.Text.Replace("\r\n", "").Trim());
+            long max = Convert.ToInt64(textBox1.Text.Replace("\r\n", "").Trim()) + Convert.ToInt64(textBox2.Text.Replace("\r\n", "").Trim());
+
+            label7.Text = textBox2.Text.Replace("\r\n", "").Trim(); ;
+            for (long i = min; i < max; i++)
+            {
+                if (!finish.Contains(i))
+                {
+                    finish.Add(i);
+                    yijing = yijing + 1;
+                    label8.Text = yijing.ToString();
+
+
+                    try
+                    {
+
+
+                        string url = "http://47.104.234.89:9755/api/Action/Detr";
+                        string postdata = "{\"header\": {\"pid\": \"SHALM\",\"safety\": \"SHALM2021052414\"},\"body\": {\"ticketNO\": \"" + i + "\"}}";
+                        string html = PostUrl(url, postdata);
+                       
+                        Match a1 = Regex.Match(html, @"ETKD:([\s\S]*?) ");
+                        Match a2 = Regex.Match(html, @"ORG/DST: ([\s\S]*?) ");
+                        Match a3 = Regex.Match(html, @"PASSENGER: ([\s\S]*?) ");
+                        Match a4 = Regex.Match(html, @"FM:([\s\S]*?)/");
+                        Match a5 = Regex.Match(html, @"20K ([\s\S]*?) ");
+                      
+                        
+                       
+                        if (a1.Groups[1].Value != "")
+                        {
+                            hege = hege + 1;
+                            label9.Text = hege.ToString();
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                            lv1.SubItems.Add(a1.Groups[1].Value.Replace("TN/", ""));
+                            lv1.SubItems.Add(a2.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a3.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a4.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a5.Groups[1].Value.Trim());
+                          
+                         
+
+                            //导出
+                            //string date = a8.Groups[1].Value;
+
+                            //if (date.Trim() == "")
+                            //{
+                            //    date = "空";
+                            //}
+                            //string value = a1.Groups[1].Value.Replace(":", "").Trim() + "---" + a2.Groups[1].Value + "---" + a3.Groups[1].Value + "---" + a4.Groups[1].Value + "---" + a5.Groups[1].Value + a6.Groups[1].Value + "---" + a7.Groups[1].Value + "---" + a8.Groups[1].Value + "---" + a9.Groups[1].Value + "---" + a10.Groups[1].Value;
+                            //if (!File.Exists(path + date + ".txt"))
+                            //{
+                            //    FileStream fs1 = new FileStream(path + date + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                            //    StreamWriter sw = new StreamWriter(fs1);
+                            //    sw.WriteLine(value);
+                            //    sw.Close();
+                            //    fs1.Close();
+                            //}
+                            //else
+                            //{
+                            //    StreamWriter fs = new StreamWriter(path + date + ".txt", true);
+                            //    fs.WriteLine(value);
+                            //    fs.Close();
+                            //}
+
+                            //导出
+                        }
+
+                    }
+                    catch
+                    {
+
+                        continue;
+                    }
+                }
+
+            }
+            label10.Text = "查询完成";
+
+
+
+        }
+
+
+        /// <summary>
+        /// 主程序2新2021-05-29
+        /// </summary>
+        public void run3()
+        {
+
+            StreamReader streamReader = new StreamReader(filename, Encoding.Default);
+            string text = streamReader.ReadToEnd();
+            string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            label7.Text = array.Length.ToString();
+            for (int i = 0; i < array.Length; i++)
+            {
+
+                if (!finish.Contains(array[i]))
+                {
+                    finish.Add(array[i]);
+
+                    yijing = yijing + 1;
+                    label8.Text = yijing.ToString();
+
+                    try
+                    {
+
+
+                        string url = "http://47.104.234.89:9755/api/Action/Detr";
+                        string postdata = "{\"header\": {\"pid\": \"SHALM\",\"safety\": \"SHALM2021052414\"},\"body\": {\"ticketNO\": \"" + array[i].Replace("\r\n", "").Trim() + "\"}}";
+                        string html = PostUrl(url, postdata);
+
+                        Match a1 = Regex.Match(html, @"ETKD:([\s\S]*?) ");
+                        Match a2 = Regex.Match(html, @"ORG/DST: ([\s\S]*?) ");
+                        Match a3 = Regex.Match(html, @"PASSENGER: ([\s\S]*?) ");
+                        Match a4 = Regex.Match(html, @"FM:([\s\S]*?)/");
+                        Match a5 = Regex.Match(html, @"20K ([\s\S]*?) ");
+
+
+
+                        if (a1.Groups[1].Value != "")
+                        {
+                            hege = hege + 1;
+                            label9.Text = hege.ToString();
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                            lv1.SubItems.Add(a1.Groups[1].Value.Trim().Replace("TN/",""));
+                            lv1.SubItems.Add(a2.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a3.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a4.Groups[1].Value.Trim());
+                            lv1.SubItems.Add(a5.Groups[1].Value.Trim());
+
+                            //导出
+                            //string date = a8.Groups[1].Value;
+
+                            //if (date.Trim() == "")
+                            //{
+                            //    date = "空";
+                            //}
+                            //string value = a1.Groups[1].Value.Replace(":", "").Trim() + "---" + a2.Groups[1].Value + "---" + a3.Groups[1].Value + "---" + a4.Groups[1].Value + "---" + a5.Groups[1].Value + a6.Groups[1].Value + "---" + a7.Groups[1].Value + "---" + a8.Groups[1].Value + "---" + a9.Groups[1].Value + "---" + a10.Groups[1].Value;
+                            //if (!File.Exists(path + date + ".txt"))
+                            //{
+                            //    FileStream fs1 = new FileStream(path + date + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                            //    StreamWriter sw = new StreamWriter(fs1);
+                            //    sw.WriteLine(value);
+                            //    sw.Close();
+                            //    fs1.Close();
+                            //}
+                            //else
+                            //{
+                            //    StreamWriter fs = new StreamWriter(path + date + ".txt", true);
+                            //    fs.WriteLine(value);
+                            //    fs.Close();
+                            //}
+
+                            //导出
+                        }
+
+                    }
+                    catch
+                    {
+
+                        continue;
+                    }
+                }
+
+            }
+            label10.Text = "查询完成";
+
+
+
+        }
+
+
         private void 飞机票信息记录_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (ExistINIFile())
-                {
-                    string key = IniReadValue("values", "key");
-                    string secret = IniReadValue("values", "secret");
-                    string[] value = secret.Split(new string[] { "asd" }, StringSplitOptions.None);
-                    if (Convert.ToInt32(value[1]) < Convert.ToInt32(myDLL.method.GetTimeStamp()))
-                    {
-                        MessageBox.Show("激活已过期");
-                        string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
-                        string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
+            //try
+            //{
+            //    if (ExistINIFile())
+            //    {
+            //        string key = IniReadValue("values", "key");
+            //        string secret = IniReadValue("values", "secret");
+            //        string[] value = secret.Split(new string[] { "asd" }, StringSplitOptions.None);
+            //        if (Convert.ToInt32(value[1]) < Convert.ToInt32(myDLL.method.GetTimeStamp()))
+            //        {
+            //            MessageBox.Show("激活已过期");
+            //            string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
+            //            string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
 
-                        if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
-                        {
-                            IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
-                            IniWriteValue("values", "secret", str);
-                            MessageBox.Show("激活成功");
-
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("激活码错误");
-                            System.Diagnostics.Process.GetCurrentProcess().Kill();
-                            return;
-                        }
-
-                    }
+            //            if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
+            //            {
+            //                IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
+            //                IniWriteValue("values", "secret", str);
+            //                MessageBox.Show("激活成功");
 
 
+            //            }
+            //            else
+            //            {
+            //                MessageBox.Show("激活码错误");
+            //                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //                return;
+            //            }
+
+            //        }
 
 
-                    else if (value[0] != myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian") || key != myDLL.method.GetMD5(myDLL.method.GetMacAddress()))
-                    {
-
-                        string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
-                        string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
-
-                        if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
-                        {
-                            IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
-                            IniWriteValue("values", "secret", str);
-                            MessageBox.Show("激活成功");
 
 
-                        }
-                        else
-                        {
-                            MessageBox.Show("激活码错误");
-                            System.Diagnostics.Process.GetCurrentProcess().Kill();
-                            return;
-                        }
-                    }
+            //        else if (value[0] != myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian") || key != myDLL.method.GetMD5(myDLL.method.GetMacAddress()))
+            //        {
 
-                }
-                else
-                {
+            //            string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
+            //            string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
 
-                    string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
-                    string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
-                    if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
-                    {
-                        IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
-                        IniWriteValue("values", "secret", str);
-                        MessageBox.Show("激活成功");
+            //            if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
+            //            {
+            //                IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
+            //                IniWriteValue("values", "secret", str);
+            //                MessageBox.Show("激活成功");
 
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("激活码错误");
-                        System.Diagnostics.Process.GetCurrentProcess().Kill();
-                        return;
-                    }
-                }
+            //            }
+            //            else
+            //            {
+            //                MessageBox.Show("激活码错误");
+            //                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //                return;
+            //            }
+            //        }
 
-            }
-            catch (Exception ex)
-            {
+            //    }
+            //    else
+            //    {
 
-                MessageBox.Show("激活失败，请联系管理员");
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
+            //        string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
+            //        string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
+            //        if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
+            //        {
+            //            IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
+            //            IniWriteValue("values", "secret", str);
+            //            MessageBox.Show("激活成功");
+
+
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("激活码错误");
+            //            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //            return;
+            //        }
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show("激活失败，请联系管理员");
+            //    System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //}
 
 
 
@@ -445,7 +703,7 @@ namespace 主程序202006
                 for (int i = 0; i < Convert.ToInt32(textBox3.Text.Replace("\r\n", "").Trim()); i++)
                 {
 
-                    Thread thread = new Thread(new ThreadStart(run));
+                    Thread thread = new Thread(new ThreadStart(run2));
                     thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
 
@@ -456,7 +714,7 @@ namespace 主程序202006
                 for (int i = 0; i < Convert.ToInt32(textBox3.Text.Replace("\r\n", "").Trim()); i++)
                 {
 
-                    Thread thread = new Thread(new ThreadStart(run1));
+                    Thread thread = new Thread(new ThreadStart(run3));
                     thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
 

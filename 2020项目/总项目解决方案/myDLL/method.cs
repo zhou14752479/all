@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using NPOI.HSSF.UserModel;
+using NPOI.SS.Formula.Eval;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
@@ -521,32 +522,102 @@ namespace myDLL
                                     dataRow = dataTable.NewRow();
                                     for (int j = row.FirstCellNum; j < cellCount; ++j)
                                     {
-                                        cell = row.GetCell(j);
-                                        if (cell == null)
+                                        //cell = row.GetCell(j);
+                                        //if (cell == null)
+                                        //{
+                                        //    dataRow[j] = "";
+                                        //}
+                                        //else
+                                        //{
+                                        //    //CellType(Unknown = -1,Numeric = 0,String = 1,Formula = 2,Blank = 3,Boolean = 4,Error = 5,)  
+                                        //    switch (cell.CellType)
+                                        //    {
+                                        //        case CellType.Blank:
+                                        //            dataRow[j] = "";
+                                        //            break;
+                                        //        case CellType.Numeric:
+
+                                        //            short format = cell.CellStyle.DataFormat;
+                                        //            //对时间格式（2015.12.5、2015/12/5、2015-12-5等）的处理  
+                                        //            if (format == 14 || format == 31 || format == 57 || format == 58)
+                                        //                dataRow[j] = cell.DateCellValue;
+                                        //                //dataRow[j] = Convert.ToDateTime(cell.DateCellValue).ToString("yyyy-MM-dd");
+
+                                        //            else
+                                        //                dataRow[j] = cell.NumericCellValue;
+                                        //            break;
+                                        //        case CellType.String:
+                                        //            dataRow[j] = cell.StringCellValue;
+                                        //            break;
+                                        //    }
+                                        //}
+                                        ICell RCells = row.GetCell(j);
+                                        if (RCells != null)
                                         {
-                                            dataRow[j] = "";
-                                        }
-                                        else
-                                        {
-                                            //CellType(Unknown = -1,Numeric = 0,String = 1,Formula = 2,Blank = 3,Boolean = 4,Error = 5,)  
-                                            switch (cell.CellType)
+                                            try
                                             {
-                                                case CellType.Blank:
-                                                    dataRow[j] = "";
-                                                    break;
-                                                case CellType.Numeric:
-                                                    short format = cell.CellStyle.DataFormat;
-                                                    //对时间格式（2015.12.5、2015/12/5、2015-12-5等）的处理  
-                                                    if (format == 14 || format == 31 || format == 57 || format == 58)
-                                                        dataRow[j] = cell.DateCellValue;
-                                                    else
-                                                        dataRow[j] = cell.NumericCellValue;
-                                                    break;
-                                                case CellType.String:
-                                                    dataRow[j] = cell.StringCellValue;
-                                                    break;
+                                                switch (RCells.CellType)  //注意按单元格格式分类取值
+                                                {
+                                                    case CellType.Numeric:    //用于取出数值和公式类型的数据 
+                                                        if (DateUtil.IsCellDateFormatted(RCells)) { dataRow[j] = RCells.DateCellValue.ToString("yyyy/MM/dd HH:mm:ss"); }
+                                                        else { dataRow[j] = RCells.NumericCellValue; }
+
+
+                                                        break;
+                                                    case CellType.Error:
+                                                        dataRow[j] = ErrorEval.GetText(row.GetCell(j).ErrorCellValue);
+                                                        break;
+                                                    case CellType.Formula:
+                                                        switch (row.GetCell(j).CachedFormulaResultType)
+                                                        {
+                                                            case CellType.String:
+                                                                string strFORMULA = row.GetCell(j).StringCellValue;
+                                                                if (strFORMULA != null && strFORMULA.Length > 0)
+                                                                {
+                                                                    dataRow[j] = strFORMULA.ToString();
+                                                                }
+                                                                else
+                                                                {
+                                                                    dataRow[j] = null;
+                                                                }
+                                                                break;
+                                                            case CellType.Numeric:
+                                                                dataRow[j] = Convert.ToString(row.GetCell(j).NumericCellValue);
+                                                                break;
+                                                            case CellType.Boolean:
+                                                                dataRow[j] = Convert.ToString(row.GetCell(j).BooleanCellValue);
+                                                                break;
+                                                            case CellType.Error:
+                                                                dataRow[j] = ErrorEval.GetText(row.GetCell(j).ErrorCellValue);
+                                                                break;
+                                                            default:
+                                                                dataRow[j] = "";
+                                                                break;
+                                                        }
+                                                        break;
+                                                    case CellType.Boolean:
+                                                        // Boolean type
+                                                        dataRow[j] = RCells.BooleanCellValue.ToString();
+                                                        break;
+
+                                                    case CellType.Blank:
+                                                        break;
+
+                                                    default:
+                                                        // String type
+                                                        dataRow[j] = RCells.StringCellValue.Trim();
+                                                        break;
+                                                }
+                                            }
+                                            catch (Exception e)
+                                            {
+
+
                                             }
                                         }
+                                        else { dataRow[j] = ""; }
+
+
                                     }
                                     dataTable.Rows.Add(dataRow);
                                 }
@@ -1099,40 +1170,44 @@ namespace myDLL
         #region  listview导出文本TXT
         public static void ListviewToTxt(ListView listview, int i)
         {
-            if (listview.Items.Count == 0)
+
+            //if (listview.Items.Count == 0)
+            //{
+            //    MessageBox.Show("列表为空!");
+            //}
+
+            List<string> list = new List<string>();
+            foreach (ListViewItem item in listview.Items)
             {
-                MessageBox.Show("列表为空!");
-            }
-            else
-            {
-                List<string> list = new List<string>();
-                foreach (ListViewItem item in listview.Items)
+                if (item.SubItems[i].Text.Trim() != "")
                 {
 
                     list.Add(item.SubItems[i].Text);
-
-
                 }
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "txt|*.txt";
-                sfd.Title = "txt文件导出";
-                string fileName = "";
 
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    fileName = sfd.FileName;
-                    StringBuilder sb = new StringBuilder();
-                    foreach (string tel in list)
-                    {
-                        sb.AppendLine(tel);
-                    }
-                    System.IO.File.WriteAllText(fileName, sb.ToString(), Encoding.UTF8);
-                    MessageBox.Show("文件导出成功!");
-                }
+
             }
+            SaveFileDialog sfd = new SaveFileDialog();
+
+            // string path = AppDomain.CurrentDomain.BaseDirectory + "导出_" + Guid.NewGuid().ToString() + ".txt";
+            string path = "";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                path = sfd.FileName + ".txt";
+            }
+            StringBuilder sb = new StringBuilder();
+            foreach (string tel in list)
+            {
+                sb.AppendLine(tel);
+            }
+            System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            MessageBox.Show("文件导出成功!文件地址:" + path);
+
+
         }
 
 
+       
 
 
 

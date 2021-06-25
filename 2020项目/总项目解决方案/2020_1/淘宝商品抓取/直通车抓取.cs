@@ -170,7 +170,7 @@ namespace 淘宝商品抓取
                     int p = i * 44;
                     string URL = url + "&s=" + p;
                     string html = getHtml(URL);
-
+                    //textBox1.Text = html;
                     getInfos(html);
                     Thread.Sleep(2000);
                     if (status == false)

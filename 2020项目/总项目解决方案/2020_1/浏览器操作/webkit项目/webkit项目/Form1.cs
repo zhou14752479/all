@@ -19,7 +19,7 @@ namespace webkit项目
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            webKitBrowser1.Navigate("http://119.45.18.235/");
+           
         }
 
         //在浏览器里执行JS代码,获取返回值
@@ -28,6 +28,12 @@ namespace webkit项目
             string strScript = "function _func(){alert('你好')};";
             string result = webKitBrowser1.StringByEvaluatingJavaScriptFromString(strScript);
             MessageBox.Show(result);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+
         }
     }
 }

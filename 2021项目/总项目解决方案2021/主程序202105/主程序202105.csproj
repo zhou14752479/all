@@ -99,6 +99,12 @@
     <Compile Include="樊登读书学习网.Designer.cs">
       <DependentUpon>樊登读书学习网.cs</DependentUpon>
     </Compile>
+    <Compile Include="浙江建设市场信息系统.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="浙江建设市场信息系统.Designer.cs">
+      <DependentUpon>浙江建设市场信息系统.cs</DependentUpon>
+    </Compile>
     <Compile Include="网站公告推送.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="樊登读书学习网.resx">
       <DependentUpon>樊登读书学习网.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="浙江建设市场信息系统.resx">
+      <DependentUpon>浙江建设市场信息系统.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="网站公告推送.resx">
       <DependentUpon>网站公告推送.cs</DependentUpon>

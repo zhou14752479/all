@@ -223,7 +223,71 @@ namespace 主程序202102
         }
 
         #endregion
-      
+
+        #region 包内件
+        public void baoneijian()
+        {
+
+
+            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            foreach (string item in text)
+            {
+                if (item.Trim() == "")
+                {
+
+                    continue; }
+               
+                string url = "https://newbill.zt-express.com/bill-tracing/list-rendered";
+                string postdata = "{\"billCodes\":[\"" +item+ "\"],\"useArchive\":false,\"hideForm\":false,\"hideCarInfo\":false,\"showData\":false,\"showDataColumn\":[],\"controlSet\":[]}";
+
+                string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/json", "");
+
+                string baohao = Regex.Match(html, @"z_num\\"">【([\s\S]*?)】").Groups[1].Value;
+                string zongdan = Regex.Match(html, @"\(共([\s\S]*?)单").Groups[1].Value;
+                string zongzhong = Regex.Match(html, @"合计袋重([\s\S]*?)\)").Groups[1].Value;
+                MatchCollection danhaos = Regex.Matches(html, @"btn_drill\\"">([\s\S]*?)</td><td>([\s\S]*?)</td>");
+
+
+
+                for (int i = 0; i < danhaos.Count; i++)
+                {
+                    ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
+                    try
+                    {
+
+                        lv2.SubItems.Add(baohao);
+                        lv2.SubItems.Add(zongdan);
+                        lv2.SubItems.Add(zongzhong);
+                        lv2.SubItems.Add(danhaos[i].Groups[1].Value);
+                        lv2.SubItems.Add(danhaos[i].Groups[2].Value);
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+                    }
+                    catch (Exception)
+                    {
+
+                        lv2.SubItems.Add("");
+
+                    }
+                }
+            }
+
+
+
+           
+          
+
+
+
+
+        }
+
+        #endregion
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -241,33 +305,43 @@ namespace 主程序202102
 
             #endregion
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            if (ExistINIFile())
+
+            try
             {
-                try
-                {
-                    StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
-                    //一次性读取完 
-                    string texts = sr.ReadToEnd();
-                  
-                    cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
-                    textBox2.Text = cookie;
-                    sr.Close();  //只关闭流
-                    sr.Dispose();   //销毁流内存
+                StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
 
-                }
-                catch (Exception ex)
-                {
+                cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
+                textBox2.Text = cookie;
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
 
-                    MessageBox.Show(ex.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+           
+            status = true;
+            if (radioButton1.Checked == true)
+            {
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(dingdan);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
                 }
             }
-
-            status = true;
-            if (thread == null || !thread.IsAlive)
+            if (radioButton2.Checked == true)
             {
-                thread = new Thread(dingdan);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(baoneijian);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
             }
         }
 
@@ -293,11 +367,21 @@ namespace 主程序202102
         {
             textBox1.Text = "";
             listView1.Items.Clear();
+            listView2.Items.Clear();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            if (radioButton1.Checked == true)
+            {
+                method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            }
+
+            if (radioButton2.Checked == true)
+            {
+                method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+            }
+
         }
 
         private void 中通快递查询_FormClosing(object sender, FormClosingEventArgs e)

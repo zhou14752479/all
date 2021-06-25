@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -29,6 +30,7 @@ namespace 主程序202007
             headers.Add("Cookie", cookie);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
+            request.Headers.Add("X-XSRF-TOKEN", token);
             request.UserAgent = headers["user-agent"];
             request.Timeout = 5000;
             request.KeepAlive = true;
@@ -54,34 +56,58 @@ namespace 主程序202007
         {
             try
             {
-                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Method = "Post";
-                request.ContentType = "application/x-www-form-urlencoded";
 
-                WebHeaderCollection headers = request.Headers;
-                headers.Add("x-xsrf-token:"+token);
+                string html = "";
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
-                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
-                request.AllowAutoRedirect = false;
-                request.KeepAlive = true;
+                        request.KeepAlive = true;
+                        request.Headers.Add("sec-ch-ua", @""" Not A;Brand"";v=""99"", ""Chromium"";v=""90"", ""Google Chrome"";v=""90""");
+                        request.Accept = "application/json, text/plain, */*";
+                        request.Headers.Add("X-XSRF-TOKEN", token);
+                        request.Headers.Add("X-Requested-With", @"XMLHttpRequest");
+                        request.Headers.Add("sec-ch-ua-mobile", @"?0");
+                        request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36";
+                        request.ContentType = "application/x-www-form-urlencoded";
+                        request.Headers.Add("Origin", @"https://item.manager.taobao.com");
+                        request.Headers.Add("Sec-Fetch-Site", @"same-origin");
+                        request.Headers.Add("Sec-Fetch-Mode", @"cors");
+                        request.Headers.Add("Sec-Fetch-Dest", @"empty");
+                        request.Referer = "https://item.manager.taobao.com/taobao/manager/render.htm?pagination.current=1&pagination.pageSize=20&tab=in_stock&table.sort.endDate_m=desc";
+                        request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
+                        request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh,sq;q=0.9,zh-CN;q=0.8,oc;q=0.7,de;q=0.6,en;q=0.5");
+                        request.Headers.Set(HttpRequestHeader.Cookie, cookie);
 
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                request.Headers.Add("Cookie", cookie);
+                        request.Method = "POST";
+                        request.ServicePoint.Expect100Continue = false;
 
-                request.Referer = "https://item.manager.taobao.com/taobao/manager/render.htm?tab=in_stock&table.sort.endDate_m=desc&spm=a217wi.openworkbeanchtmall";
-                StreamWriter sw = new StreamWriter(request.GetRequestStream());
-                sw.Write(postData);
-                sw.Flush();
+                        string body =postData;
+                        byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
+                        request.ContentLength = postBytes.Length;
+                        Stream stream = request.GetRequestStream();
+                        stream.Write(postBytes, 0, postBytes.Length);
+                        stream.Close();
 
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                response.GetResponseHeader("Set-Cookie");
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                       HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                   
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
 
-                string html = reader.ReadToEnd();
-                reader.Close();
-                response.Close();
-                return html;
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding("utf-8"));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                    return html;
+                          
+                
+              
             }
             catch (WebException ex)
             {
@@ -93,9 +119,9 @@ namespace 主程序202007
         }
 
         #endregion
-        public static string cookie = "x-gpf-render-trace-id=0b521ce215960724879376506ed809; thw=cn; hng=CN%7Czh-CN%7CCNY%7C156; _fbp=fb.1.1590825258546.1202985694; x=e%3D1%26p%3D*%26s%3D0%26c%3D0%26f%3D0%26g%3D0%26t%3D0; UM_distinctid=1727ee9bc7d468-09c5e317d04876-6373664-1fa400-1727ee9bc7e656; everywhere_tool_welcome=true; t=1e2cacb3ee45011b73c59f8f0cffef97; cna=b2RCFw6lRXICAXnq99rJ24nX; mt=ci=0_1; enc=9yO8%2B3i5RXgiX6gMxPD9p4ClY8bsIxzIV10YGhUjiT1wJz3awDwqGz8jfptqGIFLLOX6woCCBl981LW1r4MFqg%3D%3D; _m_h5_tk=e3e8610c8b6ac7e53d0afbe5ae311143_1596081360409; _m_h5_tk_enc=2068e642d1f0284f5b6fd538ee9b3a57; cookie2=1b2c5e04ec1c8572423efec3e4a2fcfa; _tb_token_=57a91f55b7663; _samesite_flag_=true; sgcookie=EJ9qTr2p56fbJ8A5HrUO%2B; unb=2662407709; uc3=id2=UU6nQ%2FmttD4ALA%3D%3D&lg2=UIHiLt3xD8xYTw%3D%3D&nk2=0vH8pBB%2FyxZ3bOUK804%3D&vt3=F8dBxGynURaoyOn8E2U%3D; csg=7b24c377; lgc=%5Cu8D1D%5Cu53F0%5Cu946B%5Cu978B%5Cu670D%5Cu4E13%5Cu67DC; cookie17=UU6nQ%2FmttD4ALA%3D%3D; dnk=%5Cu8D1D%5Cu53F0%5Cu946B%5Cu978B%5Cu670D%5Cu4E13%5Cu67DC; skt=aa984f2ee9f32ec1; existShop=MTU5NjA3MjQ3OA%3D%3D; uc4=nk4=0%400EDErsspygisRovwGKK7wjSkBWfFuFNRzw%3D%3D&id4=0%40U2xqJxIgAHvLZiF%2B5d2vJr%2BnnDdN; tracknick=%5Cu8D1D%5Cu53F0%5Cu946B%5Cu978B%5Cu670D%5Cu4E13%5Cu67DC; _cc_=WqG3DMC9EA%3D%3D; _l_g_=Ug%3D%3D; sg=%E6%9F%9C95; _nk_=%5Cu8D1D%5Cu53F0%5Cu946B%5Cu978B%5Cu670D%5Cu4E13%5Cu67DC; cookie1=B0T5a8v9EEqpcSf30IlBalJmUSlLThW5HgZeKQOyOUc%3D; tfstk=cENCBOvjGHxIhxXyTy_ZYFOwX4llZeLjP9i3RRys9yldT2aCi6Oqc2FUE3dtHV1..; v=0; XSRF-TOKEN=492c0c9a-c1c0-488d-9b27-9fe844b2963a; uc1=existShop=true&cookie15=U%2BGCWk%2F75gdr5Q%3D%3D&pas=0&cookie16=W5iHLLyFPlMGbLDwA%2BdvAGZqLg%3D%3D&cookie21=U%2BGCWk%2F7owY3j65jYY1yBA%3D%3D&cookie14=UoTV6huL5AUf4g%3D%3D; l=eBTLsRAPOEHCmT_FBO5Zhurza77OWQAfcsPzaNbMiInca6K1_n43iNQq0jd98dtjgt5E2eKyIQLleRe6rvULRETJnk3HTHKldAJpre1..; isg=BCMjHEgKeCjDmTQfd-fihC4IsmfNGLdaV7MfDVWCAALHlEu23O1hqvuCjmSaNA9S";
+        public static string cookie = "x-gpf-submit-trace-id=210596cf16245173200302788ebc4f; x-gpf-render-trace-id=212cbb2416245195445268833ed430; thw=cn; everywhere_tool_welcome=true; hng=CN%7Czh-CN%7CCNY%7C156; UM_distinctid=179f90a49dd5fa-09fb0140012713-d7e163f-1fa400-179f90a49deb3e; t=6af64ef8841da97b8e5718b98e10ae52; xlly_s=1; cookie2=274c2f54e4b35478fb96115bf1920b3d; _tb_token_=533058e366476; _samesite_flag_=true; XSRF-TOKEN=ec5d54d1-b873-4c5e-bab1-178faf0acfc0; cna=P4y2GM7SE3kCAXniuV3Hr4CT; sgcookie=E100VMiQSMH2Ld8ar58ZE6roS9XdyrLTIdOH%2BVWvA4rL3KACabQZyO%2B%2FGdJUx9mr%2F51pH7D13%2B2m2jOPSBIJLXa33g%3D%3D; unb=2662407709; uc3=vt3=F8dCuwzh2d0nQKisL7U%3D&nk2=0vH8pBB%2FyxZ3bOUK804%3D&id2=UU6nQ%2FmttD4ALA%3D%3D&lg2=VT5L2FSpMGV7TQ%3D%3D; csg=fd1682d9; lgc=%5Cu8D1D%5Cu53F0%5Cu946B%5Cu978B%5Cu670D%5Cu4E13%5Cu67DC; cookie17=UU6nQ%2FmttD4ALA%3D%3D; dnk=%5Cu8D1D%5Cu53F0%5Cu946B%5Cu978B%5Cu670D%5Cu4E13%5Cu67DC; skt=a1c972d16d235ad6; existShop=MTYyNDUxNjk0Mg%3D%3D; uc4=id4=0%40U2xqJxIgAHvLZiF%2B5uyWiiaZZ3nK&nk4=0%400EDErsspygisRovwGKK7wjcrjnhGHDYDJQ%3D%3D; tracknick=%5Cu8D1D%5Cu53F0%5Cu946B%5Cu978B%5Cu670D%5Cu4E13%5Cu67DC; _cc_=WqG3DMC9EA%3D%3D; _l_g_=Ug%3D%3D; sg=%E6%9F%9C95; _nk_=%5Cu8D1D%5Cu53F0%5Cu946B%5Cu978B%5Cu670D%5Cu4E13%5Cu67DC; cookie1=B0T5a8v9EEqpcSf30IlBalJmUSlLThW5HgZeKQOyOUc%3D; mt=ci=0_1; _m_h5_tk=e3a1157e4ae0bc643dc8aa54e34d765f_1624527388799; _m_h5_tk_enc=a41eb31f771ffc394338181a7e14aff5; v=0; enc=Td3xjytTYKygd6x15El8kajBY355vnyBBlaVeOpXGXKQFd5ttcpdJJDOYQnMnm3uqiYyb6uLrOBMkd%2Bp5DoVug%3D%3D; x5sec=7b22677066342d74616f62616f3b32223a223935393739353132386131656266333133373135663033363164373633633061434e446b30495947454f4875766f2f4e6d626d5949686f4d4d6a59324d6a51774e7a63774f5473784b414977315a697069506a2f2f2f2f2f41513d3d227d; uc1=existShop=true&cookie14=Uoe2ySLjEeU4bA%3D%3D&cookie16=UIHiLt3xCS3yM2h4eKHS9lpEOw%3D%3D&cookie15=W5iHLLyFOGW7aA%3D%3D&cookie21=Vq8l%2BKCLiv0MyZ1zjr80rw%3D%3D&pas=0; isg=BDU14G8wuSAQYN3kkdYmAgmCRLHvsunE0GRkQLda8az7jlWAfwL5lEMP2Fq4zgF8; l=eBMjXCQujngOQ_I1BOfwourza77OSIRAguPzaNbMiOCP_q5B5XjGW69JqFY6C3GNhsCvR3kEpCzgBeYBqQd-nxvtVSNxxDDmn; tfstk=cf5GB0D8OOJ64qJhF5O1SeS-ifNRaFh2qs5CTstoTM7Of55p7sx-LYyhtyxGjsHf.";
 
-        static string token = "24ed8b44-e287-448c-a20f-7ce816255b0f";
+        static string token = "ec5d54d1-b873-4c5e-bab1-178faf0acfc0";
         /// <summary>
         /// 修改标题
         /// </summary>
@@ -178,6 +204,7 @@ namespace 主程序202007
         /// <returns></returns>
         public string getfulltitle(string item)
         {
+            Thread.Sleep(1000);
             //2020-07-29 02:02:02
             try
             {
@@ -187,9 +214,10 @@ namespace 主程序202007
 
                 if (resource==0)
                 {
-                    string url = "https://item.manager.taobao.com/taobao/manager/fastEdit.htm?optType=editTitle&action=render&itemId=" + item;
+                    string url = "https://item.manager.taobao.com/taobao/manager/fastEdit.htm?optType=editTitle&action=render&opSource=6&itemId=" + item;
 
-                    string html = getHtml(url);
+                    string html = PostUrl(url,"");
+                  
                     Match title = Regex.Match(html, @"value"":{""title"":""([\s\S]*?)""");
                     if (title.Groups[1].Value != "")
                     {
@@ -259,8 +287,14 @@ namespace 主程序202007
                     string postdata = "jsonBody=%7B%22filter%22%3A%7B%7D%2C%22pagination%22%3A%7B%22current%22%3A"+i+"%2C%22pageSize%22%3A20%7D%2C%22table%22%3A%7B%22sort%22%3A%7B%22endDate_m%22%3A%22desc%22%7D%7D%2C%22tab%22%3A%22in_stock%22%7D";
 
                     string html = PostUrl(url, postdata);
+                  
                     MatchCollection items = Regex.Matches(html, @"""itemId"":""([\s\S]*?)""");
                     MatchCollection titles = Regex.Matches(html, @"""desc"":\[([\s\S]*?)""text"":""([\s\S]*?)""");
+                    if (i == 1 && items.Count == 0)
+                    {
+                        MessageBox.Show("获取仓库商品失败");
+                    }
+
                     if (items.Count == 0)
                         return;
 
@@ -270,8 +304,17 @@ namespace 主程序202007
                         
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(items[j].Groups[1].Value);
+                        if (checkBox1.Checked == true)
+                        {
+                            listViewItem.SubItems.Add(getfulltitle(items[j].Groups[1].Value));
+
+                        }
+                        else
+                        {
+                            listViewItem.SubItems.Add(titles[j].Groups[2].Value);
+                        }
                         // listViewItem.SubItems.Add(titles[j].Groups[2].Value);
-                        listViewItem.SubItems.Add(getfulltitle(items[j].Groups[1].Value));
+                       
                         listViewItem.SubItems.Add("-");
                         listViewItem.SubItems.Add("-");
 
@@ -282,7 +325,7 @@ namespace 主程序202007
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
-                        Thread.Sleep(1500);
+                        
                     }
 
                     Thread.Sleep(1000);
@@ -300,45 +343,56 @@ namespace 主程序202007
         {
 
         }
-        
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        public void dodel()
         {
-
-
-
-            DialogResult dr = MessageBox.Show("确定要删除吗？", "删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            textBox4.Text = "开始删除.......";
+               DialogResult dr = MessageBox.Show("确定要删除吗？", "删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
-                StringBuilder sb = new StringBuilder();
-                foreach (ListViewItem lv in listView1.Items)
+
+
+                //foreach (ListViewItem lv in listView1.CheckedItems)
+                //{
+                //    if (lv.Checked)
+                //    {
+                //        sb.Append("%22"+lv.SubItems[1].Text+ "%22%2C");
+
+
+                //    }
+                //}
+
+                for (int i = 0; i < listView1.CheckedItems.Count; i++)
                 {
-                    if (lv.Checked)
-                    {
-                        sb.Append("%22"+lv.SubItems[1].Text+ "%22%2C");
-                    
-                       
-                    }
+                    textBox4.Text = "开始删除......."+ listView1.CheckedItems[i].SubItems[1].Text;
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("%22" + listView1.CheckedItems[i].SubItems[1].Text + "%22%2C");
+                    string postdata = "jsonBody=%7B%22auctionids%22%3A%5B" + sb.ToString().Remove(sb.ToString().Length - 3, 3) + "%5D%7D";
+
+                    string html = delete(postdata);
+                    textBox4.Text = html + "\r\n";
+                    Thread.Sleep(200);
                 }
 
-                string postdata = "jsonBody=%7B%22auctionids%22%3A%5B" + sb.ToString().Remove(sb.ToString().Length-3 ,3) + "%5D%7D";
-               
-                string html = delete(postdata);
-                if (html.Contains("成功"))
-                {
-                    MessageBox.Show("删除成功");
-                }
-                else
-                {
-                    textBox4.Text += html + "\r\n";
-                }
+                MessageBox.Show("删除结束");
 
                 //删除宝贝
             }
             else
             {
-               
+
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Thread search_thread = new Thread(new ThreadStart(dodel));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            search_thread.Start();
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -346,15 +400,21 @@ namespace 主程序202007
             textBox4.Text = "开始执行";
 
 
-            cookie = Form1.cookie;
+            //cookie = Form1.cookie;
+            cookie = textBox6.Text;
+            Match tok = Regex.Match(cookie, @"XSRF-TOKEN=([\s\S]*?);");
+            token = tok.Groups[1].Value;
+            if (tok.Groups[1].Value == "")
+            {
+                tok = Regex.Match(cookie, @"XSRF-TOKEN=.*");
+                token = tok.Groups[0].Value.Replace("XSRF-TOKEN=", "");
+            }
 
-            
 
-            Match tok = Regex.Match(cookie, @"XSRF-TOKEN=.*");
-            token = tok.Groups[0].Value.Replace("XSRF-TOKEN=", "");
 
-            
-          
+
+
+
 
             if (cookie == "")
             {
@@ -529,7 +589,7 @@ namespace 主程序202007
         {
             string time = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
-            foreach (ListViewItem lv in listView1.Items)
+            foreach (ListViewItem lv in listView1.CheckedItems)
             {
 
                 
