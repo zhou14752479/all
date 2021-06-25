@@ -382,8 +382,10 @@ namespace 亚马逊谷歌浏览器点击
                      toolStripStatusLabel1.Text = "共获取到链接数：" + Urlcount + "  正在点击第" + (i + 1) + "个链接   " + "  当前链接已点击次数：" + j;
                     string ip = getipone();
                     label5.Text = ip;
-
-                    SetProxy(ip);
+                    if (!ip.Contains("false"))
+                    {
+                        SetProxy(ip);
+                    }
                     //browser.Load(nowurl);
                     webBrowser1.Navigate(nowurl);
                     if (status == false)
@@ -401,6 +403,7 @@ namespace 亚马逊谷歌浏览器点击
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
+            SetProxy("");
             #region 通用检测
 
 
@@ -413,7 +416,7 @@ namespace 亚马逊谷歌浏览器点击
             }
 
             #endregion
-
+            
             if (textBox5.Text == "")
             {
                 MessageBox.Show("请输入代理IP地址");
