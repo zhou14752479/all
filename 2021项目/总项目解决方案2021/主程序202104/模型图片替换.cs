@@ -204,7 +204,7 @@ namespace 主程序202104
 
                 string large4 = Regex.Match(GetUrl("https://www.justeasy.cn/model/getmodeldetails?id=" + id, "utf-8"), @"""size"":""([\s\S]*?)MB").Groups[1].Value.Trim();
 
-                MessageBox.Show(large1+"#"+ large2 + "#"+ large3 + "#"+ large4 + "#");
+              //  MessageBox.Show(large1+"#"+ large2 + "#"+ large3 + "#"+ large4 + "#");
                 if (large1 != "")
                 {
                     if (Math.Abs(Convert.ToInt32(Convert.ToDouble(large1)) - large) <= 1)
@@ -458,19 +458,7 @@ namespace 主程序202104
         Thread thread1;
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"QUpuM7"))
-            {
-                MessageBox.Show("");
-                return;
-            }
-
-
-
-            #endregion
+            
 
 
             if (radioButton5.Checked == true)

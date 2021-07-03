@@ -377,7 +377,12 @@ namespace helper
             request.Timeout = 10000;
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
             request.AllowAutoRedirect = true;
-
+            //添加头部
+            //WebHeaderCollection headers = request.Headers;
+            //headers.Add("appid:orders");
+            //headers.Add("x-nike-visitid:5");
+            //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
+            //添加头部
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
             string content = response.GetResponseHeader("Set-Cookie"); ;
@@ -1309,7 +1314,7 @@ namespace helper
             try
             {
                 string path = System.IO.Directory.GetCurrentDirectory();
-
+                
                 WebClient client = new WebClient();
                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
                 client.Headers.Add("Cookie", COOKIE);

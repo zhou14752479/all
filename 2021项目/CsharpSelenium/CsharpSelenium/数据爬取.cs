@@ -257,6 +257,60 @@ namespace CsharpSelenium
 
         }
         #endregion
+
+        #region autozone
+        public void autozone()
+        {
+
+            ChromeOptions options = new ChromeOptions();
+            //options.AddArgument("--lang=en"); 
+            options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+
+            IWebDriver driver = new ChromeDriver(options);
+            options.AddArgument(string.Format("--user-agent={0}", "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.2(0x18000239) NetType/4G Language/zh_CN"));
+
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+                if (richTextBox1.Lines[i].Trim() != "")
+                {
+                    string n = richTextBox1.Lines[i].Trim();
+                    label1.Text = i.ToString();
+
+                    string url = "https://contentinfo.autozone.com/znetcs/product-info/en/US/uro/URO-002799/image/10/";
+                    driver.Navigate().GoToUrl(url);
+                    string html = driver.PageSource;
+                    Match title = Regex.Match(html, @"<title>([\s\S]*?)</title>");
+                    Match price = Regex.Match(html, @"""price"":""([\s\S]*?)""");
+                    Match part = Regex.Match(html, @"Part #</span>([\s\S]*?)</span>");
+                    Match sku = Regex.Match(html, @"""sku"":""([\s\S]*?)""");
+                    Match weight = Regex.Match(html, @"""WEIGHT"":""([\s\S]*?)""");
+                    if (title.Groups[1].Value != "")
+                    {
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(n);
+                        lv1.SubItems.Add(title.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(price.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(Regex.Replace(part.Groups[1].Value.Trim(), "<[^>]+>", ""));
+                        lv1.SubItems.Add(sku.Groups[1].Value.Trim());
+                        lv1.SubItems.Add(weight.Groups[1].Value.Trim());
+                    }
+                    else
+                    {
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(n);
+                        lv1.SubItems.Add("空");
+                        lv1.SubItems.Add("空");
+                        lv1.SubItems.Add("空");
+                        lv1.SubItems.Add("空");
+                        lv1.SubItems.Add("空");
+
+                    }
+                }
+            }
+
+
+        }
+        #endregion
         private void 数据爬取_Load(object sender, EventArgs e)
         {
 
@@ -267,16 +321,7 @@ namespace CsharpSelenium
         bool status = true;
         private void button6_Click(object sender, EventArgs e)
         {
-            //#region 通用检测
-
-            //string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            //if (!html.Contains(@"kuaidichaxun"))
-            //{
-            //    MessageBox.Show("验证失败");
-            //    return;
-            //}
-
+           
 
 
             //#endregion
@@ -284,7 +329,7 @@ namespace CsharpSelenium
             if (thread == null || !thread.IsAlive)
             {
                 timer1.Start();
-                thread = new Thread(shaungseqiu);
+                thread = new Thread(autozone);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

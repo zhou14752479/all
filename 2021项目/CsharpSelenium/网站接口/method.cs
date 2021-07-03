@@ -1276,7 +1276,7 @@ namespace 网站接口
                     }
                     string buyerCre = Regex.Match(result, @"买家信誉:([\s\S]*?)""").Groups[1].Value;
                     string sellerCredit = Regex.Match(result, @"商家信誉:([\s\S]*?)""").Groups[1].Value;
-                    string registDay = Regex.Match(result, @"淘龄([\s\S]*?)天").Groups[1].Value.Replace("\"","").Replace("{", "").Replace("}", "").Replace(":", "").Replace("words","").Replace(",", "")+"天";
+                    string registDay = Regex.Match(result, @"淘龄([\s\S]*?)天").Groups[1].Value.Replace("\"","").Replace("{", "").Replace("}", "").Replace(":", "").Replace("words","").Replace(",", "").Replace("约", "");
 
                     string json = "{\"result\":\"正常\",\"sex\":\"" + sex + "\",\"buyerCre\":\"" + buyerCre + "\",\"sellerCredit\":\"" + sellerCredit + "\",\"downNum\":" + downNum + ",\"registDay\":\"" + registDay + "\"}";
                     return json;

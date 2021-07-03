@@ -59,6 +59,12 @@
     <Compile Include="多个版.Designer.cs">
       <DependentUpon>多个版.cs</DependentUpon>
     </Compile>
+    <Compile Include="新疆继续教育网页版.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆继续教育网页版.Designer.cs">
+      <DependentUpon>新疆继续教育网页版.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -73,6 +79,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="多个版.resx">
       <DependentUpon>多个版.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆继续教育网页版.resx">
+      <DependentUpon>新疆继续教育网页版.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

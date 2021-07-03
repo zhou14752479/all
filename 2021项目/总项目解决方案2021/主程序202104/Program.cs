@@ -16,7 +16,7 @@ namespace 主程序202104
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MD5加密());
+            Application.Run(new 模型图片替换());
         }
     }
 }

@@ -62,8 +62,25 @@ namespace 客户美团
             return englishName;
         }
 
+
+        Dictionary<string, string> cn2dics = new Dictionary<string, string>();
+        public void getcitys()
+        {
+            string url = "http://gd.cn2che.com/javascript/city/regionconfig.js";
+
+            string html = method.GetUrl(url, "utf-8");
+            MatchCollection names = Regex.Matches(html, @"{""id"":([\s\S]*?),""name"":""([\s\S]*?)""");
+            for (int i = 0; i < names.Count; i++)
+            {
+                if (!cn2dics.ContainsKey(names[i].Groups[2].Value))
+                {
+                    cn2dics.Add(names[i].Groups[2].Value, names[i].Groups[1].Value);
+                }
+            }
+        }
+
         /// <summary>
-        /// 主程序
+        /// 百姓网
         /// </summary>
         public void run()
         {
@@ -132,11 +149,80 @@ namespace 客户美团
         }
 
 
+        /// <summary>
+        /// 二手车城
+        /// </summary>
+        public void run1()
+        {
+
+
+            int count = 0;
+            try
+            {
+
+                string[] citys = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                foreach (string city in citys)
+                {
+                    string citypinyin = cn2dics[city.Replace("市","")];
+                   
+                    for (int page = 0; page < 201; page++)
+                    {
+
+                        string url = "http://www.cn2che.com/buycar/c1b0c0s0p"+page+"c0m0p2c0r"+ citypinyin + "m0i0o0o2";
+                        textBox1.Text = url;
+                        string html = method.GetUrl(url,"utf-8");
+                        //MessageBox.Show(html);
+                        MatchCollection aids = Regex.Matches(html, @"<p class=""carBT""><a href=""([\s\S]*?)""");
+
+                         //MessageBox.Show(aids.Count.ToString());
+                        if (aids.Count == 0)
+                            break;
+
+                        for (int i = 0; i < aids.Count; i++)
+                        {
+                            string aurl = aids[i].Groups[1].Value ;
+                            string ahtml = method.GetUrl(aurl, "utf-8");
+                            string title = Regex.Match(ahtml, @"<h1 id=""title"">([\s\S]*?)</h1>").Groups[1].Value;
+                            string price = Regex.Match(ahtml, @"<strong id=""price"">([\s\S]*?)</strong>").Groups[1].Value.Trim();
+                            string lxr = Regex.Match(ahtml, @"<i id=""link"">([\s\S]*?)</i>").Groups[1].Value;
+                            string tel = Regex.Match(ahtml, @"<dd id=""telphone"">([\s\S]*?)</dd>").Groups[1].Value;
+
+                            if (title != "")
+                            {
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(title);
+                                lv1.SubItems.Add(price);
+                                lv1.SubItems.Add(city);
+                                lv1.SubItems.Add(lxr);
+                                lv1.SubItems.Add(tel);
+                                lv1.SubItems.Add(aurl);
+                            }
+                            if (status == false)
+                                return;
+                            Thread.Sleep(100);
+                            count = count + 1;
+                            label4.Text = count.ToString();
+                        }
+
+                        Thread.Sleep(1000);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ProvinceCity.ProvinceCity.BindProvince(comboBox1);
+            getcitys();
+                ProvinceCity.ProvinceCity.BindProvince(comboBox1);
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -193,7 +279,7 @@ namespace 客户美团
             if (thread == null || !thread.IsAlive)
             {
 
-                thread = new Thread(run);
+                thread = new Thread(run1);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

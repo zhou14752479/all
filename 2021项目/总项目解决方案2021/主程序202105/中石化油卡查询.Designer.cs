@@ -112,6 +112,7 @@
             this.label2.Size = new System.Drawing.Size(77, 14);
             this.label2.TabIndex = 358;
             this.label2.Text = "导入卡号：";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBox2
             // 
@@ -119,6 +120,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(252, 21);
             this.textBox2.TabIndex = 359;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button3
             // 

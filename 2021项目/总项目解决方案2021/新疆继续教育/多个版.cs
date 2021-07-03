@@ -16,5 +16,10 @@ namespace 新疆继续教育
         {
             InitializeComponent();
         }
+
+        private void 多个版_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

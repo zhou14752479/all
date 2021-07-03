@@ -162,7 +162,6 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(249, 220);
             this.textBox1.TabIndex = 6;
-            this.textBox1.Text = "宝宝小车可坐手推扭扭车儿童婴儿溜溜车婴幼儿小车子四轮带护栏";
             this.textBox1.WordWrap = false;
             // 
             // splitContainer1
@@ -349,6 +348,7 @@
             this.ClientSize = new System.Drawing.Size(1007, 595);
             this.Controls.Add(this.splitContainer1);
             this.Name = "淘宝搜索结果抓取";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "淘宝搜索结果抓取";
             this.Load += new System.EventHandler(this.淘宝搜索结果抓取_Load);
             this.groupBox1.ResumeLayout(false);

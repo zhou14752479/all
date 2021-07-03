@@ -48,6 +48,7 @@
             this.显示软件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.隐藏软件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,9 +129,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(456, 24);
+            this.button4.Location = new System.Drawing.Point(360, 24);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(127, 25);
+            this.button4.Size = new System.Drawing.Size(95, 25);
             this.button4.TabIndex = 171;
             this.button4.Text = "定时启动";
             this.button4.UseVisualStyleBackColor = true;
@@ -143,9 +144,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(589, 24);
+            this.button5.Location = new System.Drawing.Point(458, 24);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(127, 25);
+            this.button5.Size = new System.Drawing.Size(91, 25);
             this.button5.TabIndex = 172;
             this.button5.Text = "关闭";
             this.button5.UseVisualStyleBackColor = true;
@@ -201,11 +202,22 @@
             this.label1.TabIndex = 174;
             this.label1.Text = "label1";
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(555, 24);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(91, 25);
+            this.button6.TabIndex = 175;
+            this.button6.Text = "清空";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // 百度文库API上传
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 473);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button5);
@@ -246,5 +258,6 @@
         private System.Windows.Forms.ToolStripMenuItem 显示软件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 隐藏软件ToolStripMenuItem;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button6;
     }
 }

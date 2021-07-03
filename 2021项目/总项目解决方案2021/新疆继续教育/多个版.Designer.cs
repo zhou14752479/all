@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(897, 578);
             this.Name = "多个版";
             this.Text = "多个版";
+            this.Load += new System.EventHandler(this.多个版_Load);
             this.ResumeLayout(false);
 
         }

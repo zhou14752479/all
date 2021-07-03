@@ -104,6 +104,7 @@ namespace 主程序202105
         bool status = true;
         string cookie = "";
         string codEpay = "JF-EPAY2017061903141";
+
         public void run()
         {
             try
@@ -126,14 +127,14 @@ namespace 主程序202105
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
-                    label1.Text = "正在查询："+text[i];
+                    label1.Text = "正在查询：" + text[i];
                     if (text[i] != "")
                     {
                         string url = "https://enjoy.abchina.com/jf-pcweb/transPay/getPayInfo ";
                         //string url = "https://enjoy.abchina.com/jf-openweb/transPay/getPayInfo";
-                       string postdata = "{\"host\":\"https://enjoy.abchina.com/\",\"codEpay\":\""+codEpay+"\",\"userInput\":{\"input1\":\"" + text[i] + "\"}}";
+                        string postdata = "{\"host\":\"https://enjoy.abchina.com/\",\"codEpay\":\"" + codEpay + "\",\"userInput\":{\"input1\":\"" + text[i] + "\"}}";
                         //string postdata = "{\"codEpay\":\""+codEpay+"\",\"userInput\":{\"input1\":\""+text[i]+"\"}}";
-                        
+
                         string html = PostUrl(url, postdata, cookie);
                         if (html.Contains("logout"))
                         {
@@ -143,13 +144,13 @@ namespace 主程序202105
                             continue;
                         }
                         string value = Regex.Match(html, @"""sVal"":""([\s\S]*?)""").Groups[1].Value;
-                     
+
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(text[i]);
                         lv1.SubItems.Add(value);
 
                         Thread.Sleep(1000);
-                       
+
                         if (status == false)
                             return;
                     }
@@ -157,7 +158,7 @@ namespace 主程序202105
 
 
                 }
-                label1.Text=("查询结束");
+                label1.Text = ("查询结束");
             }
             catch (Exception ex)
             {
@@ -165,6 +166,7 @@ namespace 主程序202105
                 MessageBox.Show(ex.ToString());
             }
         }
+       
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -309,6 +311,16 @@ namespace 主程序202105
             //Thread thread = new Thread(getcode);
             //thread.Start();
             //Control.CheckForIllegalCrossThreadCalls = false;
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

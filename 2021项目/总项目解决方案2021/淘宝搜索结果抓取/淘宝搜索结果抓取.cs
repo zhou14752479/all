@@ -94,21 +94,27 @@ namespace 淘宝搜索结果抓取
         }
         public void run()
         {
- 
-            string keyword = textBox1.Text.Trim();
-            string url = "https://s.taobao.com/search?q=" + keyword;
-            int page = Convert.ToInt32(textBox2.Text);
-            for (int i = 0; i <= page; i++)
+            string[] keywords= textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            foreach (string keyword in keywords)
             {
-                int p = i * 44;
-                string URL = url + "&s=" + p.ToString();
-                string html = getHtml(URL);
-
-                getInfos(html);
-                Thread.Sleep(2000);
-                if (status == false)
+                if (keyword == "")
                 {
-                    return;
+                    continue;
+                }
+                string url = "https://s.taobao.com/search?q=" + keyword;
+                int page = Convert.ToInt32(textBox2.Text);
+                for (int i = 0; i <page; i++)
+                {
+                    int p = i * 44;
+                    string URL = url + "&s=" + p.ToString();
+                    string html = getHtml(URL);
+
+                    getInfos(html);
+                    Thread.Sleep(2000);
+                    if (status == false)
+                    {
+                        return;
+                    }
                 }
             }
 
@@ -163,7 +169,7 @@ namespace 淘宝搜索结果抓取
             bool flag = this.openFileDialog1.ShowDialog() == DialogResult.OK;
             if (flag)
             {
-                StreamReader streamReader = new StreamReader(this.openFileDialog1.FileName, Encoding.Default);
+                StreamReader streamReader = new StreamReader(this.openFileDialog1.FileName, Encoding.GetEncoding("utf-8"));
                 string text = streamReader.ReadToEnd();
                 string[] array = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < array.Length; i++)

@@ -363,16 +363,28 @@ namespace 主程序202007
                 //    }
                 //}
 
+
+                int geshu = 0;
+                StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < listView1.CheckedItems.Count; i++)
                 {
-                    textBox4.Text = "开始删除......."+ listView1.CheckedItems[i].SubItems[1].Text;
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("%22" + listView1.CheckedItems[i].SubItems[1].Text + "%22%2C");
-                    string postdata = "jsonBody=%7B%22auctionids%22%3A%5B" + sb.ToString().Remove(sb.ToString().Length - 3, 3) + "%5D%7D";
 
-                    string html = delete(postdata);
-                    textBox4.Text = html + "\r\n";
-                    Thread.Sleep(200);
+                    geshu = geshu + 1;
+                    textBox4.Text = "开始删除......."+ listView1.CheckedItems[i].SubItems[1].Text;
+                 
+                    sb.Append("%22" + listView1.CheckedItems[i].SubItems[1].Text + "%22%2C");
+                    if (geshu > 18 || i== listView1.CheckedItems.Count-1)
+                    {
+                        string postdata = "jsonBody=%7B%22auctionids%22%3A%5B" + sb.ToString().Remove(sb.ToString().Length - 3, 3) + "%5D%7D";
+
+                        string html = delete(postdata);
+                        textBox4.Text = html + "\r\n";
+                        geshu = 0;
+                        sb.Clear();
+                        Thread.Sleep(2000);
+                    }
+                    
+                   
                 }
 
                 MessageBox.Show("删除结束");
@@ -629,6 +641,13 @@ namespace 主程序202007
         private void button9_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            this.textBox4.SelectionStart = this.textBox4.Text.Length;
+            this.textBox4.SelectionLength = 0;
+            this.textBox4.ScrollToCaret();
         }
     }
 }

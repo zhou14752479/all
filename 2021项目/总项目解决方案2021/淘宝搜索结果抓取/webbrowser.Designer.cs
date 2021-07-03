@@ -45,6 +45,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(1117, 644);
             this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // button1
             // 
@@ -76,6 +77,7 @@
             this.splitContainer1.Size = new System.Drawing.Size(1117, 760);
             this.splitContainer1.SplitterDistance = 112;
             this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // webbrowser
             // 

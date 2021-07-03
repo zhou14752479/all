@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(图片批量下载));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -95,7 +96,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(528, 128);
             this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             this.richTextBox1.WordWrap = false;
             // 
             // richTextBox2
@@ -104,7 +105,7 @@
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(528, 119);
             this.richTextBox2.TabIndex = 6;
-            this.richTextBox2.Text = "";
+            this.richTextBox2.Text = resources.GetString("richTextBox2.Text");
             this.richTextBox2.WordWrap = false;
             // 
             // 图片批量下载

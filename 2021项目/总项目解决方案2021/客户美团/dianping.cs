@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -83,6 +84,42 @@ namespace 客户美团
 
         #endregion
 
+        string path = AppDomain.CurrentDomain.BaseDirectory;
+
+        Dictionary<string, string> areadic = new Dictionary<string, string>();
+        #region 获取区域
+        public void getareas(string cityid)
+        {
+            areadic.Clear();
+            comboBox4.Items.Clear();
+            string Url = "https://i.meituan.com/wrapapi/search/filters?riskLevel=71&optimusCode=10&ci="+cityid;
+
+            string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+            //]},{"id":2,"name":"徐汇区"
+            MatchCollection areas = Regex.Matches(html, @"\]\},\{""id"":([\s\S]*?),([\s\S]*?)""name"":""([\s\S]*?)""");
+            ArrayList lists = new ArrayList();
+
+            for (int i = 0; i < areas.Count; i++)
+            {
+
+                if (areas[i].Groups[2].Value.Contains("areaId"))
+
+                {
+                   
+                    areadic.Add(areas[i].Groups[3].Value, areas[i].Groups[1].Value);
+                }
+                
+            }
+            comboBox4.Items.Add("全部");
+            foreach (string item in areadic.Keys)
+            {
+                comboBox4.Items.Add(item);
+            }
+           
+        }
+
+        #endregion
+
         #region  主程序
         public void run()
         {
@@ -93,146 +130,172 @@ namespace 客户美团
                 string[] citys = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string city in citys)
                 {
-
+                    if (city.Trim() == "")
+                    {
+                        continue;
+                    }
 
                     string cityId = GetcityId(city);
-                    string areaid = "";
+                  
                     string[] catenames = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                    foreach (string catename in catenames)
+
+                    ArrayList areaids = new ArrayList();
+                    if (comboBox4.Text == "全部")
                     {
-
-                        switch (catename)
+                        foreach (string item in areadic.Values)
                         {
-                            case "美食":
-                                cateid = "1";
-                                break;
-                            case "小吃快餐":
-                                cateid = "36";
-                                break;
-                            case "丽人":
-                                cateid = "22";
-                                break;
-                            case "休闲娱乐":
-                                cateid = "2";
-                                break;
-                            case "饮品":
-                                cateid = "21329";
-                                break;
-                            case "面包甜点":
-                                cateid = "11";
-                                break;
-                            case "美发":
-                                cateid = "74";
-                                break;
-                            case "美容美体":
-                                cateid = "76";
-                                break;
-                            case "婚纱摄影":
-                                cateid = "20178";
-                                break;
-                            case "爱车":
-                                cateid = "27";
-                                break;
-                            case "教育":
-                                cateid = "20285";
-                                break;
-                            case "KTV":
-                                cateid = "10";
-                                break;
-                            case "足疗":
-                                cateid = "52";
-                                break;
-                            case "洗浴汗蒸":
-                                cateid = "112";
-                                break;
-                            case "宠物医院":
-                                cateid = "20691";
-                                break;
-                            case "瑜伽舞蹈":
-                                cateid = "220";
-                                break;
-
-                        }
-                        for (int i = 0; i < 1001; i = i + 100)
-
-                        {
-                            string Url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityId + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + i + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
-
-                            string html = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-                            MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
-                            MatchCollection address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
-                            MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-                            MatchCollection cate = Regex.Matches(html, @"mainCategoryName"":""([\s\S]*?)""");
-                            MatchCollection ranks = Regex.Matches(html, @"""shopPower"":([\s\S]*?),");
-
-                            if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                                break;
-
-                            for (int j = 0; j < names.Count; j++)
-
-                            {
-
-                                string shouji = "";
-                                string guhua = "";
-                                string[] tels= phone[j].Groups[1].Value.Split(new string[] { "/" }, StringSplitOptions.None);
-                                if(tels.Length==1)
-                                {
-                                    if (phone[j].Groups[1].Value.Contains("-"))
-                                    {
-                                        guhua = phone[j].Groups[1].Value;
-                                    }
-                                    else
-                                    {
-                                       shouji = phone[j].Groups[1].Value;
-                                    }
-                                }
-                                if (tels.Length == 2)
-                                {
-                                    if (phone[j].Groups[1].Value.Contains("-"))
-                                    {
-                                        if (tels[0].Contains("-"))
-                                        {
-                                            guhua = tels[0];
-                                            shouji = tels[1];
-                                        }
-                                        else
-                                        {
-                                            guhua = tels[1];
-                                            shouji = tels[0];
-                                        }
-                                    }
-                                    else
-                                    {
-                                        guhua = "";
-                                        shouji = tels[0];
-                                    }
-                                }
-
-                                ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(shouji);
-                                listViewItem.SubItems.Add(guhua);
-                                listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                             
-                                listViewItem.SubItems.Add(comboBox2.Text);
-                                listViewItem.SubItems.Add(ranks[j].Groups[1].Value);
-                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-
-                                Thread.Sleep(300);
-                                count = count + 1;
-                                label4.Text = count.ToString();
-                                if (status == false)
-                                    return;
-                            }
-
-
-                          
-                            Thread.Sleep(1000);
+                            areaids.Add(item);
                         }
                     }
 
+                    else
+                    {
+                        areaids.Add(areadic[comboBox4.Text]);
+                    }
+
+
+                    foreach (string areaid in areaids)
+                    {
+                        foreach (string catename in catenames)
+                        {
+                            if (catename.Trim() == "")
+                            {
+                                continue;
+                            }
+
+                            switch (catename)
+                            {
+                                case "美食":
+                                    cateid = "1";
+                                    break;
+                                case "小吃快餐":
+                                    cateid = "36";
+                                    break;
+                                case "丽人":
+                                    cateid = "22";
+                                    break;
+                                case "休闲娱乐":
+                                    cateid = "2";
+                                    break;
+                                case "饮品":
+                                    cateid = "21329";
+                                    break;
+                                case "面包甜点":
+                                    cateid = "11";
+                                    break;
+                                case "美发":
+                                    cateid = "74";
+                                    break;
+                                case "美容美体":
+                                    cateid = "76";
+                                    break;
+                                case "婚纱摄影":
+                                    cateid = "20178";
+                                    break;
+                                case "爱车":
+                                    cateid = "27";
+                                    break;
+                                case "教育":
+                                    cateid = "20285";
+                                    break;
+                                case "KTV":
+                                    cateid = "10";
+                                    break;
+                                case "足疗":
+                                    cateid = "52";
+                                    break;
+                                case "洗浴汗蒸":
+                                    cateid = "112";
+                                    break;
+                                case "宠物医院":
+                                    cateid = "20691";
+                                    break;
+                                case "瑜伽舞蹈":
+                                    cateid = "220";
+                                    break;
+
+                            }
+                            for (int i = 0; i < 1001; i = i + 100)
+
+                            {
+                                string Url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityId + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + i + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
+
+                                string html = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                                MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
+                                MatchCollection address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
+                                MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
+                                MatchCollection cate = Regex.Matches(html, @"mainCategoryName"":""([\s\S]*?)""");
+                                MatchCollection ranks = Regex.Matches(html, @"""shopPower"":([\s\S]*?),");
+
+                                if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+
+                                    break;
+
+                                for (int j = 0; j < names.Count; j++)
+
+                                {
+
+                                    string shouji = "";
+                                    string guhua = "";
+                                    string[] tels = phone[j].Groups[1].Value.Split(new string[] { "/" }, StringSplitOptions.None);
+                                    if (tels.Length == 1)
+                                    {
+                                        if (phone[j].Groups[1].Value.Contains("-"))
+                                        {
+                                            guhua = phone[j].Groups[1].Value;
+                                        }
+                                        else
+                                        {
+                                            shouji = phone[j].Groups[1].Value;
+                                        }
+                                    }
+                                    if (tels.Length == 2)
+                                    {
+                                        if (phone[j].Groups[1].Value.Contains("-"))
+                                        {
+                                            if (tels[0].Contains("-"))
+                                            {
+                                                guhua = tels[0];
+                                                shouji = tels[1];
+                                            }
+                                            else
+                                            {
+                                                guhua = tels[1];
+                                                shouji = tels[0];
+                                            }
+                                        }
+                                        else
+                                        {
+                                            guhua = "";
+                                            shouji = tels[0];
+                                        }
+                                    }
+
+                                    ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                    listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(shouji);
+                                    listViewItem.SubItems.Add(guhua);
+                                    listViewItem.SubItems.Add(address[j].Groups[1].Value);
+
+                                    listViewItem.SubItems.Add(comboBox2.Text);
+                                    listViewItem.SubItems.Add(ranks[j].Groups[1].Value);
+                                    listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+
+                                    Thread.Sleep(100);
+                                    count = count + 1;
+                                    label4.Text = count.ToString();
+                                    if (status == false)
+                                        return;
+                                }
+
+
+
+                                Thread.Sleep(1000);
+                            }
+                        }
+
+                    }
                 }
             }
 
@@ -306,7 +369,9 @@ namespace 客户美团
 
 
             #endregion
-            status = true;
+
+          
+             status = true;
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("区域或行业为空");
@@ -360,8 +425,12 @@ namespace 客户美团
             listView1.Items.Clear();
         }
 
+
+     
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string cityId = GetcityId(comboBox2.Text);
+            getareas(cityId);
             if (comboBox1.Text.Contains("上海"))
             {
                 textBox1.Text += "上海";

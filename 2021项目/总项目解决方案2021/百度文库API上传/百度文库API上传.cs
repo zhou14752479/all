@@ -188,6 +188,11 @@ namespace 百度文库API上传
                 {
                     string filename = fileinfo[i].FullName;
                     string title = Path.GetFileNameWithoutExtension(filename).Replace("#", "").Replace("%", "");
+                    if (title.Contains("习近平") || title.Contains("党")|| title.Contains("书记") || title.Contains("委员") || title.Contains("人大") || title.Contains("复件") || title.Contains("www"))
+                    {
+                        File.Delete(filename);
+                        continue;
+                    }
 
                     string url = "http://localhost/baiduUpload.php?filename=" + filename + "&title=" + title;
 
@@ -222,7 +227,7 @@ namespace 百度文库API上传
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show(ex.ToString()) ;
+                    
                     continue;
                 }
               
@@ -329,6 +334,11 @@ namespace 百度文库API上传
             this.Visible = true;
             this.WindowState = FormWindowState.Normal;//窗口正常显示
             this.ShowInTaskbar = true;//在任务栏中显示该窗口
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

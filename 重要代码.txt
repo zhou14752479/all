@@ -384,6 +384,24 @@ NuGet程序包引用Microsoft.mshtml
  Random rd = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
                     int suiji = rd.Next(1, 9);
 // MessageBox.Show(Guid.NewGuid().ToString());  //结果是xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx结构的16进制数字
+ public string getsuijizimushuzi()
+        {
+            string zimu = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+            Random rd = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
+            string value = "";
+            for (int i = 0; i < 5; i++)
+            {
+                int suiji = rd.Next(0, 10);
+                value = value + suiji;
+
+                int suijizimu = rd.Next(0, 52);
+                value = value + zimu[suijizimu];
+            }
+
+            return value;
+        }
+
 
 【好用点击下一页】
  driver.FindElement(By.XPath("//*[text()=\"下一页\"]")).Click();
@@ -391,3 +409,49 @@ NuGet程序包引用Microsoft.mshtml
 [DllImport("user32.dll")]
         public static extern int MessageBoxTimeoutA(IntPtr hWnd,string msg,string Caps,int type,int Id,int time);//引用DLL
 MessageBoxTimeoutA((IntPtr )0,"3秒后自动关闭","消息框",0,0,3000);// 直接调用  3秒后自动关闭 父窗口句柄没有直接用0代替
+【listview动态添加列】
+listView1.Columns.Add("ID", 80, HorizontalAlignment.Center);
+
+
+#region base64编码的字符串转为图片
+        public Image Base64StringToImage(string strbase64)
+        {
+
+            try
+            {
+                byte[] arr = Convert.FromBase64String(strbase64);
+                MemoryStream ms = new MemoryStream(arr);
+               Image img = System.Drawing.Image.FromStream(ms);
+                return img;
+               
+
+              
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        #endregion
+
+#region 图片转为base64编码的字符串
+public string ImgToBase64String(string Imagefilename)
+{
+try
+{
+Bitmap bmp = new Bitmap(Imagefilename);
+
+MemoryStream ms = new MemoryStream();
+bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+byte[] arr = new byte[ms.Length];
+ms.Position = 0;
+ms.Read(arr, 0, (int)ms.Length);
+ms.Close();
+return Convert.ToBase64String(arr);
+}
+catch (Exception ex)
+{
+return null;
+}
+}
+#endregion

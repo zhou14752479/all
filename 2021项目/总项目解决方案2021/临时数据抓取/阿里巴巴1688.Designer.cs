@@ -208,6 +208,7 @@
             this.Name = "阿里巴巴1688";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "阿里巴巴1688";
+            this.Load += new System.EventHandler(this.阿里巴巴1688_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

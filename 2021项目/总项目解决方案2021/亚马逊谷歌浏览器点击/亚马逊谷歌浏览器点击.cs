@@ -329,34 +329,68 @@ namespace 亚马逊谷歌浏览器点击
           
         }
 
-        public List<string> getItemUrls()
+        public void  getItemUrls()
         {
-            List<string> lists = new List<string>();
-            for (int i = 1; i < Convert.ToInt32(textBox4.Text)+1; i++)
+            
+
+            int goodcount = 0;
+            int startpage = 1;
+            string shurupage = Regex.Match(textBox3.Text, @"page=([\s\S]*?)&").Groups[1].Value;
+            if (shurupage != "")
+            {
+                startpage = Convert.ToInt32(shurupage);
+            }
+
+            for (int i = startpage; i < Convert.ToInt32(textBox4.Text)+1; i++)
             {
 
-                string url = textBox3.Text + "&page="+i;
-                string html = GetUrl(url,"utf-8");
+                string url = Regex.Replace(textBox3.Text, "&page=.*", "&page="+i);
                
+                string html = GetUrl(url,"utf-8");
+
+
+                MatchCollection titles = Regex.Matches(html, @"<span class=""a-size-medium a-color-base a-text-normal"">([\s\S]*?)</span>");
                 MatchCollection links = Regex.Matches(html, @"<a class=""a-link-normal s-no-outline"" href=""([\s\S]*?)""");
-             
-                foreach (Match item in links)
+
+                for (int j = 0; j < titles.Count; j++)
                 {
-                    if (!item.Groups[1].Value.Contains("slredirect"))
+
+                    if (!links[j].Groups[1].Value.Contains("slredirect"))
                     {
-                        toolStripStatusLabel1.Text = "当前采集页码数" + i + "，已获取商品链接：" + lists.Count;
-                        lists.Add("https://www.amazon.com" + item.Groups[1].Value);
+                        try
+                        {
+                            toolStripStatusLabel1.Text = "当前采集页码数" + i + "，已获取商品链接：" + goodcount;
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                            lv1.Checked = true;
+                            lv1.SubItems.Add(titles[j].Groups[1].Value);
+                            lv1.SubItems.Add("https://www.amazon.com" + links[j].Groups[1].Value);
+                            goodcount = goodcount + 1;
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+                                return;
+                        }
+                        catch (Exception)
+                        {
+
+                            continue;
+                        }
                     }
                 }
                 Thread.Sleep(1000);
             }
-            return lists;
-
+          
         }
 
         public void run()
         {
-
+            if (listView1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("请勾选需要点击的链接");
+                return;
+            }
 
             toolStripStatusLabel1.Text = "开始执行......";
             getip1000();
@@ -368,18 +402,17 @@ namespace 亚马逊谷歌浏览器点击
             }
 
 
-            List<string> urls = new List<string>();
-            urls = getItemUrls();
-            int Urlcount = urls.Count;
+            int Urlcount = listView1.CheckedItems.Count;
             toolStripStatusLabel1.Text = "共获取到链接数：" + Urlcount;
-            for (int i = 0; i < urls.Count; i++)
+            for (int j = 1; j < Convert.ToInt32(textBox2.Text) + 1; j++)
             {
-                string nowurl = urls[i];
 
-                for (int j = 1; j <Convert.ToInt32(textBox2.Text)+1; j++)
+                for (int i = 0; i < listView1.CheckedItems.Count; i++)
                 {
+                    string nowurl = listView1.CheckedItems[i].SubItems[2].Text;
+
                     textBox1.Text = nowurl;
-                     toolStripStatusLabel1.Text = "共获取到链接数：" + Urlcount + "  正在点击第" + (i + 1) + "个链接   " + "  当前链接已点击次数：" + j;
+                    toolStripStatusLabel1.Text = "共获取到链接数：" + Urlcount + "  正在点击第" + (i + 1) + "个链接   " + "  当前链接已点击次数：" + j;
                     string ip = getipone();
                     label5.Text = ip;
                     if (!ip.Contains("false"))
@@ -388,11 +421,16 @@ namespace 亚马逊谷歌浏览器点击
                     }
                     //browser.Load(nowurl);
                     webBrowser1.Navigate(nowurl);
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
                     if (status == false)
                         return;
-                    Thread.Sleep(Convert.ToInt32(numericUpDown1.Value) *1000);
+                    Thread.Sleep(Convert.ToInt32(numericUpDown1.Value) * 1000);
                 }
-               
+
 
             }
             toolStripStatusLabel1.Text = "全部完成";
@@ -401,6 +439,7 @@ namespace 亚马逊谷歌浏览器点击
 
         Thread thread;
         bool status = true;
+        bool zanting = true;
         private void button1_Click(object sender, EventArgs e)
         {
             SetProxy("");
@@ -425,7 +464,7 @@ namespace 亚马逊谷歌浏览器点击
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(getItemUrls);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -440,7 +479,45 @@ namespace 亚马逊谷歌浏览器点击
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            status = true;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = true;
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = false;
+            }
+        }
+
+
+
     }
 }

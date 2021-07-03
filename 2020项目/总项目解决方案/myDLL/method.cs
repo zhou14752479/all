@@ -20,6 +20,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace myDLL
 {
     public class method
@@ -1290,7 +1291,7 @@ namespace myDLL
         #endregion
 
 
-        #region 
+        #region 发邮件
         public static void send(string address, string subject, string body)
         {
             //实例化一个发送邮件类。
@@ -1320,5 +1321,8 @@ namespace myDLL
 
         }
         #endregion
+
+        
+
     }
 }

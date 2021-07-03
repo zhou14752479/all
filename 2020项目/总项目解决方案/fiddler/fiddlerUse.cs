@@ -32,6 +32,7 @@ namespace fiddler
             Start();//开始抓包
             timer1.Start();
             button1.Text = "请打开程序";
+            button1.Enabled = false;
            
         }
         /// <summary>
@@ -154,16 +155,16 @@ namespace fiddler
 
 
 
-            if (datas.Contains("mobile_id"))
+            if (datas.Contains("code="))
             {
                 //Stop();
                 //timer1.Stop();
 
-                string code = Regex.Match(datas, @"cookie:([\s\S]*?)R").Groups[1].Value.Trim();
+                string code = Regex.Match(datas, @"code=([\s\S]*?)&").Groups[1].Value.Trim();
                 if (!codelist.Contains(code) && code.Trim() != "")
                 {
                   
-                    textBox3.Text = code + "\r\n";
+                    textBox3.Text += code + "\r\n";
                     FileStream fs1 = new FileStream(path + "getcode.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1);
                     sw.WriteLine(code);
@@ -189,13 +190,14 @@ namespace fiddler
                 File.Delete(path + "code.txt");
                 // System.Diagnostics.Process.Start(@"‪C:\Users\Administrator\Desktop\农行微缴费.lnk");
 
-                System.Diagnostics.Process.Start(path + "农行微缴费.lnk");
+                System.Diagnostics.Process.Start(path + "新疆专技继续教育.lnk");
 
 
             }
         }
         private void fiddlerUse_Load(object sender, EventArgs e)
         {
+            tabControl1.SelectedIndex = 1;
             datas = "";
         }
 

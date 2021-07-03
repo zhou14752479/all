@@ -376,6 +376,7 @@ namespace 资和信
 
 
 
+
         /// <summary>
         /// 主程序
         /// </summary>
@@ -464,14 +465,18 @@ namespace 资和信
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.COOKIE = method.getUrlCookie("https://www.zihexin.net/Verifycode2.do");
+           // this.COOKIE = method.getUrlCookie("https://www.zihexin.net/Verifycode2.do");
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-          
+            Image image = Image.FromStream(getStream("https://www.zihexin.net/Verifycode2.do"));
 
+            Bitmap bmp = new Bitmap(image);
+
+            string value = imgdo(bmp);
+            MessageBox.Show(value);
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;

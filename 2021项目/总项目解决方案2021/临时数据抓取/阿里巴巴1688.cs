@@ -125,5 +125,10 @@ namespace 临时数据抓取
         {
             listView1.Items.Clear();
         }
+
+        private void 阿里巴巴1688_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

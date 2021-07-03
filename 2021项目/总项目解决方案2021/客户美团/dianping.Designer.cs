@@ -66,6 +66,8 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -209,7 +211,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 24);
             this.label1.TabIndex = 15;
-            this.label1.Text = "区域";
+            this.label1.Text = "城市";
             // 
             // textBox1
             // 
@@ -349,18 +351,18 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(261, 486);
+            this.comboBox2.Location = new System.Drawing.Point(202, 486);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(104, 20);
+            this.comboBox2.Size = new System.Drawing.Size(90, 20);
             this.comboBox2.TabIndex = 28;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(80, 486);
+            this.comboBox1.Location = new System.Drawing.Point(57, 486);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(104, 20);
+            this.comboBox1.Size = new System.Drawing.Size(89, 20);
             this.comboBox1.TabIndex = 27;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -368,11 +370,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label5.Location = new System.Drawing.Point(189, 484);
+            this.label5.Location = new System.Drawing.Point(152, 485);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 20);
+            this.label5.Size = new System.Drawing.Size(51, 20);
             this.label5.TabIndex = 26;
-            this.label5.Text = "选择城市：";
+            this.label5.Text = "城市：";
             // 
             // label6
             // 
@@ -380,9 +382,9 @@
             this.label6.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label6.Location = new System.Drawing.Point(8, 484);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 20);
+            this.label6.Size = new System.Drawing.Size(51, 20);
             this.label6.TabIndex = 25;
-            this.label6.Text = "选择省份：";
+            this.label6.Text = "省份：";
             // 
             // comboBox3
             // 
@@ -404,9 +406,9 @@
             "洗浴汗蒸",
             "宠物医院",
             "瑜伽舞蹈"});
-            this.comboBox3.Location = new System.Drawing.Point(447, 486);
+            this.comboBox3.Location = new System.Drawing.Point(510, 486);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(126, 20);
+            this.comboBox3.Size = new System.Drawing.Size(89, 20);
             this.comboBox3.TabIndex = 32;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
@@ -414,7 +416,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label7.Location = new System.Drawing.Point(371, 484);
+            this.label7.Location = new System.Drawing.Point(444, 486);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 20);
             this.label7.TabIndex = 31;
@@ -424,7 +426,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(581, 488);
+            this.radioButton1.Location = new System.Drawing.Point(615, 492);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(71, 16);
             this.radioButton1.TabIndex = 33;
@@ -435,7 +437,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(658, 488);
+            this.radioButton2.Location = new System.Drawing.Point(692, 492);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(83, 16);
             this.radioButton2.TabIndex = 34;
@@ -445,7 +447,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(747, 488);
+            this.checkBox1.Location = new System.Drawing.Point(781, 492);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(72, 16);
             this.checkBox1.TabIndex = 35;
@@ -469,11 +471,31 @@
             this.toolStripStatusLabel1.Text = "软件版本：2.1                                                                         " +
     "      免责声明：本软件仅对网站上的公开信息进行复制和整理，严禁用于非法用途；";
             // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(348, 487);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(90, 20);
+            this.comboBox4.TabIndex = 38;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label8.Location = new System.Drawing.Point(298, 486);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(51, 20);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "县区：";
+            // 
             // dianping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(865, 610);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.radioButton2);
@@ -555,6 +577,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label8;
     }
 }
 
