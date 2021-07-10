@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PC版.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PC版.Designer.cs">
+      <DependentUpon>PC版.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="xjstudy.cs" />
@@ -53,18 +59,15 @@
     <Compile Include="单个版.Designer.cs">
       <DependentUpon>单个版.cs</DependentUpon>
     </Compile>
-    <Compile Include="多个版.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="多个版.Designer.cs">
-      <DependentUpon>多个版.cs</DependentUpon>
-    </Compile>
     <Compile Include="新疆继续教育网页版.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="新疆继续教育网页版.Designer.cs">
       <DependentUpon>新疆继续教育网页版.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PC版.resx">
+      <DependentUpon>PC版.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,9 +79,6 @@
     </Compile>
     <EmbeddedResource Include="单个版.resx">
       <DependentUpon>单个版.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="多个版.resx">
-      <DependentUpon>多个版.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="新疆继续教育网页版.resx">
       <DependentUpon>新疆继续教育网页版.cs</DependentUpon>

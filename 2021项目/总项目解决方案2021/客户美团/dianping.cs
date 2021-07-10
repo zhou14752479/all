@@ -87,38 +87,7 @@ namespace 客户美团
         string path = AppDomain.CurrentDomain.BaseDirectory;
 
         Dictionary<string, string> areadic = new Dictionary<string, string>();
-        #region 获取区域
-        public void getareas(string cityid)
-        {
-            areadic.Clear();
-            comboBox4.Items.Clear();
-            string Url = "https://i.meituan.com/wrapapi/search/filters?riskLevel=71&optimusCode=10&ci="+cityid;
-
-            string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
-            //]},{"id":2,"name":"徐汇区"
-            MatchCollection areas = Regex.Matches(html, @"\]\},\{""id"":([\s\S]*?),([\s\S]*?)""name"":""([\s\S]*?)""");
-            ArrayList lists = new ArrayList();
-
-            for (int i = 0; i < areas.Count; i++)
-            {
-
-                if (areas[i].Groups[2].Value.Contains("areaId"))
-
-                {
-                   
-                    areadic.Add(areas[i].Groups[3].Value, areas[i].Groups[1].Value);
-                }
-                
-            }
-            comboBox4.Items.Add("全部");
-            foreach (string item in areadic.Keys)
-            {
-                comboBox4.Items.Add(item);
-            }
-           
-        }
-
-        #endregion
+        
 
         #region  主程序
         public void run()
@@ -136,26 +105,9 @@ namespace 客户美团
                     }
 
                     string cityId = GetcityId(city);
-                  
+                    string areaid = "-3";
                     string[] catenames = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-                    ArrayList areaids = new ArrayList();
-                    if (comboBox4.Text == "全部")
-                    {
-                        foreach (string item in areadic.Values)
-                        {
-                            areaids.Add(item);
-                        }
-                    }
-
-                    else
-                    {
-                        areaids.Add(areadic[comboBox4.Text]);
-                    }
-
-
-                    foreach (string areaid in areaids)
-                    {
                         foreach (string catename in catenames)
                         {
                             if (catename.Trim() == "")
@@ -219,7 +171,7 @@ namespace 客户美团
 
                             {
                                 string Url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityId + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + i + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
-
+                         
                                 string html = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
                                 MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
@@ -297,7 +249,7 @@ namespace 客户美团
 
                     }
                 }
-            }
+            
 
             catch (System.Exception ex)
             {
@@ -370,7 +322,7 @@ namespace 客户美团
 
             #endregion
 
-          
+            
              status = true;
             if (textBox1.Text == "" || textBox2.Text == "")
             {
@@ -429,8 +381,7 @@ namespace 客户美团
      
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string cityId = GetcityId(comboBox2.Text);
-            getareas(cityId);
+       
             if (comboBox1.Text.Contains("上海"))
             {
                 textBox1.Text += "上海";

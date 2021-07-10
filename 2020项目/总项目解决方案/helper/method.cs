@@ -590,6 +590,24 @@ namespace helper
 
         #endregion
 
+        #region 获取状态码
+        public static string getState(string URL)
+        {
+            HttpHelper http = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = URL,//URL     必需项  
+                Method = "HEAD",//URL     可选项 默认为Get  
+                Timeout = 5000,
+            };
+
+            HttpResult result = http.GetHtml(item);
+            return result.StatusCode.ToString();
+
+        }
+
+        #endregion
+
         #region 苏飞请求获取cookie
         public static string getSFcookie(string url, string COOKIE,string data)
         {

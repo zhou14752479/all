@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using myDLL;
 
 namespace 模拟采集谷歌版
 {
@@ -57,8 +58,9 @@ namespace 模拟采集谷歌版
            
             if (count < listView1.Items.Count)
             {
-                
-                browser.Load(listView1.Items[count].SubItems[0].Text);
+
+                //browser.Load(listView1.Items[count].SubItems[0].Text);
+                webBrowser1.Navigate(listView1.Items[count].SubItems[0].Text);
                 for (int i = 0; i < listView1.Items.Count; i++)
                 {
                     listView1.Items[i].BackColor = Color.White;
@@ -68,41 +70,45 @@ namespace 模拟采集谷歌版
             }
         }
 
-        private void WB_DocumentCompleted(object sender, FrameLoadEndEventArgs e)
-        {
+        //private void WB_DocumentCompleted(object sender, FrameLoadEndEventArgs e)
+        //{
 
-            if (e.Url.ToString() != browser.Address.ToString())
-                return;
-            run();
+        //    if (e.Url.ToString() != browser.Address.ToString())
+        //        return;
+        //    run();
 
 
-        }
+        //}
 
-        public void run()
-        {
-            try
-            {
+        //public void run()
+        //{
+        //    try
+        //    {
              
-                 browser.GetBrowser().MainFrame.EvaluateScriptAsync("window.scrollBy(0,3000)");//运行页面上js的test方法或者自己输入JS代码执行
+        //         browser.GetBrowser().MainFrame.EvaluateScriptAsync("window.scrollBy(0,3000)");//运行页面上js的test方法或者自己输入JS代码执行
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                MessageBox.Show(ex.ToString()); ;
-            }
-        }
+        //        MessageBox.Show(ex.ToString()); ;
+        //    }
+        //}
+
+
         Thread thread;
        
-        public ChromiumWebBrowser browser = new ChromiumWebBrowser("https://login.1688.com/member/signin.htm");
+       // public ChromiumWebBrowser browser = new ChromiumWebBrowser("https://login.1688.com/member/signin.htm");
         private void 阿里代销_Load(object sender, EventArgs e)
         {
+            method.SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
            
-        // browser.Load("https://login.1688.com/member/signin.htm");
-            browser.Parent = splitContainer1.Panel1;
-            browser.Dock = DockStyle.Fill;
-            Control.CheckForIllegalCrossThreadCalls = false;
-            browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
+            //browser.Parent = splitContainer1.Panel1;
+            //browser.Dock = DockStyle.Fill;
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            //browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
+           
         }
 
     

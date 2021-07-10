@@ -403,7 +403,8 @@
             "洗浴汗蒸",
             "宠物医院",
             "瑜伽舞蹈",
-            "咖啡酒吧"});
+            "咖啡酒吧",
+            "医疗"});
             this.comboBox3.Location = new System.Drawing.Point(447, 486);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(126, 20);

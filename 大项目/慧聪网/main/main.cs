@@ -98,10 +98,10 @@ namespace main
                     {
 
                         string Url = "https://esapi.org.hc360.com/interface/getinfos.html?pnum=" + i + "&psize=100&kwd=" + keyword + "&z=" + city + "&index=companyinfo&collapsef=providerid";
-                        textBox1.Text = Url;
+                      
                        
                         string strhtml = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-
+                    
                         if (!strhtml.Contains("address"))
                         {
                             break;

@@ -1,4 +1,4 @@
-﻿namespace WebView2
+﻿namespace webView2
 {
     partial class Form1
     {
@@ -36,9 +36,10 @@
             // 
             this.webView21.CreationProperties = null;
             this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView21.Location = new System.Drawing.Point(228, 156);
+            this.webView21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webView21.Location = new System.Drawing.Point(0, 0);
             this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(307, 180);
+            this.webView21.Size = new System.Drawing.Size(800, 450);
             this.webView21.TabIndex = 0;
             this.webView21.ZoomFactor = 1D;
             // 

@@ -20,7 +20,7 @@ namespace 主程序202006
             InitializeComponent();
         }
 
-        string cookie = "mediav=%7B%22eid%22%3A%22628495%22%2C%22ep%22%3A%22%22%2C%22vid%22%3A%22)TCZU%23y5nR9*Q%23YaN0jp%22%2C%22ctn%22%3A%22%22%2C%22vvid%22%3A%22)TCZU%23y5nR9*Q%23YaN0jp%22%7D; _ga=GA1.3.339430833.1592791735; www_china0001_com_cn_mycity=17; _gid=GA1.3.1875224426.1593307322; Qs_lvt_289675=1592791735%2C1593307321%2C1593336583%2C1593409499; PHPSESSID=ai0piu145l5ksn9nntl6hc3pgv; Hm_lvt_d2634fb106dc720564524e04dfd88bec=1593307322,1593409500,1593427307,1593432458; www_china0001_com_cn_prolove=790733%2C790515%2C789981%2C789998%2C789999%2C789750%2C789770%2C789842%2C792483%2C779731; www_china0001_com_cn_username=13338703444; www_china0001_com_cn_userpwd=china0001; Hm_lpvt_d2634fb106dc720564524e04dfd88bec=1593433105; Qs_pv_289675=351266940976634200%2C2363216495513196000%2C3279605208580686000%2C822729104316573800%2C76753818617815460";
+        string cookie = "mediav=%7B%22eid%22%3A%22628495%22%2C%22ep%22%3A%22%22%2C%22vid%22%3A%22DhAOCGWoI%3A8ch%5D7QwUQB%22%2C%22ctn%22%3A%22%22%2C%22vvid%22%3A%22DhAOCGWoI%3A8ch%5D7QwUQB%22%2C%22_mvnf%22%3A1%2C%22_mvctn%22%3A0%2C%22_mvck%22%3A0%2C%22_refnf%22%3A0%7D; Hm_lvt_d2634fb106dc720564524e04dfd88bec=1625556915,1625624161; Qs_lvt_289675=1622682637%2C1625556914%2C1625624161; PHPSESSID=tgemm7rikdm8rlbphh66a88pbl; Qs_lvt_314176=1625625079; mediav=%7B%22eid%22%3A%22628495%22%2C%22ep%22%3A%22%22%2C%22vid%22%3A%22DhAOCGWoI%3A8ch%5D7QwUQB%22%2C%22ctn%22%3A%22%22%2C%22vvid%22%3A%22DhAOCGWoI%3A8ch%5D7QwUQB%22%2C%22_mvnf%22%3A1%2C%22_mvctn%22%3A0%2C%22_mvck%22%3A0%2C%22_refnf%22%3A0%7D; wap_china0001_com_cn_username=13338703444; wap_china0001_com_cn_userpwd=china0001; wap_china0001_com_cn_lasturl=http%3A%2F%2Fwap.china0001.com.cn%2Fproject%2F933254.html; Hm_lpvt_d2634fb106dc720564524e04dfd88bec=1625625193; Qs_pv_289675=977771833730040700%2C3523361108074497000%2C54918524870182856%2C2681212953383196000%2C3920035525615057000; Hm_lvt_a2cf3e9240bd7552da95f5c95c4346b0=1625625079,1625625127,1625625130,1625627349; Hm_lpvt_a2cf3e9240bd7552da95f5c95c4346b0=1625627349; Qs_pv_314176=1181253322396840200%2C1750478188412803800%2C1724953541381945300%2C2971107667881820700%2C335888415443476100";
         bool zanting = true;
         string area = "d17"; //江苏省
         string time = "h0";
@@ -128,12 +128,12 @@ namespace 主程序202006
             {
 
                 label4.Text = "正在搜索，第" + i + "页";
-                string url = "https://www.china0001.com.cn/project/"+area+jieduan+"-"+time+"-no1-p"+i+"/";
-                
+                string url = "https://wap.china0001.com.cn/project/" + area+jieduan+"-"+time+"-no1-p"+i+"/";
+             
                 string html = method.GetUrlWithCookie(url, cookie,"utf-8");
-
-                MatchCollection ids = Regex.Matches(html, @"id=""pro_([\s\S]*?)""");
-                MessageBox.Show(ids.Count.ToString());
+             
+                MatchCollection ids = Regex.Matches(html, @""" id=""pro_([\s\S]*?)""");
+              
                 if (ids.Count == 0)
                 {
                     label4.Text = "结束";
@@ -144,124 +144,82 @@ namespace 主程序202006
                 for (int j = 0; j < ids.Count; j++)
 
                 {
-                    string URL = "https://www.china0001.com.cn/project/"+ids[j].Groups[1].Value+".html";
+                    string URL = "https://wap.china0001.com.cn/project/" + ids[j].Groups[1].Value+".html";
 
                     try
                     {
+                      
                         string htmls = method.GetUrlWithCookie(URL, cookie, "utf-8");
-                        Match title = Regex.Match(htmls, @"<title>([\s\S]*?)-");
+                       // Match title = Regex.Match(htmls, @"<title>([\s\S]*?)联系人");
 
-                        Match ahtml = Regex.Match(htmls, @"<!-- 甲方单位联系方式 -->([\s\S]*?)<ul class=""rmktxt3"" >([\s\S]*?)<!--");
-                        Match bhtml = Regex.Match(htmls, @"<!-- 设计单位联系方式 -->([\s\S]*?)<ul class=""rmktxt3"" >([\s\S]*?)</tr>");
-                        Match chtml = Regex.Match(htmls, @"<!-- 施工方联系方式 -->([\s\S]*?)<ul class=""rmktxt3"" >([\s\S]*?)<!--");
-                        Match dhtml = Regex.Match(htmls, @"<!-- 其他参建单位 -->([\s\S]*?)<ul class=""rmktxt3"" >([\s\S]*?)<!--");
-
-
-                        MatchCollection acompany = Regex.Matches(ahtml.Groups[2].Value, @"data-title=""单位：([\s\S]*?)""");
-                        MatchCollection aname = Regex.Matches(ahtml.Groups[2].Value, @"data-title=""姓名：([\s\S]*?)""([\s\S]*?)change-font"">([\s\S]*?)</a>");
-                        
-
-
-                        MatchCollection bcompany = Regex.Matches(bhtml.Groups[2].Value, @"data-title=""单位：([\s\S]*?)""");
-                        MatchCollection bname = Regex.Matches(bhtml.Groups[2].Value, @"data-title=""姓名：([\s\S]*?)""([\s\S]*?)change-font"">([\s\S]*?)</a>");
+                        Match ahtml = Regex.Match(htmls, @"<B>业主单位联系方式</B>([\s\S]*?)</section>");
+                        Match bhtml = Regex.Match(htmls, @"<B>设计院联系方式</B>([\s\S]*?)</section>");
+                        Match chtml = Regex.Match(htmls, @"施工单位联系方式</div>([\s\S]*?)</section>");
+                        Match dhtml = Regex.Match(htmls, @"<!-- 其他参建单位 -->([\s\S]*?)</section>");
                     
 
-                        MatchCollection ccompany = Regex.Matches(chtml.Groups[2].Value, @"data-title=""单位：([\s\S]*?)""");
-                        MatchCollection cname = Regex.Matches(chtml.Groups[2].Value, @"data-title=""姓名：([\s\S]*?)""([\s\S]*?)change-font"">([\s\S]*?)</a>");
-                      
+                        MatchCollection acompany = Regex.Matches(ahtml.Groups[1].Value, @"dw=""([\s\S]*?)""");
+                        MatchCollection aname = Regex.Matches(ahtml.Groups[1].Value, @"xm=""([\s\S]*?)""");
+                        MatchCollection ajob = Regex.Matches(ahtml.Groups[1].Value, @"zw=""([\s\S]*?)""");
+                        MatchCollection atel = Regex.Matches(ahtml.Groups[1].Value, @"sj=""([\s\S]*?)""");
 
-                        MatchCollection dcompany = Regex.Matches(dhtml.Groups[2].Value, @"data-title=""单位：([\s\S]*?)""");
-                        MatchCollection dname = Regex.Matches(dhtml.Groups[2].Value, @"data-title=""姓名：([\s\S]*?)""([\s\S]*?)change-font"">([\s\S]*?)</a>");
+                        MatchCollection bcompany = Regex.Matches(bhtml.Groups[1].Value, @"dw=""([\s\S]*?)""");
+                        MatchCollection bname = Regex.Matches(bhtml.Groups[1].Value, @"xm=""([\s\S]*?)""");
+                        MatchCollection bjob = Regex.Matches(bhtml.Groups[1].Value, @"zw=""([\s\S]*?)""");
+                        MatchCollection btel = Regex.Matches(bhtml.Groups[1].Value, @"sj=""([\s\S]*?)""");
+
+                        MatchCollection ccompany = Regex.Matches(chtml.Groups[1].Value, @"dw=""([\s\S]*?)""");
+                        MatchCollection cname = Regex.Matches(chtml.Groups[1].Value, @"xm=""([\s\S]*?)""");
+                        MatchCollection cjob = Regex.Matches(chtml.Groups[1].Value, @"zw=""([\s\S]*?)""");
+                        MatchCollection ctel = Regex.Matches(chtml.Groups[1].Value, @"sj=""([\s\S]*?)""");
+
+                        MatchCollection dcompany = Regex.Matches(dhtml.Groups[1].Value, @"dw=""([\s\S]*?)""");
+                        MatchCollection dname = Regex.Matches(dhtml.Groups[1].Value, @"xm=""([\s\S]*?)""");
+                        MatchCollection djob = Regex.Matches(dhtml.Groups[1].Value, @"zw=""([\s\S]*?)""");
+                        MatchCollection dtel = Regex.Matches(dhtml.Groups[1].Value, @"sj=""([\s\S]*?)""");
 
 
                         if (checkBox1.Checked == true)
                         {
-                            for (int a = 0; a < aname.Count; a++)
+                            for (int a = 0; a < acompany.Count; a++)
                             {
-                                try
-                                {
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                    lv1.SubItems.Add(title.Groups[1].Value);
-                                    lv1.SubItems.Add("甲方单位");
-
-                                    lv1.SubItems.Add(Regex.Replace(aname[a].Groups[1].Value, "<[^>]+>", "").Trim());
-                                    lv1.SubItems.Add(Regex.Replace(aname[a].Groups[3].Value, "<[^>]+>", "").Trim());
-                                    lv1.SubItems.Add(Regex.Replace(acompany[a].Groups[1].Value, "<[^>]+>", "").Trim());
-                                }
-                                catch (Exception ex)
-                                {
-
-                                    ex.ToString();
-                                }
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                lv1.SubItems.Add("甲方");
+                                lv1.SubItems.Add(acompany[a].Groups[1].Value);
+                                lv1.SubItems.Add(aname[a].Groups[1].Value);
+                                lv1.SubItems.Add(atel[a].Groups[1].Value);
                             }
                         }
+
                         if (checkBox2.Checked == true)
                         {
-                            for (int b = 0; b < bname.Count; b++)
+                            for (int a = 0; a < bcompany.Count; a++)
                             {
-                                try
-                                {
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                    lv1.SubItems.Add(title.Groups[1].Value);
-                                    lv1.SubItems.Add("设计单位");
-
-                                    lv1.SubItems.Add(Regex.Replace(bname[b].Groups[1].Value, "<[^>]+>", "").Trim());
-                                    lv1.SubItems.Add(Regex.Replace(bname[b].Groups[3].Value, "<[^>]+>", "").Trim());
-                                    lv1.SubItems.Add(Regex.Replace(bcompany[b].Groups[1].Value, "<[^>]+>", "").Trim());
-                                }
-                                catch (Exception ex)
-                                {
-
-                                    ex.ToString();
-                                }
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                lv1.SubItems.Add("设计方");
+                                lv1.SubItems.Add(bcompany[a].Groups[1].Value);
+                                lv1.SubItems.Add(bname[a].Groups[1].Value);
+                                lv1.SubItems.Add(btel[a].Groups[1].Value);
                             }
                         }
                         if (checkBox3.Checked == true)
                         {
-                            for (int c = 0; c < cname.Count; c++)
+
+                            for (int a = 0; a < ccompany.Count; a++)
                             {
-                                try
-                                {
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                    lv1.SubItems.Add(title.Groups[1].Value);
-                                    lv1.SubItems.Add("施工方");
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                lv1.SubItems.Add("施工方");
+                                lv1.SubItems.Add(ccompany[a].Groups[1].Value);
+                                lv1.SubItems.Add(cname[a].Groups[1].Value);
+                                lv1.SubItems.Add(ctel[a].Groups[1].Value);
 
-                                    lv1.SubItems.Add(Regex.Replace(cname[c].Groups[1].Value, "<[^>]+>", "").Trim());
-                                    lv1.SubItems.Add(Regex.Replace(cname[c].Groups[3].Value, "<[^>]+>", "").Trim());
-                                    lv1.SubItems.Add(Regex.Replace(ccompany[c].Groups[1].Value, "<[^>]+>", "").Trim());
-                                }
-                                catch (Exception ex)
-                                {
-
-                                    ex.ToString();
-                                }
-                            }
-                        }
-
-                        if (checkBox4.Checked == true)
-                        {
-
-                            for (int d = 0; d < dname.Count; d++)
-                            {
-                                try
-                                {
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                                    lv1.SubItems.Add(title.Groups[1].Value);
-                                    lv1.SubItems.Add("其他参建单位");
-
-                                    lv1.SubItems.Add(Regex.Replace(dname[d].Groups[1].Value, "<[^>]+>", "").Trim());
-                                    lv1.SubItems.Add(Regex.Replace(dname[d].Groups[3].Value, "<[^>]+>", "").Trim());
-                                    lv1.SubItems.Add(Regex.Replace(dcompany[d].Groups[1].Value, "<[^>]+>", "").Trim());
-                                }
-                                catch (Exception ex)
-                                {
-
-                                    ex.ToString();
-                                }
                             }
                         }
 
 
+                      
+
+                        Thread.Sleep(1000);
 
                         while (zanting == false)
                         {
@@ -289,14 +247,18 @@ namespace 主程序202006
         {
 
         }
+        Thread thread;
 
         private void button1_Click(object sender, EventArgs e)
         {
-           // cookie = Form1.cookie;
+           //cookie = Form1.cookie;
             label4.Text = "正在搜索，请勿重复点击......";
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

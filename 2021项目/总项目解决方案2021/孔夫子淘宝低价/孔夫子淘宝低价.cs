@@ -44,6 +44,15 @@ namespace 孔夫子淘宝低价
         bool status = true;
         string cookie = "";
 
+
+        public string getShippingFee(string itemid,string userid)
+        {
+            string url = "http://shop.kongfz.com/book/shopsearch/getShippingFee?callback=jQuery111209607689280462008_1625446557129&params={%22params%22:[{%22userId%22:%22"+userid+"%22,%22itemId%22:%22"+itemid+"%22}],%22area%22:%221006000000%22}&_=1625446557140";
+            string html = method.GetUrl(url,"utf-8");
+            string fee = Regex.Match(html, @"""totalFee"":""([\s\S]*?)""").Groups[1].Value;
+            return fee;
+
+        }
         public void run()
         {
 
@@ -63,16 +72,17 @@ namespace 孔夫子淘宝低价
                     string isbn = dr[0].ToString();
                    
 
-                    string q = "95h"; //九五品以上
-                   // string q1 = "100h"; //全新
-                  //  string q2 = "95h95"; //九五品
+                    //string q = "95h"; //九五品以上
+                    string q1 = "100h"; //全新
+                  string q2 = "95h95"; //九五品
                     
 
                     string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
-                    string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+                    string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
                     string html = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded", "");
-                   
-
+                  
+                    MatchCollection itemIds = Regex.Matches(html, @"""itemId"":([\s\S]*?),");
+                    MatchCollection userIds = Regex.Matches(html, @"""userId"":([\s\S]*?),");
                     MatchCollection shopnames = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
                     MatchCollection prices = Regex.Matches(html, @"""price"":([\s\S]*?),");
                     MatchCollection qualitys = Regex.Matches(html, @"""quality"":""([\s\S]*?)""");
@@ -80,47 +90,68 @@ namespace 孔夫子淘宝低价
                     string price100 = "无";
                     string price95 = "无";
 
+                    string fee100 = "";
+                    string fee95 = "";
 
                     string shopname95 = "无";
                     string shopname100= "无";
 
+                    string url2 = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
+                    string postdata2 = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q2 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+                    string html2 = method.PostUrl(url2, postdata2, "", "utf-8", "application/x-www-form-urlencoded", "");
+
+                    MatchCollection itemIds2 = Regex.Matches(html2, @"""itemId"":([\s\S]*?),");
+                    MatchCollection userIds2 = Regex.Matches(html2, @"""userId"":([\s\S]*?),");
+                    MatchCollection shopnames2 = Regex.Matches(html2, @"""shopName"":""([\s\S]*?)""");
+                    MatchCollection prices2 = Regex.Matches(html2, @"""price"":([\s\S]*?),");
+                    MatchCollection qualitys2 = Regex.Matches(html2, @"""quality"":""([\s\S]*?)""");
+
+
+
                     for (int j = 0; j <prices.Count; j++)
                     {
-                        if (method.Unicode2String(qualitys[j].Groups[1].Value) == "九五品")
-                        {
-                            if (price95 == "无")
-                            {
-                                price95 = prices[j].Groups[1].Value;
-                                shopname95 = shopnames[j].Groups[1].Value;
-                            }
-                        }
+                       
                         if (method.Unicode2String(qualitys[j].Groups[1].Value) == "全新")
                         {
                             if (price100 == "无")
                             {
+                                fee100 = getShippingFee(itemIds[j].Groups[1].Value, userIds[j].Groups[1].Value);
                                 price100 = prices[j].Groups[1].Value;
                                 shopname100 = shopnames[j].Groups[1].Value;
+                                break;
                             }
                         }
                     }
 
-
-                    string ahtml = getHtml("https://s.taobao.com/search?q=" + isbn+ "&sort=total-asc");
-                   string tbprice = Regex.Match(ahtml, @"""view_price"":""([\s\S]*?)""").Groups[1].Value;
-                    string shop= Regex.Match(ahtml, @"""nick"":""([\s\S]*?)""").Groups[1].Value;
-                    string istmall = Regex.Match(ahtml, @"""isTmall"":([\s\S]*?),").Groups[1].Value;
+                    for (int j = 0; j < prices2.Count; j++)
+                    {
+                        if (method.Unicode2String(qualitys2[j].Groups[1].Value) == "九五品")
+                        {
+                            if (price95 == "无")
+                            {
+                                fee95 = getShippingFee(itemIds2[j].Groups[1].Value, userIds2[j].Groups[1].Value);
+                                price95 = prices2[j].Groups[1].Value;
+                                shopname95 = shopnames2[j].Groups[1].Value;
+                                break;
+                            }
+                        }
+                    }
 
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     lv1.SubItems.Add(isbn);
-                    lv1.SubItems.Add(tbprice);
-                    lv1.SubItems.Add(shop);
-                    lv1.SubItems.Add(istmall);
-                    lv1.SubItems.Add(price95);
-                    lv1.SubItems.Add(method.Unicode2String(shopname95));
+       
                     lv1.SubItems.Add(price100);
+                    lv1.SubItems.Add(fee100);
                     lv1.SubItems.Add(method.Unicode2String(shopname100));
+                    lv1.SubItems.Add(price95);
+                    lv1.SubItems.Add(fee95);
+                    lv1.SubItems.Add(method.Unicode2String(shopname95));
+                  
 
-
+                    if(listView1.Items.Count>2)
+                    {
+                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                    }
                     while (this.zanting == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -140,6 +171,112 @@ namespace 孔夫子淘宝低价
         }
 
 
+
+        public void run1()
+        {
+
+            try
+            {
+                if (textBox2.Text == "")
+                {
+                    MessageBox.Show("请导入账号");
+                    return;
+                }
+                DataTable dt = method.ExcelToDataTable(textBox2.Text, true);
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    DataRow dr = dt.Rows[i];
+                    string isbn = dr[0].ToString();
+
+
+                    string q = "95h"; //九五品以上
+                                      // string q1 = "100h"; //全新
+                                      //  string q2 = "95h95"; //九五品
+
+
+                    string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
+                    string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+                    string html = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded", "");
+
+                    MatchCollection itemIds = Regex.Matches(html, @"""itemId"":([\s\S]*?),");
+                    MatchCollection userIds = Regex.Matches(html, @"""userId"":([\s\S]*?),");
+
+
+                    MatchCollection shopnames = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
+                    MatchCollection prices = Regex.Matches(html, @"""price"":([\s\S]*?),");
+                    MatchCollection qualitys = Regex.Matches(html, @"""quality"":""([\s\S]*?)""");
+
+                    string price100 = "无";
+                    string price95 = "无";
+
+                    string fee100 = "";
+                    string fee95 = "";
+
+                    string shopname95 = "无";
+                    string shopname100 = "无";
+
+                    for (int j = 0; j < prices.Count; j++)
+                    {
+                        if (method.Unicode2String(qualitys[j].Groups[1].Value) == "九五品")
+                        {
+                            if (price95 == "无")
+                            {
+                                fee95 = getShippingFee(itemIds[j].Groups[1].Value, userIds[j].Groups[1].Value);
+                                price95 = prices[j].Groups[1].Value;
+                                shopname95 = shopnames[j].Groups[1].Value;
+                            }
+                        }
+                        if (method.Unicode2String(qualitys[j].Groups[1].Value) == "全新")
+                        {
+                            if (price100 == "无")
+                            {
+                                fee100 = getShippingFee(itemIds[j].Groups[1].Value, userIds[j].Groups[1].Value);
+                                price100 = prices[j].Groups[1].Value;
+                                shopname100 = shopnames[j].Groups[1].Value;
+                            }
+                        }
+                    }
+
+
+                    // string ahtml = getHtml("https://s.taobao.com/search?q=" + isbn+ "&sort=total-asc");
+                    //string tbprice = Regex.Match(ahtml, @"""view_price"":""([\s\S]*?)""").Groups[1].Value;
+                    // string shop= Regex.Match(ahtml, @"""nick"":""([\s\S]*?)""").Groups[1].Value;
+                    // string istmall = Regex.Match(ahtml, @"""isTmall"":([\s\S]*?),").Groups[1].Value;
+
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                    lv1.SubItems.Add(isbn);
+
+                    lv1.SubItems.Add(price100);
+                    lv1.SubItems.Add(fee100);
+                    lv1.SubItems.Add(method.Unicode2String(shopname100));
+                    lv1.SubItems.Add(price95);
+                    lv1.SubItems.Add(fee95);
+                    lv1.SubItems.Add(method.Unicode2String(shopname95));
+
+
+                    if (listView1.Items.Count > 2)
+                    {
+                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                    }
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+                    label1.Text = "正在查询：" + isbn;
+                    Thread.Sleep(1000);
+                }
+                label1.Text = ("查询结束");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         public string getHtml(string url)
         {
@@ -204,14 +341,14 @@ namespace 孔夫子淘宝低价
             }
 
             #endregion
-            cookie = webbrowser.COOKIE;
+            //cookie = webbrowser.COOKIE;
 
-            if (cookie == "")
-            {
-                MessageBox.Show("请先登录");
+            //if (cookie == "")
+            //{
+            //    MessageBox.Show("请先登录");
 
-                return;
-            }
+            //    return;
+            //}
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -225,6 +362,11 @@ namespace 孔夫子淘宝低价
         {
             webbrowser web = new webbrowser();
             web.Show();
+        }
+
+        private void 孔夫子淘宝低价_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

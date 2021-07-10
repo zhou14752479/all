@@ -361,6 +361,20 @@ namespace 新疆继续教育
 
         private void button3_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
+
+            if (!html.Contains(@"epkOu"))
+            {
+
+                return;
+            }
+
+
+
+            #endregion
+
             if (t == null || !t.IsAlive)
             {
                 t = new Thread(denglu);

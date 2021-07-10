@@ -37,7 +37,6 @@
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -61,8 +60,8 @@
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -97,13 +96,15 @@
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数配置";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // linkLabel4
             // 
             this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(136, 84);
+            this.linkLabel4.Font = new System.Drawing.Font("宋体", 10F);
+            this.linkLabel4.Location = new System.Drawing.Point(147, 98);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel4.Size = new System.Drawing.Size(63, 14);
             this.linkLabel4.TabIndex = 16;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "导出表格";
@@ -148,9 +149,10 @@
             // linkLabel9
             // 
             this.linkLabel9.AutoSize = true;
-            this.linkLabel9.Location = new System.Drawing.Point(136, 109);
+            this.linkLabel9.Font = new System.Drawing.Font("宋体", 10F);
+            this.linkLabel9.Location = new System.Drawing.Point(147, 122);
             this.linkLabel9.Name = "linkLabel9";
-            this.linkLabel9.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel9.Size = new System.Drawing.Size(63, 14);
             this.linkLabel9.TabIndex = 7;
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "清空数据";
@@ -170,7 +172,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.button3);
@@ -188,16 +189,6 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数配置";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(33, 98);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 52);
-            this.button6.TabIndex = 26;
-            this.button6.Text = "登录美团";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button4
             // 
@@ -412,20 +403,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "免责声明：软件仅用于学习，请在法律允许的范围内使用，因采集引起的任何纠纷与本软件制作商无关！";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("黑体", 20F, System.Drawing.FontStyle.Bold);
-            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 9);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(600, 27);
-            this.linkLabel1.TabIndex = 0;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "思忆软件开发平台(点击打开www.acaiji.com)";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SkyBlue;
@@ -441,6 +418,20 @@
             this.panel1.TabIndex = 11;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseMove);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("黑体", 20F, System.Drawing.FontStyle.Bold);
+            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel1.LinkColor = System.Drawing.Color.White;
+            this.linkLabel1.Location = new System.Drawing.Point(12, 9);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(128, 27);
+            this.linkLabel1.TabIndex = 0;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "思忆美团";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // Form1
             // 
@@ -490,7 +481,6 @@
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button5;
@@ -506,7 +496,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

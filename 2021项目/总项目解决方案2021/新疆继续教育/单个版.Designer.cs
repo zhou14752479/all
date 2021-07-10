@@ -43,12 +43,13 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -165,6 +166,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -181,9 +183,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "账号";
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(87, 114);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(177, 21);
+            this.textBox3.TabIndex = 80;
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(261, 73);
+            this.button3.Location = new System.Drawing.Point(271, 74);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 79;
@@ -193,7 +202,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(77, 76);
+            this.textBox2.Location = new System.Drawing.Point(87, 77);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(177, 21);
             this.textBox2.TabIndex = 3;
@@ -211,7 +220,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 39);
+            this.textBox1.Location = new System.Drawing.Point(87, 40);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(177, 21);
             this.textBox1.TabIndex = 1;
@@ -227,12 +236,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "账号：";
             // 
-            // textBox3
+            // label3
             // 
-            this.textBox3.Location = new System.Drawing.Point(77, 113);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(177, 21);
-            this.textBox3.TabIndex = 80;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 11F);
+            this.label3.Location = new System.Drawing.Point(30, 119);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 15);
+            this.label3.TabIndex = 81;
+            this.label3.Text = "code：";
             // 
             // 单个版
             // 
@@ -276,5 +288,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label3;
     }
 }

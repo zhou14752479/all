@@ -39,9 +39,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,12 +46,12 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.button4 = new System.Windows.Forms.Button();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBox3
@@ -85,7 +82,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(551, 97);
+            this.button3.Location = new System.Drawing.Point(630, 54);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(64, 30);
             this.button3.TabIndex = 70;
@@ -114,7 +111,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(481, 97);
+            this.button2.Location = new System.Drawing.Point(560, 54);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(64, 30);
             this.button2.TabIndex = 61;
@@ -124,7 +121,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(407, 97);
+            this.button1.Location = new System.Drawing.Point(486, 54);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 30);
             this.button1.TabIndex = 56;
@@ -138,16 +135,15 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader6});
+            this.columnHeader4,
+            this.columnHeader5});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 133);
+            this.listView1.Location = new System.Drawing.Point(0, 145);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(698, 503);
+            this.listView1.Size = new System.Drawing.Size(758, 503);
             this.listView1.TabIndex = 55;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -159,27 +155,13 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "工程名称";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Text = "类别";
+            this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "类型";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "联系人";
-            this.columnHeader5.Width = 80;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "手机";
-            this.columnHeader8.Width = 100;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "公司";
-            this.columnHeader6.Width = 200;
+            this.columnHeader3.Text = "公司";
+            this.columnHeader3.Width = 200;
             // 
             // comboBox1
             // 
@@ -268,36 +250,47 @@
             this.radioButton5.UseVisualStyleBackColor = true;
             this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(410, 54);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(70, 30);
+            this.button4.TabIndex = 85;
+            this.button4.Text = "登录网站";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "姓名";
+            this.columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "号码";
+            this.columnHeader5.Width = 100;
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(255, 62);
+            this.checkBox1.Location = new System.Drawing.Point(189, 62);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(51, 21);
-            this.checkBox1.TabIndex = 80;
+            this.checkBox1.TabIndex = 86;
             this.checkBox1.Text = "甲方";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(205, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 17);
-            this.label3.TabIndex = 81;
-            this.label3.Text = "筛选：";
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(312, 63);
+            this.checkBox2.Location = new System.Drawing.Point(254, 62);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(63, 21);
-            this.checkBox2.TabIndex = 82;
+            this.checkBox2.TabIndex = 87;
             this.checkBox2.Text = "设计方";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
@@ -306,46 +299,22 @@
             this.checkBox3.AutoSize = true;
             this.checkBox3.Checked = true;
             this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(385, 63);
+            this.checkBox3.Location = new System.Drawing.Point(322, 62);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(63, 21);
-            this.checkBox3.TabIndex = 83;
+            this.checkBox3.TabIndex = 88;
             this.checkBox3.Text = "施工方";
             this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Checked = true;
-            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(461, 63);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(75, 21);
-            this.checkBox4.TabIndex = 84;
-            this.checkBox4.Text = "参建单位";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(255, 98);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(64, 30);
-            this.button4.TabIndex = 85;
-            this.button4.Text = "登陆";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // 中策大数据
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 636);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.checkBox4);
+            this.ClientSize = new System.Drawing.Size(758, 648);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.radioButton5);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.radioButton3);
@@ -385,9 +354,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label1;
@@ -395,11 +361,11 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.Button button4;
     }
 }

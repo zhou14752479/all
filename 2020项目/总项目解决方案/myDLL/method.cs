@@ -847,6 +847,7 @@ namespace myDLL
         }
         #endregion
 
+        
 
         #region 修改注册表信息使WebBrowser使用指定版本IE内核 传入11000是IE11
         public static void SetFeatures(UInt32 ieMode)

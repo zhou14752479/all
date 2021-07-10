@@ -455,3 +455,19 @@ return null;
 }
 }
 #endregion
+
+【listview滚动到当前行】
+
+if(listView1.Items.Count>2)
+                    {
+                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                    }
+
+【文字滚动横向】
+ private void timer1_Tick(object sender, EventArgs e)
+        {
+            string text = label8.Text;
+            string text1 = text.Substring(1);
+            string text2 = text1 + text[0];
+            label8.Text = text2;
+        }

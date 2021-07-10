@@ -51,5 +51,10 @@ namespace main
         {
             System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes");
         }
+
+        private void login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

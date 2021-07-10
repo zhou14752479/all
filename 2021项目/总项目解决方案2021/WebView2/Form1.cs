@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WebView2
+namespace webView2
 {
     public partial class Form1 : Form
     {
@@ -19,17 +19,10 @@ namespace WebView2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            try
-            {
-                webView21.CoreWebView2.Navigate("https://www.baidu.com");
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
+          webView21.Source = new Uri("https://login.taobao.com/member/login.jhtml?spm=a21bo.21814703.201864-2.d1.5af911d9ZE4f5j&f=top&redirectURL=http%3A%2F%2Fwww.taobao.com%2F");
+            
         }
-
+    
+    
     }
 }

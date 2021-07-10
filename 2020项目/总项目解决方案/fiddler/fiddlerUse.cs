@@ -29,6 +29,20 @@ namespace fiddler
         public static string datas = "";
         private void button1_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"epkOu"))
+            {
+
+                return;
+            }
+
+
+
+            #endregion
+
             Start();//开始抓包
             timer1.Start();
             button1.Text = "请打开程序";
@@ -163,7 +177,7 @@ namespace fiddler
                 string code = Regex.Match(datas, @"code=([\s\S]*?)&").Groups[1].Value.Trim();
                 if (!codelist.Contains(code) && code.Trim() != "")
                 {
-                  
+                    codelist.Add(code);
                     textBox3.Text += code + "\r\n";
                     FileStream fs1 = new FileStream(path + "getcode.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1);

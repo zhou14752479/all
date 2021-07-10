@@ -36,11 +36,11 @@ namespace 文本图片提取
                 WebClient client = new WebClient();
                 string[] ips= ip.Split(new string[] { ":" }, StringSplitOptions.None);
              
-                if(ips.Length>1)
-                {
-                    client.Proxy = new WebProxy(ips[0], Convert.ToInt32(ips[1]));
+                //if(ips.Length>1)
+                //{
+                //    client.Proxy = new WebProxy(ips[0], Convert.ToInt32(ips[1]));
 
-                }    
+                //}    
  
                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
                 client.Headers.Add("Cookie", "");
@@ -69,7 +69,7 @@ namespace 文本图片提取
         public void getip100()
         {
             iplist.Clear();
-            string html = method.GetUrl("http://api2.xkdaili.com/tools/XApi.ashx?apikey=XK66D7DF5CC41345D971&qty=100&format=txt&split=2", "utf-8");
+            string html = method.GetUrl(textBox3.Text.Trim(), "utf-8");
         
             string[] ips = html.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
           
@@ -118,20 +118,25 @@ namespace 文本图片提取
             return value;
         }
         int count = 0;
-        public bool downimg(string url, string imgname,string ip)
+        public void downimg(object o)
         {
-         
+           
+            string[] text = o.ToString().Split(new string[] { "#" }, StringSplitOptions.None);
+            string url = text[0];
+            string imgname = text[1];
+            string ip = text[2];
+
             count = count + 1;
            
             downloadFile(url,path+"//img//",imgname+".jpg",ip);
             if (File.Exists(path + "//img//" + imgname + ".jpg"))
             {
-                return true;
+               // return true;
             }
 
             else
             {
-                return false;
+                //return false;
             }
         }
 
@@ -171,24 +176,34 @@ namespace 文本图片提取
                             string imgname = getsuijizimushuzi();
                             lv1.SubItems.Add("../img/" + imgname + ".jpg");
 
+                            if (listView1.Items.Count > 2)
+                            {
+                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                            }
 
-                            bool success = downimg(picurl.Groups[1].Value, imgname, ip);
-                            lv1.SubItems.Add(success.ToString());
+                          
+                            Thread thread = new Thread(new ParameterizedThreadStart(downimg));
+                            string o = picurl.Groups[1].Value + "#" + imgname + "#" + ip;
+                            thread.Start((object)o);
+                            Control.CheckForIllegalCrossThreadCalls = false;
+
+                            lv1.SubItems.Add("true");
                             // lv1.SubItems.Add(success.ToString()+ip+Thread.CurrentThread.Name);
 
                             ReadTxt = ReadTxt.Replace(picurl.Groups[1].Value, "../img/" + imgname + ".jpg");
                         }
+                        ReadTxt = Regex.Replace(ReadTxt, @"alt="".*""", "\"");
 
 
 
 
-                        if (checkBox1.Checked == true && !ReadTxt.Contains("title"))
+                        if (checkBox1.Checked == true)
                         {
-                            ReadTxt = ReadTxt.Replace("\" >", "title=\"" + txtname + "\" >");
+                            ReadTxt = ReadTxt.Replace("\" >", " title=\"" + txtname + "\" >");
                         }
-                        if (checkBox2.Checked == true && !ReadTxt.Contains("alt"))
+                        if (checkBox2.Checked == true)
                         {
-                            ReadTxt = ReadTxt.Replace("\" >", "alt=\"" + txtname + "\" >");
+                            ReadTxt = ReadTxt.Replace("\" >", " \" alt=\"" + txtname + "\" >");
                         }
 
                         sr.Close();

@@ -50,12 +50,15 @@ namespace 美团
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.13(0x17000d2a) NetType/4G Language/zh_CN";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat";
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("uuid: E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
+                headers.Add("clientversion: 2.16.1");
+                headers.Add("myLat: 118.24239");
                 headers.Add("open_id: oJVP50IRqKIIshugSqrvYE3OHJKQ");
-                headers.Add("token: Vteo9CkJqIGMe30FC3iuvnvTr2YAAAAAygoAAMPHPyLNO16W1eYLn1hWsLhD40r-KnDdB70rrl9LN9OHUfVBGbTDt4PCDHH72xKkDA");
-                
+                headers.Add("uuid: 17230ec288bc8-203426ff3bf534-0-0-17230ec288b56");
+                headers.Add("open_id: oJVP50IRqKIIshugSqrvYE3OHJKQ");
+                headers.Add("token: 7TrS3FmPMKb0bNU57fKacAvtOZgAAAAA6w0AAN3XJThEWVQjUFl1iJeyNVU7_ocv6F57-ZuhrasbUeQrAZkou4Rx59fwJ95vZTMqcw");
+                headers.Add("openIdCipher: AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADifWVZjqzZb7PIIc+lt5HCLetjUqhQ3Ws++HDEfcjjVKqOHrh7buE2e6t+cKuQi7KcThnNnPSBsWw==");
                 request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
@@ -161,27 +164,27 @@ namespace 美团
 
 
         #region 获取区域
-        public ArrayList getareas(string city)
+        public ArrayList getareas(string cityid)
         {
-            string Url = "https://"+city+".meituan.com/meishi/";
-          
-            string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
-            MatchCollection areas = Regex.Matches(html, @"""subAreas"":\[\{""id"":([\s\S]*?),");
             ArrayList lists = new ArrayList();
+            string Url = "https://i.meituan.com/wrapapi/search/filters?riskLevel=71&optimusCode=10&ci=" + cityid;
 
-            if (areas.Count == 0)
-            {
-               toolStripStatusLabel1.Text=("获取区域失败");
-                Process.Start(path + "helper.exe");
-            }
-            foreach (Match item in areas)
-            {
-               
-               
-                lists.Add(item.Groups[1].Value);
-            }
+            string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
+            //]},{"id":2,"name":"徐汇区"
+            MatchCollection areas = Regex.Matches(html, @"\]\},\{""id"":([\s\S]*?),([\s\S]*?)""name"":""([\s\S]*?)""");
           
+            for (int i = 0; i < areas.Count; i++)
+            {
+
+                if (areas[i].Groups[2].Value.Contains("areaId"))
+
+                {
+
+                    lists.Add(areas[i].Groups[1].Value);
+                }
+
+            }
+
             return lists;
         }
 
@@ -237,10 +240,10 @@ namespace 美团
                 foreach (string city in citys)
                 {
 
-                    ArrayList areas = getareas(Getsuoxie(city));
+                  
 
                     string cityId = GetcityId(city);
-
+                    ArrayList areas = getareas(cityId);
 
                     foreach (string keyword in keywords)
 
@@ -264,11 +267,12 @@ namespace 美团
                                 ArrayList lists = new ArrayList();
                                 foreach (Match NextMatch in all)
                                 {
+                                   
 
                                     //https://apimobile.meituan.com/group/v1/poi/194905459?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng
-                                    //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
+                                    lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
                                     //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
-                                    lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
+                                   // lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
                                     //lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
                                 }
 
@@ -290,7 +294,7 @@ namespace 美团
                                   
                                     Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                     Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
-                                    Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
+                                    Match addr = Regex.Match(strhtml1, @"addr"":""([\s\S]*?)""");
                                     Match score = Regex.Match(strhtml1, @"score"":([\s\S]*?),");
                                     if (!tels.Contains(tel.Groups[1].Value))
                                     {
@@ -570,38 +574,7 @@ namespace 美团
             #endregion
 
 
-            try 
-            {
           
-                if (File.Exists(path + "cookie.txt"))
-                {
-
-                    StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
-                    //一次性读取完 
-                    string texts = sr.ReadToEnd();
-
-                    cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
-                    sr.Close();  //只关闭流
-                    sr.Dispose();   //销毁流内存
-                    if (cookie == "")
-                    {
-
-                        Process.Start(path + "helper.exe");
-                        return;
-                    }
-                }
-                else
-                {
-                    Process.Start(path + "helper.exe");
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-
             status = true;
             //button1.Enabled = false;
             if (thread == null || !thread.IsAlive)
@@ -716,6 +689,11 @@ namespace 美团
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;
             Process.Start(path + "helper.exe");
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

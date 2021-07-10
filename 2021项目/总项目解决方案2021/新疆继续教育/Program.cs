@@ -16,7 +16,7 @@ namespace 新疆继续教育
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 单个版());
+            Application.Run(new PC版());
         }
     }
 }

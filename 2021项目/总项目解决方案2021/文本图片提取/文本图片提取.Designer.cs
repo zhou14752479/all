@@ -53,6 +53,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -238,7 +240,7 @@
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox2.Location = new System.Drawing.Point(0, 482);
+            this.textBox2.Location = new System.Drawing.Point(0, 511);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -257,7 +259,7 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 159);
+            this.listView1.Location = new System.Drawing.Point(0, 188);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(769, 323);
             this.listView1.TabIndex = 215;
@@ -289,11 +291,32 @@
             this.columnHeader5.Text = "状态";
             this.columnHeader5.Width = 100;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 164);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 217;
+            this.label2.Text = "代理ip：";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(85, 161);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox3.Size = new System.Drawing.Size(646, 21);
+            this.textBox3.TabIndex = 216;
+            this.textBox3.Text = "http://api2.xkdaili.com/tools/XApi.ashx?apikey=XK66D7DF5CC41345D971&qty=100&forma" +
+    "t=txt&split=2";
+            // 
             // 文本图片提取
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 519);
+            this.ClientSize = new System.Drawing.Size(769, 548);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button4);
@@ -343,5 +366,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

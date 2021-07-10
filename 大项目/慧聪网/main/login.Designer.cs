@@ -53,13 +53,16 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(129, 21);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "6666";
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(95, 81);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(129, 21);
             this.textBox2.TabIndex = 3;
+            this.textBox2.Text = "6666";
             // 
             // label2
             // 
@@ -110,6 +113,7 @@
             this.Name = "login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "登陆系统";
+            this.Load += new System.EventHandler(this.login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

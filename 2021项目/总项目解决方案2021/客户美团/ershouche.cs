@@ -148,6 +148,7 @@ namespace 客户美团
 
         }
 
+        List<string> lists = new List<string>();
 
         /// <summary>
         /// 二手车城
@@ -170,7 +171,7 @@ namespace 客户美团
                     {
 
                         string url = "http://www.cn2che.com/buycar/c1b0c0s0p"+page+"c0m0p2c0r"+ citypinyin + "m0i0o0o2";
-                        textBox1.Text = url;
+                       
                         string html = method.GetUrl(url,"utf-8");
                         //MessageBox.Show(html);
                         MatchCollection aids = Regex.Matches(html, @"<p class=""carBT""><a href=""([\s\S]*?)""");
@@ -190,19 +191,29 @@ namespace 客户美团
 
                             if (title != "")
                             {
-                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                                lv1.SubItems.Add(title);
-                                lv1.SubItems.Add(price);
-                                lv1.SubItems.Add(city);
-                                lv1.SubItems.Add(lxr);
-                                lv1.SubItems.Add(tel);
-                                lv1.SubItems.Add(aurl);
+                                if (!lists.Contains(tel))
+                                {
+                                    lists.Add(tel);
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                    lv1.SubItems.Add(title);
+                                    lv1.SubItems.Add(price);
+                                    lv1.SubItems.Add(city);
+                                    //lv1.SubItems.Add(lxr);
+                                    lv1.SubItems.Add(tel);
+                                    lv1.SubItems.Add(aurl);
+                                    if (status == false)
+                                        return;
+                                    // Thread.Sleep(10);
+                                    count = count + 1;
+                                    label4.Text = count.ToString();
+                                }
+                                else
+                                {
+                                    label4.Text = "重复";
+                                }
+                              
                             }
-                            if (status == false)
-                                return;
-                            Thread.Sleep(100);
-                            count = count + 1;
-                            label4.Text = count.ToString();
+                        
                         }
 
                         Thread.Sleep(1000);

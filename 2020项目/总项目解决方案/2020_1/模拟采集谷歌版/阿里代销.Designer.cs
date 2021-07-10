@@ -30,13 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.粘贴网址ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -48,6 +50,10 @@
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.webBrowser1);
+            // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
@@ -56,27 +62,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1264, 674);
             this.splitContainer1.SplitterDistance = 918;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 11F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(15, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(300, 15);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "2、鼠标单击下方输入框自动加载下一个网址";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 12F);
-            this.label3.Location = new System.Drawing.Point(15, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(272, 16);
-            this.label3.TabIndex = 41;
-            this.label3.Text = "1、登录1688网站，复制网址到输入框";
             // 
             // listView1
             // 
@@ -113,9 +98,39 @@
             // 粘贴网址ToolStripMenuItem
             // 
             this.粘贴网址ToolStripMenuItem.Name = "粘贴网址ToolStripMenuItem";
-            this.粘贴网址ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.粘贴网址ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.粘贴网址ToolStripMenuItem.Text = "粘贴网址";
             this.粘贴网址ToolStripMenuItem.Click += new System.EventHandler(this.粘贴网址ToolStripMenuItem_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 12F);
+            this.label3.Location = new System.Drawing.Point(15, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(272, 16);
+            this.label3.TabIndex = 41;
+            this.label3.Text = "1、登录1688网站，复制网址到输入框";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 11F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(15, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(300, 15);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "2、鼠标单击下方输入框自动加载下一个网址";
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(918, 674);
+            this.webBrowser1.TabIndex = 0;
             // 
             // 阿里代销
             // 
@@ -126,6 +141,7 @@
             this.Name = "阿里代销";
             this.Text = "阿里代销";
             this.Load += new System.EventHandler(this.阿里代销_Load);
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -144,5 +160,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 粘贴网址ToolStripMenuItem;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

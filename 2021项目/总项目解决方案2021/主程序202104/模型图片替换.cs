@@ -109,6 +109,7 @@ namespace 主程序202104
             {
                 string url = "https://3d.znzmo.com/3dmoxing/" + id + ".html";
                 string html = GetUrl(url, "utf-8");
+               
                 string picurl = Regex.Match(html, @"""listImageUrl"":""([\s\S]*?)""").Groups[1].Value;
                 return picurl;
 
@@ -416,6 +417,7 @@ namespace 主程序202104
                         picurl = run4(id);
                         pingtainame = "建易";
                     }
+                  
                     if (picurl != "")
                     {
 
@@ -441,7 +443,7 @@ namespace 主程序202104
                 catch (Exception ex)
                 {
 
-                   continue;
+                 ex.ToString();
                 }
 
             }
