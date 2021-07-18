@@ -28,7 +28,7 @@ namespace 模拟采集谷歌版
             InitializeComponent();
         
 
-           // browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(WB_DocumentCompleted);
+            //browser.FrameLoadEnd += new EventHandler<FrameLoadEndEventArgs>(WB_DocumentCompleted);
         }
        
 
@@ -66,8 +66,8 @@ namespace 模拟采集谷歌版
 
 
 
-        public ChromiumWebBrowser browser;
-      //  public ChromiumWebBrowser browser = new ChromiumWebBrowser("https://login.1688.com/member/signin.htm");
+       
+        public ChromiumWebBrowser browser = new ChromiumWebBrowser("https://www.1688.com");
    
         
 
@@ -76,23 +76,22 @@ namespace 模拟采集谷歌版
 
         private void 拼多多后台_Load(object sender, EventArgs e)
         {
-            var settings = new CefSettings();
+            
+            //var settings = new CefSettings();
 
-            settings.CachePath = "cache";
+            //settings.CachePath = "cache";
 
-            settings.CefCommandLineArgs.Add("proxy-server", "222.37.125.51:46603");
+            //settings.CefCommandLineArgs.Add("proxy-server", "222.37.125.51:46603");
 
-            Cef.Initialize(settings);
+            //Cef.Initialize(settings);
 
 
-            //browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
-            //browser.Load("https://login.1688.com/member/signin.htm");
-            //browser.Parent = splitContainer1.Panel2;
-            //browser.Dock = DockStyle.Fill;
-            //Control.CheckForIllegalCrossThreadCalls = false;
-            browser = new ChromiumWebBrowser("https://api.ipify.org/?format=jsonp");
+            browser.LifeSpanHandler = new OpenPageSelf();   //设置在当前窗口打开
+          //  browser.Load("https://login.1688.com/member/signin.htm");
             browser.Parent = splitContainer1.Panel2;
             browser.Dock = DockStyle.Fill;
+            Control.CheckForIllegalCrossThreadCalls = false;
+
 
 
 
@@ -124,17 +123,17 @@ namespace 模拟采集谷歌版
             var task01 = browser.GetBrowser().GetFrame(browser.GetBrowser().GetFrameNames()[0]).EvaluateScriptAsync(sb.ToString());
             task01.ContinueWith(t =>
             {
-                if (!t.IsFaulted)
+            if (!t.IsFaulted)
+            {
+                var response = t.Result;
+                if (response.Success == true)
                 {
-                    var response = t.Result;
-                    if (response.Success == true)
+                    if (response.Result != null)
                     {
-                        if (response.Result != null)
-                        {
-                            string resultStr = response.Result.ToString();
-                            textBox1.Text = resultStr;
-                                MatchCollection ids = Regex.Matches(resultStr, @"<div class=""company-tag-row""><a href=""https([\s\S]*?)1688");
-
+                        string resultStr = response.Result.ToString();
+                      
+                        MatchCollection ids = Regex.Matches(resultStr, @"<div class=""company-name"" title=""([\s\S]*?)""><a href=""([\s\S]*?)""");
+                          
                                 if (ids.Count == 0)
                                 {
                                     status = false;
@@ -142,15 +141,19 @@ namespace 模拟采集谷歌版
 
                                 else
                                 {
-                                    for (int j = 0; j < ids.Count; j++)
-                                    {
-                                        string url = "https" + ids[j].Groups[1].Value + "1688.com/page/contactinfo.htm";
-                                        if (!textBox1.Text.Contains(url))
-                                        {
-                                            textBox1.Text += url + "\r\n";
-                                        }
-                                    }
-                                    status = true;
+                                for (int j = 0; j < ids.Count; j++)
+                                {
+                                    string url = ids[j].Groups[2].Value;
+
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                                    lv1.SubItems.Add(url.Replace("?tracelog=p4p", ""));
+
+                                    //if (!textBox1.Text.Contains(url))
+                                    //{
+                                    //    textBox1.Text += url + "\r\n";
+                                    //}
+                                }
+                                status = true;
                                 }
                            
 
@@ -171,21 +174,36 @@ namespace 模拟采集谷歌版
         {
 
         }
-
+        Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"Wigbkff"))
+            {
+
+                return;
+            }
 
 
-            Thread thread = new Thread(new ThreadStart(run));
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+
+            #endregion
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            method.expotTxt(listView1);
+            method.expotTxt(listView1,1);
         }
 
 

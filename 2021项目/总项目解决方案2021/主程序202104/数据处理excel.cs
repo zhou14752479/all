@@ -82,7 +82,7 @@ namespace 主程序202104
             dialog.Description = "请选择所在文件夹";
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string[] files = Directory.GetFiles(dialog.SelectedPath + @"\", "*.zip");
+                string[] files = Directory.GetFiles(dialog.SelectedPath + @"\", "*.xlsx");
                 foreach (string file in files)
                 {
                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
@@ -145,7 +145,7 @@ namespace 主程序202104
                     {
 
                         DataTable dt = method.ExcelToDataTable(filename, true);
-
+                        MessageBox.Show(dt.Rows.Count.ToString());
                         if (checkBox1.Checked == true)
                         {
                             string txtname = textBox1.Text + "\\" +textBox2.Text+i+ ".txt";
@@ -153,8 +153,20 @@ namespace 主程序202104
                             StreamWriter sw = new StreamWriter(fs1);
                             for (int j = 2; j < dt.Rows.Count; j++)
                             {
-                                string value = dt.Rows[j][14].ToString().Replace(";", "\r\n").Trim();
-                                if (value != "")
+                                string value = "";
+                                if (filename.Contains("高级"))
+                                {
+                                    
+                                    value = dt.Rows[j][21].ToString().Replace(";", "\r\n").Trim();
+                                  
+                                }
+                                else
+                                {
+                                    value = dt.Rows[j][14].ToString().Replace(";", "\r\n").Trim();
+                                }
+
+
+                                if (value != "" && value != "-")
                                 {
                                     sw.WriteLine(value);
                                 }
@@ -173,8 +185,16 @@ namespace 主程序202104
                             StreamWriter sw = new StreamWriter(fs1);
                             for (int j = 2; j < dt.Rows.Count; j++)
                             {
-                                string value = dt.Rows[j][19].ToString().Replace(";", "\r\n").Trim();
-                                if (value != "")
+                                string value = "";
+                                if (filename.Contains("高级"))
+                                {
+                                    value = dt.Rows[j][24].ToString().Replace(";", "\r\n").Trim();
+                                }
+                                else
+                                {
+                                    value = dt.Rows[j][19].ToString().Replace(";", "\r\n").Trim();
+                                }
+                                if (value != "" && value !="-")
                                 {
                                     sw.WriteLine(value);
                                 }
@@ -203,7 +223,7 @@ namespace 主程序202104
             IniWriteValue("values", "path", textBox1.Text.Trim());
 
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Thread thread = new Thread(new ThreadStart(run));
 

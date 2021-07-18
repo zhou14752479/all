@@ -185,32 +185,7 @@ namespace 主程序202106
 
         #endregion
         DataTable dt;
-        public void read()
-        {
-            try
-            {
-                dt = ExcelToDataTable(textBox1.Text, true);
-                //for (int i = 0; i < dt.Rows.Count; i++)
-                //{
-                //    DataRow dr = dt.Rows[i];
-                //    string name = dr[0].ToString();
-                //    string address = dr[1].ToString();
-                //    string phone = dr[2].ToString();
-                //    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                //    lv1.SubItems.Add(name);
-                //    lv1.SubItems.Add(address);
-                //    lv1.SubItems.Add(phone);
-
-                //    }
-                   //ShowDataInListView(dt,listView1);
-                }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
+      
 
         public void run()
         {
@@ -220,6 +195,8 @@ namespace 主程序202106
                 for (int i = 0; i <listView1.Items.Count; i++)
                 {
                     double total = 0;
+                    double yinashuie = 0;
+                    double shui = 0;
                     for (int j = 2; j < Convert.ToInt32(textBox2.Text)+2; j++)
                     {
                         if (listView1.Items[i].SubItems[j].Text.Trim() != "")
@@ -227,27 +204,41 @@ namespace 主程序202106
                         
                             total = total + Convert.ToDouble(listView1.Items[i].SubItems[j].Text);
                             listView1.Items[i].SubItems[14].Text = total.ToString();
-                            double nashuie = total - (5000 * Convert.ToInt32(textBox2.Text));
-                            double shui = 0;
-                            if (nashuie <= 3000 * Convert.ToInt32(textBox2.Text) && nashuie > 0)
+
+                            int month = j - 1;
+                           double  zongnashuie =  total - (5000 * month);
+
+                            if (zongnashuie > yinashuie)
                             {
-                                shui = nashuie * 0.03;
 
+                                double chae = zongnashuie - yinashuie;
+                                //if (chae <= 3000 && chae > 0)
+                                //{
+                                //    shui = shui+ chae * 0.03;
+
+                                //}
+                                //else if (3000 < chae && chae <= 12000)
+                                //{
+                                //    shui = shui + (chae - 210 * month) * 0.1;
+
+                                //}
+                                shui = shui + chae * 0.03;
+
+
+                                yinashuie = zongnashuie;
                             }
-                            else if (3000 * Convert.ToInt32(textBox2.Text) < nashuie && nashuie <= 12000 * Convert.ToInt32(textBox2.Text))
-                            {
-                                shui = (nashuie - 210* Convert.ToInt32(textBox2.Text)) * 0.1;
-
-                            }
-
                             else
                             {
-                                shui = 0;
+
                             }
-                            listView1.Items[i].SubItems[15].Text = shui.ToString();
+                            //MessageBox.Show(zongnashuie.ToString());
+                            //MessageBox.Show(yinashuie.ToString());
+                            //MessageBox.Show(shui.ToString());
                         }
                     }
-                 
+
+                    listView1.Items[i].SubItems[15].Text = shui.ToString();
+
                 }
             }
             catch (Exception ex)
@@ -275,11 +266,11 @@ namespace 主程序202106
                     DataRow dr = dt.Rows[i];
                     if (!lists.Contains(dr[1].ToString()))
                     {
-                        textBox3.Text += dr[1].ToString() + "\r\n";
-                       }
+                       // textBox3.Text += dr[1].ToString() + "\r\n";
+                    }
                 }
 
-                MessageBox.Show("");
+               
             }
             catch (Exception ex)
             {
@@ -301,7 +292,8 @@ namespace 主程序202106
             {
                 //打开文件对话框选择的文件
                 textBox1.Text = openFileDialog1.FileName;
-                read();
+                dt = ExcelToDataTable(textBox1.Text, true);
+                ShowDataInListView(dt, listView1); ;
             }
         }
         Thread thread;
@@ -310,7 +302,7 @@ namespace 主程序202106
 
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run1);
+                thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -320,6 +312,11 @@ namespace 主程序202106
         private void button4_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }

@@ -225,6 +225,7 @@
             this.Name = "求购miaomucom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "求购miaomucom";
+            this.Load += new System.EventHandler(this.求购miaomucom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

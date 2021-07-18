@@ -47,7 +47,7 @@ namespace 主程序202104
             {
                 guoqi = timestamp + 86400*360;
             }
-            textBox2.Text = md5 +"asd"+ guoqi;
+            textBox2.Text = md5 +"asd147"+ guoqi;
         }
     }
 }

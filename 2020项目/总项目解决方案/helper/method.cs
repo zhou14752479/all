@@ -488,12 +488,15 @@ namespace helper
         #endregion
 
         #region 导出文本
-        public static void expotTxt(ListView lv1)
+        public static void expotTxt(ListView lv1,int i)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.Description = "请选择文件路径";
-            if (dialog.ShowDialog() == DialogResult.OK)
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "txt文件导出";
+            sfd.Filter = "txt|*.txt";
+            string path = "";
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
+                path = sfd.FileName;
 
                 StringBuilder sb = new StringBuilder();
                 foreach (ListViewItem item in lv1.Items)
@@ -501,27 +504,26 @@ namespace helper
                     try
                     {
                         List<string> list = new List<string>();
-                        string temp0 = item.SubItems[0].Text;
-                        string temp1 = item.SubItems[1].Text;
-                       
-                        list.Add(temp0+temp1 );
+
+                        string temp1 = item.SubItems[i].Text;
+
+                        list.Add(temp1);
                         foreach (string tel in list)
                         {
                             sb.AppendLine(tel);
                         }
 
-                        string path = "";
 
-                        path = dialog.SelectedPath + "\\导出结果.txt";
 
-                        System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+                       
                     }
 
-                    catch
+                    catch(Exception ex)
                     {
-                        continue;
+                      MessageBox.Show(ex.Message)  ;
                     }
                 }
+                System.IO.File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
                 MessageBox.Show("导出完成");
             }
 

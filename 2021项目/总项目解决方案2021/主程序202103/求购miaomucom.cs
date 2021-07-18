@@ -200,5 +200,10 @@ namespace 主程序202103
                 timer1.Stop();
             }
         }
+
+        private void 求购miaomucom_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

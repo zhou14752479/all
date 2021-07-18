@@ -40,7 +40,7 @@ namespace 主程序202012
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //在GetUrl()函数前加上这一句就可以
-                string COOKIE = "";
+                string COOKIE = "sid=64a4a095f95b472f56b387f81def9f98;USER_FLAG_CHECK=9416a352d1e261a30bc190a337c2a96f;appkey=0a0834aee67bcee63b8a39435300636d;appid=wx862d8e26109609cb;mpChannelId=388635;openid=odI0R5S8UPqCxO5UtR6u6V76SfKQ;wxclient=gxhwx;ie_ai=1;";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Referer = "https://servicewechat.com/wx91d27dbf599dff74/534/page-frame.html";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
@@ -141,20 +141,29 @@ namespace 主程序202012
 
                     for (int i = 0; i < ids.Count; i++)
                     {
-                        string aurl = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=" + ids[i].Groups[1].Value;
+                        // string aurl = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=" + ids[i].Groups[1].Value;
+
+                        string aurl = "https://item-soa.jd.com/getWareBusiness?callback=jQuery8633016&skuId="+ ids[i].Groups[1].Value + "&cat=13314%2C21909%2C21922&area=1_72_55653_0&shopId=1000015441";
                         string ahtml = GetUrl(aurl);
+
+
+
                         string burl = "https://wxa.jd.com/wq.jd.com/graphext/draw?sku=" + ids[i].Groups[1].Value;
                         string bhtml = GetUrl(burl);
-                        Match title = Regex.Match(ahtml, @"""skuName"":""([\s\S]*?)""");
+                       
+                        //Match title = Regex.Match(ahtml, @"""skuName"":""([\s\S]*?)""");
+                        Match title = Regex.Match(bhtml, @"""wareQD"":""([\s\S]*?)""");
 
-                        Match price = Regex.Match(ahtml, @"""jdPrice"":""([\s\S]*?)""");
+                        //Match price = Regex.Match(ahtml, @"""jdPrice"":""([\s\S]*?)""");
+                        Match price = Regex.Match(ahtml, @"""op"":""([\s\S]*?)""");
+
                         Match guige = Regex.Match(bhtml, @"""attName"":""产品规格([\s\S]*?)\[([\s\S]*?)\]");
                         Match company = Regex.Match(bhtml, @"""attName"":""生产企业([\s\S]*?)\[([\s\S]*?)\]");
                         Match zhunhao = Regex.Match(bhtml, @"""attName"":""批准文号([\s\S]*?)\[([\s\S]*?)\]");
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
-                        textBox3.Text += "正在抓取：" + title.Groups[1].Value + "\r\n";
+                        //textBox3.Text += "正在抓取：" + title.Groups[1].Value + "\r\n";
                         if (textBox3.Text.Length > 10000)
                         {
                             textBox3.Text = "";
