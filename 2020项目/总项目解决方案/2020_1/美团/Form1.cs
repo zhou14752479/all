@@ -44,22 +44,21 @@ namespace 美团
         
 
         #region GET请求
-        public static string meituan_GetUrl(string Url)
+        public  string meituan_GetUrl(string Url)
         {
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4(0x1800042c) NetType/WIFI Language/zh_CN";
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("clientversion: 2.16.1");
                 headers.Add("myLat: 118.24239");
-                headers.Add("open_id: oJVP50IRqKIIshugSqrvYE3OHJKQ");
-                headers.Add("uuid: 17230ec288bc8-203426ff3bf534-0-0-17230ec288b56");
-                headers.Add("open_id: oJVP50IRqKIIshugSqrvYE3OHJKQ");
-                headers.Add("token: 7TrS3FmPMKb0bNU57fKacAvtOZgAAAAA6w0AAN3XJThEWVQjUFl1iJeyNVU7_ocv6F57-ZuhrasbUeQrAZkou4Rx59fwJ95vZTMqcw");
-                headers.Add("openIdCipher: AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADifWVZjqzZb7PIIc+lt5HCLetjUqhQ3Ws++HDEfcjjVKqOHrh7buE2e6t+cKuQi7KcThnNnPSBsWw==");
-                request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
+                headers.Add("openId: oJVP50IRqKIIshugSqrvYE3OHJKQ");
+                headers.Add("uuid: "+textBox3.Text);
+                headers.Add("token: o12WUQ68y4BX_6EHZHILSxIDU9kAAAAADA4AAC5y1B7soOXKI6GymX-V4sc1jBnEIsZ8tpQ8XAQprXVstWD6oAP4VluxhaeWUHXMUw");
+                headers.Add("openIdCipher:AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADiKABSEHqf6ddkKfPmtaxPf7h5fT5I7TIBL1SNaE66D+vjeYYWFzWcStaSbcTncER5tI+u6RodKxw==");
+                request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/766/page-frame.html";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -243,8 +242,16 @@ namespace 美团
                   
 
                     string cityId = GetcityId(city);
-                    ArrayList areas = getareas(cityId);
 
+                    // ArrayList areas = getareas(cityId);
+                    ArrayList areas = new ArrayList();
+
+
+                 
+                    areas.Add("2779");
+                    areas.Add("55");
+                    areas.Add("56");
+                    areas.Add("2781");
                     foreach (string keyword in keywords)
 
                     {
@@ -253,7 +260,7 @@ namespace 美团
                         {
 
 
-                            for (int i = 0; i < 1000; i = i + 15)
+                            for (int i = 0; i < 300; i = i + 15)
 
                             {
                                 toolStripStatusLabel1.Text = "正在抓取：" + city + "," + keyword;
@@ -270,10 +277,10 @@ namespace 美团
                                    
 
                                     //https://apimobile.meituan.com/group/v1/poi/194905459?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng
-                                    lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
+                                    //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
                                     //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
                                    // lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
-                                    //lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
+                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
                                 }
 
                              
@@ -294,32 +301,37 @@ namespace 美团
                                   
                                     Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                     Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
-                                    Match addr = Regex.Match(strhtml1, @"addr"":""([\s\S]*?)""");
+                                    Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
                                     Match score = Regex.Match(strhtml1, @"score"":([\s\S]*?),");
-                                    if (!tels.Contains(tel.Groups[1].Value))
+                                    Match lnt = Regex.Match(strhtml1, @"lng"":([\s\S]*?),");
+                                    Match lat = Regex.Match(strhtml1, @"lat"":([\s\S]*?),");
+                                    if (name.Groups[1].Value == "")
                                     {
-                                        tels.Add(tel.Groups[1].Value);
+                                        zanting = false;
+                                        MessageBox.Show("切换uuid");
+                                    }
 
-                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+
+                                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                         listViewItem.SubItems.Add(name.Groups[1].Value);
                                         listViewItem.SubItems.Add(tel.Groups[1].Value);
                                         listViewItem.SubItems.Add(addr.Groups[1].Value);
                                         listViewItem.SubItems.Add(city);
                                         listViewItem.SubItems.Add(score.Groups[1].Value);
+                                    listViewItem.SubItems.Add(lnt.Groups[1].Value);
+                                    listViewItem.SubItems.Add(lat.Groups[1].Value);
 
 
-                                        while (this.zanting == false)
-                                        {
-                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                        }
-                                        if (status == false)
-                                        {
-                                            return;
-                                        }
-
+                                   
+                                    if (status == false)
+                                    {
+                                        return;
 
                                     }
-
                                     Thread.Sleep(1000);
 
 

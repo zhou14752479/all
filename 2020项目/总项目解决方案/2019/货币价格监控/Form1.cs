@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
 
 namespace 货币价格监控
 {
@@ -86,7 +80,7 @@ namespace 货币价格监控
                 }
 
          
-                string okHtml = method.GetUrl("https://www.okex.com/v3/c2c/tradingOrders/book?t=1570702053211&side=sell&baseCurrency=btc&quoteCurrency=cny&userType=certified&paymentMethod=all", "utf-8");
+                string okHtml = GetUrl("https://www.okex.com/v3/c2c/tradingOrders/book?t=1570702053211&side=sell&baseCurrency=btc&quoteCurrency=cny&userType=certified&paymentMethod=all", "utf-8");
                 string zbHtml = GetUrl("https://trans.zb.live/api/web/market/V1_0_0/getGroupTicker?market=btcqc&callback=jsonp16", "utf-8");
                 string huobiHtml = GetUrl("https://otc-api-hk.eiijo.cn/v1/data/trade-market?coinId=1&currency=1&tradeType=sell&currPage=1&payMethod=0&country=37&blockType=general&online=1&range=0&amount=", "utf-8");
 

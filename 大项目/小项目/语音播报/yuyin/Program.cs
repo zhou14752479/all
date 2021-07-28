@@ -16,7 +16,7 @@ namespace yuyin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 语音王());
+            Application.Run(new Form1());
         }
     }
 }

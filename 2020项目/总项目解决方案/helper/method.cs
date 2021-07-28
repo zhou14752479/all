@@ -15,6 +15,7 @@ using System.Linq;
 using System.Management;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -1864,6 +1865,82 @@ namespace helper
             return result.Groups[1].Value;
         }
 
+
+        #endregion
+
+        #region  将Base64字符串转换为图片
+        /// <summary>
+
+        /// 将Base64字符串转换为图片
+
+        /// </summary>
+
+        /// <param name="sender"></param>
+
+        /// <param name="e"></param>
+
+        private Image ToImage(string base64)
+
+        {
+
+
+
+            try
+            {
+
+                byte[] arr = Convert.FromBase64String(base64);
+                MemoryStream ms = new MemoryStream(arr);
+                Bitmap bitmap = new Bitmap(ms);
+                Image img = bitmap;
+
+                ms.Close();
+
+                return img;
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Base64StringToImage 转换失败\nException：" + ex.Message);
+                return null;
+            }
+
+
+
+        }
+
+        #endregion
+
+        #region  将图片数据转换为Base64字符串
+        /// <summary>
+
+        /// 将图片数据转换为Base64字符串
+
+        /// </summary>
+
+        /// <param name="sender"></param>
+
+        /// <param name="e"></param>
+
+        private string imageToBase64(Image img)
+
+        {
+
+ 
+
+            BinaryFormatter binFormatter = new BinaryFormatter();
+
+            MemoryStream memStream = new MemoryStream();
+
+            binFormatter.Serialize(memStream, img);
+
+            byte[] bytes = memStream.GetBuffer();
+
+            string base64 = Convert.ToBase64String(bytes);
+
+           return base64;
+
+        }
 
         #endregion
 

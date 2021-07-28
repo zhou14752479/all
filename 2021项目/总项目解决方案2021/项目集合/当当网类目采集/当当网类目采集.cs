@@ -125,7 +125,14 @@ namespace 当当网类目采集
                         }
                         if (status == false)
                             return;
-                       // cookie = webbrowser.cookie;
+
+                        if (webbrowser.cookie != "")
+                        {
+                            cookie = webbrowser.cookie;
+                        }
+                       
+
+
                         string uid = uids[j].Groups[1].Value;
 
                         string ahtml = geturl("http://product.dangdang.com/"+uid+".html");

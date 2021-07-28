@@ -373,5 +373,17 @@ namespace 客户美团
         {
             ProvinceCity.ProvinceCity.BindCity(comboBox1, comboBox2);
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
+            for (int i = 0; i < comboBox2.Items.Count; i++)
+            {
+                if (!textBox1.Text.Contains(comboBox2.Items[i].ToString()))
+                {
+                    textBox1.Text += comboBox2.Items[i].ToString() + "\r\n";
+                }
+            }
+        }
     }
 }

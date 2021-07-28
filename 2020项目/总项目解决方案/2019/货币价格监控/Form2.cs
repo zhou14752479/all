@@ -1,13 +1,16 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
 using System.Net;
 using System.Net.WebSockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -22,10 +25,27 @@ namespace 货币价格监控
         {
             InitializeComponent();
         }
-        string path = AppDomain.CurrentDomain.BaseDirectory + "bj.wav";
 
-        SoundPlayer player = new SoundPlayer();
 
+      
+　　public static uint SND_ASYNC = 0x0001;
+    public static uint SND_FILENAME = 0x00020000;
+    [DllImport("winmm.dll")]
+    public static extern uint mciSendString(string lpstrCommand,
+    string lpstrReturnString, uint uReturnLength, uint hWndCallback);
+    public void Play()
+    {
+       mciSendString(@"close temp_alias", null, 0, 0);
+        mciSendString(@"open ""9378.mp3"" alias temp_alias", null, 0, 0);
+        mciSendString("play temp_alias repeat", null, 0, 0);
+           
+    }
+
+
+
+
+    SoundPlayer player = new SoundPlayer();
+       
         #region GET请求
         /// <summary>
         /// GET请求
@@ -70,10 +90,40 @@ namespace 货币价格监控
         #endregion
 
 
-        #region 主程序
-        public void run()
+        
+        public void runpy()
         {
-          
+            Process p = new Process();
+            p.StartInfo.FileName = "huobi.exe";    //填写exe的具体路径
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.Arguments = "abc 123";    //参数
+            p.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
+            p.ErrorDataReceived += new DataReceivedEventHandler(OutputHandler);
+            p.Start();
+            p.BeginOutputReadLine();
+            p.WaitForExit();
+            p.Close();
+
+
+        }
+
+        string huobiHtml = "";
+       void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
+        {
+            huobiHtml=(outLine.Data);
+           
+        }
+
+        bool playing = false;
+
+
+        #region 主程序
+        public  void run()
+        {
+           
             try
 
             {
@@ -84,16 +134,16 @@ namespace 货币价格监控
                 }
 
 
-                string huobiHtml = GetUrl("https://www.okex.com/v3/c2c/tradingOrders/book?t=1570702053211&side=sell&baseCurrency=btc&quoteCurrency=cny&userType=certified&paymentMethod=all", "utf-8");
+              
                 string binanceHtml = GetUrl("https://www.binance.com/api/v3/depth?symbol=MDXUSDT&limit=1000", "utf-8");
 
 
+ 
+                    string huobiPrice = Regex.Match(huobiHtml, @"""close"":([\s\S]*?),").Groups[1].Value;
+                    string binancePrice = Regex.Match(binanceHtml, @"\[\[""([\s\S]*?)""").Groups[1].Value;
 
-              string huobiPrice = Regex.Match(huobiHtml, @"""price"":""([\s\S]*?)""").Groups[1].Value;
-                string binancePrice = Regex.Match(binanceHtml, @"\[\[""([\s\S]*?)""").Groups[1].Value;
-             
 
-
+              
                 if (huobiPrice != "" && binancePrice != "")
                 {
                     label6.Text = huobiPrice;
@@ -103,27 +153,35 @@ namespace 货币价格监控
                     decimal  huobi = Convert.ToDecimal(huobiPrice);
                     decimal binance = Convert.ToDecimal(binancePrice);
                  
-                    if ((huobi - binance) > Convert.ToInt32(textBox1.Text))
+                    if ((huobi - binance) > Convert.ToDecimal(textBox1.Text))
                     {
-                        textBox5.Text += DateTime.Now.ToString() + " : 火币的价格为" + huobi+ "....币安的价格为" + binance + "..火币高于币安" + (huobi - binance) + "\r\n";
-                        player.SoundLocation = path;
-                        player.Load();
-                        player.Play();
+                        
+                        textBox5.Text = DateTime.Now.ToString() + " : 火币的价格为" + huobi+ "....币安的价格为" + binance + "..火币高于币安" + (huobi - binance) + "\r\n";
+                      
+                        if(playing==false)
+                        {
+                            playing = true;
+                             Play();
+                        }
+                           
+                         
+                        
+                       
                     }
 
-                    if ((binance - huobi) > Convert.ToInt32(textBox2.Text))
+                    if ((binance - huobi) > Convert.ToDecimal(textBox2.Text))
                     {
-                        textBox5.Text += DateTime.Now.ToString() + " : 火币的价格为" + huobi + "....币安的价格为" + binance + "..币安高于火币" + (binance - huobi) + "\r\n";
-                        player.SoundLocation = path ;
-                        player.Load();
-                        player.Play();
+                      
+                        textBox5.Text = DateTime.Now.ToString() + " : 火币的价格为" + huobi + "....币安的价格为" + binance + "..币安高于火币" + (binance - huobi) + "\r\n";
+                        if (playing == false)
+                        {
+                            playing = true;
+                            Play();
+                        }
                     }
 
 
                 }
-
-
-
 
 
 
@@ -132,7 +190,7 @@ namespace 货币价格监控
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+             MessageBox.Show(ex.ToString());
             }
 
             
@@ -140,75 +198,36 @@ namespace 货币价格监控
         #endregion
 
 
-        async static void ttt()
-        {
-            try
-            {
-                ClientWebSocket webSocket = new ClientWebSocket();
-                CancellationToken cancellation = new CancellationToken();
-               
-                  //建立连接
-                  await webSocket.ConnectAsync(new Uri("wss://www.huobi.ci/-/s/pro/ws"), cancellation);
-                
-                byte[] bsend = Encoding.Default.GetBytes("\"{\"sub\":\"market.mdxusdt.kline.1min\",\"id\":\"id10\"}\"");
-                //发送数据
-                await webSocket.SendAsync(new ArraySegment<byte>(bsend), WebSocketMessageType.Binary, true, cancellation);
-              
-                //await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "1", cancellation);
-                //释放资源
-                // webSocket.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
-
-
-        async static void run1()
-        {
-            ClientWebSocket cln = new ClientWebSocket();
-            cln.ConnectAsync(new Uri("wss://www.huobi.ci/-/s/pro/ws"), new CancellationToken()).Wait();
-            byte[] bytess = Encoding.Default.GetBytes("{\"sub\":\"market.mdxusdt.kline.1min\",\"id\":\"id10\"}");
-            cln.SendAsync(new ArraySegment<byte>(bytess), WebSocketMessageType.Text, true, new CancellationToken()).Wait();
-            // string returnValue = await GetAsyncValue(cln);//异步方法
-            string returnValue = await GetAsyncValue(cln);//异步方法
-            MessageBox.Show(returnValue);
-        }
-
-        public static async Task<string> GetAsyncValue(ClientWebSocket clientWebSocket)
-        {
-            string returnValue = null;
-            ArraySegment<Byte> buffer = new ArraySegment<byte>(new Byte[8192]);
-            WebSocketReceiveResult result = null;
-            using (var ms = new MemoryStream())
-            {
-                do
-                {
-                    result = await clientWebSocket.ReceiveAsync(buffer, CancellationToken.None);
-                    ms.Write(buffer.Array, buffer.Offset, result.Count);
-                }
-                while (!result.EndOfMessage);
-                ms.Seek(0, SeekOrigin.Begin);
-                if (result.MessageType == WebSocketMessageType.Text)
-                {
-                    using (var reader = new StreamReader(ms, Encoding.UTF8))
-                    {
-                        returnValue = reader.ReadToEnd();
-                        //Console.WriteLine(returnValue);
-                    }
-                }
-            }
-            return returnValue;
-        }
-    
+        Thread thread;
+        Thread thread1;
 
 
 
 
-    Thread thread;
         private void button1_Click(object sender, EventArgs e)
+        {
+            if (thread1 == null || !thread1.IsAlive)
+            {
+                Thread thread1 = new Thread(runpy);
+                thread1.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+            timer1.Start();
+          
+           
+        }
+       
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Play();
+
+
+            timer1.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
         {
             //if (thread == null || !thread.IsAlive)
             //{
@@ -216,24 +235,8 @@ namespace 货币价格监控
             //    thread.Start();
             //    Control.CheckForIllegalCrossThreadCalls = false;
             //}
-            //timer1.Start();
 
-            run1();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            run();
         }
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
@@ -252,12 +255,22 @@ namespace 货币价格监控
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            player.Stop();
+            
+            mciSendString(@"close temp_alias", null, 0, 0);
+            playing = false;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            
             textBox5.Text = "";
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+          
+        }
+
+       
     }
 }

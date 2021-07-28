@@ -88,13 +88,19 @@ namespace 孔夫子淘宝低价
                     MatchCollection qualitys = Regex.Matches(html, @"""quality"":""([\s\S]*?)""");
 
                     string price100 = "无";
+                    string price1002 = "无"; //全新品相次低价
+                    string fee1002 = "";
+
                     string price95 = "无";
+
+
 
                     string fee100 = "";
                     string fee95 = "";
 
                     string shopname95 = "无";
                     string shopname100= "无";
+                    string shopname1002 = "无";
 
                     string url2 = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
                     string postdata2 = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q2 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
@@ -117,9 +123,18 @@ namespace 孔夫子淘宝低价
                             {
                                 fee100 = getShippingFee(itemIds[j].Groups[1].Value, userIds[j].Groups[1].Value);
                                 price100 = prices[j].Groups[1].Value;
+                                if (j + 1 < prices.Count)
+                                {
+                                    price1002 = prices[j + 1].Groups[1].Value;
+                                   fee1002 = getShippingFee(itemIds[j+1].Groups[1].Value, userIds[j+1].Groups[1].Value);
+                                    shopname1002 = shopnames[j + 1].Groups[1].Value;
+                                }
                                 shopname100 = shopnames[j].Groups[1].Value;
                                 break;
                             }
+
+
+
                         }
                     }
 
@@ -143,6 +158,11 @@ namespace 孔夫子淘宝低价
                     lv1.SubItems.Add(price100);
                     lv1.SubItems.Add(fee100);
                     lv1.SubItems.Add(method.Unicode2String(shopname100));
+
+                    lv1.SubItems.Add(price1002);
+                    lv1.SubItems.Add(fee1002);
+                    lv1.SubItems.Add(method.Unicode2String(shopname1002));
+
                     lv1.SubItems.Add(price95);
                     lv1.SubItems.Add(fee95);
                     lv1.SubItems.Add(method.Unicode2String(shopname95));

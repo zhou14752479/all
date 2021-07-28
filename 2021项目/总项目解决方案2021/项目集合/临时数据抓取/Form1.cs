@@ -673,6 +673,64 @@ namespace 临时数据抓取
         #endregion
 
 
+        #region POST请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrl(string url, string postData, string COOKIE, string charset)
+        {
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                // request.ContentType = "application/x-www-form-urlencoded";
+
+               // 添加头部
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("BAIXING-SESSION:$2y$10$5jxzdMFEfh5a7CD9R.mSzu26JmWwbadWalXLNe5OjjyQmi1LPXuAO");
+                //headers.Add("x-nike-visitid:5");
+                //headers.Add("x-nike-visitorid:d03393ee-e42c-463e-9235-3ca0491475b4");
+                //添加头部
+                request.ContentType = "application/json";
+                request.ContentLength = postData.Length;
+                //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+
+                request.Referer = "https://web.duanmatong.cn/";
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string html = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
+
         #region 专利查询
         public void zhuanli()
         {
@@ -729,25 +787,95 @@ namespace 临时数据抓取
         }
 
         #endregion
-        private void button1_Click(object sender, EventArgs e)
+
+        #region 百姓租房
+        public void baixing()
         {
 
 
-            status = true;
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+                try
+                {
+                    string n =richTextBox1.Lines[i].Trim();
+
+
+                    for (int page = 1; page < 101; page++)
+                    {
+
+                        string url = "https://mpapi.baixing.com/v1.3.6/";
+                        string postdata = "{\"listing.getAds\":{\"areaId\":\""+n+"\",\"categoryId\":\"qiufang\",\"page\":"+page+",\"notAllowChatOnly\":1}}";
+                        string html = PostUrl(url, postdata, "", "utf-8").Replace("\"user\":{\"id","");
+
+                        MatchCollection haos = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
+                        MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
+                        MatchCollection citys = Regex.Matches(html, @"""cityCName"":""([\s\S]*?)""");
+
+                        if (haos.Count == 0)
+                        {
+                            break;
+                        }
+                        for (int a = 0; a < haos.Count; a++)
+                        {
+                            try
+                            {
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+
+                                lv1.SubItems.Add(haos[a].Groups[1].Value);
+                                lv1.SubItems.Add(tels[a].Groups[1].Value);
+                                lv1.SubItems.Add(citys[a].Groups[1].Value);
+                                lv1.SubItems.Add(n);
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+                            }
+                            catch (Exception )
+                            {
+
+                               continue;
+                            }
+
+                        }
+
+
+
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                  textBox2.Text=(ex.ToString());
+
+                }
+
+            }
+
+
+        }
+
+        #endregion
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            MatchCollection values = Regex.Matches(richTextBox1.Text, @"""id"":""([\s\S]*?)""");
+        
+                status = true;
             //tecalliance  检测UA
-            //if (thread == null || !thread.IsAlive)
-            //{
-            //    thread = new Thread(tecalliance);
-            //    thread.Start();
-            //    Control.CheckForIllegalCrossThreadCalls = false;
-            //}
-            // rockauto
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(zhuanli);
+                thread = new Thread(baixing);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+            // rockauto
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(zhuanli);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
 
             //thread = new Thread(tecalliancequchong);
             //thread.Start();
@@ -759,6 +887,8 @@ namespace 临时数据抓取
             //    thread.Start();
             //    Control.CheckForIllegalCrossThreadCalls = false;
             //}
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)

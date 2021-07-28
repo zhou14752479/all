@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace 主程序202102
 {
@@ -26,10 +28,56 @@ namespace 主程序202102
         bool zanting = true;
         bool status = true;
 
+
+        public void getCookies()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://pcs.yundasys.com:15114/problem/public/index.php/admin/index/index.html");
+            //options.AddArgument("--lang=en"); 
+           
+            StringBuilder sb;
+            Thread.Sleep(15000);
+            while (true)
+            {
+                sb = new StringBuilder();
+                var _cookies = driver.Manage().Cookies.AllCookies;
+
+                foreach (OpenQA.Selenium.Cookie cookie in _cookies)
+                {
+
+                    sb.Append(cookie.Name + "=" + cookie.Value + ";");
+                    // driver.Manage().Cookies.AddCookie(cookie);
+                }
+
+                if (sb.ToString().Contains("PHPSESSID") && sb.ToString().Contains("CASTGC=") && sb.ToString().Contains("user_name"))
+                {
+
+                    break;
+                }
+                else
+                {
+                    driver.Navigate().GoToUrl("http://pcs.yundasys.com:15114/problem/public/index.php/admin/index/index.html");
+                    Thread.Sleep(5000);
+                }
+            }
+            driver.Quit();
+
+            textBox2.Text = sb.ToString();
+
+
+        }
+        Thread t;
         private void button1_Click(object sender, EventArgs e)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory;
-            Process.Start(path + "helper.exe");
+            if (t == null || !t.IsAlive)
+            {
+                t = new Thread(getCookies);
+                t.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+            //string path = AppDomain.CurrentDomain.BaseDirectory;
+            //Process.Start(path + "helper.exe");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -128,25 +176,25 @@ namespace 主程序202102
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;
 
-            try
-            {
-                StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
+            //try
+            //{
+            //    StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
+            //    //一次性读取完 
+            //    string texts = sr.ReadToEnd();
 
-                cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
-                textBox2.Text = cookie;
-                sr.Close();  //只关闭流
-                sr.Dispose();   //销毁流内存
+            //    cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
+            //    textBox2.Text = cookie;
+            //    sr.Close();  //只关闭流
+            //    sr.Dispose();   //销毁流内存
 
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-                MessageBox.Show(ex.ToString());
-            }
+            //    MessageBox.Show(ex.ToString());
+            //}
 
-
+            cookie = textBox2.Text;
 
 
             if (thread == null || !thread.IsAlive)

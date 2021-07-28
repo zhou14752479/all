@@ -60,9 +60,9 @@ namespace yuyin
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            getLists();
-            label1.Text = DateTime.Now.ToString("T");
-            label2.Text = DateTime.Now.ToString("D")+" "+ DateTime.Now.ToString("dddd");
+            //getLists();
+            //label1.Text = DateTime.Now.ToString("T");
+            //label2.Text = DateTime.Now.ToString("D")+" "+ DateTime.Now.ToString("dddd");
         }
 
         private void 新增文稿ToolStripMenuItem_Click(object sender, EventArgs e)

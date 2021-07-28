@@ -232,7 +232,7 @@ namespace 客户美团
 
                                     listViewItem.SubItems.Add(comboBox2.Text);
                                     listViewItem.SubItems.Add(ranks[j].Groups[1].Value);
-                                    listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                   // listViewItem.SubItems.Add(cate[j].Groups[1].Value);
 
                                     Thread.Sleep(100);
                                     count = count + 1;
@@ -381,10 +381,38 @@ namespace 客户美团
      
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-       
+
             if (comboBox1.Text.Contains("上海"))
             {
+                comboBox2.Text = "上海";
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("上海");
                 textBox1.Text += "上海";
+
+                return;
+            }
+            if (comboBox1.Text.Contains("北京"))
+            {
+                comboBox2.Text = "北京";
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("北京");
+                textBox1.Text += "北京";
+                return;
+            }
+            if (comboBox1.Text.Contains("重庆"))
+            {
+                comboBox2.Text = "重庆";
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("重庆");
+                textBox1.Text += "重庆";
+                return;
+            }
+            if (comboBox1.Text.Contains("天津"))
+            {
+                comboBox2.Text = "天津";
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("天津");
+                textBox1.Text += "天津";
                 return;
             }
 

@@ -145,7 +145,7 @@ namespace 主程序202104
                     {
 
                         DataTable dt = method.ExcelToDataTable(filename, true);
-                        MessageBox.Show(dt.Rows.Count.ToString());
+                        //MessageBox.Show(dt.Rows.Count.ToString());
                         if (checkBox1.Checked == true)
                         {
                             string txtname = textBox1.Text + "\\" +textBox2.Text+i+ ".txt";
@@ -210,7 +210,7 @@ namespace 主程序202104
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show(ex.ToString());
+                        ex.ToString();
                     }
                 }
             }
@@ -222,6 +222,19 @@ namespace 主程序202104
         {
             IniWriteValue("values", "path", textBox1.Text.Trim());
 
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"Qpsly5V"))
+            {
+
+                return;
+            }
+
+
+
+            #endregion
 
             for (int i = 0; i < 10; i++)
             {

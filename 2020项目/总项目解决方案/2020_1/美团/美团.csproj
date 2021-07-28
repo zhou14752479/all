@@ -56,8 +56,9 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>..\商铺58\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
-    <Reference Include="ProvinceCity">
-      <HintPath>..\..\..\..\2021项目\总项目解决方案2021\思忆美团\bin\Debug\ProvinceCity.dll</HintPath>
+    <Reference Include="ProvinceCity, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\2021项目\总项目解决方案2021\项目集合\地图营销\bin\Debug\ProvinceCity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

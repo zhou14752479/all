@@ -32,6 +32,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -46,6 +47,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
@@ -56,6 +59,9 @@
             this.columnHeader6,
             this.columnHeader3,
             this.columnHeader7,
+            this.columnHeader5,
+            this.columnHeader10,
+            this.columnHeader11,
             this.columnHeader8,
             this.columnHeader4,
             this.columnHeader9});
@@ -66,7 +72,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 144);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(947, 393);
+            this.listView1.Size = new System.Drawing.Size(1046, 393);
             this.listView1.TabIndex = 390;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -83,33 +89,38 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "全新品相价格";
-            this.columnHeader6.Width = 120;
+            this.columnHeader6.Text = "全品相价格";
+            this.columnHeader6.Width = 80;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "全品相次低价";
+            this.columnHeader5.Width = 90;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "全新品相邮费";
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Text = "全品相邮费";
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "全新品相店铺名称";
-            this.columnHeader7.Width = 150;
+            this.columnHeader7.Text = "全品相店铺名称";
+            this.columnHeader7.Width = 100;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "九五品以上价格";
-            this.columnHeader8.Width = 120;
+            this.columnHeader8.Text = "九五以上价格";
+            this.columnHeader8.Width = 90;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "九五品以上邮费";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Text = "九五以上邮费";
+            this.columnHeader4.Width = 90;
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "九五品以上店铺名称";
-            this.columnHeader9.Width = 150;
+            this.columnHeader9.Text = "九五以上店铺名称";
+            this.columnHeader9.Width = 110;
             // 
             // label1
             // 
@@ -198,11 +209,21 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "全品相次低价运费";
+            this.columnHeader10.Width = 110;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "全品相次低价店铺";
+            this.columnHeader11.Width = 110;
+            // 
             // 孔夫子淘宝低价
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 537);
+            this.ClientSize = new System.Drawing.Size(1046, 537);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button4);
@@ -242,5 +263,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
     }
 }

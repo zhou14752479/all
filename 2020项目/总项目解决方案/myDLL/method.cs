@@ -46,6 +46,7 @@ namespace myDLL
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Proxy = null;//防止代理抓包
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = Url;
@@ -104,6 +105,7 @@ namespace myDLL
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.AllowAutoRedirect = true;
+                request.Proxy = null;//防止代理抓包
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36";
 
                 request.Referer = Url;
@@ -218,6 +220,7 @@ namespace myDLL
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
+                request.Proxy = null;//防止代理抓包
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("sec-fetch-mode:navigate");
@@ -584,7 +587,7 @@ namespace myDLL
                                             }
                                             catch (Exception e)
                                             {
-                                                MessageBox.Show(e.Message);
+                                                //MessageBox.Show(e.Message);
                                                 continue;
                                                 //MessageBox.Show(e.ToString());
                                             }
@@ -603,7 +606,7 @@ namespace myDLL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
                 if (fs != null)
                 {
                     fs.Close();

@@ -140,7 +140,6 @@ namespace 网站接口
         }
         #endregion
        
-
         #region  入库Sql
 
         public bool insertsql(string sql)
@@ -217,7 +216,6 @@ namespace 网站接口
             }
         }
         #endregion
-
 
         #region  查找文章
 
@@ -313,8 +311,6 @@ namespace 网站接口
         }
         #endregion
 
-
-
         #region 地图主程序
         public void Amap(object o)
         {
@@ -397,8 +393,7 @@ namespace 网站接口
             }
         }
         #endregion
-       
-
+      
         #region 注册
         public string register(object o)
         {
@@ -430,17 +425,19 @@ namespace 网站接口
         }
         #endregion
 
-        #region 客户注册
+
+
+
+        #region 美团注册
         public string mtregister(object o)
         {
             string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
             string username = text[0];
             string password = text[1];
-            string mac = text[2];
-            string time = DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss");
+            string time = DateTime.Now.AddMinutes(10).ToString("yyyy-MM-dd HH:MM:ss");
             try
             {
-                string sql = "INSERT INTO mtusers (username,password,registertime)VALUES('" + username + " ', '" + password + " ','" + time + " ')";
+                string sql = "INSERT INTO mtusers (username,password,viptime,registertime)VALUES('" + username + " ', '" + password + " ','" + time + " ','" + time + " ')";
                 bool status = insertsql(sql);
                 if (status == true)
                 {
@@ -459,7 +456,7 @@ namespace 网站接口
             }
         }
         #endregion
-        #region 客户登录
+        #region 美团登录
         public string mtlogin(object o)
         {
             string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
@@ -480,7 +477,7 @@ namespace 网站接口
                 if (reader.Read())
                 {
                     string pass = reader["password"].ToString().Trim();
-                    string isvip = reader["isvip"].ToString().Trim();
+                    string viptime = reader["viptime"].ToString().Trim();
                     string registertime = reader["registertime"].ToString().Trim();
                
 
@@ -489,7 +486,7 @@ namespace 网站接口
                     {
                         mycon.Close();
                         reader.Close();
-                        return "{\"status\":1,\"msg\":\"登录成功\",\"registertime\":\"" + registertime + "\",\"isvip\":\"" + isvip+ "\"}";
+                        return "{\"status\":1,\"msg\":\"登录成功\",\"username\":\"" + username + "\",\"registertime\":\"" + registertime + "\",\"isvip\":\"" + viptime + "\"}";
                     }
                     else
                     {
@@ -518,7 +515,63 @@ namespace 网站接口
             }
         }
         #endregion
-        #region 客户查询
+        #region 美团会员充值
+        public string mtbuy(object o)
+        {
+            string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+            string username = text[0];
+            string days = text[1];
+
+            try
+            {
+
+                string sql = "select * from mtusers where username='" + username + "' ";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                if (reader.Read())
+                {
+                 
+                    string viptime = reader["viptime"].ToString().Trim();
+
+                    string paytime = Convert.ToDateTime(viptime).AddDays(Convert.ToInt32(days)).ToString("yyyy-MM-dd HH:MM:ss");
+                    string sql2 = "update mtusers SET viptime='" +paytime + "' where username='" + username + "' ";
+                    bool status = insertsql(sql2);
+                    if (status == true)
+                    {
+                        mycon.Close();
+                        reader.Close();
+                        return "{\"status\":1,\"msg\":\"充值成功\"}";
+                    }
+                    else
+                    {
+                        mycon.Close();
+                        reader.Close();
+                        return "{\"status\":0,\"msg\":\"充值失败，请联系客服\"}";
+                    }
+                                         
+                }
+                else
+                {
+                    mycon.Close();
+                    reader.Close();
+                    return "{\"status\":0,\"msg\":\"充值失败，请联系客服\"}";
+                }
+
+            }
+            catch (Exception ex)
+            {
+               
+                return "{\"status\":0,\"msg\":\"充值异常，请联系客服\"}";
+            }
+        }
+        #endregion
+        #region 美团查询所有用户
         public string mtall()
         {
 
@@ -550,7 +603,7 @@ namespace 网站接口
             }
         }
         #endregion
-        #region 客户删除
+        #region 美团删除用户
         public string mtdel(object o)
         {
             string userid = o.ToString().Trim();
@@ -576,68 +629,91 @@ namespace 网站接口
             }
         }
         #endregion
-        #region 客户软件信息更新
-        public string updatesoftinfo(object o)
+        #region 美团会员检测
+        public bool mtjiance(string username)
         {
-            string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
-            string name = text[0];
-            string tel= text[1];
-            string logo= text[2];
-            string erweima = text[3];
+
             try
             {
-              
-                string sql = "UPDATE softinfos set softname ='" + name + "' , contacts ='" + tel+ "',logo='" + logo + "' ,erweima='" + erweima + "'";
+                string sql = "select * from mtusers where username='" + username + "' ";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
 
-                bool status = insertsql(sql);
-                if (status == true)
+                MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                if (reader.Read())
                 {
-                    return "{\"status\":1,\"msg\":\"修改成功\"}";
+
+                    string viptime = reader["viptime"].ToString().Trim();
+                    if (Convert.ToDateTime(viptime) > DateTime.Now)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
                 }
                 else
                 {
-                    return "{\"status\":0,\"msg\":\"修改失败\"}";
+                    mycon.Close();
+                    reader.Close();
+                    return false; //没有此mac
                 }
+
 
             }
             catch (Exception)
             {
 
-                return "{\"status\":0,\"msg\":\"修改失败\"}";
+                return false;
             }
         }
         #endregion
-        #region 客户软件信息获取
-        public string getsoftinfo()
+        #region  美团主程序
+        public string mt_getdata(object o)
         {
             try
             {
-
-                MySqlDataAdapter sda = new MySqlDataAdapter("Select * From softinfos", constr);
-                DataSet Ds = new DataSet();
-                sda.Fill(Ds, "T_Class"); //表名字随便起，第0个就是Ds.Tables[0]
-                string json = JsonConvert.SerializeObject(Ds.Tables[0], Formatting.Indented);
-
-                if (json != "")
+                string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+                string username = text[0];
+                string cityid = text[1];
+                string areaid = text[2];
+                string cateid = text[3];
+                string page = text[4];
+                if (mtjiance(username))
                 {
+                    string Url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityid + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + page + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
 
-                    return "{ \"count\":" + Ds.Tables[0].Rows.Count + ",\"status\":1,\"data\":" + json + "}";
+                    string html = GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+                    return html;
                 }
-
                 else
                 {
-                    return "{ \"count\":" + Ds.Tables[0].Rows.Count + ",\"status\":1,\"data\":" + json + "}";
+                    return "{\"status\":0,\"msg\":\"账号已过期，请充值\"}"; ;
                 }
 
-
+               
             }
 
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                return ex.ToString();
+
+                return "{\"status\":0,\"msg\":\""+ ex.ToString()+ "\"}"; ;
             }
+                
+                
         }
+
         #endregion
+
+
+
         #region 邮箱简历获取
         public string mtjianliall()
         {
@@ -701,48 +777,7 @@ namespace 网站接口
 
 
 
-        #region 美团会员检测
-        public string mtjiance(string mac)
-        {
-           
-            try
-            {
-                string sql = "select * from mtusers where mac='" + mac + "' ";
-                MySqlConnection mycon = new MySqlConnection(constr);
-                mycon.Open();
-
-                MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                if (reader.Read())
-                {
-                   
-                    string isvip = reader["isvip"].ToString().Trim();
-
-                    return isvip;
-                  
-                }
-                else
-                {
-                    mycon.Close();
-                    reader.Close();
-                    return "false"; //没有此mac
-                }
-
-
-
-
-
-            }
-            catch (Exception)
-            {
-
-                return "{\"status\":0,\"msg\":\"登录异常，请联系客服\"}";
-            }
-        }
-        #endregion
+        
 
         #region 登录
         public string login(object o)
@@ -1177,37 +1212,7 @@ namespace 网站接口
         }
         #endregion
 
-        #region  美团获取数据
-        public string mt_getdata(object o)
-        {
-            string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
-            string userid = text[0];
-            string cityid = text[1];
-            string cateid = text[2];
-            string page = text[3];
-            try
-            {
-                
-
-                string url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=_QxWJiL40O5OBuwxDs_dNGnTh5MAAAAARw0AANSnFIx1-1YZfFNJU8wxZzPgc9iHV1JbbKdr3YVHLD0GFlVaysjxJhAPM1tOved7gg&cityid="+cityid+"&cateid=22&categoryids="+cateid+"&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=oJVP50IRqKIIshugSqrvYE3OHJKQ&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start="+page+"&limit=100&areaid=-3&distance=&subwaylineid=&subwaystationid=&sort=2";
-                string html = meituan_GetUrl(url);
-                
-                return html;
-
-            }
-
-
-            catch (Exception)
-            {
-                return "{\"status\":0,\"msg\":\"服务异常,请联系管理员\"}";
-            }
-
-
-        }
-
-
-
-        #endregion
+        
 
         #region  旺旺查询
 

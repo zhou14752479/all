@@ -127,12 +127,12 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "年份";
+            this.columnHeader2.Text = "ID";
             this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "申请号";
+            this.columnHeader3.Text = "号码";
             this.columnHeader3.Width = 100;
             // 
             // columnHeader4
@@ -174,7 +174,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(215, 102);
             this.textBox2.TabIndex = 212;
-            this.textBox2.Text = "1111111111";
             // 
             // textBox1
             // 
