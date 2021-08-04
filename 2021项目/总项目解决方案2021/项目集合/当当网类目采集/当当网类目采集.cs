@@ -98,147 +98,260 @@ namespace 当当网类目采集
 
         public void run()
         {
-            
             try
             {
-                string hdhtml = method.GetUrl("http://promo.dangdang.com/6473096", "gb2312");
-                string huodong = Regex.Match(hdhtml, @"<h1>([\s\S]*?)</h1>").Groups[1].Value.Trim();
-                string huodongtime = Regex.Match(hdhtml, @"活动时间：([\s\S]*?)<").Groups[1].Value.Trim();
-                
-
+                string hdhtml = method.GetUrl("http://promo.dangdang.com/6476132", "gb2312");
+                string huodong = Regex.Match(hdhtml, "<h1>([\\s\\S]*?)</h1>").Groups[1].Value.Trim();
+                string huodongtime = Regex.Match(hdhtml, "活动时间：([\\s\\S]*?)<").Groups[1].Value.Trim();
                 for (int i = 1; i < 101; i++)
                 {
-                    string url = textBox1.Text.Replace("cp", "pg"+i+ "-cp");
-                    string html = method.GetUrl(url,"gb2312");
-                   
-                    MatchCollection uids = Regex.Matches(html, @"id=""lcase([\s\S]*?)""");
-                    if (uids.Count == 0)
+                    string url = this.textBox1.Text.Replace("cp", "pg" + i + "-cp");
+                    string html = method.GetUrl(url, "gb2312");
+                    MatchCollection uids = Regex.Matches(html, "id=\"lcase([\\s\\S]*?)\"");
+                    bool flag = uids.Count == 0;
+                    if (flag)
                     {
                         MessageBox.Show("完成");
-                        return;
+                        break;
                     }
-                    for (int j = 0; j < uids.Count; j++)
+                    int j = 0;
+                    while (j < uids.Count)
                     {
-                        while (this.zanting == false)
+                        try
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            string uid = uids[j].Groups[1].Value;
+                            string ahtml = method.GetUrl("https://mapi.dangdang.com/index.php?action=get_product&user_client=iphone&client_version=11.7.3&union_id=537-50&permanent_id=20210730095015646129326676251121154&udid=CDD236322B97916364381C974957D10C&time_code=55F960825DDED6D818694D99AAC0C61A&timestamp=1627609894&lunbo_img_size=h&abtest=1&page_action=1&pid=" + uid + "&img_size=h&global_province_id=111&person_on=1", "utf-8");
+                            StringBuilder cate = new StringBuilder();
+                            string isbn = Regex.Match(ahtml, "\"standard_id\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            string title = Regex.Match(ahtml, "\"product_name\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            MatchCollection cates = Regex.Matches(ahtml, "\"path_name\":\"([\\s\\S]*?)\"");
+                            string cbs = Regex.Match(ahtml, "\"publisher\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            string cbstime = Regex.Match(ahtml, "\"publish_date\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            string auther = Regex.Match(ahtml, "\"author_name\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            string originalPrice = Regex.Match(ahtml, "\"original_price\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            string salePrice = Regex.Match(ahtml, "\"sale_price\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            for (int x = 1; x < cates.Count; x++)
+                            {
+                                cate.Append(cates[x].Groups[1].Value + " ");
+                            }
+                            bool flag2 = title == "";
+                            if (flag2)
+                            {
+                                MessageBox.Show("");
+                            }
+                            this.label1.Text = "开始采集" + isbn;
+                            Thread.Sleep(500);
+                            string quanhtml = this.geturl("http://product.dangdang.com/index.php?r=callback%2Fproduct-info&productId=" + uid + "&isCatalog=0&shopId=0&productType=0");
+                            MatchCollection activityUrl = Regex.Matches(quanhtml, "\"activityUrl\":\"([\\s\\S]*?)\"");
+                            MatchCollection man = Regex.Matches(quanhtml, "\"couponMinUseValue\":\"([\\s\\S]*?)\"");
+                            MatchCollection jian = Regex.Matches(quanhtml, "\"couponValue\":\"([\\s\\S]*?)\"");
+                            StringBuilder sb = new StringBuilder();
+                            for (int a = 0; a < man.Count; a++)
+                            {
+                                sb.Append(string.Concat(new string[]
+                                {
+                                    "满",
+                                    man[a].Groups[1].Value,
+                                    "减",
+                                    jian[a].Groups[1].Value,
+                                    "元"
+                                }));
+                            }
+                            string huodongtime2 = "";
+                            string huodong2 = "";
+                            string quan = sb.ToString();
+                            bool flag3 = activityUrl.Count > 0;
+                            if (flag3)
+                            {
+                                huodongtime2 = huodongtime;
+                                huodong2 = huodong;
+                            }
+                            string fee = "6";
+                            double shiprice = this.jisuan(salePrice, huodong2, quan);
+                            string shizhekou = (shiprice / Convert.ToDouble(originalPrice)).ToString("0.00");
+                            bool flag4 = Convert.ToDouble(shiprice) - 6.0 >= 49.0;
+                            if (flag4)
+                            {
+                                fee = "0";
+                            }
+                            while (!this.zanting)
+                            {
+                                Application.DoEvents();
+                            }
+                            bool flag5 = !this.status;
+                            if (flag5)
+                            {
+                                return;
+                            }
+                            Thread.Sleep(100);
+                            ListViewItem lv = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+                            lv.SubItems.Add(isbn);
+                            lv.SubItems.Add(method.Unicode2String(title));
+                            lv.SubItems.Add(method.Unicode2String(cate.ToString()));
+                            lv.SubItems.Add(method.Unicode2String(cbs));
+                            lv.SubItems.Add(method.Unicode2String(cbstime));
+                            lv.SubItems.Add(method.Unicode2String(auther));
+                            lv.SubItems.Add(huodongtime2);
+                            lv.SubItems.Add(huodong2);
+                            lv.SubItems.Add(quan);
+                            lv.SubItems.Add(originalPrice);
+                            lv.SubItems.Add(salePrice);
+                            lv.SubItems.Add(fee);
+                            lv.SubItems.Add(shiprice.ToString());
+                            lv.SubItems.Add(shizhekou);
+                            bool flag6 = this.listView1.Items.Count > 2;
+                            if (flag6)
+                            {
+                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                            }
+                            Thread.Sleep(1500);
                         }
-                        if (status == false)
-                            return;
-
-                        if (webbrowser.cookie != "")
+                        catch (Exception)
                         {
-                            cookie = webbrowser.cookie;
-                        }
-                       
-
-
-                        string uid = uids[j].Groups[1].Value;
-
-                        string ahtml = geturl("http://product.dangdang.com/"+uid+".html");
-
-                   
-                        string isbn = Regex.Match(ahtml, @"<li>国际标准书号ISBN：([\s\S]*?)</li>").Groups[1].Value;
-                        string title = Regex.Match(ahtml, @"<h1 title=""([\s\S]*?)""").Groups[1].Value;
-                        string cate = Regex.Match(ahtml, @"所属分类：</label>([\s\S]*?)</li>").Groups[1].Value;
-                        string cbs = Regex.Match(ahtml, @"dd_name=""出版社"">([\s\S]*?)<").Groups[1].Value;
-                        string cbstime = Regex.Match(ahtml, @"出版时间:([\s\S]*?)<").Groups[1].Value;
-                        string auther = Regex.Match(ahtml, @"dd_name=""作者"">([\s\S]*?)</").Groups[1].Value;
-
-                      
-                        if (isbn == "")
-                        {
-                            MessageBox.Show("登录失效");
-                            j = j - 1;
-                            zanting = false;
                             continue;
                         }
-                        label1.Text = "开始采集" + isbn;
-                        Thread.Sleep(500);
-                        string quanhtml = geturl("http://product.dangdang.com/index.php?r=callback%2Fproduct-info&productId=" + uid + "&isCatalog=0&shopId=0&productType=0");
-                   
-                        MatchCollection activityUrl = Regex.Matches(quanhtml, @"""activityUrl"":""([\s\S]*?)""");
-
-                        MatchCollection man = Regex.Matches(quanhtml, @"""couponMinUseValue"":""([\s\S]*?)""");
-                        MatchCollection jian= Regex.Matches(quanhtml, @"""couponValue"":""([\s\S]*?)""");
-
-                        StringBuilder sb = new StringBuilder();
-
-
-                        for (int a = 0; a < man.Count; a++)
-                        {
-                            sb.Append("满"+man[a].Groups[1].Value+"减"+ jian[a].Groups[1].Value+"元");
-
-                        }
-                        double shiprice = 0;
-                        string shizhekou = "";
-                        string huodongtime1 = "";
-                        string huodong1 = "";
-                        string quan = sb.ToString();
-                        if (activityUrl.Count > 0)
-                        {
-                            huodongtime1 = huodongtime;
-                            huodong1 = huodong;
-                        }
-                        
                        
-
-
-
-                        string originalPrice = Regex.Match(quanhtml, @"""originalPrice"":""([\s\S]*?)""").Groups[1].Value;
-                        string salePrice = Regex.Match(quanhtml, @"""salePrice"":""([\s\S]*?)""").Groups[1].Value;
-                        string fee ="6";  //大于49包邮 小于49 收6元
-                       shiprice = jisuan(salePrice,huodong1,quan);
-                        shizhekou = (shiprice/Convert.ToDouble(originalPrice)).ToString("0.00"); ;
+                      
                        
-                        if (Convert.ToDouble(shiprice) - 6 >= 49)
-                        {
-                            fee = "0";
-                        }
-
-
-
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                        if (status == false)
-                            return;
-                        Thread.Sleep(100);
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(isbn);
-                        lv1.SubItems.Add(title);
-                        lv1.SubItems.Add(Regex.Replace(cate.Replace("&gt;", "-"), "<[^>]+>", ""));
-                        lv1.SubItems.Add(cbs);
-                        lv1.SubItems.Add(cbstime.Replace("&nbsp;",""));
-                        lv1.SubItems.Add(auther);
-                        lv1.SubItems.Add(huodongtime1);
-                        lv1.SubItems.Add(huodong1);
-                        lv1.SubItems.Add(quan);
-                        lv1.SubItems.Add(originalPrice);
-                        lv1.SubItems.Add(salePrice);
-                        lv1.SubItems.Add(fee);
-                        lv1.SubItems.Add(shiprice.ToString());
-                        lv1.SubItems.Add(shizhekou);
-
-                        if (listView1.Items.Count > 2)
-                        {
-                            this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
-                        }
-
-                        Thread.Sleep(1500);
+                       
                     }
-
-
-
                 }
             }
             catch (Exception ex)
             {
+                ex.ToString();
+            }
+        }
 
+
+
+        public void run2()
+        {
+            try
+            {
+                string hdhtml = method.GetUrl("http://promo.dangdang.com/6473096", "gb2312");
+                string huodong = Regex.Match(hdhtml, "<h1>([\\s\\S]*?)</h1>").Groups[1].Value.Trim();
+                string huodongtime = Regex.Match(hdhtml, "活动时间：([\\s\\S]*?)<").Groups[1].Value.Trim();
+                for (int i = 1; i < 101; i++)
+                {
+                    string url = this.textBox1.Text.Replace("cp", "pg" + i + "-cp");
+                    string html = method.GetUrl(url, "gb2312");
+                    MatchCollection uids = Regex.Matches(html, "id=\"lcase([\\s\\S]*?)\"");
+                    bool flag = uids.Count == 0;
+                    if (flag)
+                    {
+                        MessageBox.Show("完成");
+                        break;
+                    }
+                    for (int j = 0; j < uids.Count; j++)
+                    {
+                        while (!this.zanting)
+                        {
+                            Application.DoEvents();
+                        }
+                        bool flag2 = !this.status;
+                        if (flag2)
+                        {
+                            return;
+                        }
+                        bool flag3 = webbrowser.cookie != "";
+                        if (flag3)
+                        {
+                            this.cookie = webbrowser.cookie;
+                        }
+                        string uid = uids[j].Groups[1].Value;
+                        string ahtml = this.geturl("http://product.dangdang.com/" + uid + ".html");
+                        string isbn = Regex.Match(ahtml, "<li>国际标准书号ISBN：([\\s\\S]*?)</li>").Groups[1].Value;
+                        string title = Regex.Match(ahtml, "<h1 title=\"([\\s\\S]*?)\"").Groups[1].Value;
+                        string cate = Regex.Match(ahtml, "所属分类：</label>([\\s\\S]*?)</li>").Groups[1].Value;
+                        string cbs = Regex.Match(ahtml, "dd_name=\"出版社\">([\\s\\S]*?)<").Groups[1].Value;
+                        string cbstime = Regex.Match(ahtml, "出版时间:([\\s\\S]*?)<").Groups[1].Value;
+                        string auther = Regex.Match(ahtml, "dd_name=\"作者\">([\\s\\S]*?)</").Groups[1].Value;
+                        bool flag4 = title == "";
+                        if (flag4)
+                        {
+                            MessageBox.Show("登录失效");
+                            j--;
+                            this.zanting = false;
+                        }
+                        else
+                        {
+                            this.label1.Text = "开始采集" + isbn;
+                            Thread.Sleep(500);
+                            string quanhtml = this.geturl("http://product.dangdang.com/index.php?r=callback%2Fproduct-info&productId=" + uid + "&isCatalog=0&shopId=0&productType=0");
+                            MatchCollection activityUrl = Regex.Matches(quanhtml, "\"activityUrl\":\"([\\s\\S]*?)\"");
+                            MatchCollection man = Regex.Matches(quanhtml, "\"couponMinUseValue\":\"([\\s\\S]*?)\"");
+                            MatchCollection jian = Regex.Matches(quanhtml, "\"couponValue\":\"([\\s\\S]*?)\"");
+                            StringBuilder sb = new StringBuilder();
+                            for (int a = 0; a < man.Count; a++)
+                            {
+                                sb.Append(string.Concat(new string[]
+                                {
+                                    "满",
+                                    man[a].Groups[1].Value,
+                                    "减",
+                                    jian[a].Groups[1].Value,
+                                    "元"
+                                }));
+                            }
+                            string huodongtime2 = "";
+                            string huodong2 = "";
+                            string quan = sb.ToString();
+                            bool flag5 = activityUrl.Count > 0;
+                            if (flag5)
+                            {
+                                huodongtime2 = huodongtime;
+                                huodong2 = huodong;
+                            }
+                            string originalPrice = Regex.Match(quanhtml, "\"originalPrice\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            string salePrice = Regex.Match(quanhtml, "\"salePrice\":\"([\\s\\S]*?)\"").Groups[1].Value;
+                            string fee = "6";
+                            double shiprice = this.jisuan(salePrice, huodong2, quan);
+                            string shizhekou = (shiprice / Convert.ToDouble(originalPrice)).ToString("0.00");
+                            bool flag6 = Convert.ToDouble(shiprice) - 6.0 >= 49.0;
+                            if (flag6)
+                            {
+                                fee = "0";
+                            }
+                            while (!this.zanting)
+                            {
+                                Application.DoEvents();
+                            }
+                            bool flag7 = !this.status;
+                            if (flag7)
+                            {
+                                return;
+                            }
+                            Thread.Sleep(100);
+                            ListViewItem lv = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+                            lv.SubItems.Add(isbn);
+                            lv.SubItems.Add(title);
+                            lv.SubItems.Add(Regex.Replace(cate.Replace("&gt;", "-"), "<[^>]+>", ""));
+                            lv.SubItems.Add(cbs);
+                            lv.SubItems.Add(cbstime.Replace("&nbsp;", ""));
+                            lv.SubItems.Add(auther);
+                            lv.SubItems.Add(huodongtime2);
+                            lv.SubItems.Add(huodong2);
+                            lv.SubItems.Add(quan);
+                            lv.SubItems.Add(originalPrice);
+                            lv.SubItems.Add(salePrice);
+                            lv.SubItems.Add(fee);
+                            lv.SubItems.Add(shiprice.ToString());
+                            lv.SubItems.Add(shizhekou);
+                            bool flag8 = this.listView1.Items.Count > 2;
+                            if (flag8)
+                            {
+                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                            }
+                            Thread.Sleep(1500);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.ToString());
             }
-
         }
         Thread thread;
         bool zanting = true;

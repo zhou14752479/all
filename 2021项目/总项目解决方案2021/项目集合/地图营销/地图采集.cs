@@ -617,5 +617,13 @@ namespace 地图营销
         {
            
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < comboBox3.Items.Count; i++)
+            {
+                textBox1.Text += comboBox3.Items[i].ToString() + "\r\n";
+            }
+        }
     }
 }

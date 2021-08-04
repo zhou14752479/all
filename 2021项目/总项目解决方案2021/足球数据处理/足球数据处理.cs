@@ -53,6 +53,11 @@ namespace 足球数据处理
                 double pingjundanbi= 0;
 
 
+                double zongshuiwei = 0;
+                double pingjunshuiwei = 0;
+                int xiaoyu07 = 0;
+                int dayu12 = 0;
+
                 double ying = 0;
                 double shu = 0;
                 double fan180 = 0;
@@ -96,8 +101,50 @@ namespace 足球数据处理
                                     if (danbiyingshu < 0)
                                     {
                                         shu = shu + 1;
-                                        fan180 = fan180 + (danbijine * (1.8-shuiwei));
+                                        if (shuiwei>0)
+                                        {
+                                           
+                                            fan180 = fan180 + (danbijine * (1.8 - shuiwei));
+                                        }
+                                        if (shuiwei < 0)
+                                        {
+                                            fan180 = fan180 + (danbijine * (1.8 - (shuiwei*-1)));
+                                        }
+
+
                                     }
+
+
+                                    if (shuiwei > 0)
+                                    {
+                                        zongshuiwei = zongshuiwei + shuiwei;
+                                        if (shuiwei < 0.7)
+                                        {
+                                            xiaoyu07 = xiaoyu07 + 1;
+                                        }
+
+                                        if (shuiwei > 1.2)
+                                        {
+                                            dayu12 = dayu12 + 1;
+                                        }
+                                    }
+
+                                    if (shuiwei < 0)
+                                    {
+                                        zongshuiwei = zongshuiwei - shuiwei;
+
+                                        if (shuiwei > -0.7)
+                                        {
+                                            xiaoyu07 = xiaoyu07 + 1;
+                                        }
+
+                                        if (shuiwei < -1.2)
+                                        {
+                                            dayu12 = dayu12 + 1;
+                                        }
+                                    }
+
+                                   
                                 }
 
 
@@ -117,9 +164,10 @@ namespace 足球数据处理
 
                 try
                 {
-
                    
-                    shenglv = Math.Round(ying/ (ying + shu), 3); ;
+                    pingjunshuiwei = Math.Round(zongshuiwei / bishu, 3);
+
+                    shenglv = Math.Round(ying/ (ying + shu), 3); 
                     
 
 
@@ -143,6 +191,9 @@ namespace 足球数据处理
                 lv1.SubItems.Add(Math.Round(yingshubi,3).ToString());
                 lv1.SubItems.Add(pingjundanbi.ToString());
                 lv1.SubItems.Add(fan180.ToString());
+                lv1.SubItems.Add(pingjunshuiwei.ToString());
+                lv1.SubItems.Add(xiaoyu07.ToString());
+                lv1.SubItems.Add(dayu12.ToString());
                 // MessageBox.Show("");
             }
 
@@ -172,12 +223,21 @@ namespace 足球数据处理
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
+            if (DateTime.Now > Convert.ToDateTime("2021-08-31"))
+            {
+                return;
+            }
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }

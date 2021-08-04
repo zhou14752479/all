@@ -38,7 +38,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,6 +46,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,12 +72,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -137,27 +137,14 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton2.Location = new System.Drawing.Point(12, 65);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(81, 18);
-            this.radioButton2.TabIndex = 176;
-            this.radioButton2.Text = "美团药房";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
             this.radioButton1.Location = new System.Drawing.Point(12, 30);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(81, 18);
             this.radioButton1.TabIndex = 175;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "京东药房";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -210,6 +197,19 @@
             this.columnHeader6.Text = "批准文号";
             this.columnHeader6.Width = 100;
             // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton3.Location = new System.Drawing.Point(14, 74);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(74, 18);
+            this.radioButton3.TabIndex = 182;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "315药房";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
             // 京东药房
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -236,7 +236,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -250,5 +249,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.RadioButton radioButton3;
     }
 }

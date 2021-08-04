@@ -38,15 +38,15 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.infolabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.login_btn = new System.Windows.Forms.Button();
-            this.pass_text = new System.Windows.Forms.TextBox();
-            this.user_text = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.login_btn = new System.Windows.Forms.Button();
             this.recommand_text = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.register_btn = new System.Windows.Forms.Button();
+            this.pass_text = new System.Windows.Forms.TextBox();
+            this.user_text = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label17 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
@@ -232,51 +233,6 @@
             this.tabPage3.Size = new System.Drawing.Size(1046, 549);
             this.tabPage3.TabIndex = 2;
             // 
-            // login_btn
-            // 
-            this.login_btn.Location = new System.Drawing.Point(476, 236);
-            this.login_btn.Name = "login_btn";
-            this.login_btn.Size = new System.Drawing.Size(159, 29);
-            this.login_btn.TabIndex = 9;
-            this.login_btn.Text = "登录账号";
-            this.login_btn.UseVisualStyleBackColor = true;
-            this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
-            // 
-            // pass_text
-            // 
-            this.pass_text.Location = new System.Drawing.Point(476, 154);
-            this.pass_text.Name = "pass_text";
-            this.pass_text.PasswordChar = '*';
-            this.pass_text.Size = new System.Drawing.Size(159, 21);
-            this.pass_text.TabIndex = 8;
-            // 
-            // user_text
-            // 
-            this.user_text.Location = new System.Drawing.Point(476, 113);
-            this.user_text.Name = "user_text";
-            this.user_text.Size = new System.Drawing.Size(159, 21);
-            this.user_text.TabIndex = 6;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("宋体", 12F);
-            this.label11.Location = new System.Drawing.Point(414, 154);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 16);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "密码：";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("宋体", 12F);
-            this.label10.Location = new System.Drawing.Point(398, 118);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 16);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "手机号：";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -286,6 +242,16 @@
             this.label19.Size = new System.Drawing.Size(41, 12);
             this.label19.TabIndex = 12;
             this.label19.Text = "(选填)";
+            // 
+            // login_btn
+            // 
+            this.login_btn.Location = new System.Drawing.Point(476, 236);
+            this.login_btn.Name = "login_btn";
+            this.login_btn.Size = new System.Drawing.Size(159, 29);
+            this.login_btn.TabIndex = 9;
+            this.login_btn.Text = "登录账号";
+            this.login_btn.UseVisualStyleBackColor = true;
+            this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
             // 
             // recommand_text
             // 
@@ -314,6 +280,41 @@
             this.register_btn.Text = "注册账号";
             this.register_btn.UseVisualStyleBackColor = true;
             this.register_btn.Click += new System.EventHandler(this.register_btn_Click);
+            // 
+            // pass_text
+            // 
+            this.pass_text.Location = new System.Drawing.Point(476, 154);
+            this.pass_text.Name = "pass_text";
+            this.pass_text.PasswordChar = '*';
+            this.pass_text.Size = new System.Drawing.Size(159, 21);
+            this.pass_text.TabIndex = 8;
+            // 
+            // user_text
+            // 
+            this.user_text.Location = new System.Drawing.Point(476, 113);
+            this.user_text.Name = "user_text";
+            this.user_text.Size = new System.Drawing.Size(159, 21);
+            this.user_text.TabIndex = 6;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("宋体", 12F);
+            this.label10.Location = new System.Drawing.Point(398, 118);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 16);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "手机号：";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("宋体", 12F);
+            this.label11.Location = new System.Drawing.Point(414, 154);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 16);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "密码：";
             // 
             // tabPage2
             // 
@@ -415,6 +416,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.linkLabel1);
             this.tabPage1.Controls.Add(this.checkBox2);
             this.tabPage1.Controls.Add(this.checkBox4);
             this.tabPage1.Controls.Add(this.checkBox5);
@@ -440,6 +442,17 @@
             this.tabPage1.Size = new System.Drawing.Size(1046, 549);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(73, 505);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel1.TabIndex = 130;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "全部";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // checkBox2
             // 
@@ -793,6 +806,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

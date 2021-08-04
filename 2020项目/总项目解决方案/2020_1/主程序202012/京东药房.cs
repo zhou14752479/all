@@ -250,18 +250,93 @@ namespace 主程序202012
         }
 
 
+        public void yaofang315()
+        {
+            string cookie = "__yjs_duid=1_4fdb16923a213106a7193c694ba0f2161627777139914; iwmsGid=0G0ZYIHYXLOAZVXUOQNQ; Hm_lvt_4cce664ec5d8326cc457ab09053c15b2=1627777139,1627868117; rtv=5616BB,32155431; Hm_lpvt_4cce664ec5d8326cc457ab09053c15b2=1627868994";
+            for (int i = 1; i < 5000; i++)
+            {
+                string url = "https://www.315jiage.cn/mc119p" + i + ".aspx";
+                string url2 = method.GetUrl(url, "utf-8");
+                MatchCollection matchCollection = Regex.Matches(url2, "<div class=\"col-2\"> <a href=\"([\\s\\S]*?)\"");
+                bool flag = matchCollection.Count == 0;
+                if (flag)
+                {
+                    break;
+                }
+                for (int j = 0; j < matchCollection.Count; j++)
+                {
+                    string url3 = "https://www.315jiage.cn/" + matchCollection[j].Groups[1].Value;
+                    string urlWithCookie = method.GetUrlWithCookie(url3, cookie, "utf-8");
+                    Match match = Regex.Match(urlWithCookie, "<title>([\\s\\S]*?)_");
+                    Match match2 = Regex.Match(urlWithCookie, "建议零售价格：￥([\\s\\S]*?)<");
+                    Match match3 = Regex.Match(urlWithCookie, "规格：</span>([\\s\\S]*?)<");
+                    Match match4 = Regex.Match(urlWithCookie, "生产厂家：</span>([\\s\\S]*?)<");
+                    Match match5 = Regex.Match(urlWithCookie, "批准文号：</span>([\\s\\S]*?)</a>");
+                    ListViewItem listViewItem = this.listView1.Items.Add((this.listView1.Items.Count + 1).ToString());
+                 
+                    textBox3.Text = textBox3.Text + "正在抓取：" + match.Groups[1].Value + "\r\n";
+                  
+                    if (textBox3.Text.Length > 10000)
+                    {
+                        this.textBox3.Text = "";
+                    }
+                    listViewItem.SubItems.Add(match.Groups[1].Value);
+                    listViewItem.SubItems.Add(match2.Groups[1].Value.Trim());
+                    listViewItem.SubItems.Add(match3.Groups[1].Value.Replace("&ensp;", "").Trim());
+                    listViewItem.SubItems.Add(match4.Groups[1].Value.Trim());
+                    listViewItem.SubItems.Add(Regex.Replace(match5.Groups[1].Value, "<[^>]+>", "").Trim());
+                    bool flag3 = match.Groups[1].Value == "";
+                    if (match.Groups[1].Value == "")
+                    {
+                        this.textBox3.Text = urlWithCookie;
+                    }
+                  
+                    if (this.status==false)
+                    {
+                        return;
+                    }
+                    while (!this.zanting)
+                    {
+                        this.textBox3.Text = "已暂停";
+                        Application.DoEvents();
+                    }
+                   
+                    if (this.listView1.Items.Count > 2)
+                    {
+                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                    }
+                    Thread.Sleep(1000);
+                }
+            }
+        }
+
         Thread thread;
         bool zanting = true;
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
             //method.ReadFromExcelFile(@"C:\Users\zhou\Desktop\TEST2 不翻译.xlsx",listView1);
-            status = true;
-            if (thread == null || !thread.IsAlive)
+            this.status = true;
+          
+            if (radioButton1.Checked)
             {
-                thread = new Thread(jd);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+              
+                if (thread == null || !thread.IsAlive )
+                {
+                    this.thread = new Thread(new ThreadStart(this.jd));
+                    this.thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
+        
+            if (radioButton3.Checked)
+            {
+                if (thread == null || !thread.IsAlive)
+                {
+                    this.thread = new Thread(new ThreadStart(this.yaofang315));
+                    this.thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
             }
         }
 

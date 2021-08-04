@@ -30,17 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper">
+      <HintPath>..\..\..\..\..\当当网\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\思忆大数据\bin\Debug\NPOI.dll</HintPath>
+      <HintPath>..\..\..\..\..\当当网\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\思忆大数据\bin\Debug\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\..\..\当当网\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\思忆大数据\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\当当网\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\思忆大数据\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\..\..\当当网\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

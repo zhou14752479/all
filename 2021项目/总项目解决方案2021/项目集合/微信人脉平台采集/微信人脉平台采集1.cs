@@ -439,7 +439,14 @@ namespace 微信人脉平台采集
                     textBox1.Text += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "  获取到个数：" + uids.Count +  "\r\n";
                     if (uids.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
                     {
-                        break;
+                      
+                        textBox2.Text = textBox2.Text + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "等待60秒...\r\n";
+                        Thread.Sleep(60000);
+                     
+                        if (page > 1)
+                        {
+                            page--;
+                        }
                     }
 
                     for (int j = 0; j < uids.Count; j++)
