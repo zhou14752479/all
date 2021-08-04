@@ -1,6 +1,6 @@
 ctrl+ALT+++空格  SQL的 group by 字段 可以根据这个字段去重
 【快速创建属性prop，propfull带验证属性】
-
+11
 
 ***************使用频率高*****************
 System.Windows.Forms.Clipboard.SetText(jiqima_label.Text); //复制
