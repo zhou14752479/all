@@ -60,12 +60,6 @@
     <Compile Include="常用代码查询.Designer.cs">
       <DependentUpon>常用代码查询.cs</DependentUpon>
     </Compile>
-    <Compile Include="添加代码.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="添加代码.Designer.cs">
-      <DependentUpon>添加代码.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -77,9 +71,6 @@
     </Compile>
     <EmbeddedResource Include="常用代码查询.resx">
       <DependentUpon>常用代码查询.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="添加代码.resx">
-      <DependentUpon>添加代码.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
