@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using myDLL;
 using System.Threading;
 using System.Collections;
+using System.IO;
 
 namespace 地图营销
 {
@@ -88,20 +89,22 @@ namespace 地图营销
                                 string addres = Regex.Match(ahtmls[i].Groups[1].Value, @"""addr"":""([\s\S]*?)""").Groups[1].Value;
                                 string cityname = Regex.Match(ahtmls[i].Groups[1].Value, @"""city_name"":""([\s\S]*?)""").Groups[1].Value;
                                 string location = Regex.Match(ahtmls[i].Groups[1].Value, @"diPointX"":([\s\S]*?),").Groups[1].Value;
-                        
-                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                if (shaixuan(phone))
+                                {
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
-                                lv1.SubItems.Add(Unicode2String(name));
-                                lv1.SubItems.Add(phone);
-                                lv1.SubItems.Add(Unicode2String(addres));
-                                lv1.SubItems.Add(Unicode2String(cityname));
-                                lv1.SubItems.Add(keyword);
-                                lv1.SubItems.Add(location);
-                                if (status == false)
-                                    return;
-                               
-                                count = count + 1;
-                                infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                    lv1.SubItems.Add(Unicode2String(name));
+                                    lv1.SubItems.Add(phone);
+                                    lv1.SubItems.Add(Unicode2String(addres));
+                                    lv1.SubItems.Add(Unicode2String(cityname));
+                                    lv1.SubItems.Add(keyword);
+                                    lv1.SubItems.Add(location);
+                                    if (status == false)
+                                        return;
+
+                                    count = count + 1;
+                                    infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                }
                             }
 
                             Thread.Sleep(1000);
@@ -160,21 +163,23 @@ namespace 地图营销
 
                             for (int i = 0; i < address.Count; i++)
                             {
+                                if (shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "")))
+                                {
 
-                             
-                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
-                                lv1.SubItems.Add(Unicode2String(names[i].Groups[1].Value));
-                                lv1.SubItems.Add(phones[i].Groups[1].Value);
-                                lv1.SubItems.Add(Unicode2String(address[i].Groups[1].Value));
-                                lv1.SubItems.Add(Unicode2String(citynames[i].Groups[1].Value));
-                                lv1.SubItems.Add(keyword);
-                                lv1.SubItems.Add(locations[i].Groups[1].Value);
-                                if (status == false)
-                                    return;
-                             
-                                count = count + 1;
-                                infolabel.Text = DateTime.Now.ToShortTimeString()+"： 采集总数-->" + count.ToString();
+                                    lv1.SubItems.Add(Unicode2String(names[i].Groups[1].Value));
+                                    lv1.SubItems.Add(phones[i].Groups[1].Value);
+                                    lv1.SubItems.Add(Unicode2String(address[i].Groups[1].Value));
+                                    lv1.SubItems.Add(Unicode2String(citynames[i].Groups[1].Value));
+                                    lv1.SubItems.Add(keyword);
+                                    lv1.SubItems.Add(locations[i].Groups[1].Value);
+                                    if (status == false)
+                                        return;
+
+                                    count = count + 1;
+                                    infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                }
                             }
 
                             Thread.Sleep(1000);
@@ -232,11 +237,12 @@ namespace 地图营销
 
                                 for (int i = 0; i < names.Count; i++)
                                 {
-
+                                if (shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "")))
+                                {
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(names[i].Groups[1].Value);
-                                    lv1.SubItems.Add(phones[i].Groups[1].Value);
+                                    lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(citynames[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(keyword);
@@ -247,9 +253,10 @@ namespace 地图营销
                                     {
                                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                     }
-                                  
+
                                     count = count + 1;
-                                infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                    infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                }
                             }
 
                                 Thread.Sleep(1000);
@@ -301,12 +308,14 @@ namespace 地图营销
                                 if (names.Count == 0)
                                     break;
 
-                                for (int i = 0; i < names.Count; i++)
+                            for (int i = 0; i < names.Count; i++)
+                            {
+                                if (shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "")))
                                 {
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(names[i].Groups[1].Value);
-                                    lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", ""));
+                                    lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
                                     lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(citys[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(keyword);
@@ -317,12 +326,13 @@ namespace 地图营销
                                     {
                                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                     }
-                                 
+
                                     count = count + 1;
-                                infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                    infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                }
                             }
 
-                                Thread.Sleep(1000);
+                            Thread.Sleep(1000);
                             }
                         }
                     }
@@ -372,25 +382,27 @@ namespace 地图营销
 
                             for (int i = 0; i < names.Count; i++)
                             {
-
-
-                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-
-                                lv1.SubItems.Add(names[i].Groups[1].Value);
-                                lv1.SubItems.Add(phones[i].Groups[1].Value);
-                                lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
-                                lv1.SubItems.Add(citys[i].Groups[1].Value.Replace("\"", ""));
-                                lv1.SubItems.Add(keyword);
-                                lv1.SubItems.Add(locations[i].Groups[1].Value.Replace("\"", ""));
-                                if (status == false)
-                                    return;
-                                while (this.zanting == false)
+                                if (shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "")))
                                 {
-                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                }
 
-                                count = count + 1;
-                                infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+
+                                    lv1.SubItems.Add(names[i].Groups[1].Value);
+                                    lv1.SubItems.Add(phones[i].Groups[1].Value);
+                                    lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
+                                    lv1.SubItems.Add(citys[i].Groups[1].Value.Replace("\"", ""));
+                                    lv1.SubItems.Add(keyword);
+                                    lv1.SubItems.Add(locations[i].Groups[1].Value.Replace("\"", ""));
+                                    if (status == false)
+                                        return;
+                                    while (this.zanting == false)
+                                    {
+                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                    }
+
+                                    count = count + 1;
+                                    infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                }
                             }
 
                             Thread.Sleep(1000);
@@ -430,6 +442,28 @@ namespace 地图营销
                 return tel;
             }
           
+        }
+
+        public bool shaixuan(string phone)
+        {
+            if (checkBox6.Checked == true)
+            {
+                if (phone.Trim() == "")
+                {
+                    return false;
+                }
+
+            }
+            if (checkBox7.Checked == true)
+            {
+                if (phone.Trim().Length >11 && phone.Trim().Contains("-") && phone.Trim().Length <20)
+                {
+                    return false;
+                }
+
+            }
+
+            return true;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -491,6 +525,27 @@ namespace 地图营销
         bool zanting = true;
         private void button7_Click(object sender, EventArgs e)
         {
+
+            if (logined == false)
+            {
+                MessageBox.Show("请登录");
+                tabControl1.SelectedIndex = 2;
+                return;
+            }
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"abc147258"))
+            {
+                MessageBox.Show("");
+                return;
+            }
+
+
+
+            #endregion
+
             count = 0;
             infolabel.Text = DateTime.Now.ToShortTimeString() + "开始采集......";
           
@@ -575,7 +630,7 @@ namespace 地图营销
 
         public void getsoftinfo()
         {
-            string html = method.GetUrl("http://www.acaiji.com:8080/api/mt/getsoftinfo.html", "utf-8");
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=login&username="+user_text.Text.Trim()+"&password="+pass_text.Text.Trim(), "utf-8");
            string softname= Regex.Match(html, @"""softname"": ""([\s\S]*?)""").Groups[1].Value;
             string contacts = Regex.Match(html, @"""contacts"": ""([\s\S]*?)""").Groups[1].Value;
 
@@ -591,7 +646,14 @@ namespace 地图营销
 
 
         }
+        public string login(string user, string pass)
+        {
 
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=login&username=" + user + "&password=" + pass, "utf-8");
+            return html;
+
+
+        }
         private void login_btn_Click(object sender, EventArgs e)
         {
             if (user_text.Text == "" || pass_text.Text == "")
@@ -599,30 +661,83 @@ namespace 地图营销
                 MessageBox.Show("请输入账号和密码");
                 return;
             }
-          bool msg= md.login(user_text.Text.Trim(), pass_text.Text.Trim());
-            if (msg == true)
+            string html =login(user_text.Text.Trim(), pass_text.Text.Trim());
+            MessageBox.Show(html.Trim());
+            if (html.Contains("成功"))
             {
                 logined = true;
+                
                 tabControl1.SelectedIndex = 0;
             }
             else
             {
                 logined = false;
-                MessageBox.Show("账号或密码错误");
+              
             }
           
         }
 
-        private void register_btn_Click(object sender, EventArgs e)
-        {
-           
-        }
+      
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             for (int i = 0; i < comboBox3.Items.Count; i++)
             {
                 textBox1.Text += comboBox3.Items[i].ToString() + "\r\n";
+            }
+        }
+
+        public void creatVcf()
+
+        {
+           
+                string text = method.GetTimeStamp() + ".vcf";
+                if (File.Exists(text))
+                {
+                    if (MessageBox.Show("“" + text + "”已经存在，是否删除它？", "确认", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                    File.Delete(text);
+                }
+                UTF8Encoding encoding = new UTF8Encoding(false);
+                StreamWriter streamWriter = new StreamWriter(text, false, encoding);
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    string name = listView1.Items[i].SubItems[1].Text.Trim();
+                    string tel = listView1.Items[i].SubItems[2].Text.Trim();
+                    if (name != "" && tel != "")
+                    {
+                        streamWriter.WriteLine("BEGIN:VCARD");
+                        streamWriter.WriteLine("VERSION:3.0");
+
+                        streamWriter.WriteLine("N;CHARSET=UTF-8:" + name);
+                        streamWriter.WriteLine("FN;CHARSET=UTF-8:" + name);
+
+                        streamWriter.WriteLine("TEL;TYPE=CELL:" + tel);
+
+
+
+                        streamWriter.WriteLine("END:VCARD");
+
+                    }
+                }
+                streamWriter.Flush();
+                streamWriter.Close();
+                MessageBox.Show("生成成功！文件名是：" + text);
+            
+
+
+        }
+
+        Thread thread1;
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (thread1 == null || !thread1.IsAlive)
+            {
+                Thread thread1 = new Thread(creatVcf);
+                thread1.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
     }

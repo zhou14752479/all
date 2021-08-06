@@ -64,15 +64,16 @@ namespace 地图营销
         public void getall()
         {
             listView1.Items.Clear();
-            string html = method.GetUrl("http://116.62.170.108:8080/api/mt/getall.html", "utf-8");
-            MatchCollection ids = Regex.Matches(html, @"""id"":([\s\S]*?),");
-            MatchCollection usernames = Regex.Matches(html, @"""username"": ""([\s\S]*?)""");
-            MatchCollection passwords = Regex.Matches(html, @"""password"": ""([\s\S]*?)""");
-            MatchCollection times = Regex.Matches(html, @"""registertime"": ""([\s\S]*?)""");
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=getall", "utf-8");
+           
+            MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
+            MatchCollection usernames = Regex.Matches(html, @"""username"":""([\s\S]*?)""");
+            MatchCollection passwords = Regex.Matches(html, @"""password"":""([\s\S]*?)""");
+            MatchCollection times = Regex.Matches(html, @"""viptime"":""([\s\S]*?)""");
             for (int i = 0; i < ids.Count; i++)
             {
                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                lv1.SubItems.Add(ids[i].Groups[1].Value);
+                //lv1.SubItems.Add(ids[i].Groups[1].Value);
                 lv1.SubItems.Add(usernames[i].Groups[1].Value);
                 lv1.SubItems.Add(passwords[i].Groups[1].Value);
                 lv1.SubItems.Add(times[i].Groups[1].Value);
@@ -88,8 +89,8 @@ namespace 地图营销
                 MessageBox.Show("请输入账号和密码");
                 return;
             }
-            string html = method.GetUrl("http://116.62.170.108:8080/api/mt/register.html?username="+user_txt.Text.Trim() + "&password="+pass_txt.Text.Trim()+"&code=1&", "utf-8");
-            MessageBox.Show(html);
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username="+user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+numericUpDown1.Value, "utf-8");
+            MessageBox.Show(html.Trim());
             user_txt.Text = "";
             pass_txt.Text= "";
 
@@ -101,10 +102,10 @@ namespace 地图营销
             
             for (int i = 0; i < listView1.CheckedItems.Count; i++)
             {
-                string url = "http://116.62.170.108:8080/api/mt/del.html?userid=" + listView1.CheckedItems[i].SubItems[1].Text.Trim() + "&";
+                string url = "http://www.acaiji.com/shangxueba/shangxueba.php?method=del&username="+ listView1.CheckedItems[i].SubItems[1].Text.Trim();
                 string html = method.GetUrl(url, "utf-8");
               
-                MessageBox.Show(html);
+                MessageBox.Show(html.Trim());
             }
 
 

@@ -82,7 +82,7 @@ namespace 货币价格监控
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+               ex.ToString();
 
             }
             return "";
@@ -156,7 +156,7 @@ namespace 货币价格监控
                     if ((huobi - binance) > Convert.ToDecimal(textBox1.Text))
                     {
                         
-                        textBox5.Text = DateTime.Now.ToString() + " : 火币的价格为" + huobi+ "....币安的价格为" + binance + "..火币高于币安" + (huobi - binance) + "\r\n";
+                        textBox5.Text += DateTime.Now.ToString() + " : 火币的价格为" + huobi+ "....币安的价格为" + binance + "..火币高于币安" + (huobi - binance) + "\r\n";
                       
                         if(playing==false)
                         {
@@ -172,7 +172,7 @@ namespace 货币价格监控
                     if ((binance - huobi) > Convert.ToDecimal(textBox2.Text))
                     {
                       
-                        textBox5.Text = DateTime.Now.ToString() + " : 火币的价格为" + huobi + "....币安的价格为" + binance + "..币安高于火币" + (binance - huobi) + "\r\n";
+                        textBox5.Text += DateTime.Now.ToString() + " : 火币的价格为" + huobi + "....币安的价格为" + binance + "..币安高于火币" + (binance - huobi) + "\r\n";
                         if (playing == false)
                         {
                             playing = true;
@@ -190,7 +190,7 @@ namespace 货币价格监控
 
             catch (Exception ex)
             {
-             MessageBox.Show(ex.ToString());
+             ex.ToString();
             }
 
             
@@ -271,6 +271,10 @@ namespace 货币价格监控
           
         }
 
-       
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            mciSendString(@"close temp_alias", null, 0, 0);
+            playing = false;
+        }
     }
 }

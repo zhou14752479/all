@@ -82,13 +82,50 @@ namespace 足球数据处理
 
                             if (text1[3].ToString().Contains("让球") || text1[3].ToString().Contains("大 / 小"))
                             {
+                                double shuiwei = Convert.ToDouble(Regex.Replace(text1[2].ToString().Replace(",", ""), "<[^>]+>", ""));
+                                if (shuiwei > 0)
+                                {
+                                    if (shuiwei < 0.7)
+                                    {
+                                        xiaoyu07 = xiaoyu07 + 1;
+                                        continue;
+
+                                    }
+
+                                    if (shuiwei > 1.2)
+                                    {
+                                        dayu12 = dayu12 + 1;
+                                        continue;
+                                    }
+                                }
+
+                                if (shuiwei < 0)
+                                {
+                                   
+
+                                    if (shuiwei > -0.7)
+                                    {
+                                        xiaoyu07 = xiaoyu07 + 1;
+                                        continue;
+                                    }
+
+                                    if (shuiwei < -1.2)
+                                    {
+                                        dayu12 = dayu12 + 1;
+                                        continue;
+                                    }
+                                }
+
+
+
+
                                 bishu = bishu + 1;
                                 double danbijine = Convert.ToDouble(Regex.Replace(text1[5].ToString().Replace(",", ""), "<[^>]+>", ""));
                                 zongjine = zongjine + danbijine;  //计算总金额
                                 if (text1[6].ToString().Contains(".")) //计算赢输
                                 {
                                     double danbiyingshu = Convert.ToDouble(Regex.Replace(text1[6].ToString().Replace(",", ""), "<[^>]+>", ""));
-                                    double shuiwei = Convert.ToDouble(Regex.Replace(text1[2].ToString().Replace(",", ""), "<[^>]+>", ""));
+                                   
 
                                     yingshu =yingshu+ danbiyingshu;
                                     yingshubi = yingshu / zongjine;
@@ -118,30 +155,14 @@ namespace 足球数据处理
                                     if (shuiwei > 0)
                                     {
                                         zongshuiwei = zongshuiwei + shuiwei;
-                                        if (shuiwei < 0.7)
-                                        {
-                                            xiaoyu07 = xiaoyu07 + 1;
-                                        }
-
-                                        if (shuiwei > 1.2)
-                                        {
-                                            dayu12 = dayu12 + 1;
-                                        }
+                                      
                                     }
 
                                     if (shuiwei < 0)
                                     {
                                         zongshuiwei = zongshuiwei - shuiwei;
 
-                                        if (shuiwei > -0.7)
-                                        {
-                                            xiaoyu07 = xiaoyu07 + 1;
-                                        }
-
-                                        if (shuiwei < -1.2)
-                                        {
-                                            dayu12 = dayu12 + 1;
-                                        }
+                                       
                                     }
 
                                    

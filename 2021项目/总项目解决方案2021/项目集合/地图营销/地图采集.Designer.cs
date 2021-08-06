@@ -38,11 +38,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.infolabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label19 = new System.Windows.Forms.Label();
             this.login_btn = new System.Windows.Forms.Button();
-            this.recommand_text = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.register_btn = new System.Windows.Forms.Button();
             this.pass_text = new System.Windows.Forms.TextBox();
             this.user_text = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -63,6 +59,8 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -85,11 +83,13 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -218,11 +218,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.login_btn);
-            this.tabPage3.Controls.Add(this.recommand_text);
-            this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.register_btn);
             this.tabPage3.Controls.Add(this.pass_text);
             this.tabPage3.Controls.Add(this.user_text);
             this.tabPage3.Controls.Add(this.label10);
@@ -233,53 +229,15 @@
             this.tabPage3.Size = new System.Drawing.Size(1046, 549);
             this.tabPage3.TabIndex = 2;
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.Gray;
-            this.label19.Location = new System.Drawing.Point(415, 222);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 12);
-            this.label19.TabIndex = 12;
-            this.label19.Text = "(选填)";
-            // 
             // login_btn
             // 
-            this.login_btn.Location = new System.Drawing.Point(476, 236);
+            this.login_btn.Location = new System.Drawing.Point(476, 208);
             this.login_btn.Name = "login_btn";
             this.login_btn.Size = new System.Drawing.Size(159, 29);
             this.login_btn.TabIndex = 9;
             this.login_btn.Text = "登录账号";
             this.login_btn.UseVisualStyleBackColor = true;
             this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
-            // 
-            // recommand_text
-            // 
-            this.recommand_text.Location = new System.Drawing.Point(476, 192);
-            this.recommand_text.Name = "recommand_text";
-            this.recommand_text.PasswordChar = '*';
-            this.recommand_text.Size = new System.Drawing.Size(159, 21);
-            this.recommand_text.TabIndex = 11;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("宋体", 12F);
-            this.label18.Location = new System.Drawing.Point(382, 197);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(88, 16);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "推荐人ID：";
-            // 
-            // register_btn
-            // 
-            this.register_btn.Location = new System.Drawing.Point(476, 271);
-            this.register_btn.Name = "register_btn";
-            this.register_btn.Size = new System.Drawing.Size(159, 29);
-            this.register_btn.TabIndex = 9;
-            this.register_btn.Text = "注册账号";
-            this.register_btn.UseVisualStyleBackColor = true;
-            this.register_btn.Click += new System.EventHandler(this.register_btn_Click);
             // 
             // pass_text
             // 
@@ -498,12 +456,35 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.linkLabel2);
+            this.groupBox1.Controls.Add(this.checkBox7);
+            this.groupBox1.Controls.Add(this.checkBox6);
             this.groupBox1.Location = new System.Drawing.Point(486, 407);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(344, 107);
             this.groupBox1.TabIndex = 126;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据筛选";
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(129, 34);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(72, 16);
+            this.checkBox7.TabIndex = 1;
+            this.checkBox7.Text = "去掉固话";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(29, 34);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(84, 16);
+            this.checkBox6.TabIndex = 0;
+            this.checkBox6.Text = "去掉无号码";
+            this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -719,6 +700,18 @@
             this.tabControl1.Size = new System.Drawing.Size(1054, 558);
             this.tabControl1.TabIndex = 1;
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("宋体", 10F);
+            this.linkLabel2.Location = new System.Drawing.Point(26, 72);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(105, 14);
+            this.linkLabel2.TabIndex = 2;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "生成通讯录文件";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
             // 地图采集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -742,6 +735,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -800,13 +795,12 @@
         private System.Windows.Forms.TextBox user_text;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button register_btn;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox recommand_text;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 
