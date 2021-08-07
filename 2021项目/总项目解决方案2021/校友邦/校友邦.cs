@@ -164,6 +164,7 @@ namespace 校友邦
                         lv1.SubItems.Add(value[0]);
                         lv1.SubItems.Add(value[1]);
                         lv1.SubItems.Add(value[2]);
+                        lv1.SubItems.Add(value[3]);
                         lv1.SubItems.Add("");
                     }
                 }
@@ -280,7 +281,7 @@ namespace 校友邦
                     string cookie = login(username,password);
                     if (cookie == "")
                     {
-                        listView1.Items[i].SubItems[4].Text = "登陆失败";
+                        listView1.Items[i].SubItems[5].Text = "登陆失败";
                         continue;
                     }
                     else
@@ -289,7 +290,49 @@ namespace 校友邦
                         string traineeid = gettraineeId(planid,cookie);
 
                       string msg=  qiandao(cookie,address, traineeid);
-                        listView1.Items[i].SubItems[4].Text = msg;
+                        listView1.Items[i].SubItems[5].Text = msg;
+
+                    }
+
+                    Thread.Sleep(1000);
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+
+
+        public void run2()
+        {
+            for (int i = 0; i < listView1.CheckedItems.Count; i++)
+            {
+                try
+                {
+                    string username = listView1.CheckedItems[i].SubItems[1].Text;
+                    string password = listView1.CheckedItems[i].SubItems[2].Text;
+                    string address = listView1.Items[i].SubItems[3].Text;
+                    string cookie = login(username, password);
+                    if (cookie == "")
+                    {
+                        listView1.Items[i].SubItems[5].Text = "登陆失败";
+                        continue;
+                    }
+                    else
+                    {
+                        string planid = getplanid(cookie);
+                        string traineeid = gettraineeId(planid, cookie);
+
+                        string msg = chongxinqiandao(cookie, address, traineeid);
+                        listView1.Items[i].SubItems[5].Text = msg;
 
                     }
 
@@ -312,6 +355,18 @@ namespace 校友邦
         bool zanting = true;
         private void button2_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+
+            string html = method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"QXTAe"))
+            {
+
+                return;
+            }
+
+            #endregion
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -332,5 +387,29 @@ namespace 校友邦
                 zanting = false;
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            #region 通用检测
+
+
+            string html = method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"QXTAe"))
+            {
+
+                return;
+            }
+
+            #endregion
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run2);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+
     }
 }

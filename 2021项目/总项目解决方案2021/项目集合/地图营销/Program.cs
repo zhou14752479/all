@@ -16,7 +16,7 @@ namespace 地图营销
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 地图采集());
+            Application.Run(new 后台管理());
         }
     }
 }

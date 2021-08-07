@@ -61,6 +61,9 @@ namespace 地图营销
 
         }
 
+
+        string type = "shangxueba";
+
         public void getall()
         {
             listView1.Items.Clear();
@@ -70,13 +73,17 @@ namespace 地图营销
             MatchCollection usernames = Regex.Matches(html, @"""username"":""([\s\S]*?)""");
             MatchCollection passwords = Regex.Matches(html, @"""password"":""([\s\S]*?)""");
             MatchCollection times = Regex.Matches(html, @"""viptime"":""([\s\S]*?)""");
+            MatchCollection types = Regex.Matches(html, @"""type"":""([\s\S]*?)""");
             for (int i = 0; i < ids.Count; i++)
             {
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                //lv1.SubItems.Add(ids[i].Groups[1].Value);
-                lv1.SubItems.Add(usernames[i].Groups[1].Value);
-                lv1.SubItems.Add(passwords[i].Groups[1].Value);
-                lv1.SubItems.Add(times[i].Groups[1].Value);
+                if (types[i].Groups[1].Value == type)
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                                                                                    //lv1.SubItems.Add(ids[i].Groups[1].Value);
+                    lv1.SubItems.Add(usernames[i].Groups[1].Value);
+                    lv1.SubItems.Add(passwords[i].Groups[1].Value);
+                    lv1.SubItems.Add(times[i].Groups[1].Value);
+                }
 
             }
         }
@@ -89,7 +96,7 @@ namespace 地图营销
                 MessageBox.Show("请输入账号和密码");
                 return;
             }
-            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username="+user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+numericUpDown1.Value, "utf-8");
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username="+user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+numericUpDown1.Value+ "&type=" +type, "utf-8");
             MessageBox.Show(html.Trim());
             user_txt.Text = "";
             pass_txt.Text= "";
