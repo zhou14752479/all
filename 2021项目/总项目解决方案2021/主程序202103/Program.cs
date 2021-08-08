@@ -17,7 +17,7 @@ namespace 主程序202103
            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Trademarks());
+            Application.Run(new mtc25时时彩());
         }
     }
 }

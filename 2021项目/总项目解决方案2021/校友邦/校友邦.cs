@@ -216,6 +216,7 @@ namespace 校友邦
             return traineeId;
         }
 
+
         public string qiandao(string cookie, string address, string traineeId)
         {
             address = System.Web.HttpUtility.UrlEncode(address);
@@ -223,11 +224,12 @@ namespace 校友邦
             string baidumapHtml = method.GetUrl(baidumapUrl, "utf-8");
             string lat = Regex.Match(baidumapHtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
             string lng = Regex.Match(baidumapHtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
-
+            lat = Math.Round(Convert.ToDouble(lat), 5).ToString();
+            lng = Math.Round(Convert.ToDouble(lng), 5).ToString();
 
 
             string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
-            string postdata = "traineeId=" + traineeId + "&adcode=640104&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus=2";
+            string postdata = "traineeId=" + traineeId + "&adcode=640104&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
             
             string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
 
@@ -251,10 +253,11 @@ namespace 校友邦
             string lat = Regex.Match(baidumapHtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
             string lng = Regex.Match(baidumapHtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
 
+            lat = Math.Round(Convert.ToDouble(lat), 5).ToString();
+            lng = Math.Round(Convert.ToDouble(lng), 5).ToString();
 
-           
             string url = "https://xcx.xybsyw.com/student/clock/Post!updateClock.action";
-            string postdata = "traineeId="+ traineeId + "&adcode=640104&lat=" + lat+"&lng="+lng+"&address="+address+"&deviceName=microsoft&punchInStatus=0&clockStatus=2";
+            string postdata = "traineeId="+ traineeId + "&adcode=640104&lat=" + lat+"&lng="+lng+"&address="+address+"&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
            
             string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
           
@@ -269,15 +272,22 @@ namespace 校友邦
             }
         }
 
+
+
         public void run()
         {
-            for (int i = 0; i < listView1.Items.Count; i++)
+            if (listView1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("请勾选需要签到的数据行");
+                return;
+            }
+            for (int i = 0; i < listView1.CheckedItems.Count; i++)
             {
                 try
                 {
-                    string username = listView1.Items[i].SubItems[1].Text;
-                    string password = listView1.Items[i].SubItems[2].Text;
-                    string address = listView1.Items[i].SubItems[3].Text;
+                    string username = listView1.CheckedItems[i].SubItems[1].Text;
+                    string password = listView1.CheckedItems[i].SubItems[2].Text;
+                    string address = listView1.CheckedItems[i].SubItems[3].Text;
                     string cookie = login(username,password);
                     if (cookie == "")
                     {
@@ -290,7 +300,7 @@ namespace 校友邦
                         string traineeid = gettraineeId(planid,cookie);
 
                       string msg=  qiandao(cookie,address, traineeid);
-                        listView1.Items[i].SubItems[5].Text = msg;
+                        listView1.CheckedItems[i].SubItems[5].Text = msg;
 
                     }
 
@@ -311,15 +321,20 @@ namespace 校友邦
 
 
 
-        public void run2()
+        public void chongxin_run()
         {
+            if (listView1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("请勾选需要签到的数据行");
+                return;
+            }
             for (int i = 0; i < listView1.CheckedItems.Count; i++)
             {
                 try
                 {
                     string username = listView1.CheckedItems[i].SubItems[1].Text;
                     string password = listView1.CheckedItems[i].SubItems[2].Text;
-                    string address = listView1.Items[i].SubItems[3].Text;
+                    string address = listView1.CheckedItems[i].SubItems[3].Text;
                     string cookie = login(username, password);
                     if (cookie == "")
                     {
@@ -332,7 +347,7 @@ namespace 校友邦
                         string traineeid = gettraineeId(planid, cookie);
 
                         string msg = chongxinqiandao(cookie, address, traineeid);
-                        listView1.Items[i].SubItems[5].Text = msg;
+                        listView1.CheckedItems[i].SubItems[5].Text = msg;
 
                     }
 
@@ -350,6 +365,9 @@ namespace 校友邦
                 }
             }
         }
+
+
+       
 
         Thread thread;
         bool zanting = true;
@@ -367,6 +385,7 @@ namespace 校友邦
             }
 
             #endregion
+            status = "2";
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -402,14 +421,52 @@ namespace 校友邦
             }
 
             #endregion
+            status = "2";
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run2);
+                thread = new Thread(chongxin_run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            status = "1";
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
 
+        string status = "2";
+        private void button6_Click(object sender, EventArgs e)
+        {
+            status = "1";
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(chongxin_run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = true;
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = false;
+            }
+        }
     }
 }

@@ -42,7 +42,10 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +59,10 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader8});
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("宋体", 10F);
             this.listView1.FullRowSelect = true;
@@ -64,7 +70,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 137);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(654, 305);
+            this.listView1.Size = new System.Drawing.Size(695, 433);
             this.listView1.TabIndex = 206;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -77,16 +83,16 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "开奖时间";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "号码";
-            this.columnHeader3.Width = 300;
+            this.columnHeader3.Text = "期数";
+            this.columnHeader3.Width = 100;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(333, 73);
+            this.button5.Location = new System.Drawing.Point(333, 57);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(122, 30);
             this.button5.TabIndex = 207;
@@ -96,7 +102,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(461, 73);
+            this.button4.Location = new System.Drawing.Point(461, 57);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(107, 30);
             this.button4.TabIndex = 206;
@@ -106,7 +112,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(461, 35);
+            this.button2.Location = new System.Drawing.Point(461, 19);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 32);
             this.button2.TabIndex = 205;
@@ -127,7 +133,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(654, 137);
+            this.panel1.Size = new System.Drawing.Size(695, 137);
             this.panel1.TabIndex = 205;
             // 
             // dateTimePicker2
@@ -138,7 +144,7 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(139, 23);
             this.dateTimePicker2.TabIndex = 211;
-            this.dateTimePicker2.Value = new System.DateTime(2021, 3, 9, 0, 0, 0, 0);
+            this.dateTimePicker2.Value = new System.DateTime(2021, 8, 8, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -158,7 +164,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(139, 23);
             this.dateTimePicker1.TabIndex = 209;
-            this.dateTimePicker1.Value = new System.DateTime(2020, 3, 9, 12, 45, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2021, 8, 7, 12, 45, 0, 0);
             // 
             // label1
             // 
@@ -172,7 +178,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(333, 35);
+            this.button1.Location = new System.Drawing.Point(333, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 32);
             this.button1.TabIndex = 204;
@@ -180,21 +186,33 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // columnHeader8
+            // columnHeader4
             // 
-            this.columnHeader8.Text = "总和";
-            this.columnHeader8.Width = 100;
+            this.columnHeader4.Text = "号码";
+            this.columnHeader4.Width = 200;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "总和";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "大小";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "单双";
             // 
             // mtc25时时彩
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 442);
+            this.ClientSize = new System.Drawing.Size(695, 570);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Name = "mtc25时时彩";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "mtc25幸运快乐8";
+            this.Text = "比特币1分";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mtc25时时彩_FormClosing);
             this.Load += new System.EventHandler(this.mtc25时时彩_Load);
             this.panel1.ResumeLayout(false);
@@ -218,6 +236,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

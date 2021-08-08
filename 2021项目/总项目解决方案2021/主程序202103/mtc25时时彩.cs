@@ -317,6 +317,84 @@ namespace 主程序202103
         }
 
         #endregion
+
+
+        #region 比特币一分
+        public void btc1()
+        {
+
+
+            for (DateTime dt = dateTimePicker1.Value; dt < dateTimePicker2.Value; dt = dt.AddDays(1))
+            {
+
+
+                string url = "https://api.365kaik.com/api/v1/trend/getHistoryList?t=1628381966&lotCode=10035&date="+ dt.ToString("yyyy-MM-dd")+"&pageSize=2000&pageNum=0";
+
+                string html = GetUrl(url, "utf-8");
+
+                MatchCollection times = Regex.Matches(html, @"""drawTime"":""([\s\S]*?)""");
+                MatchCollection qishus = Regex.Matches(html, @"""drawIssue"":""([\s\S]*?)""");
+                MatchCollection values = Regex.Matches(html, @"""drawCode"":""([\s\S]*?)""");
+
+                for (int j = 0; j < times.Count; j++)
+                {
+                    string[] text = values[j].Groups[1].Value.Split(new string[] { "," }, StringSplitOptions.None);
+                    int total = 0;
+                    string daxiao = "小";
+                    string danshuang = "双";
+                    foreach (string item in text)
+                    {
+                        total = total + Convert.ToInt32(item);
+                    }
+                    if (total > 22)
+                    {
+                        daxiao = "大";
+                    }
+                   
+
+                    if (total % 2 == 1)
+                    {
+                        danshuang = "单";
+                    }
+
+                    try
+                    {
+                      
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(times[j].Groups[1].Value);
+                        lv1.SubItems.Add(qishus[j].Groups[1].Value);
+                        lv1.SubItems.Add(values[j].Groups[1].Value);
+                        lv1.SubItems.Add(total.ToString());
+                        lv1.SubItems.Add(daxiao);
+                        lv1.SubItems.Add(danshuang);
+
+
+                        if (listView1.Items.Count > 2)
+                        {
+                            this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                        }
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+
+
+                }
+                Thread.Sleep(2000);
+            }
+
+        }
+
+        #endregion
         private void button4_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
@@ -349,23 +427,11 @@ namespace 主程序202103
 
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"QUpuM7"))
-            {
-                MessageBox.Show("");
-                return;
-            }
-
-
-
-            #endregion
+            
 
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(xingyunkuaile8);
+                thread = new Thread(btc1);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

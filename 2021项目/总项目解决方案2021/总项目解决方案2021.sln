@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "校友邦", "校友邦\校�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "智能营销系统", "智能营销系统\智能营销系统.csproj", "{9C8931A7-F2B4-4FB3-A2B0-545BC35B1480}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "临时数据抓取", "项目集合\临时数据抓取\临时数据抓取.csproj", "{CCB7139D-0A15-4318-AF69-867295E66A57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{9C8931A7-F2B4-4FB3-A2B0-545BC35B1480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C8931A7-F2B4-4FB3-A2B0-545BC35B1480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C8931A7-F2B4-4FB3-A2B0-545BC35B1480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB7139D-0A15-4318-AF69-867295E66A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB7139D-0A15-4318-AF69-867295E66A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB7139D-0A15-4318-AF69-867295E66A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB7139D-0A15-4318-AF69-867295E66A57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
