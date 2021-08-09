@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.add_btn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,14 +39,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.result_text = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.add_btn = new System.Windows.Forms.Button();
             this.body_text = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.title_text = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -77,16 +77,26 @@
             this.splitContainer1.SplitterDistance = 375;
             this.splitContainer1.TabIndex = 0;
             // 
-            // add_btn
+            // button2
             // 
-            this.add_btn.Font = new System.Drawing.Font("宋体", 10F);
-            this.add_btn.Location = new System.Drawing.Point(9, 388);
-            this.add_btn.Name = "add_btn";
-            this.add_btn.Size = new System.Drawing.Size(91, 36);
-            this.add_btn.TabIndex = 340;
-            this.add_btn.Text = "添加";
-            this.add_btn.UseVisualStyleBackColor = true;
-            this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
+            this.button2.Font = new System.Drawing.Font("宋体", 10F);
+            this.button2.Location = new System.Drawing.Point(161, 114);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 31);
+            this.button2.TabIndex = 341;
+            this.button2.Text = "删除";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("宋体", 10F);
+            this.button1.Location = new System.Drawing.Point(65, 114);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 31);
+            this.button1.TabIndex = 340;
+            this.button1.Text = "修改";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // listView1
             // 
@@ -166,6 +176,16 @@
             this.tabPage1.Text = "---代码预览--- ";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // result_text
+            // 
+            this.result_text.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.result_text.Font = new System.Drawing.Font("宋体", 11F);
+            this.result_text.Location = new System.Drawing.Point(3, 3);
+            this.result_text.Multiline = true;
+            this.result_text.Name = "result_text";
+            this.result_text.Size = new System.Drawing.Size(584, 516);
+            this.result_text.TabIndex = 5;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.add_btn);
@@ -181,15 +201,16 @@
             this.tabPage2.Text = "---添加代码--- ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // result_text
+            // add_btn
             // 
-            this.result_text.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.result_text.Font = new System.Drawing.Font("宋体", 11F);
-            this.result_text.Location = new System.Drawing.Point(3, 3);
-            this.result_text.Multiline = true;
-            this.result_text.Name = "result_text";
-            this.result_text.Size = new System.Drawing.Size(584, 516);
-            this.result_text.TabIndex = 5;
+            this.add_btn.Font = new System.Drawing.Font("宋体", 10F);
+            this.add_btn.Location = new System.Drawing.Point(9, 388);
+            this.add_btn.Name = "add_btn";
+            this.add_btn.Size = new System.Drawing.Size(91, 36);
+            this.add_btn.TabIndex = 340;
+            this.add_btn.Text = "添加";
+            this.add_btn.UseVisualStyleBackColor = true;
+            this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
             // 
             // body_text
             // 
@@ -226,26 +247,6 @@
             this.label3.Size = new System.Drawing.Size(49, 14);
             this.label3.TabIndex = 5;
             this.label3.Text = "标题：";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("宋体", 10F);
-            this.button1.Location = new System.Drawing.Point(65, 114);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 31);
-            this.button1.TabIndex = 340;
-            this.button1.Text = "修改";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("宋体", 10F);
-            this.button2.Location = new System.Drawing.Point(161, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 31);
-            this.button2.TabIndex = 341;
-            this.button2.Text = "删除";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // 常用代码查询
             // 

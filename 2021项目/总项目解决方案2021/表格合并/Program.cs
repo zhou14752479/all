@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202104
+namespace 表格合并
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202104
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 数据处理excel());
+            Application.Run(new 表格合并());
         }
     }
 }

@@ -47,6 +47,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "智能营销系统", "智�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "临时数据抓取", "项目集合\临时数据抓取\临时数据抓取.csproj", "{CCB7139D-0A15-4318-AF69-867295E66A57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百姓二手车", "项目集合\百姓二手车\百姓二手车.csproj", "{B915F3EC-DD85-41E0-97AB-5653D3D8A762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "表格合并", "表格合并\表格合并.csproj", "{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +145,14 @@ Global
 		{CCB7139D-0A15-4318-AF69-867295E66A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCB7139D-0A15-4318-AF69-867295E66A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCB7139D-0A15-4318-AF69-867295E66A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

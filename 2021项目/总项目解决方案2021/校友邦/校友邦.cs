@@ -165,11 +165,27 @@ namespace 校友邦
                         lv1.SubItems.Add(value[1]);
                         lv1.SubItems.Add(value[2]);
                         lv1.SubItems.Add(value[3]);
+                        lv1.SubItems.Add(value[4]);
+                     
                         lv1.SubItems.Add("");
                     }
                 }
                 sr.Close();  //只关闭流
                 sr.Dispose();   //销毁流内存
+            }
+
+
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                TimeSpan t = Convert.ToDateTime(listView1.Items[i].SubItems[5].Text)-DateTime.Now;
+                if (t.Days >= 3)
+                {
+                    listView1.Items[i].BackColor = Color.Green;
+                }
+                else
+                {
+                    listView1.Items[i].BackColor = Color.Red;
+                }
             }
         }
 
@@ -192,7 +208,23 @@ namespace 校友邦
             }
         }
 
+        //public string Duration()
+        //{
+        //    password = method.GetMD5(password);
+        //    string url = "https://xcx.xybsyw.com/login/login.action";
+        //    string postdata = "username=" + username + "&password=" + password + "&openId=ooru94lH0MDBlYKT4dUwpEkRyAWQ&deviceId=";
+        //    string html = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded", "");
 
+        //    string sessionId = Regex.Match(html, @"""sessionId"":""([\s\S]*?)""").Groups[1].Value;
+        //    if (sessionId != "")
+        //    {
+        //        return "JSESSIONID=" + sessionId + ";";
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
 
         public string getplanid(string cookie)
         {
@@ -217,15 +249,26 @@ namespace 校友邦
         }
 
 
-        public string qiandao(string cookie, string address, string traineeId)
+        public string qiandao(string cookie,string addr, string traineeId)
         {
-            address = System.Web.HttpUtility.UrlEncode(address);
-            string baidumapUrl = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
-            string baidumapHtml = method.GetUrl(baidumapUrl, "utf-8");
-            string lat = Regex.Match(baidumapHtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
-            string lng = Regex.Match(baidumapHtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
-            lat = Math.Round(Convert.ToDouble(lat), 5).ToString();
-            lng = Math.Round(Convert.ToDouble(lng), 5).ToString();
+
+            string aurl = "https://xcx.xybsyw.com/student/clock/GetPlan!detail.action";
+            string apostdata = "traineeId=" + traineeId;
+            string aHtml = method.PostUrl(aurl, apostdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+            string address = Regex.Match(aHtml, @"""address"":""([\s\S]*?)""").Groups[1].Value.Trim();
+            string lat = Regex.Match(aHtml, @"""lat"":([\s\S]*?),").Groups[1].Value.Trim();
+            string lng = Regex.Match(aHtml, @"""lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+            if (address.Trim() == "")
+            {
+                address = System.Web.HttpUtility.UrlEncode(addr);
+                string baiduurl = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
+                string baiduhtml = method.GetUrl(baiduurl, "utf-8");
+                lat = Regex.Match(baiduhtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
+                lng = Regex.Match(baiduhtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+              
+            }
 
 
             string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
@@ -245,16 +288,30 @@ namespace 校友邦
         }
 
 
-        public string chongxinqiandao(string cookie, string address,string traineeId)
+        public string chongxinqiandao(string cookie, string addr, string traineeId)
         {
-            address = System.Web.HttpUtility.UrlEncode(address);
-            string baidumapUrl = "https://api.map.baidu.com/geocoding/v3/?address="+address+"&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
-            string baidumapHtml = method.GetUrl(baidumapUrl,"utf-8");
-            string lat = Regex.Match(baidumapHtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
-            string lng = Regex.Match(baidumapHtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
+            string aurl = "https://xcx.xybsyw.com/student/clock/GetPlan!detail.action";
+            string apostdata = "traineeId=" + traineeId;
+            string aHtml = method.PostUrl(aurl, apostdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+            string address = Regex.Match(aHtml, @"""address"":""([\s\S]*?)""").Groups[1].Value.Trim();
+            string lat = Regex.Match(aHtml, @"""lat"":([\s\S]*?),").Groups[1].Value.Trim();
+            string lng = Regex.Match(aHtml, @"""lng"":([\s\S]*?),").Groups[1].Value.Trim();
+         
+            if (address.Trim() == "")
+            {
+                address = System.Web.HttpUtility.UrlEncode(addr);
+                string baiduurl = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
+                string baiduhtml = method.GetUrl(baiduurl, "utf-8");
+                lat = Regex.Match(baiduhtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
+                lng = Regex.Match(baiduhtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
+               
+               
+            }
+           
+         
 
-            lat = Math.Round(Convert.ToDouble(lat), 5).ToString();
-            lng = Math.Round(Convert.ToDouble(lng), 5).ToString();
+          
+
 
             string url = "https://xcx.xybsyw.com/student/clock/Post!updateClock.action";
             string postdata = "traineeId="+ traineeId + "&adcode=640104&lat=" + lat+"&lng="+lng+"&address="+address+"&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
@@ -287,11 +344,12 @@ namespace 校友邦
                 {
                     string username = listView1.CheckedItems[i].SubItems[1].Text;
                     string password = listView1.CheckedItems[i].SubItems[2].Text;
-                    string address = listView1.CheckedItems[i].SubItems[3].Text;
+                    string address= listView1.CheckedItems[i].SubItems[3].Text;
+
                     string cookie = login(username,password);
                     if (cookie == "")
                     {
-                        listView1.Items[i].SubItems[5].Text = "登陆失败";
+                        listView1.Items[i].SubItems[6].Text = "登陆失败";
                         continue;
                     }
                     else
@@ -299,8 +357,8 @@ namespace 校友邦
                         string planid = getplanid(cookie);
                         string traineeid = gettraineeId(planid,cookie);
 
-                      string msg=  qiandao(cookie,address, traineeid);
-                        listView1.CheckedItems[i].SubItems[5].Text = msg;
+                      string msg=  qiandao(cookie, address, traineeid);
+                        listView1.CheckedItems[i].SubItems[6].Text = msg;
 
                     }
 
@@ -338,7 +396,7 @@ namespace 校友邦
                     string cookie = login(username, password);
                     if (cookie == "")
                     {
-                        listView1.Items[i].SubItems[5].Text = "登陆失败";
+                        listView1.Items[i].SubItems[6].Text = "登陆失败";
                         continue;
                     }
                     else
@@ -346,8 +404,8 @@ namespace 校友邦
                         string planid = getplanid(cookie);
                         string traineeid = gettraineeId(planid, cookie);
 
-                        string msg = chongxinqiandao(cookie, address, traineeid);
-                        listView1.CheckedItems[i].SubItems[5].Text = msg;
+                        string msg = chongxinqiandao(cookie, address,traineeid);
+                        listView1.CheckedItems[i].SubItems[6].Text = msg;
 
                     }
 

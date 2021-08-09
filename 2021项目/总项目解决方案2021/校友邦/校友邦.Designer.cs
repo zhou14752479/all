@@ -33,7 +33,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
@@ -45,6 +44,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button1
@@ -64,11 +65,13 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader4,
+            this.columnHeader7});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.listView1.Font = new System.Drawing.Font("宋体", 11F);
+            this.listView1.Font = new System.Drawing.Font("宋体", 10F);
+            this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
@@ -92,21 +95,16 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "密码";
-            this.columnHeader3.Width = 100;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "地址";
-            this.columnHeader4.Width = 200;
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "时间";
-            this.columnHeader5.Width = 100;
+            this.columnHeader5.Text = "地址";
+            this.columnHeader5.Width = 200;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "结果";
+            this.columnHeader6.Text = "次数";
             this.columnHeader6.Width = 100;
             // 
             // button2
@@ -201,6 +199,16 @@
             this.linkLabel2.Text = "全不选";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "时间";
+            this.columnHeader4.Width = 100;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "结果";
+            this.columnHeader7.Width = 100;
+            // 
             // 校友邦
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -233,7 +241,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
@@ -245,5 +252,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

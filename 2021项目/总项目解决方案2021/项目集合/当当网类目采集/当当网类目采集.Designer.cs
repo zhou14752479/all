@@ -38,7 +38,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,7 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // columnHeader5
@@ -97,20 +96,20 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader9,
             this.columnHeader10,
             this.columnHeader11,
             this.columnHeader12,
             this.columnHeader13,
             this.columnHeader14,
-            this.columnHeader15});
+            this.columnHeader15,
+            this.columnHeader16});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 129);
+            this.listView1.Location = new System.Drawing.Point(0, 141);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1208, 503);
+            this.listView1.Size = new System.Drawing.Size(1275, 507);
             this.listView1.TabIndex = 86;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -131,13 +130,8 @@
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "活动时间";
-            this.columnHeader8.Width = 100;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "活动内容";
-            this.columnHeader9.Width = 100;
+            this.columnHeader8.Text = "活动时间内容";
+            this.columnHeader8.Width = 150;
             // 
             // columnHeader10
             // 
@@ -220,8 +214,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(812, 21);
             this.textBox1.TabIndex = 395;
-            this.textBox1.Text = "http://category.dangdang.com/cp01.25.01.00.00.00-f0%7C0%7C1%7C0%7C0%7C1%7C0%7C0%7" +
-    "C0%7C0%7C0%7C0%7C0%7C0%7C0-lp200-hp.html";
+            this.textBox1.Text = "http://category.dangdang.com/cp01.43.00.00.00.00-f0%7C0%7C1%7C0%7C0%7C1%7C0%7C0%7" +
+    "C0%7C0%7C0%7C0%7C0%7C0%7C0-lp30-hp35.html";
             // 
             // label1
             // 
@@ -241,6 +235,7 @@
             this.button6.TabIndex = 397;
             this.button6.Text = "点击登录";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
@@ -253,21 +248,15 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // label3
+            // columnHeader16
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(907, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(257, 12);
-            this.label3.TabIndex = 399;
-            this.label3.Text = "登录成功后，点击【继续】按钮，程序继续执行";
+            this.columnHeader16.Text = "备注";
             // 
             // 当当网类目采集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1208, 632);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(1275, 648);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label1);
@@ -307,7 +296,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
@@ -317,6 +305,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
     }
 }

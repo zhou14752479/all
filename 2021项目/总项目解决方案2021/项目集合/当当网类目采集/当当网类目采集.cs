@@ -50,16 +50,20 @@ namespace 当当网类目采集
             
             double price = Convert.ToDouble(saleprice);
            
-            if (huodong != "")
+            if (huodong != "" && !huodong.Contains("\""))
             {
-                string man = Regex.Match(huodong, @"满([\s\S]*?)元").Groups[1].Value;
+                string man = Regex.Match(huodong, @"满([\s\S]*?)减").Groups[1].Value;
                 string jian = Regex.Match(huodong, @"减([\s\S]*?)元").Groups[1].Value;
-                if (Convert.ToDouble(saleprice) > Convert.ToDouble(man))
+              
+                if (Convert.ToDouble(saleprice) > Convert.ToDouble(man) || Convert.ToDouble(saleprice)>=50)
                 {
                     double count = Math.Floor(Convert.ToDouble(saleprice) / Convert.ToDouble(man));
-                    if (Convert.ToDouble(saleprice) % 100 >= 50)
+                    double yushu = Convert.ToDouble(saleprice) % 100;
+                    if (yushu >= 50)
                     {
-                        price = Math.Ceiling(price);
+
+                       
+                        price = Math.Ceiling(price)+(100 - Math.Ceiling(yushu));
                          count = count + 1;
                     }
 
@@ -87,22 +91,20 @@ namespace 当当网类目采集
                 }
             }
 
-            if (price < 49)
-            {
-                price =price + 6;
-            }
+          
 
             return price;
 
            }
 
+        /// <summary>
+        /// APP端
+        /// </summary>
         public void run()
         {
             try
             {
-                string hdhtml = method.GetUrl("http://promo.dangdang.com/6476132", "gb2312");
-                string huodong = Regex.Match(hdhtml, "<h1>([\\s\\S]*?)</h1>").Groups[1].Value.Trim();
-                string huodongtime = Regex.Match(hdhtml, "活动时间：([\\s\\S]*?)<").Groups[1].Value.Trim();
+            
                 for (int i = 1; i < 101; i++)
                 {
                     string url = this.textBox1.Text.Replace("cp", "pg" + i + "-cp");
@@ -114,9 +116,10 @@ namespace 当当网类目采集
                         MessageBox.Show("完成");
                         break;
                     }
-                    int j = 0;
-                    while (j < uids.Count)
+                    
+                    for (int j= 0; j < uids.Count; j++)
                     {
+                      
                         try
                         {
                             string uid = uids[j].Groups[1].Value;
@@ -134,52 +137,101 @@ namespace 当当网类目采集
                             {
                                 cate.Append(cates[x].Groups[1].Value + " ");
                             }
-                            bool flag2 = title == "";
-                            if (flag2)
-                            {
-                                MessageBox.Show("");
-                            }
                             this.label1.Text = "开始采集" + isbn;
-                            Thread.Sleep(500);
-                            string quanhtml = this.geturl("http://product.dangdang.com/index.php?r=callback%2Fproduct-info&productId=" + uid + "&isCatalog=0&shopId=0&productType=0");
-                            MatchCollection activityUrl = Regex.Matches(quanhtml, "\"activityUrl\":\"([\\s\\S]*?)\"");
-                            MatchCollection man = Regex.Matches(quanhtml, "\"couponMinUseValue\":\"([\\s\\S]*?)\"");
-                            MatchCollection jian = Regex.Matches(quanhtml, "\"couponValue\":\"([\\s\\S]*?)\"");
+                          
+                           
+
+                            //活动开始
+                            MatchCollection man = Regex.Matches(method.Unicode2String(ahtml), @"""promotion_name"":""([\s\S]*?)满([\s\S]*?)减([\s\S]*?)""");
+                            MatchCollection huodong = Regex.Matches(method.Unicode2String(ahtml), @"""promotion_name"":""([\s\S]*?)""");
+
                             StringBuilder sb = new StringBuilder();
-                            for (int a = 0; a < man.Count; a++)
+                            for (int a = 0; a < huodong.Count; a++)
                             {
-                                sb.Append(string.Concat(new string[]
-                                {
-                                    "满",
-                                    man[a].Groups[1].Value,
-                                    "减",
-                                    jian[a].Groups[1].Value,
-                                    "元"
-                                }));
+                                sb.Append(huodong[a].Groups[1].Value+"\r\n");
                             }
-                            string huodongtime2 = "";
-                            string huodong2 = "";
-                            string quan = sb.ToString();
-                            bool flag3 = activityUrl.Count > 0;
-                            if (flag3)
+
+                            string huodongall = sb.ToString();
+                            string huodongyige ="" ;
+
+                            if (man.Count > 0)
                             {
-                                huodongtime2 = huodongtime;
-                                huodong2 = huodong;
+                                huodongyige = "满" + man[0].Groups[2].Value + "减" + man[0].Groups[3].Value + "元";
+
                             }
+                            //活动结束
+
+
+
+                            //券开始
+                            MatchCollection quanman = Regex.Matches(method.Unicode2String(ahtml), @"""coupon_label"":""([\s\S]*?)减([\s\S]*?)""");
+                        
+                            StringBuilder quansb = new StringBuilder();
+                            for (int a = 0; a < quanman.Count; a++)
+                            {
+                                quansb.Append("满"+quanman[a].Groups[1].Value+"减"+quanman[a].Groups[2].Value +"元"+ "\r\n");
+                            }
+
+                            string quanall = quansb.ToString().Trim();
+                            //券结束
+
+
+
                             string fee = "6";
-                            double shiprice = this.jisuan(salePrice, huodong2, quan);
+                            string tag = "";
+                          
+
+
+
+
+                           
+                            double shiprice = this.jisuan(salePrice.Trim(), huodongyige.Trim(), quanall.Trim());
                             string shizhekou = (shiprice / Convert.ToDouble(originalPrice)).ToString("0.00");
-                            bool flag4 = Convert.ToDouble(shiprice) - 6.0 >= 49.0;
-                            if (flag4)
+                           
+                            if (Convert.ToDouble(shiprice)>= 49.0)
                             {
                                 fee = "0";
                             }
+
+                            if (Convert.ToDouble(shiprice) < 49.0)
+                            {
+                                fee = "6";
+                                
+                            }
+
+                            //包邮新品标签开始
+                            MatchCollection tags = Regex.Matches(method.Unicode2String(ahtml), @"item_trace([\s\S]*?)\]");
+                            for (int a = 0; a < tags.Count; a++)
+                            {
+                                if (tags[a].Groups[1].Value.Contains(uid))
+                                {
+                                    if (tags[a].Groups[1].Value.Contains("包邮"))
+                                    {
+                                        fee = "0";
+                                    }
+
+                                    if (tags[a].Groups[1].Value.Contains("新品"))
+                                    {
+                                        tag = "新品";
+                                    }
+                                    if (tags[a].Groups[1].Value.Contains("特例品"))
+                                    {
+                                        tag = tag + "特例品";
+                                    }
+                                }
+
+                            }
+
+                            //包邮新品标签结束
+
+                            shiprice = shiprice + Convert.ToDouble(fee);
+
                             while (!this.zanting)
                             {
                                 Application.DoEvents();
                             }
-                            bool flag5 = !this.status;
-                            if (flag5)
+                          
+                            if (this.status==false)
                             {
                                 return;
                             }
@@ -191,14 +243,14 @@ namespace 当当网类目采集
                             lv.SubItems.Add(method.Unicode2String(cbs));
                             lv.SubItems.Add(method.Unicode2String(cbstime));
                             lv.SubItems.Add(method.Unicode2String(auther));
-                            lv.SubItems.Add(huodongtime2);
-                            lv.SubItems.Add(huodong2);
-                            lv.SubItems.Add(quan);
+                            lv.SubItems.Add(huodongall);
+                            lv.SubItems.Add(quanall);
                             lv.SubItems.Add(originalPrice);
                             lv.SubItems.Add(salePrice);
                             lv.SubItems.Add(fee);
                             lv.SubItems.Add(shiprice.ToString());
                             lv.SubItems.Add(shizhekou);
+                            lv.SubItems.Add(tag);
                             bool flag6 = this.listView1.Items.Count > 2;
                             if (flag6)
                             {
@@ -206,8 +258,9 @@ namespace 当当网类目采集
                             }
                             Thread.Sleep(1500);
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
+                           // MessageBox.Show(e.ToString());
                             continue;
                         }
                        

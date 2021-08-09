@@ -62,7 +62,7 @@ namespace 地图营销
         }
 
 
-        string type = "shangxueba";
+        string type = "map";
 
         public void getall()
         {

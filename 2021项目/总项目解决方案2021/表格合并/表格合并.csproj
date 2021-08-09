@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{64350AE6-E220-481D-89E4-F89F765F1909}</ProjectGuid>
+    <ProjectGuid>{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>常用代码查询</RootNamespace>
-    <AssemblyName>常用代码查询</AssemblyName>
+    <RootNamespace>表格合并</RootNamespace>
+    <AssemblyName>表格合并</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -31,16 +31,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>C:\Users\zhou\Desktop\临时\1 2021年全新至强无敌表格合并\1 2021年全新至强无敌表格合并\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>C:\Users\zhou\Desktop\临时\1 2021年全新至强无敌表格合并\1 2021年全新至强无敌表格合并\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>C:\Users\zhou\Desktop\临时\1 2021年全新至强无敌表格合并\1 2021年全新至强无敌表格合并\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>C:\Users\zhou\Desktop\临时\1 2021年全新至强无敌表格合并\1 2021年全新至强无敌表格合并\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>C:\Users\zhou\Desktop\临时\1 2021年全新至强无敌表格合并\1 2021年全新至强无敌表格合并\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\System.Data.SQLite.EF6.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,15 +57,18 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Utilities">
+      <HintPath>C:\Users\zhou\Desktop\临时\1 2021年全新至强无敌表格合并\1 2021年全新至强无敌表格合并\Debug\Utilities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="常用代码查询.cs">
+    <Compile Include="表格合并.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="常用代码查询.Designer.cs">
-      <DependentUpon>常用代码查询.cs</DependentUpon>
+    <Compile Include="表格合并.Designer.cs">
+      <DependentUpon>表格合并.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -69,8 +79,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="常用代码查询.resx">
-      <DependentUpon>常用代码查询.cs</DependentUpon>
+    <EmbeddedResource Include="表格合并.resx">
+      <DependentUpon>表格合并.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

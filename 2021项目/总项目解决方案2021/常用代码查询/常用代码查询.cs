@@ -4,7 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,13 +16,61 @@ namespace 常用代码查询
 {
     public partial class 常用代码查询 : Form
     {
+        [DllImport("ocr.dll")]
+        public static extern int init();
+
+        [DllImport("ocr.dll")]
+        public static extern string ocr(byte[] bin, int binlength);
+
+        [DllImport("ocr.dll")]
+        public static extern string identify(byte[] bin, int binlength);
+
+
         public 常用代码查询()
         {
             InitializeComponent();
+            
         }
 
 
-      
+        #region 根据图片地址获取图片的二进制流
+        /// <summary>
+        /// 根据图片地址获取图片的二进制流
+        /// </summary>
+        /// <param name="imageUrl"></param>
+        /// <returns></returns>
+        public static byte[] Getbyte(string imageUrl, string COOKIE)
+        {
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imageUrl);
+            request.Proxy = null;
+            request.Accept = "*/*";
+            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+            request.Referer = "";
+            request.Timeout = 30000;
+            request.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)";
+            request.Method = "GET";
+            request.Headers.Add("Cookie", COOKIE);
+            request.KeepAlive = false;
+            request.ProtocolVersion = HttpVersion.Version10;
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+            Stream resStream = response.GetResponseStream();
+            Bitmap bmp = new Bitmap(resStream);
+            response.Close();
+            request.Abort();
+
+            using (MemoryStream curImageStream = new MemoryStream())
+            {
+                bmp.Save(curImageStream, System.Drawing.Imaging.ImageFormat.Png);
+                curImageStream.Flush();
+                byte[] bmpBytes = curImageStream.ToArray();
+                return bmpBytes;
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// 查询数据库
@@ -192,6 +243,28 @@ namespace 常用代码查询
           string value=  chaxunvalue(sql);
             result_text.Text = value;
             tabControl1.SelectedIndex = 0;
+        }
+
+
+       // public OCRUtils() { Dll.instance.init(); }
+       // public interface Dll extends Library { Dll instance = (Dll) Native.load("ocr", Dll.class); 
+        //声明 dll中方法有哪些 public void init(); 
+        /** * @param z_bin 图片的字节集 * @param ok 文件长度 * @return */ 
+        //public String ocr(byte[] z_bin, int ok); }
+    //public String ocr(String base64) { byte[] decode = Base64.getDecoder().decode(base64); String code = Dll.instance.ocr(decode, decode.length); return code; }
+       // public String ocrByUrl(String url, String cookie)
+       // { String base64 = this.requestUrlToBase64(url, cookie); return this.ocr(base64); }
+
+
+        //    public String ocr(String base64)
+        //{ byte[] decode = Base64.getDecoder().decode(base64); String code = ocr(decode, decode.Length); return code; }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //init();
+            byte[] bytes = Getbyte("https://img1.baidu.com/it/u=4160572592,2121035394&fm=26&fmt=auto&gp=0.jpg","");
+         string value=  ocr(bytes,bytes.Length);
+           
+            MessageBox.Show(value);
         }
     }
 }
