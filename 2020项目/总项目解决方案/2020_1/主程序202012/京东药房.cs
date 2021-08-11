@@ -134,28 +134,29 @@ namespace 主程序202012
                     string html = method.GetUrl(url, "utf-8");
 
                     MatchCollection ids = Regex.Matches(html, @"<li data-sku=""([\s\S]*?)""");
-               
-                if (ids.Count == 0)
-                        break;
+                    MatchCollection prices = Regex.Matches(html, @"data-price=""([\s\S]*?)"">([\s\S]*?)<");
+                    if (ids.Count == 0)
+                        continue;
 
 
                     for (int i = 0; i < ids.Count; i++)
                     {
                         // string aurl = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=" + ids[i].Groups[1].Value;
 
-                        string aurl = "https://item-soa.jd.com/getWareBusiness?callback=jQuery8633016&skuId="+ ids[i].Groups[1].Value + "&cat=13314%2C21909%2C21922&area=1_72_55653_0&shopId=1000015441";
-                        string ahtml = GetUrl(aurl);
-
+                        //string aurl = "https://item-soa.jd.com/getWareBusiness?callback=jQuery8633016&skuId="+ ids[i].Groups[1].Value + "&cat=13314%2C21909%2C21922&area=1_72_55653_0&shopId=1000015441";
+                        //string ahtml = GetUrl(aurl);
+                      
 
 
                         string burl = "https://wxa.jd.com/wq.jd.com/graphext/draw?sku=" + ids[i].Groups[1].Value;
                         string bhtml = GetUrl(burl);
-                       
+
                         //Match title = Regex.Match(ahtml, @"""skuName"":""([\s\S]*?)""");
-                        Match title = Regex.Match(bhtml, @"""wareQD"":""([\s\S]*?)""");
+                        // Match title = Regex.Match(bhtml, @"""wareQD"":""([\s\S]*?)""");
+                       string title = Regex.Match(bhtml, @"""attName"":""药品商品名([\s\S]*?)\[([\s\S]*?)\]").Groups[2].Value;
 
                         //Match price = Regex.Match(ahtml, @"""jdPrice"":""([\s\S]*?)""");
-                        Match price = Regex.Match(ahtml, @"""op"":""([\s\S]*?)""");
+                        //Match price = Regex.Match(ahtml, @"""op"":""([\s\S]*?)""");
 
                         Match guige = Regex.Match(bhtml, @"""attName"":""产品规格([\s\S]*?)\[([\s\S]*?)\]");
                         Match company = Regex.Match(bhtml, @"""attName"":""生产企业([\s\S]*?)\[([\s\S]*?)\]");
@@ -168,19 +169,32 @@ namespace 主程序202012
                         {
                             textBox3.Text = "";
                         }
-                        lv1.SubItems.Add(title.Groups[1].Value);
 
-                        lv1.SubItems.Add(price.Groups[1].Value);
-                        lv1.SubItems.Add(guige.Groups[2].Value.Replace("\"", ""));
-                        lv1.SubItems.Add(company.Groups[2].Value.Replace("\"", ""));
-                        lv1.SubItems.Add(zhunhao.Groups[2].Value.Replace("\"", ""));
-                        if (status == false)
-                            return;
-
-                        while (this.zanting == false)
+                        if (title== "")
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            title = Regex.Match(bhtml, @"""attName"":""药品通用名名([\s\S]*?)\[([\s\S]*?)\]").Groups[2].Value;
+
                         }
+
+                        if (title == "")
+                        {
+                            title = Regex.Match(bhtml, @"""wareQD"":""([\s\S]*?)""").Groups[1].Value;
+
+                        }
+                        lv1.SubItems.Add(title.Trim().Replace("\"", ""));
+
+                            lv1.SubItems.Add(prices[i].Groups[2].Value);
+                            lv1.SubItems.Add(guige.Groups[2].Value.Replace("\"", ""));
+                            lv1.SubItems.Add(company.Groups[2].Value.Replace("\"", ""));
+                            lv1.SubItems.Add(zhunhao.Groups[2].Value.Replace("\"", ""));
+                            if (status == false)
+                                return;
+                        Thread.Sleep(100);
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                        
                     }
                 }
                
@@ -235,7 +249,10 @@ namespace 主程序202012
                     lv1.SubItems.Add(zhunhao.Groups[1].Value);
                     if (status == false)
                         return;
-
+                    if (this.listView1.Items.Count > 2)
+                    {
+                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                    }
                     while (this.zanting == false)
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -317,18 +334,18 @@ namespace 主程序202012
         {
             //method.ReadFromExcelFile(@"C:\Users\zhou\Desktop\TEST2 不翻译.xlsx",listView1);
             this.status = true;
-          
+
             if (radioButton1.Checked)
             {
-              
-                if (thread == null || !thread.IsAlive )
+
+                if (thread == null || !thread.IsAlive)
                 {
                     this.thread = new Thread(new ThreadStart(this.jd));
                     this.thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
                 }
             }
-        
+
             if (radioButton3.Checked)
             {
                 if (thread == null || !thread.IsAlive)

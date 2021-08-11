@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 客户美团
+namespace 体育打票软件
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 客户美团
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ditu());
+            Application.Run(new 体育打票软件());
         }
     }
 }

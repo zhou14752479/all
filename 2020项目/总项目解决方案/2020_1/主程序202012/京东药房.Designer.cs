@@ -33,6 +33,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +86,17 @@
             this.groupBox1.TabIndex = 156;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "任务管理";
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton3.Location = new System.Drawing.Point(14, 74);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(74, 18);
+            this.radioButton3.TabIndex = 182;
+            this.radioButton3.Text = "315药房";
+            this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -140,11 +151,13 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
             this.radioButton1.Location = new System.Drawing.Point(12, 30);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(81, 18);
             this.radioButton1.TabIndex = 175;
+            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "京东药房";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -176,7 +189,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "名称";
-            this.columnHeader2.Width = 300;
+            this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
@@ -190,25 +203,12 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "厂家";
-            this.columnHeader5.Width = 150;
+            this.columnHeader5.Width = 200;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "批准文号";
-            this.columnHeader6.Width = 100;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton3.Location = new System.Drawing.Point(14, 74);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(74, 18);
-            this.radioButton3.TabIndex = 182;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "315药房";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.columnHeader6.Width = 150;
             // 
             // 京东药房
             // 
