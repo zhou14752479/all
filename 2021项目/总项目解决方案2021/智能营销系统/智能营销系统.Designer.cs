@@ -28,22 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(智能营销系统));
             this.uiLine1 = new Sunny.UI.UILine();
             this.uiHeaderButton1 = new Sunny.UI.UIHeaderButton();
             this.uiHeaderButton2 = new Sunny.UI.UIHeaderButton();
             this.uiHeaderButton3 = new Sunny.UI.UIHeaderButton();
             this.uiHeaderButton4 = new Sunny.UI.UIHeaderButton();
             this.uiHeaderButton5 = new Sunny.UI.UIHeaderButton();
-            this.uiTabControlMenu1 = new Sunny.UI.UITabControlMenu();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.uiTabControlMenu1.SuspendLayout();
+            this.uiLine2 = new Sunny.UI.UILine();
+            this.label1 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.userControl11 = new 自定义控件1.UserControl1();
             this.SuspendLayout();
             // 
             // uiLine1
             // 
             this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.LineColor = System.Drawing.Color.Silver;
             this.uiLine1.Location = new System.Drawing.Point(3, 88);
             this.uiLine1.MinimumSize = new System.Drawing.Size(2, 2);
             this.uiLine1.Name = "uiLine1";
@@ -164,47 +168,86 @@
             this.uiHeaderButton5.TabIndex = 5;
             this.uiHeaderButton5.Text = "首页";
             // 
-            // uiTabControlMenu1
+            // uiLine2
             // 
-            this.uiTabControlMenu1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.uiTabControlMenu1.Controls.Add(this.tabPage1);
-            this.uiTabControlMenu1.Controls.Add(this.tabPage2);
-            this.uiTabControlMenu1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.uiTabControlMenu1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTabControlMenu1.ItemSize = new System.Drawing.Size(40, 200);
-            this.uiTabControlMenu1.Location = new System.Drawing.Point(3, 103);
-            this.uiTabControlMenu1.Multiline = true;
-            this.uiTabControlMenu1.Name = "uiTabControlMenu1";
-            this.uiTabControlMenu1.SelectedIndex = 0;
-            this.uiTabControlMenu1.Size = new System.Drawing.Size(1185, 599);
-            this.uiTabControlMenu1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.uiTabControlMenu1.TabIndex = 6;
+            this.uiLine2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.LineColor = System.Drawing.Color.Silver;
+            this.uiLine2.Location = new System.Drawing.Point(3, 661);
+            this.uiLine2.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine2.Name = "uiLine2";
+            this.uiLine2.Size = new System.Drawing.Size(1185, 29);
+            this.uiLine2.Style = Sunny.UI.UIStyle.Custom;
+            this.uiLine2.TabIndex = 6;
             // 
-            // tabPage1
+            // label1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(201, 0);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(984, 599);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(13, 684);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(329, 12);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "版权所有，侵权必究，软件仅用于学习，请勿用于非法用途！";
             // 
-            // tabPage2
+            // linkLabel1
             // 
-            this.tabPage2.Location = new System.Drawing.Point(201, 0);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(984, 599);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.White;
+            this.linkLabel1.Location = new System.Drawing.Point(1111, 681);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "在线咨询";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold);
+            this.linkLabel2.LinkColor = System.Drawing.Color.White;
+            this.linkLabel2.Location = new System.Drawing.Point(1146, 9);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(31, 20);
+            this.linkLabel2.TabIndex = 9;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "❌";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold);
+            this.linkLabel3.LinkColor = System.Drawing.Color.White;
+            this.linkLabel3.Location = new System.Drawing.Point(1109, 9);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(31, 20);
+            this.linkLabel3.TabIndex = 10;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "  ";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            // 
+            // userControl11
+            // 
+            this.userControl11.BackColor = System.Drawing.Color.Gray;
+            this.userControl11.Location = new System.Drawing.Point(373, 247);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(138, 130);
+            this.userControl11.TabIndex = 11;
             // 
             // 智能营销系统
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1189, 702);
-            this.Controls.Add(this.uiTabControlMenu1);
+            this.Controls.Add(this.userControl11);
+            this.Controls.Add(this.linkLabel3);
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.uiLine2);
             this.Controls.Add(this.uiHeaderButton5);
             this.Controls.Add(this.uiHeaderButton4);
             this.Controls.Add(this.uiHeaderButton3);
@@ -212,11 +255,14 @@
             this.Controls.Add(this.uiHeaderButton1);
             this.Controls.Add(this.uiLine1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "智能营销系统";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "智能营销系统";
-            this.uiTabControlMenu1.ResumeLayout(false);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.智能营销系统_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.智能营销系统_MouseMove);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -228,8 +274,11 @@
         private Sunny.UI.UIHeaderButton uiHeaderButton3;
         private Sunny.UI.UIHeaderButton uiHeaderButton4;
         private Sunny.UI.UIHeaderButton uiHeaderButton5;
-        private Sunny.UI.UITabControlMenu uiTabControlMenu1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private Sunny.UI.UILine uiLine2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private 自定义控件1.UserControl1 userControl11;
     }
 }

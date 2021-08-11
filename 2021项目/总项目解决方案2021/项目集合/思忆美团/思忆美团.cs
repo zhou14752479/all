@@ -244,30 +244,39 @@ namespace 思忆美团
 
                                 for (int j = 0; j < names.Count; j++)
                                 {
-                                    string newphone = shaixuan(phone[j].Groups[1].Value);
-                                    if (newphone != "")
+                                    try
                                     {
-                                        if (!finishes.Contains(newphone))
+                                        string newphone = shaixuan(phone[j].Groups[1].Value);
+                                        if (newphone != "")
                                         {
-                                            ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                            listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(newphone);
-                                            listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(city);
-                                            Thread.Sleep(200);
-                                            if (listView1.Items.Count > 2)
+                                            if (!finishes.Contains(newphone))
                                             {
-                                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                                ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                                listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                                listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                                listViewItem.SubItems.Add(newphone);
+                                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                                listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+                                                listViewItem.SubItems.Add(city);
+                                                Thread.Sleep(200);
+                                                if (listView1.Items.Count > 2)
+                                                {
+                                                    this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                                }
+                                                while (this.zanting == false)
+                                                {
+                                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                                }
+                                                if (status == false)
+                                                    return;
                                             }
-                                            while (this.zanting == false)
-                                            {
-                                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                            }
-                                            if (status == false)
-                                                return;
                                         }
+
+                                    }
+                                    catch (Exception)
+                                    {
+
+                                        continue;
                                     }
                                 }
 
@@ -283,6 +292,7 @@ namespace 思忆美团
             }
             catch (System.Exception ex)
             {
+             
                 infolabel.Text=(ex.ToString());
             }
 
@@ -298,56 +308,64 @@ namespace 思忆美团
         #region 筛选
         public string shaixuan(string tel)
         {
-            string haoma = tel;
-            string[] tels = tel.Split(new string[] {"/" }, StringSplitOptions.None);
-           
-            if (checkBox1.Checked==true)
+            try
             {
-                if (tels.Length == 0)
-                {
-                    haoma = "";
-                    return haoma;
-                }
-              
-             }
-            if (checkBox2.Checked == true)
-            {
-                if (tels.Length ==1)
-                {
-                    if (!tel.Contains("-")  && tels[0].Length>10)
-                    {
-                        haoma = tel;
-                        return haoma;
-                    }
-                    else
-                    {
-                        return "";
-                    }
-                    
-                }
+                string haoma = tel;
+                string[] tels = tel.Split(new string[] { "/" }, StringSplitOptions.None);
 
-                if (tels.Length == 2)
+                if (checkBox1.Checked == true)
                 {
-                    if (!tels[0].Contains("-") && tels[0].Length > 10)
-                    {
-                        haoma = tels[0];
-                    }
-
-                    else if (!tels[1].Contains("-") && tels[1].Length > 10)
-                    {
-                        haoma = tels[1];
-                    }
-                    else
+                    if (tels.Length == 0)
                     {
                         haoma = "";
+                        return haoma;
+                    }
+
+                }
+                if (checkBox2.Checked == true)
+                {
+                    if (tels.Length == 1)
+                    {
+                        if (!tel.Contains("-") && tels[0].Length > 10)
+                        {
+                            haoma = tel;
+                            return haoma;
+                        }
+                        else
+                        {
+                            return "";
+                        }
+
+                    }
+
+                    if (tels.Length == 2)
+                    {
+                        if (!tels[0].Contains("-") && tels[0].Length > 10)
+                        {
+                            haoma = tels[0];
+                        }
+
+                        else if (!tels[1].Contains("-") && tels[1].Length > 10)
+                        {
+                            haoma = tels[1];
+                        }
+                        else
+                        {
+                            haoma = "";
+                        }
                     }
                 }
+                if (checkBox3.Checked == true)
+                {
+                    finishes.Add(haoma);
+                }
+                return haoma;
             }
-            if (checkBox3.Checked == true)
+            catch (Exception ex)
             {
-                finishes.Add(haoma);
+                //MessageBox.Show(tel+"   " +ex.ToString());
+                return "";
             }
-            return haoma;
 
 
         }

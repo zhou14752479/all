@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百姓二手车", "项目�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "表格合并", "表格合并\表格合并.csproj", "{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "自定义控件1", "自定义控件1\自定义控件1.csproj", "{9B02C193-4AFF-4742-83B1-DB48B3B91B39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4659C899-AAF3-44A5-8CE6-C7B88B4DFA5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B02C193-4AFF-4742-83B1-DB48B3B91B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B02C193-4AFF-4742-83B1-DB48B3B91B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B02C193-4AFF-4742-83B1-DB48B3B91B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B02C193-4AFF-4742-83B1-DB48B3B91B39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

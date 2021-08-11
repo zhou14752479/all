@@ -20,11 +20,9 @@ namespace 常用代码查询
         public static extern int init();
 
         [DllImport("ocr.dll")]
-        public static extern string ocr(byte[] bin, int binlength);
+        public static extern int ocr(byte[] bin, int binlength);
 
-        [DllImport("ocr.dll")]
-        public static extern string identify(byte[] bin, int binlength);
-
+      
 
         public 常用代码查询()
         {
@@ -262,9 +260,9 @@ namespace 常用代码查询
         {
             //init();
             byte[] bytes = Getbyte("https://img1.baidu.com/it/u=4160572592,2121035394&fm=26&fmt=auto&gp=0.jpg","");
-         string value=  ocr(bytes,bytes.Length);
+         int value=  ocr(bytes,bytes.Length);
            
-            MessageBox.Show(value);
+            MessageBox.Show(value.ToString());
         }
     }
 }

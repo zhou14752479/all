@@ -110,6 +110,10 @@ namespace 百姓二手车
             string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             for (int i = 0; i < text.Length; i++)
             {
+                if (text[i].Trim() == "")
+                {
+                    continue;
+                }
                 try
                 {
                     string n = dics[text[i]];

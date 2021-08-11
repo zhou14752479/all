@@ -1,0 +1,60 @@
+static void Main(string[] args)
+{
+    string resultStr = "";
+    string com = "dir \\\\.\\pipe\\\\ | findstr \"QQ_\" | findstr \"_pipe\"";
+    RunCMDCommand(com, out resultStr);
+    foreach (var item in GetStr(resultStr))
+    {
+        Console.WriteLine(item);
+    }
+    Console.ReadKey();
+}
+public static List<string> GetStr(string str) //这是分割字符串的方法
+{
+    var a = str.Substring(str.LastIndexOf("exit") + 4).Split('_');
+    const string pattern = "^[0-9]*$";
+    Regex rx = new Regex(pattern);
+    List<string> strList = new List<string>();
+    foreach (var item in a)
+    {
+        if (rx.IsMatch(item))
+            strList.Add(item);
+    }
+    return strList;
+ 
+}
+public static string StrSub(string source,string subStr)//这也是分割
+{
+    int index = 0;
+    string ss = string.Empty;
+    foreach (object item in source)
+    {
+        index += 1;
+        string str = item.ToString();
+        int il = str.IndexOf(subStr);
+         ss=new object[] {index, str.Substring(il+1)}.ToString();
+    }
+    return ss;
+}
+public static void RunCMDCommand(string command, out string outPut)//这是调用cmd然后获取输入命令后的结果 调用的cmd不会显示
+{
+    using (Process pc = new Process())
+    {
+        command = command.Trim().TrimEnd('&') + "&exit";
+ 
+        pc.StartInfo.FileName = "cmd.exe";
+        pc.StartInfo.CreateNoWindow = true;//隐藏窗口运行
+        pc.StartInfo.RedirectStandardError = true;//重定向错误流
+        pc.StartInfo.RedirectStandardInput = true;//重定向输入流
+        pc.StartInfo.RedirectStandardOutput = true;//重定向输出流
+        pc.StartInfo.UseShellExecute = false;
+        pc.Start();
+        pc.StandardInput.WriteLine(command);//输入CMD命令
+        pc.StandardInput.AutoFlush = true;
+ 
+        outPut = pc.StandardOutput.ReadToEnd();//读取结果        
+ 
+        pc.WaitForExit();
+        pc.Close();
+    }
+}
