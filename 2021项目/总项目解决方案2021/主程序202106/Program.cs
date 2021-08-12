@@ -16,7 +16,7 @@ namespace 主程序202106
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 个税计算());
+            Application.Run(new 知网邮箱采集());
         }
     }
 }

@@ -97,12 +97,6 @@
     <Compile Include="孔夫子旧书网比价.Designer.cs">
       <DependentUpon>孔夫子旧书网比价.cs</DependentUpon>
     </Compile>
-    <Compile Include="店铺查询.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="店铺查询.Designer.cs">
-      <DependentUpon>店铺查询.cs</DependentUpon>
-    </Compile>
     <Compile Include="知网邮箱采集.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,9 +126,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="孔夫子旧书网比价.resx">
       <DependentUpon>孔夫子旧书网比价.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="店铺查询.resx">
-      <DependentUpon>店铺查询.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="知网邮箱采集.resx">
       <DependentUpon>知网邮箱采集.cs</DependentUpon>

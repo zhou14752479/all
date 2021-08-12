@@ -82,6 +82,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -255,7 +257,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(246, 21);
             this.textBox4.TabIndex = 362;
-            this.textBox4.Text = "CJFD&pykm=AHYF";
+            this.textBox4.Text = "CJFD";
             // 
             // label4
             // 
@@ -666,11 +668,35 @@
             this.checkBox4.Text = "启用代理";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(361, 40);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(107, 16);
+            this.radioButton1.TabIndex = 396;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "获取当年所有期";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(474, 40);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(119, 16);
+            this.radioButton2.TabIndex = 397;
+            this.radioButton2.Text = "获取当年最新一期";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // 知网邮箱采集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 666);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button6);
@@ -787,5 +813,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

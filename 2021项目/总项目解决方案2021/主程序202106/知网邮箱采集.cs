@@ -27,11 +27,13 @@ namespace 主程序202106
         bool zanting = true;
         bool status = true;
         string cookie = "";
-     
 
 
 
 
+        /// <summary>
+        /// 第一步获取所有杂志
+        /// </summary>
         public void getzazhis()
         {
             try
@@ -43,27 +45,30 @@ namespace 主程序202106
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
-                 
-                        string url = "https://navi.cnki.net/knavi/Common/Search/Journal";
-                      
-                        string postdata = "SearchStateJson=%7B%22StateID%22%3A%22%22%2C%22Platfrom%22%3A%22%22%2C%22QueryTime%22%3A%22%22%2C%22Account%22%3A%22knavi%22%2C%22ClientToken%22%3A%22%22%2C%22Language%22%3A%22%22%2C%22CNode%22%3A%7B%22PCode%22%3A%22CJFD%22%2C%22SMode%22%3A%22%22%2C%22OperateT%22%3A%22%22%7D%2C%22QNode%22%3A%7B%22SelectT%22%3A%22%22%2C%22Select_Fields%22%3A%22%22%2C%22S_DBCodes%22%3A%22%22%2C%22QGroup%22%3A%5B%7B%22Key%22%3A%22Navi%22%2C%22Logic%22%3A1%2C%22Items%22%3A%5B%5D%2C%22ChildItems%22%3A%5B%7B%22Key%22%3A%22Journal%22%2C%22Logic%22%3A1%2C%22Items%22%3A%5B%7B%22Key%22%3A1%2C%22Title%22%3A%22%22%2C%22Logic%22%3A1%2C%22Name%22%3A%22168%E4%B8%93%E9%A2%98%E4%BB%A3%E7%A0%81%22%2C%22Operate%22%3A%22%22%2C%22Value%22%3A%22"+textBox3.Text.Trim()+"%3F%22%2C%22ExtendType%22%3A0%2C%22ExtendValue%22%3A%22%22%2C%22Value2%22%3A%22%22%7D%5D%2C%22ChildItems%22%3A%5B%5D%7D%5D%7D%5D%2C%22OrderBy%22%3A%22OTA%7CDESC%22%2C%22GroupBy%22%3A%22%22%2C%22Additon%22%3A%22%22%7D%7D&displaymode=2&pageindex="+i+"&pagecount=20&index=1&random=0.7702059787437423";
 
-                        string html = method.PostUrl(url, postdata, cookie,"utf-8", "application/x-www-form-urlencoded", "https://navi.cnki.net/knavi/All.html");
-                  
-                    MatchCollection ahtmls = Regex.Matches(html, @"<h2>([\s\S]*?)</div>");
+                    string url = "https://navi.cnki.net/knavi/journals/searchbaseinfo";
+
+                    string postdata = "searchStateJson=%7B%22StateID%22%3A%22%22%2C%22Platfrom%22%3A%22%22%2C%22QueryTime%22%3A%22%22%2C%22Account%22%3A%22knavi%22%2C%22ClientToken%22%3A%22%22%2C%22Language%22%3A%22%22%2C%22CNode%22%3A%7B%22PCode%22%3A%22JOURNAL%22%2C%22SMode%22%3A%22%22%2C%22OperateT%22%3A%22%22%7D%2C%22QNode%22%3A%7B%22SelectT%22%3A%22%22%2C%22Select_Fields%22%3A%22%22%2C%22S_DBCodes%22%3A%22%22%2C%22QGroup%22%3A%5B%7B%22Key%22%3A%22Navi%22%2C%22Logic%22%3A1%2C%22Items%22%3A%5B%5D%2C%22ChildItems%22%3A%5B%7B%22Key%22%3A%22journals%22%2C%22Logic%22%3A1%2C%22Items%22%3A%5B%7B%22Key%22%3A%22subject%22%2C%22Title%22%3A%22%22%2C%22Logic%22%3A1%2C%22Name%22%3A%22CCL%22%2C%22Operate%22%3A%22%22%2C%22Value%22%3A%22" + textBox3.Text.Trim() + "%3F%22%2C%22ExtendType%22%3A0%2C%22ExtendValue%22%3A%22%22%2C%22Value2%22%3A%22%22%7D%5D%2C%22ChildItems%22%3A%5B%5D%7D%5D%7D%5D%2C%22OrderBy%22%3A%22OTA%7CDESC%22%2C%22GroupBy%22%3A%22%22%2C%22Additon%22%3A%22%22%7D%7D&displaymode=2&pageindex=" + i + "&pagecount=20&index=subject&searchType=%E5%88%8A%E5%90%8D(%E6%9B%BE%E7%94%A8%E5%88%8A%E5%90%8D)&clickName=&switchdata=&random=0.6719906778882996";
+
+                    string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "https://navi.cnki.net/knavi/All.html");
+
+                    MatchCollection ahtmls = Regex.Matches(html, @"<h2>([\s\S]*?)</li>");
+                    if (ahtmls.Count == 0)
+                    {
+                        return;
+                    }
 
 
-                  
                     for (int j = 0; j < ahtmls.Count; j++)
                     {
                         string ahtml = ahtmls[j].Groups[1].Value;
-                        string uid = Regex.Match(ahtml, @"pcode=([\s\S]*?)""").Groups[1].Value.Replace("amp;","");
-                        string title = Regex.Match(ahtml, @"baseid=([\s\S]*?)"">([\s\S]*?)</a>").Groups[2].Value;
-                        string zhuban = Regex.Match(ahtml, @"tab_2"">([\s\S]*?)</span>").Groups[1].Value;
-                        string yin = Regex.Match(ahtml, @"tab_3"">([\s\S]*?)</span>").Groups[1].Value;
-                        string down = Regex.Match(ahtml, @"tab_4"">([\s\S]*?)</span>").Groups[1].Value;
-                        string beiyin = Regex.Match(ahtml, @"tab_5"">([\s\S]*?)</span>").Groups[1].Value;
-                      ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                        string uid = Regex.Match(ahtml, @"baseid=([\s\S]*?)""").Groups[1].Value.Trim();
+                        string title = Regex.Match(ahtml, @"title=""([\s\S]*?)"">([\s\S]*?)</a>").Groups[2].Value.Trim();
+                        string zhuban = Regex.Match(ahtml, @"tab_2"">([\s\S]*?)</span>").Groups[1].Value.Trim();
+                        string yin = Regex.Match(ahtml, @"tab_3"">([\s\S]*?)</span>").Groups[1].Value.Trim();
+                        string down = Regex.Match(ahtml, @"tab_4"">([\s\S]*?)</span>").Groups[1].Value.Trim();
+                        string beiyin = Regex.Match(ahtml, @"tab_5"">([\s\S]*?)</span>").Groups[1].Value.Trim();
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         try
                         {
                             lv1.SubItems.Add(uid);
@@ -80,17 +85,17 @@ namespace 主程序202106
 
                             lv1.SubItems.Add("");
                         }
-                       
-                       
-                    }
-                       
 
-                        Thread.Sleep(1000);
 
-                      
                     }
 
-              
+
+                    Thread.Sleep(1000);
+
+
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -99,42 +104,112 @@ namespace 主程序202106
             }
         }
         Random ra = new Random();
+
+
+        Dictionary<string, string> dics = new Dictionary<string, string>();
+
+        /// <summary>
+        /// 第二步获取所有杂志
+        /// </summary>
+        public void getyears(string aid)
+        {
+            try
+            {
+                dics.Clear();
+                string url = "https://navi.cnki.net/knavi/journals/" + aid + "/yearList?pIdx=0";
+
+                string html = method.GetUrl(url, "utf-8");
+                MatchCollection years = Regex.Matches(html, @"<em>([\s\S]*?)</em>");
+                MatchCollection bodys = Regex.Matches(html, @"<dd>([\s\S]*?)</dd>");
+
+                for (int j = 0; j < years.Count; j++)
+                {
+                   
+                    try
+                    {
+                        MatchCollection values = Regex.Matches(html, @"value=""([\s\S]*?)""");
+                        if (values.Count > 0)
+                        {
+                            StringBuilder sb = new StringBuilder();
+                            if (radioButton1.Checked == true)
+                            {
+                                for (int i = 0; i <values.Count; i++)
+                                {
+                                    sb.Append(values[i].Groups[1].Value+",");
+                                   
+                                }
+
+                            }
+                            if (radioButton2.Checked == true)
+                            {
+                                sb.Clear();
+                                sb.Append(values[0].Groups[1].Value + ",");
+
+                            }
+
+                            dics.Add(years[j].Groups[1].Value,sb.ToString());
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+                }
+
+            }
+
+
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         public void getmails()
         {
             status = true;
             for (int i = 0; i < listView1.CheckedItems.Count; i++)
             {
 
-            string aid = listView1.CheckedItems[i].SubItems[1].Text;
-                for (int a = 0; a< listView1.CheckedItems.Count; a++)
+                string aid = listView1.CheckedItems[i].SubItems[1].Text;
+                for (int a = 0; a < listView1.CheckedItems.Count; a++)
                 {
                     listView1.CheckedItems[a].BackColor = Color.White;
                 }
-                    listView1.CheckedItems[i].BackColor = Color.Yellow;
+                listView1.CheckedItems[i].BackColor = Color.Yellow;
+                getyears(aid);
 
 
-                aid = aid.Replace("baseid", "pykm");
-            log_txtbox.Text += DateTime.Now.ToLongTimeString() + "开始采集" +aid+"\r\n";
 
-            for (int year = Convert.ToInt32(numericUpDown2.Value); year >= Convert.ToInt32(numericUpDown1.Value); year--)
-            {
-                    for (int qikan = 1; qikan < 7; qikan++)
+
+                foreach (string key in dics.Keys)
+                {
+                    if (Convert.ToInt32(key) > numericUpDown2.Value || Convert.ToInt32(key) < numericUpDown2.Value)
                     {
-                        log_txtbox.Text += DateTime.Now.ToLongTimeString() + "开始采集" + year + "年  " + qikan + "期刊" + "\r\n";
+                        log_txtbox.Text += DateTime.Now.ToLongTimeString() + "年份不符合跳过：" + key + "年  \r\n";
+                        continue;
+                    }
+
+                    log_txtbox.Text += DateTime.Now.ToLongTimeString() + "开始采集" + key + "年  \r\n";
+                    string[] yearvalues = dics[key].Split(new string[] { "," }, StringSplitOptions.None);
+
+                    foreach (string yearvalue in yearvalues)
+                    {
+                       
                         try
                         {
-                            string url = "https://navi.cnki.net/knavi/JournalDetail/GetArticleList?year=" + year + "&issue=0" + qikan + "&pcode=" + aid + "&pageIdx=0";
+                            string url = "https://navi.cnki.net/knavi/journals/DLXB/papers?yearIssue=" + yearvalue + "&pageIdx=0&pcode=CJFD,CCJD";
                             string html = method.GetUrl(url, "utf-8");
-                            MatchCollection aurls = Regex.Matches(html, @"<a class=""journalshares"" href=""([\s\S]*?)filename=([\s\S]*?)&");
+                            MatchCollection aurls = Regex.Matches(html, @"<li class=""btn-view"">([\s\S]*?)filename=([\s\S]*?)&");
 
-                            if (aurls.Count == 0)  //期刊内不存在文章
-                            {
-                                log_txtbox.Text += year + "  " + qikan + "期刊内不存在文章" + "\r\n";
-                                continue;
-                            }
+
                             for (int j = 0; j < aurls.Count; j++)
                             {
-                              
+
                                 this.textBox5.Focus();
                                 this.textBox5.Select(this.textBox5.TextLength, 0);
                                 this.textBox5.ScrollToCaret();
@@ -142,7 +217,7 @@ namespace 主程序202106
                                 this.log_txtbox.ScrollToCaret();
 
 
-
+                             
                                 log_txtbox.Text += DateTime.Now.ToLongTimeString() + "开始采集" + aurls[j].Groups[2].Value.Trim() + "\r\n";
                                 string aurl = "https://kns.cnki.net/KXReader/Detail?FileName=" + aurls[j].Groups[2].Value.Trim();
 
@@ -171,16 +246,16 @@ namespace 主程序202106
                                 mail = Regex.Replace(mail, "。.*", "");
                                 if (mail != "")
                                 {
-                                    textBox5.Text +=  mail+ "\r\n";
+                                    textBox5.Text += mail + "\r\n";
                                 }
                                 else
                                 {
-                                   
-                                    log_txtbox.Text +=DateTime.Now.ToLongTimeString()+  "邮箱地址为空跳过" + "\r\n";
+
+                                    log_txtbox.Text += DateTime.Now.ToLongTimeString() + "邮箱地址为空跳过" + "\r\n";
                                 }
 
                                 int suiji = ra.Next(Convert.ToInt32(numericUpDown4.Value), Convert.ToInt32(numericUpDown3.Value));
-                                Thread.Sleep(suiji*1000);
+                                Thread.Sleep(suiji * 1000);
                                 if (status == false)
                                     return;
                             }
@@ -194,11 +269,10 @@ namespace 主程序202106
 
                             MessageBox.Show(ex.ToString());
                         }
-
                     }
                 }
             }
-           
+
         }
 
         Dictionary<string, string> catedics = new Dictionary<string, string>();
@@ -235,7 +309,7 @@ namespace 主程序202106
             //getcates();
         }
 
-    
+
         private void start_btn_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -259,7 +333,7 @@ namespace 主程序202106
             }
         }
 
-       
+
 
         private void stop_btn_Click(object sender, EventArgs e)
         {
@@ -316,7 +390,7 @@ namespace 主程序202106
         string path = AppDomain.CurrentDomain.BaseDirectory;
         private void login_btn_Click(object sender, EventArgs e)
         {
-           
+
             Process.Start(path + "helper.exe");
         }
         #region  txtbox导出文本TXT
@@ -331,7 +405,7 @@ namespace 主程序202106
                 path = sfd.FileName + ".txt";
             }
 
-      
+
 
             System.IO.File.WriteAllText(path, txt, Encoding.UTF8);
             MessageBox.Show("文件导出成功!文件地址:" + path);
@@ -372,7 +446,7 @@ namespace 主程序202106
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBox3.Text = catedics[comboBox1.Text];
-            
+
         }
 
         private void log_txtbox_TextChanged(object sender, EventArgs e)
@@ -393,7 +467,7 @@ namespace 主程序202106
         {
             for (int a = 0; a < listView1.Items.Count; a++)
             {
-                listView1.Items[a].Checked=true;
+                listView1.Items[a].Checked = true;
             }
         }
 
