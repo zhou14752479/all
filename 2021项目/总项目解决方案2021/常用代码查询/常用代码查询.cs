@@ -264,5 +264,25 @@ namespace 常用代码查询
            
             MessageBox.Show(value.ToString());
         }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+               search_btn.Focus();
+                search_btn_Click(this, new EventArgs());
+
+
+                if (this.listView1.Items.Count == 0)
+                    return;
+                string id = listView1.Items[0].SubItems[0].Text;
+                string sql = "select * from datas where id= " + id;
+                string value = chaxunvalue(sql);
+                result_text.Text = value;
+                tabControl1.SelectedIndex = 0;
+                return;
+            }
+
+        }
     }
 }

@@ -20,13 +20,14 @@ namespace 体育打票软件
         public void AttachReport(GridppReport Report)
         {
             //设定查询显示器关联的报表
+
             axGRPrintViewer1.Report = Report;
         }
         private void PreviewForm_Load(object sender, EventArgs e)
         {
-           
+            textBox2.Text = DateTime.Now.AddSeconds(1).ToString("yyyy-MM-dd HH:mm:ss");
             axGRPrintViewer1.Start();
-          
+            axGRPrintViewer1.ZoomToWidth();
 
         }
 
@@ -37,7 +38,12 @@ namespace 体育打票软件
 
         private void button1_Click(object sender, EventArgs e)
         {
-            axGRPrintViewer1.Print(true);
+           axGRPrintViewer1.Print(true);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox2.Text =Convert.ToDateTime(textBox2.Text).AddSeconds(1).ToString("yyyy-MM-dd HH:mm:ss");
         }
     }
 }

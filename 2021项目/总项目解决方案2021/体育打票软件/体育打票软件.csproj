@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="jiexi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="jiexi.Designer.cs">
+      <DependentUpon>jiexi.cs</DependentUpon>
+    </Compile>
     <Compile Include="PreviewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -52,12 +58,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="setup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="setup.Designer.cs">
+      <DependentUpon>setup.cs</DependentUpon>
+    </Compile>
     <Compile Include="体育打票软件.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="体育打票软件.Designer.cs">
       <DependentUpon>体育打票软件.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="jiexi.resx">
+      <DependentUpon>jiexi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PreviewForm.resx">
       <DependentUpon>PreviewForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -70,6 +85,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="setup.resx">
+      <DependentUpon>setup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="体育打票软件.resx">
       <DependentUpon>体育打票软件.cs</DependentUpon>
     </EmbeddedResource>
