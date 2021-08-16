@@ -20,14 +20,19 @@ namespace 地图营销
             InitializeComponent();
         }
 
-      
+        string type = "shangxueba";
 
 
         private void 后台管理_Load(object sender, EventArgs e)
         {
             this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
             treeView1.Nodes[0].Expand();
-            tabControl1.SelectedIndex = 4;
+            tabControl1.SelectedIndex = 3;
+            //webBrowser1.ScriptErrorsSuppressed = true;
+            if (type == "map")
+            {
+                linkLabel3.Visible = false;
+            }
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -46,23 +51,16 @@ namespace 地图营销
             {
                 tabControl1.SelectedIndex = 1;
             }
-            if (treeView1.SelectedNode.Text == "注册码管理")
-            {
-                tabControl1.SelectedIndex = 2;
-            }
-            if (treeView1.SelectedNode.Text == "系统设置")
-            {
-                tabControl1.SelectedIndex = 3;
-            }
+          
             if (treeView1.SelectedNode.Text == "主页")
             {
-                tabControl1.SelectedIndex = 4;
+                tabControl1.SelectedIndex = 3;
             }
 
         }
 
 
-        string type = "map";
+       
 
         public void getall()
         {
@@ -124,14 +122,7 @@ namespace 地图营销
 
         }
 
-        public void updatesoftinfo()
-        {
-          
-            string html = method.GetUrl("http://116.62.170.108:8080/api/mt/updatesoftinfo.html?softname="+textBox2.Text.Trim()+ "&tel=" + textBox3.Text.Trim() + "&logo=" + textBox4.Text.Trim() + "&erweima=" + textBox5.Text.Trim() + "&", "utf-8");
-            MessageBox.Show(html);
-            
-
-        }
+       
 
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
@@ -166,49 +157,15 @@ namespace 地图营销
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            tabControl1.SelectedIndex =3;
+            webBrowser1.Navigate("https://passport.shangxueba.com/user/userlogin.aspx?url=https%3A//www.shangxueba.com/ask/32327.html");
+            tabControl1.SelectedIndex =2;
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Title = "打开文件";  
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                //打开文件对话框选择的文件
-                textBox4.Text = openFileDialog1.FileName;
-              
-            }
-        }
+       
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Title = "打开文件";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                //打开文件对话框选择的文件
-                textBox5.Text = openFileDialog1.FileName;
+       
 
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (textBox2.Text != "" && textBox3.Text != "")
-            {
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(updatesoftinfo);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("存在空值！");
-            }
-        }
+       
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -223,6 +180,34 @@ namespace 地图营销
               
               
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string cookie = method.GetCookies("https://www.shangxueba.com/ask/ajax/zuijiainfo.aspx?id=32327&t=1629017810540");
+            textBox1.Text = cookie;
+          
+            if (cookie != "")
+            {
+                string url = "http://www.acaiji.com/shangxueba/shangxueba.php?method=setcookie";
+                string postdata = "cookie="+ System.Web.HttpUtility.UrlEncode(cookie);
+                string msg = method.PostUrl(url,postdata,"","utf-8", "application/x-www-form-urlencoded","");
+                MessageBox.Show(msg.Trim());
+            }
+            else
+            {
+                MessageBox.Show("获取cookie失败，请检查网络");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Refresh();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("https://passport.shangxueba.com/user/userlogin.aspx?url=https%3A//www.shangxueba.com/ask/32327.html");
         }
     }
 }

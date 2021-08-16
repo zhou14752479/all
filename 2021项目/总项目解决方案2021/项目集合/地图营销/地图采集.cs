@@ -656,6 +656,13 @@ namespace 地图营销
         }
         private void login_btn_Click(object sender, EventArgs e)
         {
+            map_method md = new map_method();
+            if (md.jiance() == false)
+            {
+                MessageBox.Show("当前机器未绑定账号");
+                return;
+            }
+
             if (user_text.Text == "" || pass_text.Text == "")
             {
                 MessageBox.Show("请输入账号和密码");

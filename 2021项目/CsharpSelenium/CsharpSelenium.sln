@@ -13,13 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDLL", "..\..\2020项目\�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "..\..\2020项目\总项目解决方案\helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "搜索引擎排名", "搜索引擎排名\搜索引擎排名.csproj", "{93F994C6-99CC-4C9D-AD02-4A6324E1EB82}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝店铺商品采集", "淘宝店铺商品采集\淘宝店铺商品采集.csproj", "{3EF9D92D-4235-4C09-8241-A1B93E232513}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝列表页", "淘宝列表页\淘宝列表页.csproj", "{20C725D5-F82E-4BB0-AA32-F535BE52CE91}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "生意网宝贝发布淘宝", "生意网宝贝发布淘宝\生意网宝贝发布淘宝.csproj", "{9E12E863-AEA3-4BE2-B7AE-9A9021BE0E53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +43,6 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93F994C6-99CC-4C9D-AD02-4A6324E1EB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93F994C6-99CC-4C9D-AD02-4A6324E1EB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93F994C6-99CC-4C9D-AD02-4A6324E1EB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93F994C6-99CC-4C9D-AD02-4A6324E1EB82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3EF9D92D-4235-4C09-8241-A1B93E232513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3EF9D92D-4235-4C09-8241-A1B93E232513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EF9D92D-4235-4C09-8241-A1B93E232513}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,10 +51,6 @@ Global
 		{20C725D5-F82E-4BB0-AA32-F535BE52CE91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20C725D5-F82E-4BB0-AA32-F535BE52CE91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20C725D5-F82E-4BB0-AA32-F535BE52CE91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E12E863-AEA3-4BE2-B7AE-9A9021BE0E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E12E863-AEA3-4BE2-B7AE-9A9021BE0E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E12E863-AEA3-4BE2-B7AE-9A9021BE0E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E12E863-AEA3-4BE2-B7AE-9A9021BE0E53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

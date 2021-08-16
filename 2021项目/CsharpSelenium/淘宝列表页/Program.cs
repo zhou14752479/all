@@ -16,7 +16,7 @@ namespace 淘宝列表页
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 阿里代发());
+            Application.Run(new 模拟点击1688());
         }
     }
 }

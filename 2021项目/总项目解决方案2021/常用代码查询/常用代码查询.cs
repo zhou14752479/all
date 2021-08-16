@@ -205,6 +205,7 @@ namespace 常用代码查询
             string sql = "select * from datas where instr(title,'" + textBox1.Text.Trim() + "') > 0 ";
            
             getall(sql);
+            
         }
 
         private void 常用代码查询_Load(object sender, EventArgs e)

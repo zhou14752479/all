@@ -16,7 +16,7 @@ namespace 浙江号码匹配
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 湖南());
+            Application.Run(new 浙江身份号码验证());
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 搜索引擎排名
+namespace CEF主程序
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 搜索引擎排名
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 搜索引擎排名());
+            Application.Run(new CEF主程序());
         }
     }
 }

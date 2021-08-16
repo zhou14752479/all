@@ -148,6 +148,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Font = new System.Drawing.Font("宋体", 12F);
             this.textBox1.Location = new System.Drawing.Point(65, 15);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -186,6 +187,7 @@
             this.result_text.Location = new System.Drawing.Point(3, 3);
             this.result_text.Multiline = true;
             this.result_text.Name = "result_text";
+            this.result_text.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.result_text.Size = new System.Drawing.Size(584, 516);
             this.result_text.TabIndex = 5;
             // 

@@ -631,9 +631,19 @@ namespace 足球数据处理
 
         private void button3_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
-            method.DataTableToExcel(method.listViewToDataTable(this.listView3), "Sheet1", true);
+            if (comboBox1.Text =="全部")
+            {
+                method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            }
+            if (comboBox1.Text == "滚球")
+            {
+                method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+            }
+            if (comboBox1.Text == "非滚球")
+            {
+                method.DataTableToExcel(method.listViewToDataTable(this.listView3), "Sheet1", true);
+            }
+
         }
 
         private void button4_Click(object sender, EventArgs e)

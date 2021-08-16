@@ -43,11 +43,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百姓二手车", "项目�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "自定义控件1", "自定义控件1\自定义控件1.csproj", "{9B02C193-4AFF-4742-83B1-DB48B3B91B39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "体育打票软件", "体育打票软件\体育打票软件.csproj", "{DC5AF557-7D49-4969-98B3-BEEACACA0464}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coinmarketcap邮件提醒监控", "coinmarket监控\coinmarketcap邮件提醒监控.csproj", "{E3E50F8C-AA2F-4E81-B242-4C1CF5C361B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF礼包领取", "项目集合\CF礼包领取\CF礼包领取.csproj", "{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "体育打票软件", "体育打票软件\体育打票软件.csproj", "{DC5AF557-7D49-4969-98B3-BEEACACA0464}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "江苏油卡查询", "项目集合\江苏油卡查询\江苏油卡查询.csproj", "{E932DEFF-520B-4ABE-A804-95312D63229F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浙江号码匹配", "项目集合\浙江号码匹配\浙江号码匹配.csproj", "{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEF主程序", "CEF主程序\CEF主程序.csproj", "{0CE507C1-D9F1-417F-B6CE-4C596FE31256}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,10 +141,6 @@ Global
 		{9B02C193-4AFF-4742-83B1-DB48B3B91B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B02C193-4AFF-4742-83B1-DB48B3B91B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B02C193-4AFF-4742-83B1-DB48B3B91B39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3E50F8C-AA2F-4E81-B242-4C1CF5C361B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3E50F8C-AA2F-4E81-B242-4C1CF5C361B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3E50F8C-AA2F-4E81-B242-4C1CF5C361B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -147,6 +149,22 @@ Global
 		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E932DEFF-520B-4ABE-A804-95312D63229F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E932DEFF-520B-4ABE-A804-95312D63229F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E932DEFF-520B-4ABE-A804-95312D63229F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E932DEFF-520B-4ABE-A804-95312D63229F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

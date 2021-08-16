@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
+    <Reference Include="myDLL">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,6 +55,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="浙江身份号码验证.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="浙江身份号码验证.Designer.cs">
+      <DependentUpon>浙江身份号码验证.cs</DependentUpon>
+    </Compile>
     <Compile Include="湖南.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +79,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="浙江身份号码验证.resx">
+      <DependentUpon>浙江身份号码验证.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="湖南.resx">
       <DependentUpon>湖南.cs</DependentUpon>
     </EmbeddedResource>
