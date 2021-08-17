@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浙江号码匹配", "项�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEF主程序", "CEF主程序\CEF主程序.csproj", "{0CE507C1-D9F1-417F-B6CE-4C596FE31256}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "药房网", "药房网\药房网.csproj", "{5B50582D-40EE-4228-90C1-789665843B68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

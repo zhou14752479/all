@@ -65,8 +65,13 @@
     <Compile Include="CEF主程序.Designer.cs">
       <DependentUpon>CEF主程序.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilterManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestHandler.cs" />
+    <Compile Include="ResourceRequestHandler.cs" />
+    <Compile Include="WinFormResourceRequestHandler.cs" />
+    <Compile Include="WinFormsRequestHandler.cs" />
     <EmbeddedResource Include="CEF主程序.resx">
       <DependentUpon>CEF主程序.cs</DependentUpon>
     </EmbeddedResource>

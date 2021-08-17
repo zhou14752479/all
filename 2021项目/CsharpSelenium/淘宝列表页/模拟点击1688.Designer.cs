@@ -43,6 +43,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button7 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -173,11 +175,35 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(693, 53);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(125, 33);
+            this.button7.TabIndex = 321;
+            this.button7.Text = "点击手动重新拨号";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(567, 62);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(120, 16);
+            this.checkBox1.TabIndex = 322;
+            this.checkBox1.Text = "每个商品拨号一次";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // 模拟点击1688
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 578);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -213,5 +239,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

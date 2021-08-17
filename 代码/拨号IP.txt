@@ -1,0 +1,38 @@
+   public static class Method
+        {
+            /// <summary>
+            /// 断开连接
+            /// </summary>
+            public static void Unlink()
+            {
+                ReadOnlyCollection<RasConnection> conList = RasConnection.GetActiveConnections();
+                foreach (RasConnection con in conList)
+                {
+                    con.HangUp();
+                }
+            }
+
+            /// <summary>
+            /// 宽带连接
+            /// </summary>
+            /// <returns></returns>
+            public static bool boolLink()
+            {
+                try
+                {
+                    RasDialer dialer = new RasDialer();
+                    dialer.EntryName = "宽带连接";
+                    dialer.PhoneNumber = " ";
+                    dialer.AllowUseStoredCredentials = true;
+                    dialer.PhoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
+                    dialer.Timeout = 2000;
+                    dialer.Dial();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return false;
+                }
+                return true;
+            }
+        }

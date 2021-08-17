@@ -32,9 +32,9 @@
             this.后退ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.前进ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.获取cookieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.获取request参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,29 +55,22 @@
             // 后退ToolStripMenuItem
             // 
             this.后退ToolStripMenuItem.Name = "后退ToolStripMenuItem";
-            this.后退ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.后退ToolStripMenuItem.Size = new System.Drawing.Size(44, 23);
             this.后退ToolStripMenuItem.Text = "后退";
             // 
             // 前进ToolStripMenuItem
             // 
             this.前进ToolStripMenuItem.Name = "前进ToolStripMenuItem";
-            this.前进ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.前进ToolStripMenuItem.Size = new System.Drawing.Size(44, 23);
             this.前进ToolStripMenuItem.Text = "前进";
+            this.前进ToolStripMenuItem.Click += new System.EventHandler(this.前进ToolStripMenuItem_Click);
             // 
             // 获取cookieToolStripMenuItem
             // 
             this.获取cookieToolStripMenuItem.Name = "获取cookieToolStripMenuItem";
-            this.获取cookieToolStripMenuItem.Size = new System.Drawing.Size(83, 21);
+            this.获取cookieToolStripMenuItem.Size = new System.Drawing.Size(83, 23);
             this.获取cookieToolStripMenuItem.Text = "获取cookie";
             this.获取cookieToolStripMenuItem.Click += new System.EventHandler(this.获取cookieToolStripMenuItem_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1081, 598);
-            this.panel1.TabIndex = 2;
             // 
             // 获取request参数ToolStripMenuItem
             // 
@@ -90,6 +83,14 @@
             // 
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 27);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1081, 598);
+            this.panel1.TabIndex = 2;
             // 
             // CEF主程序
             // 

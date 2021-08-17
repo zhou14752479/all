@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DotRas;
 using myDLL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -63,7 +66,12 @@ namespace 淘宝列表页
                     driver.Navigate().GoToUrl(value[2]);
                     Thread.Sleep(1000);
                     lv1.SubItems.Add("成功");
-
+                    if (checkBox1.Checked == true)
+                    {
+                        Method.Unlink();
+                        Thread.Sleep(1000);
+                        Method.boolLink();
+                    }
                 }
                 sr.Close();  //只关闭流
                 sr.Dispose();   //销毁流内存
@@ -77,6 +85,52 @@ namespace 淘宝列表页
             }
 
         }
+
+
+        public static class Method
+        {
+            /// <summary>
+            /// 断开连接
+            /// </summary>
+            public static void Unlink()
+            {
+                ReadOnlyCollection<RasConnection> conList = RasConnection.GetActiveConnections();
+                foreach (RasConnection con in conList)
+                {
+                    con.HangUp();
+                }
+            }
+
+            /// <summary>
+            /// 宽带连接
+            /// </summary>
+            /// <returns></returns>
+            public static bool boolLink()
+            {
+                try
+                {
+                    RasDialer dialer = new RasDialer();
+                    dialer.EntryName = "宽带连接";
+                    dialer.PhoneNumber = " ";
+                    dialer.AllowUseStoredCredentials = true;
+                    dialer.PhoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
+                    dialer.Timeout = 2000;
+                    dialer.Dial();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return false;
+                }
+                return true;
+            }
+        }
+
+
+
+
+
+
 
         private void 模拟点击1688_Load(object sender, EventArgs e)
         {
@@ -130,5 +184,13 @@ namespace 淘宝列表页
         {
             listView1.Items.Clear();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Method.Unlink();
+            Method.boolLink();
+        }
+
+       
     }
 }

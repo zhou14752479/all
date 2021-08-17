@@ -20,31 +20,73 @@ namespace CEF主程序
         }
         ChromiumWebBrowser browser ;
 
+       public static string body = "";
         private void CEF主程序_Load(object sender, EventArgs e)
         {
-            browser = new ChromiumWebBrowser("https://www.shangxueba.com");
+            browser = new ChromiumWebBrowser("http://q.cy1788.com/app/superscanPH/loginPHValidate.jsp");
             // Cef.Initialize(new CefSettings());
-
+           // browser.FrameLoadEnd += Browser_FrameLoadEnd;
 
             Control.CheckForIllegalCrossThreadCalls = false;
             panel1.Controls.Add(browser);
 
             browser.Dock = DockStyle.Fill;
-           
+
+
+            browser.RequestHandler = new WinFormsRequestHandler();//request请求的具体实现
+          
+
+        }
+        #region   cefsharp在自己窗口打开链接
+        //调用 browser.LifeSpanHandler = new OpenPageSelf();
+        /// <summary>
+        /// 在自己窗口打开链接
+        /// </summary>
+        internal class OpenPageSelf : ILifeSpanHandler
+        {
+            public bool DoClose(IWebBrowser browserControl, IBrowser browser)
+            {
+                return false;
+            }
+
+            public void OnAfterCreated(IWebBrowser browserControl, IBrowser browser)
+            {
+
+            }
+
+            public void OnBeforeClose(IWebBrowser browserControl, IBrowser browser)
+            {
+
+            }
+
+            public bool OnBeforePopup(IWebBrowser browserControl, IBrowser browser, IFrame frame, string targetUrl,
+    string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures,
+    IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
+            {
+                newBrowser = null;
+                var chromiumWebBrowser = (ChromiumWebBrowser)browserControl;
+                chromiumWebBrowser.Load(targetUrl);
+                return true; //Return true to cancel the popup creation copyright by codebye.com.
+            }
         }
 
 
 
 
+        #endregion
+
+        #region cefsharp获取cookie
+        //browser.FrameLoadEnd += Browser_FrameLoadEnd;调用加载事件
+        string cookies = "";
         private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
         {
+            cookies = ""; //把之前加载的重复的cookie清空
             CookieVisitor visitor = new CookieVisitor();
             visitor.SendCookie += visitor_SendCookie;
             ICookieManager cookieManager = browser.GetCookieManager();
             cookieManager.VisitAllCookies(visitor);
         }
-
-        string cookies = "";
+        
         private void visitor_SendCookie(CefSharp.Cookie obj)
         {
             //obj.Domain.TrimStart('.') + "^" +
@@ -74,11 +116,9 @@ namespace CEF主程序
 
             }
 
-
-
         }
 
-
+        #endregion
 
         private void 获取cookieToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -90,7 +130,12 @@ namespace CEF主程序
 
         private void 获取request参数ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            toolStripTextBox1.Text = body;
+        }
+
+        private void 前进ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

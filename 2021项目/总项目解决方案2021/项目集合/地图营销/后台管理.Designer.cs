@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("用户列表");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("用户添加");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("用户管理", new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("主页");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("用户列表");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("用户添加");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("用户管理", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("主页");
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -55,16 +55,15 @@
             this.user_txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -94,17 +93,17 @@
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeView1.Name = "treeView1";
-            treeNode9.Name = "节点2";
-            treeNode9.Text = "用户列表";
-            treeNode10.Name = "节点3";
-            treeNode10.Text = "用户添加";
-            treeNode11.Name = "节点0";
-            treeNode11.Text = "用户管理";
-            treeNode12.Name = "节点0";
-            treeNode12.Text = "主页";
+            treeNode5.Name = "节点2";
+            treeNode5.Text = "用户列表";
+            treeNode6.Name = "节点3";
+            treeNode6.Text = "用户添加";
+            treeNode7.Name = "节点0";
+            treeNode7.Text = "用户管理";
+            treeNode8.Name = "节点0";
+            treeNode8.Text = "主页";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12});
+            treeNode7,
+            treeNode8});
             this.treeView1.Size = new System.Drawing.Size(140, 766);
             this.treeView1.TabIndex = 15;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -310,11 +309,10 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button6);
+            this.tabPage3.Controls.Add(this.panel2);
             this.tabPage3.Controls.Add(this.button5);
             this.tabPage3.Controls.Add(this.textBox1);
             this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.webBrowser1);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage3.Name = "tabPage3";
@@ -323,6 +321,24 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(3, 65);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1087, 669);
+            this.panel2.TabIndex = 5;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(861, 18);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(81, 41);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "刷新";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox1
             // 
@@ -334,22 +350,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(693, 18);
+            this.button1.Location = new System.Drawing.Point(640, 21);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(162, 41);
             this.button1.TabIndex = 1;
             this.button1.Text = "确认登录成功后点击";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.webBrowser1.Location = new System.Drawing.Point(3, 89);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1087, 645);
-            this.webBrowser1.TabIndex = 0;
             // 
             // tabPage5
             // 
@@ -412,26 +419,6 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "地图软件后台管理系统";
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(861, 18);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 41);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "刷新";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(948, 18);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(81, 41);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "重新登录";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // 后台管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -482,7 +469,6 @@
         private System.Windows.Forms.TextBox user_txt;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel2;
@@ -490,7 +476,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Panel panel2;
     }
 }
