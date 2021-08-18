@@ -91,31 +91,31 @@ namespace 货币价格监控
 
 
         
-        public void runpy()
-        {
-            Process p = new Process();
-            p.StartInfo.FileName = "huobi.exe";    //填写exe的具体路径
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.Arguments = "abc 123";    //参数
-            p.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
-            p.ErrorDataReceived += new DataReceivedEventHandler(OutputHandler);
-            p.Start();
-            p.BeginOutputReadLine();
-            p.WaitForExit();
-            p.Close();
+       // public void runpy()
+       // {
+       //     Process p = new Process();
+       //     p.StartInfo.FileName = "huobi.exe";    //填写exe的具体路径
+       //     p.StartInfo.UseShellExecute = false;
+       //     p.StartInfo.RedirectStandardOutput = true;
+       //     p.StartInfo.RedirectStandardInput = true;
+       //     p.StartInfo.CreateNoWindow = true;
+       //     p.StartInfo.Arguments = "abc 123";    //参数
+       //     p.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
+       //     p.ErrorDataReceived += new DataReceivedEventHandler(OutputHandler);
+       //     p.Start();
+       //     p.BeginOutputReadLine();
+       //     p.WaitForExit();
+       //     p.Close();
 
 
-        }
+       // }
 
-        string huobiHtml = "";
-       void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
-        {
-            huobiHtml=(outLine.Data);
+       // string huobiHtml = "";
+       //void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
+       // {
+       //     huobiHtml=(outLine.Data);
            
-        }
+       // }
 
         bool playing = false;
 
@@ -138,8 +138,8 @@ namespace 货币价格监控
                 string binanceHtml = GetUrl("https://www.binance.com/api/v3/depth?symbol=MDXUSDT&limit=1000", "utf-8");
 
 
- 
-                    string huobiPrice = Regex.Match(huobiHtml, @"""close"":([\s\S]*?),").Groups[1].Value;
+                string huobiHtml = GetUrl("https://api.huobi.pro/market/history/kline?period=1day&size=1&symbol=mdxusdt", "utf-8");
+                string huobiPrice = Regex.Match(huobiHtml, @"""close"":([\s\S]*?),").Groups[1].Value;
                     string binancePrice = Regex.Match(binanceHtml, @"\[\[""([\s\S]*?)""").Groups[1].Value;
 
 
@@ -207,9 +207,17 @@ namespace 货币价格监控
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //if (thread1 == null || !thread1.IsAlive)
+            //{
+            //    Thread thread1 = new Thread(runpy);
+            //    thread1.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+
+
             if (thread1 == null || !thread1.IsAlive)
             {
-                Thread thread1 = new Thread(runpy);
+                Thread thread1 = new Thread(run);
                 thread1.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -229,14 +237,14 @@ namespace 货币价格监控
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //if (thread == null || !thread.IsAlive)
-            //{
-            //    thread = new Thread(run);
-            //    thread.Start();
-            //    Control.CheckForIllegalCrossThreadCalls = false;
-            //}
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
 
-            run();
+
         }
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)

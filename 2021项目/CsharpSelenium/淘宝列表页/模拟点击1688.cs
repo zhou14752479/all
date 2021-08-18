@@ -59,18 +59,19 @@ namespace 淘宝列表页
                     lv1.SubItems.Add(value[0]);
                     lv1.SubItems.Add(value[1]);
                     lv1.SubItems.Add(value[2]);
-
-                    string url = "https://m.1688.com/offer_search/-6D7033.html?keywords="+value[1];
-                    driver.Navigate().GoToUrl(url);
-                    Thread.Sleep(1000);
-                    driver.Navigate().GoToUrl(value[2]);
-                    Thread.Sleep(1000);
-                    lv1.SubItems.Add("成功");
-                    if (checkBox1.Checked == true)
+                    if (value[1] != "")
                     {
-                        Method.Unlink();
+                        string url = "https://m.1688.com/offer_search/-6D7033.html?keywords=" + value[1];
+                        driver.Navigate().GoToUrl(url);
                         Thread.Sleep(1000);
-                        Method.boolLink();
+                        driver.Navigate().GoToUrl(value[2]);
+                        Thread.Sleep(1000);
+                        lv1.SubItems.Add("成功");
+                        if (checkBox1.Checked == true)
+                        {
+                            ADSLHelper.Disconnect("宽带连接");
+                            ADSLHelper.Connect("宽带连接", "cbhb314", "bxcbpoi");
+                        }
                     }
                 }
                 sr.Close();  //只关闭流
@@ -87,7 +88,7 @@ namespace 淘宝列表页
         }
 
 
-        public static class Method
+        public static class ADSLHelperNoneedPass
         {
             /// <summary>
             /// 断开连接
@@ -127,7 +128,34 @@ namespace 淘宝列表页
         }
 
 
+        class ADSLHelper
+        {
+            public static void Connect(string connectionName, string user, string pass)
+            {
+                string arg = string.Format("rasdial \"{0}\" {1} {2}", connectionName, user, pass);
+                InvokeCmd(arg);
+            }
+            public static void Disconnect(string connectionName)
+            {
+                string arg = string.Format("rasdial \"{0}\" /disconnect", connectionName);
+                InvokeCmd(arg);
+            }
+            public  static string InvokeCmd(string cmdArgs)
+            {
+                Process p = new Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.RedirectStandardError = true;
+                p.StartInfo.CreateNoWindow = true;
+                p.Start();
+                p.StandardInput.WriteLine(cmdArgs);
+                p.StandardInput.WriteLine("exit");
+                return p.StandardOutput.ReadToEnd();
+            }
 
+        }
 
 
 
@@ -187,8 +215,11 @@ namespace 淘宝列表页
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Method.Unlink();
-            Method.boolLink();
+            ADSLHelper.Disconnect("宽带连接");
+            ADSLHelper.Connect("宽带连接", "cbhb314", "bxcbpoi");
+
+            //Method.Unlink();
+            //Method.boolLink();
         }
 
        

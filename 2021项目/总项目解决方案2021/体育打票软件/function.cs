@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace 体育打票软件
 {
@@ -180,14 +181,12 @@ namespace 体育打票软件
             string jine = Regex.Match(html, @"<span id=""consume"">([\s\S]*?)</span>").Groups[1].Value;
 
 
-            MatchCollection value1 = Regex.Matches(html, @"<span class=""delSelTrBtn"">([\s\S]*?)</tr>");
+          
 
 
 
             MatchCollection matchIds = Regex.Matches(html, @"class=""mCodeCls""([\s\S]*?)>([\s\S]*?)</td>");
             MatchCollection matchNames = Regex.Matches(html, @"<span class=""AgainstInfo"">([\s\S]*?)</span>");
-
-
             Dictionary<string, string> dics = new Dictionary<string, string>();
             for (int i = 0; i < matchIds.Count; i++)
             {
@@ -196,17 +195,41 @@ namespace 体育打票软件
 
             StringBuilder sb = new StringBuilder();
 
+
+            //MatchCollection value1 = Regex.Matches(html, @"<span class=""delSelTrBtn"">([\s\S]*?)</tr>");
+            //for (int i = 0; i < value1.Count; i++)
+            //{
+
+            //    string a1 = Regex.Match(value1[i].Groups[1].Value, @"</td><td>周([\s\S]*?)</td>").Groups[1].Value;
+            //    string a2 = Regex.Match(value1[i].Groups[1].Value, @"class=""selOption"">([\s\S]*?)</span>").Groups[1].Value;
+            //    sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
+            //    sb.Append(dics["周" + a1] + "\n");
+            //    sb.Append(a2 + "@" + "\n");
+            //}
+
+            MatchCollection value1 = Regex.Matches(html, @"<span>周([\s\S]*?)</span>");
+            MatchCollection value2 = Regex.Matches(html, @"204\);"">周([\s\S]*?)</span>");
+
             for (int i = 0; i < value1.Count; i++)
             {
-                string a1 = Regex.Match(value1[i].Groups[1].Value, @"</td><td>周([\s\S]*?)</td>").Groups[1].Value;
-                string a2 = Regex.Match(value1[i].Groups[1].Value, @"class=""selOption"">([\s\S]*?)</span>").Groups[1].Value;
+
+                string a1 = Regex.Match("周"+value1[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value;
+                string a2 = Regex.Match(value1[i].Groups[1].Value, @"\(([\s\S]*?)\)").Groups[1].Value;
                 sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
-                sb.Append(dics["周" + a1] + "\n");
-                sb.Append(a2 + "@" + "\n");
+                sb.Append("主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "\n");
+                sb.Append(a2 + "\n");
             }
 
+            for (int i = 0; i < value2.Count; i++)
+            {
 
-         
+                string a1 = Regex.Match("周" + value2[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value;
+                string a2 = Regex.Match(value2[i].Groups[1].Value, @"\(([\s\S]*?)\)").Groups[1].Value;
+                sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
+                sb.Append("主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "\n");
+                sb.Append(a2 + "\n");
+            }
+
             string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             Report.ParameterByName("suiji").AsString = suiji;

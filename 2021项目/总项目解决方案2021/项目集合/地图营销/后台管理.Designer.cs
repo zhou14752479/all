@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("用户列表");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("用户添加");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("用户管理", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("主页");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("用户列表");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("用户添加");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("用户管理", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("主页");
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -64,6 +64,8 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -71,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -93,17 +96,17 @@
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeView1.Name = "treeView1";
-            treeNode5.Name = "节点2";
-            treeNode5.Text = "用户列表";
-            treeNode6.Name = "节点3";
-            treeNode6.Text = "用户添加";
-            treeNode7.Name = "节点0";
-            treeNode7.Text = "用户管理";
-            treeNode8.Name = "节点0";
-            treeNode8.Text = "主页";
+            treeNode1.Name = "节点2";
+            treeNode1.Text = "用户列表";
+            treeNode2.Name = "节点3";
+            treeNode2.Text = "用户添加";
+            treeNode3.Name = "节点0";
+            treeNode3.Text = "用户管理";
+            treeNode4.Name = "节点0";
+            treeNode4.Text = "主页";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8});
+            treeNode3,
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(140, 766);
             this.treeView1.TabIndex = 15;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -208,6 +211,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.numericUpDown2);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.numericUpDown1);
             this.tabPage2.Controls.Add(this.label8);
@@ -419,6 +424,32 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "地图软件后台管理系统";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(552, 297);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 20);
+            this.label2.TabIndex = 168;
+            this.label2.Text = "小时";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(477, 297);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(69, 25);
+            this.numericUpDown2.TabIndex = 167;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // 后台管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -442,6 +473,7 @@
             this.tabPage3.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -478,5 +510,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
     }
 }

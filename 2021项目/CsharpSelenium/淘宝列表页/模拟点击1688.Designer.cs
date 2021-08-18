@@ -181,7 +181,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(125, 33);
             this.button7.TabIndex = 321;
-            this.button7.Text = "点击手动重新拨号";
+            this.button7.Text = "手动重新拨号";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 

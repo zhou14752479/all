@@ -109,7 +109,7 @@ namespace 体育打票软件
 
              html = webBrowser1.Document.Body.OuterHtml;
             ahtml = webBrowser1.DocumentText;
-
+            textBox1.Text = html;
         }
 
 

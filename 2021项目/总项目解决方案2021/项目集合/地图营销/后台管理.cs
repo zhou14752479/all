@@ -95,7 +95,9 @@ namespace 地图营销
                 MessageBox.Show("请输入账号和密码");
                 return;
             }
-            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username="+user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+numericUpDown1.Value+ "&type=" +type, "utf-8");
+
+            decimal days = numericUpDown1.Value + (numericUpDown2.Value/24);
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username="+user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+days+ "&type=" +type, "utf-8");
             MessageBox.Show(html.Trim());
             user_txt.Text = "";
             pass_txt.Text= "";

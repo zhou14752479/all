@@ -90,18 +90,22 @@ namespace 体育打票软件
             string[] text1 = text[0].Trim().Split(new string[] { "	" }, StringSplitOptions.None);
 
            
-            //string fangshi = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
-            //string leixing = Regex.Match(html, @"<title>([\s\S]*?)</title>").Groups[1].Value;
-            //string suiji = Guid.NewGuid().ToString();
-
-
+            string fangshi = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+            string leixing = Regex.Match(html, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+          
 
             //string guoguan = "过关方式 " + Regex.Match(html, @"checked="""">([\s\S]*?)</span>").Groups[1].Value;
             string beishu = Regex.Replace(text1[2], ".*/", "");
             string jine = text1[3];
+            string guoguan = "过关方式 " + text1[4].Replace("串","×");
 
-            MessageBox.Show(beishu+"   "+jine);
-            MatchCollection value1 = Regex.Matches(html, @"<span class=""delSelTrBtn"">([\s\S]*?)</tr>");
+            //周三002>让平|3.00
+            MatchCollection zhous = Regex.Matches(textBox1.Text.Trim(), @"周([\s\S]*?)>");
+            MatchCollection results = Regex.Matches(textBox1.Text.Trim(), @">([\s\S]*?)\|");
+            MatchCollection prices = Regex.Matches(textBox1.Text.Trim(), @"\|.*");
+
+           
+           
 
             MatchCollection matchIds = Regex.Matches(html, @"class=""mCodeCls""([\s\S]*?)>([\s\S]*?)</td>");
             MatchCollection matchNames = Regex.Matches(html, @"<span class=""AgainstInfo"">([\s\S]*?)</span>");
@@ -115,21 +119,22 @@ namespace 体育打票软件
 
             StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < value1.Count; i++)
+            for (int i = 0; i < zhous.Count; i++)
             {
-                string a1 = Regex.Match(value1[i].Groups[1].Value, @"</td><td>周([\s\S]*?)</td>").Groups[1].Value;
-                string a2 = Regex.Match(value1[i].Groups[1].Value, @"class=""selOption"">([\s\S]*?)</span>").Groups[1].Value;
+                string a1 = zhous[i].Groups[1].Value;
+                string a2 = results[i].Groups[1].Value;
+                string a3 = prices[i].Groups[0].Value.Replace("|", "");
                 sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
-                sb.Append(dics["周" + a1] + "\n");
-                sb.Append(a2 + "@" + "\n");
+                sb.Append("主队:"+dics["周" + a1].Replace("VS","VS客队:") + "\n");
+                sb.Append(a2 + "@" +a3+ "\n");
             }
 
             string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             Report.ParameterByName("suiji").AsString = suiji;
-            //Report.ParameterByName("fangshi").AsString = fangshi;
-            //Report.ParameterByName("leixing").AsString = leixing;
-            //Report.ParameterByName("guoguan").AsString = guoguan;
+            Report.ParameterByName("fangshi").AsString = fangshi;
+            Report.ParameterByName("leixing").AsString = leixing;
+            Report.ParameterByName("guoguan").AsString = guoguan;
             Report.ParameterByName("beishu").AsString = beishu;
 
             Report.ParameterByName("jine").AsString = jine;
@@ -165,10 +170,10 @@ namespace 体育打票软件
                textBox1.Text="";
             }
 
-            if (checkBox3.Checked == true)
-            {
-                this.Hide();
-            }
+            //if (checkBox3.Checked == true)
+            //{
+            //    this.Hide();
+            //}
         }
     }
 }
