@@ -170,18 +170,20 @@ namespace 体育打票软件
                 Report.LoadFromFile(path + "template\\a.grf");
             }
            
-            string fangshi = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+            string fangshi = "竞彩"+Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
             string leixing = Regex.Match(html, @"<title>([\s\S]*?)</title>").Groups[1].Value;
             string suiji = bianma + function.getsuijima();
             string zhanhao = haoma;
+            string jiangjin= Regex.Match(html, @"<span id=""bonus"">([\s\S]*?)</span>").Groups[1].Value;
 
 
-            string guoguan = "过关方式 " + Regex.Match(html, @"checked="""">([\s\S]*?)</span>").Groups[1].Value;
-            string beishu = Regex.Match(html, @"</span> x([\s\S]*?)</span> x([\s\S]*?)倍").Groups[2].Value;
+            string guoguan = Regex.Match(html, @"checked="""">([\s\S]*?)</span>").Groups[1].Value;
+            string beishu = Regex.Match(html, @"x \d倍").Groups[0].Value.Replace("x","").Replace("倍", "").Trim();
+           
             string jine = Regex.Match(html, @"<span id=""consume"">([\s\S]*?)</span>").Groups[1].Value;
 
+           string zhushu = (Convert.ToInt32(jine) / 2).ToString();
 
-          
 
 
 
@@ -210,37 +212,79 @@ namespace 体育打票软件
             MatchCollection value1 = Regex.Matches(html, @"<span>周([\s\S]*?)</span>");
             MatchCollection value2 = Regex.Matches(html, @"204\);"">周([\s\S]*?)</span>");
 
+            List<string> lists = new List<string>();
+            Dictionary<string, string> resultdics = new Dictionary<string, string>();
+
             for (int i = 0; i < value1.Count; i++)
             {
-
-                string a1 = Regex.Match("周"+value1[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value;
+                string a1 = Regex.Match("周" + value1[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value;
                 string a2 = Regex.Match(value1[i].Groups[1].Value, @"\(([\s\S]*?)\)").Groups[1].Value;
-                sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
-                sb.Append("主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "\n");
-                sb.Append(a2 + "\n");
+                if (resultdics.ContainsKey(a1))
+                {
+                    if (!lists.Contains(a1+a2))
+                    {
+                        lists.Add(a1+a2);
+                         resultdics[a1] = resultdics[a1] + "+" + a2;
+                    }
+                  
+                }
+                else
+                {
+                    lists.Add(a1+a2);
+                    resultdics.Add(a1, "主队:" + dics["周" + a1].Replace(" VS ", "VS客队:") + "胜平负\n" + a2);
+
+                }
+               
             }
+
+
 
             for (int i = 0; i < value2.Count; i++)
             {
-
                 string a1 = Regex.Match("周" + value2[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value;
                 string a2 = Regex.Match(value2[i].Groups[1].Value, @"\(([\s\S]*?)\)").Groups[1].Value;
-                sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
-                sb.Append("主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "\n");
-                sb.Append(a2 + "\n");
+                if (resultdics.ContainsKey(a1))
+                {
+                    if (!lists.Contains(a2))
+                    {
+                        lists.Add(a2);
+                        resultdics[a1] = resultdics[a1] + "+" + a2;
+                    }
+
+                }
+                else
+                {
+                    lists.Add(a2);
+                    resultdics.Add(a1, "主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "让球胜平负\n" + a2);
+
+                }
+
             }
+
+
+            int a = 1;
+            foreach (var item in resultdics.Keys)
+            {
+
+                sb.Append("第" + a + "场周" + item + "\n"+resultdics[item]+"\n");
+                a = a + 1;
+            }
+
+            sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:"+jiangjin+"\n单倍注数:"+guoguan+"*"+zhushu+"注;共"+zhushu+"注");
 
             string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             Report.ParameterByName("suiji").AsString = suiji;
             Report.ParameterByName("fangshi").AsString = fangshi;
             Report.ParameterByName("leixing").AsString = leixing;
-            Report.ParameterByName("guoguan").AsString = guoguan;
+            Report.ParameterByName("guoguan").AsString = "过关方式 "+guoguan;
             Report.ParameterByName("beishu").AsString = beishu;
 
             Report.ParameterByName("jine").AsString = jine;
             Report.ParameterByName("neirong").AsString = sb.ToString();
 
+
+            Report.ParameterByName("dizhi").AsString = address;
             Report.ParameterByName("zhanhao").AsString = haoma;
             Report.ParameterByName("time").AsString = time;
         }

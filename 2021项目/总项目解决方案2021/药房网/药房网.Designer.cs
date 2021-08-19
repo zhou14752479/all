@@ -36,6 +36,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
@@ -100,13 +100,18 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "所有商家名称";
+            this.columnHeader6.Text = "商家名称";
             this.columnHeader6.Width = 150;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "所有商家价格";
+            this.columnHeader7.Text = "商家价格";
             this.columnHeader7.Width = 100;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "最低价格";
+            this.columnHeader8.Width = 80;
             // 
             // button3
             // 
@@ -193,11 +198,6 @@
             this.label1.Size = new System.Drawing.Size(77, 14);
             this.label1.TabIndex = 307;
             this.label1.Text = "导入表格：";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "最低价格";
-            this.columnHeader8.Width = 80;
             // 
             // radioButton1
             // 

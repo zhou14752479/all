@@ -77,8 +77,8 @@ namespace 自定义控件1
         private void UserControl1_MouseLeave(object sender, EventArgs e)
         {
            
-            button1.Visible = false;
-            uiButton1.Visible = false;
+            //button1.Visible = false;
+            //uiButton1.Visible = false;
 
         }
 

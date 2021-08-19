@@ -38,6 +38,7 @@
             this.uiTextBox2 = new Sunny.UI.UITextBox();
             this.uiButton1 = new Sunny.UI.UIButton();
             this.uiCheckBox1 = new Sunny.UI.UICheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -59,9 +60,9 @@
             this.label1.ForeColor = System.Drawing.Color.Gray;
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 15);
+            this.label1.Size = new System.Drawing.Size(151, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "智能营销系统";
+            this.label1.Text = "云大师智能营销系统";
             // 
             // pictureBox1
             // 
@@ -85,6 +86,7 @@
             this.uiTextBox1.Minimum = -2147483648D;
             this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox1.Name = "uiTextBox1";
+            this.uiTextBox1.RectColor = System.Drawing.Color.White;
             this.uiTextBox1.Size = new System.Drawing.Size(184, 29);
             this.uiTextBox1.Style = Sunny.UI.UIStyle.Custom;
             this.uiTextBox1.TabIndex = 2;
@@ -126,6 +128,7 @@
             this.uiTextBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTextBox2.Name = "uiTextBox2";
             this.uiTextBox2.PasswordChar = '*';
+            this.uiTextBox2.RectColor = System.Drawing.Color.White;
             this.uiTextBox2.Size = new System.Drawing.Size(184, 29);
             this.uiTextBox2.Style = Sunny.UI.UIStyle.Custom;
             this.uiTextBox2.TabIndex = 4;
@@ -139,6 +142,7 @@
             this.uiButton1.Location = new System.Drawing.Point(138, 379);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
+            this.uiButton1.RectColor = System.Drawing.Color.White;
             this.uiButton1.Size = new System.Drawing.Size(100, 35);
             this.uiButton1.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton1.TabIndex = 6;
@@ -147,6 +151,7 @@
             // 
             // uiCheckBox1
             // 
+            this.uiCheckBox1.CheckBoxColor = System.Drawing.Color.White;
             this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiCheckBox1.ForeColor = System.Drawing.Color.White;
@@ -159,12 +164,23 @@
             this.uiCheckBox1.TabIndex = 7;
             this.uiCheckBox1.Text = "请记住账号和密码";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Silver;
+            this.label2.Location = new System.Drawing.Point(104, 530);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 12);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "版权所有：云大师智能营销系统";
+            // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(362, 551);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.uiCheckBox1);
             this.Controls.Add(this.uiButton1);
             this.Controls.Add(this.uiLabel2);
@@ -182,6 +198,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -196,5 +213,6 @@
         private Sunny.UI.UITextBox uiTextBox2;
         private Sunny.UI.UIButton uiButton1;
         private Sunny.UI.UICheckBox uiCheckBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

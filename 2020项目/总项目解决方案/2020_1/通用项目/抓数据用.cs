@@ -526,7 +526,7 @@ namespace 通用项目
 
         private void button4_Click(object sender, EventArgs e)
         {
-            method.expotTxt(listView1);
+            method.expotTxt(listView1,1);
         }
 
         private void button6_Click(object sender, EventArgs e)

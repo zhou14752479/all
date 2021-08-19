@@ -45,6 +45,12 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button7 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -89,9 +95,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 129);
+            this.listView1.Location = new System.Drawing.Point(0, 124);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(990, 449);
+            this.listView1.Size = new System.Drawing.Size(971, 469);
             this.listView1.TabIndex = 271;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -177,7 +183,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(693, 53);
+            this.button7.Location = new System.Drawing.Point(806, 64);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(125, 33);
             this.button7.TabIndex = 321;
@@ -190,18 +196,66 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(567, 62);
+            this.checkBox1.Location = new System.Drawing.Point(806, 34);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(120, 16);
             this.checkBox1.TabIndex = 322;
             this.checkBox1.Text = "每个商品拨号一次";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 323;
+            this.label2.Text = "宽带账号：";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(81, 20);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 21);
+            this.textBox2.TabIndex = 324;
+            this.textBox2.Text = "637720210305";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(81, 57);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 21);
+            this.textBox3.TabIndex = 326;
+            this.textBox3.Text = "888888";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 325;
+            this.label3.Text = "宽带密码：";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(580, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(210, 98);
+            this.groupBox1.TabIndex = 327;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "拨号";
+            // 
             // 模拟点击1688
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 578);
+            this.ClientSize = new System.Drawing.Size(971, 593);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
@@ -217,6 +271,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "模拟点击1688";
             this.Load += new System.EventHandler(this.模拟点击1688_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +297,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

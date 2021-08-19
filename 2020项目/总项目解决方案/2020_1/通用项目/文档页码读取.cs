@@ -44,40 +44,40 @@ namespace 通用项目
 
         public int getpage(object file)
         {
-            try
-            {
-                Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
-                object nullobj = System.Reflection.Missing.Value;
+            //try
+            //{
+            //    Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+            //    object nullobj = System.Reflection.Missing.Value;
 
-                Microsoft.Office.Interop.Word.Document doc = app.Documents.Open(
-                  ref file, ref nullobj, ref nullobj,
-                  ref nullobj, ref nullobj, ref nullobj,
-                  ref nullobj, ref nullobj, ref nullobj,
-                  ref nullobj, ref nullobj, ref nullobj,
-                  ref nullobj, ref nullobj, ref nullobj);
-                doc.ActiveWindow.Selection.WholeStory();
-                doc.ActiveWindow.Selection.Copy();
-                IDataObject data = Clipboard.GetDataObject();
+            //    Microsoft.Office.Interop.Word.Document doc = app.Documents.Open(
+            //      ref file, ref nullobj, ref nullobj,
+            //      ref nullobj, ref nullobj, ref nullobj,
+            //      ref nullobj, ref nullobj, ref nullobj,
+            //      ref nullobj, ref nullobj, ref nullobj,
+            //      ref nullobj, ref nullobj, ref nullobj);
+            //    doc.ActiveWindow.Selection.WholeStory();
+            //    doc.ActiveWindow.Selection.Copy();
+            //    IDataObject data = Clipboard.GetDataObject();
 
-                // get number of pages
-                Microsoft.Office.Interop.Word.WdStatistic stat = Microsoft.Office.Interop.Word.WdStatistic.wdStatisticPages;
-                int pages = doc.ComputeStatistics(stat, Type.Missing);
+            //    // get number of pages
+            //    Microsoft.Office.Interop.Word.WdStatistic stat = Microsoft.Office.Interop.Word.WdStatistic.wdStatisticPages;
+            //    int pages = doc.ComputeStatistics(stat, Type.Missing);
 
-                //string text = data.GetData(DataFormats.Text).ToString();  //获取具体内容，此项目不需要
+            //    //string text = data.GetData(DataFormats.Text).ToString();  //获取具体内容，此项目不需要
 
-                doc.Close(ref nullobj, ref nullobj, ref nullobj);
-                app.Quit(ref nullobj, ref nullobj, ref nullobj);
+            //    doc.Close(ref nullobj, ref nullobj, ref nullobj);
+            //    app.Quit(ref nullobj, ref nullobj, ref nullobj);
 
 
-                return pages;
+            //    return pages;
 
-            }
-            catch (Exception ex)
-            {
-                ex.ToString();
-                return 0;
+            //}
+            //catch (Exception ex)
+            //{
+            //    ex.ToString();
+              return 0;
                
-            }
+            //}
             
         }
 

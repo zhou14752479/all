@@ -24,7 +24,7 @@ namespace 美团
         }
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cityId = GetcityId((comboBox3.Text.Replace("市","")));
+            cityId = GetcityId((comboBox3.Text.Replace("市", "")));
             getareas(cityId);
 
         }
@@ -157,19 +157,19 @@ namespace 美团
         {
             areadics.Clear();
             comboBox4.Items.Clear();
-            string Url = "https://i.meituan.com/wrapapi/search/filters?riskLevel=71&optimusCode=10&ci="+cityid;
+            string Url = "https://i.meituan.com/wrapapi/search/filters?riskLevel=71&optimusCode=10&ci=" + cityid;
 
             string html = GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
             MatchCollection areas = Regex.Matches(html, @"{""id"":([\s\S]*?),([\s\S]*?)""name"":""([\s\S]*?)""");
-          
+
 
             for (int i = 0; i < areas.Count; i++)
             {
 
                 if (areas[i].Groups[3].Value.Contains("区") || areas[i].Groups[3].Value.Contains("县"))
                 {
-                    if (!areas[i].Groups[3].Value.Contains("小区") && !areas[i].Groups[3].Value.Contains("街区") && !areas[i].Groups[3].Value.Contains("商业区") && !areas[i].Groups[3].Value.Contains("城区") && !areas[i].Groups[3].Value.Contains("市区") && !areas[i].Groups[3].Value.Contains("地区") && !areas[i].Groups[3].Value.Contains("社区") && areas[i].Groups[3].Value.Length<5)
+                    if (!areas[i].Groups[3].Value.Contains("小区") && !areas[i].Groups[3].Value.Contains("街区") && !areas[i].Groups[3].Value.Contains("商业区") && !areas[i].Groups[3].Value.Contains("城区") && !areas[i].Groups[3].Value.Contains("市区") && !areas[i].Groups[3].Value.Contains("地区") && !areas[i].Groups[3].Value.Contains("社区") && areas[i].Groups[3].Value.Length < 5)
                     {
                         if (!areadics.ContainsKey(areas[i].Groups[3].Value))
                         {
@@ -181,10 +181,10 @@ namespace 美团
                         }
                     }
                 }
-                   
+
             }
 
-          
+
         }
 
         #endregion
@@ -224,8 +224,8 @@ namespace 美团
         public void run1()
         {
             string city = "";
-           ArrayList keywords = new ArrayList();
-           
+            ArrayList keywords = new ArrayList();
+
             //if (textBox2.Text != "")
             //{
             //    keywords.Add(textBox2.Text.Trim());
@@ -243,11 +243,11 @@ namespace 美团
 
 
                 string cityId = GetcityId(city);
-               
+
                 ArrayList areas = null;
                 foreach (string areaId in areas)
                 {
-               
+
                     foreach (string keyword in keywords)
 
                     {
@@ -259,9 +259,9 @@ namespace 美团
 
 
                             string Url = "https://apimobile.meituan.com/group/v4/poi/search/" + cityId + "?riskLevel=71&optimusCode=10&cateId=-1&sort=defaults&userid=-1&offset=" + i + "&limit=15&mypos=33.940975189208984%2C118.24801635742188&uuid=E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576&version_name=10.4.200&supportDisplayTemplates=itemA%2CitemB%2CitemJ%2CitemP%2CitemS%2CitemM%2CitemY%2CitemL&supportTemplates=default%2Chotel%2Cblock%2Cnofilter%2Ccinema&searchSource=miniprogram&ste=_b100000&q=" + keyword.Trim() + "&cityId=" + cityId + "&areaId=" + areaId;
-                         
+
                             string html = meituan_GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
-                          
+
                             MatchCollection all = Regex.Matches(html, @"\{""poiid"":([\s\S]*?),");
 
                             ArrayList lists = new ArrayList();
@@ -272,7 +272,7 @@ namespace 美团
                                 lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");
                             }
 
-                            
+
 
                             if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
                             {
@@ -280,7 +280,7 @@ namespace 美团
                                 break;
                             }
 
-                                
+
 
 
 
@@ -293,7 +293,7 @@ namespace 美团
                                 Match name = Regex.Match(strhtml1, @"name"":""([\s\S]*?)""");
                                 Match tel = Regex.Match(strhtml1, @"phone"":""([\s\S]*?)""");
                                 Match addr = Regex.Match(strhtml1, @"address"":""([\s\S]*?)""");
-                             
+
                                 if (!tels.Contains(tel.Groups[1].Value))
                                 {
                                     tels.Add(tel.Groups[1].Value);
@@ -302,8 +302,8 @@ namespace 美团
                                     listViewItem.SubItems.Add(name.Groups[1].Value);
                                     listViewItem.SubItems.Add(addr.Groups[1].Value);
                                     listViewItem.SubItems.Add(tel.Groups[1].Value);
-                                  
-                                   
+
+
 
 
                                     while (this.zanting == false)
@@ -315,7 +315,7 @@ namespace 美团
 
                                 }
 
-                                
+
 
 
                             }
@@ -428,7 +428,7 @@ namespace 美团
 
                         {
                             string Url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityId + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + i + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
-                          
+
                             string html = method.GetUrl(Url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
                             MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
@@ -473,99 +473,78 @@ namespace 美团
             {
                 ex.ToString();
             }
-            
+
 
 
         }
 
 
-      
+
         #endregion
 
 
-        #region  全国饮品店
+        #region  全国餐饮店
         public void getall()
         {
-            ArrayList cityids =getallcitys();
+            ArrayList cityids = getallcitys();
 
             foreach (string cityid in cityids)
-            { 
+            {
 
                 try
                 {
-
-
                     for (int i = 0; i < 100001; i = i + 100)
 
                     {
 
-                        string Url = "https://api.meituan.com/group/v5/deal/select/city/" + cityid + "/cate/21329?sort=start&mypos=&hasGroup=true&offset=" + i + "&limit=100&poiFields=phone,addr,addr,cates,name,cateId,areaId,districtId,cateName,areaName,mallName,mallId,brandId,iUrl,payInfo,poiid&client=android&utm_source=qqcpd&utm_medium=android&utm_term=254&version_name=5.5.4&utm_content=&utm_campaign=AgroupBgroupC0E0Ghomepage_category1_1__a1&uuid=";
+                        string Url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityId + "&cateid=22&categoryids=1&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + i + "&limit=100&areaid=-1&distance=&subwaylineid=&subwaystationid=&sort=2";
 
                         string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
 
 
-                        MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
 
-                        MatchCollection address = Regex.Matches(html, @"""addr"":""([\s\S]*?)""");
+                        MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
+                        MatchCollection address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
                         MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-                        MatchCollection waimai = Regex.Matches(html, @"""isWaimai"":([\s\S]*?),");
+                        MatchCollection cate = Regex.Matches(html, @"mainCategoryName"":""([\s\S]*?)""");
+                        MatchCollection shangquan = Regex.Matches(html, @"""areaName"":""([\s\S]*?)""");
 
-                        MatchCollection cate = Regex.Matches(html, @"cateName"":""([\s\S]*?)""");
-                        MatchCollection area = Regex.Matches(html, @"areaName"":""([\s\S]*?)""");
-                        MatchCollection shangquan = Regex.Matches(html, @"mallName"":""([\s\S]*?)""");
-
+                        MatchCollection newShop = Regex.Matches(html, @"""newShop"":([\s\S]*?),");
 
                         if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
 
                             break;
 
                         for (int j = 0; j < names.Count; j++)
+
                         {
-
-                            if (!tels.Contains(phone[j].Groups[1].Value))
+                            if (newShop[j].Groups[1].Value.Trim().ToLower()=="true")
                             {
-                                tels.Add(phone[j].Groups[1].Value);
-                                bool panduan = true;
-                        
-                                if (panduan)
-                                {
-                                  
-                                        if (!phone[j].Groups[1].Value.Contains("-") && !phone[j].Groups[1].Value.Contains("400"))
-                                        {
-
-                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                            listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(address[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(phone[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(waimai[j].Groups[1].Value);
-
-                                            listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(area[j].Groups[1].Value);
-                                            listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
-
-                                        }
-                          
-
-                                    while (this.zanting == false)
-                                    {
-                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                    }
-                                    if (status == false)
-                                        return;
-                                }
-
-                                else
-                                {
-                                    toolStripStatusLabel1.Text = names[j].Groups[1].Value+"不符合条件";
-                                }
+                               
+                                ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                listViewItem.SubItems.Add(names[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(phone[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+                                listViewItem.SubItems.Add(newShop[j].Groups[1].Value);
                             }
                         }
-                        Application.DoEvents();
-                        Thread.Sleep(1000);
+
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+
+                        }
+
+                    Thread.Sleep(1000);
 
 
 
-                    }
                 }
                 catch (System.Exception ex)
                 {
@@ -576,33 +555,21 @@ namespace 美团
         }
         #endregion
 
-      
-    
+
+
         Thread thread;
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
 
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
-
-            if (!html.Contains(@"MBfRdu"))
-            {
-                MessageBox.Show("");
-                return;
-            }
-
-
-
-            #endregion
 
             status = true;
-           
 
-          
+
+
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(getall);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -647,7 +614,7 @@ namespace 美团
         private Point mPoint = new Point();
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
-           
+
             if (e.Button == MouseButtons.Left)
             {
                 Point myPosittion = MousePosition;
@@ -666,11 +633,11 @@ namespace 美团
             }
             else
             {
-                
+
             }
         }
 
-      
+
         private void 美团附近_Load(object sender, EventArgs e)
         {
             ProvinceCity.ProvinceCity.BindProvince(comboBox2);

@@ -54,16 +54,6 @@
             this.button9 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button8 = new System.Windows.Forms.Button();
             this.bianma_txt = new System.Windows.Forms.TextBox();
@@ -72,7 +62,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.address_txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -254,7 +243,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.webBrowser1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -307,17 +295,18 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(650, 23);
+            this.button10.Location = new System.Drawing.Point(658, 16);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(112, 23);
+            this.button10.Size = new System.Drawing.Size(112, 35);
             this.button10.TabIndex = 409;
             this.button10.Text = "打印奖票";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(604, 25);
+            this.label6.Location = new System.Drawing.Point(616, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(23, 15);
             this.label6.TabIndex = 408;
@@ -325,7 +314,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(535, 22);
+            this.textBox5.Location = new System.Drawing.Point(547, 21);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(63, 24);
             this.textBox5.TabIndex = 407;
@@ -333,7 +322,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(506, 25);
+            this.label5.Location = new System.Drawing.Point(518, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(23, 15);
             this.label5.TabIndex = 406;
@@ -341,7 +330,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(437, 22);
+            this.textBox4.Location = new System.Drawing.Point(449, 21);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(63, 24);
             this.textBox4.TabIndex = 405;
@@ -349,7 +338,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(344, 27);
+            this.label4.Location = new System.Drawing.Point(356, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 15);
             this.label4.TabIndex = 404;
@@ -357,33 +346,24 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(197, 23);
+            this.button9.Location = new System.Drawing.Point(253, 16);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(112, 23);
+            this.button9.Size = new System.Drawing.Size(97, 35);
             this.button9.TabIndex = 403;
             this.button9.Text = "开始查找";
             this.button9.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CustomFormat = "yyyy年MM月dd日HH时mm分";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(18, 22);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(173, 24);
+            this.dateTimePicker1.Size = new System.Drawing.Size(229, 24);
             this.dateTimePicker1.TabIndex = 402;
             // 
             // listView1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10,
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 10F);
             this.listView1.FullRowSelect = true;
@@ -395,49 +375,6 @@
             this.listView1.TabIndex = 401;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "序号";
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "A";
-            this.columnHeader1.Width = 40;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "B";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "C";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "D";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "总笔数";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "总投注金额";
-            this.columnHeader6.Width = 80;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "总赢输";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "总胜率";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "赢输金额比";
-            this.columnHeader9.Width = 80;
             // 
             // groupBox1
             // 
@@ -524,14 +461,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "店铺地址：";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(17, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(377, 567);
-            this.textBox1.TabIndex = 3;
-            // 
             // 体育打票软件
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -548,7 +477,6 @@
             this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -593,17 +521,6 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

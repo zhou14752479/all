@@ -35,16 +35,20 @@ namespace 货币价格监控
     string lpstrReturnString, uint uReturnLength, uint hWndCallback);
     public void Play()
     {
-       mciSendString(@"close temp_alias", null, 0, 0);
-        mciSendString(@"open ""9378.mp3"" alias temp_alias", null, 0, 0);
-        mciSendString("play temp_alias repeat", null, 0, 0);
-           
-    }
+            //mciSendString(@"close temp_alias", null, 0, 0);
+            // mciSendString(@"open ""9378.mp3"" alias temp_alias", null, 0, 0);
+            // mciSendString("play temp_alias repeat", null, 0, 0);
+
+            SoundPlayer soundPlayer = new SoundPlayer();
+            soundPlayer.SoundLocation = "9378.wav";
+            soundPlayer.PlaySync();
+
+        }
 
 
 
 
-    SoundPlayer player = new SoundPlayer();
+        SoundPlayer player = new SoundPlayer();
        
         #region GET请求
         /// <summary>
@@ -157,27 +161,33 @@ namespace 货币价格监控
                     {
                         
                         textBox5.Text += DateTime.Now.ToString() + " : 火币的价格为" + huobi+ "....币安的价格为" + binance + "..火币高于币安" + (huobi - binance) + "\r\n";
-                      
-                        if(playing==false)
+
+                        if (playing == false)
                         {
+                            
                             playing = true;
-                             Play();
+                            Play();
+
                         }
-                           
-                         
-                        
                        
+
+
+
                     }
 
                     if ((binance - huobi) > Convert.ToDecimal(textBox2.Text))
                     {
-                      
+
                         textBox5.Text += DateTime.Now.ToString() + " : 火币的价格为" + huobi + "....币安的价格为" + binance + "..币安高于火币" + (binance - huobi) + "\r\n";
                         if (playing == false)
                         {
+                           
+                           
                             playing = true;
                             Play();
+
                         }
+                       
                     }
 
 
@@ -202,6 +212,13 @@ namespace 货币价格监控
         Thread thread;
         Thread thread1;
 
+        private void ThreadFunc()
+        {
+        
+            MethodInvoker mi = new MethodInvoker(run);
+            this.BeginInvoke(mi);
+        }
+
 
 
 
@@ -215,10 +232,10 @@ namespace 货币价格监控
             //}
 
 
-            if (thread1 == null || !thread1.IsAlive)
+            if (thread == null || !thread.IsAlive)
             {
-                Thread thread1 = new Thread(run);
-                thread1.Start();
+                thread = new Thread(ThreadFunc);
+                thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
 
@@ -239,7 +256,7 @@ namespace 货币价格监控
         {
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(ThreadFunc);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

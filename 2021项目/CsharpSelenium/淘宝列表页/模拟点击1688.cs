@@ -16,6 +16,7 @@ using DotRas;
 using myDLL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 
 namespace 淘宝列表页
 {
@@ -42,7 +43,12 @@ namespace 淘宝列表页
             try
             {
                 ChromeOptions options = new ChromeOptions();
-                IWebDriver driver = new ChromeDriver(options);
+              
+                //设置user agent为iPhone5
+               // options.AddArgument("--user-agent=Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36");
+                //实例化chrome对象，并加入选项
+                WebDriver driver = new ChromeDriver(options);
+              
                 //driver.Manage().Window.Maximize();
                 string loginurl = "https://m.1688.com/search.html";
 
@@ -64,14 +70,35 @@ namespace 淘宝列表页
                         string url = "https://m.1688.com/offer_search/-6D7033.html?keywords=" + value[1];
                         driver.Navigate().GoToUrl(url);
                         Thread.Sleep(1000);
+                        IList<IWebElement> listOption = driver.FindElements(By.ClassName("item-link"));
+                        foreach (var item in listOption)
+                        {
+                            if (item.GetAttribute("href").Contains(value[0]))
+                            {
+                                //MessageBox.Show(item.TagName);
+                                //MessageBox.Show(item.Text);
+                                // MessageBox.Show(item.GetAttribute("href"));
+                                // document.getElementById(“test”).scrollIntoView();
+                                Actions actions = new Actions(driver);
+                                actions.MoveToElement(item);
+                                actions.Perform();
+                                Thread.Sleep(1000);
+                                item.Click();
+
+                            }
+
+                        }
+
                         driver.Navigate().GoToUrl(value[2]);
-                        Thread.Sleep(1000);
+                        
                         lv1.SubItems.Add("成功");
                         if (checkBox1.Checked == true)
                         {
                             ADSLHelper.Disconnect("宽带连接");
-                            ADSLHelper.Connect("宽带连接", "cbhb314", "bxcbpoi");
+                            Thread.Sleep(2000);
+                            ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim());
                         }
+                        Thread.Sleep(8000);
                     }
                 }
                 sr.Close();  //只关闭流
@@ -216,7 +243,7 @@ namespace 淘宝列表页
         private void button7_Click(object sender, EventArgs e)
         {
             ADSLHelper.Disconnect("宽带连接");
-            ADSLHelper.Connect("宽带连接", "cbhb314", "bxcbpoi");
+            ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim());
 
             //Method.Unlink();
             //Method.boolLink();

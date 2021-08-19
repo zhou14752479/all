@@ -16,7 +16,7 @@ namespace 智能营销系统
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 智能营销系统());
+            Application.Run(new login());
         }
     }
 }

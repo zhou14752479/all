@@ -230,6 +230,8 @@ namespace 药房网
                 }
 
             }
+
+            textBox2.Text = "开始抓取......";
         }
 
         private void button1_Click(object sender, EventArgs e)

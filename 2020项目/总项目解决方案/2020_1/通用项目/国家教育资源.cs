@@ -119,10 +119,12 @@ namespace 通用项目
                     string html = GetUrl(url, "utf-8");
                   
                     MatchCollection IDS = Regex.Matches(html, @"CASE_ID=([\s\S]*?),");
+                   
                     foreach (Match ID in IDS)
                     {
 
                         string aurl = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?date=1581939217784&code=-1&sdResIdCaseId=" + ID.Groups[1].Value + "&flags=&guideId=&sk=&sessionKey=OL9YmN5uZwuHbYhX9ZYL";
+                        textBox1.Text = url;
                         string ahtml = GetUrl(aurl, "utf-8");
                         Match title = Regex.Match(ahtml, @"<h1>([\s\S]*?)</h1>");
                         // Match zuohe = Regex.Match(ahtml, @"<dt>([\s\S]*?)</dt>");

@@ -183,7 +183,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Silver;
             this.label1.Location = new System.Drawing.Point(13, 684);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 12);
@@ -231,7 +231,7 @@
             // userControl11
             // 
             this.userControl11.BackColor = System.Drawing.Color.Gray;
-            this.userControl11.Location = new System.Drawing.Point(373, 247);
+            this.userControl11.Location = new System.Drawing.Point(260, 141);
             this.userControl11.Name = "userControl11";
             this.userControl11.Size = new System.Drawing.Size(138, 130);
             this.userControl11.TabIndex = 11;

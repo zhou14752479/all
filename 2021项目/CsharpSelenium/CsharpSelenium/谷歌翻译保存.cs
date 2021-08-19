@@ -108,7 +108,7 @@ namespace CsharpSelenium
             IWebDriver driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
            
-          
+         
                 driver.Navigate().GoToUrl("file:///C:/Users/zhou/Desktop/%E7%BF%BB%E8%AF%91%E6%B5%8B%E8%AF%95.html");
 
                 //driver.Url = "http://www.baidu.com"是一样的

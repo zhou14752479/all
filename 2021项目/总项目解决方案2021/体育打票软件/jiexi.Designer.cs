@@ -47,7 +47,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(508, 352);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "1\t933515727\t1/50\t100\t2串1\t周三002>让平|3.00\r\n周三003>负|1.38";
             // 
             // checkBox1
             // 

@@ -109,7 +109,7 @@ namespace 体育打票软件
 
              html = webBrowser1.Document.Body.OuterHtml;
             ahtml = webBrowser1.DocumentText;
-            textBox1.Text = html;
+            //textBox1.Text = html;
         }
 
 
@@ -203,6 +203,11 @@ namespace 体育打票软件
             IniWriteValue("values", "haoma", haoma_txt.Text.ToString());
             IniWriteValue("values", "bianma", bianma_txt.Text.ToString());
             MessageBox.Show("保存成功","保存提示");
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
 
         }
     }
