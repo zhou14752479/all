@@ -123,7 +123,7 @@ namespace 体育打票软件
             string value1 = "";
             string value2 = "";
             string value3 = "";
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 16; i++)
             {
 
                 int suiji = rd.Next(0, 10);
@@ -143,7 +143,7 @@ namespace 体育打票软件
 
             Random rd2 = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
             
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 8; i++)
             {
                 
                 int suiji = rd.Next(0, 15);
@@ -178,7 +178,7 @@ namespace 体育打票软件
 
 
             string guoguan = Regex.Match(html, @"checked="""">([\s\S]*?)</span>").Groups[1].Value;
-            string beishu = Regex.Match(html, @"x \d倍").Groups[0].Value.Replace("x","").Replace("倍", "").Trim();
+            string beishu = Regex.Match(html, @"x \d{1,2}倍").Groups[0].Value.Replace("x","").Replace("倍", "").Trim();
            
             string jine = Regex.Match(html, @"<span id=""consume"">([\s\S]*?)</span>").Groups[1].Value;
 
@@ -270,9 +270,9 @@ namespace 体育打票软件
                 a = a + 1;
             }
 
-            sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:"+jiangjin+"\n单倍注数:"+guoguan+"*"+zhushu+"注;共"+zhushu+"注");
+            sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:"+jiangjin+"元\n单倍注数:"+guoguan+"*"+zhushu+"注;共"+zhushu+"注");
 
-            string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-","/");
 
             Report.ParameterByName("suiji").AsString = suiji;
             Report.ParameterByName("fangshi").AsString = fangshi;

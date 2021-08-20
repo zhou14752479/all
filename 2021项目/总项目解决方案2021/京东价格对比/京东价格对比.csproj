@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{20C725D5-F82E-4BB0-AA32-F535BE52CE91}</ProjectGuid>
+    <ProjectGuid>{CAC3088F-469A-43CB-B1EB-A0D15802A1D0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>淘宝列表页</RootNamespace>
-    <AssemblyName>淘宝列表页</AssemblyName>
+    <RootNamespace>京东价格对比</RootNamespace>
+    <AssemblyName>京东价格对比</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,19 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="dotras, Version=1.2.3724.405, Culture=neutral, PublicKeyToken=c81a1ef59db87257, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\dotras.dll</HintPath>
-    </Reference>
     <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
-    <Reference Include="Selenium.WebDriverBackedSelenium, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriverBackedSelenium.4.0.0-beta4\lib\net45\Selenium.WebDriverBackedSelenium.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,34 +54,16 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebDriver, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.4.0.0-beta4\lib\net45\WebDriver.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Support, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.4.0.0-beta4\lib\net45\WebDriver.Support.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADSL.cs" />
+    <Compile Include="function.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="模拟点击1688.cs">
+    <Compile Include="京东价格对比.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="模拟点击1688.Designer.cs">
-      <DependentUpon>模拟点击1688.cs</DependentUpon>
-    </Compile>
-    <Compile Include="淘宝列表页.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="淘宝列表页.Designer.cs">
-      <DependentUpon>淘宝列表页.cs</DependentUpon>
-    </Compile>
-    <Compile Include="阿里代发.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="阿里代发.Designer.cs">
-      <DependentUpon>阿里代发.cs</DependentUpon>
+    <Compile Include="京东价格对比.Designer.cs">
+      <DependentUpon>京东价格对比.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -91,16 +74,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="模拟点击1688.resx">
-      <DependentUpon>模拟点击1688.cs</DependentUpon>
+    <EmbeddedResource Include="京东价格对比.resx">
+      <DependentUpon>京东价格对比.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="淘宝列表页.resx">
-      <DependentUpon>淘宝列表页.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="阿里代发.resx">
-      <DependentUpon>阿里代发.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -67,38 +67,57 @@ namespace 淘宝列表页
                     lv1.SubItems.Add(value[2]);
                     if (value[1] != "")
                     {
-                        string url = "https://m.1688.com/offer_search/-6D7033.html?keywords=" + value[1];
-                        driver.Navigate().GoToUrl(url);
-                        Thread.Sleep(1000);
-                        IList<IWebElement> listOption = driver.FindElements(By.ClassName("item-link"));
-                        foreach (var item in listOption)
+
+                        try
                         {
-                            if (item.GetAttribute("href").Contains(value[0]))
+
+
+                            string url = "https://m.1688.com/offer_search/-6D7033.html?keywords=" + value[1];
+                            driver.Navigate().GoToUrl(url);
+                            Thread.Sleep(1000);
+                            IList<IWebElement> listOption = driver.FindElements(By.ClassName("item-link"));
+                            foreach (var item in listOption)
                             {
-                                //MessageBox.Show(item.TagName);
-                                //MessageBox.Show(item.Text);
-                                // MessageBox.Show(item.GetAttribute("href"));
-                                // document.getElementById(“test”).scrollIntoView();
-                                Actions actions = new Actions(driver);
-                                actions.MoveToElement(item);
-                                actions.Perform();
-                                Thread.Sleep(1000);
-                                item.Click();
+                                if (item.GetAttribute("href").Contains(value[0]))
+                                {
+                                    //MessageBox.Show(item.TagName);
+                                    //MessageBox.Show(item.Text);
+                                    // MessageBox.Show(item.GetAttribute("href"));
+                                    // document.getElementById(“test”).scrollIntoView();
+                                    Actions actions = new Actions(driver);
+                                    actions.MoveToElement(item);
+                                    actions.Perform();
+                                    Thread.Sleep(1000);
+                                    item.Click();
+
+                                }
+
+                            }
+
+                            driver.Navigate().GoToUrl(value[2]);
+
+                            lv1.SubItems.Add("成功");
+                            if (checkBox1.Checked == true)
+                            {
+                                //  ADSLHelper.Disconnect("宽带连接");
+                                // ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim()
+
+
+                                ras.Disconnect();//断开连接
+                                Thread.Sleep(3000);
+                                ras.Connect("ADSL");//重新拨号
+                                Thread.Sleep(3000);
+
 
                             }
 
                         }
-
-                        driver.Navigate().GoToUrl(value[2]);
-                        
-                        lv1.SubItems.Add("成功");
-                        if (checkBox1.Checked == true)
+                        catch (Exception ex)
                         {
-                            ADSLHelper.Disconnect("宽带连接");
-                            Thread.Sleep(2000);
-                            ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim());
+                            //MessageBox.Show(ex.ToString());
+
+                            continue;
                         }
-                        Thread.Sleep(8000);
                     }
                 }
                 sr.Close();  //只关闭流
@@ -109,10 +128,12 @@ namespace 淘宝列表页
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
 
         }
+
+       ADSL.RASDisplay ras = new ADSL.RASDisplay();
 
 
         public static class ADSLHelperNoneedPass
@@ -140,6 +161,7 @@ namespace 淘宝列表页
                     RasDialer dialer = new RasDialer();
                     dialer.EntryName = "宽带连接";
                     dialer.PhoneNumber = " ";
+                    
                     dialer.AllowUseStoredCredentials = true;
                     dialer.PhoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
                     dialer.Timeout = 2000;
@@ -157,15 +179,18 @@ namespace 淘宝列表页
 
         class ADSLHelper
         {
-            public static void Connect(string connectionName, string user, string pass)
+            public static string Connect(string connectionName, string user, string pass)
             {
                 string arg = string.Format("rasdial \"{0}\" {1} {2}", connectionName, user, pass);
-                InvokeCmd(arg);
+              string ExitCode= InvokeCmd(arg);
+                return ExitCode;
             }
-            public static void Disconnect(string connectionName)
+            public static string  Disconnect(string connectionName)
             {
                 string arg = string.Format("rasdial \"{0}\" /disconnect", connectionName);
                 InvokeCmd(arg);
+                string ExitCode = InvokeCmd(arg);
+                return ExitCode;
             }
             public  static string InvokeCmd(string cmdArgs)
             {
@@ -179,7 +204,11 @@ namespace 淘宝列表页
                 p.Start();
                 p.StandardInput.WriteLine(cmdArgs);
                 p.StandardInput.WriteLine("exit");
-                return p.StandardOutput.ReadToEnd();
+
+                // return p.StandardOutput.ReadToEnd();
+
+                //0拨号成功
+                return p.ExitCode.ToString();
             }
 
         }

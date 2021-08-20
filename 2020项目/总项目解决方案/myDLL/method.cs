@@ -642,7 +642,7 @@ namespace myDLL
             {
                 dr = dt.Rows[i];
                 lst.Items.Add(dr[0].ToString().Trim());
-                for (j = 0; j < ColCount; j++)
+                for (j = 1; j < ColCount; j++)
                 {
                     lst.Columns[j].Width = -2;
                     lst.Items[i].SubItems.Add((string)dr[j].ToString().Trim());
