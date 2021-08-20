@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CEF主程序
 {
@@ -15,6 +16,7 @@ namespace CEF主程序
             //NOTE: In most cases you examine the request.Url and only handle requests you are interested in
             if (request.Url.ToLower().Contains("loginPH".ToLower()))
             {
+                //获取request请求postdata参数
                 using (var postData = request.PostData)
                 {
                     if (postData != null)
@@ -31,8 +33,21 @@ namespace CEF主程序
 
                             }
                         }
+
+
                     }
+
                 }
+
+
+                //获取request请求hearder参数
+                StringBuilder sb = new StringBuilder();
+                sb.Append(request.Url+"\n");
+                foreach (var item in request.Headers)
+                {
+                    sb.Append(item.ToString() + ":" + request.Headers[item.ToString()] + "\n");
+                }
+                MessageBox.Show(sb.ToString());
 
 
             }

@@ -87,7 +87,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1208, 52);
+            this.panel1.Size = new System.Drawing.Size(1198, 52);
             this.panel1.TabIndex = 0;
             // 
             // button7
@@ -238,7 +238,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 52);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1208, 664);
+            this.tabControl1.Size = new System.Drawing.Size(1198, 667);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -249,7 +249,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1200, 638);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "   ";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // webBrowser1
@@ -268,9 +268,9 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1200, 638);
+            this.tabPage2.Size = new System.Drawing.Size(1190, 641);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "   ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -284,11 +284,11 @@
             this.groupBox2.Controls.Add(this.button9);
             this.groupBox2.Controls.Add(this.dateTimePicker1);
             this.groupBox2.Controls.Add(this.listView1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Bold);
-            this.groupBox2.Location = new System.Drawing.Point(411, 3);
+            this.groupBox2.Location = new System.Drawing.Point(390, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(786, 632);
+            this.groupBox2.Size = new System.Drawing.Size(797, 635);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "历史数据";
@@ -369,9 +369,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 94);
+            this.listView1.Location = new System.Drawing.Point(3, 71);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(780, 535);
+            this.listView1.Size = new System.Drawing.Size(791, 561);
             this.listView1.TabIndex = 401;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -389,7 +389,7 @@
             this.groupBox1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(387, 632);
+            this.groupBox1.Size = new System.Drawing.Size(387, 635);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设置";
@@ -466,7 +466,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1208, 716);
+            this.ClientSize = new System.Drawing.Size(1198, 719);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Name = "体育打票软件";
