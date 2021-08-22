@@ -99,10 +99,10 @@ namespace 淘宝列表页
                             lv1.SubItems.Add("成功");
                             if (checkBox1.Checked == true)
                             {
-                                //  ADSLHelper.Disconnect("宽带连接");
+                                // ADSLHelper.Disconnect("宽带连接");
                                 // ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim()
-
-
+                                Thread.Sleep(3000);
+                                ADSL.RASDisplay ras = new ADSL.RASDisplay();
                                 ras.Disconnect();//断开连接
                                 Thread.Sleep(3000);
                                 ras.Connect("ADSL");//重新拨号
@@ -111,10 +111,17 @@ namespace 淘宝列表页
 
                             }
 
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+                                return;
+
                         }
                         catch (Exception ex)
                         {
-                            //MessageBox.Show(ex.ToString());
+                            MessageBox.Show(ex.ToString());
 
                             continue;
                         }
@@ -133,7 +140,7 @@ namespace 淘宝列表页
 
         }
 
-       ADSL.RASDisplay ras = new ADSL.RASDisplay();
+      
 
 
         public static class ADSLHelperNoneedPass

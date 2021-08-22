@@ -25,14 +25,14 @@ namespace CEF主程序
         {
             browser = new ChromiumWebBrowser("http://q.cy1788.com/app/superscanPH/loginPHValidate.jsp");
             // Cef.Initialize(new CefSettings());
-           // browser.FrameLoadEnd += Browser_FrameLoadEnd;
+            
 
             Control.CheckForIllegalCrossThreadCalls = false;
             panel1.Controls.Add(browser);
 
             browser.Dock = DockStyle.Fill;
 
-
+            browser.FrameLoadEnd += Browser_FrameLoadEnd;
             browser.RequestHandler = new WinFormsRequestHandler();//request请求的具体实现
           
 
@@ -85,6 +85,8 @@ namespace CEF主程序
             visitor.SendCookie += visitor_SendCookie;
             ICookieManager cookieManager = browser.GetCookieManager();
             cookieManager.VisitAllCookies(visitor);
+
+           
         }
         
         private void visitor_SendCookie(CefSharp.Cookie obj)

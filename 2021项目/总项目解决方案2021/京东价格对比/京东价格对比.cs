@@ -117,11 +117,77 @@ namespace 京东价格对比
             }
         }
 
+
+        public void updateinfo()
+        {
+            try
+            {
+                string sql = "select * from datas";
+                DataTable dt = fc.chaxundata(sql);
+                int max = dt.Rows.Count;
+                progressBar1.Value = 0;  //清空进度条
+                progressBar1.Maximum = max - 1;  //清空进度条
+             
+                for (int i = 0; i < max; i++)
+                {
+                    progressBar1.Value = i;
+                    log_label.Text = ("更新进度：" + ((i / (max - 1)) * 100).ToString() + "%");
+
+                    string id = dt.Rows[i][0].ToString().Trim();
+                    string jdskuurl = dt.Rows[i][8].ToString().Trim();
+                    string oldxinghao = dt.Rows[i][9].ToString().Trim();
+
+                    //型号为空，代表JD参数为空，需要填入JD抓取信息
+                    if (oldxinghao == "")
+                    {
+                        string url = "https://p.3.cn/prices/mgets?skuIds=J_23192213069";
+                        string html = function.GetUrl(url);
+
+                        string xinghao = "1";
+                        string guige = "2";
+                        string danwei = "3";
+                        string price = "4";
+                        string status = "5";
+                        string sql2 = "UPDATE datas set xinghao='" + xinghao + "',guige='" + @guige + "',danwei='" + @danwei + "',price='" + @price + "',status='" + status + "' where id='" + id + "' ";
+                        fc.insertdata(sql2);
+                    }
+
+                    //型号不为空，则只需要更新价格和状态，原有参数已抓取
+                    else
+                    {
+                        string url = "https://p.3.cn/prices/mgets?skuIds=J_23192213069";
+                        string html = function.GetUrl(url);
+                        string price = "4";
+                        string status = "5";
+                        string sql2 = "UPDATE datas set price='" + @price + "',status='" + status + "' where id='" + id + "' ";
+                        fc.insertdata(sql2);
+                    }
+                }
+               
+            }
+            catch (Exception ex)
+            {
+
+                log_label.Text = ex.ToString();
+            }
+
+        }
+
         private void 刷新数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(getall);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(updateinfo);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

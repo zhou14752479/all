@@ -183,7 +183,7 @@ namespace 体育打票软件
             string jine = Regex.Match(html, @"<span id=""consume"">([\s\S]*?)</span>").Groups[1].Value;
 
            string zhushu = (Convert.ToInt32(jine) / 2).ToString();
-
+            string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
 
 
 
@@ -272,7 +272,7 @@ namespace 体育打票软件
 
             sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:"+jiangjin+"元\n单倍注数:"+guoguan+"*"+zhushu+"注;共"+zhushu+"注");
 
-            string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-","/");
+          
 
             Report.ParameterByName("suiji").AsString = suiji;
             Report.ParameterByName("fangshi").AsString = fangshi;

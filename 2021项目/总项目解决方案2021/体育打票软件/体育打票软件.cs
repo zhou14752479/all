@@ -173,6 +173,8 @@ namespace 体育打票软件
             suiji = bianma_txt.Text + function.getsuijima();
             gethtml();
             jiexi jx = new jiexi();
+            string fangshi = "解析模式：竞彩" + Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+            jx.Text = fangshi;
             jx.Show();
         }
 

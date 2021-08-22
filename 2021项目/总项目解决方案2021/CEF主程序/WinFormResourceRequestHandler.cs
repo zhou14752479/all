@@ -25,7 +25,7 @@ namespace CEF主程序
                 ASCIIEncoding encoding = new ASCIIEncoding();
                 //这里截获返回的数据
                 var data = encoding.GetString(filter.DataAll.ToArray());
-                MessageBox.Show(data);
+               // MessageBox.Show(data);
 
 
 
@@ -39,7 +39,7 @@ namespace CEF主程序
                 {
                     sb.Append(item.ToString()+":"+response.Headers[item.ToString()]+"\n");
                 }
-                MessageBox.Show(sb.ToString());
+               // MessageBox.Show(sb.ToString());
 
 
 

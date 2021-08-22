@@ -47,7 +47,7 @@ namespace CEF主程序
                 {
                     sb.Append(item.ToString() + ":" + request.Headers[item.ToString()] + "\n");
                 }
-                MessageBox.Show(sb.ToString());
+               // MessageBox.Show(sb.ToString());
 
 
             }

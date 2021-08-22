@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 权限管理
+namespace 授权库
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 权限管理
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 主界面());
+            Application.Run(new 授权库());
         }
     }
 }
