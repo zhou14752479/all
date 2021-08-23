@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +18,8 @@ namespace 授权库
             InitializeComponent();
         }
 
+        function fc = new function();
+
         public void add()
         {
             string a1 = "";
@@ -28,18 +31,37 @@ namespace 授权库
             string cate2 = textBox4.Text.Trim();
 
 
-           string sq_starttime = dateTimePicker1.Value.ToString();
-            string sq_endtime = dateTimePicker2.Value.ToString();
-            string yjsq_starttime = dateTimePicker3.Value.ToString();
+           string sq_starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
+            string yjsq_starttime = dateTimePicker3.Value.ToString("yyyy-MM-dd");
 
 
             string is_yuanjian = comboBox2.Text;
             string is_shouhou = comboBox3.Text;
             string is_shangbiao = comboBox4.Text;
-            string shangbiao_endtime = dateTimePicker4.Value.ToString();
+            string shangbiao_endtime = dateTimePicker4.Value.ToString("yyyy-MM-dd");
 
-            string sql = "INSERT INTO datas (username,password,register_t,ip,mac)VALUES('" + a1 + " ', '" + a1 + " ', '" + a1 + " ', '" + a1 + " ', '" + a1 + " ')";
+            
+            string img_shouquan = fc.ImageToBase64(pictureBox1.Image);
+            string img_shouhou = fc.ImageToBase64(pictureBox2.Image);
+            string sql = "INSERT INTO datas (type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime,img_shouquan,img_shouhou)VALUES('" + type + " '," +
+                " '" + name + " '," +
+                " '" + pinpai+ " ', " +
+                "'" + cate1 + " '," +
+                " '" + cate2 + " '," +
+                 " '" + sq_starttime + " '," +
+                  " '" + sq_endtime + " '," +
+                   " '" + yjsq_starttime + " '," +
+                    " '" + is_yuanjian + " '," +
+                     " '" + is_shouhou + " '," +
+                      " '" + is_shangbiao + " '," +
+                       " '" + shangbiao_endtime + " '," +
+                        " '" + img_shouquan + " '," +
+                         " '" + img_shouhou + " ')";
+            fc.SQL(sql);
+
         }
+
         private void 新增_Load(object sender, EventArgs e)
         {
 
@@ -63,6 +85,18 @@ namespace 授权库
             if (result == DialogResult.OK)
             {
                 pictureBox2.Image = Image.FromFile(fileDialog.FileName);
+            }
+        }
+
+
+        Thread thread;
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(add);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
     }

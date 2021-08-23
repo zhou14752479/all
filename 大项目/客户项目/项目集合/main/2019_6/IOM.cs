@@ -71,16 +71,16 @@ namespace main._2019_6
                 string html = System.IO.File.ReadAllText(lists[i].ToString());
                
                 
-                Match a1 = Regex.Match(html, @"fieldid=""5"" ismust=""0"">([\s\S]*?)</div>");      //订单编码
-                Match a2 = Regex.Match(html, @"fieldid=""383"" ismust=""0"">([\s\S]*?)</div>");     //订单名称
-                Match a3 = Regex.Match(html, @"fieldid=""391"" ismust=""0"">([\s\S]*?)</div>");  //订单内容
-                Match a4 = Regex.Match(html, @"fieldid=""427"" ismust=""0"">([\s\S]*?)</div>");  //订单地址
+                Match a1 = Regex.Match(html, @"fieldid=""5"">([\s\S]*?)</div>");      //订单编码
+                Match a2 = Regex.Match(html, @"fieldid=""383"">([\s\S]*?)</div>");     //订单名称
+                Match a3 = Regex.Match(html, @"fieldid=""391"">([\s\S]*?)</div>");  //订单内容
+                Match a4 = Regex.Match(html, @"fieldid=""427"">([\s\S]*?)</div>");  //订单地址
                
-                Match a5 = Regex.Match(html, @"fieldid=""1274"" ismust=""0"">([\s\S]*?) ");  //要求完成时间
-                Match a6 = Regex.Match(html, @"fieldid=""396"" ismust=""0"">([\s\S]*?)</div>"); //受理人
-                Match a7 = Regex.Match(html, @"fieldid=""425"" ismust=""0"">([\s\S]*?)</div>");  //客户经理名称
-                Match a8 = Regex.Match(html, @"fieldid=""426"" ismust=""0"">([\s\S]*?)</div>");  //客户经理电话
-                Match a9 = Regex.Match(html, @"fieldid=""384"" ismust=""0"">([\s\S]*?)</div>");   //客户名以及电话
+                Match a5 = Regex.Match(html, @"fieldid=""1274"">([\s\S]*?) ");  //要求完成时间
+                Match a6 = Regex.Match(html, @"fieldid=""396"">([\s\S]*?)</div>"); //受理人
+                Match a7 = Regex.Match(html, @"fieldid=""425"">([\s\S]*?)</div>");  //客户经理名称
+                Match a8 = Regex.Match(html, @"fieldid=""426"">([\s\S]*?)</div>");  //客户经理电话
+                Match a9 = Regex.Match(html, @"fieldid=""384"">([\s\S]*?)</div>");   //客户名以及电话
 
 
                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    

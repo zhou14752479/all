@@ -30,10 +30,9 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.添加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查找ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导出数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -41,28 +40,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.导出数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.导出选定授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导出选定售后函ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -73,8 +64,10 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.添加ToolStripMenuItem,
-            this.查找ToolStripMenuItem,
-            this.导出数据ToolStripMenuItem});
+            this.导出数据ToolStripMenuItem,
+            this.清空数据ToolStripMenuItem,
+            this.导出选定授权ToolStripMenuItem,
+            this.导出选定售后函ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1063, 25);
@@ -88,11 +81,12 @@
             this.添加ToolStripMenuItem.Text = "新增";
             this.添加ToolStripMenuItem.Click += new System.EventHandler(this.添加ToolStripMenuItem_Click);
             // 
-            // 查找ToolStripMenuItem
+            // 导出数据ToolStripMenuItem
             // 
-            this.查找ToolStripMenuItem.Name = "查找ToolStripMenuItem";
-            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.查找ToolStripMenuItem.Text = "查找";
+            this.导出数据ToolStripMenuItem.Name = "导出数据ToolStripMenuItem";
+            this.导出数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.导出数据ToolStripMenuItem.Text = "导出数据";
+            this.导出数据ToolStripMenuItem.Click += new System.EventHandler(this.导出数据ToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -116,27 +110,20 @@
             this.tabPage1.Text = "---授权---";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1055, 118);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "---商标---";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.linkLabel2);
+            this.groupBox1.Controls.Add(this.linkLabel1);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dateTimePicker2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboBox3);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label1);
@@ -196,18 +183,6 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "授权开始时间：";
             // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "厂家授权",
-            "经销售授权"});
-            this.comboBox3.Location = new System.Drawing.Point(267, 49);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(103, 20);
-            this.comboBox3.TabIndex = 5;
-            this.comboBox3.Text = "全部授权";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -216,18 +191,6 @@
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 4;
             this.label3.Text = "二级分类：";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "厂家授权",
-            "经销售授权"});
-            this.comboBox2.Location = new System.Drawing.Point(267, 18);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(103, 20);
-            this.comboBox2.TabIndex = 3;
-            this.comboBox2.Text = "全部授权";
             // 
             // label2
             // 
@@ -259,23 +222,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "授权类型：";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1055, 118);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "---商标---";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // listView1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader4,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14});
+            this.listView1.CheckBoxes = true;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -287,74 +246,70 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // button1
             // 
-            this.columnHeader1.Text = "序号";
-            this.columnHeader1.Width = 40;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.button1.Location = new System.Drawing.Point(644, 34);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(93, 30);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "查 找";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // columnHeader2
+            // 清空数据ToolStripMenuItem
             // 
-            this.columnHeader2.Text = "itemid";
-            this.columnHeader2.Width = 80;
+            this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
+            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.清空数据ToolStripMenuItem.Text = "清空数据";
             // 
-            // columnHeader3
+            // textBox2
             // 
-            this.columnHeader3.Text = "skuid";
-            this.columnHeader3.Width = 80;
+            this.textBox2.Location = new System.Drawing.Point(267, 17);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 21);
+            this.textBox2.TabIndex = 13;
             // 
-            // columnHeader5
+            // textBox3
             // 
-            this.columnHeader5.Text = "商品名称";
-            this.columnHeader5.Width = 200;
+            this.textBox3.Location = new System.Drawing.Point(267, 49);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 21);
+            this.textBox3.TabIndex = 14;
             // 
-            // columnHeader6
+            // 导出选定授权ToolStripMenuItem
             // 
-            this.columnHeader6.Text = "一级类目";
+            this.导出选定授权ToolStripMenuItem.Name = "导出选定授权ToolStripMenuItem";
+            this.导出选定授权ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.导出选定授权ToolStripMenuItem.Text = "下载选定授权";
             // 
-            // columnHeader7
+            // 导出选定售后函ToolStripMenuItem
             // 
-            this.columnHeader7.Text = "二级类目";
+            this.导出选定售后函ToolStripMenuItem.Name = "导出选定售后函ToolStripMenuItem";
+            this.导出选定售后函ToolStripMenuItem.Size = new System.Drawing.Size(104, 21);
+            this.导出选定售后函ToolStripMenuItem.Text = "下载选定售后函";
             // 
-            // columnHeader8
+            // linkLabel1
             // 
-            this.columnHeader8.Text = "三级类目";
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(13, 85);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel1.TabIndex = 15;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "全选";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // columnHeader9
+            // linkLabel2
             // 
-            this.columnHeader9.Text = "sku价格";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "京东sku链接";
-            this.columnHeader10.Width = 100;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "型号";
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "规格";
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "单位";
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "在售价格";
-            this.columnHeader13.Width = 80;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "在售状态";
-            this.columnHeader14.Width = 80;
-            // 
-            // 导出数据ToolStripMenuItem
-            // 
-            this.导出数据ToolStripMenuItem.Name = "导出数据ToolStripMenuItem";
-            this.导出数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.导出数据ToolStripMenuItem.Text = "导出数据";
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(49, 85);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(41, 12);
+            this.linkLabel2.TabIndex = 16;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "全不选";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // 授权库
             // 
@@ -384,7 +339,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 添加ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查找ToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -394,28 +348,20 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ToolStripMenuItem 导出数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 清空数据ToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ToolStripMenuItem 导出选定授权ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 导出选定售后函ToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

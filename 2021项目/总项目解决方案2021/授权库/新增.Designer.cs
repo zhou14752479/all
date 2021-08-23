@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.label13 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -51,23 +54,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
-            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,6 +105,37 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "新增数据";
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("宋体", 11F);
+            this.button3.Location = new System.Drawing.Point(108, 583);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(200, 30);
+            this.button3.TabIndex = 47;
+            this.button3.Text = "确定提交";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.CalendarTitleBackColor = System.Drawing.SystemColors.ControlText;
+            this.dateTimePicker4.CalendarTitleForeColor = System.Drawing.Color.Yellow;
+            this.dateTimePicker4.Location = new System.Drawing.Point(107, 523);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(200, 21);
+            this.dateTimePicker4.TabIndex = 46;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("宋体", 10F);
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(104, 497);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(147, 14);
+            this.label13.TabIndex = 45;
+            this.label13.Text = "商标结束时间(选填)：";
             // 
             // comboBox4
             // 
@@ -320,26 +351,6 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "授权类型：";
             // 
-            // dateTimePicker4
-            // 
-            this.dateTimePicker4.CalendarTitleBackColor = System.Drawing.SystemColors.ControlText;
-            this.dateTimePicker4.CalendarTitleForeColor = System.Drawing.Color.Yellow;
-            this.dateTimePicker4.Location = new System.Drawing.Point(107, 523);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(200, 21);
-            this.dateTimePicker4.TabIndex = 46;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("宋体", 10F);
-            this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(104, 497);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(147, 14);
-            this.label13.TabIndex = 45;
-            this.label13.Text = "商标结束时间(选填)：";
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -363,19 +374,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "上传授权书";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.pictureBox2);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.textBox6);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(569, 611);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "上传售后承诺函";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -404,6 +402,29 @@
             this.textBox5.Size = new System.Drawing.Size(335, 21);
             this.textBox5.TabIndex = 36;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.pictureBox2);
+            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.textBox6);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(569, 611);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "上传售后承诺函";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 37);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(563, 571);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 44;
+            this.pictureBox2.TabStop = false;
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(344, 5);
@@ -420,26 +441,6 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(335, 21);
             this.textBox6.TabIndex = 42;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 37);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(563, 571);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 44;
-            this.pictureBox2.TabStop = false;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("宋体", 11F);
-            this.button3.Location = new System.Drawing.Point(108, 583);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 30);
-            this.button3.TabIndex = 47;
-            this.button3.Text = "确定提交";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // 新增
             // 
@@ -459,9 +460,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 

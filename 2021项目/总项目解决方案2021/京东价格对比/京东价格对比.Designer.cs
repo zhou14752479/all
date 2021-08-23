@@ -248,6 +248,7 @@
             // 
             // progressBar1
             // 
+            this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.progressBar1.Location = new System.Drawing.Point(3, 75);
             this.progressBar1.Name = "progressBar1";
@@ -256,12 +257,13 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button1.Location = new System.Drawing.Point(617, 23);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 36);
             this.button1.TabIndex = 0;
             this.button1.Text = "开始同步价格";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabPage2
@@ -325,12 +327,13 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button2.Location = new System.Drawing.Point(745, 27);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 36);
             this.button2.TabIndex = 2;
             this.button2.Text = "开始筛选";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // groupBox2
             // 
@@ -521,6 +524,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1063, 675);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.tabControl1);

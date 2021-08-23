@@ -28,6 +28,7 @@ namespace 智能营销系统
             }
             else
             {
+                uiButton1.Text = "登录";
                 MessageBox.Show("账号或密码错误");
             }
         }
@@ -50,6 +51,20 @@ namespace 智能营销系统
         private void login_Load(object sender, EventArgs e)
         {
            
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+
+            }
         }
     }
 }

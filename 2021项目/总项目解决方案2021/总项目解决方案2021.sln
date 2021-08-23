@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF礼包领取", "项目集
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "验证框架", "验证框架\验证框架.csproj", "{F211F49E-888F-4585-9992-ED6B1552DD34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "谷歌地图采集器", "谷歌地图采集器\谷歌地图采集器.csproj", "{33ACB83C-AA02-40E3-A959-E3066C13C46D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +191,10 @@ Global
 		{F211F49E-888F-4585-9992-ED6B1552DD34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F211F49E-888F-4585-9992-ED6B1552DD34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F211F49E-888F-4585-9992-ED6B1552DD34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33ACB83C-AA02-40E3-A959-E3066C13C46D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33ACB83C-AA02-40E3-A959-E3066C13C46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33ACB83C-AA02-40E3-A959-E3066C13C46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33ACB83C-AA02-40E3-A959-E3066C13C46D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
