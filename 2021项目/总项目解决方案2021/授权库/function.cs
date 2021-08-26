@@ -104,8 +104,8 @@ namespace 授权库
 
         #endregion
 
-        #region  base64转image
-        public  Bitmap Base64ToImage(string strbase64)
+        #region  base64转Bitmap并保存
+        public void Base64ToImage(string strbase64,string filename)
         {
             try
             {
@@ -114,12 +114,17 @@ namespace 授权库
                 Bitmap bmp = new Bitmap(ms);
                 ms.Close();
 
-                return bmp;
+                //这里复制一份对图像进行保存，否则会出现“GDI+ 中发生一般性错误”的错误提示
+                var bmpNew = new Bitmap(bmp);
+                bmpNew.Save(filename);
+                bmpNew.Dispose();
+                bmp.Dispose();
+               // return bmp;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                return null;
+                //return null;
             }
         }
 
@@ -156,6 +161,44 @@ namespace 授权库
                     lst.Items[i].SubItems.Add((string)dr[j].ToString().Trim());
                 }
             }
+        }
+
+        #endregion
+
+
+        #region  查询某个字段
+
+        public string getziduan(string id,string name)
+        {
+
+            try
+            {
+             
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                string sql = "select " + name + " from datas where id='" + id + "'  ";
+                MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+              
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                reader.Read();
+
+                string citypinyin = reader[name].ToString().Trim();
+                mycon.Close();
+                reader.Close();
+                return citypinyin;
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+
+
         }
 
         #endregion

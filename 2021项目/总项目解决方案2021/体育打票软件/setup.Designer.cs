@@ -97,6 +97,7 @@
             this.Controls.Add(this.radioButton1);
             this.Name = "setup";
             this.Text = "设置页面";
+            this.Load += new System.EventHandler(this.setup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

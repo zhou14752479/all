@@ -117,6 +117,99 @@ namespace 京东价格对比
             }
         }
 
+        public void shaixuan()
+        {
+            try
+            {
+                string cate1 =textBox5.Text;
+                string cate2= textBox6.Text;
+                string cate3 = textBox7.Text;
+                string starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                string endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
+
+              
+                string sql = "select * from datas where";
+                if (textBox5.Text == "")
+                {
+                    textBox5.Text = "全部";
+                }
+                if (textBox6.Text == "")
+                {
+                    textBox6.Text = "全部";
+                }
+                if (textBox7.Text == "")
+                {
+                    textBox7.Text = "全部";
+                }
+
+
+                if (checkBox1.Checked==true)
+                {
+                    if (textBox5.Text == "全部")
+                    {
+                        sql = sql + (" cate1 like '_%' and");
+                    }
+                    else
+                    {
+                        sql = sql + (" cate1 like '" + cate1 + "' and");
+                    }
+
+                    if (textBox6.Text == "全部")
+                    {
+                        sql = sql + (" cate2 like '_%' and");
+                    }
+                    else
+                    {
+                        sql = sql + (" cate2 like '" + cate2 + "' and");
+                    }
+
+                    if (textBox7.Text == "全部")
+                    {
+                        sql = sql + (" cate3 like '_%' and");
+                    }
+                    else
+                    {
+                        sql = sql + (" cate3 like '" + cate3+ "' and");
+                    }
+
+                }
+                if (checkBox2.Checked == true)
+                {
+                    sql = sql + (" time >= '" + starttime + "' and time <= '" + endtime + "' and");
+                }
+                
+
+                if (checkBox3.Checked == true)
+                {
+                    if (textBox3.Text != "" && textBox4.Text != "")
+                    {
+                        long sku_start = Convert.ToInt64(textBox3.Text);
+                        long sku_end = Convert.ToInt64(textBox4.Text);
+                        sql = sql + " skuid >= " + sku_start+ " and skuid <=" + sku_end + " ";
+                    }
+
+                }
+              
+                if (checkBox1.Checked == false && checkBox2.Checked == false && checkBox3.Checked == false)
+                {
+                    sql = "select * from datas";
+                }
+
+                if (sql.Substring(sql.Length - 3, 3) == "and")
+                {
+                    sql = sql.Substring(0, sql.Length - 3);
+                }
+             
+                DataTable dt = fc.chaxundata(sql);
+                method.ShowDataInListView(dt, listView1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+                log_label.Text = ex.ToString();
+            }
+        }
 
         public void updateinfo()
         {
@@ -148,7 +241,8 @@ namespace 京东价格对比
                         string danwei = "3";
                         string price = "4";
                         string status = "5";
-                        string sql2 = "UPDATE datas set xinghao='" + xinghao + "',guige='" + @guige + "',danwei='" + @danwei + "',price='" + @price + "',status='" + status + "' where id='" + id + "' ";
+                        string time= DateTime.Now.ToString("yyyy-MM-dd");
+                        string sql2 = "UPDATE datas set xinghao='" + xinghao + "',guige='" + @guige + "',danwei='" + @danwei + "',price='" + @price + "',status='" + status + "',time='" + time + "' where id='" + id + "' ";
                         fc.insertdata(sql2);
                     }
 
@@ -159,7 +253,8 @@ namespace 京东价格对比
                         string html = function.GetUrl(url);
                         string price = "4";
                         string status = "5";
-                        string sql2 = "UPDATE datas set price='" + @price + "',status='" + status + "' where id='" + id + "' ";
+                        string time = DateTime.Now.ToString("yyyy-MM-dd");
+                        string sql2 = "UPDATE datas set price='" + @price + "',status='" + status + "',time='" + time + "' where id='" + id + "' ";
                         fc.insertdata(sql2);
                     }
                 }
@@ -185,9 +280,37 @@ namespace 京东价格对比
 
         private void button1_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"juuo"))
+            {
+
+                return;
+            }
+
+
+
+            #endregion
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(updateinfo);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void 导出数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(shaixuan);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

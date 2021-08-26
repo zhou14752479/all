@@ -142,7 +142,7 @@ namespace 主程序202106
                             }
                             if (radioButton2.Checked == true)
                             {
-                                sb.Clear();
+                               // sb.Clear();
                                 sb.Append(values[0].Groups[1].Value + ",");
 
                             }
@@ -188,7 +188,7 @@ namespace 主程序202106
 
                 foreach (string key in dics.Keys)
                 {
-                    if (Convert.ToInt32(key) > numericUpDown2.Value || Convert.ToInt32(key) < numericUpDown2.Value)
+                    if (Convert.ToInt32(key) > numericUpDown2.Value || Convert.ToInt32(key) < numericUpDown1.Value)
                     {
                         log_txtbox.Text += DateTime.Now.ToLongTimeString() + "年份不符合跳过：" + key + "年  \r\n";
                         continue;

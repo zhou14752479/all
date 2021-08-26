@@ -113,88 +113,105 @@ namespace 通用项目
                     fs1.Close();
 
 
-                    string url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/showVersion1s1k.jspx?type=all&date=1568624403391&pageNo="+i+"&yearMark="+year+"&sessionKey=yVGaPfx0gjHEalQ9JOWr";
+                    string url = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/showVersion1s1k.jspx?type=all&date=1568624403391&pageNo=" + i + "&yearMark=" + year + "&sessionKey=yVGaPfx0gjHEalQ9JOWr";
 
-                   
+
                     string html = GetUrl(url, "utf-8");
-                  
+
                     MatchCollection IDS = Regex.Matches(html, @"CASE_ID=([\s\S]*?),");
-                   
+
                     foreach (Match ID in IDS)
                     {
-
-                        string aurl = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?date=1581939217784&code=-1&sdResIdCaseId=" + ID.Groups[1].Value + "&flags=&guideId=&sk=&sessionKey=OL9YmN5uZwuHbYhX9ZYL";
-                        
-                        string ahtml = GetUrl(aurl, "utf-8");
-                        Match title = Regex.Match(ahtml, @"<h1>([\s\S]*?)</h1>");
-                        // Match zuohe = Regex.Match(ahtml, @"<dt>([\s\S]*?)</dt>");
-
-
-                        MatchCollection DocIds1 = Regex.Matches(ahtml, @"class=""docCode"" value=""doc-([\s\S]*?)""");
-                        MatchCollection DocIds2 = Regex.Matches(ahtml, @"resId=doc-([\s\S]*?)&([\s\S]*?)>([\s\S]*?)<");
-                       
-                        foreach (Match DocId in DocIds1)
+                        try
                         {
 
-                            string bt = title.Groups[1].Value;
-                            string downUrl = GetUrl("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
 
-                            //textBox1.Text = downUrl;
+                            string aurl = "http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/viewCaseBbs1s1k.jspx?date=1581939217784&code=-1&sdResIdCaseId=" + ID.Groups[1].Value + "&flags=&guideId=&sk=&sessionKey=OL9YmN5uZwuHbYhX9ZYL";
 
-                            Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
-                            string gs = gs1.Groups[2].Value;
-                            string counter = "1";
+                            string ahtml = GetUrl(aurl, "utf-8");
+                            Match title = Regex.Match(ahtml, @"<h1>([\s\S]*?)</h1>");
+                            // Match zuohe = Regex.Match(ahtml, @"<dt>([\s\S]*?)</dt>");
 
-                            string dizhi = path + "下载文件\\" + removeValid(bt) + counter + "." + gs;
-                            while (System.IO.File.Exists(dizhi))
+
+                            MatchCollection DocIds1 = Regex.Matches(ahtml, @"class=""docCode"" value=""doc-([\s\S]*?)""");
+                            MatchCollection DocIds2 = Regex.Matches(ahtml, @"resId=doc-([\s\S]*?)&([\s\S]*?)>([\s\S]*?)<");
+
+                            foreach (Match DocId in DocIds1)
                             {
-                                counter = (Convert.ToInt32(counter) + 1).ToString();
-                                dizhi = path + "下载文件\\" + removeValid(bt) + counter + "." + gs;
-                            }
-                            
-                            method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + counter + "." + gs, cookie);
-                            
-                            textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
 
-                        }
-                        foreach (Match DocId in DocIds2)
-                        {
 
-                            string bt = DocId.Groups[3].Value;
-                            string downUrl = GetUrl("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
-                            Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
-                            string gs = gs1.Groups[2].Value;
-                            if (geshiList.Contains(gs))
-                            {
-                                method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
+
+
+
+                                string bt = title.Groups[1].Value;
+                                string downUrl = GetUrl("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
+
+                                //textBox1.Text = downUrl;
+
+                                Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
+                                string gs = gs1.Groups[2].Value;
+                                string counter = "1";
+
+                                string dizhi = path + "下载文件\\" + removeValid(bt) + counter + "." + gs;
+                                while (System.IO.File.Exists(dizhi))
+                                {
+                                    counter = (Convert.ToInt32(counter) + 1).ToString();
+                                    dizhi = path + "下载文件\\" + removeValid(bt) + counter + "." + gs;
+                                }
+
+                                method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + counter + "." + gs, cookie);
 
                                 textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
+
                             }
+                            foreach (Match DocId in DocIds2)
+                            {
+                                string counter = "1";
+                                string bt = DocId.Groups[3].Value;
+                                string downUrl = GetUrl("http://1s1k.eduyun.cn/resource/resource/RedesignCaseView/getDownUrlByCode.jspx?code=doc-" + DocId.Groups[1].Value + "&resId=doc-" + DocId.Groups[1].Value + "&date=1581934769915", "utf-8");
+                                Match gs1 = Regex.Match(downUrl, @"download([\s\S]*?)\.([\s\S]*?)\?");
+                                string gs = gs1.Groups[2].Value;
+                                if (geshiList.Contains(gs))
+                                {
+                                    string dizhi = path + "下载文件\\" + removeValid(bt) + counter + "." + gs;
+                                    while (System.IO.File.Exists(dizhi))
+                                    {
+                                        counter = (Convert.ToInt32(counter) + 1).ToString();
+                                        dizhi = path + "下载文件\\" + removeValid(bt) + counter + "." + gs;
+                                    }
+
+                                    method.downloadFile(downUrl, path + "下载文件\\", removeValid(bt) + "." + gs, cookie);
+
+                                    textBox1.Text += DateTime.Now.ToString() + i + "下载成功：" + bt + "\r\n";
+                                }
+                            }
+                            while (zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+
+                            if (status == false)
+                            {
+                                return;
+                            }
+
+                            Thread.Sleep(Convert.ToInt32(textBox2.Text) * 1000);
+
+
                         }
-                        while (zanting == false)
+
+                        catch (Exception)
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+
+                            continue;
                         }
-
-
-                        if (status == false)
-                        {
-                            return;
-                        }
-
-                        Thread.Sleep(Convert.ToInt32(textBox2.Text) * 1000);
-
-
-
-
-
                     }
-
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
-                   // continue;
+                    //MessageBox.Show(ex.ToString());
+                    continue;
                 }
             }
           

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -1267,6 +1268,53 @@ namespace myDLL
         }
         #endregion
 
+        #region  image转base64
+        public string ImageToBase64(Image image)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(image);
+                MemoryStream ms = new MemoryStream();
+                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] arr = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(arr, 0, (int)ms.Length);
+                ms.Close();
+                return Convert.ToBase64String(arr);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region  base64转Bitmap并保存
+        public void Base64ToImage(string strbase64, string filename)
+        {
+            try
+            {
+                byte[] arr = Convert.FromBase64String(strbase64);
+                MemoryStream ms = new MemoryStream(arr);
+                Bitmap bmp = new Bitmap(ms);
+                ms.Close();
+
+                //这里复制一份对图像进行保存，否则会出现“GDI+ 中发生一般性错误”的错误提示
+                var bmpNew = new Bitmap(bmp);
+                bmpNew.Save(filename);
+                bmpNew.Dispose();
+                bmp.Dispose();
+                // return bmp;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                //return null;
+            }
+        }
+
+        #endregion
 
         #region 发邮件
         public static void send(string address, string subject, string body)

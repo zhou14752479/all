@@ -41,7 +41,7 @@ namespace 授权库
                 string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
 
                 
-                string sql = "SELECT * from datas  where ";
+                string sql = "SELECT id,type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime from datas  where ";
                 if (comboBox1.Text == "全部授权")
                 {
                     sql = sql + ("type like '_%' AND");
@@ -94,9 +94,75 @@ namespace 授权库
             }
 
         }
+
+        #region 下载文件
+        public void downloadfile(string colname)
+        {
+            if (listView1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("未选中任何数据");
+                return;
+            }
+
+
+            try
+            {
+                string path = "";
+                System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+                dialog.Description = "请选择所在文件夹";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    if (string.IsNullOrEmpty(dialog.SelectedPath))
+                    {
+                        MessageBox.Show(this, "文件夹路径不能为空", "提示");
+                        return;
+                    }
+
+                    path = dialog.SelectedPath;
+                }
+
+                for (int i = 0; i < listView1.CheckedItems.Count; i++)
+                {
+                    string id = listView1.CheckedItems[i].SubItems[0].Text;
+                    string name = listView1.CheckedItems[i].SubItems[2].Text;
+                    string base64 = fc.getziduan(id, colname);
+                   
+                    if (base64 != "")
+                    {
+                        fc.Base64ToImage(base64,path + "//" + name + ".jpg");
+                        label7.Text = DateTime.Now.ToString()+"：正在下载："+name;
+                        
+                        // img.Save(path + "//" + name + ".jpg");
+                    }
+                }
+
+                label7.Text = DateTime.Now.ToString() + "：全部下载完成";
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        #endregion
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"YZaj3w"))
+            {
+
+                return;
+            }
+
+
+
+            #endregion
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(chaxun);
@@ -124,6 +190,27 @@ namespace 授权库
         private void 导出数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void 授权库_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 导出选定授权ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            downloadfile("img_shouquan");
+        }
+
+        private void 导出选定售后函ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            downloadfile("img_shouhou");
+        }
+
+        private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

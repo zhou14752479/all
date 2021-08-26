@@ -31,9 +31,18 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.添加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导出选定授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导出选定售后函ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -46,14 +55,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.导出选定授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导出选定售后函ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -88,6 +89,27 @@
             this.导出数据ToolStripMenuItem.Text = "导出数据";
             this.导出数据ToolStripMenuItem.Click += new System.EventHandler(this.导出数据ToolStripMenuItem_Click);
             // 
+            // 清空数据ToolStripMenuItem
+            // 
+            this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
+            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.清空数据ToolStripMenuItem.Text = "清空数据";
+            this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.清空数据ToolStripMenuItem_Click);
+            // 
+            // 导出选定授权ToolStripMenuItem
+            // 
+            this.导出选定授权ToolStripMenuItem.Name = "导出选定授权ToolStripMenuItem";
+            this.导出选定授权ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.导出选定授权ToolStripMenuItem.Text = "下载选定授权";
+            this.导出选定授权ToolStripMenuItem.Click += new System.EventHandler(this.导出选定授权ToolStripMenuItem_Click);
+            // 
+            // 导出选定售后函ToolStripMenuItem
+            // 
+            this.导出选定售后函ToolStripMenuItem.Name = "导出选定售后函ToolStripMenuItem";
+            this.导出选定售后函ToolStripMenuItem.Size = new System.Drawing.Size(104, 21);
+            this.导出选定售后函ToolStripMenuItem.Text = "下载选定售后函";
+            this.导出选定售后函ToolStripMenuItem.Click += new System.EventHandler(this.导出选定售后函ToolStripMenuItem_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -112,6 +134,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.linkLabel2);
             this.groupBox1.Controls.Add(this.linkLabel1);
             this.groupBox1.Controls.Add(this.textBox3);
@@ -134,6 +157,63 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "筛选条件";
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("宋体", 10F);
+            this.label7.Location = new System.Drawing.Point(771, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(272, 52);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "运行日志";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(49, 85);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(41, 12);
+            this.linkLabel2.TabIndex = 16;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "全不选";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(13, 85);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel1.TabIndex = 15;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "全选";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(267, 49);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 21);
+            this.textBox3.TabIndex = 14;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(267, 17);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 21);
+            this.textBox2.TabIndex = 13;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.button1.Font = new System.Drawing.Font("宋体", 10F);
+            this.button1.Location = new System.Drawing.Point(622, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 49);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "点击查询";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -234,6 +314,7 @@
             // 
             // listView1
             // 
+            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listView1.CheckBoxes = true;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
@@ -245,71 +326,6 @@
             this.listView1.TabIndex = 40;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button1.Location = new System.Drawing.Point(644, 34);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 30);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "查 找";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // 清空数据ToolStripMenuItem
-            // 
-            this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
-            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.清空数据ToolStripMenuItem.Text = "清空数据";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(267, 17);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 13;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(267, 49);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 21);
-            this.textBox3.TabIndex = 14;
-            // 
-            // 导出选定授权ToolStripMenuItem
-            // 
-            this.导出选定授权ToolStripMenuItem.Name = "导出选定授权ToolStripMenuItem";
-            this.导出选定授权ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
-            this.导出选定授权ToolStripMenuItem.Text = "下载选定授权";
-            // 
-            // 导出选定售后函ToolStripMenuItem
-            // 
-            this.导出选定售后函ToolStripMenuItem.Name = "导出选定售后函ToolStripMenuItem";
-            this.导出选定售后函ToolStripMenuItem.Size = new System.Drawing.Size(104, 21);
-            this.导出选定售后函ToolStripMenuItem.Text = "下载选定售后函";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(13, 85);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(29, 12);
-            this.linkLabel1.TabIndex = 15;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "全选";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(49, 85);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(41, 12);
-            this.linkLabel2.TabIndex = 16;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "全不选";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // 授权库
             // 
@@ -324,6 +340,7 @@
             this.Name = "授权库";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "授权库";
+            this.Load += new System.EventHandler(this.授权库_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -363,5 +380,6 @@
         private System.Windows.Forms.ToolStripMenuItem 导出选定售后函ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label7;
     }
 }

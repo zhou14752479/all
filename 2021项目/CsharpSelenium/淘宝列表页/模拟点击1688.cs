@@ -60,6 +60,13 @@ namespace 淘宝列表页
                 string[] text = texts.Replace("\"","").Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < text.Length; i++)
                 {
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+
                     string[] value = text[i].Split(new string[] { "," }, StringSplitOptions.None);
                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(value[0]);
@@ -80,6 +87,7 @@ namespace 淘宝列表页
                             {
                                 if (item.GetAttribute("href").Contains(value[0]))
                                 {
+                                    Thread.Sleep(Convert.ToInt32(textBox4.Text)*1000);
                                     //MessageBox.Show(item.TagName);
                                     //MessageBox.Show(item.Text);
                                     // MessageBox.Show(item.GetAttribute("href"));
@@ -97,32 +105,24 @@ namespace 淘宝列表页
                             driver.Navigate().GoToUrl(value[2]);
 
                             lv1.SubItems.Add("成功");
-                            if (checkBox1.Checked == true)
-                            {
-                                // ADSLHelper.Disconnect("宽带连接");
+                           // ADSLHelper.Disconnect("宽带连接");
                                 // ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim()
-                                Thread.Sleep(3000);
+                                Thread.Sleep(Convert.ToInt32(textBox5.Text) * 1000);
                                 ADSL.RASDisplay ras = new ADSL.RASDisplay();
                                 ras.Disconnect();//断开连接
                                 Thread.Sleep(3000);
                                 ras.Connect("ADSL");//重新拨号
-                                Thread.Sleep(3000);
+                            Thread.Sleep(Convert.ToInt32(textBox6.Text) * 1000);
 
 
-                            }
 
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-                            if (status == false)
-                                return;
+
 
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.ToString());
-
+                            Thread.Sleep(3000);
                             continue;
                         }
                     }
@@ -276,15 +276,16 @@ namespace 淘宝列表页
             listView1.Items.Clear();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+       
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ADSLHelper.Disconnect("宽带连接");
             ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim());
 
             //Method.Unlink();
             //Method.boolLink();
-        }
 
-       
+        }
     }
 }

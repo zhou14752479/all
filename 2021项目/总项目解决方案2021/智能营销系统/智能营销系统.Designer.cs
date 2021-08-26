@@ -90,8 +90,8 @@
             // uiHeaderButton1
             // 
             this.uiHeaderButton1.BackColor = System.Drawing.Color.Transparent;
-            this.uiHeaderButton1.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.uiHeaderButton1.FillColor = System.Drawing.Color.Black;
+            this.uiHeaderButton1.CircleColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton1.FillColor = System.Drawing.Color.Transparent;
             this.uiHeaderButton1.FillHoverColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton1.FillPressColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton1.FillSelectedColor = System.Drawing.Color.DimGray;
@@ -113,8 +113,9 @@
             // 
             // uiHeaderButton2
             // 
-            this.uiHeaderButton2.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.uiHeaderButton2.FillColor = System.Drawing.Color.Black;
+            this.uiHeaderButton2.BackColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton2.CircleColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton2.FillColor = System.Drawing.Color.Transparent;
             this.uiHeaderButton2.FillHoverColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton2.FillPressColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton2.FillSelectedColor = System.Drawing.Color.DimGray;
@@ -137,8 +138,9 @@
             // 
             // uiHeaderButton3
             // 
-            this.uiHeaderButton3.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.uiHeaderButton3.FillColor = System.Drawing.Color.Black;
+            this.uiHeaderButton3.BackColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton3.CircleColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton3.FillColor = System.Drawing.Color.Transparent;
             this.uiHeaderButton3.FillHoverColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton3.FillPressColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton3.FillSelectedColor = System.Drawing.Color.DimGray;
@@ -161,8 +163,9 @@
             // 
             // uiHeaderButton4
             // 
-            this.uiHeaderButton4.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.uiHeaderButton4.FillColor = System.Drawing.Color.Black;
+            this.uiHeaderButton4.BackColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton4.CircleColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton4.FillColor = System.Drawing.Color.Transparent;
             this.uiHeaderButton4.FillHoverColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton4.FillPressColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton4.FillSelectedColor = System.Drawing.Color.DimGray;
@@ -185,8 +188,9 @@
             // 
             // uiHeaderButton5
             // 
-            this.uiHeaderButton5.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.uiHeaderButton5.FillColor = System.Drawing.Color.Black;
+            this.uiHeaderButton5.BackColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton5.CircleColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton5.FillColor = System.Drawing.Color.Transparent;
             this.uiHeaderButton5.FillHoverColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton5.FillPressColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton5.FillSelectedColor = System.Drawing.Color.DimGray;
@@ -210,6 +214,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.Color.Silver;
             this.label1.Location = new System.Drawing.Point(13, 684);
             this.label1.Name = "label1";
@@ -220,6 +225,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
+            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
             this.linkLabel1.Location = new System.Drawing.Point(1124, 684);
             this.linkLabel1.Name = "linkLabel1";
@@ -260,8 +266,9 @@
             // 
             // uiHeaderButton6
             // 
-            this.uiHeaderButton6.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.uiHeaderButton6.FillColor = System.Drawing.Color.Black;
+            this.uiHeaderButton6.BackColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton6.CircleColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton6.FillColor = System.Drawing.Color.Transparent;
             this.uiHeaderButton6.FillHoverColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton6.FillPressColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton6.FillSelectedColor = System.Drawing.Color.DimGray;
@@ -284,8 +291,9 @@
             // 
             // uiHeaderButton7
             // 
-            this.uiHeaderButton7.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.uiHeaderButton7.FillColor = System.Drawing.Color.Black;
+            this.uiHeaderButton7.BackColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton7.CircleColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton7.FillColor = System.Drawing.Color.Transparent;
             this.uiHeaderButton7.FillHoverColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton7.FillPressColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton7.FillSelectedColor = System.Drawing.Color.DimGray;
@@ -308,8 +316,9 @@
             // 
             // uiHeaderButton8
             // 
-            this.uiHeaderButton8.CircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.uiHeaderButton8.FillColor = System.Drawing.Color.Black;
+            this.uiHeaderButton8.BackColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton8.CircleColor = System.Drawing.Color.Transparent;
+            this.uiHeaderButton8.FillColor = System.Drawing.Color.Transparent;
             this.uiHeaderButton8.FillHoverColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton8.FillPressColor = System.Drawing.Color.DimGray;
             this.uiHeaderButton8.FillSelectedColor = System.Drawing.Color.DimGray;
@@ -444,8 +453,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 112);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(392, 114);
             this.pictureBox1.TabIndex = 1;
@@ -482,7 +491,7 @@
             this.groupBox1.Controls.Add(this.linkLabel7);
             this.groupBox1.Controls.Add(this.linkLabel6);
             this.groupBox1.Controls.Add(this.linkLabel5);
-            this.groupBox1.Location = new System.Drawing.Point(1053, 41);
+            this.groupBox1.Location = new System.Drawing.Point(1061, 32);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(87, 146);
             this.groupBox1.TabIndex = 17;
@@ -579,7 +588,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("宋体", 10F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(12, 15);
+            this.label2.Location = new System.Drawing.Point(1036, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 14);
             this.label2.TabIndex = 19;

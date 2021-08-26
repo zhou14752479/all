@@ -24,6 +24,42 @@ namespace 智能营销系统
             panel2.Dock = DockStyle.Fill;
             panel3.Visible = false;
             panel4.Visible = false;
+
+
+            uiHeaderButton1.MouseHover += new EventHandler(MouseHover_Event);
+            uiHeaderButton1.MouseLeave += new EventHandler(MouseLeave_Event);
+
+            uiHeaderButton2.MouseHover += new EventHandler(MouseHover_Event);
+            uiHeaderButton2.MouseLeave += new EventHandler(MouseLeave_Event);
+
+            uiHeaderButton3.MouseHover += new EventHandler(MouseHover_Event);
+            uiHeaderButton3.MouseLeave += new EventHandler(MouseLeave_Event);
+
+            uiHeaderButton4.MouseHover += new EventHandler(MouseHover_Event);
+            uiHeaderButton4.MouseLeave += new EventHandler(MouseLeave_Event);
+
+            uiHeaderButton5.MouseHover += new EventHandler(MouseHover_Event);
+            uiHeaderButton5.MouseLeave += new EventHandler(MouseLeave_Event);
+
+            uiHeaderButton6.MouseHover += new EventHandler(MouseHover_Event);
+            uiHeaderButton6.MouseLeave += new EventHandler(MouseLeave_Event);
+
+            uiHeaderButton7.MouseHover += new EventHandler(MouseHover_Event);
+            uiHeaderButton7.MouseLeave += new EventHandler(MouseLeave_Event);
+
+            uiHeaderButton8.MouseHover += new EventHandler(MouseHover_Event);
+            uiHeaderButton8.MouseLeave += new EventHandler(MouseLeave_Event);
+        }
+
+        private void MouseHover_Event(object sender, EventArgs e)
+        {
+            ((Sunny.UI.UIHeaderButton)sender).FillColor = Color.Gray;
+        }
+
+
+        private void MouseLeave_Event(object sender, EventArgs e)
+        {
+            ((Sunny.UI.UIHeaderButton)sender).FillColor = Color.Transparent;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -209,5 +245,6 @@ namespace 智能营销系统
         {
             System.Diagnostics.Process.Start( "https://www.baidu.com");
         }
+       
     }
 }

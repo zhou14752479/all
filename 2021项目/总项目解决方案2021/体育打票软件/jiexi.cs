@@ -170,11 +170,11 @@ namespace 体育打票软件
                 Report.ParameterByName("zhanhao").AsString = haoma;
                 Report.ParameterByName("time").AsString = time;
 
-                // Report.Print(false);
+                 Report.Print(false);
                 //Report.PrintPreview(true);
-                PreviewForm theForm = new PreviewForm();
-                theForm.AttachReport(Report);
-                theForm.ShowDialog();
+                //PreviewForm theForm = new PreviewForm();
+                //theForm.AttachReport(Report);
+                //theForm.ShowDialog();
                 progressBar1.Value = a;
                 label3.Text = ( ((a / (text0.Length-1)) * 100).ToString() + "%");
                 Thread.Sleep(Convert.ToInt32(textBox3.Text)*1000);

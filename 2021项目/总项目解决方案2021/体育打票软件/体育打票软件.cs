@@ -109,7 +109,7 @@ namespace 体育打票软件
 
              html = webBrowser1.Document.Body.OuterHtml;
             ahtml = webBrowser1.DocumentText;
-            //textBox1.Text = html;
+            textBox1.Text = html;
         }
 
 
@@ -190,7 +190,17 @@ namespace 体育打票软件
             #endregion
 
             gethtml();
-            fc.getdata(Report,html,ahtml);
+            string fangshi = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+            if (fangshi == "足球混合过关")
+            {
+                fc.getdata(Report, html, ahtml);
+            }
+            if (fangshi == "足球胜平负" || fangshi == "足球半全场胜平负" || fangshi == "足球总进球数" || fangshi == "足球比分")
+            {
+                fc.getdata_shengpingfu(Report, html, ahtml);
+            }
+
+
 
             // Report.Print(true);
             //Report.PrintPreview(true);

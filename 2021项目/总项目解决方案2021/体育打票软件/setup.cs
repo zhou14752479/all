@@ -37,5 +37,10 @@ namespace 体育打票软件
         {
             muban = "b1";
         }
+
+        private void setup_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

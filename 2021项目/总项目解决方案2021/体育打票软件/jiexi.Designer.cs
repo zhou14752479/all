@@ -50,8 +50,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(508, 352);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = " 7\t933515733\t1/50\t100\t2串1\t周六002>平|3.40\r\n周六003>负|1.38\r\n 8\t933515734\t1/50\t100\t2串1\t周" +
-    "六002>平|3.40\r\n周六003>负|1.38\r\n 9\t933515735\t1/50\t100\t2串1\t周六002>平|3.40\r\n周六003>负|1.38";
             // 
             // checkBox1
             // 
