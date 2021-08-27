@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 百姓二手车
+namespace WindowsFormsApp1
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 百姓二手车
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new _86货车网());
+            Application.Run(new Form1());
         }
     }
 }

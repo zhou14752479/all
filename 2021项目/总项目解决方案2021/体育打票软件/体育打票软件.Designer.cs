@@ -62,7 +62,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.address_txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -244,7 +243,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.webBrowser1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -463,14 +461,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "店铺地址：";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(622, 36);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(533, 117);
-            this.textBox1.TabIndex = 3;
-            // 
             // 体育打票软件
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -487,7 +477,6 @@
             this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -533,6 +522,5 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

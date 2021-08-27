@@ -64,6 +64,7 @@
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
+            this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -242,7 +243,7 @@
             this.linkLabel2.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold);
             this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel2.LinkColor = System.Drawing.Color.White;
-            this.linkLabel2.Location = new System.Drawing.Point(1146, 9);
+            this.linkLabel2.Location = new System.Drawing.Point(1157, 9);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(31, 20);
             this.linkLabel2.TabIndex = 9;
@@ -256,7 +257,7 @@
             this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel3.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold);
             this.linkLabel3.LinkColor = System.Drawing.Color.White;
-            this.linkLabel3.Location = new System.Drawing.Point(1109, 9);
+            this.linkLabel3.Location = new System.Drawing.Point(1122, 9);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(31, 20);
             this.linkLabel3.TabIndex = 10;
@@ -396,6 +397,7 @@
             this.uiTabControlMenu1.Size = new System.Drawing.Size(392, 226);
             this.uiTabControlMenu1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiTabControlMenu1.TabIndex = 0;
+            this.uiTabControlMenu1.TabUnSelectedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             // 
             // tabPage1
             // 
@@ -475,7 +477,7 @@
             this.linkLabel4.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold);
             this.linkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel4.LinkColor = System.Drawing.Color.White;
-            this.linkLabel4.Location = new System.Drawing.Point(1072, 9);
+            this.linkLabel4.Location = new System.Drawing.Point(1067, 9);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(31, 20);
             this.linkLabel4.TabIndex = 16;
@@ -491,7 +493,7 @@
             this.groupBox1.Controls.Add(this.linkLabel7);
             this.groupBox1.Controls.Add(this.linkLabel6);
             this.groupBox1.Controls.Add(this.linkLabel5);
-            this.groupBox1.Location = new System.Drawing.Point(1061, 32);
+            this.groupBox1.Location = new System.Drawing.Point(1039, 32);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(87, 146);
             this.groupBox1.TabIndex = 17;
@@ -594,6 +596,20 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "欢迎会员：admin";
             // 
+            // linkLabel11
+            // 
+            this.linkLabel11.AutoSize = true;
+            this.linkLabel11.BackColor = System.Drawing.Color.Transparent;
+            this.linkLabel11.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold);
+            this.linkLabel11.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel11.LinkColor = System.Drawing.Color.White;
+            this.linkLabel11.Location = new System.Drawing.Point(1094, 9);
+            this.linkLabel11.Name = "linkLabel11";
+            this.linkLabel11.Size = new System.Drawing.Size(31, 20);
+            this.linkLabel11.TabIndex = 20;
+            this.linkLabel11.TabStop = true;
+            this.linkLabel11.Text = "🔁";
+            // 
             // 智能营销系统
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -601,6 +617,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1189, 702);
+            this.Controls.Add(this.linkLabel11);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.linkLabel10);
             this.Controls.Add(this.groupBox1);
@@ -676,5 +693,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.LinkLabel linkLabel10;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.LinkLabel linkLabel11;
     }
 }

@@ -25,6 +25,10 @@
         #endregion
 
 
+
+
+
+
 #region  获取数据库中城市名称对应的拼音
 
         public string Getpinyin(string city)
@@ -242,3 +246,26 @@
             }
 
  #endregion
+
+
+
+
+
+
+
+
+
+
+
+string str = "select filedata from file where uid='" + id + "' ";
+            MySqlConnection myconn = new MySqlConnection(constr);
+            MySqlDataAdapter sda = new MySqlDataAdapter(str, constr);
+            DataSet myds = new DataSet();
+            myconn.Open();
+            sda.Fill(myds);
+            myconn.Close();
+
+            Byte[] Files = (Byte[])myds.Tables[0].Rows[0]["filedata"];
+            BinaryWriter bw = new BinaryWriter(File.Open(filename, FileMode.OpenOrCreate));
+            bw.Write(Files);
+            bw.Close();

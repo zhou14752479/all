@@ -66,5 +66,26 @@ namespace 智能营销系统
 
             }
         }
+        private Point mPoint = new Point();
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mPoint.X = e.X;
+            mPoint.Y = e.Y;
+        }
+
+        private void panel1_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Point myPosittion = MousePosition;
+                myPosittion.Offset(-mPoint.X, -mPoint.Y);
+                Location = myPosittion;
+            }
+        }
     }
 }

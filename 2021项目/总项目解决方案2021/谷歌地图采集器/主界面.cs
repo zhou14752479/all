@@ -66,8 +66,9 @@ namespace 谷歌地图采集器
             if (json != null && json != "")
             {
 
-                MatchCollection names = Regex.Matches(json, @"\[7,\[\[\\""([\s\S]*?)\\""\]");
+                MatchCollection names = Regex.Matches(json, @"<span jstcache=""929"">([\s\S]*?)</span>");
                 MessageBox.Show(names.Count.ToString());
+                
                 for (int i = 0; i < names.Count; i++)
                 {
                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据

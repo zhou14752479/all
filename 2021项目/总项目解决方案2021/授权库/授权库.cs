@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using MySql.Data.MySqlClient;
 
 namespace 授权库
 {
@@ -41,7 +43,7 @@ namespace 授权库
                 string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
 
                 
-                string sql = "SELECT id,type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime from datas  where ";
+                string sql = "SELECT uid,type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime from datas  where ";
                 if (comboBox1.Text == "全部授权")
                 {
                     sql = sql + ("type like '_%' AND");
@@ -96,7 +98,7 @@ namespace 授权库
         }
 
         #region 下载文件
-        public void downloadfile(string colname)
+        public void downloadfile()
         {
             if (listView1.CheckedItems.Count == 0)
             {
@@ -120,20 +122,22 @@ namespace 授权库
 
                     path = dialog.SelectedPath;
                 }
-
+               
                 for (int i = 0; i < listView1.CheckedItems.Count; i++)
                 {
-                    string id = listView1.CheckedItems[i].SubItems[0].Text;
+                    
+
+                    string uid = listView1.CheckedItems[i].SubItems[0].Text;
                     string name = listView1.CheckedItems[i].SubItems[2].Text;
-                    string base64 = fc.getziduan(id, colname);
-                   
-                    if (base64 != "")
+                    string pinpai = listView1.CheckedItems[i].SubItems[3].Text;
+                    string sPath = path + "//" + pinpai+name + "//";
+                    if (!Directory.Exists(sPath))
                     {
-                        fc.Base64ToImage(base64,path + "//" + name + ".jpg");
-                        label7.Text = DateTime.Now.ToString()+"：正在下载："+name;
-                        
-                        // img.Save(path + "//" + name + ".jpg");
+                        Directory.CreateDirectory(sPath); //创建文件夹
                     }
+                    
+
+                    fc.getfile(uid, sPath);
                 }
 
                 label7.Text = DateTime.Now.ToString() + "：全部下载完成";
@@ -150,6 +154,10 @@ namespace 授权库
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
+          
+           
+
+
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
@@ -199,18 +207,78 @@ namespace 授权库
 
         private void 导出选定授权ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            downloadfile("img_shouquan");
+           
+            downloadfile();
         }
 
-        private void 导出选定售后函ToolStripMenuItem_Click(object sender, EventArgs e)
+       
+
+      
+        string constr = "Host =localhost;Database=shouquanku;Username=root;Password=root";
+
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            downloadfile("img_shouhou");
+            viewdata();
         }
 
-        private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void viewdata()
         {
-            listView1.Items.Clear();
+            if (this.listView1.SelectedItems.Count == 0)
+                return;
+
+            string uid = listView1.SelectedItems[0].SubItems[0].Text;
+            新增 add = new 新增();
+            add.Text = "查看";
+
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+
+            string sql = "select * from datas where uid='" + uid + "'  ";
+            MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+            reader.Read();
+
+            add.uid = reader["uid"].ToString().Trim();
+
+            add.type = reader["type"].ToString().Trim();
+            add.name = reader["name"].ToString().Trim();
+            add.pinpai = reader["pinpai"].ToString().Trim();
+            add.cate1 = reader["cate1"].ToString().Trim();
+            add.cate2 = reader["cate2"].ToString().Trim();
+
+
+            add.sq_starttime = reader["sq_starttime"].ToString().Trim();
+            add.sq_endtime = reader["sq_endtime"].ToString().Trim();
+            add.yjsq_starttime = reader["yjsq_starttime"].ToString().Trim();
+
+
+            add.is_yuanjian = reader["is_yuanjian"].ToString().Trim();
+            add.is_shouhou = reader["is_shouhou"].ToString().Trim();
+            add.is_shangbiao = reader["is_shangbiao"].ToString().Trim();
+            add.shangbiao_endtime = reader["shangbiao_endtime"].ToString().Trim();
+
+            mycon.Close();
+            reader.Close();
+            add.Show();
+        }
+
+        private void 查看详细ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            viewdata();
+        }
+
+        private void 修改数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            viewdata();
+        }
+
+        private void 下载此条文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            downloadfile();
         }
     }
 }

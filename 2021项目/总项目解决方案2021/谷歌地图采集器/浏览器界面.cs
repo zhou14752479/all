@@ -28,23 +28,36 @@ namespace 谷歌地图采集器
             splitContainer1.Panel2.Controls.Add(browser);
 
             browser.Dock = DockStyle.Fill;
-
+            //browser.RequestHandler = new WinFormsRequestHandler();//request请求的具体实现
             browser.FrameLoadEnd += Browser_FrameLoadEnd;
         }
 
         public static string json;
         private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
         {
-
-           while(json=="")
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("function tempFunction() {");
+            //sb.AppendLine(" return document.body.innerHTML; "); 
+            sb.AppendLine(" return document.getElementsByTagName('body')[0].outerHTML; ");
+            sb.AppendLine("}");
+            sb.AppendLine("tempFunction();");
+            var task01 = browser.GetBrowser().GetFrame(browser.GetBrowser().GetFrameNames()[0]).EvaluateScriptAsync(sb.ToString());
+            task01.ContinueWith(t =>
             {
-                dorun(json);
-                if (json != "")
+                if (!t.IsFaulted)
                 {
-                    break;
+                    var response = t.Result;
+                    if (response.Result != null)
+                    {
+                        string resultStr = response.Result.ToString();
+                        dorun(resultStr);
+                    }
+
+
                 }
-            }
-            
+            });
+          
+
         }
 
 
@@ -62,5 +75,7 @@ namespace 谷歌地图采集器
         {
             browser.Load("https://www.google.com/maps/?hl=zh-cn");
         }
+
+       
     }
 }

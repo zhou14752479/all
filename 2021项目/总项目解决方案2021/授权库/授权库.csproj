@@ -37,6 +37,10 @@
     <Reference Include="MySql.Data">
       <HintPath>C:\Users\zhou\Desktop\主程序\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="O2S.Components.PDFRender4NET, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\O2S.Components.PDFRender4NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

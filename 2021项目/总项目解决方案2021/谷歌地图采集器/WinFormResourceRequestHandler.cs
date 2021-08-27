@@ -18,7 +18,8 @@ namespace 谷歌地图采集器
 
         protected override void OnResourceLoadComplete(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
-            if (request.Url.ToLower().Contains("search?tbm=".ToLower()))
+        
+            if (request.Url.ToLower().Contains("search?tbm="))
             {
                 //获取response返回的body响应
                 var filter = FilterManager.GetFileter(request.Identifier.ToString()) as TestJsonFilter;
@@ -35,11 +36,11 @@ namespace 谷歌地图采集器
                 //获取response返回的header参数
                 //MessageBox.Show(request.Url);
                 //MessageBox.Show(response.Headers["date"]);
-                StringBuilder sb = new StringBuilder();
-                foreach (var item in response.Headers)
-                {
-                    sb.Append(item.ToString()+":"+response.Headers[item.ToString()]+"\n");
-                }
+                //StringBuilder sb = new StringBuilder();
+                //foreach (var item in response.Headers)
+                //{
+                //    sb.Append(item.ToString()+":"+response.Headers[item.ToString()]+"\n");
+                //}
                // MessageBox.Show(sb.ToString());
 
 

@@ -32,8 +32,8 @@ namespace CEF主程序
 
             browser.Dock = DockStyle.Fill;
 
-            browser.FrameLoadEnd += Browser_FrameLoadEnd;
-            browser.RequestHandler = new WinFormsRequestHandler();//request请求的具体实现
+           browser.FrameLoadEnd += Browser_FrameLoadEnd;
+           browser.RequestHandler = new WinFormsRequestHandler();//request请求的具体实现
           
 
         }

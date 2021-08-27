@@ -1347,7 +1347,21 @@ namespace myDLL
         }
         #endregion
 
-        
+        #region  获取跳转网址
+        public static string GetRedirectUrl(string url)
+        {
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "HEAD";
+            req.AllowAutoRedirect = false;
+            HttpWebResponse myResp = (HttpWebResponse)req.GetResponse();
+            if (myResp.StatusCode == HttpStatusCode.Redirect)
+            { url = myResp.GetResponseHeader("Location"); }
+            return url;
+        }
+        #endregion
+
+
 
     }
 }

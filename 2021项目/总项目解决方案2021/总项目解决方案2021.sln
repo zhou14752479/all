@@ -59,13 +59,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "权限管理", "..\..\2020�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "授权库", "授权库\授权库.csproj", "{32B83FE8-3778-4B10-96C0-C564D4DFE317}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF礼包领取", "项目集合\CF礼包领取\CF礼包领取.csproj", "{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "验证框架", "验证框架\验证框架.csproj", "{F211F49E-888F-4585-9992-ED6B1552DD34}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "谷歌地图采集器", "谷歌地图采集器\谷歌地图采集器.csproj", "{33ACB83C-AA02-40E3-A959-E3066C13C46D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百姓二手车", "项目集合\百姓二手车\百姓二手车.csproj", "{B915F3EC-DD85-41E0-97AB-5653D3D8A762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{4CF12F59-585E-491B-A77F-1402544DBA6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -185,10 +185,6 @@ Global
 		{32B83FE8-3778-4B10-96C0-C564D4DFE317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32B83FE8-3778-4B10-96C0-C564D4DFE317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32B83FE8-3778-4B10-96C0-C564D4DFE317}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F211F49E-888F-4585-9992-ED6B1552DD34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F211F49E-888F-4585-9992-ED6B1552DD34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F211F49E-888F-4585-9992-ED6B1552DD34}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -201,6 +197,10 @@ Global
 		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF12F59-585E-491B-A77F-1402544DBA6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF12F59-585E-491B-A77F-1402544DBA6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF12F59-585E-491B-A77F-1402544DBA6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF12F59-585E-491B-A77F-1402544DBA6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

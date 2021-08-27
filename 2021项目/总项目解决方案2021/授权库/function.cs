@@ -1,8 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
+using O2S.Components.PDFRender4NET;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,13 +38,13 @@ namespace 授权库
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
                 if (count > 0)
                 {
-                    MessageBox.Show("执行成功！");
+                    MessageBox.Show("数据添加成功！");
                     mycon.Close();
 
                 }
                 else
                 {
-                    MessageBox.Show("执行失败！");
+                    MessageBox.Show("数据添加失败！");
                 }
 
 
@@ -202,5 +204,66 @@ namespace 授权库
         }
 
         #endregion
+
+        /// <summary>
+        /// 获取时间戳  秒
+        /// </summary>
+        /// <returns></returns>
+        public long GetTimeStamp()
+        {
+            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long a = Convert.ToInt64(tss.TotalSeconds);
+            return a;
+        }
+
+
+
+        public void getfile(string id,string dicpath)
+        {
+           
+            string str = "select * from file where uid='" + id + "' ";
+            MySqlConnection myconn = new MySqlConnection(constr);
+            MySqlDataAdapter sda = new MySqlDataAdapter(str, constr);
+            DataSet myds = new DataSet();
+            myconn.Open();
+            sda.Fill(myds);
+            myconn.Close();
+            DataTable dt = myds.Tables[0];
+            foreach (DataRow dr in dt.Rows)
+            {
+                //Byte[] Files = (Byte[])myds.Tables[0].Rows[0]["filedata"];
+                //BinaryWriter bw = new BinaryWriter(File.Open(filename, FileMode.OpenOrCreate));
+
+                string name = dr["name"].ToString();
+                Byte[] Files = (Byte[])dr["filedata"];
+                BinaryWriter bw = new BinaryWriter(File.Open(dicpath+"//"+name, FileMode.OpenOrCreate));
+                bw.Write(Files);
+                bw.Close();
+            }
+           
+            
+
+        }
+
+        public void insertfile(string uid,string filename)
+        {
+            string name = Path.GetFileName(filename);
+            FileStream fs = new FileStream(filename, FileMode.Open);
+            BinaryReader br = new BinaryReader(fs);
+            Byte[] byData = br.ReadBytes((int)fs.Length);
+            fs.Close();
+            
+            MySqlConnection myconn = new MySqlConnection(constr);
+            myconn.Open();
+            string str = "insert into file (uid,name,filedata) values('" + uid + " ','" + name + " ',@file)";
+            MySqlCommand mycomm = new MySqlCommand(str, myconn);
+            mycomm.Parameters.Add("@file", MySqlDbType.Binary, byData.Length);
+            mycomm.Parameters["@file"].Value = byData;
+            mycomm.ExecuteNonQuery();
+            myconn.Close();
+
+        }
+
+       
     }
 }

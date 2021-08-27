@@ -160,13 +160,14 @@ namespace 校友邦
                     string[] value = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
                     if (value.Length > 2)
                     {
-                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(value[0]);
+                        ListViewItem lv1 = listView1.Items.Add(value[0]); //使用Listview展示数据
+                       // lv1.SubItems.Add(value[0]);
                         lv1.SubItems.Add(value[1]);
                         lv1.SubItems.Add(value[2]);
                         lv1.SubItems.Add(value[3]);
                         lv1.SubItems.Add(value[4]);
-                     
+                        lv1.SubItems.Add(value[5]);
+
                         lv1.SubItems.Add("");
                     }
                 }
@@ -241,7 +242,8 @@ namespace 校友邦
         {
 
             string url = "https://xcx.xybsyw.com/student/clock/GetPlan!getDefault.action";
-            string postdata = "planId="+planid;
+            //string postdata = "planId="+planid;
+            string postdata = "";
             string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
          
             string traineeId = Regex.Match(html, @"""traineeId"":([\s\S]*?)}").Groups[1].Value;

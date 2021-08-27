@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.添加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出选定授权ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导出选定售后函ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -53,12 +52,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.查看详细ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修改数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.下载此条文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -66,9 +69,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.添加ToolStripMenuItem,
             this.导出数据ToolStripMenuItem,
-            this.清空数据ToolStripMenuItem,
-            this.导出选定授权ToolStripMenuItem,
-            this.导出选定售后函ToolStripMenuItem});
+            this.导出选定授权ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1063, 25);
@@ -89,31 +90,16 @@
             this.导出数据ToolStripMenuItem.Text = "导出数据";
             this.导出数据ToolStripMenuItem.Click += new System.EventHandler(this.导出数据ToolStripMenuItem_Click);
             // 
-            // 清空数据ToolStripMenuItem
-            // 
-            this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
-            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.清空数据ToolStripMenuItem.Text = "清空数据";
-            this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.清空数据ToolStripMenuItem_Click);
-            // 
             // 导出选定授权ToolStripMenuItem
             // 
             this.导出选定授权ToolStripMenuItem.Name = "导出选定授权ToolStripMenuItem";
-            this.导出选定授权ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
-            this.导出选定授权ToolStripMenuItem.Text = "下载选定授权";
+            this.导出选定授权ToolStripMenuItem.Size = new System.Drawing.Size(116, 21);
+            this.导出选定授权ToolStripMenuItem.Text = "下载全部选中文件";
             this.导出选定授权ToolStripMenuItem.Click += new System.EventHandler(this.导出选定授权ToolStripMenuItem_Click);
-            // 
-            // 导出选定售后函ToolStripMenuItem
-            // 
-            this.导出选定售后函ToolStripMenuItem.Name = "导出选定售后函ToolStripMenuItem";
-            this.导出选定售后函ToolStripMenuItem.Size = new System.Drawing.Size(104, 21);
-            this.导出选定售后函ToolStripMenuItem.Text = "下载选定售后函";
-            this.导出选定售后函ToolStripMenuItem.Click += new System.EventHandler(this.导出选定售后函ToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 25);
             this.tabControl1.Name = "tabControl1";
@@ -302,20 +288,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "授权类型：";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1055, 118);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "---商标---";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // listView1
             // 
             this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listView1.CheckBoxes = true;
+            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -326,6 +303,37 @@
             this.listView1.TabIndex = 40;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.查看详细ToolStripMenuItem,
+            this.修改数据ToolStripMenuItem,
+            this.下载此条文件ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
+            // 
+            // 查看详细ToolStripMenuItem
+            // 
+            this.查看详细ToolStripMenuItem.Name = "查看详细ToolStripMenuItem";
+            this.查看详细ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.查看详细ToolStripMenuItem.Text = "查看详细";
+            this.查看详细ToolStripMenuItem.Click += new System.EventHandler(this.查看详细ToolStripMenuItem_Click);
+            // 
+            // 修改数据ToolStripMenuItem
+            // 
+            this.修改数据ToolStripMenuItem.Name = "修改数据ToolStripMenuItem";
+            this.修改数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.修改数据ToolStripMenuItem.Text = "修改数据";
+            this.修改数据ToolStripMenuItem.Click += new System.EventHandler(this.修改数据ToolStripMenuItem_Click);
+            // 
+            // 下载此条文件ToolStripMenuItem
+            // 
+            this.下载此条文件ToolStripMenuItem.Name = "下载此条文件ToolStripMenuItem";
+            this.下载此条文件ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.下载此条文件ToolStripMenuItem.Text = "下载文件";
+            this.下载此条文件ToolStripMenuItem.Click += new System.EventHandler(this.下载此条文件ToolStripMenuItem_Click);
             // 
             // 授权库
             // 
@@ -347,6 +355,7 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,17 +378,18 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ToolStripMenuItem 导出数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 清空数据ToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ToolStripMenuItem 导出选定授权ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 导出选定售后函ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 查看详细ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 修改数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 下载此条文件ToolStripMenuItem;
     }
 }
