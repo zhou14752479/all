@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -224,35 +225,51 @@ namespace 京东价格对比
                 for (int i = 0; i < max; i++)
                 {
                     progressBar1.Value = i;
-                    log_label.Text = ("更新进度：" + ((i / (max - 1)) * 100).ToString() + "%");
+
+                    double rate = i / (max - 1);
+                    log_label.Text = ("更新进度：" + (rate * 100).ToString() + "%");
 
                     string id = dt.Rows[i][0].ToString().Trim();
                     string jdskuurl = dt.Rows[i][8].ToString().Trim();
                     string oldxinghao = dt.Rows[i][9].ToString().Trim();
 
                     //型号为空，代表JD参数为空，需要填入JD抓取信息
+
+                    string jdskuid = Regex.Match(jdskuurl, @"\d{8,}").Groups[0].Value;
                     if (oldxinghao == "")
                     {
-                        string url = "https://p.3.cn/prices/mgets?skuIds=J_23192213069";
+                        string url = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=" + jdskuid;
                         string html = function.GetUrl(url);
 
-                        string xinghao = "1";
-                        string guige = "2";
-                        string danwei = "3";
-                        string price = "4";
-                        string status = "5";
+                        string xinghao = Regex.Match(html, @"""skuName"":""([\s\S]*?)""").Groups[1].Value;
+                        string guige = Regex.Match(html, @"""skuName"":""([\s\S]*?)""").Groups[1].Value;
+                        string[] text = guige.Split(new string[] { " " }, StringSplitOptions.None);
+                        if (text.Length > 0)
+                        {
+                        }guige = text[text.Length-1];
+                        string danwei = "件";
+                        string price = Regex.Match(html, @"""price"":""([\s\S]*?)""").Groups[1].Value;
+                        string status = Regex.Match(html, @"""stockState"":""([\s\S]*?)""").Groups[1].Value;
+
+                        string cates = Regex.Match(html, @"""category"":\[([\s\S]*?)\]").Groups[1].Value;  //"category":["670","686","694"]
                         string time= DateTime.Now.ToString("yyyy-MM-dd");
                         string sql2 = "UPDATE datas set xinghao='" + xinghao + "',guige='" + @guige + "',danwei='" + @danwei + "',price='" + @price + "',status='" + status + "',time='" + time + "' where id='" + id + "' ";
                         fc.insertdata(sql2);
+                        Thread.Sleep(1000);
                     }
 
                     //型号不为空，则只需要更新价格和状态，原有参数已抓取
                     else
                     {
-                        string url = "https://p.3.cn/prices/mgets?skuIds=J_23192213069";
+                        //string url = "https://p.3.cn/prices/mgets?skuIds=J_"+ jdskuid;
+                        // string html = function.GetUrl(url);
+                        //string price = Regex.Match(html, @"""op"":""([\s\S]*?)""").Groups[1].Value;
+
+                        string url = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=" + jdskuid;
                         string html = function.GetUrl(url);
-                        string price = "4";
-                        string status = "5";
+                        
+                        string price = Regex.Match(html, @"""price"":""([\s\S]*?)""").Groups[1].Value;
+                        string status = Regex.Match(html, @"""stockState"":""([\s\S]*?)""").Groups[1].Value;
                         string time = DateTime.Now.ToString("yyyy-MM-dd");
                         string sql2 = "UPDATE datas set price='" + @price + "',status='" + status + "',time='" + time + "' where id='" + id + "' ";
                         fc.insertdata(sql2);
@@ -311,6 +328,16 @@ namespace 京东价格对比
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(shaixuan);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(getall);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

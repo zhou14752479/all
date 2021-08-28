@@ -16,7 +16,7 @@ namespace 启动程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 兴盛优选());
+            Application.Run(new 票据网());
         }
     }
 }

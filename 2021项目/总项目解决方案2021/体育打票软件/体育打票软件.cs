@@ -172,10 +172,18 @@ namespace 体育打票软件
         {
             suiji = bianma_txt.Text + function.getsuijima();
             gethtml();
-            jiexi jx = new jiexi();
+           
             string fangshi = "解析模式：竞彩" + Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
-            jx.Text = fangshi;
-            jx.Show();
+            //jx.Text = fangshi;
+            if (!fangshi.Contains("混合过关"))
+            {
+                MessageBox.Show("请将页面切换至混合过关");
+            }
+            else
+            {
+                jiexi jx = new jiexi();
+                jx.Show();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)

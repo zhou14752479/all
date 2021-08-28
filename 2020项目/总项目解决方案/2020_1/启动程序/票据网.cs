@@ -19,6 +19,7 @@ namespace 启动程序
 {
     public partial class 票据网 : Form
     {
+
         #region POST请求
         /// <summary>
         /// POST请求
@@ -69,6 +70,7 @@ namespace 启动程序
         }
 
         #endregion
+
         static string token = "";
         public 票据网()
         {
@@ -141,10 +143,10 @@ namespace 启动程序
 
             token = Regex.Replace(tk1, @";.*", "");
 
-           
+            MessageBox.Show(token);
             try
             {
-                string url = "https://www.tcpjw.com/order-web/orderInfo/getTradingOrderInfo";
+                string url = "https://www.tcpjw.com/tradingHall-web/tradingHall/getTradingOrderInfo";
                 string postdata = "{\"source\":\"HTML\",\"version\":\"3.5\",\"channel\":\"01\",\"pageNum\":1,\"pageSize\":15,\"tradeStatus\":null,\"payType\":"+paytype+",\"bid\":"+bid+",\"bankName\":"+bankName+",\"lastTime\":"+lasttime+",\"lastTimeStart\":null,\"lastTimeEnd\":null,\"startDate\":null,\"endDate\":null,\"flawStatus\":\""+flawStatus+"\",\"priceType\":"+pricetype+",\"priceSp\":"+priceSp+",\"priceEp\":"+priceEp+",\"yearQuote\":"+yearQuote+",\"msw\":"+msw+",\"mswStart\":null,\"mswEnd\":null,\"orderColumn\":null,\"sortType\":\"\",\"depositPay\":"+depositPay+"}";
                 
                 string html = PostUrl(url,postdata,cookie,"utf-8");
@@ -162,41 +164,42 @@ namespace 启动程序
              
                 for (int i = 0; i < a1s.Count; i++)
                 {
+                    string yearrate = a6s[i].Groups[1].Value.Replace("\"","");
+
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     lv1.SubItems.Add(a1s[i].Groups[1].Value);
                     lv1.SubItems.Add(a2s[i].Groups[1].Value);
                     lv1.SubItems.Add(a3s[i].Groups[1].Value);
                     lv1.SubItems.Add(a4s[i].Groups[1].Value);
                     lv1.SubItems.Add(a5s[i].Groups[1].Value);
-                    lv1.SubItems.Add(a6s[i].Groups[1].Value);
+                    lv1.SubItems.Add(yearrate);
                     lv1.SubItems.Add(a7s[i].Groups[1].Value);
                     lv1.SubItems.Add(a8s[i].Groups[1].Value);
 
                     string ticketid = ids[i].Groups[1].Value;
                     string ThousandCharge = a5s[i].Groups[1].Value;
                     string payt = "1";
-                    //string endorseId = "15858";
-                    // string endorseId = "73408";
-                    string endorseId = "88717";
-                    string yearrate= a6s[i].Groups[1].Value;
+                   
+                    string endorseId = "88715"; //银行ID
+                    
                     string dealPrice=a3s[i].Groups[1].Value;
                     string ticketPrice=a3s[i].Groups[1].Value;
-                    string ticketType = "2";  //默认2 银行不存在则3
+                    string ticketType = "3";  //默认2 银行不存在则3
                     if (!xiadans.Contains(ticketid))
                     {
                         xiadans.Add(ticketid);
                         buy(ticketid, ThousandCharge, payt, endorseId, yearrate, ticketPrice, ticketType);
 
                     }
-                  
-                    
+
+
                 }
 
                 }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+               textBox6.Text=ex.ToString();
             }
         }
 
@@ -416,7 +419,7 @@ namespace 启动程序
         Thread thread;
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
+           // listView1.Items.Clear();
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);

@@ -354,7 +354,10 @@ namespace 体育打票软件
             Dictionary<string, string> dics = new Dictionary<string, string>();
             for (int i = 0; i < matchIds.Count; i++)
             {
-                dics.Add("周" + Regex.Replace(matchIds[i].Groups[2].Value, "<[^>]+>", ""), Regex.Replace(matchNames[i].Groups[2].Value, "<[^>]+>", ""));
+                string matchname = Regex.Replace(matchNames[i].Groups[2].Value, "<[^>]+>", "");
+                matchname = Regex.Replace(matchname, @"\[.*?\]", "");
+
+                dics.Add("周" + Regex.Replace(matchIds[i].Groups[2].Value, "<[^>]+>", ""), matchname);
             }
 
             StringBuilder sb = new StringBuilder();
