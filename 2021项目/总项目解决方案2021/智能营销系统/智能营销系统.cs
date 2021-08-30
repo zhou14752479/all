@@ -245,6 +245,10 @@ namespace 智能营销系统
         {
             System.Diagnostics.Process.Start( "https://www.baidu.com");
         }
-       
+
+        private void 智能营销系统_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

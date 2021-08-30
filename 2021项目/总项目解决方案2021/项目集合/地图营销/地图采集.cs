@@ -444,6 +444,7 @@ namespace 地图营销
           
         }
 
+        List<string> tellist = new List<string>();
         public bool shaixuan(string phone)
         {
             if (checkBox6.Checked == true)
@@ -459,6 +460,20 @@ namespace 地图营销
                 if (phone.Trim().Length >11 && phone.Trim().Contains("-") && phone.Trim().Length <20)
                 {
                     return false;
+                }
+
+            }
+
+            if (checkBox8.Checked == true)
+            {
+                if (tellist.Contains(phone))
+                {
+                    return false;
+                }
+                else
+                {
+                    tellist.Add(phone);
+                    return true;
                 }
 
             }

@@ -564,9 +564,16 @@ namespace 思忆美团
         }
 
         #endregion
+        #region unicode转中文
+        public  string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
+        }
+
+        #endregion;
 
 
-    
 
     }
 }

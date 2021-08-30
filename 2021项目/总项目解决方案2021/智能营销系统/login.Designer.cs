@@ -172,6 +172,7 @@
             // uiCheckBox1
             // 
             this.uiCheckBox1.CheckBoxColor = System.Drawing.Color.White;
+            this.uiCheckBox1.Checked = true;
             this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiCheckBox1.ForeColor = System.Drawing.Color.White;
@@ -183,6 +184,7 @@
             this.uiCheckBox1.Style = Sunny.UI.UIStyle.Custom;
             this.uiCheckBox1.TabIndex = 7;
             this.uiCheckBox1.Text = "请记住账号和密码";
+            this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
             // 
             // label2
             // 

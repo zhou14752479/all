@@ -113,19 +113,39 @@ namespace 启动程序
         /// <param name="dealPrice"></param>
         /// <param name="ticketPrice"></param>
         /// <param name="ticketType"></param>
-        public void buy(string ticketId, string ThousandCharge, string paytype, string endorseId, string yearrate, string ticketPrice,string ticketType)
+        public void buyold(string ticketId, string ThousandCharge, string paytype, string endorseId, string yearrate, string ticketPrice,string ticketType)
         {
             string dealPrice = getdealPrice(ticketId);
             string url = "https://www.tcpjw.com/order-web/orderFlow/quoteOrder";
             string postdata = "{\"SOURCE\":\"HTML\",\"VERSION\":\"3.5\",\"CHANNEL\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+ paytype + ",\"endorseId\":"+ endorseId + ",\"yearRate\":"+yearrate+",\"dealPrice\":"+ dealPrice + ",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false}";
-
-
-            
+           
             string html = PostUrl(url, postdata, cookie, "utf-8");
             textBox6.Text += DateTime.Now.ToString()+"："+ html + "\r\n";
             //MessageBox.Show(html);
         }
+        /// <summary>
+        /// 下单
+        /// </summary>
+        /// <param name="ticketId"></param>
+        /// <param name="ThousandCharge"></param>
+        /// <param name="paytype"></param>
+        /// <param name="endorseId"></param>
+        /// <param name="yearrate"></param>
+        /// <param name="dealPrice"></param>
+        /// <param name="ticketPrice"></param>
+        /// <param name="ticketType"></param>
+        public void buy(string ticketId, string ThousandCharge, string paytype, string endorseId, string yearrate, string ticketPrice, string ticketType,string dealprice,string tradeNo,string bankname,string endtime)
+        {
+            string dealPrice = getdealPrice(ticketId);
+            string url = "https://www.tcpjw.com/order-web/orderFlow/quoteOrder";
+            //string postdata = "{\"SOURCE\":\"HTML\",\"VERSION\":\"3.5\",\"CHANNEL\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+ paytype + ",\"endorseId\":"+ endorseId + ",\"yearRate\":"+yearrate+",\"dealPrice\":"+ dealPrice + ",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false}";
+            string postdata = "{\"version\":\"3.5\",\"source\":\"HTML\",\"channel\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+paytype+",\"endorseId\":"+endorseId+",\"yearRate\":"+yearrate+",\"dealPrice\":"+dealPrice+",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false,\"tradeNo\":\""+tradeNo+"\",\"bankName\":\""+bankname+"\",\"endTime\":\""+endtime+"\",\"flawStatusDescrption\":\"0\",\"fastTrade\":false,\"agentCouponType\":\" - 1\"}";
 
+
+            string html = PostUrl(url, postdata, cookie, "utf-8");
+            textBox6.Text += DateTime.Now.ToString() + "：" + html + "\r\n";
+            //MessageBox.Show(html);
+        }
 
 
         ArrayList xiadans = new ArrayList(); 
@@ -161,10 +181,15 @@ namespace 启动程序
                 MatchCollection a6s = Regex.Matches(html, @"""yearQuote"":([\s\S]*?),");
                 MatchCollection a7s = Regex.Matches(html, @"""flawDescription"":""([\s\S]*?)""");
                 MatchCollection a8s = Regex.Matches(html, @"payName"":\[""([\s\S]*?)\]");
-             
+
+
+                MatchCollection ticketTypes = Regex.Matches(html, @"""ticketType"":([\s\S]*?),");
+                MatchCollection banknames = Regex.Matches(html, @"""bankName"":""([\s\S]*?)""");
+                MatchCollection endtimes = Regex.Matches(html, @"""endTimeCheck"":""([\s\S]*?)""");
+
                 for (int i = 0; i < a1s.Count; i++)
                 {
-                    string yearrate = a6s[i].Groups[1].Value.Replace("\"","");
+                    
 
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     lv1.SubItems.Add(a1s[i].Groups[1].Value);
@@ -172,23 +197,27 @@ namespace 启动程序
                     lv1.SubItems.Add(a3s[i].Groups[1].Value);
                     lv1.SubItems.Add(a4s[i].Groups[1].Value);
                     lv1.SubItems.Add(a5s[i].Groups[1].Value);
-                    lv1.SubItems.Add(yearrate);
+                    lv1.SubItems.Add(a6s[i].Groups[1].Value.Replace("\"", ""));
                     lv1.SubItems.Add(a7s[i].Groups[1].Value);
                     lv1.SubItems.Add(a8s[i].Groups[1].Value);
 
                     string ticketid = ids[i].Groups[1].Value;
                     string ThousandCharge = a5s[i].Groups[1].Value;
-                    string payt = "1";
-                   
+                    string paytype = "1";
                     string endorseId = "88715"; //银行ID
-                    
-                    string dealPrice=a3s[i].Groups[1].Value;
+                    string yearrate = a6s[i].Groups[1].Value.Replace("\"", "");
+
+                  
                     string ticketPrice=a3s[i].Groups[1].Value;
-                    string ticketType = "3";  //默认2 银行不存在则3
+                    string ticketType = ticketTypes[i].Groups[1].Value;  
+                    string dealPrice = a3s[i].Groups[1].Value;
+                    string tradeno = "";
+                    string bankname = banknames[i].Groups[1].Value;
+                    string endtime = endtimes[i].Groups[1].Value;
                     if (!xiadans.Contains(ticketid))
                     {
                         xiadans.Add(ticketid);
-                        buy(ticketid, ThousandCharge, payt, endorseId, yearrate, ticketPrice, ticketType);
+                        buy(ticketid, ThousandCharge, paytype, endorseId, yearrate, ticketPrice, ticketType,dealPrice,tradeno,bankname,endtime);
 
                     }
 

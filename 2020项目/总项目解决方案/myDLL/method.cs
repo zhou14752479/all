@@ -56,7 +56,7 @@ namespace myDLL
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
                 request.Accept = "*/*";
-                request.Timeout = 100000;
+                request.Timeout = 5000;
               
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {
@@ -115,7 +115,7 @@ namespace myDLL
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
                 request.Accept = "*/*";
-                request.Timeout = 100000;
+                request.Timeout = 5000;
 
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {

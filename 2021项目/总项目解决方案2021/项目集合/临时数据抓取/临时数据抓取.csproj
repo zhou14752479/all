@@ -36,7 +36,7 @@
     </Reference>
     <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\zhou\Desktop\当当网\myDLL.dll</HintPath>
+      <HintPath>..\..\授权库\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\2020项目\总项目解决方案\2020_1\百度知道\bin\Debug\MySql.Data.dll</HintPath>

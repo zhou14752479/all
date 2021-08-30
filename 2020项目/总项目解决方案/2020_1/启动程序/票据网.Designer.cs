@@ -900,7 +900,6 @@
             this.Name = "票据网";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "票据网";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.票据网_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

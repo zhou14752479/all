@@ -29,14 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(智能营销系统));
-            this.uiLine1 = new Sunny.UI.UILine();
             this.uiHeaderButton1 = new Sunny.UI.UIHeaderButton();
             this.uiHeaderButton2 = new Sunny.UI.UIHeaderButton();
             this.uiHeaderButton3 = new Sunny.UI.UIHeaderButton();
             this.uiHeaderButton4 = new Sunny.UI.UIHeaderButton();
             this.uiHeaderButton5 = new Sunny.UI.UIHeaderButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.uiHeaderButton6 = new Sunny.UI.UIHeaderButton();
@@ -46,12 +44,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.uiTabControlMenu1 = new Sunny.UI.UITabControlMenu();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.userControl11 = new 自定义控件1.UserControl1();
@@ -67,26 +59,10 @@
             this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.uiTabControlMenu1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // uiLine1
-            // 
-            this.uiLine1.BackColor = System.Drawing.Color.Black;
-            this.uiLine1.FillColor = System.Drawing.Color.Black;
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.LineColor = System.Drawing.Color.Silver;
-            this.uiLine1.Location = new System.Drawing.Point(3, 88);
-            this.uiLine1.Margin = new System.Windows.Forms.Padding(0);
-            this.uiLine1.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(1185, 12);
-            this.uiLine1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLine1.TabIndex = 0;
             // 
             // uiHeaderButton1
             // 
@@ -216,25 +192,13 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(13, 684);
+            this.label1.Location = new System.Drawing.Point(0, 214);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 12);
             this.label1.TabIndex = 7;
             this.label1.Text = "版权所有，侵权必究，软件仅用于学习，请勿用于非法用途！";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(1124, 684);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel1.TabIndex = 8;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "在线咨询";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // linkLabel2
             // 
@@ -245,10 +209,10 @@
             this.linkLabel2.LinkColor = System.Drawing.Color.White;
             this.linkLabel2.Location = new System.Drawing.Point(1157, 9);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(31, 20);
+            this.linkLabel2.Size = new System.Drawing.Size(30, 20);
             this.linkLabel2.TabIndex = 9;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "❌";
+            this.linkLabel2.Text = "×";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // linkLabel3
@@ -346,9 +310,9 @@
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(3, 103);
+            this.panel1.Location = new System.Drawing.Point(3, 91);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1185, 578);
+            this.panel1.Size = new System.Drawing.Size(1185, 609);
             this.panel1.TabIndex = 15;
             // 
             // panel4
@@ -371,83 +335,17 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.uiTabControlMenu1);
             this.panel3.Location = new System.Drawing.Point(551, 46);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(392, 226);
             this.panel3.TabIndex = 1;
             this.panel3.Visible = false;
             // 
-            // uiTabControlMenu1
-            // 
-            this.uiTabControlMenu1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.uiTabControlMenu1.Controls.Add(this.tabPage1);
-            this.uiTabControlMenu1.Controls.Add(this.tabPage2);
-            this.uiTabControlMenu1.Controls.Add(this.tabPage3);
-            this.uiTabControlMenu1.Controls.Add(this.tabPage4);
-            this.uiTabControlMenu1.Controls.Add(this.tabPage5);
-            this.uiTabControlMenu1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTabControlMenu1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.uiTabControlMenu1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTabControlMenu1.ItemSize = new System.Drawing.Size(40, 200);
-            this.uiTabControlMenu1.Location = new System.Drawing.Point(0, 0);
-            this.uiTabControlMenu1.Multiline = true;
-            this.uiTabControlMenu1.Name = "uiTabControlMenu1";
-            this.uiTabControlMenu1.SelectedIndex = 0;
-            this.uiTabControlMenu1.Size = new System.Drawing.Size(392, 226);
-            this.uiTabControlMenu1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.uiTabControlMenu1.TabIndex = 0;
-            this.uiTabControlMenu1.TabUnSelectedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(201, 0);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(191, 226);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "全网拓客";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(201, 0);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(191, 226);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "社群拓客";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(201, 0);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(191, 226);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "社交拓客";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(201, 0);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(191, 226);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "论坛拓客";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(201, 0);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(191, 226);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "社群拓客";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.userControl11);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(71, 46);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(392, 226);
@@ -479,10 +377,10 @@
             this.linkLabel4.LinkColor = System.Drawing.Color.White;
             this.linkLabel4.Location = new System.Drawing.Point(1067, 9);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(31, 20);
+            this.linkLabel4.Size = new System.Drawing.Size(29, 20);
             this.linkLabel4.TabIndex = 16;
             this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "👚";
+            this.linkLabel4.Text = "☃";
             this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // groupBox1
@@ -600,15 +498,15 @@
             // 
             this.linkLabel11.AutoSize = true;
             this.linkLabel11.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel11.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold);
+            this.linkLabel11.Font = new System.Drawing.Font("黑体", 20F, System.Drawing.FontStyle.Bold);
             this.linkLabel11.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel11.LinkColor = System.Drawing.Color.White;
-            this.linkLabel11.Location = new System.Drawing.Point(1094, 9);
+            this.linkLabel11.Location = new System.Drawing.Point(1096, 3);
             this.linkLabel11.Name = "linkLabel11";
-            this.linkLabel11.Size = new System.Drawing.Size(31, 20);
+            this.linkLabel11.Size = new System.Drawing.Size(30, 27);
             this.linkLabel11.TabIndex = 20;
             this.linkLabel11.TabStop = true;
-            this.linkLabel11.Text = "🔁";
+            this.linkLabel11.Text = "⟳";
             // 
             // 智能营销系统
             // 
@@ -628,26 +526,23 @@
             this.Controls.Add(this.uiHeaderButton6);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.uiHeaderButton5);
             this.Controls.Add(this.uiHeaderButton4);
             this.Controls.Add(this.uiHeaderButton3);
             this.Controls.Add(this.uiHeaderButton2);
             this.Controls.Add(this.uiHeaderButton1);
-            this.Controls.Add(this.uiLine1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "智能营销系统";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "智能营销系统";
+            this.Load += new System.EventHandler(this.智能营销系统_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.智能营销系统_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.智能营销系统_MouseMove);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.uiTabControlMenu1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -657,15 +552,12 @@
         }
 
         #endregion
-
-        private Sunny.UI.UILine uiLine1;
         private Sunny.UI.UIHeaderButton uiHeaderButton1;
         private Sunny.UI.UIHeaderButton uiHeaderButton2;
         private Sunny.UI.UIHeaderButton uiHeaderButton3;
         private Sunny.UI.UIHeaderButton uiHeaderButton4;
         private Sunny.UI.UIHeaderButton uiHeaderButton5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private Sunny.UI.UIHeaderButton uiHeaderButton6;
@@ -683,13 +575,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private Sunny.UI.UITabControlMenu uiTabControlMenu1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private 自定义控件1.UserControl1 userControl11;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.LinkLabel linkLabel10;
         private System.Windows.Forms.Label label2;

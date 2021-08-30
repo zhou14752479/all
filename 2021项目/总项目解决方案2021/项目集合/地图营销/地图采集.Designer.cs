@@ -59,6 +59,7 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -83,7 +84,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -456,6 +457,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox8);
             this.groupBox1.Controls.Add(this.linkLabel2);
             this.groupBox1.Controls.Add(this.checkBox7);
             this.groupBox1.Controls.Add(this.checkBox6);
@@ -465,6 +467,18 @@
             this.groupBox1.TabIndex = 126;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据筛选";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("宋体", 10F);
+            this.linkLabel2.Location = new System.Drawing.Point(26, 72);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(105, 14);
+            this.linkLabel2.TabIndex = 2;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "生成通讯录文件";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // checkBox7
             // 
@@ -700,17 +714,15 @@
             this.tabControl1.Size = new System.Drawing.Size(1054, 558);
             this.tabControl1.TabIndex = 1;
             // 
-            // linkLabel2
+            // checkBox8
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("宋体", 10F);
-            this.linkLabel2.Location = new System.Drawing.Point(26, 72);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(105, 14);
-            this.linkLabel2.TabIndex = 2;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "生成通讯录文件";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(219, 34);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(72, 16);
+            this.checkBox8.TabIndex = 3;
+            this.checkBox8.Text = "去除重复";
+            this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // 地图采集
             // 
@@ -801,6 +813,7 @@
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.CheckBox checkBox8;
     }
 }
 

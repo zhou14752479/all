@@ -225,16 +225,17 @@ namespace 思忆美团
                                     infolabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")+"：账号已过期，请充值，若已充值，请重新登录！";
                                     return;
                                 }
-                                string url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityid + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + page + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
-                               
+                                //string url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityid + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + page + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
+
+                                string url = "https://i.meituan.com/vc/mt/fetchshoplist?token=39pMg6p8dEzUfp82NE4rjMfAwsgAAAAATQ4AANerOltwtpdK-CJEtHJAK5PM2u-NyclkWElCk8dSVMDyeOibKNtY7dzH7c8qBLtlaA&cityid="+cityid+ "&cateid=" + cateid + "&categoryids=" + cateid+"&lat=33.939921&lng=118.253346&userid=875973616&uuid=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&utmsource=mtsy&utmmedium=iphone&utmterm=11.10.402&utmcontent=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&versionname=11.10.402&utmcampaign=AgroupBgroupD200Ghomepage_category8_20691__a1__c__e0H0&mock=0&miniProgram=false&start="+page+"&limit=20&areaid="+areaid+"&distance=&subwaylineid=&subwaystationid=&sort=2";
                                 string html = functions.GetUrl(url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
                                
 
                                 MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
                                 MatchCollection address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
                                 MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-                                MatchCollection cate = Regex.Matches(html, @"mainCategoryName"":""([\s\S]*?)""");
-                                MatchCollection shangquan = Regex.Matches(html, @"""areaName"":""([\s\S]*?)""");
+                                //MatchCollection cate = Regex.Matches(html, @"mainCategoryName"":""([\s\S]*?)""");
+                                //MatchCollection shangquan = Regex.Matches(html, @"""areaName"":""([\s\S]*?)""");
 
                                 infolabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "：正在采集" + city + "-" + areaid + "-" + catename + "-页码：" +((page/100)+1);
                                 if (names.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
@@ -252,13 +253,13 @@ namespace 思忆美团
                                             if (!finishes.Contains(newphone))
                                             {
                                                 ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                                listViewItem.SubItems.Add(names[j].Groups[1].Value);
-                                                listViewItem.SubItems.Add(address[j].Groups[1].Value);
+                                                listViewItem.SubItems.Add(fc.Unicode2String(names[j].Groups[1].Value));
+                                                //listViewItem.SubItems.Add(fc.Unicode2String(address[j].Groups[1].Value));
                                                 listViewItem.SubItems.Add(newphone);
-                                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                                listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+                                                //listViewItem.SubItems.Add(cate[j].Groups[1].Value);
+                                                //listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
                                                 listViewItem.SubItems.Add(city);
-                                                Thread.Sleep(200);
+                                                //Thread.Sleep(200);
                                                 if (listView1.Items.Count > 2)
                                                 {
                                                     this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();

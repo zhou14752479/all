@@ -212,6 +212,8 @@ namespace 体育打票软件
 
             // Report.Print(true);
             //Report.PrintPreview(true);
+
+
             PreviewForm theForm = new PreviewForm();
             theForm.AttachReport(Report);
             theForm.ShowDialog();

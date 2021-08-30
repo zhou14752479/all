@@ -12,7 +12,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using helper;
-using MySql.Data.MySqlClient;
 
 namespace 研修网下载
 {

@@ -150,6 +150,7 @@ namespace 体育打票软件
                 }
                 else
                 {
+                    fangshi = "竞彩足球总进球数";
                     string a1 = Regex.Match(item, @"周([\s\S]*?)>").Groups[1].Value;
                     string a2 = Regex.Match(item, @">.*").Groups[0].Value.Replace(">","(").Replace("|", ")@").Replace(",", "元+(")+"元";
                    
@@ -186,11 +187,11 @@ namespace 体育打票软件
                 Report.ParameterByName("zhanhao").AsString = haoma;
                 Report.ParameterByName("time").AsString = time;
 
-                //Report.Print(false);
+                Report.Print(false);
                // Report.PrintPreview(true);
-                PreviewForm theForm = new PreviewForm();
-                theForm.AttachReport(Report);
-                theForm.ShowDialog();
+                //PreviewForm theForm = new PreviewForm();
+                //theForm.AttachReport(Report);
+                //theForm.ShowDialog();
                 progressBar1.Value = a;
                 //label3.Text = ( ((a / (text0.Length-1)) * 100).ToString() + "%");
                 Thread.Sleep(Convert.ToInt32(textBox3.Text)*1000);

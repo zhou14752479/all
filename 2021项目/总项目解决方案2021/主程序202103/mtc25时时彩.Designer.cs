@@ -33,6 +33,10 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -42,10 +46,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +89,23 @@
             // 
             this.columnHeader3.Text = "期数";
             this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "号码";
+            this.columnHeader4.Width = 200;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "总和";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "大小";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "单双";
             // 
             // button5
             // 
@@ -186,23 +203,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "号码";
-            this.columnHeader4.Width = 200;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "总和";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "大小";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "单双";
-            // 
             // mtc25时时彩
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -212,7 +212,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "mtc25时时彩";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "比特币1分";
+            this.Text = "台湾宾果快乐8";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mtc25时时彩_FormClosing);
             this.Load += new System.EventHandler(this.mtc25时时彩_Load);
             this.panel1.ResumeLayout(false);

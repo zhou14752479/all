@@ -41,6 +41,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // columnHeader5
@@ -157,11 +158,21 @@
             this.label1.TabIndex = 223;
             this.label1.Text = "选择省份：";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(236, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(11, 12);
+            this.label2.TabIndex = 226;
+            this.label2.Text = "0";
+            // 
             // _86货车网
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 515);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -192,5 +203,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
