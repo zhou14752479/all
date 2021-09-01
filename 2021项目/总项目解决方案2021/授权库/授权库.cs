@@ -34,6 +34,7 @@ namespace 授权库
         {
             try
             {
+                label7.Text = DateTime.Now.ToLongTimeString()+"：开始查询...";
                 string type = comboBox1.Text;
             
                 string pinpai = textBox1.Text.Trim();
@@ -42,7 +43,8 @@ namespace 授权库
                 string sq_starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
                 string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
 
-                
+                string shangbiao_endtime= dateTimePicker3.Value.ToString("yyyy-MM-dd");
+              
                 string sql = "SELECT uid,type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime from datas  where ";
                 if (comboBox1.Text == "全部授权")
                 {
@@ -80,14 +82,40 @@ namespace 授权库
                     sql = sql + ("cate2 like '" + cate2+ "' AND ");
                 }
 
+                if (checkBox1.Checked == true)
+                {
+                    sql = sql + ("sq_starttime >= '" + sq_starttime + "' AND ");
+                    sql = sql + ("sq_starttime <= '" + sq_endtime + "' AND ");
 
-                sql = sql + ("sq_starttime >= '" + sq_starttime + "' AND ");
-                sql = sql + ("sq_starttime <= '" + sq_endtime + "' ");
 
-               
+                }
+                
+
+                if (checkBox2.Checked == true)
+                {
+                    sql = sql + ("shangbiao_endtime >= '" + shangbiao_endtime + "' ");
+
+                }
+                if (sql.Substring(sql.Length-4,4).Contains("AND"))
+                {
+                    sql = sql.Remove(sql.Length - 4, 4);
+                }
+
+
                 DataTable dt = fc.getdata(sql);
                fc.ShowDataInListView(dt,listView1);
+                
+                label7.Text = DateTime.Now.ToLongTimeString() + "：查询结束，授权到期小于一个月已标红";
 
+                try
+                {
+                    daotiTime();
+                }
+                catch (Exception)
+                {
+
+                    label7.Text="到期时间监控失败，请检查时间格式";
+                }
             }
             catch (Exception ex)
             {
@@ -130,7 +158,7 @@ namespace 授权库
                     string uid = listView1.CheckedItems[i].SubItems[0].Text;
                     string name = listView1.CheckedItems[i].SubItems[2].Text;
                     string pinpai = listView1.CheckedItems[i].SubItems[3].Text;
-                    string sPath = path + "//" + pinpai+name + "//";
+                    string sPath = path + "//" + pinpai+"-"+name+"-"+uid + "//";
                     if (!Directory.Exists(sPath))
                     {
                         Directory.CreateDirectory(sPath); //创建文件夹
@@ -151,6 +179,23 @@ namespace 授权库
         }
 
         #endregion
+
+        public void daotiTime()
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                string time = listView1.Items[i].SubItems[7].Text;
+                if (time != "")
+                {
+                    if (Convert.ToDateTime(time) >= DateTime.Now.AddDays(-30))
+                    {
+                        listView1.Items[i].BackColor = Color.Red;
+                    }
+                }
+
+            }
+
+        }
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
@@ -219,17 +264,17 @@ namespace 授权库
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            viewdata();
+            viewdata("查看数据");
         }
 
-        public void viewdata()
+        public void viewdata(string title)
         {
             if (this.listView1.SelectedItems.Count == 0)
                 return;
 
             string uid = listView1.SelectedItems[0].SubItems[0].Text;
             新增 add = new 新增();
-            add.Text = "查看";
+            add.Text = title;
 
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();
@@ -268,17 +313,36 @@ namespace 授权库
 
         private void 查看详细ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            viewdata();
+            viewdata("查看数据");
         }
 
         private void 修改数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            viewdata();
+            viewdata("修改数据");
         }
 
         private void 下载此条文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             downloadfile();
+        }
+
+        private void 删除数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count == 0)
+                return;
+
+            string uid = listView1.SelectedItems[0].SubItems[0].Text;
+            string sql = "delete from datas where uid='" + uid + "'  ";
+            fc.SQL(sql);
+
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(chaxun);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+
         }
     }
 }

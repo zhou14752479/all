@@ -184,6 +184,7 @@
             this.Name = "_86货车网";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "_86货车网";
+            this.Load += new System.EventHandler(this._86货车网_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

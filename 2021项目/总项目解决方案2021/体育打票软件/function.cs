@@ -187,7 +187,7 @@ namespace 体育打票软件
                 string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
 
 
-                guoguan = Regex.Replace(guoguan, "x.*", "") + "x" + zhushu;
+               // guoguan = Regex.Replace(guoguan, "x.*", "") + "x" + zhushu;
 
 
                 MatchCollection matchIds = Regex.Matches(html, @"class=""mCodeCls""([\s\S]*?)>([\s\S]*?)</td>");
@@ -276,7 +276,7 @@ namespace 体育打票软件
                     a = a + 1;
                 }
 
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + guoguan + "注;共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + guoguan +"*" + zhushu+ "注;共" + zhushu + "注");
 
 
 
@@ -297,7 +297,7 @@ namespace 体育打票软件
             catch (Exception ex)
             {
 
-                MessageBox.Show("未点击详情");
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -465,6 +465,7 @@ namespace 体育打票软件
 
 
                 int a = 1;
+                string guoguan2 = guoguan;
                 foreach (var item in resultdics.Keys)
                 {
 
@@ -472,19 +473,28 @@ namespace 体育打票软件
                     a = a + 1;
                 }
 
-                if (guoguan.Contains("单关") && a==1)
+                if (guoguan.Contains("单关") && a<3)
                 {
                     guoguan = "1场-单场固定";
+                    guoguan2 = "单场";
                     Report.LoadFromFile(path + "template\\" + "a1.grf");
+                }
+
+                else if (guoguan.Contains("单关") && a >= 3)
+                {
+                    guoguan = "过关方式 " + guoguan;
+                    guoguan2 = (a-1)+"场";
+                    Report.LoadFromFile(path + "template\\" + "a.grf");
                 }
                 else
                 {
                     guoguan = "过关方式 "+ guoguan;
+                   
                     Report.LoadFromFile(path + "template\\" + "a.grf");
                 }
 
             
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + guoguan + "*" + zhushu + "注;共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "0元\n单倍注数:" + guoguan2 + "*" + zhushu + "注;共" + zhushu + "注");
 
 
 
@@ -505,7 +515,7 @@ namespace 体育打票软件
             catch (Exception ex)
             {
 
-                MessageBox.Show("未点击详情");
+                MessageBox.Show(ex.ToString());
             }
         }
 

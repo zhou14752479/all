@@ -14,6 +14,19 @@
                 MessageBox.Show(t.Result.Result.ToString());
             }
 
+
+//webbrowser模拟点击
+
+ //var btns = webBrowser1.Document.GetElementsByTagName("input");
+            //foreach (HtmlElement btn in btns)
+            //{
+            //    if (btn.GetAttribute("id") == "detailBtn")
+            //    {
+            //        btn.InvokeMember("click");
+            //    }
+            //}
+
+
 //iE浏览器
 在webbrowser浏览器里执行js代码并获取返回值，可以用于读取cookie
   HtmlElement element2 = webBrowser1.Document.CreateElement("script");

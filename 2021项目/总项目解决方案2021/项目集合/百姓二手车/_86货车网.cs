@@ -89,6 +89,7 @@ namespace 百姓二手车
             }
         }
         #endregion
+
         #region 86货车
         public void _86huoche()
         {
@@ -208,6 +209,11 @@ namespace 百姓二手车
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void _86货车网_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -22,7 +22,7 @@ namespace 京东价格对比
 
         private void 京东价格对比_Load(object sender, EventArgs e)
         {
-
+            fc.getcates1(comboBox1);
         }
 
         string inportFilename = "";
@@ -122,31 +122,31 @@ namespace 京东价格对比
         {
             try
             {
-                string cate1 =textBox5.Text;
-                string cate2= textBox6.Text;
-                string cate3 = textBox7.Text;
+                string cate1 =comboBox1.Text;
+                string cate2= comboBox2.Text;
+                string cate3 = comboBox3.Text;
                 string starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
                 string endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
 
               
                 string sql = "select * from datas where";
-                if (textBox5.Text == "")
+                if (comboBox1.Text == "")
                 {
-                    textBox5.Text = "全部";
+                    comboBox1.Text = "全部";
                 }
-                if (textBox6.Text == "")
+                if (comboBox2.Text == "")
                 {
-                    textBox6.Text = "全部";
+                    comboBox2.Text = "全部";
                 }
-                if (textBox7.Text == "")
+                if (comboBox3.Text == "")
                 {
-                    textBox7.Text = "全部";
+                    comboBox3.Text = "全部";
                 }
 
 
                 if (checkBox1.Checked==true)
                 {
-                    if (textBox5.Text == "全部")
+                    if (comboBox1.Text == "全部")
                     {
                         sql = sql + (" cate1 like '_%' and");
                     }
@@ -155,7 +155,7 @@ namespace 京东价格对比
                         sql = sql + (" cate1 like '" + cate1 + "' and");
                     }
 
-                    if (textBox6.Text == "全部")
+                    if(comboBox2.Text == "全部")
                     {
                         sql = sql + (" cate2 like '_%' and");
                     }
@@ -164,7 +164,7 @@ namespace 京东价格对比
                         sql = sql + (" cate2 like '" + cate2 + "' and");
                     }
 
-                    if (textBox7.Text == "全部")
+                    if (comboBox3.Text == "全部")
                     {
                         sql = sql + (" cate3 like '_%' and");
                     }
@@ -235,7 +235,7 @@ namespace 京东价格对比
 
                     //型号为空，代表JD参数为空，需要填入JD抓取信息
 
-                    string jdskuid = Regex.Match(jdskuurl, @"\d{8,}").Groups[0].Value;
+                    string jdskuid = Regex.Match(jdskuurl, @"\d{5,}").Groups[0].Value;
                     if (oldxinghao == "")
                     {
                         string url = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=" + jdskuid;
@@ -249,6 +249,21 @@ namespace 京东价格对比
                         }guige = text[text.Length-1];
                         string danwei = "件";
                         string price = Regex.Match(html, @"""price"":""([\s\S]*?)""").Groups[1].Value;
+                        if (price != "")
+                        {
+                            if (radioButton2.Checked == true)
+                            {
+                                price = (Convert.ToDouble(price)*(1+Convert.ToDouble(textBox1.Text)/100)).ToString();
+                                price = Math.Round(Convert.ToDouble(price), 2).ToString("F2");
+                            }
+                            if (radioButton3.Checked == true)
+                            {
+                                price = (Convert.ToDouble(price) * (1 - Convert.ToDouble(textBox2.Text) / 100)).ToString();
+                                price = Math.Round(Convert.ToDouble(price), 2).ToString("F2");
+
+                            }
+                        }
+                      
                         string status = Regex.Match(html, @"""stockState"":""([\s\S]*?)""").Groups[1].Value;
 
                         string cates = Regex.Match(html, @"""category"":\[([\s\S]*?)\]").Groups[1].Value;  //"category":["670","686","694"]
@@ -269,6 +284,24 @@ namespace 京东价格对比
                         string html = function.GetUrl(url);
                         
                         string price = Regex.Match(html, @"""price"":""([\s\S]*?)""").Groups[1].Value;
+
+                        if (price != "")
+                        {
+                            
+                            if (radioButton2.Checked == true)
+                            {
+                                price = (Convert.ToDouble(price) * (1 + Convert.ToDouble(textBox1.Text) / 100)).ToString();
+                                price = Math.Round(Convert.ToDouble(price), 2).ToString("F2");
+                            }
+                            if (radioButton3.Checked == true)
+                            {
+                                price = (Convert.ToDouble(price) * (1 - Convert.ToDouble(textBox2.Text) / 100)).ToString();
+                                price = Math.Round(Convert.ToDouble(price), 2).ToString("F2");
+
+                            }
+                        }
+                       
+
                         string status = Regex.Match(html, @"""stockState"":""([\s\S]*?)""").Groups[1].Value;
                         string time = DateTime.Now.ToString("yyyy-MM-dd");
                         string sql2 = "UPDATE datas set price='" + @price + "',status='" + status + "',time='" + time + "' where id='" + id + "' ";
@@ -297,6 +330,8 @@ namespace 京东价格对比
 
         private void button1_Click(object sender, EventArgs e)
         {
+          
+
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
@@ -341,6 +376,32 @@ namespace 京东价格对比
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox2.Items.Clear();
+            fc.getcates2(comboBox2, comboBox1.Text);
+        }
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox3.Items.Clear();
+            fc.getcates3(comboBox3,comboBox2.Text);
+        }
+
+        private void 清空数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要清空吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                string sql = "delete from datas;";
+                fc.insertdata(sql);
+                MessageBox.Show("清空成功");
+            }
+            else
+            {
+               
+            }
+           
         }
     }
 }

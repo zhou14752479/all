@@ -8,12 +8,85 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using myDLL;
 
 namespace 京东价格对比
 {
     class function
     {
+        string path = AppDomain.CurrentDomain.BaseDirectory;
+        public void getcates1(ComboBox cob)
+        {
+            StreamReader sr = new StreamReader(path+"//cates.txt", method.EncodingType.GetTxtType(path + "//cates.txt"));
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < text.Length; i++)
+            {
+                string[] values = text[i].Split(new string[] { "," }, StringSplitOptions.None);
+                if(values.Length>2)
+                {
+                    if(!cob.Items.Contains(values[0]))
+                    {
+                        cob.Items.Add(values[0]);
+                    }
+                   
+                }
+               
+            }
+            sr.Close();  //只关闭流
+            sr.Dispose();   //
 
+        }
+
+        public void getcates2(ComboBox cob,string cate1)
+        {
+            StreamReader sr = new StreamReader(path + "//cates.txt", method.EncodingType.GetTxtType(path + "//cates.txt"));
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < text.Length; i++)
+            {
+                string[] values = text[i].Split(new string[] { "," }, StringSplitOptions.None);
+                if (values.Length > 2)
+                {
+                    if (!cob.Items.Contains(values[1]) && values[0]==cate1)
+                    {
+                        cob.Items.Add(values[1]);
+                    }
+
+                }
+
+            }
+            sr.Close();  //只关闭流
+            sr.Dispose();   //
+
+        }
+
+
+        public void getcates3(ComboBox cob, string cate2)
+        {
+            StreamReader sr = new StreamReader(path + "//cates.txt", method.EncodingType.GetTxtType(path + "//cates.txt"));
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < text.Length; i++)
+            {
+                string[] values = text[i].Split(new string[] { "," }, StringSplitOptions.None);
+                if (values.Length > 2)
+                {
+                    if (!cob.Items.Contains(values[2]) && values[1] == cate2)
+                    {
+                        cob.Items.Add(values[2]);
+                    }
+
+                }
+
+            }
+            sr.Close();  //只关闭流
+            sr.Dispose();   //
+
+        }
         /// <summary>
         /// 查询数据库
         /// </summary>

@@ -58,17 +58,24 @@ namespace 授权库
 
            string sq_starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
-            string yjsq_starttime = dateTimePicker3.Value.ToString("yyyy-MM-dd");
 
+            string yjsq_starttime = dateTimePicker3.Value.ToString("yyyy-MM-dd");
+            if (checkBox1.Checked == false)
+            {
+                yjsq_starttime = "";
+            }
 
             string is_yuanjian = comboBox2.Text;
             string is_shouhou = comboBox3.Text;
             string is_shangbiao = comboBox4.Text;
             string shangbiao_endtime = dateTimePicker4.Value.ToString("yyyy-MM-dd");
+            if (checkBox2.Checked == false)
+            {
+                shangbiao_endtime = "";
+            }
 
-            
-           // string img_shouquan = fc.ImageToBase64(Image.FromFile(textBox5.Text));
-           // string img_shouhou = fc.ImageToBase64(Image.FromFile(textBox5.Text));
+            // string img_shouquan = fc.ImageToBase64(Image.FromFile(textBox5.Text));
+            // string img_shouhou = fc.ImageToBase64(Image.FromFile(textBox5.Text));
             string sql = "INSERT INTO datas (type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime,uid)VALUES('" + type + " '," +
                 " '" + name + " '," +
                 " '" + pinpai+ " ', " +
@@ -96,8 +103,80 @@ namespace 授权库
 
         }
 
+
+
+        public void xiugai()
+        {
+
+          
+            string type = comboBox1.Text;
+            string name = textBox1.Text.Trim();
+            string pinpai = textBox2.Text.Trim();
+            string cate1 = textBox3.Text.Trim();
+            string cate2 = textBox4.Text.Trim();
+
+
+            string sq_starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
+
+            string yjsq_starttime = dateTimePicker3.Value.ToString("yyyy-MM-dd");
+            if (checkBox1.Checked == false)
+            {
+                yjsq_starttime = "";
+            }
+
+            string is_yuanjian = comboBox2.Text;
+            string is_shouhou = comboBox3.Text;
+            string is_shangbiao = comboBox4.Text;
+            string shangbiao_endtime = dateTimePicker4.Value.ToString("yyyy-MM-dd");
+            if (checkBox2.Checked == false)
+            {
+                shangbiao_endtime = "";
+            }
+
+            string sql = "update datas set type= '" + type + " ', " +
+                "name='" + name + " '," +
+                "pinpai='" + pinpai+ " ' ," +
+                "cate1='" + cate1 + " '," +
+                "cate2='" + cate2+ " '," +
+                "sq_starttime='" + sq_starttime + " '," +
+                "sq_endtime='" + sq_endtime + " '," +
+                "yjsq_starttime='" + yjsq_starttime + " '," +
+                "is_yuanjian='" + is_yuanjian + " '," +
+                "is_shouhou='" + is_shouhou + " '," +
+                "is_shangbiao='" + is_shangbiao + " '," +
+                "shangbiao_endtime ='" + shangbiao_endtime + " ' where uid='" + uid + " '";
+
+
+           
+            fc.SQL(sql);
+
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                string filename = listView1.Items[i].SubItems[1].Text;
+                if (filename.Trim() == "")
+                    continue;
+                fc.insertfile(uid.ToString(), filename);
+
+            }
+           
+
+        }
+
         private void 新增_Load(object sender, EventArgs e)
         {
+            if(this.Text=="查看数据")
+            {
+                button3.Visible=false;
+
+            }
+
+            if (this.Text == "修改数据")
+            {
+                button3.Visible = true;
+                button3.Text = "确定修改";
+            }
+
             if (type != "")
             {
                 comboBox1.Text= type ;
@@ -109,13 +188,23 @@ namespace 授权库
 
                 dateTimePicker1.Value= Convert.ToDateTime(sq_starttime);
                 dateTimePicker2.Value= Convert.ToDateTime(sq_endtime);
-                dateTimePicker3.Value  = Convert.ToDateTime(yjsq_starttime);
+                if(yjsq_starttime!="" && yjsq_starttime!=null)
+                {
+                    checkBox1.Checked = true;
+                    dateTimePicker3.Value = Convert.ToDateTime(yjsq_starttime);
+                }
+                
 
 
                 comboBox2.Text= is_yuanjian;
                 comboBox3.Text=is_shouhou ;
                 comboBox4.Text= is_shangbiao;
-                dateTimePicker4.Value  = Convert.ToDateTime(shangbiao_endtime);
+                if (shangbiao_endtime != "" && shangbiao_endtime != null)
+                {
+                    checkBox2.Checked = true;
+                    dateTimePicker4.Value = Convert.ToDateTime(shangbiao_endtime);
+                }
+              
             }
 
 
@@ -156,13 +245,31 @@ namespace 授权库
         Thread thread;
         private void button3_Click(object sender, EventArgs e)
         {
-          
-            if (thread == null || !thread.IsAlive)
+            if (this.Text == "新增数据")
             {
-                thread = new Thread(add);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(add);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+
             }
+            if (this.Text == "修改数据")
+            {
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(xiugai);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

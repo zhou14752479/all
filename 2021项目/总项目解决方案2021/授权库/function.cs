@@ -38,13 +38,13 @@ namespace 授权库
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
                 if (count > 0)
                 {
-                    MessageBox.Show("数据添加成功！");
+                    MessageBox.Show("执行成功！");
                     mycon.Close();
 
                 }
                 else
                 {
-                    MessageBox.Show("数据添加失败！");
+                    MessageBox.Show("执行失败！");
                 }
 
 
@@ -147,10 +147,23 @@ namespace 授权库
             RowCount = dt.Rows.Count;
             ColCount = dt.Columns.Count;
             //添加列标题名
-            for (i = 0; i < ColCount; i++)
-            {
-                lst.Columns.Add(dt.Columns[i].Caption.Trim(), lst.Width / ColCount, System.Windows.Forms.HorizontalAlignment.Left);
-            }
+            //for (i = 0; i < ColCount; i++)
+            //{
+            //    lst.Columns.Add(dt.Columns[i].Caption.Trim(), lst.Width / ColCount, System.Windows.Forms.HorizontalAlignment.Left);
+            //}
+            lst.Columns.Add("uid" ,100, HorizontalAlignment.Center);
+            lst.Columns.Add("类型", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("名称", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("品牌", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("类目一", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("类目二", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("授权开始时间", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("授权结束时间", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("一级授权截止时间", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("是否有原件", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("是否有售后承诺书", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("是否有商标", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("商标结束时间", 100, HorizontalAlignment.Center);
 
             if (RowCount == 0) return;
             for (i = 0; i < RowCount; i++)

@@ -11,6 +11,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -106,8 +107,21 @@ namespace 体育打票软件
 
         public void gethtml()
         {
+            //var btns = webBrowser1.Document.GetElementsByTagName("input");
+            //foreach (HtmlElement btn in btns)
+            //{
+            //    if (btn.GetAttribute("id") == "detailBtn")
+            //    {
+            //        btn.InvokeMember("click");
+            //    }
+            //}
 
-             html = webBrowser1.Document.Body.OuterHtml;
+
+          
+
+
+
+            html = webBrowser1.Document.Body.OuterHtml;
             ahtml = webBrowser1.DocumentText;
             //textBox1.Text = html;
         }
@@ -197,6 +211,12 @@ namespace 体育打票软件
 
             #endregion
 
+            //HtmlElement he = this.webBrowser1.Document.GetElementById("detailBtn");
+
+            //if (he == null) return;
+            //he.RaiseEvent("onclick");
+           
+
             gethtml();
             string fangshi = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
             if (fangshi == "足球混合过关")
@@ -231,6 +251,24 @@ namespace 体育打票软件
         private void button10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_MouseHover(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button5_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                var btn = webBrowser1.Document.GetElementById("detailBtn");
+                btn.InvokeMember("click");
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }
