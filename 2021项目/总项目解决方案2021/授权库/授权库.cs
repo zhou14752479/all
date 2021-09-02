@@ -48,7 +48,7 @@ namespace 授权库
                 string sql = "SELECT uid,type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime from datas  where ";
                 if (comboBox1.Text == "全部授权")
                 {
-                    sql = sql + ("type like '_%' AND");
+                    sql = sql + ("type like '_%' AND ");
                 }
                 else
                 {
@@ -57,11 +57,11 @@ namespace 授权库
 
                 if (textBox1.Text == "")
                 {
-                    sql = sql + (" pinpai like '_%' AND");
+                    sql = sql + (" pinpai like '_%' AND ");
                 }
                 else
                 {
-                    sql = sql + ("pinpai like '" + pinpai+ "' AND ");
+                    sql = sql + (" pinpai like '" + pinpai+ "' AND ");
                 }
 
                 if (textBox2.Text == "")
@@ -70,7 +70,7 @@ namespace 授权库
                 }
                 else
                 {
-                    sql = sql + ("cate1 like '" + cate1 + "' AND ");
+                    sql = sql + (" cate1 like '" + cate1 + "' AND ");
                 }
 
                 if (textBox3.Text == "")
@@ -79,13 +79,13 @@ namespace 授权库
                 }
                 else
                 {
-                    sql = sql + ("cate2 like '" + cate2+ "' AND ");
+                    sql = sql + (" cate2 like '" + cate2+ "' AND ");
                 }
 
                 if (checkBox1.Checked == true)
                 {
-                    sql = sql + ("sq_starttime >= '" + sq_starttime + "' AND ");
-                    sql = sql + ("sq_starttime <= '" + sq_endtime + "' AND ");
+                    sql = sql + (" sq_starttime >= '" + sq_starttime + "' AND ");
+                    sql = sql + (" sq_starttime <= '" + sq_endtime + "' AND ");
 
 
                 }
@@ -93,7 +93,7 @@ namespace 授权库
 
                 if (checkBox2.Checked == true)
                 {
-                    sql = sql + ("shangbiao_endtime >= '" + shangbiao_endtime + "' ");
+                    sql = sql + (" shangbiao_endtime >= '" + shangbiao_endtime + "' ");
 
                 }
                 if (sql.Substring(sql.Length-4,4).Contains("AND"))
@@ -184,15 +184,23 @@ namespace 授权库
         {
             for (int i = 0; i < listView1.Items.Count; i++)
             {
-                string time = listView1.Items[i].SubItems[7].Text;
+                string time = listView1.Items[i].SubItems[7].Text.Trim();
+                string time2 = listView1.Items[i].SubItems[8].Text.Trim();
                 if (time != "")
                 {
-                    if (Convert.ToDateTime(time) >= DateTime.Now.AddDays(-30))
+                    if (Convert.ToDateTime(time) <= DateTime.Now.AddDays(30))
                     {
                         listView1.Items[i].BackColor = Color.Red;
                     }
                 }
 
+                if (time2 != "")
+                {
+                    if (Convert.ToDateTime(time2) <= DateTime.Now.AddDays(30))
+                    {
+                        listView1.Items[i].BackColor = Color.Red;
+                    }
+                }
             }
 
         }

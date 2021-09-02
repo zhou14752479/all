@@ -211,10 +211,6 @@ namespace 体育打票软件
 
             #endregion
 
-            //HtmlElement he = this.webBrowser1.Document.GetElementById("detailBtn");
-
-            //if (he == null) return;
-            //he.RaiseEvent("onclick");
            
 
             gethtml();

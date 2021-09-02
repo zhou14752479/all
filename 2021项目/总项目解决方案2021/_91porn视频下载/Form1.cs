@@ -75,7 +75,7 @@ namespace _91porn视频下载
         public static string GetUrl(string Url, string charset)
         {
             string html = "";
-            string COOKIE = "";
+            string COOKIE = "language=cn_CN;";
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -138,6 +138,7 @@ namespace _91porn视频下载
                 string path = System.IO.Directory.GetCurrentDirectory();
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 WebClient client = new WebClient();
+                client.Proxy = null;
                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
                 client.Headers.Add("Cookie", COOKIE);
                 client.Headers.Add("Referer", "https://m.mm131.net/chemo/89_5.html");
@@ -239,98 +240,214 @@ namespace _91porn视频下载
                 mailurl =  mailurl+"/";
             }
 
-            string url = mailurl+"v.php?category=rf&viewtype=basic&page=2";
-            string html = GetUrl(url, "utf-8");
-           
-            MatchCollection uids = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)""");
-            MatchCollection hds = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)</div>");
-
-
-            MatchCollection titles = Regex.Matches(html, @"m-t-5"">([\s\S]*?)<");
-            MatchCollection authors = Regex.Matches(html, @"From:</span>([\s\S]*?)<");
-           
-          
-            for (int i = 0; i < uids.Count; i++)
+            for (int page = 1; page < 6379; page++)
             {
-                List<string> list = new List<string>();
-                string uid = uids[i].Groups[1].Value.Trim();
-                string title = removeValid(titles[i].Groups[1].Value.Trim().Replace(" ", ""));
-                string author= authors[i].Groups[1].Value.Trim().Replace(" ","");
-                
-                string ts_url = "https://fdc.91p49.com//m3u8hd/" + uid + "/" + uid + ".m3u8";
+                string url = mailurl + "v.php?next=watch&page=" + page;
+                string html = GetUrl(url, "utf-8");
 
-                if (!hds[i].Groups[1].Value.Contains("HD"))
-                {
-                    ts_url = "https://fdc.91p49.com//m3u8/" + uid + "/" + uid + ".m3u8";
-                }
+                MatchCollection uids = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)""");
+                MatchCollection viewkeys = Regex.Matches(html, @"viewkey=([\s\S]*?)&");
+                MatchCollection hds = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)</div>");
 
-                string uidini = "";
-                if (ExistINIFile())
+
+                MatchCollection titles = Regex.Matches(html, @"m-t-5"">([\s\S]*?)<");
+                MatchCollection authors = Regex.Matches(html, @"作者:</span>([\s\S]*?)<");
+
+
+                for (int i = 0; i < uids.Count; i++)
                 {
-                    uidini = IniReadValue("values", "uids");
+                    List<string> list = new List<string>();
+                    string uid = uids[i].Groups[1].Value.Trim();
+                    string title = removeValid(titles[i].Groups[1].Value.Trim().Replace(" ", ""));
+                    string author = authors[i].Groups[1].Value.Trim().Replace(" ", "");
                    
+                    string ts_url = "https://fdc.91p49.com//m3u8hd/" + uid + "/" + uid + ".m3u8";
 
-                }
-                if (uidini.Contains(uid))
-                {
-                    continue;
-                }
-                
-
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                lv1.SubItems.Add(uid);
-                lv1.SubItems.Add(title);
-                lv1.SubItems.Add(author);
-                lv1.SubItems.Add(title);
-
-              
-
-                string path2 = path + uid + "\\";
-                string tshtml = GetUrl(ts_url, "utf-8");
-                string[] text = tshtml.Split(new string[] { "\n" }, StringSplitOptions.None);
-                foreach (var item in text)
-                {
-                    if (item.Contains("ts"))
+                    if (!hds[i].Groups[1].Value.Contains("HD"))
                     {
+                        ts_url = "https://fdc.91p49.com//m3u8/" + uid + "/" + uid + ".m3u8";
+                    }
 
-                        string tsurl = "https://cdn.91p07.com//m3u8/" + uid + "/" + item.Replace(" ", "").Trim();
+                    string uidini = "";
+                    if (ExistINIFile())
+                    {
+                        uidini = IniReadValue("values", "uids");
 
-                        try
+
+                    }
+                    if (uidini.Contains(uid))
+                    {
+                        continue;
+                    }
+
+
+                    string infoUrl = mailurl + "view_video.php?viewkey=" + viewkeys[i].Groups[1].Value.Trim() + "&page=&viewtype=&category=";
+
+                    string infohtml = GetUrl(infoUrl, "utf-8");
+                    string info = Regex.Match(infohtml, @"<span class=""more title"">([\s\S]*?)</span>").Groups[1].Value;
+                    info = Regex.Replace(info, "<[^>]+>", "").Trim();
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                    lv1.SubItems.Add(uid);
+                    lv1.SubItems.Add(title);
+                    lv1.SubItems.Add(author);
+                    lv1.SubItems.Add(info);
+
+
+                    string path2 = "C:\\" + uid + "\\";
+                    if (!System.IO.Directory.Exists("C:\\"))
+                    {
+                        path2 = "D:\\" + uid + "\\";
+                    }
+
+
+                    string tshtml = GetUrl(ts_url, "utf-8");
+                    
+                    string[] text = tshtml.Split(new string[] { "\n" }, StringSplitOptions.None);
+                    progressBar1.Value = 0;
+                    progressBar1.Maximum = text.Length;
+
+                    foreach (var item in text)
+                    {
+                        double nowvalue = progressBar1.Value;
+                        double nowpercent = (nowvalue / progressBar1.Maximum) * 100;
+                        nowpercent = Math.Round(nowpercent, 2);
+                        label6.Text = "正在下载：" + uid + "------ " + nowpercent + "%";
+                        progressBar1.Value = progressBar1.Value + 1;
+                        if (item.Contains("ts"))
                         {
-                            downloadFile(tsurl, path2, item, "");
-                        }
-                        catch (Exception)
-                        {
+
+                            string tsurl = "https://cdn.91p07.com//m3u8/" + uid + "/" + item.Replace(" ", "").Trim();
+
                             try
                             {
-                                downloadFile(tsurl, path2, item, ""); 
+                                downloadFile(tsurl, path2, item, "");
                             }
                             catch (Exception)
                             {
+                                try
+                                {
+                                    downloadFile(tsurl, path2, item, "");
+                                }
+                                catch (Exception)
+                                {
 
-                                downloadFile(tsurl, path2, item, "");
+                                    downloadFile(tsurl, path2, item, "");
+                                }
+
                             }
-                           
+
+
+                            list.Add(path2 + item);
                         }
-                       
-                        
-                        list.Add(path2+ item);
                     }
+
+                    MergeVideo(list, path, author + "-" + title + ".mp4");
+                    Directory.Delete(path2, true);
+
+
+                    lv1.SubItems.Add("下载成功");
+                    IniWriteValue("values", "uids", uidini + "," + uid);
+                    label6.Text = uid + "----" + "下载成功";
+                    FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                    sw.WriteLine(author + "-" + title + "-" + info);
+                    sw.Close();
+                    fs1.Close();
+                    sw.Dispose();
+
+
                 }
+            }
 
-                MergeVideo(list, path,  author+"-"+title+ ".mp4");
-                Directory.Delete(path2,true);
-                lv1.SubItems.Add("下载成功");
-                IniWriteValue("values", "uids", uidini + "," + uid);
-
-                FileStream fs1 = new FileStream(path + "data.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-                StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-                sw.WriteLine(author+"--"+title+"--"+title);
-                sw.Close();
-                fs1.Close();
-                sw.Dispose();
+        }
 
 
+
+        public void run1()
+        {
+            string mailurl = textBox2.Text;
+            if (!textBox2.Text.Contains("http"))
+            {
+                mailurl = "https://" + mailurl;
+            }
+            if (mailurl.Substring(mailurl.Length - 1, 1) != "/")
+            {
+                mailurl = mailurl + "/";
+            }
+
+            for (int page = Convert.ToInt32(textBox5.Text); page <= Convert.ToInt32(textBox6.Text); page++)
+            {
+                string url = mailurl + "v.php?next=watch&page=" + page;
+                string html = GetUrl(url, "utf-8");
+
+                MatchCollection uids = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)""");
+                MatchCollection viewkeys = Regex.Matches(html, @"viewkey=([\s\S]*?)&");
+                MatchCollection hds = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)</div>");
+
+
+                MatchCollection titles = Regex.Matches(html, @"m-t-5"">([\s\S]*?)<");
+                MatchCollection authors = Regex.Matches(html, @"作者:</span>([\s\S]*?)<");
+
+
+                for (int i = 0; i < uids.Count; i++)
+                {
+                    List<string> list = new List<string>();
+                    string uid = uids[i].Groups[1].Value.Trim();
+                    string title = removeValid(titles[i].Groups[1].Value.Trim().Replace(" ", ""));
+                    string author = authors[i].Groups[1].Value.Trim().Replace(" ", "");
+
+                    string mp4url = "https://fdc.91p49.com//mp4hd/" + uid+".mp4";
+
+                    if (!hds[i].Groups[1].Value.Contains("HD"))
+                    {
+                        mp4url= "https://fdc.91p49.com//mp43/" + uid + ".mp4";
+                    }
+
+                    string uidini = "";
+                    if (ExistINIFile())
+                    {
+                        uidini = IniReadValue("values", "uids");
+
+
+                    }
+                    if (uidini.Contains(uid))
+                    {
+                        continue;
+                    }
+
+
+                    string infoUrl = mailurl + "view_video.php?viewkey=" + viewkeys[i].Groups[1].Value.Trim() + "&page=&viewtype=&category=";
+
+                    string infohtml = GetUrl(infoUrl, "utf-8");
+                    string info = Regex.Match(infohtml, @"<span class=""more title"">([\s\S]*?)</span>").Groups[1].Value;
+                    info = Regex.Replace(info, "<[^>]+>", "").Trim();
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                    lv1.SubItems.Add(uid);
+                    lv1.SubItems.Add(title);
+                    lv1.SubItems.Add(author);
+                    lv1.SubItems.Add(info);
+
+
+
+
+                    label6.Text = "正在下载：" + uid + ".......";
+
+                    downloadFile(mp4url, path, author + "-" + title + ".mp4", "");
+
+
+
+                    lv1.SubItems.Add("下载成功");
+                    IniWriteValue("values", "uids", uidini + "," + uid);
+                    label6.Text = uid + "----" + "下载成功";
+                    FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                    sw.WriteLine(author + "-" + title + "-" + info);
+                    sw.Close();
+                    fs1.Close();
+                    sw.Dispose();
+
+
+                }
             }
 
         }
@@ -358,8 +475,10 @@ namespace _91porn视频下载
             IniWriteValue("values", "url", textBox2.Text.ToString());
 
             if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run);
+            if (thread == null || !thread.IsAlive)
+            if (thread == null || !thread.IsAlive)
+                    {
+                thread = new Thread(run1);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -370,7 +489,7 @@ namespace _91porn视频下载
         {
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run1);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

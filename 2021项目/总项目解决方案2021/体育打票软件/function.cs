@@ -268,15 +268,50 @@ namespace 体育打票软件
                 }
 
 
-                int a = 1;
+                
                 foreach (var item in resultdics.Keys)
                 {
-
-                    sb.Append("第" + a + "场周" + item + "\n" + resultdics[item] + "\n");
                     a = a + 1;
+                    sb.Append("第" + a + "场周" + item + "\n" + resultdics[item] + "\n");
+                   
                 }
 
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + guoguan +"*" + zhushu+ "注;共" + zhushu + "注");
+
+
+
+                //单注倍数计算
+
+                Dictionary<string, int> aaa = new Dictionary<string, int>();
+
+                int aa = 1;
+                MatchCollection  asa = Regex.Matches(html, @"<td style=""width: 80px;"">([\s\S]*?)<");
+                foreach (Match item in asa)
+                {
+                    if (item.Groups[1].Value.Contains("x"))
+                    {
+                        if (!aaa.ContainsKey(item.Groups[1].Value))
+                        {
+                            aa = 1;
+                            aaa.Add(item.Groups[1].Value,aa);
+                        }
+                        else
+                        {
+                            aa = aa + 1;
+                            aaa[item.Groups[1].Value] = aa;
+                        }
+                    }
+                    
+
+                }
+
+                StringBuilder sba = new StringBuilder();
+                foreach (var item in aaa.Keys)
+                {
+                    sba.Append(item + "*" + aaa[item] + "注,");
+                }
+
+
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" +sba.ToString().Remove(sba.ToString().Length-1,1)+ ";共" + zhushu + "注");
 
 
 
@@ -301,6 +336,8 @@ namespace 体育打票软件
             }
         }
 
+
+        public static int a = 0;
         #endregion
 
         #region 胜平负/让球胜平负

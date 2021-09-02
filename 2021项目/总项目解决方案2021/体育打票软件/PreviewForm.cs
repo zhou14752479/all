@@ -31,6 +31,16 @@ namespace 体育打票软件
             axGRPrintViewer1.Start();
             axGRPrintViewer1.ZoomToWidth();
 
+
+
+           
+            checkBox5.CheckedChanged += new EventHandler(ziyouguaguan);
+            checkBox6.CheckedChanged += new EventHandler(ziyouguaguan);
+            checkBox7.CheckedChanged += new EventHandler(ziyouguaguan);
+            checkBox8.CheckedChanged += new EventHandler(ziyouguaguan);
+            checkBox9.CheckedChanged += new EventHandler(ziyouguaguan);
+            checkBox10.CheckedChanged += new EventHandler(ziyouguaguan);
+            checkBox11.CheckedChanged += new EventHandler(ziyouguaguan);
         }
 
         private void PreviewForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -58,20 +68,30 @@ namespace 体育打票软件
             }
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+
+        string zygg = function.a+"场-";
+        public void ziyouguaguan(object sender, EventArgs e)
         {
-            if (checkBox2.Checked == true)
+            if (((CheckBox)sender).Checked == true)
             {
-                axGRPrintViewer1.Report.ParameterByName("guoguan").AsString = "1场-" + numericUpDown1.Value + "关";
+                zygg = zygg + ((CheckBox)sender).Text.Replace("关", ",");
+                axGRPrintViewer1.Report.ParameterByName("guoguan").AsString = zygg.Remove(zygg.Length - 1, 1) + "关";
                 axGRPrintViewer1.Refresh();
             }
+            else
+            {
+                zygg = zygg.Replace(((CheckBox)sender).Text.Replace("关", ","),"");
+                axGRPrintViewer1.Report.ParameterByName("guoguan").AsString = zygg.Remove(zygg.Length - 1, 1) + "关";
+                axGRPrintViewer1.Refresh();
+            }
+           
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox3.Checked == true)
             {   
-                axGRPrintViewer1.Report.ParameterByName("guoguan").AsString = "1场-单场固定";
+                axGRPrintViewer1.Report.ParameterByName("guoguan").AsString = function.a+"场-单场固定";
                 axGRPrintViewer1.Refresh();
 
             }
