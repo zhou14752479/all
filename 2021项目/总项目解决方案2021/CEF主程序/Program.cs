@@ -16,7 +16,7 @@ namespace CEF主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 流量抓取());
+            Application.Run(new CEF主程序());
         }
     }
 }

@@ -41,8 +41,8 @@ namespace 授权库
         public string is_shouhou = "";
         public string is_shangbiao = "";
         public string shangbiao_endtime = "";
-        public List<string> filelist = null;
 
+        
 
         public void add()
         {
@@ -73,7 +73,7 @@ namespace 授权库
             {
                 shangbiao_endtime = "";
             }
-
+          
             // string img_shouquan = fc.ImageToBase64(Image.FromFile(textBox5.Text));
             // string img_shouhou = fc.ImageToBase64(Image.FromFile(textBox5.Text));
             string sql = "INSERT INTO datas (type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime,uid)VALUES('" + type + " '," +
@@ -159,8 +159,8 @@ namespace 授权库
                 fc.insertfile(uid.ToString(), filename);
 
             }
-           
 
+            MessageBox.Show("文件添加成功！");
         }
 
         private void 新增_Load(object sender, EventArgs e)
@@ -204,21 +204,37 @@ namespace 授权库
                     checkBox2.Checked = true;
                     dateTimePicker4.Value = Convert.ToDateTime(shangbiao_endtime);
                 }
-              
+
+                
+
             }
 
-
-            if (filelist != null )
+            if (thread == null || !thread.IsAlive)
             {
-                foreach (var item in filelist)
-                {
-
-                }
+                thread = new Thread(getfileList);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
+
         }
 
+       
+        public void getfileList()
+        {
+            listView1.Items.Clear();
+            //获取文件列表
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic = fc.getfileinfos(uid.ToString());
+
+            foreach (var item in dic.Keys)
+            {
+                ListViewItem lv1 = listView1.Items.Add(dic[item]); //使用Listview展示数据
+                lv1.SubItems.Add(item);
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
+            listView1.Items.Clear();
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Multiselect = true;//等于true表示可以选择多个文件
             //dlg.DefaultExt = ".txt";
@@ -270,6 +286,82 @@ namespace 授权库
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void 删除此文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (this.listView1.SelectedItems.Count == 0)
+                return;
+
+            string name= listView1.SelectedItems[0].SubItems[1].Text;
+            string sql = "delete from file where name='" + name + "'  ";
+            fc.SQL(sql);
+
+
+            getfileList();
+        }
+
+        private void 查看文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count == 0)
+                return;
+
+            string name = listView1.SelectedItems[0].SubItems[1].Text;
+          
+            MySqlConnection mycon = new MySqlConnection(function.constr);
+            mycon.Open();
+
+            string sql = "select * from file where name='" + name + "'  ";
+            MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+            reader.Read();
+            Byte[] bytes = (Byte[])reader["filedata"];
+            using (MemoryStream ms = new MemoryStream(bytes))
+
+            {
+                pictureBox1.Image = Image.FromStream(ms);
+
+            }
+            mycon.Close();
+            reader.Close();
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count == 0)
+                return;
+
+            string name = listView1.SelectedItems[0].SubItems[1].Text;
+
+            MySqlConnection mycon = new MySqlConnection(function.constr);
+            mycon.Open();
+
+            string sql = "select * from file where name='" + name + "'  ";
+            MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+            reader.Read();
+            Byte[] bytes = (Byte[])reader["filedata"];
+            using (MemoryStream ms = new MemoryStream(bytes))
+
+            {
+                pictureBox1.Image = Image.FromStream(ms);
+
+            }
+            mycon.Close();
+            reader.Close();
+
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            getfileList();
         }
     }
 }

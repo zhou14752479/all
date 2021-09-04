@@ -15,7 +15,7 @@ namespace 授权库
 {
     class function
     {
-        string constr = "Host =localhost;Database=shouquanku;Username=root;Password=root";
+       public static string constr = "Host =localhost;Database=shouquanku;Username=root;Password=root";
 
         #region  注册函数
 
@@ -257,6 +257,31 @@ namespace 授权库
             
 
         }
+
+
+        public Dictionary<string,string> getfileinfos(string id)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            string str = "select * from file where uid='" + id + "' ";
+            MySqlConnection myconn = new MySqlConnection(constr);
+            MySqlDataAdapter sda = new MySqlDataAdapter(str, constr);
+            DataSet myds = new DataSet();
+            myconn.Open();
+            sda.Fill(myds);
+            myconn.Close();
+            DataTable dt = myds.Tables[0];
+            foreach (DataRow dr in dt.Rows)
+            {
+                
+                string uid = dr["uid"].ToString();
+                string name = dr["name"].ToString();
+                dic.Add(name,uid);
+            }
+
+            return dic;
+
+        }
+
 
         public void insertfile(string uid,string filename)
         {

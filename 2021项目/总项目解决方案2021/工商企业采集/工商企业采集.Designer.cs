@@ -40,6 +40,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,8 +61,8 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,7 +82,9 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.splitContainer1.Panel1.Controls.Add(this.radioButton2);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.radioButton1);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
             this.splitContainer1.Panel1.Controls.Add(this.linkLabel2);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
@@ -94,7 +98,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
             this.splitContainer1.Size = new System.Drawing.Size(1155, 719);
-            this.splitContainer1.SplitterDistance = 177;
+            this.splitContainer1.SplitterDistance = 176;
             this.splitContainer1.TabIndex = 0;
             // 
             // radioButton2
@@ -112,9 +116,9 @@
             // 
             this.label7.BackColor = System.Drawing.SystemColors.Info;
             this.label7.Font = new System.Drawing.Font("宋体", 10F);
-            this.label7.Location = new System.Drawing.Point(800, 12);
+            this.label7.Location = new System.Drawing.Point(806, 16);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(329, 80);
+            this.label7.Size = new System.Drawing.Size(320, 76);
             this.label7.TabIndex = 118;
             this.label7.Text = "运行日志";
             // 
@@ -135,7 +139,7 @@
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("宋体", 10F);
-            this.linkLabel2.Location = new System.Drawing.Point(800, 130);
+            this.linkLabel2.Location = new System.Drawing.Point(12, 142);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(105, 14);
             this.linkLabel2.TabIndex = 117;
@@ -161,7 +165,7 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(515, 109);
+            this.button1.Location = new System.Drawing.Point(766, 106);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 35);
             this.button1.TabIndex = 116;
@@ -174,7 +178,7 @@
             this.button8.BackColor = System.Drawing.Color.White;
             this.button8.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.button8.ForeColor = System.Drawing.Color.Black;
-            this.button8.Location = new System.Drawing.Point(612, 109);
+            this.button8.Location = new System.Drawing.Point(948, 106);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(85, 35);
             this.button8.TabIndex = 115;
@@ -187,7 +191,7 @@
             this.button6.BackColor = System.Drawing.Color.White;
             this.button6.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.button6.ForeColor = System.Drawing.Color.Black;
-            this.button6.Location = new System.Drawing.Point(709, 109);
+            this.button6.Location = new System.Drawing.Point(857, 106);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(85, 35);
             this.button6.TabIndex = 114;
@@ -200,7 +204,7 @@
             this.button4.BackColor = System.Drawing.Color.White;
             this.button4.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(418, 109);
+            this.button4.Location = new System.Drawing.Point(677, 106);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(85, 35);
             this.button4.TabIndex = 113;
@@ -213,7 +217,7 @@
             this.button7.BackColor = System.Drawing.Color.White;
             this.button7.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.button7.ForeColor = System.Drawing.Color.Black;
-            this.button7.Location = new System.Drawing.Point(321, 109);
+            this.button7.Location = new System.Drawing.Point(586, 106);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(85, 35);
             this.button7.TabIndex = 112;
@@ -223,10 +227,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox6);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.comboBox5);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboBox4);
             this.groupBox1.Controls.Add(this.comboBox3);
@@ -243,18 +247,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "筛选";
             // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(534, 16);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(111, 21);
+            this.comboBox5.TabIndex = 11;
+            this.comboBox5.Text = "不限";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(465, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 14);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "行业：";
+            // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(534, 43);
+            this.textBox2.Location = new System.Drawing.Point(361, 106);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(204, 23);
+            this.textBox2.Size = new System.Drawing.Size(204, 21);
             this.textBox2.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(465, 47);
+            this.label5.Location = new System.Drawing.Point(288, 109);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 14);
             this.label5.TabIndex = 8;
@@ -349,7 +371,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1155, 538);
+            this.listView1.Size = new System.Drawing.Size(1155, 539);
             this.listView1.TabIndex = 41;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -392,23 +414,23 @@
             this.columnHeader8.Text = "号码";
             this.columnHeader8.Width = 300;
             // 
-            // comboBox5
+            // comboBox6
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(534, 16);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(151, 21);
-            this.comboBox5.TabIndex = 11;
-            this.comboBox5.Text = "不限";
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Location = new System.Drawing.Point(534, 45);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(111, 21);
+            this.comboBox6.TabIndex = 13;
+            this.comboBox6.Text = "不限";
             // 
-            // label6
+            // label8
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(465, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 14);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "行业：";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(465, 48);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 14);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "地区：";
             // 
             // 工商企业采集
             // 
@@ -465,5 +487,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.Label label8;
     }
 }

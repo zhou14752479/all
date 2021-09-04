@@ -23,7 +23,7 @@ namespace CEF主程序
        public static string body = "";
         private void CEF主程序_Load(object sender, EventArgs e)
         {
-            browser = new ChromiumWebBrowser("http://q.cy1788.com/app/superscanPH/loginPHValidate.jsp");
+            browser = new ChromiumWebBrowser("http://app.tk1788.com/app/superscanPH/loginPHValidate.jsp");
             // Cef.Initialize(new CefSettings());
             
 

@@ -32,7 +32,8 @@ namespace 工商企业采集
         public static string GetUrl(string Url, string charset)
         {
             string html = "";
-            string COOKIE = "BAIDUID=3FD97B155EDA2A85DD4FCA0DA34D2350:FG=1";
+            //string COOKIE = "BAIDUID=3FD97B155EDA2A85DD4FCA0DA34D2350:FG=1";
+            string COOKIE = "RT=\"z = 1 & dm = baidu.com & si = hdv95wcn33d & ss = kt53qvli & sl = p & tt = 1mun & bcn = https % 3A % 2F % 2Ffclog.baidu.com % 2Flog % 2Fweirwood % 3Ftype % 3Dperf & ld = 5jhk\"; ab_sr=1.0.1_YWNmMDFkYWYxZGQzYjJlMDg2NzM5Y2VkZDM4YWY0OTcyMmQ0ZjU2NjcxMmUwZjgyNjM3MjZmYjk4YmM4M2NiNTM3ZDA5MmI4NjllZmNhOTgyMjM2MWNiZmQ5YzViZWIxYWRjODUzZmZhNzhhN2JjYmVkMjQ5N2ViNzdhNzkyNDFlM2UzZDA4ZTY1ODY3ODFlYjQwMjg0MWRmYTQ1NjgwOA==; Hm_lvt_ad52b306e1ae4557f5d3534cce8f8bbf=1630718769,1630718782,1630718837,1630718845; __yjs_duid=1_c2dc59877e66ed7f595dcdaf23cb05641630718593721; BDPPN=11db5454c6078f3b2a7f91d16d27e023; _j54_6ae_=xlTM-TogKuTwFSoHnAudbXsrOHm2-vbzEgmd; BDUSS=202VVBlSW9rQW5td3VmOW9hUWtMQW9MZS1uQVI4ZTd-eX51cE5-RW43NkVWbHBoSUFBQUFBJCQAAAAAAQAAAAEAAAC5hDQmemhvdTE0NzUyNDc3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITJMmGEyTJhM; passtheme=light; _fb537_=xlTM-TogKuTwUK886dsO8eMQ7B4g-axI6S5VLUCxvMZmYjN6DgVe0Ecmd; BAIDUID=3FD97B155EDA2A85DD4FCA0DA34D2350:FG=1";
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -43,7 +44,7 @@ namespace 工商企业采集
                 request.Referer = "https://aiqicha.baidu.com/usercenter";
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("Cuid:72BAF9EA500309A310153C6EB6F523F4F1F0101B1FBGEHHGFGJ");
+                //headers.Add("Cuid:72BAF9EA500309A310153C6EB6F523F4F1F0101B1FBGEHHGFGJ");
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -85,40 +86,48 @@ namespace 工商企业采集
 
         public string gettel(string id)
         {
-            StringBuilder sb = new StringBuilder();
-            //string url = "https://aiqicha.baidu.com/company_detail_"+ id;
-            string url = "https://aiqicha.baidu.com/appcompdata/headinfoAjax?pid="+id;
-            string html= GetUrl(url, "utf-8");
-
-            MatchCollection phones = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
-            foreach (Match item in phones)
+            try
             {
-                if(item.Groups[1].Value.Length>5)
+                StringBuilder sb = new StringBuilder();
+                //string url = "https://aiqicha.baidu.com/company_detail_"+ id;
+                string url = "https://aiqicha.baidu.com/appcompdata/headinfoAjax?pid=" + id;
+                string html = GetUrl(url, "utf-8");
+
+                MatchCollection phones = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
+                foreach (Match item in phones)
                 {
-                    if (radioButton2.Checked == true)
+                    if (item.Groups[1].Value.Length > 5)
                     {
-                        if (!item.Groups[1].Value.Contains("-") && item.Groups[1].Value.Length>10 && item.Groups[1].Value.Substring(0,1)=="1")
+                        if (radioButton2.Checked == true)
                         {
-                           
-                            return item.Groups[1].Value;
-                        }
-                    }
-                    else
-                    {
-                        sb.Append(item.Groups[1].Value + ",");
-                    }
-                   
-                }
-                
-            }
+                            if (!item.Groups[1].Value.Contains("-") && item.Groups[1].Value.Length > 10 && item.Groups[1].Value.Substring(0, 1) == "1")
+                            {
 
-            if (sb.ToString().Length > 2)
-            {
-                return sb.ToString().Remove(sb.ToString().Length - 1, 1);
+                                return item.Groups[1].Value;
+                            }
+                        }
+                        else
+                        {
+                            sb.Append(item.Groups[1].Value + ",");
+                        }
+
+                    }
+
+                }
+
+                if (sb.ToString().Length > 2)
+                {
+                    return sb.ToString().Remove(sb.ToString().Length - 1, 1);
+                }
+                else
+                {
+                    return sb.ToString();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return sb.ToString();
+
+                return "" ;
             }
 
 
@@ -152,6 +161,11 @@ namespace 工商企业采集
                 sb.Append(string.Format("\"industryCode1\":[\"{0}\"],", dic[comboBox5.Text]));
             }
 
+            if (comboBox6.Text != "不限")
+            {
+                sb.Append(string.Format("\"provinceCode\":[\"{0}\"],", dic[comboBox6.Text]));
+            }
+
             string filter = "";
             if (sb.ToString().Length > 2)
             {
@@ -176,42 +190,55 @@ namespace 工商企业采集
                     MatchCollection domicile = Regex.Matches(html, @"""domicile"":""([\s\S]*?)""");
                     MatchCollection scope = Regex.Matches(html, @"""scope"":""([\s\S]*?)""");
 
+                    if (uids.Count == 0)
+                    {
+                        label7.Text = "采集完成";
+                        return;
+                    }
                     for (int i = 0; i < uids.Count; i++)
                     {
-                        Thread.Sleep(1000);
-                        label7.Text =DateTime.Now.ToLongTimeString()+ "正在提取："+ entName[i].Groups[1].Value;
-                        string tel = gettel(uids[i].Groups[1].Value);
-                        if (radioButton2.Checked == true)
+                        try
                         {
-                            if (tel == "")
+                            Thread.Sleep(600);
+                            label7.Text = DateTime.Now.ToLongTimeString() + "正在提取：" + entName[i].Groups[1].Value;
+                            string tel = gettel(uids[i].Groups[1].Value);
+                            if (radioButton2.Checked == true)
                             {
-                                label7.Text = DateTime.Now.ToLongTimeString() + "正在提取：" + entName[i].Groups[1].Value+"--无手机号跳过";
-                                continue;
+                                if (tel == "")
+                                {
+                                    label7.Text = DateTime.Now.ToLongTimeString() + "正在提取：" + entName[i].Groups[1].Value + "--无手机号跳过";
+                                    continue;
+                                }
+
                             }
-                                
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            lv1.SubItems.Add(entName[i].Groups[1].Value);
+                            lv1.SubItems.Add(legalPerson[i].Groups[1].Value);
+                            lv1.SubItems.Add(regCap[i].Groups[1].Value);
+                            lv1.SubItems.Add(validityFrom[i].Groups[1].Value);
+                            lv1.SubItems.Add(domicile[i].Groups[1].Value);
+                            lv1.SubItems.Add(scope[i].Groups[1].Value);
+                            lv1.SubItems.Add(tel);
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+                                return;
                         }
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                        lv1.SubItems.Add(entName[i].Groups[1].Value);
-                        lv1.SubItems.Add(legalPerson[i].Groups[1].Value);
-                        lv1.SubItems.Add(regCap[i].Groups[1].Value);
-                        lv1.SubItems.Add(validityFrom[i].Groups[1].Value);
-                        lv1.SubItems.Add(domicile[i].Groups[1].Value);
-                        lv1.SubItems.Add(scope[i].Groups[1].Value);
-                        lv1.SubItems.Add(tel);
-                         
-                        while (this.zanting == false)
+                        catch (Exception  ex)
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            label7.Text = ex.ToString();
+                            continue;
                         }
-                        if (status == false)
-                            return;
                     }
                 }
             }
             catch (Exception ex)
             {
-
-               label7.Text=ex.ToString();
+              
+                label7.Text=ex.ToString();
             }
         }
 
@@ -222,13 +249,14 @@ namespace 工商企业采集
             comboBox3.Items.Add("不限");
             comboBox4.Items.Add("不限");
             comboBox5.Items.Add("不限");
-
+            comboBox6.Items.Add("不限");
 
             getcates("qylx", comboBox1);
             getcates("zczb", comboBox2);
             getcates("qyzt", comboBox3);
             getcates("clnx", comboBox4);
             getcates("hy",comboBox5);
+            getcates("province", comboBox6);
         }
         bool zanting = true;
         bool status = true;

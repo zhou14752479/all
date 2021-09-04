@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -56,17 +57,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.查看文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除此文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label14 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -99,7 +107,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(354, 637);
+            this.groupBox1.Size = new System.Drawing.Size(354, 752);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "新增数据";
@@ -358,41 +366,53 @@
             this.tabControl1.Location = new System.Drawing.Point(354, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(577, 637);
+            this.tabControl1.Size = new System.Drawing.Size(634, 752);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.linkLabel1);
+            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.label14);
-            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(569, 611);
+            this.tabPage1.Size = new System.Drawing.Size(626, 726);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "上传授权书-售后服务函-商标";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 169);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(620, 554);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
+            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(496, 185);
+            this.linkLabel1.Location = new System.Drawing.Point(537, 142);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel1.Size = new System.Drawing.Size(77, 12);
             this.linkLabel1.TabIndex = 41;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "清空文件";
+            this.linkLabel1.Text = "清空文件列表";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkLabel2);
             this.groupBox2.Controls.Add(this.listView1);
+            this.groupBox2.Controls.Add(this.linkLabel1);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(563, 166);
+            this.groupBox2.Size = new System.Drawing.Size(620, 166);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "文件列表";
@@ -403,16 +423,18 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 17);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(557, 146);
+            this.listView1.Size = new System.Drawing.Size(614, 112);
             this.listView1.TabIndex = 41;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -423,12 +445,34 @@
             this.columnHeader2.Text = "文件名";
             this.columnHeader2.Width = 500;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.查看文件ToolStripMenuItem,
+            this.删除此文件ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 48);
+            // 
+            // 查看文件ToolStripMenuItem
+            // 
+            this.查看文件ToolStripMenuItem.Name = "查看文件ToolStripMenuItem";
+            this.查看文件ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.查看文件ToolStripMenuItem.Text = "查看文件";
+            this.查看文件ToolStripMenuItem.Click += new System.EventHandler(this.查看文件ToolStripMenuItem_Click);
+            // 
+            // 删除此文件ToolStripMenuItem
+            // 
+            this.删除此文件ToolStripMenuItem.Name = "删除此文件ToolStripMenuItem";
+            this.删除此文件ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.删除此文件ToolStripMenuItem.Text = "删除此文件";
+            this.删除此文件ToolStripMenuItem.Click += new System.EventHandler(this.删除此文件ToolStripMenuItem_Click);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("宋体", 10F);
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(189, 241);
+            this.label14.Location = new System.Drawing.Point(6, 145);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(182, 14);
             this.label14.TabIndex = 39;
@@ -436,23 +480,33 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(192, 185);
+            this.button1.Location = new System.Drawing.Point(220, 135);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 39);
+            this.button1.Size = new System.Drawing.Size(153, 26);
             this.button1.TabIndex = 37;
             this.button1.Text = "点击添加文件";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(440, 142);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(77, 12);
+            this.linkLabel2.TabIndex = 42;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "获取所有文件";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // 新增
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(931, 637);
+            this.ClientSize = new System.Drawing.Size(988, 752);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
-            this.MaximizeBox = false;
             this.Name = "新增";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "新增数据";
@@ -461,8 +515,10 @@
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -504,5 +560,10 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 查看文件ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除此文件ToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }

@@ -40,9 +40,9 @@ namespace 授权库
                 string pinpai = textBox1.Text.Trim();
                 string cate1 = textBox2.Text.Trim();
                 string cate2 = textBox3.Text.Trim();
-                string sq_starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-                string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
-
+              
+                string sq_endtime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                string yjsq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
                 string shangbiao_endtime= dateTimePicker3.Value.ToString("yyyy-MM-dd");
               
                 string sql = "SELECT uid,type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime from datas  where ";
@@ -84,14 +84,18 @@ namespace 授权库
 
                 if (checkBox1.Checked == true)
                 {
-                    sql = sql + (" sq_starttime >= '" + sq_starttime + "' AND ");
-                    sql = sql + (" sq_starttime <= '" + sq_endtime + "' AND ");
-
-
+                    sql = sql + (" sq_endtime >= '" + sq_endtime + "' AND ");
+                  
                 }
-                
+
 
                 if (checkBox2.Checked == true)
+                {
+                    sql = sql + (" yjsq_starttime >= '" + yjsq_endtime + "' AND ");
+
+                }
+
+                if (checkBox3.Checked == true)
                 {
                     sql = sql + (" shangbiao_endtime >= '" + shangbiao_endtime + "' ");
 
@@ -103,6 +107,7 @@ namespace 授权库
 
 
                 DataTable dt = fc.getdata(sql);
+                label11.Text = dt.Rows.Count.ToString();
                fc.ShowDataInListView(dt,listView1);
                 
                 label7.Text = DateTime.Now.ToLongTimeString() + "：查询结束，授权到期小于一个月已标红";
@@ -186,11 +191,13 @@ namespace 授权库
             {
                 string time = listView1.Items[i].SubItems[7].Text.Trim();
                 string time2 = listView1.Items[i].SubItems[8].Text.Trim();
+                string time3 = listView1.Items[i].SubItems[12].Text.Trim();
+                listView1.Items[i].UseItemStyleForSubItems = false;
                 if (time != "")
                 {
                     if (Convert.ToDateTime(time) <= DateTime.Now.AddDays(30))
                     {
-                        listView1.Items[i].BackColor = Color.Red;
+                        listView1.Items[i].SubItems[7].BackColor = Color.Red;
                     }
                 }
 
@@ -198,7 +205,16 @@ namespace 授权库
                 {
                     if (Convert.ToDateTime(time2) <= DateTime.Now.AddDays(30))
                     {
-                        listView1.Items[i].BackColor = Color.Red;
+                        listView1.Items[i].SubItems[8].BackColor = Color.Red;
+                    }
+                }
+
+                if (time3 != "")
+                {
+                    if (Convert.ToDateTime(time3) <= DateTime.Now.AddDays(30))
+                    {
+                        listView1.Items[i].SubItems[12].BackColor = Color.Yellow;
+                        //listView1.Items[i].Font = new Font(label1.Font.Name, 9, FontStyle.Bold );
                     }
                 }
             }
@@ -255,7 +271,7 @@ namespace 授权库
 
         private void 授权库_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void 导出选定授权ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -316,6 +332,8 @@ namespace 授权库
 
             mycon.Close();
             reader.Close();
+
+          
             add.Show();
         }
 

@@ -617,7 +617,7 @@ namespace 足球数据处理
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2021-08-31"))
+            if (DateTime.Now > Convert.ToDateTime("2021-11-30"))
             {
                 return;
             }
@@ -648,7 +648,7 @@ namespace 足球数据处理
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2021-08-31"))
+            if (DateTime.Now > Convert.ToDateTime("2021-11-30"))
             {
                 return;
             }
