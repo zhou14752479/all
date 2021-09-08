@@ -7,17 +7,58 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using myDLL;
+using Newtonsoft.Json.Linq;
 
 namespace 工商企业采集
 {
     public partial class 工商企业采集 : Form
     {
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
+
         public 工商企业采集()
         {
             InitializeComponent();
@@ -33,7 +74,7 @@ namespace 工商企业采集
         {
             string html = "";
             //string COOKIE = "BAIDUID=3FD97B155EDA2A85DD4FCA0DA34D2350:FG=1";
-            string COOKIE = "RT=\"z = 1 & dm = baidu.com & si = hdv95wcn33d & ss = kt53qvli & sl = p & tt = 1mun & bcn = https % 3A % 2F % 2Ffclog.baidu.com % 2Flog % 2Fweirwood % 3Ftype % 3Dperf & ld = 5jhk\"; ab_sr=1.0.1_YWNmMDFkYWYxZGQzYjJlMDg2NzM5Y2VkZDM4YWY0OTcyMmQ0ZjU2NjcxMmUwZjgyNjM3MjZmYjk4YmM4M2NiNTM3ZDA5MmI4NjllZmNhOTgyMjM2MWNiZmQ5YzViZWIxYWRjODUzZmZhNzhhN2JjYmVkMjQ5N2ViNzdhNzkyNDFlM2UzZDA4ZTY1ODY3ODFlYjQwMjg0MWRmYTQ1NjgwOA==; Hm_lvt_ad52b306e1ae4557f5d3534cce8f8bbf=1630718769,1630718782,1630718837,1630718845; __yjs_duid=1_c2dc59877e66ed7f595dcdaf23cb05641630718593721; BDPPN=11db5454c6078f3b2a7f91d16d27e023; _j54_6ae_=xlTM-TogKuTwFSoHnAudbXsrOHm2-vbzEgmd; BDUSS=202VVBlSW9rQW5td3VmOW9hUWtMQW9MZS1uQVI4ZTd-eX51cE5-RW43NkVWbHBoSUFBQUFBJCQAAAAAAQAAAAEAAAC5hDQmemhvdTE0NzUyNDc3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITJMmGEyTJhM; passtheme=light; _fb537_=xlTM-TogKuTwUK886dsO8eMQ7B4g-axI6S5VLUCxvMZmYjN6DgVe0Ecmd; BAIDUID=3FD97B155EDA2A85DD4FCA0DA34D2350:FG=1";
+            string COOKIE = "ab_sr=1.0.1_MjgxYjc1NWYwZWQ3NGY2MzFhNDBhZmQ2NmJlNjNkNTY2NjFkNjkzYzI5Y2Y4NzNiNWQ0N2YyZTI3NDY2ZGM3ZmFjM2Q0ZmE1YTE1ODIxYjI5NWJmNmNlZWU2ZWIwMjdhZjFjNGE3OTZiOGZlNmU4MzAxYTUyZDUwY2M4MGYwMTUyYzQzYmU0NDY5NzAwMjRiNDgzMTUyYWRjN2NjYWI1ZDQyNzllM2I5Njg1YmViM2M4NmQ4OWJjMTc5ZDczODI1; Hm_lvt_ad52b306e1ae4557f5d3534cce8f8bbf=1630818127,1630818159,1630818875,1630819198; RT=\"z = 1 & dm = baidu.com & si = y8nzzndr1s9 & ss = kt6qxfof & sl = u & tt = jsn & bcn = https % 3A % 2F % 2Ffclog.baidu.com % 2Flog % 2Fweirwood % 3Ftype % 3Dperf\"; BDPPN=4c066e75c0ddb0f5b340703df1d3643b; _j54_6ae_=xlTM-TogKuTwJPccNhmEyqbZe5Px5T1rggmd; BDUSS=V3VEhVVFloaHZvdlpsN2JoWjQyOXRaRmxDdUJjeXNoODJRLW1VWjZ4WUszMXRoSVFBQUFBJCQAAAAAAQAAAAEAAABio5cbemhvdTE0NzUyNDc5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApSNGEKUjRhc2; passtheme=light; __yjs_duid=1_c2dc59877e66ed7f595dcdaf23cb05641630718593721; BAIDUID=3FD97B155EDA2A85DD4FCA0DA34D2350:FG=1";
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -161,10 +202,26 @@ namespace 工商企业采集
                 sb.Append(string.Format("\"industryCode1\":[\"{0}\"],", dic[comboBox5.Text]));
             }
 
-            if (comboBox6.Text != "不限")
+            if (comboBox8.Text != "不限")
             {
-                sb.Append(string.Format("\"provinceCode\":[\"{0}\"],", dic[comboBox6.Text]));
+                sb.Append(string.Format("\"provinceCode\":[\"{0}\"],", jsondica[comboBox8.Text]));
             }
+            else
+            {
+                if (comboBox7.Text != "不限")
+                {
+                    sb.Append(string.Format("\"provinceCode\":[\"{0}\"],", jsondicc[comboBox7.Text]));
+                }
+                else
+                {
+                    if (comboBox6.Text != "不限")
+                    {
+                        sb.Append(string.Format("\"provinceCode\":[\"{0}\"],", jsondicp[comboBox6.Text]));
+                    }
+                    
+                }
+            }
+            
 
             string filter = "";
             if (sb.ToString().Length > 2)
@@ -242,22 +299,126 @@ namespace 工商企业采集
             }
         }
 
+        
         private void 工商企业采集_Load(object sender, EventArgs e)
         {
+            
+
             comboBox1.Items.Add("不限");
             comboBox2.Items.Add("不限");
             comboBox3.Items.Add("不限");
             comboBox4.Items.Add("不限");
             comboBox5.Items.Add("不限");
             comboBox6.Items.Add("不限");
-
+            comboBox7.Items.Add("不限");
+            comboBox8.Items.Add("不限");
             getcates("qylx", comboBox1);
             getcates("zczb", comboBox2);
             getcates("qyzt", comboBox3);
             getcates("clnx", comboBox4);
             getcates("hy",comboBox5);
-            getcates("province", comboBox6);
+            //getcates("province", comboBox6);
+
+
+            getprovincefromJson();
         }
+
+        Dictionary<string, string> jsondicp = new Dictionary<string, string>();
+        Dictionary<string, string> jsondicc = new Dictionary<string, string>();
+        Dictionary<string, string> jsondica = new Dictionary<string, string>();
+        public void getprovincefromJson()
+        {
+            StreamReader sr = new StreamReader(path + "data\\city.json", method.EncodingType.GetTxtType(path + "data\\city.json"));
+            //一次性读取完 
+            string jsonText = sr.ReadToEnd();
+            jsonText = method.Unicode2String(jsonText);
+            MatchCollection provinces = Regex.Matches(jsonText, @"""value"":""([\s\S]*?)"",""text"":""([\s\S]*?)""");
+            for (int i = 0; i < provinces.Count; i++)
+            {
+             if(!jsondicp.ContainsKey(provinces[i].Groups[2].Value))
+                {
+                    jsondicp.Add(provinces[i].Groups[2].Value, provinces[i].Groups[1].Value);
+                    if (provinces[i].Groups[1].Value.Substring(provinces[i].Groups[1].Value.Length-4,4)=="0000")
+                    {
+                        comboBox6.Items.Add(provinces[i].Groups[2].Value);
+                        
+                    }
+                    
+                  
+                }
+                
+            }
+            sr.Close();
+        }
+
+
+        public void getcityfromJson()
+        {
+            comboBox7.Items.Clear();
+            comboBox7.Items.Add("不限");
+            StreamReader sr = new StreamReader(path + "data\\city.json", method.EncodingType.GetTxtType(path + "data\\city.json"));
+            //一次性读取完 
+            string jsonText = sr.ReadToEnd();
+            jsonText = method.Unicode2String(jsonText);
+            MatchCollection provinces = Regex.Matches(jsonText, @"""value"":""([\s\S]*?)"",""text"":""([\s\S]*?)""");
+            for (int i = 0; i < provinces.Count; i++)
+            {
+                if (!jsondicc.ContainsKey(provinces[i].Groups[2].Value))
+                {
+                    
+                    if (provinces[i].Groups[1].Value.Substring(0, 2) == jsondicp[comboBox6.Text].Substring(0, 2)  && provinces[i].Groups[1].Value != jsondicp[comboBox6.Text])//添加下级不添加本身
+                    {
+                        jsondicc.Add(provinces[i].Groups[2].Value, provinces[i].Groups[1].Value);
+                        if (provinces[i].Groups[1].Value.Substring(provinces[i].Groups[1].Value.Length - 2, 2) == "00")
+                        {
+                            comboBox7.Items.Add(provinces[i].Groups[2].Value);
+                        }
+                 
+                       
+
+                    }
+          
+
+                }
+   
+
+            }
+            sr.Close();
+
+        }
+
+        public void getareafromJson()
+        {
+            comboBox8.Items.Clear();
+            comboBox8.Items.Add("不限");
+            StreamReader sr = new StreamReader(path + "data\\city.json", method.EncodingType.GetTxtType(path + "data\\city.json"));
+            //一次性读取完 
+            string jsonText = sr.ReadToEnd();
+            jsonText = method.Unicode2String(jsonText);
+            MatchCollection provinces = Regex.Matches(jsonText, @"""value"":""([\s\S]*?)"",""text"":""([\s\S]*?)""");
+            for (int i = 0; i < provinces.Count; i++)
+            {
+                if (!jsondica.ContainsKey(provinces[i].Groups[2].Value))
+                {
+
+                    if (provinces[i].Groups[1].Value.Substring(0, 4) == jsondicc[comboBox7.Text].Substring(0, 4) && provinces[i].Groups[1].Value!= jsondicc[comboBox7.Text])
+                    {
+                        jsondica.Add(provinces[i].Groups[2].Value, provinces[i].Groups[1].Value);
+                        comboBox8.Items.Add(provinces[i].Groups[2].Value);
+
+
+
+                    }
+
+
+                }
+
+
+            }
+            sr.Close();
+
+        }
+
         bool zanting = true;
         bool status = true;
         Thread thread;
@@ -282,6 +443,7 @@ namespace 工商企业采集
                 return;
             }
             status = true;
+            jiance();
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -293,6 +455,8 @@ namespace 工商企业采集
 
         string path = AppDomain.CurrentDomain.BaseDirectory;
         Dictionary<string, string> dic = new Dictionary<string, string>();
+
+      
         public void getcates(string txtname,ComboBox cob)
         {
             StreamReader sr = new StreamReader(path+"data\\"+ txtname + ".txt", method.EncodingType.GetTxtType(path + "data\\"+ txtname + ".txt"));
@@ -308,6 +472,12 @@ namespace 工商企业采集
             sr.Dispose();   //销毁流内存
 
         }
+
+
+
+
+
+       
 
         public void creatVcf()
 
@@ -389,5 +559,99 @@ namespace 工商企业采集
                 zanting = false;
             }
         }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getcityfromJson();
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getareafromJson();
+        }
+
+
+        public void jiance()
+        {
+            if (ExistINIFile())
+            {
+                string key = IniReadValue("values", "key");
+                string secret = IniReadValue("values", "secret");
+                string[] value = secret.Split(new string[] { "asd147" }, StringSplitOptions.None);
+
+
+                if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
+                {
+                    MessageBox.Show("激活已过期");
+                    string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                    string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
+
+                    if (text[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian"))
+                    {
+                        IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                        IniWriteValue("values", "secret", str);
+                        MessageBox.Show("激活成功");
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("激活码错误");
+                        System.Diagnostics.Process.GetCurrentProcess().Kill();
+                        return;
+                    }
+
+                }
+
+
+                else if (value[0] != method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian") || key != method.GetMD5(method.GetMacAddress()))
+                {
+
+                    string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                    string[] text = str.Split(new string[] { "asd147" }, StringSplitOptions.None);
+
+                    if (text[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian"))
+                    {
+                        IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                        IniWriteValue("values", "secret", str);
+                        MessageBox.Show("激活成功");
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("激活码错误");
+                        System.Diagnostics.Process.GetCurrentProcess().Kill();
+                        return;
+                    }
+                }
+
+
+            }
+            else
+            {
+
+                string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                string[] text = str.Split(new string[] { "asd147" }, StringSplitOptions.None);
+                if (text[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian"))
+                {
+                    IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                    IniWriteValue("values", "secret", str);
+                    MessageBox.Show("激活成功");
+
+
+                }
+                else
+                {
+                    MessageBox.Show("激活码错误");
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                    return;
+                }
+            }
+
+        }
+
+
+
     }
 }

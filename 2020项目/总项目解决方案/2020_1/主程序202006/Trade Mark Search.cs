@@ -24,6 +24,7 @@ namespace 主程序202006
 
         bool zanting = true;
         string cookie = "JSESSIONID=B15F89F7E214D3A08B3FCEEC83E8B872; GJ8UAX99J13WPQI51=!OviP5hsP1+m74A5tJI9B8RL6BQjqQnh48wVX6o66z99ncY3ul24t8WAkeRJnuwXyMFejmWpvyLLHyjkidoI85vugiKVlO8tyWm50J4I=";
+      
         #region POST请求
         /// <summary>
         /// POST请求
@@ -33,7 +34,7 @@ namespace 主程序202006
         /// <param name="COOKIE">cookie</param>
         /// <param name="charset">编码格式</param>
         /// <returns></returns>
-        public static string PostUrl(string url, string postData, string COOKIE, string charset)
+        public static string PostUrl(string url, string postData, string COOKIE, string charset,string token)
         {
             try
             {
@@ -44,11 +45,13 @@ namespace 主程序202006
                 request.ContentLength = postData.Length;
                 request.AllowAutoRedirect = true;
                 request.KeepAlive = true;
-
+                //添加头部
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("X-XSRF-TOKEN:"+token);
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
                
-                request.Referer = "https://esearch.ipd.gov.hk/nis-pos-view/tm";
+                request.Referer = "https://esearch.ipd.gov.hk/nis-pos-view/";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -72,6 +75,7 @@ namespace 主程序202006
         }
 
         #endregion
+       
         #region 主程序
         public void run()
         {
@@ -81,16 +85,21 @@ namespace 主程序202006
 
                 int start = Convert.ToInt32(textBox1.Text);
                 int end = Convert.ToInt32(textBox2.Text);
-
+                string token = Regex.Match(cookie, @"XSRF-TOKEN=([\s\S]*?);").Groups[1].Value;
+                if (token == "")
+                {
+                    token = Regex.Match(cookie, @"XSRF-TOKEN=.*?").Groups[0].Value.Replace("XSRF-TOKEN=","");
+                }
                 for (int i = 1; i < 99999; i++)
                 {
 
 
                     string url = "https://esearch.ipd.gov.hk/nis-pos-view/tm/search/?page="+i+"&rows=10";
-                    string postdata = "{\"applicationNumber\":[\""+start+"\",\""+end+"\"],\"filingDate\":{},\"documentFilingDate\":{},\"registrationDate\":{},\"expirationDate\":{},\"publicationDateOfAcceptance\":{},\"actualRegistrationDate\":{},\"searchMethod\":\"TM_SEARCHMETHOD_WILDCARD\",\"isDeadRecordIndicator\":\"false\"}";
-                    string strhtml = PostUrl(url,postdata,cookie,"utf-8") ;
-            
-                  
+                    //string postdata = "{\"applicationNumber\":[\""+start+"\",\""+end+"\"],\"filingDate\":{},\"documentFilingDate\":{},\"registrationDate\":{},\"expirationDate\":{},\"publicationDateOfAcceptance\":{},\"actualRegistrationDate\":{},\"searchMethod\":\"TM_SEARCHMETHOD_WILDCARD\",\"isDeadRecordIndicator\":\"false\"}";
+                    string postdata = "{\"searchMethod\":\"TM_SEARCHMETHOD_WILDCARD\",\"filingDate\":{},\"documentFilingDate\":{},\"applicationNumber\":[\""+start+"\",\""+end+"\"],\"registrationDate\":{},\"isDeadRecordIndicator\":\"false\",\"expirationDate\":{},\"publicationDateOfAcceptance\":{},\"actualRegistrationDate\":{}}";
+                    string strhtml = PostUrl(url,postdata,cookie,"utf-8",token) ;
+
+                    
                     MatchCollection ids = Regex.Matches(strhtml, @"""id"":""([\s\S]*?)""");
 
                     if (ids.Count == 0)
@@ -102,38 +111,39 @@ namespace 主程序202006
 
                     foreach (Match uid in ids)
                     {
-                        string aurl = "https://esearch.ipd.gov.hk/nis-pos-view/tm/details/view/" + uid.Groups[1].Value + "/0/0/1/10/0/1/0/null_null/KCFeIShhcHBsaWNhdGlvbk51bWJlcjpbMCBUTyA0MDAwMDAwMF0pIV4hIEFORCAhXiEoaXNEZWFkUmVjb3JkSW5kaWNhdG9yOihmYWxzZSkpIV4hKSBBTkQgdG1SZWNvcmRTZXE6MQ==";
+                        string aurl = "https://esearch.ipd.gov.hk/nis-pos-view/tm/details/view/" + uid.Groups[1].Value + "/0/0/1/10/0/1/0/null_null/KCFeIShhcHBsaWNhdGlvbk51bWJlcjpbMCBUTyA0MDAwMDAwMF0pIV4hIEFORCAhXiEoaXNEZWFkUmVjb3JkSW5kaWNhdG9yOihmYWxzZSkpIV4hKSBBTkQgdG1SZWNvcmRTZXE6MQ%3D%3D";
                         string html = method.gethtml(aurl, cookie);
+                       // textBox3.Text = strhtml;
                         label4.Text = "正在查询" + uid.Groups[1].Value;
 
-                        Match a1 = Regex.Match(html, @"Trade Mark No\.:([\s\S]*?)</dd>");
-                        Match a2 = Regex.Match(html, @"Status:([\s\S]*?)</dd>");
-                        Match a3 = Regex.Match(html, @"Trade Mark Text:([\s\S]*?)</dd>");
-                        Match a4 = Regex.Match(html, @"Mark Type:([\s\S]*?)</dd>");
-                        Match a5 = Regex.Match(html, @"Class No\.:([\s\S]*?)</dd>");
-                        Match a6 = Regex.Match(html, @"<div class=""panel-body"" ng-bind-html=""'([\s\S]*?)'");
-                        Match a7 = Regex.Match(html, @"Others:</span>([\s\S]*?)html=""'([\s\S]*?)'");
-                        Match a8 = Regex.Match(html, @"Date of Filing:([\s\S]*?)</dd>");
-                        Match a9 = Regex.Match(html, @"Date of Advertisement in Gazette:([\s\S]*?)</dd>");
-                        Match a10 = Regex.Match(html, @"Name:</span>([\s\S]*?)</dd>");
-                        Match a11 = Regex.Match(html, @"Address:</span>([\s\S]*?)html=""'([\s\S]*?)'");
-                        Match a12 = Regex.Match(html, @"Address for Service:</span>([\s\S]*?)html=""'([\s\S]*?)'");
+                        Match a1 = Regex.Match(html, @"""trademarkNumber"":""([\s\S]*?)""");
+                        Match a2 = Regex.Match(html, @"""status"":""([\s\S]*?)""");
+                        Match a3 = Regex.Match(html, @"""markText"":""([\s\S]*?)""");
+                        Match a4 = Regex.Match(html, @"""markTypeBag"":\[([\s\S]*?)\]");
+                        Match a5 = Regex.Match(html, @"""classNumber"":\[([\s\S]*?)\]");
+                        Match a6 = Regex.Match(html, @"""specificationList"":\[([\s\S]*?)\]");
+                        Match a7 = Regex.Match(html, @"""dlco"":""([\s\S]*?)""");
+                        Match a8 = Regex.Match(html, @"""dateOfFiling"":""([\s\S]*?)""");
+                        Match a9 = Regex.Match(html, @"""dateOfAdvertisementInGazette"":""([\s\S]*?)""");
+                        Match a10 = Regex.Match(html, @"""ownerName"":""([\s\S]*?)""");
+                        Match a11 = Regex.Match(html, @"""ownerAddress"":""([\s\S]*?)""");
+                        Match a12 = Regex.Match(html, @"""ownerAddressForService"":""([\s\S]*?)""");
+                        string a13 = Regex.Match(html, @"""agentDetails"":""([\s\S]*?)""").Groups[1].Value.Replace("\\n", " ").Replace("\\", "").Replace("\"", "").Trim();
 
-
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
                         lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a3.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a5.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a6.Groups[1].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\\\n", " ").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a7.Groups[2].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\\\n", " ").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a4.Groups[1].Value, "<[^>]+>", "").Trim().Replace("\"",""));
+                        lv1.SubItems.Add(Regex.Replace(a5.Groups[1].Value, "<[^>]+>", "").Trim().Replace("\"", ""));
+                        lv1.SubItems.Add(Regex.Replace(a6.Groups[1].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\\\n", " ").Replace("\"", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a7.Groups[1].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\\\n", " ").Replace("\"", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a8.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a9.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a10.Groups[1].Value, "<[^>]+>", "").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a11.Groups[2].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\","").Trim());
-                        lv1.SubItems.Add(Regex.Replace(a12.Groups[2].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\", "").Trim());
-
+                        lv1.SubItems.Add(Regex.Replace(a11.Groups[1].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\","").Replace("\"", "").Trim());
+                        lv1.SubItems.Add(Regex.Replace(a12.Groups[1].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\", "").Replace("\"", "").Trim());
+                        lv1.SubItems.Add(a13);
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -167,15 +177,16 @@ namespace 主程序202006
         private void Trade_Mark_Search_Load(object sender, EventArgs e)
         {
             method.SetWebBrowserFeatures(method.IeVersion.IE11);
-            webBrowser1.Url = new Uri("https://esearch.ipd.gov.hk/nis-pos-view/tm#/quicksearch");
            
+            webBrowser1.Url = new Uri("https://esearch.ipd.gov.hk/nis-pos-view/#/");
             webBrowser1.ScriptErrorsSuppressed = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cookie = method.GetCookies("https://esearch.ipd.gov.hk/nis-pos-view/tm/allSelectableTypes?lang=en");
-            //MessageBox.Show(cookie);
+         
+            cookie = method.GetCookies("https://esearch.ipd.gov.hk/nis-pos-view/tm#/quicksearch");
+            MessageBox.Show(cookie);
             label4.Text = "开始查询" + "......";
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -208,6 +219,11 @@ namespace 主程序202006
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

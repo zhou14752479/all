@@ -45,7 +45,7 @@ namespace 授权库
                 string yjsq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
                 string shangbiao_endtime= dateTimePicker3.Value.ToString("yyyy-MM-dd");
               
-                string sql = "SELECT uid,type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime from datas  where ";
+                string sql = "SELECT uid,type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime,beizhu from datas  where ";
                 if (comboBox1.Text == "全部授权")
                 {
                     sql = sql + ("type like '_%' AND ");
@@ -293,48 +293,56 @@ namespace 授权库
 
         public void viewdata(string title)
         {
-            if (this.listView1.SelectedItems.Count == 0)
-                return;
+            try
+            {
+                if (this.listView1.SelectedItems.Count == 0)
+                    return;
 
-            string uid = listView1.SelectedItems[0].SubItems[0].Text;
-            新增 add = new 新增();
-            add.Text = title;
+                string uid = listView1.SelectedItems[0].SubItems[0].Text;
+                新增 add = new 新增();
+                add.Text = title;
 
-            MySqlConnection mycon = new MySqlConnection(constr);
-            mycon.Open();
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
 
-            string sql = "select * from datas where uid='" + uid + "'  ";
-            MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
-
-
-            MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-            reader.Read();
-
-            add.uid = reader["uid"].ToString().Trim();
-
-            add.type = reader["type"].ToString().Trim();
-            add.name = reader["name"].ToString().Trim();
-            add.pinpai = reader["pinpai"].ToString().Trim();
-            add.cate1 = reader["cate1"].ToString().Trim();
-            add.cate2 = reader["cate2"].ToString().Trim();
+                string sql = "select * from datas where uid='" + uid + "'  ";
+                MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
 
 
-            add.sq_starttime = reader["sq_starttime"].ToString().Trim();
-            add.sq_endtime = reader["sq_endtime"].ToString().Trim();
-            add.yjsq_starttime = reader["yjsq_starttime"].ToString().Trim();
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                reader.Read();
+
+                add.uid = reader["uid"].ToString().Trim();
+
+                add.type = reader["type"].ToString().Trim();
+                add.name = reader["name"].ToString().Trim();
+                add.pinpai = reader["pinpai"].ToString().Trim();
+                add.cate1 = reader["cate1"].ToString().Trim();
+                add.cate2 = reader["cate2"].ToString().Trim();
 
 
-            add.is_yuanjian = reader["is_yuanjian"].ToString().Trim();
-            add.is_shouhou = reader["is_shouhou"].ToString().Trim();
-            add.is_shangbiao = reader["is_shangbiao"].ToString().Trim();
-            add.shangbiao_endtime = reader["shangbiao_endtime"].ToString().Trim();
+                add.sq_starttime = reader["sq_starttime"].ToString().Trim();
+                add.sq_endtime = reader["sq_endtime"].ToString().Trim();
+                add.yjsq_starttime = reader["yjsq_starttime"].ToString().Trim();
 
-            mycon.Close();
-            reader.Close();
 
-          
-            add.Show();
+                add.is_yuanjian = reader["is_yuanjian"].ToString().Trim();
+                add.is_shouhou = reader["is_shouhou"].ToString().Trim();
+                add.is_shangbiao = reader["is_shangbiao"].ToString().Trim();
+                add.shangbiao_endtime = reader["shangbiao_endtime"].ToString().Trim();
+                add.beizhu = reader["beizhu"].ToString().Trim();
+                mycon.Close();
+                reader.Close();
+
+
+                add.Show();
+            }
+            catch (Exception ex)
+            {
+
+               MessageBox.Show(ex.ToString());
+            }
         }
 
         private void 查看详细ToolStripMenuItem_Click(object sender, EventArgs e)

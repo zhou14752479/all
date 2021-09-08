@@ -33,7 +33,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -62,6 +61,9 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button5 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,6 +88,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.Controls.Add(this.button5);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
@@ -100,19 +103,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(1205, 637);
-            this.splitContainer1.SplitterDistance = 87;
+            this.splitContainer1.Size = new System.Drawing.Size(1200, 753);
+            this.splitContainer1.SplitterDistance = 102;
             this.splitContainer1.TabIndex = 11;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("宋体", 10F);
-            this.label5.Location = new System.Drawing.Point(814, 55);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(329, 14);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "打开软件，浏览器页面显示网站页面即可点击search";
             // 
             // label4
             // 
@@ -130,7 +123,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(97, 29);
             this.button4.TabIndex = 17;
-            this.button4.Text = "Export data";
+            this.button4.Text = "导出数据";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -140,7 +133,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(97, 29);
             this.button3.TabIndex = 16;
-            this.button3.Text = "continue";
+            this.button3.Text = "继续";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -150,7 +143,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 29);
             this.button2.TabIndex = 15;
-            this.button2.Text = "suspend";
+            this.button2.Text = "暂停";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -188,7 +181,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 29);
             this.button1.TabIndex = 11;
-            this.button1.Text = "Search";
+            this.button1.Text = "开始";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -218,7 +211,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1205, 546);
+            this.tabControl1.Size = new System.Drawing.Size(1200, 647);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -227,7 +220,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1197, 516);
+            this.tabPage1.Size = new System.Drawing.Size(1192, 617);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "         浏览器              ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -238,7 +231,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1191, 510);
+            this.webBrowser1.Size = new System.Drawing.Size(1186, 611);
             this.webBrowser1.TabIndex = 0;
             // 
             // tabPage2
@@ -267,7 +260,8 @@
             this.columnHeader10,
             this.columnHeader11,
             this.columnHeader12,
-            this.columnHeader13});
+            this.columnHeader13,
+            this.columnHeader14});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(3, 3);
@@ -338,13 +332,37 @@
             // columnHeader13
             // 
             this.columnHeader13.Text = "Address for Service";
-            this.columnHeader13.Width = 500;
+            this.columnHeader13.Width = 100;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Agent\'s Details";
+            this.columnHeader14.Width = 100;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(836, 48);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(97, 29);
+            this.button5.TabIndex = 19;
+            this.button5.Text = "清空数据";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(939, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(212, 17);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "验证码成功后进入搜索页面，执行程序";
             // 
             // Trade_Mark_Search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1205, 637);
+            this.ClientSize = new System.Drawing.Size(1200, 753);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -398,6 +416,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label5;
     }
 }

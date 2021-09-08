@@ -250,6 +250,13 @@ namespace 校友邦
             return traineeId;
         }
 
+        public string getadcode(string lng,string lat)
+        {
+            string url = "https://restapi.amap.com/v3/geocode/regeo?key=c222383ff12d31b556c3ad6145bb95f4&location="+lng+"%2C"+lat+"&extensions=all&s=rsx&platform=WXJS&appname=c222383ff12d31b556c3ad6145bb95f4&sdkversion=1.2.0&logversion=2.0";
+            string html = method.GetUrl(url,"utf-8");
+            string adcode = Regex.Match(html, @"""adcode"":""([\s\S]*?)""").Groups[1].Value.Trim();
+            return adcode;
+        }
 
         public string qiandao(string cookie,string addr, string traineeId)
         {
@@ -272,9 +279,10 @@ namespace 校友邦
               
             }
 
+            string adcode = getadcode(lng,lat);
 
             string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
-            string postdata = "traineeId=" + traineeId + "&adcode=640104&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
+            string postdata = "traineeId=" + traineeId + "&adcode="+adcode+"&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
             
             string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
 
@@ -309,14 +317,14 @@ namespace 校友邦
                
                
             }
-           
-         
 
-          
+
+
+            string adcode = getadcode(lng, lat);
 
 
             string url = "https://xcx.xybsyw.com/student/clock/Post!updateClock.action";
-            string postdata = "traineeId="+ traineeId + "&adcode=640104&lat=" + lat+"&lng="+lng+"&address="+address+"&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
+            string postdata = "traineeId="+ traineeId + "&adcode="+adcode+"&lat=" + lat+"&lng="+lng+"&address="+address+"&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
            
             string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
           

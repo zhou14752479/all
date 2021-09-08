@@ -41,8 +41,8 @@ namespace 授权库
         public string is_shouhou = "";
         public string is_shangbiao = "";
         public string shangbiao_endtime = "";
+        public string beizhu = "";
 
-        
 
         public void add()
         {
@@ -69,6 +69,7 @@ namespace 授权库
             string is_shouhou = comboBox3.Text;
             string is_shangbiao = comboBox4.Text;
             string shangbiao_endtime = dateTimePicker4.Value.ToString("yyyy-MM-dd");
+            string beizhu= textBox5.Text.Trim();
             if (checkBox2.Checked == false)
             {
                 shangbiao_endtime = "";
@@ -76,7 +77,7 @@ namespace 授权库
           
             // string img_shouquan = fc.ImageToBase64(Image.FromFile(textBox5.Text));
             // string img_shouhou = fc.ImageToBase64(Image.FromFile(textBox5.Text));
-            string sql = "INSERT INTO datas (type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime,uid)VALUES('" + type + " '," +
+            string sql = "INSERT INTO datas (type,name,pinpai,cate1,cate2,sq_starttime,sq_endtime,yjsq_starttime,is_yuanjian,is_shouhou,is_shangbiao,shangbiao_endtime,uid,beizhu)VALUES('" + type + " '," +
                 " '" + name + " '," +
                 " '" + pinpai+ " ', " +
                 "'" + cate1 + " '," +
@@ -88,7 +89,8 @@ namespace 授权库
                      " '" + is_shouhou + " '," +
                       " '" + is_shangbiao + " '," +
                        " '" + shangbiao_endtime + " '," +
-                        " '" + uid + " ')";
+                       " '" + uid + " '," +
+                        " '" + beizhu + " ')";
             fc.SQL(sql);
 
             for (int i = 0; i < listView1.Items.Count; i++)
@@ -108,59 +110,68 @@ namespace 授权库
         public void xiugai()
         {
 
-          
-            string type = comboBox1.Text;
-            string name = textBox1.Text.Trim();
-            string pinpai = textBox2.Text.Trim();
-            string cate1 = textBox3.Text.Trim();
-            string cate2 = textBox4.Text.Trim();
 
-
-            string sq_starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-            string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
-
-            string yjsq_starttime = dateTimePicker3.Value.ToString("yyyy-MM-dd");
-            if (checkBox1.Checked == false)
+            try
             {
-                yjsq_starttime = "";
-            }
+                string type = comboBox1.Text;
+                string name = textBox1.Text.Trim();
+                string pinpai = textBox2.Text.Trim();
+                string cate1 = textBox3.Text.Trim();
+                string cate2 = textBox4.Text.Trim();
+                string beizhu = textBox5.Text.Trim();
 
-            string is_yuanjian = comboBox2.Text;
-            string is_shouhou = comboBox3.Text;
-            string is_shangbiao = comboBox4.Text;
-            string shangbiao_endtime = dateTimePicker4.Value.ToString("yyyy-MM-dd");
-            if (checkBox2.Checked == false)
+                string sq_starttime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                string sq_endtime = dateTimePicker2.Value.ToString("yyyy-MM-dd");
+
+                string yjsq_starttime = dateTimePicker3.Value.ToString("yyyy-MM-dd");
+                if (checkBox1.Checked == false)
+                {
+                    yjsq_starttime = "";
+                }
+
+                string is_yuanjian = comboBox2.Text;
+                string is_shouhou = comboBox3.Text;
+                string is_shangbiao = comboBox4.Text;
+                string shangbiao_endtime = dateTimePicker4.Value.ToString("yyyy-MM-dd");
+                if (checkBox2.Checked == false)
+                {
+                    shangbiao_endtime = "";
+                }
+
+                string sql = "update datas set type= '" + type + " ', " +
+                    "name='" + name + " '," +
+                    "pinpai='" + pinpai + " ' ," +
+                    "cate1='" + cate1 + " '," +
+                    "cate2='" + cate2 + " '," +
+                    "sq_starttime='" + sq_starttime + " '," +
+                    "sq_endtime='" + sq_endtime + " '," +
+                    "yjsq_starttime='" + yjsq_starttime + " '," +
+                    "is_yuanjian='" + is_yuanjian + " '," +
+                    "is_shouhou='" + is_shouhou + " '," +
+                    "is_shangbiao='" + is_shangbiao + " '," +
+                    "beizhu='" + beizhu + " '," +
+                    "shangbiao_endtime ='" + shangbiao_endtime + " ' where uid='" + uid + " '";
+
+
+
+                fc.SQL(sql);
+
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    string filename = listView1.Items[i].SubItems[1].Text;
+                    if (filename.Trim() == "")
+                        continue;
+                    fc.insertfile(uid.ToString(), filename);
+
+                }
+
+                MessageBox.Show("文件添加成功！");
+            }
+            catch (Exception ex)
             {
-                shangbiao_endtime = "";
+
+                MessageBox.Show(ex.ToString());
             }
-
-            string sql = "update datas set type= '" + type + " ', " +
-                "name='" + name + " '," +
-                "pinpai='" + pinpai+ " ' ," +
-                "cate1='" + cate1 + " '," +
-                "cate2='" + cate2+ " '," +
-                "sq_starttime='" + sq_starttime + " '," +
-                "sq_endtime='" + sq_endtime + " '," +
-                "yjsq_starttime='" + yjsq_starttime + " '," +
-                "is_yuanjian='" + is_yuanjian + " '," +
-                "is_shouhou='" + is_shouhou + " '," +
-                "is_shangbiao='" + is_shangbiao + " '," +
-                "shangbiao_endtime ='" + shangbiao_endtime + " ' where uid='" + uid + " '";
-
-
-           
-            fc.SQL(sql);
-
-            for (int i = 0; i < listView1.Items.Count; i++)
-            {
-                string filename = listView1.Items[i].SubItems[1].Text;
-                if (filename.Trim() == "")
-                    continue;
-                fc.insertfile(uid.ToString(), filename);
-
-            }
-
-            MessageBox.Show("文件添加成功！");
         }
 
         private void 新增_Load(object sender, EventArgs e)
@@ -184,7 +195,7 @@ namespace 授权库
                 textBox2.Text = pinpai;
                 textBox3.Text = cate1;
                 textBox4.Text= cate2;
-
+                textBox5.Text = beizhu;
 
                 dateTimePicker1.Value= Convert.ToDateTime(sq_starttime);
                 dateTimePicker2.Value= Convert.ToDateTime(sq_endtime);
@@ -209,27 +220,35 @@ namespace 授权库
 
             }
 
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(getfileList);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(getfileList);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
 
         }
 
        
         public void getfileList()
         {
-            listView1.Items.Clear();
-            //获取文件列表
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic = fc.getfileinfos(uid.ToString());
-
-            foreach (var item in dic.Keys)
+            try
             {
-                ListViewItem lv1 = listView1.Items.Add(dic[item]); //使用Listview展示数据
-                lv1.SubItems.Add(item);
+                listView1.Items.Clear();
+                //获取文件列表
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                dic = fc.getfileinfos(uid.ToString());
+
+                foreach (var item in dic.Keys)
+                {
+                    ListViewItem lv1 = listView1.Items.Add(dic[item]); //使用Listview展示数据
+                    lv1.SubItems.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
             }
         }
         private void button1_Click(object sender, EventArgs e)

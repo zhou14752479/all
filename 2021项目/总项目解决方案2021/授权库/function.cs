@@ -164,6 +164,7 @@ namespace 授权库
             lst.Columns.Add("是否有售后承诺书", 100, HorizontalAlignment.Center);
             lst.Columns.Add("是否有商标", 100, HorizontalAlignment.Center);
             lst.Columns.Add("商标结束时间", 100, HorizontalAlignment.Center);
+            lst.Columns.Add("备注", 100, HorizontalAlignment.Center);
 
             if (RowCount == 0) return;
             for (i = 0; i < RowCount; i++)
@@ -275,7 +276,11 @@ namespace 授权库
                 
                 string uid = dr["uid"].ToString();
                 string name = dr["name"].ToString();
-                dic.Add(name,uid);
+                if(!dic.ContainsKey(name))
+                {
+                    dic.Add(name, uid);
+                }
+                
             }
 
             return dic;

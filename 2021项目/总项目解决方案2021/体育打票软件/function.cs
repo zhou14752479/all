@@ -155,6 +155,65 @@ namespace 体育打票软件
         }
 
 
+
+        #region  根据赔率获取让球文字
+        public Dictionary<string,string> getrangqiu(string html)
+        {
+            Dictionary<string, string> dics= new Dictionary<string, string>();
+            MatchCollection rangqius = Regex.Matches(html, @"normal;""></label>([\s\S]*?)<");
+            MatchCollection peilvs = Regex.Matches(html, @"<span class=""oddsItem([\s\S]*?)>([\s\S]*?)<");
+            for (int i = 0; i < rangqius.Count; i++)
+            {
+                if (!dics.ContainsKey(peilvs[(6 * i) + 3].Groups[2].Value))
+                {
+                    dics.Add(peilvs[(6 * i) + 3].Groups[2].Value, rangqius[i].Groups[1].Value);
+                }
+                if (!dics.ContainsKey(peilvs[(6 * i) + 4].Groups[2].Value))
+                {
+                    dics.Add(peilvs[(6 * i) + 4].Groups[2].Value, rangqius[i].Groups[1].Value);
+                }
+                if (!dics.ContainsKey(peilvs[(6 * i) + 5].Groups[2].Value))
+                {
+                    dics.Add(peilvs[(6 * i) + 5].Groups[2].Value, rangqius[i].Groups[1].Value);
+                }
+               
+                
+            }
+
+            return dics;
+        }
+
+        #endregion
+
+        #region  混合过关根据赔率获取让球文字
+        public Dictionary<string, string> getrangqiu_hunhe(string html)
+        {
+            Dictionary<string, string> dics = new Dictionary<string, string>();
+            MatchCollection peilvs = Regex.Matches(html, @"<label class=""rqCls rLine"">([\s\S]*?)</label>([\s\S]*?)solid;"">([\s\S]*?)<([\s\S]*?)solid;"">([\s\S]*?)</span><span([\s\S]*?)>([\s\S]*?)</span>");
+           
+            for (int i = 0; i < peilvs.Count; i++)
+            {
+                if (!dics.ContainsKey(peilvs[i].Groups[3].Value))
+                {
+                    dics.Add(peilvs[i].Groups[3].Value, peilvs[i].Groups[1].Value);
+                }
+                if (!dics.ContainsKey(peilvs[i].Groups[5].Value))
+                {
+                    dics.Add(peilvs[i].Groups[5].Value, peilvs[i].Groups[1].Value);
+                }
+                if (!dics.ContainsKey(peilvs[i].Groups[7].Value))
+                {
+                    dics.Add(peilvs[i].Groups[7].Value, peilvs[i].Groups[1].Value);
+                }
+                
+
+            }
+
+            return dics;
+        }
+
+        #endregion
+
         #region 混合过关
         public void getdata(GridppReport Report, string html, string ahtml)
         {
@@ -180,8 +239,8 @@ namespace 体育打票软件
 
 
                 string jine = Regex.Match(html, @"<span id=""consume"">([\s\S]*?)</span>").Groups[1].Value;
-
-
+                string ganxieyu = "感谢您为公益事业贡献"+ Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2)+"元";
+               
                 string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
 
                 string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
@@ -223,8 +282,34 @@ namespace 体育打票软件
 
                 for (int i = 0; i < value1.Count; i++)
                 {
-                    string a1 = Regex.Match("周" + value1[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value + " 胜平负";
+                    
+
                     string a2 = Regex.Match(value1[i].Groups[1].Value, @"\(([\s\S]*?)\)").Groups[1].Value + "0元";
+
+                    //末尾文字 胜平负/进球数/比分判断
+                    string moweiwenzi = "";
+                    if (a2.Substring(0, 2).Contains(":"))
+                    {
+                        moweiwenzi = "比分";
+                    }
+                    else if (a2.Substring(0, 2).Contains("胜@") || a2.Substring(0, 2).Contains("平@")|| a2.Substring(0, 2).Contains("负@"))
+                    {
+                        moweiwenzi = "胜平负";
+                    }
+                    else if (a2.Substring(0, 2).Contains("胜胜")|| a2.Substring(0, 2).Contains("胜平") || a2.Substring(0, 2).Contains("胜负") || a2.Substring(0, 2).Contains("平胜") || a2.Substring(0, 2).Contains("平平") || a2.Substring(0, 2).Contains("平负") || a2.Substring(0, 2).Contains("负胜") || a2.Substring(0, 2).Contains("负平") || a2.Substring(0, 2).Contains("负负"))
+                    {
+                        moweiwenzi = "半全场胜平负";
+                    }
+                    else if (a2.Substring(0, 2).Contains("1@") || a2.Substring(0, 2).Contains("2@") || a2.Substring(0, 2).Contains("3@") || a2.Substring(0, 2).Contains("4@") || a2.Substring(0, 2).Contains("5@") || a2.Substring(0, 2).Contains("6@") || a2.Substring(0, 2).Contains("7+@"))
+                    {
+                        moweiwenzi = "总进球数";
+                    }
+                    string a1 = Regex.Match("周" + value1[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value + " "+moweiwenzi;
+                   
+                    if (a2.Substring(0, 2) != "胜@" && a2.Substring(0, 2) != "平@" && a2.Substring(0, 2) != "负@")
+                    {
+                        a2 = "(" + a2.Replace("@", ")@");
+                    }
                     if (resultdics.ContainsKey(a1))
                     {
                         if (!lists.Contains(a1 + a2))
@@ -237,7 +322,7 @@ namespace 体育打票软件
                     else
                     {
                         lists.Add(a1 + a2);
-                        resultdics.Add(a1, "主队:" + dics["周" + a1.Replace("胜平负", "").Replace("让球", "").Trim()].Replace(" VS ", " VS 客队:") + "\n" + a2);
+                        resultdics.Add(a1, "主队:" + dics["周" + a1.Replace(moweiwenzi, "").Replace("让球", "").Trim()].Replace("VS", " VS 客队:") + "\n" + a2);
 
                     }
 
@@ -247,8 +332,31 @@ namespace 体育打票软件
 
                 for (int i = 0; i < value2.Count; i++)
                 {
-                    string a1 = Regex.Match("周" + value2[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value + " 让球胜平负";
                     string a2 = Regex.Match(value2[i].Groups[1].Value, @"\(([\s\S]*?)\)").Groups[1].Value + "0元";
+
+                    string peilv= Regex.Match(a2, @"\@([\s\S]*?)0元").Groups[1].Value;
+                    string rangqiuwenzi = "";
+                    Dictionary<string,string> hunherangqiudic= getrangqiu_hunhe(html);
+
+                    if (hunherangqiudic.ContainsKey(peilv))
+                    {
+                        if (hunherangqiudic[peilv].Contains("-"))
+                        {
+                            rangqiuwenzi = " 主队让" + hunherangqiudic[peilv].Replace("-", "") + "球";
+                        }
+                        if (hunherangqiudic[peilv].Contains("+"))
+                        {
+                            rangqiuwenzi = " 主队受让" + hunherangqiudic[peilv].Replace("+", "") + "球";
+                        }
+                    }
+
+
+                    string a1 = Regex.Match("周" + value2[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value + " 让球胜平负" + rangqiuwenzi;
+                   
+                    if (a2.Substring(0, 2) != "胜@" && a2.Substring(0, 2) != "平@" && a2.Substring(0, 2) != "负@")
+                    {
+                        a2 = "(" + a2.Replace("@",")@");
+                    }
                     if (resultdics.ContainsKey(a1))
                     {
                         if (!lists.Contains(a2))
@@ -261,18 +369,19 @@ namespace 体育打票软件
                     else
                     {
                         lists.Add(a2);
-                        resultdics.Add(a1, "主队:" + dics["周" + a1.Replace("胜平负", "").Replace("让球", "").Trim()].Replace("VS", " VS 客队:") + "\n" + a2);
+                        resultdics.Add(a1, "主队:" + dics["周" + a1.Replace(" 让球胜平负" + rangqiuwenzi, "").Trim()].Replace("VS", " VS 客队:") + "\n" + a2);
 
                     }
 
                 }
 
-
-                
+               resultdics=resultdics.OrderByDescending(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
+                //resultdics = resultdics.OrderBy(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
+                a = 0;
                 foreach (var item in resultdics.Keys)
                 {
                     a = a + 1;
-                    sb.Append("第" + a + "场周" + item + "\n" + resultdics[item] + "\n");
+                    sb.Append("第" + a + "场周" + item + "\n" + resultdics[item]+ "\n");
                    
                 }
 
@@ -324,8 +433,8 @@ namespace 体育打票软件
                 Report.ParameterByName("jine").AsString = jine;
                 Report.ParameterByName("neirong").AsString = sb.ToString();
 
-
-                Report.ParameterByName("dizhi").AsString = address;
+         
+                Report.ParameterByName("dizhi").AsString = ganxieyu+"\n\n"+ address;
                 Report.ParameterByName("zhanhao").AsString = haoma;
                 Report.ParameterByName("time").AsString = time;
             }
@@ -340,10 +449,11 @@ namespace 体育打票软件
         public static int a = 0;
         #endregion
 
+        Dictionary<string, string> rangqiudic = new Dictionary<string, string>();
         #region 胜平负/让球胜平负
         public void getdata_shengpingfu(GridppReport Report, string html, string ahtml)
         {
-
+           
             string address = IniReadValue("values", "address");
             string haoma = IniReadValue("values", "haoma");
             string bianma = IniReadValue("values", "bianma");
@@ -366,7 +476,7 @@ namespace 体育打票软件
                 string beishu = Regex.Match(html, @"x\d{1,2}倍").Groups[0].Value.Replace("x", "").Replace("倍", "").Trim();
 
                 string jine = Regex.Match(html, @"<span id=""consume"">([\s\S]*?)</span>").Groups[1].Value;
-
+                string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
                 string zhushu = ((Convert.ToInt32(jine) / 2) / (Convert.ToInt32(beishu))).ToString();
                 string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
 
@@ -421,13 +531,14 @@ namespace 体育打票软件
                     for (int i = 0; i < value1.Count; i++)
                     {
                         double a3 = Convert.ToDouble(Regex.Replace(value1shuzhi[i].Groups[2].Value, "<[^>]+>", "")) / (Convert.ToDouble(value1shuzhi[i].Groups[1].Value) * 2);
+                   
 
-                        string a33 = Regex.Replace(a3.ToString(), @""".*", "");
+                        string a33 = Regex.Replace(a3.ToString("F3"), @""".*", "");
                         string a1 = "周" + value1[i].Groups[1].Value;
 
-                        string a2 = "(" + value1[i].Groups[2].Value + ")" + "@" + a33 + "0元";
+                        string a2 = "(" + value1[i].Groups[2].Value + ")" + "@" + a33 + "元";
 
-                        if (value1[i].Groups[2].Value=="胜") //胜不加括号
+                        if (value1[i].Groups[2].Value=="胜" || value1[i].Groups[2].Value == "平" || value1[i].Groups[2].Value == "负") //胜不加括号
                         {
                             a2 =  value1[i].Groups[2].Value  + "@" + a33 + "0元";
                         }
@@ -461,11 +572,27 @@ namespace 体育打票软件
                     {
                         string a1 = value1[i].Groups[2].Value;
 
-                        string a33 = Regex.Replace(value1[i].Groups[1].Value, @""".*", "");
+                        string a33 = Regex.Replace(value1[i].Groups[1].Value, @""".*", ""); //未处理的赔率
 
-                        string a2 = "(" + value1[i].Groups[3].Value + ")" + "@" + a33 + "0元";
+                        //获取让球文字
+                     Dictionary<string,string>  dics_rangqiu= getrangqiu(html);
+                        if (dics_rangqiu.ContainsKey(a33) &&fangshi== "竞彩足球胜平负")
+                        {
+                            if (dics_rangqiu[a33].Contains("-") && !rangqiudic.ContainsKey(a1))
+                            {
+                                rangqiudic.Add(a1," 主队让"+ dics_rangqiu[a33].Replace("-","")+"球");
+                            }
+                            if (dics_rangqiu[a33].Contains("+") && !rangqiudic.ContainsKey(a1))
+                            {
+                                rangqiudic.Add(a1, " 主队受让" + dics_rangqiu[a33].Replace("+", "") + "球");
+                            }
+                        }
 
-                        if (value1[i].Groups[3].Value == "胜")
+                            string a2 = "(" + value1[i].Groups[3].Value + ")" + "@" + a33 + "0元";
+
+
+
+                        if (value1[i].Groups[3].Value == "胜" || value1[i].Groups[3].Value == "平"|| value1[i].Groups[3].Value == "负")
                         {
                             a2 =  value1[i].Groups[3].Value  + "@" + a33 + "0元";
                         }
@@ -499,10 +626,26 @@ namespace 体育打票软件
                 string guoguan2 = guoguan;
                 foreach (var item in resultdics.Keys)
                 {
-
-                    sb.Append("第" + a + "场 " + item + "\n" + resultdics[item] + "\n");
+                    if ((rangqiudic.ContainsKey(item) && fangshi == "竞彩足球胜平负") || fangshi == "竞彩足球让球胜平负")
+                    {
+                        fangshi = "竞彩足球让球胜平负";
+                        sb.Append("第" + a + "场 " + item + rangqiudic[item]+"\n" + resultdics[item] + "\n");
+                    }
+                    else
+                    {
+                        sb.Append("第" + a + "场 " + item + "\n" + resultdics[item] + "\n");
+                       
+                    }
                     a = a + 1;
                 }
+
+
+
+
+
+
+
+
 
                 if (guoguan.Contains("单关") && a<3)
                 {
@@ -540,9 +683,10 @@ namespace 体育打票软件
                 Report.ParameterByName("neirong").AsString = sb.ToString();
 
 
-                Report.ParameterByName("dizhi").AsString = address;
+                Report.ParameterByName("dizhi").AsString = ganxieyu + "\n\n" + address;
                 Report.ParameterByName("zhanhao").AsString = haoma;
                 Report.ParameterByName("time").AsString = time;
+                
             }
             catch (Exception ex)
             {

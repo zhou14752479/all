@@ -99,7 +99,7 @@ namespace 体育打票软件
 
             }
 
-           // textBox1.Text = textsb.ToString();
+           textBox1.Text = textsb.ToString();
            
             string[] text0 = textsb.ToString().Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
@@ -142,21 +142,38 @@ namespace 体育打票软件
                     {
                         string a1 = zhous[i].Groups[1].Value;
                         string a2 = results[i].Groups[1].Value;
-                        string a3 = prices[i].Groups[1].Value;
+                        string a3 = prices[i].Groups[1].Value+"元";
                         sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
-                        sb.Append("主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "\n");
+                        sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
+                        if (a2 != "胜")
+                        {
+                            a2 = "(" + a2 + ")";
+                        }
                         sb.Append(a2 + "@" + a3 + "\n");
                     }
                 }
                 else
                 {
                     fangshi = "竞彩足球总进球数";
-                    string a1 = Regex.Match(item, @"周([\s\S]*?)>").Groups[1].Value;
-                    string a2 = Regex.Match(item, @">.*").Groups[0].Value.Replace(">","(").Replace("|", ")@").Replace(",", "元+(")+"元";
-                   
-                    sb.Append("第" + (1) + "场  周" + a1 + "\n");
-                    sb.Append("主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "\n");
-                    sb.Append(a2 + "\n");
+                    //string a1 = Regex.Match(item, @"周([\s\S]*?)>").Groups[1].Value;
+                    //string a2 = Regex.Match(item, @">.*").Groups[0].Value.Replace(">","(").Replace("|", ")@").Replace(",", "元+(")+"元";
+
+                    //sb.Append("第" + (1) + "场  周" + a1 + "\n");
+                    //sb.Append("主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "\n");
+                    //sb.Append(a2 + "\n");
+                    for (int i = 0; i < zhous.Count; i++)
+                    {
+                        string a1 = zhous[i].Groups[1].Value;
+                        string a2 = results[i].Groups[1].Value;
+                        string a3 = prices[i].Groups[1].Value + "元";
+                        sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
+                        sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
+                        if (a2 != "胜")
+                        {
+                            a2 = "(" + a2 + ")";
+                        }
+                        sb.Append(a2 + "@" + a3 + "\n");
+                    }
                 }
                
                 
@@ -187,11 +204,12 @@ namespace 体育打票软件
                 Report.ParameterByName("zhanhao").AsString = haoma;
                 Report.ParameterByName("time").AsString = time;
 
-                Report.Print(false);
+                //Report.Print(false);
+
                // Report.PrintPreview(true);
-                //PreviewForm theForm = new PreviewForm();
-                //theForm.AttachReport(Report);
-                //theForm.ShowDialog();
+                PreviewForm theForm = new PreviewForm();
+                theForm.AttachReport(Report);
+                theForm.ShowDialog();
                 progressBar1.Value = a;
                 //label3.Text = ( ((a / (text0.Length-1)) * 100).ToString() + "%");
                 Thread.Sleep(Convert.ToInt32(textBox3.Text)*1000);

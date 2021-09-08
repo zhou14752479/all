@@ -47,6 +47,14 @@ namespace 主程序202104
             {
                 guoqi = timestamp + 86400*360;
             }
+            if (radioButton7.Checked == true)
+            {
+                guoqi = timestamp + 86400 * 720;
+            }
+            if (radioButton8.Checked == true)
+            {
+                guoqi = timestamp + 86400 * 1000;
+            }
             textBox2.Text = md5 +"asd147"+ guoqi;
         }
     }

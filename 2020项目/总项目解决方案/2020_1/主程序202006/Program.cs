@@ -16,7 +16,7 @@ namespace 主程序202006
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 中策大数据());
+            Application.Run(new Trade_Mark_Search());
         }
     }
 }

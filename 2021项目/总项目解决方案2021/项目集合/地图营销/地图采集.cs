@@ -674,34 +674,34 @@ namespace 地图营销
         }
         private void login_btn_Click(object sender, EventArgs e)
         {
-            //map_method md = new map_method();
-            //if (md.jiance() == false)
-            //{
-            //    MessageBox.Show("当前机器未绑定账号");
-            //    return;
-            //}
+            map_method md = new map_method();
+            if (md.jiance() == false)
+            {
+                MessageBox.Show("当前机器未绑定账号");
+                return;
+            }
 
-            //if (user_text.Text == "" || pass_text.Text == "")
-            //{
-            //    MessageBox.Show("请输入账号和密码");
-            //    return;
-            //}
-            //string html =login(user_text.Text.Trim(), pass_text.Text.Trim());
-            //MessageBox.Show(html.Trim());
-            //if (html.Contains("成功"))
-            //{
-            //    logined = true;
-                
-            //    tabControl1.SelectedIndex = 0;
-            //}
-            //else
-            //{
-            //    logined = false;
-              
-            //}
+            if (user_text.Text == "" || pass_text.Text == "")
+            {
+                MessageBox.Show("请输入账号和密码");
+                return;
+            }
+            string html = login(user_text.Text.Trim(), pass_text.Text.Trim());
+            MessageBox.Show(html.Trim());
+            if (html.Contains("成功"))
+            {
+                logined = true;
 
-            
-          
+                tabControl1.SelectedIndex = 0;
+            }
+            else
+            {
+                logined = false;
+
+            }
+
+
+
         }
 
       

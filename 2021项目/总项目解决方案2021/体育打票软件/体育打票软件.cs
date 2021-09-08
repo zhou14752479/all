@@ -123,7 +123,7 @@ namespace 体育打票软件
 
             html = webBrowser1.Document.Body.OuterHtml;
             ahtml = webBrowser1.DocumentText;
-            //textBox1.Text = html;
+            textBox1.Text = html;
         }
 
 
@@ -160,6 +160,24 @@ namespace 体育打票软件
         private void button3_Click(object sender, EventArgs e)
         {
             webBrowser1.Navigate("https://www.sporttery.cn/jc/jsq/zqhhgg/");
+
+            //List<Task> TaskList = new List<Task>();
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    TaskList.Add(
+            //        Task.Factory.StartNew(() =>
+            //        {
+            //            BeginInvoke(new Action(() =>
+            //            {
+            //                textBox1.Text += i + "\r\n";
+
+            //            }));
+            //        })
+            //    );
+            //}
+          
+            
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
@@ -200,8 +218,15 @@ namespace 体育打票软件
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        public void cishi(string value)
         {
+            MessageBox.Show(value);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        { // Report.Print(true);
+            //Report.PrintPreview(true);
+
             #region 通用检测
 
             if (!function.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"FCUoF"))
@@ -226,8 +251,6 @@ namespace 体育打票软件
 
 
 
-            // Report.Print(true);
-            //Report.PrintPreview(true);
 
 
             PreviewForm theForm = new PreviewForm();
