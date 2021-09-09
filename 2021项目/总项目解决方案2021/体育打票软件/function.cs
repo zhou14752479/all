@@ -375,8 +375,10 @@ namespace 体育打票软件
 
                 }
 
-               resultdics=resultdics.OrderByDescending(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
-                //resultdics = resultdics.OrderBy(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
+                resultdics = resultdics.OrderBy(p => p.Key).ToDictionary(p => p.Key, o => o.Value);//升序
+                //resultdics =resultdics.OrderByDescending(o => o.Key).ToDictionary(o => o.Key, p => p.Value); //降序
+             
+                
                 a = 0;
                 foreach (var item in resultdics.Keys)
                 {

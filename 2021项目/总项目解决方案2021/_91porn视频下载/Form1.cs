@@ -224,7 +224,7 @@ namespace _91porn视频下载
             {
                 textBox1.Text = IniReadValue("values", "time");
                 textBox2.Text = IniReadValue("values", "url");
-              
+                textBox7.Text = IniReadValue("values", "maxuid");
             }
         }
 
@@ -391,8 +391,29 @@ namespace _91porn视频下载
 
                 for (int i = 0; i < uids.Count; i++)
                 {
-                    List<string> list = new List<string>();
                     string uid = uids[i].Groups[1].Value.Trim();
+
+                    if (radioButton1.Checked == true && checkBox1.Checked == true)
+                    {
+                        if (textBox7.Text == "")
+                        {
+                            MessageBox.Show("未输入ID");
+                            return;
+                        }
+                        else
+                        {
+                            if (Convert.ToInt32(uid) < Convert.ToInt32(textBox7.Text))
+                            {
+                                label6.Text = "UID不符合跳过：" + uid + ".......";
+                                continue;
+                            }
+                        }
+                    }
+
+
+
+                    List<string> list = new List<string>();
+                   
                     string title = removeValid(titles[i].Groups[1].Value.Trim().Replace(" ", ""));
                     string author = authors[i].Groups[1].Value.Trim().Replace(" ", "");
 
@@ -432,7 +453,7 @@ namespace _91porn视频下载
 
                     label6.Text = "正在下载：" + uid + ".......";
 
-                    downloadFile(mp4url, path, author + "-" + title + ".mp4", "");
+                    downloadFile(mp4url, path, uid+"-"+author + "-" + title + ".mp4", "");
 
 
 
@@ -469,20 +490,28 @@ namespace _91porn视频下载
 
             #endregion
 
-            timer1.Start();
-            timer1.Interval = Convert.ToInt32(textBox1.Text)*1000*60;
+            if(radioButton1.Checked==true)
+            {
+                timer1.Start();
+                timer1.Interval = Convert.ToInt32(textBox1.Text) * 1000 * 60;
+            }
+            if (radioButton2.Checked == true)
+            {
+                timer1.Stop();
+            }
+
             IniWriteValue("values", "time", textBox1.Text.ToString());
             IniWriteValue("values", "url", textBox2.Text.ToString());
+            IniWriteValue("values", "maxuid", textBox7.Text.ToString());
+
 
             if (thread == null || !thread.IsAlive)
-            if (thread == null || !thread.IsAlive)
-            if (thread == null || !thread.IsAlive)
-                    {
+            {
                 thread = new Thread(run1);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
-           
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -71,6 +72,59 @@ namespace 启动程序
 
         #endregion
 
+
+        public string posturl2(string url,string body)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
+            request.KeepAlive = true;
+            request.Headers.Add("v", @"3.95");
+            request.Headers.Set(HttpRequestHeader.Authorization, "Bearer "+token);
+            request.ContentType = "application/json";
+            request.Headers.Add("sec-ch-ua-mobile", @"?0");
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36";
+            request.Headers.Add("OriginV", @"3.95");
+            request.Headers.Add("sec-ch-ua", @"""Chromium"";v=""92"", "" Not A;Brand"";v=""99"", ""Google Chrome"";v=""92""");
+            request.Accept = "*/*";
+            request.Headers.Add("Origin", @"https://www.tcpjw.com");
+            request.Headers.Add("Sec-Fetch-Site", @"same-origin");
+            request.Headers.Add("Sec-Fetch-Mode", @"cors");
+            request.Headers.Add("Sec-Fetch-Dest", @"empty");
+            request.Referer = "https://www.tcpjw.com/B2BHall/";
+            request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
+            request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh,sq;q=0.9,zh-CN;q=0.8,oc;q=0.7,de;q=0.6,en;q=0.5");
+            request.Headers.Set(HttpRequestHeader.Cookie, cookie);
+
+            request.Method = "POST";
+            request.ServicePoint.Expect100Continue = false;
+
+            
+            byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
+            request.ContentLength = postBytes.Length;
+            Stream stream = request.GetRequestStream();
+            stream.Write(postBytes, 0, postBytes.Length);
+            stream.Close();
+
+           HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string html = "";
+            if (response.Headers["Content-Encoding"] == "gzip")
+            {
+
+                GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding("utf-8"));
+                html = reader.ReadToEnd();
+                reader.Close();
+            }
+            else
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                html = reader.ReadToEnd();
+                reader.Close();
+            }
+           
+           
+            return html;
+        }
         static string token = "";
         public 票据网()
         {
@@ -138,11 +192,12 @@ namespace 启动程序
         {
             string dealPrice = getdealPrice(ticketId);
             string url = "https://www.tcpjw.com/order-web/orderFlow/quoteOrder";
-            //string postdata = "{\"SOURCE\":\"HTML\",\"VERSION\":\"3.5\",\"CHANNEL\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+ paytype + ",\"endorseId\":"+ endorseId + ",\"yearRate\":"+yearrate+",\"dealPrice\":"+ dealPrice + ",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false}";
-            string postdata = "{\"version\":\"3.5\",\"source\":\"HTML\",\"channel\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+paytype+",\"endorseId\":"+endorseId+",\"yearRate\":"+yearrate+",\"dealPrice\":"+dealPrice+",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false,\"tradeNo\":\""+tradeNo+"\",\"bankName\":\""+bankname+"\",\"endTime\":\""+endtime+"\",\"flawStatusDescrption\":\"0\",\"fastTrade\":false,\"agentCouponType\":\" - 1\"}";
+            string postdata = "{\"SOURCE\":\"HTML\",\"VERSION\":\"3.5\",\"CHANNEL\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+ paytype + ",\"endorseId\":"+ endorseId + ",\"yearRate\":"+yearrate+",\"dealPrice\":"+ dealPrice + ",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false}";
+            //string postdata = "{\"version\":\"3.5\",\"source\":\"HTML\",\"channel\":\"01\",\"ticketId\":"+ticketId+",\"hundredThousandCharge\":\""+ ThousandCharge + "\",\"payType\":"+paytype+",\"endorseId\":"+endorseId+",\"yearRate\":"+yearrate+",\"dealPrice\":"+dealPrice+",\"ticketPrice\":"+ticketPrice+",\"ticketType\":"+ticketType+",\"useDefault\":false,\"tradeNo\":\""+tradeNo+"\",\"bankName\":\""+bankname+"\",\"endTime\":\""+endtime+"\",\"flawStatusDescrption\":\"0\",\"fastTrade\":false,\"agentCouponType\":\" - 1\"}";
 
 
-            string html = PostUrl(url, postdata, cookie, "utf-8");
+            // string html = PostUrl(url, postdata, cookie, "utf-8");
+            string html = posturl2(url, postdata);
             textBox6.Text += DateTime.Now.ToString() + "：" + html + "\r\n";
             //MessageBox.Show(html);
         }
@@ -153,7 +208,7 @@ namespace 启动程序
         public void run()
         {
             cookie = method.GetCookies("https://www.tcpjw.com/tradingHall");
-            
+          
             if (cookie == "")
             {
                 MessageBox.Show("未登录");
@@ -163,14 +218,16 @@ namespace 启动程序
 
             token = Regex.Replace(tk1, @";.*", "");
 
-            MessageBox.Show(token);
+         
             try
             {
                 string url = "https://www.tcpjw.com/tradingHall-web/tradingHall/getTradingOrderInfo";
-                string postdata = "{\"source\":\"HTML\",\"version\":\"3.5\",\"channel\":\"01\",\"pageNum\":1,\"pageSize\":15,\"tradeStatus\":null,\"payType\":"+paytype+",\"bid\":"+bid+",\"bankName\":"+bankName+",\"lastTime\":"+lasttime+",\"lastTimeStart\":null,\"lastTimeEnd\":null,\"startDate\":null,\"endDate\":null,\"flawStatus\":\""+flawStatus+"\",\"priceType\":"+pricetype+",\"priceSp\":"+priceSp+",\"priceEp\":"+priceEp+",\"yearQuote\":"+yearQuote+",\"msw\":"+msw+",\"mswStart\":null,\"mswEnd\":null,\"orderColumn\":null,\"sortType\":\"\",\"depositPay\":"+depositPay+"}";
-                
-                string html = PostUrl(url,postdata,cookie,"utf-8");
                
+                string postdata = "{\"source\":\"HTML\",\"version\":\"3.5\",\"channel\":\"01\",\"pageNum\":1,\"pageSize\":15,\"tradeStatus\":null,\"payType\":"+paytype+",\"bid\":"+bid+",\"bankName\":"+bankName+",\"lastTime\":"+lasttime+",\"lastTimeStart\":null,\"lastTimeEnd\":null,\"startDate\":null,\"endDate\":null,\"flawStatus\":\""+flawStatus+"\",\"priceType\":"+pricetype+",\"priceSp\":"+priceSp+",\"priceEp\":"+priceEp+",\"yearQuote\":"+yearQuote+",\"msw\":"+msw+",\"mswStart\":null,\"mswEnd\":null,\"orderColumn\":null,\"sortType\":\"\",\"depositPay\":"+depositPay+"}";
+
+                //string body = @"{""version"":""3.5"",""source"":""HTML"",""channel"":""01"",""pageNum"":1,""pageSize"":15,""payType"":null,""payTypes"":null,""bid"":null,""bankName"":null,""lastTime"":null,""lastMonthTimeList"":[],""lastTimeStart"":null,""lastTimeEnd"":null,""startDate"":null,""endDate"":null,""flawStatusList"":[],""priceType"":null,""priceSp"":null,""priceEp"":null,""yearQuote"":null,""msw"":null,""mswStart"":null,""mswEnd"":null,""orderColumn"":null,""sortType"":"""",""depositPay"":null,""blackBankName"":null,""isCollected"":false,""orderStatus"":null,""orderStatusDataFewDays"":""1"",""isSpj"":false,""isCurUserPublish"":false,""queryBillAmount"":null,""fastTrade"":false,""noMoreThanNums"":"""",""issueDailyNoMoreThanNums"":"""",""recentDays"":null,""recentDaysNoMoreThanNums"":"""",""noMoreThanTodayNums"":"""",""faceKeyWords"":null,""endorseKeyWords"":null,""billDateDifference"":false,""hideDistrictLimit"":true}";
+                string html = posturl2(url,postdata);
+             
                 MatchCollection ids = Regex.Matches(html, @"""ticketId"":([\s\S]*?),");
                 
                 MatchCollection a1s = Regex.Matches(html, @"""publishTime"":""([\s\S]*?)""");
@@ -218,7 +275,7 @@ namespace 启动程序
                     {
                         xiadans.Add(ticketid);
                         buy(ticketid, ThousandCharge, paytype, endorseId, yearrate, ticketPrice, ticketType,dealPrice,tradeno,bankname,endtime);
-
+                        
                     }
 
 
@@ -448,7 +505,7 @@ namespace 启动程序
         Thread thread;
         private void Timer1_Tick(object sender, EventArgs e)
         {
-           // listView1.Items.Clear();
+            listView1.Items.Clear();
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -481,7 +538,9 @@ namespace 启动程序
             }
         }
 
-
-
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            webBrowser1.Refresh();
+        }
     }
 }

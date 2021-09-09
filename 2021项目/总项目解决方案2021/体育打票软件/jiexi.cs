@@ -142,10 +142,10 @@ namespace 体育打票软件
                     {
                         string a1 = zhous[i].Groups[1].Value;
                         string a2 = results[i].Groups[1].Value;
-                        string a3 = prices[i].Groups[1].Value+"元";
-                        sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
+                        string a3 = prices[i].Groups[1].Value+"0元";
+                        sb.Append("第" + (i + 1) + "场周" + a1 + "\n");
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
-                        if (a2 != "胜")
+                        if (a2 != "胜" && a2 != "平" && a2 != "负" )
                         {
                             a2 = "(" + a2 + ")";
                         }
@@ -165,30 +165,21 @@ namespace 体育打票软件
                     {
                         string a1 = zhous[i].Groups[1].Value;
                         string a2 = results[i].Groups[1].Value;
-                        string a3 = prices[i].Groups[1].Value + "元";
-                        sb.Append("第" + (i + 1) + "场  周" + a1 + "\n");
+                        string a3 = prices[i].Groups[1].Value + "0元";
+                        sb.Append("第" + (i + 1) + "场 周" + a1 + "\n");
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
-                        if (a2 != "胜")
+                        if (a2 != "胜" && a2 != "平" && a2 != "负")
                         {
                             a2 = "(" + a2 + ")";
                         }
                         sb.Append(a2 + "@" + a3 + "\n");
                     }
                 }
-               
-                
+                string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
+                string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
+                string jiangjin = "";
+               // sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
 
-
-                
-
-
-
-
-               
-
-               
-
-               
 
 
 
@@ -201,6 +192,7 @@ namespace 体育打票软件
                 Report.ParameterByName("jine").AsString = jine;
                 Report.ParameterByName("neirong").AsString = sb.ToString();
 
+                Report.ParameterByName("dizhi").AsString = ganxieyu + "\n\n" + address;
                 Report.ParameterByName("zhanhao").AsString = haoma;
                 Report.ParameterByName("time").AsString = time;
 

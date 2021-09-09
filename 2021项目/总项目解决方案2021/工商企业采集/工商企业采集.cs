@@ -259,15 +259,14 @@ namespace 工商企业采集
                             Thread.Sleep(600);
                             label7.Text = DateTime.Now.ToLongTimeString() + "正在提取：" + entName[i].Groups[1].Value;
                             string tel = gettel(uids[i].Groups[1].Value);
-                            if (radioButton2.Checked == true)
-                            {
-                                if (tel == "")
-                                {
-                                    label7.Text = DateTime.Now.ToLongTimeString() + "正在提取：" + entName[i].Groups[1].Value + "--无手机号跳过";
-                                    continue;
-                                }
 
+                            if (tel.Trim() == "")
+                            {
+                                label7.Text = DateTime.Now.ToLongTimeString() + "正在提取：" + entName[i].Groups[1].Value + "--无手机号跳过";
+                                continue;
                             }
+
+
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString());
                             lv1.SubItems.Add(entName[i].Groups[1].Value);
                             lv1.SubItems.Add(legalPerson[i].Groups[1].Value);
@@ -356,6 +355,10 @@ namespace 工商企业采集
         {
             comboBox7.Items.Clear();
             comboBox7.Items.Add("不限");
+            if (comboBox6.Text == "不限")
+            {
+                return;
+            }
             StreamReader sr = new StreamReader(path + "data\\city.json", method.EncodingType.GetTxtType(path + "data\\city.json"));
             //一次性读取完 
             string jsonText = sr.ReadToEnd();
@@ -389,8 +392,13 @@ namespace 工商企业采集
 
         public void getareafromJson()
         {
+
             comboBox8.Items.Clear();
             comboBox8.Items.Add("不限");
+            if (comboBox7.Text == "不限")
+            {
+                return;
+            }
             StreamReader sr = new StreamReader(path + "data\\city.json", method.EncodingType.GetTxtType(path + "data\\city.json"));
             //一次性读取完 
             string jsonText = sr.ReadToEnd();

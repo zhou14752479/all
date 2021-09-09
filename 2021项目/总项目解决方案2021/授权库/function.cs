@@ -15,7 +15,7 @@ namespace 授权库
 {
     class function
     {
-       public static string constr = "Host =localhost;Database=shouquanku;Username=root;Password=root";
+       public static string constr = "Host =8.134.91.137;Database=shouquanku;Username=root;Password=root";
 
         #region  注册函数
 
