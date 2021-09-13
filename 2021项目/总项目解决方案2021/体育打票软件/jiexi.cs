@@ -138,17 +138,48 @@ namespace 体育打票软件
                 if (item.Contains("胜") || item.Contains("平") || item.Contains("负"))
                 {
                     fangshi = "竞彩足球混合过关";
+                    string houzhui = " 总进球数";
                     for (int i = 0; i < zhous.Count; i++)
                     {
                         string a1 = zhous[i].Groups[1].Value;
                         string a2 = results[i].Groups[1].Value;
                         string a3 = prices[i].Groups[1].Value;
-                        sb.Append("第" + (i + 1) + "场周" + a1 + "\n");
-                        sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
-                        if (a2 != "胜" && a2 != "平" && a2 != "负" )
+
+
+                        if (a2 == "胜" || a2 == "平" || a2 == "负")
+                        {
+                            fangshi = "竞彩足球胜平负";
+                            houzhui = " 胜平负";
+                        }
+                        else if (a2 == "让胜" || a2 == "让平" || a2 == "让负")
+                        {
+                            fangshi = "竞彩足球胜平负";
+                            houzhui = " 让球胜平负";
+                        }
+                        else if (a2.Contains(":"))
+                        {
+                            fangshi = "竞彩足球比分";
+                            houzhui = " 比分";
+                        }
+                        else if (a2.Contains("胜胜")|| a2.Contains("胜平") || a2.Contains("胜负") || a2.Contains("平胜") || a2.Contains("平平") || a2.Contains("平负") || a2.Contains("负胜") || a2.Contains("负平") || a2.Contains("负负"))
+                        {
+                            fangshi = "竞彩足球半全场胜平负";
+                            houzhui = " 比分";
+                        }
+                        else
+                        {
+                            fangshi = "竞彩足球总进球数";
+                            houzhui = " 总进球数";
+                        }
+
+                        if (a2 != "胜" && a2 != "平" && a2 != "负")
                         {
                             a2 = "(" + a2 + ")";
                         }
+
+                        sb.Append("第" + (i + 1) + "场周" + a1+houzhui + "\n");
+                        sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
+                      
                         sb.Append(a2 + "@" + a3 + "0元\n");
                         jiangjin = jiangjin * Convert.ToDouble(a3);
                     }
@@ -156,6 +187,7 @@ namespace 体育打票软件
                 else
                 {
                     fangshi = "竞彩足球总进球数";
+                    string houzhui = " 总进球数";
                     //string a1 = Regex.Match(item, @"周([\s\S]*?)>").Groups[1].Value;
                     //string a2 = Regex.Match(item, @">.*").Groups[0].Value.Replace(">","(").Replace("|", ")@").Replace(",", "元+(")+"元";
 
@@ -168,7 +200,7 @@ namespace 体育打票软件
                         string a1 = zhous[i].Groups[1].Value;
                         string a2 = results[i].Groups[1].Value;
                         string a3 = prices[i].Groups[1].Value;
-                        sb.Append("第" + (i + 1) + "场 周" + a1 + "\n");
+                        sb.Append("第" + (i + 1) + "场 周" + a1+houzhui+ "\n");
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
                         if (a2 != "胜" && a2 != "平" && a2 != "负")
                         {
@@ -186,7 +218,7 @@ namespace 体育打票软件
                 string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
                
                 // sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + text1[4].Replace("串", "×") + ";共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + text1[4].Replace("串", "×")+"*1注" + ";共" + zhushu + "注");
 
 
 

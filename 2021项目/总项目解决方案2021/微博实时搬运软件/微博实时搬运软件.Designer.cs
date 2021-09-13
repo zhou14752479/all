@@ -91,7 +91,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(740, 110);
+            this.button3.Location = new System.Drawing.Point(743, 65);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 36);
             this.button3.TabIndex = 412;
@@ -122,7 +122,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.label4.Location = new System.Drawing.Point(515, 180);
+            this.label4.Location = new System.Drawing.Point(8, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(263, 12);
             this.label4.TabIndex = 409;
@@ -149,11 +149,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(17, 90);
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBox1.Location = new System.Drawing.Point(3, 123);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(481, 112);
+            this.textBox1.Size = new System.Drawing.Size(867, 106);
             this.textBox1.TabIndex = 405;
             this.textBox1.WordWrap = false;
             // 
@@ -161,11 +162,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.Location = new System.Drawing.Point(14, 63);
+            this.label2.Location = new System.Drawing.Point(14, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 14);
+            this.label2.Size = new System.Drawing.Size(133, 14);
             this.label2.TabIndex = 404;
-            this.label2.Text = "文章尾部文字图片链接：";
+            this.label2.Text = "文章尾部文字图片：";
             // 
             // textBox2
             // 
@@ -188,7 +189,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(638, 110);
+            this.button2.Location = new System.Drawing.Point(641, 65);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 36);
             this.button2.TabIndex = 401;
@@ -198,7 +199,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(532, 110);
+            this.button1.Location = new System.Drawing.Point(535, 65);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 36);
             this.button1.TabIndex = 399;

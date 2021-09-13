@@ -75,7 +75,7 @@ namespace _91porn视频下载
         public static string GetUrl(string Url, string charset)
         {
             string html = "";
-            string COOKIE = "language=cn_CN;";
+            string COOKIE = "CLIPSHARE=6hgbrkadf37ucm9sb1lciu85k6; __utma=63181224.1165478261.1631491585.1631491585.1631491585.1; __utmb=63181224.0.10.1631491585; __utmc=63181224; __utmz=63181224.1631491585.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); covid19=c51cQ%2B6uZlcHf66r9eyq7ihHSiuxVmauLito8JT9;language=cn_CN;";
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;

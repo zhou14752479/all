@@ -33,19 +33,19 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL">
-      <HintPath>..\..\CsharpSelenium\CsharpSelenium\bin\Debug\myDLL.dll</HintPath>
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\..\CsharpSelenium\CsharpSelenium\bin\Debug\NPOI.dll</HintPath>
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\CsharpSelenium\CsharpSelenium\bin\Debug\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\CsharpSelenium\CsharpSelenium\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\CsharpSelenium\CsharpSelenium\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

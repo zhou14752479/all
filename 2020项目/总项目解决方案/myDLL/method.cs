@@ -60,7 +60,7 @@ namespace myDLL
                 request.KeepAlive = true;
                 request.Accept = "*/*";
                 request.Timeout = 5000;
-              
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {
 
@@ -312,7 +312,7 @@ namespace myDLL
                 //headers.Add("upgrade-insecure-requests: 1");
                 //添加头部
                 request.ContentType = "application/x-www-form-urlencoded";
-               
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
                 //request.ContentType = "application/json";
                 request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 // request.ContentLength = postData.Length;

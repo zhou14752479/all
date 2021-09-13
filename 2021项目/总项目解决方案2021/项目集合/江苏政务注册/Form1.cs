@@ -473,6 +473,7 @@ namespace 江苏政务注册
 
 
             #endregion
+
             if (textBox5.Text == "")
             {
                 MessageBox.Show("请先导入数据表格");
@@ -590,6 +591,11 @@ namespace 江苏政务注册
         private void timer2_Tick(object sender, EventArgs e)
         {
             setcookies();
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
