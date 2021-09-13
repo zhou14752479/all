@@ -49,6 +49,7 @@
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\2020项目\总项目解决方案\2020_1\58二手房\bin\Debug\HttpHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL">
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>

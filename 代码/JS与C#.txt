@@ -40,13 +40,19 @@
 
 
 含参数的getaes JS函数输入参数430......118 获取返回值
-
    webBrowser1.Document.InvokeScript("getaes", new object[] { "430111198706162118" });
+不含参数，无返回值的JS执行
+ webBrowser1.Document.InvokeScript("ceshi");
+不含参数，有返回值的JS执行
+ string value=  webBrowser1.Document.InvokeScript("ceshi").ToString();
+
+获取执行后的网页代码
             string html = webBrowser1.Document.Body.OuterHtml;
             textBox1.Text = html;
 
-或者webBrowser1.Document.InvokeScript("getaes", new object[] { "430111198706162118" }).ToString();
 
+含参数的getaes JS函数输入参数430......118 获取返回值
+textBox1.Text =webBrowser1.Document.InvokeScript("getaes", new object[] { "430111198706162118" }).ToString();
 
 
 

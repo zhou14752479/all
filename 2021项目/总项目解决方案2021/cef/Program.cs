@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 地图营销
+namespace cef
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 地图营销
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 后台管理());
+            Application.Run(new Form1());
         }
     }
 }

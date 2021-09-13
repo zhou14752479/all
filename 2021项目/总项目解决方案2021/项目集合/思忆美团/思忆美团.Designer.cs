@@ -445,7 +445,7 @@
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(111, 101);
             this.textBox2.TabIndex = 128;
-            this.textBox2.Text = "婚纱摄影\r\n鲜花\r\n亲子会所\r\n家政服务\r\n汽车服务\r\n管道疏通\r\n母婴亲子\r\n电器数码\r\n幼儿教育\r\n装修建材\r\n幼儿教育\r\n汽车服务\r\n洗涤护理";
+            this.textBox2.Text = "超市/便利店";
             // 
             // comboBox1
             // 

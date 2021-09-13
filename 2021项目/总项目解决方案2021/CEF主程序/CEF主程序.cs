@@ -23,16 +23,17 @@ namespace CEF主程序
        public static string body = "";
         private void CEF主程序_Load(object sender, EventArgs e)
         {
-            browser = new ChromiumWebBrowser("http://app.tk1788.com/app/superscanPH/loginPHValidate.jsp");
+            browser = new ChromiumWebBrowser("https://www.douyin.com/video/7005113957069491470?previous_page=recommend&tab_name=recommend");
+            //browser = new ChromiumWebBrowser("http://app.tk1788.com/app/superscanPH/loginPHValidate.jsp");
             // Cef.Initialize(new CefSettings());
-            
+
 
             Control.CheckForIllegalCrossThreadCalls = false;
             panel1.Controls.Add(browser);
 
             browser.Dock = DockStyle.Fill;
 
-           browser.FrameLoadEnd += Browser_FrameLoadEnd;
+          //browser.FrameLoadEnd += Browser_FrameLoadEnd;
            browser.RequestHandler = new WinFormsRequestHandler();//request请求的具体实现
           
 

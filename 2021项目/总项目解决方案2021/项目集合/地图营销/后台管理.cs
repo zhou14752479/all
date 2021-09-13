@@ -37,6 +37,7 @@ namespace 地图营销
             }
 
             Control.CheckForIllegalCrossThreadCalls = false;
+           
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -86,6 +87,8 @@ namespace 地图营销
                 }
 
             }
+
+          
         }
 
         public void register()
@@ -120,12 +123,27 @@ namespace 地图营销
             getall();
 
 
+        }
 
+        public void autodelete()
+        {
+
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                if(Convert.ToDateTime(listView1.Items[i].SubItems[3].Text)<DateTime.Now)
+                {
+                    string url = "http://www.acaiji.com/shangxueba/shangxueba.php?method=del&username=" + listView1.Items[i].SubItems[1].Text.Trim();
+                    string html = method.GetUrl(url, "utf-8");
+                }
+               
+              
+            }
+
+
+            getall();
 
 
         }
-
-       
 
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
@@ -307,6 +325,14 @@ namespace 地图营销
            browser.Refresh();
         }
 
-       
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(autodelete);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
     }
 }

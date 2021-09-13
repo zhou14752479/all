@@ -37,6 +37,7 @@
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -194,6 +194,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数配置";
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(33, 7);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(217, 21);
+            this.textBox3.TabIndex = 26;
+            this.textBox3.Text = "17ac1b2dd2f3-19df7a4caadc8e-0-0-17ac1b2dd309e";
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(112, 127);
@@ -279,7 +287,7 @@
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(117, 117);
             this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "咖啡店";
+            this.textBox2.Text = "便利店";
             // 
             // textBox1
             // 
@@ -446,14 +454,6 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "思忆美团";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(33, 7);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(217, 21);
-            this.textBox3.TabIndex = 26;
-            this.textBox3.Text = "17ac1d2f96bc8-21fe451de940f0-0-0-17ac1d2f96bc8";
             // 
             // Form1
             // 

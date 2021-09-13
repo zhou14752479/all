@@ -87,7 +87,7 @@ namespace 通用项目
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+               // MessageBox.Show(ex.ToString());
                 return ex.ToString();
 
             }

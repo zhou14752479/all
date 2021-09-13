@@ -332,19 +332,15 @@ namespace 启动程序
 
             }
 
-            
-            if (radioButton1.Checked == true)
+            //支付渠道
+            if (checkBox10.Checked == true)
             {
-                paytype="\"1\"";
+                paytype="\"4\"";
             }
-            if (radioButton2.Checked == true)
-            {
-                paytype = "\"2\"";
-            }
-            if (radioButton3.Checked == true)
-            {
-                paytype = "\"3\"";
-            }
+           
+
+
+
             //保证金
             if (radioButton4.Checked == true)
             {
@@ -524,7 +520,7 @@ namespace 启动程序
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.Default);
+                StreamReader sr = new StreamReader(openFileDialog1.FileName, Encoding.GetEncoding("utf-8"));
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);

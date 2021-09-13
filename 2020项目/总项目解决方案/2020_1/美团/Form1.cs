@@ -48,17 +48,19 @@ namespace 美团
         {
             try
             {
+                string cookie = "uuid=d4ed531caca4429a9281.1631231963.1.0.0; _lxsdk_cuid=178002168e9c8-00e8f9125e0e71-31346d-1fa400-178002168e9c8; mtcdn=K; lsu=; ci=10; rvct=10%2C1; u=875973616; n=Ffv936639060; lt=2xR2Up_TMj8fkl1Q7IbnVs44HJEAAAAAlw4AAFNNMOWiEU7VciIfQQau1Wb8IbWWJuT0oDTl5HA_PLjdvLr8Z_BSDcwHBip5GN9G7Q; mt_c_token=2xR2Up_TMj8fkl1Q7IbnVs44HJEAAAAAlw4AAFNNMOWiEU7VciIfQQau1Wb8IbWWJuT0oDTl5HA_PLjdvLr8Z_BSDcwHBip5GN9G7Q; token=2xR2Up_TMj8fkl1Q7IbnVs44HJEAAAAAlw4AAFNNMOWiEU7VciIfQQau1Wb8IbWWJuT0oDTl5HA_PLjdvLr8Z_BSDcwHBip5GN9G7Q; token2=2xR2Up_TMj8fkl1Q7IbnVs44HJEAAAAAlw4AAFNNMOWiEU7VciIfQQau1Wb8IbWWJuT0oDTl5HA_PLjdvLr8Z_BSDcwHBip5GN9G7Q; unc=Ffv936639060; client-id=19ef4321-8aba-43c9-b8ef-f486266769a7; firstTime=1631263039473; _hc.v=0cabea1e-3c40-18cb-777c-d11bd422adc1.1631263040; lat=31.165902; lng=121.096447; _lxsdk_s=17bceda6996-d2e-c88-826%7C%7C7";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4(0x1800042c) NetType/WIFI Language/zh_CN";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
+               // request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat";
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("clientversion: 2.16.1");
                 headers.Add("myLat: 118.24239");
                 headers.Add("openId: oJVP50IRqKIIshugSqrvYE3OHJKQ");
                 headers.Add("uuid: "+textBox3.Text);
-                headers.Add("token: o12WUQ68y4BX_6EHZHILSxIDU9kAAAAADA4AAC5y1B7soOXKI6GymX-V4sc1jBnEIsZ8tpQ8XAQprXVstWD6oAP4VluxhaeWUHXMUw");
+                headers.Add("token: gORmhG3WtAc9Pfr4vTbhivSxQk0AAAAADA4AAPrp_ewNUU2qGaRBE9FjidEQTVrC4_z5BShh7mlouJWGaKp4u3_FM5r8Gh5U2I2LrQ");
                 headers.Add("openIdCipher:AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADiKABSEHqf6ddkKfPmtaxPf7h5fT5I7TIBL1SNaE66D+vjeYYWFzWcStaSbcTncER5tI+u6RodKxw==");
                 request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/766/page-frame.html";
+                request.Headers.Add("Cookie", cookie);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -243,15 +245,11 @@ namespace 美团
 
                     string cityId = GetcityId(city);
 
-                    // ArrayList areas = getareas(cityId);
-                    ArrayList areas = new ArrayList();
+                    ArrayList areas = getareas(cityId);
+                   // ArrayList areas = new ArrayList();
 
 
-                 
-                    areas.Add("2779");
-                    areas.Add("55");
-                    areas.Add("56");
-                    areas.Add("2781");
+         
                     foreach (string keyword in keywords)
 
                     {
@@ -274,13 +272,15 @@ namespace 美团
                                 ArrayList lists = new ArrayList();
                                 foreach (Match NextMatch in all)
                                 {
-                                   
+
 
                                     //https://apimobile.meituan.com/group/v1/poi/194905459?fields=areaName,frontImg,name,avgScore,avgPrice,addr,openInfo,wifi,phone,featureMenus,isWaimai,payInfo,chooseSitting,cates,lat,lng
-                                    //lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
+                                    // lists.Add("https://mapi.meituan.com/general/platform/mtshop/poiinfo.json?poiid=" + NextMatch.Groups[1].Value);
                                     //lists.Add("http://i.meituan.com/poi/" + NextMatch.Groups[1].Value);
-                                   // lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
-                                    lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
+                                    //lists.Add("https://i.meituan.com/wrapapi/poiinfo?poiId=" + NextMatch.Groups[1].Value);
+                                    //lists.Add("https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + NextMatch.Groups[1].Value + "&isDaoZong=true");  
+                                    lists.Add("https://www.meituan.com/meishi/"+ NextMatch.Groups[1].Value + "/");
+
                                 }
 
                              
@@ -305,11 +305,11 @@ namespace 美团
                                     Match score = Regex.Match(strhtml1, @"score"":([\s\S]*?),");
                                     Match lnt = Regex.Match(strhtml1, @"lng"":([\s\S]*?),");
                                     Match lat = Regex.Match(strhtml1, @"lat"":([\s\S]*?),");
-                                    if (name.Groups[1].Value == "")
-                                    {
-                                        zanting = false;
-                                        MessageBox.Show("切换uuid");
-                                    }
+                                    //if (name.Groups[1].Value == "")
+                                    //{
+                                       
+                                    //    MessageBox.Show("切换uuid");
+                                    //}
 
                                     while (this.zanting == false)
                                     {

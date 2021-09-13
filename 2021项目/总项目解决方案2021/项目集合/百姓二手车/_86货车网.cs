@@ -43,7 +43,7 @@ namespace 百姓二手车
                     Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
                     Cookie = "__yjs_duid=1_fdfa677e2fbb98bb942b9ba073a91a621629883285824; UM_distinctid=17b7c9d43bb585-08637ea2b95e6d-4343363-1fa400-17b7c9d43bc2c0; __gads=ID=76592425d54e9c9d-2268c18c1bcb0099:T=1629883287:RT=1629883287:S=ALNI_MYmi41S79K7r9abEfQR8HPgZiVOFg; Hm_lvt_f842c043ced087368ebcd293e788bad4=1629883287,1629940250,1630292867; CNZZDATA2228403=cnzz_eid%3D435990255-1629881780-https%253A%252F%252Fwww.86huoche.com%252F%26ntime%3D1630290788",
                     Host = "m.86huoche.com",
-                    //Timeout=5000,
+                    Timeout=5000,
                 };
                 item.Header.Add("sec-ch-ua", "\"Chromium\";v=\"92\", \" Not A; Brand\";v=\"99\", \"Google Chrome\";v=\"92\"");
                 item.Header.Add("sec-ch-ua-mobile", "?0");

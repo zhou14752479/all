@@ -165,13 +165,13 @@ namespace 思忆美团
 
         private void start_btn_Click(object sender, EventArgs e)
         {
-            //if (functions.username == "")
-            //{
-            //    infolabel.Text = "请登录账号！";
-            //    MessageBox.Show("请登录账号！");
-            //    tabControl1.SelectedIndex = 2;
-            //    return;
-            //}
+            if (functions.username == "")
+            {
+                infolabel.Text = "请登录账号！";
+                MessageBox.Show("请登录账号！");
+                tabControl1.SelectedIndex = 2;
+                return;
+            }
 
             if (textBox1.Text == "")
             {
@@ -212,7 +212,7 @@ namespace 思忆美团
         #region  主程序
         public void run()
         {
-            string ip = getip();
+           // string ip = getip();
             try
             {
                 string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -239,14 +239,15 @@ namespace 思忆美团
 
                                 //string url = "https://i.meituan.com/vc/mt/fetchshoplist?token=39pMg6p8dEzUfp82NE4rjMfAwsgAAAAATQ4AANerOltwtpdK-CJEtHJAK5PM2u-NyclkWElCk8dSVMDyeOibKNtY7dzH7c8qBLtlaA&cityid="+cityid+ "&cateid=" + cateid + "&categoryids=" + cateid+"&lat=33.939921&lng=118.253346&userid=875973616&uuid=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&utmsource=mtsy&utmmedium=iphone&utmterm=11.10.402&utmcontent=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&versionname=11.10.402&utmcampaign=AgroupBgroupD200Ghomepage_category8_20691__a1__c__e0H0&mock=0&miniProgram=false&start="+page+"&limit=20&areaid="+areaid+"&distance=&subwaylineid=&subwaystationid=&sort=2";
                                 string html = functions.GetUrl(url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-                               // string html = functions.GetUrlwithIP(url, ip,"","utf-8");
-                                if (html == "" || html == null)
-                                {
-                                    ip = getip();
-                                    infolabel.Text = ip;
-                                    page = page - 1;
-                                    continue;
-                                }
+                              
+                                // string html = functions.GetUrlwithIP(url, ip,"","utf-8");
+                                //if (html == "" || html == null)
+                                //{
+                                //    ip = getip();
+                                //    infolabel.Text = ip;
+                                //    page = page - 1;
+                                //    continue;
+                                //}
                                 MatchCollection names = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
                                 MatchCollection address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
                                 MatchCollection phone = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");

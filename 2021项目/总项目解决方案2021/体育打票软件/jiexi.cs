@@ -129,7 +129,7 @@ namespace 体育打票软件
                 string beishu = Regex.Replace(text1[2], ".*/", "");
                 string jine = text1[3];
                 string guoguan = "过关方式 " + text1[4].Replace("串", "×");
-
+                double jiangjin = 1;
                 //周三002>让平|3.00
                 MatchCollection zhous = Regex.Matches(item, @"周([\s\S]*?)>");
                 MatchCollection results = Regex.Matches(item, @">([\s\S]*?)\|");
@@ -142,14 +142,15 @@ namespace 体育打票软件
                     {
                         string a1 = zhous[i].Groups[1].Value;
                         string a2 = results[i].Groups[1].Value;
-                        string a3 = prices[i].Groups[1].Value+"0元";
+                        string a3 = prices[i].Groups[1].Value;
                         sb.Append("第" + (i + 1) + "场周" + a1 + "\n");
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
                         if (a2 != "胜" && a2 != "平" && a2 != "负" )
                         {
                             a2 = "(" + a2 + ")";
                         }
-                        sb.Append(a2 + "@" + a3 + "\n");
+                        sb.Append(a2 + "@" + a3 + "0元\n");
+                        jiangjin = jiangjin * Convert.ToDouble(a3);
                     }
                 }
                 else
@@ -161,25 +162,31 @@ namespace 体育打票软件
                     //sb.Append("第" + (1) + "场  周" + a1 + "\n");
                     //sb.Append("主队:" + dics["周" + a1].Replace("VS", "VS客队:") + "\n");
                     //sb.Append(a2 + "\n");
+                   
                     for (int i = 0; i < zhous.Count; i++)
                     {
                         string a1 = zhous[i].Groups[1].Value;
                         string a2 = results[i].Groups[1].Value;
-                        string a3 = prices[i].Groups[1].Value + "0元";
+                        string a3 = prices[i].Groups[1].Value;
                         sb.Append("第" + (i + 1) + "场 周" + a1 + "\n");
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
                         if (a2 != "胜" && a2 != "平" && a2 != "负")
                         {
                             a2 = "(" + a2 + ")";
                         }
-                        sb.Append(a2 + "@" + a3 + "\n");
+                        sb.Append(a2 + "@" + a3 + "0元\n");
+                        jiangjin = jiangjin * Convert.ToDouble(a3);
                     }
                 }
+                jiangjin = jiangjin * Convert.ToDouble(jine);
+               jiangjin = Math.Round(jiangjin, 2);
+
+
                 string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
                 string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
-                string jiangjin = "";
-               // sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
-
+               
+                // sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + text1[4].Replace("串", "×") + ";共" + zhushu + "注");
 
 
 
