@@ -33,6 +33,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -62,8 +64,11 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button5 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,6 +111,25 @@
             this.splitContainer1.Size = new System.Drawing.Size(1200, 753);
             this.splitContainer1.SplitterDistance = 102;
             this.splitContainer1.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(939, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(212, 17);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "验证码成功后进入搜索页面，执行程序";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(836, 48);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(97, 29);
+            this.button5.TabIndex = 19;
+            this.button5.Text = "清空数据";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label4
             // 
@@ -240,7 +264,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1197, 516);
+            this.tabPage2.Size = new System.Drawing.Size(1192, 617);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "数据";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -258,15 +282,20 @@
             this.columnHeader8,
             this.columnHeader9,
             this.columnHeader10,
+            this.columnHeader17,
+            this.columnHeader18,
+            this.columnHeader19,
             this.columnHeader11,
             this.columnHeader12,
             this.columnHeader13,
-            this.columnHeader14});
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1191, 510);
+            this.listView1.Size = new System.Drawing.Size(1186, 611);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -339,24 +368,30 @@
             this.columnHeader14.Text = "Agent\'s Details";
             this.columnHeader14.Width = 100;
             // 
-            // button5
+            // columnHeader15
             // 
-            this.button5.Location = new System.Drawing.Point(836, 48);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(97, 29);
-            this.button5.TabIndex = 19;
-            this.button5.Text = "清空数据";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.columnHeader15.Text = "Date of Entry";
+            this.columnHeader15.Width = 100;
             // 
-            // label5
+            // columnHeader16
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(939, 57);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(212, 17);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "验证码成功后进入搜索页面，执行程序";
+            this.columnHeader16.Text = "Matters";
+            this.columnHeader16.Width = 100;
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "dateOfPublicationForRegistration";
+            this.columnHeader17.Width = 100;
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "dateOfRegistration";
+            this.columnHeader18.Width = 100;
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "actualRegistrationDate";
+            this.columnHeader19.Width = 100;
             // 
             // Trade_Mark_Search
             // 
@@ -419,5 +454,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+        private System.Windows.Forms.ColumnHeader columnHeader19;
     }
 }

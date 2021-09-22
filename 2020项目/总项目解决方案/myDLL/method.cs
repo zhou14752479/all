@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -92,7 +93,19 @@ namespace myDLL
 
         }
         #endregion
+        #region 去掉路径中非法字符
+        public string removeValid(string illegal)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
 
+            foreach (char c in invalid)
+            {
+                illegal = illegal.Replace(c.ToString(), "");
+            }
+            return illegal;
+        }
+
+        #endregion
 
         #region GET请求带COOKIE
         /// <summary>
@@ -360,6 +373,7 @@ namespace myDLL
         }
 
         #endregion
+
         #region listview转datable
         /// <summary>
         /// listview转datable
@@ -1441,7 +1455,110 @@ namespace myDLL
         }
         #endregion
 
+        #region datagridview转datatable
+        public DataTable DgvToTable(DataGridView dgv)
+        {
+            DataTable dt = new DataTable();
 
+            // 列强制转换
+            for (int count = 0; count < dgv.Columns.Count; count++)
+            {
+                DataColumn dc = new DataColumn(dgv.Columns[count].HeaderText.ToString());
+                dt.Columns.Add(dc);
+            }
 
+            // 循环行
+            for (int count = 0; count < dgv.Rows.Count; count++)
+            {
+                DataRow dr = dt.NewRow();
+                for (int countsub = 0; countsub < dgv.Columns.Count; countsub++)
+                {
+                    dr[countsub] = Convert.ToString(dgv.Rows[count].Cells[countsub].Value);
+                }
+                dt.Rows.Add(dr);
+            }
+            return dt;
+        }
+        #endregion
+
+        #region 通过JET.OLEDB读取excel表格到datatable
+        //根据excle的路径把第一个sheel中的内容放入datatable
+        public static DataTable ReadExcelToTable(string path)//excel存放的路径
+        {
+            try
+            {
+
+                //连接字符串
+                string connstring = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties='Excel 8.0;HDR=NO;IMEX=1';"; // Office 07及以上版本 不能出现多余的空格 而且分号注意
+                //string connstring = "Provider=Microsoft.JET.OLEDB.4.0;Data Source=" + path + ";Extended Properties='Excel 8.0;HDR=NO;IMEX=1';"; //Office 07以下版本 
+                using (OleDbConnection conn = new OleDbConnection(connstring))
+                {
+                    conn.Open();
+                    DataTable sheetsName = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "Table" }); //得到所有sheet的名字
+                    string firstSheetName = sheetsName.Rows[0][2].ToString(); //得到第一个sheet的名字
+                    string sql = string.Format("SELECT * FROM [{0}]", firstSheetName); //查询字符串                    //string sql = string.Format("SELECT * FROM [{0}] WHERE [日期] is not null", firstSheetName); //查询字符串
+                    OleDbDataAdapter ada = new OleDbDataAdapter(sql, connstring);
+                    DataSet set = new DataSet();
+                    ada.Fill(set);
+                    conn.Close();
+                    conn.Dispose();
+                    return set.Tables[0];
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+        #endregion
+
+        #region datatabel分解成多个datatable
+        /// <summary>
+        /// 分解数据表遍历dataset获取datatable
+        /// </summary>
+        /// <param name="orgTable">需要分解的表</param>
+        /// <param name="rowsNum">每个表包含的数据量</param>
+        /// <returns></returns>
+        public DataSet SplitDataTable(DataTable orgTable, int rowsNum)
+        {
+            //遍历获取每个datatable
+            // for (int i = 0; i < dataset.Tables.Count; i++)
+            // {
+            //fc.ExportCSV(dataset.Tables[i]);
+            // }
+            var ds = new DataSet();
+            if (rowsNum <= 0 || orgTable.Rows.Count <= 0)
+            {
+                ds.Tables.Add(orgTable);
+                return ds;
+            }
+            var tableNum = Convert.ToInt32(Math.Ceiling(orgTable.Rows.Count * 1.0 / rowsNum));
+            var remainder = orgTable.Rows.Count % rowsNum;
+            if (tableNum == 1)
+            {
+                ds.Tables.Add(orgTable);
+            }
+            else
+            {
+                for (var i = 0; i < tableNum; i++)
+                {
+                    var table = orgTable.Clone();
+                    int num;
+                    if (i != tableNum - 1)
+                        num = rowsNum;
+                    else
+                        num = remainder > 0 ? remainder : rowsNum;
+                    for (var j = 0; j < num; j++)
+                    {
+                        var row = orgTable.Rows[i * rowsNum + j];
+                        table.ImportRow(row);
+                    }
+                    ds.Tables.Add(table);
+                }
+            }
+            return ds;
+        }
+        #endregion
     }
 }

@@ -21,6 +21,7 @@ namespace 河南政务注册
         public 河南政务注册()
         {
             InitializeComponent();
+           
         }
 
         #region POST请求
@@ -73,8 +74,8 @@ namespace 河南政务注册
             catch (WebException ex)
             {
 
-                //MessageBox.Show(ex.ToString());
-                return "";
+               
+                return ex.Message;
             }
 
 
@@ -83,7 +84,29 @@ namespace 河南政务注册
         #endregion
 
         string cookie = "SESSION=Yjc4NjM0ZTItOWYzNC00NjcwLTgzYzQtYzQ0Y2Q1NWRhY2Nm";
-      
+
+
+
+        private delegate void ClearCookie();//代理     
+        public void clearIeCookie()
+        {
+            //发送验证码后 清理cookie
+
+            HtmlDocument document = webBrowser1.Document;
+            document.ExecCommand("ClearAuthenticationCache", false, null);
+            webBrowser1.Refresh();
+        }
+
+
+        private delegate string Encrypt(string pwd);//代理
+
+        public string getencrypt(string pwd)
+        {
+
+            string result = webBrowser1.Document.InvokeScript("encrypt", new object[] { pwd }).ToString();
+            return result;
+        }
+
 
 
         /// <summary>
@@ -128,7 +151,7 @@ namespace 河南政务注册
         /// <returns></returns>
         public string getduanxinma(string mid)
         {
-           
+            Thread.Sleep(5000);
             dengdaiduanxinmaseconds = dengdaiduanxinmaseconds + 5;
             string url = "http://yccode.net:9321/api/getMessage?token="+token+"&mId="+mid+"&developer=";
             string html = method.GetUrl(url, "utf-8");
@@ -146,9 +169,9 @@ namespace 河南政务注册
                 logtxtBox.Text = DateTime.Now.ToLongTimeString() + "正在获取手机短信码,还未收到,已等待" + dengdaiduanxinmaseconds + "\r\n"+ html;
                 return "";
             }
-            Thread.Sleep(5000);
+            
         }
-
+        
        
         string fasongmsg = "";
 
@@ -158,20 +181,25 @@ namespace 河南政务注册
         /// <param name="mobile"></param>
         /// <param name="imgcode"></param>
         /// <param name="card"></param>
-        public bool sendmobile(string mobile)
+        public bool sendmobile(string mobileencrypt)
         {
 
             try
             {
                 string url = "https://login.hnzwfw.gov.cn/tacs-uc/naturalMan/mobileSendWithCode";
-                string postdata = "mobile=" + System.Web.HttpUtility.UrlEncode(getencrypt(mobile));
+
+                
+               
+                string postdata = "mobile=" + System.Web.HttpUtility.UrlEncode(mobileencrypt);
 
                 string html = PostUrl(url, postdata);
-             
+
                 //发送验证码后 清理cookie
-                HtmlDocument document = webBrowser1.Document;
-                document.ExecCommand("ClearAuthenticationCache", false, null);
-                webBrowser1.Refresh();
+
+                ClearCookie cc = new ClearCookie(clearIeCookie);
+                BeginInvoke(cc);
+
+
                 if (html.Contains("成功"))
                 {
                     logtxtBox.Text = DateTime.Now.ToLongTimeString() + "发送手机短信验证码成功" + "\r\n";
@@ -207,12 +235,7 @@ namespace 河南政务注册
            
         }
 
-        public string getencrypt(string pwd)
-        {
-
-            string result = webBrowser1.Document.InvokeScript("encrypt", new object[] { pwd }).ToString();
-            return result;
-        }
+       
 
         /// <summary>
         /// 主程序
@@ -239,8 +262,14 @@ namespace 河南政务注册
 
                     DataRow dr = dt.Rows[i];
 
+                     Encrypt aa = new Encrypt(getencrypt);
+                    IAsyncResult iar = BeginInvoke(aa, new object[] { dr[1].ToString() });
+                    string cradencrypt = EndInvoke(iar).ToString();
+                   
+                   
+
                     string name = System.Web.HttpUtility.UrlEncode(dr[0].ToString());
-                    string card = System.Web.HttpUtility.UrlEncode(getencrypt(dr[1].ToString()));
+                    string card = System.Web.HttpUtility.UrlEncode(cradencrypt);
                     string mobilemid= getmobile();
                     string[] text = mobilemid.Split(new string[] { "&" }, StringSplitOptions.None);
                     if (text.Length < 1)
@@ -252,21 +281,20 @@ namespace 河南政务注册
                     string mobile = text[0];
                     string mid = text[1];
 
-                    bool fasongstatus = sendmobile(mobile);
-                    while (!fasongstatus)
-                    {
-                        Thread.Sleep(1000);
-                        if (status == false)
-                        {
-                            return;
-                        }
 
-                        if (fasongmsg.Contains("频繁"))
+                    IAsyncResult iar2 = BeginInvoke(aa, new object[] { mobile });
+                    string mobileencrypt = EndInvoke(iar2).ToString();
+
+                    bool fasongstatus = sendmobile(mobileencrypt);
+
+
+                    if (fasongstatus == false)
+                    {
+                        if (i > 0)
                         {
-                            logtxtBox.Text += "触发发送验证码频繁正在等待120秒.." + "\r\n";
-                            Thread.Sleep(120000);
+                            i = i - 1;
                         }
-                        fasongstatus = sendmobile(mobile);
+                        continue;
                     }
                     string code = getduanxinma(mid);
                     while (true)
@@ -276,23 +304,30 @@ namespace 河南政务注册
                             return;
                         }
                         code = getduanxinma(mid);
-                        if (dengdaiduanxinmaseconds == Convert.ToInt32(textBox6.Text))
-                        {
-                            dengdaiduanxinmaseconds = 0;
-                            mobile = getmobile();
-                            sendmobile(mobile);
-                        }
+                    
                         if (code != "")
                         {
                             dengdaiduanxinmaseconds = 0;
                             break;
                         }
-                      
+
+                        if (dengdaiduanxinmaseconds == Convert.ToInt32(textBox6.Text))
+                        {
+                            dengdaiduanxinmaseconds = 0;
+
+                            break;
+
+                        }
+
                     }
-                    string pwd = System.Web.HttpUtility.UrlEncode(getencrypt(textBox3.Text.Trim()));
-                    string mobile_encrypt= System.Web.HttpUtility.UrlEncode(getencrypt(mobile));
+                   
+                    IAsyncResult iar3 = BeginInvoke(aa, new object[] { textBox3.Text.Trim() });
+                    string pwd = EndInvoke(iar3).ToString();
+                      pwd = System.Web.HttpUtility.UrlEncode(pwd);
+
+
                     string url = "https://login.hnzwfw.gov.cn/tacs-uc/naturalMan/saveUserInfo?times=b6fdd2d4-184d-4ab1-8943-e4e6b308815a";
-                    string postdata = "userName="+name+"&certNo="+card+"&certEffDate=&certExpDate=&certType=111&loginPwd="+pwd+"&userMobile="+ mobile_encrypt + "&code="+code+"&certNation=&backUrl=";
+                    string postdata = "userName="+name+"&certNo="+card+"&certEffDate=&certExpDate=&certType=111&loginPwd="+pwd+"&userMobile="+ System.Web.HttpUtility.UrlEncode(mobileencrypt) + "&code="+code+"&certNation=&backUrl=";
                     string html = PostUrl(url,postdata);
                     //MessageBox.Show(html);
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
@@ -318,34 +353,34 @@ namespace 河南政务注册
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
+          
             gettoken();
 
-            //if (textBox5.Text == "")
-            //{
-            //    MessageBox.Show("请先导入数据表格");
-            //    return;
-            //}
-            //status = true;
-            //if (thread == null || !thread.IsAlive)
-            //{
-            //    thread = new Thread(run);
-            //    thread.Start();
-            //    Control.CheckForIllegalCrossThreadCalls = false;
-            //}
-            run();
+            if (textBox5.Text == "")
+            {
+                MessageBox.Show("请先导入数据表格");
+                return;
+            }
+            status = true;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+            //run();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            status = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
-            cookie = method.GetCookies("https://login.hnzwfw.gov.cn/tacs-uc/naturalMan/register");
-            MessageBox.Show(cookie);
+
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -364,6 +399,11 @@ namespace 河南政务注册
 
 
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

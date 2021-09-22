@@ -79,13 +79,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.logtxtBox);
-            this.splitContainer1.Panel2.Controls.Add(this.button3);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.button2);
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.button4);
-            this.splitContainer1.Size = new System.Drawing.Size(787, 625);
-            this.splitContainer1.SplitterDistance = 339;
+            this.splitContainer1.Size = new System.Drawing.Size(787, 579);
+            this.splitContainer1.SplitterDistance = 426;
             this.splitContainer1.TabIndex = 0;
             // 
             // tabControl1
@@ -96,7 +92,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(787, 339);
+            this.tabControl1.Size = new System.Drawing.Size(787, 426);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -105,7 +101,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(779, 313);
+            this.tabPage1.Size = new System.Drawing.Size(779, 400);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "数据页面";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -125,7 +121,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(773, 307);
+            this.listView1.Size = new System.Drawing.Size(773, 394);
             this.listView1.TabIndex = 322;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -178,14 +174,14 @@
             // logtxtBox
             // 
             this.logtxtBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.logtxtBox.Location = new System.Drawing.Point(0, 261);
+            this.logtxtBox.Location = new System.Drawing.Point(0, 128);
             this.logtxtBox.Name = "logtxtBox";
             this.logtxtBox.Size = new System.Drawing.Size(787, 21);
             this.logtxtBox.TabIndex = 323;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(431, 168);
+            this.button3.Location = new System.Drawing.Point(575, 55);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(82, 29);
             this.button3.TabIndex = 8;
@@ -196,19 +192,23 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(787, 96);
+            this.groupBox1.Size = new System.Drawing.Size(787, 149);
             this.groupBox1.TabIndex = 322;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "手机接入";
@@ -302,7 +302,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(519, 133);
+            this.button2.Location = new System.Drawing.Point(487, 55);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(82, 29);
             this.button2.TabIndex = 6;
@@ -312,7 +312,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(431, 133);
+            this.button1.Location = new System.Drawing.Point(399, 55);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 29);
             this.button1.TabIndex = 5;
@@ -322,18 +322,19 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(519, 168);
+            this.button4.Location = new System.Drawing.Point(676, 55);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(82, 29);
             this.button4.TabIndex = 7;
             this.button4.Text = "清空";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // 河南政务注册
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(787, 625);
+            this.ClientSize = new System.Drawing.Size(787, 579);
             this.Controls.Add(this.splitContainer1);
             this.Name = "河南政务注册";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

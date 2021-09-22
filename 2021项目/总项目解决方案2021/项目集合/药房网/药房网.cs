@@ -68,7 +68,7 @@ namespace 药房网
 
                             string id = ids[j].Groups[1].Value;
                             textBox2.Text = "正在读取：" + id;
-                            string aurl = "https://pub.yaofangwang.com/4000/4000/0/?__cmd=guest.medicine.getMedicineDetail%20as%20goodsInfo%2Cguest.medicine.getShopMedicines%20as%20shopsInfo&__params=%7B%22goodsInfo%22%3A%7B%22mid%22%3A%22" + id + "%22%7D%2C%22shopsInfo%22%3A%7B%22conditions%22%3A%7B%22sort%22%3A%22sprice%22%2C%22sorttype%22%3A%22asc%22%2C%22medicineid%22%3A%22" + id + "%22%7D%2C%22pageSize%22%3A10000%2C%22pageIndex%22%3A1%7D%7D";
+                            string aurl = "https://pub.yaofangwang.com/4000/4000/0/?__cmd=guest.medicine.getMedicineDetail%20as%20goodsInfo%2Cguest.medicine.getShopMedicines%20as%20shopsInfo&__params=%7B%22goodsInfo%22%3A%7B%22mid%22%3A%22" + id + "%22%7D%2C%22shopsInfo%22%3A%7B%22conditions%22%3A%7B%22sort%22%3A%22sprice%22%2C%22sorttype%22%3A%22asc%22%2C%22medicineid%22%3A%22" + id + "%22%7D%2C%22pageSize%22%3A1%2C%22pageIndex%22%3A1%7D%7D";
                             string ahtml = method.GetUrl(aurl, "utf-8");
 
                             MatchCollection stores = Regex.Matches(ahtml, @"""store_title"":""([\s\S]*?)""");
@@ -92,7 +92,7 @@ namespace 药房网
                                 lv1.SubItems.Add(stores[a].Groups[1].Value);
                                 lv1.SubItems.Add(store_prices[a].Groups[1].Value);
 
-                                lv1.SubItems.Add(price_min);
+                               // lv1.SubItems.Add(price_min);
                                 while (this.zanting == false)
                                 {
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -140,7 +140,7 @@ namespace 药房网
                     {
                         string id = ids[j].Groups[2].Value;
 
-                        string aurl = "https://pub.yaofangwang.com/4000/4000/0/?__cmd=guest.medicine.getMedicineDetail%20as%20goodsInfo%2Cguest.medicine.getShopMedicines%20as%20shopsInfo&__params=%7B%22goodsInfo%22%3A%7B%22mid%22%3A%22" + id + "%22%7D%2C%22shopsInfo%22%3A%7B%22conditions%22%3A%7B%22sort%22%3A%22sprice%22%2C%22sorttype%22%3A%22asc%22%2C%22medicineid%22%3A%22" + id + "%22%7D%2C%22pageSize%22%3A10000%2C%22pageIndex%22%3A1%7D%7D";
+                        string aurl = "https://pub.yaofangwang.com/4000/4000/0/?__cmd=guest.medicine.getMedicineDetail%20as%20goodsInfo%2Cguest.medicine.getShopMedicines%20as%20shopsInfo&__params=%7B%22goodsInfo%22%3A%7B%22mid%22%3A%22" + id + "%22%7D%2C%22shopsInfo%22%3A%7B%22conditions%22%3A%7B%22sort%22%3A%22sprice%22%2C%22sorttype%22%3A%22asc%22%2C%22medicineid%22%3A%22" + id + "%22%7D%2C%22pageSize%22%3A1%2C%22pageIndex%22%3A1%7D%7D";
                         string ahtml = method.GetUrl(aurl, "utf-8");
 
                         MatchCollection stores = Regex.Matches(ahtml, @"""store_title"":""([\s\S]*?)""");
@@ -164,7 +164,7 @@ namespace 药房网
                             lv1.SubItems.Add(stores[a].Groups[1].Value);
                             lv1.SubItems.Add(store_prices[a].Groups[1].Value);
 
-                            lv1.SubItems.Add(price_min);
+                           // lv1.SubItems.Add(price_min);
 
                             while (this.zanting == false)
                             {

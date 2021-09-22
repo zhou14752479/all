@@ -16,7 +16,7 @@ namespace 主程序202106
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 知网邮箱采集());
+            Application.Run(new 美团酒店());
         }
     }
 }

@@ -51,6 +51,9 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>..\主程序202105\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="ProvinceCity">
+      <HintPath>C:\Users\zhou\Desktop\思忆美团\ProvinceCity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -103,6 +106,12 @@
     <Compile Include="知网邮箱采集.Designer.cs">
       <DependentUpon>知网邮箱采集.cs</DependentUpon>
     </Compile>
+    <Compile Include="美团酒店.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="美团酒店.Designer.cs">
+      <DependentUpon>美团酒店.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="知网邮箱采集.resx">
       <DependentUpon>知网邮箱采集.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="美团酒店.resx">
+      <DependentUpon>美团酒店.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+using myDLL;
 
 namespace 主程序202006
 {
@@ -287,8 +287,8 @@ namespace 主程序202006
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form1 fm1 = new Form1();
-            fm1.Show();
+            //Form1 fm1 = new Form1();
+            //fm1.Show();
         }
     }
 }

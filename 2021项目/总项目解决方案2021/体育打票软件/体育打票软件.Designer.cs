@@ -281,7 +281,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1190, 641);
+            this.tabPage2.Size = new System.Drawing.Size(1260, 666);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "   ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -301,7 +301,7 @@
             this.groupBox2.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox2.Location = new System.Drawing.Point(390, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(797, 635);
+            this.groupBox2.Size = new System.Drawing.Size(867, 660);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "历史数据";
@@ -382,9 +382,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 71);
+            this.listView1.Location = new System.Drawing.Point(3, 96);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(791, 561);
+            this.listView1.Size = new System.Drawing.Size(861, 561);
             this.listView1.TabIndex = 401;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -402,7 +402,7 @@
             this.groupBox1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(387, 635);
+            this.groupBox1.Size = new System.Drawing.Size(387, 660);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设置";

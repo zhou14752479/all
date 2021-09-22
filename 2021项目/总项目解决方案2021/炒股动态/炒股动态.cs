@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Media;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -32,7 +33,9 @@ namespace 炒股动态
         }
 
         string COOKIE = "user=MDp3YXl0b3dpbmZvY3VzOjpOb25lOjUwMDo3NjI3ODUxNTo3LDExMTExMTExMTExLDQwOzQ0LDExLDQwOzYsMSw0MDs1LDEsNDA7MSwxMDEsNDA7MiwxLDQwOzMsMSw0MDs1LDEsNDA7OCwwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMSw0MDsxMDIsMSw0MDo6Ojo2NjI3ODUxNToxNjMxMjUxNzMwOjo6MTI0NTIxNzIwMDo2MDQ4MDA6MDoxNDc0MmEzMzRlNzA0NzZhZDEwZjA1MGViOTU2ZDNjYTQ6ZGVmYXVsdF80OjA%3D; userid=66278515; u_name=waytowinfocus; escapename=waytowinfocus; ticket=badab2d162e496632d5813dd61916e7a; user_status=0; utk=eac80726c3a26a4af1ba5e752877e8c5; Hm_lvt_da7579fd91e2c6fa5aeb9d1620a9b333=1631251702,1631269151; Hm_lpvt_da7579fd91e2c6fa5aeb9d1620a9b333=1631269151; Hm_lvt_78c58f01938e4d85eaf619eae71b4ed1=1631251702,1631269151; Hm_lpvt_78c58f01938e4d85eaf619eae71b4ed1=1631269151; v=A3Kf8JZGR7abXnuKKzAIbZn3w7NXA3TIqAdqxTxKniUQzxzlJJPGrXiXurYP";
+        string path = AppDomain.CurrentDomain.BaseDirectory;
 
+        SoundPlayer player = new SoundPlayer();
 
         #region  获取cookie
         /// <summary>
@@ -127,6 +130,14 @@ namespace 炒股动态
 
         #endregion;
 
+
+        private DateTime ConvertStringToDateTime(string timeStamp)
+        {
+
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
+        }
+
         public string topStr = "";
         public string fontcolor = "black";
         private void ShowArticles()
@@ -143,15 +154,17 @@ namespace 炒股动态
             MatchCollection type = Regex.Matches(html, @"""type"":""([\s\S]*?)""");
             MatchCollection wtjg = Regex.Matches(html, @"""wtjg"":""([\s\S]*?)""");
             MatchCollection wtsl = Regex.Matches(html, @"""wtsl"":""([\s\S]*?)""");
-         
+
+            MatchCollection rtime = Regex.Matches(html, @"""rtime"":([\s\S]*?)}");
             StringBuilder sb = new StringBuilder();
            
-            sb.AppendLine("<table width=100%>");
+            sb.AppendLine("<table width=100% style=\"font-family:Microsoft YaHei; font-size:16px;\" > ");
             sb.AppendLine("<tr>");
-            sb.AppendLine("<th align=left>股票名称/代码</th>");
+            sb.AppendLine("<th align=left>股票名称</th>");
+            sb.AppendLine("<th align=left>代码</th>");
             //sb.AppendLine("<th align=left>盈亏率</td>");
             sb.AppendLine("<th align=left>日期</td>");
-            //sb.AppendLine("<th align=left>成本价</td>");
+            sb.AppendLine("<th align=left>时间</td>");
             sb.AppendLine("<th align=left>交易类型</td>");
             sb.AppendLine("<th align=left>现价</td>");
             sb.AppendLine("<th align=left>股票数量</td>");
@@ -188,9 +201,14 @@ namespace 炒股动态
                     else
                     {
                         fontcolor = textBox2.Text;
-                        Beep(800, 800);
+                        player.SoundLocation = path + "Data_Founded-1.wav";
+                        player.Load();
+                        player.Play();
+                        // Beep(800, 800);
                         this.TopMost = true;
-                        
+                        topStr = zqmc[0].Groups[1].Value;
+
+
                     }
 
                 }
@@ -200,18 +218,28 @@ namespace 炒股动态
                 }
                 else
                 {
-                    sb.AppendLine("<tr>");
+                    if(i%2==0)
+                    {
+                        sb.AppendLine("<tr style=\"background-color:rgb(235,235,235);\">");
+                    }
+                    if (i % 2 == 1)
+                    {
+                        sb.AppendLine("<tr style=\"background-color:rgb(200,220,235);\">");
+                    }
                 }
-               
-               
-              
-                sb.AppendLine("<td style=\"border-bottom:1px solid #0099CC;\"><span style=\"font-size:25px;\">" + zqmc[i].Groups[1].Value+ "</span><br>"+zqdm[i].Groups[1].Value + "</td>");
-                sb.AppendLine("<td style=\"border-bottom:1px solid #0099CC;\">" + time[i].Groups[1].Value + "</td>");
-                sb.AppendLine("<td style=\"border-bottom:1px solid #0099CC;\">" + type2 + "</td>");
-                sb.AppendLine("<td style=\"border-bottom:1px solid #0099CC;\">" + wtjg[i].Groups[1].Value + "</td>");
-                sb.AppendLine("<td style=\"border-bottom:1px solid #0099CC;\">" + wtsl[i].Groups[1].Value + "</td>");
+                if (ConvertStringToDateTime(rtime[i].Groups[1].Value) > DateTime.Now.AddDays(-30))
+                {
+                    // style=\"border-bottom:1px solid #0099CC;\" 
+                    sb.AppendLine("<td><span style=\"font-size:20px;\">" + zqmc[i].Groups[1].Value + "</span></td>");
+                    sb.AppendLine("<td>" + zqdm[i].Groups[1].Value + "</td>");
+                    sb.AppendLine("<td>" + ConvertStringToDateTime(rtime[i].Groups[1].Value).ToString("MM-dd") + "</td>");
+                    sb.AppendLine("<td>" + time[i].Groups[1].Value + "</td>");
+                    sb.AppendLine("<td>" + type2 + "</td>");
+                    sb.AppendLine("<td>" + wtjg[i].Groups[1].Value + "</td>");
+                    sb.AppendLine("<td>" + wtsl[i].Groups[1].Value + "</td>");
 
-                sb.AppendLine("</tr>");
+                    sb.AppendLine("</tr>");
+                }
             }
             sb.AppendLine("</table>");
             webBrowser1.DocumentText = sb.ToString();
@@ -255,6 +283,8 @@ namespace 炒股动态
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
+            webBrowser1.DocumentText = "";
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(ShowArticles);
@@ -266,6 +296,7 @@ namespace 炒股动态
 
         private void button2_Click(object sender, EventArgs e)
         {
+          
             label1.Text = "未监控";
             timer1.Stop();
         }
@@ -279,6 +310,12 @@ namespace 炒股动态
                 // textBox1.ForeColor = colorDialog1.Color;
                textBox2.Text = colorDialog1.Color.Name;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+            webBrowser1.Navigate("http://t.10jqka.com.cn/");
         }
     }
 }

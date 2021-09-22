@@ -100,10 +100,12 @@ namespace fang
 
                 foreach (string cityid in cityids)
                 {
-                    ArrayList areaIds = getAreaId(cityid);
+                    // ArrayList areaIds = getAreaId(cityid);
 
-                    foreach (string areaId in areaIds)
-                    {
+                    //foreach (string areaId in areaIds)
+                    //{
+
+                    string areaId = "";
                         for (int i = 0; i < 1001; i=i+20)
                         {
 
@@ -176,7 +178,7 @@ namespace fang
 
                     }
                 }
-            }
+           // }
 
 
             catch (Exception ex)

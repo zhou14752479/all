@@ -819,7 +819,7 @@ namespace 客户美团
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            getarea(comboBox2.SelectedItem.ToString());
+           getarea(comboBox2.SelectedItem.ToString());
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)

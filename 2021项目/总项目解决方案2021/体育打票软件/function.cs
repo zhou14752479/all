@@ -448,9 +448,9 @@ namespace 体育打票软件
         }
 
 
-        public static int a = 0;
-        #endregion
 
+        #endregion
+        public static int a = 0;
         Dictionary<string, string> rangqiudic = new Dictionary<string, string>();
         #region 胜平负/让球胜平负
         public void getdata_shengpingfu(GridppReport Report, string html, string ahtml)
@@ -699,5 +699,301 @@ namespace 体育打票软件
 
         #endregion
 
+
+        public string beishu_500 = "1";
+        #region 500网
+        public void getdata_500(GridppReport Report, string html, string ahtml)
+        {
+
+          
+
+            string address = IniReadValue("values", "address");
+            string haoma = IniReadValue("values", "haoma");
+            string bianma = IniReadValue("values", "bianma");
+
+
+            Report.LoadFromFile(path + "template\\" + "a.grf");
+            try
+            {
+                string fangshi =  Regex.Match(ahtml, @"【([\s\S]*?)】").Groups[1].Value;
+                string leixing = "";
+                string suiji = bianma + function.getsuijima();
+                string zhanhao = haoma;
+                string jiangjin = Regex.Match(html, @"<span data-html=""bonus"">([\s\S]*?)</span>").Groups[1].Value;
+                if(jiangjin.Contains("~"))
+                {
+                    jiangjin = jiangjin.Split(new string[] { "~" }, StringSplitOptions.None)[1];
+                }
+
+                string guoguan = Regex.Match(html, @"chkbox-on"" data-value=""([\s\S]*?)""").Groups[1].Value;
+                
+                if (guoguan == "")
+                {
+                    guoguan = Regex.Match(html, @"chkbox-on"" value=""([\s\S]*?)""").Groups[1].Value;
+                }
+
+
+                //倍数
+                //在webbrowser浏览器里执行js代码并获取返回值，可以用于读取cookie
+              
+                
+
+
+                string jine = Regex.Match(html, @"<span data-html=""prize"">([\s\S]*?)</span>").Groups[1].Value;
+                string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
+
+                string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
+
+                // string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
+                string zhushu = "";
+
+               
+
+                MatchCollection matchIds = Regex.Matches(ahtml, @"data-matchnum=""([\s\S]*?)"""); //周三001
+                MatchCollection matchNames = Regex.Matches(ahtml, @"data-homesxname=""([\s\S]*?)"" data-awaysxname=""([\s\S]*?)"""); //队伍名
+
+                Dictionary<string, string> dics = new Dictionary<string, string>();
+                for (int i = 0; i < matchIds.Count; i++)
+                {
+                   
+                    dics.Add(matchIds[i].Groups[1].Value, "主队："+matchNames[i].Groups[1].Value+" VS 客队："+ matchNames[i].Groups[2].Value);
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+
+                MatchCollection value1 = Regex.Matches(html, @"删除</a></td><td>([\s\S]*?)</tr>"); //周一 队伍名 赔率都在
+
+                if (value1.Count == 1 && guoguan.Contains("单关"))  //单关一场用a1模板
+                {
+                    Report.LoadFromFile(path + "template\\" + "a1.grf");
+                }
+
+                List<string> lists = new List<string>();
+              
+                for (int i = 0; i < value1.Count; i++)
+                {
+
+                    StringBuilder a2sb = new StringBuilder();
+
+                    MatchCollection a2s = Regex.Matches(value1[i].Groups[1].Value, @"data-sort=""([\s\S]*?)"">([\s\S]*?)</a>");
+                  
+                    if (guoguan.Contains("单关"))
+                    {
+                        fangshi = getdanguanbiaotou_500(a2sb.ToString());
+                        a2s = Regex.Matches(value1[i].Groups[1].Value, @"removeItemBy([\s\S]*?)"">([\s\S]*?)</a>");
+
+
+                       
+                    }
+                   
+                    
+                    foreach (Match item in a2s)
+                    {
+                        string item1 = item.Groups[2].Value;
+                        if (item.Groups[2].Value.Substring(0, 2) != "胜@" && item.Groups[2].Value.Substring(0, 2) != "平@" && item.Groups[2].Value.Substring(0, 2) != "负@")
+                        {
+                            item1 = "(" + item1.Replace("@", ")@");
+                        }
+                        a2sb.Append(item1+"0元" + "+");
+                    }
+                    string a2 = a2sb.ToString().Remove(a2sb.ToString().Length-1,1);
+                  
+                    #region //末尾文字 胜平负/进球数/比分判断
+                    string moweiwenzi = "";
+                    if (a2.Substring(0, 2).Contains(":"))
+                    {
+                        moweiwenzi = " 比分";
+                    }
+                    else if (a2.Substring(0, 2).Contains("胜@") || a2.Substring(0, 2).Contains("平@") || a2.Substring(0, 2).Contains("负@"))
+                    {
+                        moweiwenzi = " 胜平负";
+                    }
+                    else if (a2.Substring(0, 2).Contains("胜胜") || a2.Substring(0, 2).Contains("胜平") || a2.Substring(0, 2).Contains("胜负") || a2.Substring(0, 2).Contains("平胜") || a2.Substring(0, 2).Contains("平平") || a2.Substring(0, 2).Contains("平负") || a2.Substring(0, 2).Contains("负胜") || a2.Substring(0, 2).Contains("负平") || a2.Substring(0, 2).Contains("负负"))
+                    {
+                        moweiwenzi = " 半全场胜平负";
+                    }
+                    else if (a2.Substring(0, 2).Contains("1@") || a2.Substring(0, 2).Contains("2@") || a2.Substring(0, 2).Contains("3@") || a2.Substring(0, 2).Contains("4@") || a2.Substring(0, 2).Contains("5@") || a2.Substring(0, 2).Contains("6@") || a2.Substring(0, 2).Contains("7+@"))
+                    {
+                        moweiwenzi = "总进球数";
+                    }
+                    else if (a2.Contains("[-1]"))
+                    {
+                        moweiwenzi = " 让球胜平负 主队让1球";
+                        a2 = a2.Replace("[-1] ","");
+                    }
+                    else if (a2.Contains("[+1]"))
+                    {
+                        moweiwenzi = " 让球胜平负 主队受让1球";
+                        a2 = a2.Replace("[+1] ", "");
+                    }
+                    else if (a2.Contains("[-2]"))
+                    {
+                        moweiwenzi = " 让球胜平负 主队让2球";
+                        a2 = a2.Replace("[-2] ", "");
+                    }
+                    else if (a2.Contains("[+2]"))
+                    {
+                        moweiwenzi = " 让球胜平负 主队受让2球";
+                        a2 = a2.Replace("[+2] ", "");
+                    }
+
+                    #endregion
+                    string a1 = "第"+(i+1)+"场 周"+Regex.Match(value1[i].Groups[1].Value, @"周([\s\S]*?)</td>").Groups[1].Value + moweiwenzi;
+
+                    string duiwunameA = Regex.Match(value1[i].Groups[1].Value, @"<span class=""team-l"">([\s\S]*?)</span>").Groups[1].Value;
+                    string duiwunameB = Regex.Match(value1[i].Groups[1].Value, @"<span class=""team-r"">([\s\S]*?)</span>").Groups[1].Value;
+
+                    a1 = a1 + "\n" + "主队：" + duiwunameA + " VS 客队：" + duiwunameB;
+
+                    if (sb.ToString().Contains("主队：" + duiwunameA + " VS 客队：" + duiwunameB))
+                    {
+                        sb.Append("+"+a2.ToString());
+                    }
+                    else
+                    {
+                        if(i==0)
+                        {
+                            sb.Append( a1 + "\n" + a2.Trim());
+
+                        }
+                        else
+                        {
+                            sb.Append("\n" + a1 + "\n" + a2.Trim());
+                        }
+                       
+
+                    }
+
+
+
+                   
+                }
+
+                if ((sb.ToString().Split(new string[] { "\n" }, StringSplitOptions.None)).Length < 4 && guoguan.Contains("单关"))  //单关一场用a1模板
+                {
+                    Report.LoadFromFile(path + "template\\" + "a1.grf");
+                   
+                }
+                if (guoguan.Contains("单关"))
+                {
+                    fangshi = getdanguanbiaotou_500(sb.ToString());
+                }
+                //单注倍数计算
+
+                //Dictionary<string, int> aaa = new Dictionary<string, int>();
+
+                //int aa = 1;
+                //MatchCollection asa = Regex.Matches(html, @"<td style=""width: 80px;"">([\s\S]*?)<");
+                //foreach (Match item in asa)
+                //{
+                //    if (item.Groups[1].Value.Contains("x"))
+                //    {
+                //        if (!aaa.ContainsKey(item.Groups[1].Value))
+                //        {
+                //            aa = 1;
+                //            aaa.Add(item.Groups[1].Value, aa);
+                //        }
+                //        else
+                //        {
+                //            aa = aa + 1;
+                //            aaa[item.Groups[1].Value] = aa;
+                //        }
+                //    }
+
+
+                //}
+
+                //StringBuilder sba = new StringBuilder();
+                //foreach (var item in aaa.Keys)
+                //{
+                //    sba.Append(item + "*" + aaa[item] + "注,");
+                //}
+
+                if (guoguan.Contains("单关"))
+                {
+                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数：单场*"+ value1.Count + "注;共" + value1.Count + "注");
+                }
+                else
+                {
+                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" +guoguan+"*"+ value1.Count + "注;共" + value1.Count + "注");
+                }
+                //sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
+
+
+               
+                Report.ParameterByName("suiji").AsString = suiji;
+                Report.ParameterByName("fangshi").AsString = fangshi;
+                Report.ParameterByName("leixing").AsString = leixing;
+                if (guoguan.Contains("单关"))
+                {
+                    guoguan = guoguan.Replace("单关", "1场-单场固定");
+                    Report.ParameterByName("guoguan").AsString =  guoguan;
+                }
+                else
+                {
+
+                    Report.ParameterByName("guoguan").AsString = "过关方式 " + guoguan;
+                }
+               
+                Report.ParameterByName("beishu").AsString = beishu_500;
+
+                Report.ParameterByName("jine").AsString = jine;
+                Report.ParameterByName("neirong").AsString = sb.ToString();
+
+
+                Report.ParameterByName("dizhi").AsString = ganxieyu + "\n\n" + address;
+                Report.ParameterByName("zhanhao").AsString = haoma;
+                Report.ParameterByName("time").AsString = time;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        #endregion
+
+
+
+        #region 500网单关获取表头类型
+        public string getdanguanbiaotou_500(string sb)
+        {
+
+           
+            string maohao = Regex.Match(sb.ToString(), @":").Groups[0].Value;
+            string shuzi = Regex.Match(sb.ToString(), @"\(\d\)").Groups[0].Value;
+
+            string sheng = Regex.Match(sb.ToString(), @"胜@|平@|负@").Groups[0].Value;
+           
+            string bansheng = Regex.Match(sb.ToString(), @"胜胜|胜平|胜负|平胜|平平|平负|负胜|负平|负负").Groups[0].Value;
+
+            if (bansheng != "" && sheng == ""  && shuzi == "" && maohao == "")
+            {
+                return "竞彩足球半全场胜平负";
+            }
+
+            else if (bansheng == "" && sheng != ""  && shuzi == "" && maohao == "")
+            {
+                return "竞彩足球胜平负";
+            }
+           
+            else if (bansheng == "" && sheng == ""  && shuzi == "" && maohao != "")
+            {
+                return "竞彩足球比分";
+            }
+            else if (bansheng == "" && sheng == "" && shuzi != "" && maohao == "")
+            {
+                return "竞彩足球总进球数";
+            }
+            else
+            {
+                return "竞彩足球混合过关";
+            }
+
+        }
+
+        #endregion
     }
 }

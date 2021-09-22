@@ -61,7 +61,10 @@ namespace 地图营销
             {
                 tabControl1.SelectedIndex = 3;
             }
-
+            if (treeView1.SelectedNode.Text == "账号生成")
+            {
+                tabControl1.SelectedIndex = 4;
+            }
         }
   
 
@@ -333,6 +336,60 @@ namespace 地图营销
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+
+        public void suijizhanghao()
+        {
+            try
+            {
+                string zimu = "123456789abcdefghjkmnpqrstuvwxyz";
+
+                for (int a = 0; a < Convert.ToInt32(textBox2.Text); a++)
+                {
+                    Random rd = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
+
+                    string value = "";
+                    for (int i = 0; i < Convert.ToInt32(textBox3.Text); i++)
+                    {
+
+                        int suijizimu = rd.Next(0, 30);
+                        value = value + zimu[suijizimu];
+                    }
+
+
+                    ListViewItem lv1 = listView2.Items.Add(value); //使用Listview展示数据
+                    lv1.SubItems.Add(value);
+                    decimal days = numericUpDown3.Value + (numericUpDown4.Value / 24);
+                    string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username=" + value + "&password=" + value + "&days=" + days + "&type=" + type, "utf-8");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+               MessageBox.Show(ex.ToString());
+            }
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(suijizhanghao);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            listView2.Items.Clear();
         }
     }
 }

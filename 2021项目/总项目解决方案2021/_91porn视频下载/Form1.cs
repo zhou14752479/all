@@ -23,6 +23,12 @@ namespace _91porn视频下载
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
+        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern bool InternetGetCookieEx(string pchURL, string pchCookieName, StringBuilder pchCookieData, ref System.UInt32 pcchCookieData, int dwFlags, IntPtr lpReserved);
+
+        [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int InternetSetCookieEx(string lpszURL, string lpszCookieName, string lpszCookieData, int dwFlags, IntPtr dwReserved);
+
         string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
         /// <summary> 
         /// 写入INI文件 
@@ -65,17 +71,17 @@ namespace _91porn视频下载
         {
             InitializeComponent();
         }
-
+        string COOKIE = "CLIPSHARE=6hgbrkadf37ucm9sb1lciu85k6; __utma=63181224.1165478261.1631491585.1631491585.1631491585.1; __utmb=63181224.0.10.1631491585; __utmc=63181224; __utmz=63181224.1631491585.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); covid19=c51cQ%2B6uZlcHf66r9eyq7ihHSiuxVmauLito8JT9;language=cn_CN;";
         #region GET请求
         /// <summary>
         /// GET请求
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        public string GetUrl(string Url, string charset)
         {
             string html = "";
-            string COOKIE = "CLIPSHARE=6hgbrkadf37ucm9sb1lciu85k6; __utma=63181224.1165478261.1631491585.1631491585.1631491585.1; __utmb=63181224.0.10.1631491585; __utmc=63181224; __utmz=63181224.1631491585.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); covid19=c51cQ%2B6uZlcHf66r9eyq7ihHSiuxVmauLito8JT9;language=cn_CN;";
+            
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -123,6 +129,7 @@ namespace _91porn视频下载
         }
         #endregion
 
+        
 
         #region 下载文件  【好用】
         /// <summary>
@@ -159,6 +166,32 @@ namespace _91porn视频下载
 
 
         #endregion
+
+        #region  获取cookie
+        /// <summary>
+        /// 获取cookie
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static string GetCookies(string url)
+        {
+            uint datasize = 256;
+            StringBuilder cookieData = new StringBuilder((int)datasize);
+            if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x2000, IntPtr.Zero))
+            {
+                if (datasize < 0)
+                    return null;
+
+
+                cookieData = new StringBuilder((int)datasize);
+                if (!InternetGetCookieEx(url, null, cookieData, ref datasize, 0x00002000, IntPtr.Zero))
+                    return null;
+            }
+            return cookieData.ToString();
+        }
+
+        #endregion
+
         #region 去掉路径中非法字符
         public string removeValid(string illegal)
         {
@@ -217,9 +250,12 @@ namespace _91porn视频下载
             p.Close();
 
         }
-
+        WebBrowser web = new WebBrowser();
         private void Form1_Load(object sender, EventArgs e)
         {
+            web.ScriptErrorsSuppressed = true;
+            web.Navigate(textBox2.Text+ "v.php?next=watch&page=1");
+          
             if (ExistINIFile())
             {
                 textBox1.Text = IniReadValue("values", "time");
@@ -244,7 +280,7 @@ namespace _91porn视频下载
             {
                 string url = mailurl + "v.php?next=watch&page=" + page;
                 string html = GetUrl(url, "utf-8");
-
+              
                 MatchCollection uids = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)""");
                 MatchCollection viewkeys = Regex.Matches(html, @"viewkey=([\s\S]*?)&");
                 MatchCollection hds = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)</div>");
@@ -365,6 +401,7 @@ namespace _91porn视频下载
 
         public void run1()
         {
+           
             string mailurl = textBox2.Text;
             if (!textBox2.Text.Contains("http"))
             {
@@ -374,12 +411,23 @@ namespace _91porn视频下载
             {
                 mailurl = mailurl + "/";
             }
+           
+            
+            COOKIE = GetCookies(mailurl + "v.php?next=watch&page=1");
+            COOKIE = COOKIE + ";language=cn_CN;";
 
             for (int page = Convert.ToInt32(textBox5.Text); page <= Convert.ToInt32(textBox6.Text); page++)
             {
                 string url = mailurl + "v.php?next=watch&page=" + page;
                 string html = GetUrl(url, "utf-8");
-
+               
+                if (html.Contains("机器人"))
+                {
+                    COOKIE = GetCookies(url);
+                    COOKIE = COOKIE + ";language=cn_CN;";
+                    html = GetUrl(url, "utf-8");
+                }
+               
                 MatchCollection uids = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)""");
                 MatchCollection viewkeys = Regex.Matches(html, @"viewkey=([\s\S]*?)&");
                 MatchCollection hds = Regex.Matches(html, @"id=""playvthumb_([\s\S]*?)</div>");
@@ -489,7 +537,7 @@ namespace _91porn视频下载
 
 
             #endregion
-
+           
             if(radioButton1.Checked==true)
             {
                 timer1.Start();
@@ -516,6 +564,7 @@ namespace _91porn视频下载
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+          
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run1);
@@ -527,6 +576,24 @@ namespace _91porn视频下载
         private void button2_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButton1.Checked==true)
+            {
+                timer1.Start();
+                timer1.Interval = Convert.ToInt32(textBox1.Text) * 1000 * 60;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                timer1.Start();
+                timer1.Interval = Convert.ToInt32(textBox1.Text) * 1000 * 60;
+            }
         }
     }
 }

@@ -33,6 +33,9 @@
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\..\..\当当网\HttpHelper.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\2021项目\总项目解决方案2021\电信套餐查询\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\..\..\..\..\当当网\NPOI.dll</HintPath>
     </Reference>

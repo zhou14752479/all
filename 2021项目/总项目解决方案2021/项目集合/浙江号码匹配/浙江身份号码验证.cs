@@ -141,8 +141,8 @@ namespace 浙江号码匹配
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Title = "打开excel文件";
-            // openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
-            openFileDialog1.Filter = "excel07文件(*.xlsx)|*.xlsx";
+            openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
+            //openFileDialog1.Filter = "excel07文件(*.xlsx)|*.xlsx";
             openFileDialog1.InitialDirectory = @"C:\Users\Administrator\Desktop";
             openFileDialog1.RestoreDirectory = true;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -156,7 +156,7 @@ namespace 浙江号码匹配
         }
 
         /// <summary>
-        /// 输入身份证查询
+        /// 找回密码
         /// </summary>
         public void run()
         {
@@ -172,8 +172,8 @@ namespace 浙江号码匹配
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     try
                     {
-                        string name = dt.Rows[i][0].ToString().Trim();
-                        string card = dt.Rows[i][1].ToString().Trim();
+                        string name = dt.Rows[i][1].ToString().Trim();
+                        string card = dt.Rows[i][0].ToString().Trim();
                         string phone = dt.Rows[i][2].ToString().Trim();
                        
                         lv1.SubItems.Add(name);
@@ -190,7 +190,7 @@ namespace 浙江号码匹配
                         {
                             textBox1.Text = DateTime.Now.ToShortTimeString() + "识别错误...";
                             yanzhengma = shibie();
-                            postdata = "action=getUserid&loginname=" + card + "&verifycode=" + yanzhengma;
+                            postdata = "action=getUserid&loginname=" + phone+ "&verifycode=" + yanzhengma;
                             html = PostUrl(url, postdata);
                             Thread.Sleep(100);
                         }
@@ -224,6 +224,7 @@ namespace 浙江号码匹配
                         string idcard = Regex.Match(html, @"""idcard"":""([\s\S]*?)""").Groups[1].Value;
                         if (idcard != "")
                         {
+                          
                             if (idcard.Substring(0, 1) == card.Substring(0,1) && idcard.Substring(idcard.Length-1, 1) == card.Substring(card.Length - 1, 1))
                             {
                                 lv1.SubItems.Add("true");
@@ -261,13 +262,104 @@ namespace 浙江号码匹配
             }
         }
 
+        private delegate string Encrypt(string pwd);//代理
+
+        public string getencrypt(string pwd)
+        {
+
+            string result = webBrowser1.Document.InvokeScript("RSA", new object[] { pwd }).ToString();
+            return result;
+        }
+
+
+        /// <summary>
+        /// 注册页码判断手机号
+        /// </summary>
+        public void run2()
+        {
+            textBox1.Text = DateTime.Now.ToLongTimeString() + ": 开始查询";
+            cookie = "_uab_collina=163160610589460717741822; JSESSIONID=7C3F4B8B9F4F3BD39650544B87932AAC; ZJZWFWSESSIONID=13b2d86e-95c4-4e66-b985-f26753d17810";
+
+
+            try
+            {
+                DataTable dt = method.ExcelToDataTable(textBox4.Text, true);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                    try
+                    {
+                        string name = dt.Rows[i][1].ToString().Trim();
+                        string card = dt.Rows[i][0].ToString().Trim();
+                        string phone = dt.Rows[i][2].ToString().Trim();
+
+                        lv1.SubItems.Add(name);
+                        lv1.SubItems.Add(card);
+                        lv1.SubItems.Add(phone);
+
+
+                   
+                        string url = "https://puser.zjzwfw.gov.cn/sso/newusp.do";
+
+                        Encrypt aa = new Encrypt(getencrypt);
+                        IAsyncResult iar = BeginInvoke(aa, new object[] { phone });
+                        string phonecrypt = EndInvoke(iar).ToString();
+
+
+                        string postdata = "action=regByMobile&mobilephone="+ System.Web.HttpUtility.UrlEncode(phonecrypt);
+                        string html = PostUrl(url, postdata);
+
+                        //MessageBox.Show(html);
+
+
+                        string username= Regex.Match(html, @"""username"":""([\s\S]*?)""").Groups[1].Value;
+                        if (username != "")
+                        {
+                            //名字最后一位相同 则匹配
+                            if (username.Substring(username.Length - 1, 1) == name.Substring(name.Length - 1, 1))
+                            {
+                                lv1.SubItems.Add("true");
+
+                            }
+                            else
+                            {
+                                lv1.SubItems.Add("false");
+
+                            }
+
+                        }
+                        else
+                        {
+                            lv1.SubItems.Add("空");
+                        }
+
+                        lv1.SubItems.Add(html);
+                    }
+                    catch (Exception ex)
+                    {
+                        lv1.SubItems.Add("触发异常");
+                        lv1.SubItems.Add("触发异常");
+                        continue;
+                    }
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                textBox1.Text = ex.ToString();
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run2);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -294,8 +386,9 @@ namespace 浙江号码匹配
 
         private void 浙江身份号码验证_Load(object sender, EventArgs e)
         {
-            WebBrowser web = new WebBrowser();
-            web.Navigate("http://puser.zjzwfw.gov.cn/sso/usp.do?action=verifyimg");
+            //WebBrowser web = new WebBrowser();
+            //web.Navigate("http://puser.zjzwfw.gov.cn/sso/usp.do?action=verifyimg");
+           webBrowser1.Navigate("https://puser.zjzwfw.gov.cn/sso/newusp.do?action=register&servicecode=zjdsjgrbs#"); //按照姓名找回 执行加密RSA JS方法
         }
     }
 }

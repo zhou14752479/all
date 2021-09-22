@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+using myDLL;
 
 namespace 主程序202006
 {
@@ -112,7 +112,7 @@ namespace 主程序202006
                     foreach (Match uid in ids)
                     {
                         string aurl = "https://esearch.ipd.gov.hk/nis-pos-view/tm/details/view/" + uid.Groups[1].Value + "/0/0/1/10/0/1/0/null_null/KCFeIShhcHBsaWNhdGlvbk51bWJlcjpbMCBUTyA0MDAwMDAwMF0pIV4hIEFORCAhXiEoaXNEZWFkUmVjb3JkSW5kaWNhdG9yOihmYWxzZSkpIV4hKSBBTkQgdG1SZWNvcmRTZXE6MQ%3D%3D";
-                        string html = method.gethtml(aurl, cookie);
+                        string html = method.GetUrlWithCookie(aurl, cookie,"utf-8");
                        // textBox3.Text = strhtml;
                         label4.Text = "正在查询" + uid.Groups[1].Value;
 
@@ -123,14 +123,37 @@ namespace 主程序202006
                         Match a5 = Regex.Match(html, @"""classNumber"":\[([\s\S]*?)\]");
                         Match a6 = Regex.Match(html, @"""specificationList"":\[([\s\S]*?)\]");
                         Match a7 = Regex.Match(html, @"""dlco"":""([\s\S]*?)""");
+
                         Match a8 = Regex.Match(html, @"""dateOfFiling"":""([\s\S]*?)""");
                         Match a9 = Regex.Match(html, @"""dateOfAdvertisementInGazette"":""([\s\S]*?)""");
+                       string dateOfPublicationForRegistration = Regex.Match(html, @"""dateOfPublicationForRegistration"":""([\s\S]*?)""").Groups[1].Value;
+                        string dateOfRegistration = Regex.Match(html, @"""dateOfRegistration"":""([\s\S]*?)""").Groups[1].Value;
+                        string actualRegistrationDate = Regex.Match(html, @"""actualRegistrationDate"":""([\s\S]*?)""").Groups[1].Value;
+
+
+
+
                         Match a10 = Regex.Match(html, @"""ownerName"":""([\s\S]*?)""");
                         Match a11 = Regex.Match(html, @"""ownerAddress"":""([\s\S]*?)""");
                         Match a12 = Regex.Match(html, @"""ownerAddressForService"":""([\s\S]*?)""");
                         string a13 = Regex.Match(html, @"""agentDetails"":""([\s\S]*?)""").Groups[1].Value.Replace("\\n", " ").Replace("\\", "").Replace("\"", "").Trim();
 
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+
+
+                        string endorsementSectionTypes = Regex.Match(html, @"endorsementSectionTypes([\s\S]*?)\]").Groups[1].Value;
+                        //詳細背景資料／批註事項 Historical Details/Endorsement
+                        MatchCollection endorsementDate = Regex.Matches(endorsementSectionTypes, @"""endorsementDate"":""([\s\S]*?)""");
+                        MatchCollection endorsementTitle = Regex.Matches(endorsementSectionTypes, @"""endorsementTitle"":""([\s\S]*?)""");
+                        StringBuilder endorsementDate_sb = new StringBuilder();
+                        StringBuilder endorsementTitle_sb = new StringBuilder();
+                        for (int a = 0; a < endorsementDate.Count; a++)
+                        {
+                            endorsementDate_sb.Append(endorsementDate[a].Groups[1].Value+"\n");
+                            endorsementTitle_sb.Append(endorsementTitle[a].Groups[1].Value+"\n");
+                        }
+
+
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
                         lv1.SubItems.Add(Regex.Replace(a1.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a2.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a3.Groups[1].Value, "<[^>]+>", "").Trim());
@@ -140,10 +163,20 @@ namespace 主程序202006
                         lv1.SubItems.Add(Regex.Replace(a7.Groups[1].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\\\n", " ").Replace("\"", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a8.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a9.Groups[1].Value, "<[^>]+>", "").Trim());
+                        lv1.SubItems.Add(dateOfPublicationForRegistration);
+                        lv1.SubItems.Add(dateOfRegistration);
+                        lv1.SubItems.Add(actualRegistrationDate);
+
+
+
+
+
                         lv1.SubItems.Add(Regex.Replace(a10.Groups[1].Value, "<[^>]+>", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a11.Groups[1].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\","").Replace("\"", "").Trim());
                         lv1.SubItems.Add(Regex.Replace(a12.Groups[1].Value, "<[^>]+>", "").Replace("\\n", " ").Replace("\\", "").Replace("\"", "").Trim());
                         lv1.SubItems.Add(a13);
+                        lv1.SubItems.Add(endorsementDate_sb.ToString());
+                        lv1.SubItems.Add(endorsementTitle_sb.ToString());
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -184,9 +217,9 @@ namespace 主程序202006
 
         private void button1_Click(object sender, EventArgs e)
         {
-         
-            cookie = method.GetCookies("https://esearch.ipd.gov.hk/nis-pos-view/tm#/quicksearch");
-            MessageBox.Show(cookie);
+
+           cookie = method.GetCookies("https://esearch.ipd.gov.hk/nis-pos-view/tm#/quicksearch");
+            
             label4.Text = "开始查询" + "......";
             Thread thread = new Thread(new ThreadStart(run));
             Control.CheckForIllegalCrossThreadCalls = false;

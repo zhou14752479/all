@@ -82,9 +82,6 @@
     <Reference Include="ThoughtWorks.QRCode, Version=1.0.4778.30637, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ThoughtWorks.QRCode.1.1.0\lib\ThoughtWorks.QRCode.dll</HintPath>
     </Reference>
-    <Reference Include="VisualPlus">
-      <HintPath>..\..\..\..\58软件\VisualPlus.dll</HintPath>
-    </Reference>
     <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.Net.0.16.4\lib\net45\zxing.dll</HintPath>
     </Reference>
@@ -207,12 +204,6 @@
     </Compile>
     <Compile Include="临时软件\文件下载.Designer.cs">
       <DependentUpon>文件下载.cs</DependentUpon>
-    </Compile>
-    <Compile Include="临时软件\物通网.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="临时软件\物通网.Designer.cs">
-      <DependentUpon>物通网.cs</DependentUpon>
     </Compile>
     <Compile Include="临时软件\百家号视频.cs">
       <SubType>Form</SubType>
@@ -459,9 +450,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\文件下载.resx">
       <DependentUpon>文件下载.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="临时软件\物通网.resx">
-      <DependentUpon>物通网.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="临时软件\百家号视频.resx">
       <DependentUpon>百家号视频.cs</DependentUpon>

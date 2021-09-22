@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+using myDLL;
 
 namespace 主程序202006
 {
@@ -27,7 +27,7 @@ namespace 主程序202006
             string url = "http://citycode.blacklife.cn/search/search.php";
             string postdata = "search=" + System.Web.HttpUtility.UrlEncode(name);
 
-            string html = method.PostUrl(url, postdata, "", "utf-8");
+            string html = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded","");
             
             Match code = Regex.Match(html, @"编码：([\s\S]*?)</div>");
             return code.Groups[1].Value;
@@ -92,7 +92,7 @@ namespace 主程序202006
                 string url = "http://deal.ggzy.gov.cn/ds/deal/dealList_find.jsp";
                 string postdata = "TIMEBEGIN_SHOW="+begindate+ "&TIMEEND_SHOW=" + enddate + "&TIMEBEGIN=" + begindate + "&TIMEEND=" + enddate + "&SOURCE_TYPE=1&DEAL_TIME="+time+"&DEAL_CLASSIFY=01&DEAL_STAGE="+type1+"&DEAL_PROVINCE="+province+"&DEAL_CITY="+city+"&DEAL_PLATFORM=0&BID_PLATFORM=0&DEAL_TRADE=0&isShowAll=1&PAGENUMBER="+i+"&FINDTXT="+keyword;
                
-                string html = method.PostUrl(url,postdata,"", "utf-8");
+                string html = method.PostUrl(url,postdata,"", "utf-8", "application/x-www-form-urlencoded","");
 
                 MatchCollection titles = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
                 MatchCollection diqu = Regex.Matches(html, @"""districtShow"":""([\s\S]*?)""");

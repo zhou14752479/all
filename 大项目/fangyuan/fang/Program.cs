@@ -20,7 +20,7 @@ namespace fang._2019
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 圣才电子书());
+                Application.Run(new 美团酒店());
 
             //}
             //catch (Exception ex)

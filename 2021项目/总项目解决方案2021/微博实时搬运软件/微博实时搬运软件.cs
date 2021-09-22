@@ -14,6 +14,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
 
+
+
+/// <summary>
+/// 微博系统错误，发布页码验证一下
+/// </summary>
 namespace 微博实时搬运软件
 {
     public partial class 微博实时搬运软件 : Form
@@ -102,8 +107,8 @@ namespace 微博实时搬运软件
 
 
         string COOKIE = "SUB=_2A25MO3ekDeRhGeBK41EW8ifNzziIHXVvMe5srDV8PUNbmtB-LWrskW9NR5TvTSZaDjRHYgXXvMN97qgvhofxJijx; SSOLoginState=1631520753; _s_tentry=-; Apache=2892027443189.608.1631520760089; wvr=6; SINAGLOBAL=3000818319191.1.1631409320223; ALF=1663056754; webim_unReadCount=%7B%22time%22%3A1631520783381%2C%22dm_pub_total%22%3A0%2C%22chat_group_client%22%3A75%2C%22chat_group_notice%22%3A0%2C%22allcountNum%22%3A126%2C%22msgbox%22%3A0%7D; SCF=ArqSqpl5iSE-imD8ulC6vYCgQXmg0i0xM3dHh0LoQ4V2KkocpI9VgGbzsvkA0BpcteYibgOh5C6l1ZC_DU9FIo0.; ULV=1631520760593:24:24:24:2892027443189.608.1631520760089:1631520638987; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W58Bimr7LVLB9MC.y-Wc8M65JpX5KMhUgL.FoqX1heNeo.pShB2dJLoIp9h-XUli--fiK.7i-2Ni--fi-2ci-z4";
-         //string uid = "5269475300";
-        string uid = "7691627122";
+        //string uid = "5269475300"; //我的UID
+        string uid = "7691627122";  //客户UID
         #region POST请求
         /// <summary>
         /// POST请求
@@ -161,9 +166,73 @@ namespace 微博实时搬运软件
         }
 
         #endregion
-        //string sign = "2ec1a1e78d11448159edab23491848da";
-        string sign = "ce61ea84efc27ef9659ddd323a5dfaf0";
+      
+        string sign = "";
         // string mysign="1a795c3c38858a9551506f34e6ce9bc2";
+
+
+        #region 获取图库图片
+        public void getpic()
+        {
+            try
+            {
+                COOKIE = method.GetCookies("https://card.weibo.com/article/v3/editor#/draft/2377288");
+                string url = "https://card.weibo.com/article/v3/aj/editor/plugins/albumimagelist?cur_id=0";
+
+                string html = method.GetUrlWithCookie(url,COOKIE, "utf-8");
+
+                MatchCollection pids = Regex.Matches(html, @"""pid"":""([\s\S]*?)""");
+
+                for (int i = 0; i <pids.Count; i++)
+                {
+                    comboBox2.Items.Add(pids[i].Groups[1].Value);
+                }
+                if (comboBox2.Items.Count > 0)
+                {
+                    comboBox2.Text = comboBox2.Items[0].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                textBox1.Text = "创建文章ID" + ex.ToString();
+
+            }
+        }
+
+        #endregion
+
+
+        #region 获取Sign
+        public void getsign()
+        {
+            try
+            {
+                string url = "https://huati.weibo.com/super/publisher?topic_id=1022%253A1008088d36655014ba3f03b370ef57ccf2f12e&extparams=100808";
+               
+                string html = PostUrl(url,"");
+
+                 sign = Regex.Match(html, @"super_topic', '([\s\S]*?)'").Groups[1].Value.Trim();
+             
+                if (sign == "")
+                {
+                    textBox1.Text = DateTime.Now.ToLongTimeString() + "获取sign失败，账号已掉线";
+                    status = false;
+
+                }
+               
+            }
+            catch (Exception ex)
+            {
+
+                textBox1.Text = "创建文章ID" + ex.ToString();
+              
+            }
+        }
+
+        #endregion
+
         #region 创建文章ID
         public string create()
         {
@@ -172,7 +241,7 @@ namespace 微博实时搬运软件
                 string url = "https://card.weibo.com/article/v3/aj/editor/draft/verticalcreate?uid=" + uid;
                 string postdata = "type=super_topic&sign="+sign+"&draft=%7B%22title%22%3A%22%22%2C%22subtitle%22%3A%22%E6%9D%A5%E8%87%AA%E4%BA%8ECSGO%E8%B6%85%E8%AF%9D%22%2C%22summary%22%3A%22%22%2C%22content%22%3A%22%22%7D&extra=%7B%22topic_id%22%3A%221022%3A1008088d36655014ba3f03b370ef57ccf2f12e%22%2C%22extparams%22%3A%22100808%22%7D&vuid="+uid+"&create_at=1631327381948";
                 string html = PostUrl(url,postdata);
-              
+                
                 string id = Regex.Match(html, @"""id"":""([\s\S]*?)""").Groups[1].Value;
                 string date = Regex.Match(html, @"""updated"":""([\s\S]*?)""").Groups[1].Value;
                 if (id == "")
@@ -213,7 +282,7 @@ namespace 微博实时搬运软件
 
                
                 string tags = System.Web.HttpUtility.UrlEncode(textBox2.Text); 
-                string text = System.Web.HttpUtility.UrlEncode("发布了头条文章：") + title + tags;
+                string text = title + tags;
 
                 return "id=" + id + "&rank=0&text=" + text + " &sync_wb=1&is_original=0&time=";
             }
@@ -251,7 +320,7 @@ namespace 微博实时搬运软件
             catch (Exception ex)
             {
 
-                textBox1.Text = "创建文章标题：" + ex.ToString();
+                //textBox1.Text = "创建文章标题：" + ex.ToString();
                 return "";
             }
         }
@@ -338,11 +407,14 @@ namespace 微博实时搬运软件
         {
             try
             {
+                
                 textBox1.Text += DateTime.Now.ToLongTimeString() + "：开启监控...";
+               
+
                 string url = "https://news.maxjia.com/maxnews/app/news/with/topics/authors?tag=None&lang=zh-cn&os_type=iOS&os_version=13.6.1&_time=1631074415&version=4.4.41&device_id=6B8E0037-2842-4B1E-B506-A2F16A43714F&game_type=csgo&max__id=0&limit=20&offset=0";
                 string html = method.GetUrl(url,"utf-8");
                 MatchCollection uids = Regex.Matches(html, @"""newsid"": ""([\s\S]*?)""");
-                for (int i = 0; i <1; i++)  //监控两篇
+                for (int i = 0; i <3; i++)  //监控两篇
                 {
                     string uid = uids[i].Groups[1].Value;
                     string uidini = "";
@@ -352,6 +424,7 @@ namespace 微博实时搬运软件
 
 
                     }
+                   
                     if (uidini.Contains(uid))
                     {
                         textBox1.Text += "\r\n"+DateTime.Now.ToLongTimeString() + "：正在监控...无最新文章";
@@ -368,9 +441,20 @@ namespace 微博实时搬运软件
                  
                    string writer = System.Web.HttpUtility.UrlEncode(textBox5.Text);
 
-                   // content = content+ System.Web.HttpUtility.UrlEncode("<p>"+textBox1.Text+"</p>");  //文章结尾图片
+                    if(comboBox1.Text== "图片添加到顶部")
+                    {
+                        content =  System.Web.HttpUtility.UrlEncode("<p img-box=\"img-box\" class=\"picbox\"><img src=\"https://wx2.sinaimg.cn/large/" + comboBox2.Text + ".jpg\"></p>")+ content;  //文章开始图片
+                    }
 
-                    string cover = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"""thumb"": ""([\s\S]*?)""").Groups[1].Value);
+                    if (comboBox1.Text == "图片添加到底部")
+                    {
+                        content = content+ System.Web.HttpUtility.UrlEncode("<p img-box=\"img-box\" class=\"picbox\"><img src=\"https://wx2.sinaimg.cn/large/"+comboBox2.Text+".jpg\"></p>");  //文章结尾图片
+
+                    }
+
+
+                    string cover = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"""imgs"": \[([\s\S]*?)jpeg").Groups[1].Value.Replace("\"", "").Trim() + "jpeg");
+                    
                     string summary = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"<div class=""blockquote"">([\s\S]*?)</div>").Groups[1].Value);
 
                     string postdata = createbody(title, content, cover, summary,writer);
@@ -413,6 +497,7 @@ namespace 微博实时搬运软件
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             status = true;
             
             #region 通用检测
@@ -428,10 +513,11 @@ namespace 微博实时搬运软件
             #endregion
             timer1.Interval = Convert.ToInt32(textBox4.Text)*60*1000;
             timer1.Start();
-           // COOKIE = method.GetCookies("https://card.weibo.com/article/v3/editor#/draft/2377288");
+            COOKIE = method.GetCookies("https://card.weibo.com/article/v3/editor#/draft/2377288");
            
             if (thread == null || !thread.IsAlive)
             {
+                getsign();
                 thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
@@ -442,7 +528,8 @@ namespace 微博实时搬运软件
         private void timer1_Tick(object sender, EventArgs e)
         {
             status = true;
-            webBrowser1.Refresh();
+            COOKIE = method.GetCookies("https://card.weibo.com/article/v3/editor#/draft/2377288");
+            //webBrowser1.Refresh();
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -460,6 +547,11 @@ namespace 微博实时搬运软件
         {
             webBrowser1.Navigate("https://huati.weibo.com/super/publisher?topic_id=1022%253A1008088d36655014ba3f03b370ef57ccf2f12e&extparams=100808");
            // webBrowser1.Refresh();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            getpic();
         }
     }
 }

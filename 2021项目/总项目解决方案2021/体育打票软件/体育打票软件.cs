@@ -116,13 +116,15 @@ namespace 体育打票软件
             //    }
             //}
 
-
-          
-
-
-
+            
+        
             html = webBrowser1.Document.Body.OuterHtml;
             ahtml = webBrowser1.DocumentText;
+            if (webBrowser1.Url.ToString().Contains("500.com"))
+            {
+                StreamReader sr = new StreamReader(webBrowser1.DocumentStream, Encoding.GetEncoding(("gb2312")));
+                ahtml = sr.ReadToEnd();
+            }
             textBox1.Text = html;
         }
 
@@ -148,6 +150,9 @@ namespace 体育打票软件
         private void button7_Click(object sender, EventArgs e)
         {
            
+           
+           
+
             webBrowser1.Refresh();
         }
         
@@ -202,20 +207,42 @@ namespace 体育打票软件
 
         private void button6_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            if (!function.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"FCUoF"))
+            {
+                return;
+            }
+
+            #endregion
             suiji = bianma_txt.Text + function.getsuijima();
             gethtml();
-           
-            string fangshi = "解析模式：竞彩" + Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
-            //jx.Text = fangshi;
-            if (!fangshi.Contains("混合过关"))
+            if (webBrowser1.Url.ToString().Contains("500"))
             {
-                MessageBox.Show("请将页面切换至混合过关");
+                string fangshi = "解析模式：500网";
+                jiexi jx = new jiexi();
+                jx.Show();
+                jx.Text = fangshi;
+               
+                   
+                
             }
             else
             {
-                jiexi jx = new jiexi();
-                jx.Show();
+
+                string fangshi = "解析模式：竞彩" + Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+                if (!fangshi.Contains("混合过关"))
+                {
+                    MessageBox.Show("请将页面切换至混合过关");
+                }
+                else
+                {
+                    jiexi jx = new jiexi();
+                    jx.Text = fangshi;
+                    jx.Show();
+                }
             }
+
         }
 
         public void cishi(string value)
@@ -239,16 +266,43 @@ namespace 体育打票软件
            
 
             gethtml();
-            string fangshi = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
-            if (fangshi == "足球混合过关")
+            if (webBrowser1.Url.ToString().Contains("500"))
             {
-                fc.getdata(Report, html, ahtml);
-            }
-            if (fangshi == "足球胜平负" || fangshi == "足球半全场胜平负" || fangshi == "足球总进球数" || fangshi == "足球比分")
-            {
-                fc.getdata_shengpingfu(Report, html, ahtml);
+                try
+                {
+                    HtmlElement element2 = webBrowser1.Document.CreateElement("script");
+                    element2.SetAttribute("type", "text/javascript");
+                    element2.SetAttribute("text", "function _func(){return document.getElementById('buy_bs').value}");   //这里写JS代码
+                    HtmlElement head = webBrowser1.Document.Body.AppendChild(element2);
+                    fc.beishu_500 = webBrowser1.Document.InvokeScript("_func").ToString();
+                }
+                catch (Exception)
+                {
+                    HtmlElement element2 = webBrowser1.Document.CreateElement("script");
+                    element2.SetAttribute("type", "text/javascript");
+                    element2.SetAttribute("text", "function _func(){k=document.getElementsByTagName('input');for (l = 0; l < k.length; l++){if (k[l].type == 'text') { return k[l].value; }}}");   //这里写JS代码
+                    HtmlElement head = webBrowser1.Document.Body.AppendChild(element2);
+                    fc.beishu_500 = webBrowser1.Document.InvokeScript("_func").ToString();
+
+                   
+                }
+                fc.getdata_500(Report, html, ahtml);
             }
 
+            else
+            {
+                string fangshi = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+                if (fangshi == "足球混合过关")
+                {
+                    fc.getdata(Report, html, ahtml);
+                }
+                if (fangshi == "足球胜平负" || fangshi == "足球半全场胜平负" || fangshi == "足球总进球数" || fangshi == "足球比分")
+                {
+                    fc.getdata_shengpingfu(Report, html, ahtml);
+                }
+            }
+
+           
 
 
 
@@ -283,10 +337,13 @@ namespace 体育打票软件
             {
                 var btn = webBrowser1.Document.GetElementById("detailBtn");
                 btn.InvokeMember("click");
+
+              
             }
             catch (Exception)
             {
-
+                var btn2 = webBrowser1.Document.GetElementById("panelSelectBtn");
+                btn2.InvokeMember("click");
             }
         }
     }
