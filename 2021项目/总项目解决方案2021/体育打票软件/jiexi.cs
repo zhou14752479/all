@@ -73,7 +73,7 @@ namespace 体育打票软件
                 sb.Append("a"+results[i].Groups[1].Value+"a");
 
             }
-            MessageBox.Show(sb.ToString());
+           
             string maohao = Regex.Match(sb.ToString(),@":").Groups[0].Value;
             string shuzi= Regex.Match(sb.ToString(), @"a\da").Groups[0].Value;
 
@@ -143,7 +143,7 @@ namespace 体育打票软件
         #endregion
 
         /// <summary>
-        /// 混合过关的解析
+        /// 竞彩网的解析（所有）
         /// </summary>
         public void getdata()
         {
@@ -207,7 +207,7 @@ namespace 体育打票软件
 
                 string beishu = Regex.Replace(text1[2], ".*/", "");
                 string jine = text1[3];
-                string guoguan = "过关方式 " + text1[4].Replace("串", "");
+                string guoguan = "过关方式 " + text1[4].Replace("串", "x");
                 double jiangjin = 1;
                 //周三002>让平|3.00
                 MatchCollection zhous = Regex.Matches(item, @"周([\s\S]*?)>");
@@ -287,7 +287,7 @@ namespace 体育打票软件
                             a2 = "(" + a2 + ")";
                         }
 
-                        sb.Append("第" + (i + 1) + "场 周" + a1+houzhui + "\n");
+                        sb.Append("第" + (i + 1) + "场周" + a1+houzhui + "\n");
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
                       
                         sb.Append(a2 + "@" + a3 + "0元\n");
@@ -375,14 +375,14 @@ namespace 体育打票软件
                 }
                
                 jiangjin = jiangjin * Convert.ToDouble(jine);
-               jiangjin = Math.Round(jiangjin, 2);
+               //jiangjin = Math.Round(jiangjin, 2);
 
 
                 string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
                 string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
                
                 // sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + text1[4].Replace("串", "x") +"*1注" + ";共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin.ToString("F2")+ "元\n单倍注数:" + text1[4].Replace("串", "x") +"*1注" + ";共" + zhushu + "注");
 
 
 
@@ -643,8 +643,9 @@ namespace 体育打票软件
                 MatchCollection peilvs = Regex.Matches(item, @"\|([\s\S]*?),");
                 string a1 = "周"+Regex.Match(item, @"周([\s\S]*?)>").Groups[1].Value;
                     string a2 = "("+Regex.Match(item, @">.*").Groups[0].Value.Replace(">","").Replace("|",")@").Replace(",", "0元+(");
-                a2 = a2.Replace("+(","");//去掉末尾多余字符
 
+                // a2 = a2.Replace("+(","");//去掉末尾多余字符
+                a2 = a2.Remove(a2.Length-2,2);
 
                 StringBuilder sb = new StringBuilder();
                
@@ -687,11 +688,20 @@ namespace 体育打票软件
                     sb.Append(a2+"\n");
 
                     jiangjin = jiangjin * Convert.ToDouble(peilvs[0].Groups[1].Value);
-                
 
 
-                jiangjin = jiangjin * Convert.ToDouble(jine);
-                jiangjin = Math.Round(jiangjin, 2);
+                string peilv_max = peilvs[0].Groups[1].Value;
+                for (int x = 0; x < peilvs.Count; x++)
+                {
+                    if(Convert.ToDouble(peilvs[x].Groups[1].Value) >Convert.ToDouble(peilv_max))
+                    {
+
+                        peilv_max = peilvs[x].Groups[1].Value;
+                    }
+                   
+                }
+                jiangjin = Convert.ToDouble(peilv_max)*Convert.ToDouble(beishu)*2;
+                //jiangjin = Math.Round(jiangjin, 2);
 
 
                 string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
@@ -740,6 +750,7 @@ namespace 体育打票软件
         {
             if (this.Text.Contains("500"))
             {
+               // getdata_500();
                 getdata_500_danguan();
             }
             else

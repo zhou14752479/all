@@ -5,10 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
+using myDLL;
 
 namespace CEF主程序
 {
@@ -23,7 +25,13 @@ namespace CEF主程序
        public static string body = "";
         private void CEF主程序_Load(object sender, EventArgs e)
         {
-            browser = new ChromiumWebBrowser("https://www.douyin.com/video/7005113957069491470?previous_page=recommend&tab_name=recommend");
+
+            if (DateTime.Now > Convert.ToDateTime("2021-09-30"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+            browser = new ChromiumWebBrowser("https://www.douyin.com/video/7003247679228644621?previous_page=main_page&tab_name=home");
             //browser = new ChromiumWebBrowser("http://app.tk1788.com/app/superscanPH/loginPHValidate.jsp");
             // Cef.Initialize(new CefSettings());
 
@@ -34,7 +42,7 @@ namespace CEF主程序
             browser.Dock = DockStyle.Fill;
 
           //browser.FrameLoadEnd += Browser_FrameLoadEnd;
-           browser.RequestHandler = new WinFormsRequestHandler();//request请求的具体实现
+          // browser.RequestHandler = new WinFormsRequestHandler();//request请求的具体实现
           
 
         }
@@ -133,12 +141,46 @@ namespace CEF主程序
 
         private void 获取request参数ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStripTextBox1.Text = body;
+            WinFormsRequestHandler winr = new WinFormsRequestHandler();
+            browser.RequestHandler = winr;//request请求的具体实现
+                                                                  // browser.GetBrowser().MainFrame.EvaluateScriptAsync("alert(document.cookie)");
+                                                                  //toolStripTextBox1.Text = body;  
+         winr.getdata= new WinFormsRequestHandler.GetData(getdata2);
         }
+
+
+        
+        
+
+        public void getdata2(string url)
+        {
+            string html = method.GetUrlWithCookie(url, toolStripTextBox1.Text,"utf-8");
+            MatchCollection uids = Regex.Matches(html, @"""uid"":""([\s\S]*?)""");
+            MatchCollection short_ids = Regex.Matches(html, @"""short_id"":""([\s\S]*?)""");
+            MatchCollection nicknames = Regex.Matches(html, @"""nickname"":""([\s\S]*?)""");
+
+
+
+            for (int i = 0; i < uids.Count; i++)
+            {
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                lv1.SubItems.Add(uids[i].Groups[1].Value);
+                lv1.SubItems.Add(short_ids[i].Groups[1].Value);
+                lv1.SubItems.Add(nicknames[i].Groups[1].Value);
+            }
+            
+        }
+
+
 
         private void 前进ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            browser.Load(toolStripTextBox1.Text);
+        }
 
+        private void 导出数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
     }
 }

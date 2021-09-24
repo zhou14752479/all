@@ -1,4 +1,4 @@
-﻿namespace webview2
+﻿namespace WebView2
 {
     partial class Form1
     {

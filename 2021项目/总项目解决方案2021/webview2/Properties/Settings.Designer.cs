@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace webview2.Properties
+namespace WebView2.Properties
 {
 
 

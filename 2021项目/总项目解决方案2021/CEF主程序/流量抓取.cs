@@ -24,6 +24,7 @@ namespace CEF主程序
         public static string json;
         private void 流量抓取_Load(object sender, EventArgs e)
         {
+            
             browser = new ChromiumWebBrowser("https://m.ok6.icu/");
             // Cef.Initialize(new CefSettings());
 

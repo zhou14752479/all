@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace webView2
+namespace 代码生成器
 {
     public partial class Form1 : Form
     {
@@ -17,12 +17,18 @@ namespace webView2
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void getmsg(string msg)
         {
-          webView21.Source = new Uri("https://login.taobao.com/member/login.jhtml?spm=a21bo.21814703.201864-2.d1.5af911d9ZE4f5j&f=top&redirectURL=http%3A%2F%2Fwww.taobao.com%2F");
-            
+          
+            button1.Text = msg;
         }
-    
-    
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 fm2 = new Form2();
+            fm2.sendmsg += new Form2.SendMsg(getmsg);
+            
+            fm2.Show();
+        }
     }
 }

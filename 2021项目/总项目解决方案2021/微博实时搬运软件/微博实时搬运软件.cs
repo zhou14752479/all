@@ -451,7 +451,7 @@ namespace 微博实时搬运软件
                         content = content+ System.Web.HttpUtility.UrlEncode("<p img-box=\"img-box\" class=\"picbox\"><img src=\"https://wx2.sinaimg.cn/large/"+comboBox2.Text+".jpg\"></p>");  //文章结尾图片
 
                     }
-
+                    content = content.Replace("\n",""); //去掉多余的\n
 
                     string cover = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"""imgs"": \[([\s\S]*?)jpeg").Groups[1].Value.Replace("\"", "").Trim() + "jpeg");
                     
@@ -552,6 +552,13 @@ namespace 微博实时搬运软件
         private void button4_Click(object sender, EventArgs e)
         {
             getpic();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            this.textBox1.SelectionStart = this.textBox1.Text.Length;
+            this.textBox1.SelectionLength = 0;
+            this.textBox1.ScrollToCaret();
         }
     }
 }

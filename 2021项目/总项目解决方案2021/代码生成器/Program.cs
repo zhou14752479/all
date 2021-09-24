@@ -16,7 +16,7 @@ namespace 代码生成器
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 代码生成器());
+            Application.Run(new Form1());
         }
     }
 }
