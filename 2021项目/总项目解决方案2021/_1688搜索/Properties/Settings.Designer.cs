@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace 日本站卡号验证.Properties
+namespace _1688搜索.Properties
 {
 
 

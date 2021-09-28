@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 日本站卡号验证
+namespace _1688搜索
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 日本站卡号验证
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 卡号验证());
+            Application.Run(new _1688搜索());
         }
     }
 }

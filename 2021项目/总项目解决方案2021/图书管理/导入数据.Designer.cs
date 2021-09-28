@@ -219,6 +219,7 @@
             this.Name = "导入数据";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "导入数据";
+            this.Load += new System.EventHandler(this.导入数据_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

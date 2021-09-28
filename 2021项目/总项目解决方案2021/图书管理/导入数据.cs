@@ -52,35 +52,58 @@ namespace 图书管理
 
         public void import()
         {
-            for (int i = 0; i < listView1.CheckedItems.Count; i++)
+            try
             {
-                try
-                {
-                   
-                    string filename = listView1.CheckedItems[i].SubItems[1].Text;
-                    string result = fc.ExcelToDataTable(filename);
-                    //string result = fc.ReadExcelToTable_OLEDB(filename);
-                    listView1.CheckedItems[i].SubItems[2].Text = result;
-                    
-                   // dataGridView1.DataSource = ReadExcelToTable(filename);
-                }
-                catch (Exception ex)
+                for (int i = 0; i < listView1.CheckedItems.Count; i++)
                 {
 
-                    listView1.CheckedItems[i].SubItems[2].Text = "失败";
-                    continue;
+                    try
+                    {
+
+                        string filename = listView1.CheckedItems[i].SubItems[1].Text;
+                        string result = fc.ExcelToDataTable(filename);
+                        if (result.Contains("失败"))
+                        {
+                           
+
+                            string newfilename = fc.xlstoxlsx(filename);
+                            result = fc.ExcelToDataTable(newfilename);
+                            if (result.Contains("成功"))
+                            {
+                                File.Delete(newfilename);
+                            }
+
+                            listView1.CheckedItems[i].SubItems[2].Text = result;
+
+
+                        }
+                        listView1.CheckedItems[i].SubItems[2].Text = result;
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        listView1.CheckedItems[i].SubItems[2].Text = "失败";
+                        continue;
+
+                    }
+
 
                 }
-
-
-
-
+                MessageBox.Show("导入完成");
             }
-            MessageBox.Show("导入完成");
+            catch (System.NullReferenceException ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
+
+
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(import);
@@ -196,5 +219,47 @@ namespace 图书管理
                 listView1.Items[i].Checked = false;
             }
         }
+
+        private void 导入数据_Load(object sender, EventArgs e)
+        {
+            AppDomain.CurrentDomain.UnhandledException +=
+
+             new UnhandledExceptionEventHandler(UnhandledExceptionEventHandler);
+        }
+
+        static void UnhandledExceptionEventHandler(object sender, UnhandledExceptionEventArgs e)
+
+        {
+            
+
+           //try
+           // {
+               
+           //     using (System.IO.FileStream fs = new System.IO.FileStream(@"D:\testme.log",
+           //              System.IO.FileMode.Append, System.IO.FileAccess.Write))
+
+           //     {
+
+           //         using (System.IO.StreamWriter w = new System.IO.StreamWriter(fs,
+           //                  System.Text.Encoding.UTF8))
+           //         {
+
+           //             w.WriteLine(e.ExceptionObject);
+
+           //         }
+
+           //     }
+
+           // }
+
+           // catch
+
+           // {
+
+           // }
+
+        }
+
+
     }
 }

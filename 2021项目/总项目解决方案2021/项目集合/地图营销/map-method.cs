@@ -55,7 +55,7 @@ namespace 地图营销
 
 
 
-
+    #region 机器码
         public void jiance()
         {
             if (ExistINIFile())
@@ -135,6 +135,10 @@ namespace 地图营销
             }
 
         }
+
+        #endregion
+
+
 
 
     }

@@ -283,7 +283,7 @@ namespace 授权库
        
 
       
-        string constr = "Host =localhost;Database=shouquanku;Username=root;Password=root";
+        
 
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -299,44 +299,46 @@ namespace 授权库
                     return;
 
                 string uid = listView1.SelectedItems[0].SubItems[0].Text;
+             
                 新增 add = new 新增();
                 add.Text = title;
 
-                MySqlConnection mycon = new MySqlConnection(constr);
+                MySqlConnection mycon = new MySqlConnection(function.constr);
                 mycon.Open();
 
-                string sql = "select * from datas where uid='" + uid + "'  ";
+                string sql = "select * from datas where uid=" + uid;
+                textBox1.Text = sql;
                 MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
 
 
                 MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
                 reader.Read();
+               
+                    add.uid = reader["uid"].ToString().Trim();
 
-                add.uid = reader["uid"].ToString().Trim();
-
-                add.type = reader["type"].ToString().Trim();
-                add.name = reader["name"].ToString().Trim();
-                add.pinpai = reader["pinpai"].ToString().Trim();
-                add.cate1 = reader["cate1"].ToString().Trim();
-                add.cate2 = reader["cate2"].ToString().Trim();
-
-
-                add.sq_starttime = reader["sq_starttime"].ToString().Trim();
-                add.sq_endtime = reader["sq_endtime"].ToString().Trim();
-                add.yjsq_starttime = reader["yjsq_starttime"].ToString().Trim();
+                    add.type = reader["type"].ToString().Trim();
+                    add.name = reader["name"].ToString().Trim();
+                    add.pinpai = reader["pinpai"].ToString().Trim();
+                    add.cate1 = reader["cate1"].ToString().Trim();
+                    add.cate2 = reader["cate2"].ToString().Trim();
 
 
-                add.is_yuanjian = reader["is_yuanjian"].ToString().Trim();
-                add.is_shouhou = reader["is_shouhou"].ToString().Trim();
-                add.is_shangbiao = reader["is_shangbiao"].ToString().Trim();
-                add.shangbiao_endtime = reader["shangbiao_endtime"].ToString().Trim();
-                add.beizhu = reader["beizhu"].ToString().Trim();
-                mycon.Close();
-                reader.Close();
+                    add.sq_starttime = reader["sq_starttime"].ToString().Trim();
+                    add.sq_endtime = reader["sq_endtime"].ToString().Trim();
+                    add.yjsq_starttime = reader["yjsq_starttime"].ToString().Trim();
 
 
-                add.Show();
+                    add.is_yuanjian = reader["is_yuanjian"].ToString().Trim();
+                    add.is_shouhou = reader["is_shouhou"].ToString().Trim();
+                    add.is_shangbiao = reader["is_shangbiao"].ToString().Trim();
+                    add.shangbiao_endtime = reader["shangbiao_endtime"].ToString().Trim();
+                    add.beizhu = reader["beizhu"].ToString().Trim();
+                    mycon.Close();
+                    reader.Close();
+
+
+                    add.Show();
+                
             }
             catch (Exception ex)
             {

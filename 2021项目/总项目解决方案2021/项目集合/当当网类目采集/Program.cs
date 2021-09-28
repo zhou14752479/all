@@ -16,7 +16,7 @@ namespace 当当网类目采集
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 当当网类目采集());
+            Application.Run(new 当当商家图书采集());
         }
     }
 }

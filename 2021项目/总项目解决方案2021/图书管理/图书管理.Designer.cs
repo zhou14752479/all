@@ -43,6 +43,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -84,7 +85,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -255,6 +255,22 @@
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "条件查询";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "折扣正序",
+            "折扣倒序",
+            "库存正序",
+            "库存倒序"});
+            this.comboBox3.Location = new System.Drawing.Point(519, 59);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 25);
+            this.comboBox3.TabIndex = 39;
+            this.comboBox3.Text = "默认排序";
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // comboBox1
             // 
@@ -600,11 +616,17 @@
             // 
             this.comboBox2.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "折扣正序",
+            "折扣倒序",
+            "库存正序",
+            "库存倒序"});
             this.comboBox2.Location = new System.Drawing.Point(414, 28);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(107, 25);
             this.comboBox2.TabIndex = 32;
-            this.comboBox2.Text = "默认排序";
+            this.comboBox2.Text = "折扣正序";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -649,22 +671,6 @@
             this.textBox5.TabIndex = 29;
             this.textBox5.MouseHover += new System.EventHandler(this.textBox5_MouseHover);
             // 
-            // comboBox3
-            // 
-            this.comboBox3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "折扣正序",
-            "折扣倒序",
-            "库存正序",
-            "库存倒序"});
-            this.comboBox3.Location = new System.Drawing.Point(519, 59);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 25);
-            this.comboBox3.TabIndex = 39;
-            this.comboBox3.Text = "默认排序";
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
-            // 
             // 图书管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -680,6 +686,7 @@
             this.Name = "图书管理";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图书管理";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.图书管理_FormClosing);
             this.Load += new System.EventHandler(this.图书管理_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

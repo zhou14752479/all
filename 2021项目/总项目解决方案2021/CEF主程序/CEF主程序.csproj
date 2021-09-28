@@ -93,6 +93,12 @@
     <Compile Include="ResourceRequestHandler.cs" />
     <Compile Include="WinFormResourceRequestHandler.cs" />
     <Compile Include="WinFormsRequestHandler.cs" />
+    <Compile Include="抖音评论采集.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="抖音评论采集.Designer.cs">
+      <DependentUpon>抖音评论采集.cs</DependentUpon>
+    </Compile>
     <Compile Include="流量抓取.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="抖音评论采集.resx">
+      <DependentUpon>抖音评论采集.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="流量抓取.resx">
       <DependentUpon>流量抓取.cs</DependentUpon>
     </EmbeddedResource>

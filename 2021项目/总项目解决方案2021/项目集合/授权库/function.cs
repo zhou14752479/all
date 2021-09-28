@@ -72,6 +72,7 @@ namespace 授权库
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, constr);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
+                
                 DataTable dt = ds.Tables[0];
                 return dt;
             }

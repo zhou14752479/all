@@ -59,6 +59,12 @@
     <Compile Include="webbrowser.Designer.cs">
       <DependentUpon>webbrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="当当商家图书采集.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="当当商家图书采集.Designer.cs">
+      <DependentUpon>当当商家图书采集.cs</DependentUpon>
+    </Compile>
     <Compile Include="当当网类目采集.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </Compile>
     <EmbeddedResource Include="webbrowser.resx">
       <DependentUpon>webbrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="当当商家图书采集.resx">
+      <DependentUpon>当当商家图书采集.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="当当网类目采集.resx">
       <DependentUpon>当当网类目采集.cs</DependentUpon>

@@ -131,6 +131,23 @@ namespace 图书管理
             dataGridView2.Columns["price"].Width = 60;
             dataGridView2.Columns["kucun"].Width = 60;
             dataGridView2.Columns["zhekou"].Width = 60;
+
+
+            switch (comboBox2.Text)
+            {
+                case "折扣正序":
+                    this.dataGridView2.Sort(this.dataGridView2.Columns["zhekou"], ListSortDirection.Ascending);
+                    break;
+                case "折扣倒序":
+                    this.dataGridView2.Sort(this.dataGridView2.Columns["zhekou"], ListSortDirection.Descending);
+                    break;
+                case "库存正序":
+                    this.dataGridView2.Sort(this.dataGridView2.Columns["kucun"], ListSortDirection.Ascending);
+                    break;
+                case "库存倒序":
+                    this.dataGridView2.Sort(this.dataGridView2.Columns["kucun"], ListSortDirection.Descending);
+                    break;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -158,6 +175,7 @@ namespace 图书管理
             row.Cells[6].Value = dataGridView2.CurrentRow.Cells[6].Value.ToString();
             row.Cells[7].Value = dataGridView2.CurrentRow.Cells[7].Value.ToString();
             row.Cells[8].Value = dataGridView2.CurrentRow.Cells[8].Value.ToString();
+            row.Cells[9].Value = "1";
             dataGridView3.Rows.Add(row);
            
         }
@@ -286,6 +304,39 @@ namespace 图书管理
                 case "库存倒序":
                     this.dataGridView1.Sort(this.dataGridView1.Columns["kucun"], ListSortDirection.Descending);
                     break;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox2.Text)
+            {
+                case "折扣正序":
+                    this.dataGridView2.Sort(this.dataGridView2.Columns["zhekou"], ListSortDirection.Ascending);
+                    break;
+                case "折扣倒序":
+                    this.dataGridView2.Sort(this.dataGridView2.Columns["zhekou"], ListSortDirection.Descending);
+                    break;
+                case "库存正序":
+                    this.dataGridView2.Sort(this.dataGridView2.Columns["kucun"], ListSortDirection.Ascending);
+                    break;
+                case "库存倒序":
+                    this.dataGridView2.Sort(this.dataGridView2.Columns["kucun"], ListSortDirection.Descending);
+                    break;
+            }
+        }
+
+        private void 图书管理_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
             }
         }
     }

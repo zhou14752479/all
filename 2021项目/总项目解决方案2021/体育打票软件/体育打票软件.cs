@@ -78,6 +78,8 @@ namespace 体育打票软件
         private GridppReport Report = new GridppReport();
         private void 体育打票软件_Load(object sender, EventArgs e)
         {
+           
+
             if (ExistINIFile())
             {
                 address_txt.Text = IniReadValue("values", "address");
@@ -89,8 +91,8 @@ namespace 体育打票软件
 
             //this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
             webBrowser1.ScriptErrorsSuppressed = true;
-            //webBrowser1.Navigate("https://www.sporttery.cn/jc/jsq/zqhhgg/");
-            webBrowser1.Navigate("https://trade.500.com/jczq/");
+            webBrowser1.Navigate("https://www.sporttery.cn/jc/jsq/zqhhgg/");
+            //webBrowser1.Navigate("https://trade.500.com/jczq/");
 
 
             //Report.LoadFromFile(@"C:\Grid++Report 6\Samples\Reports\1a.简单表格.grf");

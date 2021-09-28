@@ -1,6 +1,7 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Spire.Xls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -230,7 +231,11 @@ namespace 图书管理
             try
             {
                 FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-              
+
+                if(fs==null)
+                {
+                    MessageBox.Show("");
+                }
                 if (fileName.IndexOf(".xlsx") > 0) // 2007版本
                     workbook = new XSSFWorkbook(fs);
                 else if (fileName.IndexOf(".xls") > 0) // 2003版本
@@ -389,7 +394,7 @@ namespace 图书管理
             }
             catch (Exception ex)
             {
-              // MessageBox.Show(ex.ToString());
+              
                 return "上传失败，请取消表格数据的超链接,重新上传！"+ ex.Message;
             }
         }
@@ -407,13 +412,14 @@ namespace 图书管理
                 DataTable dt = null;
 
                 //连接字符串
-               // string connstring = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties='Excel 8.0;HDR=NO;IMEX=1';"; // Office 07及以上版本 不能出现多余的空格 而且分号注意
+                //string connstring = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties='Excel 8.0;HDR=NO;IMEX=1';"; // Office 07及以上版本 不能出现多余的空格 而且分号注意
                 string connstring = "Provider=Microsoft.JET.OLEDB.4.0;Data Source=" + path + ";Extended Properties='Excel 8.0;HDR=NO;IMEX=1';"; //Office 07以下版本 
                 using (OleDbConnection conn = new OleDbConnection(connstring))
                 {
                     conn.Open();
                     DataTable sheetsName = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "Table" }); //得到所有sheet的名字
                     string firstSheetName = sheetsName.Rows[0][2].ToString(); //得到第一个sheet的名字
+                   
                     string sql = string.Format("SELECT * FROM [{0}]", firstSheetName); //查询字符串                    //string sql = string.Format("SELECT * FROM [{0}] WHERE [日期] is not null", firstSheetName); //查询字符串
                     OleDbDataAdapter ada = new OleDbDataAdapter(sql, connstring);
                     DataSet set = new DataSet();
@@ -705,6 +711,41 @@ namespace 图书管理
         }
 
         #endregion
+
+
+
+        #region xls转存xlsx 用于无法读取xls文件
+        
+        public string xlstoxlsx(string filename)
+        {
+            try
+            {
+                Workbook workbook = new Workbook();
+                if (workbook != null)
+                {
+                    workbook.LoadFromFile(filename);
+                    workbook.SaveToFile(filename.Replace("xls", "xlsx"), ExcelVersion.Version2013);
+                }
+                return filename.Replace("xls", "xlsx");
+            }
+            catch (System.NullReferenceException ex)
+            {
+              
+              
+                return filename;
+            }
+            finally
+
+            {
+
+               
+
+            }
+
+        }
+
+
+        #endregion
         public DataTable chaxun(string isbn)
         {
             try
@@ -734,8 +775,15 @@ namespace 图书管理
                     path = sfd.FileName;
                 }
 
-
-
+               table.Columns["supplyer"].ColumnName = "供应商";
+               table.Columns["name"].ColumnName = "书名";
+               table.Columns["cbs"].ColumnName = "出版社";
+               table.Columns["isbn"].ColumnName = "书号";
+               table.Columns["price"].ColumnName = "定价";
+               table.Columns["kucun"].ColumnName = "库存";
+               table.Columns["kuwei"].ColumnName = "库位";
+               table.Columns["zhekou"].ColumnName = "折扣";
+                table.Columns["dingshu"].ColumnName = "定数";
                 StreamWriter writer;
                 bool comma = false;
                 int columns = table.Columns.Count;
