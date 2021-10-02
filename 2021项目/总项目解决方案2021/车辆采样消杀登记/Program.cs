@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202104
+namespace 车辆采样消杀登记
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202104
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 数据处理excel());
+            Application.Run(new 车辆采样消杀登记());
         }
     }
 }

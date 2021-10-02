@@ -73,7 +73,7 @@ namespace 体育打票软件
                 sb.Append("a"+results[i].Groups[1].Value+"a");
 
             }
-           
+         
             string maohao = Regex.Match(sb.ToString(),@":").Groups[0].Value;
             string shuzi= Regex.Match(sb.ToString(), @"a\da").Groups[0].Value;
 
@@ -113,6 +113,89 @@ namespace 体育打票软件
         }
 
 
+        #region  多串获取单注倍数
+        public string getdanzhu_duochuan(string guoguan)
+        {
+            string wenzi = "";
+            switch(guoguan)
+            {
+                case("3x3"):
+                    wenzi = "2x1*3注";
+                    break;
+                case ("3x4"):
+                    wenzi = "2x1*3注,3x1*1注";
+                    break;
+
+
+                case ("4x4"):
+                    wenzi = "3x1*4注";
+                    break;
+                case ("4x5"):
+                    wenzi = "3x1*4注,4x1*1注" ;
+                    break;
+                case ("4x6"):
+                    wenzi = "2x1*6注";
+                    break;
+                case ("4x11"):
+                    wenzi = "2x1*6注,3x1*4注,4x1*1注";
+                    break;
+
+
+                case ("5x5"):
+                    wenzi = "4x1*5注";
+                    break;
+                case ("5x6"):
+                    wenzi = "4x1*5注,5x1*1注";
+                    break;
+                case ("5x10"):
+                    wenzi = "2x1*10注";
+                    break;
+                case ("5x16"):
+                    wenzi = "3x1*10注,4x1*5注,5x1*1注";
+                    break;
+                case ("5x20"):
+                    wenzi = "2x1*10注,3x1*10注";
+                    break;
+                case ("5x26"):
+                    wenzi = "2x1*10注,3x1*10注,4x1*5注,5x1*1注";
+                    break;
+
+
+                case ("6x6"):
+                    wenzi = "5x1*6注";
+                    break;
+                case ("6x7"):
+                    wenzi = "5x1*6注,6x1*1注";
+                    break;
+                case ("6x15"):
+                    wenzi = "2x1*15注";
+                    break;
+                case ("6x20"):
+                    wenzi = "3x1*20注";
+                    break;
+                case ("6x22"):
+                    wenzi = "4x1*15注,5x1*6注,6x1*1注";
+                    break;
+                case ("6x35"):
+                    wenzi = "2x1*15注,3x1*20注";
+                    break;
+                case ("6x42"):
+                    wenzi = "3x1*20注,4x1*15注,5x1*6注,6x1*1注";
+                    break;
+                case ("6x50"):
+                    wenzi = "2x1*15注,3x1*20注,4x1*15注";
+                    break;
+                case ("6x57"):
+                    wenzi = "2x1*15注,3x1*20注,4x1*15注,5x1*6注,6x1*1注";
+                    break;
+            }
+
+            return wenzi;
+           
+        }
+
+        #endregion
+
         #region  赔率获取让球文字
         public Dictionary<string, string> getrangqiu_hunhe(string html)
         {
@@ -147,6 +230,11 @@ namespace 体育打票软件
         /// </summary>
         public void getdata()
         {
+
+            List<string> jiangjin_peilv_list = new List<string>();
+           
+
+          
             string address = IniReadValue("values", "address");
             string haoma = IniReadValue("values", "haoma");
             string bianma = IniReadValue("values", "bianma");
@@ -197,7 +285,7 @@ namespace 体育打票软件
             for (int a = 0; a < text0.Length; a++)
             {
                 string item = text0[a];
-
+                //string item = text0[a].Replace(",","&>");
                  GridppReport Report = new GridppReport();
                 Report.LoadFromFile(path + "template\\a.grf");
                 string[] text1 = item.Split(new string[] { "	" }, StringSplitOptions.None);
@@ -210,14 +298,16 @@ namespace 体育打票软件
                 string guoguan = "过关方式 " + text1[4].Replace("串", "x");
                 double jiangjin = 1;
                 //周三002>让平|3.00
+                
                 MatchCollection zhous = Regex.Matches(item, @"周([\s\S]*?)>");
                 MatchCollection results = Regex.Matches(item, @">([\s\S]*?)\|");
                 MatchCollection prices = Regex.Matches(item, @"\|([\s\S]*?)&");
                 StringBuilder sb = new StringBuilder();
 
-             
+              
                 if (panduan(results)== "竞彩足球混合过关")
                 {
+                    //MessageBox.Show(panduan(results));
                     fangshi = "竞彩足球混合过关";
                     string houzhui = " 总进球数";
                     for (int i = 0; i < zhous.Count; i++)
@@ -226,8 +316,23 @@ namespace 体育打票软件
                         string a2 = results[i].Groups[1].Value;
                         string a3 = prices[i].Groups[1].Value;
 
-
                         string peilv = a3;
+                        // MessageBox.Show(a3);
+
+
+                        //处理多选 周三001>让胜|1.42,让平|3.95,让负|5.50  &
+                        //单选：周三001>胜|2.58  &
+
+                        if (a3.Contains(","))
+                        {
+                            peilv = Regex.Match(item, @"\|([\s\S]*?),").Groups[1].Value;
+
+                            a3 = a3.Replace("让", "").Replace("|", ")@").Replace(",","0元+(");
+                            a3 = a3.Replace("(胜)","胜").Replace("(平)", "平").Replace("(负)", "负");
+                        }
+
+                       
+                        jiangjin_peilv_list.Add(peilv);//计算多串奖金
                         string rangqiuwenzi = "";
                         Dictionary<string, string> hunherangqiudic = getrangqiu_hunhe(html);
 
@@ -264,8 +369,8 @@ namespace 体育打票软件
                         }
                         else if (a2.Contains("胜胜")|| a2.Contains("胜平") || a2.Contains("胜负") || a2.Contains("平胜") || a2.Contains("平平") || a2.Contains("平负") || a2.Contains("负胜") || a2.Contains("负平") || a2.Contains("负负"))
                         {
-                            fangshi = "竞彩足球半全场胜平负";
-                            houzhui = " 比分";
+                         
+                            houzhui = " 半全场胜平负";
                         }
                         else
                         {
@@ -276,9 +381,14 @@ namespace 体育打票软件
 
 
 
-                       
 
 
+                        //整数赔率去掉一位0
+                        if (a3.Substring(a3.Length - 2,2) == "00")
+                        {
+
+                            a3 = a3.Remove(a3.Length - 1, 1);
+                        }
 
 
                         a2 = a2.Replace("让","");
@@ -291,7 +401,7 @@ namespace 体育打票软件
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
                       
                         sb.Append(a2 + "@" + a3 + "0元\n");
-                        jiangjin = jiangjin * Convert.ToDouble(a3);
+                       jiangjin = jiangjin * Convert.ToDouble(peilv);
                     }
                 }
 
@@ -306,11 +416,18 @@ namespace 体育打票软件
                         string a1 = zhous[i].Groups[1].Value;
                         string a2 = results[i].Groups[1].Value;
                         string a3 = "";
-                        if (fangshi == "竞彩足球总进球数" && zhous.Count==1)
+                        //if (fangshi == "竞彩足球总进球数" && zhous.Count==1)
+                        //{
+                        //    // 1	933516609	3/50	300	1串1	周五001>1|4.20,2|3.30,3|3.75
+                        //    a2 = "";
+                        //    a3 ="("+ Regex.Match(item,@">.*").Groups[0].Value.Replace(">","").Replace("|", ")@").Replace(",", "0元+(");
+                        //}
+                        if(zhous.Count == 1)
                         {
                             // 1	933516609	3/50	300	1串1	周五001>1|4.20,2|3.30,3|3.75
                             a2 = "";
-                            a3 ="("+ Regex.Match(item,@">.*").Groups[0].Value.Replace(">","").Replace("|", ")@").Replace(",", "0元+(");
+                            a3 = "(" + Regex.Match(item, @">.*").Groups[0].Value.Replace(">", "").Replace("|", ")@").Replace(",", "0元+(");
+                           
                         }
                         else
                         {
@@ -321,6 +438,8 @@ namespace 体育打票软件
 
                         string peilv = a3;
                         string rangqiuwenzi = "";
+
+                        jiangjin_peilv_list.Add(peilv);//计算多串奖金
                         if (a2.Contains("让"))
                         {
                             Dictionary<string, string> hunherangqiudic = getrangqiu_hunhe(html);
@@ -341,6 +460,7 @@ namespace 体育打票软件
 
 
                         a2 = a2.Replace("让", "");
+                        
                         if (a2 != "胜" && a2 != "平" && a2 != "负")
                         {
                             a2 = "(" + a2 + ")";
@@ -349,9 +469,20 @@ namespace 体育打票软件
                         sb.Append("第" + (i + 1) + "场 周" + a1 + rangqiuwenzi + "\n");
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
 
-                        if (fangshi == "竞彩足球总进球数" && zhous.Count == 1)
+                        //整数赔率去掉一位0
+                        if(a3.Substring(a3.Length-2,2)=="00")
                         {
-                            sb.Append( a3 + "0元\n");
+
+                          a3= a3.Remove(a3.Length-1,1);
+                        }
+                        //if (fangshi == "竞彩足球总进球数" && zhous.Count == 1)
+                        //{
+                        //    sb.Append( a3 + "0元\n");
+                        //}
+                        if (zhous.Count == 1)
+                        {
+                            a3 = a3.Replace("(胜)","胜").Replace("(平)", "平").Replace("(负)", "负");
+                            sb.Append(a3 + "0元\n");
                         }
                         else
                         {
@@ -375,15 +506,31 @@ namespace 体育打票软件
                 }
                
                 jiangjin = jiangjin * Convert.ToDouble(jine);
-               //jiangjin = Math.Round(jiangjin, 2);
+                //jiangjin = Math.Round(jiangjin, 2);
+
+
+               
+
 
 
                 string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
-                string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
-               
+                //string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
+                string zhushu = Regex.Match(text1[4],@"串.*").Groups[0].Value.Replace("串","").Trim();
                 // sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin.ToString("F2")+ "元\n单倍注数:" + text1[4].Replace("串", "x") +"*1注" + ";共" + zhushu + "注");
 
+                string duochuanwenzi = getdanzhu_duochuan(text1[4].Replace("串", "x"));
+                if (duochuanwenzi == "")
+                {
+                    sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin.ToString("F2") + "元\n单倍注数:" + text1[4].Replace("串", "x") + "*1注" + ";共" + zhushu + "注");
+                }
+                else
+                {
+
+                    string jj = jiangjin_duochuan(jiangjin_peilv_list, duochuanwenzi,beishu);
+
+
+                    sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jj + "元\n单倍注数:" + duochuanwenzi + ";共" + zhushu + "注");
+                }
 
 
                 Report.ParameterByName("suiji").AsString = suiji;
@@ -646,7 +793,7 @@ namespace 体育打票软件
 
                 // a2 = a2.Replace("+(","");//去掉末尾多余字符
                 a2 = a2.Remove(a2.Length-2,2);
-
+                a2 = a2.Replace("000","00");
                 StringBuilder sb = new StringBuilder();
                
                     if (a2.Contains("让胜")|| a2.Contains("让平") || a2.Contains("让负"))
@@ -770,6 +917,92 @@ namespace 体育打票软件
             //{
             //    this.Hide();
             //}
+
+
         }
+
+        public string jiangjin_duochuan(List<string> list,string danzhubeishu,string beishu)
+        {
+
+         
+            double jiangjin = 0;
+
+            if(danzhubeishu.Contains("2x1"))
+            {
+                List<List<string>> list2 = new List<List<string>>();
+                list2 = function.GetCombinationList(list, 2);
+
+                for (int i = 0; i < list2.Count; i++)
+                {
+                   
+                    double value = 1;
+                    for (int j = 0; j < list2[i].Count; j++)
+                    {
+                       
+                        value = Convert.ToDouble(list2[i][j])*value;
+                       
+                    }
+                 
+                    jiangjin = jiangjin + value*2;
+                }
+            }
+
+
+            if (danzhubeishu.Contains("3x1"))
+            {
+                List<List<string>> list2 = new List<List<string>>();
+                list2 = function.GetCombinationList(list, 3);
+
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    double value = 1;
+                    for (int j = 0; j < list2[i].Count; j++)
+                    {
+                       
+                        value = Convert.ToDouble(list2[i][j]) * value;
+                       
+                    }
+
+                    jiangjin = jiangjin + value * 2;
+                }
+            }
+
+            if (danzhubeishu.Contains("4x1"))
+            {
+                List<List<string>> list2 = new List<List<string>>();
+                list2 = function.GetCombinationList(list, 4);
+
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    double value = 1;
+                    for (int j = 0; j < list2[i].Count; j++)
+                    {
+                        value = Convert.ToDouble(list2[i][j]) * value;
+                    }
+                    jiangjin = jiangjin + value * 2;
+                }
+            }
+
+            if (danzhubeishu.Contains("5x1"))
+            {
+                List<List<string>> list2 = new List<List<string>>();
+                list2 = function.GetCombinationList(list, 5);
+
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    double value = 1;
+                    for (int j = 0; j < list2[i].Count; j++)
+                    {
+                        value = Convert.ToDouble(list2[i][j]) * value;
+                    }
+                    jiangjin = jiangjin + value * 2;
+                }
+            }
+
+            jiangjin = jiangjin * Convert.ToInt32(beishu.Replace("倍",""));
+            return jiangjin.ToString("F2");
+        }
+
+
     }
 }

@@ -127,7 +127,8 @@ namespace 体育打票软件
                 StreamReader sr = new StreamReader(webBrowser1.DocumentStream, Encoding.GetEncoding(("gb2312")));
                 ahtml = sr.ReadToEnd();
             }
-            textBox1.Text = html;
+           // textBox1.Text = html;
+            html=fc.getfullname(html);
         }
 
 
@@ -151,10 +152,26 @@ namespace 体育打票软件
 
         private void button7_Click(object sender, EventArgs e)
         {
-           
-           
-           
 
+       
+            //List<string> list = new List<string>();
+            //list.Add("3.13");
+            //list.Add("3.23");
+            //list.Add("3.33");
+            //list.Add("3.43");
+
+            //List<List<string>> list2= new List<List<string>>();
+            //list2= function.GetCombinationList(list,3);
+            //MessageBox.Show(list2.Count.ToString());
+            //for (int i = 0; i < list2.Count; i++)
+            //{
+
+            //    for (int j = 0; j < list2[i].Count; j++)
+            //    {
+            //        textBox1.Text += list2[i][j];
+            //    }
+            //    textBox1.Text += "\r\n";
+            //}
             webBrowser1.Refresh();
         }
         

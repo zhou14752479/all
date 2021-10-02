@@ -442,7 +442,7 @@ namespace 体育打票软件
                 }
 
 
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" +sba.ToString().Remove(sba.ToString().Length-1,1)+ ";共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数:" +sba.ToString().Remove(sba.ToString().Length-1,1)+ ";共" + zhushu + "注");
 
 
 
@@ -706,7 +706,7 @@ namespace 体育打票软件
                 }
 
             
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + guoguan2 + "*" + zhushu + "注;共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数:" + guoguan2 + "*" + zhushu + "注;共" + zhushu + "注");
 
 
 
@@ -959,11 +959,11 @@ namespace 体育打票软件
 
                 if (guoguan.Contains("单关"))
                 {
-                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数：单场*"+ value1.Count + "注;共" + value1.Count + "注");
+                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数：单场*"+ value1.Count + "注;共" + value1.Count + "注");
                 }
                 else
                 {
-                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" +guoguan+"*"+ value1.Count + "注;共" + value1.Count + "注");
+                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数:" +guoguan+"*"+ value1.Count + "注;共" + value1.Count + "注");
                 }
                 //sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
 
@@ -1040,5 +1040,91 @@ namespace 体育打票软件
         }
 
         #endregion
+
+
+
+
+
+        #region 组合获取
+        /// <summary>
+        /// 获得从n个不同元素中任意选取m个元素的组合的所有组合形式的列表
+        /// </summary>
+        /// <param name="elements">供组合选择的元素</param>
+        /// <param name="m">组合中选取的元素个数</param>
+        /// <returns>返回一个包含列表的列表，包含的每一个列表就是每一种组合可能</returns>
+        public static List<List<string>> GetCombinationList(List<string> elements, int m)
+        {
+            List<List<string>> result = new List<List<string>>();//存放返回的列表
+            List<List<string>> temp = null; //临时存放从下一级递归调用中返回的结果
+            List<string> oneList = null; //存放每次选取的第一个元素构成的列表，当只需选取一个元素时，用来存放剩下的元素分别取其中一个构成的列表；
+           string oneElment; //每次选取的元素
+            List<string> source = new List<string>(elements); //将传递进来的元素列表拷贝出来进行处理，防止后续步骤修改原始列表，造成递归返回后原始列表被修改；
+            int n = 0; //待处理的元素个数
+
+            if (elements != null)
+            {
+                n = elements.Count;
+            }
+            if (n == m && m != 1)//n=m时只需将剩下的元素作为一个列表全部输出
+            {
+                result.Add(source);
+                return result;
+            }
+            if (m == 1)  //只选取一个时，将列表中的元素依次列出
+            {
+                foreach (string el in source)
+                {
+                    oneList = new List<string>();
+                    oneList.Add(el);
+                    result.Add(oneList);
+                    oneList = null;
+                }
+                return result;
+            }
+
+            for (int i = 0; i <= n - m; i++)
+            {
+                oneElment = source[0];
+                source.RemoveAt(0);
+                temp = GetCombinationList(source, m - 1);
+                for (int j = 0; j < temp.Count; j++)
+                {
+                    oneList = new List<string>();
+                    oneList.Add(oneElment);
+                    oneList.AddRange(temp[j]);
+                    result.Add(oneList);
+                    oneList = null;
+                }
+            }
+
+
+            return result;
+        }
+
+
+        #endregion
+
+
+        
+
+
+        #region 获取队伍名全名
+        public string getfullname(string body)
+        {
+            string result = body;
+            string url = "https://webapi.sporttery.cn/gateway/jc/football/getMatchListV1.qry?clientCode=3001";
+            string html = GetUrl(url,"utf-8");
+            MatchCollection addname = Regex.Matches(html, @"AbbName"":""([\s\S]*?)""");
+            MatchCollection AllName = Regex.Matches(html, @"AllName"":""([\s\S]*?)""");
+            for (int i = 0; i < addname.Count; i++)
+            {
+               
+                result = Regex.Replace(result, addname[i].Groups[1].Value.Trim(), AllName[i].Groups[1].Value);
+            }
+            return result;
+        }
+
+        #endregion
+
     }
 }

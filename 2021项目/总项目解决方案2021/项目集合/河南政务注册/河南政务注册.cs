@@ -339,7 +339,7 @@ namespace 河南政务注册
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    //MessageBox.Show(ex.ToString());
                     continue;
                 }
             }

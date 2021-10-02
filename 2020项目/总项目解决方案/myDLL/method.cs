@@ -93,6 +93,7 @@ namespace myDLL
 
         }
         #endregion
+
         #region 去掉路径中非法字符
         public string removeValid(string illegal)
         {
@@ -845,6 +846,31 @@ namespace myDLL
 
         #endregion
 
+        #region datagridview转datatable
+        public static DataTable DgvToTable(DataGridView dgv)
+        {
+            DataTable dt = new DataTable();
+
+            // 列强制转换
+            for (int count = 0; count < dgv.Columns.Count; count++)
+            {
+                DataColumn dc = new DataColumn(dgv.Columns[count].HeaderText.ToString());
+                dt.Columns.Add(dc);
+            }
+
+            // 循环行
+            for (int count = 0; count < dgv.Rows.Count; count++)
+            {
+                DataRow dr = dt.NewRow();
+                for (int countsub = 0; countsub < dgv.Columns.Count; countsub++)
+                {
+                    dr[countsub] = Convert.ToString(dgv.Rows[count].Cells[countsub].Value);
+                }
+                dt.Rows.Add(dr);
+            }
+            return dt;
+        }
+        #endregion
 
         #region unicode转中文
         public static string Unicode2String(string source)
@@ -1455,31 +1481,7 @@ namespace myDLL
         }
         #endregion
 
-        #region datagridview转datatable
-        public DataTable DgvToTable(DataGridView dgv)
-        {
-            DataTable dt = new DataTable();
-
-            // 列强制转换
-            for (int count = 0; count < dgv.Columns.Count; count++)
-            {
-                DataColumn dc = new DataColumn(dgv.Columns[count].HeaderText.ToString());
-                dt.Columns.Add(dc);
-            }
-
-            // 循环行
-            for (int count = 0; count < dgv.Rows.Count; count++)
-            {
-                DataRow dr = dt.NewRow();
-                for (int countsub = 0; countsub < dgv.Columns.Count; countsub++)
-                {
-                    dr[countsub] = Convert.ToString(dgv.Rows[count].Cells[countsub].Value);
-                }
-                dt.Rows.Add(dr);
-            }
-            return dt;
-        }
-        #endregion
+        
 
         #region 通过JET.OLEDB读取excel表格到datatable
         //根据excle的路径把第一个sheel中的内容放入datatable

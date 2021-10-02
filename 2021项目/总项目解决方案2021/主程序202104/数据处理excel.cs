@@ -328,7 +328,7 @@ namespace 主程序202104
                                 if (filename.Contains("高级"))
                                 {
                                     
-                                    value = dt.Rows[j][21].ToString().Replace(";", "\r\n").Trim();
+                                    value = dt.Rows[j][Convert.ToInt32(textBox3.Text.Trim())].ToString().Replace(";", "\r\n").Trim();
                                   
                                 }
                                 else
@@ -359,7 +359,7 @@ namespace 主程序202104
                                 string value = "";
                                 if (filename.Contains("高级"))
                                 {
-                                    value = dt.Rows[j][24].ToString().Replace(";", "\r\n").Trim();
+                                    value = dt.Rows[j][Convert.ToInt32(textBox4.Text.Trim())].ToString().Replace(";", "\r\n").Trim();
                                 }
                                 else
                                 {
@@ -381,7 +381,7 @@ namespace 主程序202104
                     catch (Exception ex)
                     {
 
-                        ex.ToString();
+                       MessageBox.Show(ex.ToString());
                     }
                 }
             }

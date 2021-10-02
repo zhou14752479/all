@@ -156,6 +156,7 @@ namespace _91porn视频下载
                 }
 
                 client.DownloadFile(URLAddress, subPath + "\\" + name);
+              
             }
             catch (WebException ex)
             {
@@ -484,7 +485,7 @@ namespace _91porn视频下载
                         continue;
                     }
 
-
+                    IniWriteValue("values", "uids", uidini + "," + uid);
                     string infoUrl = mailurl + "view_video.php?viewkey=" + viewkeys[i].Groups[1].Value.Trim() + "&page=&viewtype=&category=";
 
                     string infohtml = GetUrl(infoUrl, "utf-8");
@@ -506,7 +507,7 @@ namespace _91porn视频下载
 
 
                     lv1.SubItems.Add("下载成功");
-                    IniWriteValue("values", "uids", uidini + "," + uid);
+                    //IniWriteValue("values", "uids", uidini + "," + uid);
                     label6.Text = uid + "----" + "下载成功";
                     FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
@@ -564,13 +565,17 @@ namespace _91porn视频下载
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-          
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run1);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            
+          Thread  thread = new Thread(run1);
+            thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
+            //if (thread == null || !thread.IsAlive)
+            //{
+               
+            //    thread = new Thread(run1);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)

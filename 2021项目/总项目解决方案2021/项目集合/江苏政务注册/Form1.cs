@@ -184,66 +184,66 @@ namespace 江苏政务注册
         }
 
 
+        public string token = "";
+
+        public void gettoken()
+        {
+            string url = "http://yccode.net:9321/api/auth?userName=" + textBox1.Text.Trim() + "&passWord=" + textBox2.Text.Trim() + "&userType=1";
+            string html = method.GetUrl(url, "utf-8");
+            token = Regex.Match(html, @"token"":""([\s\S]*?)""").Groups[1].Value;
+
+        }
         /// <summary>
         /// 获取手机号
         /// </summary>
         /// <returns></returns>
         public string getmobile()
         {
-            string url = "http://103.45.161.63:114/yh_qh/username="+ shoujiusername + "&password="+ shoujipassword+ "&id=36787&phone=&operator=&region=&card=&loop=&filer=";
-            string html = method.GetUrl(url,"utf-8");
-            string[] text = html.Split(new string[] { "|" }, StringSplitOptions.None);
-            if (text.Length > 1)
+
+            string url = "http://yccode.net:9321/api/getPhoneNumber?token=" + token + "&projectId=10668&mobileNo=&sectionNo=&taskCount=&selectOperator=&mobileCarrier=&regionalCondition=&selectArea=&area=&taskType=1&usedNumber=&manyTimes=";
+            string html = method.GetUrl(url, "utf-8");
+
+            string mobileNo = Regex.Match(html, @"mobileNo"":""([\s\S]*?)""").Groups[1].Value;
+            string mId = Regex.Match(html, @"mId"":""([\s\S]*?)""").Groups[1].Value;
+            if (mId != "")
             {
-                if (text[0] == "1")
-                {
-                    logtxtBox.Text += "获取手机号成功" + "\r\n";
-                    return text[1];
-                }
-                else
-                {
-                    logtxtBox.Text += "获取手机号失败" + html+ "\r\n";
-                    return "";
-                }
+                logtxtBox.Text = DateTime.Now.ToLongTimeString() + "获取手机号成功" + "\r\n";
+                return mobileNo + "&" + mId;
+
             }
             else
             {
-                logtxtBox.Text += "获取手机号失败"+ html+"\r\n";
+                logtxtBox.Text = DateTime.Now.ToLongTimeString() + "获取手机号失败" + html + "\r\n";
                 return "";
             }
         }
 
         int dengdaiduanxinmaseconds = 0;
         /// <summary>
-        /// 获取手机短信码
+        /// 获取手机短信
         /// </summary>
         /// <returns></returns>
-        public string getduanxinma(string mobile)
+        public string getduanxinma(string mid)
         {
             Thread.Sleep(5000);
             dengdaiduanxinmaseconds = dengdaiduanxinmaseconds + 5;
-            string url = "http://103.45.161.63:38123/yh_qm/username=" + shoujiusername + "&password=" + shoujipassword + "&id=36787&phone="+mobile;
+            string url = "http://yccode.net:9321/api/getMessage?token=" + token + "&mId=" + mid + "&developer=";
             string html = method.GetUrl(url, "utf-8");
-            string[] text = html.Split(new string[] { "|" }, StringSplitOptions.None);
-            if (text.Length > 2)
+          
+            string code = Regex.Match(html, @"\d{6}").Groups[0].Value;
+            if (code != "")
             {
-                if (text[0] == "1")
-                {
-                    string code = Regex.Match(text[2],@"\d{6}").Groups[0].Value;
-                    logtxtBox.Text += "获取手机短信验证码码成功" + "\r\n";
-                    return code;
-                }
-                else
-                {
-                    logtxtBox.Text += "正在获取手机短信码,还未收到,已等待"+ dengdaiduanxinmaseconds + "\r\n";
-                    return "";
-                }
+
+                logtxtBox.Text = DateTime.Now.ToLongTimeString() + "获取手机短信验证码码成功" + "\r\n" + html;
+                return code;
+
             }
             else
             {
-                logtxtBox.Text += "正在获取手机短信码,还未收到，已等待" + dengdaiduanxinmaseconds + "\r\n";
+                logtxtBox.Text = DateTime.Now.ToLongTimeString() + "正在获取手机短信码,还未收到,已等待" + dengdaiduanxinmaseconds + "\r\n" + html;
                 return "";
             }
+
         }
 
         string fasongmsg = "";
@@ -258,6 +258,7 @@ namespace 江苏政务注册
         {
             string url = "http://www.jszwfw.gov.cn/jsjis/h5/interface/sendmobilecode.do?mobile="+mobile+"&verifycode="+imgcode+"&usertype=1&papersNumber="+card;
             string html = method.GetUrlWithCookie(url,cookie,"utf-8");
+          
             if (html.Contains("成功"))
             {
                 logtxtBox.Text += "发送手机短信验证码成功" + "\r\n";
@@ -397,7 +398,21 @@ namespace 江苏政务注册
 
                     string name = System.Web.HttpUtility.UrlEncode(dr[0].ToString());
                     string card = dr[1].ToString();
-                    string mobile = getmobile();
+
+
+                    string mobilemid = getmobile();
+                    string[] text = mobilemid.Split(new string[] { "&" }, StringSplitOptions.None);
+                    if (text.Length < 1)
+                    {
+                        logtxtBox.Text = "获取手机号失败";
+                        return;
+                    }
+
+                 
+                    string mobile = text[0];
+                    string mid = text[1];
+
+
                     bool fasongstatus = sendmobile(mobile, shibie(), card);
                     while (!fasongstatus)
                     {
@@ -414,14 +429,14 @@ namespace 江苏政务注册
                         }
                         fasongstatus = sendmobile(mobile, shibie(), card);
                     }
-                    string mobilecode = getduanxinma(mobile);
+                    string mobilecode = getduanxinma(mid);
                     while (true)
                     {
                         if (status == false)
                         {
                             return;
                         }
-                        mobilecode = getduanxinma(mobile);
+                        mobilecode = getduanxinma(mid);
                         if (dengdaiduanxinmaseconds == Convert.ToInt32(textBox6.Text))
                         {
                             dengdaiduanxinmaseconds = 0;
@@ -473,7 +488,8 @@ namespace 江苏政务注册
 
 
             #endregion
-
+            gettoken();
+            logtxtBox.Text = "开始执行..";
             if (textBox5.Text == "")
             {
                 MessageBox.Show("请先导入数据表格");
@@ -554,7 +570,13 @@ namespace 江苏政务注册
                 cookie = method.GetCookies("http://www.jszwfw.gov.cn/jsjis/admin/verifyCode.do?code=4&var=rand&width=90&height=45&random=0.08807624779516066;");
                 if (cookie != null)
                 {
-                    if (cookie.Contains("JSESSIONID"))
+                    //if (cookie.Contains("JSESSIONID"))
+                    //{
+                    //    MessageBox.Show("成功");
+
+                    //    break;
+                    //}
+                    if (cookie.Contains("SESSIONID"))
                     {
                         MessageBox.Show("成功");
 
