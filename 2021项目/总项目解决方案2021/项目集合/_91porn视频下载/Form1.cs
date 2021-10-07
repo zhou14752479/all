@@ -565,17 +565,17 @@ namespace _91porn视频下载
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
-          Thread  thread = new Thread(run1);
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
-            //if (thread == null || !thread.IsAlive)
-            //{
-               
-            //    thread = new Thread(run1);
-            //    thread.Start();
-            //    Control.CheckForIllegalCrossThreadCalls = false;
-            //}
+
+            //Thread  thread = new Thread(run1);
+            //  thread.Start();
+            //  Control.CheckForIllegalCrossThreadCalls = false;
+            if (thread == null || !thread.IsAlive)
+            {
+
+                thread = new Thread(run1);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

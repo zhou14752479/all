@@ -403,6 +403,30 @@ namespace 微博实时搬运软件
 
         #endregion
 
+
+
+        public bool uid_panduan(string uid)
+        {
+          
+           string uidini = IniReadValue("values", "uids");
+            string[] text = uidini.Split(new string[] { "," }, StringSplitOptions.None);
+
+            foreach (var item in text)
+            {
+             
+                if(item.Trim()==uid.Trim())
+                {
+                   
+                    return false;
+
+                }
+            }
+
+            return true;
+        }
+
+
+        string path = AppDomain.CurrentDomain.BaseDirectory + "//uid.txt";
         public void run()
         {
             try
@@ -417,20 +441,32 @@ namespace 微博实时搬运软件
                 for (int i = 0; i <3; i++)  //监控两篇
                 {
                     string uid = uids[i].Groups[1].Value;
+
                     string uidini = "";
-                    if (ExistINIFile())
-                    {
-                        uidini = IniReadValue("values", "uids");
 
+                    StreamReader sr = new StreamReader(path, method.EncodingType.GetTxtType(path));
+                    //一次性读取完 
+                    uidini = sr.ReadToEnd();
+                    sr.Close();
+                    sr.Dispose();
 
-                    }
-                   
+                 
+
                     if (uidini.Contains(uid))
                     {
-                        textBox1.Text += "\r\n"+DateTime.Now.ToLongTimeString() + "：正在监控...无最新文章";
+                       
+                        textBox1.Text += "\r\n" + DateTime.Now.ToLongTimeString() + "：正在监控...无最新文章";
                         continue;
                     }
+                  
+                    //if (uid_panduan(uid)==false)
+                    //{
+                      
+                    //    textBox1.Text += "\r\n" + DateTime.Now.ToLongTimeString() + "：正在监控...无最新文章";
+                    //    continue;
 
+                    //}
+                  
 
                     string detailUrl = "http://news.maxjia.com/maxnews/app/detail/csgo/"+uid+"?return_json=1";
                     string detailhtml = method.GetUrl(detailUrl, "utf-8");
@@ -457,6 +493,12 @@ namespace 微博实时搬运软件
                     
                     string summary = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"<div class=""blockquote"">([\s\S]*?)</div>").Groups[1].Value);
 
+
+
+                    //记录ID
+                    //IniWriteValue("values", "uids", uidini + "," + uid);
+                    System.IO.File.WriteAllText(path, uidini + "," + uid, Encoding.UTF8);
+
                     string postdata = createbody(title, content, cover, summary,writer);
                     string result = createtitle(postdata);
 
@@ -464,13 +506,14 @@ namespace 微博实时搬运软件
                         return;
                     textBox1.Text += DateTime.Now.ToLongTimeString() + result;
                       string articleurl = Regex.Match(result, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+
                     if (articleurl != "")
                     {
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                         lv1.SubItems.Add(Regex.Match(detailhtml, @"""title"": ""([\s\S]*?)""").Groups[1].Value);
                         lv1.SubItems.Add("发布成功");
-                        IniWriteValue("values", "uids", uidini + "," + uid);
+                        //IniWriteValue("values", "uids", uidini + "," + uid);
                     }
 
                     Thread.Sleep(5000);

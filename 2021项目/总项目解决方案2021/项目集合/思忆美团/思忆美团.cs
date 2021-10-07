@@ -155,12 +155,12 @@ namespace 思忆美团
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox1.Text += comboBox3.Text + "\r\n";
+            textBox1.Text += "\r\n"+ comboBox3.Text ;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox2.Text += comboBox1.Text + "\r\n";
+            textBox2.Text += "\r\n"+comboBox1.Text ;
         }
 
         private void start_btn_Click(object sender, EventArgs e)
@@ -218,6 +218,10 @@ namespace 思忆美团
                 string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string city in citys)
                 {
+                    if (city == "")
+                    {
+                        continue;
+                    }
                     string cityid = fc.GetcityId(city.Replace("市",""));
                     Dictionary<string, string> areadics = fc.getareas(cityid);
                     foreach (string areaid in areadics.Values)
@@ -225,6 +229,10 @@ namespace 思忆美团
                         string[] catenames = textBox2.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
                         foreach (string catename in catenames)
                         {
+                            if(catename=="")
+                            {
+                                continue;
+                            }
                             string cateid = fc.catedic[catename];
                            
                             for (int page = 0; page < 1001; page = page + 100)
@@ -462,8 +470,32 @@ namespace 思忆美团
            
         }
 
-       
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://www.acaiji.com/");
 
+            }
+            catch (Exception)
+            {
 
+                MessageBox.Show("打开失败，请复制网址到浏览器打开");
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=852266010&site=qq&menu=yes&from=message&isappinstalled=0");
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("打开失败，请复制网址到浏览器打开");
+            }
+        }
     }
 }

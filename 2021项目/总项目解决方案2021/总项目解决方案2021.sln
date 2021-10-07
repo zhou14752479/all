@@ -77,6 +77,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "车辆采样消杀登记", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "江苏政务注册", "项目集合\江苏政务注册\江苏政务注册.csproj", "{1662A04C-3CBD-4875-B8FD-66986EFE09C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "亚马逊抓取", "亚马逊抓取\亚马逊抓取.csproj", "{3DD71780-EA7F-4824-9076-661BAF6F54D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -381,6 +383,14 @@ Global
 		{1662A04C-3CBD-4875-B8FD-66986EFE09C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1662A04C-3CBD-4875-B8FD-66986EFE09C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{1662A04C-3CBD-4875-B8FD-66986EFE09C5}.Release|x86.Build.0 = Release|Any CPU
+		{3DD71780-EA7F-4824-9076-661BAF6F54D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD71780-EA7F-4824-9076-661BAF6F54D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD71780-EA7F-4824-9076-661BAF6F54D8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3DD71780-EA7F-4824-9076-661BAF6F54D8}.Debug|x86.Build.0 = Debug|Any CPU
+		{3DD71780-EA7F-4824-9076-661BAF6F54D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD71780-EA7F-4824-9076-661BAF6F54D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD71780-EA7F-4824-9076-661BAF6F54D8}.Release|x86.ActiveCfg = Release|Any CPU
+		{3DD71780-EA7F-4824-9076-661BAF6F54D8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -90,6 +90,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.infolabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -445,7 +447,7 @@
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(111, 101);
             this.textBox2.TabIndex = 128;
-            this.textBox2.Text = "超市/便利店";
+            this.textBox2.Text = "美食";
             // 
             // comboBox1
             // 
@@ -509,6 +511,8 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.linkLabel2);
+            this.tabPage3.Controls.Add(this.linkLabel1);
             this.tabPage3.Controls.Add(this.textBox4);
             this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Controls.Add(this.textBox3);
@@ -540,8 +544,8 @@
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox4.Size = new System.Drawing.Size(609, 222);
             this.textBox4.TabIndex = 25;
-            this.textBox4.Text = "1、注册即获取【免费】10分钟软件测试试用时间。测试满意在购买\r\n\r\n试用完成请购买 ↓\r\n\r\n2、一天版价格：5元\r\n3、一个月会员：90元\r\n4、半年会员：2" +
-    "70元\r\n5、一年会员：360元\r\n7、软件与购买问题：唯一QQ  852266010";
+            this.textBox4.Text = "1、注册即获取【免费】10分钟软件测试试用时间。测试满意在购买\r\n2、一周版价格：30元\r\n3、一个月会员：90元\r\n4、半年会员：270元\r\n5、一年会员：36" +
+    "0元\r\n6、终身会员：500元\r\n7、软件与购买问题：唯一QQ  852266010";
             this.textBox4.WordWrap = false;
             // 
             // label8
@@ -574,7 +578,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(159, 36);
             this.button4.TabIndex = 22;
-            this.button4.Text = "前往官网购买";
+            this.button4.Text = "官网购买";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -792,6 +796,30 @@
             this.infolabel.Size = new System.Drawing.Size(51, 20);
             this.infolabel.Text = "未开始";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("宋体", 12F);
+            this.linkLabel1.Location = new System.Drawing.Point(520, 129);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(72, 16);
+            this.linkLabel1.TabIndex = 26;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "教学视频";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("宋体", 12F);
+            this.linkLabel2.Location = new System.Drawing.Point(613, 129);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(72, 16);
+            this.linkLabel2.TabIndex = 27;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "软件定制";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
             // 思忆美团
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -887,5 +915,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

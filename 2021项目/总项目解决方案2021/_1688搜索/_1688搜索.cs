@@ -23,7 +23,7 @@ namespace _1688搜索
             InitializeComponent();
         }
 
-
+        string COOKIE = "";
         //"https://data.p4psearch.1688.com/data/ajax/get_premium_offer_list.json?beginpage=1&keywords=%E4%B9%90%E6%B8%85%E5%B8%82%E6%B8%85%E6%B1%9F%E6%96%B0%E7%8E%AF%E6%B4%B2%E5%B7%A5%E5%85%B7%E5%8E%82";
         #region GET请求
         /// <summary>
@@ -31,10 +31,10 @@ namespace _1688搜索
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        public  string GetUrl(string Url, string charset)
         {
             string html = "";
-            string COOKIE = "_m_h5_tk=7bbdfeb502ae948c563f7ae24cada131_1632541876434; _m_h5_tk_enc=afffe89ec6d737dd5ab6ae60069e4e19; ";
+         
           
             try
             {
@@ -43,7 +43,7 @@ namespace _1688搜索
                 request.Proxy = null;//防止代理抓包
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat";
-                request.Referer = "https://m.1688.com/search.html";
+                request.Referer = "https://www.1688.com/";
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("sec-fetch-mode:navigate");
@@ -93,6 +93,7 @@ namespace _1688搜索
 
         private void button1_Click(object sender, EventArgs e)
         {
+            COOKIE = method.GetCookies("https://s.1688.com/selloffer/offer_search.htm?keywords=%C0%D6%C7%E5%CA%D0%C7%E5%BD%AD%D0%C2%BB%B7%D6%DE%B9%A4%BE%DF%B3%A7&n=y&netType=1%2C11%2C16&spm=a260k.dacugeneral.search.0");
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -122,6 +123,7 @@ namespace _1688搜索
 
         public void run()
         {
+            status = true;
             try
             {
 
@@ -130,29 +132,28 @@ namespace _1688搜索
                 {
 
                     DataRow dr = dt.Rows[i];
-                    string keyword = System.Web.HttpUtility.UrlEncode(dr[0].ToString());
+                    string keyword = System.Web.HttpUtility.UrlEncode(dr[0].ToString(), Encoding.GetEncoding("GB2312"));
 
                     label2.Text = "正在读取：" + dr[0].ToString();
-                    // string url = "https://m.1688.com/offer_search/-6D7033.html?sortType=booked&descendOrder=true&filtId=&keywords=" + keyword;
-                    string url = "https://h5api.m.1688.com/h5/mtop.1688.wap.seo.offer.get/1.0/?jsv=2.6.1&appKey=12574478&t=1632533258015&sign=e89ab6ab3854ef979b3553c75506fc04&api=mtop.1688.wap.seo.offer.get&v=1.0&type=jsonp&dataType=jsonp&callback=mtopjsonp6&data=%7B%22sortType%22%3A%22booked%22%2C%22filtId%22%3A%22%22%2C%22keywords%22%3A%22"+keyword+"%22%2C%22descendOrder%22%3A%22true%22%2C%22appName%22%3A%22wap%22%2C%22appKey%22%3A%221772295d201e06bd6d56a6ed5cfd252f%22%2C%22beginPage%22%3A1%2C%22pageSize%22%3A20%7D";
+                     string url = "https://s.1688.com/selloffer/offer_search.htm?keywords="+ keyword + "&n=y&netType=1%2C11%2C16&spm=a260k.dacugeneral.search.0";
+                  
                     string html = GetUrl(url, "utf-8");
-                 
-                    MatchCollection winPortUrls = Regex.Matches(html, @"""winPortUrl"":""([\s\S]*?)""");
-                    MatchCollection companyNames = Regex.Matches(html, @"""companyName"":""([\s\S]*?)""");
+                    //textBox2.Text = html;
+                  
+                    MatchCollection companyNames = Regex.Matches(html, @"""memberCreditUrl"":""([\s\S]*?)/page([\s\S]*?)""name"":""([\s\S]*?)""");
 
-                    MessageBox.Show(companyNames.Count.ToString());
+                    //MessageBox.Show(companyNames.Count.ToString());
                     Thread.Sleep(1500);
                     for (int j = 0; j < companyNames.Count; j++)
                     {
-                        MessageBox.Show(companyNames[j].Groups[1].Value);
-                        if (companyNames[j].Groups[1].Value == dr[0].ToString())
+                       
+                        if (companyNames[j].Groups[3].Value == dr[0].ToString())
                         {
-                            string shopid = Regex.Match(winPortUrls[i].Groups[1].Value, @"winport/([\s\S]*?)\.").Groups[1].Value;
-                            string pcurl = "https://" + shopid + ".1688.com/";
+                            string shopurl = companyNames[j].Groups[1].Value;
+                       
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(dr[0].ToString());
-                            lv1.SubItems.Add(winPortUrls[i].Groups[1].Value);
-                            lv1.SubItems.Add(pcurl);
+                            lv1.SubItems.Add(shopurl);
                           
                             break;
                         }
@@ -176,6 +177,48 @@ namespace _1688搜索
             }
 
 
+        }
+
+        private void _1688搜索_Load(object sender, EventArgs e)
+        {
+            method.SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.Navigate("https://login.taobao.com/?redirect_url=https%3A%2F%2Flogin.1688.com%2Fmember%2Fjump.htm%3Ftarget%3Dhttps%253A%252F%252Flogin.1688.com%252Fmember%252FmarketSigninJump.htm%253FDone%253D%25252F%25252Fwww.1688.com%25252F&style=tao_custom&from=1688web");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+            string url = this.webBrowser1.StatusText;
+            this.webBrowser1.Url = new Uri(url);
         }
     }
 }

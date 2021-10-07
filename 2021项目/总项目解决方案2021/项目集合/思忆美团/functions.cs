@@ -619,6 +619,7 @@ namespace 思忆美团
         }
 
         #endregion
+
         #region unicode转中文
         public  string Unicode2String(string source)
         {
