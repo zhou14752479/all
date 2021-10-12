@@ -119,7 +119,8 @@ namespace 体育打票软件
             string wenzi = "";
             switch(guoguan)
             {
-                case("3x3"):
+              
+                case ("3x3"):
                     wenzi = "2x1*3注";
                     break;
                 case ("3x4"):
@@ -317,9 +318,9 @@ namespace 体育打票软件
                         string a3 = prices[i].Groups[1].Value;
 
                         string peilv = a3;
-                        // MessageBox.Show(a3);
+                        
 
-
+                        //混合过关
                         //处理多选 周三001>让胜|1.42,让平|3.95,让负|5.50  &
                         //单选：周三001>胜|2.58  &
 
@@ -331,7 +332,7 @@ namespace 体育打票软件
                             a3 = a3.Replace("(胜)","胜").Replace("(平)", "平").Replace("(负)", "负");
                         }
 
-                       
+                        //MessageBox.Show(peilv);
                         jiangjin_peilv_list.Add(peilv);//计算多串奖金
                         string rangqiuwenzi = "";
                         Dictionary<string, string> hunherangqiudic = getrangqiu_hunhe(html);
@@ -401,11 +402,20 @@ namespace 体育打票软件
                         sb.Append("主队:" + dics["周" + a1].Replace("VS", " VS 客队:") + "\n");
                       
                         sb.Append(a2 + "@" + a3 + "0元\n");
-                       jiangjin = jiangjin * Convert.ToDouble(peilv);
+                        try
+                        {
+                            jiangjin = jiangjin * Convert.ToDouble(peilv);
+                        }
+                        catch (Exception)
+                        {
+
+                            ;
+                        }
+                       
                     }
                 }
 
-                //非混合过关
+                //----------------------------非混合过关-------------------------------------
                 else
                 {
 
@@ -437,6 +447,31 @@ namespace 体育打票软件
 
 
                         string peilv = a3;
+
+
+
+                        //非混合过关
+                        //处理多选 周三001>让胜|1.42,让平|3.95,让负|5.50  &
+                        //单选：周三001>胜|2.58  &
+
+                        if (a3.Contains(","))
+                        {
+                            peilv = Regex.Match(item, @"\|([\s\S]*?),").Groups[1].Value;
+
+                            a3 = a3.Replace("让", "").Replace("|", ")@").Replace(",", "0元+(");
+                            a3 = a3.Replace("(胜)", "胜").Replace("(平)", "平").Replace("(负)", "负");
+                        }
+
+
+                        jiangjin_peilv_list.Add(peilv);//计算多串奖金
+
+
+
+
+
+
+
+
                         string rangqiuwenzi = "";
 
                         jiangjin_peilv_list.Add(peilv);//计算多串奖金
@@ -489,7 +524,6 @@ namespace 体育打票软件
                             sb.Append(a2 + "@" + a3 + "0元\n");
                         }
 
-
                         try
                         {
                             jiangjin = jiangjin * Convert.ToDouble(a3);
@@ -497,9 +531,10 @@ namespace 体育打票软件
                         catch (Exception)
                         {
 
-                            ;
+                            
                         }
-                       
+                        
+
                     }
 
 
@@ -526,12 +561,12 @@ namespace 体育打票软件
                 else
                 {
 
-                    string jj = jiangjin_duochuan(jiangjin_peilv_list, duochuanwenzi,beishu);
+                    string jj = jiangjin_duochuan(jiangjin_peilv_list, duochuanwenzi, beishu);
 
 
                     sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jj + "元\n单倍注数:" + duochuanwenzi + ";共" + zhushu + "注");
                 }
-
+              
 
                 Report.ParameterByName("suiji").AsString = suiji;
                 Report.ParameterByName("fangshi").AsString = fangshi;
@@ -558,6 +593,27 @@ namespace 体育打票软件
 
             }
         }
+
+
+
+
+ 
+
+
+        public delegate void GetData_jingcai(string txt);
+        public GetData_jingcai getdata_jingcai;
+
+
+
+
+
+
+      public void  getdatajingcai()
+        {
+            getdata_jingcai(textBox1.Text);
+        }
+
+
 
 
         public void getdata_500()
@@ -682,7 +738,7 @@ namespace 体育打票软件
                 jiangjin = Math.Round(jiangjin, 2);
 
 
-                string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
+                string ganxieyu = "感谢您为公益事业贡献 " + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
                 string zhushu = ((Convert.ToDouble(jine) / Convert.ToDouble(beishu)) / 2).ToString();
 
                 // sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
@@ -851,7 +907,7 @@ namespace 体育打票软件
                 //jiangjin = Math.Round(jiangjin, 2);
 
 
-                string ganxieyu = "感谢您为公益事业贡献" + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
+                string ganxieyu = "感谢您为公益事业贡献 " + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
                 string zhushu = peilvs.Count.ToString();
 
               
@@ -886,6 +942,7 @@ namespace 体育打票软件
         }
         private void jiexi_Load(object sender, EventArgs e)
         {
+           
             textBox2.Text = DateTime.Now.AddSeconds(1).ToString("yyyy-MM-dd HH:mm:ss");
         }
 
@@ -897,12 +954,14 @@ namespace 体育打票软件
         {
             if (this.Text.Contains("500"))
             {
-               // getdata_500();
+             
                 getdata_500_danguan();
             }
             else
             {
-                getdata();
+                getdatajingcai();
+
+
             }
            
 
@@ -1003,6 +1062,6 @@ namespace 体育打票软件
             return jiangjin.ToString("F2");
         }
 
-
+      
     }
 }

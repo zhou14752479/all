@@ -41,7 +41,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // columnHeader4
@@ -71,22 +76,24 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
+            this.columnHeader6,
+            this.columnHeader7,
             this.columnHeader5});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 148);
+            this.listView1.Location = new System.Drawing.Point(0, 165);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(576, 413);
+            this.listView1.Size = new System.Drawing.Size(777, 413);
             this.listView1.TabIndex = 316;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(293, 48);
+            this.button3.Location = new System.Drawing.Point(279, 92);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(83, 29);
             this.button3.TabIndex = 315;
@@ -96,7 +103,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(471, 48);
+            this.button5.Location = new System.Drawing.Point(453, 92);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(83, 29);
             this.button5.TabIndex = 314;
@@ -106,17 +113,17 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(382, 48);
+            this.button4.Location = new System.Drawing.Point(366, 92);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(83, 29);
             this.button4.TabIndex = 313;
-            this.button4.Text = "导出";
+            this.button4.Text = "手动导出";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(204, 48);
+            this.button1.Location = new System.Drawing.Point(192, 92);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 29);
             this.button1.TabIndex = 312;
@@ -126,7 +133,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(115, 48);
+            this.button6.Location = new System.Drawing.Point(105, 92);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(83, 28);
             this.button6.TabIndex = 311;
@@ -136,7 +143,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(112, 5);
+            this.textBox1.Location = new System.Drawing.Point(106, 21);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(442, 21);
             this.textBox1.TabIndex = 309;
@@ -145,7 +152,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10F);
-            this.label1.Location = new System.Drawing.Point(15, 7);
+            this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 14);
             this.label1.TabIndex = 307;
@@ -154,22 +161,59 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(115, 102);
+            this.label2.Location = new System.Drawing.Point(104, 134);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 317;
             this.label2.Text = "未开始";
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "品相";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(554, 30);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(101, 12);
+            this.linkLabel1.TabIndex = 318;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "导入店铺网址文本";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(106, 61);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(210, 16);
+            this.checkBox1.TabIndex = 319;
+            this.checkBox1.Text = "每个店铺导出一个excel(自动导出)";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "定价";
-            this.columnHeader5.Width = 80;
+            this.columnHeader5.Text = "店名";
+            this.columnHeader5.Width = 200;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "运费";
             // 
             // 孔夫子旧书网
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 561);
+            this.ClientSize = new System.Drawing.Size(777, 578);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button3);
@@ -203,6 +247,11 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

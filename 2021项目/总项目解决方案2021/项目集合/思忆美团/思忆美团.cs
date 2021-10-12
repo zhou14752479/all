@@ -70,7 +70,12 @@ namespace 思忆美团
         {
             ProvinceCity.ProvinceCity.BindProvince(comboBox2);
             this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
-            fc.Getcates(comboBox1);
+
+
+
+            //fc.Getcates(comboBox1);
+
+
 
             if (fc.ExistINIFile())
             {
@@ -158,10 +163,7 @@ namespace 思忆美团
             textBox1.Text += "\r\n"+ comboBox3.Text ;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBox2.Text += "\r\n"+comboBox1.Text ;
-        }
+       
 
         private void start_btn_Click(object sender, EventArgs e)
         {
@@ -176,12 +178,14 @@ namespace 思忆美团
             if (textBox1.Text == "")
             {
                 infolabel.Text = "请选择城市！";
+                MessageBox.Show("请选择城市！");
                 return;
             }
 
-            if (textBox2.Text == "")
+            if (functions.catename_selected == "")
             {
                 infolabel.Text = "请选择分类！";
+                MessageBox.Show("请选择分类！");
                 return;
             }
             status = true;
@@ -205,7 +209,7 @@ namespace 思忆美团
         public string getip()
         {
             string html = functions.GetUrl("http://47.106.170.4:8081/Index-generate_api_url.html?packid=7&fa=5&groupid=0&fetch_key=&qty=1&port=1&format=txt&ss=1&css=&pro=&city=&usertype=7","utf-8");
-            label3.Text = html;
+          
             return html;
         }
 
@@ -226,14 +230,14 @@ namespace 思忆美团
                     Dictionary<string, string> areadics = fc.getareas(cityid);
                     foreach (string areaid in areadics.Values)
                     {
-                        string[] catenames = textBox2.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                        string[] catenames = functions.catename_selected.Trim().Split(new string[] { "," }, StringSplitOptions.None);
                         foreach (string catename in catenames)
                         {
                             if(catename=="")
                             {
                                 continue;
                             }
-                            string cateid = fc.catedic[catename];
+                            string cateid = functions.catedic[catename];
                            
                             for (int page = 0; page < 1001; page = page + 100)
                             {
@@ -242,12 +246,17 @@ namespace 思忆美团
                                     infolabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")+"：账号已过期，请充值，若已充值，请重新登录！";
                                     return;
                                 }
-                                // string url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityid + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false&start=" + page + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
-                                string url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityid + "&cateid=22&categoryids=" + cateid + "&lat=33.94114303588867&lng=118.2479019165039&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=&mtlite=false&start=" + page + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
+                               
+                                string url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityid + "&cateid=22&categoryids=" + cateid + "&lat=&lng=&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=&mtlite=false&start=" + page + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
 
-                                //string url = "https://i.meituan.com/vc/mt/fetchshoplist?token=39pMg6p8dEzUfp82NE4rjMfAwsgAAAAATQ4AANerOltwtpdK-CJEtHJAK5PM2u-NyclkWElCk8dSVMDyeOibKNtY7dzH7c8qBLtlaA&cityid="+cityid+ "&cateid=" + cateid + "&categoryids=" + cateid+"&lat=33.939921&lng=118.253346&userid=875973616&uuid=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&utmsource=mtsy&utmmedium=iphone&utmterm=11.10.402&utmcontent=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&versionname=11.10.402&utmcampaign=AgroupBgroupD200Ghomepage_category8_20691__a1__c__e0H0&mock=0&miniProgram=false&start="+page+"&limit=20&areaid="+areaid+"&distance=&subwaylineid=&subwaystationid=&sort=2";
                                 string html = functions.GetUrl(url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-                              
+
+                               if(html.Contains("已禁止") && html.Contains("Exception"))
+                                {
+                                    MessageBox.Show("当前IP被美团禁止访问，请更换IP，或者等待恢复");
+                                    status = false;
+                                    return;
+                                }
                                 // string html = functions.GetUrlwithIP(url, ip,"","utf-8");
                                 //if (html == "" || html == null)
                                 //{
@@ -263,11 +272,7 @@ namespace 思忆美团
                                 MatchCollection shangquan = Regex.Matches(html, @"""areaName"":""([\s\S]*?)""");
 
                                 infolabel.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "：正在采集" + city + "-" + areaid + "-" + catename + "-页码：" +((page/100)+1);
-                                if (names.Count == 0  || names.Count <10)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-                                {
-                                    break;
-                                }
-
+                              
                                 for (int j = 0; j < names.Count; j++)
                                 {
                                     try
@@ -306,7 +311,13 @@ namespace 思忆美团
                                     }
                                 }
 
-                              
+                                if (names.Count == 0 || names.Count < 100)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+                                {
+                                    break;
+                                }
+
+
+
                                 Thread.Sleep(1000);
                             }
                         }
@@ -435,6 +446,13 @@ namespace 思忆美团
 
         private void register_btn_Click(object sender, EventArgs e)
         {
+            string isregister = fc.IniReadValue("values", "register");
+            if(isregister=="1")
+            {
+                MessageBox.Show("请勿重复注册");
+                return;
+
+            }
             if (user_text.Text == "" || pass_text.Text == "")
             {
                 MessageBox.Show("请输入账号和密码");
@@ -446,6 +464,7 @@ namespace 思忆美团
                 functions.username = user_text.Text.Trim();
                 fc.IniWriteValue("values", "username", user_text.Text.Trim());
                 fc.IniWriteValue("values", "password", pass_text.Text.Trim());
+                fc.IniWriteValue("values", "register", "1");
                 tabControl1.SelectedIndex = 0;
             }
           
@@ -496,6 +515,12 @@ namespace 思忆美团
 
                 MessageBox.Show("打开失败，请复制网址到浏览器打开");
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            选择分类 cate = new 选择分类();
+            cate.Show();
         }
     }
 }

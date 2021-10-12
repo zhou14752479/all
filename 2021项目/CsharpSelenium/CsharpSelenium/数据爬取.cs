@@ -178,10 +178,10 @@ namespace CsharpSelenium
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://210.76.73.15/Portal/BAList.aspx?ColID=xmgk");
 
-            Thread.Sleep(5000);
+            Thread.Sleep(10000);
 
 
-            for (int i = 0; i < 400; i++)
+            for (int i = 0; i < 281; i++)
             {
 
    
@@ -329,7 +329,7 @@ namespace CsharpSelenium
             if (thread == null || !thread.IsAlive)
             {
                 timer1.Start();
-                thread = new Thread(autozone);
+                thread = new Thread(guangdong);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

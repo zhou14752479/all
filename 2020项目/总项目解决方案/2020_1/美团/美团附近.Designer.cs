@@ -54,11 +54,11 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -119,10 +119,10 @@
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
             this.linkLabel1.Location = new System.Drawing.Point(12, 13);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(331, 27);
+            this.linkLabel1.Size = new System.Drawing.Size(244, 27);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "思忆商家大数据采集系统";
+            this.linkLabel1.Text = "美团商家采集系统";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // toolStripStatusLabel1
@@ -159,7 +159,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(451, 515);
+            this.button1.Location = new System.Drawing.Point(624, 495);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 30);
             this.button1.TabIndex = 21;
@@ -169,7 +169,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(537, 515);
+            this.button2.Location = new System.Drawing.Point(624, 533);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(80, 30);
             this.button2.TabIndex = 22;
@@ -179,7 +179,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(623, 515);
+            this.button3.Location = new System.Drawing.Point(710, 495);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(80, 30);
             this.button3.TabIndex = 23;
@@ -189,7 +189,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(710, 515);
+            this.button4.Location = new System.Drawing.Point(710, 534);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(80, 30);
             this.button4.TabIndex = 24;
@@ -200,7 +200,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(218, 495);
+            this.label5.Location = new System.Drawing.Point(367, 498);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 28;
@@ -209,25 +209,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "餐饮美食",
-            "蛋糕甜点",
-            "饮品",
-            "丽人",
-            "休闲娱乐",
-            "美容美体",
-            "美发",
-            "婚纱摄影",
-            "汽车",
-            "教育",
-            "KTV",
-            "足疗",
-            "洗浴汗蒸",
-            "宠物医院",
-            "瑜伽舞蹈"});
-            this.comboBox1.Location = new System.Drawing.Point(289, 492);
+            this.comboBox1.Location = new System.Drawing.Point(438, 495);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(126, 20);
+            this.comboBox1.Size = new System.Drawing.Size(111, 20);
             this.comboBox1.TabIndex = 30;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -325,27 +309,9 @@
             this.label6.TabIndex = 99;
             this.label6.Text = "选择省份：";
             // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(86, 557);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(104, 20);
-            this.comboBox4.TabIndex = 104;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label7.Location = new System.Drawing.Point(3, 555);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 20);
-            this.label7.TabIndex = 103;
-            this.label7.Text = "选择地区：";
-            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(796, 515);
+            this.button5.Location = new System.Drawing.Point(796, 495);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(80, 30);
             this.button5.TabIndex = 105;
@@ -355,32 +321,51 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(289, 523);
+            this.textBox1.Location = new System.Drawing.Point(196, 490);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(126, 81);
+            this.textBox1.Size = new System.Drawing.Size(123, 114);
             this.textBox1.TabIndex = 106;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(218, 528);
+            this.label1.Location = new System.Drawing.Point(367, 531);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 107;
             this.label1.Text = "已选分类：";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(438, 528);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(111, 76);
+            this.textBox2.TabIndex = 108;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(796, 534);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(80, 30);
+            this.button6.TabIndex = 109;
+            this.button6.Text = "生成VCF";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // 美团附近
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 629);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label4);
@@ -435,10 +420,10 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button6;
     }
 }

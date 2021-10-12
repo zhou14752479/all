@@ -50,6 +50,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button7 = new System.Windows.Forms.Button();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button3
@@ -95,9 +96,9 @@
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox2.Location = new System.Drawing.Point(0, 551);
+            this.textBox2.Location = new System.Drawing.Point(0, 568);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(727, 21);
+            this.textBox2.Size = new System.Drawing.Size(885, 21);
             this.textBox2.TabIndex = 292;
             // 
             // textBox1
@@ -110,7 +111,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 10F);
-            this.button2.Location = new System.Drawing.Point(549, 12);
+            this.button2.Location = new System.Drawing.Point(549, 8);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(101, 23);
             this.button2.TabIndex = 290;
@@ -153,9 +154,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 185);
+            this.listView1.Location = new System.Drawing.Point(0, 202);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(727, 366);
+            this.listView1.Size = new System.Drawing.Size(885, 366);
             this.listView1.TabIndex = 301;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -241,7 +242,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(549, 48);
+            this.button7.Location = new System.Drawing.Point(546, 42);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(101, 23);
             this.button7.TabIndex = 306;
@@ -249,11 +250,26 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Font = new System.Drawing.Font("宋体", 11F);
+            this.checkBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.checkBox3.Location = new System.Drawing.Point(670, 14);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(176, 19);
+            this.checkBox3.TabIndex = 307;
+            this.checkBox3.Text = "不导入文件，采集全部";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
             // 药师帮
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 572);
+            this.ClientSize = new System.Drawing.Size(885, 589);
+            this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
@@ -303,5 +319,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }

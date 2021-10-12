@@ -28,6 +28,7 @@ namespace 图片转字符图
         {
             StringBuilder sb = new StringBuilder();
             String replaceChar = "@*#$%XB0H?OC7>+v=~^:_-'`. ";
+            
             for (int i = 0; i < bitmap.Height; i += HAddNum)
             {
                 for (int j = 0; j < bitmap.Width; j += WAddNum)
@@ -91,6 +92,60 @@ namespace 图片转字符图
             }
 
         }
+
+
+
+        public static string Generate(Bitmap bitmap, int rowSize, int colSize, int type)
+        {
+            StringBuilder result = new StringBuilder();
+            //var charstr=" $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'.";
+            //char[] charset = charstr.ToArray();
+            char[] charset = { ' ', '.', ',', ':', ';', 'i', '1', 'r', 's', '5', '3', 'A', 'H', '9', '8', '&', '@', '#' };
+            if (type == 1)
+            {
+                //charset = new char[] { '8', '9', '6', '4', '3', '5', '7', '0', '2', '1', '.',' ' };
+                charset = new char[] { ' ', '.', '1', '2', '0', '7', '5', '3', '4', '6', '9', '8' };
+            }
+            else if (type == 2)
+            {
+                charset = new char[] { '丶', '卜', '乙', '日', '瓦', '車', '馬', '龠', '齱', '龖' };
+            }
+            int bitmapH = bitmap.Height;
+            int bitmapW = bitmap.Width;
+            for (int h = 0; h < bitmapH / rowSize; h++)
+            {
+                int offsetY = h * rowSize;
+                for (int w = 0; w < bitmapW / colSize; w++)
+                {
+                    int offsetX = w * colSize;
+                    float averBright = 0;
+                    for (int j = 0; j < rowSize; j++)
+                    {
+                        for (int i = 0; i < colSize; i++)
+                        {
+                            try
+                            {
+                                Color color = bitmap.GetPixel(offsetX + i, offsetY + j);
+                                averBright += color.GetBrightness();
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                averBright += 0;
+                            }
+                        }
+                    }
+                    averBright /= (rowSize * colSize);
+                    int index = (int)(averBright * charset.Length);
+                    if (index == charset.Length)
+                        index--;
+                    result.Append(charset[charset.Length - 1 - index]);
+                }
+                result.Append("\r\n");
+            }
+            return result.ToString();
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
            
@@ -100,10 +155,11 @@ namespace 图片转字符图
         private void Button2_Click(object sender, EventArgs e)
         {
 
-            //ConvertToChar(new Bitmap(textBox1.Text), @"D:\1.txt",20,20);
-            //   run(textBox1.Text, @"D:\1.txt");
+            // ConvertToChar(new Bitmap(textBox1.Text), @"D:\1.txt",8,8);
+            // run(textBox1.Text, @"D:\1.txt");
 
-            
+            string result= Generate(new Bitmap(textBox1.Text),5,5,1);
+            System.IO.File.WriteAllText(@"D:\1.txt", result, Encoding.UTF8);
         }
 
         private void Button1_Click(object sender, EventArgs e)

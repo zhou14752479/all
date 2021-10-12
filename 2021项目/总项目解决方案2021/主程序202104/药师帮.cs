@@ -70,16 +70,91 @@ namespace 主程序202104
 
 
         DataTable dt = null;
-        string cookie = "rcfp=0dbd13dc95550c6d5433f75d6fb8aefa0c41; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221067688%22%2C%22first_id%22%3A%22178af3c011e2ee-0229d27bc6eb43-5771031-2073600-178af3c011f79c%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22178af3c011e2ee-0229d27bc6eb43-5771031-2073600-178af3c011f79c%22%7D; Captcha=895771AC963B429E8C3EEC1DAEEE3345; Token=6ceb7d81a83a44588bd128e75ea945fe";
+        string cookie = "sajssdk_2015_cross_new_user=1; rcfp=5e26e85da46947c48cb4004bce9728a2dd27; Captcha=84E7391CDF4F42F8AC6657CA83ECECEA; Token=6d3c3c08759248198ca45b22dae1dc27; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221067688%22%2C%22first_id%22%3A%2217c6d1cf412ae8-0bceff3c68e1a3-4343363-2073600-17c6d1cf41382d%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%2217c6d1cf412ae8-0bceff3c68e1a3-4343363-2073600-17c6d1cf41382d%22%7D";
+
+
+
+        /// <summary>
+        /// 全部价格不导入直接搜索
+        /// </summary>
+        public void run_all()
+        {
+
+          
+                for (int page = 1; page <36000; page++)
+                {
+                    try
+                    {
+                      
+                    
+                        string url = "https://dian.ysbang.cn/wholesale-drug/sales/getWholesaleList/v4270";
+                    //string postdata = "{\"platform\":\"pc\",\"version\":\"4.39.6\",\"ua\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Chrome 89\",\"ex\":\"2021-4-7 18:42 indexContent\",\"page\":" + page + ",\"pagesize\":\"60\",\"classify_id\":\"\",\"searchkey\":\"\",\"sort\":\"\",\"operationtype\":1,\"provider_filter\":\"\",\"activityTypes\":[],\"qualifiedLoanee\":0,\"factoryNames\":\"\",\"specs\":\"\",\"drugId\":-1,\"showRecentlyPurchasedFlag\":true,\"onlyShowRecentlyPurchased\":false,\"token\":\"f41d7da82aef43e583e7a94fa579d93d\"}";
+
+                    string postdata = "{\"platform\":\"pc\",\"version\":\"5.7.0\",\"ua\":\"Chrome 92\",\"ex\":\"2021-9-24 19:32 indexContent 10-11 10:09:46 10-11 10:12:17\",\"ex1\":\""+ex1+"\",\"page\":"+page+",\"pagesize\":\"60\",\"classify_id\":\"\",\"searchkey\":\"\",\"sort\":\"\",\"operationtype\":1,\"provider_filter\":\"\",\"activityTypes\":[],\"qualifiedLoanee\":0,\"factoryNames\":\"\",\"specs\":\"\",\"drugId\":-1,\"showRecentlyPurchasedFlag\":true,\"onlyShowRecentlyPurchased\":false,\"token\":\"6d3c3c08759248198ca45b22dae1dc27\"}";
+                   
+                    string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/json", "https://dian.ysbang.cn/");
+                   if(html.Contains("你的页面访问有问题"))
+                    {
+                        MessageBox.Show("登录失效，请重新搜索");
+                        page = page - 1;
+                        continue;
+                    }
+                    MatchCollection cn_names = Regex.Matches(html, @"""cn_name"":""([\s\S]*?)""");
+                        MatchCollection specifications = Regex.Matches(html, @"""specification"":""([\s\S]*?)""");
+                        MatchCollection chainPrices = Regex.Matches(html, @"""chainPrice"":""([\s\S]*?)""");
+                        MatchCollection manufacturers = Regex.Matches(html, @"""manufacturer"":""([\s\S]*?)""");
+                        MatchCollection units = Regex.Matches(html, @"""unit"":""([\s\S]*?)""");
+
+                    MessageBox.Show(cn_names.Count.ToString());
+                        if (cn_names.Count == 0)
+                            break;
+
+                        for (int j = 0; j < cn_names.Count; j++)
+                        {
+                          
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(cn_names[j].Groups[1].Value.Trim());
+                                lv1.SubItems.Add(specifications[j].Groups[1].Value.Trim());
+                                lv1.SubItems.Add(chainPrices[j].Groups[1].Value.Trim());
+                                lv1.SubItems.Add(manufacturers[j].Groups[1].Value.Trim());
+                                lv1.SubItems.Add(units[j].Groups[1].Value.Trim());
+                                lv1.SubItems.Add("");
+                            
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (status == false)
+                                return;
+
+
+                        }
+                        Thread.Sleep(1000);
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        ex.ToString();
+                    }
+
+                }
+
+
+            }
+
+
+
 
         /// <summary>
         /// 全部价格
         /// </summary>
         public void run()
         {
+            
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                for (int page = 1; page < 100; page++)
+                for (int page = 1; page < 101; page++)
                 {
                     try
                     {
@@ -94,8 +169,8 @@ namespace 主程序202104
 
 
                         string url = "https://dian.ysbang.cn/wholesale-drug/sales/getWholesaleList/v4270";
-                        string postdata = "{\"platform\":\"pc\",\"version\":\"4.39.6\",\"ua\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Chrome 89\",\"ex\":\"2021-4-7 18:42 indexContent\",\"page\":" + page + ",\"pagesize\":\"60\",\"classify_id\":\"\",\"searchkey\":\""+keyword+"\",\"sort\":\"\",\"operationtype\":1,\"provider_filter\":\"\",\"activityTypes\":[],\"qualifiedLoanee\":0,\"factoryNames\":\"\",\"specs\":\"\",\"drugId\":-1,\"showRecentlyPurchasedFlag\":true,\"onlyShowRecentlyPurchased\":false,\"token\":\"f41d7da82aef43e583e7a94fa579d93d\"}";
-                       
+                        string postdata = "{\"platform\":\"pc\",\"version\":\"5.7.0\",\"ua\":\"Chrome 92\",\"ex\":\"2021-9-24 19:32 indexContent 10-11 10:09:46 10-11 10:12:17\",\"ex1\":\"" + ex1 + "\",\"page\":" + page + ",\"pagesize\":\"60\",\"classify_id\":\"\",\"searchkey\":\""+keyword+"\",\"sort\":\"\",\"operationtype\":1,\"provider_filter\":\"\",\"activityTypes\":[],\"qualifiedLoanee\":0,\"factoryNames\":\"\",\"specs\":\"\",\"drugId\":-1,\"showRecentlyPurchasedFlag\":true,\"onlyShowRecentlyPurchased\":false,\"token\":\"6d3c3c08759248198ca45b22dae1dc27\"}";
+
                         string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/json", "https://dian.ysbang.cn/index.html");
                       
                         MatchCollection cn_names = Regex.Matches(html, @"""cn_name"":""([\s\S]*?)""");
@@ -149,7 +224,7 @@ namespace 主程序202104
 
         }
 
-
+     
 
         /// <summary>
         /// 最低价格
@@ -173,7 +248,7 @@ namespace 主程序202104
 
 
                         string url = "https://dian.ysbang.cn/wholesale-drug/sales/getWholesaleList/v4270";
-                        string postdata = "{\"platform\":\"pc\",\"version\":\"4.39.6\",\"ua\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Chrome 89\",\"ex\":\"2021-4-7 18:42 indexContent\",\"page\":" + page + ",\"pagesize\":\"60\",\"classify_id\":\"\",\"searchkey\":\"" + keyword + "\",\"sort\":\"\",\"operationtype\":1,\"provider_filter\":\"\",\"activityTypes\":[],\"qualifiedLoanee\":0,\"factoryNames\":\"\",\"specs\":\"\",\"drugId\":-1,\"showRecentlyPurchasedFlag\":true,\"onlyShowRecentlyPurchased\":false,\"token\":\"f41d7da82aef43e583e7a94fa579d93d\"}";
+                        string postdata = "{\"platform\":\"pc\",\"version\":\"5.7.0\",\"ua\":\"Chrome 92\",\"ex\":\"2021-9-24 19:32 indexContent 10-11 10:09:46 10-11 10:12:17\",\"ex1\":\"" + ex1 + "\",\"page\":" + page + ",\"pagesize\":\"60\",\"classify_id\":\"\",\"searchkey\":\""+keyword+"\",\"sort\":\"\",\"operationtype\":1,\"provider_filter\":\"\",\"activityTypes\":[],\"qualifiedLoanee\":0,\"factoryNames\":\"\",\"specs\":\"\",\"drugId\":-1,\"showRecentlyPurchasedFlag\":true,\"onlyShowRecentlyPurchased\":false,\"token\":\"6d3c3c08759248198ca45b22dae1dc27\"}";
 
                         string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/json", "https://dian.ysbang.cn/index.html");
 
@@ -248,6 +323,8 @@ namespace 主程序202104
         Thread thread;
         bool zanting = true;
         bool status = true;
+
+        string ex1 = "";
         private void button6_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -263,18 +340,7 @@ namespace 主程序202104
 
 
             #endregion
-            if (textBox1.Text == "")
-            {
-                MessageBox.Show("请导入表格");
-                return;
-            }
-            dt = method.ExcelToDataTable(textBox1.Text, true);
-
-            status = true;
-
-
             string path = AppDomain.CurrentDomain.BaseDirectory;
-
             try
             {
                 StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
@@ -294,11 +360,60 @@ namespace 主程序202104
             }
 
 
+            try
+            {
+                StreamReader sr = new StreamReader(path + "ex1.txt", method.EncodingType.GetTxtType(path + "ex1.txt"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+
+                ex1 = texts.Trim();
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+
+
+            if (checkBox3.Checked == true)
+            {
+                dt = new DataTable();
+                if (thread == null || !thread.IsAlive)
+                {
+
+                    thread = new Thread(run_all);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
+
+            else
+            {
+
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请导入表格");
+                    return;
+                }
+                dt = method.ExcelToDataTable(textBox1.Text, true);
+            }
+            status = true;
+
+
+          
+
+           
+
 
             if (checkBox1.Checked == true)
             {
                 if (thread == null || !thread.IsAlive)
                 {
+                   
                     thread = new Thread(run);
                     thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
@@ -306,6 +421,7 @@ namespace 主程序202104
             }
             if (checkBox2.Checked == true)
             {
+             
                 if (thread == null || !thread.IsAlive)
                 {
                     thread = new Thread(run1);
@@ -380,7 +496,7 @@ namespace 主程序202104
         private void button7_Click(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            Process.Start(path + "helper.exe");
+            Process.Start(path + "CEF主程序.exe");
         }
 
         private void 药师帮_Load(object sender, EventArgs e)

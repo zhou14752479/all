@@ -523,7 +523,7 @@ namespace 微博实时搬运软件
             catch (Exception ex)
             {
 
-                textBox1.Text = ex.ToString();
+                //textBox1.Text = ex.ToString();
             }
 
         }

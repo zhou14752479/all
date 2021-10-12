@@ -29,7 +29,7 @@ namespace 体育打票软件
         {
             textBox2.Text = DateTime.Now.AddSeconds(1).ToString("yyyy-MM-dd HH:mm:ss");
             axGRPrintViewer1.Start();
-            //axGRPrintViewer1.ZoomToWidth();
+            axGRPrintViewer1.ZoomToWidth();
 
 
 

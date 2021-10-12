@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202104
+namespace 主程序202110
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202104
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 药师帮());
+            Application.Run(new 内容随机合成());
         }
     }
 }

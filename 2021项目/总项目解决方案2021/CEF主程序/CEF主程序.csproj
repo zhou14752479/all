@@ -93,6 +93,7 @@
     <Compile Include="ResourceRequestHandler.cs" />
     <Compile Include="WinFormResourceRequestHandler.cs" />
     <Compile Include="WinFormsRequestHandler.cs" />
+    <Compile Include="yaoshibang_WinFormRequestHandler.cs" />
     <Compile Include="抖音评论采集.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +105,12 @@
     </Compile>
     <Compile Include="流量抓取.Designer.cs">
       <DependentUpon>流量抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="药师帮.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="药师帮.Designer.cs">
+      <DependentUpon>药师帮.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CEF主程序.resx">
       <DependentUpon>CEF主程序.cs</DependentUpon>
@@ -123,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="流量抓取.resx">
       <DependentUpon>流量抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="药师帮.resx">
+      <DependentUpon>药师帮.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

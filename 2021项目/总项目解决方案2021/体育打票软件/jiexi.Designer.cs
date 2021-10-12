@@ -48,7 +48,7 @@
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(508, 352);
+            this.textBox1.Size = new System.Drawing.Size(497, 357);
             this.textBox1.TabIndex = 0;
             // 
             // checkBox1
@@ -171,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 487);
+            this.ClientSize = new System.Drawing.Size(497, 484);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.textBox3);

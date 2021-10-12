@@ -39,7 +39,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
             this.listView1 = new 思忆美团.ListViewNF();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,13 +61,15 @@
             this.exportExl_btn = new System.Windows.Forms.Button();
             this.stop_btn = new System.Windows.Forms.Button();
             this.pause_btn = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -90,8 +92,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.infolabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -147,7 +147,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.ForeColor = System.Drawing.Color.Blue;
-            this.label17.Location = new System.Drawing.Point(40, 291);
+            this.label17.Location = new System.Drawing.Point(40, 292);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(849, 15);
             this.label17.TabIndex = 8;
@@ -157,7 +157,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(40, 253);
+            this.label9.Location = new System.Drawing.Point(40, 260);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(271, 15);
             this.label9.TabIndex = 7;
@@ -167,7 +167,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(40, 184);
+            this.label16.Location = new System.Drawing.Point(40, 196);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(135, 15);
             this.label16.TabIndex = 5;
@@ -177,7 +177,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.Color.Blue;
-            this.label13.Location = new System.Drawing.Point(40, 90);
+            this.label13.Location = new System.Drawing.Point(40, 100);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(909, 15);
             this.label13.TabIndex = 4;
@@ -187,7 +187,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(40, 119);
+            this.label14.Location = new System.Drawing.Point(40, 132);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(150, 15);
             this.label14.TabIndex = 3;
@@ -197,26 +197,15 @@
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.Blue;
-            this.label12.Location = new System.Drawing.Point(40, 63);
+            this.label12.Location = new System.Drawing.Point(40, 68);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(843, 15);
             this.label12.TabIndex = 2;
             this.label12.Text = "选择城市和行业，点击开始，支持多城市多行业(选择多次城市，每行一个城市即可)，采集完毕选择导出全部数据的EXCEL表格";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(236, 409);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 20);
-            this.label3.TabIndex = 118;
-            this.label3.Text = "选择行业：";
-            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(119, 411);
+            this.textBox1.Location = new System.Drawing.Point(129, 418);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -295,16 +284,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button5);
             this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Controls.Add(this.clear_btn);
             this.tabPage1.Controls.Add(this.exportTxt_btn);
             this.tabPage1.Controls.Add(this.exportExl_btn);
             this.tabPage1.Controls.Add(this.stop_btn);
             this.tabPage1.Controls.Add(this.pause_btn);
-            this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.comboBox2);
             this.tabPage1.Controls.Add(this.label5);
@@ -317,6 +304,21 @@
             this.tabPage1.Size = new System.Drawing.Size(1033, 531);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(180)))), ((int)(((byte)(100)))));
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(264, 443);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(132, 33);
+            this.button5.TabIndex = 136;
+            this.button5.Text = "选择分类";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // listView1
             // 
@@ -439,28 +441,10 @@
             this.pause_btn.UseVisualStyleBackColor = false;
             this.pause_btn.Click += new System.EventHandler(this.pause_btn_Click);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(345, 413);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(111, 101);
-            this.textBox2.TabIndex = 128;
-            this.textBox2.Text = "美食";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("宋体", 11F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(240, 435);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(99, 23);
-            this.comboBox1.TabIndex = 127;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.label15);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.label17);
@@ -478,11 +462,31 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.Blue;
+            this.label20.Location = new System.Drawing.Point(40, 356);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(667, 15);
+            this.label20.TabIndex = 12;
+            this.label20.Text = "美团接口限制IP采集频率，当采集频繁会被限制IP，可以自行切换IP，或者等待自动解封(12h-24h)";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(40, 324);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(377, 15);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "4、当前IP被美团禁止访问，请更换IP，或者等待恢复？";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(40, 215);
+            this.label7.Location = new System.Drawing.Point(40, 228);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(562, 15);
             this.label7.TabIndex = 10;
@@ -492,7 +496,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(40, 147);
+            this.label4.Location = new System.Drawing.Point(40, 164);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(600, 15);
             this.label4.TabIndex = 9;
@@ -531,6 +535,30 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1033, 531);
             this.tabPage3.TabIndex = 2;
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("宋体", 12F);
+            this.linkLabel2.Location = new System.Drawing.Point(613, 129);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(72, 16);
+            this.linkLabel2.TabIndex = 27;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "软件定制";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("宋体", 12F);
+            this.linkLabel1.Location = new System.Drawing.Point(520, 129);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(72, 16);
+            this.linkLabel1.TabIndex = 26;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "教学视频";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // textBox4
             // 
@@ -796,30 +824,6 @@
             this.infolabel.Size = new System.Drawing.Size(51, 20);
             this.infolabel.Text = "未开始";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("宋体", 12F);
-            this.linkLabel1.Location = new System.Drawing.Point(520, 129);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(72, 16);
-            this.linkLabel1.TabIndex = 26;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "教学视频";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("宋体", 12F);
-            this.linkLabel2.Location = new System.Drawing.Point(613, 129);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(72, 16);
-            this.linkLabel2.TabIndex = 27;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "软件定制";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
-            // 
             // 思忆美团
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -860,7 +864,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label6;
@@ -881,8 +884,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel infolabel;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button stop_btn;
         private System.Windows.Forms.Button pause_btn;
         private System.Windows.Forms.Button clear_btn;
@@ -917,5 +918,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button5;
     }
 }

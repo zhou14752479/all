@@ -437,9 +437,11 @@ namespace _91porn视频下载
                 MatchCollection titles = Regex.Matches(html, @"m-t-5"">([\s\S]*?)<");
                 MatchCollection authors = Regex.Matches(html, @"作者:</span>([\s\S]*?)<");
 
+                MatchCollection list_infos = Regex.Matches(html, @"<span class=""video-title title-truncate m-t-5"">([\s\S]*?)</span>");
 
                 for (int i = 0; i < uids.Count; i++)
                 {
+                    Thread.Sleep(5000);
                     string uid = uids[i].Groups[1].Value.Trim();
 
                     if (radioButton1.Checked == true && checkBox1.Checked == true)
@@ -490,7 +492,11 @@ namespace _91porn视频下载
 
                     string infohtml = GetUrl(infoUrl, "utf-8");
                     string info = Regex.Match(infohtml, @"<span class=""more title"">([\s\S]*?)</span>").Groups[1].Value;
+
                     info = Regex.Replace(info, "<[^>]+>", "").Trim();
+
+                    // string info = list_infos[i].Groups[1].Value;
+
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                     lv1.SubItems.Add(uid);
                     lv1.SubItems.Add(title);
@@ -516,7 +522,7 @@ namespace _91porn视频下载
                     fs1.Close();
                     sw.Dispose();
 
-
+                    
                 }
             }
 
@@ -565,17 +571,13 @@ namespace _91porn视频下载
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
-            //Thread  thread = new Thread(run1);
-            //  thread.Start();
-            //  Control.CheckForIllegalCrossThreadCalls = false;
-            if (thread == null || !thread.IsAlive)
-            {
-
-                thread = new Thread(run1);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+            sw.WriteLine(DateTime.Now.ToString()+"：执行程序");
+            sw.Close();
+            fs1.Close();
+            sw.Dispose();
+            run1();
         }
 
         private void button2_Click(object sender, EventArgs e)

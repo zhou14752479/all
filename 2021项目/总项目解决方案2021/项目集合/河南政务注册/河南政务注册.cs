@@ -242,106 +242,114 @@ namespace 河南政务注册
         /// </summary>
         public void run()
         {
-            if (textBox5.Text == "")
+            try
             {
-                MessageBox.Show("请选择表格导入");
-                return;
-            }
-            DataTable dt = method.ExcelToDataTable(textBox5.Text, true);
-
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                try
+                if (textBox5.Text == "")
                 {
+                    MessageBox.Show("请选择表格导入");
+                    return;
+                }
+                DataTable dt = method.ExcelToDataTable(textBox5.Text, true);
 
-
-                    if (status == false)
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    try
                     {
-                        return;
-                    }
-
-                    DataRow dr = dt.Rows[i];
-
-                     Encrypt aa = new Encrypt(getencrypt);
-                    IAsyncResult iar = BeginInvoke(aa, new object[] { dr[1].ToString() });
-                    string cradencrypt = EndInvoke(iar).ToString();
-                   
-                   
-
-                    string name = System.Web.HttpUtility.UrlEncode(dr[0].ToString());
-                    string card = System.Web.HttpUtility.UrlEncode(cradencrypt);
-                    string mobilemid= getmobile();
-                    string[] text = mobilemid.Split(new string[] { "&" }, StringSplitOptions.None);
-                    if (text.Length < 1)
-                    {
-                        logtxtBox.Text = "获取手机号失败";
-                        return;
-                    }
-                       
-                    string mobile = text[0];
-                    string mid = text[1];
 
 
-                    IAsyncResult iar2 = BeginInvoke(aa, new object[] { mobile });
-                    string mobileencrypt = EndInvoke(iar2).ToString();
-
-                    bool fasongstatus = sendmobile(mobileencrypt);
-
-
-                    if (fasongstatus == false)
-                    {
-                        if (i > 0)
-                        {
-                            i = i - 1;
-                        }
-                        continue;
-                    }
-                    string code = getduanxinma(mid);
-                    while (true)
-                    {
                         if (status == false)
                         {
                             return;
                         }
-                        code = getduanxinma(mid);
-                    
-                        if (code != "")
+
+                        DataRow dr = dt.Rows[i];
+
+                        Encrypt aa = new Encrypt(getencrypt);
+                        IAsyncResult iar = BeginInvoke(aa, new object[] { dr[1].ToString() });
+                        string cradencrypt = EndInvoke(iar).ToString();
+
+
+
+                        string name = System.Web.HttpUtility.UrlEncode(dr[0].ToString());
+                        string card = System.Web.HttpUtility.UrlEncode(cradencrypt);
+                        string mobilemid = getmobile();
+                        string[] text = mobilemid.Split(new string[] { "&" }, StringSplitOptions.None);
+                        if (text.Length < 1)
                         {
-                            dengdaiduanxinmaseconds = 0;
-                            break;
+                            logtxtBox.Text = "获取手机号失败";
+                            return;
                         }
 
-                        if (dengdaiduanxinmaseconds == Convert.ToInt32(textBox6.Text))
-                        {
-                            dengdaiduanxinmaseconds = 0;
+                        string mobile = text[0];
+                        string mid = text[1];
 
-                            break;
+
+                        IAsyncResult iar2 = BeginInvoke(aa, new object[] { mobile });
+                        string mobileencrypt = EndInvoke(iar2).ToString();
+
+                        bool fasongstatus = sendmobile(mobileencrypt);
+
+
+                        if (fasongstatus == false)
+                        {
+                            if (i > 0)
+                            {
+                                i = i - 1;
+                            }
+                            continue;
+                        }
+                        string code = getduanxinma(mid);
+                        while (true)
+                        {
+                            if (status == false)
+                            {
+                                return;
+                            }
+                            code = getduanxinma(mid);
+
+                            if (code != "")
+                            {
+                                dengdaiduanxinmaseconds = 0;
+                                break;
+                            }
+
+                            if (dengdaiduanxinmaseconds == Convert.ToInt32(textBox6.Text))
+                            {
+                                dengdaiduanxinmaseconds = 0;
+
+                                break;
+
+                            }
 
                         }
+
+                        IAsyncResult iar3 = BeginInvoke(aa, new object[] { textBox3.Text.Trim() });
+                        string pwd = EndInvoke(iar3).ToString();
+                        pwd = System.Web.HttpUtility.UrlEncode(pwd);
+
+
+                        string url = "https://login.hnzwfw.gov.cn/tacs-uc/naturalMan/saveUserInfo?times=b6fdd2d4-184d-4ab1-8943-e4e6b308815a";
+                        string postdata = "userName=" + name + "&certNo=" + card + "&certEffDate=&certExpDate=&certType=111&loginPwd=" + pwd + "&userMobile=" + System.Web.HttpUtility.UrlEncode(mobileencrypt) + "&code=" + code + "&certNation=&backUrl=";
+                        string html = PostUrl(url, postdata);
+                        //MessageBox.Show(html);
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(dr[0].ToString());
+                        lv1.SubItems.Add(dr[1].ToString());
+                        lv1.SubItems.Add(mobile);
+                        lv1.SubItems.Add(html);
 
                     }
-                   
-                    IAsyncResult iar3 = BeginInvoke(aa, new object[] { textBox3.Text.Trim() });
-                    string pwd = EndInvoke(iar3).ToString();
-                      pwd = System.Web.HttpUtility.UrlEncode(pwd);
-
-
-                    string url = "https://login.hnzwfw.gov.cn/tacs-uc/naturalMan/saveUserInfo?times=b6fdd2d4-184d-4ab1-8943-e4e6b308815a";
-                    string postdata = "userName="+name+"&certNo="+card+"&certEffDate=&certExpDate=&certType=111&loginPwd="+pwd+"&userMobile="+ System.Web.HttpUtility.UrlEncode(mobileencrypt) + "&code="+code+"&certNation=&backUrl=";
-                    string html = PostUrl(url,postdata);
-                    //MessageBox.Show(html);
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                    lv1.SubItems.Add(dr[0].ToString());
-                    lv1.SubItems.Add(dr[1].ToString());
-                    lv1.SubItems.Add(mobile);
-                    lv1.SubItems.Add(html);
-
+                    catch (Exception ex)
+                    {
+                        //MessageBox.Show(ex.ToString());
+                        //continue;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    //MessageBox.Show(ex.ToString());
-                    continue;
-                }
+            }
+            catch (Exception ex)
+            {
+
+                ;
             }
 
 

@@ -75,6 +75,12 @@ namespace 思忆美团
             return a.ToString();
         }
 
+
+
+        public static string catename_selected = "";
+        public static Dictionary<string, string> catedic = new Dictionary<string, string>();
+
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -89,7 +95,7 @@ namespace 思忆美团
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Proxy = null;
+                //request.Proxy = null;
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = Url;
@@ -460,7 +466,7 @@ namespace 思忆美团
         #endregion
 
         #region  读取分类
-        public Dictionary<string, string> catedic = new Dictionary<string, string>();
+      
         public  void Getcates(ComboBox cob)
         {
 

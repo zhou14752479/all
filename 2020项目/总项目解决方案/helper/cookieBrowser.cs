@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using SHDocVw;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,11 +80,31 @@ namespace helper
 
         private void cookieBrowser_Load(object sender, EventArgs e)
         {
-        
-           // timer1.Start();
-          
+            SHDocVw.WebBrowser wb = (SHDocVw.WebBrowser)webBrowser1.ActiveXInstance;
+           wb.BeforeNavigate2 += new DWebBrowserEvents2_BeforeNavigate2EventHandler(WebBrowser_BeforeNavigate2);
+           // wb.NavigateComplete2 += new DWebBrowserEvents2_NavigateComplete2EventHandler(webBrowser_NavigateComplete2);
+            // timer1.Start();
 
         }
+
+        private void WebBrowser_BeforeNavigate2(object pDisp, ref object URL, ref object Flags,
+ref object TargetFrameName, ref object PostData, ref object Headers, ref bool Cancel)
+        {
+            string postDataText = System.Text.Encoding.ASCII.GetString(PostData as byte[]);
+            textBox1.Text = postDataText;
+          
+        }
+
+
+        private void webBrowser_NavigateComplete2(object pDisp, ref object URL)
+        {
+          
+            MessageBox.Show(URL.ToString());
+        }
+
+
+
+
         string path = AppDomain.CurrentDomain.BaseDirectory;
 
         private void button1_Click(object sender, EventArgs e)
@@ -92,7 +113,7 @@ namespace helper
 
 
             //string cookie = method.GetCookies("https://enjoy.abchina.com/jf-pcweb/transPay/getPayInfo");
-            string cookie = method.GetCookies("https://mail.163.com/");
+            string cookie = method.GetCookies("https://dian.ysbang.cn/#/indexContent");
             textBox1.Text = cookie;
             
             //写入config.ini配置文件

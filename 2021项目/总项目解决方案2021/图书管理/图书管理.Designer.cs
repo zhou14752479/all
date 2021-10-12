@@ -85,6 +85,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -158,6 +160,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(959, 690);
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -550,9 +553,10 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.导出订单ToolStripMenuItem,
             this.导出数据ToolStripMenuItem,
-            this.清空数据ToolStripMenuItem});
+            this.清空数据ToolStripMenuItem,
+            this.删除此行ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 92);
             // 
             // 导出订单ToolStripMenuItem
             // 
@@ -671,6 +675,19 @@
             this.textBox5.TabIndex = 29;
             this.textBox5.MouseHover += new System.EventHandler(this.textBox5_MouseHover);
             // 
+            // 删除此行ToolStripMenuItem
+            // 
+            this.删除此行ToolStripMenuItem.Name = "删除此行ToolStripMenuItem";
+            this.删除此行ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.删除此行ToolStripMenuItem.Text = "删除此行";
+            this.删除此行ToolStripMenuItem.Click += new System.EventHandler(this.删除此行ToolStripMenuItem_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // 图书管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -772,5 +789,7 @@
         private System.Windows.Forms.ToolStripMenuItem 清空数据ToolStripMenuItem;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ToolStripMenuItem 删除此行ToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }

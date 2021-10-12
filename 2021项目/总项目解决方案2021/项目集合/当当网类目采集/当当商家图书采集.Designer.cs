@@ -55,11 +55,11 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,8 +89,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(812, 21);
             this.textBox1.TabIndex = 406;
-            this.textBox1.Text = "http://shop.dangdang.com/14110/list.html?inner_cat=all&lowp=0&highp=100&page_inde" +
-    "x=2#pos";
+            this.textBox1.Text = "http://shop.dangdang.com/10817/";
             // 
             // button4
             // 
@@ -274,13 +273,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "价格筛选";
             // 
-            // textBox2
+            // textBox4
             // 
-            this.textBox2.Location = new System.Drawing.Point(96, 21);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 411;
-            this.textBox2.Text = "0";
+            this.textBox4.Location = new System.Drawing.Point(508, 21);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 22);
+            this.textBox4.TabIndex = 415;
+            this.textBox4.Text = "1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(419, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.TabIndex = 414;
+            this.label5.Text = "每次增加：";
             // 
             // textBox3
             // 
@@ -299,22 +307,13 @@
             this.label4.TabIndex = 412;
             this.label4.Text = "最高价格：";
             // 
-            // textBox4
+            // textBox2
             // 
-            this.textBox4.Location = new System.Drawing.Point(508, 21);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 22);
-            this.textBox4.TabIndex = 415;
-            this.textBox4.Text = "1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(419, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
-            this.label5.TabIndex = 414;
-            this.label5.Text = "每次增加：";
+            this.textBox2.Location = new System.Drawing.Point(96, 21);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.TabIndex = 411;
+            this.textBox2.Text = "0";
             // 
             // 当当商家图书采集
             // 
@@ -337,6 +336,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "当当商家店铺图书采集";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.当当商家图书采集_FormClosing);
+            this.Load += new System.EventHandler(this.当当商家图书采集_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

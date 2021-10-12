@@ -56,6 +56,17 @@ namespace 当当网类目采集
                 {
                     MatchCollection man = Regex.Matches(quan, @"满([\s\S]*?)减");
                     MatchCollection jian = Regex.Matches(quan, @"减([\s\S]*?)元");
+
+
+                    if (man.Count == 1)  //一张优惠券
+                    {
+                        if (price >= Convert.ToDouble(man[0].Groups[1].Value))
+                        {
+                            price = price - Convert.ToDouble(jian[0].Groups[1].Value);
+                        }
+                        
+                    }
+
                     if (man.Count == 2)  //两张优惠券
                     {
                         if (price >= Convert.ToDouble(man[0].Groups[1].Value) && price >= Convert.ToDouble(man[1].Groups[1].Value))
@@ -109,7 +120,7 @@ namespace 当当网类目采集
                      
                         if (uids.Count == 0)
                         {
-                            MessageBox.Show("完成");
+                            //MessageBox.Show("完成");
                             break;
                         }
 
@@ -191,7 +202,8 @@ namespace 当当网类目采集
 
                                 if (Convert.ToDouble(shiprice) < 49.0)
                                 {
-                                    fee = "6";
+                                    //fee = "6";
+                                    fee = "0";
 
                                 }
 
@@ -268,9 +280,11 @@ namespace 当当网类目采集
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+              //  MessageBox.Show(ex.ToString());
                 ex.ToString();
             }
+
+            label1.Text = "完成";
         }
 
 
@@ -288,7 +302,7 @@ namespace 当当网类目采集
                 return;
             }
             #endregion
-
+            status = true;
 
             if (thread == null || !thread.IsAlive)
             {
@@ -326,6 +340,11 @@ namespace 当当网类目采集
         private void button4_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void 当当商家图书采集_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

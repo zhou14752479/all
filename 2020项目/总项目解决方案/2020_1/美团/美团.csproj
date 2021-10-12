@@ -38,6 +38,7 @@
     <Reference Include="HttpHelper">
       <HintPath>..\..\2019\百佳网上超市\bin\Debug\HttpHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL">
       <HintPath>..\..\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>

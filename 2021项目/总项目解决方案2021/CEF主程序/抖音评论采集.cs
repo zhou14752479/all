@@ -192,15 +192,16 @@ namespace CEF主程序
 
 
             #endregion
-            if (DateTime.Now > Convert.ToDateTime("2021-09-30"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
+            //if (DateTime.Now > Convert.ToDateTime("2021-09-30"))
+            //{
+            //    System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //}
 
 
-            loginform();
+           // loginform();
 
-            browser = new ChromiumWebBrowser("https://www.douyin.com/video/7003247679228644621?previous_page=main_page&tab_name=home");
+            // browser = new ChromiumWebBrowser("https://www.douyin.com/video/7003247679228644621?previous_page=main_page&tab_name=home");
+            browser = new ChromiumWebBrowser("https://dian.ysbang.cn/index.html#/indexContent?searchKey=&_t=1633924287163");
             Control.CheckForIllegalCrossThreadCalls = false;
             tabPage1.Controls.Add(browser);
 

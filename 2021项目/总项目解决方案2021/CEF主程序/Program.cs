@@ -16,7 +16,7 @@ namespace CEF主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 抖音评论采集());
+            Application.Run(new 药师帮());
         }
     }
 }

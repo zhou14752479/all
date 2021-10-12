@@ -224,7 +224,7 @@ namespace 图书管理
                 string data = ((String)iData.GetData(DataFormats.Text));
 
                 string id = Regex.Match(data, @"\d{8,}").Groups[0].Value;
-                if(fuzhivalue!=id)
+                if(fuzhivalue!=id && id != "")
                 {
                     textBox5.Text = id;
                     chaxun();
@@ -339,5 +339,79 @@ namespace 图书管理
                 e.Cancel = true;//点取消的代码 
             }
         }
+
+        private void 删除此行ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridView3.Rows.RemoveAt(dataGridView3.CurrentRow.Index);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("请选择行");
+              
+            }
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)//也可以判断tabControl1.SelectedTab.Text的值
+            {
+                IDataObject iData = Clipboard.GetDataObject();
+
+                if (iData.GetDataPresent(DataFormats.Text))
+                {
+                    string data = ((String)iData.GetData(DataFormats.Text));
+
+                    string id = Regex.Match(data, @"\d{8,}").Groups[0].Value;
+                    textBox5.Text = id;
+                    if (fuzhivalue != id && id != "")
+                    {
+                        textBox5.Text = id;
+                        chaxun();
+                        fuzhivalue = id;
+                    }
+                }
+                //执行相应的操作
+
+            }
+          
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                IDataObject iData = Clipboard.GetDataObject();
+
+                if (iData.GetDataPresent(DataFormats.Text))
+                {
+                    string data = ((String)iData.GetData(DataFormats.Text));
+
+                    string id = Regex.Match(data, @"\d{8,}").Groups[0].Value;
+
+                    if (fuzhivalue != id && id!="")
+                    {
+
+                        textBox5.Text = id;
+                        chaxun();
+                        fuzhivalue = id;
+                    }
+                }
+              
+
+            }
+            catch (Exception)
+            {
+
+               
+            }
+        }
+
+
+
     }
 }

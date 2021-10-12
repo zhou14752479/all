@@ -272,7 +272,14 @@ namespace 图书管理
                 if (sheet != null)
                 {
                     IRow firstRow = sheet.GetRow(0);
-                    int cellCount = firstRow.LastCellNum; //一行最后一个cell的编号 即总的列数                                       
+                    int cellCount = firstRow.LastCellNum; //一行最后一个cell的编号 即总的列数        
+                  if(cellCount<5)
+                    {
+                       
+                        cellCount = sheet.GetRow(5).LastCellNum;
+                    }
+
+                    MessageBox.Show(cellCount.ToString());
                     int rowCount = sheet.LastRowNum;//最后一列的标号
 
                     for (int i = startRow; i <= rowCount; ++i)
@@ -280,17 +287,19 @@ namespace 图书管理
 
                         IRow row = sheet.GetRow(i);
 
-                        if (row == null) continue; //没有数据的行默认是null　　　　　　　
+                       
+                        if (row == null) continue; //没有数据的行默认是null　　
+                       
                         for (int j = row.FirstCellNum; j < cellCount; ++j)
                         {
                             if (row.GetCell(j) != null)
                             {
                                 string value = row.GetCell(j).ToString();
-                                if (value.Contains("条码") || value.Contains("isbn") || value.Contains("条形码"))
+                                if (value.Contains("条码") || value.Contains("isbn") || value.Contains("条形码") || value.Contains("书号") || value.Contains("ISBN"))
                                 {
                                     isbn = j;
                                 }
-                                else if (value.Contains("书名"))
+                                else if (value.Contains("书名") || value.Contains("名称"))
                                 {
                                     name = j;
                                 }
@@ -298,7 +307,7 @@ namespace 图书管理
                                 {
                                     cbs = j;
                                 }
-                                else if (value.Contains("定价") || value.Contains("价格"))
+                                else if (value.Contains("定价") || value.Contains("价格") || value.Contains("单价"))
                                 {
                                     price = j;
                                 }
@@ -306,11 +315,11 @@ namespace 图书管理
                                 {
                                     kucun = j;
                                 }
-                                else if (value.Contains("库位"))
+                                else if (value.Contains("库位") || value.Contains("货位号"))
                                 {
                                     kuwei= j;
                                 }
-                                else if (value.Contains("折扣"))
+                                else if (value== "折扣" || value.Contains("折扣"))
                                 {
                                     zhekou = j;
                                 }
@@ -321,7 +330,8 @@ namespace 图书管理
                                  
                         }
                         int panduan = isbn + name + cbs;
-                        if (panduan != 0)
+                        
+                        if (panduan<100)
                         {
                             startRow = i + 1;
                             //MessageBox.Show(startRow.ToString());

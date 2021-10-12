@@ -453,6 +453,8 @@ namespace 江苏政务注册
 
                     }
                     string url = "http://www.jszwfw.gov.cn/jsjis/h5/interface/perregisterNew.do?jsondata=%7B%22pwd%22%3A%22123q123q%22%2C%22name%22%3A%22" + name + "%22%2C%22papersNumber%22%3A%22" + card + "%22%2C%22paperType%22%3A%221%22%2C%22realType%22%3A1%2C%22mobile%22%3A%22" + mobile + "%22%2C%22mobileCode%22%3A%22" + mobilecode + "%22%7D";
+
+                  
                     string html = method.GetUrlWithCookie(url, cookie, "utf-8");
 
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   

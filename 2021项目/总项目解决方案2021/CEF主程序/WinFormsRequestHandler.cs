@@ -46,18 +46,18 @@ namespace CEF主程序
 
                 //获取request请求hearder参数
                 StringBuilder sb = new StringBuilder();
-            sb.Append(request.Url + "\n");
-            foreach (var item in request.Headers)
-            {
-                sb.Append(item.ToString() + ":" + request.Headers[item.ToString()] + "\n");
-            }
-               
-           
+                sb.Append(request.Url + "\n");
+                foreach (var item in request.Headers)
+                {
+                    sb.Append(item.ToString() + ":" + request.Headers[item.ToString()] + "\n");
+                }
+
+
                 getdata(request.Url);
 
-        }
-                 return new WinFormResourceRequestHandler();
             }
+            return new WinFormResourceRequestHandler();
+        }
 
         public delegate void GetData(string url);
         public GetData getdata;
