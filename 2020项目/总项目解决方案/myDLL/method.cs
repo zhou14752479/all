@@ -22,6 +22,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace myDLL
 {
@@ -1561,6 +1562,51 @@ namespace myDLL
             }
             return ds;
         }
+        #endregion
+
+
+        #region 创建xml
+
+        public void CreateXmlFile()
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            //创建类型声明节点  
+            XmlNode node = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", "");
+            xmlDoc.AppendChild(node);
+            //创建根节点  
+            XmlNode root = xmlDoc.CreateElement("User");
+            xmlDoc.AppendChild(root);
+            CreateNode(xmlDoc, root, "name", "xuwei");
+            CreateNode(xmlDoc, root, "sex", "male");
+            CreateNode(xmlDoc, root, "age", "25");
+            try
+            {
+                xmlDoc.Save("c://data2.xml");
+            }
+            catch (Exception e)
+            {
+                //显示错误信息  
+                Console.WriteLine(e.Message);
+            }
+            //Console.ReadLine();  
+
+        }
+
+        /// <summary>    
+        /// 创建节点    
+        /// </summary>    
+        /// <param name="xmldoc"></param>  xml文档  
+        /// <param name="parentnode"></param>父节点    
+        /// <param name="name"></param>  节点名  
+        /// <param name="value"></param>  节点值  
+        ///   
+        public void CreateNode(XmlDocument xmlDoc, XmlNode parentNode, string name, string value)
+        {
+            XmlNode node = xmlDoc.CreateNode(XmlNodeType.Element, name, null);
+            node.InnerText = value;
+            parentNode.AppendChild(node);
+        }
+
         #endregion
     }
 }

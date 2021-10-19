@@ -57,6 +57,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "确认登录成功";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // 药师帮
@@ -66,6 +67,7 @@
             this.ClientSize = new System.Drawing.Size(1208, 686);
             this.Controls.Add(this.splitContainer1);
             this.Name = "药师帮";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "药师帮";
             this.Load += new System.EventHandler(this.药师帮_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

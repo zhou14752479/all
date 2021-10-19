@@ -140,6 +140,97 @@ namespace 地图营销
 
 
 
+        public bool jihuo = true;
+        /// <summary>
+        /// 未激活不退出
+        /// </summary>
+        public void jiance2()
+        {
+            if (ExistINIFile())
+            {
+                string key = IniReadValue("values", "key");
+                string secret = IniReadValue("values", "secret");
+                string[] value = secret.Split(new string[] { "asd147" }, StringSplitOptions.None);
+
+
+                if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
+                {
+                    MessageBox.Show("激活已过期");
+                    string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                    string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
+
+                    if (text[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian"))
+                    {
+                        IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                        IniWriteValue("values", "secret", str);
+                        MessageBox.Show("激活成功");
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("激活码错误");
+                        jihuo = false;
+                        // System.Diagnostics.Process.GetCurrentProcess().Kill();
+                        return;
+                    }
+
+                }
+
+
+                else if (value[0] != method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian") || key != method.GetMD5(method.GetMacAddress()))
+                {
+
+                    string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                    string[] text = str.Split(new string[] { "asd147" }, StringSplitOptions.None);
+
+                    if (text[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian"))
+                    {
+                        IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                        IniWriteValue("values", "secret", str);
+                        MessageBox.Show("激活成功");
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("激活码错误");
+                        jihuo = false;
+                        //System.Diagnostics.Process.GetCurrentProcess().Kill();
+                        return;
+                    }
+                }
+
+
+            }
+            else
+            {
+
+                string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                string[] text = str.Split(new string[] { "asd147" }, StringSplitOptions.None);
+                if (text[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian"))
+                {
+                    IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                    IniWriteValue("values", "secret", str);
+                    MessageBox.Show("激活成功");
+
+
+                }
+                else
+                {
+
+                    MessageBox.Show("激活码错误");
+                    jihuo = false;
+                    // System.Diagnostics.Process.GetCurrentProcess().Kill();
+                    return;
+                }
+            }
+
+        }
+
+
+
+
 
     }
 }

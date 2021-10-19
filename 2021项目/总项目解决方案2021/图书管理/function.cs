@@ -279,7 +279,7 @@ namespace 图书管理
                         cellCount = sheet.GetRow(5).LastCellNum;
                     }
 
-                    MessageBox.Show(cellCount.ToString());
+                   // MessageBox.Show(cellCount.ToString());
                     int rowCount = sheet.LastRowNum;//最后一列的标号
 
                     for (int i = startRow; i <= rowCount; ++i)

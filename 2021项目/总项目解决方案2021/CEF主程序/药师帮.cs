@@ -20,18 +20,62 @@ namespace CEF主程序
         {
             InitializeComponent();
         }
+
+
         ChromiumWebBrowser browser;
+
+        #region   cefsharp在自己窗口打开链接
+        //调用 browser.LifeSpanHandler = new OpenPageSelf();
+        /// <summary>
+        /// 在自己窗口打开链接
+        /// </summary>
+        internal class OpenPageSelf : ILifeSpanHandler
+        {
+            public bool DoClose(IWebBrowser browserControl, IBrowser browser)
+            {
+                return false;
+            }
+
+            public void OnAfterCreated(IWebBrowser browserControl, IBrowser browser)
+            {
+
+            }
+
+            public void OnBeforeClose(IWebBrowser browserControl, IBrowser browser)
+            {
+
+            }
+
+            public bool OnBeforePopup(IWebBrowser browserControl, IBrowser browser, IFrame frame, string targetUrl,
+    string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures,
+    IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
+            {
+                newBrowser = null;
+                var chromiumWebBrowser = (ChromiumWebBrowser)browserControl;
+                chromiumWebBrowser.Load(targetUrl);
+                return true; //Return true to cancel the popup creation copyright by codebye.com.
+            }
+        }
+
+      
+
+
+
+
+        #endregion
+
         private void 药师帮_Load(object sender, EventArgs e)
         {
-            browser = new ChromiumWebBrowser("https://dian.ysbang.cn/index.html#/indexContent?searchKey=&_t=1633924287163");
+            //browser = new ChromiumWebBrowser("https://dian.ysbang.cn/index.html#/indexContent?searchKey=&_t=1633924287163");
+            browser = new ChromiumWebBrowser("https://login.taobao.com/?redirect_url=https%3A%2F%2Flogin.1688.com%2Fmember%2Fjump.htm%3Ftarget%3Dhttps%253A%252F%252Flogin.1688.com%252Fmember%252FmarketSigninJump.htm%253FDone%253D%25252F%25252Fwww.1688.com%25252F&style=tao_custom&from=1688web");
             Control.CheckForIllegalCrossThreadCalls = false;
       splitContainer1.Panel2.Controls.Add(browser);
 
             browser.Dock = DockStyle.Fill;
            browser.FrameLoadEnd += Browser_FrameLoadEnd; //调用加载事件
+            browser.LifeSpanHandler = new OpenPageSelf();
 
 
-         
         }
 
         private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)

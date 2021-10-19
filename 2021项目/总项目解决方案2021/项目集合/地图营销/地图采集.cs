@@ -94,7 +94,18 @@ namespace 地图营销
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(Unicode2String(name));
-                                    lv1.SubItems.Add(phone);
+                                    if (md.jihuo == false)
+                                    {
+                                        if (phone.Length > 4)
+                                        {
+                                            lv1.SubItems.Add(phone.Substring(0, 4) + "*******");
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        lv1.SubItems.Add(phone);
+                                    }
                                     lv1.SubItems.Add(Unicode2String(addres));
                                     lv1.SubItems.Add(Unicode2String(cityname));
                                     lv1.SubItems.Add(keyword);
@@ -169,7 +180,18 @@ namespace 地图营销
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(Unicode2String(names[i].Groups[1].Value));
-                                    lv1.SubItems.Add(phones[i].Groups[1].Value);
+                                    if (md.jihuo == false)
+                                    {
+                                        if(phones[i].Groups[1].Value.Length>4)
+                                        {
+                                            lv1.SubItems.Add(phones[i].Groups[1].Value.Substring(0,4)+"*******");
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        lv1.SubItems.Add(phones[i].Groups[1].Value);
+                                    }
                                     lv1.SubItems.Add(Unicode2String(address[i].Groups[1].Value));
                                     lv1.SubItems.Add(Unicode2String(citynames[i].Groups[1].Value));
                                     lv1.SubItems.Add(keyword);
@@ -242,7 +264,19 @@ namespace 地图营销
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(names[i].Groups[1].Value);
-                                    lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", ""));
+                                    if (md.jihuo == false)
+                                    {
+                                        if (phones[i].Groups[1].Value.Replace("\"", "").Length > 4)
+                                        {
+                                            lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", "").Substring(0, 4) + "*******");
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", ""));
+                                    }
+                                  
                                     lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(citynames[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(keyword);
@@ -315,7 +349,20 @@ namespace 地图营销
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(names[i].Groups[1].Value);
-                                    lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
+                                  
+                                    if (md.jihuo == false)
+                                    {
+                                        if (phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "").Length > 4)
+                                        {
+                                            lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "").Substring(0, 4) + "*******");
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
+                                    }
+                                   
                                     lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(citys[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(keyword);
@@ -388,7 +435,18 @@ namespace 地图营销
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(names[i].Groups[1].Value);
-                                    lv1.SubItems.Add(phones[i].Groups[1].Value);
+                                    if (md.jihuo == false)
+                                    {
+                                        if (phones[i].Groups[1].Value.Length > 4)
+                                        {
+                                            lv1.SubItems.Add(phones[i].Groups[1].Value.Substring(0, 4) + "*******");
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", ""));
+                                    }
                                     lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(citys[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(keyword);
@@ -540,8 +598,8 @@ namespace 地图营销
         bool zanting = true;
         private void button7_Click(object sender, EventArgs e)
         {
-            map_method md = new map_method();
-            md.jiance();
+         
+            md.jiance2();
             //if (logined == false)
             //{
             //    MessageBox.Show("请登录");

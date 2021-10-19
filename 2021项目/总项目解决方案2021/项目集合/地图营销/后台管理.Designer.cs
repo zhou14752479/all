@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("用户列表");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("用户添加");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("账号生成");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("用户管理", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("主页");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("用户列表");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("用户添加");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("账号生成");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("用户管理", new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode12,
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("主页");
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -87,6 +87,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -120,19 +121,19 @@
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "节点2";
-            treeNode1.Text = "用户列表";
-            treeNode2.Name = "节点3";
-            treeNode2.Text = "用户添加";
-            treeNode3.Name = "节点0";
-            treeNode3.Text = "账号生成";
-            treeNode4.Name = "节点0";
-            treeNode4.Text = "用户管理";
-            treeNode5.Name = "节点0";
-            treeNode5.Text = "主页";
+            treeNode11.Name = "节点2";
+            treeNode11.Text = "用户列表";
+            treeNode12.Name = "节点3";
+            treeNode12.Text = "用户添加";
+            treeNode13.Name = "节点0";
+            treeNode13.Text = "账号生成";
+            treeNode14.Name = "节点0";
+            treeNode14.Text = "用户管理";
+            treeNode15.Name = "节点0";
+            treeNode15.Text = "主页";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
+            treeNode14,
+            treeNode15});
             this.treeView1.Size = new System.Drawing.Size(140, 766);
             this.treeView1.TabIndex = 15;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -155,6 +156,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button10);
+            this.tabPage1.Controls.Add(this.textBox4);
+            this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.listView1);
@@ -180,7 +184,6 @@
             this.button6.TabIndex = 163;
             this.button6.Text = "删除过期用户";
             this.button6.UseVisualStyleBackColor = false;
-            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button3
@@ -195,7 +198,6 @@
             this.button3.TabIndex = 162;
             this.button3.Text = "删除勾选用户";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // listView1
@@ -235,7 +237,7 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "点数";
+            this.columnHeader5.Text = "到期时间";
             this.columnHeader5.Width = 200;
             // 
             // button2
@@ -255,8 +257,6 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.numericUpDown2);
             this.tabPage2.Controls.Add(this.label9);
@@ -278,7 +278,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(552, 370);
+            this.label2.Location = new System.Drawing.Point(551, 302);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 20);
             this.label2.TabIndex = 168;
@@ -287,7 +287,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(477, 370);
+            this.numericUpDown2.Location = new System.Drawing.Point(476, 302);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -306,7 +306,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(448, 370);
+            this.label9.Location = new System.Drawing.Point(447, 302);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(23, 20);
             this.label9.TabIndex = 166;
@@ -315,7 +315,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(373, 370);
+            this.numericUpDown1.Location = new System.Drawing.Point(372, 302);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -334,7 +334,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(278, 370);
+            this.label8.Location = new System.Drawing.Point(277, 302);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 20);
             this.label8.TabIndex = 164;
@@ -674,21 +674,34 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(373, 295);
+            this.textBox4.Location = new System.Drawing.Point(496, 48);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(132, 25);
-            this.textBox4.TabIndex = 170;
-            this.textBox4.Text = "100";
+            this.textBox4.TabIndex = 165;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(278, 298);
+            this.label12.Location = new System.Drawing.Point(401, 51);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 20);
-            this.label12.TabIndex = 169;
-            this.label12.Text = "点数：";
+            this.label12.Size = new System.Drawing.Size(79, 20);
+            this.label12.TabIndex = 164;
+            this.label12.Text = "用户账号：";
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.White;
+            this.button10.Font = new System.Drawing.Font("宋体", 10F);
+            this.button10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.button10.Location = new System.Drawing.Point(634, 46);
+            this.button10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(106, 31);
+            this.button10.TabIndex = 166;
+            this.button10.Text = "点击搜索";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // 后台管理
             // 
@@ -706,6 +719,7 @@
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -773,6 +787,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label12;
     }

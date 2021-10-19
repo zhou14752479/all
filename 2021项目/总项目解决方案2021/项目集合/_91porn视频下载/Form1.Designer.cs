@@ -158,7 +158,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(42, 21);
             this.textBox6.TabIndex = 69;
-            this.textBox6.Text = "6379";
+            this.textBox6.Text = "10";
             // 
             // textBox5
             // 
@@ -343,6 +343,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "视频下载";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -26,10 +26,10 @@ namespace CEF主程序
         private void CEF主程序_Load(object sender, EventArgs e)
         {
 
-            if (DateTime.Now > Convert.ToDateTime("2021-09-30"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
+            //if (DateTime.Now > Convert.ToDateTime("2021-09-30"))
+            //{
+            //    System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //}
 
             browser = new ChromiumWebBrowser("https://www.douyin.com/video/7003247679228644621?previous_page=main_page&tab_name=home");
             //browser = new ChromiumWebBrowser("http://app.tk1788.com/app/superscanPH/loginPHValidate.jsp");

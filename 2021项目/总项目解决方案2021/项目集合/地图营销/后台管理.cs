@@ -24,7 +24,7 @@ namespace 地图营销
 
         //string type = "shangxueba";
 
-        string type = "douyin";
+        string type = "shangxueba";
         private void 后台管理_Load(object sender, EventArgs e)
         {
             this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
@@ -46,12 +46,7 @@ namespace 地图营销
             if (treeView1.SelectedNode.Text == "用户列表")
             {
                 tabControl1.SelectedIndex = 0;
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(getall);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
+                getall();
             }
             if (treeView1.SelectedNode.Text == "用户添加")
             {
@@ -90,26 +85,26 @@ namespace 地图营销
             MatchCollection types = Regex.Matches(html, @"""type"":""([\s\S]*?)""");
             for (int i = 0; i < ids.Count; i++)
             {
-                //if (types[i].Groups[1].Value == type)
-                //{
-                //    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                //                                                                                    //lv1.SubItems.Add(ids[i].Groups[1].Value);
-                //    lv1.SubItems.Add(usernames[i].Groups[1].Value);
-                //    lv1.SubItems.Add(passwords[i].Groups[1].Value);
-                //    lv1.SubItems.Add(times[i].Groups[1].Value);
-
-                //}
-
-
-                if (types[i].Groups[1].Value != "map" && types[i].Groups[1].Value != "shangxueba")
+                if (types[i].Groups[1].Value == type)
                 {
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                                                                                                     //lv1.SubItems.Add(ids[i].Groups[1].Value);
                     lv1.SubItems.Add(usernames[i].Groups[1].Value);
                     lv1.SubItems.Add(passwords[i].Groups[1].Value);
-                    // lv1.SubItems.Add(times[i].Groups[1].Value);
-                    lv1.SubItems.Add(types[i].Groups[1].Value);
+                    lv1.SubItems.Add(times[i].Groups[1].Value);
+
                 }
+
+
+                //if (types[i].Groups[1].Value != "map" && types[i].Groups[1].Value != "shangxueba")
+                //{
+                //    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                //                                                                                    //lv1.SubItems.Add(ids[i].Groups[1].Value);
+                //    lv1.SubItems.Add(usernames[i].Groups[1].Value);
+                //    lv1.SubItems.Add(passwords[i].Groups[1].Value);
+                //    // lv1.SubItems.Add(times[i].Groups[1].Value);
+                //    lv1.SubItems.Add(types[i].Groups[1].Value);
+                //}
 
             }
 
@@ -125,8 +120,8 @@ namespace 地图营销
             }
 
             decimal days = numericUpDown1.Value + (numericUpDown2.Value/24);
-            // string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username="+user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+days+ "&type=" +type, "utf-8");
-            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username=" + user_txt.Text.Trim() + "&password=" + pass_txt.Text.Trim() + "&days=" + days + "&type=" + textBox4.Text, "utf-8");
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username="+user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+days+ "&type=" +type, "utf-8");
+           
             MessageBox.Show(html.Trim());
             user_txt.Text = "";
             pass_txt.Text= "";
@@ -174,12 +169,7 @@ namespace 地图营销
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(getall);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            getall();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -414,5 +404,38 @@ namespace 地图营销
         {
             listView2.Items.Clear();
         }
+
+
+        List<string> userlist = new List<string>();
+        List<string> passlist = new List<string>();
+        List<string> timelist = new List<string>();
+        private void button10_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                if(listView1.Items[i].SubItems[1].Text==textBox4.Text)
+                {
+
+                    string username = listView1.Items[i].SubItems[1].Text;
+                    string password = listView1.Items[i].SubItems[2].Text;
+                    string time = listView1.Items[i].SubItems[3].Text;
+                    userlist.Add(username);
+                    passlist.Add(password);
+                    timelist.Add(time);
+                }
+            }
+
+            listView1.Items.Clear();
+            for (int j = 0; j < userlist.Count; j++)
+            {
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                                                                                //lv1.SubItems.Add(ids[i].Groups[1].Value);
+                lv1.SubItems.Add(userlist[j]);
+                lv1.SubItems.Add(passlist[j]);
+                lv1.SubItems.Add(timelist[j]);
+            }
+        }
+
+
     }
 }

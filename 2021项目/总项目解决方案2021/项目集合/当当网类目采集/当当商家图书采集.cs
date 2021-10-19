@@ -96,6 +96,9 @@ namespace 当当网类目采集
             }
         }
 
+
+        string fee = "0";
+
         /// <summary>
         /// APP端
         /// </summary>
@@ -103,6 +106,7 @@ namespace 当当网类目采集
         {
             try
             {
+                fee = "0";
                 int start_p = Convert.ToInt32(textBox2.Text);
                 int end_p = Convert.ToInt32(textBox3.Text);
                 int offset_p = Convert.ToInt32(textBox4.Text);
@@ -117,7 +121,7 @@ namespace 当当网类目采集
                       
                         string html = method.GetUrl(url, "gb2312");
                         MatchCollection uids = Regex.Matches(html, @"class=""pic""  href=""//product.dangdang.com/([\s\S]*?)\.");
-                     
+                       
                         if (uids.Count == 0)
                         {
                             //MessageBox.Show("完成");
@@ -130,7 +134,21 @@ namespace 当当网类目采集
                             try
                             {
                                 string uid = uids[j].Groups[1].Value;
-                                string ahtml = method.GetUrl("https://mapi.dangdang.com/index.php?action=get_product&user_client=iphone&client_version=11.7.3&union_id=537-50&permanent_id=20210730095015646129326676251121154&udid=CDD236322B97916364381C974957D10C&time_code=55F960825DDED6D818694D99AAC0C61A&timestamp=1627609894&lunbo_img_size=h&abtest=1&page_action=1&pid=" + uid + "&img_size=h&global_province_id=111&person_on=1", "utf-8");
+                                string aurl = "https://mapi.dangdang.com/index.php?action=get_product&user_client=iphone&client_version=11.7.3&union_id=537-50&permanent_id=20210730095015646129326676251121154&udid=CDD236322B97916364381C974957D10C&time_code=55F960825DDED6D818694D99AAC0C61A&timestamp=1627609894&lunbo_img_size=h&abtest=1&page_action=1&pid=" + uid + "&img_size=h&global_province_id=111&person_on=1";
+                                string ahtml = method.GetUrl(aurl, "utf-8");
+
+
+                                //获取运费
+                                if(fee=="0")
+                                {
+                                   
+                                    string template_id = Regex.Match(ahtml, @"""template_id"":""([\s\S]*?)""").Groups[1].Value;
+                                    string feeurl = "http://product.dangdang.com/index.php?r=%2Fcallback%2Fshipping&shopId="+id+"&areaId=165220373&templateId="+ template_id + "&type=1";
+                                    string feehtml = method.GetUrl(feeurl,"utf-8");
+                                   fee= Regex.Match(method.Unicode2String(feehtml), @"运费([\s\S]*?)元").Groups[1].Value;
+                                  
+                                }
+
                                 StringBuilder cate = new StringBuilder();
                                 string isbn = Regex.Match(ahtml, "\"standard_id\":\"([\\s\\S]*?)\"").Groups[1].Value;
                                 string title = Regex.Match(ahtml, "\"product_name\":\"([\\s\\S]*?)\"").Groups[1].Value;
@@ -151,16 +169,34 @@ namespace 当当网类目采集
                                 //活动开始
                                 MatchCollection man = Regex.Matches(method.Unicode2String(ahtml), @"""promotion_name"":""([\s\S]*?)满([\s\S]*?)减([\s\S]*?)""");
                                 MatchCollection huodong = Regex.Matches(method.Unicode2String(ahtml), @"""promotion_name"":""([\s\S]*?)""");
+                                MatchCollection huodong_start = Regex.Matches(method.Unicode2String(ahtml), @"""start_date"":""([\s\S]*?)""");
+                                MatchCollection huodong_end = Regex.Matches(method.Unicode2String(ahtml), @"""end_date"":""([\s\S]*?)""");
+
 
                                 StringBuilder sb = new StringBuilder();
-                                for (int a = 0; a < huodong.Count; a++)
+                                if (huodong_start.Count > 0)
                                 {
-                                    sb.Append(huodong[a].Groups[1].Value + "\r\n");
+                                   
+                                    for (int a = 0; a < 1; a++) //一个活动
+                                    {
+                                        if (!huodong[a].Groups[1].Value.Contains("加价购"))
+                                        {
+                                            sb.Append(huodong[a].Groups[1].Value + "\r\n" +"开始时间"+ huodong_start[a].Groups[1].Value + "--结束时间" + huodong_end[a].Groups[1].Value);
+                                        }
+                                    }
                                 }
 
-                                string huodongall = sb.ToString();
-                                string huodongyige = "";
+                                string huodongall = sb.ToString().Replace("设置失败","限时抢");
 
+
+
+
+
+
+
+
+
+                                string huodongyige = "";
                                 if (man.Count > 0)
                                 {
                                     huodongyige = "满" + man[0].Groups[2].Value + "减" + man[0].Groups[3].Value + "元";
@@ -184,7 +220,7 @@ namespace 当当网类目采集
 
 
 
-                                string fee = "6";
+                               
                                 string tag = "";
 
 
@@ -195,17 +231,17 @@ namespace 当当网类目采集
                                 double shiprice = this.jisuan(salePrice.Trim(), huodongyige.Trim(), quanall.Trim());
                                 string shizhekou = (shiprice / Convert.ToDouble(originalPrice)).ToString("0.00");
 
-                                if (Convert.ToDouble(shiprice) >= 49.0)
-                                {
-                                    fee = "0";
-                                }
+                                //if (Convert.ToDouble(shiprice) >= 49.0)
+                                //{
+                                //    fee = "0";
+                                //}
 
-                                if (Convert.ToDouble(shiprice) < 49.0)
-                                {
-                                    //fee = "6";
-                                    fee = "0";
+                                //if (Convert.ToDouble(shiprice) < 49.0)
+                                //{
+                                    
+                                //    fee = "0";
 
-                                }
+                                //}
 
                                 //包邮新品标签开始
                                 MatchCollection tags = Regex.Matches(method.Unicode2String(ahtml), @"item_trace([\s\S]*?)\]");
@@ -268,7 +304,7 @@ namespace 当当网类目采集
                             }
                             catch (Exception e)
                             {
-                                MessageBox.Show(e.ToString());
+                               // MessageBox.Show(e.ToString());
                                 continue;
                             }
 
@@ -280,7 +316,7 @@ namespace 当当网类目采集
             }
             catch (Exception ex)
             {
-              //  MessageBox.Show(ex.ToString());
+               // MessageBox.Show(ex.ToString());
                 ex.ToString();
             }
 

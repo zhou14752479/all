@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -90,10 +91,25 @@ namespace _1688搜索
         bool zanting = true;
         bool status = true;
         DataTable dt = null;
-
+        string path = AppDomain.CurrentDomain.BaseDirectory;
         private void button1_Click(object sender, EventArgs e)
         {
-            COOKIE = method.GetCookies("https://s.1688.com/selloffer/offer_search.htm?keywords=%C0%D6%C7%E5%CA%D0%C7%E5%BD%AD%D0%C2%BB%B7%D6%DE%B9%A4%BE%DF%B3%A7&n=y&netType=1%2C11%2C16&spm=a260k.dacugeneral.search.0");
+           
+            try
+            {
+                StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
+                //一次性读取完 
+                COOKIE = sr.ReadToEnd(); 
+              
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -130,7 +146,21 @@ namespace _1688搜索
                 dt = method.ExcelToDataTable(textBox1.Text, true);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
+                    try
+                    {
+                        StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
+                        //一次性读取完 
+                        COOKIE = sr.ReadToEnd();
 
+                        sr.Close();  //只关闭流
+                        sr.Dispose();   //销毁流内存
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.ToString());
+                    }
                     DataRow dr = dt.Rows[i];
                     string keyword = System.Web.HttpUtility.UrlEncode(dr[0].ToString(), Encoding.GetEncoding("GB2312"));
 
@@ -181,9 +211,7 @@ namespace _1688搜索
 
         private void _1688搜索_Load(object sender, EventArgs e)
         {
-            method.SetFeatures(10000);
-            webBrowser1.ScriptErrorsSuppressed = true;
-            webBrowser1.Navigate("https://login.taobao.com/?redirect_url=https%3A%2F%2Flogin.1688.com%2Fmember%2Fjump.htm%3Ftarget%3Dhttps%253A%252F%252Flogin.1688.com%252Fmember%252FmarketSigninJump.htm%253FDone%253D%25252F%25252Fwww.1688.com%25252F&style=tao_custom&from=1688web");
+        
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -216,9 +244,15 @@ namespace _1688搜索
 
         private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
         {
-            e.Cancel = true;
-            string url = this.webBrowser1.StatusText;
-            this.webBrowser1.Url = new Uri(url);
+            //e.Cancel = true;
+            //string url = this.webBrowser1.StatusText;
+            //this.webBrowser1.Url = new Uri(url);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            Process.Start(path + "CEF主程序.exe");
         }
     }
 }

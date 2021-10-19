@@ -85,9 +85,27 @@ namespace 主程序202104
                 {
                     try
                     {
-                      
-                    
-                        string url = "https://dian.ysbang.cn/wholesale-drug/sales/getWholesaleList/v4270";
+
+                    try
+                    {
+                        string path = AppDomain.CurrentDomain.BaseDirectory;
+                        StreamReader sr = new StreamReader(path + "ex1.txt", method.EncodingType.GetTxtType(path + "ex1.txt"));
+                        //一次性读取完 
+                        string texts = sr.ReadToEnd();
+
+                        ex1 = texts.Trim();
+                        sr.Close();  //只关闭流
+                        sr.Dispose();   //销毁流内存
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.ToString());
+                    }
+
+
+                    string url = "https://dian.ysbang.cn/wholesale-drug/sales/getWholesaleList/v4270";
                     //string postdata = "{\"platform\":\"pc\",\"version\":\"4.39.6\",\"ua\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Chrome 89\",\"ex\":\"2021-4-7 18:42 indexContent\",\"page\":" + page + ",\"pagesize\":\"60\",\"classify_id\":\"\",\"searchkey\":\"\",\"sort\":\"\",\"operationtype\":1,\"provider_filter\":\"\",\"activityTypes\":[],\"qualifiedLoanee\":0,\"factoryNames\":\"\",\"specs\":\"\",\"drugId\":-1,\"showRecentlyPurchasedFlag\":true,\"onlyShowRecentlyPurchased\":false,\"token\":\"f41d7da82aef43e583e7a94fa579d93d\"}";
 
                     string postdata = "{\"platform\":\"pc\",\"version\":\"5.7.0\",\"ua\":\"Chrome 92\",\"ex\":\"2021-9-24 19:32 indexContent 10-11 10:09:46 10-11 10:12:17\",\"ex1\":\""+ex1+"\",\"page\":"+page+",\"pagesize\":\"60\",\"classify_id\":\"\",\"searchkey\":\"\",\"sort\":\"\",\"operationtype\":1,\"provider_filter\":\"\",\"activityTypes\":[],\"qualifiedLoanee\":0,\"factoryNames\":\"\",\"specs\":\"\",\"drugId\":-1,\"showRecentlyPurchasedFlag\":true,\"onlyShowRecentlyPurchased\":false,\"token\":\"6d3c3c08759248198ca45b22dae1dc27\"}";
@@ -105,7 +123,7 @@ namespace 主程序202104
                         MatchCollection manufacturers = Regex.Matches(html, @"""manufacturer"":""([\s\S]*?)""");
                         MatchCollection units = Regex.Matches(html, @"""unit"":""([\s\S]*?)""");
 
-                    MessageBox.Show(cn_names.Count.ToString());
+                    //MessageBox.Show(cn_names.Count.ToString());
                         if (cn_names.Count == 0)
                             break;
 
@@ -345,9 +363,9 @@ namespace 主程序202104
             {
                 StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
                 //一次性读取完 
-                string texts = sr.ReadToEnd();
+               cookie= sr.ReadToEnd();
 
-                cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
+             
                 textBox2.Text = cookie;
                 sr.Close();  //只关闭流
                 sr.Dispose();   //销毁流内存
