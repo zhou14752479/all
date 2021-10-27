@@ -17,7 +17,42 @@ using System.Windows.Forms;
 namespace CsharpSelenium
 {
     public partial class 百度文库 : Form
-    {
+    {   /*
+ 配置部分:
+
+ChromeDriverService driverService = ChromeDriverService.CreateDefaultService();
+driverService.HideCommandPromptWindow = true;//关闭黑色cmd窗口
+
+ChromeOptions options = new ChromeOptions();
+// 不显示浏览器
+//options.AddArgument("--headless");
+// GPU加速可能会导致Chrome出现黑屏及CPU占用率过高,所以禁用
+options.AddArgument("--disable-gpu");
+// 伪装user-agent
+options.AddArgument("user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1");
+// 设置chrome启动时size大小
+options.AddArgument("--window-size=414,736");
+// 禁用图片
+options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+
+IWebDriver webDriver = new ChromeDriver(driverService,options);
+//如果查找元素在5S内还没有找到
+webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); 
+string url = "https://www.baidu.com";
+webDriver.Navigate().GoToUrl(url);
+ 执行JS(将滚动条拉到底部):
+((IJavaScriptExecutor)webDriver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+ 获取标签(以多Class为例):
+ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector("[class='item goWork']"));
+--------------------- 
+
+        
+            //点击下一页  元素不可见，使之可见
+              ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].checked = true;", driver.FindElement(By.XPath("//*[text()=\"下一页\"]")));
+                Thread.Sleep(2000);
+                driver.FindElement(By.XPath("//*[text()=\"下一页\"]")).Click();
+    */
+
         [DllImport("User32.dll")]
         public static extern int GetWindowText(IntPtr WinHandle, StringBuilder Title, int size);
         [DllImport("user32.dll")]

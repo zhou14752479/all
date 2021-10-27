@@ -42,13 +42,14 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10F);
-            this.label1.Location = new System.Drawing.Point(289, 92);
+            this.label1.Location = new System.Drawing.Point(110, 133);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 14);
             this.label1.TabIndex = 379;
@@ -82,7 +83,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 14);
             this.label2.TabIndex = 375;
-            this.label2.Text = "导入表格：";
+            this.label2.Text = "导入文本：";
             // 
             // textBox2
             // 
@@ -137,15 +138,16 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 165);
+            this.listView1.Location = new System.Drawing.Point(0, 168);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(528, 349);
+            this.listView1.Size = new System.Drawing.Size(528, 346);
             this.listView1.TabIndex = 380;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -158,17 +160,22 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "ISBN";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 120;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "品相";
+            this.columnHeader3.Text = "价格";
             this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "价格";
+            this.columnHeader4.Text = "邮费";
             this.columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "已售结果数";
+            this.columnHeader5.Width = 100;
             // 
             // 孔夫子旧书网比价
             // 
@@ -187,7 +194,7 @@
             this.Controls.Add(this.button5);
             this.Name = "孔夫子旧书网比价";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "孔夫子旧书网比价";
+            this.Text = "孔夫子旧书网查询最低价";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.孔夫子旧书网比价_FormClosing);
             this.Load += new System.EventHandler(this.孔夫子旧书网比价_Load);
             this.ResumeLayout(false);
@@ -210,5 +217,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

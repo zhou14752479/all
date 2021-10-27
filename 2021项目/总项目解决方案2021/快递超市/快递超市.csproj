@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{617980A9-E146-49BF-BD5F-9B4F33450ECE}</ProjectGuid>
+    <ProjectGuid>{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>推特自动发文</RootNamespace>
-    <AssemblyName>推特自动发文</AssemblyName>
+    <RootNamespace>快递超市</RootNamespace>
+    <AssemblyName>快递超市</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,8 +32,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="myDLL">
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,11 +65,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="推特自动发文.cs">
+    <Compile Include="快递超市.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="推特自动发文.Designer.cs">
-      <DependentUpon>推特自动发文.cs</DependentUpon>
+    <Compile Include="快递超市.Designer.cs">
+      <DependentUpon>快递超市.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -65,8 +80,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="推特自动发文.resx">
-      <DependentUpon>推特自动发文.cs</DependentUpon>
+    <EmbeddedResource Include="快递超市.resx">
+      <DependentUpon>快递超市.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

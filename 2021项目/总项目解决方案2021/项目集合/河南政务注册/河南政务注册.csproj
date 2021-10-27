@@ -56,6 +56,12 @@
     <Compile Include="河南政务注册.Designer.cs">
       <DependentUpon>河南政务注册.cs</DependentUpon>
     </Compile>
+    <Compile Include="账号判断注册.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="账号判断注册.Designer.cs">
+      <DependentUpon>账号判断注册.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -67,6 +73,9 @@
     </Compile>
     <EmbeddedResource Include="河南政务注册.resx">
       <DependentUpon>河南政务注册.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="账号判断注册.resx">
+      <DependentUpon>账号判断注册.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

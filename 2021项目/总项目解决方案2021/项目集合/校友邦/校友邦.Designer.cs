@@ -35,6 +35,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button1
@@ -106,6 +106,16 @@
             // 
             this.columnHeader6.Text = "次数";
             this.columnHeader6.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "时间";
+            this.columnHeader4.Width = 100;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "结果";
+            this.columnHeader7.Width = 100;
             // 
             // button2
             // 
@@ -198,16 +208,6 @@
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "全不选";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "时间";
-            this.columnHeader4.Width = 100;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "结果";
-            this.columnHeader7.Width = 100;
             // 
             // 校友邦
             // 

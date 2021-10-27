@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,132 +21,59 @@ namespace 主程序202110
             InitializeComponent();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+
+        List<string> lists = new List<string>();
+        private void button3_Click(object sender, EventArgs ex)
         {
             a = 0;
             b = 0;
             c = 0;
-            richTextBox9.Text = "";
+            d = 0;
+            e = 0;
+            richTextBox_result.Text = "";
         }
 
 
         int a = 0;
         int b = 0;
         int c = 0;
+        int d = 0;
+        int e = 0;
 
         bool zanting = true;
         public void run()
         {
-            //List<string> list = new List<string>();
-            //for (int i = 0; i < richTextBox4.Lines.Length; i++)
-            //{
-            //    list.Add(richTextBox4.Lines[i].ToString().Trim());
-            //}
-            //for (int i = 0; i < richTextBox5.Lines.Length; i++)
-            //{
-            //    list.Add(richTextBox5.Lines[i].ToString().Trim());
-            //}
-            //for (int i = 0; i < richTextBox6.Lines.Length; i++)
-            //{
-            //    list.Add(richTextBox6.Lines[i].ToString().Trim());
-            //}
-
-            //for (int i = 0; i < richTextBox7.Lines.Length; i++)
-            //{
-            //    list.Add(richTextBox7.Lines[i].ToString().Trim());
-            //}
-            //for (int i = 0; i < richTextBox8.Lines.Length; i++)
-            //{
-            //    list.Add(richTextBox8.Lines[i].ToString().Trim());
-            //}
-
-
-
-            //try
-            //{
-            //    string[] strArr = list.ToArray(); //整型数组
-
-            //    List<string[]> ListCombination = PermutationAndCombination<string>.GetCombination(strArr, 5); //求全部的3-3组合
-
-
-
-            //    for (int a = 0; a < richTextBox1.Lines.Length; a++)
-            //    {
-            //        for (int b = 0; b < richTextBox2.Lines.Length; b++)
-            //        {
-            //            for (int c = 0; c < richTextBox3.Lines.Length; c++)
-            //            {
-
-            //                string value_a = richTextBox1.Lines[a].ToString().Trim();
-            //                string value_b = richTextBox2.Lines[b].ToString().Trim();
-            //                string value_c = richTextBox3.Lines[c].ToString().Trim();
-
-            //               // list.Add(value_a + value_b + value_c);
-
-
-            //                foreach (string[] arr in ListCombination)
-            //                {
-            //                    string value = "";
-            //                    foreach (string item in arr)
-            //                    {
-            //                        value = value + item.ToString();
-            //                    }
-            //                    richTextBox9.Text = value_a + value_b + value_c + "  "+value + "\r\n";
-
-            //                    zanting = false;
-
-            //                    while (this.zanting == false)
-            //                    {
-            //                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-            //                    }
-            //                }
-
-
-            //            }
-            //        }
-            //    }
-
-
-
-
-
-
-            //}
-            //catch (Exception ex)
-            //{
-
-            //   ex.ToString();
-            //}
 
             Random rd = new Random(Guid.NewGuid().GetHashCode());
 
-          
 
 
             string value_a = richTextBox1.Lines[a].ToString().Trim();
-                        string value_b = richTextBox2.Lines[b].ToString().Trim();
-                        string value_c = richTextBox3.Lines[c].ToString().Trim();
+            string value_b = richTextBox2.Lines[b].ToString().Trim();
+            string value_c = richTextBox3.Lines[c].ToString().Trim();
+            string value_d = richTextBox4.Lines[d].ToString().Trim();
+            string value_e = richTextBox5.Lines[e].ToString().Trim();
 
-                        int suiji_d = rd.Next(0, richTextBox4.Lines.Length);
-                        string value_d = richTextBox4.Lines[suiji_d].ToString().Trim();
+           
+            int suiji_f = rd.Next(0, richTextBox6.Lines.Length);
+            string value_f = richTextBox6.Lines[suiji_f].ToString().Trim();
 
-                        int suiji_e = rd.Next(0, richTextBox5.Lines.Length);
-                        string value_e = richTextBox5.Lines[suiji_e].ToString().Trim();
+            int suiji_g = rd.Next(0, richTextBox7.Lines.Length);
+            string value_g = richTextBox7.Lines[suiji_g].ToString().Trim();
 
-                        int suiji_f = rd.Next(0, richTextBox6.Lines.Length);
-                        string value_f = richTextBox6.Lines[suiji_f].ToString().Trim();
+            int suiji_h = rd.Next(0, richTextBox8.Lines.Length);
+            string value_h = richTextBox8.Lines[suiji_h].ToString().Trim();
 
-                        int suiji_g = rd.Next(0, richTextBox7.Lines.Length);
-                        string value_g = richTextBox7.Lines[suiji_g].ToString().Trim();
+            int suiji_i = rd.Next(0, richTextBox9.Lines.Length);
+            string value_i = richTextBox9.Lines[suiji_i].ToString().Trim();
 
-                        int suiji_h = rd.Next(0, richTextBox8.Lines.Length);
-                        string value_h = richTextBox8.Lines[suiji_h].ToString().Trim();
+            int suiji_j = rd.Next(0, richTextBox10.Lines.Length);
+            string value_j = richTextBox10.Lines[suiji_j].ToString().Trim();
+
+            richTextBox_result.Text = richTextBox_source.Text.Replace("内容栏1", value_a).Replace("内容栏2", value_b).Replace("内容栏3", value_c).Replace("内容栏4", value_d).Replace("内容栏5", value_e).Replace("内容栏6", value_f).Replace("内容栏7", value_g).Replace("内容栏8", value_h).Replace("内容栏9", value_i).Replace("内容栏十", value_j);
 
 
-                        richTextBox9.Text = richTextBox10.Text.Replace("内容栏1", value_a).Replace("内容栏2", value_b).Replace("内容栏3", value_c).Replace("内容栏4", value_d).Replace("内容栏5", value_e).Replace("内容栏6", value_f).Replace("内容栏7", value_g).Replace("内容栏8", value_h);
-                 
-            
-            if(a<richTextBox1.Lines.Length-1)
+            if (a < richTextBox1.Lines.Length - 1)
             {
                 a = a + 1;
             }
@@ -152,21 +81,38 @@ namespace 主程序202110
             {
                 a = 0;
             }
-            if (b < richTextBox2.Lines.Length-1)
+            if (b < richTextBox2.Lines.Length - 1)
             {
-                b = b+ 1;
+                b = b + 1;
             }
             else
             {
                 b = 0;
             }
-            if (c< richTextBox3.Lines.Length-1)
+            if (c < richTextBox3.Lines.Length - 1)
             {
-                c= c + 1;
+                c = c + 1;
             }
             else
             {
-               c= 0;
+                c = 0;
+            }
+
+            if (d < richTextBox4.Lines.Length - 1)
+            {
+               d = d + 1;
+            }
+            else
+            {
+                d = 0;
+            }
+            if (e< richTextBox5.Lines.Length - 1)
+            {
+                e = e + 1;
+            }
+            else
+            {
+                e = 0;
             }
 
         }
@@ -174,13 +120,13 @@ namespace 主程序202110
         {
             try
             {
-                System.Windows.Forms.Clipboard.SetText(richTextBox9.Text); //复制
+                System.Windows.Forms.Clipboard.SetText(richTextBox_result.Text); //复制
 
             }
             catch (Exception)
             {
-                
-                
+
+
             }
         }
 
@@ -190,10 +136,7 @@ namespace 主程序202110
         {
             zanting = true;
 
-            if (DateTime.Now > Convert.ToDateTime("2021-12-20"))
-            {
-                return;
-            }
+
             //int[] IntArr = new int[] { 1, 2, 3, 4, 5 ,6}; //整型数组
             //List<int[]> ListCombination = PermutationAndCombination<int>.GetCombination(IntArr, 3); //求全部的3-3组合
             //foreach (int[] arr in ListCombination)
@@ -359,10 +302,76 @@ namespace 主程序202110
         }
 
 
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
+        {
+            string html = "";
+            string COOKIE = "";
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Proxy = null;//防止代理抓包
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = Url;
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
 
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+            }
+
+
+
+        }
+        #endregion
 
         private void 内容随机合成_Load(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            if (!GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"abc147258"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+            #endregion
             GetControls_value(this);
 
 
@@ -517,9 +526,9 @@ namespace 主程序202110
 
         private void richTextBox9_TextChanged(object sender, EventArgs e)
         {
-            this.richTextBox9.SelectionStart = this.richTextBox9.Text.Length;
-            this.richTextBox9.SelectionLength = 0;
-            this.richTextBox9.ScrollToCaret();
+            this.richTextBox_result.SelectionStart = this.richTextBox_result.Text.Length;
+            this.richTextBox_result.SelectionLength = 0;
+            this.richTextBox_result.ScrollToCaret();
         }
     }
 

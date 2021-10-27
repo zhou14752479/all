@@ -16,7 +16,7 @@ namespace 主程序202110
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 内容随机合成());
+            Application.Run(new 文本拆分());
         }
     }
 }

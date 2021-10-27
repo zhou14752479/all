@@ -112,6 +112,12 @@
     <Compile Include="药师帮.Designer.cs">
       <DependentUpon>药师帮.cs</DependentUpon>
     </Compile>
+    <Compile Include="阿里1688.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="阿里1688.Designer.cs">
+      <DependentUpon>阿里1688.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CEF主程序.resx">
       <DependentUpon>CEF主程序.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="药师帮.resx">
       <DependentUpon>药师帮.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="阿里1688.resx">
+      <DependentUpon>阿里1688.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 推特自动发文
+namespace 快递超市
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 推特自动发文
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 推特自动发文());
+            Application.Run(new 快递超市());
         }
     }
 }

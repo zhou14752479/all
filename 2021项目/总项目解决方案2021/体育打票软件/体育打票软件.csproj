@@ -77,6 +77,12 @@
     <Compile Include="体育打票软件.Designer.cs">
       <DependentUpon>体育打票软件.cs</DependentUpon>
     </Compile>
+    <Compile Include="登录.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="登录.Designer.cs">
+      <DependentUpon>登录.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="jiexi.resx">
       <DependentUpon>jiexi.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="体育打票软件.resx">
       <DependentUpon>体育打票软件.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="登录.resx">
+      <DependentUpon>登录.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

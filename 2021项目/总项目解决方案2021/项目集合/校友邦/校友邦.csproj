@@ -49,8 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="function.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="校友邦-定时签到.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="校友邦-定时签到.Designer.cs">
+      <DependentUpon>校友邦-定时签到.cs</DependentUpon>
+    </Compile>
     <Compile Include="校友邦.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +73,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="校友邦-定时签到.resx">
+      <DependentUpon>校友邦-定时签到.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="校友邦.resx">
       <DependentUpon>校友邦.cs</DependentUpon>
     </EmbeddedResource>

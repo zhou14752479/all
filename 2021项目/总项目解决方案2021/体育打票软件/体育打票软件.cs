@@ -95,7 +95,17 @@ namespace 体育打票软件
         private GridppReport Report = new GridppReport();
         private void 体育打票软件_Load(object sender, EventArgs e)
         {
-           
+            #region 通用检测
+
+            if (!function.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"FCUoF"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+            #endregion
+            fc.delete7days();
+
+
 
             if (ExistINIFile())
             {
@@ -109,7 +119,7 @@ namespace 体育打票软件
             //this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate("https://www.sporttery.cn/jc/jsq/zqhhgg/");
-            //webBrowser1.Navigate("https://trade.500.com/jczq/");
+           // webBrowser1.Navigate("https://trade.500.com/jczq/?playid=312&g=1");
 
 
             //Report.LoadFromFile(@"C:\Grid++Report 6\Samples\Reports\1a.简单表格.grf");
@@ -141,10 +151,14 @@ namespace 体育打票软件
             {
                 StreamReader sr = new StreamReader(webBrowser1.DocumentStream, Encoding.GetEncoding(("gb2312")));
                 ahtml = sr.ReadToEnd();
+
+                ahtml = fc.getfullname_zuqiu(ahtml);
+                ahtml = fc.getfullname_lanqiu(ahtml);
             }
             //textBox1.Text = html;
             html=fc.getfullname_zuqiu(html);
             html = fc.getfullname_lanqiu(html);
+          
         }
 
 
@@ -164,9 +178,9 @@ namespace 体育打票软件
 
         }
 
+        #region 竞彩网全部
 
-
-
+        #region  竞彩网模拟点击
         public void getvalue_click(string zhou, string value,string beishu)
         {
 
@@ -500,9 +514,6 @@ namespace 体育打票软件
           
         }
 
-
-
-
         public void lanqiu_getvalue_click(string zhou, string value, string beishu)
         {
            
@@ -532,6 +543,11 @@ namespace 体育打票软件
 
 
             string shengfencha = Regex.Match(avalue, @"-").Groups[0].Value;
+            if(shengfencha=="")
+            {
+                shengfencha = Regex.Match(avalue, @"26+").Groups[0].Value;
+            }
+
             string zhusheng = Regex.Match(avalue, @"a主胜a|a主负a").Groups[0].Value;
             string rangfen = Regex.Match(avalue, @"a让胜a|a让负a").Groups[0].Value;
             string daxiao = Regex.Match(avalue, @"a大分a|a小分a").Groups[0].Value;
@@ -664,6 +680,8 @@ namespace 体育打票软件
 
 
         }
+
+        #endregion
 
         #region 竞彩网
 
@@ -865,7 +883,7 @@ namespace 体育打票软件
                      
                         foreach (Match result in results)  //循环结果胜、1：0
                         {
-
+                          
                             lanqiu_getvalue_click(zhou, result.Groups[1].Value, beishu);
                         }
 
@@ -904,7 +922,7 @@ namespace 体育打票软件
                     //theForm.ShowDialog();
 
 
-                     Report.Print(false);
+                    Report.Print(false);
 
 
 
@@ -946,7 +964,6 @@ namespace 体育打票软件
 
 
         #endregion
-
 
         #region 竞彩网 新解析
 
@@ -995,7 +1012,7 @@ namespace 体育打票软件
                             string zhou = zhous[0]+zhous[1];
 
                            
-                            string[] results = zhous[2].Replace("-","").Replace("~","").Split(new string[] { "," }, StringSplitOptions.None);
+                            string[] results = zhous[2].Replace("-","").Replace("~","-").Split(new string[] { "," }, StringSplitOptions.None);
                             foreach (string result in results)  //循环结果胜、1：0
                             {
 
@@ -1037,10 +1054,12 @@ namespace 体育打票软件
 
                     fc.getdata(Report, 体育打票软件.html, 体育打票软件.ahtml, guoguan);
 
-                    PreviewForm theForm = new PreviewForm();
-                    theForm.AttachReport(Report);
-                    theForm.ShowDialog();
-                    //  Report.Print(false);
+                    //PreviewForm theForm = new PreviewForm();
+                    //theForm.AttachReport(Report);
+                    //theForm.ShowDialog();
+
+
+                     Report.Print(false);
 
 
 
@@ -1173,12 +1192,12 @@ namespace 体育打票软件
 
                     fc.getdata_lanqiu(Report, 体育打票软件.html, 体育打票软件.ahtml, guoguan);
 
-                    PreviewForm theForm = new PreviewForm();
-                    theForm.AttachReport(Report);
-                    theForm.ShowDialog();
+                    //PreviewForm theForm = new PreviewForm();
+                    //theForm.AttachReport(Report);
+                    //theForm.ShowDialog();
 
 
-                    //Report.Print(false);
+                    Report.Print(false);
 
 
 
@@ -1224,14 +1243,404 @@ namespace 体育打票软件
 
 
         #endregion
-        private void button7_Click(object sender, EventArgs e)
+
+
+
+        #endregion
+
+
+
+
+        #region 500网新解析全部
+
+        public void getchild_child(HtmlElement ele,string value)
+        {
+            foreach (HtmlElement element in ele.Children )
+            {
+                if (element.InnerText != null)
+                {
+                    if (element.GetAttribute("data-value")==value)
+                    {
+                        
+                        element.InvokeMember("click");
+                    }
+
+
+
+                    if (element.InnerText == "展开")
+                    {
+                        element.InvokeMember("click");
+
+                    }
+                }
+
+                getchild_child(element,value);
+
+            }
+        }
+
+        #region  500网模拟点击
+        public void getvalue__500_click(string zhou, string value, string beishu)
         {
 
+            string newvalue = value;
+            //篮球胜分差转换
+            switch (value)
+            {
+                case "胜胜":
+                    newvalue = "3-3";
+                    break;
+                case "胜平":
+                    newvalue = "3-1";
+                    break;
+                case "胜负":
+                    newvalue = "3-0";
+                    break;
+                case "平胜":
+                    newvalue = "1-3";
+                    break;
+                case "平平":
+                    newvalue = "1-1";
+                    break;
+                case "平负":
+                    newvalue = "1-0";
+                    break;
+                case "负胜":
+                    newvalue = "0-3";
+                    break;
+                case "负平":
+                    newvalue = "0-1";
+                    break;
+                case "负负":
+                    newvalue = "0-0";
+                    break;
+
+                case "7+":
+                    newvalue = "7";
+                    break;
+                case "胜其他":
+                    newvalue = "胜其它";
+                    break;
+                case "平其他":
+                    newvalue = "平其它";
+                    break;
+                case "负其他":
+                    newvalue = "负其它";
+                    break;
+            }
+
+            string html = 体育打票软件.html;
+
+            //foreach (HtmlElement ele in webBrowser1.Document.GetElementsByTagName("tr"))
+            //{
+            //    if(ele.InnerText.Contains(zhou))
+            //    {
+            //        MessageBox.Show(ele.Children[0].InnerText);
+            //    }
+                
+            //}
+
+            for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("tr").Count; i++)
+            {
+                HtmlElement ele = webBrowser1.Document.GetElementsByTagName("tr")[i];
+               
+                if (ele.GetAttribute("data-matchnum")==zhou)
+                {
+
+                    HtmlElement ele1 = webBrowser1.Document.GetElementsByTagName("tr")[i + 1];
+                   
+                    getchild_child(ele1,newvalue);
+                  
+
+                }
+            }   
+
+        }
+
+        public void getvalue_lanqiu__500_click(string zhou, string value, string beishu)
+        {
+
+            string newvalue = value;
+            //篮球胜分差转换
+            switch(value)
+            {
+                case "客胜1-5":
+                    newvalue = "11";
+                    break;
+                case "客胜6-10":
+                    newvalue = "12";
+                    break;
+                case "客胜11-15":
+                    newvalue = "13";
+                    break;
+                case "客胜16-20":
+                    newvalue = "14";
+                    break;
+                case "客胜21-25":
+                    newvalue = "15";
+                    break;
+                case "客胜26+":
+                    newvalue = "16";
+                    break;
+
+
+                case "主胜1-5":
+                    newvalue = "01";
+                    break;
+                case "主胜6-10":
+                    newvalue = "02";
+                    break;
+                case "主胜11-15":
+                    newvalue = "03";
+                    break;
+                case "主胜16-20":
+                    newvalue = "04";
+                    break;
+                case "主胜21-25":
+                    newvalue = "05";
+                    break;
+                case "主胜26+":
+                    newvalue = "06";
+                    break;
+
+
+
+            }
+
+
+            string html = 体育打票软件.html;
+
+            //foreach (HtmlElement ele in webBrowser1.Document.GetElementsByTagName("tr"))
+            //{
+            //    if(ele.InnerText.Contains(zhou))
+            //    {
+            //        MessageBox.Show(ele.Children[0].InnerText);
+            //    }
+
+            //}
+
+            for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("tr").Count; i++)
+            {
+                HtmlElement ele = webBrowser1.Document.GetElementsByTagName("tr")[i];
+
+                if (ele.GetAttribute("data-matchnum") == zhou)
+                {
+                    HtmlElement ele1 = webBrowser1.Document.GetElementsByTagName("tr")[i + 1];
+
+                    getchild_child(ele1, newvalue);
+
+
+                }
+            }
+
+        }
+
+        #endregion
+
+
+
+        #region 500网 新解析
+
+        public void getdata_500_zuqiu_new(string txt)
+        {
+
+
+            try
+            {
+               
+                string[] piaos = txt.Split(new string[] { "用户" }, StringSplitOptions.None);
+
+               
+                for (int a = 1; a < piaos.Length; a++)
+                {
+                   
+
+                    string[] values = piaos[a].Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                  
+                    string beishu = values[6];
+
+
+                    //不用循环周 只有一场
+
+                    string[] zhous = values[5].Split(new string[] { " " }, StringSplitOptions.None);
+                    string zhou = zhous[0] + zhous[1];
+
+                    string[] results = zhous[2].Replace("-", "").Replace("~", "").Split(new string[] { "," }, StringSplitOptions.None);
+                    foreach (string result in results)  //循环结果胜、1：0
+                    {
+
+                        getvalue__500_click(zhou, result, beishu);
+                    }
+
+
+
+                    //点击结果预览
+
+                    var btn = webBrowser1.Document.GetElementById("panelSelectBtn");
+
+                    btn.InvokeMember("click");
+
+                    Application.DoEvents();
+
+                    //点击倍数
+                    //for (int i = 1; i < 10-Convert.ToInt32(beishu); i++)
+                    //{
+                    //    var button = webBrowser1.Document.GetElementsByTagName("snumsel-jian")[0];
+                    //    button.InvokeMember("click");
+                    //}
+                    //  Application.DoEvents();
+
+                    Application.DoEvents();
+                    gethtml();
+
+                    string fangshi = Regex.Match(体育打票软件.ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+
+                  
+                    string jiexi_jine = Regex.Match(piaos[a], @"票([\s\S]*?)元").Groups[1].Value;
+                    fc.getdata_500(Report, 体育打票软件.html, 体育打票软件.ahtml,jiexi_jine.Replace(".00",""),beishu);
+
+                    //PreviewForm theForm = new PreviewForm();
+                    //theForm.AttachReport(Report);
+                    //theForm.ShowDialog();
+
+
+                    Report.Print(false);
+
+
+
+                    //取消点击
+
+                    foreach (string result in results)  //循环结果胜、1：0
+                    {
+                        getvalue__500_click(zhou, result, beishu);
+                    }
+
+                    //for (int i = 1; i < Convert.ToInt32(beishu); i++)
+                    //{
+                    //    var button = this.webBrowser1.Document.GetElementById("subBtn");
+                    //    button.InvokeMember("click");
+                    //}
+
+                    //取消点击结束
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        public void getdata_500_lanqiu_new(string txt)
+        {
+
+
+            try
+            {
+
+                string[] piaos = txt.Split(new string[] { "用户" }, StringSplitOptions.None);
+
+
+                for (int a = 1; a < piaos.Length; a++)
+                {
+
+
+                    string[] values = piaos[a].Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                   
+                    string beishu = values[6];
+
+
+                    //不用循环周 只有一场
+
+                    string[] zhous = values[5].Split(new string[] { " " }, StringSplitOptions.None);
+                    string zhou = zhous[0] + zhous[1];
+
+                    string[] results = zhous[2].Replace("-", "").Replace("~", "-").Split(new string[] { "," }, StringSplitOptions.None);
+                    foreach (string result in results)  //循环结果胜、1：0
+                    {
+
+                        getvalue_lanqiu__500_click(zhou, result, beishu);
+                    }
+
+
+
+                    //点击结果预览
+
+                    var btn = webBrowser1.Document.GetElementById("panelSelectBtn");
+
+                    btn.InvokeMember("click");
+
+                    Application.DoEvents();
+
+                    //点击倍数
+                    //for (int i = 1; i < 10-Convert.ToInt32(beishu); i++)
+                    //{
+                    //    var button = webBrowser1.Document.GetElementsByTagName("snumsel-jian")[0];
+                    //    button.InvokeMember("click");
+                    //}
+                    //  Application.DoEvents();
+
+                    Application.DoEvents();
+                    gethtml();
+
+                    string fangshi = Regex.Match(体育打票软件.ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
+
+
+                    string jiexi_jine = Regex.Match(piaos[a], @"票([\s\S]*?)元").Groups[1].Value;
+                    fc.getdata_500_lanqiu(Report, 体育打票软件.html, 体育打票软件.ahtml, jiexi_jine.Replace(".00", ""), beishu);
+
+                    //PreviewForm theForm = new PreviewForm();
+                    //theForm.AttachReport(Report);
+                    //theForm.ShowDialog();
+
+                    Report.Print(false);
+
+
+
+                    //取消点击
+
+                    foreach (string result in results)  //循环结果胜、1：0
+                    {
+                        getvalue_lanqiu__500_click(zhou, result, beishu);
+                    }
+
+                    //for (int i = 1; i < Convert.ToInt32(beishu); i++)
+                    //{
+                    //    var button = this.webBrowser1.Document.GetElementById("subBtn");
+                    //    button.InvokeMember("click");
+                    //}
+
+                    //取消点击结束
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        #endregion
+
+
+
+        #endregion
+
+        #region 按钮点击
+        private void button7_Click(object sender, EventArgs e)
+        {
+        
 
             zhankai = 0;
             webBrowser1.Refresh();
         }
-
+       
         private void button4_Click(object sender, EventArgs e)
         {
            
@@ -1241,22 +1650,6 @@ namespace 体育打票软件
         private void button3_Click(object sender, EventArgs e)
         {
             webBrowser1.Navigate("https://www.sporttery.cn/jc/jsq/zqhhgg/");
-
-            //List<Task> TaskList = new List<Task>();
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    TaskList.Add(
-            //        Task.Factory.StartNew(() =>
-            //        {
-            //            BeginInvoke(new Action(() =>
-            //            {
-            //                textBox1.Text += i + "\r\n";
-
-            //            }));
-            //        })
-            //    );
-            //}
           
             
         }
@@ -1285,7 +1678,103 @@ namespace 体育打票软件
             webBrowser1.Navigate("https://www.sporttery.cn/jc/jsq/lqhhgg/");
             zhankai = 0;
         }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            IniWriteValue("values", "address", address_txt.Text.ToString());
+            IniWriteValue("values", "haoma", haoma_txt.Text.ToString());
+            IniWriteValue("values", "bianma", bianma_txt.Text.ToString());
+            MessageBox.Show("保存成功", "保存提示");
 
+        }
+
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+            if (textBox4.Text == "")
+            {
+                MessageBox.Show("奖金不能为空");
+            }
+
+
+            else
+            {
+                if (listView1.CheckedItems.Count == 0)
+                {
+                    MessageBox.Show("请勾选需要打印的票");
+                    return;
+                }
+
+                string fen = "";
+                if (textBox5.Text != "")
+                {
+                    fen = textBox5.Text + "分";
+                }
+
+
+
+                for (int i = 0; i < listView1.CheckedItems.Count; i++)
+                {
+                    if (listView1.CheckedItems[i].SubItems[3].Text.Contains("单场"))
+                    {
+                        Report.LoadFromFile(path + "template\\" + "b1.grf");
+                    }
+                    else
+                    {
+                        Report.LoadFromFile(path + "template\\" + "b.grf");
+                    }
+                    Report.ParameterByName("leixing").AsString = listView1.CheckedItems[i].SubItems[1].Text;
+                    Report.ParameterByName("suiji").AsString = listView1.CheckedItems[i].SubItems[2].Text;
+
+
+                    Report.ParameterByName("guoguan").AsString = listView1.CheckedItems[i].SubItems[3].Text;
+                    Report.ParameterByName("beishu").AsString = listView1.CheckedItems[i].SubItems[4].Text;
+
+                    Report.ParameterByName("jine").AsString = listView1.CheckedItems[i].SubItems[5].Text;
+                    Report.ParameterByName("neirong").AsString = listView1.CheckedItems[i].SubItems[6].Text;
+
+
+                    Report.ParameterByName("dizhi").AsString = listView1.CheckedItems[i].SubItems[7].Text + "\n\n" + listView1.CheckedItems[i].SubItems[8].Text; ;
+                    Report.ParameterByName("zhanhao").AsString = listView1.CheckedItems[i].SubItems[9].Text; ;
+                    Report.ParameterByName("time").AsString = listView1.CheckedItems[i].SubItems[10].Text;
+
+                    Report.ParameterByName("duijiang").AsString = textBox4.Text + "元" + fen;
+                    PreviewForm theForm = new PreviewForm();
+                    theForm.AttachReport(Report);
+                    theForm.ShowDialog();
+                }
+
+            }
+        }
+
+
+        private void button5_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_MouseEnter(object sender, EventArgs e)
+        {
+            try
+            {
+                var btn = webBrowser1.Document.GetElementById("detailBtn");
+                btn.InvokeMember("click");
+
+
+            }
+            catch (Exception)
+            {
+                var btn2 = webBrowser1.Document.GetElementById("panelSelectBtn");
+                btn2.InvokeMember("click");
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            fc.readxml(listView1, dateTimePicker1.Value.ToString("yyyy年MM月dd日"), dateTimePicker1.Value.ToString("yy/MM/dd HH:mm"));
+        }
+        #endregion
 
         int zhankai = 0;
         private void button6_Click(object sender, EventArgs e)
@@ -1363,21 +1852,15 @@ namespace 体育打票软件
         }
 
         private void button5_Click(object sender, EventArgs e)
-        { // Report.Print(true);
+        { 
+            // Report.Print(true);
             //Report.PrintPreview(true);
 
-            #region 通用检测
+            
 
-            if (!function.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"FCUoF"))
-            {
-                return;
-            }
-
-            #endregion
-
-           
-
+         
             gethtml();
+
             if (webBrowser1.Url.ToString().Contains("500"))
             {
                 try
@@ -1402,12 +1885,12 @@ namespace 体育打票软件
                 string fangshi =  Regex.Match(ahtml, @"【([\s\S]*?)】").Groups[1].Value;
                 if (fangshi.Contains("足球"))
                 {
-                    fc.getdata_500(Report, html, ahtml);
+                    fc.getdata_500(Report, html, ahtml,"","");
 
                 }
                 if (fangshi.Contains("篮球"))
                 {
-                    fc.getdata_500_lanqiu(Report, html, ahtml);
+                    fc.getdata_500_lanqiu(Report, html, ahtml,"","");
                 }
                
             }
@@ -1431,107 +1914,15 @@ namespace 体育打票软件
            
 
 
-
-
             PreviewForm theForm = new PreviewForm();
             theForm.AttachReport(Report);
             theForm.ShowDialog();
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            IniWriteValue("values", "address", address_txt.Text.ToString());
-            IniWriteValue("values", "haoma", haoma_txt.Text.ToString());
-            IniWriteValue("values", "bianma", bianma_txt.Text.ToString());
-            MessageBox.Show("保存成功","保存提示");
+       
 
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-           
-            if (textBox4.Text=="")
-            {
-                MessageBox.Show("奖金不能为空");
-            }
-
-          
-            else
-            {
-                if (listView1.CheckedItems.Count == 0)
-                {
-                    MessageBox.Show("请勾选需要打印的票");
-                    return;
-                }
-
-                string fen = "";
-                if (textBox5.Text != "")
-                {
-                    fen = textBox5.Text + "分";
-                }
-
-               
-               
-                for (int i = 0; i < listView1.CheckedItems.Count; i++)
-                {
-                    if(listView1.CheckedItems[i].SubItems[3].Text.Contains("单场"))
-                    {
-                        Report.LoadFromFile(path + "template\\" + "b1.grf");
-                    }
-                    else
-                    {
-                        Report.LoadFromFile(path + "template\\" + "b.grf");
-                    }
-                    Report.ParameterByName("leixing").AsString = listView1.CheckedItems[i].SubItems[1].Text;
-                    Report.ParameterByName("suiji").AsString = listView1.CheckedItems[i].SubItems[2].Text;
-
-
-                    Report.ParameterByName("guoguan").AsString = listView1.CheckedItems[i].SubItems[3].Text;
-                    Report.ParameterByName("beishu").AsString = listView1.CheckedItems[i].SubItems[4].Text;
-
-                    Report.ParameterByName("jine").AsString = listView1.CheckedItems[i].SubItems[5].Text;
-                    Report.ParameterByName("neirong").AsString = listView1.CheckedItems[i].SubItems[6].Text;
-
-
-                    Report.ParameterByName("dizhi").AsString = listView1.CheckedItems[i].SubItems[7].Text + "\n\n" + listView1.CheckedItems[i].SubItems[8].Text; ;
-                    Report.ParameterByName("zhanhao").AsString = listView1.CheckedItems[i].SubItems[9].Text; ;
-                    Report.ParameterByName("time").AsString = listView1.CheckedItems[i].SubItems[10].Text;
-
-                    Report.ParameterByName("duijiang").AsString = textBox4.Text + "元"+fen;
-                    PreviewForm theForm = new PreviewForm();
-                    theForm.AttachReport(Report);
-                    theForm.ShowDialog();
-                }
-
-            }
-        }
-
-        private void button5_MouseHover(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void button5_MouseEnter(object sender, EventArgs e)
-        {
-            try
-            {
-                var btn = webBrowser1.Document.GetElementById("detailBtn");
-                btn.InvokeMember("click");
-
-              
-            }
-            catch (Exception)
-            {
-                var btn2 = webBrowser1.Document.GetElementById("panelSelectBtn");
-                btn2.InvokeMember("click");
-            }
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            listView1.Items.Clear();
-            fc.readxml(listView1,dateTimePicker1.Value.ToString("yyyy年MM月dd日"),dateTimePicker1.Value.ToString("yy/MM/dd HH:mm"));
-        }
+     
+      
 
         private void button11_Click(object sender, EventArgs e)
         {
@@ -1568,10 +1959,55 @@ namespace 体育打票软件
                 jx.Show();
             }
 
+            //新解析 500单关
+            if (webBrowser1.Url.ToString().Contains("500"))
+            {
+                string fangshi = "新解析"+Regex.Match(ahtml, @"【([\s\S]*?)】").Groups[1].Value;
+
+              
+                  
+                    //foreach (HtmlElement element in webBrowser1.Document.GetElementsByTagName("span"))
+                    //{
+                    //    if (element.InnerText == "展开")
+                    //    {
+                    //        element.InvokeMember("click");
+                            
+                    //    }
+                    //}
+
+                    Application.DoEvents();
+              
+                
+                jiexi jx = new jiexi();
+
+                if (fangshi.Contains("足球"))
+                {
+                    jx.getdata_jingcai += new jiexi.GetData_jingcai(getdata_500_zuqiu_new);
+
+                }
+                if (fangshi.Contains("篮球"))
+                {
+                    jx.getdata_jingcai += new jiexi.GetData_jingcai(getdata_500_lanqiu_new);
+                }
+                jx.Text = fangshi;
+                jx.Show();
+
+
+
+            }
+        }
+
+        private void 体育打票软件_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
             else
             {
-
-                MessageBox.Show("请切换至竞彩网");
+                e.Cancel = true;//点取消的代码 
             }
         }
     }

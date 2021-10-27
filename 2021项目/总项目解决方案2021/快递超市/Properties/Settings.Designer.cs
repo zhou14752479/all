@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace 推特自动发文.Properties
+namespace 快递超市.Properties
 {
 
 

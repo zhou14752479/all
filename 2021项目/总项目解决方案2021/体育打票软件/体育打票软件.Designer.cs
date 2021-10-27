@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(体育打票软件));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button11 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -283,10 +284,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(186, 305);
+            this.textBox1.Location = new System.Drawing.Point(22, 400);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(478, 270);
+            this.textBox1.Size = new System.Drawing.Size(325, 186);
             this.textBox1.TabIndex = 3;
             this.textBox1.Visible = false;
             // 
@@ -583,9 +584,11 @@
             this.ClientSize = new System.Drawing.Size(1268, 744);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "体育打票软件";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "体育打票软件";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.体育打票软件_FormClosing);
             this.Load += new System.EventHandler(this.体育打票软件_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -36,8 +36,9 @@
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\2020项目\总项目解决方案\2020_1\58二手房\bin\Debug\HttpHelper.dll</HintPath>
     </Reference>
-    <Reference Include="myDLL">
-      <HintPath>..\主程序202105\bin\Debug\myDLL.dll</HintPath>
+    <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>..\主程序202105\bin\Debug\NPOI.dll</HintPath>

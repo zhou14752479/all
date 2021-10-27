@@ -227,7 +227,7 @@ namespace 思忆美团
                         continue;
                     }
                     string cityid = fc.GetcityId(city.Replace("市",""));
-                    Dictionary<string, string> areadics = fc.getareas(cityid);
+                    Dictionary<string, string> areadics = fc.getareas2(cityid);
                     foreach (string areaid in areadics.Values)
                     {
                         string[] catenames = functions.catename_selected.Trim().Split(new string[] { "," }, StringSplitOptions.None);

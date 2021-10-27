@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("代码生成器")]
+[assembly: AssemblyTitle("快递超市")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("代码生成器")]
+[assembly: AssemblyProduct("快递超市")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("564e29cc-279c-4bd3-88f0-ea8865d86788")]
+[assembly: Guid("2d8f3bcd-f268-48b5-ba62-b8afbafb51d6")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

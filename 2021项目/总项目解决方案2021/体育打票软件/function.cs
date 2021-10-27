@@ -155,8 +155,24 @@ namespace 体育打票软件
             return value1 + " " + value2 + " " + value3;
         }
 
-
-
+        //删除7日以上xml文件
+        public void delete7days()
+        {
+            DirectoryInfo d = new DirectoryInfo(path);
+            FileInfo[] files = d.GetFiles();//文件
+            foreach (FileInfo f in files)
+            {
+                if(f.Extension==".xml")
+                {
+                    if(Convert.ToDateTime(Path.GetFileNameWithoutExtension(f.FullName))<DateTime.Now.AddDays(-8))
+                    {
+                        File.Delete(f.FullName);
+                    }
+                }
+                
+            }
+           
+        }
 
         /// <summary>
         /// 混合过关判断表头
@@ -594,7 +610,7 @@ namespace 体育打票软件
                 }
 
 
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数:" +sba.ToString().Remove(sba.ToString().Length-1,1)+ ";共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + string.Format("{0:N}", Convert.ToDouble(jiangjin)) + "元\n单倍注数:" +sba.ToString().Remove(sba.ToString().Length-1,1)+ ";共" + zhushu + "注");
 
                 guoguan= "过关方式 " + guoguan;
               
@@ -765,12 +781,16 @@ namespace 体育打票软件
 
 
                     string a1 = Regex.Match("周" + value1[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value + moweiwenzi;
-                   
-                    if (a2.Contains("-"))
+                    
+                    //胜分差去掉胜添加括号
+                    if (a2.Contains("-") || a2.Contains("26+"))
                     {
-                        a2 = "(" + a2.Replace("胜","").Replace("@", ")@");//胜分差去掉胜
+                        a2 = "(" + a2.Replace("胜", "").Replace("@", ")@");
                     }
-                    a2 = a2.Replace("主胜", "胜").Replace("主负", "负").Replace("让分", "");
+                    else
+                    {
+                        a2 = a2.Replace("主胜", "胜").Replace("主负", "负").Replace("让分", "");
+                    }
 
                     if (resultdics.ContainsKey(a1))
                     {
@@ -926,7 +946,7 @@ namespace 体育打票软件
                 }
 
 
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + string.Format("{0:N}", Convert.ToDouble(jiangjin)) + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
 
 
                 guoguan = "过关方式 " + guoguan;
@@ -965,7 +985,7 @@ namespace 体育打票软件
         public string beishu_500 = "1";
 
         #region 500网足球
-        public void getdata_500(GridppReport Report, string html, string ahtml)
+        public void getdata_500(GridppReport Report, string html, string ahtml,string jiexi_jine,string jiexi_beishu)
         {
 
           
@@ -1019,7 +1039,7 @@ namespace 体育打票软件
                 for (int i = 0; i < matchIds.Count; i++)
                 {
                    
-                    dics.Add(matchIds[i].Groups[1].Value, "客队："+matchNames[i].Groups[1].Value+" Vs 主队："+ matchNames[i].Groups[2].Value);
+                    dics.Add(matchIds[i].Groups[1].Value, "主队："+matchNames[i].Groups[1].Value+" Vs 客队："+ matchNames[i].Groups[2].Value);
                 }
 
                 StringBuilder sb = new StringBuilder();
@@ -1027,14 +1047,27 @@ namespace 体育打票软件
 
                 MatchCollection value1 = Regex.Matches(html, @"删除</a></td><td>([\s\S]*?)</tr>"); //周一 队伍名 赔率都在
 
+
+                //调换顺序
+                string fan_value1 = "";
+                for (int s = value1.Count - 1; s >= 0; s--)
+                {
+                    fan_value1 += "删除</a></td><td>" + value1[s].Groups[1].Value + "</tr>";
+                }
+                value1 = Regex.Matches(fan_value1, @"删除</a></td><td>([\s\S]*?)</tr>"); //周一 队伍名 赔率都在
+                //调换顺序结束
+
+
+
+
                 if (value1.Count == 1 && guoguan.Contains("单关"))  //单关一场用a1模板
                 {
                     Report.LoadFromFile(path + "template\\" + "a1.grf");
                 }
-
-               value1.Cast<Match>().Reverse();
+                string jiangjin_max = "0";
+                value1.Cast<Match>().Reverse();
                 List<string> lists = new List<string>();
-
+              
                  for (int i = 0; i < value1.Count; i++)
              
                 {
@@ -1046,12 +1079,13 @@ namespace 体育打票软件
                     {
                         fangshi = getdanguanbiaotou_500(a2sb.ToString());
                         a2s = Regex.Matches(value1[i].Groups[1].Value, @"removeItemBy([\s\S]*?)"">([\s\S]*?)</a>");
-
-
-                       
+          
                     }
-                   
-                    
+
+
+
+                  
+
                     foreach (Match item in a2s)
                     {
                         string item1 = item.Groups[2].Value;
@@ -1129,9 +1163,9 @@ namespace 体育打票软件
                     string duiwunameA = Regex.Match(value1[i].Groups[1].Value, @"<span class=""team-l"">([\s\S]*?)</span>").Groups[1].Value;
                     string duiwunameB = Regex.Match(value1[i].Groups[1].Value, @"<span class=""team-r"">([\s\S]*?)</span>").Groups[1].Value;
 
-                    a1 = a1 + "\n" + "客队：" + duiwunameA + " Vs 主队：" + duiwunameB;
+                    a1 = a1 + "\n" + "主队：" + duiwunameA + " Vs 客队：" + duiwunameB;
 
-                    if (sb.ToString().Contains("客队：" + duiwunameA + " Vs 主队：" + duiwunameB))
+                    if (sb.ToString().Contains("主队：" + duiwunameA + " Vs 客队：" + duiwunameB))
                     {
                         sb.Append("+"+a2.ToString());
                     }
@@ -1150,10 +1184,20 @@ namespace 体育打票软件
 
                     }
 
+                  
+                    //获取最大奖金
+                    string jiangjins = Regex.Match(value1[i].Groups[1].Value, @"￥([\s\S]*?)</span>").Groups[1].Value;
+                 
+                        if (Convert.ToDouble(jiangjins) > Convert.ToDouble(jiangjin_max))
+                        {
 
+                            jiangjin_max= jiangjins;
+                        }
 
-                   
+                    
                 }
+
+               
 
                 if ((sb.ToString().Split(new string[] { "\n" }, StringSplitOptions.None)).Length < 4 && guoguan.Contains("单关"))  //单关一场用a1模板
                 {
@@ -1164,44 +1208,28 @@ namespace 体育打票软件
                 {
                     fangshi = getdanguanbiaotou_500(sb.ToString());
                 }
-                //单注倍数计算
-
-                //Dictionary<string, int> aaa = new Dictionary<string, int>();
-
-                //int aa = 1;
-                //MatchCollection asa = Regex.Matches(html, @"<td style=""width: 80px;"">([\s\S]*?)<");
-                //foreach (Match item in asa)
-                //{
-                //    if (item.Groups[1].Value.Contains("x"))
-                //    {
-                //        if (!aaa.ContainsKey(item.Groups[1].Value))
-                //        {
-                //            aa = 1;
-                //            aaa.Add(item.Groups[1].Value, aa);
-                //        }
-                //        else
-                //        {
-                //            aa = aa + 1;
-                //            aaa[item.Groups[1].Value] = aa;
-                //        }
-                //    }
 
 
-                //}
 
-                //StringBuilder sba = new StringBuilder();
-                //foreach (var item in aaa.Keys)
-                //{
-                //    sba.Append(item + "*" + aaa[item] + "注,");
-                //}
 
+              
+               
+                if(jiexi_jine!="" && beishu_500!="")
+                {
+                    beishu_500 = jiexi_beishu;
+                    jiangjin = (Convert.ToDouble(jiangjin_max) / 10 * Convert.ToInt32(beishu_500)).ToString();
+                    jine = jiexi_jine;
+                   
+                    ganxieyu = "感谢您为公益事业贡献 " + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
+                }
+                
                 if (guoguan.Contains("单关"))
                 {
-                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数：单场*"+ value1.Count + "注;共" + value1.Count + "注");
+                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + string.Format("{0:N}", Convert.ToDouble(jiangjin)) + "元\n单倍注数：单场*"+ value1.Count + "注;共" + value1.Count + "注");
                 }
                 else
                 {
-                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数:" +guoguan+"*"+ value1.Count + "注;共" + value1.Count + "注");
+                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + string.Format("{0:N}", Convert.ToDouble(jiangjin)) + "元\n单倍注数:" +guoguan+"*"+ value1.Count + "注;共" + value1.Count + "注");
                 }
                 //sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
 
@@ -1224,7 +1252,7 @@ namespace 体育打票软件
                 Report.ParameterByName("beishu").AsString = beishu_500;
 
                 Report.ParameterByName("jine").AsString = jine;
-                Report.ParameterByName("neirong").AsString = sb.ToString();
+                Report.ParameterByName("neirong").AsString = sb.ToString().Replace("它","他");
 
 
                 Report.ParameterByName("dizhi").AsString = ganxieyu + "\n\n" + address;
@@ -1241,9 +1269,8 @@ namespace 体育打票软件
 
         #endregion
 
-
         #region 500网篮球
-        public void getdata_500_lanqiu(GridppReport Report, string html, string ahtml)
+        public void getdata_500_lanqiu(GridppReport Report, string html, string ahtml, string jiexi_jine, string jiexi_beishu)
         {
 
 
@@ -1305,11 +1332,25 @@ namespace 体育打票软件
 
                 MatchCollection value1 = Regex.Matches(html, @"删除</a></td><td>([\s\S]*?)</tr>"); //周一 队伍名 赔率都在
 
+
+
+                //调换顺序
+                string fan_value1 = "";
+                for (int s = value1.Count - 1; s >= 0; s--)
+                {
+                    fan_value1 += "删除</a></td><td>" + value1[s].Groups[1].Value + "</tr>";
+                }
+                value1 = Regex.Matches(fan_value1, @"删除</a></td><td>([\s\S]*?)</tr>"); //周一 队伍名 赔率都在
+                                                                                       //调换顺序结束
+
+
+
+
                 if (value1.Count == 1 && guoguan.Contains("单关"))  //单关一场用a1模板
                 {
                     Report.LoadFromFile(path + "template\\" + "a1.grf");
                 }
-
+                string jiangjin_max = "0";
                 List<string> lists = new List<string>();
 
                 for (int i = 0; i < value1.Count; i++)
@@ -1428,9 +1469,27 @@ namespace 体育打票软件
                     }
 
 
+                    //获取最大奖金
+                    string jiangjins = Regex.Match(value1[i].Groups[1].Value, @"￥([\s\S]*?)</span>").Groups[1].Value;
 
+                    if (Convert.ToDouble(jiangjins) > Convert.ToDouble(jiangjin_max))
+                    {
+
+                        jiangjin_max = jiangjins;
+                    }
 
                 }
+
+
+                if (jiexi_jine != "" && beishu_500 != "")
+                {
+                    beishu_500 = jiexi_beishu;
+                    jiangjin = (Convert.ToDouble(jiangjin_max) / 10 * Convert.ToInt32(beishu_500)).ToString();
+                    jine = jiexi_jine;
+
+                    ganxieyu = "感谢您为公益事业贡献 " + Math.Round(Convert.ToDouble(Convert.ToDouble(jine) * 0.21), 2) + "元";
+                }
+
 
                 if ((sb.ToString().Split(new string[] { "\n" }, StringSplitOptions.None)).Length < 4 && guoguan.Contains("单关"))  //单关一场用a1模板
                 {
@@ -1441,44 +1500,15 @@ namespace 体育打票软件
                 {
                     fangshi = getdanguanbiaotou_500_lanqiu(sb.ToString());
                 }
-                //单注倍数计算
-
-                //Dictionary<string, int> aaa = new Dictionary<string, int>();
-
-                //int aa = 1;
-                //MatchCollection asa = Regex.Matches(html, @"<td style=""width: 80px;"">([\s\S]*?)<");
-                //foreach (Match item in asa)
-                //{
-                //    if (item.Groups[1].Value.Contains("x"))
-                //    {
-                //        if (!aaa.ContainsKey(item.Groups[1].Value))
-                //        {
-                //            aa = 1;
-                //            aaa.Add(item.Groups[1].Value, aa);
-                //        }
-                //        else
-                //        {
-                //            aa = aa + 1;
-                //            aaa[item.Groups[1].Value] = aa;
-                //        }
-                //    }
-
-
-                //}
-
-                //StringBuilder sba = new StringBuilder();
-                //foreach (var item in aaa.Keys)
-                //{
-                //    sba.Append(item + "*" + aaa[item] + "注,");
-                //}
+              
 
                 if (guoguan.Contains("单关"))
                 {
-                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数：单场*" + value1.Count + "注;共" + value1.Count + "注");
+                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + string.Format("{0:N}", Convert.ToDouble(jiangjin)) + "元\n单倍注数：单场*" + value1.Count + "注;共" + value1.Count + "注");
                 }
                 else
                 {
-                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数:" + guoguan + "*" + value1.Count + "注;共" + value1.Count + "注");
+                    sb.Append("\n(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + string.Format("{0:N}", Convert.ToDouble(jiangjin)) + "元\n单倍注数:" + guoguan + "*" + value1.Count + "注;共" + value1.Count + "注");
                 }
                 //sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + jiangjin + "元\n单倍注数:" + sba.ToString().Remove(sba.ToString().Length - 1, 1) + ";共" + zhushu + "注");
 
@@ -1524,7 +1554,17 @@ namespace 体育打票软件
 
            
             string maohao = Regex.Match(sb.ToString(), @":").Groups[0].Value;
+            if(maohao=="")
+            {
+                maohao = Regex.Match(sb.ToString(), @"胜其|负其|平其").Groups[0].Value;
+            }
             string shuzi = Regex.Match(sb.ToString(), @"\(\d\)").Groups[0].Value;
+
+            if(shuzi=="")
+            {
+               shuzi = Regex.Match(sb.ToString(), @"\(7\+\)").Groups[0].Value;
+            }
+            
 
             string sheng = Regex.Match(sb.ToString(), @"胜@|平@|负@").Groups[0].Value;
            
@@ -1659,10 +1699,12 @@ namespace 体育打票软件
 
 
         #endregion
-      
+
+     
         #region 获取队伍名全名足球
         public string getfullname_zuqiu(string body)
         {
+            List<string> lists = new List<string>();
             string result = body;
             string url = "https://webapi.sporttery.cn/gateway/jc/football/getMatchListV1.qry?clientCode=3001";
             string html = GetUrl(url,"utf-8");
@@ -1670,8 +1712,13 @@ namespace 体育打票软件
             MatchCollection AllName = Regex.Matches(html, @"AllName"":""([\s\S]*?)""");
             for (int i = 0; i < addname.Count; i++)
             {
-               
-                result = Regex.Replace(result, addname[i].Groups[1].Value.Trim(), AllName[i].Groups[1].Value);
+                if (!lists.Contains(AllName[i].Groups[1].Value))
+                {
+                    lists.Add(AllName[i].Groups[1].Value);
+                   result = Regex.Replace(result, addname[i].Groups[1].Value.Trim(), AllName[i].Groups[1].Value);
+                  
+                }
+                
             }
             return result;
         }
@@ -1681,6 +1728,7 @@ namespace 体育打票软件
         #region 获取队伍名全名_篮球
         public string getfullname_lanqiu(string body)
         {
+            List<string> lists = new List<string>();
             string result = body;
             string url = "https://webapi.sporttery.cn/gateway/jc/basketball/getMatchListV1.qry?clientCode=3001";
             string html = GetUrl(url, "utf-8");
@@ -1688,8 +1736,11 @@ namespace 体育打票软件
             MatchCollection AllName = Regex.Matches(html, @"AllName"":""([\s\S]*?)""");
             for (int i = 0; i < addname.Count; i++)
             {
-
-                result = Regex.Replace(result, addname[i].Groups[1].Value.Trim(), AllName[i].Groups[1].Value);
+                if (!lists.Contains(AllName[i].Groups[1].Value))
+                {
+                    lists.Add(AllName[i].Groups[1].Value);
+                    result = Regex.Replace(result, addname[i].Groups[1].Value.Trim(), AllName[i].Groups[1].Value);
+                }
             }
             return result;
         }

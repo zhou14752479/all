@@ -95,7 +95,7 @@ namespace 思忆美团
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                //request.Proxy = null;
+                request.Proxy = null;
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = Url;
@@ -531,7 +531,7 @@ namespace 思忆美团
         #region 获取区域
         public Dictionary<string, string> getareas(string cityid)
         {
-            Dictionary<string, string> dics = new Dictionary<string, string>(); ;
+            Dictionary<string, string> dics = new Dictionary<string, string>(); 
             string Url = "https://i.meituan.com/wrapapi/search/filters?riskLevel=71&optimusCode=10&ci=" + cityid;
 
             string html =GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
@@ -550,6 +550,41 @@ namespace 思忆美团
                         {
                             dics.Add(areas[i].Groups[3].Value, areas[i].Groups[1].Value);
                            
+                        }
+                    }
+                }
+
+            }
+
+            return dics;
+        }
+
+        #endregion
+
+
+        #region 获取区域新
+        public Dictionary<string, string> getareas2(string cityid)
+        {
+            Dictionary<string, string> dics = new Dictionary<string, string>();
+
+            string Url = "https://m.dianping.com/mtbeauty/index/ajax/loadnavigation?token=gORmhG3WtAc9Pfr4vTbhivSxQk0AAAAADA4AAPrp_ewNUU2qGaRBE9FjidEQTVrC4_z5BShh7mlouJWGaKp4u3_FM5r8Gh5U2I2LrQ&cityid=" + cityid + "&cateid=22&categoryids=22&lat=33.96271&lng=118.24239&userid=&uuid=oJVP50IRqKIIshugSqrvYE3OHJKQ&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false";
+
+            string html = GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+            MatchCollection areas = Regex.Matches(html, @"""name"":""([\s\S]*?)"",""id"":([\s\S]*?),");
+
+
+            for (int i = 0; i < areas.Count; i++)
+            {
+
+                if (areas[i].Groups[1].Value.Contains("区") || areas[i].Groups[1].Value.Contains("县"))
+                {
+                    if (!areas[i].Groups[1].Value.Contains("小区") && !areas[i].Groups[1].Value.Contains("街区") && !areas[i].Groups[1].Value.Contains("商业区") && !areas[i].Groups[1].Value.Contains("城区") && !areas[i].Groups[1].Value.Contains("市区") && !areas[i].Groups[1].Value.Contains("地区") && !areas[i].Groups[1].Value.Contains("社区") && areas[i].Groups[1].Value.Length < 5)
+                    {
+                        if (!dics.ContainsKey(areas[i].Groups[3].Value))
+                        {
+                            dics.Add(areas[i].Groups[1].Value, areas[i].Groups[2].Value);
+
                         }
                     }
                 }

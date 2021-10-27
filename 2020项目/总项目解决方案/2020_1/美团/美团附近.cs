@@ -570,7 +570,7 @@ namespace 美团
                             {
 
 
-                                string Url = "https://i.meituan.com/api/vc/mtshoplist/client/easylife?cateId=&cityid="+cityid+"&start="+i+"&limit=20&tabKeyWord="+keyword+"&tagName=%E5%85%A8%E9%83%A8&clienttype=200&dpid=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&areaId=" + areaid;
+                                string Url = "https://i.meituan.com/api/vc/mtshoplist/client/easylife?cateId=&cityid="+cityid+"&start="+i+"&limit=20&tabKeyWord="+keyword+"&tagName=%E5%85%A8%E9%83%A8&clienttype=200&dpid=&areaId=" + areaid;
 
                                 string html = meituan_GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
                               

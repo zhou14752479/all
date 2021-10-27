@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,7 +29,11 @@ namespace 主程序202106
         bool zanting = true;
         bool status = true;
         string cookie = "";
-       
+
+
+
+
+        //导入ISBN、品相查询低价
         public void run()
         {
            
@@ -122,6 +129,104 @@ namespace 主程序202106
             }
         }
 
+
+
+
+        //获取运费
+        public string getfee(string itemid,string userid)
+        {
+            string url = "https://app.kongfz.com/invokeShop/app/shop/batchGetShippingFees";
+            string postdata = "area=18016000000&params=%5B%7B%22userId%22%20%3A%20%22"+userid+"%22%2C%22itemId%22%20%3A%20%22"+itemid+"%22%7D%5D&withCoupon=1";
+          
+            string html = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded", "");
+            string totalFee = Regex.Match(html, @"""totalFee"":""([\s\S]*?)""").Groups[1].Value;
+            if(totalFee=="")
+            {
+                totalFee = "0";
+            }
+            return totalFee;
+
+        }
+
+        //导入ISBN查询低价\邮费、已售数量
+        public void run1()
+        {
+
+            try
+            {
+                if (textBox2.Text == "")
+                {
+                    MessageBox.Show("请导入账号");
+                    return;
+                }
+                //  DataTable dt = method.ReadExcelToTable(textBox2.Text);
+                // DataTable dt = method.ExcelToDataTable(textBox2.Text,true);
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+
+                StreamReader sr = new StreamReader(textBox2.Text, method.EncodingType.GetTxtType(textBox2.Text));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < text.Length; i++)
+                {
+
+                    //DataRow dr = dt.Rows[i];
+                    // string isbn = dr[0].ToString();
+                    string isbn = text[i];
+                    if (isbn == "")
+                        continue;
+                    string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
+                    string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+                    string html = PostUrl(url, postdata);
+                   
+                    MatchCollection prices = Regex.Matches(html, @"""price"":([\s\S]*?),");
+                    string itemid = Regex.Match(html, @"""itemId"":([\s\S]*?),").Groups[1].Value;
+                    string userid = Regex.Match(html, @"""userId"":([\s\S]*?),").Groups[1].Value;
+                 
+                    string fee = getfee(itemid,userid);
+
+
+                    Thread.Sleep(1000);
+                    //获取已售搜索个数
+                   
+                    string postdata2 = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%221%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+
+                    string html2 =PostUrl(url, postdata2);
+                    string count=  Regex.Match(html2, @"""recordCount"":""([\s\S]*?)""").Groups[1].Value;
+                    Thread.Sleep(1000);
+
+
+
+                    label1.Text = "正在查询：" + isbn;
+                    string price = "无";
+                    if (prices.Count > 0)
+                    {
+                        price = prices[0].Groups[1].Value;
+                    }
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                    lv1.SubItems.Add(isbn);
+                    lv1.SubItems.Add(price.Replace("\"",""));
+                    lv1.SubItems.Add(fee);
+                    lv1.SubItems.Add(count);
+
+                   
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+                }
+                label1.Text = ("查询结束");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
         /// <summary>
         /// 获取时间戳毫秒
         /// </summary>
@@ -147,11 +252,11 @@ namespace 主程序202106
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            getcookies();
+            //getcookies();
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run1);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -169,7 +274,82 @@ namespace 主程序202106
                 zanting = false;
             }
         }
+        #region POST请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrl(string url, string postData)
+        {
+            try
+            {
+                string COOKIE = "acw_tc=276077b916348708697031531eb91d818f67aa283756366df8dba1bd81399a";
+                string charset = "utf-8";
+                string html = "";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                request.Proxy = null;//防止代理抓包
+                //添加头部
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("X-Tingyun-Id:lLmhN035-8Y;c=2;r=1510130765;u=b62bf55b6da98676c7af69e7063790e6::85C1D76CAE16FFDC");
+                headers.Add("ssid: 1634870855000744763");
+                headers.Add("refUrl:KFZDynamicHomePageViewController");
+                //headers.Add("upgrade-insecure-requests: 1");
+                //添加头部
+                request.ContentType = "application/x-www-form-urlencoded";
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+                //request.ContentType = "application/json";
+                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                // request.ContentLength = postData.Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
 
+                request.UserAgent = "IOS_KFZ_COM_3.9.2_iPhone 7 Plus_13.6.1 #App Store,8DF24B435A97462BBF3BC977E86CE5FB";
+                request.Headers.Add("Cookie", COOKIE);
+
+                request.Referer = url;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+
+                response.Close();
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
         private void button3_Click(object sender, EventArgs e)
         {
             status = false;

@@ -16,7 +16,7 @@ namespace 河南政务注册
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 河南政务注册());
+            Application.Run(new 账号判断注册());
         }
     }
 }

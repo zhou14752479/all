@@ -120,6 +120,8 @@ namespace 体育打票软件
 
 
         function fc = new function();
+
+        #region 竞彩网解析
         /// <summary>
         /// 竞彩网模拟解析全部
         /// </summary>
@@ -128,15 +130,17 @@ namespace 体育打票软件
             getdata_jingcai(textBox1.Text);
         }
 
+        #endregion
 
-     
 
+
+        #region 500网解析
         public void getdata_500_danguan()
         {
             string address = IniReadValue("values", "address");
             string haoma = IniReadValue("values", "haoma");
             string bianma = IniReadValue("values", "bianma");
-            string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
+           
             string suiji = bianma + function.getsuijima();
             string zhanhao = haoma;
             string ahtml = 体育打票软件.ahtml;
@@ -182,6 +186,8 @@ namespace 体育打票软件
             }
             for (int a = 0; a < text0.Length; a++)
             {
+                string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
+
                 string item = text0[a]+"," ;
 
                 GridppReport Report = new GridppReport();
@@ -225,6 +231,12 @@ namespace 体育打票软件
                         fangshi = "竞彩足球半全场胜平负";
                       
                     }
+                else if (a2.Contains("胜其") || a2.Contains("平其") || a2.Contains("负其"))
+                {
+                    fangshi = "竞彩足球比分";
+
+
+                }
                 else if (a2.Contains("胜") || a2.Contains("平") || a2.Contains("负"))
                 {
                     fangshi = "竞彩足球胜平负";
@@ -268,7 +280,7 @@ namespace 体育打票软件
                 string zhushu = peilvs.Count.ToString();
 
               
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" +Convert.ToDouble(jiangjin).ToString("F2")+ "元\n单倍注数:" + "单场*"+zhushu+"注" + ";共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + string.Format("{0:N}", Convert.ToDouble(jiangjin)) + "元\n单倍注数:" + "单场*"+zhushu+"注" + ";共" + zhushu + "注");
 
 
 
@@ -285,7 +297,7 @@ namespace 体育打票软件
                 Report.ParameterByName("zhanhao").AsString = haoma;
                 Report.ParameterByName("time").AsString = time;
                 fc.CreateXmlFile(fangshi, suiji, guoguan, beishu, jine, sb.ToString(), ganxieyu, address, haoma, time);
-                 Report.Print(false);
+
 
                 // Report.PrintPreview(true);
 
@@ -293,6 +305,8 @@ namespace 体育打票软件
                 //theForm.AttachReport(Report);
                 //theForm.ShowDialog();
 
+
+                Report.Print(false);
                 progressBar1.Value = a;
                 //label3.Text = ( ((a / (text0.Length-1)) * 100).ToString() + "%");
                 Thread.Sleep(Convert.ToInt32(textBox3.Text) * 1000);
@@ -300,14 +314,12 @@ namespace 体育打票软件
             }
         }
 
-
-
         public void getdata_500_danguan_lanqiu()
         {
             string address = IniReadValue("values", "address");
             string haoma = IniReadValue("values", "haoma");
             string bianma = IniReadValue("values", "bianma");
-            string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
+          
             string suiji = bianma + function.getsuijima();
             string zhanhao = haoma;
             string ahtml = 体育打票软件.ahtml;
@@ -349,10 +361,11 @@ namespace 体育打票软件
             for (int i = 0; i < matchIds.Count; i++)
             {
 
-                dics.Add(matchIds[i].Groups[1].Value, "主队：" + matchNames[i].Groups[1].Value + " VS 客队：" + matchNames[i].Groups[2].Value);
+                dics.Add(matchIds[i].Groups[1].Value, "客队：" + matchNames[i].Groups[2].Value + " VS 主队：" + matchNames[i].Groups[1].Value);
             }
             for (int a = 0; a < text0.Length; a++)
             {
+                string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
                 string item = text0[a] + ",";
 
                 GridppReport Report = new GridppReport();
@@ -387,7 +400,7 @@ namespace 体育打票软件
 
                 }
 
-                else if (a2.Contains("-"))
+                else if (a2.Contains("-") || a2.Contains("26+"))
                 {
                     fangshi = "竞彩篮球胜分差";
                     a2 = a2.Replace("胜", "").Replace("负", "");
@@ -441,7 +454,7 @@ namespace 体育打票软件
                 string zhushu = peilvs.Count.ToString();
 
 
-                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + Convert.ToDouble(jiangjin).ToString("F2") + "元\n单倍注数:" + "单场*"+zhushu+"注" + ";共" + zhushu + "注");
+                sb.Append("(选项固定奖金额为每1元投注对应的奖金额)\n本票最高可能固定奖金:" + string.Format("{0:N}", Convert.ToDouble(jiangjin)) + "元\n单倍注数:" + "单场*"+zhushu+"注" + ";共" + zhushu + "注");
 
 
 
@@ -458,7 +471,7 @@ namespace 体育打票软件
                 Report.ParameterByName("zhanhao").AsString = haoma;
                 Report.ParameterByName("time").AsString = time;
                 fc.CreateXmlFile(fangshi, suiji, guoguan, beishu, jine, sb.ToString(), ganxieyu, address, haoma, time);
-                Report.Print(false);
+
 
                 // Report.PrintPreview(true);
 
@@ -467,6 +480,7 @@ namespace 体育打票软件
                 //theForm.AttachReport(Report);
                 //theForm.ShowDialog();
 
+                Report.Print(false);
 
                 progressBar1.Value = a;
                 //label3.Text = ( ((a / (text0.Length-1)) * 100).ToString() + "%");
@@ -474,6 +488,22 @@ namespace 体育打票软件
 
             }
         }
+
+        #endregion
+
+
+
+        #region 500网解析---新解析
+
+        public void getdata_500_new()
+        {
+            getdata_jingcai(textBox1.Text);
+        }
+
+        #endregion
+
+
+
         private void jiexi_Load(object sender, EventArgs e)
         {
            
@@ -488,14 +518,24 @@ namespace 体育打票软件
         {
             if (fangshi.Contains("单关"))  //500网解析
             {
-             if(fangshi.Contains("足球"))
+                if(fangshi.Contains("新解析"))  //500网新解析
                 {
-                    getdata_500_danguan();
+                    getdata_500_new();
                 }
-                if (fangshi.Contains("篮球"))
+
+                else  
                 {
-                    getdata_500_danguan_lanqiu();
+                    if (fangshi.Contains("足球"))
+                    {
+                        getdata_500_danguan();
+                    }
+                    if (fangshi.Contains("篮球"))
+                    {
+                        getdata_500_danguan_lanqiu();
+                    }
+
                 }
+           
                 
             }
             else
@@ -505,6 +545,10 @@ namespace 体育打票软件
 
             }
 
+
+
+
+            //清空功能
             if (checkBox2.Checked == true)
             {
                 textBox1.Text = "";
