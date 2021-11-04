@@ -169,12 +169,15 @@ namespace 主程序202104
                 sr.Dispose();   //销毁流内存
 
             }
+
+           
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString());
             }
 
+            cookie = "acw_tc=2760776c16353887275355205ec86a6315a780207af8c76d60af780fa6145b; SESSION=cd3c25d9-157c-467f-945c-aa3087bf8161; _ati=133630949992";
             if (radioButton1.Checked == true)
             {
                 tab = "2";

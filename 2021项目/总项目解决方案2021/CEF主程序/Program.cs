@@ -16,7 +16,7 @@ namespace CEF主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 阿里1688());
+            Application.Run(new 快递助手());
         }
     }
 }

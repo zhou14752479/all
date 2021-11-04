@@ -386,8 +386,7 @@ namespace 体育打票软件
                 MatchCollection value1 = Regex.Matches(html, @"<span>周([\s\S]*?)</span>");  //普通
                 MatchCollection value2 = Regex.Matches(html, @"204\);"">周([\s\S]*?)</span>");  //让球
 
-
-
+               
 
                 MatchCollection vv = Regex.Matches(html, @"<span>周([\s\S]*?)\(([\s\S]*?)@");
                  fangshi = panduan(vv);
@@ -454,14 +453,19 @@ namespace 体育打票软件
 
 
 
-
+                   
 
                     string a1 = Regex.Match("周" + value1[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value + " "+moweiwenzi;
                    
-                    if (a2.Substring(0, 2) != "胜@" && a2.Substring(0, 2) != "平@" && a2.Substring(0, 2) != "负@")
+                    if (a2.Substring(0, 2) != "胜@" && a2.Substring(0, 2) != "平@" && a2.Substring(0, 2) != "负@")  //胜平负不要括号
                     {
-                        a2 = "(" + a2.Replace("@", ")@");
+                        if (a2.Substring(0, 2)!="胜胜"& a2.Substring(0, 2) != "胜平" & a2.Substring(0, 2) != "胜负" & a2.Substring(0, 2) != "平胜" & a2.Substring(0, 2) != "平平" & a2.Substring(0, 2) != "平负" & a2.Substring(0, 2) != "负胜" & a2.Substring(0, 2) != "负平" & a2.Substring(0, 2) != "负负") //半全场不要括号
+                        {
+                            a2 = "(" + a2.Replace("@", ")@");
+                        }
                     }
+
+
                     if (resultdics.ContainsKey(a1))
                     {
                         if (!lists.Contains(a1 + a2))
@@ -489,6 +493,10 @@ namespace 体育打票软件
                 {
                     string a2 = Regex.Match(value2[i].Groups[1].Value, @"\(([\s\S]*?)\)").Groups[1].Value;
 
+
+                    string peilv = Regex.Match(a2, @"\@.*").Groups[0].Value.Replace("@", "");
+
+
                     //整数赔率保留2位
                     if (a2.Substring(a2.Length - 2, 2) == "00")
                     {
@@ -500,7 +508,9 @@ namespace 体育打票软件
                     }
 
 
-                    string peilv= Regex.Match(a2, @"\@([\s\S]*?)0元").Groups[1].Value;
+                    // string peilv= Regex.Match(a2, @"\@([\s\S]*?)0元").Groups[1].Value;
+                   
+
                     string rangqiuwenzi = "";
                     Dictionary<string,string> hunherangqiudic= getrangqiu_hunhe(html);
 
@@ -519,13 +529,15 @@ namespace 体育打票软件
                    
                     string a1 = Regex.Match("周" + value2[i].Groups[1].Value, @"周([\s\S]*?)\(").Groups[1].Value + " 让球胜平负" + rangqiuwenzi;
 
-                   
 
 
+                  
                     if (a2.Substring(0, 2) != "胜@" && a2.Substring(0, 2) != "平@" && a2.Substring(0, 2) != "负@")
                     {
-                        a2 = "(" + a2.Replace("@",")@");
+                        a2 = "(" + a2.Replace("@", ")@");
                     }
+
+
                     if (resultdics.ContainsKey(a1))
                     {
                         if (!lists.Contains(a2))
@@ -537,6 +549,7 @@ namespace 体育打票软件
                     }
                     else
                     {
+                      
                         lists.Add(a2);
                         resultdics.Add(a1, "主队:" + dics["周" + a1.Replace(" 让球胜平负" + rangqiuwenzi, "").Trim()].Replace("VS", " Vs 客队:") + "\n" + a2);
 

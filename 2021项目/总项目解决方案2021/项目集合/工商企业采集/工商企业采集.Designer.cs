@@ -464,7 +464,9 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "工商企业采集";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "工商企业采集";
+            this.Text = "工商企业采集                                                                           " +
+    "                                                                                " +
+    "           代理加微信:17331826223";
             this.Load += new System.EventHandler(this.工商企业采集_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,10 +49,34 @@ namespace 体育打票软件
             axGRPrintViewer1.Stop();
         }
 
+
+        public void dayin()
+        {
+            for (int i = 0; i < Convert.ToInt32(textBox6.Text); i++)
+            {
+                //string time = DateTime.Now.ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
+                string time = Convert.ToDateTime(textBox2.Text).AddSeconds(Convert.ToInt32(textBox7.Text) * i).ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
+                axGRPrintViewer1.Report.ParameterByName("time").AsString = time;
+                axGRPrintViewer1.Refresh();
+                axGRPrintViewer1.Print(false);  //不显示打印机 配置框
+
+            }
+        }
+
+        Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-           
-            axGRPrintViewer1.Print(true);
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(dayin);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+
+            dayin();
+
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

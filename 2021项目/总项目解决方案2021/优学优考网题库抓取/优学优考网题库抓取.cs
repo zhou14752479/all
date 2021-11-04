@@ -27,7 +27,7 @@ namespace 优学优考网题库抓取
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public  string GetUrl(string Url, string charset)
+        public  string GetUrl(string Url, string charset,string ip)
         {
             string html = "";
           
@@ -35,7 +35,12 @@ namespace 优学优考网题库抓取
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Proxy = null;//防止代理抓包
+                if(ip!="")
+                {
+                    WebProxy proxy = new WebProxy(ip);
+                    request.Proxy = proxy;
+                }
+               
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = Url;
@@ -100,8 +105,7 @@ namespace 优学优考网题库抓取
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.Proxy = null;//防止代理抓包
-              
+             
                 request.ContentType = "application/x-www-form-urlencoded";
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
                 //request.ContentType = "application/json";
@@ -168,14 +172,14 @@ namespace 优学优考网题库抓取
                     textBox4.Text = i.ToString();
 
                     string url = "http://www.yxykw.com/type/type.jsp?id="+i;
-                    string html = GetUrl(url,"utf-8");
+                    string html = GetUrl(url, "utf-8", "");
                     MatchCollection uids = Regex.Matches(html, @"window.open\('([\s\S]*?)'");
                     foreach (Match uid in uids)
                     {
                         if (astatus == false)
                             return;
                         string aurl = "http://www.yxykw.com"+ uid.Groups[1].Value;
-                        string ahtml = GetUrl(aurl,"utf-8");
+                        string ahtml = GetUrl(aurl,"utf-8","");
                         string title = Regex.Match(ahtml, @"<title>([\s\S]*?)</title>").Groups[1].Value;
                         string qustion = Regex.Match(ahtml, @"<div class=""s_mess2_m"">([\s\S]*?)</div>").Groups[1].Value;
                         string anwser = Regex.Match(ahtml, @"<div class=""replyCon"">([\s\S]*?)</div>").Groups[1].Value;
@@ -217,7 +221,7 @@ namespace 优学优考网题库抓取
         }
         Thread thread;
         bool zanting = true;
-        string zhuaqucookie = "";
+       public  string zhuaqucookie = "";
         public string fabucookie = "";
         bool astatus = true;
 
@@ -369,7 +373,7 @@ Content-Disposition: form-data; name=""yzm""
         {
             #region 通用检测
 
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8","");
 
             if (!html.Contains(@"uoQUpu"))
             {

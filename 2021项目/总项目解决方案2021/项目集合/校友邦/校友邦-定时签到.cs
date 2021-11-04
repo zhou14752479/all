@@ -19,7 +19,15 @@ namespace 校友邦
         {
             InitializeComponent();
         }
+        private static int DateDiff(DateTime dateStart, DateTime dateEnd)
+        {
+            DateTime start = Convert.ToDateTime(dateStart.ToShortDateString());
+            DateTime end = Convert.ToDateTime(dateEnd.ToShortDateString());
+           
+            TimeSpan sp = end-start;
 
+            return sp.Days;
+        }
         public void getdata()
         {
             listView1.Items.Clear();
@@ -41,14 +49,20 @@ namespace 校友邦
                     lv1.SubItems.Add(value[3].Trim());
                     lv1.SubItems.Add(value[4].Trim());
                     lv1.SubItems.Add(value[5].Trim());
+                    lv1.SubItems.Add(value[6].Trim());
+
 
                     lv1.SubItems.Add("");
                     lv1.SubItems.Add("");
+                    int shengyu_day = DateDiff(DateTime.Now, Convert.ToDateTime(value[6].Trim()));
+                    lv1.SubItems.Add(shengyu_day.ToString());
                 }
             }
             sr.Close();  //只关闭流
             sr.Dispose();   //销毁流内存
         }
+
+
         string path = AppDomain.CurrentDomain.BaseDirectory;
         function fc = new function();
         private void 校友邦_定时签到_Load(object sender, EventArgs e)
@@ -65,8 +79,8 @@ namespace 校友邦
             }
 
             #endregion
-
-
+          
+          
             getdata();
 
 
@@ -76,10 +90,21 @@ namespace 校友邦
         }
 
 
-
+        int refresh = 0;
         public void run()
         {
-            getdata();
+            if(DateTime.Now.Hour==2 && refresh==0)
+            {
+                refresh =1;
+                getdata();
+            }
+            if (DateTime.Now.Hour == 3)
+            {
+                refresh = 0;
+              
+            }
+
+
             label1.Text = DateTime.Now.ToString()+"：开始启动签到.....";
             for (int i = 0; i < listView1.Items.Count; i++)
             {
@@ -89,18 +114,25 @@ namespace 校友邦
                     string password = listView1.Items[i].SubItems[2].Text;
                     string address = listView1.Items[i].SubItems[3].Text;
                     string timecisu = listView1.Items[i].SubItems[4].Text;
-                    string date = listView1.Items[i].SubItems[5].Text;
+                  
+                    string startdate = listView1.Items[i].SubItems[5].Text;
+                    string stopdate = listView1.Items[i].SubItems[6].Text;
 
-                    string start= listView1.Items[i].SubItems[6].Text;
-                    string end= listView1.Items[i].SubItems[7].Text;
+                    string start= listView1.Items[i].SubItems[7].Text;
+                    string end= listView1.Items[i].SubItems[8].Text;
 
                     //判断是否到期
-                    if ( DateTime.Now >Convert.ToDateTime(date).AddDays(1))
+                    if ( DateTime.Now >Convert.ToDateTime(stopdate).AddDays(1))
                     {
-                        listView1.Items[i].SubItems[6].Text = "日期超出，不签到";
+                        listView1.Items[i].SubItems[7].Text = "日期超出，不签到";
                         continue;
                     }
 
+                    if (DateTime.Now < Convert.ToDateTime(startdate))
+                    {
+                        listView1.Items[i].SubItems[7].Text = "日期未到，不签到";
+                        continue;
+                    }
 
                     if (end.Contains("success"))  //判断是否【结束签到】                 
                     {
@@ -122,7 +154,7 @@ namespace 校友邦
                         {
                             if (Convert.ToInt32(DateTime.Now.DayOfWeek) == 2 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 4 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 6 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 0)
                             {
-                                listView1.Items[i].SubItems[6].Text = "非周一三五不签到";
+                                listView1.Items[i].SubItems[7].Text = "非周一三五不签到";
                                 continue;
                             }
                         }
@@ -131,7 +163,7 @@ namespace 校友邦
                         {
                             if (Convert.ToInt32(DateTime.Now.DayOfWeek) == 1 || Convert.ToInt32(DateTime.Now.DayOfWeek) ==3 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 5)
                             {
-                                listView1.Items[i].SubItems[6].Text = "非周二四六不签到";
+                                listView1.Items[i].SubItems[7].Text = "非周二四六不签到";
                                 continue;
                             }
                         }
@@ -142,7 +174,7 @@ namespace 校友邦
                         //不需要周末签到
                         if (Convert.ToInt32(DateTime.Now.DayOfWeek)==6 || Convert.ToInt32(DateTime.Now.DayOfWeek)==0)
                         {
-                            listView1.Items[i].SubItems[6].Text = "非工作日不签到";
+                            listView1.Items[i].SubItems[7].Text = "非工作日不签到";
                             continue;
                         }
                     }
@@ -157,22 +189,23 @@ namespace 校友邦
                         //结束签到时间为空，不需要结束签到
                         if(text[2]=="无" ||text[3]=="无")
                         {
-                            listView1.Items[i].SubItems[7].Text = "不需要结束签到";
+                            listView1.Items[i].SubItems[8].Text = "不需要结束签到";
                             continue;
                         }
-                        if(DateTime.Now<Convert.ToDateTime(text[2]) && DateTime.Now > Convert.ToDateTime(text[3]))
+                        if(DateTime.Now<Convert.ToDateTime(text[2]) || DateTime.Now > Convert.ToDateTime(text[3]))
                         {
-                            listView1.Items[i].SubItems[7].Text = "结束签到时间未满足";
+                            listView1.Items[i].SubItems[8].Text = "结束签到时间未满足";
                             continue;
                         }
 
                     }
                     else //开始签到
                     {
+                        listView1.Items[i].SubItems[8].Text = "结束签到时间未满足";
                         fc.status = "2";
-                        if (DateTime.Now < Convert.ToDateTime(text[0]) && DateTime.Now > Convert.ToDateTime(text[1]))
+                        if (DateTime.Now < Convert.ToDateTime(text[0]) || DateTime.Now > Convert.ToDateTime(text[1]))
                         {
-                            listView1.Items[i].SubItems[6].Text = "开始签到时间未满足";
+                            listView1.Items[i].SubItems[7].Text = "开始签到时间未满足";
                             continue;
                         }
                        
@@ -186,7 +219,7 @@ namespace 校友邦
                     string cookie = fc.login(username, password);
                     if (cookie == "")
                     {
-                        listView1.Items[i].SubItems[6].Text = "登陆失败";
+                        listView1.Items[i].SubItems[7].Text = "登陆失败";
                         continue;
                     }
                     else
@@ -197,11 +230,11 @@ namespace 校友邦
                         string msg = fc.qiandao(cookie, address, traineeid);
                         if(fc.status == "2")
                         {
-                            listView1.Items[i].SubItems[6].Text = msg;
+                            listView1.Items[i].SubItems[7].Text = msg;
                         }
                         if (fc.status == "1")
                         {
-                            listView1.Items[i].SubItems[7].Text = msg;
+                            listView1.Items[i].SubItems[8].Text = msg;
                         }
 
                     }
@@ -244,6 +277,33 @@ namespace 校友邦
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            List<string> lines = new List<string>(File.ReadAllLines(path + "data.txt"));//先读取到内存变量
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                try
+                {
+                    string[] value = lines[i].Split(new string[] { "#" }, StringSplitOptions.None);
+                    string date = value[value.Length - 1];
+                    if(Convert.ToDateTime(date)<DateTime.Now.AddDays(-1))
+                    {
+                        lines.RemoveAt(i);//指定删除的行
+                    }
+                    
+                }
+                catch (Exception)
+                {
+
+                    continue;
+                }
+            }
+            File.WriteAllLines(path + "data.txt", lines.ToArray());//在写回硬盤
+            getdata();
+
         }
     }
 }

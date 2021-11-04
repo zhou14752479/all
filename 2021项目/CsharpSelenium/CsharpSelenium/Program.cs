@@ -16,7 +16,7 @@ namespace CsharpSelenium
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 数据爬取());
+            Application.Run(new 发货易());
         }
     }
 }

@@ -16,7 +16,7 @@ namespace 体育打票软件
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 登录());
+            Application.Run(new 体育打票软件());
         }
     }
 }

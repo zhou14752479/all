@@ -89,7 +89,7 @@ namespace 地图营销
                                 string addres = Regex.Match(ahtmls[i].Groups[1].Value, @"""addr"":""([\s\S]*?)""").Groups[1].Value;
                                 string cityname = Regex.Match(ahtmls[i].Groups[1].Value, @"""city_name"":""([\s\S]*?)""").Groups[1].Value;
                                 string location = Regex.Match(ahtmls[i].Groups[1].Value, @"diPointX"":([\s\S]*?),").Groups[1].Value;
-                                if (shaixuan(phone))
+                                if (shaixuan(phone)!="")
                                 {
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
@@ -174,7 +174,8 @@ namespace 地图营销
 
                             for (int i = 0; i < address.Count; i++)
                             {
-                                if (shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "")))
+                                string newphone = shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
+                                if (newphone!="")
                                 {
 
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
@@ -182,15 +183,15 @@ namespace 地图营销
                                     lv1.SubItems.Add(Unicode2String(names[i].Groups[1].Value));
                                     if (md.jihuo == false)
                                     {
-                                        if(phones[i].Groups[1].Value.Length>4)
+                                        if(newphone.Length >4)
                                         {
-                                            lv1.SubItems.Add(phones[i].Groups[1].Value.Substring(0,4)+"*******");
+                                            lv1.SubItems.Add(newphone.Substring(0,4)+"*******");
                                         }
 
                                     }
                                     else
                                     {
-                                        lv1.SubItems.Add(phones[i].Groups[1].Value);
+                                        lv1.SubItems.Add(newphone);
                                     }
                                     lv1.SubItems.Add(Unicode2String(address[i].Groups[1].Value));
                                     lv1.SubItems.Add(Unicode2String(citynames[i].Groups[1].Value));
@@ -258,23 +259,24 @@ namespace 地图营销
                                     break;
 
                                 for (int i = 0; i < names.Count; i++)
-                                {
-                                if (shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "")))
+                            {
+                                string newphone = shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
+                                if (newphone != "")
                                 {
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(names[i].Groups[1].Value);
                                     if (md.jihuo == false)
                                     {
-                                        if (phones[i].Groups[1].Value.Replace("\"", "").Length > 4)
+                                        if (newphone.Length > 4)
                                         {
-                                            lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", "").Substring(0, 4) + "*******");
+                                            lv1.SubItems.Add(newphone.Substring(0, 4) + "*******");
                                         }
 
                                     }
                                     else
                                     {
-                                        lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", ""));
+                                        lv1.SubItems.Add(newphone);
                                     }
                                   
                                     lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
@@ -344,7 +346,8 @@ namespace 地图营销
 
                             for (int i = 0; i < names.Count; i++)
                             {
-                                if (shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "")))
+                                string newphone = shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
+                                if (newphone!="")
                                 {
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
@@ -352,15 +355,15 @@ namespace 地图营销
                                   
                                     if (md.jihuo == false)
                                     {
-                                        if (phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "").Length > 4)
+                                        if (newphone.Length > 4)
                                         {
-                                            lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "").Substring(0, 4) + "*******");
+                                            lv1.SubItems.Add(newphone.Substring(0, 4) + "*******");
                                         }
 
                                     }
                                     else
                                     {
-                                        lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
+                                        lv1.SubItems.Add(newphone);
                                     }
                                    
                                     lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
@@ -429,7 +432,8 @@ namespace 地图营销
 
                             for (int i = 0; i < names.Count; i++)
                             {
-                                if (shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", "")))
+                                string newphone = shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
+                                if (newphone != "")
                                 {
 
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
@@ -437,15 +441,15 @@ namespace 地图营销
                                     lv1.SubItems.Add(names[i].Groups[1].Value);
                                     if (md.jihuo == false)
                                     {
-                                        if (phones[i].Groups[1].Value.Length > 4)
+                                        if (newphone.Length > 4)
                                         {
-                                            lv1.SubItems.Add(phones[i].Groups[1].Value.Substring(0, 4) + "*******");
+                                            lv1.SubItems.Add(newphone.Substring(0, 4) + "*******");
                                         }
 
                                     }
                                     else
                                     {
-                                        lv1.SubItems.Add(phones[i].Groups[1].Value.Replace("\"", ""));
+                                        lv1.SubItems.Add(newphone);
                                     }
                                     lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
                                     lv1.SubItems.Add(citys[i].Groups[1].Value.Replace("\"", ""));
@@ -503,41 +507,72 @@ namespace 地图营销
         }
 
         List<string> tellist = new List<string>();
-        public bool shaixuan(string phone)
+        #region 筛选
+        public string shaixuan(string tel)
         {
-            if (checkBox6.Checked == true)
+            try
             {
-                if (phone.Trim() == "")
+
+                string haoma = tel;
+                string[] tels = tel.Split(new string[] { ";" }, StringSplitOptions.None);
+
+                if(tels.Length<2)
                 {
-                    return false;
+                    tels = tel.Split(new string[] { "," }, StringSplitOptions.None);
+                }
+                if (checkBox6.Checked == true)
+                {
+                    if (tels.Length == 0)
+                    {
+                        haoma = "";
+                        return haoma;
+                    }
+
+                }
+                if (checkBox7.Checked == true)
+                {
+                    if (tels.Length == 1)
+                    {
+                        if (!tel.Contains("-") && tels[0].Length > 10)
+                        {
+                            haoma = tel;
+                            return haoma;
+                        }
+                        else
+                        {
+                            return "";
+                        }
+                    }
+
+                    if (tels.Length >= 2)
+                    {
+                        if (!tels[0].Contains("-") && tels[0].Length > 10)
+                        {
+                            haoma = tels[0];
+                        }
+
+                        else if (!tels[1].Contains("-") && tels[1].Length > 10)
+                        {
+                            haoma = tels[1];
+                        }
+                        else
+                        {
+                            haoma = "";
+                        }
+                    }
                 }
 
+                return haoma;
             }
-            if (checkBox7.Checked == true)
+            catch (Exception ex)
             {
-                if (phone.Trim().Length >11 && phone.Trim().Contains("-") && phone.Trim().Length <20)
-                {
-                    return false;
-                }
-
+                //MessageBox.Show(tel+"   " +ex.ToString());
+                return "";
             }
 
-            if (checkBox8.Checked == true)
-            {
-                if (tellist.Contains(phone))
-                {
-                    return false;
-                }
-                else
-                {
-                    tellist.Add(phone);
-                    return true;
-                }
 
-            }
-
-            return true;
         }
+        #endregion
         private void button2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 1;
@@ -598,8 +633,8 @@ namespace 地图营销
         bool zanting = true;
         private void button7_Click(object sender, EventArgs e)
         {
-         
-            md.jiance2();
+            md.jihuoma();
+           // md.jiance2();
             //if (logined == false)
             //{
             //    MessageBox.Show("请登录");
@@ -818,6 +853,19 @@ namespace 地图营销
                 Thread thread1 = new Thread(creatVcf);
                 thread1.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://121.40.209.61/alipay2/");
+            }
+            catch (Exception)
+            {
+
+                System.Diagnostics.Process.Start("explorer.exe", "http://121.40.209.61/alipay2/");
             }
         }
     }

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -209,63 +210,101 @@ namespace 主程序202110
             return lists;
         }
 
-
-        private void button3_Click(object sender, EventArgs e)
+        public void getcuowu()
         {
-            ArrayList lists = getFileName();
-            for (int i = 0; i < lists.Count; i++)
+            try
             {
-                string txtname = lists[i].ToString();
-             
-                StreamReader sr = new StreamReader(txtname, EncodingType.GetTxtType(txtname));
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
-                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                for (int j= 0; j< text.Length; j++)
+                ArrayList lists = getFileName();
+                for (int i = 0; i < lists.Count; i++)
                 {
-                    
-                    if(text[j].Contains("nil"))
-                    {
-                        string tel =Regex.Match(text[j],@"\d{11}").Groups[0].Value;
-                        richTextBox1.AppendText(tel+"\r\n");
-                    }
-                    
-                }
-                sr.Close();  //只关闭流
-                sr.Dispose();   //销毁流内存
+                    string txtname = lists[i].ToString();
 
+                    StreamReader sr = new StreamReader(txtname, EncodingType.GetTxtType(txtname));
+                    //一次性读取完 
+                    string texts = sr.ReadToEnd();
+                    string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                    for (int j = 0; j < text.Length; j++)
+                    {
+
+                        if (text[j].Contains("nil"))
+                        {
+                            string tel = Regex.Match(text[j], @"\d{11}").Groups[0].Value;
+                            richTextBox1.AppendText(tel + "\r\n");
+                        }
+
+                    }
+                    sr.Close();  //只关闭流
+                    sr.Dispose();   //销毁流内存
+
+                }
+
+                MessageBox.Show("获取完成");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
 
         }
-
-        private void button5_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            if(textBox3.Text=="")
+            if (thread == null || !thread.IsAlive)
             {
-                MessageBox.Show("请先选择文本");
-                return;
+                thread = new Thread(getcuowu);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
+           
 
-            string outputFile = path + Path.GetFileNameWithoutExtension(textBox3.Text)+"_new.txt";
-            StreamWriter sw = new StreamWriter(outputFile, false, Encoding.UTF8);
+        }
 
-            StreamReader sr = new StreamReader(textBox3.Text, EncodingType.GetTxtType(textBox3.Text));
-            //一次性读取完 
-            string texts = sr.ReadToEnd();
-            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int j = 0; j < text.Length; j++)
+
+        public void quchu()
+        {
+            try
             {
-
-                if (!richTextBox1.Text.Contains(text[j]))
+                if (textBox3.Text == "")
                 {
-                    sw.WriteLine(text[j]);
+                    MessageBox.Show("请先选择文本");
+                    return;
                 }
 
+                string outputFile = path + Path.GetFileNameWithoutExtension(textBox3.Text) + "_new.txt";
+                StreamWriter sw = new StreamWriter(outputFile, false, Encoding.UTF8);
+
+                StreamReader sr = new StreamReader(textBox3.Text, EncodingType.GetTxtType(textBox3.Text));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int j = 0; j < text.Length; j++)
+                {
+
+                    if (!richTextBox1.Text.Contains(text[j]))
+                    {
+                        sw.WriteLine(text[j]);
+                    }
+
+                }
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+                sw.Close();
+                MessageBox.Show("生成成功：路径" + outputFile);
             }
-            sr.Close();  //只关闭流
-            sr.Dispose();   //销毁流内存
-            sw.Close();
-            MessageBox.Show("生成成功：路径"+ outputFile);
+            catch (Exception ex)
+            {
+MessageBox.Show(ex.ToString());
+            }
+        }
+
+        Thread thread;
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(quchu);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)

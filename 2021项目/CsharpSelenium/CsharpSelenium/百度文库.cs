@@ -173,7 +173,7 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
 
 
                     driver.Navigate().GoToUrl("https://wenku.baidu.com/");
-
+                   
                     Cookie cookie = new Cookie("BDUSS", usercookie, "", DateTime.Now.AddDays(9999));
                     driver.Manage().Cookies.AddCookie(cookie);
                     Thread.Sleep(200);

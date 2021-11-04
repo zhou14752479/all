@@ -76,8 +76,8 @@ namespace CsharpSelenium
 
 
 
-            //  driver.Navigate().GoToUrl("https://a44.fahuoyi.com/order/index?autoSyncOrder=false");
-            driver.Navigate().GoToUrl("https://perbank.abchina.com/EbankSite/startup.do?r=BE572F49EA26B93A");
+            driver.Navigate().GoToUrl("https://a44.fahuoyi.com/order/index?autoSyncOrder=false");
+           
             //Cookie cookie = new Cookie("SESSION", "56a252b8-0d51-49af-bd1e-c2b78e9b6f09", "", DateTime.Now.AddDays(9999));
             //Cookie cookie1 = new Cookie("acw_tc", "2760774d16191645264915734e2bfd56caa64b1b8ac3fa7bf386776286373d", "", DateTime.Now.AddDays(9999));
             //driver.Manage().Cookies.AddCookie(cookie);
@@ -144,90 +144,7 @@ namespace CsharpSelenium
 
         private void 发货易_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (ExistINIFile())
-                {
-                    string key = IniReadValue("values", "key");
-                    string secret = IniReadValue("values", "secret");
-                    string[] value = secret.Split(new string[] { "asd" }, StringSplitOptions.None);
-                    if (Convert.ToInt32(value[1]) < Convert.ToInt32(myDLL.method.GetTimeStamp()))
-                    {
-                        MessageBox.Show("激活已过期");
-                        string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
-                        string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
-
-                        if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
-                        {
-                            IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
-                            IniWriteValue("values", "secret", str);
-                            MessageBox.Show("激活成功");
-
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("激活码错误");
-                            System.Diagnostics.Process.GetCurrentProcess().Kill();
-                            return;
-                        }
-
-                    }
-
-
-
-
-                    else if (value[0] != myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian") || key != myDLL.method.GetMD5(myDLL.method.GetMacAddress()))
-                    {
-
-                        string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
-                        string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
-
-                        if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
-                        {
-                            IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
-                            IniWriteValue("values", "secret", str);
-                            MessageBox.Show("激活成功");
-
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("激活码错误");
-                            System.Diagnostics.Process.GetCurrentProcess().Kill();
-                            return;
-                        }
-                    }
-
-                }
-                else
-                {
-
-                    string str = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", myDLL.method.GetMD5(myDLL.method.GetMacAddress()), -1, -1);
-                    string[] text = str.Split(new string[] { "asd" }, StringSplitOptions.None);
-                    if (text[0] == myDLL.method.GetMD5(myDLL.method.GetMD5(myDLL.method.GetMacAddress()) + "siyiruanjian"))
-                    {
-                        IniWriteValue("values", "key", myDLL.method.GetMD5(myDLL.method.GetMacAddress()));
-                        IniWriteValue("values", "secret", str);
-                        MessageBox.Show("激活成功");
-
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("激活码错误");
-                        System.Diagnostics.Process.GetCurrentProcess().Kill();
-                        return;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("激活失败，请联系管理员");
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
+         
             driver = new ChromeDriver();
 
         }

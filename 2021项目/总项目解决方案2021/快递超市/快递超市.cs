@@ -123,6 +123,7 @@ namespace 快递超市
             string html = PostUrlDefault("https://kdcs-api.tuxi.net.cn/user/login", "userName=" + textBox1.Text.Trim() + "&password=" + textBox2.Text.Trim() + "&verifyCode=" + textBox3.Text.Trim(), "application/x-www-form-urlencoded");
             access_token = Regex.Match(html, @"""access_token"":""([\s\S]*?)""").Groups[1].Value;
 
+           
             if (access_token != "")
             {
                 MessageBox.Show("登录成功");
@@ -202,12 +203,20 @@ namespace 快递超市
         }
 
 
+        public string gettukuinfo(string code)
+        {
+            string url = "https://kdcs-api.tuxi.net.cn/public/getReceiveManInfo";
+            string postdata = "{\"billCode\":\""+code+"\",\"expressCompanyCode\":\"ZTO\",\"depotCode\":\"TUXI39300483168\"}";
+            string html = PostUrlDefault(url, postdata, "application/json");
+            return html;
+        }
+
 
         public void ruku()
         {
             try
             {
-                int count = 0;
+              
                 int codenum = Convert.ToInt32(textBox4.Text);
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < richTextBox1.Lines.Length; i++)
@@ -215,32 +224,39 @@ namespace 快递超市
                     if (status == false)
                         return;
 
-                    count = count + 1;
+                   
                     codenum = codenum + 1;
                     string billCode = richTextBox1.Lines[i].ToString();
                     string url = "https://kdcs-api.tuxi.net.cn/fastentry/add";
 
+                    string info = gettukuinfo(billCode);
+                    string expressComapnyCode= Regex.Match(info, @"""expressCompanyCode"":""([\s\S]*?)""").Groups[1].Value;
+                    string receiveManMobile = Regex.Match(info, @"""phone"":""([\s\S]*?)""").Groups[1].Value;
 
+                    ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                    listViewItem.SubItems.Add(billCode);
+                    listViewItem.SubItems.Add(expressComapnyCode);
+                    listViewItem.SubItems.Add(receiveManMobile);
+                    listViewItem.SubItems.Add(DateTime.Now.ToString());
+                    string postdata="{\"billCode\":\"" + billCode + "\",\"depotCode\":\"TUXI39300483168\",\"ediUdf2\":\"http://wj.zto.com/content/logo/yunda.png\",\"ediUdf3\":\"\",\"expressComapnyCode\":\"" + expressComapnyCode+"\",\"failReson\":\"\",\"isNewUser\":0,\"receiveMan\":\"\",\"receiveManMobile\":\""+receiveManMobile+ "\",\"scanDate\":\"2021-10-28T06:28:53.027Z\",\"billCodeScanTime\":\"2021-10-28T06:28:53.027Z\",\"\":1,\"staffCode\":\"ZTWJ3670625\",\"takeCode\":\"" + codenum.ToString().PadLeft(6, '0') + "\",\"channel\":5,\"mobileChannel\":5,\"isSecretWaybill\":0,\"waybillType\":0,\"virtualMobile\":null},";
 
-
-
-                    sb.Append("{\"billCode\":\"" + billCode + "\",\"depotCode\":\"TUXI39300483168\",\"ediUdf2\":\"\",\"ediUdf3\":\"\",\"expressComapnyCode\":\"YTO\",\"failReson\":\"\",\"isNewUser\":0,\"receiveMan\":\"\",\"receiveManMobile\":\"\",\"scanDate\":\"\",\"billCodeScanTime\":\"\",\"\":1,\"staffCode\":\"ZTWJ3670625\",\"takeCode\":\"" + codenum.ToString().PadLeft(6, '0') + "\",\"channel\":5,\"mobileChannel\":5,\"isSecretWaybill\":0,\"waybillType\":0,\"virtualMobile\":null},");
-
-                    if (count >20)
-                    {
-                        string postdata = "[" + sb.ToString().Remove(sb.ToString().Length - 1, 1) + "]";
+                 
+                         postdata = "[" + postdata.Remove(postdata.Length - 1, 1) + "]";
                         string html = PostUrlDefault(url, postdata, "application/json");
-                        MatchCollection billCodes = Regex.Matches(html, @"""billCode"":""([\s\S]*?)""");
-                        MatchCollection reasons = Regex.Matches(html, @"failReson"":""([\s\S]*?)""");
-                        for (int a = 0; i < reasons.Count; a++)
-                        {
-                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                            listViewItem.SubItems.Add(billCodes[a].Groups[1].Value);
-                            listViewItem.SubItems.Add(reasons[a].Groups[1].Value);
-
-                        }
                         
+                        string reason= Regex.Match(html, @"failReson"":""([\s\S]*?)""").Groups[1].Value;
+                    if(reason=="")
+                    {
+                       
+                        listViewItem.SubItems.Add("成功");
                     }
+                    else
+                    {
+                        listViewItem.SubItems.Add(reason);
+                    }
+                    
+
+
                 }
 
 
@@ -310,7 +326,7 @@ namespace 快递超市
         }
 
         private void button9_Click(object sender, EventArgs e)
-        {
+        { 
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -318,6 +334,30 @@ namespace 快递超市
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader sr = new StreamReader(openFileDialog1.FileName, method.EncodingType.GetTxtType(openFileDialog1.FileName));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < text.Length; i++)
+                {
+                    richTextBox1.Text += text[i]+"\r\n";
+                }
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            richTextBox1.Text = "";
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(亚马逊抓取));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
@@ -39,6 +40,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.抓取数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清除进程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,10 +60,16 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.清除进程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.打开选择链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.筛选价格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清空数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导出数据ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,8 +84,9 @@
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1127, 142);
+            this.panel1.Size = new System.Drawing.Size(1404, 201);
             this.panel1.TabIndex = 1;
             // 
             // button3
@@ -86,9 +95,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(683, 90);
+            this.button3.Location = new System.Drawing.Point(797, 128);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 30);
+            this.button3.Size = new System.Drawing.Size(112, 43);
             this.button3.TabIndex = 23;
             this.button3.Text = "🆗导出数据";
             this.button3.UseVisualStyleBackColor = false;
@@ -98,7 +108,8 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("宋体", 12F);
-            this.linkLabel1.Location = new System.Drawing.Point(1035, 52);
+            this.linkLabel1.Location = new System.Drawing.Point(1208, 74);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(72, 16);
             this.linkLabel1.TabIndex = 22;
@@ -111,11 +122,12 @@
             this.textBox1.BackColor = System.Drawing.Color.DarkSlateGray;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.ForeColor = System.Drawing.Color.Teal;
-            this.textBox1.Location = new System.Drawing.Point(23, 43);
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(27, 61);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1006, 35);
+            this.textBox1.Size = new System.Drawing.Size(1173, 49);
             this.textBox1.TabIndex = 21;
             this.textBox1.Text = "https://www.amazon.com/s?k=Home+Office+Desk+Chairs&i=garden&rh=n%3A3733721&_encod" +
     "ing=UTF8&c=ts&qid=1634781410&ts_id=3733721&ref=sr_pg_1";
@@ -128,9 +140,10 @@
             this.stop_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stop_btn.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.stop_btn.ForeColor = System.Drawing.Color.White;
-            this.stop_btn.Location = new System.Drawing.Point(581, 90);
+            this.stop_btn.Location = new System.Drawing.Point(678, 128);
+            this.stop_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.stop_btn.Name = "stop_btn";
-            this.stop_btn.Size = new System.Drawing.Size(96, 30);
+            this.stop_btn.Size = new System.Drawing.Size(112, 43);
             this.stop_btn.TabIndex = 20;
             this.stop_btn.Text = "✖停止";
             this.stop_btn.UseVisualStyleBackColor = false;
@@ -143,9 +156,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(479, 90);
+            this.button1.Location = new System.Drawing.Point(559, 128);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 30);
+            this.button1.Size = new System.Drawing.Size(112, 43);
             this.button1.TabIndex = 19;
             this.button1.Text = "⚪采集细节";
             this.button1.UseVisualStyleBackColor = false;
@@ -157,9 +171,10 @@
             this.start_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start_btn.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
             this.start_btn.ForeColor = System.Drawing.Color.White;
-            this.start_btn.Location = new System.Drawing.Point(377, 90);
+            this.start_btn.Location = new System.Drawing.Point(440, 128);
+            this.start_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.start_btn.Name = "start_btn";
-            this.start_btn.Size = new System.Drawing.Size(96, 30);
+            this.start_btn.Size = new System.Drawing.Size(112, 43);
             this.start_btn.TabIndex = 18;
             this.start_btn.Text = "✔抓取数据";
             this.start_btn.UseVisualStyleBackColor = false;
@@ -174,7 +189,8 @@
             this.清除进程ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1127, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1404, 27);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -192,12 +208,21 @@
             this.导出数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.导出数据ToolStripMenuItem.Text = "导出数据";
             // 
+            // 清除进程ToolStripMenuItem
+            // 
+            this.清除进程ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.清除进程ToolStripMenuItem.Name = "清除进程ToolStripMenuItem";
+            this.清除进程ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.清除进程ToolStripMenuItem.Text = "清除进程";
+            this.清除进程ToolStripMenuItem.Click += new System.EventHandler(this.清除进程ToolStripMenuItem_Click);
+            // 
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(0, 716);
+            this.progressBar1.Location = new System.Drawing.Point(0, 878);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1127, 17);
+            this.progressBar1.Size = new System.Drawing.Size(1404, 24);
             this.progressBar1.TabIndex = 2;
             // 
             // dataGridView1
@@ -222,13 +247,17 @@
             this.Column7,
             this.Column8,
             this.Column9,
-            this.Column10});
+            this.Column10,
+            this.Column11});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 142);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 201);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1127, 574);
+            this.dataGridView1.Size = new System.Drawing.Size(1404, 677);
             this.dataGridView1.TabIndex = 388;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // Column1
             // 
@@ -236,7 +265,7 @@
             this.Column1.FillWeight = 30F;
             this.Column1.HeaderText = "序号";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 54;
+            this.Column1.Width = 57;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -244,7 +273,7 @@
             this.dataGridViewTextBoxColumn2.FillWeight = 50F;
             this.dataGridViewTextBoxColumn2.HeaderText = "ASIN";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 54;
+            this.dataGridViewTextBoxColumn2.Width = 62;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -252,15 +281,15 @@
             this.dataGridViewTextBoxColumn3.FillWeight = 30F;
             this.dataGridViewTextBoxColumn3.HeaderText = "详情";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 54;
+            this.dataGridViewTextBoxColumn3.Width = 57;
             // 
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column3.FillWeight = 60F;
-            this.Column3.HeaderText = "输入网址";
+            this.Column3.HeaderText = "商品网址";
             this.Column3.Name = "Column3";
-            this.Column3.Width = 78;
+            this.Column3.Width = 81;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -268,7 +297,7 @@
             this.dataGridViewTextBoxColumn4.FillWeight = 30F;
             this.dataGridViewTextBoxColumn4.HeaderText = "站点";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 54;
+            this.dataGridViewTextBoxColumn4.Width = 57;
             // 
             // Column2
             // 
@@ -276,14 +305,14 @@
             this.Column2.FillWeight = 50F;
             this.Column2.HeaderText = "同步时间";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 78;
+            this.Column2.Width = 81;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dataGridViewTextBoxColumn5.HeaderText = "标题";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 54;
+            this.dataGridViewTextBoxColumn5.Width = 57;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -291,7 +320,7 @@
             this.dataGridViewTextBoxColumn6.FillWeight = 50F;
             this.dataGridViewTextBoxColumn6.HeaderText = "价格";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 54;
+            this.dataGridViewTextBoxColumn6.Width = 57;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -299,7 +328,7 @@
             this.dataGridViewTextBoxColumn7.FillWeight = 50F;
             this.dataGridViewTextBoxColumn7.HeaderText = "评分";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 54;
+            this.dataGridViewTextBoxColumn7.Width = 57;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -307,75 +336,114 @@
             this.dataGridViewTextBoxColumn8.FillWeight = 50F;
             this.dataGridViewTextBoxColumn8.HeaderText = "评论";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 54;
+            this.dataGridViewTextBoxColumn8.Width = 57;
             // 
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column4.HeaderText = "图片连接";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 78;
+            this.Column4.Width = 81;
             // 
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column5.HeaderText = "大排名";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 66;
+            this.Column5.Width = 69;
             // 
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column6.HeaderText = "小排名";
             this.Column6.Name = "Column6";
-            this.Column6.Width = 66;
+            this.Column6.Width = 69;
             // 
             // Column7
             // 
             this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column7.HeaderText = "卖家链接";
             this.Column7.Name = "Column7";
-            this.Column7.Width = 78;
+            this.Column7.Width = 81;
             // 
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column8.HeaderText = "是否有货";
             this.Column8.Name = "Column8";
-            this.Column8.Width = 78;
+            this.Column8.Width = 81;
             // 
             // Column9
             // 
             this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column9.HeaderText = "购物车";
             this.Column9.Name = "Column9";
-            this.Column9.Width = 66;
+            this.Column9.Width = 69;
             // 
             // Column10
             // 
             this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column10.HeaderText = "配送方式";
             this.Column10.Name = "Column10";
-            this.Column10.Width = 78;
+            this.Column10.Width = 81;
             // 
-            // 清除进程ToolStripMenuItem
+            // Column11
             // 
-            this.清除进程ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.清除进程ToolStripMenuItem.Name = "清除进程ToolStripMenuItem";
-            this.清除进程ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.清除进程ToolStripMenuItem.Text = "清除进程";
-            this.清除进程ToolStripMenuItem.Click += new System.EventHandler(this.清除进程ToolStripMenuItem_Click);
+            this.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column11.HeaderText = "品牌";
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 57;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.打开选择链接ToolStripMenuItem,
+            this.筛选价格ToolStripMenuItem,
+            this.清空数据ToolStripMenuItem,
+            this.导出数据ToolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 92);
+            // 
+            // 打开选择链接ToolStripMenuItem
+            // 
+            this.打开选择链接ToolStripMenuItem.Name = "打开选择链接ToolStripMenuItem";
+            this.打开选择链接ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.打开选择链接ToolStripMenuItem.Text = "打开选择链接";
+            this.打开选择链接ToolStripMenuItem.Click += new System.EventHandler(this.打开选择链接ToolStripMenuItem_Click);
+            // 
+            // 筛选价格ToolStripMenuItem
+            // 
+            this.筛选价格ToolStripMenuItem.Name = "筛选价格ToolStripMenuItem";
+            this.筛选价格ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.筛选价格ToolStripMenuItem.Text = "筛选价格";
+            this.筛选价格ToolStripMenuItem.Click += new System.EventHandler(this.筛选价格ToolStripMenuItem_Click);
+            // 
+            // 清空数据ToolStripMenuItem
+            // 
+            this.清空数据ToolStripMenuItem.Name = "清空数据ToolStripMenuItem";
+            this.清空数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.清空数据ToolStripMenuItem.Text = "清空数据";
+            this.清空数据ToolStripMenuItem.Click += new System.EventHandler(this.清空数据ToolStripMenuItem_Click);
+            // 
+            // 导出数据ToolStripMenuItem1
+            // 
+            this.导出数据ToolStripMenuItem1.Name = "导出数据ToolStripMenuItem1";
+            this.导出数据ToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+            this.导出数据ToolStripMenuItem1.Text = "导出数据";
+            this.导出数据ToolStripMenuItem1.Click += new System.EventHandler(this.导出数据ToolStripMenuItem1_Click);
             // 
             // 亚马逊抓取
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(1127, 733);
+            this.ClientSize = new System.Drawing.Size(1404, 902);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "亚马逊抓取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "大卖家";
@@ -387,6 +455,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -404,6 +473,7 @@
         private System.Windows.Forms.ToolStripMenuItem 导出数据ToolStripMenuItem;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripMenuItem 清除进程ToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -421,6 +491,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.ToolStripMenuItem 清除进程ToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 打开选择链接ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 筛选价格ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 清空数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 导出数据ToolStripMenuItem1;
     }
 }

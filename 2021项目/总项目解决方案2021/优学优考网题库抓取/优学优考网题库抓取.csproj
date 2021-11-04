@@ -54,6 +54,12 @@
     <Compile Include="优学优考网题库抓取.Designer.cs">
       <DependentUpon>优学优考网题库抓取.cs</DependentUpon>
     </Compile>
+    <Compile Include="问答库.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="问答库.Designer.cs">
+      <DependentUpon>问答库.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -65,6 +71,9 @@
     </Compile>
     <EmbeddedResource Include="优学优考网题库抓取.resx">
       <DependentUpon>优学优考网题库抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="问答库.resx">
+      <DependentUpon>问答库.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

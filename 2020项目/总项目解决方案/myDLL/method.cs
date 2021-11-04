@@ -299,7 +299,7 @@ namespace myDLL
 
         #endregion
 
-        #region POST请求
+        #region POST默认请求
         /// <summary>
         /// POST请求
         /// </summary>

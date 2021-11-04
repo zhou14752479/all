@@ -761,6 +761,7 @@
             this.button3.TabIndex = 11;
             this.button3.Text = "注册登录";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
@@ -777,6 +778,7 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "使用教程";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
@@ -802,9 +804,10 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
+            this.label1.Size = new System.Drawing.Size(271, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "思忆美团大数据";
+            this.label1.Text = "思忆美团大数据问题联系QQ：852266010";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // statusStrip1
             // 

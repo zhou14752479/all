@@ -615,11 +615,25 @@ namespace 美团
                                         string newphone = shaixuan(tels[a].Groups[1].Value);
                                         if (newphone != "")
                                         {
+                                           
+
                                             finishes.Add(tels[a].Groups[1].Value);
                                             ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                             listViewItem.SubItems.Add(names[a].Groups[1].Value);
                                             listViewItem.SubItems.Add(addrs[a].Groups[1].Value);
-                                            listViewItem.SubItems.Add(newphone);
+                                            if (jihuo == false)
+                                            {
+                                                if (newphone.Length > 4)
+                                                {
+                                                    listViewItem.SubItems.Add(newphone.Substring(0, 4) + "*******");
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                listViewItem.SubItems.Add(newphone);
+                                            }
+                                           
                                             listViewItem.SubItems.Add(keyword);
                                             listViewItem.SubItems.Add(city);
                                             while (this.zanting == false)
@@ -859,6 +873,8 @@ namespace 美团
 
         }
         #endregion
+
+        bool jihuo = true;
         internal class AcceptAllCertificatePolicy : ICertificatePolicy
         {
             public AcceptAllCertificatePolicy()
@@ -932,6 +948,7 @@ namespace 美团
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            jihuoma();
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
@@ -1064,7 +1081,8 @@ namespace 美团
         #endregion
         private void 美团附近_Load(object sender, EventArgs e)
         {
-            jiance();
+           
+            //jiance();
             Getcates(comboBox1);
             ProvinceCity.ProvinceCity.BindProvince(comboBox2);
         }
@@ -1172,7 +1190,91 @@ namespace 美团
 
         #endregion
 
-        public void creatVcf()
+
+        #region 激活码
+
+        public void jihuoma()
+        {
+            try
+            {
+                string macmd5 = method.GetMD5(method.GetMacAddress());
+                long expiretime = Convert.ToInt64(method.GetTimeStamp()) + 365 * 24 * 3600;
+                if (ExistINIFile())
+                {
+                    string key = IniReadValue("values", "key");
+                    string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
+
+
+                    if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
+                    {
+                        MessageBox.Show("激活已过期");
+                        string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
+
+
+                        if (str.Length > 40)
+                        {
+                            str = str.Remove(0, 10);
+                            str = str.Remove(str.Length - 10, 10);
+
+                            str = method.Base64Decode(Encoding.Default, str);
+                            string index = str.Remove(str.Length - 16, 16);
+                            string time = str.Substring(str.Length - 10, 10);
+                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 200)  //200秒内有效
+                            {
+                                if (index == "yi" || index=="san")//美团一年
+                                {
+                                   
+                                    IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
+
+                                    MessageBox.Show("激活成功");
+                                    return;
+                                }
+                            }
+                        }
+                        MessageBox.Show("激活码错误");
+                        jihuo = false;
+                    }
+
+                }
+                else
+                {
+                    string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
+
+                    if (str.Length > 40)
+                    {
+                        str = str.Remove(0, 10);
+                        str = str.Remove(str.Length - 10, 10);
+
+                        str = method.Base64Decode(Encoding.Default, str);
+                        string index = str.Remove(str.Length - 16, 16);
+                        string time = str.Substring(str.Length - 10, 10);
+                        if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 200)  //200秒内有效
+                        {
+                            if (index == "yi" || index == "san")//美团一年
+                            {
+                                IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
+
+                                MessageBox.Show("激活成功");
+                                return;
+                            }
+                        }
+                    }
+                    MessageBox.Show("激活码错误");
+                    jihuo = false;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("激活码错误");
+                jihuo = false;
+            }
+           
+
+        }
+
+         
+    #endregion
+    public void creatVcf()
 
         {
 
@@ -1234,6 +1336,19 @@ namespace 美团
                 {
                     textBox1.Text += comboBox3.Items[i].ToString() + "\r\n";
                 }
+            }
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://121.40.209.61/alipay2/");
+            }
+            catch (Exception)
+            {
+
+                System.Diagnostics.Process.Start("explorer.exe", "http://121.40.209.61/alipay2/");
             }
         }
     }

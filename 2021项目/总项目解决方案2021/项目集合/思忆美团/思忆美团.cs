@@ -167,6 +167,21 @@ namespace 思忆美团
 
         private void start_btn_Click(object sender, EventArgs e)
         {
+            #region 通用检测
+
+            string html = functions.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"NtTtu"))
+            {
+                MessageBox.Show("");
+                return;
+            }
+
+
+
+            #endregion
+            functions.viptime = "2022-06-06";
+            functions.username = "222222";
             if (functions.username == "")
             {
                 infolabel.Text = "请登录账号！";
@@ -289,7 +304,7 @@ namespace 思忆美团
                                                 listViewItem.SubItems.Add(cate[j].Groups[1].Value);
                                                 listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
                                                 listViewItem.SubItems.Add(city);
-                                                //Thread.Sleep(200);
+                                                Thread.Sleep(200);
                                                 if (listView1.Items.Count > 2)
                                                 {
                                                     this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
@@ -521,6 +536,11 @@ namespace 思忆美团
         {
             选择分类 cate = new 选择分类();
             cate.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

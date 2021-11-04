@@ -244,9 +244,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(451, 426);
+            this.textBox1.Location = new System.Drawing.Point(332, 154);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
+            this.textBox1.Size = new System.Drawing.Size(372, 173);
             this.textBox1.TabIndex = 112;
             this.textBox1.Visible = false;
             // 

@@ -78,7 +78,7 @@ namespace 客户美团
                 foreach (string city in citys)
                 {
                     string citypinyin = getpinyin(city);
-                    string cookie = "__admx_track_id=a4riTjWZCWav59slg1XYEQ; __admx_track_id.sig=YAx6X6b_aEsbWI8CseDM0xYs5FM; __trackId=162373011820460; Hm_lvt_5a727f1b4acc5725516637e03b07d3d2=1623730120; _ga=GA1.2.76689536.1623730120; _gid=GA1.2.1727524948.1623730120; __city=nanchang; _auth_redirect=https%3A%2F%2Fnanchang.baixing.com%2Fershoufang%2F%3Fgrfy%3D1; __s=vjufhos1au649ut2j41amkhnm5; _gat=1; Hm_lpvt_5a727f1b4acc5725516637e03b07d3d2=1623745457; __sense_session_pv=17";
+                    string cookie = "suid=7008303825; __trackId=163192614724522; __city=suqian; __s=u2bgtqd4a2i8h4kntsfrs6n6k7; _ga=GA1.2.1006694793.1635922590; _gid=GA1.2.1350701906.1635922590; Hm_lvt_5a727f1b4acc5725516637e03b07d3d2=1635922590; __admx_track_id=-Gc18_TIpZxvSaQTgLV0bA; __admx_track_id.sig=Ivvu9eX05FF6QgtUlabf8Doz6QM; __sense_session_pv=10; Hm_lpvt_5a727f1b4acc5725516637e03b07d3d2=1635922604";
                     for (int page = 1; page < 100; page++)
                     {
                        
@@ -176,13 +176,13 @@ namespace 客户美团
             #endregion
             #region 通用检测
 
-            string ahtml = method.GetUrl("http://139.129.92.113/","utf-8");
+            //string ahtml = method.GetUrl("http://139.129.92.113/","utf-8");
 
-            if (!ahtml.Contains(@"siyisoft"))
-            {
+            //if (!ahtml.Contains(@"siyisoft"))
+            //{
 
-                return;
-            }
+            //    return;
+            //}
 
 
 

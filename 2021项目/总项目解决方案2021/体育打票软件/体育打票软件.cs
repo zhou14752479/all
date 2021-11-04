@@ -97,7 +97,7 @@ namespace 体育打票软件
         {
             #region 通用检测
 
-            if (!function.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"FCUoF"))
+            if (DateTime.Now>Convert.ToDateTime("2022-03-13"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
@@ -431,7 +431,7 @@ namespace 体育打票软件
                         elementchild[8].Children[1].InvokeMember("click");
                         break;
                     case "4:2":
-                        elementchild[8].Children[1].InvokeMember("click");
+                        elementchild[9].Children[1].InvokeMember("click");
                         break;
                     case "5:0":
                         elementchild[10].Children[1].InvokeMember("click");
@@ -777,6 +777,8 @@ namespace 体育打票软件
                     //PreviewForm theForm = new PreviewForm();
                     //theForm.AttachReport(Report);
                     //theForm.ShowDialog();
+
+
                     Report.Print(false);
 
 
@@ -996,11 +998,20 @@ namespace 体育打票软件
                 for (int a = 1; a <piaos.Length; a++)
                 {
 
-
+                    
                     string[] values = piaos[a].Split(new string[] { "\r\n" }, StringSplitOptions.None);
                     if (values.Length < 2)
                         break;
+
                     string beishu =values[values.Length-5];
+                    string zhangshu= values[values.Length - 4];
+                    //判断复制来的文本最后一行是否多出来一行空格
+                    if (values[values.Length-3].Trim()=="")
+                    {
+                        beishu = values[values.Length - 6];
+                        zhangshu = values[values.Length - 5];
+                    }
+
                     string guoguan = values[1].Replace("串", "x");
                   
 
@@ -1054,12 +1065,22 @@ namespace 体育打票软件
 
                     fc.getdata(Report, 体育打票软件.html, 体育打票软件.ahtml, guoguan);
 
-                    //PreviewForm theForm = new PreviewForm();
-                    //theForm.AttachReport(Report);
-                    //theForm.ShowDialog();
 
 
-                     Report.Print(false);
+                    for (int i = 0; i < Convert.ToInt32(zhangshu); i++)
+                    {
+                      
+                        string time = DateTime.Now.AddSeconds(10*i).ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
+                       Report.ParameterByName("time").AsString = time;
+
+                        //PreviewForm theForm = new PreviewForm();
+                        //theForm.AttachReport(Report);
+                        //theForm.ShowDialog();
+
+
+                        Report.Print(false);
+                    }
+                  
 
 
 
@@ -1141,7 +1162,19 @@ namespace 体育打票软件
                     if (values.Length < 2)
                         break;
                     string beishu = values[values.Length - 5];
+                    string zhangshu = values[values.Length - 4];
+                    
+                    //判断复制来的文本最后一行是否多出来一行空格
+                    if (values[values.Length - 3].Trim() == "")
+                    {
+                        beishu = values[values.Length - 6];
+                        zhangshu = values[values.Length - 5];
+                    }
+
+
                     string guoguan = values[1].Replace("串", "x");
+                   
+
 
 
                     for (int i = 0; i < values.Length; i++)  //循环周
@@ -1192,12 +1225,20 @@ namespace 体育打票软件
 
                     fc.getdata_lanqiu(Report, 体育打票软件.html, 体育打票软件.ahtml, guoguan);
 
-                    //PreviewForm theForm = new PreviewForm();
-                    //theForm.AttachReport(Report);
-                    //theForm.ShowDialog();
+                    for (int i = 0; i < Convert.ToInt32(zhangshu); i++)
+                    {
+
+                        string time = DateTime.Now.AddSeconds(10 * i).ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
+                        Report.ParameterByName("time").AsString = time;
+
+                        //PreviewForm theForm = new PreviewForm();
+                        //theForm.AttachReport(Report);
+                        //theForm.ShowDialog();
 
 
-                    Report.Print(false);
+                        Report.Print(false);
+                    }
+
 
 
 
@@ -1780,14 +1821,7 @@ namespace 体育打票软件
         private void button6_Click(object sender, EventArgs e)
         {
            
-            #region 通用检测
-
-            if (!function.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"FCUoF"))
-            {
-                return;
-            }
-
-            #endregion
+            
             suiji = bianma_txt.Text + function.getsuijima();
             gethtml();
             if (webBrowser1.Url.ToString().Contains("500"))

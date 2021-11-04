@@ -289,6 +289,7 @@ namespace 工商企业采集
                                 }
                                
                             }
+                           
                             lv1.SubItems.Add(tel);
 
                             while (this.zanting == false)
@@ -467,8 +468,8 @@ namespace 工商企业采集
                 return;
             }
             status = true;
-            jiance();
-         
+            // jiance();
+            jihuoma();
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -682,7 +683,89 @@ namespace 工商企业采集
 
         }
 
+        #region 激活码
 
+        public void jihuoma()
+        {
+            try
+            {
+                string macmd5 = method.GetMD5(method.GetMacAddress());
+                long expiretime = Convert.ToInt64(method.GetTimeStamp()) + 365 * 24 * 3600;
+                if (ExistINIFile())
+                {
+                    string key = IniReadValue("values", "key");
+                    string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
+
+
+                    if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
+                    {
+                        MessageBox.Show("激活已过期");
+                        string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
+
+
+                        if (str.Length > 40)
+                        {
+                            str = str.Remove(0, 10);
+                            str = str.Remove(str.Length - 10, 10);
+
+                            str = method.Base64Decode(Encoding.Default, str);
+                            string index = str.Remove(str.Length - 16, 16);
+                            string time = str.Substring(str.Length - 10, 10);
+                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 200)  //200秒内有效
+                            {
+                                if (index == "er" || index=="san")//美团一年
+                                {
+
+                                    IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
+
+                                    MessageBox.Show("激活成功");
+                                    return;
+                                }
+                            }
+                        }
+                        MessageBox.Show("激活码错误");
+                        jihuo = false; ;
+                    }
+
+                }
+                else
+                {
+                    string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
+
+                    if (str.Length > 40)
+                    {
+                        str = str.Remove(0, 10);
+                        str = str.Remove(str.Length - 10, 10);
+
+                        str = method.Base64Decode(Encoding.Default, str);
+                        string index = str.Remove(str.Length - 16, 16);
+                        string time = str.Substring(str.Length - 10, 10);
+                        if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 200)  //200秒内有效
+                        {
+                            if (index == "er" || index == "san")//美团一年
+                            {
+                                IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
+
+                                MessageBox.Show("激活成功");
+                                return;
+                            }
+                        }
+                    }
+                    MessageBox.Show("激活码错误");
+                    jihuo = false; ;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("激活码错误");
+                jihuo = false; ;
+            }
+
+
+        }
+
+
+        #endregion
 
     }
 }

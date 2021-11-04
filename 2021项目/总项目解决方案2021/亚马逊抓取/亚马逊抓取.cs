@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using myDLL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -96,14 +97,16 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
             driver.Navigate().GoToUrl(textBox1.Text);
             Thread.Sleep(1000);
 
-            for (int page = 0; page < 500; page++)
+            for (int page = 0; page < 600; page++)
             {
+                if (status == false)
+                    return;
                 try
                 {
                     progressBar1.Value++;
                     Thread.Sleep(2000);
                     string html = driver.PageSource;
-                    MatchCollection htmls = Regex.Matches(html, @"<span cel_widget_id=""MAIN-SEARCH_RESULTS([\s\S]*?)</div></div></div></div></div>");
+                    MatchCollection htmls = Regex.Matches(html, @"cel_widget_id=""MAIN-SEARCH_RESULTS([\s\S]*?)</div></div></div></div></div>");
 
                     for (int i = 0; i < htmls.Count; i++)
                     {
@@ -114,26 +117,33 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
                         string comment = Regex.Match(htmls[i].Groups[1].Value, @"<span class=""a-size-base"">([\s\S]*?)</span>").Groups[1].Value;
                         string picurl = Regex.Match(htmls[i].Groups[1].Value, @"<img class=""s-image"" src=""([\s\S]*?)""").Groups[1].Value;
 
-                        if (price == "")
+                        if (asin == "")
                         {
-                            price = "目前无货";
+                            continue;
                         }
+                            if (price == "")
+                            {
+                                price = "目前无货";
+                            }
 
                         //子线程中
                         this.Invoke(new InvokeHandler(delegate ()
                         {
+                            string aurl = "https://www.amazon.com/dp/" + asin + "/";
                             this.index = this.dataGridView1.Rows.Add();
+                          
                             dataGridView1.Rows[index].Cells[0].Value = index.ToString();
                             dataGridView1.Rows[index].Cells[1].Value = asin;
                             dataGridView1.Rows[index].Cells[2].Value = "1";
-                            dataGridView1.Rows[index].Cells[3].Value = textBox1.Text;
+                            dataGridView1.Rows[index].Cells[3].Value = aurl;
                             dataGridView1.Rows[index].Cells[4].Value = "COM";
                             dataGridView1.Rows[index].Cells[5].Value = DateTime.Now.ToLongTimeString();
                             dataGridView1.Rows[index].Cells[6].Value = title;
                             dataGridView1.Rows[index].Cells[7].Value = price;
                             dataGridView1.Rows[index].Cells[8].Value = star;
-                            dataGridView1.Rows[index].Cells[9].Value = comment;
+                            dataGridView1.Rows[index].Cells[9].Value = comment.Replace(",","");
                             dataGridView1.Rows[index].Cells[10].Value = picurl;
+                           
                         }));
 
                         if (status == false)
@@ -161,7 +171,8 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
                 }
 
             }
-
+            progressBar1.Value = progressBar1.Maximum;
+            MessageBox.Show("列表抓取完成");
 
         }
         #endregion
@@ -170,67 +181,98 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
         #region 模拟采集细节
         public void run_xijie_moni()
         {
-            progressBar1.Value = 0; ;
+            progressBar1.Value = 0;
+            progressBar1.Maximum= dataGridView1.Rows.Count;
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                string asin = dataGridView1.Rows[i].Cells[1].Value.ToString();
-                if (asin == "")
+                try
+                {
+                    if (status == false)
+                        return;
+                    string asin = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    if (asin == "")
+                        continue;
+                    string url = "https://www.amazon.com/dp/" + asin + "/";
+                    driver.Navigate().GoToUrl(url);
+
+                    
+                    Thread.Sleep(1000);
+                    string html = driver.PageSource;
+
+                    MatchCollection leimus = Regex.Matches(html, @"商品里排([\s\S]*?)</a>");
+                    string sellerid = Regex.Match(html, @"seller=([\s\S]*?)&").Groups[1].Value;
+                    string sellerLink = "https://www.amazon.com/sp?_encoding=UTF8&asin=&isAmazonFulfilled=1&isCBA=&marketplaceID=&orderID=&protocol=current&seller=" + sellerid + "&sshmPath=";
+                    string pinpai = Regex.Match(html, @"<a id=""bylineInfo""([\s\S]*?)>([\s\S]*?)</a>").Groups[2].Value;
+                    if(pinpai!="")
+                    {
+                        pinpai = pinpai.Replace("Visit the", "").Trim();
+                    }
+                    string addtocart = "无";
+                    string youhuo = "无";
+                    string wuliu = "FBM";
+                    if (html.Contains("有货") || html.Contains("In Stock"))
+                    {
+                        youhuo = "有";
+                    }
+
+                    if (html.Contains("add-to-cart"))
+                    {
+                        addtocart = "有";
+                        youhuo = "有";
+                    }
+
+                    if (html.Contains("<span class=\"a-size-small\">Amazon"))
+                    {
+                        wuliu = "FBA";
+                    }
+                    string bigleimu = "";
+                    string smallleimu = "";
+                    if (leimus.Count > 1)
+                    {
+                        bigleimu = Regex.Replace(leimus[0].Groups[1].Value, "<[^>]+>", "").ToString();
+                        smallleimu = Regex.Replace(leimus[1].Groups[1].Value, "<[^>]+>", "").ToString();
+
+
+                        bigleimu = Regex.Match(bigleimu, @"第([\s\S]*?)名").Groups[1].Value;
+                        smallleimu = Regex.Match(smallleimu, @"第([\s\S]*?)名").Groups[1].Value;
+                        if(bigleimu!="")
+                        {
+                            bigleimu = bigleimu.Replace(",","");
+                        }
+                        if (smallleimu != "")
+                        {
+                            smallleimu = smallleimu.Replace(",", "");
+                        }
+                    }
+
+
+                    //子线程中
+                    this.Invoke(new InvokeHandler(delegate ()
+                    {
+                        progressBar1.Value++;
+                        dataGridView1.Rows[i].Cells[11].Value = bigleimu;
+                        dataGridView1.Rows[i].Cells[12].Value = smallleimu;
+                        dataGridView1.Rows[i].Cells[13].Value = sellerLink;
+
+                        dataGridView1.Rows[i].Cells[14].Value = youhuo;
+                        dataGridView1.Rows[i].Cells[15].Value = addtocart;
+                        dataGridView1.Rows[i].Cells[16].Value = wuliu;
+                        dataGridView1.Rows[i].Cells[17].Value = pinpai;
+                    }));
+
+                    if (status == false)
+                        return;
+
+                }
+                catch (Exception)
+                {
+
                     continue;
-                string url = "https://www.amazon.com/dp/"+asin+"/";
-                driver.Navigate().GoToUrl(url);
-               
-                progressBar1.Value++;
-                Thread.Sleep(1000);
-                string html = driver.PageSource;
-
-                MatchCollection leimus = Regex.Matches(html, @"<span>商品里排([\s\S]*?)</span>");
-                string sellerLink = "https://www.amazon.com" + Regex.Match(html, @"卖家：</span><a class=""a-link-normal"" href=""([\s\S]*?)""").Groups[1].Value;
-
-                string addtocart = "有";
-                string youhuo = "有";
-                string wuliu = "FBA";
-                if (!html.Contains("现在有货"))
-                {
-                    youhuo = "无";
                 }
-
-                if (!html.Contains("add-to-cart"))
-                {
-                    addtocart = "无";
-                }
-
-                if (!html.Contains("亚马逊配送"))
-                {
-                    wuliu = "FBM";
-                }
-                string bigleimu = "";
-                string smallleimu = "";
-                if (leimus.Count>1)
-                {
-                    bigleimu=Regex.Replace(leimus[0].Groups[1].Value, "<[^>]+>", "").ToString();
-                    smallleimu = Regex.Replace(leimus[1].Groups[1].Value, "<[^>]+>", "").ToString();
-                }
-
-              
-                //子线程中
-                this.Invoke(new InvokeHandler(delegate ()
-                {
-                   
-                    dataGridView1.Rows[i].Cells[11].Value = bigleimu;
-                    dataGridView1.Rows[i].Cells[12].Value = smallleimu;
-                    dataGridView1.Rows[i].Cells[13].Value =sellerLink;
-                 
-                    dataGridView1.Rows[i].Cells[14].Value = youhuo;
-                    dataGridView1.Rows[i].Cells[15].Value = addtocart;
-                    dataGridView1.Rows[i].Cells[16].Value = wuliu;
-
-                }));
-
-                if (status == false)
-                    return;
 
             }
-
+            progressBar1.Value = progressBar1.Maximum;
+            MessageBox.Show("列表抓取完成");
         }
         #endregion
 
@@ -345,16 +387,17 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
         }
         private void 亚马逊抓取_Load(object sender, EventArgs e)
         {
-            driver = getdriver(true);
+            driver = getdriver(false);
             dataGridView1.DefaultCellStyle.ForeColor = Color.White;
             dataGridView1.DefaultCellStyle.BackColor = Color.DimGray;
-
+            driver.Navigate().GoToUrl("https://www.amazon.com/s?dc&k=pop%20it&qid=1635408390&ref=glow_cls&refresh=1&rh=p_n_availability%3A2661601011&rnid=2661599011");
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.DarkSlateGray;
 
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            progressBar1.Value = 0;
             dataGridView1.Rows.Clear();
             textBox1.Text = "";
         }
@@ -418,6 +461,69 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
         {
             KillProcess("chromedriver");
             KillProcess("Google Chrome");
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                string url = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                System.Diagnostics.Process.Start(url);
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("请先选择数据");
+            }
+
+        }
+
+        private void 清空数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+        }
+
+        private void 导出数据ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.DgvToTable(dataGridView1), "Sheet1", true);
+        }
+
+        private void 打开选择链接ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string url = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                System.Diagnostics.Process.Start(url);
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("请先选择数据");
+            }
+           
+        }
+
+        private void 筛选价格ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            string str = Interaction.InputBox("请输入一个数值，筛选大于此数值的产品数据", "输入价格", "30", -1, -1);
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                try
+                {
+                    double price = Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString().Replace("US$",""));
+                    if (price <= Convert.ToDouble(str))
+                    {
+                        dataGridView1.Rows.RemoveAt(i);
+                    }
+                }
+                catch (Exception)
+                {
+
+                    continue;
+                }
+
+            }
         }
     }
 }

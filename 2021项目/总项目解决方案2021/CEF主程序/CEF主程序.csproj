@@ -94,6 +94,12 @@
     <Compile Include="WinFormResourceRequestHandler.cs" />
     <Compile Include="WinFormsRequestHandler.cs" />
     <Compile Include="yaoshibang_WinFormRequestHandler.cs" />
+    <Compile Include="快递助手.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="快递助手.Designer.cs">
+      <DependentUpon>快递助手.cs</DependentUpon>
+    </Compile>
     <Compile Include="抖音评论采集.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="快递助手.resx">
+      <DependentUpon>快递助手.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="抖音评论采集.resx">
       <DependentUpon>抖音评论采集.cs</DependentUpon>
     </EmbeddedResource>
