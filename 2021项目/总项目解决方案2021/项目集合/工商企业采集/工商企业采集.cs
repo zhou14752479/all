@@ -74,7 +74,7 @@ namespace 工商企业采集
         {
             string html = "";
          
-            string COOKIE = "BDUSS=mlLeTVwRHVDcTNYRmJuRUJ1NmtIZ2VRMzY4Nzdta1p5cVBpTzdLWXpiRlRoNUJoSVFBQUFBJCQAAAAAAQAAAAEAAABio5cbemhvdTE0NzUyNDc5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFP6aGFT-mhhf;";
+            string COOKIE = "BDPPN=4c066e75c0ddb0f5b340703df1d3643b; _j54_6ae_=xlTM-TogKuTwJPccNhmEyqbZe5Px5T1rggmd; BDUSS=ctdHM0SGlzNm5GYmtsLTFOZ2l1ZmN-SDdpNGhrYWFQcmlucFdUMnFjQjUxNlZoSVFBQUFBJCQAAAAAAQAAAAEAAABio5cbemhvdTE0NzUyNDc5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHlKfmF5Sn5hWE; BAIDUID=C489197E4BB8F24873D9FE13B4F97223:FG=1";
            // COOKIE = "";
             try
             {
@@ -462,14 +462,15 @@ namespace 工商企业采集
 
 
             #endregion
+           
+            // jiance();
+            jihuoma();
             if (textBox2.Text == "")
             {
                 MessageBox.Show("请输入关键字");
                 return;
             }
             status = true;
-            // jiance();
-            jihuoma();
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -711,7 +712,7 @@ namespace 工商企业采集
                             str = method.Base64Decode(Encoding.Default, str);
                             string index = str.Remove(str.Length - 16, 16);
                             string time = str.Substring(str.Length - 10, 10);
-                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 200)  //200秒内有效
+                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                             {
                                 if (index == "er" || index=="san")//美团一年
                                 {
@@ -721,6 +722,14 @@ namespace 工商企业采集
                                     MessageBox.Show("激活成功");
                                     return;
                                 }
+                            }
+                            if (index == "si")//试用一天
+                            {
+
+                                IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
+
+                                MessageBox.Show("激活成功");
+                                return;
                             }
                         }
                         MessageBox.Show("激活码错误");
@@ -740,7 +749,7 @@ namespace 工商企业采集
                         str = method.Base64Decode(Encoding.Default, str);
                         string index = str.Remove(str.Length - 16, 16);
                         string time = str.Substring(str.Length - 10, 10);
-                        if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 200)  //200秒内有效
+                        if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                         {
                             if (index == "er" || index == "san")//美团一年
                             {
@@ -749,6 +758,14 @@ namespace 工商企业采集
                                 MessageBox.Show("激活成功");
                                 return;
                             }
+                        }
+                        if (index == "si")//试用一天
+                        {
+
+                            IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
+
+                            MessageBox.Show("激活成功");
+                            return;
                         }
                     }
                     MessageBox.Show("激活码错误");

@@ -261,13 +261,14 @@ namespace 点评套餐获取
                     string aurl = "https://m.dianping.com/arche-product-universal-web-detail/dzpssr/beauty-product.html?latitude=33.94110&longitude=118.24797&productid=" + items[j].Groups[1].Value + "&channelofurl=1&sputypeofurl=850&shopuuid=" + shopid + "&product=dpapp&pushEnabled=0";
 
                     string item = GetUrl(aurl);
-                    string cate = Regex.Match(itemNames[j].Groups[1].Value, @"\[([\s\S]*?)\]").Groups[1].Value;
-
+                    // string cate = Regex.Match(itemNames[j].Groups[1].Value, @"\[([\s\S]*?)\]").Groups[1].Value;
+                   
                     string name = Regex.Match(item, @"{""title"":""([\s\S]*?)""").Groups[1].Value.Trim().Replace("u002F", "");
                     string price = Regex.Match(item, @"marketPrice"":([\s\S]*?),").Groups[1].Value.Trim();
                     string dealprice = Regex.Match(item, @"""price"":([\s\S]*?),").Groups[1].Value.Trim();
                     string salecount = Regex.Match(item, @"""saleCount"":([\s\S]*?),").Groups[1].Value.Trim();
 
+                    string cate= Regex.Match(item, @"""goodsName"":""([\s\S]*?)""").Groups[1].Value.Trim().Replace("u002F", "");
                     if (cate.Trim() == "")
                     {
                         if (name.Contains("毛"))

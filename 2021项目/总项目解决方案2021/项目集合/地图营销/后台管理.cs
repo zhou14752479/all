@@ -24,6 +24,9 @@ namespace 地图营销
 
         //string type = "shangxueba";
 
+
+        string domail = "sxb.xfjf12123.com";
+        //string domail = "www.acaiji.com/shangxueba";
         string type = "shangxueba";
         private void 后台管理_Load(object sender, EventArgs e)
         {
@@ -76,7 +79,7 @@ namespace 地图营销
         public void getall()
         {
             listView1.Items.Clear();
-            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=getall", "utf-8");
+            string html = method.GetUrl("http://"+ domail + "/shangxueba.php?method=getall", "utf-8");
            
             MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
             MatchCollection usernames = Regex.Matches(html, @"""username"":""([\s\S]*?)""");
@@ -120,7 +123,7 @@ namespace 地图营销
             }
 
             decimal days = numericUpDown1.Value + (numericUpDown2.Value/24);
-            string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username="+user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+days+ "&type=" +type, "utf-8");
+            string html = method.GetUrl("http://" + domail + "/shangxueba.php?method=register&username=" + user_txt.Text.Trim()+"&password="+pass_txt.Text.Trim()+"&days="+days+ "&type=" +type, "utf-8");
            
             MessageBox.Show(html.Trim());
             user_txt.Text = "";
@@ -134,7 +137,7 @@ namespace 地图营销
             
             for (int i = 0; i < listView1.CheckedItems.Count; i++)
             {
-                string url = "http://www.acaiji.com/shangxueba/shangxueba.php?method=del&username="+ listView1.CheckedItems[i].SubItems[1].Text.Trim();
+                string url = "http://" + domail + "/shangxueba.php?method=del&username=" + listView1.CheckedItems[i].SubItems[1].Text.Trim();
                 string html = method.GetUrl(url, "utf-8");
               
                 MessageBox.Show(html.Trim());
@@ -153,7 +156,7 @@ namespace 地图营销
             {
                 if(Convert.ToDateTime(listView1.Items[i].SubItems[3].Text)<DateTime.Now)
                 {
-                    string url = "http://www.acaiji.com/shangxueba/shangxueba.php?method=del&username=" + listView1.Items[i].SubItems[1].Text.Trim();
+                    string url = "http://" + domail + "/shangxueba.php?method=del&username=" + listView1.Items[i].SubItems[1].Text.Trim();
                     string html = method.GetUrl(url, "utf-8");
                 }
                
@@ -212,17 +215,11 @@ namespace 地图营销
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(delete);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            delete();
 
-        
-              
-              
-            
+
+
+
         }
 
         ChromiumWebBrowser browser;
@@ -322,7 +319,8 @@ namespace 地图营销
             if (cookies != "")
             {
                 textBox1.Text = cookies;
-                string url = "http://www.acaiji.com/shangxueba/shangxueba.php?method=setcookie";
+             
+                string url = "http://" + domail + "/shangxueba.php?method=setcookie";
                 string postdata = "cookie=" + System.Web.HttpUtility.UrlEncode(cookies);
                 string msg = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded", "");
                 MessageBox.Show(msg.Trim());
@@ -343,12 +341,7 @@ namespace 地图营销
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(autodelete);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            autodelete();
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -379,7 +372,7 @@ namespace 地图营销
                     ListViewItem lv1 = listView2.Items.Add(value); //使用Listview展示数据
                     lv1.SubItems.Add(value);
                     decimal days = numericUpDown3.Value + (numericUpDown4.Value / 24);
-                    string html = method.GetUrl("http://www.acaiji.com/shangxueba/shangxueba.php?method=register&username=" + value + "&password=" + value + "&days=" + days + "&type=" + type, "utf-8");
+                    string html = method.GetUrl("http://" + domail + "/shangxueba.php?method=register&username=" + value + "&password=" + value + "&days=" + days + "&type=" + type, "utf-8");
                 }
 
 

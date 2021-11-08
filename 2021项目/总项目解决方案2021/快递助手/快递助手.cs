@@ -164,10 +164,10 @@ namespace 快递助手
             return ahtml;
         }
 
-        List<string> list = new List<string>();
+       
         public void run()
         {
-
+            List<string> list = new List<string>();
             //已发货
             //WAIT_BUYER_CONFIRM_GOODS
 
@@ -234,12 +234,13 @@ namespace 快递助手
                                     string address = Regex.Match(mobilehtml, @"""decryState"":""([\s\S]*?)""").Groups[1].Value + Regex.Match(mobilehtml, @"""decryCity"":""([\s\S]*?)""").Groups[1].Value + Regex.Match(mobilehtml, @"""decryDistrict"":""([\s\S]*?)""").Groups[1].Value + Regex.Match(mobilehtml, @"""decryAddressDetail"":""([\s\S]*?)""").Groups[1].Value;
                                     string decryReceiver = Regex.Match(mobilehtml, @"""decryReceiver"":""([\s\S]*?)""").Groups[1].Value;
                                     string decryMobile = Regex.Match(mobilehtml, @"""decryMobile"":""([\s\S]*?)""").Groups[1].Value;
-                                    list.Add(decryReceiver + decryMobile + address);
-                                    if(list.Contains(decryReceiver + decryMobile + address))
+                                   
+                                    if(list.Contains(skuPropertiesNames[a].Groups[1].Value.Trim()+decryReceiver + decryMobile + address))
                                     {
                                         MessageBox.Show("完成");
                                         return;
                                     }
+                                    list.Add(skuPropertiesNames[a].Groups[1].Value.Trim()+decryReceiver + decryMobile + address);
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                                     lv1.SubItems.Add(skuPropertiesNames[a].Groups[1].Value.Trim());
                                     lv1.SubItems.Add(nums[a].Groups[1].Value.Trim());
@@ -259,14 +260,14 @@ namespace 快递助手
                                     string address = Regex.Match(mobilehtml, @"""decryState"":""([\s\S]*?)""").Groups[1].Value + Regex.Match(mobilehtml, @"""decryCity"":""([\s\S]*?)""").Groups[1].Value + Regex.Match(mobilehtml, @"""decryDistrict"":""([\s\S]*?)""").Groups[1].Value + Regex.Match(mobilehtml, @"""decryAddressDetail"":""([\s\S]*?)""").Groups[1].Value;
                                     string decryReceiver = Regex.Match(mobilehtml, @"""decryReceiver"":""([\s\S]*?)""").Groups[1].Value;
                                     string decryMobile = Regex.Match(mobilehtml, @"""decryMobile"":""([\s\S]*?)""").Groups[1].Value;
-                                    list.Add(decryReceiver + decryMobile + address);
-                                    if (list.Contains(decryReceiver + decryMobile + address))
+                                 
+                                    if (list.Contains(skuPropertiesNames[a].Groups[1].Value.Trim()+decryReceiver + decryMobile + address))
                                     {
                                         MessageBox.Show("完成");
                                         return;
                                     }
 
-
+                                    list.Add(skuPropertiesNames[a].Groups[1].Value.Trim()+decryReceiver + decryMobile + address);
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                                     lv1.SubItems.Add(skuPropertiesNames[a].Groups[1].Value.Trim());
                                     lv1.SubItems.Add(nums[a].Groups[1].Value.Trim());

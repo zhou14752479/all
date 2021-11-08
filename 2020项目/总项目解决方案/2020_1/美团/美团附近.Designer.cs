@@ -35,6 +35,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -60,7 +61,6 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -110,10 +110,10 @@
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
             this.linkLabel1.Location = new System.Drawing.Point(12, 13);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(244, 27);
+            this.linkLabel1.Size = new System.Drawing.Size(215, 27);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "美团商家采集系统";
+            this.linkLabel1.Text = "思忆美团大数据";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // toolStripStatusLabel1
@@ -147,6 +147,18 @@
             this.panel1.TabIndex = 17;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Font = new System.Drawing.Font("宋体", 11F);
+            this.linkLabel5.Location = new System.Drawing.Point(663, 41);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(112, 15);
+            this.linkLabel5.TabIndex = 5;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "点击购买正式版";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
             // 
             // button1
             // 
@@ -373,18 +385,6 @@
             this.checkBox2.TabIndex = 112;
             this.checkBox2.Text = "去除固话";
             this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Font = new System.Drawing.Font("宋体", 11F);
-            this.linkLabel5.Location = new System.Drawing.Point(663, 41);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(112, 15);
-            this.linkLabel5.TabIndex = 5;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "点击购买正式版";
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
             // 
             // 美团附近
             // 

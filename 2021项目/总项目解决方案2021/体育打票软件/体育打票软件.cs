@@ -155,7 +155,7 @@ namespace 体育打票软件
                 ahtml = fc.getfullname_zuqiu(ahtml);
                 ahtml = fc.getfullname_lanqiu(ahtml);
             }
-            //textBox1.Text = html;
+           // textBox1.Text = html;
             html=fc.getfullname_zuqiu(html);
             html = fc.getfullname_lanqiu(html);
           
@@ -774,9 +774,12 @@ namespace 体育打票软件
 
                     fc.getdata(Report, 体育打票软件.html, 体育打票软件.ahtml, guoguan);
 
-                    //PreviewForm theForm = new PreviewForm();
-                    //theForm.AttachReport(Report);
-                    //theForm.ShowDialog();
+                    if (体育打票软件.tiaoshi == "1")
+                    {
+                        PreviewForm theForm = new PreviewForm();
+                        theForm.AttachReport(Report);
+                        theForm.ShowDialog();
+                    }
 
 
                     Report.Print(false);
@@ -919,9 +922,12 @@ namespace 体育打票软件
 
                     fc.getdata_lanqiu(Report, 体育打票软件.html, 体育打票软件.ahtml, guoguan);
 
-                    //PreviewForm theForm = new PreviewForm();
-                    //theForm.AttachReport(Report);
-                    //theForm.ShowDialog();
+                    if (体育打票软件.tiaoshi == "1")
+                    {
+                        PreviewForm theForm = new PreviewForm();
+                        theForm.AttachReport(Report);
+                        theForm.ShowDialog();
+                    }
 
 
                     Report.Print(false);
@@ -1073,9 +1079,12 @@ namespace 体育打票软件
                         string time = DateTime.Now.AddSeconds(10*i).ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
                        Report.ParameterByName("time").AsString = time;
 
-                        //PreviewForm theForm = new PreviewForm();
-                        //theForm.AttachReport(Report);
-                        //theForm.ShowDialog();
+                        if (体育打票软件.tiaoshi == "1")
+                        {
+                            PreviewForm theForm = new PreviewForm();
+                            theForm.AttachReport(Report);
+                            theForm.ShowDialog();
+                        }
 
 
                         Report.Print(false);
@@ -1231,9 +1240,12 @@ namespace 体育打票软件
                         string time = DateTime.Now.AddSeconds(10 * i).ToString("yy/MM/dd HH:mm:ss").Replace("-", "/");
                         Report.ParameterByName("time").AsString = time;
 
-                        //PreviewForm theForm = new PreviewForm();
-                        //theForm.AttachReport(Report);
-                        //theForm.ShowDialog();
+                        if (体育打票软件.tiaoshi == "1")
+                        {
+                            PreviewForm theForm = new PreviewForm();
+                            theForm.AttachReport(Report);
+                            theForm.ShowDialog();
+                        }
 
 
                         Report.Print(false);
@@ -1540,9 +1552,12 @@ namespace 体育打票软件
                     string jiexi_jine = Regex.Match(piaos[a], @"票([\s\S]*?)元").Groups[1].Value;
                     fc.getdata_500(Report, 体育打票软件.html, 体育打票软件.ahtml,jiexi_jine.Replace(".00",""),beishu);
 
-                    //PreviewForm theForm = new PreviewForm();
-                    //theForm.AttachReport(Report);
-                    //theForm.ShowDialog();
+                    if (体育打票软件.tiaoshi == "1")
+                    {
+                        PreviewForm theForm = new PreviewForm();
+                        theForm.AttachReport(Report);
+                        theForm.ShowDialog();
+                    }
 
 
                     Report.Print(false);
@@ -1633,9 +1648,12 @@ namespace 体育打票软件
                     string jiexi_jine = Regex.Match(piaos[a], @"票([\s\S]*?)元").Groups[1].Value;
                     fc.getdata_500_lanqiu(Report, 体育打票软件.html, 体育打票软件.ahtml, jiexi_jine.Replace(".00", ""), beishu);
 
-                    //PreviewForm theForm = new PreviewForm();
-                    //theForm.AttachReport(Report);
-                    //theForm.ShowDialog();
+                    if (体育打票软件.tiaoshi == "1")
+                    {
+                        PreviewForm theForm = new PreviewForm();
+                        theForm.AttachReport(Report);
+                        theForm.ShowDialog();
+                    }
 
                     Report.Print(false);
 
@@ -1886,11 +1904,9 @@ namespace 体育打票软件
         }
 
         private void button5_Click(object sender, EventArgs e)
-        { 
+        {
             // Report.Print(true);
             //Report.PrintPreview(true);
-
-            
 
          
             gethtml();
@@ -2043,6 +2059,21 @@ namespace 体育打票软件
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+
+       public static string tiaoshi = "0";
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked==true)
+            {
+                tiaoshi = "1";
+            }
+            if (checkBox1.Checked == false)
+            {
+                tiaoshi = "0";
+            }
+
         }
     }
 }

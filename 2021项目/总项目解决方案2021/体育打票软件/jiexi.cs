@@ -229,8 +229,9 @@ namespace 体育打票软件
                     else if (a2.Contains("胜胜") || a2.Contains("胜平") || a2.Contains("胜负") || a2.Contains("平胜") || a2.Contains("平平") || a2.Contains("平负") || a2.Contains("负胜") || a2.Contains("负平") || a2.Contains("负负"))
                     {
                         fangshi = "竞彩足球半全场胜平负";
-                      
-                    }
+                    a2 = a2.Replace("(", "").Replace(")", "");
+
+                }
                 else if (a2.Contains("胜其") || a2.Contains("平其") || a2.Contains("负其"))
                 {
                     fangshi = "竞彩足球比分";
@@ -300,10 +301,13 @@ namespace 体育打票软件
 
 
                 // Report.PrintPreview(true);
-
-                //PreviewForm theForm = new PreviewForm();
-                //theForm.AttachReport(Report);
-                //theForm.ShowDialog();
+              if(体育打票软件.tiaoshi=="1")
+                {
+                    PreviewForm theForm = new PreviewForm();
+                    theForm.AttachReport(Report);
+                    theForm.ShowDialog();
+                }
+                
 
 
                 Report.Print(false);

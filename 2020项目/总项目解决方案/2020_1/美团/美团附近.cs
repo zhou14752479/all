@@ -1219,12 +1219,20 @@ namespace 美团
                             str = method.Base64Decode(Encoding.Default, str);
                             string index = str.Remove(str.Length - 16, 16);
                             string time = str.Substring(str.Length - 10, 10);
-                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 200)  //200秒内有效
+                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                             {
                                 if (index == "yi" || index=="san")//美团一年
                                 {
                                    
                                     IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
+
+                                    MessageBox.Show("激活成功");
+                                    return;
+                                }
+                                if (index == "si")//试用一天
+                                {
+
+                                    IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
 
                                     MessageBox.Show("激活成功");
                                     return;
@@ -1248,11 +1256,19 @@ namespace 美团
                         str = method.Base64Decode(Encoding.Default, str);
                         string index = str.Remove(str.Length - 16, 16);
                         string time = str.Substring(str.Length - 10, 10);
-                        if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 200)  //200秒内有效
+                        if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                         {
                             if (index == "yi" || index == "san")//美团一年
                             {
                                 IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
+
+                                MessageBox.Show("激活成功");
+                                return;
+                            }
+                            if (index == "si")//试用一天
+                            {
+
+                                IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
 
                                 MessageBox.Show("激活成功");
                                 return;
