@@ -58,7 +58,8 @@ namespace 淘宝列表页
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Replace("\"","").Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                for (int i = 0; i < text.Length; i++)
+                MessageBox.Show(text.Length.ToString());
+                for (int i = 1; i < text.Length; i++)
                 {
                     while (this.zanting == false)
                     {
@@ -82,36 +83,44 @@ namespace 淘宝列表页
                             string url = "https://m.1688.com/offer_search/-6D7033.html?keywords=" + value[1];
                             driver.Navigate().GoToUrl(url);
                             Thread.Sleep(1000);
-                            IList<IWebElement> listOption = driver.FindElements(By.ClassName("item-link"));
-                            foreach (var item in listOption)
-                            {
-                                if (item.GetAttribute("href").Contains(value[0]))
-                                {
-                                    Thread.Sleep(Convert.ToInt32(textBox4.Text)*1000);
-                                    //MessageBox.Show(item.TagName);
-                                    //MessageBox.Show(item.Text);
-                                    // MessageBox.Show(item.GetAttribute("href"));
-                                    // document.getElementById(“test”).scrollIntoView();
-                                    Actions actions = new Actions(driver);
-                                    actions.MoveToElement(item);
-                                    actions.Perform();
-                                    Thread.Sleep(1000);
-                                    item.Click();
+                            //IList<IWebElement> listOption = driver.FindElements(By.ClassName("item-link"));
+                            //foreach (var item in listOption)
+                            //{
+                            //    if (item.GetAttribute("href").Contains(value[0]))
+                            //    {
+                            //        Thread.Sleep(Convert.ToInt32(textBox4.Text)*1000);
+                            //        //MessageBox.Show(item.TagName);
+                            //        //MessageBox.Show(item.Text);
+                            //        // MessageBox.Show(item.GetAttribute("href"));
+                            //        // document.getElementById(“test”).scrollIntoView();
+                            //        Actions actions = new Actions(driver);
+                            //        actions.MoveToElement(item);
+                            //        actions.Perform();
+                            //        Thread.Sleep(1000);
+                            //        item.Click();
 
-                                }
+                            //    }
 
-                            }
+                            //}
 
-                            driver.Navigate().GoToUrl(value[2]);
+                            //driver.Navigate().GoToUrl(value[2]);
 
                             lv1.SubItems.Add("成功");
-                           // ADSLHelper.Disconnect("宽带连接");
-                                // ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim()
-                                Thread.Sleep(Convert.ToInt32(textBox5.Text) * 1000);
-                                ADSL.RASDisplay ras = new ADSL.RASDisplay();
-                                ras.Disconnect();//断开连接
-                                Thread.Sleep(3000);
-                                ras.Connect("ADSL");//重新拨号
+
+
+                            // ADSLHelper.Disconnect("宽带连接");
+                            // ADSLHelper.Connect("宽带连接", textBox2.Text.Trim(), textBox3.Text.Trim()
+
+                            Thread.Sleep(Convert.ToInt32(textBox5.Text) * 1000);
+
+
+                            //ADSL.RASDisplay ras = new ADSL.RASDisplay();
+                            //    ras.Disconnect();//断开连接
+                            //    Thread.Sleep(3000);
+                            //    ras.Connect("ADSL");//重新拨号
+
+
+
                             Thread.Sleep(Convert.ToInt32(textBox6.Text) * 1000);
 
 

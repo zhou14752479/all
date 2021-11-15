@@ -106,6 +106,12 @@
     <Compile Include="唯品会登录.Designer.cs">
       <DependentUpon>唯品会登录.cs</DependentUpon>
     </Compile>
+    <Compile Include="币种价格对比.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="币种价格对比.Designer.cs">
+      <DependentUpon>币种价格对比.cs</DependentUpon>
+    </Compile>
     <Compile Include="抖音评论采集.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="唯品会登录.resx">
       <DependentUpon>唯品会登录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="币种价格对比.resx">
+      <DependentUpon>币种价格对比.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="抖音评论采集.resx">
       <DependentUpon>抖音评论采集.cs</DependentUpon>

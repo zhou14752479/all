@@ -1250,7 +1250,8 @@ namespace 网站接口
             {
                 if (wangwang != "")
                 {
-                    string url = "http://139.159.141.200/app/superscanPH/opQuery.jsp?m=queryAliim&aliim=" + wangwang;
+                    //  string url = "http://139.159.141.200/app/superscanPH/opQuery.jsp?m=queryAliim&aliim=" + wangwang;
+                    string url = "http://app.tk1788.com/app/superscanPH/opQuery.jsp?m=queryAliim&aliim="+wangwang;
                     string html= GetUrl(url,"utf-8").Trim();
                     if (!html.Contains("baseImg"))
                     {
@@ -1284,6 +1285,7 @@ namespace 网站接口
                     string registDay = Regex.Match(result, @"淘龄([\s\S]*?)天").Groups[1].Value.Replace("\"","").Replace("{", "").Replace("}", "").Replace(":", "").Replace("words","").Replace(",", "").Replace("约", "");
 
                     string json = "{\"result\":\"正常\",\"sex\":\"" + sex + "\",\"buyerCre\":\"" + buyerCre + "\",\"sellerCredit\":\"" + sellerCredit + "\",\"downNum\":" + downNum + ",\"registDay\":\"" + registDay + "\"}";
+                    //MessageBox.Show(json);
                     return json;
 
                 }

@@ -79,7 +79,7 @@ namespace 美团
 
         }
         #region GET请求
-        public static string meituan_GetUrl(string Url)
+        public string meituan_GetUrl(string Url)
         {
             try
             {
@@ -90,7 +90,8 @@ namespace 美团
                 //headers.Add("uuid: E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
                 headers.Add("mtgsig: {\"a1\":\"1.1\",\"a2\":1634620588257,\"a3\":\"35y5z0zvw6yx5z4418uyu2uyvwx65w0782x076xu37688988u426z26y\",\"a4\":\"bc19900376f1b535039019bc35b5f176e250e32ad7e5125c\",\"a5\":\"JAa73Rfx72tnXVeYw8MDLxPZTTTerl4Af4me1ULhxiBetB6AXdLwp2+LjByyFY4HvTVzwiTHo+Vs58iZE6nq4BmhF0KabSOZyOlt6Xc0hYGOghvfxeOmtWIibqgvO9QIKazOwEWESNgYcAcAsgCYccIJ0ilyWJqgc+qG5RPNTQAx8j2vzKgSEcAhtM/xXMqw4IjqrBHST/WVB9/VV7KQ4vJj1ox1p6Dt\",\"a6\":\"w1.00tlrgKaQ8nF6hTsiCnWypNRjsnhPgjiZt1klOT118rN8SWnNfMJ4xKgbXs6lejv0g1y1GwSzNFDnVx0kOF2VQu5Ki7qmfklvvTwvNHxM3oVmA0pjXjMGAP1+0Fn59TSCPUyqbs9iBKzi/lP75X+7fQ368GCr6dk9ubOsKNE+l1A8OTEBFEovMQxgHRLctnAIjrJKrB9+xNS6v6D77d28saJDOUx5NjRu7ojTyv+06R8IpZcZDIphyvQdruyN2m3UEO8iGKbUxkAB9HWk2hnq5yMM3kim+Ai/OV/raiKcm05hgl+dCoHbvrB3zky80QUHO2gyiTQwSGLHw0DFUANPKhsCFgVmK9sYG0MlOafqQj0fyuNcK/MNjwNGtuOb/8gQBNJ8O0hbV1yS+VUktM8WJqMvg+DSmFX4zUU0RVS6wSZEscUjJ8MroYbdkHET6yqeP5HN44eA2F9ZHa2FkRa6apP+XGoAg7XoaQj518PQjgCDwbHD0RwskPolSnJ31BdoOWlSLDXB3BVxlOvzpQtKnuqt077PyOmXS4mXCJkxOURnd9elQz7RTL1aTP14KvP5RaZmvU3PaGEwhB1DfLvP6CfAwurTGMSXEJ+zMSfc5KXl+CIlqPSZYGhoj9rKg/XJB89nMlNmgIqKwK8cFJ7J4hEC7AEtoRBB6ll3Zh8OBDqZ+CbuTFadF3U4ABbsmjQQfqgof3dGTZJQVpBwL593Zx8PzHDveZm9erO0okGu1Sg=\",\"a7\":\"wxde8ac0a21135c07d\",\"x0\":3,\"d1\":\"a202f030aa475f308799f76cefc1ad7b\"}");
                 headers.Add("openIdCipher: AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADhq+X5+N+Cjq/cZyyWQkbVlw1zTBRltsV8Tsu1RC6Eq82jKTGdFzlq8MpEWZIJ53XNCHlmCUGib7Q==");
-
+                //WebProxy proxy = new WebProxy(textBox3.Text.Trim());
+                //request.Proxy = proxy;
                 request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
@@ -577,12 +578,18 @@ namespace 美团
                                 MatchCollection uids = Regex.Matches(html, @"""shopId"":""([\s\S]*?)""");
 
                              
-                               
+                               if(html.Trim()=="")
+                                {
+                                    MessageBox.Show("ip被屏蔽");
+                                    continue;
+                                }
                               
                                 if (uids.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
                                 {
-                                    Thread.Sleep(2000);
-                                    continue;
+                                    break;
+                                   // Thread.Sleep(2000);
+                                    //continue;
+
                                 }
 
 
@@ -642,7 +649,7 @@ namespace 美团
                                             }
                                             if (status == false)
                                                 return;
-                                            Thread.Sleep(500);
+                                           Thread.Sleep(500);
                                         }
                                     }
                                    
@@ -1225,7 +1232,7 @@ namespace 美团
                                 {
                                    
                                     IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
-
+                                    jihuo = true;
                                     MessageBox.Show("激活成功");
                                     return;
                                 }
@@ -1261,7 +1268,7 @@ namespace 美团
                             if (index == "yi" || index == "san")//美团一年
                             {
                                 IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
-
+                                jihuo = true;
                                 MessageBox.Show("激活成功");
                                 return;
                             }

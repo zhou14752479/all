@@ -81,9 +81,7 @@ namespace 网站接口
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            Thread t = new Thread(ceshi);
-            t.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            md.getwangwang("zkg852266010");
         }
     }
 }

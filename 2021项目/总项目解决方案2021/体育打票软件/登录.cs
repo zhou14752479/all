@@ -43,5 +43,10 @@ namespace 体育打票软件
             this.textBox2.PasswordChar =true ? new char() : '*';
 
         }
+
+        private void 登录_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -66,8 +66,8 @@ namespace 客户美团
         Dictionary<string, string> cn2dics = new Dictionary<string, string>();
         public void getcitys()
         {
-            string url = "http://gd.cn2che.com/javascript/city/regionconfig.js";
-
+            //string url = "http://gd.cn2che.com/javascript/city/regionconfig.js";
+            string url = "http://www.cn2che.com/javascript/city/regionlinkconfig.js";
             string html = method.GetUrl(url, "utf-8");
             MatchCollection names = Regex.Matches(html, @"{""id"":([\s\S]*?),""name"":""([\s\S]*?)""");
             for (int i = 0; i < names.Count; i++)

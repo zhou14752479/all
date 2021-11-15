@@ -49,16 +49,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +69,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(274, 21);
             this.textBox1.TabIndex = 252;
-            this.textBox1.Text = "C:\\Users\\zhou\\Desktop\\搜索商品和商品ID.csv";
             // 
             // button1
             // 
@@ -256,42 +255,31 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "间隔设置";
             // 
-            // linkLabel1
+            // label8
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(618, 9);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(77, 12);
-            this.linkLabel1.TabIndex = 329;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "手动测试拨号";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(262, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(17, 12);
+            this.label8.TabIndex = 335;
+            this.label8.Text = "秒";
             // 
-            // textBox4
+            // textBox6
             // 
-            this.textBox4.Location = new System.Drawing.Point(78, 22);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(27, 21);
-            this.textBox4.TabIndex = 328;
-            this.textBox4.Text = "2";
+            this.textBox6.Location = new System.Drawing.Point(229, 19);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(27, 21);
+            this.textBox6.TabIndex = 334;
+            this.textBox6.Text = "2";
             // 
-            // label4
+            // label9
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 12);
-            this.label4.TabIndex = 327;
-            this.label4.Text = "搜索后停留：";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(111, 25);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 329;
-            this.label5.Text = "秒点击";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(156, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 12);
+            this.label9.TabIndex = 333;
+            this.label9.Text = "拨号后停留：";
             // 
             // label6
             // 
@@ -319,31 +307,42 @@
             this.label7.TabIndex = 330;
             this.label7.Text = "点击后停留：";
             // 
-            // label8
+            // label5
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(262, 23);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(17, 12);
-            this.label8.TabIndex = 335;
-            this.label8.Text = "秒";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(111, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 329;
+            this.label5.Text = "秒点击";
             // 
-            // textBox6
+            // textBox4
             // 
-            this.textBox6.Location = new System.Drawing.Point(229, 19);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(27, 21);
-            this.textBox6.TabIndex = 334;
-            this.textBox6.Text = "2";
+            this.textBox4.Location = new System.Drawing.Point(78, 22);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(27, 21);
+            this.textBox4.TabIndex = 328;
+            this.textBox4.Text = "2";
             // 
-            // label9
+            // label4
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(156, 22);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 12);
-            this.label9.TabIndex = 333;
-            this.label9.Text = "拨号后停留：";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 12);
+            this.label4.TabIndex = 327;
+            this.label4.Text = "搜索后停留：";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(618, 9);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(77, 12);
+            this.linkLabel1.TabIndex = 329;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "手动测试拨号";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // 模拟点击1688
             // 

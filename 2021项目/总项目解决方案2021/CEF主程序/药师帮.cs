@@ -67,7 +67,8 @@ namespace CEF主程序
         private void 药师帮_Load(object sender, EventArgs e)
         {
             //browser = new ChromiumWebBrowser("https://dian.ysbang.cn/index.html#/indexContent?searchKey=&_t=1633924287163");
-            browser = new ChromiumWebBrowser("https://passport.vip.com/login?src=https%3A%2F%2Fdetail.vip.com%2Fdetail-1711548730-6919483919008310362.html");
+            //browser = new ChromiumWebBrowser("https://passport.vip.com/login?src=https%3A%2F%2Fdetail.vip.com%2Fdetail-1711548730-6919483919008310362.html");
+            browser = new ChromiumWebBrowser("https://ascendex.com/zh-cn/basic/cashtrade-spottrading/usdt/cns");
             Control.CheckForIllegalCrossThreadCalls = false;
       splitContainer1.Panel2.Controls.Add(browser);
 
@@ -151,15 +152,42 @@ namespace CEF主程序
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //yaoshibang_WinFormsRequestHandler winr = new yaoshibang_WinFormsRequestHandler();
-            //browser.RequestHandler = winr;//request请求的具体实现
-            //winr.getdata = new yaoshibang_WinFormsRequestHandler.GetData(getdata);
-            browser.Load("https://detail.vip.com/detail-1711548730-6919483919008310362.html");
+            ////yaoshibang_WinFormsRequestHandler winr = new yaoshibang_WinFormsRequestHandler();
+            ////browser.RequestHandler = winr;//request请求的具体实现
+            ////winr.getdata = new yaoshibang_WinFormsRequestHandler.GetData(getdata);
+            //browser.Load("https://detail.vip.com/detail-1711548730-6919483919008310362.html");
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append("var btn =document.getElementsByClassName(\"finalPrice_subPriceTips\");");
+            //sb.Append("sub[0].click();");
+            ////browser.GetBrowser().MainFrame.EvaluateScriptAsync("alert(document.cookie)");
+            //// this.Hide();
+
+            Control.CheckForIllegalCrossThreadCalls = false;
+
+
+
             StringBuilder sb = new StringBuilder();
-            sb.Append("var btn =document.getElementsByClassName(\"finalPrice_subPriceTips\");");
-            sb.Append("sub[0].click();");
-            //browser.GetBrowser().MainFrame.EvaluateScriptAsync("alert(document.cookie)");
-           // this.Hide();
+            sb.AppendLine("function tempFunction() {");
+            //sb.AppendLine(" return document.body.innerHTML; "); 
+            sb.AppendLine(" return document.getElementsByTagName('body')[0].outerHTML; ");
+            sb.AppendLine("}");
+            sb.AppendLine("tempFunction();");
+            var task01 = browser.GetBrowser().GetFrame(browser.GetBrowser().GetFrameNames()[0]).EvaluateScriptAsync(sb.ToString());
+            task01.ContinueWith(t =>
+            {
+                if (!t.IsFaulted)
+                {
+                    var response = t.Result;
+                    if (response.Success == true)
+                    {
+                        if (response.Result != null)
+                        {
+                            string resultStr = response.Result.ToString();
+                            textBox1.Text = resultStr;
+                        }
+                    }
+                }
+            });
 
         }
     }

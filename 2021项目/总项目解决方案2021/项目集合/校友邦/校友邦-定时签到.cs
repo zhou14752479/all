@@ -37,25 +37,37 @@ namespace 校友邦
             string[] text = texts.Split(new string[] { "\n" }, StringSplitOptions.None);
             for (int i = 0; i < text.Length; i++)
             {
-
+              
                 string[] value = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
-
-                if (value.Length > 2)
+                ListViewItem lv1 = listView1.Items.Add(value[0].Trim()); //使用Listview展示数据    
+              
+                try
                 {
 
-                    ListViewItem lv1 = listView1.Items.Add(value[0].Trim()); //使用Listview展示数据                                                     
-                    lv1.SubItems.Add(value[1].Trim());
-                    lv1.SubItems.Add(value[2].Trim());
-                    lv1.SubItems.Add(value[3].Trim());
-                    lv1.SubItems.Add(value[4].Trim());
-                    lv1.SubItems.Add(value[5].Trim());
-                    lv1.SubItems.Add(value[6].Trim());
+                    listView1.Items[i].BackColor = Color.White;
+                    if (value.Length > 2)
+                    {
+
+                                                                       
+                        lv1.SubItems.Add(value[1].Trim());
+                        lv1.SubItems.Add(value[2].Trim());
+                        lv1.SubItems.Add(value[3].Trim());
+                        lv1.SubItems.Add(value[4].Trim());
+                        lv1.SubItems.Add(value[5].Trim());
+                        lv1.SubItems.Add(value[6].Trim());
 
 
-                    lv1.SubItems.Add("");
-                    lv1.SubItems.Add("");
-                    int shengyu_day = DateDiff(DateTime.Now, Convert.ToDateTime(value[6].Trim()));
-                    lv1.SubItems.Add(shengyu_day.ToString());
+                        lv1.SubItems.Add("");
+                        lv1.SubItems.Add("");
+                        int shengyu_day = DateDiff(DateTime.Now, Convert.ToDateTime(value[6].Trim()));
+                        lv1.SubItems.Add(shengyu_day.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lv1.BackColor = Color.Red;
+                    textBox2.Text = DateTime.Now.ToString()+ ex.ToString();
+                    continue;
                 }
             }
             sr.Close();  //只关闭流
@@ -134,15 +146,7 @@ namespace 校友邦
                         continue;
                     }
 
-                    if (end.Contains("success"))  //判断是否【结束签到】                 
-                    {
-                        continue;
-                    }
-
-                    if (start.Contains("success"))  //判断是否【开始签到】                 
-                    {
-                        continue;
-                    }
+                   
                    
                 
                     string[] text = timecisu.Split(new string[] { "," }, StringSplitOptions.None);
@@ -194,8 +198,11 @@ namespace 校友邦
                         }
                         if(DateTime.Now<Convert.ToDateTime(text[2]) || DateTime.Now > Convert.ToDateTime(text[3]))
                         {
-                            listView1.Items[i].SubItems[8].Text = "结束签到时间未满足";
-                            continue;
+                            if (!end.Contains("success"))
+                            {
+                                listView1.Items[i].SubItems[8].Text = "结束签到时间未满足";
+                                continue;
+                            }
                         }
 
                     }
@@ -205,7 +212,10 @@ namespace 校友邦
                         fc.status = "2";
                         if (DateTime.Now < Convert.ToDateTime(text[0]) || DateTime.Now > Convert.ToDateTime(text[1]))
                         {
-                            listView1.Items[i].SubItems[7].Text = "开始签到时间未满足";
+                            if (!start.Contains("success"))
+                            {
+                                listView1.Items[i].SubItems[7].Text = "开始签到时间未满足";
+                            }
                             continue;
                         }
                        
@@ -227,26 +237,29 @@ namespace 校友邦
                         string planid = fc.getplanid(cookie);
                         string traineeid = fc.gettraineeId(planid, cookie);
 
-                        string msg = fc.qiandao(cookie, address, traineeid);
-                        if(fc.status == "2")
+                       
+                        if(fc.status == "2" && !start.Contains("success"))
                         {
+                            string msg = fc.qiandao(cookie, address, traineeid);
                             listView1.Items[i].SubItems[7].Text = msg;
                         }
-                        if (fc.status == "1")
+                        if (fc.status == "1" && !end.Contains("success"))
                         {
+                            string msg = fc.qiandao(cookie, address, traineeid);
                             listView1.Items[i].SubItems[8].Text = msg;
                         }
 
                     }
 
-                    Thread.Sleep(1000);
+                   
                    
 
                 }
                 catch (Exception ex)
                 {
-
-                    MessageBox.Show(ex.ToString());
+                    listView1.Items[i].BackColor = Color.Red;
+                    textBox2.Text = DateTime.Now.ToString() + ex.ToString();
+                    continue;
                 }
             }
         }
@@ -304,6 +317,20 @@ namespace 校友邦
             File.WriteAllLines(path + "data.txt", lines.ToArray());//在写回硬盤
             getdata();
 
+        }
+
+        private void 校友邦_定时签到_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

@@ -45,11 +45,12 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +78,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox1);
@@ -204,21 +206,23 @@
             this.columnHeader4.Text = "开始日期";
             this.columnHeader4.Width = 80;
             // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "结束日期";
+            this.columnHeader10.Width = 80;
+            // 
             // columnHeader7
             // 
-            this.columnHeader7.DisplayIndex = 7;
             this.columnHeader7.Text = "开始签到";
             this.columnHeader7.Width = 80;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.DisplayIndex = 8;
             this.columnHeader8.Text = "结束签到";
             this.columnHeader8.Width = 80;
             // 
             // columnHeader9
             // 
-            this.columnHeader9.DisplayIndex = 9;
             this.columnHeader9.Text = "剩余天数";
             this.columnHeader9.Width = 80;
             // 
@@ -226,11 +230,15 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // columnHeader10
+            // textBox2
             // 
-            this.columnHeader10.DisplayIndex = 6;
-            this.columnHeader10.Text = "结束日期";
-            this.columnHeader10.Width = 80;
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.textBox2.Location = new System.Drawing.Point(974, 0);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox2.Size = new System.Drawing.Size(140, 100);
+            this.textBox2.TabIndex = 9;
             // 
             // 校友邦_定时签到
             // 
@@ -242,6 +250,7 @@
             this.Name = "校友邦_定时签到";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "校友邦_定时签到";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.校友邦_定时签到_FormClosing);
             this.Load += new System.EventHandler(this.校友邦_定时签到_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -272,5 +281,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

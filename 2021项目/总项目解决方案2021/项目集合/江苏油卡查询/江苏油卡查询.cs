@@ -259,17 +259,18 @@ namespace 坦程余额查询
         {
             #region 通用检测
 
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            string html = GetUrl("http://www.acaiji.com:8080/api/vip.html", "utf-8");
-
-            if (!html.Contains(@"Eq7ZF"))
+            if (!html.Contains(@"eicVW"))
             {
-
+              
                 return;
             }
 
+
+
             #endregion
-            jiance();
+            //jiance();
             status = true;
             if (thread == null || !thread.IsAlive)
             {

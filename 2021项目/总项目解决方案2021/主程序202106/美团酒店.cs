@@ -152,6 +152,74 @@ namespace 主程序202106
             return lists;
         }
 
+        List<string> finishes = new List<string>();
+        #endregion
+
+
+        #region 筛选
+        public string shaixuan(string tel)
+        {
+            try
+            {
+                string haoma = tel;
+                string[] tels = tel.Split(new string[] { "\\" }, StringSplitOptions.None);
+
+                if (checkBox1.Checked == true)
+                {
+                    if (tels.Length == 0)
+                    {
+                        haoma = "";
+                        return haoma;
+                    }
+
+                }
+                if (checkBox2.Checked == true)
+                {
+                    if (tels.Length == 1)
+                    {
+                        if (!tel.Contains("-") && tels[0].Length > 10)
+                        {
+                            haoma = tel;
+                            return haoma;
+                        }
+                        else
+                        {
+                            return "";
+                        }
+
+                    }
+
+                    if (tels.Length == 2)
+                    {
+                        if (!tels[0].Contains("-") && tels[0].Length > 10)
+                        {
+                            haoma = tels[0];
+                        }
+
+                        else if (!tels[1].Contains("-") && tels[1].Length > 10)
+                        {
+                            haoma = tels[1];
+                        }
+                        else
+                        {
+                            haoma = "";
+                        }
+                    }
+                }
+                if (checkBox3.Checked == true)
+                {
+                    finishes.Add(haoma);
+                }
+                return haoma.Trim();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(tel+"   " +ex.ToString());
+                return "";
+            }
+
+
+        }
         #endregion
         #region  主函数
         public void run()
@@ -209,23 +277,28 @@ namespace 主程序202106
                             Match city = Regex.Match(strhtml, @"""cityName"":""([\s\S]*?)""");
 
 
+                            string newphone = shaixuan(phone.Groups[1].Value.Replace("u002F", " "));
+                            if (newphone != "")
+                            {
+                                if (!finishes.Contains(newphone))
+                                {
 
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                    lv1.SubItems.Add(titles.Groups[1].Value);
 
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(titles.Groups[1].Value);
+                                    lv1.SubItems.Add(addr.Groups[1].Value);
+                                    lv1.SubItems.Add(zhuangxiu.Groups[1].Value);
+                                    lv1.SubItems.Add(fangjian.Groups[1].Value);
+                                    lv1.SubItems.Add(newphone);
 
-                            lv1.SubItems.Add(addr.Groups[1].Value);
-                            lv1.SubItems.Add(zhuangxiu.Groups[1].Value);
-                            lv1.SubItems.Add(fangjian.Groups[1].Value);
-                            lv1.SubItems.Add(phone.Groups[1].Value.Replace("u002F", " "));
-                           
-                            lv1.SubItems.Add(type.Groups[1].Value);
-                            lv1.SubItems.Add(comboBox2.Text);
-                            lv1.SubItems.Add(city.Groups[1].Value);
-                            lv1.SubItems.Add(prices[j].Groups[1].Value);
+                                    lv1.SubItems.Add(type.Groups[1].Value);
+                                    lv1.SubItems.Add(comboBox2.Text);
+                                    lv1.SubItems.Add(city.Groups[1].Value);
+                                    lv1.SubItems.Add("无");
+                                }
+                            }
 
-
-
+                            Thread.Sleep(100);
                             if (listView1.Items.Count - 1 > 1)
                             {
                                 listView1.EnsureVisible(listView1.Items.Count - 1);

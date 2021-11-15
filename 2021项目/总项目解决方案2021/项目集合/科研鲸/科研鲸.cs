@@ -112,7 +112,7 @@ namespace 科研鲸
             #region 通用检测
 
 
-            string html = method.GetUrl("http://www.acaiji.com:8080/api/vip.html", "utf-8");
+            string html = method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8");
 
             if (!html.Contains(@"0Ymp"))
             {
