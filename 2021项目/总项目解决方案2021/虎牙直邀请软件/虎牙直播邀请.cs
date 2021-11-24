@@ -41,6 +41,22 @@ namespace 虎牙直邀请软件
 
         }
 
+        public bool guolv(string name)
+        {
+            string[] text = textBox3.Text.Split(new string[] { "," }, StringSplitOptions.None);
+            foreach (string item in text)
+            {
+                if(name.Contains(item))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+
         public string gethuyaId(string uid)
         {
             string url = "https://www.huya.com/"+uid;
@@ -49,14 +65,25 @@ namespace 虎牙直邀请软件
             return huyaId.Replace("\"","");
 
         }
-
+        int yiyaoyue_zhubocount = 0;
         int zhubocount = 0;
         int zhubocount_success = 0;
         int zhubocount_fail = 0;
+
+
+        List<string> list = new List<string>(); 
         public void run()
         {
+            StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "//data.txt", Encoding.GetEncoding("utf-8"));
+            //一次性读取完 
+         string uid = sr.ReadToEnd();
+            sr.Close();
+            sr.Dispose();
 
+
+            list.Clear();
             zhubocount = 0;
+            yiyaoyue_zhubocount = 0;
             try
             {
                
@@ -87,6 +114,17 @@ namespace 虎牙直邀请软件
                     {
                         if (status == false)
                             return;
+
+                        if (checkBox1.Checked == true)
+                        {
+                            if (uid.Contains(rids[a].Groups[1].Value))
+                            {
+                                yiyaoyue_zhubocount = yiyaoyue_zhubocount + 1;
+                                textBox1.Text = "已采集到主播数：" + zhubocount + "；主播已邀约跳过数：" + yiyaoyue_zhubocount;
+                                continue;
+                            }
+                        }
+
                         try
                         {
                             string name = Regex.Match(names[a].Groups[1].Value, @"""name"":""([\s\S]*?)""").Groups[1].Value;
@@ -99,20 +137,29 @@ namespace 虎牙直邀请软件
                             {
                                 huyaid = "违规";
                             }
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                                lv1.SubItems.Add(huyaid);
-                                lv1.SubItems.Add(name);
-                                lv1.SubItems.Add(rids[a].Groups[1].Value);
-                                lv1.SubItems.Add(yaoqing);
-                                lv1.SubItems.Add(club_names[a].Groups[1].Value);
-                                Thread.Sleep(100);
-                                if (listView1.Items.Count > 2)
+                           
+                                if (guolv(name))
                                 {
-                                    this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
-                                }
+                                    if (!list.Contains(huyaid))
+                                    {
+                                        list.Add(huyaid);
+                                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                        lv1.SubItems.Add(huyaid);
+                                        lv1.SubItems.Add(name);
+                                        lv1.SubItems.Add(rids[a].Groups[1].Value);
+                                        lv1.SubItems.Add(yaoqing);
+                                        lv1.SubItems.Add(club_names[a].Groups[1].Value);
+                                        Thread.Sleep(100);
+                                        if (listView1.Items.Count > 2)
+                                        {
+                                            this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                        }
 
-                            zhubocount = zhubocount + 1;
-                            textBox1.Text = "已采集到主播数："+zhubocount;
+                                        zhubocount = zhubocount + 1;
+                                    textBox1.Text = "已采集到主播数：" + zhubocount + "；主播已邀约跳过数：" + yiyaoyue_zhubocount;
+                                }
+                                }
+                          
 
 
                         }
@@ -140,6 +187,13 @@ namespace 虎牙直邀请软件
 
         public void yaoyue()
         {
+
+            if(listView1.CheckedItems.Count==0)
+            {
+                MessageBox.Show("未选择主播");
+                return;
+            }
+
             zhubocount_success = 0;
             zhubocount_fail = 0;
             for (int i = 0; i < listView1.CheckedItems.Count; i++)
@@ -150,11 +204,14 @@ namespace 虎牙直邀请软件
 
                     int selecttime = comboBox4.SelectedIndex + 1;
                     string huyaid = listView1.CheckedItems[i].SubItems[1].Text;
-                    string url = "https://ghback.huya.com/index.php?m=Complay&do=owSignInvite&channelId=92325&yy_id="+huyaid+"&percent="+numericUpDown1.Value+"&selecttime="+ selecttime + "&message="+ System.Web.HttpUtility.UrlEncode(textBox1.Text.Trim());
+                    string rid = listView1.CheckedItems[i].SubItems[3].Text;
+
+
+                    string url = "https://ghback.huya.com/index.php?m=Complay&do=owSignInvite&channelId=92325&yy_id="+huyaid+"&percent="+numericUpDown1.Value+"&selecttime="+ selecttime + "&message="+ System.Web.HttpUtility.UrlEncode(textBox2.Text.Trim());
                     string html = method.GetUrlWithCookie(url, cookie, "utf-8");
                     string message = Regex.Match(html, @"""message"":""([\s\S]*?)""").Groups[1].Value;
                     listView1.CheckedItems[i].SubItems[4].Text =method.Unicode2String(message);
-                    if(message.Contains("成功"))
+                    if(method.Unicode2String(message).Contains("邀请已发出"))
                     {
                         zhubocount_success = zhubocount_success+ 1;
                         textBox1.Text = "已采集到主播数：" + zhubocount + ";成功邀约数：" + zhubocount_success+";邀请失败数："+zhubocount_fail ;
@@ -165,8 +222,25 @@ namespace 虎牙直邀请软件
                         zhubocount_fail = zhubocount_fail + 1;
                         textBox1.Text = "已采集到主播数：" + zhubocount + ";成功邀约数：" + zhubocount_success + ";邀请失败数：" + zhubocount_fail;
                     }
+
                     if (yaoyue_status == false)
                         return;
+
+
+
+
+
+                    FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                    sw.WriteLine(rid);
+                    sw.Close();
+                    fs1.Close();
+                    sw.Dispose();
+
+
+
+
+
                 }
                 catch (Exception ex)
                 {

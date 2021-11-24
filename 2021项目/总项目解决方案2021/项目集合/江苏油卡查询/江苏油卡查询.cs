@@ -356,7 +356,7 @@ namespace 坦程余额查询
         private void 复制卡号ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            jiance();
+            //jiance();
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run1);

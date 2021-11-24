@@ -73,20 +73,21 @@ namespace 工商企业采集
         public static string GetUrl(string Url, string charset)
         {
             string html = "";
-         
-            string COOKIE = "BDUSS=ozVzB5Y3diUjhMNU0wSUVUVkswc0Z6U3ljdzdsMDNqOTRtdEZ2WGtDanV-ckpoSVFBQUFBJCQAAAAAAQAAAAEAAABio5cbemhvdTE0NzUyNDc5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO5xi2HucYthel; passtheme=light; BAIDUID=5E96D371D3D7FBBCA6F2321D17734DCE:FG=1";
-           // COOKIE = "";
+
+            string COOKIE = "BDPPN=4c066e75c0ddb0f5b340703df1d3643b; _j54_6ae_=xlTM-TogKuTwJPccNhmEyqbZe5Px5T1rggmd; BDUSS=XFndHdZb2N4S3FkeTAzRUFpeUpmY2lBZ1dXY09NMWhLU1htUWJQWFNqMH40YnBoSVFBQUFBJCQAAAAAAQAAAAEAAABio5cbemhvdTE0NzUyNDc5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD9Uk2E~VJNha; passtheme=light; BAIDUID=5E5C396E5AF60266A99762649798F563:FG=1";
+          // string COOKIE = "";
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Proxy = null;//防止代理抓包
+                //request.Proxy = null;//防止代理抓包
                 request.AllowAutoRedirect = true;
-                request.UserAgent = "aiinquiry/2.3.6 (iPhone; iOS 13.6.1; Scale/3.00) aiqicha/2.3.6";
+                request.UserAgent = "aiinquiry/2.3.9 (iPhone; iOS 13.6.1; Scale/3.00) Ios (21) 1156b3b71111b3d9d902 aiqicha/2.3.9";
                 request.Referer = "https://aiqicha.baidu.com/usercenter";
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                //headers.Add("Cuid:72BAF9EA500309A310153C6EB6F523F4F1F0101B1FBGEHHGFGJ");
+                headers.Add("Cuid:72BAF9EA500309A310153C6EB6F523F4F1F0101B1FBGEHHGFGJ");
+                headers.Add("Zx-Open-Url:https://aiqicha.baidu.com");
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -178,8 +179,17 @@ namespace 工商企业采集
        
         public void run()
         {
+           
 
             StringBuilder sb = new StringBuilder();
+
+            if (radioButton2.Checked == true)
+            {
+                sb.Append("\"contactPhone\":[\"2\"],");
+            }
+
+
+
             if (comboBox1.Text != "不限")
             {
                 sb.Append(string.Format("\"entType\":[\"{0}\"],", dic[comboBox1.Text]));
@@ -222,7 +232,9 @@ namespace 工商企业采集
                     
                 }
             }
-            
+
+          
+
 
             string filter = "";
             if (sb.ToString().Length > 2)
@@ -235,7 +247,7 @@ namespace 工商企业采集
                 {
 
                     string url = "https://aiqicha.baidu.com/search/advanceFilterAjax?q=" + System.Web.HttpUtility.UrlEncode(textBox2.Text) + "&t=111&p="+page+"&s=10&o=0&f=%7B"+filter+"%7D";
-                    //string html = method.GetUrlWithCookie(url, cookie,"utf-8");
+                   
                     string html = GetUrl(url,"utf-8");
                    
                     html = method.Unicode2String(html);
@@ -318,7 +330,7 @@ namespace 工商企业采集
         
         private void 工商企业采集_Load(object sender, EventArgs e)
         {
-            
+           
 
             comboBox1.Items.Add("不限");
             comboBox2.Items.Add("不限");
@@ -784,5 +796,6 @@ namespace 工商企业采集
 
         #endregion
 
+       
     }
 }

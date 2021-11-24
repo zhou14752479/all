@@ -197,7 +197,8 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("宋体", 10F);
             this.checkBox1.Location = new System.Drawing.Point(12, 284);
             this.checkBox1.Name = "checkBox1";
@@ -209,7 +210,8 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Font = new System.Drawing.Font("宋体", 10F);
             this.checkBox2.Location = new System.Drawing.Point(114, 284);
             this.checkBox2.Name = "checkBox2";

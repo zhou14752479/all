@@ -35,19 +35,37 @@ namespace 淘宝列表页
             }
         }
 
-   
-      
-    
+        public static IWebDriver getdriver(bool headless)
+        {
+            //关闭cmd窗口
+            ChromeDriverService driverService = ChromeDriverService.CreateDefaultService();
+            driverService.HideCommandPromptWindow = true;
+
+
+            ChromeOptions options = new ChromeOptions();
+            options.BinaryLocation = "Chrome/Application/chrome.exe";
+            //禁用图片
+            //options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+            if (headless)
+            {
+                options.AddArgument("--headless");
+            }
+            options.AddArgument("--disable-gpu");
+            //driver.Manage().Window.Maximize();
+            return new ChromeDriver(driverService, options);
+        }
+
+
         public void run()
         {
             try
             {
                 ChromeOptions options = new ChromeOptions();
-              
+                options.BinaryLocation = "Chrome/Application/chrome.exe";
                 //设置user agent为iPhone5
-               // options.AddArgument("--user-agent=Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36");
+                // options.AddArgument("--user-agent=Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36");
                 //实例化chrome对象，并加入选项
-                WebDriver driver = new ChromeDriver(options);
+                IWebDriver driver =getdriver(false);
               
                 //driver.Manage().Window.Maximize();
                 string loginurl = "https://m.1688.com/search.html";
@@ -58,7 +76,7 @@ namespace 淘宝列表页
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Replace("\"","").Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                MessageBox.Show(text.Length.ToString());
+               // MessageBox.Show(text.Length.ToString());
                 for (int i = 1; i < text.Length; i++)
                 {
                     while (this.zanting == false)
@@ -144,7 +162,7 @@ namespace 淘宝列表页
             catch (Exception ex)
             {
 
-                ex.ToString();
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -295,6 +313,11 @@ namespace 淘宝列表页
             //Method.Unlink();
             //Method.boolLink();
 
+        }
+
+        private void 模拟点击1688_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
     }
 }

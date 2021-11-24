@@ -16,7 +16,7 @@ namespace 主程序202011
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 邮箱163抓取());
+            Application.Run(new 企查查发票信息());
         }
     }
 }

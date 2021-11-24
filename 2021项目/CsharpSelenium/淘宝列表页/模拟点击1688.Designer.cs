@@ -364,6 +364,7 @@
             this.Name = "模拟点击1688";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "模拟点击1688";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.模拟点击1688_FormClosing);
             this.Load += new System.EventHandler(this.模拟点击1688_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -64,6 +64,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -178,6 +179,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dateTimePicker2);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
@@ -226,7 +228,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(234, 135);
+            this.button3.Location = new System.Drawing.Point(203, 135);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(88, 30);
             this.button3.TabIndex = 66;
@@ -236,7 +238,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(120, 135);
+            this.button2.Location = new System.Drawing.Point(109, 135);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(88, 30);
             this.button2.TabIndex = 65;
@@ -246,7 +248,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(341, 135);
+            this.button6.Location = new System.Drawing.Point(297, 135);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(88, 30);
             this.button6.TabIndex = 64;
@@ -399,6 +401,16 @@
             this.columnHeader9.Text = "出库时间";
             this.columnHeader9.Width = 100;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(400, 93);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(69, 72);
+            this.button4.TabIndex = 70;
+            this.button4.Text = "获取全号出库管理";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // 快递超市
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -458,5 +470,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Button button4;
     }
 }

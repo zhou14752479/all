@@ -12,7 +12,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using myDLL;
+
 
 namespace 快递超市
 {
@@ -148,7 +150,7 @@ namespace 快递超市
 
             try
             {
-                for (int page = 1; page <= 9999; page++)
+                for (int page = 1; page <= 999; page++)
                 {
 
 
@@ -167,23 +169,96 @@ namespace 快递超市
                     MatchCollection outDateStrs = Regex.Matches(html, @"""outDateStr"":""([\s\S]*?)""");
 
                     if (billCodes.Count == 0)
+                    {
+                        continue;
+                    }
+                       
+                    for (int i = 0; i < billCodes.Count; i++)
+                    {
+                        if (status == false)
+                            return;
+                        try
+                        {
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(billCodes[i].Groups[1].Value);
+                            listViewItem.SubItems.Add(depotNames[i].Groups[1].Value);
+                            listViewItem.SubItems.Add(expressCompanyNames[i].Groups[1].Value);
+
+                            listViewItem.SubItems.Add(receiveMans[i].Groups[1].Value);
+                            listViewItem.SubItems.Add(receiveManMobiles[i].Groups[1].Value);
+                            listViewItem.SubItems.Add(takeCodes[i].Groups[1].Value);
+                            listViewItem.SubItems.Add("");//自提
+                            listViewItem.SubItems.Add(outDateStrs[i].Groups[1].Value);
+
+                            if (listView1.Items.Count > 2)
+                            {
+                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            continue;
+                        }
+                       
+                    }
+
+                    Thread.Sleep(100);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+              ex.ToString();
+            }
+        }
+
+
+
+        public void getquanhao()
+        {
+
+            try
+            {
+                for (int page = 1; page <= 9999; page++)
+                {
+
+
+                    string url = "https://kdcs-api.zto.cn/stocks/page";
+                    // string postdata = "{\"pageSize\":500,\"pageIndex\":" + page + ",\"type\":\"6\",\"startTime\":\"" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "\",\"endTime\":\"" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "\",\"expressCompanyCode\":\"ALL\",\"customerName\":\"\",\"mobile\":\"\",\"billCode\":\"\",\"notifyType\":\"4\",\"noticeType\":\"0\",\"notifyStatus\":\"4\",\"sort\":\"desc\"}";
+
+                    string postdata = "{\"uploadDate\":\"1\",\"user\":\"\",\"mobile\":\"\",\"billCode\":\"\",\"takeCode\":\"\",\"companyList\":[\"ZTO\"],\"condition\":\"\",\"isDesc\":1,\"startDate\":\""+ dateTimePicker1.Value.ToString("yyyy-MM-dd") + "\",\"endDate\":\""+ dateTimePicker2.Value.ToString("yyyy-MM-dd") + "\",\"isFilter\":false,\"pageIndex\":"+page+",\"pageSize\":40,\"current\":1,\"isTimeOut\":0,\"isNeedSend\":0,\"isNeedUrge\":0,\"isNeedPrint\":2,\"isSignNotLeave\":0}";
+                    string html = PostUrlDefault(url, postdata, "application/json");
+
+                    MatchCollection billCodes = Regex.Matches(html, @"""billCode"":""([\s\S]*?)""");
+                    MatchCollection depotCodes = Regex.Matches(html, @"""depotCode"":""([\s\S]*?)""");
+                    MatchCollection expressCompanyNames = Regex.Matches(html, @"""expressCompanyName"":""([\s\S]*?)""");
+                    MatchCollection expressCompanyCodes = Regex.Matches(html, @"""expressCompanyCode"":""([\s\S]*?)""");
+                    MatchCollection receiveMans = Regex.Matches(html, @"""receiveMan"":""([\s\S]*?)""");
+                 
+
+                    if (billCodes.Count == 0)
                         return;
                     for (int i = 0; i < billCodes.Count; i++)
                     {
                         if (status == false)
                             return;
 
+                        string telhtml = PostUrlDefault("https://kdcs-api.zto.cn/stocks/detail", "{\"depotCode\":\""+ depotCodes[i].Groups[1].Value+ "\",\"expressCompanyCode\":\""+ expressCompanyCodes[i].Groups[1].Value + "\",\"billCode\":\""+ billCodes[i].Groups[1].Value+ "\"}", "application/json");
+                        string tel = Regex.Match(telhtml, @"""receiveManMobile"":""([\s\S]*?)""").Groups[1].Value;
                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                         listViewItem.SubItems.Add(billCodes[i].Groups[1].Value);
-                        listViewItem.SubItems.Add(depotNames[i].Groups[1].Value);
+                        listViewItem.SubItems.Add("");
                         listViewItem.SubItems.Add(expressCompanyNames[i].Groups[1].Value);
-
                         listViewItem.SubItems.Add(receiveMans[i].Groups[1].Value);
-                        listViewItem.SubItems.Add(receiveManMobiles[i].Groups[1].Value);
-                        listViewItem.SubItems.Add(takeCodes[i].Groups[1].Value);
-                        listViewItem.SubItems.Add("");//自提
-                        listViewItem.SubItems.Add(outDateStrs[i].Groups[1].Value);
+                        listViewItem.SubItems.Add(tel);
+                        listViewItem.SubItems.Add("");
+                        listViewItem.SubItems.Add("");
+                        listViewItem.SubItems.Add("");
 
+                        Thread.Sleep(1000);
                         if (listView1.Items.Count > 2)
                         {
                             this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
@@ -201,8 +276,6 @@ namespace 快递超市
                 throw;
             }
         }
-
-
         public string gettukuinfo(string code)
         {
             string url = "https://kdcs-api.tuxi.net.cn/public/getReceiveManInfo";
@@ -269,6 +342,23 @@ namespace 快递超市
         }
         private void 快递超市_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string pass = Interaction.InputBox("请输入密码启动软件", "请输入密码", "请输入密码", -1, -1);
+                string ahtml = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?method=login&username=kdzs&password=" + pass, "utf-8");
+                if (!ahtml.Contains("成功"))
+                {
+                    MessageBox.Show("密码错误");
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+            }
+            catch (Exception)
+            {
+
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+
             dateTimePicker1.Value = DateTime.Now.AddDays(-1);
             #region 通用检测
 
@@ -358,6 +448,17 @@ namespace 快递超市
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             richTextBox1.Text = "";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            status = true;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(getquanhao);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
     }
 }

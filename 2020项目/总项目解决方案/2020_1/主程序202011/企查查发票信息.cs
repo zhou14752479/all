@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,11 +14,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CsharpHttpHelper;
-using helper;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
+using myDLL;
+
 
 namespace 主程序202011
 {
@@ -154,7 +154,7 @@ namespace 主程序202011
            
         }
 
-        string token = "";
+        string token = "60a3a599fc03ff983dff5fefa45cc567";
         public void run()
         {
             gettoken();

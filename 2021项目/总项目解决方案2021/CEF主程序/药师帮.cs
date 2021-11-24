@@ -68,7 +68,8 @@ namespace CEF主程序
         {
             //browser = new ChromiumWebBrowser("https://dian.ysbang.cn/index.html#/indexContent?searchKey=&_t=1633924287163");
             //browser = new ChromiumWebBrowser("https://passport.vip.com/login?src=https%3A%2F%2Fdetail.vip.com%2Fdetail-1711548730-6919483919008310362.html");
-            browser = new ChromiumWebBrowser("https://ascendex.com/zh-cn/basic/cashtrade-spottrading/usdt/cns");
+            //browser = new ChromiumWebBrowser("https://ascendex.com/zh-cn/basic/cashtrade-spottrading/usdt/cns");
+            browser = new ChromiumWebBrowser("https://mygiftcard.jd.com/giftcard/myGiftCardInit.action");
             Control.CheckForIllegalCrossThreadCalls = false;
       splitContainer1.Panel2.Controls.Add(browser);
 
@@ -115,12 +116,14 @@ namespace CEF主程序
             cookies += obj.Name + "=" + obj.Value + ";";
 
 
-            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-            sw.WriteLine(cookies);
-            sw.Close();
-            fs1.Close();
-            sw.Dispose();
+            //FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+            //StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+            //sw.WriteLine(cookies);
+            //sw.Close();
+            //fs1.Close();
+            //sw.Dispose();
+
+           
         }
 
 
@@ -152,43 +155,27 @@ namespace CEF主程序
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ////yaoshibang_WinFormsRequestHandler winr = new yaoshibang_WinFormsRequestHandler();
-            ////browser.RequestHandler = winr;//request请求的具体实现
-            ////winr.getdata = new yaoshibang_WinFormsRequestHandler.GetData(getdata);
-            //browser.Load("https://detail.vip.com/detail-1711548730-6919483919008310362.html");
-            //StringBuilder sb = new StringBuilder();
-            //sb.Append("var btn =document.getElementsByClassName(\"finalPrice_subPriceTips\");");
-            //sb.Append("sub[0].click();");
-            ////browser.GetBrowser().MainFrame.EvaluateScriptAsync("alert(document.cookie)");
-            //// this.Hide();
-
-            Control.CheckForIllegalCrossThreadCalls = false;
-
-
-
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("function tempFunction() {");
-            //sb.AppendLine(" return document.body.innerHTML; "); 
-            sb.AppendLine(" return document.getElementsByTagName('body')[0].outerHTML; ");
-            sb.AppendLine("}");
-            sb.AppendLine("tempFunction();");
-            var task01 = browser.GetBrowser().GetFrame(browser.GetBrowser().GetFrameNames()[0]).EvaluateScriptAsync(sb.ToString());
-            task01.ContinueWith(t =>
+            if(!cookies.Contains("thor"))
             {
-                if (!t.IsFaulted)
-                {
-                    var response = t.Result;
-                    if (response.Success == true)
-                    {
-                        if (response.Result != null)
-                        {
-                            string resultStr = response.Result.ToString();
-                            textBox1.Text = resultStr;
-                        }
-                    }
-                }
-            });
+
+                MessageBox.Show("未登录");
+                return;
+            }
+            else
+            {
+                string thor = Regex.Match(cookies,@"thor=([\s\S]*?);").Groups[1].Value;
+                thor = "thor="+thor+";";
+                京东E卡查询.cookie = thor;
+            }
+
+
+            //京东E卡查询.cookie = "thor=0CAE1EBF4188AB011A917A929B11D77316B456D2514E2AF0AAE44DCDA7911EFC99A6B0E626F353013AB6B9E342357C22D3BA43F3D9FB13D8126532A3627460F817A2984D8FEF17FB60E6ECD5C498EBB3570D228B35BAF6B454F013C08E72F62B4E0DC534C00E83BD08AA53AA453AD2B688A5FF2E5460411443AE43ECFA8D4CFA; ";
+
+            this.Hide();
 
         }
+
+
+
     }
 }

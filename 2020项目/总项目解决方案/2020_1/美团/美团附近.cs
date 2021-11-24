@@ -670,7 +670,7 @@ namespace 美团
 
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                ex.ToString();
             }
 
             toolStripStatusLabel1.Text = "完成";
@@ -944,7 +944,7 @@ namespace 美团
             }
             catch (WebException e)
             {
-                MessageBox.Show(e.ToString());
+              
                 return "";
             }
 
@@ -1315,7 +1315,7 @@ namespace 美团
             for (int i = 0; i < listView1.Items.Count; i++)
             {
                 string name = listView1.Items[i].SubItems[1].Text.Trim();
-                string tel = listView1.Items[i].SubItems[2].Text.Trim();
+                string tel = listView1.Items[i].SubItems[3].Text.Trim();
                 if (name != "" && tel != "")
                 {
                     streamWriter.WriteLine("BEGIN:VCARD");

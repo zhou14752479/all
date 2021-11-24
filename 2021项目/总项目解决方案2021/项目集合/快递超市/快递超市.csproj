@@ -35,6 +35,7 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL">
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
@@ -71,6 +72,12 @@
     <Compile Include="快递超市.Designer.cs">
       <DependentUpon>快递超市.cs</DependentUpon>
     </Compile>
+    <Compile Include="改密码.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="改密码.Designer.cs">
+      <DependentUpon>改密码.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -82,6 +89,9 @@
     </Compile>
     <EmbeddedResource Include="快递超市.resx">
       <DependentUpon>快递超市.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="改密码.resx">
+      <DependentUpon>改密码.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

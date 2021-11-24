@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using Microsoft.VisualBasic;
 
 namespace 快递助手
 {
@@ -311,6 +312,25 @@ namespace 快递助手
         }
         private void 快递助手_Load(object sender, EventArgs e)
         {
+
+            //try
+            //{
+            //    string pass = Interaction.InputBox("请输入密码启动软件", "请输入密码", "请输入密码", -1, -1);
+            //    string html = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?method=login&username=kdzs&password=" + pass, "utf-8");
+            //    if (!html.Contains("成功"))
+            //    {
+            //        MessageBox.Show("密码错误");
+            //        System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //    }
+            //}
+            //catch (Exception)
+            //{
+               
+            //    System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //}
+
+
+
             #region 通用检测
 
             if (DateTime.Now > Convert.ToDateTime("2022-01-13"))

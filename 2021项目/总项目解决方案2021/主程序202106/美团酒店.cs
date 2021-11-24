@@ -231,90 +231,101 @@ namespace 主程序202106
 
             {
                 label1.Text = "开始采集";
-                string cityid = GetcityId(comboBox3.Text.Replace("市", ""));
-                ArrayList areaIds = getareas2(cityid);
+
+                string[] text = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (var item in text)
+                {
+                    string cityid = GetcityId(item.Replace("市", ""));
+                    ArrayList areaIds = getareas2(cityid);
 
                     foreach (string areaId in areaIds)
                     {
 
-                        
-                    for (int i = 0; i < 1001; i = i + 20)
-                    {
-                        string url = "https://ihotel.meituan.com/hbsearch/HotelSearch?utm_medium=pc&version_name=999.9&cateId=20&attr_28=129&cityId=" + cityid + "&areaId=" + areaId + "&offset=" + i + "&limit=20&startDay=" + DateTime.Now.ToString("yyyyMMdd") + "&endDay=" + DateTime.Now.ToString("yyyyMMdd") + "&q=&sort=defaults";
 
-                        textBox1.Text = url;
-                        string html = method.GetUrl(url, "utf-8");
-                      
-
-                        MatchCollection matchs = Regex.Matches(html, @"""realPoiId"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                        MatchCollection prices = Regex.Matches(html, @"""lowestPrice"":([\s\S]*?),");
-
-                        ArrayList lists = new ArrayList();
-
-                        foreach (Match NextMatch in matchs)
+                        for (int i = 0; i < 1001; i = i + 20)
                         {
-                            lists.Add(NextMatch.Groups[1].Value);
+                            string url = "https://ihotel.meituan.com/hbsearch/HotelSearch?utm_medium=pc&version_name=999.9&cateId=20&attr_28=129&cityId=" + cityid + "&areaId=" + areaId + "&offset=" + i + "&limit=20&startDay=" + DateTime.Now.ToString("yyyyMMdd") + "&endDay=" + DateTime.Now.ToString("yyyyMMdd") + "&q=&sort=defaults";
 
-                        }
-                        label1.Text = "获取到数量："+lists.Count.ToString();
-                        if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
-
-                            continue;
+                            textBox1.Text = url;
+                            string html = method.GetUrl(url, "utf-8");
 
 
-                        for (int j = 0; j < lists.Count; j++)
-                        {
+                            MatchCollection matchs = Regex.Matches(html, @"""realPoiId"":([\s\S]*?),", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                            MatchCollection prices = Regex.Matches(html, @"""lowestPrice"":([\s\S]*?),");
 
-                            string strhtml = method.GetUrl("https://hotel.meituan.com/" + lists[j] + "/", "utf-8");
+                            ArrayList lists = new ArrayList();
 
-                            Match titles = Regex.Match(strhtml, @"<title>([\s\S]*?)_");
-                            Match addr = Regex.Match(strhtml, @"""addr"":""([\s\S]*?)""");
-                            Match zhuangxiu = Regex.Match(strhtml, @"装修时间"",""attrValue"":""([\s\S]*?)""");
-                            Match fangjian = Regex.Match(strhtml, @"客房总量"",""attrValue"":""([\s\S]*?)""");
-                            Match phone = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
-                         
-                            Match type = Regex.Match(strhtml, @"""hotelStar"":""([\s\S]*?)""");
-                            Match city = Regex.Match(strhtml, @"""cityName"":""([\s\S]*?)""");
-
-
-                            string newphone = shaixuan(phone.Groups[1].Value.Replace("u002F", " "));
-                            if (newphone != "")
+                            foreach (Match NextMatch in matchs)
                             {
-                                if (!finishes.Contains(newphone))
+                                lists.Add(NextMatch.Groups[1].Value);
+
+                            }
+                            label1.Text = "获取到数量：" + lists.Count.ToString();
+                            if (lists.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+                            {
+                                Thread.Sleep(1000);
+                                if (i > 20)
                                 {
-
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                                    lv1.SubItems.Add(titles.Groups[1].Value);
-
-                                    lv1.SubItems.Add(addr.Groups[1].Value);
-                                    lv1.SubItems.Add(zhuangxiu.Groups[1].Value);
-                                    lv1.SubItems.Add(fangjian.Groups[1].Value);
-                                    lv1.SubItems.Add(newphone);
-
-                                    lv1.SubItems.Add(type.Groups[1].Value);
-                                    lv1.SubItems.Add(comboBox2.Text);
-                                    lv1.SubItems.Add(city.Groups[1].Value);
-                                    lv1.SubItems.Add("无");
+                                    i = i - 20;
                                 }
+                                continue;
                             }
 
-                            Thread.Sleep(100);
-                            if (listView1.Items.Count - 1 > 1)
+
+
+                            for (int j = 0; j < lists.Count; j++)
                             {
-                                listView1.EnsureVisible(listView1.Items.Count - 1);
+
+                                string strhtml = method.GetUrl("https://hotel.meituan.com/" + lists[j] + "/", "utf-8");
+
+                                Match titles = Regex.Match(strhtml, @"<title>([\s\S]*?)_");
+                                Match addr = Regex.Match(strhtml, @"""addr"":""([\s\S]*?)""");
+                                Match zhuangxiu = Regex.Match(strhtml, @"装修时间"",""attrValue"":""([\s\S]*?)""");
+                                Match fangjian = Regex.Match(strhtml, @"客房总量"",""attrValue"":""([\s\S]*?)""");
+                                Match phone = Regex.Match(strhtml, @"""phone"":""([\s\S]*?)""");
+
+                                Match type = Regex.Match(strhtml, @"""hotelStar"":""([\s\S]*?)""");
+                                Match city = Regex.Match(strhtml, @"""cityName"":""([\s\S]*?)""");
+
+
+                                string newphone = shaixuan(phone.Groups[1].Value.Replace("u002F", " "));
+                                if (newphone != "")
+                                {
+                                    if (!finishes.Contains(newphone))
+                                    {
+
+                                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                        lv1.SubItems.Add(titles.Groups[1].Value);
+
+                                        lv1.SubItems.Add(addr.Groups[1].Value);
+                                        lv1.SubItems.Add(zhuangxiu.Groups[1].Value);
+                                        lv1.SubItems.Add(fangjian.Groups[1].Value);
+                                        lv1.SubItems.Add(newphone);
+
+                                        lv1.SubItems.Add(type.Groups[1].Value);
+                                        lv1.SubItems.Add(comboBox2.Text);
+                                        lv1.SubItems.Add(city.Groups[1].Value);
+                                        lv1.SubItems.Add("无");
+                                    }
+                                }
+
+                                Thread.Sleep(100);
+                                if (listView1.Items.Count - 1 > 1)
+                                {
+                                    listView1.EnsureVisible(listView1.Items.Count - 1);
+                                }
+                                if (this.status == false)
+
+                                {
+                                    return;
+                                }
+
+
                             }
-                            if (this.status == false)
-
-                            {
-                                return;
-                            }
-
-
                         }
-                    }
 
+                    }
                 }
-            
             }
 
 
@@ -398,6 +409,14 @@ namespace 主程序202106
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(!textBox2.Text.Contains(comboBox3.Text))
+            {
+                textBox2.Text += comboBox3.Text + "\r\n";
+            }
         }
     }
 }
