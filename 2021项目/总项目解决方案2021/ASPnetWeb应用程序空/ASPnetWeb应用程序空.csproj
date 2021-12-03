@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index2.aspx" />
+    <Content Include="index3.aspx" />
+    <Content Include="index3_admin.aspx" />
     <Content Include="ManagerShiCi.aspx" />
     <Content Include="CSS\muwen.css" />
     <Content Include="Web.config" />
@@ -83,6 +85,20 @@
     </Compile>
     <Compile Include="index2.aspx.designer.cs">
       <DependentUpon>index2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index3.aspx.cs">
+      <DependentUpon>index3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index3.aspx.designer.cs">
+      <DependentUpon>index3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index3_admin.aspx.cs">
+      <DependentUpon>index3_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index3_admin.aspx.designer.cs">
+      <DependentUpon>index3_admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagerShiCi.aspx.cs">
       <DependentUpon>ManagerShiCi.aspx</DependentUpon>
@@ -115,8 +131,10 @@
     <Folder Include="images\" />
     <Folder Include="image\" />
     <Folder Include="main\" />
+    <Folder Include="result3\" />
     <Folder Include="result\" />
     <Folder Include="场次\" />
+    <Folder Include="生肖\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

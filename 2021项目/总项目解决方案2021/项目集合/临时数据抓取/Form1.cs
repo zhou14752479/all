@@ -104,15 +104,15 @@ namespace 临时数据抓取
         {
             try
             {
-              
-               System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                                                                                   //添加头部
                 WebHeaderCollection headers = request.Headers;
-              
-               request.AllowAutoRedirect = true;
+
+                request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
-             
+
                 request.Referer = "";
                 request.Headers.Add("Cookie", COOKIE);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -153,13 +153,13 @@ namespace 临时数据抓取
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
                 Referer = "http://www.sufeinet.com",//来源URL     可选项  
-              
-                                           //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
-                                           //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
+
+                //CerPath = "d:\123.cer",//证书绝对路径     可选项不需要证书时可以不写这个参数  
+                //Connectionlimit = 1024,//最大连接数     可选项 默认为1024  
                 Postdata = "",//Post数据     可选项GET时不需要写  
                 ProxyIp = "tps115.kdlapi.com:15818",//代理服务器ID     可选项 不需要代理 时可以不设置这三个参数  
-                              //ProxyPwd = "123456",//代理服务器密码     可选项  
-                              //ProxyUserName = "administrator",//代理服务器账户名     可选项  
+                                                    //ProxyPwd = "123456",//代理服务器密码     可选项  
+                                                    //ProxyUserName = "administrator",//代理服务器账户名     可选项  
                 ResultType = ResultType.String,//返回数据类型，是Byte还是String  
             };
             HttpResult result = http.GetHtml(item);
@@ -172,11 +172,11 @@ namespace 临时数据抓取
         #region tecalliance  检测UA
         public void tecalliance()
         {
-            
+
 
             for (int i = 0; i < richTextBox1.Lines.Length; i++)
             {
-               
+
                 string n = richTextBox1.Lines[i].Trim();
                 if (richTextBox1.Lines[i].Trim().Length < 5)
                 {
@@ -184,31 +184,31 @@ namespace 临时数据抓取
 
                 }
 
-                string url = "https://www.tecalliance.cn/cn/search/1?q="+n+ "&lbid=101&base=lbid";
-              
+                string url = "https://www.tecalliance.cn/cn/search/1?q=" + n + "&lbid=101&base=lbid";
 
-               
+
+
                 string html = GetHttp20210301174102(url);
                 if (html.Trim() == "")
                 {
                     MessageBox.Show("验证");
-                    i = i-1;
+                    i = i - 1;
                     continue;
                 }
                 Match num = Regex.Match(html, @"通过产品号查询:([\s\S]*?)</div>");
 
                 Match html1 = Regex.Match(html, @"<div class=""part-detail-item-body"" >([\s\S]*?)<div class=""m-sec"">");
-                Match html2= Regex.Match(html, @"<div class=""m-sec"">([\s\S]*?)info-body end");
+                Match html2 = Regex.Match(html, @"<div class=""m-sec"">([\s\S]*?)info-body end");
                 Match img = Regex.Match(html, @"class=""brand-img"" src=""([\s\S]*?)""");
 
                 MatchCollection oems = Regex.Matches(html1.Groups[1].Value, @"<a href=""([\s\S]*?)"">([\s\S]*?)</a>");
                 MatchCollection canshus = Regex.Matches(html2.Groups[1].Value, @"<span>([\s\S]*?)</span>([\s\S]*?)<strong>([\s\S]*?)</strong>");
-                   
-                 StringBuilder sb = new StringBuilder();
+
+                StringBuilder sb = new StringBuilder();
                 for (int j = 0; j < oems.Count; j++)
                 {
 
-                    sb.Append(oems[j].Groups[2].Value.Trim()+"/");
+                    sb.Append(oems[j].Groups[2].Value.Trim() + "/");
                 }
 
                 StringBuilder sb1 = new StringBuilder();
@@ -225,7 +225,7 @@ namespace 临时数据抓取
                 lv1.SubItems.Add(sb.ToString());
                 lv1.SubItems.Add(sb1.ToString());
                 lv1.SubItems.Add(img.Groups[1].Value.Trim());
-               
+
                 while (this.zanting == false)
                 {
                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -254,11 +254,11 @@ namespace 临时数据抓取
 
                 //string html = method.GetUrlwithIP(url, ip, "", "utf-8");
                 string html = GetHttp20210301174102(url);
-     
+
                 //string html = method.GetUrl(url, "utf-8");
-               
+
                 Match oem = Regex.Match(html, @"OE Part Numbers"">([\s\S]*?)</span>");
-                    Match img = Regex.Match(html, @"info\\\/([\s\S]*?)&");
+                Match img = Regex.Match(html, @"info\\\/([\s\S]*?)&");
 
                 //if (oem.Groups[1].Value.Trim()==""|| html.Trim() == "")
                 //{
@@ -269,19 +269,19 @@ namespace 临时数据抓取
 
 
                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(n);
-                    lv1.SubItems.Add(" ");
-                    lv1.SubItems.Add(oem.Groups[1].Value.Trim());
-                    lv1.SubItems.Add("");
-                    lv1.SubItems.Add("http://www.rockauto.com/info/" + img.Groups[1].Value.Replace("__ra_t", "").Replace("\\", "").Trim());
-                    
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                    }
-                    if (status == false)
-                        return;
-               
+                lv1.SubItems.Add(n);
+                lv1.SubItems.Add(" ");
+                lv1.SubItems.Add(oem.Groups[1].Value.Trim());
+                lv1.SubItems.Add("");
+                lv1.SubItems.Add("http://www.rockauto.com/info/" + img.Groups[1].Value.Replace("__ra_t", "").Replace("\\", "").Trim());
+
+                while (this.zanting == false)
+                {
+                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                }
+                if (status == false)
+                    return;
+
             }
 
 
@@ -297,9 +297,9 @@ namespace 临时数据抓取
             for (int i = 0; i < richTextBox1.Lines.Length; i++)
             {
                 string n = richTextBox1.Lines[i].Trim();
-          
 
-                string url = "https://www.rockauto.com/en/parts/mevotech,"+n;
+
+                string url = "https://www.rockauto.com/en/parts/mevotech," + n;
 
 
 
@@ -319,7 +319,7 @@ namespace 临时数据抓取
                     lv1.SubItems.Add(" ");
                     lv1.SubItems.Add(oem.Groups[1].Value.Trim());
                     lv1.SubItems.Add("");
-                    lv1.SubItems.Add("http://www.rockauto.com/info/"+img.Groups[1].Value.Replace("__ra_t","").Replace("\\","").Trim());
+                    lv1.SubItems.Add("http://www.rockauto.com/info/" + img.Groups[1].Value.Replace("__ra_t", "").Replace("\\", "").Trim());
                     Thread.Sleep(100);
                     while (this.zanting == false)
                     {
@@ -364,17 +364,17 @@ namespace 临时数据抓取
                 StringBuilder sb = new StringBuilder();
                 foreach (var item in text)
                 {
-                    if (!list.Contains(item) &&item!="")
+                    if (!list.Contains(item) && item != "")
                     {
                         list.Add(item);
-                        sb.Append(item+"/");
+                        sb.Append(item + "/");
                     }
-                  
+
                 }
 
                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                 lv1.SubItems.Add(sb.ToString());
-              
+
 
 
 
@@ -394,11 +394,11 @@ namespace 临时数据抓取
             for (int i = 0; i < richTextBox1.Lines.Length; i++)
             {
                 string n = richTextBox1.Lines[i].Trim();
-                
+
 
                 string url = "https://www.dormanproducts.com/gsearch.aspx?type=oesearch&origin=oesearch&q=" + n;
 
-                string html = method.GetUrlwithIP(url,ip,"","utf-8");
+                string html = method.GetUrlwithIP(url, ip, "", "utf-8");
 
                 if (html.Contains("SecurityForm") || html.Trim() == "")
                 {
@@ -407,7 +407,7 @@ namespace 临时数据抓取
                     continue;
                 }
 
-               MatchCollection dormanpartnumbers = Regex.Matches(html, @"class=""item-name"">([\s\S]*?)</span>");
+                MatchCollection dormanpartnumbers = Regex.Matches(html, @"class=""item-name"">([\s\S]*?)</span>");
                 Match nums = Regex.Match(html, @"<th scope=""row"">([\s\S]*?)</th>");
                 MatchCollection SYDs = Regex.Matches(html, @"<td style=""width:50%"">S([\s\S]*?)</td>");
 
@@ -417,22 +417,22 @@ namespace 临时数据抓取
                 MatchCollection imgs = Regex.Matches(html, @"<div class=""searchItems-img"">([\s\S]*?)<img src=""([\s\S]*?)""");
                 string wutu = " ";
                 StringBuilder sb = new StringBuilder();
-               // StringBuilder sb1 = new StringBuilder();
+                // StringBuilder sb1 = new StringBuilder();
                 StringBuilder sb2 = new StringBuilder();
                 for (int j = 0; j < SYDs.Count; j++)
                 {
-                     try
-                        {
-                            sb.Append(dormanpartnumbers[j].Groups[1].Value + ",");
-                           // sb1.Append(imgs[j].Groups[2].Value + ",");
-                        }
-                        catch (Exception)
-                        {
-                            wutu = "1";
-                            continue;
-                        }
-                      
-                    
+                    try
+                    {
+                        sb.Append(dormanpartnumbers[j].Groups[1].Value + ",");
+                        // sb1.Append(imgs[j].Groups[2].Value + ",");
+                    }
+                    catch (Exception)
+                    {
+                        wutu = "1";
+                        continue;
+                    }
+
+
                 }
 
                 //    string aurl = "https://www.dormanproducts.com/" + uid.Groups[2].Value;
@@ -451,22 +451,22 @@ namespace 临时数据抓取
                 //}
 
                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(n);
+                lv1.SubItems.Add(n);
                 lv1.SubItems.Add(nums.Groups[1].Value);
                 lv1.SubItems.Add(sb.ToString());
                 lv1.SubItems.Add(descriptions.Groups[2].Value);
-                    lv1.SubItems.Add(sb2.ToString());
-                    lv1.SubItems.Add(wutu);
-                  
-                    Thread.Sleep(100);
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                    }
-                    if (status == false)
-                        return;
-                
-               
+                lv1.SubItems.Add(sb2.ToString());
+                lv1.SubItems.Add(wutu);
+
+                Thread.Sleep(100);
+                while (this.zanting == false)
+                {
+                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                }
+                if (status == false)
+                    return;
+
+
             }
 
 
@@ -479,116 +479,42 @@ namespace 临时数据抓取
         public void tecdoc()
         {
 
-          
+
             for (int i = 0; i < richTextBox1.Lines.Length; i++)
             {
                 string n = richTextBox1.Lines[i].Trim();
                 label1.Text = i.ToString();
 
-                string url = "https://mx.tecdoc.net/search?q="+n+"&lang=en-US";
-
+                string url = "https://mx.tecdoc.net/search?q=" + n;
+               
                 string html = method.GetUrl(url, "utf-8");
 
 
-                MatchCollection aurls = Regex.Matches(html, @"<td class=""text-center text-nowrap hidden-xs hidden-sm""><a href=""([\s\S]*?)""><span class=""highlight"">([\s\S]*?)</span>");
-                MatchCollection anames = Regex.Matches(html, @"<h4>([\s\S]*?)</h4>");
-                if (aurls.Count == 0)
-                {
-                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                    lv1.SubItems.Add(n);
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    lv1.SubItems.Add("空");
-                    continue;
-                }
-                //MessageBox.Show(aurls.Count.ToString());
-                //MessageBox.Show(anames.Count.ToString());
+                MatchCollection aurls = Regex.Matches(html, @"<h4>([\s\S]*?)<a href=""([\s\S]*?)""");
+
                 for (int j = 0; j < aurls.Count; j++)
                 {
                     try
                     {
-                        string aurl = "https://mx.tecdoc.net"+aurls[j].Groups[1].Value;
-                        if (aurls[j].Groups[2].Value == n && anames[j].Groups[1].Value.Contains("SYD"))
+                        string aurl = "https://mx.tecdoc.net" + aurls[j].Groups[2].Value;
+
+                        string ahtml = method.GetUrl(aurl, "utf-8");
+                        string title = Regex.Match(ahtml, @"<h1 itemprop=""name"" class=""media-heading"">([\s\S]*?)<").Groups[1].Value.Trim();
+                        string Number = Regex.Match(ahtml, @"<span itemprop=""mpn"">([\s\S]*?)<").Groups[1].Value.Trim();
+                        string oem = Regex.Match(ahtml, @"OE Number</th>([\s\S]*?)</b></td>([\s\S]*?)</td>").Groups[2].Value.Trim();
+
+                   
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(n);
+                        lv1.SubItems.Add(Number);
+                        lv1.SubItems.Add(title);
+                        lv1.SubItems.Add(Regex.Replace(oem, "<[^>]+>", ""));
+
+                        while (this.zanting == false)
                         {
-                           
-                            string ahtml = method.GetUrl(aurl, "utf-8");
-                            string title = Regex.Match(ahtml, @"<h1 itemprop=""name"" class=""media-heading"">([\s\S]*?)<").Groups[1].Value.Trim();
-                            string Number = Regex.Match(ahtml, @"<span itemprop=""mpn"">([\s\S]*?)<").Groups[1].Value.Trim();
-                            string PartType = Regex.Match(ahtml, @"Part Type:</strong></small>([\s\S]*?)<").Groups[1].Value.Trim();
-                            string Position = Regex.Match(ahtml, @"Fitting Position</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
-                            string Length = Regex.Match(ahtml, @"Length</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
-                            string Width = Regex.Match(ahtml, @"Width</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
-                            string Height = Regex.Match(ahtml, @"Height</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
-                            string Weight = Regex.Match(ahtml, @"Weight</b></td>([\s\S]*?)</td>").Groups[1].Value.Replace("<td class=\"col-xs-8\">", "").Trim();
-
-                            
-
-                            string[] html2s = ahtml.Split(new string[] { "<td rows" }, StringSplitOptions.None); ;
-                          
-                            if (html2s.Length == 1)
-                            {
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                                lv1.SubItems.Add(n);
-                                lv1.SubItems.Add(title);
-                                lv1.SubItems.Add(Number);
-                                lv1.SubItems.Add(PartType);
-                                lv1.SubItems.Add(Position);
-                                lv1.SubItems.Add(Length);
-                                lv1.SubItems.Add(Width);
-                                lv1.SubItems.Add(Height);
-                                lv1.SubItems.Add(Weight);
-                                lv1.SubItems.Add("空");
-                                lv1.SubItems.Add("空");
-
-                                continue;
-                            }
-
-                            for (int a = 0; a < html2s.Length; a++)
-                            {
-
-                                if (html2s[a].Contains("pan=\""))
-                                {
-                                    string name = Regex.Match(html2s[a], @"<b>([\s\S]*?)</b>").Groups[1].Value.Trim();
-                                    MatchCollection values = Regex.Matches(html2s[a], @"<a href=""/search\?q=([\s\S]*?)""");
-
-                                    for (int b = 0; b < values.Count; b++)
-                                    {
-                                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                                        lv1.SubItems.Add(n);
-                                        lv1.SubItems.Add(title);
-                                        lv1.SubItems.Add(Number);
-                                        lv1.SubItems.Add(PartType);
-                                        lv1.SubItems.Add(Position);
-                                        lv1.SubItems.Add(Length);
-                                        lv1.SubItems.Add(Width);
-                                        lv1.SubItems.Add(Height);
-                                        lv1.SubItems.Add(Weight);
-                                        lv1.SubItems.Add(name);
-                                        lv1.SubItems.Add(values[b].Groups[1].Value);
-
-                                        while (this.zanting == false)
-                                        {
-                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                        }
-                                        if (status == false)
-                                            return;
-                                    }
-
-                                }
-
-                            }
-
-
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
-
-                       
+                        Thread.Sleep(1000);
                     }
                     catch (Exception ex)
                     {
@@ -598,7 +524,7 @@ namespace 临时数据抓取
 
 
                 }
-  
+
 
             }
 
@@ -612,7 +538,7 @@ namespace 临时数据抓取
         public void autozone()
         {
 
-           
+
             for (int i = 0; i < richTextBox1.Lines.Length; i++)
             {
                 try
@@ -620,7 +546,7 @@ namespace 临时数据抓取
                     string n = richTextBox1.Lines[i].Trim();
                     label1.Text = i.ToString();
 
-                    string url = "https://www.autozone.com/searchresult?searchText=" + n ;
+                    string url = "https://www.autozone.com/searchresult?searchText=" + n;
 
                     string html = GetUrlWithCookie(url, COOKIE, "utf-8");
 
@@ -662,7 +588,7 @@ namespace 临时数据抓取
 
                 }
 
-                
+
 
 
             }
@@ -691,7 +617,7 @@ namespace 临时数据抓取
                 request.Method = "Post";
                 // request.ContentType = "application/x-www-form-urlencoded";
 
-               // 添加头部
+                // 添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("BAIXING-SESSION:$2y$10$5jxzdMFEfh5a7CD9R.mSzu26JmWwbadWalXLNe5OjjyQmi1LPXuAO");
                 //headers.Add("x-nike-visitid:5");
@@ -748,15 +674,15 @@ namespace 临时数据抓取
                         for (int page = 1; page < 101; page++)
                         {
 
-                            string url = "http://epub.cnipa.gov.cn/patentoutline.action?showType=1&strSources=&strWhere=OPD%3DBETWEEN%5B%27"+year+".01.01%27%2C%27"+year+".12.31%27%5D+and+PA%3D%27%25" + n + "%25%27&numSortMethod=&strLicenseCode=&numIp=&numIpc=&numIg=&numIgc=&numIgd=&numUg=&numUgc=&numUgd=&numDg=&numDgc=&pageSize=20&pageNow=" + page;
+                            string url = "http://epub.cnipa.gov.cn/patentoutline.action?showType=1&strSources=&strWhere=OPD%3DBETWEEN%5B%27" + year + ".01.01%27%2C%27" + year + ".12.31%27%5D+and+PA%3D%27%25" + n + "%25%27&numSortMethod=&strLicenseCode=&numIp=&numIpc=&numIg=&numIgc=&numIgd=&numUg=&numUgc=&numUgd=&numDg=&numDgc=&pageSize=20&pageNow=" + page;
                             textBox2.Text = url;
                             string html = GetUrlWithCookie(url, COOKIE, "utf-8");
 
 
-                            MatchCollection haos= Regex.Matches(html, @"<td height=""30""([\s\S]*?)>([\s\S]*?)</a>");
-                           
+                            MatchCollection haos = Regex.Matches(html, @"<td height=""30""([\s\S]*?)>([\s\S]*?)</a>");
 
-                            for (int a = 0; a < haos.Count/4; a++)
+
+                            for (int a = 0; a < haos.Count / 4; a++)
                             {
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                                 lv1.SubItems.Add(year.ToString());
@@ -765,8 +691,8 @@ namespace 临时数据抓取
                                 lv1.SubItems.Add(haos[(4 * a) + 3].Groups[2].Value);
 
                             }
-                           
-                           
+
+
 
 
                         }
@@ -797,15 +723,15 @@ namespace 临时数据抓取
             {
                 try
                 {
-                    string n =richTextBox1.Lines[i].Trim();
+                    string n = richTextBox1.Lines[i].Trim();
 
 
                     for (int page = 1; page < 101; page++)
                     {
 
                         string url = "https://mpapi.baixing.com/v1.3.6/";
-                        string postdata = "{\"listing.getAds\":{\"areaId\":\""+n+"\",\"categoryId\":\"qiufang\",\"page\":"+page+",\"notAllowChatOnly\":1}}";
-                        string html = PostUrl(url, postdata, "", "utf-8").Replace("\"user\":{\"id","");
+                        string postdata = "{\"listing.getAds\":{\"areaId\":\"" + n + "\",\"categoryId\":\"qiufang\",\"page\":" + page + ",\"notAllowChatOnly\":1}}";
+                        string html = PostUrl(url, postdata, "", "utf-8").Replace("\"user\":{\"id", "");
 
                         MatchCollection haos = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
                         MatchCollection tels = Regex.Matches(html, @"""mobile"":""([\s\S]*?)""");
@@ -830,10 +756,10 @@ namespace 临时数据抓取
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
                             }
-                            catch (Exception )
+                            catch (Exception)
                             {
 
-                               continue;
+                                continue;
                             }
 
                         }
@@ -846,7 +772,7 @@ namespace 临时数据抓取
 
                 catch (Exception ex)
                 {
-                  textBox2.Text=(ex.ToString());
+                    textBox2.Text = (ex.ToString());
 
                 }
 
@@ -860,13 +786,13 @@ namespace 临时数据抓取
         private void button1_Click(object sender, EventArgs e)
         {
 
-            MatchCollection values = Regex.Matches(richTextBox1.Text, @"""id"":""([\s\S]*?)""");
-        
-                status = true;
+
+
+            status = true;
             //tecalliance  检测UA
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(baixing);
+                thread = new Thread(tecdoc);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

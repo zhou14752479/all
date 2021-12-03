@@ -101,7 +101,7 @@ namespace ASPnetWeb应用程序空
 "左盘右蹙如惊电，状同楚汉相攻战",
 "湖南七郡凡几家，家家屏障书题遍",
 "张颠老死不足数，我师此义不师古",
-"古来万事贵天生，何必要公孙大娘浑脱舞",
+"古来万事贵天生，公孙大娘浑脱舞",
 "宦情羁思共凄凄，春半如秋意转迷",
 "山城过雨百花尽，榕叶满庭莺乱啼",
 "风恬日暖荡春光，戏蝶游蜂乱入房",
@@ -130,79 +130,6 @@ namespace ASPnetWeb应用程序空
 "九轨徐行怒涛上，千艘横系大江心",
 "寺楼钟鼓催昏晓，墟落云烟自古今",
 "白发未除豪气在，醉吹横笛坐榕阴",
-"悲时俗之迫阨兮，愿轻举而远游",
-"质菲薄而无因兮，焉讬乘而上浮？",
-"遭沈浊而污秽兮，独郁结其谁语",
-"夜耿耿而不寐兮，魂营营而至曙",
-"惟天地之无穷兮，哀人生之长勤",
-"往者余弗及兮，来者吾不闻",
-"步徙倚而遥思兮，怊惝怳而乖怀",
-"意荒忽而流荡兮，心愁悽而增悲",
-"神倏忽而不反兮，形枯槁而独留",
-"内惟省以操端兮，求正气之所由",
-"漠虚静以恬愉兮，澹无为而自得",
-"闻赤松之清尘兮，愿承风乎遗则",
-"贵真人之休德兮，美往世之登仙；",
-"与化去而不见兮，名声著而日延",
-"奇傅说之讬辰星兮，羡韩众之得一",
-"形穆穆以浸远兮，离人群而遁逸",
-"因气变而遂曾举兮，忽神奔而鬼怪",
-"时仿佛以遥见兮，精晈晈以往来",
-"超氛埃而淑邮兮，终不反其故都",
-"免众患而不惧兮，世莫知其所如",
-"恐天时之代序兮，耀灵晔而西征",
-"微霜降而下沦兮，悼芳草之先蘦",
-"聊仿佯而逍遥兮，永历年而无成",
-"谁可与玩斯遗芳兮？长向风而舒情",
-"高阳邈以远兮，余将焉所程？",
-"春秋忽其不淹兮，奚久留此故居",
-"轩辕不可攀援兮，吾将从王乔而娱戏",
-"餐六气而饮沆瀣兮，漱正阳而含朝霞",
-"保神明之清澄兮，精气入而麤秽除",
-"顺凯风以从游兮，至南巢而壹息",
-"见王子而宿之兮，审壹气之和德",
-"吸飞泉之微液兮，怀琬琰之华英",
-"玉色頩以脕颜兮，精醇粹而始壮",
-"质销铄以汋约兮，神要眇以淫放",
-"嘉南州之炎德兮，丽桂树之冬荣；",
-"山萧条而无兽兮，野寂漠其无人",
-"载营魄而登霞兮，掩浮云而上征",
-"命天阍其开关兮，排阊阖而望予",
-"召丰隆使先导兮，问太微之所居",
-"集重阳入帝宫兮，造旬始而观清都",
-"朝发轫于太仪兮，夕始临乎于微闾",
-"屯余车之万乘兮，纷容与而并驰",
-"驾八龙之婉婉兮，载云旗之逶蛇",
-"建雄虹之采旄兮，五色杂而炫耀",
-"服偃蹇以低昂兮，骖连蜷以骄骜",
-"骑胶葛以杂乱兮，斑漫衍而方行",
-"撰余辔而正策兮，吾将过乎句芒",
-"历太皓以右转兮，前飞廉以启路",
-"阳杲杲其未光兮，凌天地以径度",
-"风伯为余先驱兮，氛埃辟而清凉",
-"凤凰翼其承旂兮，遇蓐收乎西皇",
-"揽慧星以为旍兮，举斗柄以为麾",
-"叛陆离其上下兮，游惊雾之流波",
-"时暧曃其曭莽兮，召玄武而奔属",
-"后文昌使掌行兮，选署众神以并轂",
-"路漫漫其修远兮，徐弭节而高厉",
-"左雨师使径侍兮，右雷公以为卫",
-"欲度世以忘归兮，意姿睢以抯挢",
-"内欣欣而自美兮，聊媮娱以淫乐",
-"涉青云以汎滥游兮，忽临睨夫旧乡",
-"仆夫怀余心悲兮，边马顾而不行",
-"思旧故以想象兮，长太息而掩涕",
-"汜容与而遐举兮，聊抑志而自弭",
-"指炎神而直驰兮，吾将往乎南疑",
-"览方外之荒忽兮，沛罔瀁而自浮",
-"祝融戒而跸御兮，腾告鸾鸟迎宓妃",
-"张咸池奏承云兮，二女御九韶歌",
-"音乐博衍无终极兮，焉乃逝以徘徊",
-"舒并节以驰骛兮，逴绝垠乎寒门",
-"轶迅风于清源兮，从颛顼乎增冰",
-"历玄冥以邪径兮，乘间维以反顾",
-"召黔赢而见之兮，为余先乎平路",
-"下峥嵘而无地兮，上寥廓而无天",
 "寒雨连江夜入吴，平明送客楚山孤",
 "洛阳亲友如相问，一片冰心在玉壶",
 "闺中少妇不知愁，春日凝妆上翠楼",
@@ -583,7 +510,7 @@ namespace ASPnetWeb应用程序空
             public void shengcheng(string chang)
         {
             Random rd = new Random();
-            string shici = shiciarr[rd.Next(0, 230)].Replace("，", "\n    ");
+            string shici = shiciarr[rd.Next(0, 155)].Replace("，", "\n    ");
             string zi = shici.Substring(3, 1);
 
             Random rd2 = new Random();
@@ -621,7 +548,7 @@ namespace ASPnetWeb应用程序空
 
 
                 Random rd = new Random();
-                string shici = shiciarr[rd.Next(0, 230)];
+                string shici = shiciarr[rd.Next(0, 155)];
 
                 Random rd2 = new Random();
                 string chengyu = "提示:" + chengyuarr[rd2.Next(0, 248)] + "," + chengyuarr[rd.Next(0, 248)];
@@ -649,88 +576,33 @@ namespace ASPnetWeb应用程序空
             //生成前端结果
             if (Request.QueryString["action"] == "createresult")
             {
-                string zi = "";
                 if (Request.QueryString["c1"] != "")
                 {
-                    Random rd = new Random();
-                    string shici = shiciarr[rd.Next(0, 230)].Replace("，", "\n    ");
-                    zi = shici.Substring(3, 1);
-
-                    Random rd2 = new Random();
-                    string chengyu = "提示:" + chengyuarr[rd2.Next(0, 248)] + "," + chengyuarr[rd.Next(0, 248)];
-
-
                     string c1 = Request.QueryString["c1"];
-
                     string value = value1.Replace("未开", c1);
                     drawText(value, "宋体", 19, FontStyle.Bold, 40, 100, 0, 0, 0, "场", "第一场");
-
-
                 }
 
-
                 if (Request.QueryString["c2"] != "")
-                {
-                    Random rd = new Random();
-                    string shici = shiciarr[rd.Next(0, 230)].Replace("，", "\n    ");
-                    zi = shici.Substring(3, 1);
-
-
-
-                    Random rd2 = new Random();
-                    string chengyu = "提示:" + chengyuarr[rd2.Next(0, 248)] + "," + chengyuarr[rd.Next(0, 248)];
-
-
+                {          
                     string c2 = Request.QueryString["c2"];
                     string value = value2.Replace("未开", c2);
                     drawText(value, "宋体", 19, FontStyle.Bold, 40, 100, 0, 0, 0, "场", "第二场");
 
-
                 }
-
 
                 if (Request.QueryString["c3"] != "")
                 {
-                    Random rd = new Random();
-                    string shici = shiciarr[rd.Next(0, 230)].Replace("，", "\n    ");
-                    zi = shici.Substring(3, 1);
-
-                    Random rd2 = new Random();
-                    string chengyu = "提示:" + chengyuarr[rd2.Next(0, 248)] + "," + chengyuarr[rd.Next(0, 248)];
-
-
                     string c3 = Request.QueryString["c3"];
                     string value = value3.Replace("未开", c3);
                     drawText(value, "宋体", 19, FontStyle.Bold, 40, 100, 0, 0, 0, "场", "第三场");
 
-
                 }
-
                 if (Request.QueryString["sxsh"] != "")
                 {
-                    Random rd = new Random();
-                    string shici = shiciarr[rd.Next(0, 230)];
-
-
-
-                    Random rd2 = new Random();
-                    string chengyu = "提示:" + chengyuarr[rd2.Next(0, 248)] + "," + chengyuarr[rd.Next(0, 248)];
-
-
-                    string newshici = "";
                     string sxsh = Request.QueryString["sxsh"];
-                    char[] arr = shici.ToArray();
-                    foreach (var item in arr)
-                    {
-                        newshici += item + " ";
-                    }
-
-
-                    zi = shici.Substring(3, 1);
-                    string zi2 = shici.Substring(12, 1);
                     string value = sxsh_value.Replace("未开", sxsh);
                     drawText(value, "宋体", 80, FontStyle.Bold, 40, 100, 0, 0, 0, "生肖", "生肖守护");
-
 
                 }
 

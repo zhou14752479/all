@@ -230,17 +230,43 @@ namespace 地图营销
 
 
 
+        public void register(string jihuoma)
+        {
+
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?method=register&username=" + jihuoma + "&password=1&days=1&type=1111jihuoma", "utf-8");
+
+
+
+        }
+
+        public bool login(string jihuoma)
+        {
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?username=" + jihuoma + "&password=1&method=login", "utf-8");
+            if (html.Contains("true"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         #region 激活码
 
         public void jihuoma()
         {
             try
             {
+
+
+
                 string macmd5 = method.GetMD5(method.GetMacAddress());
                 long expiretime = Convert.ToInt64(method.GetTimeStamp()) + 365 * 24 * 3600;
                 if (ExistINIFile())
                 {
                     string key = IniReadValue("values", "key");
+
                     string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
 
 
@@ -248,8 +274,12 @@ namespace 地图营销
                     {
                         MessageBox.Show("激活已过期");
                         string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
-
-
+                        string fullstr = str;
+                        if (login(fullstr))
+                        {
+                            MessageBox.Show("激活失败，激活码失效");
+                            return;
+                        }
                         if (str.Length > 40)
                         {
                             str = str.Remove(0, 10);
@@ -258,35 +288,42 @@ namespace 地图营销
                             str = method.Base64Decode(Encoding.Default, str);
                             string index = str.Remove(str.Length - 16, 16);
                             string time = str.Substring(str.Length - 10, 10);
-                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) <999999999)  //200秒内有效
+                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                             {
-                                if (index == "ling" || index=="san")//美团一年
+                                if (index == "er" || index == "san")//美团一年
                                 {
 
                                     IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
 
                                     MessageBox.Show("激活成功");
-                                    return;
-                                }
-                                if (index == "si" )//试用一天
-                                {
-
-                                    IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
-
-                                    MessageBox.Show("激活成功");
+                                    register(fullstr);
                                     return;
                                 }
                             }
+                            if (index == "si")//试用一天
+                            {
+
+                                IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
+
+                                MessageBox.Show("激活成功");
+                                register(fullstr);
+                                return;
+                            }
                         }
                         MessageBox.Show("激活码错误");
-                        jihuo = false;
+                        jihuo = false; ;
                     }
 
                 }
                 else
                 {
                     string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
-
+                    string fullstr = str;
+                    if (login(fullstr))
+                    {
+                        MessageBox.Show("激活失败，激活码失效");
+                        return;
+                    }
                     if (str.Length > 40)
                     {
                         str = str.Remove(0, 10);
@@ -297,33 +334,33 @@ namespace 地图营销
                         string time = str.Substring(str.Length - 10, 10);
                         if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                         {
-                            if (index == "ling" || index == "san")//美团一年
+                            if (index == "er" || index == "san")//美团一年
                             {
                                 IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
 
                                 MessageBox.Show("激活成功");
-                                return;
-                            }
-                            if (index == "si")//试用一天
-                            {
-
-                                IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
-
-                                MessageBox.Show("激活成功");
+                                register(fullstr);
                                 return;
                             }
                         }
+                        if (index == "si")//试用一天
+                        {
+
+                            IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
+
+                            MessageBox.Show("激活成功");
+                            register(fullstr);
+                            return;
+                        }
                     }
                     MessageBox.Show("激活码错误");
-                    jihuo = false;
-                    //System.Diagnostics.Process.GetCurrentProcess().Kill();
+                    jihuo = false; ;
                 }
             }
             catch (Exception)
             {
                 MessageBox.Show("激活码错误");
-                jihuo = false;
-                //System.Diagnostics.Process.GetCurrentProcess().Kill();
+                jihuo = false; ;
             }
 
 

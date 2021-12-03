@@ -45,9 +45,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,9 +169,7 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader17,
-            this.columnHeader6});
+            this.columnHeader7});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -192,32 +188,23 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "姓名";
-            this.columnHeader2.Width = 80;
+            this.columnHeader2.Text = "输入数字";
+            this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "身份证";
-            this.columnHeader3.Width = 200;
+            this.columnHeader3.Text = "编号";
+            this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "手机号";
+            this.columnHeader4.Text = "描述";
+            this.columnHeader4.Width = 200;
             // 
-            // columnHeader5
+            // columnHeader7
             // 
-            this.columnHeader5.Text = "uid";
-            this.columnHeader5.Width = 100;
-            // 
-            // columnHeader17
-            // 
-            this.columnHeader17.Text = "nickname";
-            this.columnHeader17.Width = 100;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "json";
-            this.columnHeader6.Width = 1000;
+            this.columnHeader7.Text = "OE编号";
+            this.columnHeader7.Width = 200;
             // 
             // 饿了么
             // 
@@ -253,11 +240,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ColumnHeader columnHeader17;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

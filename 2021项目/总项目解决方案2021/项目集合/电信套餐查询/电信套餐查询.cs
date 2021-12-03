@@ -149,7 +149,7 @@ namespace 电信套餐查询
         #endregion
         private void 电信套餐查询_Load(object sender, EventArgs e)
         {
-            jiance();
+            //jiance();
 
 
 
@@ -383,10 +383,7 @@ namespace 电信套餐查询
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2021-12-01"))
-            {
-                return;
-            }
+           
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 

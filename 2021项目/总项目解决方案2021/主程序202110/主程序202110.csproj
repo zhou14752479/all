@@ -35,6 +35,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=11.0.0.0, Culture=neutral, PublicKeyToken=6298d2d1fcfb5d85, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL">
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
@@ -66,6 +71,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="互动易网站监控.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="互动易网站监控.Designer.cs">
+      <DependentUpon>互动易网站监控.cs</DependentUpon>
+    </Compile>
     <Compile Include="内容随机合成.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +88,24 @@
     </Compile>
     <Compile Include="华东师范大学开放教育下载.Designer.cs">
       <DependentUpon>华东师范大学开放教育下载.cs</DependentUpon>
+    </Compile>
+    <Compile Include="屏幕坐标颜色.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="屏幕坐标颜色.Designer.cs">
+      <DependentUpon>屏幕坐标颜色.cs</DependentUpon>
+    </Compile>
+    <Compile Include="弹出页面.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="弹出页面.Designer.cs">
+      <DependentUpon>弹出页面.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文件分类.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文件分类.Designer.cs">
+      <DependentUpon>文件分类.cs</DependentUpon>
     </Compile>
     <Compile Include="文本分割.cs">
       <SubType>Form</SubType>
@@ -96,6 +125,12 @@
     <Compile Include="表格去重.Designer.cs">
       <DependentUpon>表格去重.cs</DependentUpon>
     </Compile>
+    <Compile Include="表格提取文档.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表格提取文档.Designer.cs">
+      <DependentUpon>表格提取文档.cs</DependentUpon>
+    </Compile>
     <Compile Include="高德地图企业查询.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,11 +147,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="互动易网站监控.resx">
+      <DependentUpon>互动易网站监控.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="内容随机合成.resx">
       <DependentUpon>内容随机合成.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="华东师范大学开放教育下载.resx">
       <DependentUpon>华东师范大学开放教育下载.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="屏幕坐标颜色.resx">
+      <DependentUpon>屏幕坐标颜色.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="弹出页面.resx">
+      <DependentUpon>弹出页面.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文件分类.resx">
+      <DependentUpon>文件分类.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="文本分割.resx">
       <DependentUpon>文本分割.cs</DependentUpon>
@@ -126,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="表格去重.resx">
       <DependentUpon>表格去重.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表格提取文档.resx">
+      <DependentUpon>表格提取文档.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="高德地图企业查询.resx">
       <DependentUpon>高德地图企业查询.cs</DependentUpon>

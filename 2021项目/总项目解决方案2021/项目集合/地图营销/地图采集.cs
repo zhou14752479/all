@@ -634,7 +634,7 @@ namespace 地图营销
         private void button7_Click(object sender, EventArgs e)
         {
             md.jihuoma();
-           // md.jiance2();
+          // md.jiance2();
             //if (logined == false)
             //{
             //    MessageBox.Show("请登录");

@@ -15,21 +15,27 @@
 <body>
     <form id="form1" runat="server">
          <div class="w50 center">
-            <div class="title">孟邦后台数据</div>
+            <div class="title">皇家后台数据</div>
             <div class="border">
+                
                 <div class="w80 center">
                     <div class="text-style top10">
-                        <input type="text" name="diyichang"   value="<%=Request["diyichang"]%>" placeholder="输入第一场" />
+                        <input type="text" name="diyichang"   value="<%=Application["diyichang"]%>" placeholder="输入第一场" />
+                        <button>保存</button>
+                    </div>
+                      <div class="text-style top10">
+                        <input type="text" name="shengxiao" value="<%=Application["shengxiao"]%>" placeholder="输入生肖" />
                         <button>保存</button>
                     </div>
                     <div class="text-style top10">
-                        <input type="text" name="dierchang" value="<%=Request["dierchang"]%>" placeholder="输入第二场" />
+                        <input type="text" name="dierchang" value="<%=Application["dierchang"]%>" placeholder="输入第二场" />
                         <button>保存</button>
                     </div>
                     <div class="text-style top10">
-                        <input type="text" name="disanchang" value="<%=Request["disanchang"]%>" placeholder="输入第三场" />
+                        <input type="text" name="disanchang" value="<%=Application["disanchang"]%>" placeholder="输入第三场" />
                         <button>保存</button>
                     </div>
+                    
                     <button type="button" class="button button-block top10 bottom10" onclick="resetdata();">重置</button>
                 </div>
             </div>

@@ -281,7 +281,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(366, 614);
             this.tabPage2.TabIndex = 0;
-            this.tabPage2.Text = "asce";
+            this.tabPage2.Text = "AscendEX";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // listView1
@@ -345,7 +345,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(366, 614);
             this.tabPage3.TabIndex = 1;
-            this.tabPage3.Text = "mxec";
+            this.tabPage3.Text = "MEXC";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // listView2
@@ -418,7 +418,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "币种价格对比";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "币种价格对比";
+            this.Text = " 0";
             this.Load += new System.EventHandler(this.币种价格对比_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

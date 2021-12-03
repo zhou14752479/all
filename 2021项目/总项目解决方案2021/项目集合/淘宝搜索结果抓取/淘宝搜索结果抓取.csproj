@@ -31,6 +31,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="myDLL">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,11 +70,23 @@
     <Compile Include="webbrowser.Designer.cs">
       <DependentUpon>webbrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="淘宝搜索列表.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="淘宝搜索列表.Designer.cs">
+      <DependentUpon>淘宝搜索列表.cs</DependentUpon>
+    </Compile>
     <Compile Include="淘宝搜索结果抓取.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="淘宝搜索结果抓取.Designer.cs">
       <DependentUpon>淘宝搜索结果抓取.cs</DependentUpon>
+    </Compile>
+    <Compile Include="直通车抓取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="直通车抓取.Designer.cs">
+      <DependentUpon>直通车抓取.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -70,8 +100,14 @@
     <EmbeddedResource Include="webbrowser.resx">
       <DependentUpon>webbrowser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="淘宝搜索列表.resx">
+      <DependentUpon>淘宝搜索列表.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="淘宝搜索结果抓取.resx">
       <DependentUpon>淘宝搜索结果抓取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="直通车抓取.resx">
+      <DependentUpon>直通车抓取.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

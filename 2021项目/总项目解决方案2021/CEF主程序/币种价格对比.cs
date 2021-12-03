@@ -234,20 +234,26 @@ namespace CEF主程序
                                                 listView1.CheckedItems[i].SubItems[5].Text = sell_price_dodo;
 
 
+                                                //上面红色 下面绿色
+                                                //交易所买入价(即红色部分的价）
+                                                //交易所卖出价(即绿色部分的价）
                                                 double price_bili = 1 + Convert.ToDouble(Convert.ToDouble(textBox2.Text) / 100);
                                                 double amount_bili = Convert.ToDouble(Convert.ToDouble(textBox3.Text) / 100);
-                                               
+
+                                                double price_bili2 =Convert.ToDouble(Convert.ToDouble(100 - Convert.ToDouble(textBox2.Text)) / 100);
+
+                                              
                                                 if (Convert.ToDouble(buy_price) > Convert.ToDouble(buy_price_dodo) * price_bili && Convert.ToDouble(buy_count) >= Convert.ToDouble(buy_amount_dodo) * amount_bili)
                                                 {
                                                     listView1.CheckedItems[i].BackColor = Color.Green;
-                                                    log(DateTime.Now.ToLongTimeString() +" "+ listView1.CheckedItems[i].SubItems[0].Text + "--交易价：" + buy_price + "--DODO价：" + buy_price_dodo);
+                                                    log(DateTime.Now.ToLongTimeString() +" "+ listView1.CheckedItems[i].SubItems[0].Text + "--交易所卖出价：" + buy_price + "--DODO买入价：" + buy_price_dodo);
                                                     Beep(800, 500);
 
                                                 }
-                                                if (Convert.ToDouble(sell_price) < Convert.ToDouble(sell_price_dodo) * price_bili && Convert.ToDouble(buy_count) >= Convert.ToDouble(buy_amount_dodo) * amount_bili)
+                                                if (Convert.ToDouble(sell_price) < Convert.ToDouble(sell_price_dodo) * price_bili2 && Convert.ToDouble(buy_count) >= Convert.ToDouble(buy_amount_dodo) * amount_bili)
                                                 {
                                                     listView1.CheckedItems[i].BackColor = Color.Red;
-                                                    log(DateTime.Now.ToLongTimeString() + " "+listView1.CheckedItems[i].SubItems[0].Text+"--交易价：" + sell_price + "--DODO价：" + sell_price_dodo);
+                                                    log(DateTime.Now.ToLongTimeString() + " "+listView1.CheckedItems[i].SubItems[0].Text+"--交易所买入价：" + sell_price + "--DODO卖出价：" + sell_price_dodo);
                                                 }
                                             }
                                         }

@@ -57,19 +57,55 @@ namespace CEF主程序
             }
         }
 
-      
 
 
 
 
         #endregion
 
+        public void dianji()
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("function tempFunction() {");
+
+                sb.AppendLine(" var id1=document.getElementsByClassName('cap4-condition-button cap4-condition-button__filter')[0];id1.click(); ");
+                sb.AppendLine(" var id2=document.getElementsByClassName('v-easy-table-checkbox-inner v-easy-table-radio-inner')[0];id2.click(); ");
+                sb.AppendLine("}");
+                sb.AppendLine("tempFunction();");
+                var task01 = browser.GetBrowser().GetFrame(browser.GetBrowser().GetFrameNames()[1]).EvaluateScriptAsync(sb.ToString());
+                task01.ContinueWith(t =>
+                {
+                    if (!t.IsFaulted)
+                    {
+                        var response = t.Result;
+                        if (response.Success == true)
+                        {
+                            if (response.Result != null)
+                            {
+                                string resultStr = response.Result.ToString();
+
+                            }
+                        }
+                    }
+                });
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
         private void 药师帮_Load(object sender, EventArgs e)
         {
-            //browser = new ChromiumWebBrowser("https://dian.ysbang.cn/index.html#/indexContent?searchKey=&_t=1633924287163");
+            browser = new ChromiumWebBrowser("http://60.214.69.236:8888/seeyon/main.do?method=main");
             //browser = new ChromiumWebBrowser("https://passport.vip.com/login?src=https%3A%2F%2Fdetail.vip.com%2Fdetail-1711548730-6919483919008310362.html");
             //browser = new ChromiumWebBrowser("https://ascendex.com/zh-cn/basic/cashtrade-spottrading/usdt/cns");
-            browser = new ChromiumWebBrowser("https://mygiftcard.jd.com/giftcard/myGiftCardInit.action");
+            //browser = new ChromiumWebBrowser("https://mygiftcard.jd.com/giftcard/myGiftCardInit.action");
             Control.CheckForIllegalCrossThreadCalls = false;
       splitContainer1.Panel2.Controls.Add(browser);
 
@@ -155,23 +191,25 @@ namespace CEF主程序
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(!cookies.Contains("thor"))
-            {
+            dianji();
+            
+            //if(!cookies.Contains("thor"))
+            //{
 
-                MessageBox.Show("未登录");
-                return;
-            }
-            else
-            {
-                string thor = Regex.Match(cookies,@"thor=([\s\S]*?);").Groups[1].Value;
-                thor = "thor="+thor+";";
-                京东E卡查询.cookie = thor;
-            }
+            //    MessageBox.Show("未登录");
+            //    return;
+            //}
+            //else
+            //{
+            //    string thor = Regex.Match(cookies,@"thor=([\s\S]*?);").Groups[1].Value;
+            //    thor = "thor="+thor+";";
+            //    京东E卡查询.cookie = thor;
+            //}
 
 
-            //京东E卡查询.cookie = "thor=0CAE1EBF4188AB011A917A929B11D77316B456D2514E2AF0AAE44DCDA7911EFC99A6B0E626F353013AB6B9E342357C22D3BA43F3D9FB13D8126532A3627460F817A2984D8FEF17FB60E6ECD5C498EBB3570D228B35BAF6B454F013C08E72F62B4E0DC534C00E83BD08AA53AA453AD2B688A5FF2E5460411443AE43ECFA8D4CFA; ";
+          
 
-            this.Hide();
+            //this.Hide();
 
         }
 

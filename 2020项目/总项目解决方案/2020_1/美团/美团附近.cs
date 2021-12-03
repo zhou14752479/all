@@ -238,12 +238,13 @@ namespace 美团
             areadics.Clear();
 
             string Url = "https://m.dianping.com/mtbeauty/index/ajax/loadnavigation?token=gORmhG3WtAc9Pfr4vTbhivSxQk0AAAAADA4AAPrp_ewNUU2qGaRBE9FjidEQTVrC4_z5BShh7mlouJWGaKp4u3_FM5r8Gh5U2I2LrQ&cityid=" + cityid+"&cateid=22&categoryids=22&lat=33.96271&lng=118.24239&userid=&uuid=oJVP50IRqKIIshugSqrvYE3OHJKQ&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&mtlite=false" ;
+         
 
             string html = meituan_GetUrl(Url);  //定义的GetRul方法 返回 reader.ReadToEnd()
-
+          
             MatchCollection areas = Regex.Matches(html, @"""name"":""([\s\S]*?)"",""id"":([\s\S]*?),");
 
-
+          
             for (int i = 0; i < areas.Count; i++)
             {
 
@@ -251,8 +252,9 @@ namespace 美团
                 {
                     if (!areas[i].Groups[1].Value.Contains("小区") && !areas[i].Groups[1].Value.Contains("街区") && !areas[i].Groups[1].Value.Contains("商业区") && !areas[i].Groups[1].Value.Contains("城区") && !areas[i].Groups[1].Value.Contains("市区") && !areas[i].Groups[1].Value.Contains("地区") && !areas[i].Groups[1].Value.Contains("社区") && areas[i].Groups[1].Value.Length < 5)
                     {
-                        if (!areadics.ContainsKey(areas[i].Groups[3].Value))
+                        if (!areadics.ContainsKey(areas[i].Groups[1].Value))
                         {
+                          
                             areadics.Add(areas[i].Groups[1].Value, areas[i].Groups[2].Value);
 
                         }
@@ -552,14 +554,16 @@ namespace 美团
                 string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 foreach (string city in citys)
                 {
-                    if (city == "")
+                    if (city == "") 
                     {
                         continue;
                     }
                     string cityid = GetcityId(city.Replace("市", ""));
+                  
                     string citypinyin = Getpinyin(city.Replace("市", ""));
-
+                 
                     getareas2(cityid);
+                
                     foreach (string areaid in areadics.Values)
                     {
 
@@ -574,7 +578,8 @@ namespace 美团
                                 string Url = "https://i.meituan.com/api/vc/mtshoplist/client/easylife?cateId=&cityid="+cityid+"&start="+i+"&limit=20&tabKeyWord="+keyword+"&tagName=%E5%85%A8%E9%83%A8&clienttype=200&dpid=&areaId=" + areaid;
 
                                 string html = meituan_GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
-                              
+
+                                //textBox2.Text = html;
                                 MatchCollection uids = Regex.Matches(html, @"""shopId"":""([\s\S]*?)""");
 
                              
@@ -670,7 +675,7 @@ namespace 美团
 
             catch (System.Exception ex)
             {
-                ex.ToString();
+               // MessageBox.Show(ex.ToString());
             }
 
             toolStripStatusLabel1.Text = "完成";
@@ -1198,17 +1203,43 @@ namespace 美团
         #endregion
 
 
+        public void register(string jihuoma)
+        {
+
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?method=register&username=" + jihuoma + "&password=1&days=1&type=1111jihuoma", "utf-8");
+
+
+
+        }
+
+        public bool login(string jihuoma)
+        {
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?username=" + jihuoma + "&password=1&method=login", "utf-8");
+            if (html.Contains("true"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         #region 激活码
 
         public void jihuoma()
         {
             try
             {
+
+
+
                 string macmd5 = method.GetMD5(method.GetMacAddress());
                 long expiretime = Convert.ToInt64(method.GetTimeStamp()) + 365 * 24 * 3600;
                 if (ExistINIFile())
                 {
                     string key = IniReadValue("values", "key");
+
                     string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
 
 
@@ -1216,8 +1247,12 @@ namespace 美团
                     {
                         MessageBox.Show("激活已过期");
                         string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
-
-
+                        string fullstr = str;
+                        if (login(fullstr))
+                        {
+                            MessageBox.Show("激活失败，激活码失效");
+                            return;
+                        }
                         if (str.Length > 40)
                         {
                             str = str.Remove(0, 10);
@@ -1228,33 +1263,40 @@ namespace 美团
                             string time = str.Substring(str.Length - 10, 10);
                             if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                             {
-                                if (index == "yi" || index=="san")//美团一年
+                                if (index == "er" || index == "san")//美团一年
                                 {
-                                   
+
                                     IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
-                                    jihuo = true;
-                                    MessageBox.Show("激活成功");
-                                    return;
-                                }
-                                if (index == "si")//试用一天
-                                {
-
-                                    IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
 
                                     MessageBox.Show("激活成功");
+                                    register(fullstr);
                                     return;
                                 }
                             }
+                            if (index == "si")//试用一天
+                            {
+
+                                IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
+
+                                MessageBox.Show("激活成功");
+                                register(fullstr);
+                                return;
+                            }
                         }
                         MessageBox.Show("激活码错误");
-                        jihuo = false;
+                        jihuo = false; ;
                     }
 
                 }
                 else
                 {
                     string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
-
+                    string fullstr = str;
+                    if (login(fullstr))
+                    {
+                        MessageBox.Show("激活失败，激活码失效");
+                        return;
+                    }
                     if (str.Length > 40)
                     {
                         str = str.Remove(0, 10);
@@ -1265,39 +1307,41 @@ namespace 美团
                         string time = str.Substring(str.Length - 10, 10);
                         if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                         {
-                            if (index == "yi" || index == "san")//美团一年
+                            if (index == "er" || index == "san")//美团一年
                             {
                                 IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
-                                jihuo = true;
-                                MessageBox.Show("激活成功");
-                                return;
-                            }
-                            if (index == "si")//试用一天
-                            {
-
-                                IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
 
                                 MessageBox.Show("激活成功");
+                                register(fullstr);
                                 return;
                             }
                         }
+                        if (index == "si")//试用一天
+                        {
+
+                            IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
+
+                            MessageBox.Show("激活成功");
+                            register(fullstr);
+                            return;
+                        }
                     }
                     MessageBox.Show("激活码错误");
-                    jihuo = false;
+                    jihuo = false; ;
                 }
             }
             catch (Exception)
             {
                 MessageBox.Show("激活码错误");
-                jihuo = false;
+                jihuo = false; ;
             }
-           
+
 
         }
 
-         
-    #endregion
-    public void creatVcf()
+
+        #endregion
+        public void creatVcf()
 
         {
 

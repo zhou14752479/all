@@ -99,7 +99,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(255, 58);
+            this.groupBox1.Size = new System.Drawing.Size(268, 58);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "登录淘宝";
@@ -112,7 +112,7 @@
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(3, 17);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(249, 38);
+            this.button7.Size = new System.Drawing.Size(262, 38);
             this.button7.TabIndex = 11;
             this.button7.Text = "登陆淘宝";
             this.button7.UseVisualStyleBackColor = false;
@@ -126,7 +126,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(0, 58);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(255, 264);
+            this.groupBox2.Size = new System.Drawing.Size(268, 264);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "关键字设置(一行一个)";
@@ -160,7 +160,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(249, 220);
+            this.textBox1.Size = new System.Drawing.Size(262, 220);
             this.textBox1.TabIndex = 6;
             this.textBox1.WordWrap = false;
             // 
@@ -186,8 +186,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1007, 595);
-            this.splitContainer1.SplitterDistance = 748;
+            this.splitContainer1.Size = new System.Drawing.Size(1057, 604);
+            this.splitContainer1.SplitterDistance = 785;
             this.splitContainer1.TabIndex = 3;
             // 
             // listView1
@@ -205,7 +205,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(748, 595);
+            this.listView1.Size = new System.Drawing.Size(785, 604);
             this.listView1.TabIndex = 376;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -345,7 +345,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 595);
+            this.ClientSize = new System.Drawing.Size(1057, 604);
             this.Controls.Add(this.splitContainer1);
             this.Name = "淘宝搜索结果抓取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -610,26 +610,57 @@ namespace qccxcx
             #endregion
         }
 
+        public void register(string jihuoma)
+        {
+                
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?method=register&username=" + jihuoma + "&password=1&days=1&type=1111jihuoma", "utf-8");
+
+         
+
+        }
+
+        public bool login(string jihuoma)
+        {
+            string html = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?username="+jihuoma+"&password=1&method=login", "utf-8");
+            if(html.Contains("true"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
         #region 激活码
 
         public void jihuoma()
         {
             try
             {
+              
+
+
                 string macmd5 = method.GetMD5(method.GetMacAddress());
                 long expiretime = Convert.ToInt64(method.GetTimeStamp()) + 365 * 24 * 3600;
                 if (ExistINIFile())
                 {
                     string key = IniReadValue("values", "key");
-                    string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
+                    
+                        string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
 
 
                     if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
                     {
                         MessageBox.Show("激活已过期");
                         string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
-
-
+                        string fullstr = str;
+                        if (login(fullstr))
+                        {
+                            MessageBox.Show("激活失败，激活码失效");
+                            return;
+                        }
                         if (str.Length > 40)
                         {
                             str = str.Remove(0, 10);
@@ -646,6 +677,7 @@ namespace qccxcx
                                     IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
 
                                     MessageBox.Show("激活成功");
+                                    register(fullstr);
                                     return;
                                 }
                             }
@@ -655,6 +687,7 @@ namespace qccxcx
                                 IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
 
                                 MessageBox.Show("激活成功");
+                                register(fullstr);
                                 return;
                             }
                         }
@@ -666,7 +699,12 @@ namespace qccxcx
                 else
                 {
                     string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
-
+                    string fullstr = str;
+                    if (login(fullstr))
+                    {
+                        MessageBox.Show("激活失败，激活码失效");
+                        return;
+                    }
                     if (str.Length > 40)
                     {
                         str = str.Remove(0, 10);
@@ -682,6 +720,7 @@ namespace qccxcx
                                 IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
 
                                 MessageBox.Show("激活成功");
+                                register(fullstr);
                                 return;
                             }
                         }
@@ -691,6 +730,7 @@ namespace qccxcx
                             IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
 
                             MessageBox.Show("激活成功");
+                            register(fullstr);
                             return;
                         }
                     }

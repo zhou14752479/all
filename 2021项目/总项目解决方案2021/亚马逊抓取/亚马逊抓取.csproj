@@ -71,6 +71,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="中海化工项目.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="中海化工项目.Designer.cs">
+      <DependentUpon>中海化工项目.cs</DependentUpon>
+    </Compile>
     <Compile Include="亚马逊抓取.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="中海化工项目.resx">
+      <DependentUpon>中海化工项目.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="亚马逊抓取.resx">
       <DependentUpon>亚马逊抓取.cs</DependentUpon>
     </EmbeddedResource>

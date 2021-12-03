@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -207,20 +208,21 @@ namespace 防电信诈骗宣传
                 string html = GetUrl(url,"utf-8");
               
                 MatchCollection titles = Regex.Matches(html, @"class=""searchresulttitle"" target=""_blank"">([\s\S]*?)</a>([\s\S]*?)<div>([\s\S]*?)</div>");
+                MatchCollection urls = Regex.Matches(html, @"<div><a href=""([\s\S]*?)""");
                 for (int i = 0; i < 6; i++)
                 {
                     string title = Regex.Replace(titles[i].Groups[1].Value.Trim(), "<[^>]+>", "");
                     string subtitle = Regex.Replace(titles[i].Groups[3].Value.Trim(), "<[^>]+>", "");
-
-                    if(subtitle.Length>22)
+                    string site = Regex.Replace(urls[i].Groups[1].Value.Trim(), "<[^>]+>", "").Trim();
+                    if (subtitle.Length>22)
                     {
                         subtitle = subtitle.Substring(0,22)+"...";
                     }
                  
                     sb.Append("<li class=\"clearfix\">");
-                    sb.Append("<div class=\"pic\"><a href=\"display.php?id=790\"><img src=\"" + pics[i] + "\"></a></div>");
+                    sb.Append("<div class=\"pic\"><a href=\"" + site + "\"><img src=\"" + pics[i] + "\"></a></div>");
                     sb.Append("<div class=\"tit\">");
-                    sb.Append("<h3><a href=\"display.php?id=790\">"+title+"</a></h3>");
+                    sb.Append("<h3><a href=\"" + site + "\">" + title+"</a></h3>");
                     sb.Append("<p>"+subtitle+"</p>");
                     sb.Append("<div class=\"intro\"></div>");
                     sb.Append("</div>");
@@ -264,6 +266,7 @@ namespace 防电信诈骗宣传
                 //一次性读取完 
                 string html= sr2.ReadToEnd();
                 MatchCollection titles = Regex.Matches(html, @"title\)"" title=""([\s\S]*?)""");
+                MatchCollection urls = Regex.Matches(html, @"<a ng-href=""([\s\S]*?)""");
                 MatchCollection subtitles = Regex.Matches(html, @"<span ng-bind-html=""myHTML\(result.Extendedone\)"" class=""ng-binding"">([\s\S]*?)</div>");
                 for (int i = 0; i < 6; i++)
                 {
@@ -274,11 +277,11 @@ namespace 防电信诈骗宣传
                     {
                         subtitle = subtitle.Substring(0, 22) + "...";
                     }
-
+                   
                     sb.Append("<li class=\"clearfix\">");
-                    sb.Append("<div class=\"pic\"><a href=\"display.php?id=790\"><img src=\"" + pics[i] + "\"></a></div>");
+                    sb.Append("<div class=\"pic\"><a href=\""+urls[i].Groups[1].Value+"\"><img src=\"" + pics[i] + "\"></a></div>");
                     sb.Append("<div class=\"tit\">");
-                    sb.Append("<h3><a href=\"display.php?id=790\">" + title + "</a></h3>");
+                    sb.Append("<h3><a href=\"" + urls[i].Groups[1].Value + "\">" + title + "</a></h3>");
                     sb.Append("<p>" + subtitle + "</p>");
                     sb.Append("<div class=\"intro\"></div>");
                     sb.Append("</div>");
@@ -309,11 +312,21 @@ namespace 防电信诈骗宣传
             }
         }
 
-        string[] pics = { "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202111/19114901jndm.jpg", "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202110/28101701o4xx.jpg",
-            "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202110/210900227ey3.png",
-            "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202109/151109047mpe.jpg",
+        //string[] pics = { "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202111/19114901jndm.jpg", "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202110/28101701o4xx.jpg",
+        //    "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202110/210900227ey3.png",
+        //    "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202109/151109047mpe.jpg",
+        //    "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202109/151102417jne.jpg",
+        //    "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202106/04111441c6sh.jpg",
+        //};
+
+        string[] pics = {  "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202109/151109047mpe.jpg",
+           
+            "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202108/01171417vh5o.png",
+             "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202106/04111441c6sh.jpg",
             "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202109/151102417jne.jpg",
-            "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202106/04111441c6sh.jpg",
+            "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202108/01163447l6uc.JPG",
+             "http://gaj.xiaogan.gov.cn/u/cms/sgaj/202106/25113716drlp.png",
+           
         };
         public void shi()
         {
@@ -372,6 +385,8 @@ namespace 防电信诈骗宣传
                 MessageBox.Show(ex.ToString());
             }
         }
+
+      
         private void 防电信诈骗宣传_Load(object sender, EventArgs e)
         {
             #region 通用检测
@@ -383,25 +398,39 @@ namespace 防电信诈骗宣传
 
             #endregion
             SetFeatures(11000);
-           
-            //webBrowser1.ScriptErrorsSuppressed = true;
-            //webBrowser1.WebBrowserShortcutsEnabled = false;
-            //webBrowser1.IsWebBrowserContextMenuEnabled = false;
-            webBrowser1.Navigate(Application.StartupPath+@"\index\index.html");
-            shi();
+
+            webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate(Application.StartupPath + @"\index\index.html");
+            sheng();
+            webBrowser1.Navigate(Application.StartupPath + @"\index\index.html");
+
+
         }
 
        
         private void timer1_Tick(object sender, EventArgs e)
         {
-            shi();
-            webBrowser1.Navigate(Application.StartupPath + @"\index\index.html");
+           sheng();
+            //webBrowser1.Navigate(Application.StartupPath + @"\index\index.html");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            webBrowser1.GoBack();
+           webBrowser1.GoBack();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+               
+            }
         }
     }
 }

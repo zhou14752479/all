@@ -135,9 +135,7 @@ namespace 快递超市
                 MessageBox.Show(html);
             }
 
-
         }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = UrlToBitmap("https://kdcs-api.tuxi.net.cn/nologin/verifyCode?codeType=1&&d=0.8568435502188521");
