@@ -122,6 +122,12 @@
     <Compile Include="百度文库.Designer.cs">
       <DependentUpon>百度文库.cs</DependentUpon>
     </Compile>
+    <Compile Include="百度文库VIP文档下载.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="百度文库VIP文档下载.Designer.cs">
+      <DependentUpon>百度文库VIP文档下载.cs</DependentUpon>
+    </Compile>
     <Compile Include="谷歌翻译保存.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="百度文库.resx">
       <DependentUpon>百度文库.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="百度文库VIP文档下载.resx">
+      <DependentUpon>百度文库VIP文档下载.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="谷歌翻译保存.resx">
       <DependentUpon>谷歌翻译保存.cs</DependentUpon>

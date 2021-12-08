@@ -1263,7 +1263,7 @@ namespace 美团
                             string time = str.Substring(str.Length - 10, 10);
                             if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                             {
-                                if (index == "er" || index == "san")//美团一年
+                                if (index == "yi" || index == "san")//美团一年
                                 {
 
                                     IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
@@ -1307,7 +1307,7 @@ namespace 美团
                         string time = str.Substring(str.Length - 10, 10);
                         if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
                         {
-                            if (index == "er" || index == "san")//美团一年
+                            if (index == "yi" || index == "san")//美团一年
                             {
                                 IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
 

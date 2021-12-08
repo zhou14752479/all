@@ -71,6 +71,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="上证互动监控.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="上证互动监控.Designer.cs">
+      <DependentUpon>上证互动监控.cs</DependentUpon>
+    </Compile>
     <Compile Include="互动易网站监控.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,12 @@
     <Compile Include="激活码提取.Designer.cs">
       <DependentUpon>激活码提取.cs</DependentUpon>
     </Compile>
+    <Compile Include="百度文库文档链接采集.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="百度文库文档链接采集.Designer.cs">
+      <DependentUpon>百度文库文档链接采集.cs</DependentUpon>
+    </Compile>
     <Compile Include="表格去重.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +159,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="上证互动监控.resx">
+      <DependentUpon>上证互动监控.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="互动易网站监控.resx">
       <DependentUpon>互动易网站监控.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="激活码提取.resx">
       <DependentUpon>激活码提取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="百度文库文档链接采集.resx">
+      <DependentUpon>百度文库文档链接采集.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="表格去重.resx">
       <DependentUpon>表格去重.cs</DependentUpon>

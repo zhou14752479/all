@@ -89,7 +89,7 @@ namespace 淘宝搜索结果抓取
                         string html = getHtml(URL);
 
                         getInfos(keyword, html);
-                        Thread.Sleep(2000);
+                        Thread.Sleep(4000);
                         if (status == false)
                         {
                             return;
@@ -147,7 +147,7 @@ namespace 淘宝搜索结果抓取
                 MatchCollection isTmalls = Regex.Matches(html, @"""isTmall"":([\s\S]*?),");
                 for (int i = 0; i < titles.Count; i++)
                 {
-                    Thread.Sleep(50);
+                    Thread.Sleep(100);
                     try
                     {
                         string title = titles[i].Groups[1].Value;

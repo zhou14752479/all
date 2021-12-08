@@ -274,7 +274,7 @@ namespace 主程序202007
             return titles;
         }
 
-        public void getitems()
+        public void getitems_cangku()
         {
             
 
@@ -290,6 +290,9 @@ namespace 主程序202007
                   
                     MatchCollection items = Regex.Matches(html, @"""itemId"":""([\s\S]*?)""");
                     MatchCollection titles = Regex.Matches(html, @"""desc"":\[([\s\S]*?)""text"":""([\s\S]*?)""");
+                   // MatchCollection soldQuantity_ms = Regex.Matches(html, @"""soldQuantity_m"":([\s\S]*?),");
+
+
                     if (i == 1 && items.Count == 0)
                     {
                         MessageBox.Show("获取仓库商品失败");
@@ -339,6 +342,82 @@ namespace 主程序202007
             }
         }
 
+
+        public void getitems_all()
+        {
+
+
+
+            try
+            {
+                for (int i = 1; i < 99; i++)
+                {
+                    string url = "https://item.manager.taobao.com/taobao/manager/table.htm";
+                    string postdata = "jsonBody=%7B%22filter%22%3A%7B%7D%2C%22pagination%22%3A%7B%22current%22%3A" + i + "%2C%22pageSize%22%3A20%7D%2C%22table%22%3A%7B%22sort%22%3A%7B%22endDate_m%22%3A%22desc%22%7D%7D%2C%22tab%22%3A%22all%22%7D";
+
+                    string html = PostUrl(url, postdata);
+
+                    MatchCollection items = Regex.Matches(html, @"""itemId"":""([\s\S]*?)""");
+                    MatchCollection titles = Regex.Matches(html, @"""desc"":\[([\s\S]*?)""text"":""([\s\S]*?)""");
+                    MatchCollection soldQuantity_ms = Regex.Matches(html, @"""soldQuantity_m"":([\s\S]*?),");
+
+
+                    if (i == 1 && items.Count == 0)
+                    {
+                        MessageBox.Show("获取仓库商品失败");
+                    }
+
+                    if (items.Count == 0)
+                        return;
+
+                    for (int j = 0; j < items.Count; j++)
+                    {
+
+
+                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                        listViewItem.SubItems.Add(items[j].Groups[1].Value);
+                        if (checkBox1.Checked == true)
+                        {
+                            listViewItem.SubItems.Add(getfulltitle(items[j].Groups[1].Value));
+
+                        }
+                        else
+                        {
+                            listViewItem.SubItems.Add(titles[j].Groups[2].Value);
+                        }
+                        // listViewItem.SubItems.Add(titles[j].Groups[2].Value);
+
+                        listViewItem.SubItems.Add(soldQuantity_ms[j].Groups[1].Value);
+                        if(soldQuantity_ms[j].Groups[1].Value=="0")
+                        {
+                            listViewItem.Checked = true;
+                        }
+                        else
+                        {
+                            listViewItem.Checked = false;
+                        }
+                        listViewItem.SubItems.Add("-");
+
+
+
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+
+                    }
+
+                    Thread.Sleep(1000);
+                }
+                MessageBox.Show("仓库宝贝获取完成");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -411,9 +490,8 @@ namespace 主程序202007
         {
             textBox4.Text = "开始执行";
 
-
-            //cookie = Form1.cookie;
-            cookie = textBox6.Text;
+             cookie = Form1.cookie;
+           
             Match tok = Regex.Match(cookie, @"XSRF-TOKEN=([\s\S]*?);");
             token = tok.Groups[1].Value;
             if (tok.Groups[1].Value == "")
@@ -422,12 +500,6 @@ namespace 主程序202007
                 token = tok.Groups[0].Value.Replace("XSRF-TOKEN=", "");
             }
 
-
-
-
-
-
-
             if (cookie == "")
             {
                 MessageBox.Show("请先登录");
@@ -435,10 +507,9 @@ namespace 主程序202007
             }
 
 
-          
-
+         
             
-            Thread search_thread = new Thread(new ThreadStart(getitems));
+            Thread search_thread = new Thread(new ThreadStart(getitems_cangku));
             Control.CheckForIllegalCrossThreadCalls = false;
             search_thread.Start();
         }
@@ -466,13 +537,41 @@ namespace 主程序202007
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
-           zanting = false;
+
+            if (zanting == false)
+            {
+
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            zanting = true;
+            cookie = Form1.cookie;
+            Match tok = Regex.Match(cookie, @"XSRF-TOKEN=([\s\S]*?);");
+            token = tok.Groups[1].Value;
+            if (tok.Groups[1].Value == "")
+            {
+                tok = Regex.Match(cookie, @"XSRF-TOKEN=.*");
+                token = tok.Groups[0].Value.Replace("XSRF-TOKEN=", "");
+            }
+
+            if (cookie == "")
+            {
+                MessageBox.Show("请先登录");
+                return;
+            }
+
+
+
+
+            Thread search_thread = new Thread(new ThreadStart(getitems_all));
+            Control.CheckForIllegalCrossThreadCalls = false;
+            search_thread.Start();
         }
 
         /// <summary>

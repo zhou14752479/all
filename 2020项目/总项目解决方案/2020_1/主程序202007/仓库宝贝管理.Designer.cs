@@ -35,7 +35,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.button8 = new System.Windows.Forms.Button();
@@ -82,7 +81,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.textBox6);
             this.splitContainer1.Panel2.Controls.Add(this.button9);
             this.splitContainer1.Panel2.Controls.Add(this.linkLabel2);
             this.splitContainer1.Panel2.Controls.Add(this.button8);
@@ -140,18 +138,10 @@
             // 
             this.columnHeader5.Text = "定时上架";
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(9, 309);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(259, 71);
-            this.textBox6.TabIndex = 29;
-            // 
             // button9
             // 
             this.button9.ForeColor = System.Drawing.Color.Red;
-            this.button9.Location = new System.Drawing.Point(193, 415);
+            this.button9.Location = new System.Drawing.Point(193, 390);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 29);
             this.button9.TabIndex = 28;
@@ -162,7 +152,7 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(13, 383);
+            this.linkLabel2.Location = new System.Drawing.Point(13, 296);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(56, 17);
             this.linkLabel2.TabIndex = 27;
@@ -172,7 +162,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(110, 415);
+            this.button8.Location = new System.Drawing.Point(110, 390);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 29);
             this.button8.TabIndex = 26;
@@ -183,11 +173,11 @@
             // textBox4
             // 
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox4.Location = new System.Drawing.Point(0, 498);
+            this.textBox4.Location = new System.Drawing.Point(0, 495);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(278, 124);
+            this.textBox4.Size = new System.Drawing.Size(278, 127);
             this.textBox4.TabIndex = 25;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
@@ -200,7 +190,7 @@
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.dateTimePicker1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(0, 170);
+            this.groupBox2.Location = new System.Drawing.Point(0, 143);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(278, 133);
             this.groupBox2.TabIndex = 24;
@@ -274,7 +264,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 170);
+            this.groupBox1.Size = new System.Drawing.Size(278, 143);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "标题设置";
@@ -341,7 +331,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(107, 383);
+            this.linkLabel1.Location = new System.Drawing.Point(80, 296);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(80, 17);
             this.linkLabel1.TabIndex = 16;
@@ -353,7 +343,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button4.ForeColor = System.Drawing.Color.Blue;
-            this.button4.Location = new System.Drawing.Point(9, 415);
+            this.button4.Location = new System.Drawing.Point(9, 390);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(95, 29);
             this.button4.TabIndex = 15;
@@ -363,27 +353,27 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(191, 458);
+            this.button3.Location = new System.Drawing.Point(9, 460);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 29);
+            this.button3.Size = new System.Drawing.Size(176, 29);
             this.button3.TabIndex = 14;
-            this.button3.Text = "继续";
+            this.button3.Text = "获取全部宝贝勾选0销量";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(110, 458);
+            this.button2.Location = new System.Drawing.Point(110, 425);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 29);
             this.button2.TabIndex = 13;
-            this.button2.Text = "暂停";
+            this.button2.Text = "暂停/继续";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 458);
+            this.button1.Location = new System.Drawing.Point(9, 425);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 29);
             this.button1.TabIndex = 12;
@@ -454,7 +444,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.CheckBox checkBox1;
     }
 }

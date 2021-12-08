@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("电磁仿真数据格式转换工具")]
+[assembly: AssemblyTitle("WORD文档处理")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("电磁仿真数据格式转换工具")]
+[assembly: AssemblyProduct("WORD文档处理")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("86af31b2-e9b9-4962-9eb9-50c9284223ff")]
+[assembly: Guid("9d6981fe-8add-49b5-b6b3-d128601100bc")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

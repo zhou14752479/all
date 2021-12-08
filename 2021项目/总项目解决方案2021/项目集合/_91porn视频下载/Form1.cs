@@ -443,9 +443,10 @@ namespace _91porn视频下载
 
                     for (int i = 0; i < uids.Count; i++)
                     {
+                        Thread.Sleep(10000);
                         try
                         {
-                            Thread.Sleep(5000);
+                            
                             string uid = uids[i].Groups[1].Value.Trim();
 
                             if (radioButton1.Checked == true && checkBox1.Checked == true)
@@ -472,11 +473,12 @@ namespace _91porn视频下载
                             string title = removeValid(titles[i].Groups[1].Value.Trim().Replace(" ", ""));
                             string author = authors[i].Groups[1].Value.Trim().Replace(" ", "");
 
-                            string mp4url = "https://fdc.91p49.com//mp4hd/" + uid + ".mp4";
+                            // string mp4url = "https://fdc.91p49.com//mp4hd/" + uid + ".mp4";
+                            string mp4url = "https://cdn77.91p49.com/mp43/"+uid+".mp4";
 
                             if (!hds[i].Groups[1].Value.Contains("HD"))
                             {
-                                mp4url = "https://fdc.91p49.com//mp43/" + uid + ".mp4";
+                                mp4url = "https://cdn77.91p49.com/mp4hd/" + uid + ".mp4";
                             }
 
                             string uidini = "";
@@ -535,7 +537,7 @@ namespace _91porn视频下载
                             fs1.Close();
                             sw.Dispose();
 
-
+                            Thread.Sleep(100000);
                         }
                         catch (Exception ex)
                         {
@@ -597,17 +599,25 @@ namespace _91porn视频下载
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
-            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-            sw.WriteLine(DateTime.Now.ToString()+"：执行程序"+ timer1.Enabled.ToString()+ timer1.Interval.ToString());
-            sw.Close();
-            fs1.Close();
-            sw.Dispose();
-            if (thread == null || !thread.IsAlive)
+            try
             {
-                thread = new Thread(run1);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                sw.WriteLine(DateTime.Now.ToString() + "：执行程序" + timer1.Enabled.ToString() + timer1.Interval.ToString());
+                sw.Close();
+                fs1.Close();
+                sw.Dispose();
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(run1);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
+            catch (Exception)
+            {
+
+                ;
             }
         }
 

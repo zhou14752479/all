@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202110
+namespace WORD文档处理
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202110
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 上证互动监控());
+            Application.Run(new WORD文档处理());
         }
     }
 }

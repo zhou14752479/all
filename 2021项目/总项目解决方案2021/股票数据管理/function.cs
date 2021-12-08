@@ -446,7 +446,7 @@ namespace 股票数据管理
             }
             catch (Exception ex)
             {
-
+               MessageBox.Show(ex.ToString());
                 return "上传失败，请取消表格数据的超链接,重新上传！" + ex.Message;
             }
         }

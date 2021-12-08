@@ -52,6 +52,11 @@ namespace 淘宝搜索结果抓取
 
         public void getInfos(string html,string key)
         {
+            if(html.Contains("captcha"))
+            {
+                label2.Text = "请退出账号重新登录";
+                return;
+            }
 
             MatchCollection titles = Regex.Matches(html, @"\\""ADGTITLE\\"":\\""([\s\S]*?)\\""");
             MatchCollection grades = Regex.Matches(html, @"\\""GRADE\\"":\\""([\s\S]*?)\\""");
@@ -79,6 +84,30 @@ namespace 淘宝搜索结果抓取
                             listViewItem.SubItems.Add(wangwang);
                             listViewItem.SubItems.Add(key);
                             // listViewItem.SubItems.Add(grade);
+
+
+                          if(Convert.ToInt32(grade) < 251)
+                            {
+                                FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\星级.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                                sw.WriteLine(wangwang);
+                                sw.Close();
+                                fs1.Close();
+                                sw.Dispose();
+                            }
+                          else
+                            {
+                                FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\钻级.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                                sw.WriteLine(wangwang);
+                                sw.Close();
+                                fs1.Close();
+                                sw.Dispose();
+                            }
+
+
+
+
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -95,7 +124,7 @@ namespace 淘宝搜索结果抓取
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.ToString());
+                    MessageBox.Show(ex.ToString());
                     continue;
                 }
             }
@@ -115,19 +144,28 @@ namespace 淘宝搜索结果抓取
                 int page = Convert.ToInt32(textBox2.Text);
                 for (int i = 0; i < page; i++)
                 {
-                    int p = i * 44;
-                    string URL = url + "&s=" + p.ToString();
-                    string html = getHtml(URL);
-
-                    getInfos(html,keyword);
-                    Thread.Sleep(2000);
-                    if (status == false)
+                    try
                     {
-                        return;
+                        int p = i * 44;
+                        string URL = url + "&s=" + p.ToString();
+                        string html = getHtml(URL);
+
+                        getInfos(html, keyword);
+                        Thread.Sleep(2000);
+                        if (status == false)
+                        {
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        label2.Text = "正在抓取：第"+i+"页";
+                        //MessageBox.Show(ex.ToString());
+                        continue;
                     }
                 }
             }
-
+            MessageBox.Show("采集结束");
         }
         private void button1_Click(object sender, EventArgs e)
         {

@@ -75,8 +75,8 @@ namespace 股票数据管理
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Title = "打开excel文件";
-             //openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
-            openFileDialog1.Filter = "excel07文件(*.xlsx)|*.xlsx";
+             openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
+           // openFileDialog1.Filter = "excel07文件(*.xlsx)|*.xlsx";
             openFileDialog1.InitialDirectory = @"C:\Users\Administrator\Desktop";
             openFileDialog1.RestoreDirectory = true;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -105,13 +105,23 @@ namespace 股票数据管理
             {
                 try
                 {
+                    
+                    dataGridView1.Rows[i].Cells[15].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells[8].Value) * Convert.ToDouble(textBox1.Text);
+                    dataGridView1.Rows[i].Cells[16].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value) * Convert.ToDouble(textBox2.Text);
+                }
+                catch (Exception)
+                {
+
+                    continue;
+                }
+
+                try
+                {
                     if (Convert.ToDouble(dataGridView1.Rows[i].Cells[10].Value) > 7.5)
                     {
 
                         dataGridView1.Rows[i].Cells[10].Style.BackColor = Color.Red;
                     }
-                    dataGridView1.Rows[i].Cells[15].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells[8].Value) * Convert.ToDouble(textBox1.Text);
-                    dataGridView1.Rows[i].Cells[16].Value = Convert.ToDouble(dataGridView1.Rows[i].Cells[15].Value) * Convert.ToDouble(textBox2.Text);
                 }
                 catch (Exception)
                 {
