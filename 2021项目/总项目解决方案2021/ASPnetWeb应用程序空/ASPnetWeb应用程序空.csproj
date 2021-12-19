@@ -70,15 +70,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fucai3D.aspx" />
     <Content Include="index2.aspx" />
     <Content Include="index3.aspx" />
     <Content Include="index3_admin.aspx" />
+    <Content Include="index5.aspx" />
     <Content Include="ManagerShiCi.aspx" />
     <Content Include="CSS\muwen.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fucai3D.aspx.cs">
+      <DependentUpon>fucai3D.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="fucai3D.aspx.designer.cs">
+      <DependentUpon>fucai3D.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index2.aspx.cs">
       <DependentUpon>index2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -99,6 +110,13 @@
     </Compile>
     <Compile Include="index3_admin.aspx.designer.cs">
       <DependentUpon>index3_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index5.aspx.cs">
+      <DependentUpon>index5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index5.aspx.designer.cs">
+      <DependentUpon>index5.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagerShiCi.aspx.cs">
       <DependentUpon>ManagerShiCi.aspx</DependentUpon>

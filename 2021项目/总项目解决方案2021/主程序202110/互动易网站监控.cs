@@ -136,7 +136,9 @@ namespace 主程序202110
 
 
         public static string zhi = "";
-    
+
+
+        public string key;
         弹出页面 t;
         public void run()
         {
@@ -172,7 +174,8 @@ namespace 主程序202110
 
                               
                                 string value = companyShortName + "(" + stockCode + ")---" + esId + "----" + date + "\r\n" + "问：" + title + "\r\n" + "答：" + answer + "\r\n";
-                                textBox2.Text +=value ;
+                                key = keyword;
+                                richTextBox1.Text =value + "\r\n\r\n" + richTextBox1.Text; 
                                 zhi = value;
                               
                                 // Beep(800, 800);
@@ -196,7 +199,7 @@ namespace 主程序202110
             catch (Exception ex)
             {
 
-                textBox2.Text = ex.ToString();
+               
             }
         }
 
@@ -429,6 +432,27 @@ namespace 主程序202110
         private void 互动易网站监控_FormClosing(object sender, FormClosingEventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            char[] str = richTextBox1.Text.ToCharArray();
+
+            for (int i = 0; i < str.Length; i++)
+            {
+
+                int p1 = richTextBox1.Text.IndexOf(key, i);
+                if (p1 != -1)
+                {
+                    richTextBox1.Select(p1, key.Length);
+                    richTextBox1.SelectionColor = Color.Red;
+                    FontStyle style = richTextBox1.SelectionFont.Style;
+                    style = FontStyle.Bold;
+                    richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
+
+                }
+            }
+            richTextBox1.Refresh();
         }
     }
 }

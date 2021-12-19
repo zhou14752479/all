@@ -90,7 +90,9 @@ namespace 校友邦
 
             string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
 
-            string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
+            //string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
+            MatchCollection msgs = Regex.Matches(html, @"""msg"":""([\s\S]*?)""");
+            string msg = msgs[msgs.Count - 1].Groups[1].Value;
             if (msg != "")
             {
                 return msg;

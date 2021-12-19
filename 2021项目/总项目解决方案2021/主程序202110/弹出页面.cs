@@ -23,7 +23,7 @@ namespace 主程序202110
         private void 弹出页面_Load(object sender, EventArgs e)
         {
             Control.CheckForIllegalCrossThreadCalls = false;
-            // richTextBox1.Text = 互动易网站监控.zhi ;
+             //richTextBox1.Text = 互动易网站监控.zhi ;
 
             richTextBox1.Text = 上证互动监控.zhi;
         }
@@ -35,11 +35,30 @@ namespace 主程序202110
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            string[] str = richTextBox1.Text.Split(new string[] { "(*)" }, StringSplitOptions.RemoveEmptyEntries);
-            int p2 = 0;
+            //string[] str = richTextBox1.Text.Split(new string[] { "(*)" }, StringSplitOptions.RemoveEmptyEntries);
+            //int p2 = 0;
+            //for (int i = 0; i < str.Length; i++)
+            //{
+
+            //    int p1 = richTextBox1.Text.IndexOf(key, i);
+            //    if (p1 != -1)
+            //    {
+            //        richTextBox1.Select(p1, key.Length);
+            //        richTextBox1.SelectionColor = Color.Red;
+            //        FontStyle style = richTextBox1.SelectionFont.Style;
+            //        style = FontStyle.Bold;
+            //        richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
+            //        p2 = p1 + 3;
+            //    }
+            //}
+            //richTextBox1.Refresh();
+
+            char[] str = richTextBox1.Text.ToCharArray();
+         
             for (int i = 0; i < str.Length; i++)
             {
-                int p1 = richTextBox1.Text.IndexOf(key, p2);
+
+                int p1 = richTextBox1.Text.IndexOf(key, i);
                 if (p1 != -1)
                 {
                     richTextBox1.Select(p1, key.Length);
@@ -47,7 +66,7 @@ namespace 主程序202110
                     FontStyle style = richTextBox1.SelectionFont.Style;
                     style = FontStyle.Bold;
                     richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
-                    p2 = p1 + 3;
+                   
                 }
             }
             richTextBox1.Refresh();

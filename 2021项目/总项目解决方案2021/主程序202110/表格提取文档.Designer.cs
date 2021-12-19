@@ -30,13 +30,14 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.label1);
@@ -64,6 +66,33 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(352, 622);
             this.panel1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10F);
+            this.label2.Location = new System.Drawing.Point(215, 289);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 14);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "以外的对比清单";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(124, 286);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(85, 21);
+            this.textBox3.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 10F);
+            this.label1.Location = new System.Drawing.Point(12, 289);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 14);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "只提取金额在±";
             // 
             // textBox2
             // 
@@ -103,32 +132,16 @@
             this.textBox1.Size = new System.Drawing.Size(575, 622);
             this.textBox1.TabIndex = 2;
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 10F);
-            this.label1.Location = new System.Drawing.Point(12, 289);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 14);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "只提取金额在±";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(124, 286);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(85, 21);
-            this.textBox3.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.Location = new System.Drawing.Point(215, 289);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 14);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "以外的对比清单";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 12F);
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(91, 550);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 16);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "QQ：919256207";
             // 
             // 表格提取文档
             // 
@@ -159,5 +172,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
     }
 }

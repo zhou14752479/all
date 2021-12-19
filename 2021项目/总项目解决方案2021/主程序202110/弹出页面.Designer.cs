@@ -65,6 +65,7 @@
             this.Name = "弹出页面";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "新消息提醒！";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.弹出页面_Load);
             this.ResumeLayout(false);
 

@@ -273,7 +273,7 @@ namespace 地图营销
                     if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
                     {
                         MessageBox.Show("激活已过期");
-                        string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
+                        string str = Interaction.InputBox("请购买激活码,使用正式版软件！\r\n\r\n无激活码点击确定免费试用", "激活软件", "", -1, -1);
                         string fullstr = str;
                         if (login(fullstr))
                         {
@@ -310,14 +310,14 @@ namespace 地图营销
                                 return;
                             }
                         }
-                        MessageBox.Show("激活码错误");
+                        MessageBox.Show("激活码错误，点击试用");
                         jihuo = false; ;
                     }
 
                 }
                 else
                 {
-                    string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
+                    string str = Interaction.InputBox("请购买激活码,使用正式版软件！\r\n\r\n无激活码点击确定免费试用", "激活软件", "", -1, -1);
                     string fullstr = str;
                     if (login(fullstr))
                     {
@@ -353,7 +353,7 @@ namespace 地图营销
                             return;
                         }
                     }
-                    MessageBox.Show("激活码错误");
+                    MessageBox.Show("激活码错误，点击试用");
                     jihuo = false; ;
                 }
             }

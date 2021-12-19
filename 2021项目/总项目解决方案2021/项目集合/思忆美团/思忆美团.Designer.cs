@@ -54,7 +54,6 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clear_btn = new System.Windows.Forms.Button();
             this.exportTxt_btn = new System.Windows.Forms.Button();
@@ -328,7 +327,6 @@
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader10,
-            this.columnHeader12,
             this.columnHeader13});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
@@ -365,11 +363,6 @@
             // 
             this.columnHeader10.Text = "分类";
             this.columnHeader10.Width = 100;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "商圈";
-            this.columnHeader12.Width = 100;
             // 
             // columnHeader13
             // 
@@ -914,7 +907,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;

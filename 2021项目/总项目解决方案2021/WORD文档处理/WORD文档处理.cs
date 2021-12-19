@@ -1,4 +1,5 @@
 ﻿using Spire.Doc;
+using Spire.Doc.Documents;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,9 +96,17 @@ namespace WORD文档处理
                                         {
                                            doc = new Document(f.FullName);
                                         }
+                               
                                        else
                                         {
-                                            doc.InsertTextFromFile(f.FullName, FileFormat.Docx);
+                                            Document DocTwo = new Document();
+                                            DocTwo.LoadFromFile(f.FullName, FileFormat.Docx);
+                                            foreach (Section sec in DocTwo.Sections)
+                                            {
+                                                doc.Sections.Add(sec.Clone());
+                                            }
+                                            //doc.InsertTextFromFile(f.FullName, FileFormat.Docx);
+
                                         }
                                         
                                     }
@@ -108,6 +117,25 @@ namespace WORD文档处理
                     }
                     //SaveToFileInsertText(@"C:\Users\zhou\Desktop\B1常规固体加入.docx", @"C:\Users\zhou\Desktop\A1反应罐检查.docx", "1.docx");
                 }
+
+                //foreach (Section sec in doc.Sections)
+                //{
+                //    for (int j = 0; j < sec.Paragraphs.Count; j++)
+                //    {
+                //        Paragraph p = sec.Paragraphs[j];
+                //        for (int i = 0; i < p.ChildObjects.Count; i++)
+                //        {
+                //            DocumentObject obj = p.ChildObjects[i];
+                //            if (obj.DocumentObjectType == DocumentObjectType.Break)
+                //            {
+                //                Break b = obj as Break;
+                //                p.ChildObjects.Remove(b);
+                //            }
+                //        }
+                //    }
+                //}
+
+               
 
 
 
@@ -126,6 +154,8 @@ namespace WORD文档处理
                 }
                 MessageBox.Show(String.Format("文件成功保存到{0}", fileName));
 
+
+
                 doc.Close();
 
             }
@@ -139,11 +169,24 @@ namespace WORD文档处理
        
         private void WORD文档处理_Load(object sender, EventArgs e)
         {
-            //时间校验
-            if(DateTime.Now>Convert.ToDateTime("2022-02-15"))
+            #region 通用检测
+
+            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"qVTGF"))
             {
-                MessageBox.Show("时间校验失败");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                
             }
+
+
+
+            #endregion
+            ////时间校验
+            //if (DateTime.Now>Convert.ToDateTime("2022-02-15"))
+            //{
+            //    MessageBox.Show("时间校验失败");
+            //}
         }
         #region GET请求
         /// <summary>

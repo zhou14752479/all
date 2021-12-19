@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +70,12 @@
     </Compile>
     <Compile Include="webbrowser.Designer.cs">
       <DependentUpon>webbrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="多开浏览器.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="多开浏览器.Designer.cs">
+      <DependentUpon>多开浏览器.cs</DependentUpon>
     </Compile>
     <Compile Include="淘宝搜索列表.cs">
       <SubType>Form</SubType>
@@ -99,6 +106,9 @@
     </Compile>
     <EmbeddedResource Include="webbrowser.resx">
       <DependentUpon>webbrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="多开浏览器.resx">
+      <DependentUpon>多开浏览器.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="淘宝搜索列表.resx">
       <DependentUpon>淘宝搜索列表.cs</DependentUpon>

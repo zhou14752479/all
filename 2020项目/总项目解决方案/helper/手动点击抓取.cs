@@ -109,11 +109,13 @@ namespace helper
             {
                 pagelist.Add(page);//</span></div></div></ul>
 
-                MatchCollection strhtmls= Regex.Matches(html, @"<div class=""a-row""><a class=""a-link-normal""([\s\S]*?)</span><span class=""cr-footer-line-height"">");
+                 MatchCollection strhtmls= Regex.Matches(html, @"<div class=""a-row""><a class=""a-link-normal""([\s\S]*?)</span><span class=""cr-footer-line-height"">");
+
+             
 
                 //MatchCollection dates = Regex.Matches(html, @"review-date"" class=""a-size-base a-color-secondary review-date"">([\s\S]*?)</span>");  //1477
                 //MatchCollection xingjis = Regex.Matches(html, @"review-star-rating"" class=""a-icon a-icon-star a-star-([\s\S]*?) ");   //1465
-                
+
                 //MatchCollection neirongs = Regex.Matches(html, @"review-text-content"">([\s\S]*?)</span>");                 //1472
                 //MatchCollection sizes = Regex.Matches(html, @"format"">Size:([\s\S]*?)<([\s\S]*?)Color:([\s\S]*?)</a>");   //1477
 
@@ -161,10 +163,10 @@ namespace helper
                     // textBox2.Text = strhtml;
 
                     //英国站
-                    string size = Regex.Match(strhtml, @"Size:([\s\S]*?)</span>").Groups[1].Value;
-                    string color = Regex.Match(strhtml, @">Colour:([\s\S]*?)<").Groups[1].Value;
-                    string size1 = Regex.Match(strhtml, @"尺寸:([\s\S]*?)</span>").Groups[1].Value;
-                    string color1 = Regex.Match(strhtml, @">颜色:([\s\S]*?)<").Groups[1].Value;
+                    //string size = Regex.Match(strhtml, @"Size:([\s\S]*?)</span>").Groups[1].Value;
+                    //string color = Regex.Match(strhtml, @">Colour:([\s\S]*?)<").Groups[1].Value;
+                    //string size1 = Regex.Match(strhtml, @"尺寸:([\s\S]*?)</span>").Groups[1].Value;
+                    //string color1 = Regex.Match(strhtml, @">颜色:([\s\S]*?)<").Groups[1].Value;
 
                     ////日本站
                     //string size = Regex.Match(strhtml, @"サイズ:([\s\S]*?)</span>").Groups[1].Value;
@@ -172,6 +174,12 @@ namespace helper
                     //string size1 = Regex.Match(strhtml, @"尺寸:([\s\S]*?)</span>").Groups[1].Value;
                     //string color1 = Regex.Match(strhtml, @">颜色:([\s\S]*?)<").Groups[1].Value;
 
+
+                    ////加拿大站
+                    string size = Regex.Match(strhtml, @"Size:([\s\S]*?)</span>").Groups[1].Value;
+                    string color = Regex.Match(strhtml, @"Color:([\s\S]*?)<").Groups[1].Value;
+                    string size1 = Regex.Match(strhtml, @"尺寸:([\s\S]*?)</span>").Groups[1].Value;
+                    string color1 = Regex.Match(strhtml, @">颜色:([\s\S]*?)<").Groups[1].Value;
                     Match links = Regex.Match(strhtml, @"review-title-content a-text-bold"" href=""([\s\S]*?)""");
 
                   
@@ -265,7 +273,7 @@ namespace helper
        
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            html = webBrowser1.DocumentText;  //获取到的html
+            html = webBrowser1.DocumentText.Replace("         ","");  //获取到的html
             if (html.Contains("</html>"))
             {
                 run();

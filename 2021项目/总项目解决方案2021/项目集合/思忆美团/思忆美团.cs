@@ -254,7 +254,7 @@ namespace 思忆美团
                             }
                             string cateid = functions.catedic[catename];
                            
-                            for (int page = 0; page < 1001; page = page + 100)
+                            for (int page = 0; page < 1001; page = page + 20)
                             {
                                 if (functions.viptime == "" || Convert.ToDateTime(functions.viptime) < DateTime.Now)
                                 {
@@ -262,7 +262,7 @@ namespace 思忆美团
                                     return;
                                 }
                                
-                                string url = "https://m.dianping.com/mtbeauty/index/ajax/shoplist?token=&cityid=" + cityid + "&cateid=22&categoryids=" + cateid + "&lat=&lng=&userid=&uuid=&utm_source=meituan-wxapp&utmmedium=&utmterm=&utmcontent=&versionname=&utmcampaign=&mock=0&openid=&mtlite=false&start=" + page + "&limit=100&areaid=" + areaid + "&distance=&subwaylineid=&subwaystationid=&sort=2";
+                                string url = "https://i.meituan.com/vc/mt/fetchshoplist?token=&cityid="+cityid+"&cateid="+cateid+"&categoryids=1&lat=33.939921&lng=118.253346&userid=875973616&uuid=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&utmsource=mtsy&utmmedium=iphone&utmterm=11.10.402&utmcontent=C51E8E166B3987E2066B1929484591872FE4355349BD8ABDF43CC52F87015438&versionname=11.10.402&utmcampaign=AgroupBgroupD200Ghomepage_category8_20691__a1__c__e0H0&mock=0&miniProgram=false&start="+page+"&limit=20&areaid="+areaid+"&distance=&subwaylineid=&subwaystationid=&sort=2";
 
                                 string html = functions.GetUrl(url, "utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
 
@@ -299,10 +299,10 @@ namespace 思忆美团
                                             {
                                                 ListViewItem listViewItem = listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                                 listViewItem.SubItems.Add(fc.Unicode2String(names[j].Groups[1].Value));
-                                                listViewItem.SubItems.Add(fc.Unicode2String(address[j].Groups[1].Value));
+                                                listViewItem.SubItems.Add("");
                                                 listViewItem.SubItems.Add(newphone);
-                                                listViewItem.SubItems.Add(cate[j].Groups[1].Value);
-                                                listViewItem.SubItems.Add(shangquan[j].Groups[1].Value);
+                                                listViewItem.SubItems.Add(fc.Unicode2String(cate[j].Groups[1].Value));
+                                               
                                                 listViewItem.SubItems.Add(city);
                                                 Thread.Sleep(200);
                                                 if (listView1.Items.Count > 2)

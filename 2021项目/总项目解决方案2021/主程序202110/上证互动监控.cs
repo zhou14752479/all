@@ -349,9 +349,9 @@ namespace 主程序202110
                                 //触发提醒
                                 lists.Add(title);
 
-
+                                key = keyword;
                                 string value = companyShortName + "----" + date + "\r\n" + "问：" + title + "\r\n\r\n" + "答：" + answer + "\r\n";
-                                textBox2.Text += value+"\r\n\r\n";
+                                richTextBox1.Text = value + "\r\n\r\n" + richTextBox1.Text;
                                 zhi = value;
 
                                 // Beep(800, 800);
@@ -375,12 +375,33 @@ namespace 主程序202110
             catch (Exception ex)
             {
 
-                textBox2.Text = ex.ToString();
+               
             }
         }
 
-
+        public string key;
         Thread thread;
         string path = AppDomain.CurrentDomain.BaseDirectory;
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            char[] str = richTextBox1.Text.ToCharArray();
+
+            for (int i = 0; i < str.Length; i++)
+            {
+
+                int p1 = richTextBox1.Text.IndexOf(key, i);
+                if (p1 != -1)
+                {
+                    richTextBox1.Select(p1, key.Length);
+                    richTextBox1.SelectionColor = Color.Red;
+                    FontStyle style = richTextBox1.SelectionFont.Style;
+                    style = FontStyle.Bold;
+                    richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
+
+                }
+            }
+            richTextBox1.Refresh();
+        }
     }
 }

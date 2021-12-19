@@ -131,6 +131,24 @@
     <Compile Include="百度文库文档链接采集.Designer.cs">
       <DependentUpon>百度文库文档链接采集.cs</DependentUpon>
     </Compile>
+    <Compile Include="纪念币预约.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="纪念币预约.Designer.cs">
+      <DependentUpon>纪念币预约.cs</DependentUpon>
+    </Compile>
+    <Compile Include="纪念币预约查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="纪念币预约查询.Designer.cs">
+      <DependentUpon>纪念币预约查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="航班查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="航班查询.Designer.cs">
+      <DependentUpon>航班查询.cs</DependentUpon>
+    </Compile>
     <Compile Include="表格去重.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +160,12 @@
     </Compile>
     <Compile Include="表格提取文档.Designer.cs">
       <DependentUpon>表格提取文档.cs</DependentUpon>
+    </Compile>
+    <Compile Include="贝壳成交.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="贝壳成交.Designer.cs">
+      <DependentUpon>贝壳成交.cs</DependentUpon>
     </Compile>
     <Compile Include="高德地图企业查询.cs">
       <SubType>Form</SubType>
@@ -189,11 +213,23 @@
     <EmbeddedResource Include="百度文库文档链接采集.resx">
       <DependentUpon>百度文库文档链接采集.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="纪念币预约.resx">
+      <DependentUpon>纪念币预约.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="纪念币预约查询.resx">
+      <DependentUpon>纪念币预约查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="航班查询.resx">
+      <DependentUpon>航班查询.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="表格去重.resx">
       <DependentUpon>表格去重.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="表格提取文档.resx">
       <DependentUpon>表格提取文档.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="贝壳成交.resx">
+      <DependentUpon>贝壳成交.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="高德地图企业查询.resx">
       <DependentUpon>高德地图企业查询.cs</DependentUpon>

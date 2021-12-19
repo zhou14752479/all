@@ -24,7 +24,7 @@ namespace CsharpSelenium
         private void 百度文库VIP文档下载_Load(object sender, EventArgs e)
         {
             ListViewItem lv = listView2.Items.Add("13295270680");
-            lv.SubItems.Add("Xc0RHZGdkp3V2RTSjd0VTBSQWtIOWZSRUVubXZjc3JIZzEzZzBCekVUdVh2dGRoSVFBQUFBJCQAAAAAAQAAAAEAAADx0IFOw8Cd4rLKu6pqNHY0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJcxsGGXMbBhL");
+            lv.SubItems.Add("FvTXZyLUh0Y1hwempQMWFJRjNubk9CZFVRfnFzWnZNRjBOfndKS2VuQlQzdGhoSVFBQUFBJCQAAAAAAQAAAAEAAADx0IFOw8Cd4rLKu6pqNHY0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFNRsWFTUbFhYm");
             string path = AppDomain.CurrentDomain.BaseDirectory;
             DataTable dt = method.ExcelToDataTable(path + "link.xlsx", false);
 
@@ -42,12 +42,12 @@ namespace CsharpSelenium
         {
             //浏览器初始化
             ChromeOptions options = new ChromeOptions();
-
+           
             IWebDriver driver = new ChromeDriver(options);
 
-            driver.Manage().Window.Maximize();
+           // driver.Manage().Window.Maximize();
 
-            for (int a = 0; a < listView2.Items.Count; a++)
+            for (int a = 100; a < listView2.Items.Count; a++)
             {
 
 

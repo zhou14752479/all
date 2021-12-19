@@ -74,7 +74,7 @@ namespace qccxcx
         bool zanting = true;
         bool status = true;
         string token = "50cdedd4679ce52bb252bad277384d29";
-        bool jihuo = true;
+       public static bool jihuo = true;
 
         /// <summary>
         /// 企查查
@@ -639,7 +639,7 @@ namespace qccxcx
         {
             try
             {
-              
+
 
 
                 string macmd5 = method.GetMD5(method.GetMacAddress());
@@ -647,8 +647,8 @@ namespace qccxcx
                 if (ExistINIFile())
                 {
                     string key = IniReadValue("values", "key");
-                    
-                        string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
+
+                    string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
 
 
                     if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
@@ -691,14 +691,14 @@ namespace qccxcx
                                 return;
                             }
                         }
-                        MessageBox.Show("激活码错误");
-                        jihuo = false; ;
+                        MessageBox.Show("激活码错误，点击试用");
+                        企查查.jihuo = false; ;
                     }
 
                 }
                 else
                 {
-                    string str = Interaction.InputBox("请购买激活码,使用正式版软件！", "激活软件", "", -1, -1);
+                    string str = Interaction.InputBox("请购买激活码,使用正式版软件！\r\n\r\n无激活码点击确定免费试用", "激活软件", "", -1, -1);
                     string fullstr = str;
                     if (login(fullstr))
                     {
@@ -734,17 +734,17 @@ namespace qccxcx
                             return;
                         }
                     }
-                    MessageBox.Show("激活码错误");
-                    jihuo = false; ;
+                    MessageBox.Show("激活码错误,点击试用");
+                    企查查.jihuo = false; ;
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("激活码错误");
-                jihuo = false; ;
+                MessageBox.Show("激活码错误,点击试用");
+                企查查.jihuo = false; ;
             }
 
-
+            
         }
 
 
@@ -752,10 +752,11 @@ namespace qccxcx
         Thread thread;
         private void button7_Click(object sender, EventArgs e)
         {
-           
 
+            //激活 jihuo = new 激活();
+            //jihuo.Show();
             
-            jihuoma();
+           jihuoma();
             if (textBox1.Text == "")
             {
                 MessageBox.Show("请输入关键字");
@@ -910,6 +911,8 @@ namespace qccxcx
 
         public void getcityfromJson(string province)
         {
+
+
             comboBox7.Items.Clear();
             comboBox7.Items.Add("全部");
             StreamReader sr = new StreamReader(path + "data\\city.json", method.EncodingType.GetTxtType(path + "data\\city.json"));
@@ -925,12 +928,18 @@ namespace qccxcx
                     {
                         dicc.Add(provinces[i].Groups[2].Value, dic_value[provinces[i].Groups[2].Value]);
                         comboBox7.Items.Add(provinces[i].Groups[2].Value);
-
+                       
                     }
                 }
 
             }
             sr.Close();
+
+            if (comboBox6.Text == "广东省")
+            {
+                dicc.Add("东莞市", "00441900V2020");
+                comboBox7.Items.Add("东莞市");
+            }
         }
 
         public void getareafromJson(string city)

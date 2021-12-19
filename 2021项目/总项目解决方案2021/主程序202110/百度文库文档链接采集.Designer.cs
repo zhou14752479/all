@@ -37,13 +37,15 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader3});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -111,6 +113,10 @@
             this.textBox2.TabIndex = 99;
             this.textBox2.Text = resources.GetString("textBox2.Text");
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 116;
+            // 
             // 百度文库文档链接采集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -140,5 +146,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

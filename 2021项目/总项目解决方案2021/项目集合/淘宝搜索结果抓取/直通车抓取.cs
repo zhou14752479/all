@@ -37,8 +37,10 @@ namespace 淘宝搜索结果抓取
             Dictionary<string, string> headers = new Dictionary<string, string>();
             headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36");
             headers.Add("Cookie", cookie);
+            
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
+            request.Referer = "https://shopsearch.taobao.com/search?q=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91&js=1&initiative_id=staobaoz_20211216&ie=utf8&s=20";
             request.UserAgent = headers["user-agent"];
             request.Timeout = 5000;
             request.KeepAlive = true;
@@ -50,12 +52,19 @@ namespace 淘宝搜索结果抓取
 
         }
 
+
+
+
+        public void getinfo2()
+        {
+
+        }
         public void getInfos(string html,string key)
         {
             if(html.Contains("captcha"))
             {
-                label2.Text = "请退出账号重新登录";
-                return;
+                //label2.Text = "请退出账号重新登录";
+                return ;
             }
 
             MatchCollection titles = Regex.Matches(html, @"\\""ADGTITLE\\"":\\""([\s\S]*?)\\""");
@@ -106,14 +115,14 @@ namespace 淘宝搜索结果抓取
                             }
 
 
-
+                            Thread.Sleep(2000);
 
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
                             if (status == false)
-                                return;
+                                return  ;
                         }
                         else
                         {
@@ -128,9 +137,13 @@ namespace 淘宝搜索结果抓取
                     continue;
                 }
             }
-
+          
 
         }
+
+
+
+       public static List<string> cookielist = new List<string>();
         public void run()
         {
             string[] keywords = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -148,10 +161,17 @@ namespace 淘宝搜索结果抓取
                     {
                         int p = i * 44;
                         string URL = url + "&s=" + p.ToString();
+
                         string html = getHtml(URL);
 
-                        getInfos(html, keyword);
-                        Thread.Sleep(2000);
+                        Random rd = new Random(Guid.NewGuid().GetHashCode());
+                       int suiji= rd.Next(0,cookielist.Count);
+                        cookie = cookielist[suiji];
+                      getInfos(html, keyword);
+                      
+                        
+                        //label2.Text = "正在抓取：第" + i + "页";
+                        Thread.Sleep(20000);
                         if (status == false)
                         {
                             return;
@@ -160,6 +180,134 @@ namespace 淘宝搜索结果抓取
                     catch (Exception ex)
                     {
                         label2.Text = "正在抓取：第"+i+"页";
+                        MessageBox.Show(ex.ToString());
+                        continue;
+                    }
+                }
+            }
+            MessageBox.Show("采集结束");
+        }
+
+
+
+
+
+
+
+
+
+        public void run2()
+        {
+            string[] keywords = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            foreach (string keyword in keywords)
+            {
+                if (keyword == "")
+                {
+                    continue;
+                }
+              
+              
+                for (int page = 0; page < 10; page++)
+                {
+                    try
+                    {
+                        int p = page *200;
+                        string url = "https://tmatch.simba.taobao.com/?name=tbuad&o=j&count=200&p4p=tbcc_p4p_c2015_8_130026_16396434743641639643474408&pid=430409_1006&offset=" + p+ "&keyword=" + System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312"));
+                       
+                        string html = getHtml(url);
+                        //textBox1.Text = html;
+                        Random rd = new Random(Guid.NewGuid().GetHashCode());
+                        int suiji = rd.Next(0, cookielist.Count);
+                        cookie = cookielist[suiji];
+                       
+                     
+                        MatchCollection grades = Regex.Matches(html, @"""GRADE"":""([\s\S]*?)""");
+                        MatchCollection wangwangs = Regex.Matches(html, @"""WANGWANGID"":""([\s\S]*?)""");
+                        MatchCollection ISMALL = Regex.Matches(html, @"""ISMALL"":""([\s\S]*?)""");
+                        if (wangwangs.Count==0)
+                        {
+                            Thread.Sleep(1000);
+                            //label2.Text = "请退出账号重新登录";
+                            continue;
+                        }
+
+                      
+                        for (int i = 0; i < wangwangs.Count; i++)
+                        {
+                          
+                            try
+                            {
+                               
+                                string grade = grades[i].Groups[1].Value;
+                                string wangwang = wangwangs[i].Groups[1].Value;
+                                if (!lists.Contains(wangwang))
+                                {
+                                    wangwang = method.Unicode2String(wangwang);
+                                    //lists.Add(wangwang);
+                                    if (ISMALL[i].Groups[1].Value == "0" && Convert.ToInt32(grade) < 1001)
+                                    {
+                                        label2.Text = wangwang + "：符合抓取";
+                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                        //listViewItem.SubItems.Add(title);
+                                        listViewItem.SubItems.Add(wangwang);
+                                        listViewItem.SubItems.Add(keyword);
+                                        // listViewItem.SubItems.Add(grade);
+
+
+                                        if (Convert.ToInt32(grade) < 251)
+                                        {
+                                            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\星级.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                                            sw.WriteLine(wangwang);
+                                            sw.Close();
+                                            fs1.Close();
+                                            sw.Dispose();
+                                        }
+                                        else
+                                        {
+                                            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\钻级.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                                            sw.WriteLine(wangwang);
+                                            sw.Close();
+                                            fs1.Close();
+                                            sw.Dispose();
+                                        }
+
+
+                                        Thread.Sleep(3000);
+
+                                        while (this.zanting == false)
+                                        {
+                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                        }
+                                        if (status == false)
+                                            return;
+                                    }
+                                    else
+                                    {
+                                        label2.Text = wangwang + "：不符合跳过";
+                                    }
+
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                                continue;
+                            }
+                        }
+
+
+                      
+                        Thread.Sleep(10000);
+                        if (status == false)
+                        {
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        label2.Text = "正在抓取：第" + page+ "页";
                         //MessageBox.Show(ex.ToString());
                         continue;
                     }
@@ -167,6 +315,8 @@ namespace 淘宝搜索结果抓取
             }
             MessageBox.Show("采集结束");
         }
+
+        Thread thread2;
         private void button1_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -182,9 +332,9 @@ namespace 淘宝搜索结果抓取
 
             #endregion
 
-            cookie = webbrowser.COOKIE;
+           
 
-            if (cookie == "")
+            if (cookielist.Count==0)
             {
                 MessageBox.Show("请先登录");
 
@@ -193,11 +343,16 @@ namespace 淘宝搜索结果抓取
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run2);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
-
+            if (thread2 == null || !thread2.IsAlive)
+            {
+                thread2 = new Thread(run);
+                thread2.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
 
         }
 
@@ -208,7 +363,7 @@ namespace 淘宝搜索结果抓取
 
         private void button7_Click(object sender, EventArgs e)
         {
-            webbrowser web = new webbrowser();
+           多开浏览器 web = new 多开浏览器();
             web.Show();
         }
 
