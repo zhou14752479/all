@@ -22,7 +22,7 @@ namespace 虎牙直邀请软件
         {
             method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
-            webBrowser1.Navigate("https://ow.huya.com/#/guru/contract/signed");
+            webBrowser1.Navigate("https://www.huya.com/");
         }
 
         private void 登录_FormClosing(object sender, FormClosingEventArgs e)

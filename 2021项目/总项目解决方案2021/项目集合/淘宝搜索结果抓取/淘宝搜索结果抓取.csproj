@@ -7,7 +7,7 @@
     <ProjectGuid>{3BA95F99-8541-42D6-B7E9-AE543F742A3A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>淘宝搜索结果抓取</RootNamespace>
-    <AssemblyName>淘宝搜索结果抓取</AssemblyName>
+    <AssemblyName>叮叮车</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

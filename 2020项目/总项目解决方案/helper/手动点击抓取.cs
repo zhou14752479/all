@@ -21,7 +21,8 @@ namespace helper
 
         private void 手动点击抓取_Load(object sender, EventArgs e)
         {
-           
+            //输入网址为所以评论页地址
+            //https://www.amazon.ca/EvinTer-Running-Lightweight-Air-Permeable-Leisure/product-reviews/B07QY1NCXR/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews
             method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(WB_DocumentCompleted);
@@ -133,7 +134,7 @@ namespace helper
                 {
                     string strhtml = strhtmls[i].Groups[1].Value;
 
-                    //textBox2.Text = strhtml;
+                   // textBox2.Text = strhtml;
                     Match dates = Regex.Match(strhtml, @"review-date"" class=""a-size-base a-color-secondary review-date"">([\s\S]*?)</span>");  //1477
                     Match xingjis = Regex.Match(strhtml, @"review-star-rating"" class=""a-icon a-icon-star a-star-([\s\S]*?) ");   //1465
 
@@ -147,11 +148,11 @@ namespace helper
 
 
 
-                    ////美国站
-                    //string size = Regex.Match(strhtml, @"Size:([\s\S]*?)</span>").Groups[1].Value;
-                    //string color = Regex.Match(strhtml, @">Color:([\s\S]*?)<").Groups[1].Value;
-                    //string size1 = Regex.Match(strhtml, @"尺寸:([\s\S]*?)</span>").Groups[1].Value;
-                    //string color1 = Regex.Match(strhtml, @">颜色:([\s\S]*?)<").Groups[1].Value;
+                    //美国站
+                    string size = Regex.Match(strhtml, @"Size:([\s\S]*?)</span>").Groups[1].Value;
+                    string color = Regex.Match(strhtml, @">Color:([\s\S]*?)<").Groups[1].Value;
+                    string size1 = Regex.Match(strhtml, @"尺寸:([\s\S]*?)</span>").Groups[1].Value;
+                    string color1 = Regex.Match(strhtml, @">颜色:([\s\S]*?)<").Groups[1].Value;
 
 
                     ////德国站
@@ -176,13 +177,15 @@ namespace helper
 
 
                     ////加拿大站
-                    string size = Regex.Match(strhtml, @"Size:([\s\S]*?)</span>").Groups[1].Value;
-                    string color = Regex.Match(strhtml, @"Color:([\s\S]*?)<").Groups[1].Value;
-                    string size1 = Regex.Match(strhtml, @"尺寸:([\s\S]*?)</span>").Groups[1].Value;
-                    string color1 = Regex.Match(strhtml, @">颜色:([\s\S]*?)<").Groups[1].Value;
+                    //string size = Regex.Match(strhtml, @"Size([\s\S]*?)<").Groups[1].Value.Replace(":","");
+                    //string color = Regex.Match(strhtml, @"Color Name([\s\S]*?)<").Groups[1].Value;
+                    //string size1 = Regex.Match(strhtml, @"尺寸:([\s\S]*?)</span>").Groups[1].Value;
+                    //string color1 = Regex.Match(strhtml, @">颜色:([\s\S]*?)<").Groups[1].Value;
+
+
                     Match links = Regex.Match(strhtml, @"review-title-content a-text-bold"" href=""([\s\S]*?)""");
 
-                  
+
 
                     size = size!= "" ? size : size1;
                     color= color != "" ? color : color1;
@@ -192,10 +195,18 @@ namespace helper
                     try
                     {
                         string nr = neirongs.Groups[1].Value.Replace("<span>", "").Trim();
-
                         string time = timegeshi(dates.Groups[1].Value);
 
-                      string asin = Regex.Match(links.Groups[1].Value, @"reviews/([\s\S]*?)/").Groups[1].Value;
+
+
+                       // //加拿大站
+                        MatchCollection contents = Regex.Matches(strhtml, @"<span>([\s\S]*?)</span>");
+                        nr = contents[contents.Count - 1].Groups[1].Value;
+                       //time = Regex.Match(strhtml, @"Reviewed in Canada on([\s\S]*?)</span>").Groups[1].Value;
+                 
+                       // //加拿大站
+
+                        string asin = Regex.Match(links.Groups[1].Value, @"reviews/([\s\S]*?)/").Groups[1].Value;
                         lv1.SubItems.Add(time);
                         lv1.SubItems.Add(xingjis.Groups[1].Value);
                         lv1.SubItems.Add(Regex.Replace(nr, "<[^>]+>", "").Trim());

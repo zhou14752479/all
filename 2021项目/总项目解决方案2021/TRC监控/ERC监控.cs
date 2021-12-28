@@ -135,18 +135,18 @@ namespace TRC监控
         {
             string charset = "utf-8";
             string html = "";
-            string COOKIE = "";
+            string COOKIE = "cf_clearance=8IzimqOjoHRbgEoOa7TGYXS26YFNbAmu6cACWrHZUkk-1640060480-0-250; ASP.NET_SessionId=olomf2bfyhrled5h3kmn4ang; _pk_id.10.1f5c=026743d19da0e740.1640060484.; __cf_bm=YjMr2SAiQcRsl5S2Zad9LMJsWxluJwPVcjM13AGezWI-1640064010-0-AULnS+WyC3Ua1KHPcSELpg0aP2UnvjQ2ghNxpQ0wlEGVodytXdfhLcVgz6vkDXENHLA6PhSBZGyNsyeNPOKXAOK9IzDPMfxZ/UDOOg8CD1dpnwUE9V0kWinIOt6viMxJKg==";
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 //request.Proxy = null;//防止代理抓包
                 request.AllowAutoRedirect = true;
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36";
                 request.Referer = Url;
                 //添加头部
-                //WebHeaderCollection headers = request.Headers;
-                //headers.Add("sec-fetch-mode:navigate");
+                WebHeaderCollection headers = request.Headers;
+                //headers.Add("x-apiKey:LWIzMWUtNDU0Ny05Mjk5LWI2ZDA3Yjc2MzFhYmEyYzkwM2NjfDI3NTExNzEyNTUyNzAxMTA=");
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -209,39 +209,93 @@ namespace TRC监控
                         continue;
 
 
-               
 
-                 
-                    string url = "https://info.chaindigg.com/api/api/addressToken?hash="+  listView1.Items[i].SubItems[1].Text + "&tokenHash=0xdac17f958d2ee523a2206206994597c13d831ec7&pageNumber=0&pageSize=30&coinType=eth";
+
+                    //慢
+                    // string url = "https://info.chaindigg.com/api/api/addressToken?hash="+  listView1.Items[i].SubItems[1].Text + "&tokenHash=0xdac17f958d2ee523a2206206994597c13d831ec7&pageNumber=0&pageSize=30&coinType=eth";
+
+                    //快 但是加密
+                    //string url = "https://www.oklink.com/api/explorer/v1/eth/addresses/"+ listView1.Items[i].SubItems[1].Text + "/transfers?t=1640060144159&offset=0&limit=20";
+
+                    string url = "https://cn.etherscan.com/address-tokenpage?m=normal&a=" + listView1.Items[i].SubItems[1].Text;
                     string html = GetUrl(url);
-                    MatchCollection times = Regex.Matches(html, @"""timeStamp"":([\s\S]*?),");
-                    MatchCollection values = Regex.Matches(html, @"""value"":""([\s\S]*?)""");
-                    MatchCollection tokenSymbols = Regex.Matches(html, @"""symbol"":""([\s\S]*?)""");
-                    MatchCollection txids = Regex.Matches(html, @"""txHash"":""([\s\S]*?)""");
-                    MatchCollection from = Regex.Matches(html, @"""from"":""([\s\S]*?)""");
-                    MatchCollection to = Regex.Matches(html, @"""to"":""([\s\S]*?)""");
+                  
+                    //MatchCollection times = Regex.Matches(html, @"""blocktime"":([\s\S]*?),");
+                    //MatchCollection values = Regex.Matches(html, @"""realValue"":([\s\S]*?),");
+                    //MatchCollection tokenSymbols = Regex.Matches(html, @"""symbol"":""([\s\S]*?)""");
+                    //MatchCollection txids = Regex.Matches(html, @"""txHash"":""([\s\S]*?)""");
+                    //MatchCollection from = Regex.Matches(html, @"""from"":""([\s\S]*?)""");
+                    //MatchCollection to = Regex.Matches(html, @"""to"":""([\s\S]*?)""");
 
+                    MatchCollection times = Regex.Matches(html, @"<span rel='tooltip' data-toggle='tooltip' data-placement='bottom' title='([\s\S]*?)'");
+                    MatchCollection values = Regex.Matches(html, @"</td><td>([\s\S]*?)<");
+                    MatchCollection tokenSymbols = Regex.Matches(html, @"class='mr-1'>([\s\S]*?)<");
+                    MatchCollection txids = Regex.Matches(html, @"<span class='hash-tag text-truncate myFnExpandBox_searchVal'><a href='/tx/([\s\S]*?)title='([\s\S]*?)'");
+                    MatchCollection from = Regex.Matches(html, @"data-boundary='viewport' data-html='true' data-toggle='tooltip' data-placement='bottom' title='([\s\S]*?)'");
+                    //MatchCollection to = Regex.Matches(html, @"target='_parent' data-boundary='viewport' data-html='true' data-toggle='tooltip' data-placement='bottom' title='([\s\S]*?)'");
 
-                    int index = 0;
-                    for (int a = 0; a < from.Count; a++)
+                    List<string> timelist = new List<string>();
+                    List<string> fromlist = new List<string>();
+                    List<string> tolist = new List<string>();
+                    List<string> valuelist = new List<string>();
+                  
+                    for (int j = 0; j < from.Count; j++)
                     {
-                        if (from[a].Groups[1].Value != listView1.Items[i].SubItems[1].Text && to[a].Groups[1].Value == listView1.Items[i].SubItems[1].Text)
+                        if(j%2==0)
                         {
+                            fromlist.Add(from[j].Groups[1].Value);
+                        }
+                        else
+                        {
+                         
+                            tolist.Add(from[j].Groups[1].Value);
+                           
+                            timelist.Add(times[j].Groups[1].Value);
+                        }
+
+                       
+                    }
+                    for (int z = 0; z < values.Count; z++)
+                    {
+                        if (values[z].Groups[1].Value != "")
+                        {
+                            valuelist.Add(values[z].Groups[1].Value);
+                        }
+                    }
+                   
+                    int index = 0;
+                    //for (int a = 0; a < from.Count; a++)
+                    //{
+                    //    if (from[a].Groups[1].Value != listView1.Items[i].SubItems[1].Text && to[a].Groups[1].Value == listView1.Items[i].SubItems[1].Text)
+                    //    {
+                    //        index = a;
+                    //        break;
+
+                    //    }
+
+                    //}
+
+                    for (int a = 0; a <fromlist.Count; a++)
+                    {
+                      
+                        if (fromlist[a] != listView1.Items[i].SubItems[1].Text.ToLower() && tolist[a]== listView1.Items[i].SubItems[1].Text.ToLower())
+                        {
+                         
                             index = a;
                             break;
 
                         }
 
                     }
-
+                
                     if (listView1.Items[i].SubItems[2].Text == "")
                     {
-
-                        listView1.Items[i].SubItems[2].Text = ConvertStringToDateTime(times[index].Groups[1].Value).ToString();
+                       
+                        listView1.Items[i].SubItems[2].Text = timelist[index];
                         listView1.Items[i].SubItems[3].Text = "USDT";
-                        listView1.Items[i].SubItems[4].Text = (Convert.ToDouble(values[index].Groups[1].Value)).ToString();
+                        listView1.Items[i].SubItems[4].Text = valuelist[index];
                         listView1.Items[i].SubItems[6].Text = txids[index].Groups[1].Value;
-                        listView1.Items[i].SubItems[7].Text = from[index].Groups[1].Value;
+                        listView1.Items[i].SubItems[7].Text = fromlist[index];
                     }
                     else
                     {
@@ -249,11 +303,11 @@ namespace TRC监控
                         {
 
 
-                            listView1.Items[i].SubItems[2].Text = ConvertStringToDateTime(times[index].Groups[1].Value).ToString();
+                            listView1.Items[i].SubItems[2].Text = timelist[index];
                             listView1.Items[i].SubItems[3].Text = tokenSymbols[index].Groups[1].Value;
-                            listView1.Items[i].SubItems[4].Text = (Convert.ToDouble(values[index].Groups[1].Value) / 1000000).ToString();
+                            listView1.Items[i].SubItems[4].Text =valuelist[index];
                             listView1.Items[i].SubItems[6].Text = txids[index].Groups[1].Value;
-                            listView1.Items[i].SubItems[7].Text = from[index].Groups[1].Value;
+                            listView1.Items[i].SubItems[7].Text = fromlist[index];
 
 
 
@@ -268,7 +322,7 @@ namespace TRC监控
                 }
                 catch (Exception ex)
                 {
-                    // MessageBox.Show(ex.ToString());
+                     MessageBox.Show(ex.ToString());
                     continue;
                 }
             }

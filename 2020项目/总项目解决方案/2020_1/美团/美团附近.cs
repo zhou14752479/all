@@ -579,11 +579,11 @@ namespace 美团
 
                                 string html = meituan_GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
 
-                                //textBox2.Text = html;
+                               // textBox2.Text = html;
                                 MatchCollection uids = Regex.Matches(html, @"""shopId"":""([\s\S]*?)""");
+                                MatchCollection picurls = Regex.Matches(html, @"picUrls"":\[([\s\S]*?)\@");
 
-                             
-                               if(html.Trim()=="")
+                                if (html.Trim()=="")
                                 {
                                     MessageBox.Show("ip被屏蔽");
                                     continue;
@@ -648,6 +648,7 @@ namespace 美团
                                            
                                             listViewItem.SubItems.Add(keyword);
                                             listViewItem.SubItems.Add(city);
+                                            listViewItem.SubItems.Add(picurls[a].Groups[1].Value.Replace("\"","").Trim());
                                             while (this.zanting == false)
                                             {
                                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -960,7 +961,7 @@ namespace 美团
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            jihuoma();
+            //jihuoma();
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
@@ -1250,6 +1251,7 @@ namespace 美团
                         string fullstr = str;
                         if (login(fullstr))
                         {
+                            jihuo = false;
                             MessageBox.Show("激活失败，激活码失效");
                             return;
                         }
@@ -1294,6 +1296,7 @@ namespace 美团
                     string fullstr = str;
                     if (login(fullstr))
                     {
+                        jihuo = false;
                         MessageBox.Show("激活失败，激活码失效");
                         return;
                     }

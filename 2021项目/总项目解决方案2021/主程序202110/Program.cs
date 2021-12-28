@@ -16,7 +16,7 @@ namespace 主程序202110
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 纪念币预约查询());
+            Application.Run(new 纪念币预约());
         }
     }
 }

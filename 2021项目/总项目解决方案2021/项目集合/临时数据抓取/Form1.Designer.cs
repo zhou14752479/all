@@ -45,7 +45,16 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,15 +122,15 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(944, 174);
+            this.panel1.Size = new System.Drawing.Size(1094, 174);
             this.panel1.TabIndex = 203;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(689, 45);
+            this.textBox2.Location = new System.Drawing.Point(797, 12);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(215, 102);
+            this.textBox2.Size = new System.Drawing.Size(191, 105);
             this.textBox2.TabIndex = 212;
             // 
             // textBox1
@@ -162,14 +171,23 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader7});
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader14,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 174);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(944, 392);
+            this.listView1.Size = new System.Drawing.Size(1094, 392);
             this.listView1.TabIndex = 208;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -181,29 +199,72 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "输入数字";
+            this.columnHeader2.Text = "Brand";
             this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "编号";
+            this.columnHeader3.Text = "ItempartNumber";
             this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "描述";
-            this.columnHeader4.Width = 200;
+            this.columnHeader4.Text = "Part Type";
+            this.columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "ItempartStatus";
+            this.columnHeader5.Width = 100;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Cone Pitch";
+            this.columnHeader6.Width = 80;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "OE编号";
-            this.columnHeader7.Width = 200;
+            this.columnHeader7.Text = "Ø";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Length";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "ConeSize";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "PackingType";
+            this.columnHeader10.Width = 80;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Packaginglength";
+            this.columnHeader11.Width = 100;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Packagingwidth";
+            this.columnHeader12.Width = 100;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Packagingheight";
+            this.columnHeader13.Width = 100;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.DisplayIndex = 9;
+            this.columnHeader14.Text = "Thread Size";
+            this.columnHeader14.Width = 100;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 566);
+            this.ClientSize = new System.Drawing.Size(1094, 566);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
@@ -233,7 +294,16 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
     }
 }
 

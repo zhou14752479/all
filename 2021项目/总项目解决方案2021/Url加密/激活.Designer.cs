@@ -61,7 +61,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(455, 198);
             this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "找回";
+            this.tabPage1.Text = "激活";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -70,7 +70,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 31);
             this.button1.TabIndex = 29;
-            this.button1.Text = "点击找回";
+            this.button1.Text = "点击激活";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -121,7 +121,7 @@
             this.MaximizeBox = false;
             this.Name = "激活";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "激活软件  问题请联系QQ：71751777";
+            this.Text = "激活软件  问题请联系QQ：86777769";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

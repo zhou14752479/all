@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
@@ -27,26 +28,26 @@ namespace 主程序202110
 
         public void run()
         {
-            StreamReader sr = new StreamReader(openFileDialog1.FileName, method.EncodingType.GetTxtType(textBox1.Text));
-            //一次性读取完 
-            string texts = sr.ReadToEnd();
-            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            sr.Close();  //只关闭流
-            sr.Dispose();   //销毁流内存
-            for (int i = 0; i < text.Length; i++)
-            {
+           
                 try
                 {
-                    string[] value = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
+                
+                if(textBox1.Text==""||textBox2.Text=="" ||textBox3.Text=="")
+                {
+                    MessageBox.Show("输入有误");
+                    return;
+                }
 
-                    string card = value[0].Trim();
-                    string phone = value[1].Trim();
+
+                    string card = textBox2.Text;
+                    string phone = textBox3.Text; ;
                     string url = "https://eapply.abchina.com/coin/coin/CoinSubmitRequest?issueid=I105&orgsbatch=1";
+
 
                     //orglevel银行分级网点
                     //cardvalue0 数量
                     //cardid0  币ID
-                    string postdata = "name=%E5%91%A8%E5%93%A5&cardtype=0&identNo=321321199903032222&mobile=17606117606&piccode=&phoneCaptchaNo=&orglevel1=509999&orglevel2=501000&orglevel3=501740&orglevel4=5017405&cardvalue0=10&cardid0=201916&coindate=2021-12-24&issueid=I105&orgsbatch=1&extraparam=param";
+                    string postdata = "name=%E5%91%A8%E5%93%A5&cardtype=0&identNo=321321199903032222&mobile=17606117606&piccode=&phoneCaptchaNo=&orglevel1=509999&orglevel2=501000&orglevel3=501740&orglevel4=5017405&cardvalue0=10&cardid0=201916&coindate=2021-12-25&issueid=I105&orgsbatch=1&extraparam=param";
                     string html = method.PostUrlDefault(url, postdata, "");
                     string yuyue = "查询失败";
                     string xingming = "";
@@ -55,7 +56,8 @@ namespace 主程序202110
                     string wangdian = "";
                     string shoujihao = "";
                     string addr = "";
-
+                    Thread.Sleep(2000);
+                    MessageBox.Show("非预约期");
                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(card);
                     lv1.SubItems.Add(phone);
@@ -71,17 +73,22 @@ namespace 主程序202110
                 catch (Exception ex)
                 {
 
-                    continue;
+                    //continue;
                 }
-            }
-            MessageBox.Show("完成");
+            
+          
         }
-    
 
 
-
-
-
-
-}
+        Thread thread;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+    }
 }

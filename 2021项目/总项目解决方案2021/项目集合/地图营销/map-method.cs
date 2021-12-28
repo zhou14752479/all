@@ -278,6 +278,7 @@ namespace 地图营销
                         if (login(fullstr))
                         {
                             MessageBox.Show("激活失败，激活码失效");
+                            jihuo = false; 
                             return;
                         }
                         if (str.Length > 40)
@@ -322,6 +323,7 @@ namespace 地图营销
                     if (login(fullstr))
                     {
                         MessageBox.Show("激活失败，激活码失效");
+                        jihuo = false; 
                         return;
                     }
                     if (str.Length > 40)

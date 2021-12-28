@@ -58,67 +58,69 @@ namespace Url加密
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //if (ExistINIFile())
-            //{
-            //    string key = IniReadValue("values", "key");
-
-            //    string url = "http://47.99.104.164/do.php?key=" + key + "&method=login";
-            //    string html = URL加密.GetUrl(url, "utf-8");
-            //    if (html.Contains("true"))
-            //    {
-            //       string yuming = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
-
-            //        if (yuming == "")
-            //        {
-            //            string aurl = "http://47.99.104.164/do.php?key=" + key + "&url=" + textBox1.Text.Trim() + "&safecode=" + textBox2.Text.Trim() + "&method=update";
-            //            string ahtml = URL加密.GetUrl(aurl, "utf-8");
-            //            if (html.Contains("true"))
-            //            {
-            //                IniWriteValue("values", "url", textBox1.Text.Trim());
-            //                MessageBox.Show("绑定成功，请重启软件使用");
-            //            }
-
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("绑定失败,key已使用");
-            //        }
-
-
-
-
-            //    }
-
-
-
-            //}
-            //else
-            //{
-            //    MessageBox.Show("key不存在请联系QQ71751777");
-            //}
-
-
-            string url = "http://47.99.104.164/do.php?key=" + textBox2.Text.Trim() + "&method=login";
-            string html = URL加密.GetUrl(url, "utf-8");
-            if (html.Contains("true"))
+            if (ExistINIFile())
             {
-                string key = Regex.Match(html, @"""key"":""([\s\S]*?)""").Groups[1].Value;
-                string yuming = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
-                if (yuming == textBox1.Text)
+                string key = IniReadValue("values", "key");
+
+                string url = "http://47.99.104.164/do.php?key=" + key + "&method=login";
+                string html = URL加密.GetUrl(url, "utf-8");
+              
+                if (html.Contains("true"))
                 {
-                    MessageBox.Show("key已重新生成，请重启软件使用");
-                    IniWriteValue("values", "key", key);
-                    IniWriteValue("values", "url", yuming);
+                    string yuming = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+
+                    if (yuming == "")
+                    {
+                        string aurl = "http://47.99.104.164/do.php?key=" + key + "&url=" + textBox1.Text.Trim() + "&safecode=" + textBox2.Text.Trim() + "&method=update";
+                        string ahtml = URL加密.GetUrl(aurl, "utf-8");
+                       
+                        if (html.Contains("true"))
+                        {
+                            IniWriteValue("values", "url", textBox1.Text.Trim());
+                            MessageBox.Show("绑定成功，请重启软件使用");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("绑定失败,key已使用");
+                    }
+
+
+
+
                 }
-                else
-                {
-                    MessageBox.Show("域名不匹配");
-                }
+
+
+
             }
             else
             {
-                MessageBox.Show("安全码不存在");
+                MessageBox.Show("key不存在请联系QQ86777769");
             }
+
+
+            //string url = "http://47.99.104.164/do.php?key=" + textBox2.Text.Trim() + "&method=login";
+            //string html = URL加密.GetUrl(url, "utf-8");
+            //if (html.Contains("true"))
+            //{
+            //    string key = Regex.Match(html, @"""key"":""([\s\S]*?)""").Groups[1].Value;
+            //    string yuming = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+            //    if (yuming == textBox1.Text)
+            //    {
+            //        MessageBox.Show("key已重新生成，请重启软件使用");
+            //        IniWriteValue("values", "key", key);
+            //        IniWriteValue("values", "url", yuming);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("域名不匹配");
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("安全码不存在");
+            //}
 
 
         }

@@ -50,6 +50,11 @@ namespace ASPnetWeb应用程序空
                 string month = DateTime.Now.AddHours(-1).Month.ToString();
                 string day = DateTime.Now.AddHours(-1).Day.ToString();
 
+                if(DateTime.Now.Hour==0 || DateTime.Now.Hour == 24)
+                {
+                    day = DateTime.Now.AddDays(-1).Day.ToString();
+                }
+
                 if (month.Length == 1)
                 {
                     month = "0" + month;

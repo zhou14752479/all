@@ -56,33 +56,33 @@ namespace Url加密
         [STAThread]
         static void Main()
         {
-            //if (ExistINIFile())
-            //{
-            //    string key = IniReadValue("values", "key");
-            //    string yuming = IniReadValue("values", "url");
+            if (ExistINIFile())
+            {
+                string key = IniReadValue("values", "key");
+                string yuming = IniReadValue("values", "url");
 
-            //    if (yuming != "")
-            //    {
-            //        Application.EnableVisualStyles();
-            //        Application.SetCompatibleTextRenderingDefault(false);
-            //        Application.Run(new URL加密());
-            //    }
-            //    else
-            //    {
-            //        Application.EnableVisualStyles();
-            //        Application.SetCompatibleTextRenderingDefault(false);
-            //        Application.Run(new 激活());
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("key不存在请联系QQ71751777");
-            //}
+                if (yuming != "")
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new URL加密());
+                }
+                else
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new 激活());
+                }
+            }
+            else
+            {
+                MessageBox.Show("key不存在请联系QQ86777769");
+            }
 
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 激活());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new 激活());
         }
     }
 }

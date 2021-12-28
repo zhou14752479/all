@@ -124,7 +124,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(89, 27);
             this.button5.TabIndex = 6;
-            this.button5.Text = "停止采集";
+            this.button5.Text = "停止";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -164,7 +164,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(89, 27);
             this.button1.TabIndex = 2;
-            this.button1.Text = "开始采集";
+            this.button1.Text = "开始";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -346,7 +346,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "直通车抓取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "直通车抓取";
+            this.Text = "叮叮车";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.直通车抓取_FormClosing);
             this.Load += new System.EventHandler(this.直通车抓取_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

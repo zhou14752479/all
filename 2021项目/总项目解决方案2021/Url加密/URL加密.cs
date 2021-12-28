@@ -160,12 +160,12 @@ namespace Url加密
                     expiretime = Regex.Match(html, @"""expiretime"":""([\s\S]*?)""").Groups[1].Value;
                     if(yuming=="")
                     {
-                        MessageBox.Show("key错误，请联系QQ71751777");
+                        MessageBox.Show("key错误，请联系QQ86777769");
                         System.Diagnostics.Process.GetCurrentProcess().Kill();
 
                     }
 
-                    this.Text = "防劫持链接加密 QQ71751777          绑定域名：" + yuming+"  过期时间："+expiretime;
+                    this.Text = "防劫持链接加密 QQ86777769          绑定域名：" + yuming+"  过期时间："+expiretime;
                     label1.Text = "绑定域名：" + yuming + " 过期时间：" + expiretime;
 
 
@@ -173,14 +173,14 @@ namespace Url加密
 
                 else
                 {
-                    MessageBox.Show("key错误，请联系QQ71751777");
+                    MessageBox.Show("key错误，请联系QQ86777769");
                     System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
 
             }
             else
             {
-                MessageBox.Show("key文件不存在，请联系QQ71751777");
+                MessageBox.Show("key文件不存在，请联系QQ86777769");
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
         }

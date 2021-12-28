@@ -576,7 +576,7 @@ namespace qccxcx
                     catch (Exception ex)
                     {
 
-                        ex.ToString();
+                       MessageBox.Show(ex.ToString());
                     }
 
                 }
@@ -588,7 +588,7 @@ namespace qccxcx
             catch (Exception ex)
             {
 
-               ex.ToString();
+                MessageBox.Show(ex.ToString());
             }
         }
         private void 企查查_Load(object sender, EventArgs e)
@@ -658,7 +658,9 @@ namespace qccxcx
                         string fullstr = str;
                         if (login(fullstr))
                         {
+                            企查查.jihuo = false; ;
                             MessageBox.Show("激活失败，激活码失效");
+                           
                             return;
                         }
                         if (str.Length > 40)
@@ -702,6 +704,7 @@ namespace qccxcx
                     string fullstr = str;
                     if (login(fullstr))
                     {
+                        企查查.jihuo = false; 
                         MessageBox.Show("激活失败，激活码失效");
                         return;
                     }
