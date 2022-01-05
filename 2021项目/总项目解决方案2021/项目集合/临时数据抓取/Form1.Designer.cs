@@ -49,12 +49,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -174,13 +168,7 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader14,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13});
+            this.columnHeader8});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -219,46 +207,18 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Cone Pitch";
-            this.columnHeader6.Width = 80;
+            this.columnHeader6.Text = "OEnum";
+            this.columnHeader6.Width = 100;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Ø";
+            this.columnHeader7.Text = "Criteria";
+            this.columnHeader7.Width = 200;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "Length";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "ConeSize";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "PackingType";
-            this.columnHeader10.Width = 80;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Packaginglength";
-            this.columnHeader11.Width = 100;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Packagingwidth";
-            this.columnHeader12.Width = 100;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Packagingheight";
-            this.columnHeader13.Width = 100;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.DisplayIndex = 9;
-            this.columnHeader14.Text = "Thread Size";
-            this.columnHeader14.Width = 100;
+            this.columnHeader8.Text = "VehicleLinkages";
+            this.columnHeader8.Width = 200;
             // 
             // Form1
             // 
@@ -298,12 +258,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
     }
 }
 

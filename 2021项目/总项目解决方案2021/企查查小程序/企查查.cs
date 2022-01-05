@@ -237,8 +237,7 @@ namespace qccxcx
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("version:TYC-XCX-WX");
                 headers.Add("X-AUTH-TOKEN: "+token);
-                //headers.Add("sec-fetch-user:?1");
-                //headers.Add("upgrade-insecure-requests: 1");
+              //  headers.Add("X-AUTH-TOKEN:eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzMzMDc5NjE4NyIsImlhdCI6MTYzOTk5MDgwOSwiZXhwIjoxNjQyNTgyODA5fQ.b_79_YOoEI-gATwz6gYXVWPmZw8fuwtG6DavohbodPRd-Lxoua6CcqeWPrmMsAM-YHZEVj2raqRYdfnktOwfdg");
                 //添加头部
                 //request.ContentType = "application/x-www-form-urlencoded";
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
@@ -563,7 +562,7 @@ namespace qccxcx
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.ToString());
+                                MessageBox.Show(ex.Message);
                                 textBox2.Text = ex.ToString();
                                 continue;
                             }
@@ -576,7 +575,7 @@ namespace qccxcx
                     catch (Exception ex)
                     {
 
-                       MessageBox.Show(ex.ToString());
+                        MessageBox.Show(ex.Message);
                     }
 
                 }
@@ -588,7 +587,7 @@ namespace qccxcx
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
             }
         }
         private void 企查查_Load(object sender, EventArgs e)

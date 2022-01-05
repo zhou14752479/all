@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.导入数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空查询数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出查询数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空数据库全部数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,33 +36,38 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -73,39 +77,33 @@
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.导入数据ToolStripMenuItem,
             this.清空查询数据ToolStripMenuItem,
             this.导出查询数据ToolStripMenuItem,
             this.清空数据库全部数据ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(907, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1029, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // 导入数据ToolStripMenuItem
-            // 
-            this.导入数据ToolStripMenuItem.Name = "导入数据ToolStripMenuItem";
-            this.导入数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.导入数据ToolStripMenuItem.Text = "导入数据";
             // 
             // 清空查询数据ToolStripMenuItem
             // 
             this.清空查询数据ToolStripMenuItem.Name = "清空查询数据ToolStripMenuItem";
             this.清空查询数据ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.清空查询数据ToolStripMenuItem.Text = "清空查询数据";
+            this.清空查询数据ToolStripMenuItem.Click += new System.EventHandler(this.清空查询数据ToolStripMenuItem_Click);
             // 
             // 导出查询数据ToolStripMenuItem
             // 
             this.导出查询数据ToolStripMenuItem.Name = "导出查询数据ToolStripMenuItem";
             this.导出查询数据ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.导出查询数据ToolStripMenuItem.Text = "导出查询数据";
+            this.导出查询数据ToolStripMenuItem.Click += new System.EventHandler(this.导出查询数据ToolStripMenuItem_Click);
             // 
             // 清空数据库全部数据ToolStripMenuItem
             // 
@@ -123,7 +121,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(907, 575);
+            this.tabControl1.Size = new System.Drawing.Size(1029, 575);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -134,7 +132,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage1.Size = new System.Drawing.Size(899, 537);
+            this.tabPage1.Size = new System.Drawing.Size(1021, 537);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "      数据查询      ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -147,7 +145,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(4, 119);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(891, 413);
+            this.dataGridView1.Size = new System.Drawing.Size(1013, 413);
             this.dataGridView1.TabIndex = 378;
             // 
             // panel1
@@ -158,8 +156,51 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(891, 114);
+            this.panel1.Size = new System.Drawing.Size(1013, 114);
             this.panel1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(792, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "未启动";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.linkLabel2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Location = new System.Drawing.Point(15, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(757, 94);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "条件查询";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(62, 28);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(146, 23);
+            this.dateTimePicker1.TabIndex = 39;
+            this.dateTimePicker1.Value = new System.DateTime(2021, 12, 28, 17, 22, 0, 0);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 17);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "日期：";
             // 
             // button1
             // 
@@ -176,86 +217,35 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.comboBox3);
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.linkLabel2);
-            this.groupBox2.Controls.Add(this.linkLabel1);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(15, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(685, 94);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "条件查询";
-            // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(455, 30);
+            this.linkLabel2.Location = new System.Drawing.Point(393, 33);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(56, 17);
             this.linkLabel2.TabIndex = 37;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "清除条件";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(229, 67);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(68, 17);
-            this.linkLabel1.TabIndex = 36;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "获取公司名";
+            this.linkLabel2.Text = "获取公司";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 27);
+            this.label1.Location = new System.Drawing.Point(214, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 28;
             this.label1.Text = "公司名：";
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 9.5F);
-            this.textBox1.Location = new System.Drawing.Point(77, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(146, 24);
-            this.textBox1.TabIndex = 29;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 9.5F);
-            this.textBox2.Location = new System.Drawing.Point(303, 25);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(146, 24);
-            this.textBox2.TabIndex = 31;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(229, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 17);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "盘口(让球)：";
-            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView3);
+            this.tabPage2.Controls.Add(this.listView1);
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(915, 642);
+            this.tabPage2.Size = new System.Drawing.Size(1021, 537);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "      更新数据      ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -263,16 +253,20 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.groupBox5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(907, 111);
+            this.panel2.Size = new System.Drawing.Size(1013, 111);
             this.panel2.TabIndex = 1;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.dateTimePicker1);
+            this.groupBox5.Controls.Add(this.button5);
+            this.groupBox5.Controls.Add(this.button4);
+            this.groupBox5.Controls.Add(this.dateTimePicker2);
+            this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.button2);
             this.groupBox5.Location = new System.Drawing.Point(15, 3);
@@ -299,123 +293,167 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(259, 22);
+            this.button2.Location = new System.Drawing.Point(198, 29);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 38);
+            this.button2.Size = new System.Drawing.Size(126, 38);
             this.button2.TabIndex = 30;
-            this.button2.Text = "点击同步";
+            this.button2.Text = "更新当前日期";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // dateTimePicker1
+            // dateTimePicker2
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(31, 29);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker1.TabIndex = 32;
+            this.dateTimePicker2.Location = new System.Drawing.Point(31, 29);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(146, 23);
+            this.dateTimePicker2.TabIndex = 41;
+            this.dateTimePicker2.Value = new System.DateTime(2021, 12, 28, 17, 22, 0, 0);
             // 
-            // dataGridViewTextBoxColumn9
+            // label2
             // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "定数";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(-9, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 17);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "日期：";
             // 
-            // dataGridViewTextBoxColumn8
+            // button4
             // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "折扣";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(205)))), ((int)(((byte)(0)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(343, 29);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(103, 38);
+            this.button4.TabIndex = 42;
+            this.button4.Text = "更新全年";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // dataGridViewTextBoxColumn7
+            // comboBox1
             // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "库位";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(266, 26);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 25);
+            this.comboBox1.TabIndex = 41;
             // 
-            // dataGridViewTextBoxColumn6
+            // listView1
             // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "库存";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader13,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(4, 116);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1013, 416);
+            this.listView1.TabIndex = 380;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // dataGridViewTextBoxColumn5
+            // columnHeader1
             // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "定价";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.columnHeader1.Text = "序号";
+            this.columnHeader1.Width = 40;
             // 
-            // Column2
+            // columnHeader2
             // 
-            this.Column2.HeaderText = "出版社";
-            this.Column2.Name = "Column2";
+            this.columnHeader2.Text = "比赛名";
             // 
-            // dataGridViewTextBoxColumn4
+            // columnHeader3
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "书名";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.columnHeader3.Text = "主队";
+            this.columnHeader3.Width = 100;
             // 
-            // dataGridViewTextBoxColumn3
+            // columnHeader4
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "书号";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.columnHeader4.Text = "客队";
+            this.columnHeader4.Width = 100;
             // 
-            // dataGridViewTextBoxColumn2
+            // columnHeader5
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "供应商";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.columnHeader5.Text = "比赛时间";
+            this.columnHeader5.Width = 100;
             // 
-            // Column1
+            // columnHeader6
             // 
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
+            this.columnHeader6.Text = "公司名";
+            this.columnHeader6.Width = 100;
             // 
-            // dataGridView3
+            // columnHeader13
             // 
-            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.Column2,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9});
-            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(4, 116);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(907, 521);
-            this.dataGridView3.TabIndex = 383;
+            this.columnHeader13.Text = "数据网址";
+            this.columnHeader13.Width = 100;
             // 
-            // comboBox3
+            // columnHeader7
             // 
-            this.comboBox3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "折扣正序",
-            "折扣倒序",
-            "库存正序",
-            "库存倒序"});
-            this.comboBox3.Location = new System.Drawing.Point(77, 59);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(146, 25);
-            this.comboBox3.TabIndex = 39;
-            this.comboBox3.Text = "获取公司名";
+            this.columnHeader7.Text = "数据1";
             // 
-            // label3
+            // columnHeader8
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(707, 70);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "未启动";
+            this.columnHeader8.Text = "数据2";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "数据3";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "数据4";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "数据5";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "数据6";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(715, 16);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(279, 81);
+            this.textBox1.TabIndex = 18;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(205)))), ((int)(((byte)(0)))));
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(461, 29);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(103, 38);
+            this.button5.TabIndex = 43;
+            this.button5.Text = "停止";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Win007
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 600);
+            this.ClientSize = new System.Drawing.Size(1029, 600);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -435,9 +473,9 @@
             this.groupBox2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,7 +484,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 导入数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清空查询数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 导出查询数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清空数据库全部数据ToolStripMenuItem;
@@ -457,29 +494,34 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button5;
     }
 }

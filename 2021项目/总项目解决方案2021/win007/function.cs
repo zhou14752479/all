@@ -95,7 +95,7 @@ namespace win007
             try
             {
                 ArrayList lists = new ArrayList();
-                string sql = "select supplyer from datas";
+                string sql = "select gongsi from datas";
                 using (SQLiteConnection con = new SQLiteConnection("Data Source=" + path))
                 {
                     con.Open();
@@ -107,7 +107,7 @@ namespace win007
                         {
                             while (dr.Read())
                             {
-                                string supplyer = dr["supplyer"].ToString();
+                                string supplyer = dr["gongsi"].ToString();
                                 if (!lists.Contains(supplyer))
                                 {
                                     lists.Add(supplyer);
@@ -136,13 +136,22 @@ namespace win007
         /// <summary>
         /// 插入数据库
         /// </summary>
-        public bool insertdata(string baseinfo,  string basedata, string date)
+        public bool insertdata(string matchname,  string zhu, string ke,string time,string gongsi,string url,string data1, string data2, string data3, string data4, string data5, string data6)
         {
             try
             {
-                string sql = "INSERT INTO datas(baseinfo,basedata,date)VALUES('" + baseinfo + "'," +
-                    "'" + basedata + "'," +
-                    "'" + date + "')";
+                string sql = "INSERT INTO datas(matchname,zhu,ke,time,gongsi,url,data1,data2,data3,data4,data5,data6)VALUES('" + matchname + "'," +
+                    "'" + zhu + "'," +
+                     "'" + ke + "'," +
+                      "'" + time + "'," +
+                       "'" +gongsi + "'," +
+                        "'" + url+ "'," +
+                         "'" + data1 + "'," +
+                          "'" + data2+ "'," +
+                           "'" + data3 + "'," +
+                            "'" + data4+ "'," +
+                             "'" + data5+ "'," +
+                    "'" + data6 + "')";
 
                 SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path);
                 mycon.Open();
@@ -220,7 +229,7 @@ namespace win007
                 string baseinfo = Regex.Replace(tds[i].Groups[2].Value, "<[^>]+>", "");
                 string datajsurl = "http://1x2d.win007.com/"+ids[i].Groups[1].Value+".js?r=007132848760362108507";
                 string datajs = method.GetUrl(datajsurl, "gb2312");
-                insertdata(baseinfo,datajs,day);
+                //insertdata(baseinfo,datajs,day);
                
             }
 

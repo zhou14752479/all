@@ -408,10 +408,10 @@ namespace 主程序202006
                     {
 
 
-                        string url = "http://47.104.234.89:9755/api/Action/Detr";
-                        string postdata = "{\"header\": {\"pid\": \"SHALM\",\"safety\": \"SHALM2021052414\"},\"body\": {\"ticketNO\": \"" + i + "\"}}";
+                        string url = "http://47.104.88.146:9755/api/Action/Detr";
+                        string postdata = "{\"header\": {\"pid\": \"SHALM\",\"safety\": \"administratorSHALM\"},\"body\": {\"ticketNO\": \"" + i + "\"}}";
                         string html = PostUrl(url, postdata);
-                       
+                        //MessageBox.Show(html);
                         Match a1 = Regex.Match(html, @"ETKD:([\s\S]*?) ");
                         Match a2 = Regex.Match(html, @"ORG/DST: ([\s\S]*?) ");
                         Match a3 = Regex.Match(html, @"PASSENGER: ([\s\S]*?) ");
@@ -500,8 +500,8 @@ namespace 主程序202006
                     {
 
 
-                        string url = "http://47.104.234.89:9755/api/Action/Detr";
-                        string postdata = "{\"header\": {\"pid\": \"SHALM\",\"safety\": \"SHALM2021052414\"},\"body\": {\"ticketNO\": \"" + array[i].Replace("\r\n", "").Trim() + "\"}}";
+                        string url = "http://47.104.88.146:9755/api/Action/Detr";
+                        string postdata = "{\"header\": {\"pid\": \"SHALM\",\"safety\": \"administratorSHALM\"},\"body\": {\"ticketNO\": \"" + array[i].Replace("\r\n", "").Trim() + "\"}}";
                         string html = PostUrl(url, postdata);
 
                         Match a1 = Regex.Match(html, @"ETKD:([\s\S]*?) ");
@@ -688,7 +688,7 @@ namespace 主程序202006
 
             if (!html.Contains(@"fly517"))
             {
-                MessageBox.Show("验证失败");
+                MessageBox.Show("");
                 return;
             }
 

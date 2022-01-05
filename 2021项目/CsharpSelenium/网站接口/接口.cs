@@ -46,7 +46,7 @@ namespace 网站接口
             IPAddress ip = IPAddress.Any;
             
 
-           sv.start(ip, 8080, 100, path);
+           sv.start(ip, 81, 100, path);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -81,7 +81,7 @@ namespace 网站接口
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            md.getwangwang("zkg852266010");
+            MessageBox.Show(md.getwangwang("zkg852266010"));
         }
     }
 }

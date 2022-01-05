@@ -77,13 +77,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "移动号码查询", "移�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "虎牙直邀请软件", "虎牙直邀请软件\虎牙直邀请软件.csproj", "{991B3134-AEDF-4D97-A821-5E0B2272623E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "卸载软件", "卸载软件\卸载软件.csproj", "{D7908A96-2CD4-4BE5-95E6-65D07E555F03}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "win007", "win007\win007.csproj", "{882B8525-99B3-453A-A87E-5E7EBE82B87F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "自动挂机计算脚本", "自动挂机计算脚本\自动挂机计算脚本.csproj", "{1F3DAD43-ADAA-42FE-8B7B-F6D98543F778}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "图书管理", "图书管理\图书管理.csproj", "{2F8CDACA-6275-4F44-B6E4-460FA7DA396D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "文字转语音", "文字转语音\文字转语音.csproj", "{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202006", "..\..\2020项目\总项目解决方案\2020_1\主程序202006\主程序202006.csproj", "{B9DDD006-8426-4603-A4E0-11A06426617B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -389,14 +391,6 @@ Global
 		{991B3134-AEDF-4D97-A821-5E0B2272623E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{991B3134-AEDF-4D97-A821-5E0B2272623E}.Release|x86.ActiveCfg = Release|Any CPU
 		{991B3134-AEDF-4D97-A821-5E0B2272623E}.Release|x86.Build.0 = Release|Any CPU
-		{D7908A96-2CD4-4BE5-95E6-65D07E555F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7908A96-2CD4-4BE5-95E6-65D07E555F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7908A96-2CD4-4BE5-95E6-65D07E555F03}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D7908A96-2CD4-4BE5-95E6-65D07E555F03}.Debug|x86.Build.0 = Debug|Any CPU
-		{D7908A96-2CD4-4BE5-95E6-65D07E555F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7908A96-2CD4-4BE5-95E6-65D07E555F03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7908A96-2CD4-4BE5-95E6-65D07E555F03}.Release|x86.ActiveCfg = Release|Any CPU
-		{D7908A96-2CD4-4BE5-95E6-65D07E555F03}.Release|x86.Build.0 = Release|Any CPU
 		{882B8525-99B3-453A-A87E-5E7EBE82B87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{882B8525-99B3-453A-A87E-5E7EBE82B87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{882B8525-99B3-453A-A87E-5E7EBE82B87F}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -421,6 +415,22 @@ Global
 		{2F8CDACA-6275-4F44-B6E4-460FA7DA396D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2F8CDACA-6275-4F44-B6E4-460FA7DA396D}.Release|x86.ActiveCfg = Release|Any CPU
 		{2F8CDACA-6275-4F44-B6E4-460FA7DA396D}.Release|x86.Build.0 = Release|Any CPU
+		{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}.Debug|x86.Build.0 = Debug|Any CPU
+		{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}.Release|x86.ActiveCfg = Release|Any CPU
+		{0EDFD3C3-BE22-4E47-9B88-0C3A7C760381}.Release|x86.Build.0 = Release|Any CPU
+		{B9DDD006-8426-4603-A4E0-11A06426617B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9DDD006-8426-4603-A4E0-11A06426617B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9DDD006-8426-4603-A4E0-11A06426617B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B9DDD006-8426-4603-A4E0-11A06426617B}.Debug|x86.Build.0 = Debug|Any CPU
+		{B9DDD006-8426-4603-A4E0-11A06426617B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9DDD006-8426-4603-A4E0-11A06426617B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9DDD006-8426-4603-A4E0-11A06426617B}.Release|x86.ActiveCfg = Release|Any CPU
+		{B9DDD006-8426-4603-A4E0-11A06426617B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

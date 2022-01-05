@@ -576,32 +576,36 @@ namespace 临时数据抓取
                         string partstatus = Regex.Match(producthtml, @"data-placement=""right"" title=""([\s\S]*?)""").Groups[1].Value.Trim();
 
 
-                        string a1 = Regex.Match(producthtml, @"Cone Pitch</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
-                        string a2 = Regex.Match(producthtml, @"Length</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
-                        string a3 = Regex.Match(producthtml, @"Cone Size</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
-                        string a4 = Regex.Match(producthtml, @"Packing Type</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
-                        string a5 = Regex.Match(producthtml, @"Thread Size 1</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
-                        string a6 = Regex.Match(producthtml, @"Packaging length</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
-                        string a7 = Regex.Match(producthtml, @"Packaging width</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
-                        string a8 = Regex.Match(producthtml, @"Packaging height</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
-                        string a9 = Regex.Match(producthtml, @"Cone Pitch</b></td>([\s\S]*?)</td>").Groups[1].Value.Trim();
+                        StringBuilder oesb = new StringBuilder();
+                        MatchCollection oenums = Regex.Matches(producthtml, @"<a href=""/search\?q=([\s\S]*?)""");
+                        for (int i = 0; i < oenums.Count; i++)
+                        {
+                            oesb.Append(oenums[i].Groups[1].Value.Trim()+",");
+                        }
+
+
+
+
+                        string Criteriahtml = Regex.Match(producthtml, @"Criteria</h2>([\s\S]*?)</table>").Groups[1].Value.Trim();
+
+                        MatchCollection a1 = Regex.Matches(Criteriahtml, @"<td class=""col-xs-4""><b>([\s\S]*?)</b>");
+                        MatchCollection a2 = Regex.Matches(Criteriahtml, @"<td class=""col-xs-8"">([\s\S]*?)</td>");
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < a1.Count; i++)
+                        {
+                            sb.Append(a1[i].Groups[1].Value.Trim() + ":"+a2[i].Groups[1].Value.Trim()+",");
+                        }
+
+                        string pchtml = Regex.Match(producthtml, @"<h3>PC</h3>([\s\S]*?)</div>").Groups[1].Value.Trim();
 
                         ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-
                         lv1.SubItems.Add(Regex.Replace(Brand, "<[^>]+>", ""));
                         lv1.SubItems.Add(Regex.Replace(partnum, "<[^>]+>", ""));
                         lv1.SubItems.Add(Regex.Replace(PartType, "<[^>]+>", ""));
                         lv1.SubItems.Add(Regex.Replace(partstatus, "<[^>]+>", ""));
-
-                        lv1.SubItems.Add(Regex.Replace(a1, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(a1, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(a2, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(a3, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(a4, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(a5, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(a6, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(a7, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(a8, "<[^>]+>", ""));
+                        lv1.SubItems.Add(Regex.Replace(oesb.ToString(), "<[^>]+>", ""));
+                        lv1.SubItems.Add(Regex.Replace(sb.ToString(), "<[^>]+>", ""));
+                        lv1.SubItems.Add(Regex.Replace(pchtml.ToString(), "<[^>]+>", ""));
 
                         while (this.zanting == false)
                         {

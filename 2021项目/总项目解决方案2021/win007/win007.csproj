@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HttpHelper">
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\HttpHelper.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
