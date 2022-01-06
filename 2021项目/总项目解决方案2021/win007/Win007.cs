@@ -26,7 +26,7 @@ namespace win007
             InitializeComponent();
         }
         #region 苏飞请求
-        public static string gethtml(string url, string COOKIE)
+        public static string gethtml(string url)
         {
             HttpHelper http = new HttpHelper();
             HttpItem item = new HttpItem()
@@ -36,8 +36,8 @@ namespace win007
                 Timeout = 100000,//连接超时时间     可选项默认为100000  
                 ReadWriteTimeout = 30000,//写入Post数据超时时间     可选项默认为30000  
                 IsToLower = false,//得到的HTML代码是否转成小写     可选项默认转小写  
-                Cookie = COOKIE,
-                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
+                Cookie = "UM_distinctid=17d6f1fc991525-0fba4e1d8f646d-4343363-1fa400-17d6f1fc992b31; win007BfCookie=2^0^1^1^1^1^1^0^0^0^0^0^1^2^1^1^0^1^1^0; bfWin007FirstMatchTime=2022,0,6,08,45,00; ASP.NET_SessionId=zxz0op3q5b0vlstcymrj5z4k; solutions=1%7C%u8BF7%u8F93%u5165%u65B9%u6848%u540D%u79F0%7C%2C110%2C146%2C; CNZZDATA1277890199=1131472602-1638247440-null%7C1641459811; setting.solution=; CNZZDATA1234308=cnzz_eid%3D475509498-1638239393-%26ntime%3D1641453188",
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36",//用户的浏览器类型，版本，操作系统     可选项有默认值  
                 Accept = "text/html, application/xhtml+xml, */*",//    可选项有默认值  
                 ContentType = "text/html",//返回类型    可选项有默认值  
                 Referer = "https://www.google.com/",//来源URL     可选项  
@@ -80,7 +80,7 @@ namespace win007
                     sql = sql + (" gongsi like '" + comboBox1.Text.Trim() + "' and");
                 }
 
-             
+
 
 
                 if (sql.Substring(sql.Length - 3, 3) == "and")
@@ -96,19 +96,24 @@ namespace win007
                 dataGridView1.Columns["time"].HeaderText = "比赛时间";
                 dataGridView1.Columns["gongsi"].HeaderText = "公司名";
                 dataGridView1.Columns["url"].HeaderText = "数据网址";
+                dataGridView1.Columns["bifen"].HeaderText = "比分";
+                dataGridView1.Columns["rangqiu"].HeaderText = "让球";
                 dataGridView1.Columns["data1"].HeaderText = "数据1";
                 dataGridView1.Columns["data2"].HeaderText = "数据2";
                 dataGridView1.Columns["data3"].HeaderText = "数据3";
                 dataGridView1.Columns["data4"].HeaderText = "数据4";
                 dataGridView1.Columns["data5"].HeaderText = "数据5";
                 dataGridView1.Columns["data6"].HeaderText = "数据6";
+                dataGridView1.Columns["data7"].HeaderText = "数据7";
+                dataGridView1.Columns["data8"].HeaderText = "数据8";
+                dataGridView1.Columns["data9"].HeaderText = "数据9";
 
 
                 //fc.ShowDataInListView(dt, listView1);
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.ToString());
+                // MessageBox.Show(ex.ToString());
 
 
             }
@@ -140,11 +145,11 @@ namespace win007
         }
 
         string startdate = "2021-01-01";
-        string enddate = "2021-12-31";
-        public void getdatashihsi()
+        string enddate = "2022-01-06";
+        public void getdata()
         {
 
-         
+
 
 
             for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate); dt.AddDays(1))
@@ -153,16 +158,24 @@ namespace win007
                 {
                     string url = "http://bf.win007.com/football/Over_" + dt.ToString("yyyyMMdd") + ".htm";
                     label7.Text = url;
-                       
+
                     string html = method.GetUrl(url, "gb2312");
-                    MatchCollection tds = Regex.Matches(html, @"id='ls_([\s\S]*?)'>([\s\S]*?)</tr>");
-                    MatchCollection ids = Regex.Matches(html, @"showgoallist\(([\s\S]*?)\)");
+                    MatchCollection trs = Regex.Matches(html, @"<tr height=18([\s\S]*?)</tr>");
+                
+                   
 
-                    for (int i = 0; i < tds.Count; i++)
+                    for (int i = 0; i < trs.Count; i++)
                     {
-                        string baseinfo = Regex.Replace(tds[i].Groups[2].Value, "<[^>]+>", "");
+                        if (trs[i].Groups[1].Value.Contains("display: none"))
+                        {
+                            label7.Text = "不显示，跳过..";
+                            continue;
+                        }
+                      string id = Regex.Match(trs[i].Groups[1].Value, @"showgoallist\(([\s\S]*?)\)").Groups[1].Value;
 
-                        string datajsurl = "http://1x2d.win007.com/" + ids[i].Groups[1].Value + ".js?r=007132848760362108507";
+                        string bifen_zhu= Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
+                        string bifen_ke = Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)-<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
+                        string datajsurl = "http://1x2d.win007.com/" + id+ ".js?r=007132848760362108507";
                         string datajs = method.GetUrl(datajsurl, "gb2312");
                         string datajsjs = Regex.Match(datajs, @"game=([\s\S]*?);").Groups[1].Value;
 
@@ -176,68 +189,85 @@ namespace win007
 
                         for (int j = 0; j < gongsi_names.Count; j++)
                         {
-
-                            try
+                            if (gongsi_names[j].Groups[1].Value == "SNAl(意大利)" || gongsi_names[j].Groups[1].Value == "SNAl.it" || gongsi_names[j].Groups[1].Value == "Titanbet(英属维尔京群岛)" || gongsi_names[j].Groups[1].Value == "Bethard" || gongsi_names[j].Groups[1].Value == "ComeOn" || gongsi_names[j].Groups[1].Value == "Intertops" || gongsi_names[j].Groups[1].Value == "Singbet")
                             {
-                                string[] text = cids[j].Groups[0].Value.Split(new string[] { "|" }, StringSplitOptions.None);
-                                string dataurl = "http://op1.win007.com/OddsHistory.aspx?id=" + text[1] + "&sid=" + ids[i].Groups[1].Value + "&cid=" + text[0] + "&l=0";
-
-                                //MessageBox.Show(dataurl);
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                                lv1.SubItems.Add(matchname_cn);
-                                lv1.SubItems.Add(hometeam_cn);
-                                lv1.SubItems.Add(guestteam_cn);
-                                lv1.SubItems.Add(MatchTime);
-                                lv1.SubItems.Add(gongsi_names[j].Groups[1].Value);
-                                lv1.SubItems.Add(dataurl);
-
-
-
-
-                                string datahtml = gethtml(dataurl, "utf-8");
-                                MatchCollection a1s = Regex.Matches(datahtml, @"<b><font color=([\s\S]*?)>([\s\S]*?)</font>");
-                                textBox1.Text = datahtml;
-
-
-                                string data1 = "";
-                                string data2 = "";
-                                string data3 = "";
-                                string data4 = "";
-                                string data5 = "";
-                                string data6 = "";
                                 try
                                 {
-                                    data1 = a1s[0].Groups[2].Value;
-                                    lv1.SubItems.Add(data1);
-                                    data2 = a1s[1].Groups[2].Value;
-                                    lv1.SubItems.Add(data2);
-                                    data3 = a1s[2].Groups[2].Value;
-                                    lv1.SubItems.Add(data3);
-                                    data4 = a1s[3].Groups[2].Value;
-                                    lv1.SubItems.Add(data4);
-                                    data5 = a1s[4].Groups[2].Value;
-                                    lv1.SubItems.Add(data5);
-                                    data6 = a1s[5].Groups[2].Value;
-                                    lv1.SubItems.Add(data6);
+                                    string[] text = cids[j].Groups[0].Value.Split(new string[] { "|" }, StringSplitOptions.None);
+                                    string dataurl = "http://op1.win007.com/OddsHistory.aspx?id=" + text[1] + "&sid=" + id + "&cid=" + text[0] + "&l=0";
+
+                                    //MessageBox.Show(dataurl);
+                                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                    lv1.SubItems.Add(matchname_cn);
+                                    lv1.SubItems.Add(hometeam_cn);
+                                    lv1.SubItems.Add(guestteam_cn);
+                                    lv1.SubItems.Add(MatchTime);
+                                    lv1.SubItems.Add(gongsi_names[j].Groups[1].Value);
+                                    lv1.SubItems.Add(dataurl);
+
+
+                                    string bifen = bifen_zhu+ "-"+ bifen_ke;
+                                    string rangqiu = "";
+                                    lv1.SubItems.Add(bifen);
+                                    lv1.SubItems.Add(rangqiu);
+                                    string datahtml = gethtml(dataurl);
+                                    MatchCollection a1s = Regex.Matches(datahtml, @"<b><font color=([\s\S]*?)>([\s\S]*?)</font>");
+                                    //textBox1.Text = datahtml;
+
+
+                                    string data1 = "";
+                                    string data2 = "";
+                                    string data3 = "";
+                                    string data4 = "";
+                                    string data5 = "";
+                                    string data6 = "";
+                                    string data7 = "";
+                                    string data8 = "";
+                                    string data9 = "";
+                                    try
+                                    {
+                                        data1 = a1s[0].Groups[2].Value;
+                                        lv1.SubItems.Add(data1);
+                                        data2 = a1s[1].Groups[2].Value;
+                                        lv1.SubItems.Add(data2);
+                                        data3 = a1s[2].Groups[2].Value;
+                                        lv1.SubItems.Add(data3);
+                                        data4 = a1s[3].Groups[2].Value;
+                                        lv1.SubItems.Add(data4);
+                                        data5 = a1s[4].Groups[2].Value;
+                                        lv1.SubItems.Add(data5);
+                                        data6 = a1s[5].Groups[2].Value;
+                                        lv1.SubItems.Add(data6);
+
+                                        data7 = a1s[6].Groups[2].Value;
+                                        lv1.SubItems.Add(data7);
+
+                                        data8 = a1s[7].Groups[2].Value;
+                                        lv1.SubItems.Add(data8);
+
+                                        data9 = a1s[8].Groups[2].Value;
+                                        lv1.SubItems.Add(data9);
+                                    }
+                                    catch (Exception)
+                                    {
+
+                                        ;
+                                    }
+                                    fc.insertdata(matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_names[j].Groups[1].Value, dataurl,bifen,rangqiu, data1, data2, data3, data4, data5, data6,data7,data8,data9);
+
+
+
+                                    if (status == false)
+                                        return;
+                                    Thread.Sleep(100);
+
+
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
-                                    ;
+                                    //  MessageBox.Show(ex.ToString());
+                                    continue;
                                 }
-                                fc.insertdata(matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_names[j].Groups[1].Value, dataurl, data1, data2, data3, data4, data5, data6);
-
-
-
-                                if (status == false)
-                                    return;
-                                Thread.Sleep(100);
-
-                            }
-                            catch (Exception ex)
-                            {
-                                //  MessageBox.Show(ex.ToString());
-                                continue;
                             }
                         }
 
@@ -276,7 +306,7 @@ namespace win007
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
         bool status = true;
-     
+
         private void button2_Click(object sender, EventArgs e)
         {
             startdate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
@@ -284,7 +314,7 @@ namespace win007
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(getdatashihsi);
+                thread = new Thread(getdata);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -292,10 +322,12 @@ namespace win007
 
         private void button4_Click(object sender, EventArgs e)
         {
+            startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
+            enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(getdatashihsi);
+                thread = new Thread(getdata);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -304,7 +336,7 @@ namespace win007
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             comboBox1.Items.Clear();
-               ArrayList lists = fc.getsupplyers();
+            ArrayList lists = fc.getsupplyers();
             comboBox1.Items.Add("");
             foreach (var item in lists)
             {

@@ -292,7 +292,7 @@ namespace 淘宝搜索结果抓取
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.ToString());
+                               // MessageBox.Show(ex.ToString());
                                 continue;
                             }
                         }
@@ -313,7 +313,7 @@ namespace 淘宝搜索结果抓取
                     }
                 }
             }
-            MessageBox.Show("采集结束");
+            MessageBox.Show("德玛西亚");
         }
 
         Thread thread2;

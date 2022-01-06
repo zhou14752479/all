@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(美团附近));
             this.label2 = new System.Windows.Forms.Label();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
@@ -61,7 +62,6 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -71,10 +71,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(664, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 12);
+            this.label2.Size = new System.Drawing.Size(161, 12);
             this.label2.TabIndex = 4;
-            this.label2.Text = "代理加微信:17331826223";
-            this.label2.Visible = false;
+            this.label2.Text = "获取客源请加微信：zwxj1011";
             // 
             // linkLabel3
             // 
@@ -231,8 +230,7 @@
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader10,
-            this.columnHeader13,
-            this.columnHeader1});
+            this.columnHeader13});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -390,11 +388,6 @@
             this.checkBox2.Text = "去除固话";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "图片链接";
-            this.columnHeader1.Width = 200;
-            // 
             // 美团附近
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -422,6 +415,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "美团附近";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "美团附近";
@@ -469,6 +463,5 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.LinkLabel linkLabel5;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

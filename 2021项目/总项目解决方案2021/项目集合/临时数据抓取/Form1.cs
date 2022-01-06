@@ -577,11 +577,26 @@ namespace 临时数据抓取
 
 
                         StringBuilder oesb = new StringBuilder();
-                        MatchCollection oenums = Regex.Matches(producthtml, @"<a href=""/search\?q=([\s\S]*?)""");
-                        for (int i = 0; i < oenums.Count; i++)
+
+
+
+                        string[] oehtmls = producthtml.Split(new string[] { "td rowspan=" }, StringSplitOptions.None);
+                        foreach (var oehtml in oehtmls)
                         {
-                            oesb.Append(oenums[i].Groups[1].Value.Trim()+",");
+                            MatchCollection oenums = Regex.Matches(oehtml, @"<a href=""/search\?q=([\s\S]*?)""");
+                           string oe_pinpai = Regex.Match(oehtml, @"<b>([\s\S]*?)</b>").Groups[1].Value;
+                            if(oenums.Count>0)
+                            {
+                                oesb.Append(oe_pinpai+":");
+                                for (int i = 0; i < oenums.Count; i++)
+                                {
+                                    oesb.Append(oenums[i].Groups[1].Value.Trim() + ",");
+                                }
+                                oesb.Append("\r\n");
+                            }
                         }
+                        
+                      
 
 
 

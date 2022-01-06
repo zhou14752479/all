@@ -340,8 +340,8 @@ namespace KC系统数据提取
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
                         lv1.SubItems.Add(username);
-                        lv1.SubItems.Add(idcard);
-                        lv1.SubItems.Add(decryptPhone);
+                        lv1.SubItems.Add("`"+idcard);
+                        lv1.SubItems.Add("`" + decryptPhone);
                         lv1.SubItems.Add(overdueDays);
                         lv1.SubItems.Add(displayAppName);
                         lv1.SubItems.Add(displayProductName);
@@ -427,6 +427,11 @@ namespace KC系统数据提取
         private void button4_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            method.ListViewToCSV(listView1,true) ;
         }
     }
 }

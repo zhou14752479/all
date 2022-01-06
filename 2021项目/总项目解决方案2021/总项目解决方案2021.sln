@@ -87,6 +87,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "文字转语音", "文字�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202006", "..\..\2020项目\总项目解决方案\2020_1\主程序202006\主程序202006.csproj", "{B9DDD006-8426-4603-A4E0-11A06426617B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KC系统数据提取", "项目集合\KC系统数据提取\KC系统数据提取.csproj", "{C68609B8-5159-428B-B905-9EECFF730216}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -431,6 +433,14 @@ Global
 		{B9DDD006-8426-4603-A4E0-11A06426617B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9DDD006-8426-4603-A4E0-11A06426617B}.Release|x86.ActiveCfg = Release|Any CPU
 		{B9DDD006-8426-4603-A4E0-11A06426617B}.Release|x86.Build.0 = Release|Any CPU
+		{C68609B8-5159-428B-B905-9EECFF730216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C68609B8-5159-428B-B905-9EECFF730216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C68609B8-5159-428B-B905-9EECFF730216}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C68609B8-5159-428B-B905-9EECFF730216}.Debug|x86.Build.0 = Debug|Any CPU
+		{C68609B8-5159-428B-B905-9EECFF730216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C68609B8-5159-428B-B905-9EECFF730216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C68609B8-5159-428B-B905-9EECFF730216}.Release|x86.ActiveCfg = Release|Any CPU
+		{C68609B8-5159-428B-B905-9EECFF730216}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

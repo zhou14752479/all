@@ -233,7 +233,7 @@ namespace 客户美团
         private void Form1_Load(object sender, EventArgs e)
         {
             getcitys();
-                ProvinceCity.ProvinceCity.BindProvince(comboBox1);
+              ProvinceCity.ProvinceCity.BindProvince(comboBox1);
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

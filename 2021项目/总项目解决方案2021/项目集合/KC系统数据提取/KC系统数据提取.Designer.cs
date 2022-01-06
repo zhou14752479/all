@@ -52,11 +52,12 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -265,6 +266,15 @@
             // 
             this.columnHeader9.Text = "待还总额";
             // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "代还本金";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "放款银行";
+            this.columnHeader14.Width = 100;
+            // 
             // columnHeader10
             // 
             this.columnHeader10.Text = " 亲密联系人";
@@ -280,20 +290,22 @@
             this.columnHeader12.Text = "高频联系人";
             this.columnHeader12.Width = 100;
             // 
-            // columnHeader13
+            // button7
             // 
-            this.columnHeader13.Text = "代还本金";
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "放款银行";
-            this.columnHeader14.Width = 100;
+            this.button7.Location = new System.Drawing.Point(649, 99);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(81, 31);
+            this.button7.TabIndex = 393;
+            this.button7.Text = "导出表格2";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // KC系统数据提取
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1083, 634);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button4);
@@ -342,5 +354,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.Button button7;
     }
 }

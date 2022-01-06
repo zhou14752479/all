@@ -431,8 +431,8 @@ namespace myDLL
             FileStream fs = null;
             // bool disposed;
             SaveFileDialog sfd = new SaveFileDialog();
-            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
-            sfd.Filter = "xlsx|*.xlsx";
+            sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            //sfd.Filter = "xlsx|*.xlsx";
             sfd.Title = "Excel文件导出";
             string fileName = "";
 

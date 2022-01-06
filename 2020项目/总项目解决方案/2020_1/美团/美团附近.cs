@@ -648,7 +648,7 @@ namespace 美团
                                            
                                             listViewItem.SubItems.Add(keyword);
                                             listViewItem.SubItems.Add(city);
-                                            listViewItem.SubItems.Add(picurls[a].Groups[1].Value.Replace("\"","").Trim());
+                                            //listViewItem.SubItems.Add(picurls[a].Groups[1].Value.Replace("\"","").Trim());
                                             while (this.zanting == false)
                                             {
                                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。

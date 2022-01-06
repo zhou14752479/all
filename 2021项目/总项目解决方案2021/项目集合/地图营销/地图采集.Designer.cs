@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(地图采集));
             this.panel1 = new System.Windows.Forms.Panel();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
@@ -128,6 +129,7 @@
             this.linkLabel5.TabIndex = 15;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "点击购买正式版";
+            this.linkLabel5.Visible = false;
             this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
             // 
             // label4
@@ -136,9 +138,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(766, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 20);
+            this.label4.Size = new System.Drawing.Size(196, 20);
             this.label4.TabIndex = 14;
-            this.label4.Text = "代理加微信:17331826223";
+            this.label4.Text = "获取客源请加微信：zwxj1011";
             // 
             // linkLabel3
             // 
@@ -224,9 +226,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 20);
+            this.label1.Size = new System.Drawing.Size(135, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "思忆地图软件";
+            this.label1.Text = "爆客王客户采集软件";
             // 
             // statusStrip1
             // 
@@ -761,6 +763,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "地图采集";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "地图采集";
