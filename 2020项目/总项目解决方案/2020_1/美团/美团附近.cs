@@ -961,7 +961,7 @@ namespace 美团
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //jihuoma();
+            jihuoma();
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
@@ -975,11 +975,7 @@ namespace 美团
 
 
             #endregion
-            if (Convert.ToDateTime("2022-05-31")<DateTime.Now)
-            {
-                return;
-            }
-
+           
             status = true;
 
 

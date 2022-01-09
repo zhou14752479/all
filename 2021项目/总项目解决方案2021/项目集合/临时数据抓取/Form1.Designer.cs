@@ -49,6 +49,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,6 +167,7 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
+            this.columnHeader9,
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8});
@@ -208,7 +210,7 @@
             // columnHeader6
             // 
             this.columnHeader6.Text = "OEnum";
-            this.columnHeader6.Width = 100;
+            this.columnHeader6.Width = 200;
             // 
             // columnHeader7
             // 
@@ -219,6 +221,11 @@
             // 
             this.columnHeader8.Text = "VehicleLinkages";
             this.columnHeader8.Width = 200;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "manufacture";
+            this.columnHeader9.Width = 100;
             // 
             // Form1
             // 
@@ -258,6 +265,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }
 

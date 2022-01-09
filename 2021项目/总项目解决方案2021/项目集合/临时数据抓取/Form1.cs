@@ -576,25 +576,11 @@ namespace 临时数据抓取
                         string partstatus = Regex.Match(producthtml, @"data-placement=""right"" title=""([\s\S]*?)""").Groups[1].Value.Trim();
 
 
-                        StringBuilder oesb = new StringBuilder();
+                      
 
 
 
-                        string[] oehtmls = producthtml.Split(new string[] { "td rowspan=" }, StringSplitOptions.None);
-                        foreach (var oehtml in oehtmls)
-                        {
-                            MatchCollection oenums = Regex.Matches(oehtml, @"<a href=""/search\?q=([\s\S]*?)""");
-                           string oe_pinpai = Regex.Match(oehtml, @"<b>([\s\S]*?)</b>").Groups[1].Value;
-                            if(oenums.Count>0)
-                            {
-                                oesb.Append(oe_pinpai+":");
-                                for (int i = 0; i < oenums.Count; i++)
-                                {
-                                    oesb.Append(oenums[i].Groups[1].Value.Trim() + ",");
-                                }
-                                oesb.Append("\r\n");
-                            }
-                        }
+                      
                         
                       
 
@@ -613,14 +599,42 @@ namespace 临时数据抓取
 
                         string pchtml = Regex.Match(producthtml, @"<h3>PC</h3>([\s\S]*?)</div>").Groups[1].Value.Trim();
 
-                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(Regex.Replace(Brand, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(partnum, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(PartType, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(partstatus, "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(oesb.ToString(), "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(sb.ToString(), "<[^>]+>", ""));
-                        lv1.SubItems.Add(Regex.Replace(pchtml.ToString(), "<[^>]+>", ""));
+
+
+
+
+
+                        string[] oehtmls = producthtml.Split(new string[] { "td rowspan=" }, StringSplitOptions.None);
+                        foreach (var oehtml in oehtmls)
+                        {
+                            StringBuilder oesb = new StringBuilder();
+                            MatchCollection oenums = Regex.Matches(oehtml, @"<a href=""/search\?q=([\s\S]*?)""");
+                            string oe_pinpai = Regex.Match(oehtml, @"<b>([\s\S]*?)</b>").Groups[1].Value;
+
+                            if (oenums.Count > 0)
+                            {
+                             
+                                for (int i = 0; i < oenums.Count; i++)
+                                {
+                                    oesb.Append(oenums[i].Groups[1].Value.Trim() + ",");
+                                }
+
+
+
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(Regex.Replace(Brand, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(partnum, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(PartType, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(partstatus, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(oe_pinpai.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(oesb.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(sb.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(pchtml.ToString(), "<[^>]+>", ""));
+                            }
+                        }
+
+
+                      
 
                         while (this.zanting == false)
                         {

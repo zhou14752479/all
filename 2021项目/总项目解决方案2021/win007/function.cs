@@ -136,18 +136,18 @@ namespace win007
         /// <summary>
         /// 插入数据库
         /// </summary>
-        public bool insertdata(string matchname,  string zhu, string ke,string time,string gongsi,string url,string bifen,string rangqiu, string data1, string data2, string data3, string data4, string data5, string data6,string data7,string data8,string data9)
+        public bool insertdata(string matchname,  string zhu, string ke,string time,string gongsi,string bifen, string data1, string data2, string data3, string data4, string data5, string data6,string data7,string data8,string data9)
         {
             try
             {
-                string sql = "INSERT INTO datas(matchname,zhu,ke,time,gongsi,url,bifen,rangqiu,data1,data2,data3,data4,data5,data6,data7,data8,data9)VALUES('" + matchname + "'," +
+                string sql = "INSERT INTO datas(matchname,zhu,ke,time,gongsi,bifen,data1,data2,data3,data4,data5,data6,data7,data8,data9)VALUES('" + matchname + "'," +
                     "'" + zhu + "'," +
                      "'" + ke + "'," +
                       "'" + time + "'," +
                        "'" +gongsi + "'," +
-                        "'" + url+ "'," +
+                      
                           "'" + bifen + "'," +
-                            "'" + rangqiu + "'," +
+                           
                          "'" + data1 + "'," +
                           "'" + data2+ "'," +
                            "'" + data3 + "'," +
