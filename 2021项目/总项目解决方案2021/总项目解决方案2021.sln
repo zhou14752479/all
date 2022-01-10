@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDLL", "..\..\2020项目\总项目解决方案\myDLL\myDLL.csproj", "{BA236BE9-F18C-40F4-8015-1D3AE2E89448}"
 EndProject
@@ -89,6 +89,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202006", "..\..\20
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KC系统数据提取", "项目集合\KC系统数据提取\KC系统数据提取.csproj", "{C68609B8-5159-428B-B905-9EECFF730216}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔网店铺图书", "孔网店铺图书\孔网店铺图书.csproj", "{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,12 +117,12 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|x86.Build.0 = Release|Any CPU
 		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Debug|x86.ActiveCfg = Debug|Win32
-		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Debug|x86.Build.0 = Debug|Win32
+		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Debug|x86.Build.0 = Debug|Any CPU
 		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|x86.ActiveCfg = Release|Win32
-		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|x86.Build.0 = Release|Win32
+		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|x86.ActiveCfg = Release|Any CPU
+		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|x86.Build.0 = Release|Any CPU
 		{2BEE2235-B78E-4120-B2CF-239394DDA667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BEE2235-B78E-4120-B2CF-239394DDA667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BEE2235-B78E-4120-B2CF-239394DDA667}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -441,6 +443,14 @@ Global
 		{C68609B8-5159-428B-B905-9EECFF730216}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C68609B8-5159-428B-B905-9EECFF730216}.Release|x86.ActiveCfg = Release|Any CPU
 		{C68609B8-5159-428B-B905-9EECFF730216}.Release|x86.Build.0 = Release|Any CPU
+		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Debug|x86.Build.0 = Debug|Any CPU
+		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
