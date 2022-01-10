@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDLL", "..\..\2020项目\总项目解决方案\myDLL\myDLL.csproj", "{BA236BE9-F18C-40F4-8015-1D3AE2E89448}"
 EndProject
@@ -90,6 +90,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KC系统数据提取", "项目集合\KC系统数据提取\KC系统数据提取.csproj", "{C68609B8-5159-428B-B905-9EECFF730216}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔网店铺图书", "孔网店铺图书\孔网店铺图书.csproj", "{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔夫子淘宝低价", "项目集合\孔夫子淘宝低价\孔夫子淘宝低价.csproj", "{1F62840B-8740-40EE-B926-2CF8CC7821C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -451,6 +453,14 @@ Global
 		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Release|x86.ActiveCfg = Release|Any CPU
 		{A0A3DE2E-B960-4FDA-9A27-5909E70D9C6F}.Release|x86.Build.0 = Release|Any CPU
+		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Debug|x86.Build.0 = Debug|Any CPU
+		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Release|x86.ActiveCfg = Release|Any CPU
+		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
