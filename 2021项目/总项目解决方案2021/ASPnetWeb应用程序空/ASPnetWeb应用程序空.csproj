@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bailehao.aspx" />
     <Content Include="fucai3D.aspx" />
     <Content Include="index2.aspx" />
     <Content Include="index3.aspx" />
@@ -84,6 +85,13 @@
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bailehao.aspx.cs">
+      <DependentUpon>bailehao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bailehao.aspx.designer.cs">
+      <DependentUpon>bailehao.aspx</DependentUpon>
+    </Compile>
     <Compile Include="fucai3D.aspx.cs">
       <DependentUpon>fucai3D.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

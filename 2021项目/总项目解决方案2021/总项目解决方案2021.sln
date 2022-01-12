@@ -93,6 +93,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔网店铺图书", "孔�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔夫子淘宝低价", "项目集合\孔夫子淘宝低价\孔夫子淘宝低价.csproj", "{1F62840B-8740-40EE-B926-2CF8CC7821C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孟邦字花", "孟邦字花\孟邦字花.csproj", "{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "防电信诈骗宣传", "防电信诈骗宣传\防电信诈骗宣传.csproj", "{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -461,6 +465,22 @@ Global
 		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Release|x86.ActiveCfg = Release|Any CPU
 		{1F62840B-8740-40EE-B926-2CF8CC7821C9}.Release|x86.Build.0 = Release|Any CPU
+		{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}.Debug|x86.Build.0 = Debug|Any CPU
+		{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}.Release|x86.ActiveCfg = Release|Any CPU
+		{26BDE9FA-EA13-4525-A95D-7EC34C9CA261}.Release|x86.Build.0 = Release|Any CPU
+		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Debug|x86.Build.0 = Debug|Any CPU
+		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Release|x86.ActiveCfg = Release|Any CPU
+		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
