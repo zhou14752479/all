@@ -97,6 +97,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孟邦字花", "孟邦字�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "防电信诈骗宣传", "防电信诈骗宣传\防电信诈骗宣传.csproj", "{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202103", "主程序202103\主程序202103.csproj", "{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -481,6 +483,14 @@ Global
 		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Release|x86.ActiveCfg = Release|Any CPU
 		{DF3600B4-1F84-4A35-831F-C7F4A7A17CC6}.Release|x86.Build.0 = Release|Any CPU
+		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Debug|x86.Build.0 = Debug|Any CPU
+		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Release|x86.ActiveCfg = Release|Any CPU
+		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

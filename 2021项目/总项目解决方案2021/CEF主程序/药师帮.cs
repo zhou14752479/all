@@ -102,7 +102,7 @@ namespace CEF主程序
 
         private void 药师帮_Load(object sender, EventArgs e)
         {
-            browser = new ChromiumWebBrowser("http://60.214.69.236:8888/seeyon/main.do?method=main");
+            browser = new ChromiumWebBrowser("https://esearch.ipd.gov.hk/nis-pos-view/#/");
             //browser = new ChromiumWebBrowser("https://passport.vip.com/login?src=https%3A%2F%2Fdetail.vip.com%2Fdetail-1711548730-6919483919008310362.html");
             //browser = new ChromiumWebBrowser("https://ascendex.com/zh-cn/basic/cashtrade-spottrading/usdt/cns");
             //browser = new ChromiumWebBrowser("https://mygiftcard.jd.com/giftcard/myGiftCardInit.action");
@@ -152,14 +152,14 @@ namespace CEF主程序
             cookies += obj.Name + "=" + obj.Value + ";";
 
 
-            //FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-            //StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-            //sw.WriteLine(cookies);
-            //sw.Close();
-            //fs1.Close();
-            //sw.Dispose();
+            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+            sw.WriteLine(cookies);
+            sw.Close();
+            fs1.Close();
+            sw.Dispose();
 
-           
+
         }
 
 
@@ -191,8 +191,8 @@ namespace CEF主程序
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dianji();
-            
+            // dianji();
+
             //if(!cookies.Contains("thor"))
             //{
 
@@ -206,8 +206,17 @@ namespace CEF主程序
             //    京东E卡查询.cookie = thor;
             //}
 
+            if (!cookies.Contains("XSRF-TOKEN"))
+            {
 
-          
+                MessageBox.Show("未登录");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("获取COOKIE成功");
+            }
+
 
             //this.Hide();
 

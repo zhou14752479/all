@@ -69,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="esearch_ipd_logo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="esearch_ipd_logo.Designer.cs">
+      <DependentUpon>esearch_ipd_logo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="上证互动监控.cs">
@@ -173,6 +179,9 @@
     <Compile Include="高德地图企业查询.Designer.cs">
       <DependentUpon>高德地图企业查询.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="esearch_ipd_logo.resx">
+      <DependentUpon>esearch_ipd_logo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

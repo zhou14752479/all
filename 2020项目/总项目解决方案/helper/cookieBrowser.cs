@@ -80,20 +80,20 @@ namespace helper
 
         private void cookieBrowser_Load(object sender, EventArgs e)
         {
-            SHDocVw.WebBrowser wb = (SHDocVw.WebBrowser)webBrowser1.ActiveXInstance;
-           wb.BeforeNavigate2 += new DWebBrowserEvents2_BeforeNavigate2EventHandler(WebBrowser_BeforeNavigate2);
+            //SHDocVw.WebBrowser wb = (SHDocVw.WebBrowser)webBrowser1.ActiveXInstance;
+          // wb.BeforeNavigate2 += new DWebBrowserEvents2_BeforeNavigate2EventHandler(WebBrowser_BeforeNavigate2);
            // wb.NavigateComplete2 += new DWebBrowserEvents2_NavigateComplete2EventHandler(webBrowser_NavigateComplete2);
             // timer1.Start();
 
         }
 
-        private void WebBrowser_BeforeNavigate2(object pDisp, ref object URL, ref object Flags,
-ref object TargetFrameName, ref object PostData, ref object Headers, ref bool Cancel)
-        {
-            string postDataText = System.Text.Encoding.ASCII.GetString(PostData as byte[]);
-            textBox1.Text = postDataText;
+//        private void WebBrowser_BeforeNavigate2(object pDisp, ref object URL, ref object Flags,
+//ref object TargetFrameName, ref object PostData, ref object Headers, ref bool Cancel)
+//        {
+//            string postDataText = System.Text.Encoding.ASCII.GetString(PostData as byte[]);
+//            textBox1.Text = postDataText;
           
-        }
+//        }
 
 
         private void webBrowser_NavigateComplete2(object pDisp, ref object URL)

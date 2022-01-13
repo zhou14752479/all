@@ -16,7 +16,7 @@ namespace 主程序202110
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 纪念币预约());
+            Application.Run(new esearch_ipd_logo());
         }
     }
 }

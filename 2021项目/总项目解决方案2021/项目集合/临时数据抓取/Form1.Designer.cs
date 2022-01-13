@@ -46,10 +46,10 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -207,6 +207,11 @@
             this.columnHeader5.Text = "ItempartStatus";
             this.columnHeader5.Width = 100;
             // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "manufacture";
+            this.columnHeader9.Width = 100;
+            // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "OEnum";
@@ -214,18 +219,13 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Criteria";
+            this.columnHeader7.Text = "VehicleLinkages";
             this.columnHeader7.Width = 200;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "VehicleLinkages";
+            this.columnHeader8.Text = "Criteria";
             this.columnHeader8.Width = 200;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "manufacture";
-            this.columnHeader9.Width = 100;
             // 
             // Form1
             // 

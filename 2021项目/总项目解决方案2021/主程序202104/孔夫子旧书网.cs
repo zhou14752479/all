@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -29,7 +31,73 @@ namespace 主程序202104
 
 
 
+        #region POST请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrl(string url, string postData, string charset)
+        {
+            try
+            {
+                string html = "";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                // request.Proxy = null;//防止代理抓包
 
+                request.ContentType = "application/x-www-form-urlencoded";
+
+                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                // request.ContentLength = postData.Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+
+                request.UserAgent = "IOS_KFZ_COM_3.10.0_iPhone14,5_15.1.1 #App Store,6FB137584B08435A8842DEF8F4E8D38E";
+                request.Headers.Add("Cookie", "acw_tc=276077d616418046192976172ebd1e7fae6ea4270c4763e88726b0f3a719f5");
+
+                request.Referer = url;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+
+                response.Close();
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
 
         public string getdingjia(string url)
         {
@@ -75,9 +143,9 @@ namespace 主程序202104
                     {
                         label2.Text = "正在抓取第：" + page + "页";
 
-                        string id = Regex.Match(text[i], @"\d{4,}").Groups[0].Value;
+                        string shopid = Regex.Match(text[i], @"\d{4,}").Groups[0].Value;
 
-                        string url = "http://shop.kongfz.com/" + id + "/all/0_50_0_0_" + page + "_sort_desc_0_0/";
+                        string url = "http://shop.kongfz.com/" + shopid + "/all/0_50_0_0_" + page + "_sort_desc_0_0/";
 
                         string html = method.GetUrl(url, "utf-8");
                         shopname= Regex.Match(html, @"<div class=""shop_top_text"">([\s\S]*?)</div>").Groups[1].Value;
@@ -122,31 +190,38 @@ namespace 主程序202104
                             lv1.SubItems.Add(Regex.Replace(isbns[j].Groups[2].Value.Trim(), "<[^>]+>", ""));
                             lv1.SubItems.Add(Regex.Replace(names[j].Groups[1].Value.Trim(), "<[^>]+>", ""));
                             lv1.SubItems.Add(Regex.Replace(prices[j].Groups[1].Value.Trim(), "<[^>]+>", "").Replace("￥", ""));
-                          
+
                             // string aurl = "http://book.kongfz.com/" + id + "/" + aids[j].Groups[2].Value + "/";
                             //lv1.SubItems.Add(getdingjia(aurl));
 
 
-                            //Thread t=  new Thread(() =>
-                            //{
-                            //    try
-                            //    {
-                            //        string aurl = "http://book.kongfz.com/" + id + "/" + aids[j].Groups[2].Value + "/";
-                            //        lv1.SubItems.Add(getdingjia(aurl));
-                            //    }
-                            //    catch (Exception ex)
-                            //    {
-
-                            //        lv1.SubItems.Add(""); ;
-                            //    }
-
-                            //  });
-                            //  t.Start();
-
+                          
                             lv1.SubItems.Add(Regex.Replace(pinxiangs[j].Groups[1].Value.Trim(), "<[^>]+>", ""));
                             lv1.SubItems.Add(Regex.Replace(fees[j].Groups[1].Value.Trim(), "<[^>]+>", ""));
                             lv1.SubItems.Add(shopname);
                             lv1.SubItems.Add(Regex.Replace(times[j].Groups[1].Value.Trim(), "<[^>]+>", "").Replace("上书","").Trim());
+                            Thread t = new Thread(() =>
+                            {
+                                try
+                                {
+
+                                    string bhtml = PostUrl("https://app.kongfz.com/invokeBook/app/api/getItemInfo", "itemId=" + itemids[j].Groups[2].Value + "&shopId=" + shopid, "utf-8");
+                                    bhtml = method.Unicode2String(bhtml);
+                                    string dingjia = Regex.Match(bhtml, @"定价""([\s\S]*?)c"":""([\s\S]*?)""").Groups[2].Value.Trim().Replace("元", "");
+                                    string kucun = Regex.Match(bhtml, @"""stock"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                                    lv1.SubItems.Add(dingjia);
+                                    lv1.SubItems.Add(kucun);
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    lv1.SubItems.Add("");
+                                    lv1.SubItems.Add("");
+                                }
+
+                            });
+                            t.Start();
+
                             if (listView1.Items.Count > 2)
                             {
                                 this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
@@ -157,7 +232,7 @@ namespace 主程序202104
                             }
                             if (status == false)
                                 return;
-
+                            Thread.Sleep(100);
 
                         }
                         Thread.Sleep(1000);
@@ -202,6 +277,10 @@ namespace 主程序202104
             {
                 MessageBox.Show("请输入店铺网址");
                 return;
+            }
+            if(DateTime.Now>Convert.ToDateTime("2022-02-20"))
+            {
+                MessageBox.Show("余额不足");
             }
 
             if (thread == null || !thread.IsAlive)

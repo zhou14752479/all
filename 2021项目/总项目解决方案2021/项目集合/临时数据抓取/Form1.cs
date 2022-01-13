@@ -540,7 +540,7 @@ namespace 临时数据抓取
 
              
               
-                string url = "https://mx.tecdoc.net/search?b=2100";
+                string url = "https://mx.tecdoc.net/search?b=1400";
 
                 string html = method.GetUrl(url, "utf-8");
 
@@ -556,7 +556,7 @@ namespace 临时数据抓取
 
                     if (gas[j].Groups[1].Value == "")
                         continue;
-                    string aurl = "https://mx.tecdoc.net/search?b=2100&ga="+gas[j].Groups[1].Value+"&p="+page;
+                    string aurl = "https://mx.tecdoc.net/search?b=1400&ga=" + gas[j].Groups[1].Value+"&p="+page;
                     string ahtml = method.GetUrl(aurl, "utf-8");
                  
                     MatchCollection producturls= Regex.Matches(ahtml, @"<h4>([\s\S]*?)<a href=""([\s\S]*?)""");
@@ -568,28 +568,23 @@ namespace 临时数据抓取
                     {
                        
                             string purl = "https://mx.tecdoc.net" + producturl.Groups[2].Value + "&lang=en-US";
-                        label1.Text = purl;
+                        textBox2.Text = purl;
                         string producthtml = method.GetUrl(purl, "utf-8");
                         string Brand = Regex.Match(producthtml, @"<span itemprop=""brand"">([\s\S]*?)<").Groups[1].Value.Trim();
                         string partnum = Regex.Match(producthtml, @"<span itemprop=""mpn"">([\s\S]*?)<").Groups[1].Value.Trim();
                         string PartType = Regex.Match(producthtml, @"Part Type:</strong></small>([\s\S]*?)<").Groups[1].Value.Trim();
-                        string partstatus = Regex.Match(producthtml, @"data-placement=""right"" title=""([\s\S]*?)""").Groups[1].Value.Trim();
+                        string partstatus = Regex.Match(producthtml, @"ta-tooltip fa fa-([\s\S]*?)-").Groups[1].Value.Trim();
 
 
                       
 
 
 
-                      
-                        
-                      
 
 
+                        string Criteriahtml = Regex.Match(producthtml, @"Product Attributes([\s\S]*?)</table>").Groups[1].Value.Trim();
 
-
-                        string Criteriahtml = Regex.Match(producthtml, @"Criteria</h2>([\s\S]*?)</table>").Groups[1].Value.Trim();
-
-                        MatchCollection a1 = Regex.Matches(Criteriahtml, @"<td class=""col-xs-4""><b>([\s\S]*?)</b>");
+                        MatchCollection a1 = Regex.Matches(Criteriahtml, @"<td class=""col-xs-4"">([\s\S]*?)</td>");
                         MatchCollection a2 = Regex.Matches(Criteriahtml, @"<td class=""col-xs-8"">([\s\S]*?)</td>");
                         StringBuilder sb = new StringBuilder();
                         for (int i = 0; i < a1.Count; i++)
@@ -597,20 +592,23 @@ namespace 临时数据抓取
                             sb.Append(a1[i].Groups[1].Value.Trim() + ":"+a2[i].Groups[1].Value.Trim()+",");
                         }
 
-                        string pchtml = Regex.Match(producthtml, @"<h3>PC</h3>([\s\S]*?)</div>").Groups[1].Value.Trim();
+                        string pchtml = Regex.Match(producthtml, @"<h3>Car/Truck</h3>([\s\S]*?)</div>").Groups[1].Value.Trim();
 
 
 
 
 
 
-                        string[] oehtmls = producthtml.Split(new string[] { "td rowspan=" }, StringSplitOptions.None);
+                        //string[] oehtmls = producthtml.Split(new string[] { "td rowspan=" }, StringSplitOptions.None);
+
+                        string[] oehtmls = producthtml.Split(new string[] { "<td><b>" }, StringSplitOptions.None);
                         foreach (var oehtml in oehtmls)
                         {
+                           
                             StringBuilder oesb = new StringBuilder();
                             MatchCollection oenums = Regex.Matches(oehtml, @"<a href=""/search\?q=([\s\S]*?)""");
-                            string oe_pinpai = Regex.Match(oehtml, @"<b>([\s\S]*?)</b>").Groups[1].Value;
-
+                            string oe_pinpai = Regex.Match("<b>" + oehtml, @"<b>([\s\S]*?)</b>").Groups[1].Value;
+                           
                             if (oenums.Count > 0)
                             {
                              
@@ -628,8 +626,25 @@ namespace 临时数据抓取
                                 lv1.SubItems.Add(Regex.Replace(partstatus, "<[^>]+>", ""));
                                 lv1.SubItems.Add(Regex.Replace(oe_pinpai.ToString(), "<[^>]+>", ""));
                                 lv1.SubItems.Add(Regex.Replace(oesb.ToString(), "<[^>]+>", ""));
-                                lv1.SubItems.Add(Regex.Replace(sb.ToString(), "<[^>]+>", ""));
                                 lv1.SubItems.Add(Regex.Replace(pchtml.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(sb.ToString(), "<[^>]+>", ""));
+                              
+                            }
+
+                            else if (oenums.Count==0)
+                            {
+                                oe_pinpai = "";
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(Regex.Replace(Brand, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(partnum, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(PartType, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(partstatus, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(oe_pinpai.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(oesb.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(pchtml.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(sb.ToString(), "<[^>]+>", ""));
+                               
+
                             }
                         }
 
@@ -646,6 +661,139 @@ namespace 临时数据抓取
                 }
                   
                 }
+
+        }
+
+        #endregion
+
+        #region tecdoc.com品牌下全部数据
+        public void tecdoc_all2()
+        {
+
+
+
+
+            string url = "https://mx.tecdoc.net/search?b=2523";
+
+            string html = method.GetUrl(url, "utf-8");
+
+
+            MatchCollection gas = Regex.Matches(Regex.Match(html, @"Part Type <small>([\s\S]*?)</select>").Groups[1].Value.Trim(), @"<option value=""([\s\S]*?)""");
+
+            for (int j = 0; j < gas.Count; j++)
+            {
+
+                for (int page = 1; page < 101; page++)
+                {
+                    textBox2.Text = gas[j].Groups[1].Value;
+
+                    if (gas[j].Groups[1].Value == "")
+                        continue;
+                    string aurl = "https://mx.tecdoc.net/search?b=2523&ga=" + gas[j].Groups[1].Value + "&p=" + page;
+                    string ahtml = method.GetUrl(aurl, "utf-8");
+
+                    MatchCollection producturls = Regex.Matches(ahtml, @"<h4>([\s\S]*?)<a href=""([\s\S]*?)""");
+
+                    if (producturls.Count == 0)
+                        break;
+
+                    foreach (Match producturl in producturls)
+                    {
+
+                        string purl = "https://mx.tecdoc.net" + producturl.Groups[2].Value + "&lang=en-US";
+                        textBox2.Text = purl;
+                        string producthtml = method.GetUrl(purl, "utf-8");
+                        string Brand = Regex.Match(producthtml, @"<span itemprop=""brand"">([\s\S]*?)<").Groups[1].Value.Trim();
+                        string partnum = Regex.Match(producthtml, @"<span itemprop=""mpn"">([\s\S]*?)<").Groups[1].Value.Trim();
+                        string PartType = Regex.Match(producthtml, @"Part Type:</strong></small>([\s\S]*?)<").Groups[1].Value.Trim();
+                        string partstatus = Regex.Match(producthtml, @"data-placement=""right"" title=""([\s\S]*?)""").Groups[1].Value.Trim();
+
+
+
+
+
+
+
+
+                        string Criteriahtml = Regex.Match(producthtml, @"Criteria</h2>([\s\S]*?)</table>").Groups[1].Value.Trim();
+
+                        MatchCollection a1 = Regex.Matches(Criteriahtml, @"<td class=""col-xs-4"">([\s\S]*?)</td>");
+                        MatchCollection a2 = Regex.Matches(Criteriahtml, @"<td class=""col-xs-8"">([\s\S]*?)</td>");
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < a1.Count; i++)
+                        {
+                            sb.Append(Regex.Replace(a1[i].Groups[1].Value.Trim(), "<[^>]+>", "") + ":" + a2[i].Groups[1].Value.Trim() + ",");
+                        }
+
+                        string pchtml = Regex.Match(producthtml, @"<h3>PC</h3>([\s\S]*?)</div>").Groups[1].Value.Trim();
+
+
+
+
+
+
+                        string[] oehtmls = producthtml.Split(new string[] { "td rowspan=" }, StringSplitOptions.None);
+
+                     
+                        foreach (var oehtml in oehtmls)
+                        {
+
+                            StringBuilder oesb = new StringBuilder();
+                            MatchCollection oenums = Regex.Matches(oehtml, @"<a href=""/search\?q=([\s\S]*?)""");
+                            string oe_pinpai = Regex.Match(oehtml, @"<b>([\s\S]*?)</b>").Groups[1].Value;
+
+                            if (oenums.Count > 0)
+                            {
+
+                                for (int i = 0; i < oenums.Count; i++)
+                                {
+                                    oesb.Append(oenums[i].Groups[1].Value.Trim() + ",");
+                                }
+
+
+
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(Regex.Replace(Brand, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(partnum, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(PartType, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(partstatus, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(oe_pinpai.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(oesb.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(pchtml.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(sb.ToString(), "<[^>]+>", ""));
+
+                            }
+
+                            else if (oenums.Count == 0)
+                            {
+                                oe_pinpai = "";
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(Regex.Replace(Brand, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(partnum, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(PartType, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(partstatus, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(oe_pinpai.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(oesb.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(pchtml.ToString(), "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(sb.ToString(), "<[^>]+>", ""));
+
+
+                            }
+                        }
+
+
+
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        Thread.Sleep(100);
+                    }
+
+                }
+
+            }
 
         }
 
@@ -908,7 +1056,7 @@ namespace 临时数据抓取
             //tecalliance  检测UA
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(tecdoc_all);
+                thread = new Thread(tecdoc_all2);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

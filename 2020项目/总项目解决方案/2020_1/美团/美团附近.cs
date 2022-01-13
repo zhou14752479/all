@@ -90,9 +90,46 @@ namespace 美团
                 //headers.Add("uuid: E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
                 headers.Add("mtgsig: {\"a1\":\"1.1\",\"a2\":1634620588257,\"a3\":\"35y5z0zvw6yx5z4418uyu2uyvwx65w0782x076xu37688988u426z26y\",\"a4\":\"bc19900376f1b535039019bc35b5f176e250e32ad7e5125c\",\"a5\":\"JAa73Rfx72tnXVeYw8MDLxPZTTTerl4Af4me1ULhxiBetB6AXdLwp2+LjByyFY4HvTVzwiTHo+Vs58iZE6nq4BmhF0KabSOZyOlt6Xc0hYGOghvfxeOmtWIibqgvO9QIKazOwEWESNgYcAcAsgCYccIJ0ilyWJqgc+qG5RPNTQAx8j2vzKgSEcAhtM/xXMqw4IjqrBHST/WVB9/VV7KQ4vJj1ox1p6Dt\",\"a6\":\"w1.00tlrgKaQ8nF6hTsiCnWypNRjsnhPgjiZt1klOT118rN8SWnNfMJ4xKgbXs6lejv0g1y1GwSzNFDnVx0kOF2VQu5Ki7qmfklvvTwvNHxM3oVmA0pjXjMGAP1+0Fn59TSCPUyqbs9iBKzi/lP75X+7fQ368GCr6dk9ubOsKNE+l1A8OTEBFEovMQxgHRLctnAIjrJKrB9+xNS6v6D77d28saJDOUx5NjRu7ojTyv+06R8IpZcZDIphyvQdruyN2m3UEO8iGKbUxkAB9HWk2hnq5yMM3kim+Ai/OV/raiKcm05hgl+dCoHbvrB3zky80QUHO2gyiTQwSGLHw0DFUANPKhsCFgVmK9sYG0MlOafqQj0fyuNcK/MNjwNGtuOb/8gQBNJ8O0hbV1yS+VUktM8WJqMvg+DSmFX4zUU0RVS6wSZEscUjJ8MroYbdkHET6yqeP5HN44eA2F9ZHa2FkRa6apP+XGoAg7XoaQj518PQjgCDwbHD0RwskPolSnJ31BdoOWlSLDXB3BVxlOvzpQtKnuqt077PyOmXS4mXCJkxOURnd9elQz7RTL1aTP14KvP5RaZmvU3PaGEwhB1DfLvP6CfAwurTGMSXEJ+zMSfc5KXl+CIlqPSZYGhoj9rKg/XJB89nMlNmgIqKwK8cFJ7J4hEC7AEtoRBB6ll3Zh8OBDqZ+CbuTFadF3U4ABbsmjQQfqgof3dGTZJQVpBwL593Zx8PzHDveZm9erO0okGu1Sg=\",\"a7\":\"wxde8ac0a21135c07d\",\"x0\":3,\"d1\":\"a202f030aa475f308799f76cefc1ad7b\"}");
                 headers.Add("openIdCipher: AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADhq+X5+N+Cjq/cZyyWQkbVlw1zTBRltsV8Tsu1RC6Eq82jKTGdFzlq8MpEWZIJ53XNCHlmCUGib7Q==");
+               // headers.Add("openId: oJVP50IRqKIIshugSqrvYE3OHJKQ");
                 //WebProxy proxy = new WebProxy(textBox3.Text.Trim());
                 //request.Proxy = proxy;
-                request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
+               request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/328/page-frame.html";
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
+
+
+
+            }
+            return "";
+        }
+        #endregion
+
+        #region GET请求菜品
+        public string meituan_caipin_GetUrl(string Url)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                //request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.16(0x18001042) NetType/WIFI Language/zh_CN";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4(0x1800042c) NetType/4G Language/zh_CN";
+                WebHeaderCollection headers = request.Headers;
+                request.Headers.Add("mtgsig", @"{""a1"":""1.1"",""a2"":1642043341743,""a3"":""1642043262781WUKAGEAfb897e18746f0a7ef3b4fe5ffd36026b2459"",""a4"":""1fe7ad7bd10b3bb37bade71fb33b0bd1d4568f4e676d849f"",""a5"":""L+knwia5vBlzyO16utXaVCB0HYKQZIiwRQ/K4plsOcwlTpnXhisdR0VvHmFfBEMQFa8A4yRli2v8IO1+nDSG4+Rgay4kh/8SsqAfOGP8JzzJg9eXFWxxdIi0GyBmRyiGdjvZ4os5XTGQtbBEzBvgyuePeyQersvqO65qoWZqSxl05MMtcL7AF4CjcbduPF0zkDWNTnij6gNki64B3Nv93rQYwD9I+7grdTBdijc8dXU2Fc=="",""a6"":""w1.0K19FW9EAKbN3EDPeSp4+HNlCbv+szY8EOxFYt2N5+BadbmQbtCT6EudYx8YAwvcVU1HrfYBIWHqBgpL5TtzSifiE24nFrVvAFFUBeBGY3ZDynRLKtiUhxeFp7pyzqd9oikBmlCHK758VX6T3GaP7K+1R+YRwPrdrXdmZtM7ylNAE9m2nhMj9VLM8ohQ5vSmLFNxMWZ80JRpLM/FRwlak+bc/zmXgjXIJXtbTKW0leF88JBCHHNdhay4V9l7/kKCuRnK+l5lWszw4Qv8LFQKyGRNJZCdBF0XAE8mHclp7yvE0ESwdok7/kTn+aydXiDmaDa9rk6OaoXrYxRAEBMIIbZ8djvJxloOc4rguPBJ3Vef3HW1qm0VeHMnpC4hzVPmtJDsmcM6SjZ1/VvN0EmtXXzouVqhAfAcqpgSzGoor91AAJ7LKX6rgL+zxo2+XNuj4AjXUG5ahQibJjiGpMssPpdZdVaSQO9/OxvIPcL1uvINBgrMZEU48y/BGdTKLDR3RTXaqdsVqC1F5ueJOGy4g9NWKd6+LhCXOpcg6ype6PdNa0/SFH4yyMOLg2OgjB3FPHcGaGm3gYztrpX2Xlr3+WqVCipRK2Vqj2/jrICH3WCyLCpAbt6niJUUFHE01ikPkG/ewY8kjM7ZorQgtcRf8JU8eTmmvuK9/dqMu3wNFOHhiwFddZRdK81OchFHNJknxCWhBpnoR87cToXLQzTBbGcI2H0gUr6QAM/9O32DTGKxR2u9DzJc1KB7+hmQEz60L"",""a7"":""wxde8ac0a21135c07d"",""x0"":3,""d1"":""02e6ae6720542bcd67a8c1f6362bfec7""}");
+                request.Headers.Add("openIdCipher", @"AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADgD8SXT5wcpzO71nYcsXBiBr+MIU0YE1FpePxa5vmfbZrhfMJwe3lVuU77AX3JSTYuUe9GNs4TtTw==");
+                request.Headers.Add("openId", @"oJVP50IRqKIIshugSqrvYE3OHJKQ");
+                request.Accept = "*/*";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.16(0x18001042) NetType/WIFI Language/zh_CN";
+                request.Referer = "https://apimeishi.meituan.com/meishi/weixinapp/v1/poi/merchantDishList/1513546526?riskLevel=71&optimusCode=10&userId=875973616&uuid=17e5167c6b1c8-13cd94166ddfd0-0-0-17e5167c6b1c8&token=ljzN6FUS0Es81KPvIXwJa1qpWwQAAAAA6A8AADr2a_bqLWop9G9u8kJhkOG5WwvxBuUcJyTkldxPljwy-371Nfdg-jpvYVcK2Hj17Q&openid=oJVP50IRqKIIshugSqrvYE3OHJKQ&lat=33.94137241621484&lng=118.2478845730078&cityId=184&platform=ios&poiId=1513546526&source_type=dish_list&utm_medium=WEIXINPROGRAM&version=9.6.0";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -582,7 +619,7 @@ namespace 美团
                                // textBox2.Text = html;
                                 MatchCollection uids = Regex.Matches(html, @"""shopId"":""([\s\S]*?)""");
                                 MatchCollection picurls = Regex.Matches(html, @"picUrls"":\[([\s\S]*?)\@");
-
+                                MatchCollection shopPowers = Regex.Matches(html, @"shopPower"":([\s\S]*?),");
                                 if (html.Trim()=="")
                                 {
                                     MessageBox.Show("ip被屏蔽");
@@ -617,7 +654,7 @@ namespace 美团
                                 MatchCollection names = Regex.Matches(strhtml1, @"title"":""([\s\S]*?)""");
                                 MatchCollection tels = Regex.Matches(strhtml1, @"phonestr"":""([\s\S]*?)""");
                                 MatchCollection addrs = Regex.Matches(strhtml1, @"address"":""([\s\S]*?)""");
-
+                              
 
 
                                 for (int a = 0; a < names.Count; a++)
@@ -627,28 +664,42 @@ namespace 美团
                                         string newphone = shaixuan(tels[a].Groups[1].Value);
                                         if (newphone != "")
                                         {
-                                           
+
+
+                                            //菜品 
+                                            string pccookie = "_lxsdk_cuid=17d2dce5682c8-0cb736b70d0af3-4343363-1fa400-17d2dce5682c8; uuid=2724668c3a4f43fbbbee.1642044932.1.0.0; ci=1; rvct=1; __mta=121011255.1642044934890.1642044934890.1642044934890.1; client-id=eab8eccd-8ca1-4689-b605-c46b5c51b68f; mtcdn=K; userTicket=oErNkuPhhQpDcwGcKIuMBIuXjgoluNouXsUnFAWY; _yoda_verify_resp=0rG70JpvZSOxJ3MDD4r%2FRSdTQ6jijtw6qJrZv3WAcs4ki1EuNThT1tL8%2B%2FwirOIa6FNAMgIDZcjQhw7YCPw3OtVsTWLWaqbEg%2BrIy6FVzrwMHeC8Whzs%2BJTNREK%2FblTd1zfLqM1ml564xbb5M89Zxqgq3iFRJV6l8qBgCBzbBbP0KEmK4Jds5eNjtxYRl%2FskRJbYEFcAmmz4hlt4a77plPenkO5PTCy4eOwvs1e9jtly6GXg4dSy%2F8Cfol5nn8lPA6jpOquZCMB0yX%2BEl8gXRz%2FXI47jtL0%2FDTOCpsfs1mmQrRdh2aq%2FpEPKo7irYQnkyhv%2B22aSra1GKOA2Q4dAYuQjWaug2cM3Avp0hLSdAZo%2BdlCfxLnMVKvRPIlraK20; _yoda_verify_rid=148f3d239100f001; u=875973616; n=Ffv936639060; lt=UeBp249Ar5AXyXZRCY1O7qPlDCsAAAAA5Q8AAO4f6Seg_5yLzLe7Ux4Mi7DYjJ2CTYETrSEl6eVlIPk9IOlCWtcY2hq-O-PCyXalVw; mt_c_token=UeBp249Ar5AXyXZRCY1O7qPlDCsAAAAA5Q8AAO4f6Seg_5yLzLe7Ux4Mi7DYjJ2CTYETrSEl6eVlIPk9IOlCWtcY2hq-O-PCyXalVw; token=UeBp249Ar5AXyXZRCY1O7qPlDCsAAAAA5Q8AAO4f6Seg_5yLzLe7Ux4Mi7DYjJ2CTYETrSEl6eVlIPk9IOlCWtcY2hq-O-PCyXalVw; lsu=; token2=UeBp249Ar5AXyXZRCY1O7qPlDCsAAAAA5Q8AAO4f6Seg_5yLzLe7Ux4Mi7DYjJ2CTYETrSEl6eVlIPk9IOlCWtcY2hq-O-PCyXalVw; unc=Ffv936639060; firstTime=1642044960714; _hc.v=426b2512-3b32-4891-70fd-e815079d9a81.1642044961; lat=39.967361; lng=116.363641; IJSESSIONID=node01ezzacf1zlr8o1h7p0duu8pcsy24714876; iuuid=E43A54382D9589B70586FAF4192F31C4C884A2D74C88EA710D7B88528FA3403C; isid=UeBp249Ar5AXyXZRCY1O7qPlDCsAAAAA5Q8AAO4f6Seg_5yLzLe7Ux4Mi7DYjJ2CTYETrSEl6eVlIPk9IOlCWtcY2hq-O-PCyXalVw; oops=UeBp249Ar5AXyXZRCY1O7qPlDCsAAAAA5Q8AAO4f6Seg_5yLzLe7Ux4Mi7DYjJ2CTYETrSEl6eVlIPk9IOlCWtcY2hq-O-PCyXalVw; logintype=normal; cityname=%E5%8C%97%E4%BA%AC; _lxsdk=E43A54382D9589B70586FAF4192F31C4C884A2D74C88EA710D7B88528FA3403C; webp=1; __utma=74597006.445255177.1642045216.1642045216.1642045216.1; __utmc=74597006; __utmz=74597006.1642045216.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); latlng=33.940208,118.275114,1642045215992; ci3=1; __utmb=74597006.3.8.1642045217863; i_extend=C_b1Gimthomepagecategory11H__a; meishi_ci=1; cityid=1; p_token=UeBp249Ar5AXyXZRCY1O7qPlDCsAAAAA5Q8AAO4f6Seg_5yLzLe7Ux4Mi7DYjJ2CTYETrSEl6eVlIPk9IOlCWtcY2hq-O-PCyXalVw; _lxsdk_s=17e518141cc-433-921-d2%7C%7C27";
+                                            string pcurl = "https://bj.meituan.com/meishi/1467844/";
+                                            string pchtml = method.GetUrlWithCookie(pcurl,pccookie,"utf-8");
+                                            MatchCollection cainames = Regex.Matches(pchtml, @"""id"":""([\s\S]*?)"",""name"":""([\s\S]*?)"",""price"":([\s\S]*?),");
 
                                             finishes.Add(tels[a].Groups[1].Value);
-                                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
-                                            listViewItem.SubItems.Add(names[a].Groups[1].Value);
-                                            listViewItem.SubItems.Add(addrs[a].Groups[1].Value);
-                                            if (jihuo == false)
+
+                                            for (int b = 0; b < cainames.Count; b++)
                                             {
-                                                if (newphone.Length > 4)
+                                                ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                                listViewItem.SubItems.Add(names[a].Groups[1].Value);
+                                                listViewItem.SubItems.Add(addrs[a].Groups[1].Value);
+                                                if (jihuo == false)
                                                 {
-                                                    listViewItem.SubItems.Add(newphone.Substring(0, 4) + "*******");
+                                                    if (newphone.Length > 4)
+                                                    {
+                                                        listViewItem.SubItems.Add(newphone.Substring(0, 4) + "*******");
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    listViewItem.SubItems.Add(newphone);
                                                 }
 
-                                            }
-                                            else
-                                            {
-                                                listViewItem.SubItems.Add(newphone);
+                                                listViewItem.SubItems.Add(keyword);
+                                                listViewItem.SubItems.Add(city);
+                                                listViewItem.SubItems.Add(shopPowers[a].Groups[1].Value);
+                                                listViewItem.SubItems.Add(cainames[b].Groups[2].Value);
+                                                listViewItem.SubItems.Add(cainames[b].Groups[3].Value);
                                             }
                                            
-                                            listViewItem.SubItems.Add(keyword);
-                                            listViewItem.SubItems.Add(city);
-                                            //listViewItem.SubItems.Add(picurls[a].Groups[1].Value.Replace("\"","").Trim());
+                                           
                                             while (this.zanting == false)
                                             {
                                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
@@ -1010,6 +1061,7 @@ namespace 美团
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            //textBox2.Text = meituan_caipin_GetUrl(textBox1.Text);
             status = false;
         }
 

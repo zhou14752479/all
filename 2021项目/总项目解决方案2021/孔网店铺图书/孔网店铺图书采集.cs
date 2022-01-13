@@ -278,5 +278,10 @@ namespace 孔网店铺图书
         {
             listView1.Items.Clear();
         }
+
+        private void 孔网店铺图书采集_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
