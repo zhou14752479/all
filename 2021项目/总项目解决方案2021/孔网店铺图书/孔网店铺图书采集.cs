@@ -155,7 +155,9 @@ namespace 孔网店铺图书
                             string itemid = itemids[j].Groups[2].Value;
                             string ahtml = PostUrl("https://app.kongfz.com/invokeBook/app/api/getItemInfo", "itemId=" + itemid + "&shopId=" + shopid, "utf-8");
                             ahtml = method.Unicode2String(ahtml);
-                            string tuijianyu = Regex.Match(ahtml, @"""shareTitle"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                           // textBox2.Text = ahtml;
+
+                            string tuijianyu = Regex.Match(ahtml, @"一句话推荐语""([\s\S]*?)c"":""([\s\S]*?)""").Groups[2].Value.Trim();
                             string shoujia = Regex.Match(ahtml, @"""price"":""([\s\S]*?)""").Groups[1].Value.Trim();
                             string dingjia = Regex.Match(ahtml, @"定价""([\s\S]*?)c"":""([\s\S]*?)""").Groups[2].Value.Trim().Replace("元", "");
                             string fee = Regex.Replace(fees[j].Groups[1].Value.Trim(), "<[^>]+>", "");

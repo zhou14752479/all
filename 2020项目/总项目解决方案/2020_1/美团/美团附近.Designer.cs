@@ -50,6 +50,8 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,9 +64,6 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -133,7 +132,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 607);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1011, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(941, 22);
             this.statusStrip1.TabIndex = 18;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -148,7 +147,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1011, 79);
+            this.panel1.Size = new System.Drawing.Size(941, 79);
             this.panel1.TabIndex = 17;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
@@ -236,15 +235,14 @@
             this.columnHeader10,
             this.columnHeader13,
             this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader2});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 79);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1011, 391);
+            this.listView1.Size = new System.Drawing.Size(941, 391);
             this.listView1.TabIndex = 98;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -278,6 +276,15 @@
             // 
             this.columnHeader13.Text = "城市";
             this.columnHeader13.Width = 100;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "评分";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "菜品价格";
+            this.columnHeader2.Width = 500;
             // 
             // comboBox2
             // 
@@ -395,25 +402,11 @@
             this.checkBox2.Text = "去除固话";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "评分";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "菜品";
-            this.columnHeader2.Width = 100;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "价格";
-            this.columnHeader3.Width = 100;
-            // 
             // 美团附近
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 629);
+            this.ClientSize = new System.Drawing.Size(941, 629);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.linkLabel4);
@@ -486,6 +479,5 @@
         private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
