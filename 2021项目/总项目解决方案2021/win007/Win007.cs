@@ -80,7 +80,10 @@ namespace win007
                     sql = sql + (" data3 like '" + textBox3.Text.Trim() + "' and");
                 }
 
-
+                if (comboBox1.Text != "")
+                {
+                    sql = sql + (" gongsi like '" + comboBox1.Text.Trim() + "' and");
+                }
 
                 if (sql.Substring(sql.Length - 3, 3) == "and")
                 {
@@ -107,7 +110,17 @@ namespace win007
                 dataGridView1.Columns["data8"].HeaderText = "数据8";
                 dataGridView1.Columns["data9"].HeaderText = "数据9";
 
+                this.dataGridView1.Columns[7].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                this.dataGridView1.Columns[8].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
+                this.dataGridView1.Columns[9].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
 
+                this.dataGridView1.Columns[10].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                this.dataGridView1.Columns[11].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
+                this.dataGridView1.Columns[12].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+
+                this.dataGridView1.Columns[13].Width = 0;
+                this.dataGridView1.Columns[14].Width = 0;
+                this.dataGridView1.Columns[15].Width = 0;
                 //fc.ShowDataInListView(dt, listView1);
             }
             catch (Exception ex)

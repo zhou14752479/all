@@ -71,6 +71,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -176,6 +178,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.textBox2);
@@ -192,7 +196,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(348, 36);
+            this.textBox3.Location = new System.Drawing.Point(304, 36);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(68, 23);
             this.textBox3.TabIndex = 47;
@@ -200,7 +204,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(308, 39);
+            this.label8.Location = new System.Drawing.Point(264, 39);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 17);
             this.label8.TabIndex = 46;
@@ -208,7 +212,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(204, 36);
+            this.textBox2.Location = new System.Drawing.Point(184, 36);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(68, 23);
             this.textBox2.TabIndex = 45;
@@ -216,7 +220,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(164, 39);
+            this.label6.Location = new System.Drawing.Point(144, 39);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 17);
             this.label6.TabIndex = 44;
@@ -245,7 +249,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(446, 27);
+            this.button1.Location = new System.Drawing.Point(583, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 38);
             this.button1.TabIndex = 16;
@@ -462,6 +466,30 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(378, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 17);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "公司：";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "ComeOn",
+            "Singbet",
+            "Bethard",
+            "Intertops",
+            "SNAI",
+            "Titanbet"});
+            this.comboBox1.Location = new System.Drawing.Point(416, 36);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 25);
+            this.comboBox1.TabIndex = 49;
+            // 
             // Win007
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -538,5 +566,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
