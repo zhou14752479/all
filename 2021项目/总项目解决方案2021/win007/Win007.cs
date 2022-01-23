@@ -110,17 +110,61 @@ namespace win007
                 dataGridView1.Columns["data8"].HeaderText = "数据8";
                 dataGridView1.Columns["data9"].HeaderText = "数据9";
 
-                this.dataGridView1.Columns[7].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
-                this.dataGridView1.Columns[8].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
-                this.dataGridView1.Columns[9].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
 
-                this.dataGridView1.Columns[10].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
-                this.dataGridView1.Columns[11].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
-                this.dataGridView1.Columns[12].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
 
-                this.dataGridView1.Columns[13].Width = 0;
-                this.dataGridView1.Columns[14].Width = 0;
-                this.dataGridView1.Columns[15].Width = 0;
+
+                dataGridView1.Columns[7].HeaderCell.Style.BackColor = Color.Red;
+                dataGridView1.Columns[8].HeaderCell.Style.BackColor = Color.CornflowerBlue;
+                dataGridView1.Columns[9].HeaderCell.Style.BackColor = Color.Green;
+
+                dataGridView1.Columns[10].HeaderCell.Style.BackColor = Color.Red;
+                dataGridView1.Columns[11].HeaderCell.Style.BackColor = Color.CornflowerBlue;
+                dataGridView1.Columns[12].HeaderCell.Style.BackColor = Color.Green;
+
+                //this.dataGridView1.Columns[7].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                //this.dataGridView1.Columns[8].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
+                //this.dataGridView1.Columns[9].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+
+                //this.dataGridView1.Columns[10].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                //this.dataGridView1.Columns[11].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
+                //this.dataGridView1.Columns[12].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+
+                //this.dataGridView1.Columns[13].Width = 0;
+                //this.dataGridView1.Columns[14].Width = 0;
+                //this.dataGridView1.Columns[15].Width = 0;
+
+
+                //计算
+
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                {
+                    try
+                    {
+                        string value1 = dataGridView1.Rows[i].Cells[7].Value.ToString();
+                        string value2 = dataGridView1.Rows[i].Cells[8].Value.ToString();
+                        string value3 = dataGridView1.Rows[i].Cells[9].Value.ToString();
+
+                        string value4 = dataGridView1.Rows[i].Cells[10].Value.ToString();
+                        string value5 = dataGridView1.Rows[i].Cells[11].Value.ToString();
+                        string value6 = dataGridView1.Rows[i].Cells[12].Value.ToString();
+
+                        double cha1 = Convert.ToDouble(value1) - Convert.ToDouble(value4);
+                        double cha2 = Convert.ToDouble(value2) - Convert.ToDouble(value5);
+                        double cha3 = Convert.ToDouble(value3) - Convert.ToDouble(value6);
+
+
+                        dataGridView1.Rows[i].Cells[7].Value = cha1 > 0 ? dataGridView1.Rows[i].Cells[7].Value + "↑" : dataGridView1.Rows[i].Cells[7].Value + "↓";
+                        dataGridView1.Rows[i].Cells[8].Value = cha2 > 0 ? dataGridView1.Rows[i].Cells[8].Value + "↑" : dataGridView1.Rows[i].Cells[8].Value + "↓";
+                        dataGridView1.Rows[i].Cells[9].Value = cha3 > 0 ? dataGridView1.Rows[i].Cells[9].Value + "↑" : dataGridView1.Rows[i].Cells[9].Value + "↓";
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+
+                }
+
                 //fc.ShowDataInListView(dt, listView1);
             }
             catch (Exception ex)

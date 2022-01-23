@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "屏幕截图合成", "屏幕截图合成\屏幕截图合成.csproj", "{814947A8-4E7D-4327-8C94-40CED0B93A5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDLL", "..\..\2020项目\总项目解决方案\myDLL\myDLL.csproj", "{BA236BE9-F18C-40F4-8015-1D3AE2E89448}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "学科网客户", "学科网客户\学科网客户.csproj", "{9E58EBC0-EB29-4407-9027-18C052D9ADF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "短信群发", "短信群发\短信群发.csproj", "{50AD64E6-8690-4BA5-B263-581E2219A8B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202202", "主程序202202\主程序202202.csproj", "{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{814947A8-4E7D-4327-8C94-40CED0B93A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{814947A8-4E7D-4327-8C94-40CED0B93A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{814947A8-4E7D-4327-8C94-40CED0B93A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{814947A8-4E7D-4327-8C94-40CED0B93A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E58EBC0-EB29-4407-9027-18C052D9ADF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E58EBC0-EB29-4407-9027-18C052D9ADF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E58EBC0-EB29-4407-9027-18C052D9ADF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E58EBC0-EB29-4407-9027-18C052D9ADF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50AD64E6-8690-4BA5-B263-581E2219A8B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50AD64E6-8690-4BA5-B263-581E2219A8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50AD64E6-8690-4BA5-B263-581E2219A8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50AD64E6-8690-4BA5-B263-581E2219A8B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {042617EC-1A80-4503-B056-E33A417ECF6F}
+	EndGlobalSection
+EndGlobal

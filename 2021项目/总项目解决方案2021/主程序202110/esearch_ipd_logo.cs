@@ -112,39 +112,49 @@ namespace 主程序202110
 
                 for (int i = 0; i <array.Length; i++)
                 {
-                    if(array[i]=="")
+                    try
                     {
+                        if (array[i] == "")
+                        {
+                            continue;
+                        }
+
+                        string url = "https://esearch.ipd.gov.hk/nis-pos-view/tm/search/?page=1&rows=10";
+                        string postdata = "{\"searchMethod\":\"TM_SEARCHMETHOD_WILDCARD\",\"filingDate\":{},\"documentFilingDate\":{},\"applicationNumber\":[\"" + array[i].Trim() + "\"],\"registrationDate\":{},\"isDeadRecordIndicator\":\"false\",\"expirationDate\":{},\"publicationDateOfAcceptance\":{},\"actualRegistrationDate\":{}}";
+
+                        string html = PostUrlDefault(url, postdata, cookie);
+
+                        string picbase64 = Regex.Match(html, @"thumbnail"":\[""([\s\S]*?)""").Groups[1].Value;
+                        Thread.Sleep(500);
+                        md.Base64ToImage(picbase64, path + array[i] + ".jpg");
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(array[i]);
+                        if (picbase64 != "")
+                        {
+                            lv1.SubItems.Add("下载成功");
+
+                        }
+                        else
+                        {
+                            lv1.SubItems.Add("下载失败");
+                        }
+
+
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+                    }
+                    catch (Exception ex) 
+                    {
+
+                        MessageBox.Show("请重新验证非机器人");
+                        Thread.Sleep(30000);
                         continue;
                     }
-
-                    string url = "https://esearch.ipd.gov.hk/nis-pos-view/tm/search/?page=1&rows=10";
-                    string postdata = "{\"searchMethod\":\"TM_SEARCHMETHOD_WILDCARD\",\"filingDate\":{},\"documentFilingDate\":{},\"applicationNumber\":[\""+array[i].Trim()+"\"],\"registrationDate\":{},\"isDeadRecordIndicator\":\"false\",\"expirationDate\":{},\"publicationDateOfAcceptance\":{},\"actualRegistrationDate\":{}}";
-                   
-                    string html =PostUrlDefault(url,postdata,cookie);
-
-                    string picbase64 = Regex.Match(html, @"thumbnail"":\[""([\s\S]*?)""").Groups[1].Value;
-                    
-                    md.Base64ToImage(picbase64,path+array[i]+".jpg");
-                    if(picbase64!="")
-                    {
-                        textBox2.Text += DateTime.Now.ToShortTimeString() + "：下载" + array[i] + "成功" + "\r\n";
-                    }
-                    else
-                    {
-                        textBox2.Text += DateTime.Now.ToShortTimeString() + "：下载" + array[i] + "失败" + "\r\n";
-                    }
-
-                    if (textBox2.Text.Length>5000)
-                    {
-                        textBox2.Text = "";
-                    }
-
-                    while (this.zanting == false)
-                    {
-                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                    }
-                    if (status == false)
-                        return;
 
 
 

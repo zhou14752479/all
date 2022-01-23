@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -247,7 +248,7 @@ namespace qccxcx
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
-
+                request.Proxy = null;//禁止抓包
                 request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4(0x1800042c) NetType/WIFI Language/zh_CN";
                 request.Headers.Add("Cookie", COOKIE);
 
@@ -590,8 +591,31 @@ namespace qccxcx
                 MessageBox.Show(ex.Message);
             }
         }
+
+        #region  程序关闭删除自身
+        public static void TestForKillMyself()
+        {
+            string bat = @"@echo off
+                           :tryagain
+                           del %1
+                           if exist %1 goto tryagain
+                           del %0";
+            File.WriteAllText("killme.bat", bat);//写bat文件
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = "killme.bat";
+            psi.Arguments = "\"" + Environment.GetCommandLineArgs()[0] + "\"";
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
+            Process.Start(psi);
+        }
+        #endregion
+
         private void 企查查_Load(object sender, EventArgs e)
         {
+            //if (DateTime.Now > Convert.ToDateTime("2022-01-20"))
+            //{
+            //    TestForKillMyself();
+            //}
+
             getAllfromJson();
             getprovincefromJson();
             #region 通用检测

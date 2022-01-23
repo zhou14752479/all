@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -1607,6 +1608,23 @@ namespace myDLL
             parentNode.AppendChild(node);
         }
 
+        #endregion
+
+        #region  程序关闭删除自身
+        public static void TestForKillMyself()
+        {
+            string bat = @"@echo off
+                           :tryagain
+                           del %1
+                           if exist %1 goto tryagain
+                           del %0";
+            File.WriteAllText("killme.bat", bat);//写bat文件
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = "killme.bat";
+            psi.Arguments = "\"" + Environment.GetCommandLineArgs()[0] + "\"";
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
+            Process.Start(psi);
+        }
         #endregion
     }
 }

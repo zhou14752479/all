@@ -538,9 +538,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "企查查";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "爆客王客户采集软件                                                                        " +
-    "                                                                        获取客源请加微信" +
-    "：zwxj1011";
+            this.Text = "工商拓客软件";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.企查查_FormClosing);
             this.Load += new System.EventHandler(this.企查查_Load);
             this.groupBox1.ResumeLayout(false);
