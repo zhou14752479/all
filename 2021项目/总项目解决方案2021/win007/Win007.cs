@@ -156,6 +156,41 @@ namespace win007
                         dataGridView1.Rows[i].Cells[7].Value = cha1 > 0 ? dataGridView1.Rows[i].Cells[7].Value + "↑" : dataGridView1.Rows[i].Cells[7].Value + "↓";
                         dataGridView1.Rows[i].Cells[8].Value = cha2 > 0 ? dataGridView1.Rows[i].Cells[8].Value + "↑" : dataGridView1.Rows[i].Cells[8].Value + "↓";
                         dataGridView1.Rows[i].Cells[9].Value = cha3 > 0 ? dataGridView1.Rows[i].Cells[9].Value + "↑" : dataGridView1.Rows[i].Cells[9].Value + "↓";
+
+                        if (cha1 > 1.5)
+                        {
+                           
+                            dataGridView1.Rows[i].Cells[7].Value = dataGridView1.Rows[i].Cells[7].Value + " ↑";
+                        }
+
+                        if (cha1 < -0.5)
+                        {
+                            dataGridView1.Rows[i].Cells[7].Value = dataGridView1.Rows[i].Cells[7].Value + " ↓";
+                        }
+
+                        if (cha2 > 1.5)
+                        {
+
+                            dataGridView1.Rows[i].Cells[8].Value = dataGridView1.Rows[i].Cells[7].Value + " ↑";
+                        }
+
+                        if (cha2 < -0.5)
+                        {
+                            dataGridView1.Rows[i].Cells[8].Value = dataGridView1.Rows[i].Cells[7].Value + " ↓";
+                        }
+
+
+                        if (cha3> 1.5)
+                        {
+
+                            dataGridView1.Rows[i].Cells[9].Value = dataGridView1.Rows[i].Cells[7].Value + " ↑";
+                        }
+
+                        if (cha3 < -0.5)
+                        {
+                            dataGridView1.Rows[i].Cells[9].Value = dataGridView1.Rows[i].Cells[7].Value + " ↓";
+                        }
+
                     }
                     catch (Exception)
                     {

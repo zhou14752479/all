@@ -99,15 +99,24 @@ namespace 主程序202202
 
         #endregion
 
+        string[] uids = {
 
+            "217082931",
+            "196773676"
+
+        };
         public void run()
         {
             try
             {
-                string date = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
-                string url = "https://entry-reg.libsp.com/inlib/user/orderInlib";
-                string postdata = "{\"allowedDtos\":null,\"uid\":\"217082931\",\"fid\":\"8155\",\"orderDate\":\""+date+" 08:50\"}";
-                textBox1.Text += DateTime.Now.ToString()+"："+PostUrlDefault(url,postdata,"")+"\r\n";
+                foreach (string uid in uids)
+                {
+                    string date = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
+                    string url = "https://entry-reg.libsp.com/inlib/user/orderInlib";
+                    string postdata = "{\"allowedDtos\":null,\"uid\":\""+uid+"\",\"fid\":\"8155\",\"orderDate\":\"" + date + " 08:50\"}";
+                    textBox1.Text += DateTime.Now.ToString() + "：" +uid+" "+ PostUrlDefault(url, postdata, "") + "\r\n" + "\r\n";
+                }
+              
 
             }
             catch (Exception ex)
