@@ -19,22 +19,45 @@ namespace 屏幕截图合成
            
         }
        public Bitmap bmp = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
+
+
+
+       public static int x1 = 0;
+        public static int x2 = 0;
+        public static int y1 = 0;
+        public static int y2 = 0;
+
         private void button1_Click(object sender, EventArgs e)
         {
-            //if (checkBox1.Checked == true)
-            //{
-            //    this.WindowState = FormWindowState.Minimized;
-            //}
-           
-        Graphics g = Graphics.FromImage(bmp);
-            g.CopyFromScreen(0, 0, 0, 0, new Size(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height));
 
-            frmScreen f = new frmScreen(bmp);
-            f.Show();
+            //每次选择区域截图
+            //Graphics g = Graphics.FromImage(bmp);
+            //g.CopyFromScreen(0, 0, 0, 0, new Size(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height));
+            //frmScreen f = new frmScreen(bmp);
+            //f.Show();
+            //f.setimage = new frmScreen.SetImage(setimage2);
 
-            f.setimage = new frmScreen.SetImage(setimage2);
 
-          
+
+            //选取一次区域，第二次不需要再选取
+            Bitmap image = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            Graphics imgGraphics = Graphics.FromImage(image);
+            //设置截屏区域 柯乐义
+            //imgGraphics.CopyFromScreen(0, 0, 0, 0, new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));
+
+            if (x1 == 0 && y1 == 0 && x2 == 0 && y2 == 0)
+            {
+                Graphics g = Graphics.FromImage(bmp);
+                g.CopyFromScreen(0, 0, 0, 0, new Size(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height));
+                frmScreen f = new frmScreen(bmp);
+                f.Show();
+                return;
+            }
+
+            //MessageBox.Show(x1.ToString()+" "+y1.ToString()+ " "+x2.ToString() + " " + y2.ToString());
+            imgGraphics.CopyFromScreen(x1, y1, 0, 0, new Size(x2, y2));
+            //保存
+            setimage2(image);
         }
 
 

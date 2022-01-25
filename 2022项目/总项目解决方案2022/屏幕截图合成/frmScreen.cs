@@ -54,6 +54,7 @@ namespace 屏幕截图合成
         {
             if (e.Button == MouseButtons.Right && eara != Rectangle.Empty)
             {
+                
                 eara = Rectangle.Empty;
                 pStart = Point.Empty;
                 pTemp = Point.Empty;
@@ -74,11 +75,29 @@ namespace 屏幕截图合成
         {
             if (e.Button == MouseButtons.Left && eara == Rectangle.Empty)
             {
+               截屏合成图片.x1= e.X;
+                截屏合成图片.y1 = e.Y;
+
+                
                 pStart = new Point(e.X, e.Y);
                 pTemp = pStart;
             }
 
         }
+
+        private void frmScreen_MouseUp(object sender, MouseEventArgs e)
+        {
+            截屏合成图片.x2 = e.X;
+            截屏合成图片.y2 = e.Y;
+            if (e.Button == MouseButtons.Left)
+            {
+                eara = Rectangle.Empty;
+
+                this.Invalidate();
+
+            }
+        }
+
 
         private void frmScreen_MouseMove(object sender, MouseEventArgs e)
         {
@@ -178,17 +197,7 @@ namespace 屏幕截图合成
 
         }
 
-        private void frmScreen_MouseUp(object sender, MouseEventArgs e)
-        {
-
-            if (e.Button == MouseButtons.Left)
-            {
-                eara = Rectangle.Empty;
-
-                this.Invalidate();
-
-            }
-        }
+       
 
         public delegate void SetImage(Image image);
 
