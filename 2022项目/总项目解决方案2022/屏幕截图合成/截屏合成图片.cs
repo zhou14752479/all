@@ -40,10 +40,13 @@ namespace 屏幕截图合成
 
 
             //选取一次区域，第二次不需要再选取
-            Bitmap image = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            Graphics imgGraphics = Graphics.FromImage(image);
-            //设置截屏区域 柯乐义
-            //imgGraphics.CopyFromScreen(0, 0, 0, 0, new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));
+
+
+
+            
+             
+            //设置截屏区域
+            //imgGraphics.CopyFromScreen(0, 0, 0, 0, new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));//全屏
 
             if (x1 == 0 && y1 == 0 && x2 == 0 && y2 == 0)
             {
@@ -53,11 +56,12 @@ namespace 屏幕截图合成
                 f.Show();
                 return;
             }
-
-            //MessageBox.Show(x1.ToString()+" "+y1.ToString()+ " "+x2.ToString() + " " + y2.ToString());
+            Bitmap image = new Bitmap(x2, y2);  //设置画布大小
+            Graphics imgGraphics = Graphics.FromImage(image);
             imgGraphics.CopyFromScreen(x1, y1, 0, 0, new Size(x2, y2));
-            //保存
             setimage2(image);
+            //保存
+           // image.Save("D:\\" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".jpg");
         }
 
 
@@ -71,8 +75,10 @@ namespace 屏幕截图合成
                 if (control is PictureBox)
                 {
                     PictureBox pic = (PictureBox)control;
+
                     if (pic.Image == null)
                     {
+                        
                         pic.Image = image;
                         break;
                     }
@@ -112,6 +118,7 @@ namespace 屏幕截图合成
                     pic.Left = 0 + TempInt * Convert.ToInt32(textBox1.Text);
                     pic.Top = 0 + TempInt2 * Convert.ToInt32(textBox2.Text);
                     pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                    //pic.SizeMode = PictureBoxSizeMode.Normal;
                     pic.Dock = DockStyle.None;
                     pic.BorderStyle = BorderStyle.Fixed3D;
                     this.panel1.Controls.Add(pic);
@@ -193,5 +200,7 @@ namespace 屏幕截图合成
 
             }
         }
+
+       
     }
 }
