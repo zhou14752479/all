@@ -106,7 +106,7 @@ namespace win007
                 dataGridView1.Columns["data4"].HeaderText = "数据4";
                 dataGridView1.Columns["data5"].HeaderText = "数据5";
                 dataGridView1.Columns["data6"].HeaderText = "数据6";
-                dataGridView1.Columns["data7"].HeaderText = "数据7";
+                dataGridView1.Columns["data7"].HeaderText = "升降平";
                 dataGridView1.Columns["data8"].HeaderText = "数据8";
                 dataGridView1.Columns["data9"].HeaderText = "数据9";
 
@@ -130,8 +130,8 @@ namespace win007
                 //this.dataGridView1.Columns[12].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
 
                 //this.dataGridView1.Columns[13].Width = 0;
-                //this.dataGridView1.Columns[14].Width = 0;
-                //this.dataGridView1.Columns[15].Width = 0;
+                this.dataGridView1.Columns[14].Width = 0;
+                this.dataGridView1.Columns[15].Width = 0;
 
 
                 //计算
@@ -152,45 +152,80 @@ namespace win007
                         double cha2 = Convert.ToDouble(value2) - Convert.ToDouble(value5);
                         double cha3 = Convert.ToDouble(value3) - Convert.ToDouble(value6);
 
+                        string sjp1 = "平";
+                        string sjp2 = "平";
+                        string sjp3 = "平";
 
-                        dataGridView1.Rows[i].Cells[7].Value = cha1 > 0 ? dataGridView1.Rows[i].Cells[7].Value + "↑" : dataGridView1.Rows[i].Cells[7].Value + "↓";
-                        dataGridView1.Rows[i].Cells[8].Value = cha2 > 0 ? dataGridView1.Rows[i].Cells[8].Value + "↑" : dataGridView1.Rows[i].Cells[8].Value + "↓";
-                        dataGridView1.Rows[i].Cells[9].Value = cha3 > 0 ? dataGridView1.Rows[i].Cells[9].Value + "↑" : dataGridView1.Rows[i].Cells[9].Value + "↓";
-
-                        if (cha1 > 1.5)
+                      if(cha1>0)
                         {
-                           
-                            dataGridView1.Rows[i].Cells[7].Value = dataGridView1.Rows[i].Cells[7].Value + " ↑";
+                            sjp1 = "升";
+                        }
+                        if (cha1 <0)
+                        {
+                            sjp1 = "降";
                         }
 
-                        if (cha1 < -0.5)
+                        if (cha2 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[7].Value = dataGridView1.Rows[i].Cells[7].Value + " ↓";
+                            sjp2 = "升";
+                        }
+                        if (cha2 < 0)
+                        {
+                            sjp2 = "降";
+                        }
+                        if (cha3> 0)
+                        {
+                            sjp3 = "升";
+                        }
+                        if (cha3 < 0)
+                        {
+                            sjp3 = "降";
                         }
 
-                        if (cha2 > 1.5)
-                        {
+                        dataGridView1.Rows[i].Cells[13].Value = sjp1 + sjp2 + sjp3;
 
-                            dataGridView1.Rows[i].Cells[8].Value = dataGridView1.Rows[i].Cells[7].Value + " ↑";
+                      
+
+                        if (cha1>-0.15&&cha1<-0.1)
+                        {
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Yellow;
+                        }
+                        else if (cha1 > -2 && cha1 < -0.15)
+                        {
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Orange;
+                        }
+                       else if (cha1 < -2 )
+                        {
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Red;
                         }
 
-                        if (cha2 < -0.5)
+
+
+                        if (cha2 > -0.15 && cha2 < -0.1)
                         {
-                            dataGridView1.Rows[i].Cells[8].Value = dataGridView1.Rows[i].Cells[7].Value + " ↓";
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Yellow;
+                        }
+                        else if (cha2 > -2 && cha2 < -0.15)
+                        {
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Orange;
+                        }
+                        else if (cha2 < -2)
+                        {
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Red;
                         }
 
-
-                        if (cha3> 1.5)
+                        if (cha3 > -0.15 && cha3 < -0.1)
                         {
-
-                            dataGridView1.Rows[i].Cells[9].Value = dataGridView1.Rows[i].Cells[7].Value + " ↑";
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Yellow;
                         }
-
-                        if (cha3 < -0.5)
+                        else if (cha3 > -2 && cha3 < -0.15)
                         {
-                            dataGridView1.Rows[i].Cells[9].Value = dataGridView1.Rows[i].Cells[7].Value + " ↓";
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Orange;
                         }
-
+                        else if (cha3 < -2)
+                        {
+                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Red;
+                        }
                     }
                     catch (Exception)
                     {
@@ -199,6 +234,30 @@ namespace win007
                     }
 
                 }
+
+                if (textBox4.Text != "")
+                {
+                    for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                    {
+                        try
+                        {
+                            string value = dataGridView1.Rows[i].Cells[13].Value.ToString();
+                           
+                            if (value != textBox4.Text.Trim())
+                            {
+                                DataGridViewRow row = dataGridView1.Rows[i];
+                                 dataGridView1.Rows.Remove(row);
+                                  i--; //这句是关键。。
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                    }
+                }
+
 
                 //fc.ShowDataInListView(dt, listView1);
             }
@@ -519,6 +578,26 @@ namespace win007
                
             }
            
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox4.Text += "升";
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox4.Text += "平";
+        }
+
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox4.Text += "降";
+        }
+
+        private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox4.Text = "";
         }
     }
 }
