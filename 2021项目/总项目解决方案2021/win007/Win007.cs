@@ -182,7 +182,7 @@ namespace win007
                             sjp3 = "降";
                         }
 
-                        dataGridView1.Rows[i].Cells[13].Value = sjp1 + sjp2 + sjp3;
+                        dataGridView1.Rows[i].Cells[13].Value = sjp1 + sjp2 + sjp3+" "+ dataGridView1.Rows[i].Cells[6].Value;
 
                       
 
@@ -243,7 +243,7 @@ namespace win007
                         {
                             string value = dataGridView1.Rows[i].Cells[13].Value.ToString();
                            
-                            if (value != textBox4.Text.Trim())
+                            if (!value.Contains(textBox4.Text.Trim()))
                             {
                                 DataGridViewRow row = dataGridView1.Rows[i];
                                  dataGridView1.Rows.Remove(row);

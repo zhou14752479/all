@@ -16,7 +16,7 @@ namespace 亚马逊抓取
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 中海化工项目());
+            Application.Run(new 学科网());
         }
     }
 }
