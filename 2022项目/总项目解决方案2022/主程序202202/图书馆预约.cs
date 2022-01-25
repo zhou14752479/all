@@ -99,22 +99,21 @@ namespace 主程序202202
 
         #endregion
 
-        string[] uids = {
-
-            "217082931",
-            "196773676"
-
-        };
+      
         public void run()
         {
+            string[] uids = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
             try
             {
                 foreach (string uid in uids)
                 {
-                    string date = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
-                    string url = "https://entry-reg.libsp.com/inlib/user/orderInlib";
-                    string postdata = "{\"allowedDtos\":null,\"uid\":\""+uid+"\",\"fid\":\"8155\",\"orderDate\":\"" + date + " 08:50\"}";
-                    textBox1.Text += DateTime.Now.ToString() + "：" +uid+" "+ PostUrlDefault(url, postdata, "") + "\r\n" + "\r\n";
+                    if (uid != "")
+                    {
+                        string date = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
+                        string url = "https://entry-reg.libsp.com/inlib/user/orderInlib";
+                        string postdata = "{\"allowedDtos\":null,\"uid\":\"" + uid + "\",\"fid\":\"8155\",\"orderDate\":\"" + date + " 08:50\"}";
+                        textBox1.Text += DateTime.Now.ToString() + "：" + uid + " " + PostUrlDefault(url, postdata, "") + "\r\n" + "\r\n";
+                    }
                 }
               
 
