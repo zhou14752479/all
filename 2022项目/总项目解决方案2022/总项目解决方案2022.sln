@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "短信群发", "短信群�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202202", "主程序202202\主程序202202.csproj", "{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "抖音直播", "抖音直播\抖音直播.csproj", "{9B29D5B4-D047-4C6D-B45E-532ADA686625}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
