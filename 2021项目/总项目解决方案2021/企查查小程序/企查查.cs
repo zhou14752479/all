@@ -481,7 +481,7 @@ namespace qccxcx
                         string postdata = "{\"sortType\":0,\"pageSize\":100,\"pageNum\":"+i+",\"word\":\""+textBox1.Text.Trim()+"\",\"allowModifyQuery\":1"+sb.ToString()+"}";
                         string html2 = PostUrlDefault(url,postdata,"");
                        
-                        if (html2.Contains("登录后可查看更多公司的数据"))
+                        if (html2.Contains("登录后可查看更多公司的数据") || html2.Contains("开通VIP"))
                         {
                             textBox2.Text = "正在重新获取token  请稍后";
                              gettoken();

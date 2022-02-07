@@ -16,7 +16,7 @@ namespace 主程序202110
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new esearch_ipd_logo());
+            Application.Run(new 贝壳成交());
         }
     }
 }

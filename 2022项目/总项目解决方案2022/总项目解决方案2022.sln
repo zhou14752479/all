@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202202", "主程�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "抖音直播", "抖音直播\抖音直播.csproj", "{9B29D5B4-D047-4C6D-B45E-532ADA686625}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝商家电话", "淘宝商家电话\淘宝商家电话.csproj", "{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "..\..\2020项目\总项目解决方案\helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

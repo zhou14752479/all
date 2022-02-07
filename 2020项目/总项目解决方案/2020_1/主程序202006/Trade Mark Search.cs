@@ -129,7 +129,7 @@ namespace 主程序202006
                        string dateOfPublicationForRegistration = Regex.Match(html, @"""dateOfPublicationForRegistration"":""([\s\S]*?)""").Groups[1].Value;
                         string dateOfRegistration = Regex.Match(html, @"""dateOfRegistration"":""([\s\S]*?)""").Groups[1].Value;
                         string actualRegistrationDate = Regex.Match(html, @"""actualRegistrationDate"":""([\s\S]*?)""").Groups[1].Value;
-
+                        string ExpireDate = Regex.Match(html, @"""expiryDate"":""([\s\S]*?)""").Groups[1].Value;
 
 
 
@@ -166,7 +166,7 @@ namespace 主程序202006
                         lv1.SubItems.Add(dateOfPublicationForRegistration);
                         lv1.SubItems.Add(dateOfRegistration);
                         lv1.SubItems.Add(actualRegistrationDate);
-
+                        lv1.SubItems.Add(ExpireDate);
 
 
 
@@ -218,7 +218,7 @@ namespace 主程序202006
         private void button1_Click(object sender, EventArgs e)
         {
 
-           cookie = method.GetCookies("https://esearch.ipd.gov.hk/nis-pos-view/tm#/quicksearch");
+            cookie = method.GetCookies("https://esearch.ipd.gov.hk/nis-pos-view/tm#/quicksearch");
             
             label4.Text = "开始查询" + "......";
             Thread thread = new Thread(new ThreadStart(run));

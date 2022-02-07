@@ -293,5 +293,10 @@ namespace 短信群发
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
+
+        private void 短信群发_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

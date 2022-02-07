@@ -60,15 +60,16 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,7 +109,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(1200, 753);
+            this.splitContainer1.Size = new System.Drawing.Size(1310, 753);
             this.splitContainer1.SplitterDistance = 102;
             this.splitContainer1.TabIndex = 11;
             // 
@@ -235,7 +236,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1200, 647);
+            this.tabControl1.Size = new System.Drawing.Size(1310, 647);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -264,7 +265,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1192, 617);
+            this.tabPage2.Size = new System.Drawing.Size(1302, 617);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "数据";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -285,6 +286,7 @@
             this.columnHeader17,
             this.columnHeader18,
             this.columnHeader19,
+            this.columnHeader20,
             this.columnHeader11,
             this.columnHeader12,
             this.columnHeader13,
@@ -295,7 +297,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1186, 611);
+            this.listView1.Size = new System.Drawing.Size(1296, 611);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -348,6 +350,21 @@
             this.columnHeader10.Text = "Date of Advertisement in Gazette";
             this.columnHeader10.Width = 100;
             // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "dateOfPublicationForRegistration";
+            this.columnHeader17.Width = 100;
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "dateOfRegistration";
+            this.columnHeader18.Width = 100;
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "actualRegistrationDate";
+            this.columnHeader19.Width = 100;
+            // 
             // columnHeader11
             // 
             this.columnHeader11.Text = "Name";
@@ -378,26 +395,16 @@
             this.columnHeader16.Text = "Matters";
             this.columnHeader16.Width = 100;
             // 
-            // columnHeader17
+            // columnHeader20
             // 
-            this.columnHeader17.Text = "dateOfPublicationForRegistration";
-            this.columnHeader17.Width = 100;
-            // 
-            // columnHeader18
-            // 
-            this.columnHeader18.Text = "dateOfRegistration";
-            this.columnHeader18.Width = 100;
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Text = "actualRegistrationDate";
-            this.columnHeader19.Width = 100;
+            this.columnHeader20.Text = "ExpireDate";
+            this.columnHeader20.Width = 100;
             // 
             // Trade_Mark_Search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 753);
+            this.ClientSize = new System.Drawing.Size(1310, 753);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -459,5 +466,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader17;
         private System.Windows.Forms.ColumnHeader columnHeader18;
         private System.Windows.Forms.ColumnHeader columnHeader19;
+        private System.Windows.Forms.ColumnHeader columnHeader20;
     }
 }

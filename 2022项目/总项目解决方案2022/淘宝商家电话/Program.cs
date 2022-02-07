@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202006
+namespace 淘宝商家电话
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202006
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Trade_Mark_Search());
+            Application.Run(new 淘宝商家电话());
         }
     }
 }

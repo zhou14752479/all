@@ -84,6 +84,7 @@ namespace 主程序202110
 
         }
         #endregion
+
         #region 贝壳成交
         public void run()
         {
@@ -299,7 +300,7 @@ namespace 主程序202110
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run2);
+                thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
