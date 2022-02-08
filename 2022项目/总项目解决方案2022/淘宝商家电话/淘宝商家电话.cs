@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,17 +23,112 @@ namespace 淘宝商家电话
 
 
 
+        public string tb_gettel(string orderid,string cookie,string type)
+        {
+            try
+            {
+                string phone = "";
+                if (type == "WAIT_BUYER_CONFIRM_GOODS" || type == "TRADE_FINISHED" || type == "WAIT_SELLER_SEND_GOODS")
+                {
+                    //未退款
+                    string url = "https://refund2.taobao.com/dispute/apply.htm?spm=a21we.8289817.0.0.3eff5429drtTtF&bizOrderId=" + orderid + "&type=1";
+                    string html = method.GetUrlWithCookie(url, cookie, "utf-8");
+                    phone = Regex.Match(html, @"联系电话([\s\S]*?)""text"":""([\s\S]*?)""").Groups[2].Value;
+                }
+               if(type== "TRADE_CLOSED")
+                {
+                    string url = "https://refund2.tmall.com/dispute/detail.htm?spm=a1z09.2.0.0.67002e8dbNRs2D&bizOrderId=" + orderid + "&disputeType=1";
+                    string html = method.GetUrlWithCookie(url, cookie, "utf-8");
+                     phone = Regex.Match(html, @"联系电话([\s\S]*?)""text"":""([\s\S]*?)""").Groups[2].Value;
+                }
 
 
 
+                return phone;
+            }
+            catch (Exception ex)
+            {
+
+               return "获取错误";
+            }
+
+        }
+        public string tmall_gettel(string orderid, string cookie, string type)
+        {
+            try
+            {
+                string url = "https://trade.tmall.com/detail/orderDetail.htm?spm=a1z09.2.0.0.75532e8d0l3lQG&bizOrderId="+orderid;
+                string html = method.GetUrlWithCookie(url, cookie, "gbk");
+              string  phone = Regex.Match(html, @"""城市""([\s\S]*?)text"":""([\s\S]*?)""").Groups[2].Value;
+
+
+
+                return phone;
+            }
+            catch (Exception ex)
+            {
+
+                return "获取错误";
+            }
+
+        }
+
+        public void jiexi()
+        {
+
+            try
+            {
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    listView1.Items[i].SubItems[7].Text = "正在解析...";
+
+                    string oederid = listView1.Items[i].SubItems[2].Text;
+                    string zhanghao = listView1.Items[i].SubItems[4].Text;
+                    string shopname = listView1.Items[i].SubItems[5].Text;
+                    string type = listView1.Items[i].SubItems[3].Text;
+
+                    string tel = "";
+                    if (shopname.Contains("旗舰店") || shopname.Contains("专营店") || shopname.Contains("专卖店"))
+                    {
+                        tel = tmall_gettel(oederid, dics[zhanghao], type);
+                    }
+                      else
+                    {
+                        tel = tb_gettel(oederid, dics[zhanghao],type);
+                    }
+                   
+                 
+
+                    listView1.Items[i].SubItems[6].Text = tel;
+                    listView1.Items[i].SubItems[7].Text = "解析完成";
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (listView1.Items.Count > 2)
+                    {
+                        listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                    }
+                    if (status == false)
+                        return;
+                    Thread.Sleep(1000);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                ;
+            }
+        }
 
 
         //接收信号
 
-            public void setcookie2(string cookie2)
+        public void setcookie2(string zhanghao ,string cookie2)
         {
             ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据    
-            lv2.SubItems.Add("11");
+            lv2.SubItems.Add(zhanghao);
             lv2.SubItems.Add(cookie2);
         }
 
@@ -46,49 +142,57 @@ namespace 淘宝商家电话
         }
         Thread thread;
         bool zanting = true;
+        bool status = true;
         public void run()
         {
             try
             {
-                string cookie = "thw=cn; hng=CN%7Czh-CN%7CCNY%7C156; t=c4361740c8e18715aef03845da1acd12; ucn=unsh; cna=IEEVGmxNb3QCAXnisujqtGPv; lgc=zkg852266010; tracknick=zkg852266010; _m_h5_tk=459a1c2dc5c03e4b0008a68287723506_1644217078548; _m_h5_tk_enc=95e3776b452c52084f438cf6b890ddaf; xlly_s=1; mt=ci=69_1; enc=g73m1nw5Avtc2r85ckZDkSkLSDSfnNXuHuMJGuZPTOLpoZ%2FbLNgSnr8vRm7ogOIR7M5eu1b97FQAWkggSu4gaw%3D%3D; cookie2=20c20bfdcaa0fe04f16fa4ecd40ae453; _tb_token_=e5e8e9e53e733; _samesite_flag_=true; sgcookie=E100WCoNiZPl64OWnGyulNHKEmRplj%2FA8%2Bwiyimm4acC6f%2FsJ8fDBMKY4VbI2ClSzB2usY7v4e1FuSk4CpjS22iqvmGBAFdesj1rnye9nC04fidEAAxgpu2OW%2F%2F3rCAvJbPF; unb=1052347548; uc3=id2=UoH62EAv27BqSg%3D%3D&nk2=GcOvCmiKUSBXqZNU&lg2=VFC%2FuZ9ayeYq2g%3D%3D&vt3=F8dCvU6PKx4EHfidi1A%3D; csg=d0d35746; cancelledSubSites=empty; cookie17=UoH62EAv27BqSg%3D%3D; dnk=zkg852266010; skt=934e55723c04259c; existShop=MTY0NDIyNzAzNA%3D%3D; uc4=nk4=0%40GwrkntVPltPB9cR46GncAmas5jv7MYQ%3D&id4=0%40UOnlZ%2FcoxCrIUsehK6jmZTplGsR2; _cc_=VFC%2FuZ9ajQ%3D%3D; _l_g_=Ug%3D%3D; sg=080; _nk_=zkg852266010; cookie1=Vvj8uMJubtxirKFtxaDmWPxYCP5sb7EKtrFe1w68JDk%3D; uc1=cookie16=UIHiLt3xCS3yM2h4eKHS9lpEOw%3D%3D&cookie14=UoewBGWghfgO4w%3D%3D&existShop=true&cookie15=UtASsssmOIJ0bQ%3D%3D&pas=0&cookie21=W5iHLLyFfXVRCJf5lG0u7A%3D%3D; v=0; tfstk=clPVBuvUgsCqqbh1pjGNCQpyCHuAavU0SQuIn-sA-ZMymTkjYsmDX4mjk4u6zhDc.; l=eBMcj_yIgkAmzySFBO5Zlurza7790IOf1sPzaNbMiInca1rP1nJ-ANCnMHByRdtj_t5xleKrTan6ER3XPzULRxMc7djSi8nBhn96Je1..; isg=BL6-wPw-UGmoKIfjRliySl30D9QA_4J5Z3kwmWjGOYG3C13l0YuciXatg9_HM3qR";
-
-                for (int page = 1; page < 100; page++)
+                for (int a = 0; a < listView2.CheckedItems.Count; a++)
                 {
-                    string url = "https://buyertrade.taobao.com/trade/itemlist/asyncBought.htm?action=itemlist/BoughtQueryAction&event_submit_do_query=1&_input_charset=utf8";
-                    string postdata = "buyerNick=&canGetHistoryCount=false&dateBegin=0&dateEnd=0&historyCount=0&lastStartRow=&logisticsService=&needQueryHistory=false&onlineCount=0&options=0&orderStatus=&pageNum=3&pageSize=15&queryBizType=&queryForV2=false&queryOrder=desc&rateStatus=&refund=&sellerNick=&prePageNo=2";
-                    string html = method.PostUrl(url,postdata,cookie,"gb2312", "application/x-www-form-urlencoded", url);
-                    MatchCollection ahtmls = Regex.Matches(html, @"""batchGroup""([\s\S]*?)""subOrders""");
-                    for (int i = 0; i < ahtmls.Count; i++)
+                    string zhanghao = listView2.CheckedItems[a].SubItems[1].Text;
+                    string cookie = listView2.CheckedItems[a].SubItems[2].Text;
+                    for (int page = 1; page < 100; page++)
                     {
-                        string createDay = Regex.Match(ahtmls[i].Groups[1].Value, @"""createDay"":""([\s\S]*?)""").Groups[1].Value;
-                        string id = Regex.Match(ahtmls[i].Groups[1].Value, @"""id"":""([\s\S]*?)""").Groups[1].Value;
-                        string tradeStatus = Regex.Match(ahtmls[i].Groups[1].Value, @"""tradeStatus"":""([\s\S]*?)""").Groups[1].Value;
-                        string nick = Regex.Match(ahtmls[i].Groups[1].Value, @"""nick"":""([\s\S]*?)""").Groups[1].Value;
-                        
+                        string url = "https://buyertrade.taobao.com/trade/itemlist/asyncBought.htm?action=itemlist/BoughtQueryAction&event_submit_do_query=1&_input_charset=utf8";
+                        string postdata = "buyerNick=&canGetHistoryCount=false&dateBegin=0&dateEnd=0&historyCount=0&lastStartRow=&logisticsService=&needQueryHistory=false&onlineCount=0&options=0&orderStatus=&pageNum="+page+"&pageSize=100&queryBizType=&queryForV2=false&queryOrder=desc&rateStatus=&refund=&sellerNick=&prePageNo=2";
+                        string html = method.PostUrl(url, postdata, cookie, "gb2312", "application/x-www-form-urlencoded", url);
+                        MatchCollection ahtmls = Regex.Matches(html, @"""batchGroup""([\s\S]*?)""subOrders""");
 
-                        string tel = "";
-                        string jiexi = "";
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                        lv1.SubItems.Add(createDay);
-                        lv1.SubItems.Add(id);
-                        lv1.SubItems.Add(tradeStatus);
-                        lv1.SubItems.Add("账号");
-                        lv1.SubItems.Add(nick);
-                        lv1.SubItems.Add(tel);
-                        lv1.SubItems.Add(jiexi);
-
-                        while (this.zanting == false)
+                        if (ahtmls.Count == 0)
+                            break;
+                        for (int i = 0; i < ahtmls.Count; i++)
                         {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                        if (listView1.Items.Count > 2)
-                        {
-                            listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
-                        }
-                        Thread.Sleep(500);
+                            string createDay = Regex.Match(ahtmls[i].Groups[1].Value, @"""createDay"":""([\s\S]*?)""").Groups[1].Value;
+                            string id = Regex.Match(ahtmls[i].Groups[1].Value, @"""id"":""([\s\S]*?)""").Groups[1].Value;
+                            string tradeStatus = Regex.Match(ahtmls[i].Groups[1].Value, @"""tradeStatus"":""([\s\S]*?)""").Groups[1].Value;
+                            string shopName = Regex.Match(ahtmls[i].Groups[1].Value, @"""shopName"":""([\s\S]*?)""").Groups[1].Value;
 
+                          
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                            lv1.SubItems.Add(createDay);
+                            lv1.SubItems.Add(id);
+                            lv1.SubItems.Add(tradeStatus);
+                            lv1.SubItems.Add(zhanghao);
+                            lv1.SubItems.Add(shopName);
+                            lv1.SubItems.Add("");
+                            lv1.SubItems.Add("");
+
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+                            if (listView1.Items.Count > 2)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                            }
+                            if (status == false)
+                                return;
+                            Thread.Sleep(50);
+
+                        }
                     }
                 }
+              
             }
             catch (Exception ex)
             {
@@ -98,15 +202,61 @@ namespace 淘宝商家电话
 
         }
 
+
+
+        
+        Dictionary<string, string> dics = new Dictionary<string, string>();
         private void 淘宝商家电话_Load(object sender, EventArgs e)
         {
-           
+            #region 通用检测
+
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"wXzp4"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                return;
+            }
+
+            #endregion
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt"))
+            {
+
+                StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", method.EncodingType.GetTxtType(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < text.Length; i++)
+                {
+                    string[] values = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
+                    if (values.Length > 1)
+                    {
+                        
+                         ListViewItem lv2 = listView2.Items.Add(listView2.Items.Count.ToString()); //使用Listview展示数据
+                        lv2.SubItems.Add(values[0]);
+                        lv2.SubItems.Add(values[1]);
+                        lv2.Checked = true;
+                    }
+                }
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+            }
         }
 
       
 
         private void button3_Click(object sender, EventArgs e)
         {
+            status = true;
+            for (int i = 0; i < listView2.Items.Count; i++)
+            {
+                if (!dics.ContainsKey(listView2.Items[i].SubItems[1].Text))
+                {
+                    dics.Add(listView2.Items[i].SubItems[1].Text, listView2.Items[i].SubItems[2].Text);
+                }
+            }
+
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -126,6 +276,48 @@ namespace 淘宝商家电话
             {
                 zanting = false;
             }
+        }
+
+        private void 淘宝商家电话_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                method.DataTableToExcelTime(method.listViewToDataTable(this.listView1),  true);
+
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < listView2.Items.Count; i++)
+                {
+                    sb.Append(listView2.Items[i].SubItems[1].Text + "#" + listView2.Items[i].SubItems[2].Text);
+                }
+
+
+                System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", sb.ToString(), Encoding.UTF8);
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+           
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            status = true;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(jiexi);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            status = false;
         }
     }
 }

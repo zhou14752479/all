@@ -31,6 +31,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -46,6 +48,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
@@ -77,6 +81,22 @@
             this.webBrowser1.Size = new System.Drawing.Size(1135, 613);
             this.webBrowser1.TabIndex = 2;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(118, 33);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(190, 21);
+            this.textBox1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(35, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "当前账号：";
+            // 
             // 登录
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -87,6 +107,7 @@
             this.Text = "登录";
             this.Load += new System.EventHandler(this.登录_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -99,5 +120,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

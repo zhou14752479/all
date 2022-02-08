@@ -25,7 +25,7 @@ namespace 淘宝商家电话
 
 
         //声明传递
-        public delegate void SetCookie(string cookie);
+        public delegate void SetCookie(string zhanghao, string cookie);
         public SetCookie setcookie;
 
 
@@ -33,9 +33,15 @@ namespace 淘宝商家电话
         public static string cookie = "";
         private void button1_Click(object sender, EventArgs e)
         {
+
+            if(textBox1.Text=="")
+            {
+                MessageBox.Show("请填写账号");
+                return;
+            }
             cookie = method.GetCookies("https://item.manager.taobao.com/taobao/manager/render.htm?pagination.current=1&pagination.pageSize=20&tab=in_stock&table.sort.endDate_m=desc");
             //传递信号
-            setcookie(cookie);
+            setcookie(textBox1.Text.Trim(),cookie);
             this.Hide();
         }
 
