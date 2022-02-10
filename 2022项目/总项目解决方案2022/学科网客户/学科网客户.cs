@@ -35,7 +35,7 @@ namespace 学科网客户
                 MatchCollection htmls = Regex.Matches(html, @"addTime([\s\S]*?)syncUser");
                 //MatchCollection schoolSites = Regex.Matches(html, @"""schoolSite"":""([\s\S]*?)""");
 
-                MessageBox.Show(schoolNames.Count.ToString());
+                //MessageBox.Show(schoolNames.Count.ToString());
                 for (int i = 0; i < schoolNames.Count; i++)
                 {
                     string linkMan=  Regex.Match(htmls[i].Groups[1].Value, @"""schoolName"":""([\s\S]*?)""").Groups[1].Value;
@@ -112,6 +112,7 @@ namespace 学科网客户
 
             #endregion
             timer1.Start();
+            timer2.Start();
             timer1.Interval = Convert.ToInt32(textBox1.Text) * 1000 * 60;
             if (thread == null || !thread.IsAlive)
             {
@@ -123,12 +124,7 @@ namespace 学科网客户
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            run();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -139,6 +135,15 @@ namespace 学科网客户
         private void button7_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            label3.Text = "当前时间："+DateTime.Now.ToString("HH:mm:ss");
+            if (DateTime.Now.ToString("HH:mm:ss")==dateTimePicker1.Value.ToString("HH:mm:ss"))
+            {
+                run();
+            }
         }
     }
 }
