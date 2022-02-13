@@ -95,7 +95,7 @@ namespace 亚马逊抓取
             }
             if (radioButton2.Checked == true)
             {
-                if(DateTime.Now==dateTimePicker1.Value)
+                if(DateTime.Now.ToString("HH:mm:ss") == dateTimePicker1.Value.ToString("HH:mm:ss"))
                 {
                     if (thread == null || !thread.IsAlive)
                     {
@@ -123,7 +123,7 @@ namespace 亚马逊抓取
             }
             if (radioButton2.Checked == true)
             {
-                if (DateTime.Now == dateTimePicker1.Value)
+                if (DateTime.Now.ToString("HH:mm:ss") == dateTimePicker1.Value.ToString("HH:mm:ss"))
                 {
                     if (thread == null || !thread.IsAlive)
                     {
@@ -139,6 +139,17 @@ namespace 亚马逊抓取
         private void button2_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            label3.Text = "当前时间：" + DateTime.Now.ToString("HH:mm:ss");
+            if (DateTime.Now.ToString("HH:mm:ss") == dateTimePicker1.Value.ToString("HH:mm:ss"))
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
     }
 }

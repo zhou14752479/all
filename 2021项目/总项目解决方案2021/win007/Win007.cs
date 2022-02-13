@@ -8,6 +8,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -25,6 +26,9 @@ namespace win007
         {
             InitializeComponent();
         }
+
+      
+
 
         #region GET请求
         /// <summary>
@@ -283,6 +287,7 @@ namespace win007
             }
 
             #endregion
+            dateTimePicker2.Value = DateTime.Now;
         }
 
 
@@ -476,7 +481,7 @@ namespace win007
 
 
                     }
-                    MessageBox.Show("完成");
+                    
                 }
                 catch (Exception ex)
                 {
@@ -485,7 +490,7 @@ namespace win007
                 }
             }
 
-
+            MessageBox.Show("完成");
         }
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
@@ -521,8 +526,8 @@ namespace win007
 
         private void button2_Click(object sender, EventArgs e)
         {
-            startdate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-            enddate = DateTime.Now.ToString("yyyy-MM-dd");
+            startdate = dateTimePicker2.Value.AddDays(-1).ToString("yyyy-MM-dd");
+            enddate = dateTimePicker2.Value.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -534,16 +539,16 @@ namespace win007
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
-            //enddate = DateTime.Now.ToString("yyyy-MM-dd");
-            //status = true;
-            //if (thread == null || !thread.IsAlive)
-            //{
-            //    thread = new Thread(getdata);
-            //    thread.Start();
-            //    Control.CheckForIllegalCrossThreadCalls = false;
-            //}
-            MessageBox.Show("全年数据已抓取");
+            startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
+            enddate = DateTime.Now.ToString("yyyy-MM-dd");
+            status = true;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(getdata);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+           // MessageBox.Show("全年数据已抓取");
         }
 
         //private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -598,6 +603,20 @@ namespace win007
         private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             textBox4.Text = "";
+        }
+
+        private void Win007_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

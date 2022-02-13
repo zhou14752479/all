@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "屏幕截图合成", "屏�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDLL", "..\..\2020项目\总项目解决方案\myDLL\myDLL.csproj", "{BA236BE9-F18C-40F4-8015-1D3AE2E89448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "学科网客户", "学科网客户\学科网客户.csproj", "{9E58EBC0-EB29-4407-9027-18C052D9ADF4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "短信群发", "短信群发\短信群发.csproj", "{50AD64E6-8690-4BA5-B263-581E2219A8B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202202", "主程序202202\主程序202202.csproj", "{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}"
@@ -18,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝商家电话", "淘宝商家电话\淘宝商家电话.csproj", "{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "..\..\2020项目\总项目解决方案\helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "河南政务注册", "..\..\2021项目\总项目解决方案2021\项目集合\河南政务注册\河南政务注册.csproj", "{314A194F-6106-4FF4-A1EB-B7002334C8DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA236BE9-F18C-40F4-8015-1D3AE2E89448}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E58EBC0-EB29-4407-9027-18C052D9ADF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E58EBC0-EB29-4407-9027-18C052D9ADF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E58EBC0-EB29-4407-9027-18C052D9ADF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E58EBC0-EB29-4407-9027-18C052D9ADF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50AD64E6-8690-4BA5-B263-581E2219A8B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50AD64E6-8690-4BA5-B263-581E2219A8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50AD64E6-8690-4BA5-B263-581E2219A8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +53,10 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

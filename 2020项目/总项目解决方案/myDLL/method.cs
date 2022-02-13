@@ -34,8 +34,17 @@ namespace myDLL
 
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static extern int InternetSetCookieEx(string lpszURL, string lpszCookieName, string lpszCookieData, int dwFlags, IntPtr dwReserved);
+        #region IE浏览器删除cookie
+        public void clearIeCookie(WebBrowser webBrowser1)
+        {
+            //发送验证码后 清理cookie
 
+            HtmlDocument document = webBrowser1.Document;
+            document.ExecCommand("ClearAuthenticationCache", false, null);
+            webBrowser1.Refresh();
+        }
 
+        #endregion
         #region GET请求
         /// <summary>
         /// GET请求

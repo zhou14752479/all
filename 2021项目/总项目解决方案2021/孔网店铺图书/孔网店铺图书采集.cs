@@ -103,7 +103,7 @@ namespace 孔网店铺图书
 
 
 
-            for (int page = 1; page < 9999; page++)
+            for (int page = 1; page < 99999; page++)
             {
                 try
                 {
@@ -161,7 +161,25 @@ namespace 孔网店铺图书
                             string shoujia = Regex.Match(ahtml, @"""price"":""([\s\S]*?)""").Groups[1].Value.Trim();
                             string dingjia = Regex.Match(ahtml, @"定价""([\s\S]*?)c"":""([\s\S]*?)""").Groups[2].Value.Trim().Replace("元", "");
                             string fee = Regex.Replace(fees[j].Groups[1].Value.Trim(), "<[^>]+>", "");
-                            double dingjiazhekou = (Convert.ToDouble(shoujia) + Convert.ToDouble(fee)) / Convert.ToDouble(dingjia);
+
+                            //textBox1.Text = "售价："+shoujia + "运费：" + fee + "定价：" + dingjia;
+
+                            if(dingjia=="")
+                            {
+                                dingjia = shoujia;
+                            }
+                            double dingjiazhekou = 0;
+                            try
+                            {
+                                dingjiazhekou = (Convert.ToDouble(shoujia) + Convert.ToDouble(fee)) / Convert.ToDouble(dingjia);
+                            }
+                            catch (Exception)
+                            {
+
+                                
+                            }
+                         
+
 
 
                             string kucun = Regex.Match(ahtml, @"""stock"":""([\s\S]*?)""").Groups[1].Value.Trim();
@@ -196,7 +214,7 @@ namespace 孔网店铺图书
                         }
                         catch (Exception ex)
                         {
-
+                           // MessageBox.Show(ex.ToString());
                            continue;
                         }
 
@@ -243,7 +261,7 @@ namespace 孔网店铺图书
                 MessageBox.Show("请输入店铺网址");
                 return;
             }
-
+            status = true;
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);

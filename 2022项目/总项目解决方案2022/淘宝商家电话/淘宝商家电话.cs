@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -21,7 +22,43 @@ namespace 淘宝商家电话
             InitializeComponent();
         }
 
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
 
         public string tb_gettel(string orderid,string cookie,string type)
         {
@@ -81,12 +118,18 @@ namespace 淘宝商家电话
                 for (int i = 0; i < listView1.Items.Count; i++)
                 {
                     listView1.Items[i].SubItems[7].Text = "正在解析...";
+                  
+                    if(i>2)
+                    {
+                        this.listView1.Items[i].EnsureVisible();
+                    }
+                   
 
                     string oederid = listView1.Items[i].SubItems[2].Text;
                     string zhanghao = listView1.Items[i].SubItems[4].Text;
                     string shopname = listView1.Items[i].SubItems[5].Text;
                     string type = listView1.Items[i].SubItems[3].Text;
-
+                    textBox1.Text += "正在解析："+ oederid+"\r\n";
                     string tel = "";
                     if (shopname.Contains("旗舰店") || shopname.Contains("专营店") || shopname.Contains("专卖店"))
                     {
@@ -105,15 +148,16 @@ namespace 淘宝商家电话
                     {
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
-                    if (listView1.Items.Count > 2)
-                    {
-                        listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
-                    }
+                    //if (listView1.Items.Count > 2)
+                    //{
+                    //    listView1.EnsureVisible(listView1.Items.Count - 1);  //滚动到指定位置
+                    //}
                     if (status == false)
                         return;
                     Thread.Sleep(1000);
                 }
 
+                textBox1.Text = "解析完成！";
             }
             catch (Exception ex)
             {
@@ -149,16 +193,32 @@ namespace 淘宝商家电话
             {
                 for (int a = 0; a < listView2.CheckedItems.Count; a++)
                 {
+                    bool breakOut = true;
+                    bool jilu = false;
+                    string noworderid = "";
                     string zhanghao = listView2.CheckedItems[a].SubItems[1].Text;
                     string cookie = listView2.CheckedItems[a].SubItems[2].Text;
                     for (int page = 1; page < 100; page++)
                     {
+                      
+                       
+
+                        if(breakOut==false)
+                        {
+                            textBox1.Text += zhanghao+"此账号已采集至上次结束位置，采集结束" + "\r\n";
+                            break;
+                        }
                         string url = "https://buyertrade.taobao.com/trade/itemlist/asyncBought.htm?action=itemlist/BoughtQueryAction&event_submit_do_query=1&_input_charset=utf8";
                         string postdata = "buyerNick=&canGetHistoryCount=false&dateBegin=0&dateEnd=0&historyCount=0&lastStartRow=&logisticsService=&needQueryHistory=false&onlineCount=0&options=0&orderStatus=&pageNum="+page+"&pageSize=100&queryBizType=&queryForV2=false&queryOrder=desc&rateStatus=&refund=&sellerNick=&prePageNo=2";
                         string html = method.PostUrl(url, postdata, cookie, "gb2312", "application/x-www-form-urlencoded", url);
                         MatchCollection ahtmls = Regex.Matches(html, @"""batchGroup""([\s\S]*?)""subOrders""");
 
-                        if (ahtmls.Count == 0)
+                        if (page == 1&& ahtmls.Count == 0)
+                        {
+                            textBox1.Text += zhanghao+"此账号已掉线，请删除后重新添加cookie" + "\r\n";
+                            break;
+                        }
+                            if (ahtmls.Count == 0)
                             break;
                         for (int i = 0; i < ahtmls.Count; i++)
                         {
@@ -167,7 +227,29 @@ namespace 淘宝商家电话
                             string tradeStatus = Regex.Match(ahtmls[i].Groups[1].Value, @"""tradeStatus"":""([\s\S]*?)""").Groups[1].Value;
                             string shopName = Regex.Match(ahtmls[i].Groups[1].Value, @"""shopName"":""([\s\S]*?)""").Groups[1].Value;
 
-                          
+                            textBox1.Text += "正在采集：" + id + "\r\n";
+
+
+                            //记录本次开始的订单号
+                            if(jilu==false)
+                            {
+                                noworderid = id;
+                                jilu = true;
+                            }
+
+                            if (ExistINIFile())
+                            {
+                                string lastorderid = IniReadValue("values", zhanghao+"orderid");
+                                if (lastorderid == id)
+                                {
+                                    breakOut = false;
+                                    break;
+
+                                }
+                                   
+                            }
+
+
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
                             lv1.SubItems.Add(createDay);
                             lv1.SubItems.Add(id);
@@ -191,8 +273,10 @@ namespace 淘宝商家电话
 
                         }
                     }
+
+                    IniWriteValue("values", zhanghao+"orderid", noworderid);
                 }
-              
+                textBox1.Text += "采集完成";
             }
             catch (Exception ex)
             {
@@ -226,7 +310,7 @@ namespace 淘宝商家电话
                 StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", method.EncodingType.GetTxtType(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt"));
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
-                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string[] text = texts.Split(new string[] { "----" }, StringSplitOptions.None);
                 for (int i = 0; i < text.Length; i++)
                 {
                     string[] values = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
@@ -289,7 +373,7 @@ namespace 淘宝商家电话
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < listView2.Items.Count; i++)
                 {
-                    sb.Append(listView2.Items[i].SubItems[1].Text + "#" + listView2.Items[i].SubItems[2].Text);
+                    sb.Append(listView2.Items[i].SubItems[1].Text + "#" + listView2.Items[i].SubItems[2].Text+"----");
                 }
 
 
@@ -318,6 +402,43 @@ namespace 淘宝商家电话
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             status = false;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            this.textBox1.SelectionStart = this.textBox1.Text.Length;
+            this.textBox1.SelectionLength = 0;
+            this.textBox1.ScrollToCaret();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要删除选中吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                for (int i = 0; i < listView2.Items.Count; i++)
+                {
+                    if (listView2.Items[i].Checked == true)
+                    {
+                        listView2.Items.RemoveAt(i);
+                    }
+                }
+            }
+            else
+            {
+               
+            }
+           
         }
     }
 }
