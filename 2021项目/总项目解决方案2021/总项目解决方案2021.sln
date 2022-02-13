@@ -89,6 +89,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "防电信诈骗宣传", "�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202103", "主程序202103\主程序202103.csproj", "{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "河南政务注册", "项目集合\河南政务注册\河南政务注册.csproj", "{314A194F-6106-4FF4-A1EB-B7002334C8DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -441,6 +443,14 @@ Global
 		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Release|x86.ActiveCfg = Release|Any CPU
 		{E743EDDC-8DDE-4BD2-A3A3-B5E7E64D0CED}.Release|x86.Build.0 = Release|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Debug|x86.Build.0 = Debug|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Release|x86.ActiveCfg = Release|Any CPU
+		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
