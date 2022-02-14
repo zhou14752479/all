@@ -102,10 +102,10 @@ namespace CEF主程序
 
         private void 药师帮_Load(object sender, EventArgs e)
         {
-            browser = new ChromiumWebBrowser("https://esearch.ipd.gov.hk/nis-pos-view/#/");
+            //browser = new ChromiumWebBrowser("https://esearch.ipd.gov.hk/nis-pos-view/#/");
             //browser = new ChromiumWebBrowser("https://passport.vip.com/login?src=https%3A%2F%2Fdetail.vip.com%2Fdetail-1711548730-6919483919008310362.html");
             //browser = new ChromiumWebBrowser("https://ascendex.com/zh-cn/basic/cashtrade-spottrading/usdt/cns");
-            //browser = new ChromiumWebBrowser("https://mygiftcard.jd.com/giftcard/myGiftCardInit.action");
+            browser = new ChromiumWebBrowser("https://mygiftcard.jd.com/giftcard/myGiftCardInit.action");
             Control.CheckForIllegalCrossThreadCalls = false;
       splitContainer1.Panel2.Controls.Add(browser);
 
@@ -191,22 +191,9 @@ namespace CEF主程序
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // dianji();
+             //dianji();
 
-            //if(!cookies.Contains("thor"))
-            //{
-
-            //    MessageBox.Show("未登录");
-            //    return;
-            //}
-            //else
-            //{
-            //    string thor = Regex.Match(cookies,@"thor=([\s\S]*?);").Groups[1].Value;
-            //    thor = "thor="+thor+";";
-            //    京东E卡查询.cookie = thor;
-            //}
-
-            if (!cookies.Contains("XSRF-TOKEN"))
+            if (!cookies.Contains("thor"))
             {
 
                 MessageBox.Show("未登录");
@@ -214,8 +201,22 @@ namespace CEF主程序
             }
             else
             {
-                MessageBox.Show("获取COOKIE成功");
+                string thor = Regex.Match(cookies, @"thor=([\s\S]*?);").Groups[1].Value;
+                thor = "thor=" + thor + ";";
+                京东E卡查询.cookie = thor;
+               
             }
+
+            //if (!cookies.Contains("XSRF-TOKEN"))
+            //{
+
+            //    MessageBox.Show("未登录");
+            //    return;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("获取COOKIE成功");
+            //}
 
 
             //this.Hide();

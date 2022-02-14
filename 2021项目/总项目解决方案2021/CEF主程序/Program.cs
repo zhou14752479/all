@@ -16,7 +16,7 @@ namespace CEF主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 药师帮());
+            Application.Run(new 京东E卡查询());
         }
     }
 }

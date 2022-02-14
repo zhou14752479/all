@@ -68,7 +68,7 @@ namespace CEF主程序
                     if (ka.Trim() == "")
                         continue;
                     string url = "https://mygiftcard.jd.com/giftcard/queryBindGiftCardCom/pc";
-                    string postdata = "giftCardPwd="+ka+"&verifyCode=NS_4VQABAAABfTsTUGUAgLZkx2eRUXD_afnrmQ1qOpmINvG0qKIYlZe5eEIAKJsva84jV6T-jRQSQbuvQi1LfJXwCnW8qpS1-4FzuYB_bnNcInbxln12ZleonyKAzeF2lOC5a50GT_5aMPw7ZSw7Z-FR-fmaQAMBIPOmIuRDAGQ1VbMgPlALx8tC3ImuURqo&sessionId=TT5acwABAAAAAAAAAAAAMJ1aBHQEcek197nOB9boOZ2IbaaFUm9B1PVOFZ8fAoVP-2xhyYdSOm88i7GDup15sgAAAAA&doBindFlag=0&queryGiftCardType=0";
+                    string postdata = "giftCardPwd="+ka+ "&&verifyCode=JiQZVgABAAABfvh1diIAgEHbhr8P2bXCIJG2aHckoG9ysMnJFRFlUDg3RfeciodmBSRsi5AjBReGnGqlraER5_W2K-qePlJmrrYV46dE6uNPg-DtxaWKQv7qihxnsM0Xq_-LmzQjdQdwozXvsajdzr4G_X_gY4JnwmnSobM-LDwqVRtDIKBlZWP__vhIH4pe&sessionId=dssS0wABAAAEALh2NL4AMMfJmT87iLfP-pRJf6XDkU45snY1pcIhZlgsUQ7L2ccm3qQCnT-OlT3Ff3FhaYDmbgAAAAA&doBindFlag=0&queryGiftCardType=0";
                     string html = method.PostUrlDefault(url,postdata,cookie);
                     string msg= Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
                     string amountTotal = Regex.Match(html, @"""amountTotal"":([\s\S]*?),").Groups[1].Value;
