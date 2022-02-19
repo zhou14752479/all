@@ -1,0 +1,271 @@
+#region 获取数据库美团城市名称返回集合
+        public ArrayList getCityNames()
+        {
+            ArrayList list = new ArrayList();
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
+                string str = "SELECT name from meituan_province_city ";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    list.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                MessageBox.Show(ee.Message.ToString());
+            }
+            return list;
+
+        }
+        #endregion
+
+
+
+
+
+
+#region  获取数据库中城市名称对应的拼音
+
+        public string Getpinyin(string city)
+        {
+
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select pinyin from meituan_province_city where name='" + city + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                reader.Read();
+
+                string citypinyin = reader["pinyin"].ToString().Trim();
+                mycon.Close();
+                reader.Close();
+                return citypinyin;
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
+
+#region 获取城市名对应的区域ID
+        public ArrayList getAreaId(string city)
+        {
+            //visualComboBox1.SelectedItem.ToString()
+            ArrayList areas = new ArrayList();
+            string cityPinYin = Getpinyin(city);
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=citys;Username=root;Password=zhoukaige00.@*.";
+                string str = "SELECT meituan_area_id from meituan_area Where meituan_area_citypinyin= '" + cityPinYin + "' ";
+                MySqlDataAdapter da = new MySqlDataAdapter(str, constr);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    areas.Add(dr[0].ToString().Trim());
+                }
+            }
+            catch (MySqlException ee)
+            {
+                ee.Message.ToString();
+            }
+            return areas;
+        }
+
+        #endregion
+
+
+#region 绑定数据
+  public void getdata()
+        {
+            string conn = "Host =139.159.218.174;Database=data;Username=root;Password=123456";
+            MySqlDataAdapter sda = new MySqlDataAdapter("Select aname,bname From datas Where length(aname)=20", conn);
+            DataSet Ds = new DataSet();
+            sda.Fill(Ds, "T_Class");
+
+            this.dataGridView1.DataSource = Ds.Tables["T_Class"];
+        }
+
+  #endregion
+
+#region  登陆函数
+
+        public void myLogin()
+        {
+
+
+            try
+            {
+                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select * from vip where username='" + skinTextBox1.Text.Trim() + "'  ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                if (reader.Read())
+                {
+                    string username = reader["username"].ToString().Trim();
+                    string password = reader["password"].ToString().Trim();
+                    string mac = reader["mac"].ToString().Trim();
+
+                    //判断MAC地址
+
+                    if (GetMacAddress().ToString().Trim() != mac)
+                    {
+                        MessageBox.Show("您使用的此台电脑未开通，如需开通此台电脑请联系客服购买！VX：17606117606");
+                        return;
+                    }
+
+                    //判断密码
+                    if (skinTextBox2.Text.Trim() == password)
+
+                    {
+
+                        skinButton1.Text = "正在连接服务器......";
+
+                        Application.DoEvents();
+                        System.Threading.Thread.Sleep(200);
+
+                        skinButton1.Text = "正在验证用户名和密码......";
+                        Application.DoEvents();
+                        System.Threading.Thread.Sleep(200);
+
+
+
+                        //记住账号密码
+                        if (checkBox1.Checked == true)
+                        {
+
+                            FileStream fs1 = new FileStream(path + "config.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                            StreamWriter sw = new StreamWriter(fs1);
+                            sw.WriteLine(skinTextBox1.Text);
+                            sw.WriteLine(skinTextBox2.Text);
+                            sw.Close();
+                            fs1.Close();
+
+                        }
+                        Form1.username = skinTextBox1.Text;
+                        Form1 fm1 = new Form1();
+                        fm1.Show();
+                        this.Hide();
+
+                    }
+
+                    else
+
+                    {
+
+                        MessageBox.Show("您的密码错误！");
+                        return;
+                    }
+
+
+                }
+
+
+
+                else
+                {
+                    MessageBox.Show("未查询到您的账户信息！请联系客服开通账号！");
+                    return;
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+
+        #endregion
+
+#region  注册函数
+
+        public void myLogin()
+        {
+
+ try
+            {
+
+
+                string constr = "Host =47.99.68.92;Database=vip_database;Username=root;Password=zhoukaige00.@*.";
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                string username = skinTextBox3.Text.Trim();
+                string password = skinTextBox4.Text.Trim();
+
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO vip (username,password,register_t,ip,mac)VALUES('" + username + " ', '" + password + " ', '" + time + " ', '" + ip + " ', '" + mac + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+                    MessageBox.Show("注册成功！");
+
+                    mycon.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("连接失败！");
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+ #endregion
+
+
+
+
+
+
+
+
+
+
+
+string str = "select filedata from file where uid='" + id + "' ";
+            MySqlConnection myconn = new MySqlConnection(constr);
+            MySqlDataAdapter sda = new MySqlDataAdapter(str, constr);
+            DataSet myds = new DataSet();
+            myconn.Open();
+            sda.Fill(myds);
+            myconn.Close();
+
+            Byte[] Files = (Byte[])myds.Tables[0].Rows[0]["filedata"];
+            BinaryWriter bw = new BinaryWriter(File.Open(filename, FileMode.OpenOrCreate));
+            bw.Write(Files);
+            bw.Close();

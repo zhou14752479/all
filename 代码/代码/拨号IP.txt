@@ -1,0 +1,81 @@
+   public static class Method
+        {
+            /// <summary>
+            /// 断开连接
+            /// </summary>
+            public static void Unlink()
+            {
+                ReadOnlyCollection<RasConnection> conList = RasConnection.GetActiveConnections();
+                foreach (RasConnection con in conList)
+                {
+                    con.HangUp();
+                }
+            }
+
+            /// <summary>
+            /// 宽带连接
+            /// </summary>
+            /// <returns></returns>
+            public static bool boolLink()
+            {
+                try
+                {
+                    RasDialer dialer = new RasDialer();
+                    dialer.EntryName = "宽带连接";
+                    dialer.PhoneNumber = " ";
+                    dialer.AllowUseStoredCredentials = true;
+                    dialer.PhoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
+                    dialer.Timeout = 2000;
+                    dialer.Dial();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return false;
+                }
+                return true;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//connectionName “宽带连接”
+class ADSLHelper
+        {
+            public static void Connect(string connectionName, string user, string pass)
+            {
+                string arg = string.Format("rasdial \"{0}\" {1} {2}", connectionName, user, pass);
+                InvokeCmd(arg);
+            }
+            public static void Disconnect(string connectionName)
+            {
+                string arg = string.Format("rasdial \"{0}\" /disconnect", connectionName);
+                InvokeCmd(arg);
+            }
+            public  static string InvokeCmd(string cmdArgs)
+            {
+                Process p = new Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.RedirectStandardError = true;
+                p.StartInfo.CreateNoWindow = true;
+                p.Start();
+                p.StandardInput.WriteLine(cmdArgs);
+                p.StandardInput.WriteLine("exit");
+                return p.StandardOutput.ReadToEnd();
+            }
+
+        }

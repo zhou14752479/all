@@ -1,0 +1,121 @@
+C#不通过webbrowser  直接调用JS文件代码
+private void button1_Click(object sender, EventArgs e)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "test.js";
+            string str2 = File.ReadAllText(path);
+
+            string fun = string.Format(@"sayHello('{0}')" ,this.textBox1.Text.Trim());
+// string fun = string.Format(@"encryptByDES('{0}','{1}')", "666888", "1234567890");
+            string result = ExecuteScript(fun, str2);
+
+            MessageBox.Show(result);
+        }
+
+        /// <summary>
+        /// 执行JS
+        /// </summary>
+        /// <param name="sExpression">参数体</param>
+        /// <param name="sCode">JavaScript代码的字符串</param>
+        /// <returns></returns>
+        private string ExecuteScript(string sExpression, string sCode)
+        {
+            MSScriptControl.ScriptControl scriptControl = new MSScriptControl.ScriptControl();
+            scriptControl.UseSafeSubset = true;
+            scriptControl.Language = "JScript";
+            scriptControl.AddCode(sCode);
+            try
+            {
+                string str = scriptControl.Eval(sExpression).ToString();
+                return str;
+            }
+            catch (Exception ex)
+            {
+                string str = ex.Message;
+            }
+            return null;
+        }
+
+
+//添加引用COM-MSScriptControl.ScriptControl
+
+
+
+
+
+
+
+
+
+//谷歌浏览器
+ //无返回值直接调用三者任选其一
+            //browser.GetBrowser().MainFrame.EvaluateScriptAsync("test_val=" + new Random().Next().ToString("F")); //设置页面上js的test_val变量为随机数
+            //browser.GetBrowser().MainFrame.EvaluateScriptAsync("testArg('123','我是NET' )");//运行页面上js的testArg带参数的方法
+            // browser.GetBrowser().MainFrame.EvaluateScriptAsync("alert(document.cookie)");//运行页面上js的test方法或者自己输入JS代码执行
+
+
+            //有返回值先和上面一样调用一次，然后在读取他的返回值，或者不执行，可以读取页面上自身的js函数返回值
+            browser.GetBrowser().MainFrame.EvaluateScriptAsync("function _func(){return document.cookie}");//运行页面上js的test方法
+            Task<CefSharp.JavascriptResponse> t = browser.EvaluateScriptAsync("_func()");   
+            t.Wait();// 等待js 方法执行完后，获取返回值 t.Result 是 CefSharp.JavascriptResponse 对象t.Result.Result 是一个 object 对象，来自js的 callTest2() 方法的返回值
+            if (t.Result.Result != null)
+            {
+                MessageBox.Show(t.Result.Result.ToString());
+            }
+
+
+//webbrowser模拟点击
+
+ //var btns = webBrowser1.Document.GetElementsByTagName("input");
+            //foreach (HtmlElement btn in btns)
+            //{
+            //    if (btn.GetAttribute("id") == "detailBtn")
+            //    {
+            //        btn.InvokeMember("click");
+            //    }
+            //}
+
+
+//iE浏览器
+在webbrowser浏览器里执行js代码并获取返回值，可以用于读取cookie
+  HtmlElement element2 = webBrowser1.Document.CreateElement("script");
+            element2.SetAttribute("type", "text/javascript");
+            element2.SetAttribute("text", "function _func(){return document.cookie}");   //这里写JS代码
+            HtmlElement head = webBrowser1.Document.Body.AppendChild(element2);
+
+            string str = webBrowser1.Document.InvokeScript("_func").ToString();
+            MessageBox.Show(str);
+
+
+
+含参数的getaes JS函数输入参数430......118 获取返回值
+   webBrowser1.Document.InvokeScript("getaes", new object[] { "430111198706162118" });
+不含参数，无返回值的JS执行
+ webBrowser1.Document.InvokeScript("ceshi");
+不含参数，有返回值的JS执行
+ string value=  webBrowser1.Document.InvokeScript("ceshi").ToString();
+
+获取执行后的网页代码
+            string html = webBrowser1.Document.Body.OuterHtml;
+            textBox1.Text = html;
+
+
+含参数的getaes JS函数输入参数430......118 获取返回值
+textBox1.Text =webBrowser1.Document.InvokeScript("getaes", new object[] { "430111198706162118" }).ToString();
+
+
+
+
+
+
+
+
+JS代码转C#代码，用于JS加密的函数，省的转换C#代码，和上面的不一样不存在webbrowser浏览器
+
+            //Type obj = Type.GetTypeFromProgID("ScriptControl");
+            //if (obj == null) return; //单身？ 找不到对象啊，
+            //object ScriptControl = Activator.CreateInstance(obj);
+            //obj.InvokeMember("Language", BindingFlags.SetProperty, null, ScriptControl, new object[] { "JScript" });
+            //string js = "function time(){return new Date().getTime()}";
+            //obj.InvokeMember("AddCode", BindingFlags.InvokeMethod, null, ScriptControl, new object[] { js });
+            //string str = obj.InvokeMember("Eval", BindingFlags.InvokeMethod, null, ScriptControl, new object[] { "time()" }).ToString();
+            //MessageBox.Show(str);

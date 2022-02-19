@@ -1,0 +1,120 @@
+StringBuilder sb = new StringBuilder();
+            sb.AppendLine("function tempFunction() {");
+            //sb.AppendLine(" return document.body.innerHTML; "); 
+            sb.AppendLine(" return document.getElementsByTagName('body')[0].outerHTML; ");
+            sb.AppendLine("}");
+            sb.AppendLine("tempFunction();");
+            var task01 = browser.GetBrowser().GetFrame(browser.GetBrowser().GetFrameNames()[0]).EvaluateScriptAsync(sb.ToString());
+            task01.ContinueWith(t =>
+            {
+                if (!t.IsFaulted)
+                {
+                    var response = t.Result;
+                    if (response.Success == true)
+                    {
+                        if (response.Result != null)
+                        {
+                            string resultStr = response.Result.ToString();
+                            textBox1.Text = resultStr;
+                        }
+                    }
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+#region cefsharp获取cookie
+
+//browser.FrameLoadEnd += Browser_FrameLoadEnd;调用加载事件
+        string cookies = "";
+        private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
+        {
+            cookies = "";  //把之前加载的重复的cookie清空
+            CookieVisitor visitor = new CookieVisitor();
+            visitor.SendCookie += visitor_SendCookie;
+            ICookieManager cookieManager = browser.GetCookieManager();
+            cookieManager.VisitAllCookies(visitor);
+        }
+        
+        private void visitor_SendCookie(CefSharp.Cookie obj)
+        {
+            //obj.Domain.TrimStart('.') + "^" +
+             cookies += obj.Name + "=" + obj.Value + ";";
+
+            toolStripTextBox1.Text = cookies;
+        }
+
+
+        public class CookieVisitor : CefSharp.ICookieVisitor
+        {
+            public event Action<CefSharp.Cookie> SendCookie;
+            public void Dispose()
+            {
+
+            }
+
+            public bool Visit(Cookie cookie, int count, int total, ref bool deleteCookie)
+            {
+                deleteCookie = false;
+                if (SendCookie != null)
+                {
+                    SendCookie(cookie);
+                }
+
+                return true;
+
+            }
+
+        }
+
+        #endregion
+
+
+
+
+#region   cefsharp在自己窗口打开链接
+        //调用 browser.LifeSpanHandler = new OpenPageSelf();
+        /// <summary>
+        /// 在自己窗口打开链接
+        /// </summary>
+        internal class OpenPageSelf : ILifeSpanHandler
+        {
+            public bool DoClose(IWebBrowser browserControl, IBrowser browser)
+            {
+                return false;
+            }
+
+            public void OnAfterCreated(IWebBrowser browserControl, IBrowser browser)
+            {
+
+            }
+
+            public void OnBeforeClose(IWebBrowser browserControl, IBrowser browser)
+            {
+
+            }
+
+            public bool OnBeforePopup(IWebBrowser browserControl, IBrowser browser, IFrame frame, string targetUrl,
+    string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures,
+    IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
+            {
+                newBrowser = null;
+                var chromiumWebBrowser = (ChromiumWebBrowser)browserControl;
+                chromiumWebBrowser.Load(targetUrl);
+                return true; //Return true to cancel the popup creation copyright by codebye.com.
+            }
+        }
+
+
+
+        #endregion

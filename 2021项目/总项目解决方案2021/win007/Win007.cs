@@ -113,7 +113,9 @@ namespace win007
                 dataGridView1.Columns["data7"].HeaderText = "升降平";
                 dataGridView1.Columns["data8"].HeaderText = "数据8";
                 dataGridView1.Columns["data9"].HeaderText = "数据9";
-
+                dataGridView1.Columns["zhu_cj"].HeaderText = "主队成交比例";
+                dataGridView1.Columns["he_cj"].HeaderText = "和成交比例";
+                dataGridView1.Columns["ke_cj"].HeaderText = "客队成交比例";
 
 
 
@@ -137,6 +139,9 @@ namespace win007
                 this.dataGridView1.Columns[14].Width = 0;
                 this.dataGridView1.Columns[15].Width = 0;
 
+                this.dataGridView1.Columns[16].Width = 30;
+                this.dataGridView1.Columns[17].Width =30;
+                this.dataGridView1.Columns[18].Width = 30;
 
                 //计算
 
@@ -339,6 +344,21 @@ namespace win007
                         string datajs = method.GetUrl(datajsurl, "gb2312");
                         string datajsjs = Regex.Match(datajs, @"game=([\s\S]*?);").Groups[1].Value;
 
+
+                        //获取成交比例
+                        string cjurl = "http://vip.win007.com/betfa/single.aspx?id="+id+"&l=0";
+                        string datacj = method.GetUrl(cjurl, "utf-8");
+                        MatchCollection cjs = Regex.Matches(datacj, @"<td class=""rb"">([\s\S]*?)</td>");
+                       // MessageBox.Show(cjs.Count.ToString());
+                        string zhu_cj = "无";
+                        string he_cj = "无";
+                        string ke_cj = "无";
+                        if (cjs.Count > 15)
+                        {
+                            zhu_cj = cjs[3].Groups[1].Value;
+                            he_cj = cjs[9].Groups[1].Value;
+                            ke_cj = cjs[15].Groups[1].Value;
+                        }
                         string matchname_cn = Regex.Match(datajs, @"matchname_cn=""([\s\S]*?)""").Groups[1].Value;
                         string hometeam_cn = Regex.Match(datajs, @"hometeam_cn=""([\s\S]*?)""").Groups[1].Value;
                         string guestteam_cn = Regex.Match(datajs, @"guestteam_cn=""([\s\S]*?)""").Groups[1].Value;
@@ -461,7 +481,7 @@ namespace win007
                                     //    lv1.SubItems.Add(data8);
                                     //lv1.SubItems.Add(data9);
 
-                                    fc.insertdata(matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9);
+                                    fc.insertdata(matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj);
 
 
 

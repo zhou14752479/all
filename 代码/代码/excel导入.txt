@@ -1,0 +1,56 @@
+using System;
+using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+
+namespace UI
+{
+public partial class FrmBillDetail : Form
+{
+public FrmBillDetail()
+{
+InitializeComponent();
+}
+
+private void BtnImportData_Click(object sender, EventArgs e)
+{
+
+if (OfdBillDetail.ShowDialog() == DialogResult.OK)
+{
+// 创建Excel应用程序对象
+Excel.Application excelApp = new Excel.Application
+{
+// 禁用屏幕更新，提高速度
+ScreenUpdating = false
+};
+// 打开工作簿对象
+Excel.Workbook wk = excelApp.Workbooks.Open(OfdBillDetail.FileName);
+// Excel应用程序可见
+excelApp.Visible = true;
+// 设置工作表对象
+Excel.Worksheet ws = wk.Sheets[1];
+// 获取已用行数
+int usedRows = ws.UsedRange.Rows.Count;
+// 获取已用列数
+int usedColumns = ws.UsedRange.Columns.Count;
+// 创建空列，注意C#索引是0开始，Excel是1开始
+DgvBillDetail.ColumnCount = usedColumns;
+// 创建空行，注意C#索引是0开始，Excel是1开始
+DgvBillDetail.RowCount = usedRows - 1;
+
+for (int currentColumn=1; currentColumn < usedColumns+1; currentColumn++)
+{
+// 给列取名
+DgvBillDetail.Columns[currentColumn-1].Name = ws.Cells[1, currentColumn].Value;
+for(int currentRow = 1; currentRow < usedRows; currentRow++)
+{
+// 给单元格赋值
+DgvBillDetail[currentColumn-1, currentRow-1].Value = ws.Cells[currentRow+1, currentColumn].Value;
+}
+}
+// 开启屏幕刷新
+excelApp.ScreenUpdating = true;
+// 关闭工作簿
+excelApp.Quit();
+
+}
+}
