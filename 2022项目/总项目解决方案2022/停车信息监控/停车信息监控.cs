@@ -280,7 +280,7 @@ namespace 停车信息监控
                     string postdata = "{\"appToken\":\"AT_Zwbx5uVZTIpxJ2OPaCGXXOZNuiWHmTKQ\",\"content\":\"" + title + neirong + "\",\"contentType\":2,\"uids\":[" + uids + "]}";
                     string html = PostUrl(url, postdata, "application/json");
 
-                MessageBox.Show(html);
+               // MessageBox.Show(html);
                 
             }
         }
@@ -322,12 +322,22 @@ namespace 停车信息监控
                         }
                         else
                         {
-                            continue;
+                            ListViewItem lv1 = listView1.Items.Add(text[i]); //使用Listview展示数据
+
+                            lv1.SubItems.Add("读取成功");
+                            lv1.SubItems.Add("无停车信息");
                         }
+                        //else
+                        //{
+                        //    continue;
+                        //}
                     }
                 }
-                
-                sendmsg(textBox5.Text.Trim(), "<body><br>"+sb.ToString()+"</body>");
+
+                if (checkBox3.Checked == true)
+                {
+                    sendmsg(textBox5.Text.Trim(), "<body><br>" + sb.ToString() + "</body>");
+                }
 
             }
             catch (Exception ex)

@@ -42,7 +42,7 @@ namespace 中国智慧社区服务网
             return value;
         }
 
-        string cookie = "HMF_CI=09b91a8370e62a6b53d08ac92f9b2c396ac93c8ff3d6a84d7bae2d94cf07b44b00; SF_cookie_25=25319912";
+        string cookie = "HMF_CI=09b91a8370e62a6b53d08ac92f9b2c396ac93c8ff3d6a84d7bae2d94cf07b44b00; SF_cookie_25=16137385; HMY_JC=78d645777bb98cb6ebfde781043b7e36d74a591c77e457e18e6338858c6011bc89,; LSID=b8bf292778f6429aa317ade74a39147aI206C101P8004E";
         public void run()
         {
             if(comboBox1.Text=="")
@@ -61,6 +61,13 @@ namespace 中国智慧社区服务网
 
                 for (int a= 0; a< cnnames_a.Count; a++) //遍历市
                 {
+                    
+                    if(cnnames_a[a].Groups[1].Value== "农垦总局" || cnnames_a[a].Groups[1].Value == "森林工业总局")
+                    {
+                        continue;
+                    }
+
+
                     string encrypt_b = jiami(syscodes_a[a].Groups[1].Value);
                     string bhtml = method.PostUrlDefault(url, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_b) + "%22%7D", cookie);
                     MatchCollection cnnames_b = Regex.Matches(bhtml, @"""cnname"":""([\s\S]*?)""");
@@ -71,7 +78,7 @@ namespace 中国智慧社区服务网
                         string chtml = method.PostUrlDefault(url, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_c) + "%22%7D", cookie);
                         MatchCollection cnnames_c = Regex.Matches(chtml, @"""cnname"":""([\s\S]*?)""");
                         MatchCollection syscodes_c= Regex.Matches(chtml, @"""syscode"":""([\s\S]*?)""");
-                        for (int c = 0; c < cnnames_c.Count; c++)//遍历镇
+                        for (int c =0; c < cnnames_c.Count; c++)//遍历镇
                         {
                             string encrypt_d = jiami(syscodes_c[c].Groups[1].Value);
                             string dhtml = method.PostUrlDefault(url, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_d) + "%22%7D", cookie);
@@ -92,19 +99,22 @@ namespace 中国智慧社区服务网
                                 Thread.Sleep(100);
 
                             }
-                           
-
+                            //MessageBox.Show(ahtml);
+                            //MessageBox.Show(bhtml);
+                            //MessageBox.Show(chtml);
+                            // MessageBox.Show(dhtml);
+                            label1.Text = DateTime.Now.ToString() + "： " + cnnames_a[a].Groups[1].Value+"-"+ cnnames_b[b].Groups[1].Value+"-"+ cnnames_c[c].Groups[1].Value;
                             for (int d = 0; d < cnnames_d.Count; d++)//遍历居委会
                             {
                                 string url_detail = "https://zqsq.mca.gov.cn/CAFP/restservices/web/cafp_communityProfileList/query";
                                 string encrypt_e = jiami(syscodes_d[d].Groups[1].Value);
                                 string ehtml = method.PostUrlDefault(url_detail, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_e) + "%22%7D", cookie);
-                              
+
 
                                 MatchCollection cnnames_e = Regex.Matches(ehtml, @"""cnname"":""([\s\S]*?)""");
                                 MatchCollection syscodes_e = Regex.Matches(ehtml, @"""syscode"":""([\s\S]*?)""");
-                              
-                                listdata(syscodes_d[d].Groups[1].Value,comboBox1.Text+ cnnames_a[a].Groups[1].Value);
+
+                                listdata(syscodes_d[d].Groups[1].Value, comboBox1.Text + cnnames_a[a].Groups[1].Value);
 
                                 Thread.Sleep(100);
                                 while (this.zanting == false)
@@ -139,27 +149,35 @@ namespace 中国智慧社区服务网
 
         public void listdata(string uid,string shengshi)
         {
-            string url_detail = "https://zqsq.mca.gov.cn/CAFP/restservices/web/cafp_communityProfileList/query";
-            string encrypt_e = jiami(uid);
-            string ehtml = method.PostUrlDefault(url_detail, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_e) + "%22%7D", cookie);
-
-           // MessageBox.Show(ehtml);
-            string cjname = Regex.Match(ehtml, @"""cjname"":""([\s\S]*?)""").Groups[1].Value;
-            string name = Regex.Match(ehtml, @"""communityname"":""([\s\S]*?)""").Groups[1].Value;
-            string legalperson = Regex.Match(ehtml, @"""legalperson"":""([\s\S]*?)""").Groups[1].Value;
-          
-            string tel = Regex.Match(ehtml, @"""acax595"":""([\s\S]*?)""").Groups[1].Value;
-            string time = Regex.Match(ehtml, @"""acax586"":""([\s\S]*?)""").Groups[1].Value;
-            if (name != "")
+            try
             {
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                lv1.SubItems.Add(name);
-                lv1.SubItems.Add(shengshi);
-                lv1.SubItems.Add(cjname);
-                lv1.SubItems.Add(legalperson);
-                lv1.SubItems.Add(tel);
-                lv1.SubItems.Add(time);
-               
+                string url_detail = "https://zqsq.mca.gov.cn/CAFP/restservices/web/cafp_communityProfileList/query";
+                string encrypt_e = jiami(uid);
+                string ehtml = method.PostUrlDefault(url_detail, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_e) + "%22%7D", cookie);
+
+                // MessageBox.Show(ehtml);
+                string cjname = Regex.Match(ehtml, @"""cjname"":""([\s\S]*?)""").Groups[1].Value;
+                string name = Regex.Match(ehtml, @"""communityname"":""([\s\S]*?)""").Groups[1].Value;
+                string legalperson = Regex.Match(ehtml, @"""legalperson"":""([\s\S]*?)""").Groups[1].Value;
+
+                string tel = Regex.Match(ehtml, @"""acax595"":""([\s\S]*?)""").Groups[1].Value;
+                string time = Regex.Match(ehtml, @"""acax586"":""([\s\S]*?)""").Groups[1].Value;
+                if (name != "")
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                    lv1.SubItems.Add(name);
+                    lv1.SubItems.Add(shengshi);
+                    lv1.SubItems.Add(cjname);
+                    lv1.SubItems.Add(legalperson);
+                    lv1.SubItems.Add(tel);
+                    lv1.SubItems.Add(time);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+              ex.ToString() ;
             }
         }
 

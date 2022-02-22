@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -37,17 +43,13 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button7 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.button3);
@@ -59,6 +61,64 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(830, 105);
             this.panel1.TabIndex = 79;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(26, 41);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(198, 20);
+            this.comboBox1.TabIndex = 80;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(699, 35);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(88, 30);
+            this.button7.TabIndex = 79;
+            this.button7.Text = "停止抓取";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(489, 35);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(88, 30);
+            this.button3.TabIndex = 78;
+            this.button3.Text = "导出数据";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(384, 35);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(88, 30);
+            this.button2.TabIndex = 77;
+            this.button2.Text = "暂停/继续";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(594, 35);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(88, 30);
+            this.button6.TabIndex = 76;
+            this.button6.Text = "清空记录";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(279, 35);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(88, 30);
+            this.button1.TabIndex = 75;
+            this.button1.Text = "开始抓取";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listView1
             // 
@@ -116,63 +176,14 @@
             this.columnHeader7.Text = "时间";
             this.columnHeader7.Width = 100;
             // 
-            // button7
+            // label1
             // 
-            this.button7.Location = new System.Drawing.Point(699, 35);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(88, 30);
-            this.button7.TabIndex = 79;
-            this.button7.Text = "停止抓取";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(489, 35);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 30);
-            this.button3.TabIndex = 78;
-            this.button3.Text = "导出数据";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(384, 35);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 30);
-            this.button2.TabIndex = 77;
-            this.button2.Text = "暂停/继续";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(594, 35);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(88, 30);
-            this.button6.TabIndex = 76;
-            this.button6.Text = "清空记录";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(279, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 30);
-            this.button1.TabIndex = 75;
-            this.button1.Text = "开始抓取";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(26, 41);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(198, 20);
-            this.comboBox1.TabIndex = 80;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(279, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(11, 12);
+            this.label1.TabIndex = 81;
+            this.label1.Text = "0";
             // 
             // 智慧社区服务网
             // 
@@ -186,6 +197,7 @@
             this.Text = "智慧社区服务网";
             this.Load += new System.EventHandler(this.智慧社区服务网_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -206,5 +218,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }

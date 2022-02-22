@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "中国智慧社区服务网
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "停车信息监控", "停车信息监控\停车信息监控.csproj", "{2137901A-C592-4D34-9584-B39C1DE7D5C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔网删除", "孔网删除\孔网删除.csproj", "{73182929-6D25-49FC-B1BE-13F6467E0028}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{2137901A-C592-4D34-9584-B39C1DE7D5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2137901A-C592-4D34-9584-B39C1DE7D5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2137901A-C592-4D34-9584-B39C1DE7D5C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73182929-6D25-49FC-B1BE-13F6467E0028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73182929-6D25-49FC-B1BE-13F6467E0028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73182929-6D25-49FC-B1BE-13F6467E0028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73182929-6D25-49FC-B1BE-13F6467E0028}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
