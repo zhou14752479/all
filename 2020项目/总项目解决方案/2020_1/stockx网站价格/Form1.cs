@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -60,7 +61,65 @@ namespace stockx网站价格
         }
 
         #endregion
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
+        {
+            string html = "";
+            string COOKIE = "";
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Proxy = null;//防止代理抓包
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = Url;
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
 
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+            }
+
+
+
+        }
+        #endregion
         #region POST请求
         /// <summary>
         /// POST请求
@@ -144,10 +203,15 @@ namespace stockx网站价格
 
 
 
+            public void gethuilv()
+        {
+            string url = "https://webapi.huilv.cc/api/exchange?num=1&chiyouhuobi=USD&duihuanhuobi=CNY&type=1&callback=jisuanjieguo&_=1645687133740";
+            string html = GetUrl(url, "utf-8");
+            string huilv = Regex.Match(html, @"""dangqianhuilv"":""([\s\S]*?)""").Groups[1].Value;
+            textBox2.Text = huilv;
+        }
 
-
-        string cookie = "__cfduid=d101e1ff3afc336393f36fb084d7187c21608772971; stockx_homepage=sneakers; language_code=en; stockx_market_country=CN; _ga=GA1.2.1838221857.1608772970; _gid=GA1.2.269794033.1608772970; _pxvid=8ba8ff94-4586-11eb-9e17-0242ac12000e; tracker_device=f9d941ec-1ac8-43da-a0ab-1007512f9fe4; is_gdpr=false; cookie_policy_accepted=true; stockx_ip_region=CN; stockx_session=ee492459-0f2b-4475-8312-d999c30acc62; below_retail_type=; bid_ask_button_type=; brand_tiles_version=v1; browse_page_tile_size_update_web=true; bulk_shipping_enabled=true; default_apple_pay=false; intl_payments=true; multi_edit_option=beatLowestAskBy; product_page_affirm_callout_enabled_web=false; related_products_length=v2; riskified_recover_updated_verbiage=true; show_all_as_number=false; show_bid_education=v2; show_bid_education_times=1; show_how_it_works=true; show_watch_modal=true; pdp_refactor_web=undefined; recently_viewed_web_home=false; ops_delay_messaging_pre_checkout_ask=false; ops_delay_messaging_post_checkout_ask=false; ops_delay_messaging_selling=false; ops_delay_messaging_buying=false; ops_delay_messaging_ask_status=false; ops_delay_messaging_bid_status=false; ops_delay_messaging_pre_checkout_buy=false; ops_delay_messaging_post_checkout_buy=false; salesforce_chatbot_prod=true; web_low_inv_checkout=v0; _gcl_au=1.1.1530951235.1608772975; IR_gbd=stockx.com; _scid=ed10bff8-b5f9-4e30-b363-15f3a949c074; _pk_ses.421.1a3e=*; stockx_selected_locale=en; stockx_selected_region=CN; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2020-12-24T01%3A22%3A56.989Z; stockx_dismiss_modal_expiration=2021-12-24T01%3A22%3A56.988Z; _px3=b162b7f8253b8750421128a69ca49870e23dad278d79495b85be0cbee9b7ac8a:6fVf1apjlCBExOUKoyDJsP57+KN+MfN+SU4iQysMtohqCJHedX8d+J5ykohyxLF0Tb9Bwlgr+G3pILuZmpxNfQ==:1000:kJyvzTcY8oUi0KOqdAU8nqquxlRidQ4e0ItTESIuHZID1+DBIAdfXLkraadd6A9ULXcTkUNKzcDpk/Ud5/E+OzQSZYGbuzHK5oh0FTOaJ3sVtPrL9RX9bGNaSjV2qoTLQYX3HssB2S/86Y28MnncnOVgfKiT45vNnpk9r+q0Qck=; _pk_id.421.1a3e=8ca7f79043af9b2c.1608772976.1.1608772981.1608772976.; IR_9060=1608772981305%7C0%7C1608772975834%7C%7C; IR_PI=03762d2a-0097-11eb-98c6-0684bff74260%7C1608859381305; lastRskxRun=1608773019133; rskxRunCookie=0; rCookie=jhbgt4gy0f9vgj90em797kj25x24f; QuantumMetricUserID=9fc849c3f1cc516e1d1fb915483fffe0; QuantumMetricSessionID=ac8a8358389363aa4ecde5374ddc1e5f; _dd_s=rum=1&id=bf087f68-02a3-4df8-88ee-ffe12b3d77d9&created=1608772972396&expire=1608774088065";
-
+        string cookie = "stockx_device_id=6d644afd-028e-43fe-9569-c9c1415271c1; language_code=zh; pxcts=bc9098cb-9540-11ec-a19b-497978705341; _pxvid=bc908e20-9540-11ec-a19b-497978705341; stockx_session=%225fee44b1-6abb-438e-8db9-8109af9b4d54%22; _ga=undefined; rskxRunCookie=0; rCookie=1vpbrt7ojq9fs0pldcs89sl00naqgv; riskified_recover_updated_verbiage=true; ops_banner_id=bltf0ff6f9ef26b6bdb; __ssid=9c512a85f1483910122cd4a190df7e0; ab_one_buy_now_v2_button=true; stockx_preferred_market_activity=sales; stockx_default_sneakers_size=All; stockx_homepage=sneakers; tracker_device=32dc7fff-c416-460d-b9a9-3c4c42093390; _px3=549c4a43bb9db3879539b831350db777ce363d6ea129e730a43ccbde573502c9:TYTIPKN+g9cDik+cNAPnZUZDmcljQMzT1/5tCo1ko6SAVg/2fDUBtdP6c/ea6Tan1jRtV+O9LWpDdyEXYe/uNw==:1000:ILFTZuVgqSIXSmV3eHQCWzXKl8oXNcxdsbt4bJmfNu7Q0lbYG+3XLLs/SB5YgDfsgvjbZK4bKAIBjdF4I8M63ZDIQ2M8xZC2kBQ6NiC42gSMI8HGWsipuhRPDRAm5dOpZHERJJN1GmlhOyeqqZldIr7EfBYX3pukrKGa/zQv4aLMvYOPUu0+l3+bSZLBiewm0FcAt4efbLRhWdSnhM7kdg==; _dd_s=rum=0&expire=1645687810969; stockx_product_visits=7; lastRskxRun=1645686912128; forterToken=291d69bc4ccd4bedb442db00cdceb640_1645686912034__UDF43_13ck";
             public void run()
         {
 
@@ -158,14 +222,14 @@ namespace stockx网站价格
                 string url = "https://xw7sbct9v6-2.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.8.4)%3B%20Browser";
                 string postdata = "{\"params\":\"query="+textBox1.Text.Trim()+"&facets=*&filters=\"}";
                 string html = PostUrl(url,postdata);
-             
+                
                 Match huo = Regex.Match(html, @"""url"":""([\s\S]*?)""");
                 string aurl = "https://stockx.com/api/products/"+huo.Groups[1].Value+"?includes=market,360&currency=USD&country=HK";
+               
 
-               
-               string ahtml = gethtml(aurl, cookie);
-               
-            
+                string ahtml = gethtml(aurl, cookie);
+                //textBox1.Text = aurl;
+                //MessageBox.Show(ahtml);
                 Match highestBid = Regex.Match(ahtml, @"""highestBid"":([\s\S]*?),");
               
 
@@ -189,8 +253,8 @@ namespace stockx网站价格
                     double lowprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(lows[j].Groups[1].Value);
                     double highprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(highs[j].Groups[1].Value);
 
-                    lv2.SubItems.Add(lowprice.ToString());
-                    lv2.SubItems.Add(highprice.ToString());
+                    //lv2.SubItems.Add(lowprice.ToString());
+                    //lv2.SubItems.Add(highprice.ToString());
 
 
                     double fee1 = Convert.ToDouble(textBox2.Text) * 29.95;
@@ -222,7 +286,7 @@ namespace stockx网站价格
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            gethuilv();
         }
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
@@ -242,6 +306,12 @@ namespace stockx网站价格
         {
             button1.Enabled = true;
             listView1.Items.Clear();
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox2.Text = "";
+            gethuilv();
         }
     }
 }
