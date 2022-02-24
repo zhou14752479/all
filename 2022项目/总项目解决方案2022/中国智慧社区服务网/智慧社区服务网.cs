@@ -245,7 +245,7 @@ namespace 中国智慧社区服务网
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(jiemi("5tqDfsO2JPWYtIQ+EwVdOQ=="));
    
             if (zanting == false)
             {
