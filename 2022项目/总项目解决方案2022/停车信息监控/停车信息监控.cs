@@ -297,6 +297,7 @@ namespace 停车信息监控
               
                 for (int i = 0; i < text.Length; i++)
                 {
+                    Thread.Sleep(Convert.ToInt32(textBox1.Text) * 1000);
                     if (text[i] != "")
                     {
                         string chepai = System.Web.HttpUtility.UrlEncode(text[i]);
@@ -311,7 +312,7 @@ namespace 停车信息监控
                             TimeSpan ts1 = new TimeSpan(DateTime.Now.Ticks); TimeSpan ts2 = new TimeSpan(Convert.ToDateTime(time).Ticks);
                             TimeSpan ts = ts1.Subtract(ts2).Duration();
                             string dateDiff = ts.Days.ToString() + "天" + ts.Hours.ToString() + "小时" + ts.Minutes.ToString() + "分钟";
-                            Thread.Sleep(Convert.ToInt32(textBox1.Text) * 1000);
+                           
 
                             ListViewItem lv1 = listView1.Items.Add(text[i]); //使用Listview展示数据
                           

@@ -25,11 +25,11 @@ namespace QQ群成员提取
        
         private void login_Load(object sender, EventArgs e)
         {
-           
 
 
+            method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
-            webBrowser1.Navigate("https://qun.qq.com/member.html#");
+            webBrowser1.Navigate("https://xui.ptlogin2.qq.com/cgi-bin/xlogin?pt_disable_pwd=1&appid=715030901&daid=73&hide_close_icon=1&pt_no_auth=1&s_url=https%3A%2F%2Fqun.qq.com%2Fmember.html");
             timer1.Start();
           
         }
@@ -56,6 +56,7 @@ namespace QQ群成员提取
             //}
 
             string cookie = method.GetCookies("https://qun.qq.com/member.html");
+           
            // textBox1.Text = cookie;
             if (cookie.Contains("pt4_token"))
             {

@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "河南政务注册", "项�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "..\..\2020项目\总项目解决方案\2020_1\stockx网站价格\stockx网站价格.csproj", "{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QQ群成员提取", "..\..\2020项目\总项目解决方案\QQ群成员提取\QQ群成员提取.csproj", "{4B43461A-513D-4E3C-B908-BC6A1A69B810}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -451,6 +453,14 @@ Global
 		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|x86.ActiveCfg = Release|Any CPU
 		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|x86.Build.0 = Release|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Debug|x86.Build.0 = Debug|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B43461A-513D-4E3C-B908-BC6A1A69B810}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
