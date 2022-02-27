@@ -22,12 +22,11 @@ namespace 孔网删除
 
         DataTable dt;
         string cookie = "shoppingCartSessionId=c15a1f2bd0a25905477a3b398b35f43f; kfz_uuid=6b41c6b7-a714-4283-8414-6652bf1201cf; reciever_area=24003000000; leftMenuStatus=-,-,-,-,+,+,+,+,+,+,+,+,+,+,+,+; kfz-tid=bf43ca1baa9b9312ebbdc305318bb7db; PHPSESSID=5a31f1a6f2758c7ce17a90cdcf42fede2e008369; kfz_trace=6b41c6b7-a714-4283-8414-6652bf1201cf|8007927|0478b5aab1c9d03d|";
-        public string delete(string id)
+        public string delete(string postdata)
         {
             try
             {
                 string url = "https://seller.kongfz.com/pc/item/update";
-                string postdata = "fields%5BisDelete%5D=1&itemIds%5B%5D=" + id;
                 string html = method.PostUrlDefault(url,postdata,cookie);
                 return html;
             }
@@ -57,43 +56,30 @@ namespace 孔网删除
                     MatchCollection uids = Regex.Matches(html, @"""itemId"":([\s\S]*?),");
                     MatchCollection ps = Regex.Matches(html, @"""price"":""([\s\S]*?)""");
                     label1.Text = "正在删除："+isbn;
+
+                    double bjprice = 0;
                     for (int j = 0; j < uids.Count; j++)
                     {
-                        string uid = uids[j].Groups[1].Value;
-                        string p= ps[j].Groups[1].Value;
-
+                       
                         try
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(isbn);
-                            lv1.SubItems.Add(price);
-                            if (Convert.ToDouble(p) == Convert.ToDouble(price))
+                            string uid = uids[j].Groups[1].Value;
+                            string p = ps[j].Groups[1].Value;
+
+                            if (bjprice == 0)
                             {
-                                lv1.SubItems.Add("删除成功");
-                                string msg = delete(uid);
-                                lv1.SubItems.Add(price);
-                                if (msg.Contains("status\":1,\"data\":true"))
-                                {
-                                    lv1.SubItems.Add("删除成功");
-                                }
-                                else
-                                {
-                                    lv1.SubItems.Add("删除失败");
-                                }
-                                Thread.Sleep(1000);
+                                bjprice = Convert.ToDouble(p);
                             }
                             else
                             {
-                              
-                                lv1.SubItems.Add("价格不一致");
-                               
+                                if (Convert.ToDouble(p) < Convert.ToDouble(bjprice))
+                                {
+                                    bjprice = Convert.ToDouble(p);
+                                }
                             }
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-                            if (status == false)
-                                return;
+                            
+
+
                         }
                         catch (Exception ex)
                         {
@@ -102,8 +88,55 @@ namespace 孔网删除
                             continue;
                         }
                     }
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("fields%5BisDelete%5D=1");
+                    for (int j = 0; j < uids.Count; j++)
+                    {
+
+                        try
+                        {
+                            string uid = uids[j].Groups[1].Value;
+                            string p = ps[j].Groups[1].Value;
+
+                            if(Convert.ToDouble(p) != bjprice)
+                            {
+                                sb.Append("&itemIds%5B%5D="+uid);
+                            }
+
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                            MessageBox.Show(ex.ToString());
+                            continue;
+                        }
+                    }
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(isbn);
+                    lv1.SubItems.Add(bjprice.ToString());
+
+                    if(uids.Count>1)
+                    {
+                        string msg = delete(sb.ToString());
+                        if (msg.Contains("status\":1,\"data\":true"))
+                        {
+                            lv1.SubItems.Add("删除成功，剩余最低价");
+                        }
+                        else
+                        {
+                            lv1.SubItems.Add("删除失败");
+                        }
+                    }
+                    else
+                    {
+                        lv1.SubItems.Add("单个商品，无需删除");
+                    }
+                    
+
                    
-                  
+                 
+
 
                     while (this.zanting == false)
                     {
@@ -201,6 +234,11 @@ namespace 孔网删除
         {
             登录 login = new 登录();
             login.Show();
+        }
+
+        private void 孔网删除_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

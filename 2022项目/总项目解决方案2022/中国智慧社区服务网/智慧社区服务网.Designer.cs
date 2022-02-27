@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -43,7 +44,6 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(830, 105);
             this.panel1.TabIndex = 79;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(279, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(11, 12);
+            this.label1.TabIndex = 81;
+            this.label1.Text = "0";
             // 
             // comboBox1
             // 
@@ -154,7 +163,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "省市";
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Width = 150;
             // 
             // columnHeader4
             // 
@@ -175,15 +184,6 @@
             // 
             this.columnHeader7.Text = "时间";
             this.columnHeader7.Width = 100;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(279, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(11, 12);
-            this.label1.TabIndex = 81;
-            this.label1.Text = "0";
             // 
             // 智慧社区服务网
             // 

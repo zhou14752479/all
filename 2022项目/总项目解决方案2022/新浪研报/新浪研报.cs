@@ -54,18 +54,20 @@ namespace 新浪研报
                         {
                         string aurl = "http://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/"+uids[i].Groups[1].Value+"/index.phtml";
                         string ahtml = method.GetUrl(aurl,"gb2312");
-                            string body = Regex.Match(ahtml, @"<div class=""blk_container"">([\s\S]*?)</div>").Groups[1].Value;
+                            string body = Regex.Match(ahtml, @"<div class=""blk_container"">([\s\S]*?)</div>").Groups[1].Value.Replace("&nbsp;", "");
                             
 
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
                             lv1.SubItems.Add(titles[i].Groups[1].Value);
                         lv1.SubItems.Add(types[i].Groups[2].Value);
-                        lv1.SubItems.Add(dates[i].Groups[2].Value);
+                        lv1.SubItems.Add(Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd"));
                         lv1.SubItems.Add(jigous[i].Groups[1].Value);
                         lv1.SubItems.Add(yjys[i].Groups[1].Value);
                         lv1.SubItems.Add(Regex.Replace(body, "<[^>]+>", "").Trim());
 
                         Thread.Sleep(1000);
+                        if (status == false)
+                            return;
 
                         }
                     }
@@ -82,7 +84,7 @@ namespace 新浪研报
         }
 
 
-
+     
         //行业研报
         public void run2()
         {
@@ -112,17 +114,18 @@ namespace 新浪研报
                     {
                         string aurl = "http://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/" + uids[i].Groups[1].Value + "/index.phtml";
                         string ahtml = method.GetUrl(aurl, "gb2312");
-                        string body = Regex.Match(ahtml, @"<div class=""blk_container"">([\s\S]*?)</div>").Groups[1].Value;
+                        string body = Regex.Match(ahtml, @"<div class=""blk_container"">([\s\S]*?)</div>").Groups[1].Value.Replace("&nbsp;","");
 
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
                         lv1.SubItems.Add(titles[i].Groups[1].Value);
                         lv1.SubItems.Add(types[i].Groups[2].Value);
-                        lv1.SubItems.Add(dates[i].Groups[2].Value);
+                        lv1.SubItems.Add(Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd"));
                         lv1.SubItems.Add(jigous[i].Groups[1].Value);
                         lv1.SubItems.Add(yjys[i].Groups[1].Value);
                         lv1.SubItems.Add(Regex.Replace(body, "<[^>]+>", "").Trim());
-
+                        if (status == false)
+                            return;
                         Thread.Sleep(1000);
 
                     }
@@ -145,6 +148,7 @@ namespace 新浪研报
 
         private void button1_Click(object sender, EventArgs e)
         {
+            status = true;
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run2);
@@ -155,7 +159,13 @@ namespace 新浪研报
 
         private void button2_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.ListViewToCSV(listView1,true);
+            //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            status = false;
         }
     }
 }

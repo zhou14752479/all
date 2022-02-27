@@ -37,13 +37,13 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -128,8 +128,13 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "价格";
+            this.columnHeader3.Text = "最低价格";
             this.columnHeader3.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "状态";
+            this.columnHeader5.Width = 300;
             // 
             // label1
             // 
@@ -167,27 +172,15 @@
             this.splitContainer1.SplitterDistance = 139;
             this.splitContainer1.TabIndex = 1;
             // 
-            // columnHeader5
+            // button7
             // 
-            this.columnHeader5.Text = "状态";
-            this.columnHeader5.Width = 100;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(95, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(278, 21);
-            this.textBox1.TabIndex = 14;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(379, 25);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "选择表格";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button7.Location = new System.Drawing.Point(482, 18);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(129, 36);
+            this.button7.TabIndex = 17;
+            this.button7.Text = "点击登录";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button3
             // 
@@ -199,15 +192,22 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button7
+            // button6
             // 
-            this.button7.Location = new System.Drawing.Point(482, 18);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(129, 36);
-            this.button7.TabIndex = 17;
-            this.button7.Text = "点击登录";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button6.Location = new System.Drawing.Point(379, 25);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 15;
+            this.button6.Text = "选择表格";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(95, 25);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(278, 21);
+            this.textBox1.TabIndex = 14;
             // 
             // 孔网删除
             // 
@@ -218,6 +218,7 @@
             this.Name = "孔网删除";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "孔网删除";
+            this.Load += new System.EventHandler(this.孔网删除_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

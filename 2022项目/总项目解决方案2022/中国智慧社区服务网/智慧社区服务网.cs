@@ -28,8 +28,8 @@ namespace 中国智慧社区服务网
         public string jiami(string data)
         {
             Sm4Crypto sm4 = new Sm4Crypto();
-            sm4.Data = "{\"syscode\":\""+ data + "\"}";
-           
+            //sm4.Data = "{\"syscode\":\""+ data + "\"}";
+            sm4.Data = data;
             string value = Sm4Crypto.EncryptCBC(sm4);
             return value;
         }
@@ -42,7 +42,7 @@ namespace 中国智慧社区服务网
             return value;
         }
 
-        string cookie = "HMF_CI=09b91a8370e62a6b53d08ac92f9b2c396ac93c8ff3d6a84d7bae2d94cf07b44b00; SF_cookie_25=16137385; HMY_JC=78d645777bb98cb6ebfde781043b7e36d74a591c77e457e18e6338858c6011bc89,; LSID=b8bf292778f6429aa317ade74a39147aI206C101P8004E";
+        string cookie = "HMF_CI=09b91a8370e62a6b53d08ac92f9b2c396ac93c8ff3d6a84d7bae2d94cf07b44b00; SF_cookie_25=31761544";
         public void run()
         {
             if(comboBox1.Text=="")
@@ -147,6 +147,45 @@ namespace 中国智慧社区服务网
         }
 
 
+        public void run_card()
+        {
+            
+            try
+            {
+                for (int a = 0; a < 10000; a++) //遍历市
+                {
+
+                    string url = "https://zqsq.mca.gov.cn/CAFP/restservices/web/checkUsername/query";
+              
+                string encrypt_a = jiami("{\"username\":\"33038219590825"+a.ToString("D4")+"\"}");
+                    //string postdata = "bean=%7B%22encryData%22%3A%222PDxT4rG703QcK%2Bu0N8u498Op7%2BTAv5k8BbxM1yPJIOhKsQKZvIqNQYhTqYNdzuR%22%7D";
+                   
+                    string postdata = "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_a) + "%22%7D";
+                string ahtml = method.PostUrlDefault(url,postdata , cookie);
+
+                    string msg = Regex.Match(ahtml, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
+
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                    lv1.SubItems.Add(a.ToString());
+                    lv1.SubItems.Add(msg);
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         public void listdata(string uid,string shengshi)
         {
             try
@@ -237,7 +276,7 @@ namespace 中国智慧社区服务网
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run_card);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -245,7 +284,7 @@ namespace 中国智慧社区服务网
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(jiemi("5tqDfsO2JPWYtIQ+EwVdOQ=="));
+            MessageBox.Show(jiemi("2PDxT4rG703QcK+u0N8u498Op7+TAv5k8BbxM1yPJIOhKsQKZvIqNQYhTqYNdzuR"));
    
             if (zanting == false)
             {
