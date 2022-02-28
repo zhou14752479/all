@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 短信群发
+namespace 浙江企业基础信息查询
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 短信群发
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 登录());
+            Application.Run(new 浙江企业基础信息查询());
         }
     }
 }

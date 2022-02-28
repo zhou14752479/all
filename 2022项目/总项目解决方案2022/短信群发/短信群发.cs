@@ -177,6 +177,9 @@ namespace 短信群发
         #endregion
 
 
+        // string username = "17331826223";
+        string username = System.Web.HttpUtility.UrlEncode("景澜软件");
+        string password = "qwe14752479";
         public 短信群发()
         {
             InitializeComponent();
@@ -189,7 +192,7 @@ namespace 短信群发
             try
             {
                 string content = "%E3%80%90" + System.Web.HttpUtility.UrlEncode(textBox1.Text) + "%E3%80%91" + System.Web.HttpUtility.UrlEncode(textBox2.Text);
-                string url = "http://sms.shlianlu.com/sms.aspx?dataType=json&action=checkkeyword&userid=32082&account=qwe1475&password=qwe1475&content="+content;
+                string url = "http://sms.shlianlu.com/sms.aspx?dataType=json&action=checkkeyword&userid=32082&account="+username+"&password="+password+"&content="+content;
                 string html = GetUrl(url);
                 textBox3.Text = html;
             }
@@ -219,7 +222,7 @@ namespace 短信群发
                 {
                     sendtime = dateTimePicker1.Value.ToString("yyyy-MM-dd hh:MM:ss");
                 }
-                string url = "http://sms.shlianlu.com/sms.aspx?dataType=json&action=send&userid=32082&account=qwe1475&password=qwe1475&mobile="+haoma+"&content="+content+"&sendTime="+sendtime+"&extno=";
+                string url = "http://sms.shlianlu.com/sms.aspx?dataType=json&action=send&userid=32082&account=" + username + "&password=" + password + "&mobile=" + haoma+"&content="+content+"&sendTime="+sendtime+"&extno=";
                 string html = GetUrl(url);
                 textBox3.Text = html;
             }

@@ -58,7 +58,7 @@ namespace 新浪研报
                             
 
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                            lv1.SubItems.Add(titles[i].Groups[1].Value);
+                            lv1.SubItems.Add(titles[i].Groups[1].Value.Replace("/t", ""));
                         lv1.SubItems.Add(types[i].Groups[2].Value);
                         lv1.SubItems.Add(Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd"));
                         lv1.SubItems.Add(jigous[i].Groups[1].Value);
@@ -118,7 +118,7 @@ namespace 新浪研报
 
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                        lv1.SubItems.Add(titles[i].Groups[1].Value);
+                        lv1.SubItems.Add(titles[i].Groups[1].Value.Replace("/t", ""));
                         lv1.SubItems.Add(types[i].Groups[2].Value);
                         lv1.SubItems.Add(Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd"));
                         lv1.SubItems.Add(jigous[i].Groups[1].Value);

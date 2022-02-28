@@ -17,11 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝商家电话", "淘�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "..\..\2020项目\总项目解决方案\helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "河南政务注册", "..\..\2021项目\总项目解决方案2021\项目集合\河南政务注册\河南政务注册.csproj", "{314A194F-6106-4FF4-A1EB-B7002334C8DD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "基鹿工具箱", "基鹿工具箱\基鹿工具箱.csproj", "{BC695ABB-06FF-401F-94A3-51E8A19B1997}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF礼包领取", "..\..\2021项目\总项目解决方案2021\项目集合\CF礼包领取\CF礼包领取.csproj", "{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "小红书图片采集", "小红书图片采集\小红书图片采集.csproj", "{3AFE6F08-7117-4AA7-AD42-C276854E890A}"
 EndProject
@@ -32,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "停车信息监控", "停车信息监控\停车信息监控.csproj", "{2137901A-C592-4D34-9584-B39C1DE7D5C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔网删除", "孔网删除\孔网删除.csproj", "{73182929-6D25-49FC-B1BE-13F6467E0028}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浙江企业基础信息查询", "浙江企业基础信息查询\浙江企业基础信息查询.csproj", "{3C270202-03F9-4417-807F-F59FA2DACF0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,18 +65,10 @@ Global
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{314A194F-6106-4FF4-A1EB-B7002334C8DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC695ABB-06FF-401F-94A3-51E8A19B1997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC695ABB-06FF-401F-94A3-51E8A19B1997}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC695ABB-06FF-401F-94A3-51E8A19B1997}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC695ABB-06FF-401F-94A3-51E8A19B1997}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A589DC8D-72E0-40F4-A9F5-8E1DB3C5FDDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3AFE6F08-7117-4AA7-AD42-C276854E890A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3AFE6F08-7117-4AA7-AD42-C276854E890A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AFE6F08-7117-4AA7-AD42-C276854E890A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,6 +89,10 @@ Global
 		{73182929-6D25-49FC-B1BE-13F6467E0028}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73182929-6D25-49FC-B1BE-13F6467E0028}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73182929-6D25-49FC-B1BE-13F6467E0028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C270202-03F9-4417-807F-F59FA2DACF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C270202-03F9-4417-807F-F59FA2DACF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C270202-03F9-4417-807F-F59FA2DACF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C270202-03F9-4417-807F-F59FA2DACF0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

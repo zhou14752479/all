@@ -139,9 +139,9 @@ namespace win007
                 this.dataGridView1.Columns[14].Width = 0;
                 this.dataGridView1.Columns[15].Width = 0;
 
-                this.dataGridView1.Columns[16].Width = 30;
-                this.dataGridView1.Columns[17].Width =30;
-                this.dataGridView1.Columns[18].Width = 30;
+                this.dataGridView1.Columns[16].Width = 50;
+                this.dataGridView1.Columns[17].Width =50;
+                this.dataGridView1.Columns[18].Width = 50;
 
                 //计算
 
@@ -235,6 +235,65 @@ namespace win007
                         {
                             dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Red;
                         }
+
+
+
+
+
+
+                        //成交比例
+                        string zhu_cj= dataGridView1.Rows[i].Cells[16].Value.ToString().Replace("%","");
+                        string he_cj = dataGridView1.Rows[i].Cells[17].Value.ToString().Replace("%", "");
+                        string ke_cj = dataGridView1.Rows[i].Cells[18].Value.ToString().Replace("%", "");
+
+                        if (zhu_cj!="无")
+                        {
+                            if(Convert.ToDouble(zhu_cj)>=70 & Convert.ToDouble(zhu_cj)<80)
+                            {
+                                dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                            }
+                            if (Convert.ToDouble(zhu_cj) >= 80 & Convert.ToDouble(zhu_cj) < 90)
+                            {
+                                dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                            }
+                            if (Convert.ToDouble(zhu_cj) >90)
+                            {
+                                dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                            }
+
+
+                        }
+                        if (he_cj != "无")
+                        {
+                            if (Convert.ToDouble(he_cj) >= 70 & Convert.ToDouble(he_cj) < 80)
+                            {
+                                dataGridView1.Rows[i].Cells[17].Style.BackColor = Color.Yellow;
+                            }
+                            if (Convert.ToDouble(he_cj) >= 80 & Convert.ToDouble(he_cj) < 90)
+                            {
+                                dataGridView1.Rows[i].Cells[17].Style.BackColor = Color.Orange;
+                            }
+                            if (Convert.ToDouble(he_cj) >= 90)
+                            {
+                                dataGridView1.Rows[i].Cells[17].Style.BackColor = Color.Red;
+                            }
+                        }
+                        if (ke_cj != "无")
+                        {
+                            if (Convert.ToDouble(ke_cj) >= 70 & Convert.ToDouble(ke_cj) < 80)
+                            {
+                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Yellow;
+                            }
+                            if (Convert.ToDouble(ke_cj) >= 80 & Convert.ToDouble(ke_cj) <90)
+                            {
+                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Orange;
+                            }
+                            if (Convert.ToDouble(ke_cj) >= 90)
+                            {
+                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Red;
+                            }
+                        }
+
                     }
                     catch (Exception)
                     {
@@ -559,7 +618,8 @@ namespace win007
 
         private void button4_Click(object sender, EventArgs e)
         {
-            startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
+             startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
+           
             enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)

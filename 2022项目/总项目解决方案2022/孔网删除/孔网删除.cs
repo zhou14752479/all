@@ -132,10 +132,13 @@ namespace 孔网删除
                     {
                         lv1.SubItems.Add("单个商品，无需删除");
                     }
-                    
 
-                   
-                 
+
+
+                    if (listView1.Items.Count > 2)
+                    {
+                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                    }
 
 
                     while (this.zanting == false)
