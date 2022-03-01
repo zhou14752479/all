@@ -50,11 +50,23 @@ namespace 浙江企业基础信息查询
 
                     for (int i = 0; i < names.Count; i++)
                     {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(uid);
-                        lv1.SubItems.Add(company);
-                        lv1.SubItems.Add(names[i].Groups[1].Value);
-                        lv1.SubItems.Add(cards[i].Groups[1].Value);
+                        if(jiami==true)
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(uid);
+                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), company));
+                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), names[i].Groups[1].Value));
+                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), cards[i].Groups[1].Value));
+                        }
+                        if (jiami == false)
+                        {
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(uid);
+                            lv1.SubItems.Add(company);
+                            lv1.SubItems.Add(names[i].Groups[1].Value);
+                            lv1.SubItems.Add(cards[i].Groups[1].Value);
+                        }
+
 
                         if (listView1.Items.Count > 2)
                         {
@@ -73,7 +85,27 @@ namespace 浙江企业基础信息查询
                     string aname = Regex.Match(financeInfo, @"nAME"":""([\s\S]*?)""").Groups[1].Value;
                     string acard = Regex.Match(financeInfo, @"cERNO"":""([\s\S]*?)""").Groups[1].Value;
                     string atel = Regex.Match(financeInfo, @"mOBTEL"":""([\s\S]*?)""").Groups[1].Value;
-                    if(aname!="")
+
+                    string bname = Regex.Match(liaisonInfo, @"nAME"":""([\s\S]*?)""").Groups[1].Value;
+                    string bcard = Regex.Match(liaisonInfo, @"cERNO"":""([\s\S]*?)""").Groups[1].Value;
+                    string btel = Regex.Match(liaisonInfo, @"mOBTEL"":""([\s\S]*?)""").Groups[1].Value;
+
+
+
+                    if(jiami==true)
+                    {
+                        company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
+                        aname = method.Base64Encode(Encoding.GetEncoding("utf-8"), aname);
+                        acard = method.Base64Encode(Encoding.GetEncoding("utf-8"), acard);
+                        atel = method.Base64Encode(Encoding.GetEncoding("utf-8"), atel);
+                        bname = method.Base64Encode(Encoding.GetEncoding("utf-8"), bname);
+                        bcard = method.Base64Encode(Encoding.GetEncoding("utf-8"), bcard);
+                        btel = method.Base64Encode(Encoding.GetEncoding("utf-8"), btel);
+                    }
+                    
+
+
+                    if (aname!="")
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(uid);
@@ -84,9 +116,7 @@ namespace 浙江企业基础信息查询
                     }
 
 
-                    string bname = Regex.Match(liaisonInfo, @"nAME"":""([\s\S]*?)""").Groups[1].Value;
-                    string bcard = Regex.Match(liaisonInfo, @"cERNO"":""([\s\S]*?)""").Groups[1].Value;
-                    string btel = Regex.Match(liaisonInfo, @"mOBTEL"":""([\s\S]*?)""").Groups[1].Value;
+                   
 
                     if (bname != "")
                     {
@@ -109,17 +139,32 @@ namespace 浙江企业基础信息查询
 
 
         bool zanting = true;
-        bool status = true;
+        bool status = false;
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-            status = true;
-            if (thread == null || !thread.IsAlive)
+            if(textBox1.Text=="")
             {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                MessageBox.Show("请先导入表格");
+                return;
             }
+
+            if(status==true)
+            {
+                status = false;
+                label3.Text = "已停止";
+            }
+            else
+            {
+                status = true;
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(run);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
+            
         }
         DataTable dt;
         private void button6_Click(object sender, EventArgs e)
@@ -157,14 +202,65 @@ namespace 浙江企业基础信息查询
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            status = false;
-        }
-
+       
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+
+        bool jiami = true;
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(textBox3.Text!="14752479123")
+            {
+                MessageBox.Show("密码错误");
+                return;
+            }
+
+
+            zanting = false;
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                for (int j = 1; j < listView1.Columns.Count; j++)
+                {
+                    try
+                    {
+                        string value = listView1.Items[i].SubItems[j].Text;
+                        if(jiami==false)
+                        {
+                            listView1.Items[i].SubItems[j].Text = method.Base64Encode(Encoding.GetEncoding("utf-8"), value);
+                        }
+                        else
+                        {
+                            listView1.Items[i].SubItems[j].Text = method.Base64Decode(Encoding.GetEncoding("utf-8"), value);
+                        }
+                        
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+                }
+            }
+
+
+            zanting = true;
+
+            if(jiami==false)
+            {
+                jiami = true;
+            }
+            else 
+            {
+                jiami = false;
+            }
+        }
+
+        private void 浙江企业基础信息查询_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -57,37 +57,37 @@ namespace QQ群成员提取
         static void Main()
         {
 
-            if (ExistINIFile())
-            {
-                string jihuoma = IniReadValue("values", "mac");
-                string ex = IniReadValue("values", "ex");
-                if (jihuoma == method.GetMD5(method.GetMD5(method.GetMacAddress()).ToUpper()).ToUpper() && Convert.ToInt64(ex) > Convert.ToInt64(method.GetTimeStamp()))
-                {
+            //if (ExistINIFile())
+            //{
+            //    string jihuoma = IniReadValue("values", "mac");
+            //    string ex = IniReadValue("values", "ex");
+            //    if (jihuoma == method.GetMD5(method.GetMD5(method.GetMacAddress()).ToUpper()).ToUpper() && Convert.ToInt64(ex) > Convert.ToInt64(method.GetTimeStamp()))
+            //    {
 
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new login());
+            //        Application.EnableVisualStyles();
+            //        Application.SetCompatibleTextRenderingDefault(false);
+            //        Application.Run(new login());
 
-                }
-                else
-                {
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new 激活());
-                }
+            //    }
+            //    else
+            //    {
+            //        Application.EnableVisualStyles();
+            //        Application.SetCompatibleTextRenderingDefault(false);
+            //        Application.Run(new 激活());
+            //    }
 
-            }
+            //}
 
-            else
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new 激活());
-            }
+            //else
+            //{
+            //    Application.EnableVisualStyles();
+            //    Application.SetCompatibleTextRenderingDefault(false);
+            //    Application.Run(new 激活());
+            //}
 
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new 激活后台());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new 激活后台());
 
 
         }

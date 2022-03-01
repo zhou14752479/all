@@ -70,6 +70,12 @@
     <Compile Include="浙江企业基础信息查询.Designer.cs">
       <DependentUpon>浙江企业基础信息查询.cs</DependentUpon>
     </Compile>
+    <Compile Include="激活.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="激活.Designer.cs">
+      <DependentUpon>激活.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="浙江企业基础信息查询.resx">
       <DependentUpon>浙江企业基础信息查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="激活.resx">
+      <DependentUpon>激活.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

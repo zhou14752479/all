@@ -7,6 +7,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +17,44 @@ namespace 短信群发
 {
     public partial class 短信群发 : Form
     {
+
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
 
         #region GET请求
         /// <summary>
@@ -176,7 +215,8 @@ namespace 短信群发
 
         #endregion
 
-
+        public static string countvalue = "0";
+        public static string user = "";
         // string username = "17331826223";
         string username = System.Web.HttpUtility.UrlEncode("景澜软件");
         string password = "qwe14752479";
@@ -206,6 +246,11 @@ namespace 短信群发
 
         public void sendMsg()
         {
+            if (Convert.ToInt32(countvalue)<=0)
+            {
+                MessageBox.Show("剩余条数不足，请充值！");
+                return;
+            }
             try
             {
                 StringBuilder sb = new StringBuilder();
@@ -225,6 +270,9 @@ namespace 短信群发
                 string url = "http://sms.shlianlu.com/sms.aspx?dataType=json&action=send&userid=32082&account=" + username + "&password=" + password + "&mobile=" + haoma+"&content="+content+"&sendTime="+sendtime+"&extno=";
                 string html = GetUrl(url);
                 textBox3.Text = html;
+
+                countvalue = (Convert.ToInt32(countvalue) - Convert.ToInt32(richTextBox1.Lines.Length)).ToString();
+                GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?method=chongzhi&username=" + textBox1.Text + "&duanxin_count=" + countvalue);
             }
             catch (Exception ex) 
             {
@@ -238,6 +286,8 @@ namespace 短信群发
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
+           
+
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("签名或者内容为空！");
