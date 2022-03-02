@@ -454,7 +454,7 @@ namespace win007
                         
                         MatchCollection cjs = Regex.Matches(datacj, @"<td class=""rb"">([\s\S]*?)</td>");
                         MatchCollection yingkuizss = Regex.Matches(datacj, @"<td>([\s\S]*?)</td>");
-                        if (!datacj.Contains("暂无本场比赛的必发数据") && cjs.Count == 0)
+                        if (!datacj.Contains("暂无本场比赛的必发数据") && cjs.Count == 0 && datacj.Trim()!="")
                         {
                             datacj = GetUrl(cjurl, "gb2312");
                             MessageBox.Show(datacj);
@@ -689,7 +689,7 @@ namespace win007
         private void button4_Click(object sender, EventArgs e)
         {
              startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
-           
+           //startdate = "2021-06-30";
             enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)
