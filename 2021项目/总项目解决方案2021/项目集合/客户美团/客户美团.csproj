@@ -31,15 +31,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CheckBoxComboBox">
-      <HintPath>C:\Users\zhou\Desktop\184652_CheckBoxComboBox\CheckBoxComboBox\DemoApp\bin\Debug\CheckBoxComboBox.dll</HintPath>
-    </Reference>
     <Reference Include="HttpHelper">
       <HintPath>..\..\..\2020项目\总项目解决方案\2020_1\58二手房\bin\Debug\HttpHelper.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="ProvinceCity">
       <HintPath>..\..\..\2020项目\总项目解决方案\2020_1\美团\bin\Debug\ProvinceCity.dll</HintPath>

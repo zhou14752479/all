@@ -35,34 +35,24 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSkin">
-      <HintPath>..\商铺58\bin\Debug\CSkin.dll</HintPath>
-    </Reference>
-    <Reference Include="HttpHelper">
-      <HintPath>..\..\2019\百佳网上超市\bin\Debug\HttpHelper.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\myDLL\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL">
       <HintPath>..\..\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\商铺58\bin\Debug\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\商铺58\bin\Debug\NPOI.dll</HintPath>
+      <HintPath>..\..\myDLL\bin\Debug\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\商铺58\bin\Debug\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\myDLL\bin\Debug\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\商铺58\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\myDLL\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\商铺58\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
-    </Reference>
-    <Reference Include="ProvinceCity, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\2021项目\总项目解决方案2021\项目集合\地图营销\bin\Debug\ProvinceCity.dll</HintPath>
+      <HintPath>..\..\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
