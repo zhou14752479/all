@@ -44,9 +44,10 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.Location = new System.Drawing.Point(0, 735);
+            this.button1.Location = new System.Drawing.Point(0, 919);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(1334, 36);
+            this.button1.Size = new System.Drawing.Size(1779, 45);
             this.button1.TabIndex = 1;
             this.button1.Text = "后退";
             this.button1.UseVisualStyleBackColor = true;
@@ -56,9 +57,10 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.linkLabel1.Location = new System.Drawing.Point(1305, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(1742, 0);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel1.Size = new System.Drawing.Size(37, 15);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "关闭";
@@ -68,21 +70,23 @@
             // 
             this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1305, 735);
+            this.webBrowser1.Size = new System.Drawing.Size(1742, 919);
             this.webBrowser1.TabIndex = 3;
             // 
             // 防电信诈骗宣传
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1334, 771);
+            this.ClientSize = new System.Drawing.Size(1779, 964);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "防电信诈骗宣传";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "防电信诈骗宣传";

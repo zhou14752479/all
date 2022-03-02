@@ -52,15 +52,17 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(997, 105);
+            this.panel1.Size = new System.Drawing.Size(1329, 131);
             this.panel1.TabIndex = 74;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(389, 32);
+            this.button3.Location = new System.Drawing.Point(404, 68);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(100, 29);
             this.button3.TabIndex = 3;
             this.button3.Text = "停止";
             this.button3.UseVisualStyleBackColor = true;
@@ -70,17 +72,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 11F);
-            this.label1.Location = new System.Drawing.Point(72, 62);
+            this.label1.Location = new System.Drawing.Point(96, 78);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(15, 15);
+            this.label1.Size = new System.Drawing.Size(19, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "0";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(470, 32);
+            this.button2.Location = new System.Drawing.Point(512, 68);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(100, 29);
             this.button2.TabIndex = 1;
             this.button2.Text = "导出";
             this.button2.UseVisualStyleBackColor = true;
@@ -88,9 +92,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(308, 32);
+            this.button1.Location = new System.Drawing.Point(296, 68);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 29);
             this.button1.TabIndex = 0;
             this.button1.Text = "开始";
             this.button1.UseVisualStyleBackColor = true;
@@ -110,9 +115,10 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 105);
+            this.listView1.Location = new System.Drawing.Point(0, 131);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(997, 478);
+            this.listView1.Size = new System.Drawing.Size(1329, 598);
             this.listView1.TabIndex = 76;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -154,11 +160,12 @@
             // 
             // 新浪研报
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 583);
+            this.ClientSize = new System.Drawing.Size(1329, 729);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "新浪研报";
             this.Text = "新浪研报";
             this.Load += new System.EventHandler(this.新浪研报_Load);

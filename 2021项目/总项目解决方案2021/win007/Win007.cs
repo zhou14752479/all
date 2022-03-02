@@ -27,7 +27,6 @@ namespace win007
             InitializeComponent();
         }
 
-      
 
 
         #region GET请求
@@ -36,25 +35,60 @@ namespace win007
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        private string GetUrl(string URL)
+        public static string GetUrl(string Url, string charset)
         {
-           HttpHelper http = new HttpHelper();
-            HttpItem item = new HttpItem()
+            string html = "";
+            string COOKIE = "";
+            try
             {
-                URL = URL,
-                Method = "GET",
-                Accept = "*/*",
-                UserAgent = "Mozilla/5.0 (Windows NT 6.2; Win64; x64; Trident/7.0; rv:11.0) like Gecko",
-                Referer = "http://op1.win007.com/OddsHistory.aspx?id=100163401&sid=1962474&cid=167&l=0",
-                Host = "op1.win007.com",
-            };
-            item.Header.Add("Accept-Encoding", "gzip");
-            item.Header.Add("Accept-Language", "zh-cn,zh,en");
-            HttpResult result = http.GetHtml(item);
-            string html = result.Html;
-            return html;
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+               
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "";
+                request.Referer = Url;
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+            }
+
+
+
         }
         #endregion
+
         function fc = new function();
         public void chaxun()
         {
@@ -114,10 +148,16 @@ namespace win007
                 dataGridView1.Columns["data8"].HeaderText = "数据8";
                 dataGridView1.Columns["data9"].HeaderText = "数据9";
                 dataGridView1.Columns["zhu_cj"].HeaderText = "主队成交比例";
-                dataGridView1.Columns["he_cj"].HeaderText = "和成交比例";
+                dataGridView1.Columns["he_cj"].HeaderText = "和交比例";
                 dataGridView1.Columns["ke_cj"].HeaderText = "客队成交比例";
 
+                dataGridView1.Columns["zhu_yingkui"].HeaderText = "主庄家赢亏";
+                dataGridView1.Columns["he_yingkui"].HeaderText = "和庄家赢亏";
+                dataGridView1.Columns["ke_yingkui"].HeaderText = "客庄家赢亏";
 
+                dataGridView1.Columns["zhu_yingkuizs"].HeaderText = "主赢亏指数";
+                dataGridView1.Columns["he_yingkuizs"].HeaderText = "和赢亏指数";
+                dataGridView1.Columns["ke_yingkuizs"].HeaderText = "客队赢亏指数";
 
                 dataGridView1.Columns[7].HeaderCell.Style.BackColor = Color.Red;
                 dataGridView1.Columns[8].HeaderCell.Style.BackColor = Color.CornflowerBlue;
@@ -367,7 +407,7 @@ namespace win007
             }
 
         }
-
+        
         string startdate = "2021-01-01";
         string enddate = "2022-01-06";
         public void getdata()
@@ -396,7 +436,10 @@ namespace win007
                             continue;
                         }
                       string id = Regex.Match(trs[i].Groups[1].Value, @"showgoallist\(([\s\S]*?)\)").Groups[1].Value;
-
+                        if(id.Trim()=="")
+                        {
+                            continue;
+                        }
                         string bifen_zhu= Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
                         string bifen_ke = Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)-<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
                         string datajsurl = "http://1x2d.win007.com/" + id+ ".js?r=007132848760362108507";
@@ -406,17 +449,44 @@ namespace win007
 
                         //获取成交比例
                         string cjurl = "http://vip.win007.com/betfa/single.aspx?id="+id+"&l=0";
-                        string datacj = method.GetUrl(cjurl, "utf-8");
+                        //string datacj = method.GetUrlwithIP(cjurl, "tps682.kdlapi.com:15818", "", "utf-8");
+                        string datacj = GetUrl(cjurl, "utf-8");
+                        
                         MatchCollection cjs = Regex.Matches(datacj, @"<td class=""rb"">([\s\S]*?)</td>");
-                       // MessageBox.Show(cjs.Count.ToString());
+                        MatchCollection yingkuizss = Regex.Matches(datacj, @"<td>([\s\S]*?)</td>");
+                        if (!datacj.Contains("暂无本场比赛的必发数据") && cjs.Count == 0)
+                        {
+                            datacj = GetUrl(cjurl, "gb2312");
+                            MessageBox.Show(datacj);
+                            Thread.Sleep(20000);
+                            i = i - 1;
+                            continue;
+                        }
+                        // MessageBox.Show(cjs.Count.ToString());
                         string zhu_cj = "无";
                         string he_cj = "无";
                         string ke_cj = "无";
-                        if (cjs.Count > 15)
+
+
+                        string zhu_yingkui = "无";
+                        string he_yingkui = "无";
+                        string ke_yingkui = "无";
+                        string zhu_yingkuizs = "无";
+                        string he_yingkuizs = "无";
+                        string ke_yingkuizs = "无";
+
+                        if (cjs.Count > 17)
                         {
                             zhu_cj = cjs[3].Groups[1].Value;
                             he_cj = cjs[9].Groups[1].Value;
                             ke_cj = cjs[15].Groups[1].Value;
+
+                            zhu_yingkui = cjs[5].Groups[1].Value;
+                            he_yingkui = cjs[11].Groups[1].Value;
+                            ke_yingkui = cjs[17].Groups[1].Value;
+                            zhu_yingkuizs = yingkuizss[3].Groups[1].Value;
+                            he_yingkuizs = yingkuizss[10].Groups[1].Value;
+                            ke_yingkuizs = yingkuizss[17].Groups[1].Value;
                         }
                         string matchname_cn = Regex.Match(datajs, @"matchname_cn=""([\s\S]*?)""").Groups[1].Value;
                         string hometeam_cn = Regex.Match(datajs, @"hometeam_cn=""([\s\S]*?)""").Groups[1].Value;
@@ -540,7 +610,7 @@ namespace win007
                                     //    lv1.SubItems.Add(data8);
                                     //lv1.SubItems.Add(data9);
 
-                                    fc.insertdata(matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj);
+                                    fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs);
 
 
 
