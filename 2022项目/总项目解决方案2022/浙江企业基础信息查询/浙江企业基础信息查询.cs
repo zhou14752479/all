@@ -37,7 +37,7 @@ namespace 浙江企业基础信息查询
                     string zj_ggsjpt_sign = method.GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74" + "995e00df72f14bbcb7833a9ca063adef" + timestr);
                     string postdata = "param=%7B%22from%22%3A%222%22%2C%22key%22%3A%22b4842fe0fadc44398d674c786a583f8e%22%2C%22requestTime%22%3A%22" + timestr + "%22%2C%22sign%22%3A%22" + sign + "%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22" + zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22" + timestr + "%22%2C%22uniscId%22%3A%22"+uid+"%22%2C%22companyName%22%3A%22%22%2C%22registerNo%22%3A%22%22%2C%22entType%22%3A%22E%22%2C%22additional%22%3A%22%22%7D";
                     string html = method.PostUrlDefault(url, postdata, "");
-                    MessageBox.Show(html);
+                    //MessageBox.Show(html);
                     string company = Regex.Match(html, @"""companyName"":""([\s\S]*?)""").Groups[1].Value;
 
                     string financeInfo = Regex.Match(html, @"financeInfo([\s\S]*?)\]").Groups[1].Value;
@@ -212,7 +212,7 @@ namespace 浙江企业基础信息查询
         bool jiami = true;
         private void button3_Click(object sender, EventArgs e)
         {
-            if(textBox3.Text!="14752479123")
+            if(textBox3.Text!="14752479")
             {
                 MessageBox.Show("密码错误");
                 return;
@@ -260,7 +260,18 @@ namespace 浙江企业基础信息查询
 
         private void 浙江企业基础信息查询_Load(object sender, EventArgs e)
         {
+            #region 通用检测
 
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"2DZkG"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                return;
+            }
+
+            #endregion
         }
     }
 }

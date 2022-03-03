@@ -112,7 +112,7 @@ namespace 主程序202202
                         string date = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
                         string url = "https://entry-reg.libsp.com/inlib/user/orderInlib";
                         string postdata = "{\"allowedDtos\":null,\"uid\":\"" + uid + "\",\"fid\":\"8155\",\"orderDate\":\"" + date + " 08:50\"}";
-                        textBox1.Text += DateTime.Now.ToString() + "：" + uid + " " + PostUrlDefault(url, postdata, "") + "\r\n" + "\r\n";
+                        textBox1.Text = DateTime.Now.ToString() + "：" + uid + " " + PostUrlDefault(url, postdata, "") + "\r\n" + "\r\n";
                     }
                 }
               
@@ -141,7 +141,7 @@ namespace 主程序202202
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(DateTime.Now.Hour==0)
+            if(DateTime.Now.Hour==0 && DateTime.Now.Minute==0)
             {
                 if (thread == null || !thread.IsAlive)
                 {
