@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="POSTGET测试.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="POSTGET测试.Designer.cs">
+      <DependentUpon>POSTGET测试.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="图书馆预约.cs">
@@ -52,6 +58,21 @@
     <Compile Include="图书馆预约.Designer.cs">
       <DependentUpon>图书馆预约.cs</DependentUpon>
     </Compile>
+    <Compile Include="登录.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="登录.Designer.cs">
+      <DependentUpon>登录.cs</DependentUpon>
+    </Compile>
+    <Compile Include="订单统计.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="订单统计.Designer.cs">
+      <DependentUpon>订单统计.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="POSTGET测试.resx">
+      <DependentUpon>POSTGET测试.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
