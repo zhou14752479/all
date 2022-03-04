@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21DDF247-D19F-4BF9-9779-07BC3A05251E}</ProjectGuid>
+    <ProjectGuid>{81135336-8B74-4BF5-BEF8-E3E19E2B3CCB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>中国智慧社区服务网</RootNamespace>
-    <AssemblyName>中国智慧社区服务网</AssemblyName>
+    <RootNamespace>口腔产品批量上传</RootNamespace>
+    <AssemblyName>口腔产品批量上传</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -31,30 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="myDLL">
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI">
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OOXML.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,14 +46,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SM4.cs" />
-    <Compile Include="Sm4Context.cs" />
-    <Compile Include="Sm4Crypto.cs" />
-    <Compile Include="智慧社区服务网.cs">
+    <Compile Include="口腔产品批量上传.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="智慧社区服务网.Designer.cs">
-      <DependentUpon>智慧社区服务网.cs</DependentUpon>
+    <Compile Include="口腔产品批量上传.Designer.cs">
+      <DependentUpon>口腔产品批量上传.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,10 +61,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="智慧社区服务网.resx">
-      <DependentUpon>智慧社区服务网.cs</DependentUpon>
+    <EmbeddedResource Include="口腔产品批量上传.resx">
+      <DependentUpon>口腔产品批量上传.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

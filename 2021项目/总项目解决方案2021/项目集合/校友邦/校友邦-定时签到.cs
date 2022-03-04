@@ -61,6 +61,15 @@ namespace 校友邦
                         lv1.SubItems.Add("");
                         int shengyu_day = DateDiff(DateTime.Now, Convert.ToDateTime(value[6].Trim()));
                         lv1.SubItems.Add(shengyu_day.ToString());
+
+                        if(value.Length>7)
+                        {
+                            lv1.SubItems.Add(value[7].Trim());
+                        }
+                        else
+                        {
+                            lv1.SubItems.Add("");
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -133,6 +142,10 @@ namespace 校友邦
                     string start= listView1.Items[i].SubItems[7].Text;
                     string end= listView1.Items[i].SubItems[8].Text;
 
+
+                    string zhouji = listView1.Items[i].SubItems[10].Text.Trim();
+
+
                     //判断是否到期
                     if ( DateTime.Now >Convert.ToDateTime(stopdate).AddDays(1))
                     {
@@ -150,6 +163,20 @@ namespace 校友邦
                    
                 
                     string[] text = timecisu.Split(new string[] { "," }, StringSplitOptions.None);
+
+
+                    //判断指定日期
+                    if(zhouji!="")
+                    {
+                      
+                        if(!zhouji.Contains(Convert.ToInt32(DateTime.Now.DayOfWeek).ToString()))
+                        {
+                            listView1.Items[i].SubItems[7].Text = "指定星期不符合";
+                            continue;
+                        }
+                       
+
+                    }
 
                     //判断周末
                     if (text[4] == "true") //需要周末签到不需要处理
@@ -240,13 +267,15 @@ namespace 校友邦
                        
                         if(fc.status == "2" && !start.Contains("success"))
                         {
+                            string shangchuanmamsg = fc.shangchuanma(cookie);
                             string msg = fc.qiandao(cookie, address, traineeid);
-                            listView1.Items[i].SubItems[7].Text = msg;
+                            listView1.Items[i].SubItems[7].Text = shangchuanmamsg+"  "+msg;
                         }
                         if (fc.status == "1" && !end.Contains("success"))
                         {
+                            string shangchuanmamsg = fc.shangchuanma(cookie);
                             string msg = fc.qiandao(cookie, address, traineeid);
-                            listView1.Items[i].SubItems[8].Text = msg;
+                            listView1.Items[i].SubItems[8].Text = shangchuanmamsg + "  " + msg;
                         }
 
                     }

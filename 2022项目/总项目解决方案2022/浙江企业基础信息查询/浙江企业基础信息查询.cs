@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,7 +20,76 @@ namespace 浙江企业基础信息查询
         {
             InitializeComponent();
         }
+        #region  listView导出CSV
+        /// <summary>
+        /// 导出CSV
+        /// </summary>
+        /// <param name="listView"></param>
+        /// <param name="includeHidden"></param>
+        /// 
+        public static void ListViewToCSV(ListView listView, bool includeHidden)
+        {
+            //make header string
+            SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
 
+            //sfd.Title = "Excel文件导出";
+            string filePath = "";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                filePath = sfd.FileName + ".csv";
+            }
+            StringBuilder result = new StringBuilder();
+            WriteCSVRow(result, listView.Columns.Count, i => includeHidden || listView.Columns[i].Width > 0, i => listView.Columns[i].Text);
+
+            //export data rows
+            foreach (ListViewItem listItem in listView.Items)
+                WriteCSVRow(result, listView.Columns.Count, i => includeHidden || listView.Columns[i].Width > 0, i => listItem.SubItems[i].Text);
+
+            File.WriteAllText(filePath, result.ToString(), Encoding.GetEncoding("utf-8"));
+            MessageBox.Show("导出成功");
+        }
+
+
+        private static void WriteCSVRow(StringBuilder result, int itemsCount, Func<int, bool> isColumnNeeded, Func<int, string> columnValue)
+        {
+            bool isFirstTime = true;
+            for (int i = 0; i < itemsCount; i++)
+            {
+                try
+                {
+
+                    if (!isColumnNeeded(i))
+                        continue;
+
+                    if (!isFirstTime)
+                        result.Append(",");
+                    isFirstTime = false;
+
+                    result.Append(String.Format("{0}", columnValue(i)));
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+
+            result.AppendLine();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 获取时间戳毫秒
+        /// </summary>
+        /// <returns></returns>
+        public string GetTimeStamp()
+        {
+            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long a = Convert.ToInt64(tss.TotalMilliseconds);
+            return a.ToString();
+        }
         public void run()
         {
             try
@@ -32,10 +102,102 @@ namespace 浙江企业基础信息查询
                     string uid = dr[0].ToString();
                     string url = "http://app.gjzwfw.gov.cn/jimps/link.do";
                     label3.Text = "正在查询：" + uid;
-                    string timestr = method.GetTimeStamp() + "000";
+                    string timestr = GetTimeStamp();
                     string sign = method.GetMD5("qyjbxxcxzj" + timestr);
                     string zj_ggsjpt_sign = method.GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74" + "995e00df72f14bbcb7833a9ca063adef" + timestr);
                     string postdata = "param=%7B%22from%22%3A%222%22%2C%22key%22%3A%22b4842fe0fadc44398d674c786a583f8e%22%2C%22requestTime%22%3A%22" + timestr + "%22%2C%22sign%22%3A%22" + sign + "%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22" + zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22" + timestr + "%22%2C%22uniscId%22%3A%22"+uid+"%22%2C%22companyName%22%3A%22%22%2C%22registerNo%22%3A%22%22%2C%22entType%22%3A%22E%22%2C%22additional%22%3A%22%22%7D";
+                    string html = method.PostUrlDefault(url, postdata, "");
+                    //MessageBox.Show(html);
+                  
+                    string company = Regex.Match(html, @"""companyName"":""([\s\S]*?)""").Groups[1].Value;
+
+                    string financeInfo = Regex.Match(html, @"financeInfo([\s\S]*?)\]").Groups[1].Value;
+                    string liaisonInfo = Regex.Match(html, @"liaisonInfo([\s\S]*?)\]").Groups[1].Value;
+
+
+
+                    MatchCollection names = Regex.Matches(html, @"shareholderName='([\s\S]*?)'");
+                    MatchCollection cards = Regex.Matches(html, @"paperNo='([\s\S]*?)'");
+                      if (listView1.Items.Count > 2)
+                        {
+                            this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                        }
+
+
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(uid + "," + company + ",");
+                    for (int i = 0; i < names.Count; i++)
+                    {
+                        string name = names[i].Groups[1].Value;
+                        string card = cards[i].Groups[1].Value;
+                        //if (jiami==true)
+                        //{
+                        //    company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
+                        //    name = method.Base64Encode(Encoding.GetEncoding("utf-8"), names[i].Groups[1].Value);
+                        //   card = method.Base64Encode(Encoding.GetEncoding("utf-8"), cards[i].Groups[1].Value);
+                        //}
+
+                        sb.Append(name+","+card+",");
+                      
+                    }
+                    string aname = Regex.Match(financeInfo, @"nAME"":""([\s\S]*?)""").Groups[1].Value;
+                    string acard = Regex.Match(financeInfo, @"cERNO"":""([\s\S]*?)""").Groups[1].Value;
+                    string atel = Regex.Match(financeInfo, @"mOBTEL"":""([\s\S]*?)""").Groups[1].Value;
+                    string bname = Regex.Match(liaisonInfo, @"nAME"":""([\s\S]*?)""").Groups[1].Value;
+                    string bcard = Regex.Match(liaisonInfo, @"cERNO"":""([\s\S]*?)""").Groups[1].Value;
+                    string btel = Regex.Match(liaisonInfo, @"mOBTEL"":""([\s\S]*?)""").Groups[1].Value;
+
+                   
+
+                    //if (jiami==true)
+                    //{
+                    //    company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
+                    //    aname = method.Base64Encode(Encoding.GetEncoding("utf-8"), aname);
+                    //    acard = method.Base64Encode(Encoding.GetEncoding("utf-8"), acard);
+                    //    atel = method.Base64Encode(Encoding.GetEncoding("utf-8"), atel);
+                    //    bname = method.Base64Encode(Encoding.GetEncoding("utf-8"), bname);
+                    //    bcard = method.Base64Encode(Encoding.GetEncoding("utf-8"), bcard);
+                    //    btel = method.Base64Encode(Encoding.GetEncoding("utf-8"), btel);
+                    //}
+                    sb.Append(aname + "," + acard + "," + atel + "," + bname + "," + bcard + "," + btel);
+
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(sb.ToString());
+
+                    Thread.Sleep(100);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public void runbeifen()
+        {
+            try
+            {
+                for (int a = 0; a < dt.Rows.Count; a++)
+                {
+
+
+                    DataRow dr = dt.Rows[a];
+                    string uid = dr[0].ToString();
+                    string url = "http://app.gjzwfw.gov.cn/jimps/link.do";
+                    label3.Text = "正在查询：" + uid;
+                    string timestr = method.GetTimeStamp() + "000";
+                    string sign = method.GetMD5("qyjbxxcxzj" + timestr);
+                    string zj_ggsjpt_sign = method.GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74" + "995e00df72f14bbcb7833a9ca063adef" + timestr);
+                    string postdata = "param=%7B%22from%22%3A%222%22%2C%22key%22%3A%22b4842fe0fadc44398d674c786a583f8e%22%2C%22requestTime%22%3A%22" + timestr + "%22%2C%22sign%22%3A%22" + sign + "%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22" + zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22" + timestr + "%22%2C%22uniscId%22%3A%22" + uid + "%22%2C%22companyName%22%3A%22%22%2C%22registerNo%22%3A%22%22%2C%22entType%22%3A%22E%22%2C%22additional%22%3A%22%22%7D";
                     string html = method.PostUrlDefault(url, postdata, "");
                     //MessageBox.Show(html);
                     string company = Regex.Match(html, @"""companyName"":""([\s\S]*?)""").Groups[1].Value;
@@ -50,7 +212,7 @@ namespace 浙江企业基础信息查询
 
                     for (int i = 0; i < names.Count; i++)
                     {
-                        if(jiami==true)
+                        if (jiami == true)
                         {
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(uid);
@@ -92,7 +254,7 @@ namespace 浙江企业基础信息查询
 
 
 
-                    if(jiami==true)
+                    if (jiami == true)
                     {
                         company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
                         aname = method.Base64Encode(Encoding.GetEncoding("utf-8"), aname);
@@ -102,10 +264,10 @@ namespace 浙江企业基础信息查询
                         bcard = method.Base64Encode(Encoding.GetEncoding("utf-8"), bcard);
                         btel = method.Base64Encode(Encoding.GetEncoding("utf-8"), btel);
                     }
-                    
 
 
-                    if (aname!="")
+
+                    if (aname != "")
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(uid);
@@ -116,7 +278,7 @@ namespace 浙江企业基础信息查询
                     }
 
 
-                   
+
 
                     if (bname != "")
                     {
@@ -136,7 +298,6 @@ namespace 浙江企业基础信息查询
                 MessageBox.Show(ex.ToString());
             }
         }
-
 
         bool zanting = true;
         bool status = false;
@@ -199,7 +360,8 @@ namespace 浙江企业基础信息查询
 
         private void button4_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+           ListViewToCSV(listView1,true);
         }
 
        

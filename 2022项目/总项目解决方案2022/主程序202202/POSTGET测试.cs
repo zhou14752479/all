@@ -7,6 +7,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -102,7 +104,10 @@ namespace 主程序202202
 
         }
         #endregion
-
+        private bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
+        }
 
         #region POST请求
         /// <summary>
@@ -126,6 +131,7 @@ namespace 主程序202202
                 string contenttype = contenttypecob.Text;
                 string html = "";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
                 //添加头部
@@ -220,6 +226,11 @@ namespace 主程序202202
                 }
             }
            
+        }
+
+        private void POSTGET测试_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

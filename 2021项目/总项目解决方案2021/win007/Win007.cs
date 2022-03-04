@@ -92,6 +92,10 @@ namespace win007
         function fc = new function();
         public void chaxun()
         {
+            int zhusheng_bifen_count = 0;
+            int heju_bifen_count = 0;
+            int kesheng_bifen_count = 0;
+
             try
             {
                 if(textBox1.Text=="" &&textBox2.Text=="" && textBox3.Text=="")
@@ -334,6 +338,10 @@ namespace win007
                             }
                         }
 
+
+
+                       
+
                     }
                     catch (Exception)
                     {
@@ -342,6 +350,8 @@ namespace win007
                     }
 
                 }
+              
+              
 
                 if (textBox4.Text != "")
                 {
@@ -366,6 +376,31 @@ namespace win007
                     }
                 }
 
+                //计算比分百分比
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                {
+                    //比分
+                    string bifen = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                    string[] bifens = bifen.Split(new string[] { "-" }, StringSplitOptions.None);
+                    if (bifens.Length == 2)
+                    {
+                        if (Convert.ToInt32(bifens[0]) > Convert.ToInt32(bifens[1]))
+                        {
+                            zhusheng_bifen_count = zhusheng_bifen_count + 1;
+                        }
+                        else if (Convert.ToInt32(bifens[0]) == Convert.ToInt32(bifens[1]))
+                        {
+                            heju_bifen_count = heju_bifen_count + 1;
+                        }
+                        else if (Convert.ToInt32(bifens[0]) < Convert.ToInt32(bifens[1]))
+                        {
+                            kesheng_bifen_count = kesheng_bifen_count + 1;
+                        }
+                    }
+                }
+                zhusheng_banfenbi_label.Text = Convert.ToDouble(Convert.ToDouble(zhusheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
+                heju_banfenbi_label.Text = Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
+                kesheng_banfenbi_label.Text = Convert.ToDouble(Convert.ToDouble(kesheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
 
                 //fc.ShowDataInListView(dt, listView1);
             }
@@ -391,6 +426,7 @@ namespace win007
             }
 
             #endregion
+            dateTimePicker1.Value = DateTime.Now.AddDays(-1);
             dateTimePicker2.Value = DateTime.Now;
         }
 
@@ -675,7 +711,7 @@ namespace win007
 
         private void button2_Click(object sender, EventArgs e)
         {
-            startdate = dateTimePicker2.Value.AddDays(-1).ToString("yyyy-MM-dd");
+            startdate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             enddate = dateTimePicker2.Value.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)

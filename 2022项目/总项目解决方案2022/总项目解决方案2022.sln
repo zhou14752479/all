@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "孔网删除", "孔网删�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浙江企业基础信息查询", "浙江企业基础信息查询\浙江企业基础信息查询.csproj", "{3C270202-03F9-4417-807F-F59FA2DACF0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "口腔产品批量上传", "口腔产品批量上传\口腔产品批量上传.csproj", "{81135336-8B74-4BF5-BEF8-E3E19E2B3CCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "亚马逊星级评论统计", "亚马逊星级评论统计\亚马逊星级评论统计.csproj", "{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,14 @@ Global
 		{3C270202-03F9-4417-807F-F59FA2DACF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C270202-03F9-4417-807F-F59FA2DACF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C270202-03F9-4417-807F-F59FA2DACF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81135336-8B74-4BF5-BEF8-E3E19E2B3CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81135336-8B74-4BF5-BEF8-E3E19E2B3CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81135336-8B74-4BF5-BEF8-E3E19E2B3CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81135336-8B74-4BF5-BEF8-E3E19E2B3CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

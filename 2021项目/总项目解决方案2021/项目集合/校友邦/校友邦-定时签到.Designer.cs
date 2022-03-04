@@ -51,6 +51,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -89,13 +90,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 473);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1123, 100);
+            this.panel1.Size = new System.Drawing.Size(1145, 100);
             this.panel1.TabIndex = 4;
             // 
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.textBox2.Location = new System.Drawing.Point(983, 0);
+            this.textBox2.Location = new System.Drawing.Point(1005, 0);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -154,7 +155,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1123, 473);
+            this.groupBox1.Size = new System.Drawing.Size(1145, 473);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "账号信息";
@@ -172,7 +173,8 @@
             this.columnHeader10,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader9});
+            this.columnHeader9,
+            this.columnHeader11});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("宋体", 10F);
             this.listView1.ForeColor = System.Drawing.Color.Black;
@@ -181,7 +183,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 17);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1117, 453);
+            this.listView1.Size = new System.Drawing.Size(1139, 453);
             this.listView1.TabIndex = 193;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -209,7 +211,7 @@
             // columnHeader6
             // 
             this.columnHeader6.Text = "次数";
-            this.columnHeader6.Width = 300;
+            this.columnHeader6.Width = 200;
             // 
             // columnHeader4
             // 
@@ -240,11 +242,16 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "指定周几签到";
+            this.columnHeader11.Width = 100;
+            // 
             // 校友邦_定时签到
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1123, 573);
+            this.ClientSize = new System.Drawing.Size(1145, 573);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Name = "校友邦_定时签到";
@@ -282,5 +289,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
     }
 }

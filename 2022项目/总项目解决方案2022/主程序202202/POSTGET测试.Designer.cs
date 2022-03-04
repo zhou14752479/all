@@ -271,6 +271,7 @@
             this.Name = "POSTGET测试";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "POSTGET测试";
+            this.Load += new System.EventHandler(this.POSTGET测试_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
