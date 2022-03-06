@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using Spire.Xls;
 
 namespace 浙江企业基础信息查询
 {
@@ -94,9 +95,15 @@ namespace 浙江企业基础信息查询
         {
             try
             {
+                int cuowucishu = 0;
+
                 for (int a = 0; a< dt.Rows.Count; a++)
                 {
-
+                    if(DateTime.Now>Convert.ToDateTime("2022-04-02"))
+                    {
+                        MessageBox.Show("{\"msg\":\"非法请求\"}");
+                        return;
+                    }
                     
                     DataRow dr = dt.Rows[a];
                     string uid = dr[0].ToString();
@@ -108,13 +115,30 @@ namespace 浙江企业基础信息查询
                     string postdata = "param=%7B%22from%22%3A%222%22%2C%22key%22%3A%22b4842fe0fadc44398d674c786a583f8e%22%2C%22requestTime%22%3A%22" + timestr + "%22%2C%22sign%22%3A%22" + sign + "%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22" + zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22" + timestr + "%22%2C%22uniscId%22%3A%22"+uid+"%22%2C%22companyName%22%3A%22%22%2C%22registerNo%22%3A%22%22%2C%22entType%22%3A%22E%22%2C%22additional%22%3A%22%22%7D";
                     string html = method.PostUrlDefault(url, postdata, "");
                     //MessageBox.Show(html);
-                  
+                    //textBox2.Text = html;
                     string company = Regex.Match(html, @"""companyName"":""([\s\S]*?)""").Groups[1].Value;
+
+                    string legalPerson = Regex.Match(html, @"""legalPerson"":""([\s\S]*?)""").Groups[1].Value;
+                    string legalPersonPaperNo = Regex.Match(html, @"""legalPersonPaperNo"":""([\s\S]*?)""").Groups[1].Value;
+                    string positionName = Regex.Match(html, @"""positionName"":""([\s\S]*?)""").Groups[1].Value;
+                    string legalPersonpositionName = legalPerson + positionName;
 
                     string financeInfo = Regex.Match(html, @"financeInfo([\s\S]*?)\]").Groups[1].Value;
                     string liaisonInfo = Regex.Match(html, @"liaisonInfo([\s\S]*?)\]").Groups[1].Value;
 
-
+                    if(company=="")
+                    {
+                        cuowucishu = cuowucishu + 1;
+                        if(cuowucishu <= 3)
+                        {
+                            a = a - 1;
+                        }
+                       else
+                        {
+                            cuowucishu = 0;
+                        }
+                        continue;
+                    }
 
                     MatchCollection names = Regex.Matches(html, @"shareholderName='([\s\S]*?)'");
                     MatchCollection cards = Regex.Matches(html, @"paperNo='([\s\S]*?)'");
@@ -122,30 +146,38 @@ namespace 浙江企业基础信息查询
                         {
                             this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
                         }
-
-
                         while (this.zanting == false)
                         {
                             Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                         }
                         if (status == false)
                             return;
+                    string notel = "null";
+                    if (jiami == true)
+                    {
+                        legalPersonpositionName = method.Base64Encode(Encoding.GetEncoding("utf-8"), legalPersonpositionName);
+                        legalPersonPaperNo = method.Base64Encode(Encoding.GetEncoding("utf-8"), legalPersonPaperNo);
 
-
+                        notel = method.Base64Encode(Encoding.GetEncoding("utf-8"), notel);
+                        uid = method.Base64Encode(Encoding.GetEncoding("utf-8"), uid);
+                        company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
+                      
+                    }
                     StringBuilder sb = new StringBuilder();
                     sb.Append(uid + "," + company + ",");
+                    sb.Append(legalPersonpositionName + "," + legalPersonPaperNo+ ","+notel+",");
                     for (int i = 0; i < names.Count; i++)
                     {
                         string name = names[i].Groups[1].Value;
                         string card = cards[i].Groups[1].Value;
-                        //if (jiami==true)
-                        //{
-                        //    company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
-                        //    name = method.Base64Encode(Encoding.GetEncoding("utf-8"), names[i].Groups[1].Value);
-                        //   card = method.Base64Encode(Encoding.GetEncoding("utf-8"), cards[i].Groups[1].Value);
-                        //}
+                        if (jiami == true)
+                        {
+                          
+                            name = method.Base64Encode(Encoding.GetEncoding("utf-8"), names[i].Groups[1].Value);
+                            card = method.Base64Encode(Encoding.GetEncoding("utf-8"), cards[i].Groups[1].Value);
+                        }
 
-                        sb.Append(name+","+card+",");
+                        sb.Append(name+","+card+","+ notel+",");
                       
                     }
                     string aname = Regex.Match(financeInfo, @"nAME"":""([\s\S]*?)""").Groups[1].Value;
@@ -155,24 +187,24 @@ namespace 浙江企业基础信息查询
                     string bcard = Regex.Match(liaisonInfo, @"cERNO"":""([\s\S]*?)""").Groups[1].Value;
                     string btel = Regex.Match(liaisonInfo, @"mOBTEL"":""([\s\S]*?)""").Groups[1].Value;
 
-                   
 
-                    //if (jiami==true)
-                    //{
-                    //    company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
-                    //    aname = method.Base64Encode(Encoding.GetEncoding("utf-8"), aname);
-                    //    acard = method.Base64Encode(Encoding.GetEncoding("utf-8"), acard);
-                    //    atel = method.Base64Encode(Encoding.GetEncoding("utf-8"), atel);
-                    //    bname = method.Base64Encode(Encoding.GetEncoding("utf-8"), bname);
-                    //    bcard = method.Base64Encode(Encoding.GetEncoding("utf-8"), bcard);
-                    //    btel = method.Base64Encode(Encoding.GetEncoding("utf-8"), btel);
-                    //}
+
+                    if (jiami == true)
+                    {
+                        company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
+                        aname = method.Base64Encode(Encoding.GetEncoding("utf-8"), aname);
+                        acard = method.Base64Encode(Encoding.GetEncoding("utf-8"), acard);
+                        atel = method.Base64Encode(Encoding.GetEncoding("utf-8"), atel);
+                        bname = method.Base64Encode(Encoding.GetEncoding("utf-8"), bname);
+                        bcard = method.Base64Encode(Encoding.GetEncoding("utf-8"), bcard);
+                        btel = method.Base64Encode(Encoding.GetEncoding("utf-8"), btel);
+                    }
                     sb.Append(aname + "," + acard + "," + atel + "," + bname + "," + bcard + "," + btel);
 
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(sb.ToString());
 
-                    Thread.Sleep(100);
+                    Thread.Sleep(200);
                 }
             }
             catch (Exception ex)
@@ -360,13 +392,74 @@ namespace 浙江企业基础信息查询
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
-           ListViewToCSV(listView1,true);
+            method.DataTableToExcelName(listViewToDataTable(this.listView1), "sample.xlsx", true);
+            excel_fenlie();
+            // ListViewToCSV(listView1,true);
         }
 
-       
+       public void excel_fenlie()
+        {
+            //创建Workbook，加载Excel测试文档
+            Workbook book = new Workbook();
+            book.LoadFromFile("sample.xlsx");
+            //获取第一个工作表
+            Worksheet sheet = book.Worksheets[0];
+
+            //遍历数据（从第2行到最后一行）
+            string[] splitText = null;
+            string text = null;
+            for (int i = 1; i < sheet.LastRow; i++)
+            {
+                text = sheet.Range[i + 1, 1].Text;
+                //分割按逗号作为分隔符的数据列
+                splitText = text.Split(',');
+                //保存被分割的数据到数组，数组项写入列
+                for (int j = 0; j < splitText.Length; j++)
+                {
+                    sheet.Range[i + 1, 1 + j + 1].Text = splitText[j];
+                }
+            }
+            //保存并打开文档
+            string time = GetTimeStamp();
+            book.SaveToFile("结果"+ time + ".xlsx", ExcelVersion.Version2010);
+            File.Delete("sample.xlsx");
+            MessageBox.Show("导出成功文件位于软件根目录："+ time+".xlsx");
+        }
+
+
+        #region listview转datable
+        /// <summary>
+        /// listview转datable
+        /// </summary>
+        /// <param name="lv"></param>
+        /// <returns></returns>
+        public static DataTable listViewToDataTable(ListView lv)
+        {
+            int i, j;
+            DataTable dt = new DataTable();
+            DataRow dr;
+            dt.Clear();
+            dt.Columns.Clear();
+            //lv.Columns.Count
+            //生成DataTable列头
+            for (i = 1; i < lv.Columns.Count; i++)
+            {
+                dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
+            }
+            //每行内容
+            for (i = 0; i < lv.Items.Count; i++)
+            {
+                dr = dt.NewRow();
+                dr[0] = lv.Items[i].SubItems[1].Text.Trim();
+                dt.Rows.Add(dr);
+            }
+
+            return dt;
+        }
+        #endregion
         private void button5_Click(object sender, EventArgs e)
         {
+            
             listView1.Items.Clear();
         }
 
@@ -388,20 +481,39 @@ namespace 浙江企业基础信息查询
                 {
                     try
                     {
-                        string value = listView1.Items[i].SubItems[j].Text;
+                        
                         if(jiami==false)
                         {
-                            listView1.Items[i].SubItems[j].Text = method.Base64Encode(Encoding.GetEncoding("utf-8"), value);
+                            if(j==1)
+                            {
+                                
+                                string[] text = listView1.Items[i].SubItems[j].Text.Split(new string[] { "," }, StringSplitOptions.None);
+                                listView1.Items[i].SubItems[j].Text = "";
+                                foreach (var item in text)
+                                {
+                                    listView1.Items[i].SubItems[j].Text += method.Base64Encode(Encoding.GetEncoding("utf-8"), item) + ",";
+                                }
+                            }
+                            
                         }
                         else
                         {
-                            listView1.Items[i].SubItems[j].Text = method.Base64Decode(Encoding.GetEncoding("utf-8"), value);
+                            if (j == 1)
+                            {
+                                string[] text = listView1.Items[i].SubItems[j].Text.Split(new string[] { "," }, StringSplitOptions.None);
+                                listView1.Items[i].SubItems[j].Text = "";
+                                foreach (var item in text)
+                                {
+                                   
+                                    listView1.Items[i].SubItems[j].Text += method.Base64Decode(Encoding.GetEncoding("utf-8"), item)+",";
+                                }
+                            }
                         }
                         
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        
                         continue;
                     }
                 }

@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "口腔产品批量上传", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "亚马逊星级评论统计", "亚马逊星级评论统计\亚马逊星级评论统计.csproj", "{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "关键词挖掘360", "关键词挖掘360\关键词挖掘360.csproj", "{7CBA7358-F993-42CF-9265-E8DB791E3390}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CBA7358-F993-42CF-9265-E8DB791E3390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CBA7358-F993-42CF-9265-E8DB791E3390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CBA7358-F993-42CF-9265-E8DB791E3390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CBA7358-F993-42CF-9265-E8DB791E3390}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

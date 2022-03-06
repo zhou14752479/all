@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}</ProjectGuid>
+    <ProjectGuid>{7CBA7358-F993-42CF-9265-E8DB791E3390}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>主程序202202</RootNamespace>
-    <AssemblyName>主程序202202</AssemblyName>
+    <RootNamespace>关键词挖掘360</RootNamespace>
+    <AssemblyName>关键词挖掘360</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,41 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="POSTGET测试.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="POSTGET测试.Designer.cs">
-      <DependentUpon>POSTGET测试.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="内部资源号激活系统.cs">
+    <Compile Include="关键词挖掘360.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="内部资源号激活系统.Designer.cs">
-      <DependentUpon>内部资源号激活系统.cs</DependentUpon>
+    <Compile Include="关键词挖掘360.Designer.cs">
+      <DependentUpon>关键词挖掘360.cs</DependentUpon>
     </Compile>
-    <Compile Include="图书馆预约.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="图书馆预约.Designer.cs">
-      <DependentUpon>图书馆预约.cs</DependentUpon>
-    </Compile>
-    <Compile Include="登录.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="登录.Designer.cs">
-      <DependentUpon>登录.cs</DependentUpon>
-    </Compile>
-    <Compile Include="订单统计.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="订单统计.Designer.cs">
-      <DependentUpon>订单统计.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="POSTGET测试.resx">
-      <DependentUpon>POSTGET测试.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -88,12 +61,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="内部资源号激活系统.resx">
-      <DependentUpon>内部资源号激活系统.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="图书馆预约.resx">
-      <DependentUpon>图书馆预约.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

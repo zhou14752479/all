@@ -66,7 +66,7 @@ namespace 浙江企业基础信息查询
 
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new 浙江企业基础信息查询());
+                    Application.Run(new 查询2());
 
                 }
                 else

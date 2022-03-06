@@ -13,6 +13,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
 using System.Threading;
+using myDLL;
 
 namespace 亚马逊星级评论统计
 {
@@ -24,12 +25,13 @@ namespace 亚马逊星级评论统计
         }
 
 
-       
 
-        private void Request_www_amazon_com()
+
+        private string Request_www_amazon_com(string asin,string star)
         {
-           HttpWebResponse response = null;
 
+
+           HttpWebResponse response = null;
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.amazon.com/hz/reviews-render/ajax/reviews/get/ref=cm_cr_arp_d_viewopt_sr");
@@ -56,7 +58,7 @@ namespace 亚马逊星级评论统计
                 request.Method = "POST";
                 request.ServicePoint.Expect100Continue = false;
 
-                string body = @"sortBy=&reviewerType=all_reviews&formatType=&mediaType=&filterByStar=two_star&pageNumber=1&filterByLanguage=&filterByKeyword=&shouldAppend=undefined&deviceType=desktop&canShowIntHeader=undefined&reftag=cm_cr_arp_d_viewopt_sr&pageSize=10&asin=B07Q6XDZGC&scope=reviewsAjax2";
+                string body = @"sortBy=&reviewerType=all_reviews&formatType=&mediaType=&filterByStar="+star+"&pageNumber=1&filterByLanguage=&filterByKeyword=&shouldAppend=undefined&deviceType=desktop&canShowIntHeader=undefined&reftag=cm_cr_arp_d_viewopt_sr&pageSize=10&asin="+asin+"&scope=reviewsAjax2";
                 byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
                 request.ContentLength = postBytes.Length;
                 Stream stream = request.GetRequestStream();
@@ -81,39 +83,140 @@ namespace 亚马逊星级评论统计
                     reader.Close();
                 }
                 // textBox1.Text = html;
-
-                string values = Regex.Match(html, @"a-spacing-base a-size-base\\"">([\s\S]*?)</div>").Groups[1].Value.Replace("\\n","").Trim();
-                textBox1.Text = values;
                 response.Close();
+                return html;
+               
+               
             }
             catch (WebException e)
             {
                 if (e.Status == WebExceptionStatus.ProtocolError) response = (HttpWebResponse)e.Response;
+                return "";
                 
             }
             catch (Exception)
             {
                 if (response != null) response.Close();
-               
+                return "";
             }
 
             
         }
 
+
+        public void run()
+        {
+            try
+            {
+                string[] stars = { "five_star", "four_star", "three_star", "two_star", "one_star" };
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    for (int j = 0; j < stars.Length; j++)
+                    {
+                        string asin = listView1.Items[i].SubItems[2].Text;
+                        string html = Request_www_amazon_com(asin,stars[j]);
+                        string values = Regex.Match(html, @"a-spacing-base a-size-base\\"">([\s\S]*?)</div>").Groups[1].Value.Replace("\\n", "").Trim();
+                        if(stars[j]=="five_star")
+                        {
+                            listView1.Items[i].SubItems[3].Text = values;
+                        }
+                        if (stars[j] == "four_star")
+                        {
+                            listView1.Items[i].SubItems[4].Text = values;
+                        }
+                        if (stars[j] == "three_star")
+                        {
+                            listView1.Items[i].SubItems[5].Text = values;
+                        }
+                        if (stars[j] == "two_star")
+                        {
+                            listView1.Items[i].SubItems[6].Text = values;
+                        }
+                        if (stars[j] == "one_star")
+                        {
+                            listView1.Items[i].SubItems[7].Text = values;
+                        }
+                        Thread.Sleep(500);
+                        if (status == false)
+                            return;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         private void 亚马逊星级评论统计_Load(object sender, EventArgs e)
         {
-           
+            #region 通用检测
+
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"hGRLg"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                return;
+            }
+
+            #endregion
         }
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
+            status = true;
+            if (textBox1.Text=="")
+            {
+                MessageBox.Show("请导入文本");
+                return;
+            }
+
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(Request_www_amazon_com);
+                thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
           
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = openFileDialog1.FileName;
+                StreamReader sr = new StreamReader(openFileDialog1.FileName, method.EncodingType.GetTxtType(textBox1.Text));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < text.Length; i++)
+                {
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(DateTime.Now.ToString("yyyy-MM-dd"));
+                    lv1.SubItems.Add(text[i]);
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("");
+                }
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+            }
+        }
+
+
+        bool status = true;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            status = false;
         }
     }
 }

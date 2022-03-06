@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202202
+namespace 关键词挖掘360
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202202
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 内部资源号激活系统());
+            Application.Run(new Form1());
         }
     }
 }
