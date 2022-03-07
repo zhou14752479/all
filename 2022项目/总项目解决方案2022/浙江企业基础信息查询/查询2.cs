@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using Spire.Xls;
 
 namespace 浙江企业基础信息查询
 {
@@ -33,7 +35,7 @@ namespace 浙江企业基础信息查询
             {
                 for (int a = 0; a < dt.Rows.Count; a++)
                 {
-                    if (DateTime.Now > Convert.ToDateTime("2022-04-05"))
+                    if (DateTime.Now > Convert.ToDateTime("2022-04-07"))
                     {
                         MessageBox.Show("{\"msg\":\"非法请求\"}");
                         return;
@@ -50,8 +52,7 @@ namespace 浙江企业基础信息查询
                     
                     string html = method.GetUrl(url,"utf-8");
                    
-                  
-
+                 
                     MatchCollection dwxxmc = Regex.Matches(html, @"""dwxxmc"":""([\s\S]*?)""");
                     MatchCollection xywcqk = Regex.Matches(html, @"""xywcqk"":""([\s\S]*?)""");
                     MatchCollection gmsfhm = Regex.Matches(html, @"""gmsfhm"":""([\s\S]*?)""");
@@ -62,53 +63,58 @@ namespace 浙江企业基础信息查询
                     MatchCollection hyzk = Regex.Matches(html, @"""hyzk"":""([\s\S]*?)""");
                     MatchCollection jnsyzk = Regex.Matches(html, @"""jnsyzk"":""([\s\S]*?)""");
 
-
+                    if (jiami == true)
+                    {
+                        uid = method.Base64Encode(Encoding.GetEncoding("utf-8"), uid);
+                       
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(uid + ",");
                     for (int i = 0; i < dwxxmc.Count; i++)
                     {
+                        string dwxxmc1 = dwxxmc[i].Groups[1].Value;
+                        string xywcqk1 = xywcqk[i].Groups[1].Value;
+                        string gmsfhm1 = gmsfhm[i].Groups[1].Value;
+                        string sfsz1 = sfsz[i].Groups[1].Value;
+                        string hkdjd1 = hkdjd[i].Groups[1].Value;
+                        string mz1=mz[i].Groups[1].Value;
+                        string xm1 = xm[i].Groups[1].Value;
+                        string hyzk1 = hyzk[i].Groups[1].Value;
+                        string jnsyzk1 = jnsyzk[i].Groups[1].Value;
+
                         if (jiami == true)
                         {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), dwxxmc[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), xywcqk[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), gmsfhm[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), sfsz[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), hkdjd[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), mz[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), xm[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), hyzk[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), jnsyzk[i].Groups[1].Value));
-                        }
-                        if (jiami == false)
-                        {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(dwxxmc[i].Groups[1].Value);
-                            lv1.SubItems.Add(xywcqk[i].Groups[1].Value);
-                            lv1.SubItems.Add(gmsfhm[i].Groups[1].Value);
-                            lv1.SubItems.Add(sfsz[i].Groups[1].Value);
-                            lv1.SubItems.Add(hkdjd[i].Groups[1].Value);
-                            lv1.SubItems.Add(mz[i].Groups[1].Value);
-                            lv1.SubItems.Add(xm[i].Groups[1].Value);
-                            lv1.SubItems.Add(hyzk[i].Groups[1].Value);
-                            lv1.SubItems.Add(jnsyzk[i].Groups[1].Value);
-                        }
-                        Thread.Sleep(1000);
+                            dwxxmc1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), dwxxmc[i].Groups[1].Value);
+                            xywcqk1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), xywcqk[i].Groups[1].Value);
+                            gmsfhm1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), gmsfhm[i].Groups[1].Value);
+                            sfsz1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), sfsz[i].Groups[1].Value);
+                            hkdjd1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), hkdjd[i].Groups[1].Value);
+                            mz1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), mz[i].Groups[1].Value);
+                            xm1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), xm[i].Groups[1].Value);
+                            hyzk1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), hyzk[i].Groups[1].Value);
+                            jnsyzk1 = method.Base64Encode(Encoding.GetEncoding("utf-8"), jnsyzk[i].Groups[1].Value);
 
-                        if (listView1.Items.Count > 2)
-                        {
-                            this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
                         }
+                        sb.Append(dwxxmc1 + ","+ xywcqk1 + "," + gmsfhm1 + "," + sfsz1 + "," + hkdjd1 + "," + mz1 + "," + xm1 + "," + hyzk1 + "," + jnsyzk1);
+                      
 
+                    }
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(sb.ToString());
+                    Thread.Sleep(500);
 
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                        if (status == false)
-                            return;
+                    if (listView1.Items.Count > 2)
+                    {
+                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
                     }
 
-                   
-                   
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
                 }
             }
             catch (Exception ex)
@@ -118,7 +124,7 @@ namespace 浙江企业基础信息查询
             }
         }
 
-        bool jiami = false;
+        bool jiami = true;
         bool zanting = true;
         bool status = false;
         Thread thread;
@@ -167,7 +173,7 @@ namespace 浙江企业基础信息查询
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text != "24791475")
+            if (textBox3.Text != "14752479")
             {
                 MessageBox.Show("密码错误");
                 return;
@@ -181,17 +187,33 @@ namespace 浙江企业基础信息查询
                 {
                     try
                     {
-                        string value = listView1.Items[i].SubItems[j].Text;
+
                         if (jiami == false)
                         {
-                            listView1.Items[i].SubItems[j].Text = method.Base64Encode(Encoding.GetEncoding("utf-8"), value) ;
+                            if (j == 1)
+                            {
 
-
+                                string[] text = listView1.Items[i].SubItems[j].Text.Split(new string[] { "," }, StringSplitOptions.None);
+                                listView1.Items[i].SubItems[j].Text = "";
+                                foreach (var item in text)
+                                {
+                                    listView1.Items[i].SubItems[j].Text += method.Base64Encode(Encoding.GetEncoding("utf-8"), item) + ",";
+                                }
+                            }
 
                         }
                         else
                         {
-                            listView1.Items[i].SubItems[j].Text = method.Base64Decode(Encoding.GetEncoding("utf-8"), value);
+                            if (j == 1)
+                            {
+                                string[] text = listView1.Items[i].SubItems[j].Text.Split(new string[] { "," }, StringSplitOptions.None);
+                                listView1.Items[i].SubItems[j].Text = "";
+                                foreach (var item in text)
+                                {
+
+                                    listView1.Items[i].SubItems[j].Text += method.Base64Decode(Encoding.GetEncoding("utf-8"), item) + ",";
+                                }
+                            }
                         }
 
                     }
@@ -236,7 +258,67 @@ namespace 浙江企业基础信息查询
 
         private void button4_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+            method.DataTableToExcelName(listViewToDataTable(this.listView1), "sample.xlsx", true);
+            excel_fenlie();
+            //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+        #region listview转datable
+        /// <summary>
+        /// listview转datable
+        /// </summary>
+        /// <param name="lv"></param>
+        /// <returns></returns>
+        public static DataTable listViewToDataTable(ListView lv)
+        {
+            int i, j;
+            DataTable dt = new DataTable();
+            DataRow dr;
+            dt.Clear();
+            dt.Columns.Clear();
+            //lv.Columns.Count
+            //生成DataTable列头
+            for (i = 1; i < lv.Columns.Count; i++)
+            {
+                dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
+            }
+            //每行内容
+            for (i = 0; i < lv.Items.Count; i++)
+            {
+                dr = dt.NewRow();
+                dr[0] = lv.Items[i].SubItems[1].Text.Trim();
+                dt.Rows.Add(dr);
+            }
+
+            return dt;
+        }
+        #endregion
+        public void excel_fenlie()
+        {
+            //创建Workbook，加载Excel测试文档
+            Workbook book = new Workbook();
+            book.LoadFromFile("sample.xlsx");
+            //获取第一个工作表
+            Worksheet sheet = book.Worksheets[0];
+
+            //遍历数据（从第2行到最后一行）
+            string[] splitText = null;
+            string text = null;
+            for (int i = 1; i < sheet.LastRow; i++)
+            {
+                text = sheet.Range[i + 1, 1].Text;
+                //分割按逗号作为分隔符的数据列
+                splitText = text.Split(',');
+                //保存被分割的数据到数组，数组项写入列
+                for (int j = 0; j < splitText.Length; j++)
+                {
+                    sheet.Range[i + 1, 1 + j + 1].Text = splitText[j];
+                }
+            }
+            //保存并打开文档
+            string time = GetTimeStamp();
+            book.SaveToFile("结果" + time + ".xlsx", ExcelVersion.Version2010);
+            File.Delete("sample.xlsx");
+            MessageBox.Show("导出成功文件位于软件根目录：" + time + ".xlsx");
         }
 
         private void button5_Click(object sender, EventArgs e)
