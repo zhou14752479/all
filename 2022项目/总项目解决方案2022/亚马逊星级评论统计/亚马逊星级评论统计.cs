@@ -108,44 +108,66 @@ namespace 亚马逊星级评论统计
         {
             try
             {
+                
                 string[] stars = { "five_star", "four_star", "three_star", "two_star", "one_star" };
                 for (int i = 0; i < listView1.Items.Count; i++)
                 {
                     for (int j = 0; j < stars.Length; j++)
                     {
+                       
                         string asin = listView1.Items[i].SubItems[2].Text;
                         string html = Request_www_amazon_com(asin,stars[j]);
+                        //textBox2.Text = html;
+                        label2.Text = "正在查询："+ asin;
                         string values = Regex.Match(html, @"a-spacing-base a-size-base\\"">([\s\S]*?)</div>").Groups[1].Value.Replace("\\n", "").Trim();
-                        if(stars[j]=="five_star")
+
+                        values = values.Replace("total","").Replace("ratings", "#").Replace("with", "").Replace("reviews", "").Replace(" ", "").Replace(",", "").Replace("review", "").Replace("rating", "#").Trim();
+
+                        string[] text = values.Split(new string[] { "#" }, StringSplitOptions.None);
+                        if (text.Length < 1)
                         {
-                            listView1.Items[i].SubItems[3].Text = values;
+                          
+                            label2.Text = "查询失败";
+                            continue;
+                        }
+                            
+                        if (stars[j]=="five_star")
+                        {
+                            listView1.Items[i].SubItems[3].Text =text[0];
+                            listView1.Items[i].SubItems[4].Text = text[1];
                         }
                         if (stars[j] == "four_star")
                         {
-                            listView1.Items[i].SubItems[4].Text = values;
+                            listView1.Items[i].SubItems[5].Text = text[0];
+                            listView1.Items[i].SubItems[6].Text = text[1];
                         }
                         if (stars[j] == "three_star")
                         {
-                            listView1.Items[i].SubItems[5].Text = values;
+                            listView1.Items[i].SubItems[7].Text = text[0];
+                            listView1.Items[i].SubItems[8].Text = text[1];
                         }
                         if (stars[j] == "two_star")
                         {
-                            listView1.Items[i].SubItems[6].Text = values;
+                            listView1.Items[i].SubItems[9].Text = text[0];
+                            listView1.Items[i].SubItems[10].Text = text[1];
                         }
                         if (stars[j] == "one_star")
                         {
-                            listView1.Items[i].SubItems[7].Text = values;
+                            listView1.Items[i].SubItems[11].Text = text[0];
+                            listView1.Items[i].SubItems[12].Text = text[1];
                         }
                         Thread.Sleep(500);
+
                         if (status == false)
                             return;
                     }
                 }
+                label2.Text = "查询结束";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.ToString());
             }
         }
         private void 亚马逊星级评论统计_Load(object sender, EventArgs e)
@@ -193,9 +215,14 @@ namespace 亚马逊星级评论统计
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < text.Length; i++)
                 {
-                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(DateTime.Now.ToString("yyyy-MM-dd"));
                     lv1.SubItems.Add(text[i]);
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add("");
                     lv1.SubItems.Add("");
                     lv1.SubItems.Add("");
                     lv1.SubItems.Add("");
@@ -217,6 +244,11 @@ namespace 亚马逊星级评论统计
         private void button3_Click(object sender, EventArgs e)
         {
             status = false;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

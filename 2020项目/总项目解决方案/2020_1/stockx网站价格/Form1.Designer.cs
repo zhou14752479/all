@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -42,7 +43,6 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,7 +53,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -69,16 +69,27 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(1359, 780);
-            this.splitContainer1.SplitterDistance = 325;
+            this.splitContainer1.Size = new System.Drawing.Size(1268, 780);
+            this.splitContainer1.SplitterDistance = 303;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(200, 153);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(67, 15);
+            this.linkLabel1.TabIndex = 23;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "刷新汇率";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 11F);
             this.button2.Location = new System.Drawing.Point(95, 288);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(192, 38);
             this.button2.TabIndex = 22;
@@ -101,7 +112,7 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("宋体", 12F);
             this.textBox2.Location = new System.Drawing.Point(95, 106);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(191, 30);
@@ -123,7 +134,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 11F);
             this.button1.Location = new System.Drawing.Point(95, 231);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(192, 38);
             this.button1.TabIndex = 16;
@@ -135,12 +146,12 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("宋体", 12F);
             this.textBox1.Location = new System.Drawing.Point(95, 40);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(191, 30);
             this.textBox1.TabIndex = 14;
-            this.textBox1.Text = "CT4954-007";
+            this.textBox1.Text = "CD4991-100";
             // 
             // listView1
             // 
@@ -154,9 +165,9 @@
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1029, 780);
+            this.listView1.Size = new System.Drawing.Size(960, 780);
             this.listView1.TabIndex = 26;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -180,24 +191,13 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(200, 153);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(67, 15);
-            this.linkLabel1.TabIndex = 23;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "刷新汇率";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1359, 780);
+            this.ClientSize = new System.Drawing.Size(1268, 780);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "stockx网站实时价格";

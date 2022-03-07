@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "屏幕截图合成", "屏幕截图合成\屏幕截图合成.csproj", "{814947A8-4E7D-4327-8C94-40CED0B93A5B}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202202", "主程序202202\主程序202202.csproj", "{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "抖音直播", "抖音直播\抖音直播.csproj", "{9B29D5B4-D047-4C6D-B45E-532ADA686625}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝商家电话", "淘宝商家电话\淘宝商家电话.csproj", "{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "..\..\2020项目\总项目解决方案\helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
@@ -36,6 +34,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "亚马逊星级评论统计", "亚马逊星级评论统计\亚马逊星级评论统计.csproj", "{4A677F28-F2A7-4CDB-AB42-4CEAF5C86564}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "关键词挖掘360", "关键词挖掘360\关键词挖掘360.csproj", "{7CBA7358-F993-42CF-9265-E8DB791E3390}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "..\..\2020项目\总项目解决方案\2020_1\stockx网站价格\stockx网站价格.csproj", "{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "模拟采集", "..\..\2020项目\总项目解决方案\2020_1\模拟采集\模拟采集.csproj", "{DA5D02B1-5CBF-4FC5-8A75-F4675BA32D9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,10 +65,6 @@ Global
 		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Release|Any CPU.Build.0 = Release|Any CPU
-		{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{169EEB96-D01D-4A40-AD85-D3EEF0B3CD4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -111,6 +109,14 @@ Global
 		{7CBA7358-F993-42CF-9265-E8DB791E3390}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CBA7358-F993-42CF-9265-E8DB791E3390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CBA7358-F993-42CF-9265-E8DB791E3390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA5D02B1-5CBF-4FC5-8A75-F4675BA32D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA5D02B1-5CBF-4FC5-8A75-F4675BA32D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA5D02B1-5CBF-4FC5-8A75-F4675BA32D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA5D02B1-5CBF-4FC5-8A75-F4675BA32D9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

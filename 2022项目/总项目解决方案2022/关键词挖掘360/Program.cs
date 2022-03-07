@@ -16,7 +16,7 @@ namespace 关键词挖掘360
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new 关键词挖掘360());
         }
     }
 }

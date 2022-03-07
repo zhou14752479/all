@@ -211,7 +211,7 @@ namespace stockx网站价格
             textBox2.Text = huilv;
         }
 
-        string cookie = "stockx_device_id=6d644afd-028e-43fe-9569-c9c1415271c1; language_code=zh; pxcts=bc9098cb-9540-11ec-a19b-497978705341; _pxvid=bc908e20-9540-11ec-a19b-497978705341; stockx_session=%225fee44b1-6abb-438e-8db9-8109af9b4d54%22; _ga=undefined; rskxRunCookie=0; rCookie=1vpbrt7ojq9fs0pldcs89sl00naqgv; riskified_recover_updated_verbiage=true; ops_banner_id=bltf0ff6f9ef26b6bdb; __ssid=9c512a85f1483910122cd4a190df7e0; ab_one_buy_now_v2_button=true; stockx_preferred_market_activity=sales; stockx_default_sneakers_size=All; stockx_homepage=sneakers; tracker_device=32dc7fff-c416-460d-b9a9-3c4c42093390; _px3=549c4a43bb9db3879539b831350db777ce363d6ea129e730a43ccbde573502c9:TYTIPKN+g9cDik+cNAPnZUZDmcljQMzT1/5tCo1ko6SAVg/2fDUBtdP6c/ea6Tan1jRtV+O9LWpDdyEXYe/uNw==:1000:ILFTZuVgqSIXSmV3eHQCWzXKl8oXNcxdsbt4bJmfNu7Q0lbYG+3XLLs/SB5YgDfsgvjbZK4bKAIBjdF4I8M63ZDIQ2M8xZC2kBQ6NiC42gSMI8HGWsipuhRPDRAm5dOpZHERJJN1GmlhOyeqqZldIr7EfBYX3pukrKGa/zQv4aLMvYOPUu0+l3+bSZLBiewm0FcAt4efbLRhWdSnhM7kdg==; _dd_s=rum=0&expire=1645687810969; stockx_product_visits=7; lastRskxRun=1645686912128; forterToken=291d69bc4ccd4bedb442db00cdceb640_1645686912034__UDF43_13ck";
+        string cookie = "stockx_device_id=6d644afd-028e-43fe-9569-c9c1415271c1; _pxvid=bc908e20-9540-11ec-a19b-497978705341; _ga=undefined; rskxRunCookie=0; rCookie=1vpbrt7ojq9fs0pldcs89sl00naqgv; __ssid=9c512a85f1483910122cd4a190df7e0; ab_one_buy_now_v2_button=true; tracker_device=32dc7fff-c416-460d-b9a9-3c4c42093390; _ga=GA1.2.685685636.1645758061; _gcl_au=1.1.425481816.1645758065; ajs_anonymous_id=f323e877-aafc-4806-a0a2-7bc1b3e26b9a; rbuid=rbos-ab50ae84-ccb1-4035-a579-fe1a75ab8098; _scid=dd421d6f-5ae0-4b0e-b2d0-693fa507a8b7; __pdst=b7b4cd3a7e1f49d5aee18b5418b623e8; QuantumMetricUserID=3a24e6b142b001c1aad90f64472c3123; stockx_homepage=sneakers; language_code=zh; _gid=GA1.2.1602747318.1646613502; pxcts=e81593f9-9dae-11ec-bb80-6d645852506b; riskified_recover_updated_verbiage=true; ops_banner_id=bltf0ff6f9ef26b6bdb; IR_gbd=stockx.com; _clck=1ybedkb|1|ezk|0; _rdt_uuid=1646613584009.8ecf5830-1b7c-4c0b-b5d8-5e6b2160893f; IR_9060=1646614625404%7C0%7C1646614625404%7C%7C; IR_PI=34ddf980-5644-11ec-b7cd-fd310cf19260%7C1646701025404; __cf_bm=a4ciY3ayBdCZ7I.bHkIxBW56Pl2vmF7_UVdagy5tTZM-1646618614-0-ARAl5A8t3VMDMTegJ2XimGWOT04P8fLwsPxfukotT5V0b5LKuK95KsOuE9sXzSPlFfW6mT4be9sA8e5kB1RoI5M=; stockx_preferred_market_activity=sales; stockx_session=%22abd68b20-68e4-4d38-94f2-2304e4e185f4%22; com.auth0.auth.%7B%22state%22%3A%7B%22forceLogin%22%3Atrue%7D%7D={%22nonce%22:null%2C%22state%22:%22{%5C%22state%5C%22:{%5C%22forceLogin%5C%22:true}}%22%2C%22lastUsedConnection%22:%22production%22}; _com.auth0.auth.%7B%22state%22%3A%7B%22forceLogin%22%3Atrue%7D%7D_compat={%22nonce%22:null%2C%22state%22:%22{%5C%22state%5C%22:{%5C%22forceLogin%5C%22:true}}%22%2C%22lastUsedConnection%22:%22production%22}; _clsk=cxgxeb|1646618617502|1|0|i.clarity.ms/collect; QuantumMetricSessionID=baccc52ffa8ec5a9102df4aa3e1017be; _uetsid=e90836809dae11ecacb4f3299b3cf807; _uetvid=2db6537095e711ec953d0137b555dfe9; token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5USkNNVVEyUmpBd1JUQXdORFk0TURRelF6SkZRelV4TWpneU5qSTNNRFJGTkRZME0wSTNSQSJ9.eyJodHRwczovL3N0b2NreC5jb20vY3VzdG9tZXJfdXVpZCI6IjI5MzJiMWNhLTA3ZjktMTFlNy1hYTc5LTEyY2RhMWM5YjZhNSIsImh0dHBzOi8vc3RvY2t4LmNvbS9nYV9ldmVudCI6IkxvZ2dlZCBJbiIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuc3RvY2t4LmNvbS8iLCJzdWIiOiJhdXRoMHwyOTMyYjFjYS0wN2Y5LTExZTctYWE3OS0xMmNkYTFjOWI2YTUiLCJhdWQiOlsiZ2F0ZXdheS5zdG9ja3guY29tIiwiaHR0cHM6Ly9zdG9ja3gtcHJvZC5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjQ2NjE4NzE3LCJleHAiOjE2NDY2NjE5MTcsImF6cCI6Ik9WeHJ0NFZKcVR4N0xJVUtkNjYxVzBEdVZNcGNGQnlEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSJ9.JJSrMSsnUzuQUp7mWceWX89L5kKDNVWzjVUlWDGqQSzi3bsU8lCJzH11nYqZyujEvneAZA4HHN5j6uMEmVaCgrk0zlpdQmSus3UxTGsKIIQbWVLGLlkAvNsbtS6wNNyQIrYmKPHr-UQ77g5trJk7Ek3sxfTDvGzjUhsLJKboz7GatUYs3dlhWrdmOjn1SGtCDHcVq7q9QQo_XAvUqwewNDEFG4wEROZp9besWvJHetQQ5JKPn3hLrRwufKxjczx9aCzHfD8tud5HlHQ4NpsIkRVrbkPPUtKhDEklMVZiGigIvUjagBmw8MBtj2UM5e66pIyPqrSIw2zugRtlpuWqDw; stockx_selected_currency=USD; loggedIn=2932b1ca-07f9-11e7-aa79-12cda1c9b6a5; stockx_default_sneakers_size=8.5; _px3=9b55363afdd30d47bdebd5768e9a658a77fbc2f45d57d17ecd94cb801bdf688d:1rxCQDBqoJLeX1AcloWiARJQ4epAANBectP8T2EaFdSSWn0Bjnd0gIdIAVAhZ0NTHvpwjuoVgbaRCf93UCDGUw==:1000:58DAAEMVtM1dPTfurOrJGPBjPKB4ykIkzuwDDk5DHFvZp0DGqfhwWMyaCckgeMUy2suMShuke11LqtSnBPvL+M0+HD49iPEgO4NpTVktFbQgsnYLsMVatGfhgxZ3KR5103ueAJKjoBHR6+oTBzsbYYqQ5XKs7m4hr3JIMbubbSKZxusuJD9OgPNmlztsGKseSSDWH+Q64FF8LnWU7NGRnA==; forterToken=291d69bc4ccd4bedb442db00cdceb640_1646618716273__UDF43_13ck; stockx_product_visits=3; lastRskxRun=1646618786530; _dd_s=rum=0&expire=1646619740546";
             public void run()
         {
 
@@ -224,7 +224,7 @@ namespace stockx网站价格
                 string html = PostUrl(url,postdata);
                 
                 Match huo = Regex.Match(html, @"""url"":""([\s\S]*?)""");
-                string aurl = "https://stockx.com/api/products/"+huo.Groups[1].Value+"?includes=market,360&currency=USD&country=HK";
+                string aurl = "https://stockx.com/api/products/"+huo.Groups[1].Value+"?includes=market,360&currency=USD&country=US";
                
 
                 string ahtml = gethtml(aurl, cookie);
@@ -257,20 +257,20 @@ namespace stockx网站价格
                     //lv2.SubItems.Add(highprice.ToString());
 
 
-                    double fee1 = Convert.ToDouble(textBox2.Text) * 29.95;
+                    double fee1 = Convert.ToDouble(textBox2.Text) * 0.055* Convert.ToDouble(lows[j].Groups[1].Value);  //手续费是变动的
+                    double fee2 = Convert.ToDouble(textBox2.Text) * 0.055 * Convert.ToDouble(highs[j].Groups[1].Value);  //手续费是变动的
 
-                    if (Convert.ToDouble(lows[j].Groups[1].Value) < 999)
-                    {
-                        fee1 = 0.03 * lowprice;
-                    }
-                     
-                    double fee2 = Convert.ToDouble(textBox2.Text) * 9 ;
+                    //if (Convert.ToDouble(lows[j].Groups[1].Value) > 999)
+                    //{
+                    //    fee1 = Convert.ToDouble(textBox2.Text) * 0.06 * Convert.ToDouble(lows[j].Groups[1].Value);  //手续费是变动的
+                    //}
+                    double yunfei = Convert.ToDouble(textBox2.Text) * 13.95 ; //运费是变动的目前是13.95
 
-                    double zong1 = lowprice + fee1 + fee2;
-                    double zong2= highprice + fee1 + fee2;
+                    double zong1 = lowprice + fee1 + yunfei;
+                    double zong2= highprice + fee2 + yunfei;
                     lv2.SubItems.Add(zong1.ToString());
                     lv2.SubItems.Add(zong2.ToString());
-
+                    
                 }
 
 
