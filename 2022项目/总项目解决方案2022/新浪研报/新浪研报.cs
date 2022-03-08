@@ -29,6 +29,9 @@ namespace 新浪研报
 
         int chongshicishu = 0;
 
+
+        int datatiaoshu = 0;
+
         #region GET使用代理IP请求
         /// <summary>
         /// GET请求
@@ -158,13 +161,23 @@ namespace 新浪研报
                                 continue;
                             }
                             chongshicishu = 0;
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                            lv1.SubItems.Add(titles[i].Groups[1].Value.Replace("/t", "").Replace(",","，"));
-                            lv1.SubItems.Add(types[i].Groups[2].Value.Replace(",", "，"));
-                            lv1.SubItems.Add(Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd"));
-                            lv1.SubItems.Add(jigous[i].Groups[1].Value.Replace(",", "，"));
-                            lv1.SubItems.Add(yjys[i].Groups[1].Value.Replace(",", "，"));
-                            lv1.SubItems.Add(Regex.Replace(body, "<[^>]+>", "").Trim().Replace(",", "，"));
+
+                            //ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                            //lv1.SubItems.Add(titles[i].Groups[1].Value.Replace("/t", "").Replace(",","，"));
+                            //lv1.SubItems.Add(types[i].Groups[2].Value.Replace(",", "，"));
+                            //lv1.SubItems.Add(Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd"));
+                            //lv1.SubItems.Add(jigous[i].Groups[1].Value.Replace(",", "，"));
+                            //lv1.SubItems.Add(yjys[i].Groups[1].Value.Replace(",", "，"));
+                            //lv1.SubItems.Add(Regex.Replace(body, "<[^>]+>", "").Trim().Replace(",", "，"));
+
+                            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.csv", FileMode.Append, FileAccess.Write);//创建写入文件 
+                            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                            sw.WriteLine("\""+titles[i].Groups[1].Value.Replace("/t", "").Replace(",", "，")+"\"" + "," + "\"" + types[i].Groups[2].Value.Replace(",", "，")+ "\"" + "," + "\"" + Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd")+ "\"" + ","+ "\"" + jigous[i].Groups[1].Value.Replace(",", "，")+ "\"" + ","+ "\"" + yjys[i].Groups[1].Value.Replace(",", "，")+ "\"" + ","+ "\"" + Regex.Replace(body, "<[^>]+>", "").Trim().Replace(",", "，")+ "\"");
+                            sw.Close();
+                            fs1.Close();
+                            sw.Dispose();
+
+
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
