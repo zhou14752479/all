@@ -13,6 +13,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 using Spire.Xls;
 
 namespace 浙江企业基础信息查询
@@ -24,13 +27,15 @@ namespace 浙江企业基础信息查询
             InitializeComponent();
         }
 
+        string ua1 = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.17(0x17001126) NetType/WIFI Language/zh_CN";
+
         #region GET请求
         /// <summary>
         /// GET请求
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        public  string GetUrl(string Url, string charset)
         {
             string html = "";
             string COOKIE = "HWWAFSESID=cc9147f4aa41fc86ee; HWWAFSESTIME=1618565738420; route=0f1040e0778720d344b64fd91ee406cf; _monitor_sessionid=tCy7Ys6iRe1626459960928; _monitor_idx=5; JMOPENSESSIONID=1b9e1ff0-e9f4-4dc0-9a49-3720b58f83d9";
@@ -40,9 +45,12 @@ namespace 浙江企业基础信息查询
                 //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Proxy = null;//防止代理抓包
+                //WebProxy proxy = new WebProxy(ip);
+                //request.Proxy = proxy;
+
                 request.AllowAutoRedirect = true;
-                request.UserAgent = "Mozilla/5.0 (Linux; Android 10; M2007J3SC Build/QKQ1.200419.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.101 Mobile Safari/537.36 zgzwfwpt_iOS_hanweb_1.4.4_gjzwfw_hanweb_1.4.2";
-                request.Referer = Url;
+                request.UserAgent = ua1;
+                request.Referer = "http://app.gjzwfw.gov.cn/jmopen/webapp/html5/rkkpcxxcxjtapp/index.html";
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("sec-fetch-mode:navigate");
@@ -90,12 +98,14 @@ namespace 浙江企业基础信息查询
             long a = Convert.ToInt64(tss.TotalMilliseconds);
             return a.ToString();
         }
+        int total;
         public void run()
         {
             try
             {
                 for (int a = 0; a < dt.Rows.Count; a++)
                 {
+                    total = total + 1;
                     if (DateTime.Now > Convert.ToDateTime("2022-04-07"))
                     {
                         MessageBox.Show("{\"msg\":\"非法请求\"}");
@@ -113,7 +123,7 @@ namespace 浙江企业基础信息查询
                     
                     string html = GetUrl(url,"utf-8");
 
-                    textBox2.Text = html;
+                    //textBox2.Text = html;
                     MatchCollection dwxxmc = Regex.Matches(html, @"""dwxxmc"":""([\s\S]*?)""");
                     MatchCollection xywcqk = Regex.Matches(html, @"""xywcqk"":""([\s\S]*?)""");
                     MatchCollection gmsfhm = Regex.Matches(html, @"""gmsfhm"":""([\s\S]*?)""");
@@ -160,9 +170,15 @@ namespace 浙江企业基础信息查询
                       
 
                     }
+                    
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(sb.ToString());
-                    //Thread.Sleep(1000);
+                    //if (total > 99)
+                    //{
+                    //    Thread.Sleep(30000);
+                    //    total = 0;
+                    //}
+                    Thread.Sleep(2000);
 
                     if (listView1.Items.Count > 2)
                     {
@@ -176,7 +192,9 @@ namespace 浙江企业基础信息查询
                     }
                     if (status == false)
                         return;
+                   
                 }
+                MessageBox.Show("完成");
             }
             catch (Exception ex)
             {
@@ -319,10 +337,11 @@ namespace 浙江企业基础信息查询
 
         private void button4_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcelName(listViewToDataTable(this.listView1), "sample.xlsx", true);
+            DataTableToExcelName(listViewToDataTable(this.listView1), "sample.xlsx", true);
             excel_fenlie();
             //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
         }
+
         #region listview转datable
         /// <summary>
         /// listview转datable
@@ -336,55 +355,173 @@ namespace 浙江企业基础信息查询
             DataRow dr;
             dt.Clear();
             dt.Columns.Clear();
-            //lv.Columns.Count
-            //生成DataTable列头
-            for (i = 1; i < lv.Columns.Count; i++)
+            try
             {
-                dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
+               
+                //lv.Columns.Count
+                //生成DataTable列头
+                for (i = 1; i < lv.Columns.Count; i++)
+                {
+                    dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
+                }
+                //每行内容
+                for (i = 0; i < lv.Items.Count; i++)
+                {
+                    try
+                    {
+                        dr = dt.NewRow();
+                        dr[0] = lv.Items[i].SubItems[1].Text.Trim();
+                        dt.Rows.Add(dr);
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+                }
+
             }
-            //每行内容
-            for (i = 0; i < lv.Items.Count; i++)
+            catch (Exception ex)
             {
-                dr = dt.NewRow();
-                dr[0] = lv.Items[i].SubItems[1].Text.Trim();
-                dt.Rows.Add(dr);
+
+                MessageBox.Show(ex.ToString());
             }
 
             return dt;
         }
         #endregion
+
+        #region NPOI导出表格输入文件名不弹窗
+        public static int DataTableToExcelName(DataTable data, string fileName, bool isColumnWritten)
+        {
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            ISheet sheet = null;
+            IWorkbook workbook = null;
+            FileStream fs = null;
+       
+
+            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
+                workbook = new XSSFWorkbook();
+            else if (fileName.IndexOf(".xls") > 0) // 2003版本
+                workbook = new HSSFWorkbook();
+
+            try
+            {
+                if (workbook != null)
+                {
+                    sheet = workbook.CreateSheet("sheet1");
+                    ICellStyle style = workbook.CreateCellStyle();
+                    style.FillPattern = FillPattern.SolidForeground;
+
+                }
+                else
+                {
+                    return -1;
+                }
+
+                if (isColumnWritten == true) //写入DataTable的列名
+                {
+                    IRow row = sheet.CreateRow(0);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
+
+                    }
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                for (i = 0; i < data.Rows.Count; ++i)
+                {
+                    IRow row = sheet.CreateRow(count);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        try
+                        {
+                            row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());  //NPOI限制单元格最大字符数
+                        }
+                        catch (Exception)
+                        {
+
+                            continue;
+                        }
+                       
+                    }
+                    ++count;
+                }
+                workbook.Write(fs); //写入到excel
+                workbook.Close();
+                fs.Close();
+                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+        }
+
+        #endregion
+
         public void excel_fenlie()
         {
-            //创建Workbook，加载Excel测试文档
-            Workbook book = new Workbook();
-            book.LoadFromFile("sample.xlsx");
-            //获取第一个工作表
-            Worksheet sheet = book.Worksheets[0];
+            try
+            { //创建Workbook，加载Excel测试文档
+                Workbook book = new Workbook();
+                book.LoadFromFile("sample.xlsx");
+                //获取第一个工作表
+                Worksheet sheet = book.Worksheets[0];
 
-            //遍历数据（从第2行到最后一行）
-            string[] splitText = null;
-            string text = null;
-            for (int i = 1; i < sheet.LastRow; i++)
-            {
-                text = sheet.Range[i + 1, 1].Text;
-                //分割按逗号作为分隔符的数据列
-                splitText = text.Split(',');
-                //保存被分割的数据到数组，数组项写入列
-                for (int j = 0; j < splitText.Length; j++)
+                //遍历数据（从第2行到最后一行）
+                string[] splitText = null;
+                string text = null;
+                for (int i = 1; i < sheet.LastRow; i++)
                 {
-                    sheet.Range[i + 1, 1 + j + 1].Text = splitText[j];
+                    try
+                    {
+                        text = sheet.Range[i + 1, 1].Text;
+                        //分割按逗号作为分隔符的数据列
+                        splitText = text.Split(',');
+                        //保存被分割的数据到数组，数组项写入列
+                        for (int j = 0; j < splitText.Length; j++)
+                        {
+                            sheet.Range[i + 1, 1 + j + 1].Text = splitText[j];
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
                 }
+                //保存并打开文档
+                string time = GetTimeStamp();
+                book.SaveToFile("结果" + time + ".xlsx", ExcelVersion.Version2010);
+                File.Delete("sample.xlsx");
+                MessageBox.Show("导出成功文件位于软件根目录：" + time + ".xlsx");
+
             }
-            //保存并打开文档
-            string time = GetTimeStamp();
-            book.SaveToFile("结果" + time + ".xlsx", ExcelVersion.Version2010);
-            File.Delete("sample.xlsx");
-            MessageBox.Show("导出成功文件位于软件根目录：" + time + ".xlsx");
+            catch (Exception ex)
+            {
+
+               MessageBox.Show(ex.ToString());
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
         }
+
+      
     }
 }

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -121,6 +124,68 @@ namespace 基鹿工具箱
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl1.SelectedIndex = 7;
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 7;
+        }
+
+        Thread thread;
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(aliexpress);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+
+       
+        public void aliexpress()
+        {
+            StreamReader sr = new StreamReader(key_txtbox.Text, Util.EncodingType.GetTxtType(key_txtbox.Text));
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            string[] keywords = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            
+            sr.Close();  //只关闭流
+            sr.Dispose();   //销毁流内存
+
+            foreach (string keyword in keywords)
+            {
+                for (int page = 1; page < 10; page++)
+                {
+                    string url = "https://www.aliexpress.com/wholesale?trafficChannel=main&d=y&CatId=0&SearchText=" + System.Web.HttpUtility.UrlEncode(keyword) + "&ltype=wholesale&SortType=default&page=" + page;
+                    string html = Util.GetUrl(url, "utf-8");
+                    MatchCollection uids = Regex.Matches(html, @"""productId"":([\s\S]*?),");
+                    for (int i = 0; i < uids.Count; i++)
+                    {
+                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(keyword);
+                        lv1.SubItems.Add(uids[i].Groups[1].Value);
+                    }
+
+                    Thread.Sleep(500);
+                }
+            }
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                key_txtbox.Text = openFileDialog1.FileName;
+               
+            }
         }
     }
 }
