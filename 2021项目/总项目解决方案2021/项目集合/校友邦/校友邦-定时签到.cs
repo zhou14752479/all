@@ -83,9 +83,24 @@ namespace 校友邦
             sr.Dispose();   //销毁流内存
         }
 
+        public void getpics()
+        {
+          
+            DirectoryInfo folder = new DirectoryInfo(path+"//images");
+            for (int i = 0; i < folder.GetFiles().Count(); i++)
+            {
+                string picname = Path.GetFileNameWithoutExtension(folder.GetFiles()[i].Name);
+              
+                pics.Add(picname);
+            }
+            
+        }
+
 
         string path = AppDomain.CurrentDomain.BaseDirectory;
         function fc = new function();
+
+        List<string> pics = new List<string>();
         private void 校友邦_定时签到_Load(object sender, EventArgs e)
         {
             #region 通用检测
@@ -103,7 +118,7 @@ namespace 校友邦
           
           
             getdata();
-
+            getpics();
 
 
 
@@ -264,16 +279,26 @@ namespace 校友邦
                         string planid = fc.getplanid(cookie);
                         string traineeid = fc.gettraineeId(planid, cookie);
 
-                       
-                        if(fc.status == "2" && !start.Contains("success"))
+                        string shangchuanmamsg = "";
+                        if (fc.status == "2" && !start.Contains("success"))
                         {
-                            string shangchuanmamsg = fc.shangchuanma(cookie);
+                            if (pics.Contains(username))
+                            {
+                                
+                                shangchuanmamsg = fc.shangchuanma(cookie);
+                            }
+
+
                             string msg = fc.qiandao(cookie, address, traineeid);
                             listView1.Items[i].SubItems[7].Text = shangchuanmamsg+"  "+msg;
                         }
                         if (fc.status == "1" && !end.Contains("success"))
                         {
-                            string shangchuanmamsg = fc.shangchuanma(cookie);
+                            if (pics.Contains(username))
+                            {
+                                shangchuanmamsg = fc.shangchuanma(cookie);
+                            }
+
                             string msg = fc.qiandao(cookie, address, traineeid);
                             listView1.Items[i].SubItems[8].Text = shangchuanmamsg + "  " + msg;
                         }

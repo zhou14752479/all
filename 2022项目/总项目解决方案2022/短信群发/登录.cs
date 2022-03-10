@@ -183,5 +183,10 @@ namespace 短信群发
         {
 
         }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("充值添加微信：kuner19999");
+        }
     }
 }

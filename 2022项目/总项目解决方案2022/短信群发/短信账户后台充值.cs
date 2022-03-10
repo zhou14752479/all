@@ -92,7 +92,14 @@ namespace 短信群发
         }
         private void Button1_Click(object sender, EventArgs e)
         {
+            if(textBox1.Text=="")
+            {
+                MessageBox.Show("账号为空");
+                return;
+            }
             chongzhi();
+
+          
         }
 
         private void 短信账户后台充值_Load(object sender, EventArgs e)
