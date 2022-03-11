@@ -106,7 +106,7 @@ namespace 新浪研报
                        
                         string url = "http://stock.finance.sina.com.cn/stock/go.php/vReport_List/kind/search/index.phtml?t1=2&symbol="+code+"&pubdate=&p=" + page;
 
-                        string html = GetUrlwithIP(url, "tps833.kdlapi.com:15818", "" ,"gb2312");
+                        string html = GetUrlwithIP(url, "tps734.kdlapi.com:15818", "" ,"gb2312");
                         MatchCollection uids = Regex.Matches(html, @"rptid/([\s\S]*?)/");
 
                         MatchCollection titles = Regex.Matches(html, @"title=""([\s\S]*?)""");
@@ -141,7 +141,7 @@ namespace 新浪研报
                         for (int i = 0; i < uids.Count; i++)
                         {
                             string aurl = "http://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/" + uids[i].Groups[1].Value + "/index.phtml";
-                            string ahtml = GetUrlwithIP(aurl, "tps833.kdlapi.com:15818", "",  "gb2312");
+                            string ahtml = GetUrlwithIP(aurl, "tps734.kdlapi.com:15818", "",  "gb2312");
                             string body = Regex.Match(ahtml, @"<div class=""blk_container"">([\s\S]*?)</div>").Groups[1].Value.Replace("&nbsp;", "");
 
                             if (ahtml.Contains("服务器返回错误"))
