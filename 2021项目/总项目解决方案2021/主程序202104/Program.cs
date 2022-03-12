@@ -16,7 +16,7 @@ namespace 主程序202104
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 孔夫子旧书网());
+            Application.Run(new tradegov数据查询());
         }
     }
 }

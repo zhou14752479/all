@@ -73,7 +73,7 @@ namespace 主程序202104
         DataTable dt = null;
     public void run1()
         {
-            cookie = method.getSetCookie("https://trade.gov.ng/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D=NGA-SCN20-019601-V0&type=SC&method%3Asearch=Search");
+            cookie = method.getSetCookie("https://trade.gov.ng/trade/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D=NGA-SCN20-019601-V0&type=SC&method%3Asearch=Search");
 
        
             try
@@ -85,8 +85,8 @@ namespace 主程序202104
                     DataRow dr = dt.Rows[i];
                     string shuru = System.Web.HttpUtility.UrlEncode(dr[0].ToString());
 
-                    //string url = "https://trade.gov.ng/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=SC&method%3Asearch=Search";
-                    string url = "https://trade.gov.ng/son/print.do?type=SC&number="+shuru;
+                    string url = "https://trade.gov.ng/trade/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=SC&method%3Asearch=Search";
+                   // string url = "https://trade.gov.ng/son/print.do?type=SC&number="+shuru;
                     string html = Request_trade_gov_ng(url);
                   
                     Match a1 =  Regex.Match(html, @"Exporter's Name:</td>([\s\S]*?)</td>");
@@ -154,9 +154,9 @@ namespace 主程序202104
 
         public void run2()
         {
-            cookie = method.getSetCookie("https://trade.gov.ng/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D=R-1701%2F00004%2F1&type=PC&method%3Asearch=Search");
+            cookie = method.getSetCookie("https://trade.gov.ng/trade/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D=NGA-SCN20-019601-V0&type=PC&method%3Asearch=Search");
 
-         
+
             try
             {
 
@@ -166,8 +166,8 @@ namespace 主程序202104
                     DataRow dr = dt.Rows[i];
                     string shuru =System.Web.HttpUtility.UrlEncode(dr[0].ToString());
 
-                    // string url = "https://trade.gov.ng/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=PC&method%3Asearch=Search";
-                    string url = "https://trade.gov.ng/son/print.do?type=PC&number="+shuru;
+                    string url = "https://trade.gov.ng/trade/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=PC&method%3Asearch=Search";
+                   // string url = "https://trade.gov.ng/son/print.do?type=PC&number="+shuru;
                     string html = Request_trade_gov_ng(url);
 
                     Match a1 = Regex.Match(html, @"Product Certificate No.:</td>([\s\S]*?)</td>");
