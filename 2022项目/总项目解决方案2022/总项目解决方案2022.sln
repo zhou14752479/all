@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百姓二手车", "..\..\20
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "软件工具箱", "软件工具箱\软件工具箱.csproj", "{4497E85A-5EE6-4589-91DC-1764CAEEECF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "小红圈自动保存", "小红圈自动保存\小红圈自动保存.csproj", "{3951D908-797E-408F-A539-43E607337509}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{4497E85A-5EE6-4589-91DC-1764CAEEECF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4497E85A-5EE6-4589-91DC-1764CAEEECF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4497E85A-5EE6-4589-91DC-1764CAEEECF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3951D908-797E-408F-A539-43E607337509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3951D908-797E-408F-A539-43E607337509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3951D908-797E-408F-A539-43E607337509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3951D908-797E-408F-A539-43E607337509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

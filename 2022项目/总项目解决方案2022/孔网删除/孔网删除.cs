@@ -46,10 +46,13 @@ namespace 孔网删除
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
-
                     DataRow dr = dt.Rows[i];
                     string isbn = dr[0].ToString();
                     string price = dr[7].ToString();
+                    if(isbn.Trim()=="")
+                    {
+                        break;
+                    }
                     string url = "https://seller.kongfz.com/pc/item/unsoldList?type=unsold&itemName=&author=&press=&itemSn=&isbn="+isbn+"&price_min=&price_max=&addTime_begin=&addTime_end=&soldTime_begin=&soldTime_end=&catId=&myCatId=&myCatIdName=&quality=&qualityName=&isDiscount=false&noPic=false&noStock=false&freeShipping=false&noMouldId=false&noItemSn=false&complete=true&catName=&mouldId=&mouldName=&pageShow=50&order_attr=&order_sort=&_=1645519862311";
                     string html = method.GetUrlWithCookie(url,cookie,"utf-8");
 

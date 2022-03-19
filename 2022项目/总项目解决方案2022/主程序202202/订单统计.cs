@@ -103,6 +103,12 @@ namespace 主程序202202
         long dingdancount = 0;
         long xiadancount = 0;
         double zongjine = 0;
+
+        Dictionary<string, long> dics_dingdan = new Dictionary<string, long>();
+        Dictionary<string, long> dics_xiadan = new Dictionary<string, long>();
+        Dictionary<string, double> dics_jine = new Dictionary<string, double>();
+
+
         public void run()
         {
             for (int i = 1; i <999999; i++)
@@ -112,8 +118,11 @@ namespace 主程序202202
                 
                 string postdata = "pageSize=1000&pageCurrent="+i+"&orderField=%24%7Bparam.orderField%7D&orderDirection=%24%7Bparam.orderDirection%7D&orderstate=3&ksid=&zpid=&OrderId=&CardId=&username=&cardno=&start_time="+dateTimePicker1.Value.ToString("yyyy-MM-dd")+ "&end_time=" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "&last_start_time=&last_end_time=&total=";
                 string html = PostUrlDefault(url,postdata,cookie);
+
                 MatchCollection xiadans = Regex.Matches(html, @"</th>                <td>([\s\S]*?)</td>");
                 MatchCollection jines = Regex.Matches(html, @"<span class=""label label-warning"">([\s\S]*?)</span>");
+                MatchCollection userids = Regex.Matches(html, @"user_id=([\s\S]*?)""");
+
                 dingdancount = dingdancount + xiadans.Count;
                 if(xiadans.Count==0)
                 {
@@ -122,8 +131,31 @@ namespace 主程序202202
                 }
                 for (int j = 0; j < xiadans.Count; j++)
                 {
-                    xiadancount = xiadancount + Convert.ToInt32(xiadans[j].Groups[1].Value);
-                    zongjine = zongjine + Convert.ToDouble(jines[j].Groups[1].Value.Replace("元", ""));
+                    textBox4.Text = "";
+                    double jine = Convert.ToDouble(jines[j].Groups[1].Value.Replace("元", ""));
+                    long xiadan = Convert.ToInt32(xiadans[j].Groups[1].Value);
+                    if (!dics_dingdan.ContainsKey(userids[j].Groups[1].Value))
+                    {
+                        dics_dingdan.Add(userids[j].Groups[1].Value, 1);
+                        dics_xiadan.Add(userids[j].Groups[1].Value, xiadan);
+                        dics_jine.Add(userids[j].Groups[1].Value, jine);
+                    }
+                    else
+                    {
+                        dics_dingdan[userids[j].Groups[1].Value] = dics_dingdan[userids[j].Groups[1].Value] + 1;
+                        dics_xiadan[userids[j].Groups[1].Value] = dics_xiadan[userids[j].Groups[1].Value] + xiadan;
+                        dics_jine[userids[j].Groups[1].Value] = dics_jine[userids[j].Groups[1].Value] + jine;
+
+                    }
+              
+                    for (int a = 0; a < dics_dingdan.Count; a++)
+                    {
+                        textBox4.Text += dics_dingdan.ElementAt(a).Key + "订单数："+dics_dingdan.ElementAt(a).Value+" " + "下单数：" + dics_xiadan.ElementAt(a).Value + " " + "金额：" + dics_jine.ElementAt(a).Value.ToString("F2") + " \r\n";
+                    }
+
+                    xiadancount = xiadancount + xiadan;
+                    zongjine = zongjine + jine;
+
                     label9.Text = dingdancount.ToString();
                     label10.Text = xiadancount.ToString();
                     label11.Text = zongjine.ToString("F2");

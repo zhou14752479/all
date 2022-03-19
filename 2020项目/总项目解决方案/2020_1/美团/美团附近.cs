@@ -1003,6 +1003,7 @@ namespace 美团
             status = true;
 
 
+          
 
             if (thread == null || !thread.IsAlive)
             {
@@ -1255,7 +1256,7 @@ namespace 美团
             {
 
 
-
+               
                 string macmd5 = method.GetMD5(method.GetMacAddress());
                 long expiretime = Convert.ToInt64(method.GetTimeStamp()) + 365 * 24 * 3600;
                 if (ExistINIFile())
@@ -1263,12 +1264,18 @@ namespace 美团
                     string key = IniReadValue("values", "key");
 
                     string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
-
+                    if(value[0]!=macmd5)
+                    {
+                        jihuo = false;
+                        MessageBox.Show("激活失败，软件已绑定其他电脑");
+                        return;
+                    }
 
                     if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
                     {
                         MessageBox.Show("激活已过期");
                         string str = Interaction.InputBox("请购买激活码,使用正式版软件！\r\n\r\n无激活码点击确定免费试用", "激活软件", "", -1, -1);
+                       
                         string fullstr = str;
                         if (login(fullstr))
                         {
@@ -1292,6 +1299,7 @@ namespace 美团
                                     IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
 
                                     MessageBox.Show("激活成功");
+                                    jihuo = true;
                                     register(fullstr);
                                     return;
                                 }
@@ -1302,6 +1310,7 @@ namespace 美团
                                 IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
 
                                 MessageBox.Show("激活成功");
+                                
                                 register(fullstr);
                                 return;
                             }
@@ -1336,6 +1345,7 @@ namespace 美团
                                 IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
 
                                 MessageBox.Show("激活成功");
+                                
                                 register(fullstr);
                                 return;
                             }
@@ -1346,6 +1356,7 @@ namespace 美团
                             IniWriteValue("values", "key", macmd5 + "asd147" + 86400);
 
                             MessageBox.Show("激活成功");
+                           
                             register(fullstr);
                             return;
                         }
@@ -1442,5 +1453,7 @@ namespace 美团
                 System.Diagnostics.Process.Start("explorer.exe", "http://121.40.209.61/alipay2/");
             }
         }
+
+      
     }
 }

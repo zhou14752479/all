@@ -575,7 +575,7 @@ namespace 客户美团
                                            
                                             if (status == false)
                                                 return;
-                                            //Thread.Sleep(500);
+                                            Thread.Sleep(500);
                                         
                                     }
 

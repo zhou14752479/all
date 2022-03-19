@@ -9,7 +9,10 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -69,6 +72,7 @@ namespace 体育打票软件
         #endregion
 
 
+       
 
 
 
@@ -91,6 +95,7 @@ namespace 体育打票软件
         }
         #endregion
 
+        
         string path = AppDomain.CurrentDomain.BaseDirectory;
         private GridppReport Report = new GridppReport();
         private void 体育打票软件_Load(object sender, EventArgs e)
@@ -105,7 +110,7 @@ namespace 体育打票软件
             #endregion
             fc.delete7days();
 
-
+          
 
             if (ExistINIFile())
             {

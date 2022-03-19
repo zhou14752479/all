@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDLL", "..\..\2020项目\总项目解决方案\myDLL\myDLL.csproj", "{BA236BE9-F18C-40F4-8015-1D3AE2E89448}"
 EndProject
@@ -84,6 +84,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "..\..\2020项目\总项目解决方案\2020_1\stockx网站价格\stockx网站价格.csproj", "{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "校友邦", "项目集合\校友邦\校友邦.csproj", "{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "体育打票软件", "体育打票软件\体育打票软件.csproj", "{DC5AF557-7D49-4969-98B3-BEEACACA0464}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "快递超市", "项目集合\快递超市\快递超市.csproj", "{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -421,6 +425,22 @@ Global
 		{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}.Release|x86.ActiveCfg = Release|Any CPU
 		{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}.Release|x86.Build.0 = Release|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Debug|x86.Build.0 = Debug|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC5AF557-7D49-4969-98B3-BEEACACA0464}.Release|x86.Build.0 = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|x86.Build.0 = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|x86.ActiveCfg = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,10 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(企查查));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
@@ -79,11 +77,6 @@
             this.columnHeader8.Text = "经营范围";
             this.columnHeader8.Width = 200;
             // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "地址";
-            this.columnHeader6.Width = 200;
-            // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "成立时间";
@@ -93,10 +86,6 @@
             // 
             this.columnHeader4.Text = "注册资本";
             this.columnHeader4.Width = 100;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "法人";
             // 
             // columnHeader2
             // 
@@ -113,10 +102,8 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6,
             this.columnHeader8,
             this.columnHeader7});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -538,7 +525,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "企查查";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "工商拓客软件";
+            this.Text = "企业大数据";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.企查查_FormClosing);
             this.Load += new System.EventHandler(this.企查查_Load);
             this.groupBox1.ResumeLayout(false);
@@ -555,10 +542,8 @@
         #endregion
 
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ListView listView1;

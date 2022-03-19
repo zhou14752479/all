@@ -108,6 +108,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="全国工商企业信息采集.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="全国工商企业信息采集.Designer.cs">
+      <DependentUpon>全国工商企业信息采集.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="baixing.resx">
       <DependentUpon>baixing.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +141,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="全国工商企业信息采集.resx">
+      <DependentUpon>全国工商企业信息采集.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

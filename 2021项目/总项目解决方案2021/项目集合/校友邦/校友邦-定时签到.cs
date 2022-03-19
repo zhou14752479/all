@@ -180,7 +180,7 @@ namespace 校友邦
                     string[] text = timecisu.Split(new string[] { "," }, StringSplitOptions.None);
 
 
-                    //判断指定日期
+                    //判断指定周几
                     if(zhouji!="")
                     {
                       

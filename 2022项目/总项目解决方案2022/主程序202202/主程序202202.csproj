@@ -31,6 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NPinyinPro, Version=0.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPinyinPro.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress">
+      <HintPath>C:\Users\zhou\Desktop\SharpCompress\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,6 +71,24 @@
     <Compile Include="图书馆预约.Designer.cs">
       <DependentUpon>图书馆预约.cs</DependentUpon>
     </Compile>
+    <Compile Include="图片批量下载.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="图片批量下载.Designer.cs">
+      <DependentUpon>图片批量下载.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文件解压缩处理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文件解压缩处理.Designer.cs">
+      <DependentUpon>文件解压缩处理.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文本处理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文本处理.Designer.cs">
+      <DependentUpon>文本处理.cs</DependentUpon>
+    </Compile>
     <Compile Include="登录.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +118,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="图书馆预约.resx">
       <DependentUpon>图书馆预约.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="图片批量下载.resx">
+      <DependentUpon>图片批量下载.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文件解压缩处理.resx">
+      <DependentUpon>文件解压缩处理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文本处理.resx">
+      <DependentUpon>文本处理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="订单统计.resx">
+      <DependentUpon>订单统计.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

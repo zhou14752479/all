@@ -268,7 +268,12 @@ namespace 地图营销
                     string key = IniReadValue("values", "key");
 
                     string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
-
+                    if (value[0] != macmd5)
+                    {
+                        jihuo = false;
+                        MessageBox.Show("激活失败，软件已绑定其他电脑");
+                        return;
+                    }
 
                     if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
                     {

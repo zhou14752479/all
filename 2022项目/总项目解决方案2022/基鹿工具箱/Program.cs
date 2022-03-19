@@ -16,7 +16,7 @@ namespace 基鹿工具箱
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 基鹿工具箱());
+            Application.Run(new login());
         }
     }
 }

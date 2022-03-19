@@ -13,6 +13,7 @@ namespace 中国智慧社区服务网
         public Sm4Crypto()
         {
             Key = "iuas4dk8fa6s67p2";
+           
             Iv = "longrise12345678";
             HexString = false;
             CryptoMode = Sm4CryptoEnum.CBC;

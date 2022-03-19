@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -171,6 +172,145 @@ namespace 基鹿工具箱
 
         #endregion
 
+        #region POST默认请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        {
+            try
+            {
+                string time = DateTime.Now.ToString("yyyyMMddHHmmss");
+                string sign = Sha1(Md5(key+time));
+                string charset = "utf-8";
+                string html = "";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                request.Proxy = null;//防止代理抓包
+                //添加头部
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("ASINLU-TIME:"+time);
+                headers.Add("ASINLU-SIGN:"+sign);
+                //headers.Add("sec-fetch-user:?1");
+                //headers.Add("upgrade-insecure-requests: 1");
+                //添加头部
+                //request.ContentType = "application/x-www-form-urlencoded";
+                request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+                request.ContentType = "application/json";
+                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                // request.ContentLength = postData.Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
 
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+
+                request.Referer = url;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+
+                response.Close();
+                //return key+"   "+time+"   "+ Md5(key + time)+"   "+sign+"   "+html;
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
+
+        public static string Md5(string str)
+        {
+            //将输入字符串转换成字节数组
+            var buffer = Encoding.Default.GetBytes(str);
+            //接着，创建Md5对象进行散列计算
+            var data = MD5.Create().ComputeHash(buffer);
+
+            //创建一个新的Stringbuilder收集字节
+            var sb = new StringBuilder();
+
+            //遍历每个字节的散列数据 
+            foreach (var t in data)
+            {
+                //格式每一个十六进制字符串
+                sb.Append(t.ToString("X2"));
+            }
+
+            //返回十六进制字符串
+            return sb.ToString().ToLower();
+        }
+
+        /// <summary>
+        /// 基于Sha1的自定义加密字符串方法：输入一个字符串，返回一个由40个字符组成的十六进制的哈希散列（字符串）。
+        /// </summary>
+        /// <param name="str">要加密的字符串</param>
+        /// <returns>加密后的十六进制的哈希散列（字符串）</returns>
+        public static string Sha1(string str)
+        {
+            Encoding encode = Encoding.GetEncoding("utf-8");
+            SHA1 sha1 = new SHA1CryptoServiceProvider();
+            byte[] bytes_in = encode.GetBytes(str);
+            byte[] bytes_out = sha1.ComputeHash(bytes_in);
+            sha1.Dispose();
+            string result = BitConverter.ToString(bytes_out);
+            result = result.Replace("-", "");
+            return result.ToLower();
+
+        }
+
+        public static string key = "Hie345)(^@#34g**-+534hdF4~`13";
+        public static string domain = "www.asinlu.com";
+
+        public static string register()
+        {
+            string url = "http://"+domain+"/Api/register";
+            string postdata = "{\"username\":\"123\",\"mobile\":\"12345678900\",\"password\":\"123\"}";
+            string html = PostUrlDefault(url,postdata,"");
+            return html;
+
+        }
+
+
+        public static string login()
+        {
+            string url = "http://" + domain + "/Api/login";
+            string postdata = "{\"mobile\":\"13777373777\",\"password\":\"123456\"}";
+            string html = PostUrlDefault(url, postdata, "");
+            return html;
+
+        }
     }
 }

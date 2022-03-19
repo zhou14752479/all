@@ -29,14 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(美团附近));
-            this.label2 = new System.Windows.Forms.Label();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -51,7 +49,6 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -68,23 +65,13 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(664, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 12);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "获取客源请加微信：zwxj1011";
-            this.label2.Visible = false;
-            // 
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Font = new System.Drawing.Font("黑体", 14F, System.Drawing.FontStyle.Bold);
             this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel3.LinkColor = System.Drawing.Color.White;
-            this.linkLabel3.Location = new System.Drawing.Point(832, 9);
+            this.linkLabel3.Location = new System.Drawing.Point(873, 9);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(20, 19);
             this.linkLabel3.TabIndex = 3;
@@ -98,7 +85,7 @@
             this.linkLabel2.Font = new System.Drawing.Font("黑体", 14F, System.Drawing.FontStyle.Bold);
             this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel2.LinkColor = System.Drawing.Color.White;
-            this.linkLabel2.Location = new System.Drawing.Point(858, 9);
+            this.linkLabel2.Location = new System.Drawing.Point(899, 9);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(30, 19);
             this.linkLabel2.TabIndex = 2;
@@ -139,8 +126,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SkyBlue;
-            this.panel1.Controls.Add(this.linkLabel5);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.linkLabel3);
             this.panel1.Controls.Add(this.linkLabel2);
             this.panel1.Controls.Add(this.linkLabel1);
@@ -151,19 +136,6 @@
             this.panel1.TabIndex = 17;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Font = new System.Drawing.Font("宋体", 11F);
-            this.linkLabel5.Location = new System.Drawing.Point(663, 41);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(112, 15);
-            this.linkLabel5.TabIndex = 5;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "点击购买正式版";
-            this.linkLabel5.Visible = false;
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
             // 
             // button1
             // 
@@ -234,8 +206,7 @@
             this.columnHeader8,
             this.columnHeader10,
             this.columnHeader13,
-            this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader1});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -265,7 +236,7 @@
             // columnHeader8
             // 
             this.columnHeader8.Text = "电话";
-            this.columnHeader8.Width = 100;
+            this.columnHeader8.Width = 200;
             // 
             // columnHeader10
             // 
@@ -280,11 +251,6 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "评分";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "菜品价格";
-            this.columnHeader2.Width = 500;
             // 
             // comboBox2
             // 
@@ -444,7 +410,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
@@ -476,8 +441,6 @@
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

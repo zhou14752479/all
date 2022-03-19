@@ -78,7 +78,7 @@ namespace 客户美团
                 foreach (string city in citys)
                 {
                     string citypinyin = getpinyin(city);
-                    string cookie = "suid=7008303825; __trackId=163192614724522; __city=suqian; __s=u2bgtqd4a2i8h4kntsfrs6n6k7; _ga=GA1.2.1006694793.1635922590; _gid=GA1.2.1350701906.1635922590; Hm_lvt_5a727f1b4acc5725516637e03b07d3d2=1635922590; __admx_track_id=-Gc18_TIpZxvSaQTgLV0bA; __admx_track_id.sig=Ivvu9eX05FF6QgtUlabf8Doz6QM; __sense_session_pv=10; Hm_lpvt_5a727f1b4acc5725516637e03b07d3d2=1635922604";
+                    string cookie = "suid=1197640040; __trackId=4526158735018318; Hm_lvt_5a727f1b4acc5725516637e03b07d3d2=1647486825; __city=shanghai; __s=9em7cn2b2r9t2f8qhe2cajntg2; bxf=4b26fc601742a78be16c4ed646177b93054; __sense_session_pv=11; __admx_track_id=styJ6bnbafGdtnpcESo38Q; __admx_track_id.sig=wku-c3nXgAjjaRgOJemQNFsdSnU; Hm_lpvt_5a727f1b4acc5725516637e03b07d3d2=1647486840";
                     for (int page = 1; page < 100; page++)
                     {
                        

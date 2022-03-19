@@ -282,7 +282,7 @@ namespace qccxcx
             catch (WebException ex)
             {
 
-                return ex.ToString();
+                return("企业大数据：异常");
             }
 
 
@@ -517,10 +517,10 @@ namespace qccxcx
 
                                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                 lv1.SubItems.Add(names[j].Groups[2].Value.Replace("<em>", "").Replace("</em>", ""));
-                                lv1.SubItems.Add(legalPerson[j].Groups[1].Value);
+                               // lv1.SubItems.Add(legalPerson[j].Groups[1].Value);
                                 lv1.SubItems.Add(regCap[j].Groups[1].Value);
                                 lv1.SubItems.Add(StartDate[j].Groups[1].Value);
-                                lv1.SubItems.Add(Address[j].Groups[1].Value);
+                                //lv1.SubItems.Add(Address[j].Groups[1].Value);
 
 
                                 lv1.SubItems.Add(businessScope[j].Groups[1].Value);
@@ -563,7 +563,7 @@ namespace qccxcx
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show("企业大数据：异常");
                                 textBox2.Text = ex.ToString();
                                 continue;
                             }
@@ -576,7 +576,7 @@ namespace qccxcx
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show("企业大数据：异常");
                     }
 
                 }
@@ -588,7 +588,7 @@ namespace qccxcx
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("企业大数据：异常");
             }
         }
 
@@ -625,7 +625,7 @@ namespace qccxcx
             if (!html.Contains(@"PlSUh"))
             {
 
-                return;
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
 
 
@@ -672,7 +672,12 @@ namespace qccxcx
                     string key = IniReadValue("values", "key");
 
                     string[] value = key.Split(new string[] { "asd147" }, StringSplitOptions.None);
-
+                    if (value[0] != macmd5)
+                    {
+                        jihuo = false;
+                        MessageBox.Show("激活失败，软件已绑定其他电脑");
+                        return;
+                    }
 
                     if (Convert.ToInt32(value[1]) < Convert.ToInt32(method.GetTimeStamp()))
                     {

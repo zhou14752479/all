@@ -78,7 +78,7 @@ namespace stockx网站价格
                 request.Proxy = null;//防止代理抓包
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
-                request.Referer = Url;
+                request.Referer = "https://finance.sina.com.cn/money/forex/hq/USDCNY.shtml";
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("sec-fetch-mode:navigate");
@@ -129,27 +129,27 @@ namespace stockx网站价格
         /// <param name="COOKIE">cookie</param>
         /// <param name="charset">编码格式</param>
         /// <returns></returns>
-        public static string PostUrl(string url, string postData)
+        public  string PostUrl(string url, string postData,string ua)
         {
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-               
+
                 request.ContentType = "application/json";
                 request.ContentLength = postData.Length;
                 //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
-
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                request.Headers.Add("Cookie", "");
+                request.UserAgent = ua;
+              
+                request.Headers.Add("Cookie",cookie);
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("x-algolia-api-key: 6b5e76b49705eb9f51a06d3c82f7acee");
                 headers.Add("x-algolia-application-id: XW7SBCT9V6");
-                request.Referer = "https://accounts.ebay.com/acctxs/user";
+                request.Referer = "https://finance.sina.com.cn/money/forex/hq/USDCNY.shtml";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -202,75 +202,166 @@ namespace stockx网站价格
         //}
 
 
+      
 
-            public void gethuilv()
+        private string Request_stockx_com(string sku, string price)
         {
-            string url = "https://webapi.huilv.cc/api/exchange?num=1&chiyouhuobi=USD&duihuanhuobi=CNY&type=1&callback=jisuanjieguo&_=1645687133740";
+            HttpWebResponse response = null;
+
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://stockx.com/api/pricing?currency=USD&include_taxes=true");
+
+                request.KeepAlive = true;
+                request.Headers.Add("sec-ch-ua", @""" Not;A Brand"";v=""99"", ""Google Chrome"";v=""97"", ""Chromium"";v=""97""");
+                request.Headers.Add("grails-user", @"eyJDdXN0b21lciI6eyJCaWxsaW5nIjp7ImNhcmRUeXBlIjoiUGF5UGFsIiwidG9rZW4iOiJqZGd2NDZmIiwibGFzdDQiOm51bGwsImFjY291bnRFbWFpbCI6ImN5YmluM0Bob3RtYWlsLmNvbSIsImV4cGlyYXRpb25EYXRlIjpudWxsLCJjYXJkaG9sZGVyTmFtZSI6ImN5YmluIE1TSVBNIiwiQWRkcmVzcyI6eyJmaXJzdE5hbWUiOiJNU0lQTSIsImxhc3ROYW1lIjoiY3liaW4iLCJ0ZWxlcGhvbmUiOiI2MjY3NzQ3MDczIiwic3RyZWV0QWRkcmVzcyI6IjU3ODMgTkUgQ29sdW1iaWEgQmx2ZCIsImV4dGVuZGVkQWRkcmVzcyI6IiIsImxvY2FsaXR5IjoiUE9SVExBTkQiLCJyZWdpb24iOiJPUiIsInBvc3RhbENvZGUiOiI5NzIxOCIsImNvdW50cnlDb2RlQWxwaGEyIjoiVVMiLCJtYXJrZXQiOiJVUyJ9fSwiU2hpcHBpbmciOnsiQWRkcmVzcyI6eyJmaXJzdE5hbWUiOiJNU0lQTSIsImxhc3ROYW1lIjoiY3liaW4iLCJ0ZWxlcGhvbmUiOiI2MjY3NzQ3MDczIiwic3RyZWV0QWRkcmVzcyI6IjU3ODMgTkUgQ29sdW1iaWEgQmx2ZCIsImV4dGVuZGVkQWRkcmVzcyI6IiIsImxvY2FsaXR5IjoiUE9SVExBTkQiLCJyZWdpb24iOiJPUiIsInBvc3RhbENvZGUiOiI5NzIxOCIsImNvdW50cnlDb2RlQWxwaGEyIjoiVVMiLCJtYXJrZXQiOiJVUyJ9fSwidXVpZCI6IjI5MzJiMWNhLTA3ZjktMTFlNy1hYTc5LTEyY2RhMWM5YjZhNSIsImlkIjoiMjYxMjE1IiwiaGFzQnV5ZXJSZXdhcmQiOmZhbHNlfX0=");
+                request.Headers.Add("sec-ch-ua-mobile", @"?0");
+                request.Headers.Set(HttpRequestHeader.Authorization, "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5USkNNVVEyUmpBd1JUQXdORFk0TURRelF6SkZRelV4TWpneU5qSTNNRFJGTkRZME0wSTNSQSJ9.eyJodHRwczovL3N0b2NreC5jb20vY3VzdG9tZXJfdXVpZCI6IjI5MzJiMWNhLTA3ZjktMTFlNy1hYTc5LTEyY2RhMWM5YjZhNSIsImh0dHBzOi8vc3RvY2t4LmNvbS9nYV9ldmVudCI6IkxvZ2dlZCBJbiIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuc3RvY2t4LmNvbS8iLCJzdWIiOiJhdXRoMHwyOTMyYjFjYS0wN2Y5LTExZTctYWE3OS0xMmNkYTFjOWI2YTUiLCJhdWQiOiJnYXRld2F5LnN0b2NreC5jb20iLCJpYXQiOjE2NDczMzMyNjAsImV4cCI6MTY0NzM3NjQ2MCwiYXpwIjoiT1Z4cnQ0VkpxVHg3TElVS2Q2NjFXMER1Vk1wY0ZCeUQiLCJzY29wZSI6Im9mZmxpbmVfYWNjZXNzIn0.nBhswZ_wg7Xvc37r7WWJAB2hOF_zJGk2gbAJTc641QyIhalHQHn2xtF-WX0aBRL-0wPhct4Z5qqLjT14Tz2NbMiezaq_K8YaPfzBC5GnlpRiORSjidHyMpTwIyMdwoCCCpzxmk_9zaMRyunxnSBBM2sGZtIK-8x1tYZ9EKLqEzXWw25ffwH8NND9XMseZYvHllHvcu8dgssvhLDmevknA1hvAzw9EGGz7wqZWR4b-JBz49Rnrs6LQQBU8nn4BQ0MJtLVvXvJbVqTXmLGPust4iptjMYrou66sDek5x1VMOgfX1LsTU4AFS3KL7hsea66Be28rDPciBc-BFfeyzYDjg");
+                request.ContentType = "application/json";
+                request.Headers.Add("appVersion", @"0.1");
+                request.Headers.Add("appOS", @"web");
+                request.Headers.Add("X-Requested-With", @"XMLHttpRequest");
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
+                request.Headers.Add("sec-ch-ua-platform", @"""Windows""");
+                request.Accept = "*/*";
+                request.Headers.Add("Origin", @"https://stockx.com");
+                request.Headers.Add("Sec-Fetch-Site", @"same-origin");
+                request.Headers.Add("Sec-Fetch-Mode", @"cors");
+                request.Headers.Add("Sec-Fetch-Dest", @"empty");
+                request.Referer = "https://stockx.com/zh-cn/buy/nike-kobe-5-protro-chaos?size=8.5";
+                request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
+                request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh,sq;q=0.9,zh-CN;q=0.8,oc;q=0.7,de;q=0.6,en;q=0.5");
+                request.Headers.Set(HttpRequestHeader.Cookie, @"stockx_device_id=6cd4a569-03f7-49c4-8ac0-d02b66fb74f3; _pxvid=ad9e18ec-a351-11ec-94e4-4c7157426957; ab_one_buy_now_v2_button=true; _ga=undefined; __ssid=b3c80f66c64a6a013c3c86aca09f024; rskxRunCookie=0; rCookie=aya2akwqhzk1ykdorbv5xyl0q83tk6; ajs_anonymous_id=20e5872f-e94f-476c-b011-be6bf9d3650e; QuantumMetricUserID=ecef40ca4923138fc0879e389771d324; rbuid=rbcr-7e0a0df2-4cab-4cd2-af70-2264a6de30ac; _ga=GA1.2.1509626082.1647233290; ajs_user_id=2932b1ca-07f9-11e7-aa79-12cda1c9b6a5; _gcl_au=1.1.243599321.1647233293; _scid=3eaec287-8ce0-4995-bd29-b9057f842dfb; __pdst=f752cc7f90c746f3a1572824a18777e0; tracker_device=7229b4c0-60bd-4fcd-b6f6-622b6e9b5085; _rdt_uuid=1647235630500.ffe44bd4-a4f8-49ad-9e54-39b93caafe8f; stockx_homepage=sneakers; __cf_bm=jRvcp2slDeTzH1fCNpLV2F1dnKSbyZeQeuM95t5wJMs-1647333257-0-ARmvw0P0mVrmGSf96JIipViKJCmClyGMInUKWKyvbtjd5zcutCX+dKcqRqOw6IsjgfxFacgl6T3Fqbny2O/mUHw=; mfaLogin=err; token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5USkNNVVEyUmpBd1JUQXdORFk0TURRelF6SkZRelV4TWpneU5qSTNNRFJGTkRZME0wSTNSQSJ9.eyJodHRwczovL3N0b2NreC5jb20vY3VzdG9tZXJfdXVpZCI6IjI5MzJiMWNhLTA3ZjktMTFlNy1hYTc5LTEyY2RhMWM5YjZhNSIsImh0dHBzOi8vc3RvY2t4LmNvbS9nYV9ldmVudCI6IkxvZ2dlZCBJbiIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuc3RvY2t4LmNvbS8iLCJzdWIiOiJhdXRoMHwyOTMyYjFjYS0wN2Y5LTExZTctYWE3OS0xMmNkYTFjOWI2YTUiLCJhdWQiOiJnYXRld2F5LnN0b2NreC5jb20iLCJpYXQiOjE2NDczMzMyNjAsImV4cCI6MTY0NzM3NjQ2MCwiYXpwIjoiT1Z4cnQ0VkpxVHg3TElVS2Q2NjFXMER1Vk1wY0ZCeUQiLCJzY29wZSI6Im9mZmxpbmVfYWNjZXNzIn0.nBhswZ_wg7Xvc37r7WWJAB2hOF_zJGk2gbAJTc641QyIhalHQHn2xtF-WX0aBRL-0wPhct4Z5qqLjT14Tz2NbMiezaq_K8YaPfzBC5GnlpRiORSjidHyMpTwIyMdwoCCCpzxmk_9zaMRyunxnSBBM2sGZtIK-8x1tYZ9EKLqEzXWw25ffwH8NND9XMseZYvHllHvcu8dgssvhLDmevknA1hvAzw9EGGz7wqZWR4b-JBz49Rnrs6LQQBU8nn4BQ0MJtLVvXvJbVqTXmLGPust4iptjMYrou66sDek5x1VMOgfX1LsTU4AFS3KL7hsea66Be28rDPciBc-BFfeyzYDjg; language_code=zh; stockx_selected_currency=USD; stockx_product_visits=1; stockx_default_sneakers_size=8.5; stockx_preferred_market_activity=sales; stockx_session=%2249b7c1da-fbfc-46e0-9050-35c42659e480%22; loggedIn=2932b1ca-07f9-11e7-aa79-12cda1c9b6a5; pxcts=b8ccec5e-a43a-11ec-91cb-4343774f6556; riskified_recover_updated_verbiage=true; ops_banner_id=bltf0ff6f9ef26b6bdb; lastRskxRun=1647333270917; _gid=GA1.2.1569939799.1647333332; _clck=9nwi44|1|ezs|0; _clsk=1v6wyzr|1647333336987|1|1|b.clarity.ms/collect; forterToken=67c1ff70bd394a2b93c79d3cec6ea654_1647333338425__UDF43_13ck; _uetsid=e71eb060a43a11eca8b539f1cf3e853e; _uetvid=d76dd6b0a35111ecb8ce914c7e0239d5; IR_gbd=stockx.com; IR_9060=1647333343639%7C0%7C1647333343639%7C%7C; IR_PI=55db0870-b722-3bc1-b297-6d9c88226856%7C1647419743639; QuantumMetricSessionID=39a44a71f4d179b99577fa085807bff6; _px3=cc47dfbf708be1feb5eacf832bab40a5feb8a27c7499348e459bc9aafce895b7:jISHEoM3WNPxQzxHRq4lt9yBfvmWGlpaAce3N8pw8Pd5drNBDMmoqLJLZBiVg3nW7BJyN05RuofmC+wXndYD7w==:1000:phIp7GV+l1vxWhpVseKlGqLAvTksU1Da7NH2axCk2xrKKiK7GPZaPrYJ5fLinJp75Lqa/SpVfQCngr1Kf8Yz6WNBNqoMfh4AKJ8aCmBgfECnayOgVlJvRE8M8Umcnot0x+5NB2XKlh2tJ+H0kW5BFRq6r8m6I224P5MqqONHTmf1qi8/xoP2CLLfkj1T9L1zoM4tLcEpwMab3TwpRlZzNA==; _gat=1; _dd_s=rum=0&expire=1647334620219");
+
+                request.Method = "POST";
+                request.ServicePoint.Expect100Continue = false;
+
+                string body = "{\"context\":\"buying\",\"products\":[{\"sku\":\"" + sku + "\",\"amount\":" + price + ",\"quantity\":1}],\"discountCodes\":[\"\"]}";
+                byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
+                request.ContentLength = postBytes.Length;
+                //Stream stream = request.GetRequestStream();
+                //stream.Write(postBytes, 0, postBytes.Length);
+                //stream.Close();
+
+                response = (HttpWebResponse)request.GetResponse();
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string html = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return html;
+            }
+            catch (WebException e)
+            {
+                
+                return e.ToString();
+            }
+           
+            
+        }
+        public string gettotalfee(string sku,string price)
+        {
+            Thread.Sleep(2000);
+            string url = "https://stockx.com/api/pricing?currency=USD&include_taxes=true";
+            string postdata = "{\"context\":\"buying\",\"products\":[{\"sku\":\""+sku+"\",\"amount\":"+price+",\"quantity\":1}],\"discountCodes\":[\"\"]}";
+            Random rd = new Random();
+            int x = rd.Next(0, 9999);
+           string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904." + x + " Safari/537.36";
+
+            //string html = PostUrl(url, postdata,UserAgent);
+            string html = Request_stockx_com(sku,price);
+            //MessageBox.Show(postdata);
+            MessageBox.Show(html);
+            
+            string total = Regex.Match(html, @"""totalUSD"":([\s\S]*?),").Groups[1].Value;
+            return total;
+        }
+
+
+
+        public void gethuilv()
+        {
+            //string url = "https://webapi.huilv.cc/api/exchange?num=1&chiyouhuobi=USD&duihuanhuobi=CNY&type=1&callback=jisuanjieguo&_=1645687133740";
+            //string html = GetUrl(url, "utf-8");
+            //string huilv = Regex.Match(html, @"""dangqianhuilv"":""([\s\S]*?)""").Groups[1].Value;
+            string url = "https://www.baidu.com/s?ie=UTF-8&wd=%E7%BE%8E%E5%85%83%E6%B1%87%E7%8E%87";
             string html = GetUrl(url, "utf-8");
-            string huilv = Regex.Match(html, @"""dangqianhuilv"":""([\s\S]*?)""").Groups[1].Value;
+            
+            string huilv = Regex.Match(html, @"1美元=([\s\S]*?)人民币").Groups[1].Value;
             textBox2.Text = huilv;
         }
 
-        string cookie = "stockx_device_id=6d644afd-028e-43fe-9569-c9c1415271c1; _pxvid=bc908e20-9540-11ec-a19b-497978705341; _ga=undefined; rskxRunCookie=0; rCookie=1vpbrt7ojq9fs0pldcs89sl00naqgv; __ssid=9c512a85f1483910122cd4a190df7e0; ab_one_buy_now_v2_button=true; tracker_device=32dc7fff-c416-460d-b9a9-3c4c42093390; _ga=GA1.2.685685636.1645758061; _gcl_au=1.1.425481816.1645758065; ajs_anonymous_id=f323e877-aafc-4806-a0a2-7bc1b3e26b9a; rbuid=rbos-ab50ae84-ccb1-4035-a579-fe1a75ab8098; _scid=dd421d6f-5ae0-4b0e-b2d0-693fa507a8b7; __pdst=b7b4cd3a7e1f49d5aee18b5418b623e8; QuantumMetricUserID=3a24e6b142b001c1aad90f64472c3123; stockx_homepage=sneakers; language_code=zh; _gid=GA1.2.1602747318.1646613502; pxcts=e81593f9-9dae-11ec-bb80-6d645852506b; riskified_recover_updated_verbiage=true; ops_banner_id=bltf0ff6f9ef26b6bdb; IR_gbd=stockx.com; _clck=1ybedkb|1|ezk|0; _rdt_uuid=1646613584009.8ecf5830-1b7c-4c0b-b5d8-5e6b2160893f; IR_9060=1646614625404%7C0%7C1646614625404%7C%7C; IR_PI=34ddf980-5644-11ec-b7cd-fd310cf19260%7C1646701025404; __cf_bm=a4ciY3ayBdCZ7I.bHkIxBW56Pl2vmF7_UVdagy5tTZM-1646618614-0-ARAl5A8t3VMDMTegJ2XimGWOT04P8fLwsPxfukotT5V0b5LKuK95KsOuE9sXzSPlFfW6mT4be9sA8e5kB1RoI5M=; stockx_preferred_market_activity=sales; stockx_session=%22abd68b20-68e4-4d38-94f2-2304e4e185f4%22; com.auth0.auth.%7B%22state%22%3A%7B%22forceLogin%22%3Atrue%7D%7D={%22nonce%22:null%2C%22state%22:%22{%5C%22state%5C%22:{%5C%22forceLogin%5C%22:true}}%22%2C%22lastUsedConnection%22:%22production%22}; _com.auth0.auth.%7B%22state%22%3A%7B%22forceLogin%22%3Atrue%7D%7D_compat={%22nonce%22:null%2C%22state%22:%22{%5C%22state%5C%22:{%5C%22forceLogin%5C%22:true}}%22%2C%22lastUsedConnection%22:%22production%22}; _clsk=cxgxeb|1646618617502|1|0|i.clarity.ms/collect; QuantumMetricSessionID=baccc52ffa8ec5a9102df4aa3e1017be; _uetsid=e90836809dae11ecacb4f3299b3cf807; _uetvid=2db6537095e711ec953d0137b555dfe9; token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5USkNNVVEyUmpBd1JUQXdORFk0TURRelF6SkZRelV4TWpneU5qSTNNRFJGTkRZME0wSTNSQSJ9.eyJodHRwczovL3N0b2NreC5jb20vY3VzdG9tZXJfdXVpZCI6IjI5MzJiMWNhLTA3ZjktMTFlNy1hYTc5LTEyY2RhMWM5YjZhNSIsImh0dHBzOi8vc3RvY2t4LmNvbS9nYV9ldmVudCI6IkxvZ2dlZCBJbiIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuc3RvY2t4LmNvbS8iLCJzdWIiOiJhdXRoMHwyOTMyYjFjYS0wN2Y5LTExZTctYWE3OS0xMmNkYTFjOWI2YTUiLCJhdWQiOlsiZ2F0ZXdheS5zdG9ja3guY29tIiwiaHR0cHM6Ly9zdG9ja3gtcHJvZC5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjQ2NjE4NzE3LCJleHAiOjE2NDY2NjE5MTcsImF6cCI6Ik9WeHJ0NFZKcVR4N0xJVUtkNjYxVzBEdVZNcGNGQnlEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSJ9.JJSrMSsnUzuQUp7mWceWX89L5kKDNVWzjVUlWDGqQSzi3bsU8lCJzH11nYqZyujEvneAZA4HHN5j6uMEmVaCgrk0zlpdQmSus3UxTGsKIIQbWVLGLlkAvNsbtS6wNNyQIrYmKPHr-UQ77g5trJk7Ek3sxfTDvGzjUhsLJKboz7GatUYs3dlhWrdmOjn1SGtCDHcVq7q9QQo_XAvUqwewNDEFG4wEROZp9besWvJHetQQ5JKPn3hLrRwufKxjczx9aCzHfD8tud5HlHQ4NpsIkRVrbkPPUtKhDEklMVZiGigIvUjagBmw8MBtj2UM5e66pIyPqrSIw2zugRtlpuWqDw; stockx_selected_currency=USD; loggedIn=2932b1ca-07f9-11e7-aa79-12cda1c9b6a5; stockx_default_sneakers_size=8.5; _px3=9b55363afdd30d47bdebd5768e9a658a77fbc2f45d57d17ecd94cb801bdf688d:1rxCQDBqoJLeX1AcloWiARJQ4epAANBectP8T2EaFdSSWn0Bjnd0gIdIAVAhZ0NTHvpwjuoVgbaRCf93UCDGUw==:1000:58DAAEMVtM1dPTfurOrJGPBjPKB4ykIkzuwDDk5DHFvZp0DGqfhwWMyaCckgeMUy2suMShuke11LqtSnBPvL+M0+HD49iPEgO4NpTVktFbQgsnYLsMVatGfhgxZ3KR5103ueAJKjoBHR6+oTBzsbYYqQ5XKs7m4hr3JIMbubbSKZxusuJD9OgPNmlztsGKseSSDWH+Q64FF8LnWU7NGRnA==; forterToken=291d69bc4ccd4bedb442db00cdceb640_1646618716273__UDF43_13ck; stockx_product_visits=3; lastRskxRun=1646618786530; _dd_s=rum=0&expire=1646619740546";
-            public void run()
+        string cookie = "stockx_device_id=6cd4a569-03f7-49c4-8ac0-d02b66fb74f3; _pxvid=ad9e18ec-a351-11ec-94e4-4c7157426957; ab_one_buy_now_v2_button=true; _ga=undefined; __ssid=b3c80f66c64a6a013c3c86aca09f024; rskxRunCookie=0; rCookie=aya2akwqhzk1ykdorbv5xyl0q83tk6; ajs_anonymous_id=20e5872f-e94f-476c-b011-be6bf9d3650e; QuantumMetricUserID=ecef40ca4923138fc0879e389771d324; rbuid=rbcr-7e0a0df2-4cab-4cd2-af70-2264a6de30ac; _ga=GA1.2.1509626082.1647233290; ajs_user_id=2932b1ca-07f9-11e7-aa79-12cda1c9b6a5; _gcl_au=1.1.243599321.1647233293; _scid=3eaec287-8ce0-4995-bd29-b9057f842dfb; __pdst=f752cc7f90c746f3a1572824a18777e0; tracker_device=7229b4c0-60bd-4fcd-b6f6-622b6e9b5085; _rdt_uuid=1647235630500.ffe44bd4-a4f8-49ad-9e54-39b93caafe8f; stockx_homepage=sneakers; __cf_bm=jRvcp2slDeTzH1fCNpLV2F1dnKSbyZeQeuM95t5wJMs-1647333257-0-ARmvw0P0mVrmGSf96JIipViKJCmClyGMInUKWKyvbtjd5zcutCX+dKcqRqOw6IsjgfxFacgl6T3Fqbny2O/mUHw=; mfaLogin=err; token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5USkNNVVEyUmpBd1JUQXdORFk0TURRelF6SkZRelV4TWpneU5qSTNNRFJGTkRZME0wSTNSQSJ9.eyJodHRwczovL3N0b2NreC5jb20vY3VzdG9tZXJfdXVpZCI6IjI5MzJiMWNhLTA3ZjktMTFlNy1hYTc5LTEyY2RhMWM5YjZhNSIsImh0dHBzOi8vc3RvY2t4LmNvbS9nYV9ldmVudCI6IkxvZ2dlZCBJbiIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuc3RvY2t4LmNvbS8iLCJzdWIiOiJhdXRoMHwyOTMyYjFjYS0wN2Y5LTExZTctYWE3OS0xMmNkYTFjOWI2YTUiLCJhdWQiOiJnYXRld2F5LnN0b2NreC5jb20iLCJpYXQiOjE2NDczMzMyNjAsImV4cCI6MTY0NzM3NjQ2MCwiYXpwIjoiT1Z4cnQ0VkpxVHg3TElVS2Q2NjFXMER1Vk1wY0ZCeUQiLCJzY29wZSI6Im9mZmxpbmVfYWNjZXNzIn0.nBhswZ_wg7Xvc37r7WWJAB2hOF_zJGk2gbAJTc641QyIhalHQHn2xtF-WX0aBRL-0wPhct4Z5qqLjT14Tz2NbMiezaq_K8YaPfzBC5GnlpRiORSjidHyMpTwIyMdwoCCCpzxmk_9zaMRyunxnSBBM2sGZtIK-8x1tYZ9EKLqEzXWw25ffwH8NND9XMseZYvHllHvcu8dgssvhLDmevknA1hvAzw9EGGz7wqZWR4b-JBz49Rnrs6LQQBU8nn4BQ0MJtLVvXvJbVqTXmLGPust4iptjMYrou66sDek5x1VMOgfX1LsTU4AFS3KL7hsea66Be28rDPciBc-BFfeyzYDjg; language_code=zh; stockx_selected_currency=USD; stockx_product_visits=1; stockx_default_sneakers_size=8.5; stockx_preferred_market_activity=sales; stockx_session=%2249b7c1da-fbfc-46e0-9050-35c42659e480%22; loggedIn=2932b1ca-07f9-11e7-aa79-12cda1c9b6a5; pxcts=b8ccec5e-a43a-11ec-91cb-4343774f6556; riskified_recover_updated_verbiage=true; ops_banner_id=bltf0ff6f9ef26b6bdb; lastRskxRun=1647333270917; _gid=GA1.2.1569939799.1647333332; _clck=9nwi44|1|ezs|0; _clsk=1v6wyzr|1647333336987|1|1|b.clarity.ms/collect; _px3=56b56dcedcf8362de8261fd8f7f19c9269b06267e39fde126669e404473a5619:F7UI8imomE5s8vhsQoYFna9tiOXIdwt34/hiFjh+EGuEhBKR6DHpPQ87E/goDYHCMjaAJY12LBl6kAe0yKL7Tw==:1000:W2L3aerLYqOmxq3IC5wyWDK8GJadI4iUGQ2uYoCr8Ly7u0OXxAIfKid948TJW9HDbOLFomTTCLEvYuVlObqrpgAOOFWn5/IUh/yNBUV5uZ/pfm6/dTqXM92VMmc4/mN01few/Dv7jGdtiyPmwqvsGfZZW7id9bntb5A5U6kqLTTQWxxCBkNrzzESvrgguUx7bMVOxhHFCdeKnRZm6W4UBg==; forterToken=67c1ff70bd394a2b93c79d3cec6ea654_1647333338425__UDF43_13ck; _gat=1; _uetsid=e71eb060a43a11eca8b539f1cf3e853e; _uetvid=d76dd6b0a35111ecb8ce914c7e0239d5; IR_gbd=stockx.com; IR_9060=1647333343639%7C0%7C1647333343639%7C%7C; IR_PI=55db0870-b722-3bc1-b297-6d9c88226856%7C1647419743639; QuantumMetricSessionID=39a44a71f4d179b99577fa085807bff6; _dd_s=rum=0&expire=1647334263264";
+        public void run()
         {
 
             try
             {
 
-             
+
                 string url = "https://xw7sbct9v6-2.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.8.4)%3B%20Browser";
-                string postdata = "{\"params\":\"query="+textBox1.Text.Trim()+"&facets=*&filters=\"}";
-                string html = PostUrl(url,postdata);
-                
+                string postdata = "{\"params\":\"query=" + textBox1.Text.Trim() + "&facets=*&filters=\"}";
+                string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
+                string html = PostUrl(url, postdata,UserAgent);
+
                 Match huo = Regex.Match(html, @"""url"":""([\s\S]*?)""");
-                string aurl = "https://stockx.com/api/products/"+huo.Groups[1].Value+"?includes=market,360&currency=USD&country=US";
-               
+                string aurl = "https://stockx.com/api/products/" + huo.Groups[1].Value + "?includes=market,360&currency=USD&country=US";
+
 
                 string ahtml = gethtml(aurl, cookie);
                 //textBox1.Text = aurl;
                 //MessageBox.Show(ahtml);
                 Match highestBid = Regex.Match(ahtml, @"""highestBid"":([\s\S]*?),");
-              
-
-                    MatchCollection skus = Regex.Matches(ahtml, @"""skuUuid"":([\s\S]*?),");
-
-
+                MatchCollection skus = Regex.Matches(ahtml, @"""skuUuid"":""([\s\S]*?)""");
                 MatchCollection sizes = Regex.Matches(ahtml, @"""lowestAskSize"":([\s\S]*?),");
                 MatchCollection lows = Regex.Matches(ahtml, @"""lowestAsk"":([\s\S]*?),");
                 MatchCollection highs = Regex.Matches(ahtml, @"""highestBidFloat"":([\s\S]*?)}");
 
 
 
-              
+
 
 
                 for (int j = 1; j < lows.Count; j++)
                 {
-
-                    ListViewItem lv2 = listView1.Items.Add("US " + sizes[j].Groups[1].Value.Replace("null", "-")); //使用Listview展示数据   
-                    
-                    double lowprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(lows[j].Groups[1].Value);
-                    double highprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(highs[j].Groups[1].Value);
-
-                    //lv2.SubItems.Add(lowprice.ToString());
-                    //lv2.SubItems.Add(highprice.ToString());
+                    if (sizes[j].Groups[1].Value != "null")
+                    {
 
 
-                    double fee1 = Convert.ToDouble(textBox2.Text) * 0.055* Convert.ToDouble(lows[j].Groups[1].Value);  //手续费是变动的
-                    double fee2 = Convert.ToDouble(textBox2.Text) * 0.055 * Convert.ToDouble(highs[j].Groups[1].Value);  //手续费是变动的
+                        double lowprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(lows[j].Groups[1].Value);
+                        double highprice = Convert.ToDouble(textBox2.Text) * Convert.ToDouble(highs[j].Groups[1].Value);
+                        //lv2.SubItems.Add(lowprice.ToString());
+                        //lv2.SubItems.Add(highprice.ToString());
 
-                    //if (Convert.ToDouble(lows[j].Groups[1].Value) > 999)
-                    //{
-                    //    fee1 = Convert.ToDouble(textBox2.Text) * 0.06 * Convert.ToDouble(lows[j].Groups[1].Value);  //手续费是变动的
-                    //}
-                    double yunfei = Convert.ToDouble(textBox2.Text) * 13.95 ; //运费是变动的目前是13.95
+                        double fee1 = Convert.ToDouble(textBox2.Text) * 0.06 * Convert.ToDouble(lows[j].Groups[1].Value);  //手续费是变动的
+                        double fee2 = Convert.ToDouble(textBox2.Text) * 0.06 * Convert.ToDouble(highs[j].Groups[1].Value);  //手续费是变动的
+                        double yunfei = Convert.ToDouble(textBox2.Text) * 14.95; //运费是变动的目前是13.95
 
-                    double zong1 = lowprice + fee1 + yunfei;
-                    double zong2= highprice + fee2 + yunfei;
-                    lv2.SubItems.Add(zong1.ToString());
-                    lv2.SubItems.Add(zong2.ToString());
-                    
+                        double zong1 = lowprice + fee1 + yunfei;
+                        double zong2 = highprice + fee2 + yunfei;
+
+
+
+                        try
+                        {
+                            //string zong1 = gettotalfee(skus[j].Groups[1].Value, lows[j].Groups[1].Value);
+                            //string zong2 = gettotalfee(skus[j].Groups[1].Value, highs[j].Groups[1].Value);
+
+                            //zong1 = (Convert.ToDouble(zong1) * Convert.ToDouble(textBox2.Text)).ToString();
+                            //zong2 = (Convert.ToDouble(zong2) * Convert.ToDouble(textBox2.Text)).ToString();
+                            ListViewItem lv2 = listView1.Items.Add("US " + sizes[j].Groups[1].Value.Replace("null", "-")); //使用Listview展示数据   
+                            lv2.SubItems.Add(zong1.ToString());
+                            lv2.SubItems.Add(zong2.ToString());
+                        }
+                        catch (Exception)
+                        {
+                            Thread.Sleep(2000);
+                            j = j - 1;
+                            continue;
+                           
+                        }
+                    }
+
                 }
 
 
@@ -295,10 +386,10 @@ namespace stockx网站价格
             {
                 button1.Text = "正在获取...";
                 button1.Enabled = false;
-               thread = new Thread(new ThreadStart(run));
+                thread = new Thread(new ThreadStart(run));
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
-              
+
             }
         }
 

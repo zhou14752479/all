@@ -84,7 +84,7 @@ namespace 主程序202104
                   
                     DataRow dr = dt.Rows[i];
                     string shuru = System.Web.HttpUtility.UrlEncode(dr[0].ToString());
-
+                   // MessageBox.Show(dr[0].ToString());
                     string url = "https://trade.gov.ng/trade/son/search.do?parameters%5B0%5D.type=STRING&parameters%5B0%5D.name=referenceNumber&parameters%5B0%5D.operation=EQUALS&parameters%5B0%5D.value%5B0%5D="+shuru+"&type=SC&method%3Asearch=Search";
                    // string url = "https://trade.gov.ng/son/print.do?type=SC&number="+shuru;
                     string html = Request_trade_gov_ng(url);

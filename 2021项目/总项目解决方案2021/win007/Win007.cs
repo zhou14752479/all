@@ -148,7 +148,7 @@ namespace win007
                 dataGridView1.Columns["data4"].HeaderText = "数据4";
                 dataGridView1.Columns["data5"].HeaderText = "数据5";
                 dataGridView1.Columns["data6"].HeaderText = "数据6";
-                dataGridView1.Columns["data7"].HeaderText = "升降平";
+                dataGridView1.Columns["data7"].HeaderText = "数据7";
                 dataGridView1.Columns["data8"].HeaderText = "数据8";
                 dataGridView1.Columns["data9"].HeaderText = "数据9";
                 dataGridView1.Columns["zhu_cj"].HeaderText = "主队成交比例";
@@ -180,8 +180,8 @@ namespace win007
                 //this.dataGridView1.Columns[12].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
 
                 //this.dataGridView1.Columns[13].Width = 0;
-                this.dataGridView1.Columns[14].Width = 0;
-                this.dataGridView1.Columns[15].Width = 0;
+                //this.dataGridView1.Columns[14].Width = 0;
+                //this.dataGridView1.Columns[15].Width = 0;
 
                 this.dataGridView1.Columns[16].Width = 50;
                 this.dataGridView1.Columns[17].Width =50;
@@ -201,10 +201,23 @@ namespace win007
                         string value5 = dataGridView1.Rows[i].Cells[11].Value.ToString();
                         string value6 = dataGridView1.Rows[i].Cells[12].Value.ToString();
 
+                        string value7 = dataGridView1.Rows[i].Cells[13].Value.ToString();
+                        string value8 = dataGridView1.Rows[i].Cells[14].Value.ToString();
+                        string value9 = dataGridView1.Rows[i].Cells[15].Value.ToString();
+
                         double cha1 = Convert.ToDouble(value1) - Convert.ToDouble(value4);
                         double cha2 = Convert.ToDouble(value2) - Convert.ToDouble(value5);
                         double cha3 = Convert.ToDouble(value3) - Convert.ToDouble(value6);
 
+
+                        double cha4 = Convert.ToDouble(value7) - Convert.ToDouble(value4);
+                        double cha5 = Convert.ToDouble(value8) - Convert.ToDouble(value5);
+                        double cha6 = Convert.ToDouble(value9) - Convert.ToDouble(value6);
+
+
+
+
+                        
                         string sjp1 = "平";
                         string sjp2 = "平";
                         string sjp3 = "平";
@@ -235,49 +248,84 @@ namespace win007
                             sjp3 = "降";
                         }
 
-                        dataGridView1.Rows[i].Cells[13].Value = sjp1 + sjp2 + sjp3+" "+ dataGridView1.Rows[i].Cells[6].Value;
+
+                        if(cha4>0)
+                        {
+                            dataGridView1.Rows[i].Cells[10].Style.BackColor = Color.Green;
+                        }
+                        if (cha5 > 0)
+                        {
+                            dataGridView1.Rows[i].Cells[11].Style.BackColor = Color.Green;
+                        }
+                        if (cha6 > 0)
+                        {
+                            dataGridView1.Rows[i].Cells[12].Style.BackColor = Color.Green;
+                        }
+                        if (cha4 < 0)
+                        {
+                            dataGridView1.Rows[i].Cells[10].Style.BackColor = Color.Red;
+                        }
+                        if (cha5 < 0)
+                        {
+                            dataGridView1.Rows[i].Cells[11].Style.BackColor = Color.Red;
+                        }
+                        if (cha6 < 0)
+                        {
+                            dataGridView1.Rows[i].Cells[12].Style.BackColor = Color.Red;
+                        }
+
+                       // dataGridView1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3+" "+ dataGridView1.Rows[i].Cells[6].Value;
 
                       
 
                         if (cha1>-0.15&&cha1<-0.1)
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Yellow;
+                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Yellow;
+                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
                         }
                         else if (cha1 > -2 && cha1 < -0.15)
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Orange;
+                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Orange;
+                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
                         }
                        else if (cha1 < -2 )
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Red;
+                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Red;
+                            // dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
                         }
 
 
 
                         if (cha2 > -0.15 && cha2 < -0.1)
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Yellow;
+                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Yellow;
+                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
                         }
                         else if (cha2 > -2 && cha2 < -0.15)
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Orange;
+                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Orange;
+                            // dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
                         }
                         else if (cha2 < -2)
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Red;
+                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Red;
+                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
                         }
 
                         if (cha3 > -0.15 && cha3 < -0.1)
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Yellow;
+                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Yellow;
+                           // dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
                         }
                         else if (cha3 > -2 && cha3 < -0.15)
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Orange;
+                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Orange;
+                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
                         }
                         else if (cha3 < -2)
                         {
-                            dataGridView1.Rows[i].Cells[13].Style.BackColor = Color.Red;
+                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Red;
+                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
                         }
 
 
@@ -286,23 +334,23 @@ namespace win007
 
 
                         //成交比例
-                        string zhu_cj= dataGridView1.Rows[i].Cells[16].Value.ToString().Replace("%","");
-                        string he_cj = dataGridView1.Rows[i].Cells[17].Value.ToString().Replace("%", "");
-                        string ke_cj = dataGridView1.Rows[i].Cells[18].Value.ToString().Replace("%", "");
+                        string zhu_cj= dataGridView1.Rows[i].Cells[18].Value.ToString().Replace("%","");
+                        string he_cj = dataGridView1.Rows[i].Cells[19].Value.ToString().Replace("%", "");
+                        string ke_cj = dataGridView1.Rows[i].Cells[20].Value.ToString().Replace("%", "");
 
                         if (zhu_cj!="无")
                         {
                             if(Convert.ToDouble(zhu_cj)>=70 & Convert.ToDouble(zhu_cj)<80)
                             {
-                                dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Yellow;
                             }
                             if (Convert.ToDouble(zhu_cj) >= 80 & Convert.ToDouble(zhu_cj) < 90)
                             {
-                                dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Orange;
                             }
                             if (Convert.ToDouble(zhu_cj) >90)
                             {
-                                dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Red;
                             }
 
 
@@ -311,30 +359,30 @@ namespace win007
                         {
                             if (Convert.ToDouble(he_cj) >= 70 & Convert.ToDouble(he_cj) < 80)
                             {
-                                dataGridView1.Rows[i].Cells[17].Style.BackColor = Color.Yellow;
+                                dataGridView1.Rows[i].Cells[19].Style.BackColor = Color.Yellow;
                             }
                             if (Convert.ToDouble(he_cj) >= 80 & Convert.ToDouble(he_cj) < 90)
                             {
-                                dataGridView1.Rows[i].Cells[17].Style.BackColor = Color.Orange;
+                                dataGridView1.Rows[i].Cells[19].Style.BackColor = Color.Orange;
                             }
                             if (Convert.ToDouble(he_cj) >= 90)
                             {
-                                dataGridView1.Rows[i].Cells[17].Style.BackColor = Color.Red;
+                                dataGridView1.Rows[i].Cells[19].Style.BackColor = Color.Red;
                             }
                         }
                         if (ke_cj != "无")
                         {
                             if (Convert.ToDouble(ke_cj) >= 70 & Convert.ToDouble(ke_cj) < 80)
                             {
-                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Yellow;
+                                dataGridView1.Rows[i].Cells[20].Style.BackColor = Color.Yellow;
                             }
                             if (Convert.ToDouble(ke_cj) >= 80 & Convert.ToDouble(ke_cj) <90)
                             {
-                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Orange;
+                                dataGridView1.Rows[i].Cells[20].Style.BackColor = Color.Orange;
                             }
                             if (Convert.ToDouble(ke_cj) >= 90)
                             {
-                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Red;
+                                dataGridView1.Rows[i].Cells[20].Style.BackColor = Color.Red;
                             }
                         }
 
@@ -359,7 +407,7 @@ namespace win007
                     {
                         try
                         {
-                            string value = dataGridView1.Rows[i].Cells[13].Value.ToString();
+                            string value = dataGridView1.Rows[i].Cells[16].Value.ToString();
                            
                             if (!value.Contains(textBox4.Text.Trim()))
                             {
