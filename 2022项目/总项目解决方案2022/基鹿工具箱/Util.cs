@@ -1,5 +1,9 @@
-﻿using System;
+﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -8,6 +12,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace 基鹿工具箱
 {
@@ -22,7 +27,7 @@ namespace 基鹿工具箱
         public static string GetUrl(string Url, string charset)
         {
             string html = "";
-            string COOKIE = "";
+            string COOKIE = "__wpkreporterwid_=3d4ec445-8418-4422-1b95-e7f4d83c9b2f; lastRefresh=1647938728156; firstRefresh=1647938728156; cna=IEEVGmxNb3QCAXnisujqtGPv; taklid=38e78512859846e58e75c42be1833a02; hng=CN%7Czh-CN%7CCNY%7C156; lid=zkg852266010; ali_ab=121.226.159.98.1645245827623.1; _bl_uid=mektezbdtyzcX2vFmxRk7wvngehw; ali_apache_track=c_mid=b2b-1052347548|c_lid=zkg852266010|c_ms=1|c_mt=2; cookie2=285fbcc7c79d6a1bb826b22ea47e2d3e; t=bb42afa080af1dca98fb8d6a52dc1684; _tb_token_=7384f7fa37871; alicnweb=touch_tb_at%3D1647935774124%7Clastlogonid%3Dzkg852266010%7Cshow_inter_tips%3Dfalse; _m_h5_tk=29a496c1547c8f04956b96d936f267be_1647945972358; _m_h5_tk_enc=f222867fd2f386e910e580b782d5023c; keywordsHistory=%E8%A2%9C%E5%AD%90%3B%E7%BA%B1%E5%B8%83%3B%E5%84%BF%E7%AB%A5%E6%8B%96%E9%9E%8B%3B%E5%88%B6%E9%80%A0%3B%E5%8C%97%E4%BA%AC%3B%E7%BD%91%E7%BB%9C%3B0%3B%E4%BA%AC%3B%E5%8C%97%3B1; xlly_s=1; cookie1=Vvj8uMJubtxirKFtxaDmWPxYCP5sb7EKtrFe1w68JDk%3D; cookie17=UoH62EAv27BqSg%3D%3D; sgcookie=E100Zj7mUAyoxTPBJJvYIChM54H7sGldritkLPKukFhEHsrVoxd2SS91rvCpoeQ0lt5%2BGoPfn6dAc0NHpTGoA15bSXdo9AIw%2FM0sxcnKFHr3QrAQpD3R2AoMchpnp%2FZEB7RG; sg=080; csg=2650970a; unb=1052347548; uc4=id4=0%40UOnlZ%2FcoxCrIUsehK6jlVuRuT7F%2B&nk4=0%40GwrkntVPltPB9cR46GncAmVz%2FL3Wbk4%3D; __cn_logon__=true; __cn_logon_id__=zkg852266010; ali_apache_tracktmp=c_w_signed=Y; _nk_=zkg852266010; last_mid=b2b-1052347548; _csrf_token=1647938723369; _is_show_loginId_change_block_=b2b-1052347548_false; _show_force_unbind_div_=b2b-1052347548_false; _show_sys_unbind_div_=b2b-1052347548_false; _show_user_unbind_div_=b2b-1052347548_false; __rn_alert__=false; tfstk=cPBRByxNar4kiDxAb_FcRGMcSfARZ74pl0TnpomxfilnONHdiCXGB0i0NHTwyoC..; l=eBNaJtqgg-gKyowbBO5Cnurza77TVIRb8sPzaNbMiInca6_RMFGVlNCn5aiDydtj_t5vyeKrTan6EdHprlULRxsp8jG4ARjSHg968e1..; isg=BHd3F6xu2XeZ7l5mF68pBLjpBmvBPEueVqrJ1skkOMateJa60Am47rsaWtAmkCMW";
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
@@ -30,7 +35,7 @@ namespace 基鹿工具箱
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Proxy = null;//防止代理抓包
                 request.AllowAutoRedirect = true;
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
                 request.Referer = Url;
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
@@ -303,14 +308,151 @@ namespace 基鹿工具箱
 
         }
 
+        public static string expiretime = "2022-01-01";
+        #region unicode转中文
+        public static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(
+                source, x => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)));
+        }
 
-        public static string login()
+        #endregion;
+        public static string login(string mobile,string password)
         {
             string url = "http://" + domain + "/Api/login";
-            string postdata = "{\"mobile\":\"13777373777\",\"password\":\"123456\"}";
+            string postdata = "{\"mobile\":\""+mobile+"\",\"password\":\""+password+"\"}";
             string html = PostUrlDefault(url, postdata, "");
             return html;
 
         }
+
+        #region listview转datable
+        /// <summary>
+        /// listview转datable
+        /// </summary>
+        /// <param name="lv"></param>
+        /// <returns></returns>
+        public static DataTable listViewToDataTable(ListView lv)
+        {
+            int i, j;
+            DataTable dt = new DataTable();
+            DataRow dr;
+            dt.Clear();
+            dt.Columns.Clear();
+            //lv.Columns.Count
+            //生成DataTable列头
+            for (i = 0; i < lv.Columns.Count; i++)
+            {
+                dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
+            }
+            //每行内容
+            for (i = 0; i < lv.Items.Count; i++)
+            {
+                dr = dt.NewRow();
+                for (j = 0; j < lv.Columns.Count; j++)
+                {
+                    try
+                    {
+                        dr[j] = lv.Items[i].SubItems[j].Text.Trim();
+
+                    }
+                    catch
+                    {
+
+                        continue;
+                    }
+
+                }
+                dt.Rows.Add(dr);
+            }
+
+            return dt;
+        }
+        #endregion
+
+        #region NPOI导出表格
+        public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
+        {
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            ISheet sheet = null;
+            IWorkbook workbook = null;
+            FileStream fs = null;
+            // bool disposed;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            //sfd.Filter = "xlsx|*.xlsx";
+            sfd.Title = "Excel文件导出";
+            string fileName = "";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                fileName = sfd.FileName;
+            }
+            else
+                return -1;
+
+            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
+                workbook = new XSSFWorkbook();
+            else if (fileName.IndexOf(".xls") > 0) // 2003版本
+                workbook = new HSSFWorkbook();
+
+            try
+            {
+                if (workbook != null)
+                {
+                    sheet = workbook.CreateSheet(sheetName);
+                    ICellStyle style = workbook.CreateCellStyle();
+                    style.FillPattern = FillPattern.SolidForeground;
+
+                }
+                else
+                {
+                    return -1;
+                }
+
+                if (isColumnWritten == true) //写入DataTable的列名
+                {
+                    IRow row = sheet.CreateRow(0);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
+
+                    }
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                for (i = 0; i < data.Rows.Count; ++i)
+                {
+                    IRow row = sheet.CreateRow(count);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());
+                    }
+                    ++count;
+                }
+                workbook.Write(fs); //写入到excel
+                workbook.Close();
+                fs.Close();
+                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
+                MessageBox.Show("数据导出完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return -1;
+            }
+        }
+
+        #endregion
+
+
     }
 }

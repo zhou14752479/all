@@ -412,7 +412,7 @@ namespace 客户美团
         #region  主程序爬取神灯详情页
         public void run_shendeng()
         {
-
+            int count = 0;
 
             try
             {
@@ -461,7 +461,7 @@ namespace 客户美团
                                     MessageBox.Show("ip被屏蔽");
                                     continue;
                                 }
-
+                              
                                 if (uids.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
                                 {
 
@@ -533,7 +533,8 @@ namespace 客户美团
                                         finishes.Add(tels[a].Groups[1].Value);
                                         StringBuilder cpsb = new StringBuilder();
 
-
+                                        count = count + 1;
+                                        label4.Text = count.ToString();
                                         ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                         listViewItem.SubItems.Add(names[a].Groups[1].Value);
                                         listViewItem.SubItems.Add(guhua);
@@ -575,6 +576,9 @@ namespace 客户美团
         ArrayList finishes = new ArrayList();
         private void Form1_Load(object sender, EventArgs e)
         {
+            ImageList imgList = new ImageList();
+            imgList.ImageSize = new Size(1, 25);
+            listView1.SmallImageList = imgList;
             ProvinceCity.ProvinceCity.BindProvince(comboBox1);
         }
 

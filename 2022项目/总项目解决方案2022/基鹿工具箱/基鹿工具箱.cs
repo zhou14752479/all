@@ -73,6 +73,7 @@ namespace 基鹿工具箱
 
         private void 基鹿工具箱_Load(object sender, EventArgs e)
         {
+            label4.Text = "有效期至:" + Util.expiretime ;
             this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
             button1.Click += new System.EventHandler(btn_Click);
             button2.Click += new System.EventHandler(btn_Click);
@@ -139,17 +140,19 @@ namespace 基鹿工具箱
         Thread thread;
         private void button12_Click(object sender, EventArgs e)
         {
+            status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(aliexpress);
+                thread = new Thread(alibaba);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
 
 
-       
-        public void aliexpress()
+        bool zanting = true;
+        bool status = true;
+        public void alibaba()
         {
             StreamReader sr = new StreamReader(key_txtbox.Text, Util.EncodingType.GetTxtType(key_txtbox.Text));
             //一次性读取完 
@@ -161,19 +164,40 @@ namespace 基鹿工具箱
 
             foreach (string keyword in keywords)
             {
-                for (int page = 1; page < 10; page++)
+                for (int page = 1; page < numericUpDown1.Value+1; page++)
                 {
-                    string url = "https://www.aliexpress.com/wholesale?trafficChannel=main&d=y&CatId=0&SearchText=" + System.Web.HttpUtility.UrlEncode(keyword) + "&ltype=wholesale&SortType=default&page=" + page;
+                    label6.Text = DateTime.Now.ToString()+ "：正在查询："+keyword+"，第"+page+"页";
+                    // string url = "https://search.1688.com/service/marketOfferResultViewService?keywords="+ System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")) + "&spm=a26352.13672862.searchbox.input&beginPage="+page+"&async=true&asyncCount=20&pageSize=60&startIndex=0&pageName=major&offset=8&sessionId=0201616cb2c84c7491698775cd957fbb&_bx-v=1.1.20";
+                    string url = "https://s.1688.com/selloffer/offer_search.htm?keywords=" + System.Web.HttpUtility.UrlEncode(keyword, Encoding.GetEncoding("GB2312")) + "&n=y&netType=16&spm=a260k.dacugeneral.search.0&beginPage="+page+"#sm-filtbar";
                     string html = Util.GetUrl(url, "utf-8");
-                    MatchCollection uids = Regex.Matches(html, @"""productId"":([\s\S]*?),");
+                    //textBox1.Text = html;
+                    MatchCollection uids = Regex.Matches(html, @"""infoId"":([\s\S]*?),");
+                    MatchCollection loginIds = Regex.Matches(html, @"""loginId"":""([\s\S]*?)""");
+                    MatchCollection subjects = Regex.Matches(html, @"""subject"":""([\s\S]*?)""");
+
                     for (int i = 0; i < uids.Count; i++)
                     {
-                        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(keyword);
-                        lv1.SubItems.Add(uids[i].Groups[1].Value);
+                        string uid = uids[i].Groups[1].Value.Trim();
+                        string paiming = "无";
+                        if(goodlist.Contains(uid))
+                        {
+                            paiming = "第" + page + "页,第" + (i + 1) + "名";
+                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(keyword);
+                            lv1.SubItems.Add(Regex.Replace(subjects[i].Groups[1].Value, "<[^>]+>", ""));
+                            lv1.SubItems.Add(paiming);
+                        }
+                        label6.Text = DateTime.Now.ToString() + "：正在查询：" + keyword + "，第" + page + "页，产品"+ Regex.Replace(subjects[i].Groups[1].Value, "<[^>]+>", "") + "不符合";
+                       
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
                     }
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                 }
             }
 
@@ -186,6 +210,82 @@ namespace 基鹿工具箱
                 key_txtbox.Text = openFileDialog1.FileName;
                
             }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (zanting == false)
+            {
+
+                zanting = true;
+            }
+            else
+            {
+                zanting = false;
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            Util.DataTableToExcel(Util.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+               
+            }
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            erweima ma = new erweima();
+            ma.Show();
+        }
+
+        List<string> goodlist = new List<string>();
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                good_txtbox.Text = openFileDialog1.FileName;
+                StreamReader sr = new StreamReader(good_txtbox.Text, Util.EncodingType.GetTxtType(good_txtbox.Text));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] goods = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (var item in goods)
+                {
+                    if (item != "")
+                    {
+                     
+                        goodlist.Add(item.Trim());
+                    }
+                }
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.asinlu.com/index/service_show.html?id=71");
         }
     }
 }

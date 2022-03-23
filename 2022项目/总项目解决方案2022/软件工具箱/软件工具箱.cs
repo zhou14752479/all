@@ -163,5 +163,35 @@ namespace 软件工具箱
         {
             System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
         }
+
+        private void pictureBox17_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://81.68.136.112/");
+        }
+
+        private void linkLabel18_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://81.68.136.112/");
+        }
+
+        private void linkLabel17_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://81.68.136.112/");
+        }
+
+        private void pictureBox16_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://81.68.136.112/");
+        }
+
+        private void pictureBox15_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://81.68.136.112/");
+        }
+
+        private void linkLabel16_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://81.68.136.112/");
+        }
     }
 }

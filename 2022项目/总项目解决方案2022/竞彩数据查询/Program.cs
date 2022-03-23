@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202202
+namespace 竞彩数据查询
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202202
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 订单统计());
+            Application.Run(new 竞彩数据查询());
         }
     }
 }

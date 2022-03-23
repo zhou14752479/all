@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "软件工具箱", "软件�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "小红圈自动保存", "小红圈自动保存\小红圈自动保存.csproj", "{3951D908-797E-408F-A539-43E607337509}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "竞彩数据查询", "竞彩数据查询\竞彩数据查询.csproj", "{04675A11-09E4-43BB-852F-5B304CCBFB09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "开奖分析", "开奖分析\开奖分析.csproj", "{41DBF10C-30C0-4441-84B7-4188461E1E05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +127,14 @@ Global
 		{3951D908-797E-408F-A539-43E607337509}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3951D908-797E-408F-A539-43E607337509}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3951D908-797E-408F-A539-43E607337509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04675A11-09E4-43BB-852F-5B304CCBFB09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04675A11-09E4-43BB-852F-5B304CCBFB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04675A11-09E4-43BB-852F-5B304CCBFB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04675A11-09E4-43BB-852F-5B304CCBFB09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41DBF10C-30C0-4441-84B7-4188461E1E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41DBF10C-30C0-4441-84B7-4188461E1E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41DBF10C-30C0-4441-84B7-4188461E1E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41DBF10C-30C0-4441-84B7-4188461E1E05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

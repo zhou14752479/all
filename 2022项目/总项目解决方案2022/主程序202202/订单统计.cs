@@ -108,14 +108,15 @@ namespace 主程序202202
         Dictionary<string, long> dics_xiadan = new Dictionary<string, long>();
         Dictionary<string, double> dics_jine = new Dictionary<string, double>();
 
-
+        
         public void run()
         {
             for (int i = 1; i <999999; i++)
             {
                 label12.Text = "正在计算第"+i+"页";
-                string url = "http://110.40.186.121/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id=42589&_=1646289301606";
-                
+                // string url = "http://110.40.186.121/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id=42589&_=1646289301606";
+                //string url = "http://124.223.45.26/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id=21&_=1647847450033";
+                string url = "http://110.40.186.121/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id=42587&_=1647914786043";
                 string postdata = "pageSize=1000&pageCurrent="+i+"&orderField=%24%7Bparam.orderField%7D&orderDirection=%24%7Bparam.orderDirection%7D&orderstate=3&ksid=&zpid=&OrderId=&CardId=&username=&cardno=&start_time="+dateTimePicker1.Value.ToString("yyyy-MM-dd")+ "&end_time=" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "&last_start_time=&last_end_time=&total=";
                 string html = PostUrlDefault(url,postdata,cookie);
 
@@ -147,10 +148,10 @@ namespace 主程序202202
                         dics_jine[userids[j].Groups[1].Value] = dics_jine[userids[j].Groups[1].Value] + jine;
 
                     }
-              
+
                     for (int a = 0; a < dics_dingdan.Count; a++)
                     {
-                        textBox4.Text += dics_dingdan.ElementAt(a).Key + "订单数："+dics_dingdan.ElementAt(a).Value+" " + "下单数：" + dics_xiadan.ElementAt(a).Value + " " + "金额：" + dics_jine.ElementAt(a).Value.ToString("F2") + " \r\n";
+                        textBox4.Text += dics_dingdan.ElementAt(a).Key + "订单数：" + dics_dingdan.ElementAt(a).Value + " " + "下单数：" + dics_xiadan.ElementAt(a).Value + " " + "金额：" + dics_jine.ElementAt(a).Value.ToString("F2") + " \r\n";
                     }
 
                     xiadancount = xiadancount + xiadan;
@@ -181,11 +182,13 @@ namespace 主程序202202
         }
         #endregion
 
+        public static string yuming = "110.40.186.121";
+        //public static string yuming = "124.223.45.26";
         private void 订单统计_Load(object sender, EventArgs e)
         {
             
 
-            pictureBox1.Image = UrlToBitmap("http://110.40.186.121/jiuwuxiaohun.php/Publics/verify_code.html?random=1646292948602");
+            pictureBox1.Image = UrlToBitmap("http://"+yuming+"/jiuwuxiaohun.php/Publics/verify_code.html?random=1646292948602");
             #region 通用检测
 
 
@@ -205,27 +208,7 @@ namespace 主程序202202
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-            //string queryURL = "http://110.40.186.121/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id=42589&_=1646289301606";
-
-            //var content = "pageSize=1000&pageCurrent=1&orderField=%24%7Bparam.orderField%7D&orderDirection=%24%7Bparam.orderDirection%7D&orderstate=3&ksid=&zpid=&OrderId=&CardId=&username=&cardno=&start_time=" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "&end_time=" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "&last_start_time=&last_end_time=&total=";
-
-
-            //var handler = new HttpClientHandler() { UseCookies = false };
-            //var client = new HttpClient(handler);// { BaseAddress = baseAddress };
-
-            //var httpRequestMessage = new HttpRequestMessage
-            //{
-
-            //    Method = HttpMethod.Post,
-            //    RequestUri = new Uri(queryURL),
-            //    Content = new StringContent(content, Encoding.UTF8, "application/x-www-form-urlencoded")
-            //};
-            //httpRequestMessage.Headers.Add("Cookie", cookie);
-            //var result = client.SendAsync(httpRequestMessage);
-            //textBox4.Text = result.Result.Content.ReadAsStringAsync().Result;
-
-
-
+           
 
             if (thread == null || !thread.IsAlive)
             {
@@ -296,7 +279,7 @@ namespace 主程序202202
         string logincookie = "username=yinlong; userid=5577; bjui_theme=blue; PHPSESSID=l8fqtsin9ovifsuavjv3jcqtf3";
         private void button1_Click(object sender, EventArgs e)
         {
-            string url = "http://110.40.186.121/jiuwuxiaohun.php/Publics/ajax_login";
+            string url = "http://"+yuming+"/jiuwuxiaohun.php/Publics/ajax_login";
             string postdata = "username=yinlong&passwordhash=9b6e513292f758bc67e429eee4964d0413511a57e154450e5310fce52a399d9a&code=" + textBox3.Text + "&sms_code=&wx_code=";
             string  oldcookie = PostUrlDefault_getcookie(url,postdata,"");
             MessageBox.Show(oldcookie);
@@ -319,7 +302,7 @@ namespace 主程序202202
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            pictureBox1.Image = UrlToBitmap("http://110.40.186.121/jiuwuxiaohun.php/Publics/verify_code.html?random=1646292948602");
+            pictureBox1.Image = UrlToBitmap("http://" + yuming + "/jiuwuxiaohun.php/Publics/verify_code.html?random=1646292948602");
         }
 
         private void button3_Click(object sender, EventArgs e)

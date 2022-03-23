@@ -7,6 +7,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -31,26 +33,27 @@ namespace 新浪研报
 
 
         int datatiaoshu = 0;
-
+     
         #region GET使用代理IP请求
         /// <summary>
         /// GET请求
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrlwithIP(string Url, string ip, string COOKIE, string charset)
+        public  string GetUrlwithIP(string Url, string ip, string COOKIE, string charset)
         {
             string html = "";
 
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+              
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36";
                 WebProxy proxy = new WebProxy(ip);
                 request.Proxy = proxy;
-                request.Referer = Url;
+                request.Referer = "http://stock.finance.sina.com.cn/stock/go.php/vReport_List/kind/search/index.phtml?t1=3&industry=sw2_210100&symbol=&pubdate=2022-03-23&p=2";
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
@@ -86,6 +89,7 @@ namespace 新浪研报
             }
         }
         #endregion
+
         //公司研报
         public void run()
         {
@@ -107,6 +111,7 @@ namespace 新浪研报
                         string url = "http://stock.finance.sina.com.cn/stock/go.php/vReport_List/kind/search/index.phtml?t1=2&symbol="+code+"&pubdate=&p=" + page;
 
                         string html = GetUrlwithIP(url, "tps734.kdlapi.com:15818", "" ,"gb2312");
+                     
                         MatchCollection uids = Regex.Matches(html, @"rptid/([\s\S]*?)/");
 
                         MatchCollection titles = Regex.Matches(html, @"title=""([\s\S]*?)""");
@@ -202,31 +207,42 @@ namespace 新浪研报
         }
 
 
-     
+        public Dictionary<string,string> getcates()
+        {
+            Dictionary<string, string> dics = new Dictionary<string, string>();
+            string url = "http://finance.sina.com.cn/stock/reaserchyjbg/report/report_industry_sw2.js";
+
+            string html = GetUrlwithIP(url, "tps602.kdlapi.com:15818", "", "gb2312");
+           
+            MatchCollection svalues = Regex.Matches(html, @"svalue:""([\s\S]*?)""");
+            MatchCollection uids = Regex.Matches(html, @"id:""([\s\S]*?)""");
+            for (int i = 0; i < svalues.Count; i++)
+            {
+                dics.Add(svalues[i].Groups[1].Value,uids[i].Groups[1].Value);
+            }
+
+            return dics;
+        }
+
+
         //行业研报
         public void run2()
         {
             try
             {
-                StreamReader sr = new StreamReader(Application.StartupPath + @"\STK_LIST.csv", method.EncodingType.GetTxtType(Application.StartupPath + @"\STK_LIST.csv"));
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
-                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                for (int a = 1; a < text.Length; a++)
+               Dictionary<string,string> dics= getcates();
+
+                foreach (string key in dics.Keys)
                 {
-                    string[] codes = text[a].Split(new string[] { "," }, StringSplitOptions.None);
-                    codes = codes[0].Split(new string[] { "." }, StringSplitOptions.None);
-
-                    string code = codes[1].ToLower() + codes[0];
-
-                    for (int page = 1; page < 100; page++)
+                    string uid = dics[key];
+                    for (int page = 1; page < 9999; page++)
                     {
 
+                        string url = "http://stock.finance.sina.com.cn/stock/go.php/vReport_List/kind/search/index.phtml?t1=3&industry="+uid+"&symbol=&pubdate=2022-03-23&p="+page;
 
-                        string url = "http://stock.finance.sina.com.cn/stock/go.php/vReport_List/kind/search/index.phtml?t1=3&industry=sw2_110300&symbol=&pubdate=&p=" + page;
-
-                        string html = method.GetUrl(url, "gb2312");
-
+                        string html = GetUrlwithIP(url, "tps603.kdlapi.com:15818", "", "gb2312");
+                        //string html = method.GetUrl(url, "gb2312");
+                        //textBox1.Text = html;
                         MatchCollection uids = Regex.Matches(html, @"rptid/([\s\S]*?)/");
 
                         MatchCollection titles = Regex.Matches(html, @"title=""([\s\S]*?)""");
@@ -235,37 +251,131 @@ namespace 新浪研报
                         MatchCollection jigous = Regex.Matches(html, @"<div class=""fname05""><span>([\s\S]*?)</span>");
                         MatchCollection yjys = Regex.Matches(html, @"<div class=""fname""><span>([\s\S]*?)</span>");
 
-                        label1.Text += "正在采集：" + page + "\r\n";
+                        label1.Text = "正在采集：" + key + "   页码：" + page + "\r\n";
 
-                        if (uids.Count == 0)
+                        if (html.Contains("服务器返回错误"))
+                        {
+                            //Thread.Sleep(1000);
+                            label1.Text = DateTime.Now.ToString() + "屏蔽正在重试" + chongshicishu;
+                            chongshicishu = chongshicishu + 1;
+                            if (page > 0)
+                            {
+                                page = page - 1;
+                            }
+                            else
+                            {
+                                page = 0;
+                            }
+
+                            continue;
+                        }
+                        if (uids.Count == 0 && !html.Contains("服务器返回错误"))
+                        {
                             break;
+                        }
+
                         for (int i = 0; i < uids.Count; i++)
                         {
                             string aurl = "http://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/" + uids[i].Groups[1].Value + "/index.phtml";
-                            string ahtml = method.GetUrl(aurl, "gb2312");
+                            string ahtml = GetUrlwithIP(aurl, "tps603.kdlapi.com:15818", "", "gb2312");
                             string body = Regex.Match(ahtml, @"<div class=""blk_container"">([\s\S]*?)</div>").Groups[1].Value.Replace("&nbsp;", "");
 
+                            if (ahtml.Contains("服务器返回错误"))
+                            {
+                                //Thread.Sleep(1000);
+                                label1.Text = DateTime.Now.ToString() + "屏蔽正在重试" + chongshicishu;
+                                chongshicishu = chongshicishu + 1;
+                                if (i > 0)
+                                {
+                                    i = i - 1;
+                                }
+                                else
+                                {
+                                    i = 0;
+                                }
 
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
-                            lv1.SubItems.Add(titles[i].Groups[1].Value.Replace("/t", ""));
-                            lv1.SubItems.Add(types[i].Groups[2].Value);
-                            lv1.SubItems.Add(Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd"));
-                            lv1.SubItems.Add(jigous[i].Groups[1].Value);
-                            lv1.SubItems.Add(yjys[i].Groups[1].Value);
-                            lv1.SubItems.Add(Regex.Replace(body, "<[^>]+>", "").Trim());
+                                continue;
+                            }
+                            chongshicishu = 0;
+
+                            //ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                            //lv1.SubItems.Add(titles[i].Groups[1].Value.Replace("/t", "").Replace(",","，"));
+                            //lv1.SubItems.Add(types[i].Groups[2].Value.Replace(",", "，"));
+                            //lv1.SubItems.Add(Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd"));
+                            //lv1.SubItems.Add(jigous[i].Groups[1].Value.Replace(",", "，"));
+                            //lv1.SubItems.Add(yjys[i].Groups[1].Value.Replace(",", "，"));
+                            //lv1.SubItems.Add(Regex.Replace(body, "<[^>]+>", "").Trim().Replace(",", "，"));
+
+                            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data_hangye.csv", FileMode.Append, FileAccess.Write);//创建写入文件 
+                            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                            sw.WriteLine("\"" + key + "\","+"\"" + uid + "\"," + "\"" + titles[i].Groups[1].Value.Replace("/t", "").Replace(",", "，") + "\"" + "," + "\"" + types[i].Groups[2].Value.Replace(",", "，") + "\"" + "," + "\"" + Convert.ToDateTime(dates[i].Groups[2].Value).ToString("yyyyMMdd") + "\"" + "," + "\"" + jigous[i].Groups[1].Value.Replace(",", "，") + "\"" + "," + "\"" + yjys[i].Groups[1].Value.Replace(",", "，") + "\"" + "," + "\"" + Regex.Replace(body, "<[^>]+>", "").Trim().Replace(",", "，") + "\"");
+                            sw.Close();
+                            fs1.Close();
+                            sw.Dispose();
+
+
                             while (this.zanting == false)
                             {
                                 Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                             }
+                            // Thread.Sleep(1000);
                             if (status == false)
                                 return;
-                            //Thread.Sleep(1000);
 
                         }
                     }
+
                 }
             }
 
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+
+        //行业研报
+        public void chuli()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader(@"D:\新浪数据\data.csv", Encoding.Default);
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                sr.Close();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+              
+                for (int a = 0; a < text.Length; a++)
+                {
+                    if(text[a].Trim()=="")
+                    {
+                        MessageBox.Show("完成");
+                        break;
+                    }
+                    string[] values = text[a].Split(new string[] { "," }, StringSplitOptions.None);
+                    string code = Regex.Match(values[0], @"\(([\s\S]*?)\)").Groups[1].Value;
+
+                    label1.Text = "正在处理：" + a;
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+                    FileStream fs1 = new FileStream(@"D:\新浪数据\data_code.csv", FileMode.Append, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                    sw.WriteLine("\"" +code+"\","+ text[a]);
+                    sw.Close();
+                    fs1.Close();
+                    sw.Dispose();
+                }
+                MessageBox.Show("完成");
+            }
 
             catch (Exception ex)
             {
@@ -284,7 +394,7 @@ namespace 新浪研报
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run2);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -317,6 +427,16 @@ namespace 新浪研报
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(chuli);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
     }
 }

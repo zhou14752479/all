@@ -249,8 +249,9 @@ namespace 客户美团
 
                 if (radioButton1.Checked == true)
                 {
-                    sb.Append(",\"hasPhone\":\"1\"");
-                }
+                // sb.Append(",\"hasPhone\":\"1\"");
+                sb.Append(",\"hasMobile\":\"1\"");
+            }
 
 
                 if (radioButton2.Checked == true)
@@ -297,7 +298,7 @@ namespace 客户美团
                                 Thread.Sleep(1000);
                                 continue;
                             }
-                        listView1.Items.Add("");
+                        //listView1.Items.Add("");
                         for (int j = 0; j < names.Count; j++)
                             {
                                 try
@@ -305,16 +306,13 @@ namespace 客户美团
                                     Thread.Sleep(500);
                                    // textBox1.Text = DateTime.Now.ToLongTimeString() + "正在提取：" + names[j].Groups[2].Value.Replace("<em>", "").Replace("</em>", "");
 
-                                    //ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                   
                                 ListViewItem lv1 = new ListViewItem((listView1.Items.Count + 1).ToString());
                                 lv1.SubItems.Add(names[j].Groups[2].Value.Replace("<em>", "").Replace("</em>", ""));
                                      lv1.SubItems.Add(legalPerson[j].Groups[1].Value);
                                     lv1.SubItems.Add(regCap[j].Groups[1].Value);
                                     lv1.SubItems.Add(StartDate[j].Groups[1].Value.Replace("00:00:00.0",""));
-                                    lv1.SubItems.Add(Address[j].Groups[1].Value);
-
-
-                                    lv1.SubItems.Add(businessScope[j].Groups[1].Value);
+                                 
 
                                 listView1.Items.Add(lv1);
                                 string telall= tel[j].Groups[1].Value.Replace("[", "").Replace("]", "").Replace("\"", "").Replace(":", "");
@@ -340,13 +338,14 @@ namespace 客户美团
                                         }
 
                                     }
-                                
-
-                                lv1.SubItems.Add(tel1);
                                 lv1.SubItems.Add(tel2);
+                                lv1.SubItems.Add(tel1);
+                              
+                                lv1.SubItems.Add(businessScope[j].Groups[1].Value);
+                                lv1.SubItems.Add(Address[j].Groups[1].Value);
+                               
 
-                                   
-                                    if (status == false)
+                                if (status == false)
                                         return;
                                 count = count + 1;
                                 label4.Text = count.ToString();

@@ -435,26 +435,31 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "商家名称";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "固话";
-            this.columnHeader3.Width = 150;
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 100;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "手机";
-            this.columnHeader8.Width = 150;
+            this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader8.Width = 100;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "地址";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader4.Width = 300;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "城市";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader5.Width = 100;
             // 
             // dianping

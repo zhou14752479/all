@@ -16,7 +16,7 @@ namespace 主程序202110
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 贝壳成交());
+            Application.Run(new 互动易网站监控());
         }
     }
 }

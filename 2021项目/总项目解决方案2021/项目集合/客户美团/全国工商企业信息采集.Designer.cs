@@ -350,37 +350,37 @@
             // 
             this.columnHeader4.Text = "注册资本";
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 200;
+            this.columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "成立时间";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 200;
+            this.columnHeader5.Width = 100;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "地址";
+            this.columnHeader6.Text = "手机";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 300;
+            this.columnHeader6.Width = 100;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "经营范围";
+            this.columnHeader8.Text = "固话";
             this.columnHeader8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader8.Width = 500;
+            this.columnHeader8.Width = 100;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "固话";
+            this.columnHeader7.Text = "经营范围";
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader7.Width = 100;
+            this.columnHeader7.Width = 200;
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "手机号";
+            this.columnHeader9.Text = "地址";
             this.columnHeader9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader9.Width = 100;
+            this.columnHeader9.Width = 200;
             // 
             // comboBox8
             // 
@@ -404,6 +404,8 @@
             // comboBox6
             // 
             this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Items.AddRange(new object[] {
+            "全部"});
             this.comboBox6.Location = new System.Drawing.Point(89, 504);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(111, 20);

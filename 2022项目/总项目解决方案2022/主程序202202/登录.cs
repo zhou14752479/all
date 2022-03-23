@@ -72,12 +72,12 @@ namespace 主程序202202
         private void 登录_Load(object sender, EventArgs e)
         {
             webBrowser1.ScriptErrorsSuppressed = true;
-            webBrowser1.Navigate("http://110.40.186.121/jiuwuxiaohun.php?m=Admin&c=Publics&a=login");
+            webBrowser1.Navigate("http://"+订单统计.yuming+"/jiuwuxiaohun.php?m=Admin&c=Publics&a=login");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            订单统计.cookie = GetCookies("http://110.40.186.121/jiuwuxiaohun.php?m=Admin&c=Publics&a=login");
+            订单统计.cookie = GetCookies("http://" + 订单统计.yuming + "/jiuwuxiaohun.php?m=Admin&c=Publics&a=login");
             MessageBox.Show(订单统计.cookie);
         }
     }
