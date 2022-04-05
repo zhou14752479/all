@@ -74,7 +74,7 @@ namespace 地图营销
                         for (int page = 1; page < 100; page++)
                         {
 
-                            string url = "https://api.map.baidu.com/?qt=s&c="+ System.Web.HttpUtility.UrlEncode(city) + "&wd="  + System.Web.HttpUtility.UrlEncode(keyword) + "&rn=120&pn=" + page + "&ie=utf-8&oue=1&fromproduct=jsapi&res=api&ak=bMrhZP1PVeuIeaxeLybCzSvlg0DxsV12";
+                            string url = "https://api.map.baidu.com/?qt=s&c="+ System.Web.HttpUtility.UrlEncode(city) + "&wd="  + System.Web.HttpUtility.UrlEncode(keyword) + "&rn=120&pn=" + page + "&ie=utf-8&oue=1&fromproduct=jsapi&res=api&ak=nXZgaSQxzlRapagrvbD5CyfWETZ2tsIm";
                             string html = method.GetUrl(url,"utf-8");
 
                             MatchCollection ahtmls = Regex.Matches(html, @"acc_flag([\s\S]*?)view_type");
@@ -635,14 +635,7 @@ namespace 地图营销
         {
             md.jihuoma();
            
-          // md.jiance2();
-            //if (logined == false)
-            //{
-            //    MessageBox.Show("请登录");
-            //    tabControl1.SelectedIndex = 2;
-            //    return;
-            //}
-
+        
 
             #region 通用检测
 
@@ -650,7 +643,8 @@ namespace 地图营销
 
             if (!html.Contains(@"abc147258"))
             {
-                MessageBox.Show("");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+               
                 return;
             }
 

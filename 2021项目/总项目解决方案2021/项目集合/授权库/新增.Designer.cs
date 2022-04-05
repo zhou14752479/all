@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -53,11 +55,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -69,12 +69,10 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label14 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +113,24 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "新增数据";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(107, 566);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(223, 61);
+            this.textBox5.TabIndex = 51;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("宋体", 10F);
+            this.label8.Location = new System.Drawing.Point(38, 568);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 14);
+            this.label8.TabIndex = 50;
+            this.label8.Text = "备  注：";
             // 
             // checkBox2
             // 
@@ -340,19 +356,6 @@
             this.label2.TabIndex = 25;
             this.label2.Text = "名称：";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("宋体", 10F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "厂家授权",
-            "经销售授权"});
-            this.comboBox1.Location = new System.Drawing.Point(107, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(103, 21);
-            this.comboBox1.TabIndex = 24;
-            this.comboBox1.Text = "厂家授权";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -375,7 +378,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -384,16 +386,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "上传授权书-售后服务函-商标";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 169);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(620, 554);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 42;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox2
             // 
@@ -503,23 +495,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox5
+            // comboBox1
             // 
-            this.textBox5.Location = new System.Drawing.Point(107, 566);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(223, 61);
-            this.textBox5.TabIndex = 51;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("宋体", 10F);
-            this.label8.Location = new System.Drawing.Point(38, 568);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 14);
-            this.label8.TabIndex = 50;
-            this.label8.Text = "备  注：";
+            this.comboBox1.Font = new System.Drawing.Font("宋体", 10F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "厂家授权",
+            "经销售授权"});
+            this.comboBox1.Location = new System.Drawing.Point(107, 29);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(103, 21);
+            this.comboBox1.TabIndex = 24;
+            this.comboBox1.Text = "厂家授权";
             // 
             // 新增
             // 
@@ -537,7 +524,6 @@
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -567,7 +553,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker4;
         private System.Windows.Forms.TabControl tabControl1;
@@ -585,9 +570,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 查看文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除此文件ToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

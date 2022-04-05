@@ -274,61 +274,73 @@ namespace win007
                             dataGridView1.Rows[i].Cells[12].Style.BackColor = Color.Red;
                         }
 
-                       // dataGridView1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3+" "+ dataGridView1.Rows[i].Cells[6].Value;
+                         dataGridView1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3+" "+ dataGridView1.Rows[i].Cells[6].Value;
 
-                      
 
-                        if (cha1>-0.15&&cha1<-0.1)
+                        //差值红绿色
+                        if (cha1 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Yellow;
-                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Green;
                         }
-                        else if (cha1 > -2 && cha1 < -0.15)
+                        if (cha2 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Orange;
-                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Green;
                         }
-                       else if (cha1 < -2 )
+                        if (cha3 > 0)
+                        {
+                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Green;
+                        }
+                        if (cha1 < 0)
                         {
                             dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Red;
-                            // dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
                         }
-
-
-
-                        if (cha2 > -0.15 && cha2 < -0.1)
-                        {
-                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Yellow;
-                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
-                        }
-                        else if (cha2 > -2 && cha2 < -0.15)
-                        {
-                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Orange;
-                            // dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
-                        }
-                        else if (cha2 < -2)
+                        if (cha2 < 0)
                         {
                             dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Red;
-                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
                         }
-
-                        if (cha3 > -0.15 && cha3 < -0.1)
-                        {
-                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Yellow;
-                           // dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
-                        }
-                        else if (cha3 > -2 && cha3 < -0.15)
-                        {
-                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Orange;
-                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
-                        }
-                        else if (cha3 < -2)
+                        if (cha3 < 0)
                         {
                             dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Red;
-                            //dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
                         }
 
 
+                        //成交比例颜色黄橙红
+                        if (cha1 > 0.1&& cha1 <= 0.15)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                        }
+                        if (cha1 > 0.15 && cha1 <= 0.2)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                        }
+                        if (cha1 > 0.2)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                        }
+                        if (cha2> 0.1 && cha1 <= 0.15)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                        }
+                        if (cha2 > 0.15 && cha1 <= 0.2)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                        }
+                        if (cha2 > 0.2)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                        }
+                        if (cha3 > 0.1 && cha1 <= 0.15)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                        }
+                        if (cha3 > 0.15 && cha1 <= 0.2)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                        }
+                        if (cha3 > 0.2)
+                        {
+                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                        }
 
 
 
@@ -520,7 +532,9 @@ namespace win007
                             continue;
                         }
                       string id = Regex.Match(trs[i].Groups[1].Value, @"showgoallist\(([\s\S]*?)\)").Groups[1].Value;
-                        if(id.Trim()=="")
+                        string rangqiu = Regex.Match(trs[i].Groups[1].Value, @"<td id='hdp_([\s\S]*?)>([\s\S]*?)<").Groups[2].Value;
+                        string daxiaoqiu = Regex.Match(trs[i].Groups[1].Value, @"<td id='ou_([\s\S]*?)>([\s\S]*?)<").Groups[2].Value;
+                        if (id.Trim()=="")
                         {
                             continue;
                         }
@@ -530,7 +544,7 @@ namespace win007
                         string datajs = method.GetUrl(datajsurl, "gb2312");
                         string datajsjs = Regex.Match(datajs, @"game=([\s\S]*?);").Groups[1].Value;
 
-
+                      
                         //获取成交比例
                         string cjurl = "http://vip.win007.com/betfa/single.aspx?id="+id+"&l=0";
                         //string datacj = method.GetUrlwithIP(cjurl, "tps682.kdlapi.com:15818", "", "utf-8");
@@ -605,6 +619,15 @@ namespace win007
                                         break;
                                     case "Singbet":
                                         gongsi_dics.Add(cid, "Singbet");
+                                        break;
+                                    case "Crown":
+                                        gongsi_dics.Add(cid, "Crown");
+                                        break;
+                                    case "William Hill":
+                                        gongsi_dics.Add(cid, "William Hill");
+                                        break;
+                                    case "Bet-at-home":
+                                        gongsi_dics.Add(cid, "Bet-at-home");
                                         break;
 
                                 }
@@ -694,7 +717,7 @@ namespace win007
                                     //    lv1.SubItems.Add(data8);
                                     //lv1.SubItems.Add(data9);
 
-                                    fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs);
+                                    fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu,daxiaoqiu);
 
 
 
@@ -772,8 +795,9 @@ namespace win007
 
         private void button4_Click(object sender, EventArgs e)
         {
-             startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
-           //startdate = "2021-06-30";
+            startdate = Convert.ToDateTime("2021-09-24").ToString("yyyy-MM-dd");
+            //startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
+
             enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)

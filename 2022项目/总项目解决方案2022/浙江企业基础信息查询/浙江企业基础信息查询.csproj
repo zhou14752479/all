@@ -69,13 +69,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="gdsgdgdgdgdstgfeewrwerw3r23r32rvxsvdsv.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="医保服务查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="医保服务查询.Designer.cs">
+      <DependentUpon>医保服务查询.cs</DependentUpon>
+    </Compile>
     <Compile Include="查询2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="查询2.Designer.cs">
       <DependentUpon>查询2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查询3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查询3.Designer.cs">
+      <DependentUpon>查询3.cs</DependentUpon>
     </Compile>
     <Compile Include="浙江企业基础信息查询.cs">
       <SubType>Form</SubType>
@@ -98,8 +111,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="医保服务查询.resx">
+      <DependentUpon>医保服务查询.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="查询2.resx">
       <DependentUpon>查询2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询3.resx">
+      <DependentUpon>查询3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="浙江企业基础信息查询.resx">
       <DependentUpon>浙江企业基础信息查询.cs</DependentUpon>

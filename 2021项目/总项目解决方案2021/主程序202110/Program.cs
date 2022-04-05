@@ -16,7 +16,7 @@ namespace 主程序202110
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 互动易网站监控());
+            Application.Run(new 华东师范大学开放教育下载());
         }
     }
 }

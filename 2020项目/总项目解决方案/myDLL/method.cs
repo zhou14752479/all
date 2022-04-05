@@ -53,6 +53,7 @@ namespace myDLL
         }
 
         #endregion
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -1645,6 +1646,41 @@ namespace myDLL
             psi.WindowStyle = ProcessWindowStyle.Hidden;
             Process.Start(psi);
         }
+        #endregion
+
+        #region 发送wxpusher消息
+        public string getuids()
+        {
+            StringBuilder sb = new StringBuilder();
+            string url = "http://wxpusher.zjiecode.com/api/fun/wxuser/v2?appToken=AT_Zwbx5uVZTIpxJ2OPaCGXXOZNuiWHmTKQ&page=1";
+
+            string html = GetUrl(url, "utf-8");
+
+            MatchCollection uids = Regex.Matches(html, @"""uid"":""([\s\S]*?)""");
+            foreach (Match item in uids)
+            {
+                sb.Append("\"" + item.Groups[1].Value + "\"" + ",");
+
+            }
+
+            return sb.ToString().Remove(sb.ToString().Length - 1, 1);
+        }
+
+        public void sendmsg(string title, string neirong)
+        {
+            if (title.Trim() != "")
+            {
+                //"application/json"
+                string uids = getuids();
+                string url = "http://wxpusher.zjiecode.com/api/send/message";
+                string postdata = "{\"appToken\":\"AT_Zwbx5uVZTIpxJ2OPaCGXXOZNuiWHmTKQ\",\"content\":\"" + title + neirong + "\",\"contentType\":2,\"uids\":[" + uids + "]}";
+                string html = PostUrlDefault(url, postdata, "");
+
+                // MessageBox.Show(html);
+
+            }
+        }
+
         #endregion
     }
 }

@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,6 +96,18 @@
     <Compile Include="登录.Designer.cs">
       <DependentUpon>登录.cs</DependentUpon>
     </Compile>
+    <Compile Include="百度收录.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="百度收录.Designer.cs">
+      <DependentUpon>百度收录.cs</DependentUpon>
+    </Compile>
+    <Compile Include="计算.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="计算.Designer.cs">
+      <DependentUpon>计算.cs</DependentUpon>
+    </Compile>
     <Compile Include="订单统计.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="文本处理.resx">
       <DependentUpon>文本处理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="百度收录.resx">
+      <DependentUpon>百度收录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="计算.resx">
+      <DependentUpon>计算.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="订单统计.resx">
       <DependentUpon>订单统计.cs</DependentUpon>

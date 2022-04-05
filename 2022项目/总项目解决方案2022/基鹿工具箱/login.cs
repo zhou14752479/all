@@ -31,10 +31,10 @@ namespace 基鹿工具箱
            // string expiretime = "";
             if (code=="0")
             {
-               // Util.expiretime = paytime.ToString();
-               //基鹿工具箱 main = new 基鹿工具箱();
-               // main.Show();
-               // this.Hide();
+                Util.expiretime = paytime.ToString();
+                基鹿工具箱 main = new 基鹿工具箱();
+                main.Show();
+                this.Hide();
             }
             else
             {

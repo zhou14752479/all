@@ -227,54 +227,117 @@ namespace 竞彩数据查询
                 #endregion
 
 
-                DataTable dt = fc.chaxundata(sql);
 
-                DataTable dt2 = fc.chaxundata(sql2);
+                #region 查询3
+                string sql3 = "select date,updatetime,match,zhu,ke,bifen,sheng,ping,fu,type,result from datas where";
 
-               
-               dt.Merge(dt2);
-                dataGridView1.DataSource = dt;
-                List<string> lists = new List<string>();
-                List<string> lists2 = new List<string>();
-                for (int i = 0; i < dt.Rows.Count; i++)
+                if (textBox7.Text != "")
                 {
-                    string date = dt.Rows[i][0].ToString().Trim() + dt.Rows[i][2].ToString().Trim() + dt.Rows[i][3].ToString().Trim() + dt.Rows[i][4].ToString().Trim() + dt.Rows[i][5].ToString().Trim();
-
-                    if (!lists.Contains(date))
-                    {
-                        lists.Add(date);
-                    }
-                    else
-                    {
-                      
-                        lists2.Add(dt.Rows[i][0].ToString().Trim());
-                    }
-                   
+                    sql3 = sql3 + (" sheng like '" + textBox7.Text.Trim() + "' and");
+                }
+                if (textBox8.Text != "")
+                {
+                    sql3 = sql3 + (" ping like '" + textBox8.Text.Trim() + "' and");
+                }
+                if (textBox9.Text != "")
+                {
+                    sql3 = sql3 + (" fu like '" + textBox9.Text.Trim() + "' and");
                 }
 
+                if (sql3.Substring(sql3.Length - 3, 3) == "and")
+                {
+                    sql3= sql3.Substring(0, sql3.Length - 3);
+                }
+
+                #endregion
+                DataTable dt = fc.chaxundata(sql);
+                DataTable dt2= fc.chaxundata(sql2);
+               
+
+                //if (textBox4.Text!="" || textBox5.Text=="" || textBox6.Text=="")
+                //{
 
 
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                //}
+
+
+                DataTable newdt= dt.Clone();
+                // dt.Merge(dt2);
+                
+               
+                Dictionary<string, int> dics = new Dictionary<string, int>();
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string date = dt.Rows[i][0].ToString().Trim() + dt.Rows[i][3].ToString().Trim();
+      
+                    if (!dics.ContainsKey(date))
+                    {
+                        dics.Add(date, i);
+                    }
+                    
+                   
+                }
+                Dictionary<string, int> dics2 = new Dictionary<string, int>();
+
+                for (int i = 0; i < dt2.Rows.Count; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
                     try
                     {
-                        string value = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                        string date = dt2.Rows[i][0].ToString().Trim() + dt2.Rows[i][3].ToString().Trim();
 
-                        if (!lists2.Contains(value))
+                        if (dics.ContainsKey(date))
                         {
-                            DataGridViewRow row = dataGridView1.Rows[i];
-                            dataGridView1.Rows.Remove(row);
-                            i--; //这句是关键。。
+                             if(!dics2.ContainsKey(date))
+                            {
+                                dics2.Add(date, i);
+                            }
+                            newdt.Rows.Add(dt.Rows[dics[date]].ItemArray);
+                            newdt.Rows.Add(dt2.Rows[i].ItemArray);
+                           
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
 
-                        throw;
+                        MessageBox.Show(ex.ToString());
                     }
                 }
 
-               
+
+                //第三种
+                if(textBox7.Text!="" || textBox8.Text!="" ||textBox9.Text!="")
+                {
+                    newdt.Rows.Clear();
+                     DataTable dt3 = fc.chaxundata(sql3);
+                    for (int i = 0; i < dt3.Rows.Count; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                    {
+                        try
+                        {
+                            string date = dt3.Rows[i][0].ToString().Trim() + dt3.Rows[i][3].ToString().Trim();
+
+                            if (dics2.ContainsKey(date)) //前两组日期+联赛名包括，则第三组符合要求
+                            {
+
+                                newdt.Rows.Add(dt.Rows[dics[date]].ItemArray);
+                                newdt.Rows.Add(dt2.Rows[dics2[date]].ItemArray);
+                                newdt.Rows.Add(dt3.Rows[i].ItemArray);
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            MessageBox.Show(ex.ToString());
+                        }
+                    }
+
+                }
+
+
+
+                dataGridView1.DataSource = newdt;
+
 
                 dataGridView1.Columns["date"].HeaderText = "比赛时间";
                 dataGridView1.Columns["updatetime"].HeaderText = "变化时间";
@@ -294,12 +357,16 @@ namespace 竞彩数据查询
                 double pingcount = 0;
                 double fucount = 0;
 
+                double ying1count = 0;
+                double shu1count = 0;
                 //计算
 
                 for (int i = 0; i < (dataGridView1.Rows.Count - 1); i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
                     string value = dataGridView1.Rows[i].Cells[10].Value.ToString();
-                   
+                    string bifen = dataGridView1.Rows[i].Cells[5].Value.ToString();
+
+
                     if (value == "胜")
                     {
                         shengcount = shengcount + 1;
@@ -312,14 +379,45 @@ namespace 竞彩数据查询
                     {
                         fucount = fucount + 1;
                     }
+
+
+                    //计算一球的场数
+                    string[] text = bifen.Split(new string[] { "-" }, StringSplitOptions.None);
+                    if (text.Length > 1)
+                    {
+                        if (text[0].Trim() != "")
+                        {
+                            if (Convert.ToInt32(text[0]) - Convert.ToInt32(text[1]) == 1)
+                            {
+                                ying1count = ying1count + 1;
+                            }
+                            if (Convert.ToInt32(text[1]) - Convert.ToInt32(text[0]) == 1)
+                            {
+                                shu1count = shu1count + 1;
+                            }
+                        }
+                    }
                 }
+
                 try
                 {
-                   
+
+                    
+
                     double shenglv = shengcount / (dataGridView1.Rows.Count - 1);
                     double pinglv = pingcount / (dataGridView1.Rows.Count - 1);
                     double fulv = fucount / (dataGridView1.Rows.Count - 1);
-                    label4.Text = "共符合：" + (dataGridView1.Rows.Count - 1) + "场比赛，胜率：" + Convert.ToInt32(Convert.ToDouble(shenglv.ToString("F2")) * 100) + "%；平局：" + Convert.ToInt32(Convert.ToDouble(pinglv.ToString("F2")) * 100) + "%；负场：" + Convert.ToInt32(Convert.ToDouble(fulv.ToString("F2")) * 100) + "%；";
+
+                  
+
+                    double ying1lv = ying1count / (dataGridView1.Rows.Count - 1);
+                    double shu1lv = shu1count / (dataGridView1.Rows.Count - 1);
+
+
+
+                    label4.Text = "共符合：" + (dataGridView1.Rows.Count - 1) + "场比赛，胜率：" + Convert.ToInt32(Convert.ToDouble(shenglv.ToString("F2")) * 100) + "%；平局：" + Convert.ToInt32(Convert.ToDouble(pinglv.ToString("F2")) * 100) + "%；负场：" +
+                        Convert.ToInt32(Convert.ToDouble(fulv.ToString("F2")) * 100) + "%；";
+                        label7.Text= "赢一场胜率："+ Convert.ToInt32(Convert.ToDouble(ying1lv.ToString("F2")) * 100) + "%；输一场胜率："+ Convert.ToInt32(Convert.ToDouble(shu1lv.ToString("F2")) * 100) + "%";
                 }
                 catch (Exception)
                 {
@@ -335,9 +433,151 @@ namespace 竞彩数据查询
 
             }
         }
+
+
+        /// <summary>
+        /// 只查询一行，最终赔率
+        /// </summary>
+        public void chaxun1()
+        {
+
+
+            try
+            {
+                if (textBox1.Text == "" && textBox2.Text == "" && textBox3.Text == "")
+                {
+                    MessageBox.Show("请输入数值");
+                    return;
+                }
+
+
+                #region 查询1
+                string sql = "select date,updatetime,match,zhu,ke,bifen,sheng,ping,fu,type,result from datas where type='最终赔率' and ";
+
+                if (textBox1.Text != "")
+                {
+                    sql = sql + (" sheng like '" + textBox1.Text.Trim() + "' and");
+                }
+                if (textBox2.Text != "")
+                {
+                    sql = sql + (" ping like '" + textBox2.Text.Trim() + "' and");
+                }
+                if (textBox3.Text != "")
+                {
+                    sql = sql + (" fu like '" + textBox3.Text.Trim() + "' and");
+                }
+
+                if (sql.Substring(sql.Length - 3, 3) == "and")
+                {
+                    sql = sql.Substring(0, sql.Length - 3);
+                }
+
+                #endregion
+
+              
+                DataTable dt = fc.chaxundata(sql);
+               
+
+                dataGridView1.DataSource = dt;
+
+
+                dataGridView1.Columns["date"].HeaderText = "比赛时间";
+                dataGridView1.Columns["updatetime"].HeaderText = "变化时间";
+                dataGridView1.Columns["match"].HeaderText = "比赛名";
+                dataGridView1.Columns["zhu"].HeaderText = "主队";
+                dataGridView1.Columns["ke"].HeaderText = "客队";
+
+                dataGridView1.Columns["bifen"].HeaderText = "比分";
+
+                dataGridView1.Columns["sheng"].HeaderText = "胜";
+                dataGridView1.Columns["ping"].HeaderText = "平";
+                dataGridView1.Columns["fu"].HeaderText = "负";
+                dataGridView1.Columns["type"].HeaderText = "类型";
+                dataGridView1.Columns["result"].HeaderText = "赛果";
+
+                double shengcount = 0;
+                double pingcount = 0;
+                double fucount = 0;
+
+                double ying1count = 0;
+                double shu1count = 0;
+                //计算
+
+                for (int i = 0; i < (dataGridView1.Rows.Count - 1); i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                {
+                    string value = dataGridView1.Rows[i].Cells[10].Value.ToString();
+                    string bifen = dataGridView1.Rows[i].Cells[5].Value.ToString();
+
+
+                    if (value == "胜")
+                    {
+                        shengcount = shengcount + 1;
+                    }
+                    if (value == "平")
+                    {
+                        pingcount = pingcount + 1;
+                    }
+                    if (value == "负")
+                    {
+                        fucount = fucount + 1;
+                    }
+
+
+                    //计算一球的场数
+                    string[] text = bifen.Split(new string[] { "-" }, StringSplitOptions.None);
+                    if (text.Length > 1)
+                    {
+                        if (text[0].Trim() != "")
+                        {
+                            if (Convert.ToInt32(text[0]) - Convert.ToInt32(text[1]) == 1)
+                            {
+                                ying1count = ying1count + 1;
+                            }
+                            if (Convert.ToInt32(text[1]) - Convert.ToInt32(text[0]) == 1)
+                            {
+                                shu1count = shu1count + 1;
+                            }
+                        }
+                    }
+                }
+
+                try
+                {
+
+
+
+                    double shenglv = shengcount / (dataGridView1.Rows.Count - 1);
+                    double pinglv = pingcount / (dataGridView1.Rows.Count - 1);
+                    double fulv = fucount / (dataGridView1.Rows.Count - 1);
+
+
+
+                    double ying1lv = ying1count / (dataGridView1.Rows.Count - 1);
+                    double shu1lv = shu1count / (dataGridView1.Rows.Count - 1);
+
+
+
+                    label4.Text = "共符合：" + (dataGridView1.Rows.Count - 1) + "场比赛，胜率：" + Convert.ToInt32(Convert.ToDouble(shenglv.ToString("F2")) * 100) + "%；平局：" + Convert.ToInt32(Convert.ToDouble(pinglv.ToString("F2")) * 100) + "%；负场：" +
+                        Convert.ToInt32(Convert.ToDouble(fulv.ToString("F2")) * 100) + "%；";
+                    label7.Text = "赢一场胜率：" + Convert.ToInt32(Convert.ToDouble(ying1lv.ToString("F2")) * 100) + "%；输一场胜率：" + Convert.ToInt32(Convert.ToDouble(shu1lv.ToString("F2")) * 100) + "%";
+                }
+                catch (Exception)
+                {
+
+                    label4.Text = "共符合：" + (dataGridView1.Rows.Count - 1) + "场比赛";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            chaxun();
+            chaxun1();
         }
 
         private void 竞彩数据查询_FormClosing(object sender, FormClosingEventArgs e)
@@ -387,6 +627,9 @@ namespace 竞彩数据查询
             textBox4.Text = "";
             textBox5.Text = "";
             textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
 
         }
     }

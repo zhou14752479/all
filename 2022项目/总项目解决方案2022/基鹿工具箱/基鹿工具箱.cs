@@ -287,5 +287,168 @@ namespace 基鹿工具箱
         {
             System.Diagnostics.Process.Start("http://www.asinlu.com/index/service_show.html?id=71");
         }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 8;
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl1.SelectedIndex = 8;
+        }
+
+
+        
+        private void button21_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                good_txtbox.Text = openFileDialog1.FileName;
+                textBox1.Text = openFileDialog1.FileName;
+                StreamReader sr = new StreamReader(good_txtbox.Text, Util.EncodingType.GetTxtType(good_txtbox.Text));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] goods = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (var item in goods)
+                {
+                    if (item != "")
+                    {
+
+                        Util.keys_list.Add(item.Trim());
+                    }
+                }
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+            }
+        }
+
+
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox4.Text == "")
+                {
+                    MessageBox.Show("请输入关键词");
+                    return;
+                }
+
+
+                StringBuilder sb = new StringBuilder();
+                string[] text = textBox4.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
+                foreach (var item in text)
+                {
+                    sb.Append(" ci like '%" + item + "%' or");
+                }
+
+                string sql2 = sb.ToString();
+                if (sb.ToString().Substring(sb.ToString().Length - 2, 2) == "or")
+                {
+                    sql2 = sb.ToString().Remove(sb.ToString().Length - 2, 2);
+                }
+                string sql = "Select ci,ss_zs,fd,good_zs,gx_zs,pp,copy From datas where  " + sql2;
+
+                DataTable dt = Util.getdata(sql);
+                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font
+                    ("宋体", 13, FontStyle.Regular);
+                dataGridView1.RowsDefaultCellStyle.Font = new Font
+                    ("宋体", 11, FontStyle.Regular);
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns["ci"].HeaderText = "相关搜索词";
+                dataGridView1.Columns["ss_zs"].HeaderText = "搜索指数";
+                dataGridView1.Columns["fd"].HeaderText = "搜索增长幅度";
+                dataGridView1.Columns["good_zs"].HeaderText = "商品指数";
+                dataGridView1.Columns["gx_zs"].HeaderText = "供需指数";
+                dataGridView1.Columns["pp"].HeaderText = "是否匹配";
+                dataGridView1.Columns["copy"].HeaderText = "复制关键词";
+
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                {
+                    dataGridView1.Rows[i].Cells[6].Value = "点击复制";
+                    //比分
+                    string key = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    if (Util.keys_list.Contains(key))
+                    {
+                        dataGridView1.Rows[i].Cells[5].Value = "匹配";
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 6)
+                {
+                    string key = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    System.Windows.Forms.Clipboard.SetText(key); //复制
+                    MessageBox.Show("复制成功");
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("值为空");
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Windows.Forms.Clipboard.SetText(textBox3.Text.Trim()); //复制
+                MessageBox.Show("复制成功");
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("值为空");
+            }
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            string str = "";
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+            {
+               
+                string key = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                string keyvalue = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                if (key=="匹配")
+                {
+                    if (str == "")
+                    {
+                        str = keyvalue;
+                    }
+                    else
+                    {
+                        char[] strs = str.ToArray();
+                        foreach (var item in strs)
+                        {
+                            if (keyvalue.Contains(item.ToString()))
+                            {
+                                keyvalue = keyvalue.Replace(item.ToString(), "");
+
+                            }
+                        }
+                        str = str + keyvalue;
+                    }
+
+                }
+            }
+
+            textBox3.Text = str;
+        }
     }
 }

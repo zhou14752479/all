@@ -28,8 +28,8 @@ namespace 中国智慧社区服务网
         public string jiami(string data)
         {
             Sm4Crypto sm4 = new Sm4Crypto();
-            //sm4.Data = "{\"syscode\":\""+ data + "\"}";
-            sm4.Data = data;
+            sm4.Data = "{\"syscode\":\""+ data + "\"}";
+            //sm4.Data = data;
             string value = Sm4Crypto.EncryptCBC(sm4);
             return value;
         }
@@ -54,11 +54,13 @@ namespace 中国智慧社区服务网
             {
                 string url = "https://zqsq.mca.gov.cn/CAFP/restservices/web/cafp_siteSwitching/query";
 
+              
                 string encrypt_a = jiami(dics[comboBox1.Text]);
+             
                 string ahtml = method.PostUrlDefault(url, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_a) + "%22%7D", cookie);
                 MatchCollection cnnames_a = Regex.Matches(ahtml, @"""cnname"":""([\s\S]*?)""");
                 MatchCollection syscodes_a = Regex.Matches(ahtml, @"""syscode"":""([\s\S]*?)""");
-
+             
                 for (int a= 0; a< cnnames_a.Count; a++) //遍历市
                 {
                     
@@ -68,18 +70,21 @@ namespace 中国智慧社区服务网
                     }
 
 
+                    //string encrypt_b = jiami(syscodes_a[a].Groups[1].Value);
                     string encrypt_b = jiami(syscodes_a[a].Groups[1].Value);
                     string bhtml = method.PostUrlDefault(url, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_b) + "%22%7D", cookie);
                     MatchCollection cnnames_b = Regex.Matches(bhtml, @"""cnname"":""([\s\S]*?)""");
                     MatchCollection syscodes_b = Regex.Matches(bhtml, @"""syscode"":""([\s\S]*?)""");
                     for (int b= 0; b < cnnames_b.Count; b++)//遍历区
                     {
-                        string encrypt_c = jiami(syscodes_b[b].Groups[1].Value);
+                        //string encrypt_c = jiami(syscodes_b[b].Groups[1].Value);
+                        string encrypt_c = jiami( syscodes_b[b].Groups[1].Value );
                         string chtml = method.PostUrlDefault(url, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_c) + "%22%7D", cookie);
                         MatchCollection cnnames_c = Regex.Matches(chtml, @"""cnname"":""([\s\S]*?)""");
                         MatchCollection syscodes_c= Regex.Matches(chtml, @"""syscode"":""([\s\S]*?)""");
                         for (int c =0; c < cnnames_c.Count; c++)//遍历镇
                         {
+                            //string encrypt_d = jiami(syscodes_c[c].Groups[1].Value);
                             string encrypt_d = jiami(syscodes_c[c].Groups[1].Value);
                             string dhtml = method.PostUrlDefault(url, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_d) + "%22%7D", cookie);
                             MatchCollection cnnames_d= Regex.Matches(dhtml, @"""cnname"":""([\s\S]*?)""");
@@ -102,14 +107,15 @@ namespace 中国智慧社区服务网
                             //MessageBox.Show(ahtml);
                             //MessageBox.Show(bhtml);
                             //MessageBox.Show(chtml);
-                            // MessageBox.Show(dhtml);
+
                             label1.Text = DateTime.Now.ToString() + "： " + cnnames_a[a].Groups[1].Value+"-"+ cnnames_b[b].Groups[1].Value+"-"+ cnnames_c[c].Groups[1].Value;
                             for (int d = 0; d < cnnames_d.Count; d++)//遍历居委会
                             {
                                 string url_detail = "https://zqsq.mca.gov.cn/CAFP/restservices/web/cafp_communityProfileList/query";
+                                //string encrypt_e = jiami(syscodes_d[d].Groups[1].Value);
                                 string encrypt_e = jiami(syscodes_d[d].Groups[1].Value);
                                 string ehtml = method.PostUrlDefault(url_detail, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_e) + "%22%7D", cookie);
-
+                               
 
                                 MatchCollection cnnames_e = Regex.Matches(ehtml, @"""cnname"":""([\s\S]*?)""");
                                 MatchCollection syscodes_e = Regex.Matches(ehtml, @"""syscode"":""([\s\S]*?)""");
@@ -190,11 +196,13 @@ namespace 中国智慧社区服务网
         {
             try
             {
+                MessageBox.Show(uid);
                 string url_detail = "https://zqsq.mca.gov.cn/CAFP/restservices/web/cafp_communityProfileList/query";
+                uid = jiami("{\"acax571\":\"" + uid + "\"}");
                 string encrypt_e = jiami(uid);
                 string ehtml = method.PostUrlDefault(url_detail, "bean=%7B%22encryData%22%3A%22" + System.Web.HttpUtility.UrlEncode(encrypt_e) + "%22%7D", cookie);
 
-                // MessageBox.Show(ehtml);
+                MessageBox.Show(ehtml);
                 string cjname = Regex.Match(ehtml, @"""cjname"":""([\s\S]*?)""").Groups[1].Value;
                 string name = Regex.Match(ehtml, @"""communityname"":""([\s\S]*?)""").Groups[1].Value;
                 string legalperson = Regex.Match(ehtml, @"""legalperson"":""([\s\S]*?)""").Groups[1].Value;
@@ -276,7 +284,7 @@ namespace 中国智慧社区服务网
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run_card);
+                thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -284,8 +292,8 @@ namespace 中国智慧社区服务网
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(jiemi("wKhWsqeC94VGsus2+HSUbQ=="));
-   
+            MessageBox.Show(jiemi("LXpMdr7XOYB9AxMoi3qIgrGnN/Neuc/U7G2j6pfprBEqW7ARBoJFvO5aW3xgunct"));
+           // MessageBox.Show(jiami("99.004018"));
             if (zanting == false)
             {
 

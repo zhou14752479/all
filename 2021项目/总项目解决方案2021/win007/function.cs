@@ -136,11 +136,11 @@ namespace win007
         /// <summary>
         /// 插入数据库
         /// </summary>
-        public bool insertdata(string id, string matchname,  string zhu, string ke,string time,string gongsi,string bifen, string data1, string data2, string data3, string data4, string data5, string data6,string data7,string data8,string data9,string zhu_cj,string he_cj,string ke_cj,string zhu_yingkui,string he_yingkui,string ke_yingkui,string zhu_yingkuizs,string he_yingkuizs,string ke_yingkuizs)
+        public bool insertdata(string id, string matchname,  string zhu, string ke,string time,string gongsi,string bifen, string data1, string data2, string data3, string data4, string data5, string data6,string data7,string data8,string data9,string zhu_cj,string he_cj,string ke_cj,string zhu_yingkui,string he_yingkui,string ke_yingkui,string zhu_yingkuizs,string he_yingkuizs,string ke_yingkuizs,string rangqiu,string daxiaoqiu)
         {
             try
             {
-                string sql = "INSERT INTO datas(id,matchname,zhu,ke,time,gongsi,bifen,data1,data2,data3,data4,data5,data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs)VALUES('" + id + "','" + matchname + "'," +
+                string sql = "INSERT INTO datas(id,matchname,zhu,ke,time,gongsi,bifen,data1,data2,data3,data4,data5,data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu,daxiaoqiu)VALUES('" + id + "','" + matchname + "'," +
                     "'" + zhu + "'," +
                      "'" + ke + "'," +
                       "'" + time + "'," +
@@ -165,10 +165,11 @@ namespace win007
                                       "'" + ke_yingkui + "'," +
                                        "'" + zhu_yingkuizs + "'," +
                                         "'" + he_yingkuizs + "'," +
-                                 
+                                 "'" + ke_yingkuizs + "'," +
+                                 "'" + rangqiu + "'," +
 
 
-                    "'" + ke_yingkuizs + "')";
+                    "'" + daxiaoqiu+ "')";
 
                 SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path);
                 mycon.Open();

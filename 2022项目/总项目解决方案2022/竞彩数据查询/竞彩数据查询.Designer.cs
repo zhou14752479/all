@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -46,6 +52,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
@@ -55,6 +62,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox7);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.textBox9);
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.textBox4);
@@ -74,8 +87,68 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1101, 110);
+            this.panel1.Size = new System.Drawing.Size(1101, 142);
             this.panel1.TabIndex = 0;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox7.Location = new System.Drawing.Point(77, 105);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(54, 23);
+            this.textBox7.TabIndex = 81;
+            this.textBox7.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 10F);
+            this.label9.Location = new System.Drawing.Point(253, 108);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 14);
+            this.label9.TabIndex = 80;
+            this.label9.Text = "客胜：";
+            this.label9.Visible = false;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox8.Location = new System.Drawing.Point(190, 104);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(54, 23);
+            this.textBox8.TabIndex = 79;
+            this.textBox8.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("宋体", 10F);
+            this.label10.Location = new System.Drawing.Point(140, 108);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 14);
+            this.label10.TabIndex = 78;
+            this.label10.Text = "平局：";
+            this.label10.Visible = false;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox9.Location = new System.Drawing.Point(303, 104);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(54, 23);
+            this.textBox9.TabIndex = 77;
+            this.textBox9.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("宋体", 10F);
+            this.label11.Location = new System.Drawing.Point(27, 108);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 14);
+            this.label11.TabIndex = 76;
+            this.label11.Text = "主胜：";
+            this.label11.Visible = false;
             // 
             // button4
             // 
@@ -107,6 +180,7 @@
             this.textBox4.Size = new System.Drawing.Size(54, 23);
             this.textBox4.TabIndex = 73;
             this.textBox4.Text = "2.4";
+            this.textBox4.Visible = false;
             // 
             // label1
             // 
@@ -117,6 +191,7 @@
             this.label1.Size = new System.Drawing.Size(49, 14);
             this.label1.TabIndex = 72;
             this.label1.Text = "客胜：";
+            this.label1.Visible = false;
             // 
             // textBox5
             // 
@@ -126,6 +201,7 @@
             this.textBox5.Size = new System.Drawing.Size(54, 23);
             this.textBox5.TabIndex = 71;
             this.textBox5.Text = "2.85";
+            this.textBox5.Visible = false;
             // 
             // label2
             // 
@@ -136,6 +212,7 @@
             this.label2.Size = new System.Drawing.Size(49, 14);
             this.label2.TabIndex = 70;
             this.label2.Text = "平局：";
+            this.label2.Visible = false;
             // 
             // textBox6
             // 
@@ -144,6 +221,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(54, 23);
             this.textBox6.TabIndex = 69;
+            this.textBox6.Visible = false;
             // 
             // label3
             // 
@@ -154,6 +232,7 @@
             this.label3.Size = new System.Drawing.Size(49, 14);
             this.label3.TabIndex = 68;
             this.label3.Text = "主胜：";
+            this.label3.Visible = false;
             // 
             // button2
             // 
@@ -244,12 +323,22 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Info;
+            this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 110);
+            this.panel2.Location = new System.Drawing.Point(0, 142);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1101, 116);
             this.panel2.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(126, 66);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 21);
+            this.label7.TabIndex = 1;
             // 
             // label4
             // 
@@ -267,10 +356,10 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 226);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 258);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1101, 402);
+            this.dataGridView1.Size = new System.Drawing.Size(1101, 370);
             this.dataGridView1.TabIndex = 379;
             // 
             // 竞彩数据查询
@@ -317,5 +406,12 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label11;
     }
 }

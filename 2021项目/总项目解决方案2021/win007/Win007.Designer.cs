@@ -36,6 +36,13 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.kesheng_banfenbi_label = new System.Windows.Forms.Label();
+            this.heju_banfenbi_label = new System.Windows.Forms.Label();
+            this.zhusheng_banfenbi_label = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
@@ -73,30 +80,23 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.zhusheng_banfenbi_label = new System.Windows.Forms.Label();
-            this.heju_banfenbi_label = new System.Windows.Forms.Label();
-            this.kesheng_banfenbi_label = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -182,6 +182,82 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1182, 114);
             this.panel1.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.kesheng_banfenbi_label);
+            this.groupBox1.Controls.Add(this.heju_banfenbi_label);
+            this.groupBox1.Controls.Add(this.zhusheng_banfenbi_label);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(522, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(141, 114);
+            this.groupBox1.TabIndex = 57;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "比分百分比";
+            // 
+            // kesheng_banfenbi_label
+            // 
+            this.kesheng_banfenbi_label.AutoSize = true;
+            this.kesheng_banfenbi_label.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.kesheng_banfenbi_label.ForeColor = System.Drawing.Color.Navy;
+            this.kesheng_banfenbi_label.Location = new System.Drawing.Point(68, 78);
+            this.kesheng_banfenbi_label.Name = "kesheng_banfenbi_label";
+            this.kesheng_banfenbi_label.Size = new System.Drawing.Size(15, 17);
+            this.kesheng_banfenbi_label.TabIndex = 48;
+            this.kesheng_banfenbi_label.Text = "0";
+            // 
+            // heju_banfenbi_label
+            // 
+            this.heju_banfenbi_label.AutoSize = true;
+            this.heju_banfenbi_label.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.heju_banfenbi_label.ForeColor = System.Drawing.Color.Navy;
+            this.heju_banfenbi_label.Location = new System.Drawing.Point(68, 51);
+            this.heju_banfenbi_label.Name = "heju_banfenbi_label";
+            this.heju_banfenbi_label.Size = new System.Drawing.Size(15, 17);
+            this.heju_banfenbi_label.TabIndex = 47;
+            this.heju_banfenbi_label.Text = "0";
+            // 
+            // zhusheng_banfenbi_label
+            // 
+            this.zhusheng_banfenbi_label.AutoSize = true;
+            this.zhusheng_banfenbi_label.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.zhusheng_banfenbi_label.ForeColor = System.Drawing.Color.Navy;
+            this.zhusheng_banfenbi_label.Location = new System.Drawing.Point(68, 21);
+            this.zhusheng_banfenbi_label.Name = "zhusheng_banfenbi_label";
+            this.zhusheng_banfenbi_label.Size = new System.Drawing.Size(15, 17);
+            this.zhusheng_banfenbi_label.TabIndex = 46;
+            this.zhusheng_banfenbi_label.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 78);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 17);
+            this.label11.TabIndex = 45;
+            this.label11.Text = "客：";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 49);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 17);
+            this.label10.TabIndex = 44;
+            this.label10.Text = "平局：";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 23);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 17);
+            this.label9.TabIndex = 43;
+            this.label9.Text = "主胜：";
             // 
             // label3
             // 
@@ -288,7 +364,9 @@
             "Bethard",
             "Intertops",
             "SNAI",
-            "Titanbet"});
+            "Titanbet",
+            "Crown",
+            "William Hill"});
             this.comboBox1.Location = new System.Drawing.Point(193, 43);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(87, 25);
@@ -504,6 +582,23 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "同步最新日期数据";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(152, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 17);
+            this.label2.TabIndex = 45;
+            this.label2.Text = "----";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(0, 26);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(146, 23);
+            this.dateTimePicker1.TabIndex = 44;
+            this.dateTimePicker1.Value = new System.DateTime(2021, 12, 28, 17, 22, 0, 0);
+            // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(205)))), ((int)(((byte)(0)))));
@@ -567,99 +662,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(0, 26);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(146, 23);
-            this.dateTimePicker1.TabIndex = 44;
-            this.dateTimePicker1.Value = new System.DateTime(2021, 12, 28, 17, 22, 0, 0);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(152, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 17);
-            this.label2.TabIndex = 45;
-            this.label2.Text = "----";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.kesheng_banfenbi_label);
-            this.groupBox1.Controls.Add(this.heju_banfenbi_label);
-            this.groupBox1.Controls.Add(this.zhusheng_banfenbi_label);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(522, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(141, 114);
-            this.groupBox1.TabIndex = 57;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "比分百分比";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 23);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 17);
-            this.label9.TabIndex = 43;
-            this.label9.Text = "主胜：";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 49);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(44, 17);
-            this.label10.TabIndex = 44;
-            this.label10.Text = "平局：";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 78);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(32, 17);
-            this.label11.TabIndex = 45;
-            this.label11.Text = "客：";
-            // 
-            // zhusheng_banfenbi_label
-            // 
-            this.zhusheng_banfenbi_label.AutoSize = true;
-            this.zhusheng_banfenbi_label.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.zhusheng_banfenbi_label.ForeColor = System.Drawing.Color.Navy;
-            this.zhusheng_banfenbi_label.Location = new System.Drawing.Point(68, 21);
-            this.zhusheng_banfenbi_label.Name = "zhusheng_banfenbi_label";
-            this.zhusheng_banfenbi_label.Size = new System.Drawing.Size(15, 17);
-            this.zhusheng_banfenbi_label.TabIndex = 46;
-            this.zhusheng_banfenbi_label.Text = "0";
-            // 
-            // heju_banfenbi_label
-            // 
-            this.heju_banfenbi_label.AutoSize = true;
-            this.heju_banfenbi_label.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.heju_banfenbi_label.ForeColor = System.Drawing.Color.Navy;
-            this.heju_banfenbi_label.Location = new System.Drawing.Point(68, 51);
-            this.heju_banfenbi_label.Name = "heju_banfenbi_label";
-            this.heju_banfenbi_label.Size = new System.Drawing.Size(15, 17);
-            this.heju_banfenbi_label.TabIndex = 47;
-            this.heju_banfenbi_label.Text = "0";
-            // 
-            // kesheng_banfenbi_label
-            // 
-            this.kesheng_banfenbi_label.AutoSize = true;
-            this.kesheng_banfenbi_label.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.kesheng_banfenbi_label.ForeColor = System.Drawing.Color.Navy;
-            this.kesheng_banfenbi_label.Location = new System.Drawing.Point(68, 78);
-            this.kesheng_banfenbi_label.Name = "kesheng_banfenbi_label";
-            this.kesheng_banfenbi_label.Size = new System.Drawing.Size(15, 17);
-            this.kesheng_banfenbi_label.TabIndex = 48;
-            this.kesheng_banfenbi_label.Text = "0";
-            // 
             // Win007
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -681,14 +683,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

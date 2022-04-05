@@ -23,9 +23,9 @@ namespace 主程序202110
         private void 弹出页面_Load(object sender, EventArgs e)
         {
             Control.CheckForIllegalCrossThreadCalls = false;
-             //richTextBox1.Text = 互动易网站监控.zhi ;
+             richTextBox1.Text = 互动易网站监控.zhi ;
 
-            richTextBox1.Text = 上证互动监控.zhi;
+           // richTextBox1.Text = 上证互动监控.zhi;
         }
 
         private void button1_Click(object sender, EventArgs e)

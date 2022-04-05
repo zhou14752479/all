@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>010616192170_06e2fd707e8860d2066bf965fbb14d45.ico</ApplicationIcon>
+    <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CefSharp, Version=92.0.251.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="010616192170_06e2fd707e8860d2066bf965fbb14d45.ico" />
+    <Content Include="bitbug_favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -56,6 +56,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -64,6 +66,7 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
@@ -80,10 +83,19 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.button17 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button16 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button21 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button22 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label6 = new System.Windows.Forms.Label();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel3.SuspendLayout();
@@ -93,10 +105,12 @@
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.tabPage9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -440,6 +454,7 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
+            this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(179, 95);
             this.tabControl1.Name = "tabControl1";
@@ -468,6 +483,32 @@
             this.tabPage2.Size = new System.Drawing.Size(1022, 634);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.linkLabel6.ForeColor = System.Drawing.Color.White;
+            this.linkLabel6.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel6.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel6.Location = new System.Drawing.Point(233, 168);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(106, 22);
+            this.linkLabel6.TabIndex = 16;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "标题自动生成";
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(229, 42);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(110, 114);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 15;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // linkLabel5
             // 
@@ -561,6 +602,16 @@
             this.tabPage8.Size = new System.Drawing.Size(1022, 634);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 10F);
+            this.label6.Location = new System.Drawing.Point(6, 93);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 14);
+            this.label6.TabIndex = 217;
+            this.label6.Text = "未开始";
             // 
             // numericUpDown1
             // 
@@ -736,43 +787,137 @@
             this.columnHeader4.Text = "排名";
             this.columnHeader4.Width = 100;
             // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.button17);
+            this.tabPage9.Controls.Add(this.textBox4);
+            this.tabPage9.Controls.Add(this.label9);
+            this.tabPage9.Controls.Add(this.label8);
+            this.tabPage9.Controls.Add(this.label7);
+            this.tabPage9.Controls.Add(this.button16);
+            this.tabPage9.Controls.Add(this.dataGridView1);
+            this.tabPage9.Controls.Add(this.textBox1);
+            this.tabPage9.Controls.Add(this.button21);
+            this.tabPage9.Controls.Add(this.textBox3);
+            this.tabPage9.Controls.Add(this.button22);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(1022, 634);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            this.button17.Font = new System.Drawing.Font("宋体", 11F);
+            this.button17.Location = new System.Drawing.Point(882, 81);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(96, 36);
+            this.button17.TabIndex = 385;
+            this.button17.Text = "点击匹配";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox4.Location = new System.Drawing.Point(103, 87);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(773, 24);
+            this.textBox4.TabIndex = 384;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 10F);
+            this.label9.Location = new System.Drawing.Point(72, 58);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 14);
+            this.label9.TabIndex = 383;
+            this.label9.Text = "词表：";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("宋体", 10F);
+            this.label8.Location = new System.Drawing.Point(6, 92);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(91, 14);
+            this.label8.TabIndex = 382;
+            this.label8.Text = "搜索词查询：";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 10F);
+            this.label7.Location = new System.Drawing.Point(72, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 14);
+            this.label7.TabIndex = 381;
+            this.label7.Text = "标题：";
+            // 
+            // button16
+            // 
+            this.button16.Font = new System.Drawing.Font("宋体", 10F);
+            this.button16.Location = new System.Drawing.Point(624, 17);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(87, 23);
+            this.button16.TabIndex = 380;
+            this.button16.Text = "复制标题";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 123);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(1010, 508);
+            this.dataGridView1.TabIndex = 379;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(127, 54);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(388, 21);
+            this.textBox1.TabIndex = 208;
+            // 
+            // button21
+            // 
+            this.button21.Font = new System.Drawing.Font("宋体", 10F);
+            this.button21.Location = new System.Drawing.Point(521, 51);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(87, 23);
+            this.button21.TabIndex = 207;
+            this.button21.Text = "导入关键词";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(127, 17);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(388, 21);
+            this.textBox3.TabIndex = 206;
+            // 
+            // button22
+            // 
+            this.button22.Font = new System.Drawing.Font("宋体", 10F);
+            this.button22.Location = new System.Drawing.Point(521, 17);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(87, 23);
+            this.button22.TabIndex = 205;
+            this.button22.Text = "点击生成";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("宋体", 10F);
-            this.label6.Location = new System.Drawing.Point(6, 93);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 14);
-            this.label6.TabIndex = 217;
-            this.label6.Text = "未开始";
-            // 
-            // linkLabel6
-            // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.linkLabel6.ForeColor = System.Drawing.Color.White;
-            this.linkLabel6.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel6.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel6.Location = new System.Drawing.Point(233, 168);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(106, 22);
-            this.linkLabel6.TabIndex = 16;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "标题自动生成";
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(229, 42);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(110, 114);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 15;
-            this.pictureBox6.TabStop = false;
             // 
             // 基鹿工具箱
             // 
@@ -800,11 +945,14 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -866,5 +1014,17 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.LinkLabel linkLabel6;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
     }
 }

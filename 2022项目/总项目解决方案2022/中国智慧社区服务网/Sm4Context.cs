@@ -28,3 +28,4 @@ namespace 中国智慧社区服务网
         public bool IsPadding;
     }
 }
+

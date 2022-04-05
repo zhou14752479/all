@@ -99,7 +99,7 @@ namespace 浙江企业基础信息查询
 
                 for (int a = 0; a< dt.Rows.Count; a++)
                 {
-                    if(DateTime.Now>Convert.ToDateTime("2022-04-02"))
+                    if(DateTime.Now>Convert.ToDateTime("2022-05-02"))
                     {
                         MessageBox.Show("{\"msg\":\"非法请求\"}");
                         return;
@@ -110,8 +110,11 @@ namespace 浙江企业基础信息查询
                     string url = "http://app.gjzwfw.gov.cn/jimps/link.do";
                     label3.Text = "正在查询：" + uid;
                     string timestr = GetTimeStamp();
-                    string sign = method.GetMD5("qyjbxxcxzj" + timestr);
-                    string zj_ggsjpt_sign = method.GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74" + "995e00df72f14bbcb7833a9ca063adef" + timestr);
+             
+                    string gregegedrgerheh = gdsgdgdgdgdstgfeewrwerw3r23r32rvxsvdsv.rgebgdgdvsdfsdvsdfsdvdsbgdsrt435b515sdfsdf("1", timestr);
+                    string sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[0];
+                    string zj_ggsjpt_sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[1];
+
                     string postdata = "param=%7B%22from%22%3A%222%22%2C%22key%22%3A%22b4842fe0fadc44398d674c786a583f8e%22%2C%22requestTime%22%3A%22" + timestr + "%22%2C%22sign%22%3A%22" + sign + "%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22" + zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22" + timestr + "%22%2C%22uniscId%22%3A%22"+uid+"%22%2C%22companyName%22%3A%22%22%2C%22registerNo%22%3A%22%22%2C%22entType%22%3A%22E%22%2C%22additional%22%3A%22%22%7D";
                     string html = method.PostUrlDefault(url, postdata, "");
                     //MessageBox.Show(html);
@@ -204,7 +207,7 @@ namespace 浙江企业基础信息查询
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                     lv1.SubItems.Add(sb.ToString());
 
-                    Thread.Sleep(200);
+                    Thread.Sleep(1000);
                 }
             }
             catch (Exception ex)

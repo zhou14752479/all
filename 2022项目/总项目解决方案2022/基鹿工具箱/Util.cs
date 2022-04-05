@@ -1,4 +1,6 @@
-﻿using NPOI.HSSF.UserModel;
+﻿using MySql.Data.MySqlClient;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.Formula.Eval;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
@@ -453,6 +455,247 @@ namespace 基鹿工具箱
 
         #endregion
 
+        #region NPOI读取表格导入datatable 
+        /// <summary>  
+        /// 将excel导入到datatable  
+        /// </summary>  
+        /// <param name="filePath">excel路径</param>  
+        /// <param name="isColumnName">第一行是否是列名</param>  
+        /// <returns>返回datatable</returns>  
+        public static DataTable ExcelToDataTable(string filePath, bool isColumnName)
+        {
+            DataTable dataTable = null;
+            FileStream fs = null;
+            DataColumn column = null;
+            DataRow dataRow = null;
+            IWorkbook workbook = null;
+            ISheet sheet = null;
+            IRow row = null;
+            ICell cell = null;
+            int startRow = 0;
+            try
+            {
+                using (fs = File.OpenRead(filePath))
+                {
+                    // 2007版本  
+                    if (filePath.IndexOf(".xlsx") > 0)
+                        workbook = new XSSFWorkbook(fs);
+                    // 2003版本  
+                    else if (filePath.IndexOf(".xls") > 0)
+                        workbook = new HSSFWorkbook(fs);
+
+                    if (workbook != null)
+                    {
+                        sheet = workbook.GetSheetAt(0);//读取第一个sheet，当然也可以循环读取每个sheet  
+                        dataTable = new DataTable();
+                        if (sheet != null)
+                        {
+                            int rowCount = sheet.LastRowNum;//总行数  
+                            if (rowCount > 0)
+                            {
+                                IRow firstRow = sheet.GetRow(0);//第一行  
+                                int cellCount = firstRow.LastCellNum;//列数  
+
+                                //构建datatable的列  
+                                if (isColumnName)
+                                {
+                                    startRow = 1;//如果第一行是列名，则从第二行开始读取  
+                                    for (int i = firstRow.FirstCellNum; i < cellCount; ++i)
+                                    {
+                                        cell = firstRow.GetCell(i);
+                                        if (cell != null)
+                                        {
+                                            if (cell.StringCellValue != null)
+                                            {
+                                                column = new DataColumn(cell.StringCellValue);
+                                                dataTable.Columns.Add(column);
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    for (int i = firstRow.FirstCellNum; i < cellCount; ++i)
+                                    {
+                                        column = new DataColumn("column" + (i + 1));
+                                        dataTable.Columns.Add(column);
+                                    }
+                                }
+
+                                //填充行  
+                                for (int i = startRow; i <= rowCount; ++i)
+                                {
+                                    row = sheet.GetRow(i);
+                                    if (row == null) continue;
+
+                                    dataRow = dataTable.NewRow();
+                                    for (int j = row.FirstCellNum; j < cellCount; ++j)
+                                    {
+
+                                        ICell RCells = row.GetCell(j);
+                                        if (RCells != null)
+                                        {
+                                            try
+                                            {
+                                                switch (RCells.CellType)  //注意按单元格格式分类取值
+                                                {
+                                                    case CellType.Numeric:    //用于取出数值和公式类型的数据 
+                                                        if (DateUtil.IsCellDateFormatted(RCells)) { dataRow[j] = RCells.DateCellValue.ToString("yyyy/MM/dd HH:mm:ss"); }
+                                                        else { dataRow[j] = RCells.NumericCellValue; }
+
+
+                                                        break;
+                                                    case CellType.Error:
+                                                        dataRow[j] = ErrorEval.GetText(row.GetCell(j).ErrorCellValue);
+                                                        break;
+                                                    case CellType.Formula:
+                                                        switch (row.GetCell(j).CachedFormulaResultType)
+                                                        {
+                                                            case CellType.String:
+                                                                string strFORMULA = row.GetCell(j).StringCellValue;
+                                                                if (strFORMULA != null && strFORMULA.Length > 0)
+                                                                {
+                                                                    dataRow[j] = strFORMULA.ToString();
+                                                                }
+                                                                else
+                                                                {
+                                                                    dataRow[j] = null;
+                                                                }
+                                                                break;
+                                                            case CellType.Numeric:
+                                                                dataRow[j] = Convert.ToString(row.GetCell(j).NumericCellValue);
+                                                                break;
+                                                            case CellType.Boolean:
+                                                                dataRow[j] = Convert.ToString(row.GetCell(j).BooleanCellValue);
+                                                                break;
+                                                            case CellType.Error:
+                                                                dataRow[j] = ErrorEval.GetText(row.GetCell(j).ErrorCellValue);
+                                                                break;
+                                                            default:
+                                                                dataRow[j] = "";
+                                                                break;
+                                                        }
+                                                        break;
+                                                    case CellType.Boolean:
+                                                        // Boolean type
+                                                        dataRow[j] = RCells.BooleanCellValue.ToString();
+                                                        break;
+
+                                                    case CellType.Blank:
+                                                        break;
+
+                                                    default:
+                                                        // String type
+                                                        dataRow[j] = RCells.StringCellValue.Trim();
+                                                        break;
+                                                }
+                                            }
+                                            catch (Exception e)
+                                            {
+                                                //MessageBox.Show(e.Message);
+                                                continue;
+                                                //MessageBox.Show(e.ToString());
+                                            }
+                                        }
+                                        else { dataRow[j] = ""; }
+
+
+                                    }
+                                    dataTable.Rows.Add(dataRow);
+                                }
+                            }
+                        }
+                    }
+                }
+                return dataTable;
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+                if (fs != null)
+                {
+                    fs.Close();
+                }
+                return null;
+            }
+        }
+
+        #endregion
+        static string conn = "Host =47.96.189.55;Database=titledb;Username=root;Password=root";
+        #region 绑定数据
+        public static DataTable getdata(string sql)
+        {
+            
+            
+            MySqlDataAdapter sda = new MySqlDataAdapter(sql, conn);
+            DataSet Ds = new DataSet();
+            sda.Fill(Ds, "T_Class");
+
+            DataTable dt = Ds.Tables["T_Class"];
+            return dt;
+        }
+
+        #endregion
+
+
+        public static bool SQL(string sql)
+        {
+            try
+            {
+
+                MySqlConnection mycon = new MySqlConnection(conn);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, mycon);
+
+                int status = cmd.ExecuteNonQuery();  //执行sql语句
+                if (status > 0)
+                {
+                    return true;
+
+                }
+
+                mycon.Close();
+                return false;
+            }
+            catch (Exception)
+            {
+
+
+                return false;
+            }
+
+
+
+        }
+        public static bool insert(string a,string b,string c,string d,string e)
+        {
+           
+            MySqlConnection mycon = new MySqlConnection(conn);
+            mycon.Open();
+           // string sql = "INSERT INTO datas (ci,ss_zs,fd,good_zs,gx_zs)VALUES('" + a + " ', '" + b + " ', '" + c + " ', '" + d + " ', '" + e + " ')";
+           string sql = "INSERT INTO datas(ci,ss_zs,fd,good_zs,gx_zs) VALUES('" + a + " ', '" + b + " ', '" + c + " ', '" + d + " ', '" + e + " ') ON DUPLICATE KEY UPDATE ss_zs = '" + b + " ',fd = '" + c + " ',good_zs = '" + d + " ',gx_zs = '" + e+ " '"; 
+            MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+            int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+            if (count > 0)
+            {
+                mycon.Close();
+                return true;
+               
+
+            }
+            else
+            {
+                mycon.Close();
+                return false;
+            }
+            
+        }
+
+
+        public static List<string> keys_list = new List<string>();
 
     }
 }

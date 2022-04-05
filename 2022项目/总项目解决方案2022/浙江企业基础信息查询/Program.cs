@@ -67,7 +67,7 @@ namespace 浙江企业基础信息查询
 
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new 查询2());
+                    Application.Run(new 医保服务查询());
 
                 }
                 else

@@ -92,7 +92,84 @@ namespace 浙江企业基础信息查询
 
         }
         #endregion
-        public string GetTimeStamp()
+        #region POST默认请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        {
+            try
+            {
+
+                string charset = "utf-8";
+                string html = "";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                request.Proxy = null;//防止代理抓包
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                //headers.Add("sec-fetch-site:same-origin");
+                //headers.Add("sec-fetch-user:?1");
+                //headers.Add("upgrade-insecure-requests: 1");
+                //添加头部
+                request.ContentType = "application/x-www-form-urlencoded";
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+                //request.ContentType = "application/json";
+                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                // request.ContentLength = postData.Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+
+                request.Referer = url;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+
+                response.Close();
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
+        public  static string GetTimeStamp()
         {
             TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
             long a = Convert.ToInt64(tss.TotalMilliseconds);
@@ -106,7 +183,7 @@ namespace 浙江企业基础信息查询
                 for (int a = 0; a < dt.Rows.Count; a++)
                 {
                     total = total + 1;
-                    if (DateTime.Now > Convert.ToDateTime("2022-04-07"))
+                    if (DateTime.Now > Convert.ToDateTime("2022-05-02"))
                     {
                         MessageBox.Show("{\"msg\":\"非法请求\"}");
                         return;
@@ -115,14 +192,14 @@ namespace 浙江企业基础信息查询
                     DataRow dr = dt.Rows[a];
                     string uid = dr[0].ToString();
                     string timestr = GetTimeStamp();
-                    string sign = method.GetMD5("rkkpcxxcxjtapp" + timestr);
-                    string zj_ggsjpt_sign = method.GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74" + "995e00df72f14bbcb7833a9ca063adef" + timestr);
+                    string gregegedrgerheh = gdsgdgdgdgdstgfeewrwerw3r23r32rvxsvdsv.rgebgdgdvsdfsdvsdfsdvdsbgdsrt435b515sdfsdf("2", timestr);
+                    string sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[0];
+                    string zj_ggsjpt_sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[1];
                     string url = "http://app.gjzwfw.gov.cn/jimps/link.do?param=%7B%22from%22%3A%222%22%2C%22key%22%3A%223b8d18a7d9b4482caf1cbc39b4404d06%22%2C%22requestTime%22%3A%22"+timestr+"%22%2C%22sign%22%3A%22"+sign+"%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22"+ zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22"+timestr+"%22%2C%22gmsfhm%22%3A%22"+uid+"%22%2C%22additional%22%3A%22%22%7D";
                     label3.Text = "正在查询：" + uid;
-                  
-                    
+                    //textBox3.Text = url;
                     string html = GetUrl(url,"utf-8");
-
+                    //MessageBox.Show(html);
                     //textBox2.Text = html;
                     MatchCollection dwxxmc = Regex.Matches(html, @"""dwxxmc"":""([\s\S]*?)""");
                     MatchCollection xywcqk = Regex.Matches(html, @"""xywcqk"":""([\s\S]*?)""");
@@ -208,6 +285,9 @@ namespace 浙江企业基础信息查询
         bool status = false;
         Thread thread;
         DataTable dt;
+
+       
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
@@ -472,7 +552,7 @@ namespace 浙江企业基础信息查询
 
         #endregion
 
-        public void excel_fenlie()
+        public static void excel_fenlie()
         {
             try
             { //创建Workbook，加载Excel测试文档

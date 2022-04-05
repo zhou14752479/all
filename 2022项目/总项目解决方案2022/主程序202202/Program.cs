@@ -16,7 +16,7 @@ namespace 主程序202202
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 订单统计());
+            Application.Run(new 计算());
         }
     }
 }

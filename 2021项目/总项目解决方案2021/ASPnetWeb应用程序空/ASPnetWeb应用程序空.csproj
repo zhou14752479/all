@@ -78,6 +78,8 @@
     <Content Include="index5.aspx" />
     <Content Include="index6.aspx" />
     <Content Include="index7.aspx" />
+    <Content Include="index8.aspx" />
+    <Content Include="index8_admin.aspx" />
     <Content Include="ManagerShiCi.aspx" />
     <Content Include="CSS\muwen.css" />
     <Content Include="Web.config">
@@ -141,6 +143,20 @@
     </Compile>
     <Compile Include="index7.aspx.designer.cs">
       <DependentUpon>index7.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index8.aspx.cs">
+      <DependentUpon>index8.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index8.aspx.designer.cs">
+      <DependentUpon>index8.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index8_admin.aspx.cs">
+      <DependentUpon>index8_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index8_admin.aspx.designer.cs">
+      <DependentUpon>index8_admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagerShiCi.aspx.cs">
       <DependentUpon>ManagerShiCi.aspx</DependentUpon>

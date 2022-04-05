@@ -177,5 +177,10 @@ namespace 主程序202202
         {
             textBox3.Text = "";
         }
+
+        private void 图片批量下载_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

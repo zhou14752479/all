@@ -34,26 +34,29 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(212, 12);
+            this.button1.Location = new System.Drawing.Point(172, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 35);
             this.button1.TabIndex = 0;
-            this.button1.Text = "下载";
+            this.button1.Text = "开始下载";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 75);
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBox1.Location = new System.Drawing.Point(0, 67);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(565, 21);
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(537, 143);
             this.textBox1.TabIndex = 1;
             // 
             // 华东师范大学开放教育下载
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 105);
+            this.ClientSize = new System.Drawing.Size(537, 210);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Name = "华东师范大学开放教育下载";

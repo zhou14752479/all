@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" /><meta http-equiv="Cache-Control" content="no-cache" /><meta http-equiv="Pragma" content="no-cache" /><title>
+	豪庭后台数据
+</title><link href="CSS/muwen.css" rel="stylesheet" />
+    <script>
+        function resetdata() {
+            window.location.href = "Index.aspx?action=reset&_=" + Math.random();
+        }
+    </script>
+     <style>
+        .bottom {
+            position: fixed;
+            bottom: 0px;
+            height: 50px;
+            background-color: white;
+            width: 100%;
+        }
+
+            .bottom img {
+                width: 20px;
+                height: 20px;
+            }
+
+        .body {
+            color: white;
+            font-size: 25px;
+           
+        }
+
+        .img1{
+            position: relative; margin:0 auto;
+            width:60%;
+            height:60%;
+			margin-top: 20%;
+        }
+		#wenzi{
+		margin-top:50%;
+		margin-bottom:10%;
+		}
+		p{
+		color:yellow;
+		}
+    </style>
+</head>
+<body style="background-image: url('image8/background.jpg'); background-size: cover;">
+     
+         <div class="center top10 bottom10">
+                    <img class="img1" src="image8/1.jpg" class="w100" />
+                </div>       
+
+       <form id="form1" runat="server">     
+        <div id="wenzi" class="center body">
+          
+			
+						<p style="margin-top: 40px;">博 乐 字 花</p>
+            <p class="top-20">2022年03月26号</p>
+            <p class="font-18 top-10">第三场</p>
+            <p class="font-18 top-5">【未开】</p>
+            <p class="top-5">少陵无人谪仙死</p>
+            <p>才薄将奈石鼓何</p>
+            <p style="margin: 10px auto;">宝钢：石</p>
+            <p class="font-18">提示：声势浩大、意味深长</p>
+           
+			
+
+        </div>
+
+
+
+
+        <div class="flex-around bottom">
+            <div class="center" onclick="changci(1);">
+                <img src="image8/btn1.png" />
+                <p>上场</p>
+            </div>
+            <div class="center" onclick="changci(2);">
+                <img src="image8/btn2.png" />
+                <p>中场</p>
+            </div>
+            <div class="center" onclick="changci(3);">
+                <img src="image8/btn3.png" />
+                <p>下场</p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -129,6 +129,7 @@
             this.Name = "图片批量下载";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图片批量下载";
+            this.Load += new System.EventHandler(this.图片批量下载_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
