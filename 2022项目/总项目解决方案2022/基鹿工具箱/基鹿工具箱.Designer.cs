@@ -96,6 +96,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button22 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel3.SuspendLayout();
@@ -754,7 +755,8 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
@@ -784,7 +786,7 @@
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "排名";
+            this.columnHeader4.Text = "PC排名";
             this.columnHeader4.Width = 100;
             // 
             // tabPage9
@@ -919,6 +921,11 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "手机排名";
+            this.columnHeader5.Width = 100;
+            // 
             // 基鹿工具箱
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1026,5 +1033,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

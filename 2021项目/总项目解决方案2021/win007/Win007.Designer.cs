@@ -366,7 +366,8 @@
             "SNAI",
             "Titanbet",
             "Crown",
-            "William Hill"});
+            "William Hill",
+            "Bet-at-home"});
             this.comboBox1.Location = new System.Drawing.Point(193, 43);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(87, 25);

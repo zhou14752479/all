@@ -101,10 +101,10 @@
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
             this.linkLabel1.Location = new System.Drawing.Point(12, 13);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(215, 27);
+            this.linkLabel1.Size = new System.Drawing.Size(186, 27);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "思忆美团大数据";
+            this.linkLabel1.Text = "思忆美团软件";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // toolStripStatusLabel1

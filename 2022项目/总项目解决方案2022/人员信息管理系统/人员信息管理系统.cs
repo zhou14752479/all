@@ -75,6 +75,12 @@ namespace 人员信息管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(getcount);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
             toolStripStatusLabel1.Text = "开始查询数据---->";
             chaxun();
             toolStripStatusLabel1.Text = "查询数据成功---->";
@@ -131,42 +137,54 @@ public void getcount()
            
             try
             {
-                string sql = "select * from datas where";
-                if (textBox1.Text == "" && textBox2.Text == "" && textBox3.Text == "")
+                string sql = "select * from datas where bumenid= '" +function.bumenid+ "' and";
+                
+               
+                if(function.bumenid=="1")
                 {
-                    sql = "select * from datas";
-                }
-                else
-                {
-                    if (textBox1.Text != "")
+                    if(textBox1.Text==""&& textBox2.Text == "" && textBox3.Text == "" && textBox4.Text == "" && textBox5.Text == "" && textBox6.Text == "")
                     {
-                        sql = sql + (" name like '%" + textBox1.Text.Trim() + "%' and");
+                        sql = "select * from datas";
                     }
-                    if (textBox2.Text != "")
+                    else
                     {
-                        sql = sql + (" card like'%" + textBox2.Text.Trim() + "%' and");
+                        sql = "select * from datas where";
                     }
-                    if (textBox3.Text != "")
-                    {
-                        sql = sql + (" hucode like '%" + textBox3.Text.Trim() + "%' and");
-                    }
-                    if (textBox4.Text != "")
-                    {
-                        sql = sql + (" suozaicun like '%" + textBox4.Text.Trim() + "%' and");
-                    }
-                    if (textBox5.Text != "")
-                    {
-                        sql = sql + (" suozaizu like '%" + textBox5.Text.Trim() + "%' and");
-                    }
-
-
-                    if (sql.Substring(sql.Length - 3, 3) == "and")
-                    {
-                        sql = sql.Substring(0, sql.Length - 3);
-                    }
+                   
                 }
 
 
+                if (textBox1.Text != "")
+                {
+                    sql = sql + (" name like '%" + textBox1.Text.Trim() + "%' and");
+                }
+                if (textBox2.Text != "")
+                {
+                    sql = sql + (" card like'%" + textBox2.Text.Trim() + "%' and");
+                }
+                if (textBox3.Text != "")
+                {
+                    sql = sql + (" hucode like '%" + textBox3.Text.Trim() + "%' and");
+                }
+                if (textBox4.Text != "")
+                {
+                    sql = sql + (" suozaicun like '%" + textBox4.Text.Trim() + "%' and");
+                }
+                if (textBox5.Text != "")
+                {
+                    sql = sql + (" suozaizu like '%" + textBox5.Text.Trim() + "%' and");
+                }
+                if (textBox6.Text != "")
+                {
+                    sql = sql + (" address like '%" + textBox6.Text.Trim() + "%' and");
+                }
+
+                if (sql.Substring(sql.Length - 3, 3) == "and")
+                {
+                    sql = sql.Substring(0, sql.Length - 3);
+                }
+                MessageBox.Show(sql);
+               
                 DataTable dt = function.getdata(sql);
                 dataGridView1.DataSource = dt;
 
@@ -269,6 +287,54 @@ public void getcount()
             else
             {
                 e.Cancel = true;//点取消的代码 
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            function.DataTableToExcel(function.DgvToTable(dataGridView1), "Sheet1", true);
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            string uid = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string value= dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            string headertxt = dataGridView1.Columns[e.ColumnIndex].HeaderText;
+            string ziduan = "";
+            string texts = fc.readtxt();
+            string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < text.Length; i++)
+            {
+                try
+                {
+                    string[] values = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
+                    if (values.Length > 1)
+                    {
+                        if (values[1] == headertxt)
+                        {
+                            ziduan = values[0];
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                    continue;
+                }
+
+            }
+
+            string sql = "update datas set "+ziduan+" = '"+value+"'  where id='" + uid + "'  ";
+          
+            bool status = function.SQL(sql);
+            if (status == true)
+            {
+                MessageBox.Show("修改成功");
+                chaxun();
+            }
+            else
+            {
+                MessageBox.Show("修改失败");
             }
         }
     }

@@ -99,7 +99,6 @@
             this.textBox2.Font = new System.Drawing.Font("宋体", 10F);
             this.textBox2.Location = new System.Drawing.Point(87, 62);
             this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(186, 23);
             this.textBox2.TabIndex = 7;
             // 
@@ -142,6 +141,7 @@
             this.Name = "添加子账号";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加子账号";
+            this.Load += new System.EventHandler(this.添加子账号_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

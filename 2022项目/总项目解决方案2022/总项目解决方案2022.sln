@@ -7,15 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDLL", "..\..\2020项目\�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202202", "主程序202202\主程序202202.csproj", "{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "抖音直播", "抖音直播\抖音直播.csproj", "{9B29D5B4-D047-4C6D-B45E-532ADA686625}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helper", "..\..\2020项目\总项目解决方案\helper\helper.csproj", "{4AB3B912-E9F2-4425-82C0-505BDA466258}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "基鹿工具箱", "基鹿工具箱\基鹿工具箱.csproj", "{BC695ABB-06FF-401F-94A3-51E8A19B1997}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "新浪研报", "新浪研报\新浪研报.csproj", "{533EF9C9-8198-4D8A-800B-7D3256CDE6D9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "..\..\2020项目\总项目解决方案\2020_1\stockx网站价格\stockx网站价格.csproj", "{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "百姓二手车", "..\..\2021项目\总项目解决方案2021\项目集合\百姓二手车\百姓二手车.csproj", "{B915F3EC-DD85-41E0-97AB-5653D3D8A762}"
 EndProject
@@ -26,8 +22,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPnetWeb应用程序空", "..\..\2021项目\总项目解决方案2021\ASPnetWeb应用程序空\ASPnetWeb应用程序空.csproj", "{8A3F6C5A-79B4-4F0D-A1BF-E372961BDD5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "win007", "..\..\2021项目\总项目解决方案2021\win007\win007.csproj", "{882B8525-99B3-453A-A87E-5E7EBE82B87F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "停车信息监控", "停车信息监控\停车信息监控.csproj", "{2137901A-C592-4D34-9584-B39C1DE7D5C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "自动挂机计算脚本", "..\..\2021项目\总项目解决方案2021\自动挂机计算脚本\自动挂机计算脚本.csproj", "{1F3DAD43-ADAA-42FE-8B7B-F6D98543F778}"
 EndProject
@@ -47,6 +41,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202110", "..\..\20
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "授权库", "..\..\2021项目\总项目解决方案2021\项目集合\授权库\授权库.csproj", "{32B83FE8-3778-4B10-96C0-C564D4DFE317}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "浙江号码匹配", "..\..\2021项目\总项目解决方案2021\项目集合\浙江号码匹配\浙江号码匹配.csproj", "{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "美团", "..\..\2020项目\总项目解决方案\2020_1\美团\美团.csproj", "{8C5F5C05-9A7A-482B-BF72-F023D47134D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "开票下载", "开票下载\开票下载.csproj", "{6F8C0967-09B8-444A-B553-CFC9A87D0A22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "校友邦", "..\..\2021项目\总项目解决方案2021\项目集合\校友邦\校友邦.csproj", "{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "小程序解包", "小程序解包\小程序解包.csproj", "{7EAF7320-2B29-4C46-B551-40F622AF6220}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "台湾彩券", "台湾彩券\台湾彩券.csproj", "{6B700C78-25D3-4EA7-A77A-AE558714E6C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,10 +67,6 @@ Global
 		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB99DF4-FD19-495F-B2A9-59119AC1FB5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B29D5B4-D047-4C6D-B45E-532ADA686625}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB3B912-E9F2-4425-82C0-505BDA466258}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,10 +79,6 @@ Global
 		{533EF9C9-8198-4D8A-800B-7D3256CDE6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{533EF9C9-8198-4D8A-800B-7D3256CDE6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{533EF9C9-8198-4D8A-800B-7D3256CDE6D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71808F8C-98FA-412D-B205-FDF9EDC1D5A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B915F3EC-DD85-41E0-97AB-5653D3D8A762}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,10 +99,6 @@ Global
 		{882B8525-99B3-453A-A87E-5E7EBE82B87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{882B8525-99B3-453A-A87E-5E7EBE82B87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{882B8525-99B3-453A-A87E-5E7EBE82B87F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2137901A-C592-4D34-9584-B39C1DE7D5C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2137901A-C592-4D34-9584-B39C1DE7D5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2137901A-C592-4D34-9584-B39C1DE7D5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2137901A-C592-4D34-9584-B39C1DE7D5C9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F3DAD43-ADAA-42FE-8B7B-F6D98543F778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F3DAD43-ADAA-42FE-8B7B-F6D98543F778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F3DAD43-ADAA-42FE-8B7B-F6D98543F778}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -141,6 +135,30 @@ Global
 		{32B83FE8-3778-4B10-96C0-C564D4DFE317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32B83FE8-3778-4B10-96C0-C564D4DFE317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32B83FE8-3778-4B10-96C0-C564D4DFE317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{959BCB58-3EB5-4AE1-99D2-E0CC93EDCA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5F5C05-9A7A-482B-BF72-F023D47134D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92AC2E7C-EC6B-4429-8E88-AA71F44AAF77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAF7320-2B29-4C46-B551-40F622AF6220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAF7320-2B29-4C46-B551-40F622AF6220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAF7320-2B29-4C46-B551-40F622AF6220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAF7320-2B29-4C46-B551-40F622AF6220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B700C78-25D3-4EA7-A77A-AE558714E6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B700C78-25D3-4EA7-A77A-AE558714E6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B700C78-25D3-4EA7-A77A-AE558714E6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B700C78-25D3-4EA7-A77A-AE558714E6C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -16,6 +17,74 @@ namespace 币种余额获取
 {
     class datagridview_page
     {
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+
+        public static void TopDataGridView(DataGridView dataGridView,int index)
+        {
+            try
+            {
+
+                if (index > 0)//如果该行不是第一行
+                {
+                    DataGridViewRow dgvr = dataGridView.Rows[index];//获取选中行的上一行
+                    dataGridView.Rows.RemoveAt(index);//删除原选中行的上一行
+                    dataGridView.Rows.Insert(0, dgvr);//将选中行的上一行插入到选中行的后面                       
+                    for (int i = 0; i < dataGridView.Rows.Count; i++)//选中移动后的行
+                    {
+                        if (i != 0)
+                        {
+                            dataGridView.Rows[i].Selected = false;
+                        }
+                        else
+                        {
+                            dataGridView.Rows[i].Selected = true;
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -80,7 +149,7 @@ namespace 币种余额获取
         /// <summary>
         /// 每页记录数
         /// </summary>
-        public int pageSize = 20;
+        public int pageSize = 9999;
 
         /// <summary>
         /// 总记录数
@@ -281,14 +350,19 @@ namespace 币种余额获取
         
         }
 
-        public void sendmsg(string title)
+
+       public string senduser = "push@mail-coinbase.us";
+        public string sendpass = "ASdf124578";
+        public string revieveaddr = "defi_eth1@126.com";
+        public string nicheng = "ASdf124578";
+        public void sendmsg(string title,string body)
         {
             try
             {
               
                 MailMessage mailMsg = new MailMessage();
-                mailMsg.From = new MailAddress("push@mail-coinbase.us", "ASdf124578");
-                mailMsg.To.Add(new MailAddress("defi_eth1@126.com"));
+                mailMsg.From = new MailAddress(senduser, nicheng);
+                mailMsg.To.Add(new MailAddress(revieveaddr));
                 //mailMsg.CC.Add("抄送人地址");
                 //mailMsg.Bcc.Add("密送人地址");
                 //可选，设置回信地址 
@@ -298,7 +372,8 @@ namespace 币种余额获取
                 // 邮件正文内容
                 //string text = "欢迎使用阿里云邮件推送";
                 string text = title;
-                string html = @"欢迎使用<a href=""https://dm.console.aliyun.com"">邮件推送</a>";
+                //string html = @"欢迎使用<a href=""https://dm.console.aliyun.com"">邮件推送</a>";
+                string html = body;
                 mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
                 mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
                 // 添加附件

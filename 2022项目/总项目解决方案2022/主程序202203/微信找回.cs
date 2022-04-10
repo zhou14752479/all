@@ -7,6 +7,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -17,6 +18,12 @@ namespace 主程序202203
 {
     public partial class 微信找回 : Form
     {
+        [DllImport("ocr.dll")]
+        public static extern int init();
+
+        [DllImport("ocr.dll")]
+        public static extern int ocr(byte[] bin, int binlength);
+
         public 微信找回()
         {
             InitializeComponent();
@@ -88,22 +95,22 @@ namespace 主程序202203
 
         private void 微信找回_Load(object sender, EventArgs e)
         {
-            Control.CheckForIllegalCrossThreadCalls = false;
-            #region 通用检测
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            //#region 通用检测
 
 
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+            //string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            if (!html.Contains(@"借款应用"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
+            //if (!html.Contains(@"借款应用"))
+            //{
+            //    System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //    return;
+            //}
 
-            #endregion
-            getid();
-            doSendMsg += Change;
-            doSendMsg += SendMsgHander;//下载过程处理事件
+            //#endregion
+            //getid();
+            //doSendMsg += Change;
+            //doSendMsg += SendMsgHander;//下载过程处理事件
         }
         List<Thread> list = new List<Thread>();
         public void AddDown(int id, string uid)
@@ -312,7 +319,11 @@ namespace 主程序202203
 
         private void button3_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
+            byte[] img = File.ReadAllBytes(@"C:\Users\zhou\Desktop\usp.jpg");
+          int value=  ocr(img,img.Length);
+            byte b = Marshal.ReadByte((IntPtr)value);
+            //string str = System.Text.Encoding.Default.GetString(b);
+            MessageBox.Show(((char)b).ToString());
         }
     }
 }

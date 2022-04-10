@@ -163,6 +163,9 @@ namespace win007
                 dataGridView1.Columns["he_yingkuizs"].HeaderText = "和赢亏指数";
                 dataGridView1.Columns["ke_yingkuizs"].HeaderText = "客队赢亏指数";
 
+                dataGridView1.Columns["rangqiu"].HeaderText = "让球";
+                dataGridView1.Columns["daxiaoqiu"].HeaderText = "大小球";
+
                 dataGridView1.Columns[7].HeaderCell.Style.BackColor = Color.Red;
                 dataGridView1.Columns[8].HeaderCell.Style.BackColor = Color.CornflowerBlue;
                 dataGridView1.Columns[9].HeaderCell.Style.BackColor = Color.Green;
@@ -475,6 +478,7 @@ namespace win007
 
         private void Win007_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
@@ -795,8 +799,8 @@ namespace win007
 
         private void button4_Click(object sender, EventArgs e)
         {
-            startdate = Convert.ToDateTime("2021-09-24").ToString("yyyy-MM-dd");
-            //startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
+            //startdate = Convert.ToDateTime("2021-09-24").ToString("yyyy-MM-dd");
+            startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
 
             enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -22,76 +23,132 @@ namespace 币种余额获取
             InitializeComponent();
         }
 
-       // string key = "SRBQMRAYMR3D9E2HJDPXNSBSIA66JTP1ED";
+        // string key = "SRBQMRAYMR3D9E2HJDPXNSBSIA66JTP1ED";
 
 
-
+        Thread t;
         public void run()
         {
-
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+            try
             {
-                Random rd = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
-                int suiji = rd.Next(1, lists.Count);
-                string key = lists[suiji];
-                
-                dataGridView1.Rows[i].Cells[4].Style.BackColor = Color.White;
-                dataGridView1.Rows[i].Cells[5].Style.BackColor = Color.White;
-                dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.White;
 
-                string tuandui = dataGridView1.Rows[i].Cells[0].Value.ToString().Trim();
-                string yewu = dataGridView1.Rows[i].Cells[1].Value.ToString().Trim();
-                string biecheng = dataGridView1.Rows[i].Cells[2].Value.ToString().Trim();
-                string addr = dataGridView1.Rows[i].Cells[3].Value.ToString().Trim();
-              string eth=dgv.getbalance("ETH",addr,key);
-                string usdt = dgv.getbalance("USDT", addr, key);
-                string usdc = dgv.getbalance("USDC", addr, key);
-                label1.Text = DateTime.Now.ToShortTimeString() +"："+"正在获取---->"+addr;
-                try
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
-                    if (eth != dataGridView1.Rows[i].Cells[4].Value.ToString())
+                    Random rd = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
+                    int suiji = rd.Next(1, lists.Count);
+                    string key = lists[suiji];
+
+                    dataGridView1.Rows[i].Cells[4].Style.BackColor = Color.White;
+                    dataGridView1.Rows[i].Cells[5].Style.BackColor = Color.White;
+                    dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.White;
+
+                    string tuandui = dataGridView1.Rows[i].Cells[0].Value.ToString().Trim();
+                    string yewu = dataGridView1.Rows[i].Cells[1].Value.ToString().Trim();
+                    string biecheng = dataGridView1.Rows[i].Cells[2].Value.ToString().Trim();
+                    string addr = dataGridView1.Rows[i].Cells[3].Value.ToString().Trim();
+                    string eth = dgv.getbalance("ETH", addr, key);
+                    string usdt = dgv.getbalance("USDT", addr, key);
+                    string usdc = dgv.getbalance("USDC", addr, key);
+                    label1.Text = DateTime.Now.ToString("HH:mm:ss") + "：" + "正在获取---->" + addr;
+                    try
                     {
-                        double value = Convert.ToDouble(eth) - Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value.ToString());
-                        if (checkBox1.Checked == true)
+                        if (eth != dataGridView1.Rows[i].Cells[4].Value.ToString() && dataGridView1.Rows[i].Cells[4].Value.ToString()!="")
                         {
-                            dgv.sendmsg(tuandui + yewu + biecheng + "ETH变动" + value.ToString("F4"));
+                            //dataGridView1.Rows[i].Cells[4].Style.BackColor = Color.Red;
+                            double value = Convert.ToDouble(eth) - Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value.ToString());
+                            //datagridview_page.TopDataGridView(dataGridView1, i);
+                            if (checkBox1.Checked == true)
+                            {
+                                dgv.sendmsg(tuandui + yewu + biecheng + "ETH变动" + value.ToString("F4"), addr);
+                                if (t == null || !t.IsAlive)
+                                {
+                                    char[] arr = biecheng.ToArray();
+                                    string biecheng1 = ",";
+                                    foreach (var item in arr)
+                                    {
+                                        biecheng1 = biecheng1+item + ",";
+                                    }
+                                    t = new Thread(new ParameterizedThreadStart(speak));
+                                    string o = tuandui + yewu + biecheng1 + "以太坊" + value.ToString("F4");
+                                    t.Start((object)o);
+                                }
+                            }
+                            
+
                         }
-                        dataGridView1.Rows[i].Cells[4].Style.BackColor = Color.Red;
-                        Beep(800, 300);
+                        if (usdt != dataGridView1.Rows[i].Cells[5].Value.ToString() && dataGridView1.Rows[i].Cells[5].Value.ToString()!="")
+                        {
+                           // dataGridView1.Rows[i].Cells[5].Style.BackColor = Color.Red;
+                            double value = Convert.ToDouble(usdt) - Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                           //datagridview_page.TopDataGridView(dataGridView1, i);
+                            if (checkBox1.Checked == true)
+                            {
+                                dgv.sendmsg(tuandui + yewu + biecheng + "USDT变动" + value.ToString("F2"), addr);
+                                if (t == null || !t.IsAlive)
+                                {
+                                    char[] arr = biecheng.ToArray();
+                                    string biecheng1 = ",";
+                                    foreach (var item in arr)
+                                    {
+                                        biecheng1 =biecheng1+ item + ",";
+                                    }
+                                    t = new Thread(new ParameterizedThreadStart(speak));
+                                    string o = tuandui + yewu + biecheng1 + "USDT" + value.ToString("F2");
+                                    t.Start((object)o);
+                                }
+
+                            }
+                           
+
+                        }
+                        if (usdc != dataGridView1.Rows[i].Cells[6].Value.ToString() && dataGridView1.Rows[i].Cells[6].Value.ToString()!="")
+                        {
+                           // dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.Red;
+                            double value = Convert.ToDouble(usdc) - Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value.ToString());
+                            //datagridview_page.TopDataGridView(dataGridView1, i);
+                            if (checkBox1.Checked == true)
+                            {
+                                dgv.sendmsg(tuandui + yewu + biecheng + "USDC变动" + value.ToString("F2"), addr);
+                                if (t == null || !t.IsAlive)
+                                {
+                                    char[] arr = biecheng.ToArray();
+                                    string biecheng1 = ",";
+                                    foreach (var item in arr)
+                                    {
+                                        biecheng1 =biecheng1+ item + ",";
+                                    }
+                                    
+
+
+                                    t = new Thread(new ParameterizedThreadStart(speak));
+                                    string o = tuandui + yewu + biecheng1 + "USDC" + value.ToString("F2");
+                                    t.Start((object)o);
+                                }
+
+
+                            }
+                            
+
+                        }
+
                     }
-                    if (usdt != dataGridView1.Rows[i].Cells[5].Value.ToString())
+                    catch (Exception)
                     {
-                        double value = Convert.ToDouble(usdt) - Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
-                        if (checkBox1.Checked == true)
-                        {
-                            dgv.sendmsg(tuandui + yewu + biecheng + "USDT变动" + value.ToString("F2"));
-                        }
-                        dataGridView1.Rows[i].Cells[5].Style.BackColor = Color.Red;
-                        Beep(800, 300);
+
+
                     }
-                    if (usdc != dataGridView1.Rows[i].Cells[6].Value.ToString())
-                    {
-                        double value = Convert.ToDouble(usdc) - Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value.ToString());
-                        if (checkBox1.Checked == true)
-                        {
-                            dgv.sendmsg(tuandui + yewu + biecheng + "USDC变动" + value.ToString("F2"));
-                        }
-                        dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.Red;
-                        Beep(800, 300);
-                    }
+
+                    dataGridView1.Rows[i].Cells[4].Value = eth;
+                    dataGridView1.Rows[i].Cells[5].Value = usdt;
+                    dataGridView1.Rows[i].Cells[6].Value = usdc;
+                    dataGridView1.Rows[i].Cells[7].Value = DateTime.Now.ToString("HH:mm:ss");
 
                 }
-                catch (Exception)
-                {
+            }
+            catch (Exception ex)
+            {
 
-                    
-                }
-
-                dataGridView1.Rows[i].Cells[4].Value = eth;
-                dataGridView1.Rows[i].Cells[5].Value = usdt;
-                dataGridView1.Rows[i].Cells[6].Value = usdc;
-                dataGridView1.Rows[i].Cells[7].Value = DateTime.Now.ToShortTimeString();
-
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -99,6 +156,10 @@ namespace 币种余额获取
         datagridview_page dgv = new datagridview_page();
         private void 币种余额获取_Load(object sender, EventArgs e)
         {
+          dgv.senduser=  dgv.IniReadValue("mail", "发件箱账号");
+            dgv.sendpass = dgv.IniReadValue("mail", "发件箱密码");
+            dgv.revieveaddr = dgv.IniReadValue("mail", "收件箱");
+            dgv.nicheng = dgv.IniReadValue("mail", "昵称");
             dgv.PageSorter(dataGridView1);//分页
             label4.Text = dgv.allpage;
             label5.Text = dgv.nowpage;
@@ -207,7 +268,7 @@ namespace 币种余额获取
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+           // datagridview_page.TopDataGridView(dataGridView1, 5);
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
@@ -230,8 +291,17 @@ namespace 币种余额获取
             }
         }
 
+       
+        public void speak(object o)
+        {
+            //先添加引用System.Speech程序集；
+            SpeechSynthesizer hello = new SpeechSynthesizer();
+            string str = o.ToString();
+            hello.Speak(str);  //Speak(string),Speak加上字符串类型的参数
+        }
         private void button4_Click(object sender, EventArgs e)
         {
+            //datagridview_page.TopDataGridView(dataGridView1,2);
             timer1.Stop();
         }
 

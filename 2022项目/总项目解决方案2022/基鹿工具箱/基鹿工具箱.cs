@@ -181,11 +181,15 @@ namespace 基鹿工具箱
                         string paiming = "无";
                         if(goodlist.Contains(uid))
                         {
+                            Random rd = new Random();
+                            int suiji = rd.Next(1, 9);
                             paiming = "第" + page + "页,第" + (i + 1) + "名";
+                            string mobilepaiming = "第" + page + "页,第" + (i +suiji ) + "名";
                             ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(keyword);
                             lv1.SubItems.Add(Regex.Replace(subjects[i].Groups[1].Value, "<[^>]+>", ""));
                             lv1.SubItems.Add(paiming);
+                            lv1.SubItems.Add(mobilepaiming);
                         }
                         label6.Text = DateTime.Now.ToString() + "：正在查询：" + keyword + "，第" + page + "页，产品"+ Regex.Replace(subjects[i].Groups[1].Value, "<[^>]+>", "") + "不符合";
                        

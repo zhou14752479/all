@@ -71,6 +71,12 @@
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.linkLabel18 = new System.Windows.Forms.LinkLabel();
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.linkLabel13 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel14 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -91,6 +97,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -354,6 +363,12 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.linkLabel12);
+            this.tabPage2.Controls.Add(this.pictureBox13);
+            this.tabPage2.Controls.Add(this.pictureBox12);
+            this.tabPage2.Controls.Add(this.pictureBox7);
+            this.tabPage2.Controls.Add(this.linkLabel14);
+            this.tabPage2.Controls.Add(this.linkLabel13);
             this.tabPage2.Controls.Add(this.linkLabel11);
             this.tabPage2.Controls.Add(this.pictureBox11);
             this.tabPage2.Controls.Add(this.linkLabel10);
@@ -650,6 +665,81 @@
             this.pictureBox17.TabStop = false;
             this.pictureBox17.Click += new System.EventHandler(this.pictureBox17_Click);
             // 
+            // linkLabel13
+            // 
+            this.linkLabel13.AutoSize = true;
+            this.linkLabel13.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.linkLabel13.ForeColor = System.Drawing.Color.White;
+            this.linkLabel13.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel13.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel13.Location = new System.Drawing.Point(491, 288);
+            this.linkLabel13.Name = "linkLabel13";
+            this.linkLabel13.Size = new System.Drawing.Size(90, 22);
+            this.linkLabel13.TabIndex = 30;
+            this.linkLabel13.TabStop = true;
+            this.linkLabel13.Text = "代理电脑端";
+            // 
+            // linkLabel14
+            // 
+            this.linkLabel14.AutoSize = true;
+            this.linkLabel14.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.linkLabel14.ForeColor = System.Drawing.Color.White;
+            this.linkLabel14.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel14.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel14.Location = new System.Drawing.Point(638, 288);
+            this.linkLabel14.Name = "linkLabel14";
+            this.linkLabel14.Size = new System.Drawing.Size(90, 22);
+            this.linkLabel14.TabIndex = 32;
+            this.linkLabel14.TabStop = true;
+            this.linkLabel14.Text = "代理移动端";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(497, 198);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(78, 80);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 34;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
+            this.pictureBox12.Location = new System.Drawing.Point(642, 198);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(78, 80);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox12.TabIndex = 35;
+            this.pictureBox12.TabStop = false;
+            this.pictureBox12.Click += new System.EventHandler(this.pictureBox12_Click);
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
+            this.pictureBox13.Location = new System.Drawing.Point(352, 198);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(78, 80);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox13.TabIndex = 36;
+            this.pictureBox13.TabStop = false;
+            this.pictureBox13.Click += new System.EventHandler(this.pictureBox13_Click);
+            // 
+            // linkLabel12
+            // 
+            this.linkLabel12.AutoSize = true;
+            this.linkLabel12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.linkLabel12.ForeColor = System.Drawing.Color.White;
+            this.linkLabel12.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel12.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel12.Location = new System.Drawing.Point(356, 288);
+            this.linkLabel12.Name = "linkLabel12";
+            this.linkLabel12.Size = new System.Drawing.Size(74, 22);
+            this.linkLabel12.TabIndex = 37;
+            this.linkLabel12.TabStop = true;
+            this.linkLabel12.Text = "抖音手机";
+            // 
             // 软件工具箱
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -690,6 +780,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -738,5 +831,11 @@
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.LinkLabel linkLabel18;
         private System.Windows.Forms.PictureBox pictureBox17;
+        private System.Windows.Forms.LinkLabel linkLabel14;
+        private System.Windows.Forms.LinkLabel linkLabel13;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.LinkLabel linkLabel12;
     }
 }

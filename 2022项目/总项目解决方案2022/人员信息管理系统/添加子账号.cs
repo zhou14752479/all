@@ -66,7 +66,9 @@ namespace 人员信息管理系统
             register();
         }
 
+        private void 添加子账号_Load(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

@@ -140,7 +140,7 @@ namespace 浙江企业基础信息查询
                         lv1.SubItems.Add(aAB301);
                         lv1.SubItems.Add(aAC001);
                         lv1.SubItems.Add(aAC002);
-                        Thread.Sleep(1000);
+                        Thread.Sleep(100);
                         if (listView1.Items.Count > 2)
                         {
                             this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
@@ -291,6 +291,11 @@ namespace 浙江企业基础信息查询
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void 查询3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

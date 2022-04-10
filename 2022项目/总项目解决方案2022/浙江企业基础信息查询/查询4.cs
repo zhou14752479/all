@@ -16,7 +16,7 @@ using myDLL;
 
 namespace 浙江企业基础信息查询
 {
-    public partial class 医保服务查询 : Form
+    public partial class 查询4 : Form
     {
         #region POST默认请求
         /// <summary>
@@ -95,11 +95,11 @@ namespace 浙江企业基础信息查询
         }
 
         #endregion
-        public 医保服务查询()
+        public 查询4()
         {
             InitializeComponent();
         }
-        bool jiami = true;
+        bool jiami =true;
         bool zanting = true;
         bool status = false;
         Thread thread;
@@ -150,7 +150,7 @@ namespace 浙江企业基础信息查询
                 for (int a = 0; a < dt.Rows.Count; a++)
                 {
                     total = total + 1;
-                    if (DateTime.Now > Convert.ToDateTime("2022-05-05"))
+                    if (DateTime.Now > Convert.ToDateTime("2022-05-10"))
                     {
                         MessageBox.Show("{\"msg\":\"非法请求\"}");
                         return;
@@ -203,7 +203,7 @@ namespace 浙江企业基础信息查询
                     lv1.SubItems.Add(LEGREPNAME);
                     lv1.SubItems.Add(LEGREPTEL);
 
-                    Thread.Sleep(100);
+                    Thread.Sleep(300);
                     if (listView1.Items.Count > 2)
                     {
                         this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
@@ -285,7 +285,7 @@ namespace 浙江企业基础信息查询
             zanting = false;
             for (int i = 0; i < listView1.Items.Count; i++)
             {
-                for (int j = 1; j < listView1.Columns.Count; j++)
+                for (int j = 0; j < listView1.Columns.Count; j++)
                 {
                     try
                     {
@@ -309,22 +309,25 @@ namespace 浙江企业基础信息查询
                     }
                     catch (Exception ex)
                     {
-                       
+                        //MessageBox.Show(ex.ToString());
                         continue;
                     }
                 }
-                zanting = true;
-
-                if (jiami == false)
-                {
-                    jiami = true;
-                }
-                else
-                {
-                    jiami = false;
-                }
-
+               
             }
+
+
+            zanting = true;
+
+            if (jiami == false)
+            {
+                jiami = true;
+            }
+            else
+            {
+                jiami = false;
+            }
+
         }
 
         private void 医保服务查询_FormClosing(object sender, FormClosingEventArgs e)
@@ -346,9 +349,9 @@ namespace 浙江企业基础信息查询
             listView1.Items.Clear();
         }
 
+        private void 医保服务查询_Load(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }

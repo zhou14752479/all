@@ -331,6 +331,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "传奇游戏挂机脚本3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.查询3_FormClosing);
+            this.Load += new System.EventHandler(this.查询3_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

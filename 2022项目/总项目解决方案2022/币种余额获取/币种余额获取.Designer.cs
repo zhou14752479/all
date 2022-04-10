@@ -38,6 +38,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -55,10 +58,7 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -77,6 +77,7 @@
             this.linkLabel1.TabIndex = 1;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "上一页";
+            this.linkLabel1.Visible = false;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // linkLabel2
@@ -90,6 +91,7 @@
             this.linkLabel2.TabIndex = 2;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "下一页";
+            this.linkLabel2.Visible = false;
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // button1
@@ -170,6 +172,35 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1097, 55);
             this.panel2.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 12);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "增加:";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(940, 20);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(69, 24);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "停止";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(865, 20);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(69, 24);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "开启";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // checkBox1
             // 
@@ -309,39 +340,10 @@
             this.Column9.HeaderText = "一键删除";
             this.Column9.Name = "Column9";
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(865, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(69, 24);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "开启";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(940, 20);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(69, 24);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "停止";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // timer1
             // 
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 12);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "增加:";
             // 
             // 币种余额获取
             // 

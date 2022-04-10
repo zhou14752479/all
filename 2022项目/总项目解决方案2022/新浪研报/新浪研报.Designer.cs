@@ -38,14 +38,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -163,6 +163,16 @@
             this.columnHeader1.Text = "序号";
             this.columnHeader1.Width = 40;
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "行业名称";
+            this.columnHeader8.Width = 100;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "行业ID";
+            this.columnHeader9.Width = 100;
+            // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "标题";
@@ -193,16 +203,6 @@
             this.columnHeader7.Text = "正文";
             this.columnHeader7.Width = 500;
             // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "行业名称";
-            this.columnHeader8.Width = 100;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "行业ID";
-            this.columnHeader9.Width = 100;
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(274, 171);
@@ -221,6 +221,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "新浪研报";
             this.Text = "新浪研报";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.新浪研报_FormClosing);
             this.Load += new System.EventHandler(this.新浪研报_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

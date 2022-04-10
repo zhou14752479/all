@@ -18,7 +18,7 @@ namespace 地图营销
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
-        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "mapconfig.ini";
         /// <summary> 
         /// 写入INI文件 
         /// </summary> 

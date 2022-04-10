@@ -32,11 +32,15 @@ namespace 人员信息管理系统
                     string[] value = text[i].Split(new string[] { "#" }, StringSplitOptions.None);
                     if (value.Length > 1)
                     {
-                        dics.Add(value[1], value[0]);
-                        DataGridViewTextBoxColumn acCode = new DataGridViewTextBoxColumn();
-                        acCode.Name = "acCode";
-                        acCode.HeaderText = value[1];
-                       dataGridView1.Columns.Add(acCode);
+                       
+                        if (value[1] != "部门ID")
+                        {
+                            dics.Add(value[1], value[0]);
+                            DataGridViewTextBoxColumn acCode = new DataGridViewTextBoxColumn();
+                            acCode.Name = "acCode";
+                            acCode.HeaderText = value[1];
+                            dataGridView1.Columns.Add(acCode);
+                        }
 
                     }
                 }
@@ -91,12 +95,12 @@ namespace 人员信息管理系统
        
         public void insertdata()
         {
-            if (dt == null)
-            {
-                MessageBox.Show("请选择表格");
+            //if (dt == null)
+            //{
+            //    MessageBox.Show("请选择表格");
 
-            }
-            string ziduan = "";
+            //}
+            string ziduan = "bumenid,";
             foreach (var item in dics.Values)
             {
                 ziduan = ziduan + item.ToString() + ",";
@@ -106,31 +110,34 @@ namespace 人员信息管理系统
                 ziduan = ziduan.Remove(ziduan.Length-1,1);
             }
            
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
             {
                 try
                 {
+                    //MessageBox.Show(dataGridView1.Columns.Count.ToString());
                     string value = "";
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-                        if (j < dt.Columns.Count - 1)
+                        if (j < dataGridView1.Columns.Count - 1)
                         {
-                            value = value + "'" + dt.Rows[i][j].ToString().Trim() + "'" + ",";
+                            value = value + "'" + dataGridView1.Rows[i].Cells[j].Value.ToString().Trim() + "'" + ",";
                         }
                         else
                         {
-                            value = value + "'" + dt.Rows[i][j].ToString().Trim() + "'";
+                            value = value + "'" + dataGridView1.Rows[i].Cells[j].Value.ToString().Trim() + "'";
                         }
 
+
                     }
+                    value = "'"+function.bumenid+ "'" + "," + value;
                     toolStripStatusLabel1.Text = "正在添加数据----->" + value;
                     string sql = "INSERT INTO datas("+ziduan+") values(" + value + ") ";
-                   
+                   // MessageBox.Show(sql);
                     function.SQL(sql);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.ToString());
                     continue;
                 }
 

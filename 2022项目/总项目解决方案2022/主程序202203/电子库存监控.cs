@@ -369,13 +369,17 @@ namespace 主程序202203
                         msg.status = "有货！";
                         string surl = "https://www.digikey.cn/zh/products/detail/analog-devices-inc/" + uid;
 
-                       string youhuo = Regex.Match(html, @"messages"":\[{""message"":""([\s\S]*?)""").Groups[1].Value;
+                       string youhuo = Regex.Match(html, @"messages"":\[{""message"":""([\s\S]*?)""").Groups[1].Value.Trim();
                         if (dics.ContainsKey(uid))
                         {
                             
                             if (dics[uid]!=youhuo)
                             {
-                                sendmsg(uid + "库存提醒", "<a href='" + surl + "'>" + surl + "</a>");
+                                dics[uid] = youhuo;
+                                if (youhuo != "" && youhuo.Contains("货"))
+                                {
+                                    sendmsg(uid + "库存提醒", "<a href='" + surl + "'>" + surl + "</a>");
+                                }
                             }
                             else
                             {
@@ -384,8 +388,12 @@ namespace 主程序202203
                         }
                         else
                         {
-                            dics.Add(uid,youhuo);
-                            sendmsg(uid + "库存提醒", "<a href='" + surl + "'>" + surl + "</a>");
+                            
+                            if (youhuo != ""&&youhuo.Contains("货"))
+                            {
+                                dics.Add(uid, youhuo);
+                                sendmsg(uid + "库存提醒", "<a href='" + surl + "'>" + surl + "</a>");
+                            }
                         }
 
                         

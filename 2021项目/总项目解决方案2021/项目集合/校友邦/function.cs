@@ -151,8 +151,12 @@ namespace 校友邦
 
             string adcode = getadcode(lng, lat);
 
-            string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
+            //string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
+
+            string url = "https://xcx.xybsyw.com/student/clock/Post.action";
             string postdata = "traineeId=" + traineeId + "&adcode=" + adcode + "&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus=" + status;
+
+           
 
             string html = PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
 

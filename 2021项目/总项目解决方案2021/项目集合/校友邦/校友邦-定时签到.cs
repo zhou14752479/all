@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -99,8 +100,12 @@ namespace 校友邦
 
         string path = AppDomain.CurrentDomain.BaseDirectory;
         function fc = new function();
-
+   
         List<string> pics = new List<string>();
+
+
+        
+
         private void 校友邦_定时签到_Load(object sender, EventArgs e)
         {
             #region 通用检测
@@ -115,8 +120,9 @@ namespace 校友邦
             }
 
             #endregion
-          
-          
+            webBrowser1.Navigate(path+"static/index.html"); //按照姓名找回 执行加密RSA JS方法
+            method.SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
             getdata();
             getpics();
 
@@ -231,9 +237,9 @@ namespace 校友邦
                     if (DateTime.Now.Hour>15)//结束签到
                     {
                         fc.status = "1";
-                      
+                        
                         //结束签到时间为空，不需要结束签到
-                        if(text[2]=="无" ||text[3]=="无")
+                        if (text[2]=="无" ||text[3]=="无")
                         {
                             listView1.Items[i].SubItems[8].Text = "不需要结束签到";
                             continue;
@@ -276,6 +282,8 @@ namespace 校友邦
                     }
                     else
                     {
+
+                        
                         string planid = fc.getplanid(cookie);
                         string traineeid = fc.gettraineeId(planid, cookie);
 
@@ -289,7 +297,12 @@ namespace 校友邦
                             }
 
 
-                            string msg = fc.qiandao(cookie, address, traineeid);
+                            string msg = qiandao(cookie, address, traineeid);
+                            //if(msg.Contains("操作异常"))
+                            //{
+                            //    msg = qiandao2(cookie, address, traineeid);
+                            //}
+
                             listView1.Items[i].SubItems[7].Text = shangchuanmamsg+"  "+msg;
                         }
                         if (fc.status == "1" && !end.Contains("success"))
@@ -299,7 +312,11 @@ namespace 校友邦
                                 shangchuanmamsg = fc.shangchuanma(cookie);
                             }
 
-                            string msg = fc.qiandao(cookie, address, traineeid);
+                            string msg = qiandao(cookie, address, traineeid);
+                            //if (msg.Contains("操作异常"))
+                            //{
+                            //    msg = qiandao2(cookie, address, traineeid);
+                            //}
                             listView1.Items[i].SubItems[8].Text = shangchuanmamsg + "  " + msg;
                         }
 
@@ -321,7 +338,18 @@ namespace 校友邦
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            #region 通用检测
+
+
+            string html = method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"QXTAe"))
+            {
+
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+            #endregion
             timer1.Interval = Convert.ToInt32(textBox1.Text)*60*1000;
             timer1.Start();
             if (thread == null || !thread.IsAlive)
@@ -386,5 +414,183 @@ namespace 校友邦
                 e.Cancel = true;//点取消的代码 
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private delegate string Encrypt(string traineeId, string adcode,string lat,string lng,string address,string clockStatus);
+
+        public string getencrypt(string traineeId,string adcode, string lat, string lng, string address,string clockStatus)
+        {
+
+            string result = webBrowser1.Document.InvokeScript("getdata", new object[] { traineeId,adcode,lat,lng,address,clockStatus }).ToString();
+            return result;
+        }
+
+        //public string getencrypt2(string traineeId, string adcode, string lat, string lng, string address, string clockStatus)
+        //{
+
+        //    string result = webBrowser1.Document.InvokeScript("getdata2", new object[] { traineeId, adcode, lat, lng, address, clockStatus }).ToString();
+        //    return result;
+        //}
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+    
+            timer1.Stop();
+           
+          
+        }
+
+
+
+       
+        public string qiandao(string cookie, string addr, string traineeId)
+        {
+
+            try
+            {
+                string aurl = "https://xcx.xybsyw.com/student/clock/GetPlan!detail.action";
+                string apostdata = "traineeId=" + traineeId;
+                string aHtml = function.PostUrl(aurl, apostdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+                string address = Regex.Match(aHtml, @"""address"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                string lat = Regex.Match(aHtml, @"""lat"":([\s\S]*?),").Groups[1].Value.Trim();
+                string lng = Regex.Match(aHtml, @"""lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+                if (address.Trim() == "")
+                {
+                    address = System.Web.HttpUtility.UrlEncode(addr);
+                    string baiduurl = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
+                    string baiduhtml = method.GetUrl(baiduurl, "utf-8");
+                    lat = Regex.Match(baiduhtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
+                    lng = Regex.Match(baiduhtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+
+                }
+               
+                string adcode = fc.getadcode(lng, lat);
+
+                string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
+
+              //  string url = "https://xcx.xybsyw.com/student/clock/Post.action";
+                string postdata = "model=microsoft&brand=microsoft&platform=windows&" + "traineeId=" + traineeId + "&adcode=" + adcode + "&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus=" + fc.status;
+
+
+                if (address.Contains("%"))
+                {
+                    address = System.Web.HttpUtility.UrlDecode(address);
+                }
+                Encrypt aa = new Encrypt(getencrypt);
+                IAsyncResult iar = BeginInvoke(aa, new object[] { traineeId, adcode, lat, lng, address, fc.status });
+                string crypt = EndInvoke(iar).ToString();
+                string[] text = crypt.Split(new string[] { "," }, StringSplitOptions.None);
+
+                string t = text[0];
+                string s = text[1];
+                string m = text[2];
+                string html = jiamipost.PostUrl(url, postdata, cookie, m,t,s);
+                MatchCollection msgs = Regex.Matches(html, @"""msg"":""([\s\S]*?)""");
+                string msg = msgs[msgs.Count - 1].Groups[1].Value;
+                
+                if (msg != "")
+                {
+                    return msg;
+                }
+                else
+                {
+                    return "failed";
+                }
+            }
+            catch (Exception ex)
+            {
+
+               textBox2.Text=ex.ToString();
+                return "failed";
+            }
+        }
+
+
+
+
+
+
+        ///// <summary>
+        ///// 包含openId  unionId的签到
+        ///// </summary>
+        ///// <param name="cookie"></param>
+        ///// <param name="addr"></param>
+        ///// <param name="traineeId"></param>
+        ///// <returns></returns>
+
+        //public string qiandao2(string cookie, string addr, string traineeId)
+        //{
+
+        //    try
+        //    {
+        //        string aurl = "https://xcx.xybsyw.com/student/clock/GetPlan!detail.action";
+        //        string apostdata = "traineeId=" + traineeId;
+        //        string aHtml = function.PostUrl(aurl, apostdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+        //        string address = Regex.Match(aHtml, @"""address"":""([\s\S]*?)""").Groups[1].Value.Trim();
+        //        string lat = Regex.Match(aHtml, @"""lat"":([\s\S]*?),").Groups[1].Value.Trim();
+        //        string lng = Regex.Match(aHtml, @"""lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+        //        if (address.Trim() == "")
+        //        {
+        //            address = System.Web.HttpUtility.UrlEncode(addr);
+        //            string baiduurl = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
+        //            string baiduhtml = method.GetUrl(baiduurl, "utf-8");
+        //            lat = Regex.Match(baiduhtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
+        //            lng = Regex.Match(baiduhtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+
+        //        }
+
+        //        string adcode = fc.getadcode(lng, lat);
+
+        //        //string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
+
+        //         string url = "https://xcx.xybsyw.com/student/clock/Post.action";
+        //        string postdata = "model=microsoft&brand=microsoft&platform=windows&system=Windows 10 x64&openId=ooru94lH0MDBlYKT4dUwpEkRyAWQ&unionId=oHY-uwfu_6jixOW8l8A1pOhFuvvY&" + "traineeId=" + traineeId + "&adcode=" + adcode + "&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=0&clockStatus=" + fc.status;
+
+        //        Encrypt aa = new Encrypt(getencrypt2);
+        //        IAsyncResult iar = BeginInvoke(aa, new object[] { traineeId, adcode, lat, lng, System.Web.HttpUtility.UrlDecode(address), fc.status });
+        //        string crypt = EndInvoke(iar).ToString();
+        //        string[] text = crypt.Split(new string[] { "," }, StringSplitOptions.None);
+
+        //        string t = text[0];
+        //        string s = text[1];
+        //        string m = text[2];
+        //        string html = jiamipost.PostUrl(url, postdata, cookie, m, t, s);
+        //        MatchCollection msgs = Regex.Matches(html, @"""msg"":""([\s\S]*?)""");
+        //        string msg = msgs[msgs.Count - 1].Groups[1].Value;
+        //        if (msg != "")
+        //        {
+        //            return msg;
+        //        }
+        //        else
+        //        {
+        //            return "failed";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        textBox2.Text = ex.ToString();
+        //        return "failed";
+        //    }
+        //}
+
+
+
+
     }
 }
