@@ -322,6 +322,56 @@ namespace 常用软件非客户
         }
 
 
+        /// <summary>
+        /// 删除未通过
+        /// </summary>
+        public void delwei()
+        {
+           
+            for (int i = 0; i < 999999; i++)
+
+            {
+
+                string url = "https://cuttlefish.baidu.com/nshop/doc/getlist?sub_tab=2&doc_status=3&pn="+i+"&rn=10&query=&doc_id_str=&time_range=&buyout_show_type=1";
+                string html = GetUrl(url);
+
+                MatchCollection docids = Regex.Matches(html, @"""doc_id"":""([\s\S]*?)""");
+                MatchCollection names = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+
+                string newtoken  = Regex.Match(html, @"""token"":""([\s\S]*?)""").Groups[1].Value;
+
+                for (int j = 0; j < docids.Count; j++)
+                {
+                    string docid = docids[j].Groups[1].Value.Trim();
+                    string name = Unicode2String(names[j].Groups[1].Value).Trim();
+                   
+                        try
+                        {
+                        string aurl = "https://cuttlefish.baidu.com/user/submit/newdocdelete?token="+ newtoken + "&new_token="+ newtoken + "&fold_id_str=0&doc_id_str="+docid+"&skip_fold_validate=1";
+                        string zhuangtai = GetUrl(aurl);
+
+                            //ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据    
+                            //lv1.SubItems.Add(docid);
+                            //lv1.SubItems.Add(name);
+                            //lv1.SubItems.Add(zhuangtai);
+                            label4.Text=DateTime.Now.ToString("HH:mm:ss")+"-->"+name + "  " + zhuangtai;
+                            Thread.Sleep(5000);
+                        }
+                        catch (Exception)
+                        {
+
+                            continue;
+                        }
+                    
+
+                }
+
+            }
+
+
+
+        }
+
         private void VIP转付费_Load(object sender, EventArgs e)
         {
 
@@ -334,7 +384,7 @@ namespace 常用软件非客户
         
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(viptofufei);
+                thread = new Thread(delwei);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

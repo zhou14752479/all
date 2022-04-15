@@ -275,7 +275,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "查询5";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "查询5";
+            this.Text = "传奇游戏挂机脚本5";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.查询5_FormClosing);
             this.Load += new System.EventHandler(this.查询5_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

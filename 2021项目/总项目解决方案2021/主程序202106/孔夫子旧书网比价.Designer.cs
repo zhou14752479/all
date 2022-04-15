@@ -69,7 +69,7 @@
             // 
             this.button2.Location = new System.Drawing.Point(371, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 21);
+            this.button2.Size = new System.Drawing.Size(86, 22);
             this.button2.TabIndex = 377;
             this.button2.Text = "选择....";
             this.button2.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             // 
             this.button3.Location = new System.Drawing.Point(292, 51);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(83, 28);
+            this.button3.Size = new System.Drawing.Size(73, 27);
             this.button3.TabIndex = 373;
             this.button3.Text = "停止";
             this.button3.UseVisualStyleBackColor = true;

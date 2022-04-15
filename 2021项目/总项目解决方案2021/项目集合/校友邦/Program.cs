@@ -16,7 +16,7 @@ namespace 校友邦
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 校友邦_定时签到());
+            Application.Run(new 校友邦());
         }
     }
 }

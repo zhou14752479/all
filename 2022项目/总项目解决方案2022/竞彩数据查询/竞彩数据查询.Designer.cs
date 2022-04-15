@@ -97,7 +97,6 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(54, 23);
             this.textBox7.TabIndex = 81;
-            this.textBox7.Visible = false;
             // 
             // label9
             // 
@@ -108,7 +107,6 @@
             this.label9.Size = new System.Drawing.Size(49, 14);
             this.label9.TabIndex = 80;
             this.label9.Text = "客胜：";
-            this.label9.Visible = false;
             // 
             // textBox8
             // 
@@ -117,7 +115,6 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(54, 23);
             this.textBox8.TabIndex = 79;
-            this.textBox8.Visible = false;
             // 
             // label10
             // 
@@ -128,7 +125,6 @@
             this.label10.Size = new System.Drawing.Size(49, 14);
             this.label10.TabIndex = 78;
             this.label10.Text = "平局：";
-            this.label10.Visible = false;
             // 
             // textBox9
             // 
@@ -137,7 +133,6 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(54, 23);
             this.textBox9.TabIndex = 77;
-            this.textBox9.Visible = false;
             // 
             // label11
             // 
@@ -148,7 +143,6 @@
             this.label11.Size = new System.Drawing.Size(49, 14);
             this.label11.TabIndex = 76;
             this.label11.Text = "主胜：";
-            this.label11.Visible = false;
             // 
             // button4
             // 
@@ -180,7 +174,6 @@
             this.textBox4.Size = new System.Drawing.Size(54, 23);
             this.textBox4.TabIndex = 73;
             this.textBox4.Text = "2.4";
-            this.textBox4.Visible = false;
             // 
             // label1
             // 
@@ -191,7 +184,6 @@
             this.label1.Size = new System.Drawing.Size(49, 14);
             this.label1.TabIndex = 72;
             this.label1.Text = "客胜：";
-            this.label1.Visible = false;
             // 
             // textBox5
             // 
@@ -201,7 +193,6 @@
             this.textBox5.Size = new System.Drawing.Size(54, 23);
             this.textBox5.TabIndex = 71;
             this.textBox5.Text = "2.85";
-            this.textBox5.Visible = false;
             // 
             // label2
             // 
@@ -212,7 +203,6 @@
             this.label2.Size = new System.Drawing.Size(49, 14);
             this.label2.TabIndex = 70;
             this.label2.Text = "平局：";
-            this.label2.Visible = false;
             // 
             // textBox6
             // 
@@ -221,7 +211,6 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(54, 23);
             this.textBox6.TabIndex = 69;
-            this.textBox6.Visible = false;
             // 
             // label3
             // 
@@ -232,7 +221,6 @@
             this.label3.Size = new System.Drawing.Size(49, 14);
             this.label3.TabIndex = 68;
             this.label3.Text = "主胜：";
-            this.label3.Visible = false;
             // 
             // button2
             // 

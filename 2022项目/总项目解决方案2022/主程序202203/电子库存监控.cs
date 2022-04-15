@@ -38,8 +38,8 @@ namespace 主程序202203
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = Url;
-                //WebProxy proxy = new WebProxy(ip);
-                //request.Proxy = proxy;
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.Headers.Add("Accept-Language", "zh-cn,zh,en");
@@ -344,7 +344,7 @@ namespace 主程序202203
                     string url = "https://www.digikey.cn/zh/products/detail/analog-devices-inc/" + uid.ToString().Replace("#", "-");
                    // string ip = iplist[id];
                    
-                    string html = GetUrl(url, "utf-8","");
+                    string html = GetUrl(url, "utf-8", textBox2.Text.Trim());
                     MatchCollection msgs = Regex.Matches(html, @"messages"":\[{""message"":""([\s\S]*?)""");
                     for (int i = 0; i < msgs.Count; i++)
                     {
@@ -360,6 +360,7 @@ namespace 主程序202203
 
                     if(msgs.Count==0)
                     {
+                        //msg.status = html;
                         msg.status = "0 现货";
                         msg.Tag = "end";
                     }
@@ -441,6 +442,7 @@ namespace 主程序202203
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            
             run();
         }
 

@@ -122,6 +122,16 @@ namespace win007
                     sql = sql + (" data3 like '" + textBox3.Text.Trim() + "' and");
                 }
 
+                if (textBox5.Text != "")
+                {
+                    sql = sql + (" rangqiu like '" + textBox5.Text.Trim() + "' and");
+                }
+                if (textBox6.Text != "")
+                {
+                    sql = sql + (" daxiaoqiu like '" + textBox6.Text.Trim() + "' and");
+                }
+
+
                 if (comboBox1.Text != "")
                 {
                     sql = sql + (" gongsi like '" + comboBox1.Text.Trim() + "' and");
@@ -283,27 +293,27 @@ namespace win007
                         //差值红绿色
                         if (cha1 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Green;
+                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Red;
                         }
                         if (cha2 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Green;
+                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Red;
                         }
                         if (cha3 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Green;
+                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Red;
                         }
                         if (cha1 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Red;
+                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Green;
                         }
                         if (cha2 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Red;
+                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Green;
                         }
                         if (cha3 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Red;
+                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Green;
                         }
 
 

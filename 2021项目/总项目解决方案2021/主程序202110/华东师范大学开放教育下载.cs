@@ -95,7 +95,7 @@ namespace 主程序202110
 
                         try
                         {
-                            if (Convert.ToDouble(score) >= 80)
+                            if (Convert.ToDouble(score) >= 85)
                             {
                                 for (int a = 0; a < fileNames.Count; a++)
                                 {

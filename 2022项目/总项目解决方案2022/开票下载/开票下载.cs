@@ -29,6 +29,46 @@ namespace 开票下载
             return html;
         }
 
+
+        public string downshishi(string hao,string jine)
+        {
+            try
+            {
+                Thread.Sleep(10000);
+                string url = "http://dzfp.sdshsy.com:18086/FPGLXT_WX/bill/getBill.action?number=" + hao + "&taxmoney=" + jine + "&code=J3A2";
+                string html = method.GetUrl(url, "utf-8");
+                string downurl = Regex.Match(html, @"btn_primary"" href=""([\s\S]*?)""").Groups[1].Value;
+               while(downurl=="")
+                {
+                    Thread.Sleep(2000);
+                    html = method.GetUrl(url, "utf-8");
+                    downurl = Regex.Match(html, @"btn_primary"" href=""([\s\S]*?)""").Groups[1].Value;
+                    if(downurl!="")
+                    {
+                        break;
+                    }
+                }
+                if (Convert.ToDouble(jine) >= Convert.ToDouble(textBox3.Text))
+                {
+                    string downhtml = method.GetUrl(downurl, "utf-8");
+                    string dlj = Regex.Match(downhtml, @"dlj"" value=""([\s\S]*?)""").Groups[1].Value;
+                    string signatureString = Regex.Match(downhtml, @"signatureString"" value=""([\s\S]*?)""").Groups[1].Value;
+
+                    string trueDownUrl = "https://dlj.51fapiao.cn/dlj/v7/downloadFile/" + dlj + "?signatureString=" + signatureString;
+                    method.downloadFile(trueDownUrl, path, hao + ".pdf", "");
+
+                    return "下载发票成功";
+                }
+               
+                return "下载发票成功";
+            }
+            catch (Exception)
+            {
+
+                return "异常";
+            }
+        }
+
         string path = AppDomain.CurrentDomain.BaseDirectory+"//download//";
         public void run()
         {
@@ -58,6 +98,7 @@ namespace 开票下载
                        
                         if(downurl!="")
                         {
+                            //金额满足
                             if (Convert.ToDouble(text2[j]) >= Convert.ToDouble(textBox3.Text))
                             {
                                 string downhtml = method.GetUrl(downurl, "utf-8");
@@ -70,13 +111,28 @@ namespace 开票下载
                                 lv1.SubItems.Add("下载发票成功");
                                 break;
                             }
+                            else
+                            {
+                                lv1.SubItems.Add("金额不符合");
+                                //金额不满足，跳到下一个流水号
+                                break;
+                            }
                         }
                         if(html.Contains("申请开票"))
                         {
                             string ahtml = shenqingkai(text1[i],text2[j]);
                             if(ahtml.Contains("正在等待开票"))
                             {
-                                lv1.SubItems.Add("申请开票中");
+                                //金额满足
+                                if (Convert.ToDouble(text2[j]) >= Convert.ToDouble(textBox3.Text))
+                                {
+                                    downshishi(text1[i], text2[j]);
+                                    lv1.SubItems.Add("开票成功");
+                                }
+                                else
+                                {
+                                    lv1.SubItems.Add("金额不符合");
+                                }
                             }
                             break;
                         }
@@ -87,6 +143,8 @@ namespace 开票下载
                         }
 
                     }
+                    if (status == false)
+                        return;
 
                 }
                 MessageBox.Show("完成");
@@ -99,6 +157,8 @@ namespace 开票下载
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        bool status = true;
         private void 开票下载_Load(object sender, EventArgs e)
         {
             #region 通用检测
@@ -153,6 +213,7 @@ namespace 开票下载
         Thread thread;
         private void button3_Click(object sender, EventArgs e)
         {
+            status = true;
             if(textBox1.Text=="" || textBox2.Text=="")
             {
                 MessageBox.Show("请导入文本");
@@ -169,7 +230,8 @@ namespace 开票下载
 
         private void button4_Click(object sender, EventArgs e)
         {
-            method.downloadFile("https://dlj.51fapiao.cn/dlj/v7/downloadFile/942473b6c384501e74d2cde730904bb835c27e?signatureString=fcae62ac231e43b8892d3188d0b2d861", path,  "11.pdf", "");
+            status = false;
+            //method.downloadFile("https://dlj.51fapiao.cn/dlj/v7/downloadFile/942473b6c384501e74d2cde730904bb835c27e?signatureString=fcae62ac231e43b8892d3188d0b2d861", path,  "11.pdf", "");
         }
 
         public void down2()

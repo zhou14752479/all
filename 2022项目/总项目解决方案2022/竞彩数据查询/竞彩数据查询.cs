@@ -577,7 +577,7 @@ namespace 竞彩数据查询
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            chaxun1();
+            chaxun();
         }
 
         private void 竞彩数据查询_FormClosing(object sender, FormClosingEventArgs e)

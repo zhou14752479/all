@@ -26,6 +26,8 @@ namespace 币种余额获取
         // string key = "SRBQMRAYMR3D9E2HJDPXNSBSIA66JTP1ED";
 
 
+        List<string> finishes = new List<string>();
+        int keycount = 0;
         Thread t;
         public void run()
         {
@@ -34,9 +36,44 @@ namespace 币种余额获取
 
                 for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
-                    Random rd = new Random(Guid.NewGuid().GetHashCode()); //生成不重复的随机数，默认的话根据时间戳如果太快会相同
-                    int suiji = rd.Next(1, lists.Count);
-                    string key = lists[suiji];
+                    if (!finishes.Contains(i.ToString()))
+                    {
+                        finishes.Add(i.ToString());
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                    if (keycount < lists.Count - 1)
+                    {
+                        keycount = keycount + 1;
+                    }
+                    else
+                    {
+                        keycount = 0;
+                    }
+
+                    string key1 = lists[keycount];
+
+                    if (keycount < lists.Count - 1)
+                    {
+                        keycount = keycount + 1;
+                    }
+                    else
+                    {
+                        keycount = 0;
+                    }
+                    string key2 = lists[keycount];
+                    if (keycount < lists.Count - 1)
+                    {
+                        keycount = keycount + 1;
+                    }
+                    else
+                    {
+                        keycount = 0;
+                    }
+                    string key3 = lists[keycount];
 
                     dataGridView1.Rows[i].Cells[4].Style.BackColor = Color.White;
                     dataGridView1.Rows[i].Cells[5].Style.BackColor = Color.White;
@@ -46,9 +83,9 @@ namespace 币种余额获取
                     string yewu = dataGridView1.Rows[i].Cells[1].Value.ToString().Trim();
                     string biecheng = dataGridView1.Rows[i].Cells[2].Value.ToString().Trim();
                     string addr = dataGridView1.Rows[i].Cells[3].Value.ToString().Trim();
-                    string eth = dgv.getbalance("ETH", addr, key);
-                    string usdt = dgv.getbalance("USDT", addr, key);
-                    string usdc = dgv.getbalance("USDC", addr, key);
+                    string eth = dgv.getbalance("ETH", addr, key1);
+                    string usdt = dgv.getbalance("USDT", addr, key2);
+                    string usdc = dgv.getbalance("USDC", addr, key3);
                     label1.Text = DateTime.Now.ToString("HH:mm:ss") + "：" + "正在获取---->" + addr;
                     try
                     {
@@ -164,6 +201,8 @@ namespace 币种余额获取
             label4.Text = dgv.allpage;
             label5.Text = dgv.nowpage;
             lists = dgv.getkey();
+
+
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -283,9 +322,9 @@ namespace 币种余额获取
         private void button3_Click(object sender, EventArgs e)
         {
             timer1.Start();
-            if (thread == null || !thread.IsAlive)
+            for (int i = 0; i < numericUpDown1.Value; i++)
             {
-                thread = new Thread(run);
+                Thread thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -307,12 +346,16 @@ namespace 币种余额获取
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            
+               label1.Text= DateTime.Now.ToString("HH:mm:ss")+ " 开始循环";
+                finishes.Clear();
+                for (int i = 0; i < numericUpDown1.Value; i++)
+                {
+                    Thread thread = new Thread(run);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            
         }
 
         private void 币种余额获取_FormClosing(object sender, FormClosingEventArgs e)

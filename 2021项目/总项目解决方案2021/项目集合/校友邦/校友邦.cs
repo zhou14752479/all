@@ -139,9 +139,13 @@ namespace 校友邦
             }
 
         }
+        string path = AppDomain.CurrentDomain.BaseDirectory;
         private void 校友邦_Load(object sender, EventArgs e)
         {
             jiance();
+            webBrowser1.Navigate(path + "static/index.html"); //按照姓名找回 执行加密RSA JS方法
+            method.SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -258,44 +262,116 @@ namespace 校友邦
             return adcode;
         }
 
-        public string qiandao(string cookie,string addr, string traineeId)
+        public string qiandao(string cookie, string addr, string traineeId)
         {
 
-            string aurl = "https://xcx.xybsyw.com/student/clock/GetPlan!detail.action";
-            string apostdata = "traineeId=" + traineeId;
-            string aHtml = method.PostUrl(aurl, apostdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
-            string address = Regex.Match(aHtml, @"""address"":""([\s\S]*?)""").Groups[1].Value.Trim();
-            string lat = Regex.Match(aHtml, @"""lat"":([\s\S]*?),").Groups[1].Value.Trim();
-            string lng = Regex.Match(aHtml, @"""lng"":([\s\S]*?),").Groups[1].Value.Trim();
-
-            if (address.Trim() == "")
+            try
             {
-                address = System.Web.HttpUtility.UrlEncode(addr);
-                string baiduurl = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
-                string baiduhtml = method.GetUrl(baiduurl, "utf-8");
-                lat = Regex.Match(baiduhtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
-                lng = Regex.Match(baiduhtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
+                string aurl = "https://xcx.xybsyw.com/student/clock/GetPlan!detail.action";
+                string apostdata = "traineeId=" + traineeId;
+                string aHtml = function.PostUrl(aurl, apostdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+                string address = Regex.Match(aHtml, @"""address"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                string lat = Regex.Match(aHtml, @"""lat"":([\s\S]*?),").Groups[1].Value.Trim();
+                string lng = Regex.Match(aHtml, @"""lng"":([\s\S]*?),").Groups[1].Value.Trim();
 
-              
+                if (address.Trim() == "")
+                {
+                    address = System.Web.HttpUtility.UrlEncode(addr);
+                    string baiduurl = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
+                    string baiduhtml = method.GetUrl(baiduurl, "utf-8");
+                    lat = Regex.Match(baiduhtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
+                    lng = Regex.Match(baiduhtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+
+                }
+
+                string adcode = getadcode(lng, lat);
+
+                string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
+
+                //  string url = "https://xcx.xybsyw.com/student/clock/Post.action";
+                string postdata = "model=microsoft&brand=microsoft&platform=windows&" + "traineeId=" + traineeId + "&adcode=" + adcode + "&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus=" + status;
+
+
+                if (address.Contains("%"))
+                {
+                    address = System.Web.HttpUtility.UrlDecode(address);
+                }
+                Encrypt aa = new Encrypt(getencrypt);
+                IAsyncResult iar = BeginInvoke(aa, new object[] { traineeId, adcode, lat, lng, address, status });
+                string crypt = EndInvoke(iar).ToString();
+                string[] text = crypt.Split(new string[] { "," }, StringSplitOptions.None);
+
+                string t = text[0];
+                string s = text[1];
+                string m = text[2];
+                string html = jiamipost.PostUrl(url, postdata, cookie, m, t, s);
+                MatchCollection msgs = Regex.Matches(html, @"""msg"":""([\s\S]*?)""");
+                string msg = msgs[msgs.Count - 1].Groups[1].Value;
+
+                if (msg != "")
+                {
+                    return msg;
+                }
+                else
+                {
+                    return "failed";
+                }
             }
-
-            string adcode = getadcode(lng,lat);
-
-            string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
-            string postdata = "traineeId=" + traineeId + "&adcode="+adcode+"&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
-            
-            string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
-
-            string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
-            if (msg != "")
+            catch (Exception ex)
             {
-                return msg;
-            }
-            else
-            {
+
+                //textBox2.Text = ex.ToString();
                 return "failed";
             }
         }
+
+        private delegate string Encrypt(string traineeId, string adcode, string lat, string lng, string address, string clockStatus);
+
+        public string getencrypt(string traineeId, string adcode, string lat, string lng, string address, string clockStatus)
+        {
+
+            string result = webBrowser1.Document.InvokeScript("getdata", new object[] { traineeId, adcode, lat, lng, address, clockStatus }).ToString();
+            return result;
+        }
+        //public string qiandao(string cookie,string addr, string traineeId)
+        //{
+
+        //    string aurl = "https://xcx.xybsyw.com/student/clock/GetPlan!detail.action";
+        //    string apostdata = "traineeId=" + traineeId;
+        //    string aHtml = method.PostUrl(aurl, apostdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+        //    string address = Regex.Match(aHtml, @"""address"":""([\s\S]*?)""").Groups[1].Value.Trim();
+        //    string lat = Regex.Match(aHtml, @"""lat"":([\s\S]*?),").Groups[1].Value.Trim();
+        //    string lng = Regex.Match(aHtml, @"""lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+        //    if (address.Trim() == "")
+        //    {
+        //        address = System.Web.HttpUtility.UrlEncode(addr);
+        //        string baiduurl = "https://api.map.baidu.com/geocoding/v3/?address=" + address + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
+        //        string baiduhtml = method.GetUrl(baiduurl, "utf-8");
+        //        lat = Regex.Match(baiduhtml, @"lat"":([\s\S]*?)}").Groups[1].Value.Trim();
+        //        lng = Regex.Match(baiduhtml, @"lng"":([\s\S]*?),").Groups[1].Value.Trim();
+
+              
+        //    }
+
+        //    string adcode = getadcode(lng,lat);
+
+        //    string url = "https://xcx.xybsyw.com/student/clock/PostNew.action";
+        //    string postdata = "traineeId=" + traineeId + "&adcode="+adcode+"&lat=" + lat + "&lng=" + lng + "&address=" + address + "&deviceName=microsoft&punchInStatus=1&clockStatus="+status;
+            
+        //    string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+
+        //    string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
+        //    if (msg != "")
+        //    {
+        //        return msg;
+        //    }
+        //    else
+        //    {
+        //        return "failed";
+        //    }
+        //}
 
 
         public string chongxinqiandao(string cookie, string addr, string traineeId)
@@ -441,18 +517,7 @@ namespace 校友邦
         bool zanting = true;
         private void button2_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-
-            string html = method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"QXTAe"))
-            {
-
-                return;
-            }
-
-            #endregion
+            
             status = "2";
             if (thread == null || !thread.IsAlive)
             {

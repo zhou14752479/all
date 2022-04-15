@@ -89,6 +89,12 @@
     <Compile Include="人人文库.Designer.cs">
       <DependentUpon>人人文库.cs</DependentUpon>
     </Compile>
+    <Compile Include="天眼查发票.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="天眼查发票.Designer.cs">
+      <DependentUpon>天眼查发票.cs</DependentUpon>
+    </Compile>
     <Compile Include="学科网.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="人人文库.resx">
       <DependentUpon>人人文库.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="天眼查发票.resx">
+      <DependentUpon>天眼查发票.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="学科网.resx">
       <DependentUpon>学科网.cs</DependentUpon>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VIP转付费));
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -104,9 +106,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 192);
+            this.listView1.Location = new System.Drawing.Point(0, 222);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(553, 325);
+            this.listView1.Size = new System.Drawing.Size(553, 295);
             this.listView1.TabIndex = 67;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -147,9 +149,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(245, 87);
             this.textBox3.TabIndex = 65;
-            this.textBox3.Text = "BDUSS=zBYRXVHOUtPd3EzZ1BLRkZOeTNJNWxTS2k2RlJZOXY1T3FkYVZudXY1V0Jhek5nSVFBQUFBJCQA" +
-    "AAAAAAAAAAEAAABVvFgjztK0-MnPzqjSuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-    "AAAAAAAAAAAAAAAAAAAAAAAAAIHeC2CB3gtgT";
+            this.textBox3.Text = resources.GetString("textBox3.Text");
             // 
             // textBox4
             // 
@@ -158,11 +158,21 @@
             this.textBox4.Size = new System.Drawing.Size(224, 21);
             this.textBox4.TabIndex = 68;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 193);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 69;
+            this.label4.Text = "label4";
+            // 
             // VIP转付费
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 517);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
@@ -198,5 +208,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label4;
     }
 }

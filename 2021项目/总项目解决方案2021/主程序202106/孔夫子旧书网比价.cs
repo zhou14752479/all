@@ -193,10 +193,14 @@ namespace 主程序202106
                     string postdata2 = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%221%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
 
                     string html2 =PostUrl(url, postdata2);
-                    string count=  Regex.Match(html2, @"""recordCount"":""([\s\S]*?)""").Groups[1].Value;
+                    string count=  Regex.Match(html2, @"""recordCount"":([\s\S]*?),").Groups[1].Value;
+                    string isFuzzy = Regex.Match(html2, @"""isFuzzy"":([\s\S]*?),").Groups[1].Value;
                     Thread.Sleep(1000);
 
-
+                    if(isFuzzy=="1")
+                    {
+                        count = "无";
+                    }
 
                     label1.Text = "正在查询：" + isbn;
                     string price = "无";
@@ -293,7 +297,7 @@ namespace 主程序202106
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.Proxy = null;//防止代理抓包
+                //request.Proxy = null;//防止代理抓包
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("X-Tingyun-Id:lLmhN035-8Y;c=2;r=1510130765;u=b62bf55b6da98676c7af69e7063790e6::85C1D76CAE16FFDC");
@@ -350,6 +354,7 @@ namespace 主程序202106
         }
 
         #endregion
+
         private void button3_Click(object sender, EventArgs e)
         {
             status = false;

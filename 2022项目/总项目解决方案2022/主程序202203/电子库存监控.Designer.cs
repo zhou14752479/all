@@ -105,12 +105,10 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(96, 23);
-            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(574, 33);
+            this.textBox2.Size = new System.Drawing.Size(574, 21);
             this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "https://dev.kdlapi.com/api/getproxy/?orderid=964820989062899&num=700&protocol=2&m" +
-    "ethod=1&an_ha=1&quality=0&signature=oa6x8ig62bmpg2g7538aft4298cuxexg&sep=1";
+            this.textBox2.Text = "tps472.kdlapi.com:15818";
             // 
             // label2
             // 

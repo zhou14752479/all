@@ -69,8 +69,8 @@ namespace 浙江企业基础信息查询
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Title = "打开excel文件";
-            openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
-            //openFileDialog1.Filter = "excel07文件(*.xlsx)|*.xlsx";
+            //openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
+            openFileDialog1.Filter = "excel07文件(*.xlsx)|*.xlsx";
             openFileDialog1.InitialDirectory = @"C:\Users\Administrator\Desktop";
             openFileDialog1.RestoreDirectory = true;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -219,12 +219,16 @@ namespace 浙江企业基础信息查询
                     }
                     while (status == true)
                     {
-                        //textBox2.Text = "status为true";
+                        //textBox2.Text = status.ToString()+threadcount.ToString();
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        if(threadcount==20)
+                        {
+                            break;
+                        }
                     }
                     while(threadcount<20)
                     {
-                        //textBox2.Text = "threadcount小于20";
+                       // textBox2.Text = status.ToString()+threadcount.ToString();
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
                     status = true;

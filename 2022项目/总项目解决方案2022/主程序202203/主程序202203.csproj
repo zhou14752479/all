@@ -56,6 +56,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="天眼查发票.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="天眼查发票.Designer.cs">
+      <DependentUpon>天眼查发票.cs</DependentUpon>
+    </Compile>
     <Compile Include="微信找回.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="天眼查发票.resx">
+      <DependentUpon>天眼查发票.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="微信找回.resx">
       <DependentUpon>微信找回.cs</DependentUpon>
     </EmbeddedResource>
