@@ -12,7 +12,9 @@ namespace 竞彩数据查询
 {
     class function
     {
-        string path = System.Environment.CurrentDirectory + "\\jingcaidata.db"; //获取当前程序运行文件夹
+        //string path = System.Environment.CurrentDirectory + "\\jingcaidata.db"; //获取当前程序运行文件夹
+
+        string path = System.Environment.CurrentDirectory + "\\lanqiudata.db"; //获取当前程序运行文件夹
         /// <summary>
         /// 查询数据库
         /// </summary>
@@ -149,6 +151,52 @@ namespace 竞彩数据查询
                                "'" + hhl + "'," +
                                 "'" + updatetime + "'," +
                     "'" + result+ "')";
+
+                SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path);
+                mycon.Open();
+
+                SQLiteCommand cmd = new SQLiteCommand(sql, mycon);
+
+                int status = cmd.ExecuteNonQuery();  //执行sql语句
+                if (status > 0)
+                {
+                    return true;
+
+                }
+
+                mycon.Close();
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+                return false;
+            }
+
+        }
+
+        /// <summary>
+        /// 插入数据库
+        /// </summary>
+        public bool insertdata_lanqiu(string xuhao,string time,string liansai,string zhu,string ke,string zhu_fen, string ke_fen,string ke_sheng,string ke_daxiao,string ke_rang,string zhu_sheng,string zhu_daxiao,string zhu_rang_fen,string zhu_rang_peilv,string date)
+        {
+            try
+            {
+                string sql = "INSERT INTO datas(xuhao,time,liansai,zhu,ke,zhu_fen,ke_fen,ke_sheng,ke_daxiao,ke_rang,zhu_sheng,zhu_daxiao,zhu_rang_fen,zhu_rang_peilv,date)VALUES('" + xuhao + "','" + time + "'," +
+                    "'" + liansai + "'," +
+                     "'" + zhu + "'," +
+                      "'" + ke+ "'," +
+                         "'" + zhu_fen + "'," +
+                           "'" + ke_fen + "'," +
+                             "'" + ke_sheng+ "'," +
+                              "'" + ke_daxiao + "'," +
+                               "'" + ke_rang + "'," +
+                                "'" + zhu_sheng + "'," +
+                                 "'" + zhu_daxiao + "'," +
+                                  "'" + zhu_rang_fen + "'," +
+                                  "'" + zhu_rang_peilv + "'," +
+                    "'" + date+ "')";
 
                 SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path);
                 mycon.Open();

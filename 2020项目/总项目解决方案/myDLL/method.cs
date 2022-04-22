@@ -210,7 +210,7 @@ namespace myDLL
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                request.KeepAlive = true;
+                //request.KeepAlive = true;
                 request.Accept = "*/*";
                 request.Timeout = 5000;
 

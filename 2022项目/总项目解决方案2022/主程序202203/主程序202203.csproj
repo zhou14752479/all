@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -68,6 +69,12 @@
     <Compile Include="微信找回.Designer.cs">
       <DependentUpon>微信找回.cs</DependentUpon>
     </Compile>
+    <Compile Include="更改屏幕亮度.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="更改屏幕亮度.Designer.cs">
+      <DependentUpon>更改屏幕亮度.cs</DependentUpon>
+    </Compile>
     <Compile Include="电子库存监控.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="微信找回.resx">
       <DependentUpon>微信找回.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="更改屏幕亮度.resx">
+      <DependentUpon>更改屏幕亮度.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="电子库存监控.resx">
       <DependentUpon>电子库存监控.cs</DependentUpon>

@@ -397,5 +397,10 @@ namespace M3u8文件替换
            
             listView1.Items.Clear();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

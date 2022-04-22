@@ -16,7 +16,7 @@ namespace 主程序202203
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 天眼查发票());
+            Application.Run(new 电子库存监控());
         }
     }
 }

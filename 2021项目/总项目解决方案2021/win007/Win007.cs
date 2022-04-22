@@ -90,7 +90,7 @@ namespace win007
         #endregion
 
         function fc = new function();
-        public void chaxun()
+        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6,Label l1, Label l2, Label l3,ComboBox comb1,DataGridView dgv1)
         {
             int zhusheng_bifen_count = 0;
             int heju_bifen_count = 0;
@@ -98,7 +98,7 @@ namespace win007
 
             try
             {
-                if(textBox1.Text=="" &&textBox2.Text=="" && textBox3.Text=="")
+                if(t1.Text=="" &&t2.Text=="" && t3.Text=="")
                 {
                     MessageBox.Show("请输入数值");
                     return;
@@ -109,32 +109,32 @@ namespace win007
                 string sql = "select * from datas where";
 
                 
-                if(textBox1.Text!="")
+                if(t1.Text!="")
                 {
-                    sql = sql + (" data1 like '" + textBox1.Text.Trim() + "' and");
+                    sql = sql + (" data1 like '" + t1.Text.Trim() + "' and");
                 }
-                if (textBox2.Text != "")
+                if (t2.Text != "")
                 {
-                    sql = sql + (" data2 like '" + textBox2.Text.Trim() + "' and");
+                    sql = sql + (" data2 like '" + t2.Text.Trim() + "' and");
                 }
-                if (textBox3.Text != "")
+                if (t3.Text != "")
                 {
-                    sql = sql + (" data3 like '" + textBox3.Text.Trim() + "' and");
-                }
-
-                if (textBox5.Text != "")
-                {
-                    sql = sql + (" rangqiu like '" + textBox5.Text.Trim() + "' and");
-                }
-                if (textBox6.Text != "")
-                {
-                    sql = sql + (" daxiaoqiu like '" + textBox6.Text.Trim() + "' and");
+                    sql = sql + (" data3 like '" + t3.Text.Trim() + "' and");
                 }
 
-
-                if (comboBox1.Text != "")
+                if (t5.Text != "")
                 {
-                    sql = sql + (" gongsi like '" + comboBox1.Text.Trim() + "' and");
+                    sql = sql + (" rangqiu like '" + t5.Text.Trim() + "' and");
+                }
+                if (t6.Text != "")
+                {
+                    sql = sql + (" daxiaoqiu like '" + t6.Text.Trim() + "' and");
+                }
+
+
+                if (comb1.Text != "")
+                {
+                    sql = sql + (" gongsi like '" + comb1.Text.Trim() + "' and");
                 }
 
                 if (sql.Substring(sql.Length - 3, 3) == "and")
@@ -143,84 +143,87 @@ namespace win007
                 }
 
                 DataTable dt = fc.chaxundata(sql);
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns["matchname"].HeaderText = "比赛名";
-                dataGridView1.Columns["zhu"].HeaderText = "主队";
-                dataGridView1.Columns["ke"].HeaderText = "客队";
-                dataGridView1.Columns["time"].HeaderText = "比赛时间";
-                dataGridView1.Columns["gongsi"].HeaderText = "公司名";
+                dgv1.DataSource = dt;
+                dgv1.Columns["matchname"].HeaderText = "比赛名";
+                dgv1.Columns["zhu"].HeaderText = "主队";
+                dgv1.Columns["ke"].HeaderText = "客队";
+                dgv1.Columns["time"].HeaderText = "比赛时间";
+                dgv1.Columns["gongsi"].HeaderText = "公司名";
                
-                dataGridView1.Columns["bifen"].HeaderText = "比分";
+                dgv1.Columns["bifen"].HeaderText = "比分";
           
-                dataGridView1.Columns["data1"].HeaderText = "数据1";
-                dataGridView1.Columns["data2"].HeaderText = "数据2";
-                dataGridView1.Columns["data3"].HeaderText = "数据3";
-                dataGridView1.Columns["data4"].HeaderText = "数据4";
-                dataGridView1.Columns["data5"].HeaderText = "数据5";
-                dataGridView1.Columns["data6"].HeaderText = "数据6";
-                dataGridView1.Columns["data7"].HeaderText = "数据7";
-                dataGridView1.Columns["data8"].HeaderText = "数据8";
-                dataGridView1.Columns["data9"].HeaderText = "数据9";
-                dataGridView1.Columns["zhu_cj"].HeaderText = "主队成交比例";
-                dataGridView1.Columns["he_cj"].HeaderText = "和交比例";
-                dataGridView1.Columns["ke_cj"].HeaderText = "客队成交比例";
+                dgv1.Columns["data1"].HeaderText = "数据1";
+                dgv1.Columns["data2"].HeaderText = "数据2";
+                dgv1.Columns["data3"].HeaderText = "数据3";
+                dgv1.Columns["data4"].HeaderText = "数据4";
+                dgv1.Columns["data5"].HeaderText = "数据5";
+                dgv1.Columns["data6"].HeaderText = "数据6";
+                dgv1.Columns["data7"].HeaderText = "数据7";
+                dgv1.Columns["data8"].HeaderText = "数据8";
+                dgv1.Columns["data9"].HeaderText = "数据9";
+                dgv1.Columns["zhu_cj"].HeaderText = "主队成交比例";
+                dgv1.Columns["he_cj"].HeaderText = "和交比例";
+                dgv1.Columns["ke_cj"].HeaderText = "客队成交比例";
 
-                dataGridView1.Columns["zhu_yingkui"].HeaderText = "主庄家赢亏";
-                dataGridView1.Columns["he_yingkui"].HeaderText = "和庄家赢亏";
-                dataGridView1.Columns["ke_yingkui"].HeaderText = "客庄家赢亏";
+                dgv1.Columns["zhu_yingkui"].HeaderText = "主庄家赢亏";
+                dgv1.Columns["he_yingkui"].HeaderText = "和庄家赢亏";
+                dgv1.Columns["ke_yingkui"].HeaderText = "客庄家赢亏";
 
-                dataGridView1.Columns["zhu_yingkuizs"].HeaderText = "主赢亏指数";
-                dataGridView1.Columns["he_yingkuizs"].HeaderText = "和赢亏指数";
-                dataGridView1.Columns["ke_yingkuizs"].HeaderText = "客队赢亏指数";
+                dgv1.Columns["zhu_yingkuizs"].HeaderText = "主赢亏指数";
+                dgv1.Columns["he_yingkuizs"].HeaderText = "和赢亏指数";
+                dgv1.Columns["ke_yingkuizs"].HeaderText = "客队赢亏指数";
 
-                dataGridView1.Columns["rangqiu"].HeaderText = "让球";
-                dataGridView1.Columns["daxiaoqiu"].HeaderText = "大小球";
+                dgv1.Columns["rangqiu"].HeaderText = "让球";
+                dgv1.Columns["daxiaoqiu"].HeaderText = "大小球";
 
-                dataGridView1.Columns[7].HeaderCell.Style.BackColor = Color.Red;
-                dataGridView1.Columns[8].HeaderCell.Style.BackColor = Color.CornflowerBlue;
-                dataGridView1.Columns[9].HeaderCell.Style.BackColor = Color.Green;
+                dgv1.Columns[7].HeaderCell.Style.BackColor = Color.Red;
+                dgv1.Columns[8].HeaderCell.Style.BackColor = Color.CornflowerBlue;
+                dgv1.Columns[9].HeaderCell.Style.BackColor = Color.Green;
 
-                dataGridView1.Columns[10].HeaderCell.Style.BackColor = Color.Red;
-                dataGridView1.Columns[11].HeaderCell.Style.BackColor = Color.CornflowerBlue;
-                dataGridView1.Columns[12].HeaderCell.Style.BackColor = Color.Green;
+                dgv1.Columns[10].HeaderCell.Style.BackColor = Color.Red;
+                dgv1.Columns[11].HeaderCell.Style.BackColor = Color.CornflowerBlue;
+                dgv1.Columns[12].HeaderCell.Style.BackColor = Color.Green;
 
-                //this.dataGridView1.Columns[7].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
-                //this.dataGridView1.Columns[8].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
-                //this.dataGridView1.Columns[9].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+                //this.dgv1.Columns[7].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                //this.dgv1.Columns[8].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
+                //this.dgv1.Columns[9].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
 
-                //this.dataGridView1.Columns[10].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
-                //this.dataGridView1.Columns[11].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
-                //this.dataGridView1.Columns[12].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+                //this.dgv1.Columns[10].DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                //this.dgv1.Columns[11].DefaultCellStyle.BackColor = System.Drawing.Color.CornflowerBlue;
+                //this.dgv1.Columns[12].DefaultCellStyle.BackColor = System.Drawing.Color.Green;
 
-                //this.dataGridView1.Columns[13].Width = 0;
-                //this.dataGridView1.Columns[14].Width = 0;
-                //this.dataGridView1.Columns[15].Width = 0;
+                //this.dgv1.Columns[13].Width = 0;
+                //this.dgv1.Columns[14].Width = 0;
+                //this.dgv1.Columns[15].Width = 0;
 
-                this.dataGridView1.Columns[16].Width = 50;
-                this.dataGridView1.Columns[17].Width =50;
-                this.dataGridView1.Columns[18].Width = 50;
+                dgv1.Columns[16].Width = 50;
+                dgv1.Columns[17].Width =50;
+                dgv1.Columns[18].Width = 50;
 
                 //计算
 
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                for (int i = 0; i < dgv1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
                     try
                     {
-                        string value1 = dataGridView1.Rows[i].Cells[7].Value.ToString();
-                        string value2 = dataGridView1.Rows[i].Cells[8].Value.ToString();
-                        string value3 = dataGridView1.Rows[i].Cells[9].Value.ToString();
+                        string value1 = dgv1.Rows[i].Cells[7].Value.ToString();
+                        string value2 = dgv1.Rows[i].Cells[8].Value.ToString();
+                        string value3 = dgv1.Rows[i].Cells[9].Value.ToString();
 
-                        string value4 = dataGridView1.Rows[i].Cells[10].Value.ToString();
-                        string value5 = dataGridView1.Rows[i].Cells[11].Value.ToString();
-                        string value6 = dataGridView1.Rows[i].Cells[12].Value.ToString();
+                        string value4 = dgv1.Rows[i].Cells[10].Value.ToString();
+                        string value5 = dgv1.Rows[i].Cells[11].Value.ToString();
+                        string value6 = dgv1.Rows[i].Cells[12].Value.ToString();
 
-                        string value7 = dataGridView1.Rows[i].Cells[13].Value.ToString();
-                        string value8 = dataGridView1.Rows[i].Cells[14].Value.ToString();
-                        string value9 = dataGridView1.Rows[i].Cells[15].Value.ToString();
+                        string value7 = dgv1.Rows[i].Cells[13].Value.ToString();
+                        string value8 = dgv1.Rows[i].Cells[14].Value.ToString();
+                        string value9 = dgv1.Rows[i].Cells[15].Value.ToString();
 
                         double cha1 = Convert.ToDouble(value1) - Convert.ToDouble(value4);
                         double cha2 = Convert.ToDouble(value2) - Convert.ToDouble(value5);
                         double cha3 = Convert.ToDouble(value3) - Convert.ToDouble(value6);
+
+
+                        double cha33 = Convert.ToDouble(value6) - Convert.ToDouble(value3);
 
 
                         double cha4 = Convert.ToDouble(value7) - Convert.ToDouble(value4);
@@ -264,118 +267,134 @@ namespace win007
 
                         if(cha4>0)
                         {
-                            dataGridView1.Rows[i].Cells[10].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[10].Style.BackColor = Color.Green;
                         }
                         if (cha5 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[11].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[11].Style.BackColor = Color.Green;
                         }
                         if (cha6 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[12].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[12].Style.BackColor = Color.Green;
                         }
                         if (cha4 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[10].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[10].Style.BackColor = Color.Red;
                         }
                         if (cha5 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[11].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[11].Style.BackColor = Color.Red;
                         }
                         if (cha6 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[12].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[12].Style.BackColor = Color.Red;
                         }
 
-                         dataGridView1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3+" "+ dataGridView1.Rows[i].Cells[6].Value;
+                         dgv1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3+" "+ dgv1.Rows[i].Cells[6].Value;
 
 
                         //差值红绿色
                         if (cha1 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[7].Style.BackColor = Color.Red;
                         }
                         if (cha2 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[8].Style.BackColor = Color.Red;
                         }
                         if (cha3 > 0)
                         {
-                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[9].Style.BackColor = Color.Red;
                         }
                         if (cha1 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[7].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[7].Style.BackColor = Color.Green;
                         }
                         if (cha2 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[8].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[8].Style.BackColor = Color.Green;
                         }
                         if (cha3 < 0)
                         {
-                            dataGridView1.Rows[i].Cells[9].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[9].Style.BackColor = Color.Green;
                         }
 
 
-                        //成交比例颜色黄橙红
-                        if (cha1 > 0.1&& cha1 <= 0.15)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
-                        }
-                        if (cha1 > 0.15 && cha1 <= 0.2)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
-                        }
-                        if (cha1 > 0.2)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
-                        }
-                        if (cha2> 0.1 && cha1 <= 0.15)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
-                        }
-                        if (cha2 > 0.15 && cha1 <= 0.2)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
-                        }
-                        if (cha2 > 0.2)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
-                        }
-                        if (cha3 > 0.1 && cha1 <= 0.15)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
-                        }
-                        if (cha3 > 0.15 && cha1 <= 0.2)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
-                        }
-                        if (cha3 > 0.2)
-                        {
-                            dataGridView1.Rows[i].Cells[16].Style.BackColor = Color.Red;
-                        }
+                        ////成交比例颜色黄橙红
+                        //if (cha1 > 0.1&& cha1 <= 0.15)
+                        //{
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                        //}
+                        //if (cha1 > 0.15 && cha1 <= 0.2)
+                        //{
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                        //}
+                        //if (cha1 > 0.2)
+                        //{
+                           
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                        //}
+                        //if (cha2> 0.1 && cha1 <= 0.15)
+                        //{
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                        //}
+                        //if (cha2 > 0.15 && cha1 <= 0.2)
+                        //{
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                        //}
+                        //if (cha2 > 0.2)
+                        //{
+                            
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                        //}
+                        //if (cha3 > 0.1 && cha1 <= 0.15)
+                        //{
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                        //}
+                        //if (cha3 > 0.15 && cha1 <= 0.2)
+                        //{
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                        //}
+                        //if (cha3 > 0.2)
+                        //{
+                            
+                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                        //}
 
+                        if (cha33 > 0.09 && cha33 <= 0.15)
+                        {
+                            dgv1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
+                        }
+                        if (cha33 > 0.16&& cha33 <= 0.2) 
+                        {
+                            dgv1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
+                        }
+                        if (cha33 > 0.21)
+                        {
 
+                            
+                            dgv1.Rows[i].Cells[16].Style.BackColor = Color.Red;
+                        }
 
 
                         //成交比例
-                        string zhu_cj= dataGridView1.Rows[i].Cells[18].Value.ToString().Replace("%","");
-                        string he_cj = dataGridView1.Rows[i].Cells[19].Value.ToString().Replace("%", "");
-                        string ke_cj = dataGridView1.Rows[i].Cells[20].Value.ToString().Replace("%", "");
+                        string zhu_cj= dgv1.Rows[i].Cells[18].Value.ToString().Replace("%","");
+                        string he_cj = dgv1.Rows[i].Cells[19].Value.ToString().Replace("%", "");
+                        string ke_cj = dgv1.Rows[i].Cells[20].Value.ToString().Replace("%", "");
 
                         if (zhu_cj!="无")
                         {
                             if(Convert.ToDouble(zhu_cj)>=70 & Convert.ToDouble(zhu_cj)<80)
                             {
-                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Yellow;
+                                dgv1.Rows[i].Cells[18].Style.BackColor = Color.Yellow;
                             }
                             if (Convert.ToDouble(zhu_cj) >= 80 & Convert.ToDouble(zhu_cj) < 90)
                             {
-                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Orange;
+                                dgv1.Rows[i].Cells[18].Style.BackColor = Color.Orange;
                             }
                             if (Convert.ToDouble(zhu_cj) >90)
                             {
-                                dataGridView1.Rows[i].Cells[18].Style.BackColor = Color.Red;
+                                dgv1.Rows[i].Cells[18].Style.BackColor = Color.Red;
                             }
 
 
@@ -384,30 +403,30 @@ namespace win007
                         {
                             if (Convert.ToDouble(he_cj) >= 70 & Convert.ToDouble(he_cj) < 80)
                             {
-                                dataGridView1.Rows[i].Cells[19].Style.BackColor = Color.Yellow;
+                                dgv1.Rows[i].Cells[19].Style.BackColor = Color.Yellow;
                             }
                             if (Convert.ToDouble(he_cj) >= 80 & Convert.ToDouble(he_cj) < 90)
                             {
-                                dataGridView1.Rows[i].Cells[19].Style.BackColor = Color.Orange;
+                                dgv1.Rows[i].Cells[19].Style.BackColor = Color.Orange;
                             }
                             if (Convert.ToDouble(he_cj) >= 90)
                             {
-                                dataGridView1.Rows[i].Cells[19].Style.BackColor = Color.Red;
+                                dgv1.Rows[i].Cells[19].Style.BackColor = Color.Red;
                             }
                         }
                         if (ke_cj != "无")
                         {
                             if (Convert.ToDouble(ke_cj) >= 70 & Convert.ToDouble(ke_cj) < 80)
                             {
-                                dataGridView1.Rows[i].Cells[20].Style.BackColor = Color.Yellow;
+                                dgv1.Rows[i].Cells[20].Style.BackColor = Color.Yellow;
                             }
                             if (Convert.ToDouble(ke_cj) >= 80 & Convert.ToDouble(ke_cj) <90)
                             {
-                                dataGridView1.Rows[i].Cells[20].Style.BackColor = Color.Orange;
+                                dgv1.Rows[i].Cells[20].Style.BackColor = Color.Orange;
                             }
                             if (Convert.ToDouble(ke_cj) >= 90)
                             {
-                                dataGridView1.Rows[i].Cells[20].Style.BackColor = Color.Red;
+                                dgv1.Rows[i].Cells[20].Style.BackColor = Color.Red;
                             }
                         }
 
@@ -426,18 +445,18 @@ namespace win007
               
               
 
-                if (textBox4.Text != "")
+                if (t4.Text != "")
                 {
-                    for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                    for (int i = 0; i < dgv1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                     {
                         try
                         {
-                            string value = dataGridView1.Rows[i].Cells[16].Value.ToString();
+                            string value = dgv1.Rows[i].Cells[16].Value.ToString();
                            
-                            if (!value.Contains(textBox4.Text.Trim()))
+                            if (!value.Contains(t4.Text.Trim()))
                             {
-                                DataGridViewRow row = dataGridView1.Rows[i];
-                                 dataGridView1.Rows.Remove(row);
+                                DataGridViewRow row = dgv1.Rows[i];
+                                 dgv1.Rows.Remove(row);
                                   i--; //这句是关键。。
                             }
                         }
@@ -450,10 +469,10 @@ namespace win007
                 }
 
                 //计算比分百分比
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                for (int i = 0; i < dgv1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
                     //比分
-                    string bifen = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                    string bifen = dgv1.Rows[i].Cells[6].Value.ToString();
                     string[] bifens = bifen.Split(new string[] { "-" }, StringSplitOptions.None);
                     if (bifens.Length == 2)
                     {
@@ -471,9 +490,9 @@ namespace win007
                         }
                     }
                 }
-                zhusheng_banfenbi_label.Text = Convert.ToDouble(Convert.ToDouble(zhusheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
-                heju_banfenbi_label.Text = Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
-                kesheng_banfenbi_label.Text = Convert.ToDouble(Convert.ToDouble(kesheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
+                l1.Text = Convert.ToDouble(Convert.ToDouble(zhusheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
+                l2.Text = Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
+               l3.Text = Convert.ToDouble(Convert.ToDouble(kesheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
 
                 //fc.ShowDataInListView(dt, listView1);
             }
@@ -506,17 +525,7 @@ namespace win007
 
 
         Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
-        public void run()
-        {
-           
-
-            for (int day = 20210101; day < 20211225; day++)
-            {
-                label3.Text = day.ToString();
-                fc.getdata(day.ToString());
-            }
-
-        }
+       
         
         string startdate = "2021-01-01";
         string enddate = "2022-01-06";
@@ -765,8 +774,9 @@ namespace win007
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-
-            chaxun();
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView1.ColumnHeadersHeight = 50;
+            chaxun(textBox1,textBox2,textBox3,textBox4,textBox5,textBox6,zhusheng_banfenbi_label,heju_banfenbi_label,kesheng_banfenbi_label,comboBox1,dataGridView1);
 
 
         }
@@ -857,25 +867,7 @@ namespace win007
            
         }
 
-        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            textBox4.Text += "升";
-        }
-
-        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            textBox4.Text += "平";
-        }
-
-        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            textBox4.Text += "降";
-        }
-
-        private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            textBox4.Text = "";
-        }
+       
 
         private void Win007_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -889,6 +881,34 @@ namespace win007
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView2.ColumnHeadersHeight = 50;
+            chaxun(textBox12, textBox11, textBox10, textBox9, textBox7, textBox8, label15, label14, label3, comboBox2, dataGridView2);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView3.ColumnHeadersHeight = 50;
+            chaxun(textBox18, textBox17, textBox16, textBox15, textBox13, textBox14, label28, label27, label26, comboBox3, dataGridView3);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView4.ColumnHeadersHeight = 50;
+            chaxun(textBox24, textBox23, textBox22, textBox21, textBox19, textBox20, label41, label40, label39, comboBox4, dataGridView4);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView5.ColumnHeadersHeight = 50;
+            chaxun(textBox30, textBox29, textBox28, textBox27, textBox25, textBox26, label54, label53, label52, comboBox5, dataGridView5);
         }
     }
 }

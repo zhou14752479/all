@@ -18,7 +18,7 @@ namespace 主程序202202
         public 内部资源号激活系统()
         {
             InitializeComponent();
-          
+            label1.Parent = pictureBox1;
             label2.Parent = pictureBox1;
             label3.Parent = pictureBox1;
         }

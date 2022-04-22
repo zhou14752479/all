@@ -27,7 +27,7 @@ namespace 浙江企业基础信息查询
             InitializeComponent();
         }
 
-        string ua1 = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.17(0x17001126) NetType/WIFI Language/zh_CN";
+        static string ua1 = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.17(0x17001126) NetType/WIFI Language/zh_CN";
 
         #region GET请求
         /// <summary>
@@ -35,7 +35,7 @@ namespace 浙江企业基础信息查询
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public  string GetUrl(string Url, string charset)
+        public static string GetUrl(string Url, string charset)
         {
             string html = "";
             string COOKIE = "HWWAFSESID=cc9147f4aa41fc86ee; HWWAFSESTIME=1618565738420; route=0f1040e0778720d344b64fd91ee406cf; _monitor_sessionid=tCy7Ys6iRe1626459960928; _monitor_idx=5; JMOPENSESSIONID=1b9e1ff0-e9f4-4dc0-9a49-3720b58f83d9";
@@ -44,7 +44,7 @@ namespace 浙江企业基础信息查询
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Proxy = null;//防止代理抓包
+               // request.Proxy = null;//防止代理抓包
                 //WebProxy proxy = new WebProxy(ip);
                 //request.Proxy = proxy;
 
@@ -196,6 +196,7 @@ namespace 浙江企业基础信息查询
                     string sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[0];
                     string zj_ggsjpt_sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[1];
                     string url = "http://app.gjzwfw.gov.cn/jimps/link.do?param=%7B%22from%22%3A%222%22%2C%22key%22%3A%223b8d18a7d9b4482caf1cbc39b4404d06%22%2C%22requestTime%22%3A%22"+timestr+"%22%2C%22sign%22%3A%22"+sign+"%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22"+ zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22"+timestr+"%22%2C%22gmsfhm%22%3A%22"+uid+"%22%2C%22additional%22%3A%22%22%7D";
+                    textBox1.Text = url;
                     label3.Text = "正在查询：" + uid;
                     //textBox3.Text = url;
                     string html = GetUrl(url,"utf-8");

@@ -156,15 +156,19 @@ namespace 主程序202203
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-            webBrowser1.Refresh();
-            timer1.Start();
-           
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(PostUrl);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            //webBrowser1.Refresh();
+            //timer1.Start();
+
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(PostUrl);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+
+
+          
+
 
         }
 

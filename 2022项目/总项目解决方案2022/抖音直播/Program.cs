@@ -16,7 +16,7 @@ namespace 抖音直播
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 抖音直播());
+            Application.Run(new AI工具());
         }
     }
 }
