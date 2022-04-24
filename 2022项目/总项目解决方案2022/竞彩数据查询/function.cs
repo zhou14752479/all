@@ -179,11 +179,11 @@ namespace 竞彩数据查询
         /// <summary>
         /// 插入数据库
         /// </summary>
-        public bool insertdata_lanqiu(string xuhao,string time,string liansai,string zhu,string ke,string zhu_fen, string ke_fen,string ke_sheng,string ke_daxiao,string ke_rang,string zhu_sheng,string zhu_daxiao,string zhu_rang_fen,string zhu_rang_peilv,string date)
+        public bool insertdata_lanqiu(string xuhao,string time,string liansai,string zhu,string ke,string zhu_fen, string ke_fen,string ke_sheng,string ke_daxiao,string ke_rang,string zhu_sheng,string zhu_daxiao,string zhu_rang_fen,string zhu_rang_peilv,string date,string fencha)
         {
             try
             {
-                string sql = "INSERT INTO datas(xuhao,time,liansai,zhu,ke,zhu_fen,ke_fen,ke_sheng,ke_daxiao,ke_rang,zhu_sheng,zhu_daxiao,zhu_rang_fen,zhu_rang_peilv,date)VALUES('" + xuhao + "','" + time + "'," +
+                string sql = "INSERT INTO datas(xuhao,time,liansai,zhu,ke,zhu_fen,ke_fen,ke_sheng,ke_daxiao,ke_rang,zhu_sheng,zhu_daxiao,zhu_rang_fen,zhu_rang_peilv,date,fencha)VALUES('" + xuhao + "','" + time + "'," +
                     "'" + liansai + "'," +
                      "'" + zhu + "'," +
                       "'" + ke+ "'," +
@@ -196,7 +196,8 @@ namespace 竞彩数据查询
                                  "'" + zhu_daxiao + "'," +
                                   "'" + zhu_rang_fen + "'," +
                                   "'" + zhu_rang_peilv + "'," +
-                    "'" + date+ "')";
+                                  "'" + date + "'," +
+                    "'" + fencha+ "')";
 
                 SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path);
                 mycon.Open();

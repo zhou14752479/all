@@ -117,9 +117,9 @@ namespace 竞彩数据查询
                         string zhu_rang_fen = Regex.Match(html, @"<td><span class=""fenChaSpan float_l"">([\s\S]*?)</span>").Groups[1].Value;
                         string zhu_rang_peilv = Regex.Match(html, @"<td><span class=""fenChaSpan float_l"">([\s\S]*?)主([\s\S]*?)</span>").Groups[2].Value;
 
-
-                        zhu_fen = Regex.Replace(zhu_fen, "<[^>]+>", "");
-                        ke_fen = Regex.Replace(ke_fen, "<[^>]+>", "");
+                        string fencha = Regex.Match(html, @"ja=""-1"">([\s\S]*?)</b></td>([\s\S]*?)</td>").Groups[2].Value;
+                        zhu_fen = Regex.Replace(zhu_fen, "<[^>]+>", "").Trim();
+                        ke_fen = Regex.Replace(ke_fen, "<[^>]+>", "").Trim();
 
                         ke_sheng = Regex.Replace(ke_sheng, "<[^>]+>", "").Replace("&nbsp;&nbsp;", "").Replace("&nbsp;", "").Replace("客", "").Trim();
                         ke_daxiao = Regex.Replace(ke_daxiao, "<[^>]+>", "").Replace("&nbsp;&nbsp;", ",").Replace("&nbsp;", "").Replace("客", "").Trim();
@@ -129,11 +129,11 @@ namespace 竞彩数据查询
                         zhu_daxiao = Regex.Replace(zhu_daxiao, "<[^>]+>", "").Replace("&nbsp;&nbsp;", ",").Replace("&nbsp;", "").Replace("主", "").Trim();
                         zhu_rang_fen = Regex.Replace(zhu_rang_fen, "<[^>]+>", "").Replace("&nbsp;&nbsp;", ",").Replace("&nbsp;", "").Replace("主", "").Trim();
                         zhu_rang_peilv = Regex.Replace(zhu_rang_peilv, "<[^>]+>", "").Replace("&nbsp;&nbsp;", "").Replace("&nbsp;", "").Replace("主", "").Trim();
-
+                        fencha = Regex.Replace(fencha, "<[^>]+>", "").Trim();
                         //string msg =  ke_sheng + "  -" + ke_daxiao + "  -" + ke_rang + "  -" + zhu_sheng + "  -" + zhu_daxiao +"  -" + zhu_rang_fen +"  -" + zhu_rang_peilv;
                         //MessageBox.Show(msg);
-                       
-                        fc.insertdata_lanqiu(xuhao, time, liansai, zhu, ke, zhu_fen, ke_fen, ke_sheng, ke_daxiao, ke_rang, zhu_sheng, zhu_daxiao, zhu_rang_fen, zhu_rang_peilv, dt.ToString("yyyy-MM-dd"));
+
+                        fc.insertdata_lanqiu(xuhao, time, liansai, zhu, ke, zhu_fen, ke_fen, ke_sheng, ke_daxiao, ke_rang, zhu_sheng, zhu_daxiao, zhu_rang_fen, zhu_rang_peilv, dt.ToString("yyyy-MM-dd"),fencha);
 
 
 
