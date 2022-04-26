@@ -122,18 +122,24 @@ namespace 主程序202203
             {
                 SetBrightness((short)numericUpDown1.Value);
                 status = 2;
+                模式文字 moshi=new 模式文字("安静模式");
+                moshi.Show();
 
             }
             else if (status == 2)
             {
                 SetBrightness((short)numericUpDown2.Value);
                 status = 3;
+                模式文字 moshi = new 模式文字("均衡模式");
+                moshi.Show();
 
             }
             else if (status == 3)
             {
                 SetBrightness((short)numericUpDown3.Value);
                 status = 1;
+                模式文字 moshi = new 模式文字("高能模式");
+                moshi.Show();
 
             }
         }

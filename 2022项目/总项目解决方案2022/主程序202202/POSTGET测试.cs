@@ -52,6 +52,32 @@ namespace 主程序202202
                 request.Referer = refertxt.Text;
                 request.Headers.Add("Cookie", cookietxt.Text);
                 request.Headers.Add("Accept-Encoding", "gzip");
+                //添加头部
+                WebHeaderCollection headers = request.Headers;
+                if (key1.Text != "")
+                {
+                    headers.Add(key1.Text.Trim() + ":" + value1.Text.Trim());
+                }
+                if (key2.Text != "")
+                {
+                    headers.Add(key2.Text.Trim() + ":" + value2.Text.Trim());
+                }
+                if (key3.Text != "")
+                {
+                    headers.Add(key3.Text.Trim() + ":" + value3.Text.Trim());
+                }
+                if (key4.Text != "")
+                {
+                    headers.Add(key4.Text.Trim() + ":" + value4.Text.Trim());
+                }
+                if (key5.Text != "")
+                {
+                    headers.Add(key5.Text.Trim() + ":" + value5.Text.Trim());
+                }
+                if (key6.Text != "")
+                {
+                    headers.Add(key6.Text.Trim() + ":" + value6.Text.Trim());
+                }
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 if (redirectcheck.Checked == true)
                 {
@@ -104,10 +130,6 @@ namespace 主程序202202
 
         }
         #endregion
-        private bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-        {
-            return true;
-        }
 
         #region POST请求
         /// <summary>
@@ -123,7 +145,7 @@ namespace 主程序202202
             try
             {
                 string url = urltxt.Text;
-                if(!url.Contains("http"))
+                if (!url.Contains("http"))
                 {
                     url = "http://" + url;
                 }
@@ -135,16 +157,35 @@ namespace 主程序202202
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
                 //添加头部
-                //WebHeaderCollection headers = request.Headers;
-                //headers.Add("sec-fetch-mode:navigate");
-                //headers.Add("sec-fetch-site:same-origin");
-                //headers.Add("sec-fetch-user:?1");
-                //headers.Add("upgrade-insecure-requests: 1");
-                //添加头部
+                WebHeaderCollection headers = request.Headers;
+                if(key1.Text!="")
+                {
+                    headers.Add(key1.Text.Trim()+":"+value1.Text.Trim());
+                }
+                if (key2.Text != "")
+                {
+                    headers.Add(key2.Text.Trim() + ":" + value2.Text.Trim());
+                }
+                if (key3.Text != "")
+                {
+                    headers.Add(key3.Text.Trim() + ":" + value3.Text.Trim());
+                }
+                if (key4.Text != "")
+                {
+                    headers.Add(key4.Text.Trim() + ":" + value4.Text.Trim());
+                }
+                if (key5.Text != "")
+                {
+                    headers.Add(key5.Text.Trim() + ":" + value5.Text.Trim());
+                }
+                if (key6.Text != "")
+                {
+                    headers.Add(key6.Text.Trim() + ":" + value6.Text.Trim());
+                }
                 request.ContentType = contenttype;
                 request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 request.Headers.Add("Accept-Encoding", "gzip");
-                if(redirectcheck.Checked==true)
+                if (redirectcheck.Checked == true)
                 {
                     request.AllowAutoRedirect = true;
                 }
@@ -162,7 +203,7 @@ namespace 主程序202202
                     request.KeepAlive = false;
                 }
 
-               
+
 
                 request.UserAgent = useragenttxt.Text;
                 request.Headers.Add("Cookie", cookietxt.Text);
@@ -192,18 +233,24 @@ namespace 主程序202202
 
                 bodytxt.Text = html;
                 response.Close();
-               
+
             }
             catch (WebException ex)
             {
 
-               bodytxt.Text= ex.ToString();
+                bodytxt.Text = ex.ToString();
             }
 
 
         }
 
         #endregion
+        private bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
+        }
+
+        
         private void button1_Click(object sender, EventArgs e)
         {
             bodytxt.Text = "";

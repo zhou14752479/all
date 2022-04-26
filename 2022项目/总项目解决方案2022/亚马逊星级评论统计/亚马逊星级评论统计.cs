@@ -34,38 +34,17 @@ namespace 亚马逊星级评论统计
            HttpWebResponse response = null;
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.amazon.com/hz/reviews-render/ajax/reviews/get/ref=cm_cr_arp_d_viewopt_sr");
 
-                request.Headers.Add("sec-ch-ua", @""" Not;A Brand"";v=""99"", ""Google Chrome"";v=""97"", ""Chromium"";v=""97""");
-                request.Headers.Add("rtt", @"200");
-                request.Headers.Add("sec-ch-ua-mobile", @"?0");
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
-                request.ContentType = "application/x-www-form-urlencoded;charset=UTF-8";
-                request.Accept = "text/html,*/*";
-                request.Headers.Add("x-requested-with", @"XMLHttpRequest");
-                request.Headers.Add("downlink", @"2.35");
-                request.Headers.Add("ect", @"4g");
-                request.Headers.Add("sec-ch-ua-platform", @"""Windows""");
-                request.Headers.Add("origin", @"https://www.amazon.com");
-                request.Headers.Add("sec-fetch-site", @"same-origin");
-                request.Headers.Add("sec-fetch-mode", @"cors");
-                request.Headers.Add("sec-fetch-dest", @"empty");
-                request.Referer = "https://www.amazon.com/RRecomfit-360-degree-Phone-Holder-Gooseneck/product-reviews/B00ZCE4BH2/ref=cm_cr_arp_d_viewopt_sr?ie=UTF8&reviewerType=all_reviews&filterByStar=three_star&pageNumber=1";
-                request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
-                request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh,sq;q=0.9,zh-CN;q=0.8,oc;q=0.7,de;q=0.6,en;q=0.5");
-                request.Headers.Set(HttpRequestHeader.Cookie, @"session-id=139-1347714-3595752; session-id-time=2082787201l; i18n-prefs=USD; sp-cdn=""L5Z9:CN""; ubid-main=133-6364598-4421762; lc-main=en_US; session-token=9ZN03TfsLk3dA0SGeGjNFbFyUPWB8HXd3RA9s+7niIEW166my3GsuyaFzS/cPQx94K4swW4As4djh1chVwZcSYzAVXlsRbe6+CH2bFkkRt1slA5LCXwtG0mLt/UqmHYIDdCG9lL26o4vXdvRyvJTLttVQivLqYiDalUTVV/Szj0HT/BPgZC2AbPUoPuFCH8n; csm-hit=tb:E1GKQ46F7R4D3VEQPZHQ+sa-E5088WS2JX0EPJZDMFR8-7EBMNWDDSKVZ56W1YJGE|1646394986156&t:1646394986156&adb:adblk_no");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.amazon.com/-/zh/product-reviews/"+asin+"/ref=cm_cr_arp_d_viewopt_sr?ie=UTF8&reviewerType=all_reviews&filterByStar="+star+"&pageNumber=1");
 
-                request.Method = "POST";
-                request.ServicePoint.Expect100Continue = false;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36";
+                request.Referer = "https://www.amazon.com/-/zh/product-reviews/B08FX35S7K/ref=cm_cr_arp_d_viewopt_sr?ie=UTF8&reviewerType=all_reviews&filterByStar=two_star&pageNumber=1";
+                request.Headers.Set(HttpRequestHeader.Cookie, @"session-id=139-2757510-5594321; session-id-time=2082787201l; i18n-prefs=USD; lc-main=zh_CN; sp-cdn=""L5Z9:CN""; ubid-main=133-3327139-8296540; x-amz-captcha-1=1650788142114423; x-amz-captcha-2=MFZcU0ZZR7Aaunb7UzeUZw==; session-token=WBS0wQ9kV3NiA0DDaMq/HKroOAoqRy7H+BHJ0oFsqZISpGodToDLnRA6kYwIRykL/ipMHP8VMdJOGGHIx0fcSOSJHHLa4F8h8lNhaqKfHQWDQPczQ93Rn2Yi5umY4pvLqXEMdmQjAxXIRqdqBHvSwvf1DVepvs/vysoKYKjVZGBr0SiDkoXW4Dt2WfBFkk+d; csm-hit=adb:adblk_no&t:1650781429478&tb:VAVT27Z8D730E1FT2HY7+sa-VAVT27Z8D730E1FT2HY7-AKMFS67MRR48B1MH3PD0|1650781429478");
+                request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip");
 
-                string body = @"sortBy=&reviewerType=all_reviews&formatType=&mediaType=&filterByStar="+star+"&pageNumber=1&filterByLanguage=&filterByKeyword=&shouldAppend=undefined&deviceType=desktop&canShowIntHeader=undefined&reftag=cm_cr_arp_d_viewopt_sr&pageSize=10&asin="+asin+"&scope=reviewsAjax2";
-                byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
-                request.ContentLength = postBytes.Length;
-                Stream stream = request.GetRequestStream();
-                stream.Write(postBytes, 0, postBytes.Length);
-                stream.Close();
-               
                 response = (HttpWebResponse)request.GetResponse();
+
+
 
                 string html = "";
                 if (response.Headers["Content-Encoding"] == "gzip")
@@ -90,12 +69,14 @@ namespace 亚马逊星级评论统计
             }
             catch (WebException e)
             {
+                MessageBox.Show(e.ToString());
                 if (e.Status == WebExceptionStatus.ProtocolError) response = (HttpWebResponse)e.Response;
                 return "";
                 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 if (response != null) response.Close();
                 return "";
             }
@@ -120,9 +101,15 @@ namespace 亚马逊星级评论统计
                         //textBox2.Text = html;
                         label2.Text = "正在查询："+ asin;
                         string values = Regex.Match(html, @"a-spacing-base a-size-base\\"">([\s\S]*?)</div>").Groups[1].Value.Replace("\\n", "").Trim();
-
+                        if(values=="")
+                        {
+                            values = Regex.Match(html, @"a-spacing-base a-size-base"">([\s\S]*?)</div>").Groups[1].Value.Replace("\\n", "").Trim();
+                        }
+                        //英文下
                         values = values.Replace("total","").Replace("ratings", "#").Replace("with", "").Replace("reviews", "").Replace(" ", "").Replace(",", "").Replace("review", "").Replace("rating", "#").Trim();
-
+                        //中文下
+                        values = values.Replace("total", "").Replace("|", "").Replace("全局评级", "#").Replace("全局评论", "").Replace("<span>", "").Replace("</span>", "").Trim();
+                       
                         string[] text = values.Split(new string[] { "#" }, StringSplitOptions.None);
                         if (text.Length < 1)
                         {

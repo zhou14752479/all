@@ -298,37 +298,37 @@ namespace 竞彩数据查询
                 double shu1count = 0;
                 //计算
 
-                //for (int i = 0; i < (dataGridView1.Rows.Count - 1); i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
-                //{
-                //    string value = dataGridView1.Rows[i].Cells[10].Value.ToString();
-                //    string bifen = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                for (int i = 0; i < (dataGridView1.Rows.Count - 1); i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                {
+                    string zhu= dataGridView1.Rows[i].Cells[6].Value.ToString();
+                    string ke = dataGridView1.Rows[i].Cells[7].Value.ToString();
 
 
-                //    if (value == "胜")
-                //    {
-                //        shengcount = shengcount + 1;
-                //    }
-                //    if (value == "平")
-                //    {
-                //        pingcount = pingcount + 1;
-                //    }
-                //    if (value == "负")
-                //    {
-                //        fucount = fucount + 1;
-                //    }
-
-
-                   
-                //}
-
-                //try
-                //{
+                    if (Convert.ToInt32(zhu)>Convert.ToInt32(ke))
+                    {
+                        shengcount = shengcount + 1;
+                    }
+                    if (Convert.ToInt32(zhu) == Convert.ToInt32(ke))
+                    {
+                        pingcount = pingcount + 1;
+                    }
+                    if (Convert.ToInt32(zhu) < Convert.ToInt32(ke))
+                    {
+                        fucount = fucount + 1;
+                    }
 
 
 
-                //    double shenglv = shengcount / (dataGridView1.Rows.Count - 1);
-                //    double pinglv = pingcount / (dataGridView1.Rows.Count - 1);
-                //    double fulv = fucount / (dataGridView1.Rows.Count - 1);
+                }
+
+                try
+                {
+
+
+
+                    double shenglv = shengcount / (dataGridView1.Rows.Count - 1);
+                double pinglv = pingcount / (dataGridView1.Rows.Count - 1);
+                double fulv = fucount / (dataGridView1.Rows.Count - 1);
 
 
 
@@ -337,15 +337,15 @@ namespace 竞彩数据查询
 
 
 
-                //    label4.Text = "共符合：" + (dataGridView1.Rows.Count - 1) + "场比赛，胜率：" + Convert.ToInt32(Convert.ToDouble(shenglv.ToString("F2")) * 100) + "%；平局：" + Convert.ToInt32(Convert.ToDouble(pinglv.ToString("F2")) * 100) + "%；负场：" +
-                //        Convert.ToInt32(Convert.ToDouble(fulv.ToString("F2")) * 100) + "%；";
-                    
-                //}
-                //catch (Exception)
-                //{
+                label4.Text = "共符合：" + (dataGridView1.Rows.Count - 1) + "场比赛，胜率：" + Convert.ToInt32(Convert.ToDouble(shenglv.ToString("F2")) * 100) + "%；平局：" + Convert.ToInt32(Convert.ToDouble(pinglv.ToString("F2")) * 100) + "%；负场：" +
+                      Convert.ToInt32(Convert.ToDouble(fulv.ToString("F2")) * 100) + "%；";
 
-                //    label4.Text = "共符合：" + (dataGridView1.Rows.Count - 1) + "场比赛";
-                //}
+                }
+                catch (Exception)
+                {
+
+                    label4.Text = "共符合：" + (dataGridView1.Rows.Count - 1) + "场比赛";
+                }
 
             }
             catch (Exception ex)

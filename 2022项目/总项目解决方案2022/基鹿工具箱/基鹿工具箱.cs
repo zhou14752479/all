@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace 基鹿工具箱
 {
@@ -54,6 +56,15 @@ namespace 基鹿工具箱
         {
             tabControl1.SelectedIndex = 6;
         }
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 9;
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl1.SelectedIndex = 9;
+        }
         private Point mPoint = new Point();
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -73,6 +84,8 @@ namespace 基鹿工具箱
 
         private void 基鹿工具箱_Load(object sender, EventArgs e)
         {
+            
+            
             label4.Text = "有效期至:" + Util.expiretime ;
             this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
             button1.Click += new System.EventHandler(btn_Click);
@@ -453,6 +466,103 @@ namespace 基鹿工具箱
             }
 
             textBox3.Text = str;
+        }
+
+
+
+       
+
+
+     Util util= new Util();
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            util.stop = false;
+            util.reviewcountdic.Clear();
+            util.reviewtimedic.Clear();
+
+
+            if (thread == null || !thread.IsAlive)
+            {
+               
+                thread = new Thread(new ParameterizedThreadStart(util.getreview));
+                string o = itemidtxt.Text.Trim();
+                thread.Start((object)o);
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+
+            while (true)
+            {
+                button18.Text = "正在提取数据分析...";
+                button18.Enabled = false;
+                if(util.saledCount!="")
+                {
+                    salecountlabel.Text = util.saledCount; 
+                    salejinelabel.Text = util.saledCount;
+                }
+                if (util.stop == true)
+                {
+                    button18.Text = "点击分析";
+                    button18.Enabled = true;
+
+                    //List<string> xData = new List<string>() { "A", "B", "C", "D", "E" };
+                    //List<int> yData = new List<int>() { 10, 20, 30, 40, 100 };
+                    chart1.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
+                    chart1.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
+                    chart1.Series[0].Points.DataBindXY(util.reviewcountdic.Keys, util.reviewcountdic.Values);
+
+                    chart2.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
+                    chart2.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
+                    chart2.Series[0].Points.DataBindXY(util.reviewcountdic.Keys, util.reviewcountdic.Values);
+
+                    chart3.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
+                    chart3.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
+                
+                    chart3.Series[0].Points.DataBindXY(util.reviewtimedic.Keys, util.reviewtimedic.Values);
+                    break;
+                }
+            }
+
+
+
+
+
+
+
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            button23.BackColor = Color.White;
+            button24.BackColor = Color.DodgerBlue;
+            button25.BackColor = Color.White;
+
+            button23.ForeColor = Color.Black;
+            button24.ForeColor = Color.White;
+            button25.ForeColor = Color.Black;
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            button23.BackColor = Color.DodgerBlue;
+            button24.BackColor = Color.White;
+            button25.BackColor = Color.White;
+
+            button23.ForeColor = Color.White;
+            button24.ForeColor = Color.Black;
+            button25.ForeColor = Color.Black;
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            button23.BackColor = Color.White;
+            button24.BackColor = Color.White;
+            button25.BackColor = Color.DodgerBlue;
+
+            button23.ForeColor = Color.Black;
+            button24.ForeColor = Color.Black;
+            button25.ForeColor = Color.White;
         }
     }
 }

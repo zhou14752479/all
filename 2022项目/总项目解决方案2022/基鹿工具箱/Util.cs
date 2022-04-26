@@ -20,6 +20,7 @@ namespace 基鹿工具箱
 {
     class Util
     {
+       static string COOKIE = "cna=IEEVGmxNb3QCAXnisujqtGPv; taklid=38e78512859846e58e75c42be1833a02; hng=CN%7Czh-CN%7CCNY%7C156; lid=zkg852266010; ali_ab=121.226.159.98.1645245827623.1; ali_apache_track=c_mid=b2b-1052347548|c_lid=zkg852266010|c_ms=1|c_mt=2; _m_h5_tk=3e9666f327a4af69b19b6d7adbb23eb8_1649325439454; _m_h5_tk_enc=d7732f7b2298a8cd29d69f807bcbeccf; xlly_s=1; cookie2=2a6f52413f2e48cd63a5da6bc8191e9e; sgcookie=E100kZBFanIDZNPfcot4VcewKkmUiR9sB7C4rpdjYQP6x25S3n2aTZ8486eH618tvfau6C2Z38RJvIPMt%2BGbTm3%2FCPvaFgnZmBQxYX9X74V0BPEAcMJWWZxMsEutNsxXs7Q5; t=bb42afa080af1dca98fb8d6a52dc1684; _tb_token_=e6859ebee1b17; uc4=nk4=0%40GwrkntVPltPB9cR46GncAmsyVe%2Fk0gQ%3D&id4=0%40UOnlZ%2FcoxCrIUsehK6jr4tbgfrWs; __cn_logon__=false; alicnweb=touch_tb_at%3D1649316804592%7Clastlogonid%3Dzkg852266010%7Cshow_inter_tips%3Dfalse; keywordsHistory=%E9%92%A2%E7%AD%8B%E9%92%A9; _csrf_token=1649319453013; tfstk=c8cRB2aZUnxubUUx7Ypm8uykH_M5aWxLcaZh9Xh0ACwwxaCdOs2isfQ5oLaQbuLA.; l=eBNaJtqgg-gKy7-ABO5ZKurza7791IOfGsPzaNbMiInca6tGXnutLNC3TKQwpdtj_tfjEeKrTan6EdE2SJ438x125OM8ARjSH6v6-; isg=BCgooAfp3oWAkvHrPLKOYWNs-RY6UYxbHQ9mG-JYFKMEPcyni2JB6oc7Nd3NDUQz";
         #region GET请求
         /// <summary>
         /// GET请求
@@ -29,7 +30,7 @@ namespace 基鹿工具箱
         public static string GetUrl(string Url, string charset)
         {
             string html = "";
-            string COOKIE = "cna=IEEVGmxNb3QCAXnisujqtGPv; taklid=38e78512859846e58e75c42be1833a02; hng=CN%7Czh-CN%7CCNY%7C156; lid=zkg852266010; ali_ab=121.226.159.98.1645245827623.1; ali_apache_track=c_mid=b2b-1052347548|c_lid=zkg852266010|c_ms=1|c_mt=2; _m_h5_tk=3e9666f327a4af69b19b6d7adbb23eb8_1649325439454; _m_h5_tk_enc=d7732f7b2298a8cd29d69f807bcbeccf; xlly_s=1; cookie2=2a6f52413f2e48cd63a5da6bc8191e9e; sgcookie=E100kZBFanIDZNPfcot4VcewKkmUiR9sB7C4rpdjYQP6x25S3n2aTZ8486eH618tvfau6C2Z38RJvIPMt%2BGbTm3%2FCPvaFgnZmBQxYX9X74V0BPEAcMJWWZxMsEutNsxXs7Q5; t=bb42afa080af1dca98fb8d6a52dc1684; _tb_token_=e6859ebee1b17; uc4=nk4=0%40GwrkntVPltPB9cR46GncAmsyVe%2Fk0gQ%3D&id4=0%40UOnlZ%2FcoxCrIUsehK6jr4tbgfrWs; __cn_logon__=false; alicnweb=touch_tb_at%3D1649316804592%7Clastlogonid%3Dzkg852266010%7Cshow_inter_tips%3Dfalse; keywordsHistory=%E9%92%A2%E7%AD%8B%E9%92%A9; _csrf_token=1649319453013; tfstk=c8cRB2aZUnxubUUx7Ypm8uykH_M5aWxLcaZh9Xh0ACwwxaCdOs2isfQ5oLaQbuLA.; l=eBNaJtqgg-gKy7-ABO5ZKurza7791IOfGsPzaNbMiInca6tGXnutLNC3TKQwpdtj_tfjEeKrTan6EdE2SJ438x125OM8ARjSH6v6-; isg=BCgooAfp3oWAkvHrPLKOYWNs-RY6UYxbHQ9mG-JYFKMEPcyni2JB6oc7Nd3NDUQz";
+            
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
@@ -77,6 +78,65 @@ namespace 基鹿工具箱
             }
 
 
+
+        }
+        #endregion
+
+        #region GET请求带COOKIE
+        /// <summary>
+        /// GET请求带COOKIE
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlWithCookie(string Url, string COOKIE, string charset)
+        {
+            string html = "";
+
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.AllowAutoRedirect = true;
+                // request.Proxy = null;//防止代理抓包
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36";
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                //request.Referer = Url;
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+
+                return ex.ToString();
+
+            }
 
         }
         #endregion
@@ -257,6 +317,24 @@ namespace 基鹿工具箱
 
         }
 
+        #endregion
+
+        #region GET请求获取Set-cookie
+        public static string getSetCookie(string url)
+        {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
+            request.Timeout = 10000;
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+            request.AllowAutoRedirect = false;
+
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+            string content = response.GetResponseHeader("Set-Cookie"); ;
+            return content;
+
+
+        }
         #endregion
 
         public static string Md5(string str)
@@ -693,9 +771,190 @@ namespace 基鹿工具箱
             }
             
         }
+        public static string Md5_utf8(string str)
+        {
+            //将输入字符串转换成字节数组
+            var buffer = Encoding.GetEncoding("utf-8").GetBytes(str);
+            //接着，创建Md5对象进行散列计算
+            var data = MD5.Create().ComputeHash(buffer);
 
+            //创建一个新的Stringbuilder收集字节
+            var sb = new StringBuilder();
+
+            //遍历每个字节的散列数据 
+            foreach (var t in data)
+            {
+                //格式每一个十六进制字符串
+                sb.Append(t.ToString("X2"));
+            }
+
+            //返回十六进制字符串
+            return sb.ToString().ToLower();
+        }
 
         public static List<string> keys_list = new List<string>();
+
+        /// <summary>
+        /// 获取时间戳毫秒
+        /// </summary>
+        /// <returns></returns>
+        public static string GetTimeStamp()
+        {
+            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long a = Convert.ToInt64(tss.TotalMilliseconds);
+            return a.ToString();
+        }
+
+        public string saledCount = "";
+        public string sellerLoginId = "";
+        public string payOrder30DayStr = "";
+        public  Dictionary<DateTime, int> reviewtimedic = new Dictionary<DateTime, int>();
+        public Dictionary<string, int> reviewcountdic = new Dictionary<string, int>();
+        public bool stop = false;
+
+        string reviewcookie = "_m_h5_tk=92db0fa413f671f2890f3f01433abdb1_1650879394197;_m_h5_tk_enc=d85cbacbe17135f56c54809f7f00c70f; ";
+        string token = "";
+
+        public void getreview(object o)
+        {
+
+           
+            try
+            {
+               
+                // string[] text = o.ToString().Split(new string[] { "," }, StringSplitOptions.None);
+                //string itemid = text[0];
+                //string logid = text[1];
+                string itemid = o.ToString().Trim();
+
+                getsalecount(itemid);
+
+              
+
+                for (int page = 1; page < 101; page++)
+                {
+                    string time = Util.GetTimeStamp();
+                    string str = token+"&" + time + "&12574478&{\"page\":"+page+",\"pageSize\":10,\"tagType\":\"common\",\"tagName\":\"全部\",\"scene\":\"item\",\"itemId\":\"" + itemid + "\",\"loginId\":\"" + sellerLoginId + "\"}";
+                  
+                    string sign = Md5_utf8(str);
+
+                    string url = "https://h5api.m.1688.com/h5/mtop.1688.trade.service.mtoprateservice.queryitemratedlistv2/1.0/?jsv=2.4.11&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.1688.trade.service.MtopRateService.queryItemRatedListV2&v=1.0&type=jsonp&isSec=0&timeout=20000&dataType=jsonp&callback=mtopjsonp21&data=%7B%22page%22%3A"+page+"%2C%22pageSize%22%3A10%2C%22tagType%22%3A%22common%22%2C%22tagName%22%3A%22%E5%85%A8%E9%83%A8%22%2C%22scene%22%3A%22item%22%2C%22itemId%22%3A%22" + itemid + "%22%2C%22loginId%22%3A%22" + sellerLoginId + "%22%7D";
+                   
+                    
+                    string html = GetUrlWithCookie (url, reviewcookie, "utf-8");
+                 
+                    if(html.Contains("令牌过期"))
+                    {
+                        string cookiestr = getSetCookie(url);
+                        string _m_h5_tk = "_m_h5_tk="+Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                        string _m_h5_tk_enc = "_m_h5_tk_enc="+Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                        reviewcookie = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+                        token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+                        page = page - 1;
+                        continue;
+                        
+                    }
+                    MatchCollection skunames = Regex.Matches(html, @"""specInfo"":""([\s\S]*?)""");
+                    MatchCollection times = Regex.Matches(html, @"""gmtCreate"":""([\s\S]*?)""");
+                    if (skunames.Count == 0)
+                        break;
+                    for (int i = 0; i < skunames.Count; i++)
+                    {
+                        
+                        string skuname=skunames[i].Groups[1].Value;
+                        DateTime skutime = Convert.ToDateTime(Convert.ToDateTime(times[i].Groups[1].Value).ToShortDateString());
+
+                        string[] skus = skunames[i].Groups[1].Value.Split(new string[] { "#" }, StringSplitOptions.None);
+                        if(skus.Length>2)
+                        {
+                            skuname = skus[0] + "#" + skus[1];
+                        }
+
+                        if (!reviewcountdic.ContainsKey(skuname))
+                        {
+                            reviewcountdic.Add(skuname, 1);
+                        }
+                        else
+                        {
+                            reviewcountdic[skuname] = reviewcountdic[skuname] + 1;
+                        }
+
+                        if (!reviewtimedic.ContainsKey(skutime))
+                        {
+                            reviewtimedic.Add(skutime, 1);
+                        }
+                        else
+                        {
+                            reviewtimedic[skutime] = reviewtimedic[skutime] + 1;
+                        }
+                    }
+
+                   
+
+                }
+                stop = true;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+            
+        }
+
+
+
+
+        public void getsalecount(string itemid)
+        {
+           
+            token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+            string time = Util.GetTimeStamp();
+            string str = token + "&" + time + "&12574478&{\"cid\":\"offerdetailGetShopInfo:offerdetailGetShopInfo\",\"methodName\":\"execute\",\"params\":\"{\\\"offerId\\\":"+itemid+",\\\"businessType\\\":\\\"default\\\"}\"}";
+
+            string sign = Md5_utf8(str);
+
+            string aurl = "https://h5api.m.1688.com/h5/mtop.taobao.widgetservice.getjsoncomponent/1.0/?jsv=2.4.8&appKey=12574478&t="+time+"&sign="+sign+"&api=mtop.taobao.widgetService.getJsonComponent&v=1.0&type=jsonp&isSec=0&timeout=20000&dataType=jsonp&callback=mtopjsonp9&data=%7B%22cid%22%3A%22offerdetailGetShopInfo%3AofferdetailGetShopInfo%22%2C%22methodName%22%3A%22execute%22%2C%22params%22%3A%22%7B%5C%22offerId%5C%22%3A"+itemid+"%2C%5C%22businessType%5C%22%3A%5C%22default%5C%22%7D%22%7D";
+
+
+            string cookiestr = getSetCookie(aurl);
+            string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+            string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+            reviewcookie = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+           
+            token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+            time = Util.GetTimeStamp();
+            str = token + "&" + time + "&12574478&{\"cid\":\"offerdetailGetShopInfo:offerdetailGetShopInfo\",\"methodName\":\"execute\",\"params\":\"{\\\"offerId\\\":" + itemid + ",\\\"businessType\\\":\\\"default\\\"}\"}";
+            sign = Md5_utf8(str);
+
+
+            aurl = "https://h5api.m.1688.com/h5/mtop.taobao.widgetservice.getjsoncomponent/1.0/?jsv=2.4.8&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.taobao.widgetService.getJsonComponent&v=1.0&type=jsonp&isSec=0&timeout=20000&dataType=jsonp&callback=mtopjsonp9&data=%7B%22cid%22%3A%22offerdetailGetShopInfo%3AofferdetailGetShopInfo%22%2C%22methodName%22%3A%22execute%22%2C%22params%22%3A%22%7B%5C%22offerId%5C%22%3A" + itemid + "%2C%5C%22businessType%5C%22%3A%5C%22default%5C%22%7D%22%7D";
+
+            string html = GetUrlWithCookie(aurl, reviewcookie, "utf-8");
+            sellerLoginId = Regex.Match(html, @"""loginId"":""([\s\S]*?)""").Groups[1].Value;
+            try
+            {
+              
+                //string url = "https://detail.1688.com/offer/"+itemid+".html";
+                //string html = GetUrlWithCookie(url, "", "utf-8");
+              
+                // saledCount = Regex.Match(html, @"""saledCount"":""([\s\S]*?)""").Groups[1].Value;
+                // sellerLoginId = Regex.Match(html, @"""sellerLoginId"":""([\s\S]*?)""").Groups[1].Value;
+                // payOrder30DayStr = Regex.Match(html, @"payOrder30DayStr\\"":\\""([\s\S]*?)\\""").Groups[1].Value;
+
+               
+
+
+            }
+            catch (Exception ex)
+            {
+               
+                MessageBox.Show(ex.ToString());
+               
+            }
+
+        }
+
 
     }
 }

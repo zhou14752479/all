@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>主程序202203</RootNamespace>
     <AssemblyName>主程序202203</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="myDLL">
@@ -70,11 +72,23 @@
     <Compile Include="微信找回.Designer.cs">
       <DependentUpon>微信找回.cs</DependentUpon>
     </Compile>
+    <Compile Include="数字处理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数字处理.Designer.cs">
+      <DependentUpon>数字处理.cs</DependentUpon>
+    </Compile>
     <Compile Include="更改屏幕亮度.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="更改屏幕亮度.Designer.cs">
       <DependentUpon>更改屏幕亮度.cs</DependentUpon>
+    </Compile>
+    <Compile Include="模式文字.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="模式文字.Designer.cs">
+      <DependentUpon>模式文字.cs</DependentUpon>
     </Compile>
     <Compile Include="电子库存监控.cs">
       <SubType>Form</SubType>
@@ -107,8 +121,14 @@
     <EmbeddedResource Include="微信找回.resx">
       <DependentUpon>微信找回.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="数字处理.resx">
+      <DependentUpon>数字处理.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="更改屏幕亮度.resx">
       <DependentUpon>更改屏幕亮度.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="模式文字.resx">
+      <DependentUpon>模式文字.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="电子库存监控.resx">
       <DependentUpon>电子库存监控.cs</DependentUpon>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -14,6 +16,46 @@ namespace 基鹿工具箱
 {
     public partial class login : Form
     {
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        /// <param name="Value">值</param> 
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="Section">项目名称(如 [TypeName] )</param> 
+        /// <param name="Key">键</param> 
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 500, this.inipath);
+            return temp.ToString();
+        }
+
+        /// <summary> 
+        /// 验证文件是否存在 
+        /// </summary> 
+        /// <returns>布尔值</returns> 
+        public bool ExistINIFile()
+        {
+            return File.Exists(inipath);
+        }
+
+
+
         public login()
         {
             InitializeComponent();
@@ -23,7 +65,7 @@ namespace 基鹿工具箱
         public void dologin()
         {
             string html = Util.login(textBox1.Text.Trim(),textBox2.Text.Trim());
-            textBox1.Text = html;
+            //textBox1.Text = html;
             string code = Regex.Match(html, @"code"":([\s\S]*?),").Groups[1].Value;
             
             string paytime = Regex.Match(html, @"pay_time"":""([\s\S]*?) ").Groups[1].Value;
@@ -35,6 +77,7 @@ namespace 基鹿工具箱
                 基鹿工具箱 main = new 基鹿工具箱();
                 main.Show();
                 this.Hide();
+
             }
             else
             {
@@ -49,10 +92,15 @@ namespace 基鹿工具箱
 
         private void login_Load(object sender, EventArgs e)
         {
+           
+
             label1.Parent = pictureBox1;
             label2.Parent = pictureBox1;
             label4.Parent = pictureBox1;
             label5.Parent = pictureBox1;
+
+           
+
         }
         private Point mPoint = new Point();
         private void login_MouseDown(object sender, MouseEventArgs e)
@@ -114,6 +162,52 @@ namespace 基鹿工具箱
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.asinlu.com/?wechat");
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked==true)
+            {
+                IniWriteValue("values", "user", textBox1.Text.Trim());
+                IniWriteValue("values", "pass", textBox2.Text.Trim());
+              
+            }
+
+
+           
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked == true)
+            {
+
+                IniWriteValue("values", "autologin", "true");
+            }
+            else
+            {
+
+                IniWriteValue("values", "autologin", "false");
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (ExistINIFile())
+            {
+                checkBox1.Checked = true;
+                checkBox2.Checked = true;
+                textBox1.Text = IniReadValue("values", "user");
+                textBox2.Text = IniReadValue("values", "pass");
+                string autologin = IniReadValue("values", "autologin");
+                if (autologin == "true")
+                {
+                    dologin();
+                }
+            }
+
+            timer1.Stop();  
         }
     }
 }

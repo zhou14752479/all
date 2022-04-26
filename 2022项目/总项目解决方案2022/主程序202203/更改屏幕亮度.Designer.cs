@@ -84,7 +84,7 @@
             0,
             0});
             this.numericUpDown1.Minimum = new decimal(new int[] {
-            10,
+            1,
             0,
             0,
             0});
@@ -106,7 +106,7 @@
             0,
             0});
             this.numericUpDown2.Minimum = new decimal(new int[] {
-            10,
+            1,
             0,
             0,
             0});
@@ -137,7 +137,7 @@
             0,
             0});
             this.numericUpDown3.Minimum = new decimal(new int[] {
-            10,
+            1,
             0,
             0,
             0});
@@ -188,7 +188,6 @@
             this.Text = "更改屏幕亮度";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.更改屏幕亮度_FormClosing);
             this.Load += new System.EventHandler(this.更改屏幕亮度_Load);
-         
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();

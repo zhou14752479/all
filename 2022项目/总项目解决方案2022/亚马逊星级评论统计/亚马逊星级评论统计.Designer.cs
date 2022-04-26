@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -50,8 +52,6 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,17 +67,34 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1390, 131);
+            this.panel1.Size = new System.Drawing.Size(1042, 105);
             this.panel1.TabIndex = 77;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(735, 27);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(85, 28);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "清空";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "未开始";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(859, 34);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(644, 27);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 35);
+            this.button2.Size = new System.Drawing.Size(85, 28);
             this.button2.TabIndex = 7;
             this.button2.Text = "导出表格";
             this.button2.UseVisualStyleBackColor = true;
@@ -86,20 +103,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(13, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 15);
+            this.label1.Size = new System.Drawing.Size(149, 12);
             this.label1.TabIndex = 6;
             this.label1.Text = "导入ASIN文本(一行一个)：";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(519, 44);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(389, 35);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(67, 15);
+            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "选择文本";
@@ -107,18 +122,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(16, 40);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(12, 32);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(493, 25);
+            this.textBox1.Size = new System.Drawing.Size(371, 21);
             this.textBox1.TabIndex = 4;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(737, 34);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(553, 27);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 35);
+            this.button3.Size = new System.Drawing.Size(85, 28);
             this.button3.TabIndex = 3;
             this.button3.Text = "停止";
             this.button3.UseVisualStyleBackColor = true;
@@ -126,10 +139,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(616, 34);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(462, 27);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 35);
+            this.button1.Size = new System.Drawing.Size(85, 28);
             this.button1.TabIndex = 0;
             this.button1.Text = "开始查询";
             this.button1.UseVisualStyleBackColor = true;
@@ -155,10 +167,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 131);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4);
+            this.listView1.Location = new System.Drawing.Point(0, 105);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1390, 588);
+            this.listView1.Size = new System.Drawing.Size(1042, 470);
             this.listView1.TabIndex = 81;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -232,35 +243,13 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 82);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "未开始";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(980, 34);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(113, 35);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "清空";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
-            // 
             // 亚马逊星级评论统计
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1390, 719);
+            this.ClientSize = new System.Drawing.Size(1042, 575);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "亚马逊星级评论统计";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "亚马逊星级评论统计";

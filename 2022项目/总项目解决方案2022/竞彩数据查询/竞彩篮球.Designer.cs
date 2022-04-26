@@ -39,13 +39,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -71,6 +71,7 @@
             this.button4.TabIndex = 75;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
@@ -81,6 +82,7 @@
             this.button3.TabIndex = 74;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label7
@@ -183,14 +185,41 @@
             this.panel1.Size = new System.Drawing.Size(1136, 142);
             this.panel1.TabIndex = 380;
             // 
-            // label1
+            // label6
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(734, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 76;
-            this.label1.Text = "label1";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 10F);
+            this.label6.Location = new System.Drawing.Point(137, 69);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 14);
+            this.label6.TabIndex = 82;
+            this.label6.Text = "队伍：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 10F);
+            this.label3.Location = new System.Drawing.Point(137, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 14);
+            this.label3.TabIndex = 81;
+            this.label3.Text = "队伍：";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(188, 66);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 21);
+            this.textBox4.TabIndex = 80;
+            this.textBox4.Text = "骑士";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(188, 26);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 21);
+            this.textBox3.TabIndex = 79;
+            this.textBox3.Text = "阿尔巴";
             // 
             // textBox2
             // 
@@ -211,41 +240,15 @@
             this.label2.TabIndex = 77;
             this.label2.Text = "受让：";
             // 
-            // textBox3
+            // label1
             // 
-            this.textBox3.Location = new System.Drawing.Point(188, 26);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 21);
-            this.textBox3.TabIndex = 79;
-            this.textBox3.Text = "阿尔巴";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(188, 66);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 21);
-            this.textBox4.TabIndex = 80;
-            this.textBox4.Text = "骑士";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 10F);
-            this.label3.Location = new System.Drawing.Point(137, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 14);
-            this.label3.TabIndex = 81;
-            this.label3.Text = "队伍：";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("宋体", 10F);
-            this.label6.Location = new System.Drawing.Point(137, 69);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 14);
-            this.label6.TabIndex = 82;
-            this.label6.Text = "队伍：";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(734, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 76;
+            this.label1.Text = "label1";
+            this.label1.Visible = false;
             // 
             // 竞彩篮球
             // 
@@ -256,6 +259,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "竞彩篮球";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "竞彩篮球";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.竞彩篮球_FormClosing);
             this.Load += new System.EventHandler(this.竞彩篮球_Load);
