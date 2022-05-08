@@ -183,11 +183,7 @@ namespace 浙江企业基础信息查询
                 for (int a = 0; a < dt.Rows.Count; a++)
                 {
                     total = total + 1;
-                    if (DateTime.Now > Convert.ToDateTime("2022-05-02"))
-                    {
-                        MessageBox.Show("{\"msg\":\"非法请求\"}");
-                        return;
-                    }
+                   
 
                     DataRow dr = dt.Rows[a];
                     string uid = dr[0].ToString();
@@ -195,6 +191,14 @@ namespace 浙江企业基础信息查询
                     string gregegedrgerheh = gdsgdgdgdgdstgfeewrwerw3r23r32rvxsvdsv.rgebgdgdvsdfsdvsdfsdvdsbgdsrt435b515sdfsdf("2", timestr);
                     string sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[0];
                     string zj_ggsjpt_sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[1];
+
+                    string expiretime = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[2];
+                   
+                    if (DateTime.Now > Convert.ToDateTime(expiretime))
+                    {
+                        MessageBox.Show("{\"msg\":\"非法请求\"}");
+                        return;
+                    }
                     string url = "http://app.gjzwfw.gov.cn/jimps/link.do?param=%7B%22from%22%3A%222%22%2C%22key%22%3A%223b8d18a7d9b4482caf1cbc39b4404d06%22%2C%22requestTime%22%3A%22"+timestr+"%22%2C%22sign%22%3A%22"+sign+"%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22"+ zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22"+timestr+"%22%2C%22gmsfhm%22%3A%22"+uid+"%22%2C%22additional%22%3A%22%22%7D";
                     textBox1.Text = url;
                     label3.Text = "正在查询：" + uid;

@@ -104,11 +104,11 @@
     <Compile Include="查询6.Designer.cs">
       <DependentUpon>查询6.cs</DependentUpon>
     </Compile>
-    <Compile Include="浙江企业基础信息查询.cs">
+    <Compile Include="查询1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="浙江企业基础信息查询.Designer.cs">
-      <DependentUpon>浙江企业基础信息查询.cs</DependentUpon>
+    <Compile Include="查询1.Designer.cs">
+      <DependentUpon>查询1.cs</DependentUpon>
     </Compile>
     <Compile Include="激活.cs">
       <SubType>Form</SubType>
@@ -141,8 +141,8 @@
     <EmbeddedResource Include="查询6.resx">
       <DependentUpon>查询6.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="浙江企业基础信息查询.resx">
-      <DependentUpon>浙江企业基础信息查询.cs</DependentUpon>
+    <EmbeddedResource Include="查询1.resx">
+      <DependentUpon>查询1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="激活.resx">
       <DependentUpon>激活.cs</DependentUpon>

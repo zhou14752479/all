@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using helper;
+using myDLL;
 
 namespace 主程序
 {
@@ -243,7 +243,7 @@ namespace 主程序
 
         public void run()
         {
-            COOKIE = helper.Form1.cookie;
+            COOKIE = "";
             string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             for (int i = 0; i < text.Length; i++)
             {
@@ -290,8 +290,8 @@ namespace 主程序
 
         private void button4_Click(object sender, EventArgs e)
         {
-            helper.Form1 fm1 = new helper.Form1();
-            fm1.Show();
+            //helper.Form1 fm1 = new helper.Form1();
+            //fm1.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)

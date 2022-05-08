@@ -39,7 +39,7 @@ namespace 通用项目
         bool zanting = true;
         bool status = true;
         string year = "5";
-         string cookie= "UM_distinctid=1722b6d63256fa-0d957a4cc62be8-6373664-1fa400-1722b6d6326fc; c846d1371fa646f180641dc334a81239=WyI2MDE0ODY4MTQiXQ; ck=a8f77499cd06af5b23c3b1432d54b2991591697419; CNZZDATA5916476=cnzz_eid%3D1513833111-1591696647-%26ntime%3D1591696647; rpk_dc0ba9777c06d718b1a0e8afc6822986=aFFOVg2V9%2BxTMlDrRmoq%2BbUVfnWOe9FJMEJCCnGzm92mrgXqXQA; eduyun_sessionid=3b8c3a9b-00b5-4950-9b42-c14baa810212; eduyun_qpsflag=1; PHPSESSID=ko7d3375p2rstm6ev7q0than74; remember_account=emhvdTE0NzUyNDc5; remember_keys=WmhvdWthaWdlMDA%3D; pullTime=300";
+         string cookie= "1s1k453=ysyk_web16; 1s1k453=ysyk_web16; JSESSIONID=4E9E0BD62388B10AFB601FD3D0BF7A95; eeKiRtLKIjl2S=5aVQKT4ufQFywMMTRyHeA5ZDz4.C9EFF0oLTIJfLnm5x0X4JVLTJyvYc4mc5sDa.RgQPdoKR2oOYkIBRelSOasa; 1s1k453=ysyk_web16; UM_distinctid=1809987b028d2c-0d6e92ca13f62f-6b3e555b-384000-1809987b029192a; CNZZDATA1253333710=422405638-1651839530-https%253A%252F%252F1s1k.eduyun.cn%252F%7C1651839530; ck=3a4466bda54251f4b6f5fc97f905b8241651843255; eeKiRtLKIjl2T=53v3R4CxCDIgqqqDqvYunyAmOpcfvb_U3orggYQCM1aaCabwdZHL6.cWBbLoY._j4xxUHVvb2Kvd_zcw1wMBjnrzyGRRJ.5Jcv_xFyHNMKhGnon2K91LRSVHb5C1Y3ytt2R1J2Kd2jNVPPoll8P2SgNea5OY0sXlx3oDPAf8ryx6YCjbdXK_wQmWfEd8S0_O4HBK0bfccb881nazmSDTvmwoiygUEsH_ZUW1hy_wunA1rbxcdRgic9VYxL0kuan0VKGEbTD.rlNwHABcwpXtqxmDuDSVYgDkb9fsCdUHQekYJ..NGa4DYoWUYN4CTXYJGSuNh1GLYOWlWfWlNjWXSPR";
         #endregion
 
         #region GET请求解决基础连接关闭无法获取HTML

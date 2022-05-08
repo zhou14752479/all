@@ -335,10 +335,11 @@ namespace helper
                 //headers.Add("appid:orders");
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
                 request.Accept = "*/*";
                 request.Timeout = 100000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+               
 
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {

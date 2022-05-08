@@ -117,9 +117,15 @@ namespace 亚马逊抓取
         private void button1_Click(object sender, EventArgs e)
         {
 
-            #region 通用检测
+            #region 通用检测
 
-            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"CUoFi"))            {                return;            }            #endregion
+
+            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"CUoFi"))
+            {
+                return;
+            }
+
+            #endregion
 
             status = true;
 

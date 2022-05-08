@@ -263,6 +263,7 @@
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 100);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(829, 312);
@@ -291,7 +292,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 200000;
+            this.timer1.Interval = 150000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // 电子库存监控

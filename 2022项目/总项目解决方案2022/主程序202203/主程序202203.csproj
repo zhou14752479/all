@@ -35,8 +35,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="myDLL">
-      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL_Secure\myDLL.dll</HintPath>
+    <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\2020项目\总项目解决方案\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -84,6 +85,12 @@
     <Compile Include="更改屏幕亮度.Designer.cs">
       <DependentUpon>更改屏幕亮度.cs</DependentUpon>
     </Compile>
+    <Compile Include="查贴吧.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查贴吧.Designer.cs">
+      <DependentUpon>查贴吧.cs</DependentUpon>
+    </Compile>
     <Compile Include="模式文字.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="更改屏幕亮度.resx">
       <DependentUpon>更改屏幕亮度.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查贴吧.resx">
+      <DependentUpon>查贴吧.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="模式文字.resx">
       <DependentUpon>模式文字.cs</DependentUpon>

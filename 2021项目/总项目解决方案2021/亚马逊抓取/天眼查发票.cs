@@ -50,9 +50,16 @@ namespace 亚马逊抓取
         }
         private void 天眼查发票_Load(object sender, EventArgs e)
         {
-            #region 通用检测
+            #region 通用检测
 
-            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"mpxO"))            {                System.Diagnostics.Process.GetCurrentProcess().Kill();                return;            }            #endregion
+
+            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"mpxO"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                return;
+            }
+
+            #endregion
         }
         string path = AppDomain.CurrentDomain.BaseDirectory;
         Thread thread;

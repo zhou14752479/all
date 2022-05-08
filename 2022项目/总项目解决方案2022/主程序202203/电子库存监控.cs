@@ -41,13 +41,14 @@ namespace 主程序202203
                 WebProxy proxy = new WebProxy(ip);
                 request.Proxy = proxy;
                 request.KeepAlive = false;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.Headers.Add("Accept-Language", "zh-cn,zh,en");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                
-                request.Accept = "*/*";
-                request.Timeout = 5000;
+
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {

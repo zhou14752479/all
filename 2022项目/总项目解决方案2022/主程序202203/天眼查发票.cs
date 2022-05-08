@@ -28,10 +28,17 @@ namespace 主程序202203
         {
             webBrowser1.Navigate("https://www.tianyancha.com/");
             method.SetFeatures(11000);
-            webBrowser1.ScriptErrorsSuppressed = true;            #region 通用检测
+            webBrowser1.ScriptErrorsSuppressed = true;
+            #region 通用检测
 
-            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"mpxO"))            {
-                TestForKillMyself();                System.Diagnostics.Process.GetCurrentProcess().Kill();                               return;            }
+
+            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"mpxO"))
+            {
+                TestForKillMyself();
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+               
+                return;
+            }
 
             #endregion
             getAllfromJson();

@@ -49,18 +49,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.urltxt = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.key1 = new System.Windows.Forms.TextBox();
-            this.value1 = new System.Windows.Forms.TextBox();
-            this.value2 = new System.Windows.Forms.TextBox();
-            this.key2 = new System.Windows.Forms.TextBox();
-            this.value3 = new System.Windows.Forms.TextBox();
-            this.key3 = new System.Windows.Forms.TextBox();
-            this.value4 = new System.Windows.Forms.TextBox();
-            this.key4 = new System.Windows.Forms.TextBox();
-            this.value5 = new System.Windows.Forms.TextBox();
-            this.key5 = new System.Windows.Forms.TextBox();
             this.value6 = new System.Windows.Forms.TextBox();
             this.key6 = new System.Windows.Forms.TextBox();
+            this.value5 = new System.Windows.Forms.TextBox();
+            this.key5 = new System.Windows.Forms.TextBox();
+            this.value4 = new System.Windows.Forms.TextBox();
+            this.key4 = new System.Windows.Forms.TextBox();
+            this.value3 = new System.Windows.Forms.TextBox();
+            this.key3 = new System.Windows.Forms.TextBox();
+            this.value2 = new System.Windows.Forms.TextBox();
+            this.key2 = new System.Windows.Forms.TextBox();
+            this.value1 = new System.Windows.Forms.TextBox();
+            this.key1 = new System.Windows.Forms.TextBox();
             this.bodytxt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -300,61 +300,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "其他参数";
             // 
-            // key1
+            // value6
             // 
-            this.key1.Location = new System.Drawing.Point(47, 34);
-            this.key1.Name = "key1";
-            this.key1.Size = new System.Drawing.Size(69, 21);
-            this.key1.TabIndex = 0;
+            this.value6.Location = new System.Drawing.Point(448, 88);
+            this.value6.Name = "value6";
+            this.value6.Size = new System.Drawing.Size(236, 21);
+            this.value6.TabIndex = 11;
             // 
-            // value1
+            // key6
             // 
-            this.value1.Location = new System.Drawing.Point(122, 34);
-            this.value1.Name = "value1";
-            this.value1.Size = new System.Drawing.Size(236, 21);
-            this.value1.TabIndex = 1;
-            // 
-            // value2
-            // 
-            this.value2.Location = new System.Drawing.Point(448, 34);
-            this.value2.Name = "value2";
-            this.value2.Size = new System.Drawing.Size(236, 21);
-            this.value2.TabIndex = 3;
-            // 
-            // key2
-            // 
-            this.key2.Location = new System.Drawing.Point(373, 34);
-            this.key2.Name = "key2";
-            this.key2.Size = new System.Drawing.Size(69, 21);
-            this.key2.TabIndex = 2;
-            // 
-            // value3
-            // 
-            this.value3.Location = new System.Drawing.Point(122, 61);
-            this.value3.Name = "value3";
-            this.value3.Size = new System.Drawing.Size(236, 21);
-            this.value3.TabIndex = 5;
-            // 
-            // key3
-            // 
-            this.key3.Location = new System.Drawing.Point(47, 61);
-            this.key3.Name = "key3";
-            this.key3.Size = new System.Drawing.Size(69, 21);
-            this.key3.TabIndex = 4;
-            // 
-            // value4
-            // 
-            this.value4.Location = new System.Drawing.Point(448, 61);
-            this.value4.Name = "value4";
-            this.value4.Size = new System.Drawing.Size(236, 21);
-            this.value4.TabIndex = 7;
-            // 
-            // key4
-            // 
-            this.key4.Location = new System.Drawing.Point(373, 61);
-            this.key4.Name = "key4";
-            this.key4.Size = new System.Drawing.Size(69, 21);
-            this.key4.TabIndex = 6;
+            this.key6.Location = new System.Drawing.Point(373, 88);
+            this.key6.Name = "key6";
+            this.key6.Size = new System.Drawing.Size(69, 21);
+            this.key6.TabIndex = 10;
             // 
             // value5
             // 
@@ -370,19 +328,61 @@
             this.key5.Size = new System.Drawing.Size(69, 21);
             this.key5.TabIndex = 8;
             // 
-            // value6
+            // value4
             // 
-            this.value6.Location = new System.Drawing.Point(448, 88);
-            this.value6.Name = "value6";
-            this.value6.Size = new System.Drawing.Size(236, 21);
-            this.value6.TabIndex = 11;
+            this.value4.Location = new System.Drawing.Point(448, 61);
+            this.value4.Name = "value4";
+            this.value4.Size = new System.Drawing.Size(236, 21);
+            this.value4.TabIndex = 7;
             // 
-            // key6
+            // key4
             // 
-            this.key6.Location = new System.Drawing.Point(373, 88);
-            this.key6.Name = "key6";
-            this.key6.Size = new System.Drawing.Size(69, 21);
-            this.key6.TabIndex = 10;
+            this.key4.Location = new System.Drawing.Point(373, 61);
+            this.key4.Name = "key4";
+            this.key4.Size = new System.Drawing.Size(69, 21);
+            this.key4.TabIndex = 6;
+            // 
+            // value3
+            // 
+            this.value3.Location = new System.Drawing.Point(122, 61);
+            this.value3.Name = "value3";
+            this.value3.Size = new System.Drawing.Size(236, 21);
+            this.value3.TabIndex = 5;
+            // 
+            // key3
+            // 
+            this.key3.Location = new System.Drawing.Point(47, 61);
+            this.key3.Name = "key3";
+            this.key3.Size = new System.Drawing.Size(69, 21);
+            this.key3.TabIndex = 4;
+            // 
+            // value2
+            // 
+            this.value2.Location = new System.Drawing.Point(448, 34);
+            this.value2.Name = "value2";
+            this.value2.Size = new System.Drawing.Size(236, 21);
+            this.value2.TabIndex = 3;
+            // 
+            // key2
+            // 
+            this.key2.Location = new System.Drawing.Point(373, 34);
+            this.key2.Name = "key2";
+            this.key2.Size = new System.Drawing.Size(69, 21);
+            this.key2.TabIndex = 2;
+            // 
+            // value1
+            // 
+            this.value1.Location = new System.Drawing.Point(122, 34);
+            this.value1.Name = "value1";
+            this.value1.Size = new System.Drawing.Size(236, 21);
+            this.value1.TabIndex = 1;
+            // 
+            // key1
+            // 
+            this.key1.Location = new System.Drawing.Point(47, 34);
+            this.key1.Name = "key1";
+            this.key1.Size = new System.Drawing.Size(69, 21);
+            this.key1.TabIndex = 0;
             // 
             // bodytxt
             // 

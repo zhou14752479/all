@@ -67,12 +67,21 @@ namespace 基鹿工具箱
             string html = Util.login(textBox1.Text.Trim(),textBox2.Text.Trim());
             //textBox1.Text = html;
             string code = Regex.Match(html, @"code"":([\s\S]*?),").Groups[1].Value;
-            
+            string token = Regex.Match(html, @"token"":""([\s\S]*?) ").Groups[1].Value;
             string paytime = Regex.Match(html, @"pay_time"":""([\s\S]*?) ").Groups[1].Value;
             string service_type = Regex.Match(html, @"service_type"":""([\s\S]*?)""").Groups[1].Value;
-           // string expiretime = "";
+          
             if (code=="0")
             {
+                if (checkBox1.Checked == true)
+                {
+                    IniWriteValue("values", "user", textBox1.Text.Trim());
+                    IniWriteValue("values", "pass", textBox2.Text.Trim());
+
+                }
+
+                Util.mobile = textBox1.Text;
+                Util.logintoken = token;
                 Util.expiretime = paytime.ToString();
                 基鹿工具箱 main = new 基鹿工具箱();
                 main.Show();
@@ -162,17 +171,14 @@ namespace 基鹿工具箱
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.asinlu.com/?wechat");
+           // textBox1.Text = Util.getuser("13777373777", "e8e5319d18d61cc0f339e172cf65baa2370acf24");
+
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked==true)
-            {
-                IniWriteValue("values", "user", textBox1.Text.Trim());
-                IniWriteValue("values", "pass", textBox2.Text.Trim());
-              
-            }
-
+           
 
            
 
@@ -196,8 +202,7 @@ namespace 基鹿工具箱
         {
             if (ExistINIFile())
             {
-                checkBox1.Checked = true;
-                checkBox2.Checked = true;
+               
                 textBox1.Text = IniReadValue("values", "user");
                 textBox2.Text = IniReadValue("values", "pass");
                 string autologin = IniReadValue("values", "autologin");

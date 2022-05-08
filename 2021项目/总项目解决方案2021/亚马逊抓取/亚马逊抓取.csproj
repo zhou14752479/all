@@ -8,9 +8,10 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>亚马逊抓取</RootNamespace>
     <AssemblyName>亚马逊抓取</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -107,6 +108,18 @@
     <Compile Include="快发卡.Designer.cs">
       <DependentUpon>快发卡.cs</DependentUpon>
     </Compile>
+    <Compile Include="查贴吧.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查贴吧.Designer.cs">
+      <DependentUpon>查贴吧.cs</DependentUpon>
+    </Compile>
+    <Compile Include="腾讯企点.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="腾讯企点.Designer.cs">
+      <DependentUpon>腾讯企点.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -115,6 +128,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="中海化工项目.resx">
       <DependentUpon>中海化工项目.cs</DependentUpon>
@@ -133,6 +147,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="快发卡.resx">
       <DependentUpon>快发卡.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查贴吧.resx">
+      <DependentUpon>查贴吧.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="腾讯企点.resx">
+      <DependentUpon>腾讯企点.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

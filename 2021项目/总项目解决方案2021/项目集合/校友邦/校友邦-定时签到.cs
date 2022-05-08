@@ -135,7 +135,8 @@ namespace 校友邦
         int refresh = 0;
         public void run()
         {
-            if(DateTime.Now.Hour==2 && refresh==0)
+            getpics();
+            if (DateTime.Now.Hour==2 && refresh==0)
             {
                 refresh =1;
                 getdata();

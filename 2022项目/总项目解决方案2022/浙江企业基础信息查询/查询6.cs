@@ -47,12 +47,7 @@ namespace 浙江企业基础信息查询
             for (int a = 0; a < dt.Rows.Count; a++)
             {
              
-                if (DateTime.Now > Convert.ToDateTime("2022-05-01"))
-                {
-                    MessageBox.Show("{\"msg\":\"非法请求\"}");
-                    return;
-                }
-
+               
 
                 string time = 查询2.GetTimeStamp();
                 DataRow dr = dt.Rows[a];
@@ -61,6 +56,14 @@ namespace 浙江企业基础信息查询
                 string gregegedrgerheh = gdsgdgdgdgdstgfeewrwerw3r23r32rvxsvdsv.rgebgdgdvsdfsdvsdfsdvdsbgdsrt435b515sdfsdf("shebao", time);
                 string sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[0];
                 string ggsjpt_sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[1];
+
+                string expiretime = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[2];
+
+                if (DateTime.Now > Convert.ToDateTime(expiretime))
+                {
+                    MessageBox.Show("{\"msg\":\"非法请求\"}");
+                    return;
+                }
 
                 //string url = "http://app.gjzwfw.gov.cn/jmopen/interfaces/wxTransferPort.do?callback=jQuery18309492701749972507_" + time + "&requestUrl=http%3A%2F%2Fapp.gjzwfw.gov.cn%2Fjimps%2Flink.do&datas=dhzkh%22param%22%3A%22dhzkh%5C%22from%5C%22%3A%5C%221%5C%22%2C%5C%22key%5C%22%3A%5C%2291da7d51a42542219852bb3df4399d03%5C%22%2C%5C%22requestTime%5C%22%3A%5C%22" + time + "%5C%22%2C%5C%22sign%5C%22%3A%5C%22" + sign + "%5C%22%2C%5C%22zj_ggsjpt_app_key%5C%22%3A%5C%22ada72850-2b2e-11e7-985b-008cfaeb3d74%5C%22%2C%5C%22zj_ggsjpt_sign%5C%22%3A%5C%22" + ggsjpt_sign + "%5C%22%2C%5C%22zj_ggsjpt_time%5C%22%3A%5C%22" + time + "%5C%22%2C%5C%22name%5C%22%3A%5C%22"+name+"%5C%22%2C%5C%22cardId%5C%22%3A%5C%22"+card+"%5C%22%2C%5C%22additional%5C%22%3A%5C%22%5C%22dhykh%22dhykh&heads=&_=" + time;
 

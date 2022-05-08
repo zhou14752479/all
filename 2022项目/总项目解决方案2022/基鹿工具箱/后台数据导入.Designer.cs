@@ -86,18 +86,19 @@
             this.导入数据ToolStripMenuItem.Name = "导入数据ToolStripMenuItem";
             this.导入数据ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.导入数据ToolStripMenuItem.Text = "导入数据";
+            this.导入数据ToolStripMenuItem.Click += new System.EventHandler(this.导入数据ToolStripMenuItem_Click);
             // 
             // 选择表格ToolStripMenuItem
             // 
             this.选择表格ToolStripMenuItem.Name = "选择表格ToolStripMenuItem";
-            this.选择表格ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.选择表格ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.选择表格ToolStripMenuItem.Text = "选择表格";
             this.选择表格ToolStripMenuItem.Click += new System.EventHandler(this.选择表格ToolStripMenuItem_Click);
             // 
             // 开始导入ToolStripMenuItem
             // 
             this.开始导入ToolStripMenuItem.Name = "开始导入ToolStripMenuItem";
-            this.开始导入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.开始导入ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.开始导入ToolStripMenuItem.Text = "开始导入";
             this.开始导入ToolStripMenuItem.Click += new System.EventHandler(this.开始导入ToolStripMenuItem_Click);
             // 

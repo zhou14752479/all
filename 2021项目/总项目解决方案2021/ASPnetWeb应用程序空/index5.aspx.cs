@@ -94,17 +94,40 @@ namespace ASPnetWeb应用程序空
                 device.DrawImage(image_changci, 383, 83); //用你想要的位置画小图
 
 
-                device.DrawImage(image_month, 140, 65);
-                device.DrawImage(image_month2, 155, 65);
+                if (value != "宝石")
+                {
+                    device.DrawImage(image_month, 145, 75);
+                    device.DrawImage(image_month2, 160, 75);
 
-                device.DrawImage(image_day, 195, 65);
-                device.DrawImage(image_day2, 210, 65);
+                    device.DrawImage(image_day, 205, 75);
+                    device.DrawImage(image_day2, 220, 75);
 
 
 
-                device.DrawImage(image_yue, 95, 26);
-                device.DrawImage(image_ri, 165, 26);
+                    device.DrawImage(image_yue, 125, 46);
+                    device.DrawImage(image_ri, 195, 46);
+                }
 
+
+
+
+
+
+
+                //宝石图片单独做
+                else
+                {
+                    device.DrawImage(image_month, 135, 75);
+                    device.DrawImage(image_month2, 150, 75);
+
+                    device.DrawImage(image_day, 195, 75);
+                    device.DrawImage(image_day2, 210, 75);
+
+
+
+                    device.DrawImage(image_yue, 95, 36);
+                    device.DrawImage(image_ri, 165, 36);
+                }
 
                 bitmap.Save(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "/image5/" + changci + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 

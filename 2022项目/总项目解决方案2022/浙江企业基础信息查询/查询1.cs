@@ -15,9 +15,9 @@ using Spire.Xls;
 
 namespace 浙江企业基础信息查询
 {
-    public partial class 浙江企业基础信息查询 : Form
+    public partial class 查询1 : Form
     {
-        public 浙江企业基础信息查询()
+        public 查询1()
         {
             InitializeComponent();
         }
@@ -99,11 +99,7 @@ namespace 浙江企业基础信息查询
 
                 for (int a = 0; a< dt.Rows.Count; a++)
                 {
-                    if(DateTime.Now>Convert.ToDateTime("2022-05-02"))
-                    {
-                        MessageBox.Show("{\"msg\":\"非法请求\"}");
-                        return;
-                    }
+                 
                     
                     DataRow dr = dt.Rows[a];
                     string uid = dr[0].ToString();
@@ -114,7 +110,13 @@ namespace 浙江企业基础信息查询
                     string gregegedrgerheh = gdsgdgdgdgdstgfeewrwerw3r23r32rvxsvdsv.rgebgdgdvsdfsdvsdfsdvdsbgdsrt435b515sdfsdf("1", timestr);
                     string sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[0];
                     string zj_ggsjpt_sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[1];
+                    string expiretime = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[2];
 
+                    if (DateTime.Now > Convert.ToDateTime(expiretime))
+                    {
+                        MessageBox.Show("{\"msg\":\"非法请求\"}");
+                        return;
+                    }
                     string postdata = "param=%7B%22from%22%3A%222%22%2C%22key%22%3A%22b4842fe0fadc44398d674c786a583f8e%22%2C%22requestTime%22%3A%22" + timestr + "%22%2C%22sign%22%3A%22" + sign + "%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22" + zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22" + timestr + "%22%2C%22uniscId%22%3A%22"+uid+"%22%2C%22companyName%22%3A%22%22%2C%22registerNo%22%3A%22%22%2C%22entType%22%3A%22E%22%2C%22additional%22%3A%22%22%7D";
                     string html = method.PostUrlDefault(url, postdata, "");
                     //MessageBox.Show(html);
@@ -217,123 +219,7 @@ namespace 浙江企业基础信息查询
             }
         }
 
-        public void runbeifen()
-        {
-            try
-            {
-                for (int a = 0; a < dt.Rows.Count; a++)
-                {
-
-
-                    DataRow dr = dt.Rows[a];
-                    string uid = dr[0].ToString();
-                    string url = "http://app.gjzwfw.gov.cn/jimps/link.do";
-                    label3.Text = "正在查询：" + uid;
-                    string timestr = method.GetTimeStamp() + "000";
-                    string sign = method.GetMD5("qyjbxxcxzj" + timestr);
-                    string zj_ggsjpt_sign = method.GetMD5("ada72850-2b2e-11e7-985b-008cfaeb3d74" + "995e00df72f14bbcb7833a9ca063adef" + timestr);
-                    string postdata = "param=%7B%22from%22%3A%222%22%2C%22key%22%3A%22b4842fe0fadc44398d674c786a583f8e%22%2C%22requestTime%22%3A%22" + timestr + "%22%2C%22sign%22%3A%22" + sign + "%22%2C%22zj_ggsjpt_app_key%22%3A%22ada72850-2b2e-11e7-985b-008cfaeb3d74%22%2C%22zj_ggsjpt_sign%22%3A%22" + zj_ggsjpt_sign + "%22%2C%22zj_ggsjpt_time%22%3A%22" + timestr + "%22%2C%22uniscId%22%3A%22" + uid + "%22%2C%22companyName%22%3A%22%22%2C%22registerNo%22%3A%22%22%2C%22entType%22%3A%22E%22%2C%22additional%22%3A%22%22%7D";
-                    string html = method.PostUrlDefault(url, postdata, "");
-                    //MessageBox.Show(html);
-                    string company = Regex.Match(html, @"""companyName"":""([\s\S]*?)""").Groups[1].Value;
-
-                    string financeInfo = Regex.Match(html, @"financeInfo([\s\S]*?)\]").Groups[1].Value;
-                    string liaisonInfo = Regex.Match(html, @"liaisonInfo([\s\S]*?)\]").Groups[1].Value;
-
-
-
-                    MatchCollection names = Regex.Matches(html, @"shareholderName='([\s\S]*?)'");
-                    MatchCollection cards = Regex.Matches(html, @"paperNo='([\s\S]*?)'");
-
-                    for (int i = 0; i < names.Count; i++)
-                    {
-                        if (jiami == true)
-                        {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(uid);
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), company));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), names[i].Groups[1].Value));
-                            lv1.SubItems.Add(method.Base64Encode(Encoding.GetEncoding("utf-8"), cards[i].Groups[1].Value));
-                        }
-                        if (jiami == false)
-                        {
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(uid);
-                            lv1.SubItems.Add(company);
-                            lv1.SubItems.Add(names[i].Groups[1].Value);
-                            lv1.SubItems.Add(cards[i].Groups[1].Value);
-                        }
-
-
-                        if (listView1.Items.Count > 2)
-                        {
-                            this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
-                        }
-
-
-                        while (this.zanting == false)
-                        {
-                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                        }
-                        if (status == false)
-                            return;
-                    }
-
-                    string aname = Regex.Match(financeInfo, @"nAME"":""([\s\S]*?)""").Groups[1].Value;
-                    string acard = Regex.Match(financeInfo, @"cERNO"":""([\s\S]*?)""").Groups[1].Value;
-                    string atel = Regex.Match(financeInfo, @"mOBTEL"":""([\s\S]*?)""").Groups[1].Value;
-
-                    string bname = Regex.Match(liaisonInfo, @"nAME"":""([\s\S]*?)""").Groups[1].Value;
-                    string bcard = Regex.Match(liaisonInfo, @"cERNO"":""([\s\S]*?)""").Groups[1].Value;
-                    string btel = Regex.Match(liaisonInfo, @"mOBTEL"":""([\s\S]*?)""").Groups[1].Value;
-
-
-
-                    if (jiami == true)
-                    {
-                        company = method.Base64Encode(Encoding.GetEncoding("utf-8"), company);
-                        aname = method.Base64Encode(Encoding.GetEncoding("utf-8"), aname);
-                        acard = method.Base64Encode(Encoding.GetEncoding("utf-8"), acard);
-                        atel = method.Base64Encode(Encoding.GetEncoding("utf-8"), atel);
-                        bname = method.Base64Encode(Encoding.GetEncoding("utf-8"), bname);
-                        bcard = method.Base64Encode(Encoding.GetEncoding("utf-8"), bcard);
-                        btel = method.Base64Encode(Encoding.GetEncoding("utf-8"), btel);
-                    }
-
-
-
-                    if (aname != "")
-                    {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(uid);
-                        lv1.SubItems.Add(company);
-                        lv1.SubItems.Add(aname);
-                        lv1.SubItems.Add(acard);
-                        lv1.SubItems.Add(atel);
-                    }
-
-
-
-
-                    if (bname != "")
-                    {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(uid);
-                        lv1.SubItems.Add(company);
-                        lv1.SubItems.Add(bname);
-                        lv1.SubItems.Add(bcard);
-                        lv1.SubItems.Add(btel);
-                    }
-                    Thread.Sleep(500);
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
+       
         bool zanting = true;
         bool status = false;
         Thread thread;

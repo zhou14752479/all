@@ -12,9 +12,9 @@ namespace 竞彩数据查询
 {
     class function
     {
-        string path = System.Environment.CurrentDirectory + "\\jingcaidata.db"; //获取当前程序运行文件夹
+        //string path = System.Environment.CurrentDirectory + "\\jingcaidata.db"; //获取当前程序运行文件夹
 
-        //string path = System.Environment.CurrentDirectory + "\\lanqiudata.db"; //获取当前程序运行文件夹
+        string path = System.Environment.CurrentDirectory + "\\lanqiudata.db"; //获取当前程序运行文件夹
         /// <summary>
         /// 查询数据库
         /// </summary>
@@ -65,7 +65,7 @@ namespace 竞彩数据查询
                             while (dr.Read())
                             {
                                 value = dr["body"].ToString();
-
+                               
                             }
                         }
                     }

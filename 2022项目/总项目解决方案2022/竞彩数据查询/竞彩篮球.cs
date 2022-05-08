@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -174,6 +175,60 @@ namespace 竞彩数据查询
         {
 
         }
+
+
+        #region 删除DataTable重复列，类似distinct
+        /// <summary>   
+        /// 删除DataTable重复列，类似distinct   
+        /// </summary>   
+        /// <param name="dt">DataTable</param>   
+        /// <param name="Field">字段名</param>   
+        /// <returns></returns>   
+        public static DataTable DeleteSameRow(DataTable dt, string Field)
+        {
+            ArrayList indexList = new ArrayList();
+            // 找出待删除的行索引   
+            for (int i = 0; i < dt.Rows.Count - 1; i++)
+            {
+                if (!IsContain(indexList, i))
+                {
+                    for (int j = i + 1; j < dt.Rows.Count; j++)
+                    {
+                        if (dt.Rows[i][Field].ToString() == dt.Rows[j][Field].ToString())
+                        {
+                            indexList.Add(j);
+                        }
+                    }
+                }
+            }
+            indexList.Sort();
+            // 排序
+            for (int i = indexList.Count - 1; i >= 0; i--)// 根据待删除索引列表删除行  
+            {
+                int index = Convert.ToInt32(indexList[i]);
+                dt.Rows.RemoveAt(index);
+            }
+            return dt;
+        }
+        /// <summary>   
+        /// 判断数组中是否存在   
+        /// </summary>   
+        /// <param name="indexList">数组</param>   
+        /// <param name="index">索引</param>   
+        /// <returns></returns>   
+        public static bool IsContain(ArrayList indexList, int index)
+        {
+            for (int i = 0; i < indexList.Count; i++)
+            {
+                int tempIndex = Convert.ToInt32(indexList[i]);
+                if (tempIndex == index)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
         public void chaxun()
         {
 
@@ -213,7 +268,7 @@ namespace 竞彩数据查询
                 }
                 if (textBox4.Text != "")
                 {
-                    sql2 = sql2 + (" ke like '" + textBox4.Text.Trim() + "' and");
+                    sql2 = sql2 + (" zhu like '" + textBox4.Text.Trim() + "' and");
                 }
                 if (sql2.Substring(sql2.Length - 3, 3) == "and")
                 {
@@ -227,6 +282,7 @@ namespace 竞彩数据查询
                 DataTable dt = fc.chaxundata(sql);
                 DataTable dt2 = fc.chaxundata(sql2);
                 dt.Merge(dt2);
+                DataTable dt3 = DeleteSameRow(dt,"time");
 
                 //DataTable newdt = dt.Clone();
 
@@ -272,23 +328,20 @@ namespace 竞彩数据查询
 
 
 
-
-
-
                 dataGridView1.DataSource = dt;
 
 
-                dataGridView1.Columns["xuhao"].HeaderText = "序号";
-                dataGridView1.Columns["time"].HeaderText = "时间";
-                dataGridView1.Columns["liansai"].HeaderText = "类型";
-                dataGridView1.Columns["zhu"].HeaderText = "主队";
-                dataGridView1.Columns["ke"].HeaderText = "客队";
+                //dataGridView1.Columns["xuhao"].HeaderText = "序号";
+                //dataGridView1.Columns["time"].HeaderText = "时间";
+                //dataGridView1.Columns["liansai"].HeaderText = "类型";
+                //dataGridView1.Columns["zhu"].HeaderText = "主队";
+                //dataGridView1.Columns["ke"].HeaderText = "客队";
 
-                dataGridView1.Columns["zhu_fen"].HeaderText = "主分";
-                dataGridView1.Columns["ke_fen"].HeaderText = "客分";
-               
-                dataGridView1.Columns["zhu_rang_peilv"].HeaderText = "让分赔率";
-                dataGridView1.Columns["zhu_rang_fen"].HeaderText = "让分";
+                //dataGridView1.Columns["zhu_fen"].HeaderText = "主分";
+                //dataGridView1.Columns["ke_fen"].HeaderText = "客分";
+
+                //dataGridView1.Columns["zhu_rang_peilv"].HeaderText = "让分赔率";
+                //dataGridView1.Columns["zhu_rang_fen"].HeaderText = "让分";
 
                 double shengcount = 0;
                 double pingcount = 0;

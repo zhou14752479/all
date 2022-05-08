@@ -16,7 +16,7 @@ namespace 主程序
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 工厂针织服装软件());
+            Application.Run(new Form2());
         }
     }
 }

@@ -21,6 +21,92 @@ namespace 基鹿工具箱
     class Util
     {
        static string COOKIE = "cna=IEEVGmxNb3QCAXnisujqtGPv; taklid=38e78512859846e58e75c42be1833a02; hng=CN%7Czh-CN%7CCNY%7C156; lid=zkg852266010; ali_ab=121.226.159.98.1645245827623.1; ali_apache_track=c_mid=b2b-1052347548|c_lid=zkg852266010|c_ms=1|c_mt=2; _m_h5_tk=3e9666f327a4af69b19b6d7adbb23eb8_1649325439454; _m_h5_tk_enc=d7732f7b2298a8cd29d69f807bcbeccf; xlly_s=1; cookie2=2a6f52413f2e48cd63a5da6bc8191e9e; sgcookie=E100kZBFanIDZNPfcot4VcewKkmUiR9sB7C4rpdjYQP6x25S3n2aTZ8486eH618tvfau6C2Z38RJvIPMt%2BGbTm3%2FCPvaFgnZmBQxYX9X74V0BPEAcMJWWZxMsEutNsxXs7Q5; t=bb42afa080af1dca98fb8d6a52dc1684; _tb_token_=e6859ebee1b17; uc4=nk4=0%40GwrkntVPltPB9cR46GncAmsyVe%2Fk0gQ%3D&id4=0%40UOnlZ%2FcoxCrIUsehK6jr4tbgfrWs; __cn_logon__=false; alicnweb=touch_tb_at%3D1649316804592%7Clastlogonid%3Dzkg852266010%7Cshow_inter_tips%3Dfalse; keywordsHistory=%E9%92%A2%E7%AD%8B%E9%92%A9; _csrf_token=1649319453013; tfstk=c8cRB2aZUnxubUUx7Ypm8uykH_M5aWxLcaZh9Xh0ACwwxaCdOs2isfQ5oLaQbuLA.; l=eBNaJtqgg-gKy7-ABO5ZKurza7791IOfGsPzaNbMiInca6tGXnutLNC3TKQwpdtj_tfjEeKrTan6EdE2SJ438x125OM8ARjSH6v6-; isg=BCgooAfp3oWAkvHrPLKOYWNs-RY6UYxbHQ9mG-JYFKMEPcyni2JB6oc7Nd3NDUQz";
+      public  static string mobile= "";
+        public static string logintoken = "";
+
+        #region NPOI导出表格
+        public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
+        {
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            ISheet sheet = null;
+            IWorkbook workbook = null;
+            FileStream fs = null;
+            // bool disposed;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            //sfd.Filter = "xlsx|*.xlsx";
+            sfd.Title = "Excel文件导出";
+            string fileName = "";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                fileName = sfd.FileName;
+            }
+            else
+                return -1;
+
+            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
+                workbook = new XSSFWorkbook();
+            else if (fileName.IndexOf(".xls") > 0) // 2003版本
+                workbook = new HSSFWorkbook();
+
+            try
+            {
+                if (workbook != null)
+                {
+                    sheet = workbook.CreateSheet(sheetName);
+                    ICellStyle style = workbook.CreateCellStyle();
+                    style.FillPattern = FillPattern.SolidForeground;
+
+                }
+                else
+                {
+                    return -1;
+                }
+
+                if (isColumnWritten == true) //写入DataTable的列名
+                {
+                    IRow row = sheet.CreateRow(0);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
+
+                    }
+                    count = 1;
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                for (i = 0; i < data.Rows.Count; ++i)
+                {
+                    IRow row = sheet.CreateRow(count);
+                    for (j = 0; j < data.Columns.Count; ++j)
+                    {
+                        row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());
+                    }
+                    ++count;
+                }
+                workbook.Write(fs); //写入到excel
+                workbook.Close();
+                fs.Close();
+                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
+                MessageBox.Show("数据导出完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return -1;
+            }
+        }
+
+        #endregion
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -406,6 +492,16 @@ namespace 基鹿工具箱
 
         }
 
+        public static string getuser(string mobile, string token)
+        {
+            string url = "http://" + domain + "/Api/service";
+            string postdata = "{\"mobile\":\"" + mobile + "\",\"token\":\"" + token + "\"}";
+            string html = PostUrlDefault(url, postdata, "");
+            return html;
+
+        }
+
+
         #region listview转datable
         /// <summary>
         /// listview转datable
@@ -450,88 +546,7 @@ namespace 基鹿工具箱
         }
         #endregion
 
-        #region NPOI导出表格
-        public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
-        {
-            int i = 0;
-            int j = 0;
-            int count = 0;
-            ISheet sheet = null;
-            IWorkbook workbook = null;
-            FileStream fs = null;
-            // bool disposed;
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
-            //sfd.Filter = "xlsx|*.xlsx";
-            sfd.Title = "Excel文件导出";
-            string fileName = "";
-
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                fileName = sfd.FileName;
-            }
-            else
-                return -1;
-
-            fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            if (fileName.IndexOf(".xlsx") > 0) // 2007版本
-                workbook = new XSSFWorkbook();
-            else if (fileName.IndexOf(".xls") > 0) // 2003版本
-                workbook = new HSSFWorkbook();
-
-            try
-            {
-                if (workbook != null)
-                {
-                    sheet = workbook.CreateSheet(sheetName);
-                    ICellStyle style = workbook.CreateCellStyle();
-                    style.FillPattern = FillPattern.SolidForeground;
-
-                }
-                else
-                {
-                    return -1;
-                }
-
-                if (isColumnWritten == true) //写入DataTable的列名
-                {
-                    IRow row = sheet.CreateRow(0);
-                    for (j = 0; j < data.Columns.Count; ++j)
-                    {
-                        row.CreateCell(j).SetCellValue(data.Columns[j].ColumnName);
-
-                    }
-                    count = 1;
-                }
-                else
-                {
-                    count = 0;
-                }
-
-                for (i = 0; i < data.Rows.Count; ++i)
-                {
-                    IRow row = sheet.CreateRow(count);
-                    for (j = 0; j < data.Columns.Count; ++j)
-                    {
-                        row.CreateCell(j).SetCellValue(data.Rows[i][j].ToString());
-                    }
-                    ++count;
-                }
-                workbook.Write(fs); //写入到excel
-                workbook.Close();
-                fs.Close();
-                System.Diagnostics.Process[] Proc = System.Diagnostics.Process.GetProcessesByName("");
-                MessageBox.Show("数据导出完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception: " + ex.Message);
-                return -1;
-            }
-        }
-
-        #endregion
+        
 
         #region NPOI读取表格导入datatable 
         /// <summary>  
@@ -805,7 +820,9 @@ namespace 基鹿工具箱
             return a.ToString();
         }
 
-        public string saledCount = "";
+        public int saledCount =0;
+        public int saledCount2 = 0;
+
         public string sellerLoginId = "";
         public string payOrder30DayStr = "";
         public  Dictionary<DateTime, int> reviewtimedic = new Dictionary<DateTime, int>();
@@ -815,10 +832,16 @@ namespace 基鹿工具箱
         string reviewcookie = "_m_h5_tk=92db0fa413f671f2890f3f01433abdb1_1650879394197;_m_h5_tk_enc=d85cbacbe17135f56c54809f7f00c70f; ";
         string token = "";
 
+
+
+
+
+
         public void getreview(object o)
         {
 
-           
+            saledCount = 0;
+            saledCount2 = 0;
             try
             {
                
@@ -829,7 +852,7 @@ namespace 基鹿工具箱
 
                 getsalecount(itemid);
 
-              
+
 
                 for (int page = 1; page < 101; page++)
                 {
@@ -842,7 +865,7 @@ namespace 基鹿工具箱
                    
                     
                     string html = GetUrlWithCookie (url, reviewcookie, "utf-8");
-                 
+                  
                     if(html.Contains("令牌过期"))
                     {
                         string cookiestr = getSetCookie(url);
@@ -854,31 +877,21 @@ namespace 基鹿工具箱
                         continue;
                         
                     }
+        
                     MatchCollection skunames = Regex.Matches(html, @"""specInfo"":""([\s\S]*?)""");
                     MatchCollection times = Regex.Matches(html, @"""gmtCreate"":""([\s\S]*?)""");
+                    MatchCollection quantitys = Regex.Matches(html, @"""quantity"":""([\s\S]*?)""");
+
                     if (skunames.Count == 0)
                         break;
                     for (int i = 0; i < skunames.Count; i++)
                     {
                         
-                        string skuname=skunames[i].Groups[1].Value;
-                        DateTime skutime = Convert.ToDateTime(Convert.ToDateTime(times[i].Groups[1].Value).ToShortDateString());
+                        string skuname="";
+                        DateTime skutime =Convert.ToDateTime( Convert.ToDateTime(times[i].Groups[1].Value).ToShortDateString());
+                        int quantity = Convert.ToInt32(quantitys[i].Groups[1].Value.Replace(".0",""));
 
-                        string[] skus = skunames[i].Groups[1].Value.Split(new string[] { "#" }, StringSplitOptions.None);
-                        if(skus.Length>2)
-                        {
-                            skuname = skus[0] + "#" + skus[1];
-                        }
-
-                        if (!reviewcountdic.ContainsKey(skuname))
-                        {
-                            reviewcountdic.Add(skuname, 1);
-                        }
-                        else
-                        {
-                            reviewcountdic[skuname] = reviewcountdic[skuname] + 1;
-                        }
-
+                        saledCount2 = saledCount2 + 1;
                         if (!reviewtimedic.ContainsKey(skutime))
                         {
                             reviewtimedic.Add(skutime, 1);
@@ -887,6 +900,43 @@ namespace 基鹿工具箱
                         {
                             reviewtimedic[skutime] = reviewtimedic[skutime] + 1;
                         }
+
+
+                        if (!skunames[i].Groups[1].Value.Contains("7C"))
+                        {
+                          
+                            saledCount = saledCount + quantity;
+                         
+
+
+                            string[] skus = skunames[i].Groups[1].Value.Split(new string[] { "#" }, StringSplitOptions.None);
+                            for (int a = 0; a < skus.Length; a++)
+                            {
+                                if (skus[a].Contains("3B"))
+                                {
+                                    skuname = skuname + skus[a].Replace("3B","");
+                                   
+                                }
+
+                            }
+
+
+                            if (!reviewcountdic.ContainsKey(skuname))
+                            {
+                                reviewcountdic.Add(skuname, quantity);
+                            }
+                            else
+                            {
+                                reviewcountdic[skuname] = reviewcountdic[skuname] + quantity;
+                            }
+
+                            
+
+
+                        }
+
+
+
                     }
 
                    
@@ -908,30 +958,47 @@ namespace 基鹿工具箱
         public void getsalecount(string itemid)
         {
            
-            token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
-            string time = Util.GetTimeStamp();
-            string str = token + "&" + time + "&12574478&{\"cid\":\"offerdetailGetShopInfo:offerdetailGetShopInfo\",\"methodName\":\"execute\",\"params\":\"{\\\"offerId\\\":"+itemid+",\\\"businessType\\\":\\\"default\\\"}\"}";
 
+            token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+           string time = Util.GetTimeStamp();
+            string str = token + "&" + time + "&12574478&{\"cid\":\"offerdetailGetShopInfo:offerdetailGetShopInfo\",\"methodName\":\"execute\",\"params\":\"{\\\"offerId\\\":" + itemid + ",\\\"businessType\\\":\\\"default\\\"}\"}";
             string sign = Md5_utf8(str);
 
-            string aurl = "https://h5api.m.1688.com/h5/mtop.taobao.widgetservice.getjsoncomponent/1.0/?jsv=2.4.8&appKey=12574478&t="+time+"&sign="+sign+"&api=mtop.taobao.widgetService.getJsonComponent&v=1.0&type=jsonp&isSec=0&timeout=20000&dataType=jsonp&callback=mtopjsonp9&data=%7B%22cid%22%3A%22offerdetailGetShopInfo%3AofferdetailGetShopInfo%22%2C%22methodName%22%3A%22execute%22%2C%22params%22%3A%22%7B%5C%22offerId%5C%22%3A"+itemid+"%2C%5C%22businessType%5C%22%3A%5C%22default%5C%22%7D%22%7D";
-
-
-            string cookiestr = getSetCookie(aurl);
-            string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
-            string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
-            reviewcookie = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-           
-            token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
-            time = Util.GetTimeStamp();
-            str = token + "&" + time + "&12574478&{\"cid\":\"offerdetailGetShopInfo:offerdetailGetShopInfo\",\"methodName\":\"execute\",\"params\":\"{\\\"offerId\\\":" + itemid + ",\\\"businessType\\\":\\\"default\\\"}\"}";
-            sign = Md5_utf8(str);
-
-
-            aurl = "https://h5api.m.1688.com/h5/mtop.taobao.widgetservice.getjsoncomponent/1.0/?jsv=2.4.8&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.taobao.widgetService.getJsonComponent&v=1.0&type=jsonp&isSec=0&timeout=20000&dataType=jsonp&callback=mtopjsonp9&data=%7B%22cid%22%3A%22offerdetailGetShopInfo%3AofferdetailGetShopInfo%22%2C%22methodName%22%3A%22execute%22%2C%22params%22%3A%22%7B%5C%22offerId%5C%22%3A" + itemid + "%2C%5C%22businessType%5C%22%3A%5C%22default%5C%22%7D%22%7D";
+            string aurl = "https://h5api.m.1688.com/h5/mtop.taobao.widgetservice.getjsoncomponent/1.0/?jsv=2.4.8&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.taobao.widgetService.getJsonComponent&v=1.0&type=jsonp&isSec=0&timeout=20000&dataType=jsonp&callback=mtopjsonp9&data=%7B%22cid%22%3A%22offerdetailGetShopInfo%3AofferdetailGetShopInfo%22%2C%22methodName%22%3A%22execute%22%2C%22params%22%3A%22%7B%5C%22offerId%5C%22%3A" + itemid + "%2C%5C%22businessType%5C%22%3A%5C%22default%5C%22%7D%22%7D";
 
             string html = GetUrlWithCookie(aurl, reviewcookie, "utf-8");
+
+         
+            if(html.Contains("令牌过期"))
+            {
+                string cookiestr = getSetCookie(aurl);
+                string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                reviewcookie = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+
+                token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+                 time = Util.GetTimeStamp();
+                str = token + "&" + time + "&12574478&{\"cid\":\"offerdetailGetShopInfo:offerdetailGetShopInfo\",\"methodName\":\"execute\",\"params\":\"{\\\"offerId\\\":" + itemid + ",\\\"businessType\\\":\\\"default\\\"}\"}";
+
+                sign = Md5_utf8(str);
+
+                aurl = "https://h5api.m.1688.com/h5/mtop.taobao.widgetservice.getjsoncomponent/1.0/?jsv=2.4.8&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.taobao.widgetService.getJsonComponent&v=1.0&type=jsonp&isSec=0&timeout=20000&dataType=jsonp&callback=mtopjsonp9&data=%7B%22cid%22%3A%22offerdetailGetShopInfo%3AofferdetailGetShopInfo%22%2C%22methodName%22%3A%22execute%22%2C%22params%22%3A%22%7B%5C%22offerId%5C%22%3A" + itemid + "%2C%5C%22businessType%5C%22%3A%5C%22default%5C%22%7D%22%7D";
+
+               
+                html = GetUrlWithCookie(aurl, reviewcookie, "utf-8");
+            }
+          
             sellerLoginId = Regex.Match(html, @"""loginId"":""([\s\S]*?)""").Groups[1].Value;
+
+
+
+
+
+
+
+
+
+
             try
             {
               
@@ -954,6 +1021,15 @@ namespace 基鹿工具箱
             }
 
         }
+
+
+
+
+
+
+
+
+
 
 
     }

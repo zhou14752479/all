@@ -113,7 +113,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(310, 21);
             this.textBox1.TabIndex = 22;
-            this.textBox1.Text = "C:\\Users\\zhou\\Desktop\\cs.xlsx";
+            this.textBox1.Text = "C:\\Users\\Administrator\\Desktop\\cs.xlsx";
             // 
             // label3
             // 
@@ -275,7 +275,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "查询5";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "传奇游戏挂机脚本5";
+            this.Text = "传奇游戏挂机脚本5_APP";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.查询5_FormClosing);
             this.Load += new System.EventHandler(this.查询5_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

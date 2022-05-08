@@ -229,10 +229,18 @@ namespace 图片合成
             try
             {
                 string month = DateTime.Now.Month.ToString();
+            
                 string day = DateTime.Now.Day.ToString();
-
+              if(Convert.ToInt32(month) <10)
+                {
+                    month = "0" + month;
+                }
+                if (Convert.ToInt32(day) < 10)
+                {
+                    day = "0" + day;
+                }
                 char[] monthchar = month.ToCharArray();
-
+                
                 char[] daychar = day.ToCharArray();
 
 
@@ -332,7 +340,7 @@ namespace 图片合成
             //drawText("你好","黑体",30,FontStyle.Bold,100,100,0,0,0);
             pictureBox1.Image.Dispose();
             run("1", textBox1.Text.Trim());
-            pictureBox1.Image = Image.FromFile(Application.StartupPath + "/image/1.jpg");
+           pictureBox1.Image = Image.FromFile(Application.StartupPath + "/image/1.jpg");
 
         }
 

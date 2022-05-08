@@ -27,7 +27,7 @@ namespace 天眼查企业查询
             string ahtml = method.GetUrl("http://www.acaiji.com/shangxueba2/shangxueba.php?method=getcookie", "utf-8");
 
             token = ahtml.Trim().Replace("\r", "").Replace("\n", "");
-
+           // token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzMzMDc5NjE4NyIsImlhdCI6MTY1MTIwMjM1MywiZXhwIjoxNjUzNzk0MzUzfQ.9uKA0nupxIVjW-gv3u4J5ZF4qvj5SgpvGdGZ5ES52YAtH972m6ILdxZGMcloQWXsXtHz9l2_zg8oy6X7mu8uQA";
 
         }
 
@@ -59,8 +59,9 @@ namespace 天眼查企业查询
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("version:TYC-XCX-WX");
                 headers.Add("X-AUTH-TOKEN: " + token);
+                headers.Add("Authorization: 0###oo34J0YSWR0ucFrTbNJwK7MpAWiE###1650792797240###2ed6a2ec3ab12c1623ccd098ee5711fd");
                 request.Headers.Add("Cookie", COOKIE);
-                headers.Add("Authorization: 0###oo34J0YSWR0ucFrTbNJwK7MpAWiE###1639990889998###2ed6a2ec3ab12c1623ccd098ee5711fd");
+               
                 request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
@@ -128,7 +129,7 @@ namespace 天眼查企业查询
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("version:TYC-XCX-WX");
                 headers.Add("X-AUTH-TOKEN: " + token);
-              
+                headers.Add("Authorization: 0###oo34J0YSWR0ucFrTbNJwK7MpAWiE###1650792797240###2ed6a2ec3ab12c1623ccd098ee5711fd");
                 //headers.Add("sec-fetch-user:?1");
                 //headers.Add("upgrade-insecure-requests: 1");
                 //添加头部
@@ -202,11 +203,19 @@ namespace 天眼查企业查询
                     string phone = Regex.Match(html, @"phone"":""([\s\S]*?)""").Groups[1].Value;
                     string addr = Regex.Match(html, @"regLocation"":""([\s\S]*?)""").Groups[1].Value;
                     string uid= Regex.Match(html, @"""graphId"":([\s\S]*?),").Groups[1].Value;
-                   
-                    string shangbiaourl = "https://api9.tianyancha.com/services/v3/expanse/allCountV3?id="+uid;
-                    string sbhtml = GetUrl(shangbiaourl,"utf-8");
-                   
-                    string tmCount = Regex.Match(sbhtml, @"tmCount"":""([\s\S]*?)""").Groups[1].Value;
+
+                    //string shangbiaourl = "https://api9.tianyancha.com/services/v3/expanse/allCountV3?id="+uid;
+
+                    //string sbhtml = GetUrl(shangbiaourl,"utf-8");
+
+                    //string tmCount = Regex.Match(sbhtml, @"tmCount"":""([\s\S]*?)""").Groups[1].Value;
+
+                    string shangbiaourl = "https://api9.tianyancha.com/services/v3/trademark/tms.json";
+
+                    string sbhtml = PostUrlDefault(shangbiaourl, "{\"id\":\""+uid+"\",\"ps\":20,\"pn\":\"1\",\"int_cls\":-100,\"status\":-100,\"category\":-100,\"app_year\":-100}","");
+
+                    string tmCount = Regex.Match(sbhtml, @"""total"":([\s\S]*?),").Groups[1].Value;
+
 
                     string tel = "";
 

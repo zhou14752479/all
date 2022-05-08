@@ -173,8 +173,9 @@ namespace win007
                 dgv1.Columns["he_yingkuizs"].HeaderText = "和赢亏指数";
                 dgv1.Columns["ke_yingkuizs"].HeaderText = "客队赢亏指数";
 
-                dgv1.Columns["rangqiu"].HeaderText = "让球";
-                dgv1.Columns["daxiaoqiu"].HeaderText = "大小球";
+              
+                dgv1.Columns["rangqiu_daxiaoqiu"].HeaderText = "让球大小球";
+             
 
                 dgv1.Columns[7].HeaderCell.Style.BackColor = Color.Red;
                 dgv1.Columns[8].HeaderCell.Style.BackColor = Color.CornflowerBlue;
@@ -196,9 +197,16 @@ namespace win007
                 //this.dgv1.Columns[14].Width = 0;
                 //this.dgv1.Columns[15].Width = 0;
 
-                dgv1.Columns[16].Width = 50;
-                dgv1.Columns[17].Width =50;
+                dgv1.Columns[16].Width = 100;
+                dgv1.Columns[17].Width =100;
                 dgv1.Columns[18].Width = 50;
+
+                dgv1.Columns[21].Width = 1;
+                dgv1.Columns[22].Width = 1;
+                dgv1.Columns[23].Width = 1;
+                dgv1.Columns[24].Width = 1;
+                dgv1.Columns[25].Width = 1;
+                dgv1.Columns[26].Width = 1;
 
                 //计算
 
@@ -640,8 +648,8 @@ namespace win007
                                     case "Intertops":
                                         gongsi_dics.Add(cid, "Intertops");
                                         break;
-                                    case "Singbet":
-                                        gongsi_dics.Add(cid, "Singbet");
+                                    case "Bet3000":
+                                        gongsi_dics.Add(cid, "Bet3000");
                                         break;
                                     case "Crown":
                                         gongsi_dics.Add(cid, "Crown");
@@ -651,6 +659,12 @@ namespace win007
                                         break;
                                     case "Bet-at-home":
                                         gongsi_dics.Add(cid, "Bet-at-home");
+                                        break;
+                                    case "Lottery Official":
+                                        gongsi_dics.Add(cid, "Lottery Official");
+                                        break;
+                                    case "Vcbet":
+                                        gongsi_dics.Add(cid, "Vcbet");
                                         break;
 
                                 }
@@ -726,7 +740,7 @@ namespace win007
 
                                         
                                     }
-                                   
+
 
 
 
@@ -740,7 +754,8 @@ namespace win007
                                     //    lv1.SubItems.Add(data8);
                                     //lv1.SubItems.Add(data9);
 
-                                    fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu,daxiaoqiu);
+                                    string rangqiu_daxiaoqiu = rangqiu +" "+ daxiaoqiu;
+                                    fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu_daxiaoqiu);
 
 
 
@@ -819,9 +834,8 @@ namespace win007
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //startdate = Convert.ToDateTime("2021-09-24").ToString("yyyy-MM-dd");
-            startdate = DateTime.Now.AddDays(-365).ToString("yyyy-MM-dd");
-
+            //startdate = Convert.ToDateTime("2018-07-01").ToString("yyyy-MM-dd");
+            startdate = Convert.ToDateTime("2019-11-24").ToString("yyyy-MM-dd");
             enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)

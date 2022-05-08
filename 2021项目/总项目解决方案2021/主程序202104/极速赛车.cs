@@ -34,13 +34,14 @@ namespace 主程序202104
 
             try
             {
-
+                //http://www.daytomko.com/
                 //string url = "https://backs.wlyylw.cn/lottery-client-api/races/min/10002/history?date=";
-                string url = "https://backs.wlyylw.cn/lottery-client-api/races/min/10002?issue=0";
+                string url = "https://api.api68.com/pks/getPksHistoryList.do?date=&lotCode=10037";
                 string html = method.GetUrl(url, "utf-8");
-                string date = Regex.Match(html, @"""pdt"":""([\s\S]*?)""").Groups[1].Value;
-                string qishu = Regex.Match(html, @"""pdi"":([\s\S]*?),").Groups[1].Value;
-                string haoma = Regex.Match(html, @"""pdc"":\[([\s\S]*?)\]").Groups[1].Value;
+                MessageBox.Show(html);
+                string date = Regex.Match(html, @"""preDrawTime"":""([\s\S]*?)""").Groups[1].Value;
+                string qishu = Regex.Match(html, @"""preDrawIssue"":""([\s\S]*?)""").Groups[1].Value;
+                string haoma = Regex.Match(html, @"""preDrawCode"":""([\s\S]*?)""").Groups[1].Value;
                 if (!lists.Contains(qishu))
                 {
                     lists.Add(qishu);
@@ -142,7 +143,18 @@ namespace 主程序202104
 
         private void 极速赛车_Load(object sender, EventArgs e)
         {
+            #region 通用检测
 
+
+            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"k1aiu"))
+            {
+                
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+
+                return;
+            }
+
+            #endregion
             //this.Width = Screen.PrimaryScreen.Bounds.Width / 2;
             //this.Height = Screen.PrimaryScreen.Bounds.Height / 2;
             //this.Left = Screen.PrimaryScreen.Bounds.Width / 2 - this.Width / 2;
@@ -285,19 +297,7 @@ namespace 主程序202104
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com:8080/api/vip.html", "utf-8");
-
-            if (!html.Contains(@"5V8yD"))
-            {
-               
-                return;
-            }
-
-
-
-            #endregion
+            
             if ( haoma_text1.Text == "" || haoma_text2.Text == "")
             {
                 MessageBox.Show("输入框为空");

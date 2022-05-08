@@ -71,7 +71,7 @@ namespace 浙江企业基础信息查询
                     IniWriteValue("values", "mac", jihuoma.Trim());
                     IniWriteValue("values", "ex", textBox2.Text.Replace(jihuoma, "").Trim());
                     MessageBox.Show("激活成功");
-                    浙江企业基础信息查询 lg = new 浙江企业基础信息查询();
+                    查询1 lg = new 查询1();
                     lg.Show();
                     this.Hide();
                 }

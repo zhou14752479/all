@@ -16,7 +16,7 @@ namespace TCP通信
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 服务端());
+            Application.Run(new 客户端());
         }
     }
 }

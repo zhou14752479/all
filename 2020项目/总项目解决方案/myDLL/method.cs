@@ -78,10 +78,11 @@ namespace myDLL
                 //headers.Add("sec-fetch-mode:navigate");
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
                 request.Accept = "*/*";
                 request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+              
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {
@@ -152,10 +153,11 @@ namespace myDLL
                 request.Referer = Url;
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
                 request.Accept = "*/*";
                 request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+              
 
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {
@@ -209,10 +211,11 @@ namespace myDLL
                 request.Referer = Url;
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 //request.KeepAlive = true;
                 request.Accept = "*/*";
                 request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+               
 
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {

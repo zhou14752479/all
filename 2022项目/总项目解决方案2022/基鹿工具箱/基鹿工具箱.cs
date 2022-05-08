@@ -58,13 +58,81 @@ namespace 基鹿工具箱
         }
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 9;
+            if (Util.expiretime != "")
+            {
+                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
+                {
+                    tabControl1.SelectedIndex = 9;
+                }
+                else
+                {
+                    MessageBox.Show("请购买套餐");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请购买套餐");
+            }
         }
 
         private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            tabControl1.SelectedIndex = 9;
+            if (Util.expiretime != "")
+            {
+                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
+                {
+                    tabControl1.SelectedIndex =9;
+                }
+                else
+                {
+                    MessageBox.Show("请购买套餐");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请购买套餐");
+            }
         }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            if (Util.expiretime != ""&&Util.expiretime != "非会员")
+            {
+                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
+                {
+                    tabControl1.SelectedIndex = 10;
+                }
+                else
+                {
+                    MessageBox.Show("请购买套餐");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请购买套餐");
+            }
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (Util.expiretime != "")
+            {
+                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
+                {
+                    tabControl1.SelectedIndex = 10;
+                }
+                else
+                {
+                    MessageBox.Show("请购买套餐");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请购买套餐");
+            }
+        }
+
+
         private Point mPoint = new Point();
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -84,10 +152,36 @@ namespace 基鹿工具箱
 
         private void 基鹿工具箱_Load(object sender, EventArgs e)
         {
+
+            try
+            {
+                string html = Util.getuser(Util.mobile, Util.logintoken);
+                //MessageBox.Show(html);
+                string paytime = Regex.Match(html, @"""pay_time"":""([\s\S]*?)""").Groups[1].Value;
+                if (paytime != "")
+                {
+                    string days = Regex.Match(html, @"""days"":""([\s\S]*?)""").Groups[1].Value;
+                    if(days=="")
+                    {
+                        days = Regex.Match(html, @"""last_days"":([\s\S]*?),").Groups[1].Value;
+                    }
+                    Util.expiretime = Convert.ToDateTime(paytime).AddDays(Convert.ToInt32(days)).ToString("yyyy-MM-dd");
+                }
+               else
+                {
+                    Util.expiretime = "非会员";
+                }
+                label4.Text = "有效期至:" + Util.expiretime;
+            }
+            catch (Exception ex)
+            {
+               // MessageBox.Show(ex.ToString());
+                
+            }
+           
+          
             
-            
-            label4.Text = "有效期至:" + Util.expiretime ;
-            this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
+         //   this.tabControl1.Region = new Region(new RectangleF(this.tabPage1.Left, this.tabPage1.Top, this.tabPage1.Width, this.tabPage1.Height));
             button1.Click += new System.EventHandler(btn_Click);
             button2.Click += new System.EventHandler(btn_Click);
             button3.Click += new System.EventHandler(btn_Click);
@@ -142,12 +236,41 @@ namespace 基鹿工具箱
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            tabControl1.SelectedIndex = 7;
+            if (Util.expiretime != "")
+            {
+                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
+                {
+                    tabControl1.SelectedIndex = 7;
+                }
+                else
+                {
+                    MessageBox.Show("请购买套餐");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请购买套餐");
+            }
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 7;
+            if (Util.expiretime != "")
+            {
+                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
+                {
+                    tabControl1.SelectedIndex = 7;
+                }
+                else
+                {
+                    MessageBox.Show("请购买套餐");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请购买套餐");
+            }
         }
 
         Thread thread;
@@ -259,16 +382,19 @@ namespace 基鹿工具箱
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dr == DialogResult.OK)
-            {
-                // Environment.Exit(0);
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
-            else
-            {
+            //DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            //if (dr == DialogResult.OK)
+            //{
+            //    // Environment.Exit(0);
+            //    System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //}
+            //else
+            //{
                
-            }
+            //}
+            this.Hide();
+            login lg=new login();
+            lg.Show();
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -307,12 +433,40 @@ namespace 基鹿工具箱
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 8;
+            if (Util.expiretime != "")
+            {
+                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
+                {
+                    tabControl1.SelectedIndex = 8;
+                }
+                else
+                {
+                    MessageBox.Show("请购买套餐");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请购买套餐");
+            }
         }
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            tabControl1.SelectedIndex = 8;
+            if (Util.expiretime != "")
+            {
+                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
+                {
+                    tabControl1.SelectedIndex = 8;
+                }
+                else
+                {
+                    MessageBox.Show("请购买套餐");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请购买套餐");
+            }
         }
 
 
@@ -365,7 +519,7 @@ namespace 基鹿工具箱
                 {
                     sql2 = sb.ToString().Remove(sb.ToString().Length - 2, 2);
                 }
-                string sql = "Select ci,ss_zs,fd,good_zs,gx_zs,pp,copy From datas where  " + sql2;
+                string sql = "Select ci,ss_zs,fd,good_zs,gx_zs,pp,copy From datas where  " + sql2+ "order by ss_zs";
 
                 DataTable dt = Util.getdata(sql);
                 dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font
@@ -468,70 +622,6 @@ namespace 基鹿工具箱
             textBox3.Text = str;
         }
 
-
-
-       
-
-
-     Util util= new Util();
-
-        private void button18_Click(object sender, EventArgs e)
-        {
-            util.stop = false;
-            util.reviewcountdic.Clear();
-            util.reviewtimedic.Clear();
-
-
-            if (thread == null || !thread.IsAlive)
-            {
-               
-                thread = new Thread(new ParameterizedThreadStart(util.getreview));
-                string o = itemidtxt.Text.Trim();
-                thread.Start((object)o);
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
-
-
-            while (true)
-            {
-                button18.Text = "正在提取数据分析...";
-                button18.Enabled = false;
-                if(util.saledCount!="")
-                {
-                    salecountlabel.Text = util.saledCount; 
-                    salejinelabel.Text = util.saledCount;
-                }
-                if (util.stop == true)
-                {
-                    button18.Text = "点击分析";
-                    button18.Enabled = true;
-
-                    //List<string> xData = new List<string>() { "A", "B", "C", "D", "E" };
-                    //List<int> yData = new List<int>() { 10, 20, 30, 40, 100 };
-                    chart1.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
-                    chart1.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
-                    chart1.Series[0].Points.DataBindXY(util.reviewcountdic.Keys, util.reviewcountdic.Values);
-
-                    chart2.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
-                    chart2.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
-                    chart2.Series[0].Points.DataBindXY(util.reviewcountdic.Keys, util.reviewcountdic.Values);
-
-                    chart3.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
-                    chart3.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
-                
-                    chart3.Series[0].Points.DataBindXY(util.reviewtimedic.Keys, util.reviewtimedic.Values);
-                    break;
-                }
-            }
-
-
-
-
-
-
-
-        }
-
         private void button24_Click(object sender, EventArgs e)
         {
             button23.BackColor = Color.White;
@@ -545,6 +635,8 @@ namespace 基鹿工具箱
 
         private void button23_Click(object sender, EventArgs e)
         {
+            chart1.ChartAreas[0].AxisX.Minimum = DateTime.Now.AddDays(-30).ToOADate();
+            
             button23.BackColor = Color.DodgerBlue;
             button24.BackColor = Color.White;
             button25.BackColor = Color.White;
@@ -563,6 +655,160 @@ namespace 基鹿工具箱
             button23.ForeColor = Color.Black;
             button24.ForeColor = Color.Black;
             button25.ForeColor = Color.White;
+        }
+
+
+
+
+
+        Util util = new Util();
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            util.stop = false;
+            util.reviewcountdic.Clear();
+            util.reviewtimedic.Clear();
+
+
+            Thread thread = new Thread(new ParameterizedThreadStart(util.getreview));
+            string o1 = itemidtxt.Text.Trim();
+            thread.Start((object)o1);
+            Control.CheckForIllegalCrossThreadCalls = false;
+
+
+            while (true)
+            {
+                button18.Text = "正在提取数据分析...";
+                button18.Enabled = false;
+                if(util.saledCount!=0)
+                {
+                    salecountlabel.Text = util.saledCount.ToString();
+                    salecountlabel2.Text = util.saledCount2.ToString();
+                }
+                if (util.stop == true)
+                {
+                    button18.Text = "点击分析";
+                    button18.Enabled = true;
+
+                    Dictionary<DateTime,int> dic1 = util.reviewtimedic.OrderBy(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
+                   
+                    //List<string> xData = new List<string>() { "A", "B", "C", "D", "E" };
+                    //List<int> yData = new List<int>() { 10, 20, 30, 40, 100 };
+                    chart1.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
+                    chart1.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
+                    chart1.Series[0].Points.DataBindXY(dic1.Keys, dic1.Values);
+
+                   
+                    chart1.ChartAreas[0].AxisX.Minimum = Convert.ToDateTime("2022-04-01").ToOADate();
+
+
+                    break;
+                }
+            }
+
+
+
+        }
+
+       
+        private void button26_Click(object sender, EventArgs e)
+        {
+            util.stop = false;
+            util.reviewcountdic.Clear();
+            util.reviewtimedic.Clear();
+
+
+            Thread thread = new Thread(new ParameterizedThreadStart(util.getreview));
+            string o = itemidtxt2.Text.Trim();
+            thread.Start((object)o);
+            Control.CheckForIllegalCrossThreadCalls = false;
+
+         
+
+
+            while (true)
+            {
+                button26.Text = "正在提取数据分析...";
+                button26.Enabled = false;
+                if (util.saledCount != 0)
+                {
+                    salecountlabel.Text = util.saledCount.ToString();
+                    salecountlabel2.Text = util.saledCount.ToString();
+                }
+                if (util.stop == true)
+                {
+                    button26.Text = "点击分析";
+                    button26.Enabled = true;
+
+
+                  
+                   
+                    chart2.Series[0].Points.DataBindXY(util.reviewcountdic.Keys, util.reviewcountdic.Values);
+
+                    Legend legend1= new Legend("#VALX " +
+                        "#PERCENT{P} #VALY");
+
+                    chart2.Series["Series1"].Label = "#PERCENT{P}"; //显示占比
+                                                                    // chart2.Series["Series1"].LegendText = "#VALX"; 
+                    chart2.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
+                    chart2.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
+                    chart2.Series[0].LegendText = legend1.Name;
+                    chart2.Legends.Add(legend1);
+                    chart2.Series[0].XValueType = ChartValueType.String;  //设置X轴上的值类型
+
+                    chart2.Series[0].IsVisibleInLegend = true;
+                  
+                    break;
+                }
+            }
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("SKU", typeof(string));
+            dt.Columns.Add("销量", typeof(string));
+          
+
+            foreach (string key in util.reviewcountdic.Keys)
+            {
+                DataRow dr = dt.NewRow();
+                dr[0] = key;
+                dr[1] = util.reviewcountdic[key];
+                dt.Rows.Add(dr);
+            }
+
+           
+            Util.DataTableToExcel(dt,"sheet1",true);
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            //DataTable dt = new DataTable();
+            //dt.Columns.Add("SKU", typeof(string));
+            //dt.Columns.Add("销量", typeof(string));
+
+
+            //foreach (string key in util.reviewtimedic.Keys)
+            //{
+            //    DataRow dr = dt.NewRow();
+            //    dr[0] = key;
+            //    dr[1] = util.reviewtimedic[key];
+            //    dt.Rows.Add(dr);
+            //}
+
+
+            //Util.DataTableToExcel(dt, "sheet1", true);
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            chart1.ChartAreas[0].AxisX.Minimum = dateTimePicker1.Value.ToOADate();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            chart1.ChartAreas[0].AxisX.Maximum = dateTimePicker1.Value.ToOADate();
         }
     }
 }

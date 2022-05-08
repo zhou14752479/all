@@ -155,7 +155,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(298, 34);
             this.textBox1.TabIndex = 69;
-            this.textBox1.Text = "13777373777";
             // 
             // textBox2
             // 
@@ -166,7 +165,6 @@
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(298, 34);
             this.textBox2.TabIndex = 70;
-            this.textBox2.Text = "123456";
             // 
             // linkLabel1
             // 
@@ -195,6 +193,8 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("宋体", 10F);
             this.checkBox1.Location = new System.Drawing.Point(455, 270);
             this.checkBox1.Name = "checkBox1";
@@ -233,7 +233,8 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 2000;
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // login
