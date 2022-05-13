@@ -16,7 +16,7 @@ namespace 亚马逊抓取
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 查贴吧());
+            Application.Run(new 快发卡());
         }
     }
 }

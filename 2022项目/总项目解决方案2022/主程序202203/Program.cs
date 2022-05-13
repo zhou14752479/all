@@ -16,7 +16,7 @@ namespace 主程序202203
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 电子库存监控());
+            Application.Run(new TXT提取());
         }
     }
 }

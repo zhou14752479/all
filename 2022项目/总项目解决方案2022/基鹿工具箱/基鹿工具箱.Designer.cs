@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(基鹿工具箱));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button9 = new System.Windows.Forms.Button();
@@ -59,14 +60,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.linkLabel7 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -105,6 +100,17 @@
             this.button22 = new System.Windows.Forms.Button();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button20 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.salecountlabel2 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -122,17 +128,22 @@
             this.button26 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button24 = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.button20 = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button19 = new System.Windows.Forms.Button();
+            this.linkLabel7 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel9 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -141,22 +152,24 @@
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPage9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage10.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabPage11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.panel7.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.tabPage13.SuspendLayout();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -478,6 +491,8 @@
             this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Controls.Add(this.tabPage11);
+            this.tabControl1.Controls.Add(this.tabPage12);
+            this.tabControl1.Controls.Add(this.tabPage13);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             this.tabControl1.Location = new System.Drawing.Point(179, 95);
@@ -489,176 +504,86 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1022, 634);
+            this.tabPage1.Size = new System.Drawing.Size(1022, 651);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.linkLabel8);
-            this.tabPage2.Controls.Add(this.pictureBox8);
-            this.tabPage2.Controls.Add(this.linkLabel7);
-            this.tabPage2.Controls.Add(this.pictureBox7);
-            this.tabPage2.Controls.Add(this.linkLabel6);
-            this.tabPage2.Controls.Add(this.pictureBox6);
-            this.tabPage2.Controls.Add(this.linkLabel5);
-            this.tabPage2.Controls.Add(this.pictureBox4);
+            this.tabPage2.Controls.Add(this.listView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1022, 651);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
-            // linkLabel8
+            // listView2
             // 
-            this.linkLabel8.AutoSize = true;
-            this.linkLabel8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.linkLabel8.ForeColor = System.Drawing.Color.White;
-            this.linkLabel8.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel8.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel8.Location = new System.Drawing.Point(535, 168);
-            this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(139, 22);
-            this.linkLabel8.TabIndex = 20;
-            this.linkLabel8.TabStop = true;
-            this.linkLabel8.Text = "竞品SKU占比分析";
-            this.linkLabel8.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel8_LinkClicked);
+            this.listView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listView2.HideSelection = false;
+            this.listView2.LargeImageList = this.imageList1;
+            this.listView2.Location = new System.Drawing.Point(3, 3);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(1016, 645);
+            this.listView2.TabIndex = 21;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView2_MouseDoubleClick);
             // 
-            // pictureBox8
+            // imageList1
             // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(550, 42);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(110, 114);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 19;
-            this.pictureBox8.TabStop = false;
-            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
-            // 
-            // linkLabel7
-            // 
-            this.linkLabel7.AutoSize = true;
-            this.linkLabel7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.linkLabel7.ForeColor = System.Drawing.Color.White;
-            this.linkLabel7.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel7.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel7.Location = new System.Drawing.Point(374, 168);
-            this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(139, 22);
-            this.linkLabel7.TabIndex = 18;
-            this.linkLabel7.TabStop = true;
-            this.linkLabel7.Text = "竞品SKU销量分析";
-            this.linkLabel7.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel7_LinkClicked);
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(389, 42);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(110, 114);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 17;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
-            // 
-            // linkLabel6
-            // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.linkLabel6.ForeColor = System.Drawing.Color.White;
-            this.linkLabel6.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel6.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel6.Location = new System.Drawing.Point(233, 168);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(106, 22);
-            this.linkLabel6.TabIndex = 16;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "标题自动生成";
-            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(229, 42);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(110, 114);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 15;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.linkLabel5.ForeColor = System.Drawing.Color.White;
-            this.linkLabel5.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel5.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel5.Location = new System.Drawing.Point(58, 168);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(122, 22);
-            this.linkLabel5.TabIndex = 14;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "关键词排名查询";
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(62, 42);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(110, 114);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(110, 110);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1022, 634);
+            this.tabPage3.Size = new System.Drawing.Size(1022, 651);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 5);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1022, 634);
+            this.tabPage4.Size = new System.Drawing.Size(1022, 651);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 5);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1022, 634);
+            this.tabPage5.Size = new System.Drawing.Size(1022, 651);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabPage6
             // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(4, 5);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1022, 634);
+            this.tabPage6.Size = new System.Drawing.Size(1022, 651);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // tabPage7
             // 
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Location = new System.Drawing.Point(4, 5);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(1022, 634);
+            this.tabPage7.Size = new System.Drawing.Size(1022, 651);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
@@ -677,10 +602,10 @@
             this.tabPage8.Controls.Add(this.key_txtbox);
             this.tabPage8.Controls.Add(this.button8);
             this.tabPage8.Controls.Add(this.listView1);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Location = new System.Drawing.Point(4, 5);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(1022, 634);
+            this.tabPage8.Size = new System.Drawing.Size(1022, 651);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
@@ -842,7 +767,7 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 121);
+            this.listView1.Location = new System.Drawing.Point(3, 138);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1016, 510);
             this.listView1.TabIndex = 204;
@@ -1023,208 +948,25 @@
             this.panel6.Size = new System.Drawing.Size(1016, 588);
             this.panel6.TabIndex = 2;
             // 
-            // panel4
+            // chart1
             // 
-            this.panel4.BackColor = System.Drawing.SystemColors.Control;
-            this.panel4.Controls.Add(this.salecountlabel2);
-            this.panel4.Controls.Add(this.label12);
-            this.panel4.Controls.Add(this.itemidtxt);
-            this.panel4.Controls.Add(this.button18);
-            this.panel4.Controls.Add(this.label10);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1016, 57);
-            this.panel4.TabIndex = 0;
-            // 
-            // salecountlabel2
-            // 
-            this.salecountlabel2.AutoSize = true;
-            this.salecountlabel2.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.salecountlabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.salecountlabel2.Location = new System.Drawing.Point(934, 21);
-            this.salecountlabel2.Name = "salecountlabel2";
-            this.salecountlabel2.Size = new System.Drawing.Size(52, 15);
-            this.salecountlabel2.TabIndex = 221;
-            this.salecountlabel2.Text = "10000";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label12.Location = new System.Drawing.Point(821, 21);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(107, 15);
-            this.label12.TabIndex = 220;
-            this.label12.Text = "SKU累计销量:";
-            // 
-            // itemidtxt
-            // 
-            this.itemidtxt.Font = new System.Drawing.Font("宋体", 11F);
-            this.itemidtxt.Location = new System.Drawing.Point(99, 16);
-            this.itemidtxt.Name = "itemidtxt";
-            this.itemidtxt.Size = new System.Drawing.Size(145, 24);
-            this.itemidtxt.TabIndex = 212;
-            this.itemidtxt.Text = "641746252256";
-            // 
-            // button18
-            // 
-            this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button18.FlatAppearance.BorderSize = 0;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold);
-            this.button18.ForeColor = System.Drawing.Color.White;
-            this.button18.Location = new System.Drawing.Point(261, 13);
-            this.button18.Margin = new System.Windows.Forms.Padding(0);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(164, 30);
-            this.button18.TabIndex = 211;
-            this.button18.Text = "点击分析";
-            this.button18.UseVisualStyleBackColor = false;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label10.Location = new System.Drawing.Point(3, 21);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 15);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "输入宝贝ID";
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.Controls.Add(this.label24);
-            this.tabPage11.Controls.Add(this.button27);
-            this.tabPage11.Controls.Add(this.chart2);
-            this.tabPage11.Controls.Add(this.panel7);
-            this.tabPage11.Location = new System.Drawing.Point(4, 5);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(1022, 651);
-            this.tabPage11.TabIndex = 10;
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.label24.Location = new System.Drawing.Point(7, 75);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(78, 12);
-            this.label24.TabIndex = 215;
-            this.label24.Text = "SKU销量占比";
-            // 
-            // button27
-            // 
-            this.button27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button27.FlatAppearance.BorderSize = 0;
-            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button27.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.button27.ForeColor = System.Drawing.Color.White;
-            this.button27.Location = new System.Drawing.Point(9, 89);
-            this.button27.Margin = new System.Windows.Forms.Padding(0);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(71, 24);
-            this.button27.TabIndex = 214;
-            this.button27.Text = "导出表格";
-            this.button27.UseVisualStyleBackColor = false;
-            this.button27.Click += new System.EventHandler(this.button27_Click);
-            // 
-            // chart2
-            // 
-            chartArea17.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea17);
-            this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart2.Location = new System.Drawing.Point(3, 60);
-            this.chart2.Name = "chart2";
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series17.IsValueShownAsLabel = true;
-            series17.Name = "Series1";
-            this.chart2.Series.Add(series17);
-            this.chart2.Size = new System.Drawing.Size(1016, 588);
-            this.chart2.TabIndex = 2;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.SystemColors.Control;
-            this.panel7.Controls.Add(this.salecountlabel);
-            this.panel7.Controls.Add(this.label18);
-            this.panel7.Controls.Add(this.itemidtxt2);
-            this.panel7.Controls.Add(this.button26);
-            this.panel7.Controls.Add(this.label23);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(3, 3);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1016, 57);
-            this.panel7.TabIndex = 1;
-            // 
-            // salecountlabel
-            // 
-            this.salecountlabel.AutoSize = true;
-            this.salecountlabel.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.salecountlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.salecountlabel.Location = new System.Drawing.Point(911, 21);
-            this.salecountlabel.Name = "salecountlabel";
-            this.salecountlabel.Size = new System.Drawing.Size(52, 15);
-            this.salecountlabel.TabIndex = 219;
-            this.salecountlabel.Text = "10000";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label18.Location = new System.Drawing.Point(798, 21);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(107, 15);
-            this.label18.TabIndex = 217;
-            this.label18.Text = "SKU累计销量:";
-            // 
-            // itemidtxt2
-            // 
-            this.itemidtxt2.Font = new System.Drawing.Font("宋体", 11F);
-            this.itemidtxt2.Location = new System.Drawing.Point(99, 16);
-            this.itemidtxt2.Name = "itemidtxt2";
-            this.itemidtxt2.Size = new System.Drawing.Size(145, 24);
-            this.itemidtxt2.TabIndex = 212;
-            this.itemidtxt2.Text = "641746252256";
-            // 
-            // button26
-            // 
-            this.button26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button26.FlatAppearance.BorderSize = 0;
-            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button26.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold);
-            this.button26.ForeColor = System.Drawing.Color.White;
-            this.button26.Location = new System.Drawing.Point(260, 13);
-            this.button26.Margin = new System.Windows.Forms.Padding(0);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(164, 30);
-            this.button26.TabIndex = 211;
-            this.button26.Text = "点击分析";
-            this.button26.UseVisualStyleBackColor = false;
-            this.button26.Click += new System.EventHandler(this.button26_Click);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(3, 21);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(89, 15);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "输入宝贝ID";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(0, 45);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "SKU销量趋势";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series1.YValuesPerPoint = 2;
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(1016, 543);
+            this.chart1.TabIndex = 6;
             // 
             // panel5
             // 
@@ -1356,25 +1098,419 @@
             this.button20.UseVisualStyleBackColor = false;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
-            // chart1
+            // panel4
             // 
-            chartArea18.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea18);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend9.Name = "Legend1";
-            this.chart1.Legends.Add(legend9);
-            this.chart1.Location = new System.Drawing.Point(0, 45);
-            this.chart1.Name = "chart1";
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series18.IsValueShownAsLabel = true;
-            series18.Legend = "Legend1";
-            series18.Name = "SKU销量趋势";
-            series18.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series18.YValuesPerPoint = 2;
-            this.chart1.Series.Add(series18);
-            this.chart1.Size = new System.Drawing.Size(1016, 543);
-            this.chart1.TabIndex = 6;
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.salecountlabel2);
+            this.panel4.Controls.Add(this.label12);
+            this.panel4.Controls.Add(this.itemidtxt);
+            this.panel4.Controls.Add(this.button18);
+            this.panel4.Controls.Add(this.label10);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1016, 57);
+            this.panel4.TabIndex = 0;
+            // 
+            // salecountlabel2
+            // 
+            this.salecountlabel2.AutoSize = true;
+            this.salecountlabel2.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.salecountlabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.salecountlabel2.Location = new System.Drawing.Point(934, 21);
+            this.salecountlabel2.Name = "salecountlabel2";
+            this.salecountlabel2.Size = new System.Drawing.Size(52, 15);
+            this.salecountlabel2.TabIndex = 221;
+            this.salecountlabel2.Text = "10000";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label12.Location = new System.Drawing.Point(821, 21);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(107, 15);
+            this.label12.TabIndex = 220;
+            this.label12.Text = "SKU累计销量:";
+            // 
+            // itemidtxt
+            // 
+            this.itemidtxt.Font = new System.Drawing.Font("宋体", 11F);
+            this.itemidtxt.Location = new System.Drawing.Point(99, 16);
+            this.itemidtxt.Name = "itemidtxt";
+            this.itemidtxt.Size = new System.Drawing.Size(145, 24);
+            this.itemidtxt.TabIndex = 212;
+            this.itemidtxt.Text = "641746252256";
+            // 
+            // button18
+            // 
+            this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button18.FlatAppearance.BorderSize = 0;
+            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button18.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold);
+            this.button18.ForeColor = System.Drawing.Color.White;
+            this.button18.Location = new System.Drawing.Point(261, 13);
+            this.button18.Margin = new System.Windows.Forms.Padding(0);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(164, 30);
+            this.button18.TabIndex = 211;
+            this.button18.Text = "点击分析";
+            this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label10.Location = new System.Drawing.Point(3, 21);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 15);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "输入宝贝ID";
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.label24);
+            this.tabPage11.Controls.Add(this.button27);
+            this.tabPage11.Controls.Add(this.chart2);
+            this.tabPage11.Controls.Add(this.panel7);
+            this.tabPage11.Location = new System.Drawing.Point(4, 5);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(1022, 651);
+            this.tabPage11.TabIndex = 10;
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.label24.Location = new System.Drawing.Point(7, 75);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(78, 12);
+            this.label24.TabIndex = 215;
+            this.label24.Text = "SKU销量占比";
+            // 
+            // button27
+            // 
+            this.button27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button27.FlatAppearance.BorderSize = 0;
+            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button27.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.button27.ForeColor = System.Drawing.Color.White;
+            this.button27.Location = new System.Drawing.Point(9, 89);
+            this.button27.Margin = new System.Windows.Forms.Padding(0);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(71, 24);
+            this.button27.TabIndex = 214;
+            this.button27.Text = "导出表格";
+            this.button27.UseVisualStyleBackColor = false;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
+            // chart2
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart2.Location = new System.Drawing.Point(3, 60);
+            this.chart2.Name = "chart2";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.IsValueShownAsLabel = true;
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
+            this.chart2.Size = new System.Drawing.Size(1016, 588);
+            this.chart2.TabIndex = 2;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.Control;
+            this.panel7.Controls.Add(this.salecountlabel);
+            this.panel7.Controls.Add(this.label18);
+            this.panel7.Controls.Add(this.itemidtxt2);
+            this.panel7.Controls.Add(this.button26);
+            this.panel7.Controls.Add(this.label23);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(3, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1016, 57);
+            this.panel7.TabIndex = 1;
+            // 
+            // salecountlabel
+            // 
+            this.salecountlabel.AutoSize = true;
+            this.salecountlabel.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.salecountlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.salecountlabel.Location = new System.Drawing.Point(911, 21);
+            this.salecountlabel.Name = "salecountlabel";
+            this.salecountlabel.Size = new System.Drawing.Size(52, 15);
+            this.salecountlabel.TabIndex = 219;
+            this.salecountlabel.Text = "10000";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label18.Location = new System.Drawing.Point(798, 21);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(107, 15);
+            this.label18.TabIndex = 217;
+            this.label18.Text = "SKU累计销量:";
+            // 
+            // itemidtxt2
+            // 
+            this.itemidtxt2.Font = new System.Drawing.Font("宋体", 11F);
+            this.itemidtxt2.Location = new System.Drawing.Point(99, 16);
+            this.itemidtxt2.Name = "itemidtxt2";
+            this.itemidtxt2.Size = new System.Drawing.Size(145, 24);
+            this.itemidtxt2.TabIndex = 212;
+            this.itemidtxt2.Text = "641746252256";
+            // 
+            // button26
+            // 
+            this.button26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button26.FlatAppearance.BorderSize = 0;
+            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button26.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold);
+            this.button26.ForeColor = System.Drawing.Color.White;
+            this.button26.Location = new System.Drawing.Point(260, 13);
+            this.button26.Margin = new System.Windows.Forms.Padding(0);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(164, 30);
+            this.button26.TabIndex = 211;
+            this.button26.Text = "点击分析";
+            this.button26.UseVisualStyleBackColor = false;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("宋体", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label23.Location = new System.Drawing.Point(3, 21);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(89, 15);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "输入宝贝ID";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Location = new System.Drawing.Point(4, 5);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(1022, 651);
+            this.tabPage12.TabIndex = 11;
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.Controls.Add(this.splitContainer1);
+            this.tabPage13.Controls.Add(this.panel8);
+            this.tabPage13.Location = new System.Drawing.Point(4, 5);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage13.Size = new System.Drawing.Size(1022, 651);
+            this.tabPage13.TabIndex = 12;
+            this.tabPage13.Text = "tabPage13";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.linkLabel11);
+            this.panel8.Controls.Add(this.linkLabel10);
+            this.panel8.Controls.Add(this.linkLabel9);
+            this.panel8.Controls.Add(this.linkLabel8);
+            this.panel8.Controls.Add(this.linkLabel7);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(3, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1016, 57);
+            this.panel8.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 60);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.button19);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.label11);
+            this.splitContainer1.Panel1.Controls.Add(this.linkLabel5);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBox5);
+            this.splitContainer1.Panel2.Controls.Add(this.label16);
+            this.splitContainer1.Panel2.Controls.Add(this.linkLabel6);
+            this.splitContainer1.Size = new System.Drawing.Size(1016, 588);
+            this.splitContainer1.SplitterDistance = 469;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.linkLabel5.Location = new System.Drawing.Point(420, 0);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Padding = new System.Windows.Forms.Padding(10);
+            this.linkLabel5.Size = new System.Drawing.Size(49, 32);
+            this.linkLabel5.TabIndex = 1;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "删除";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label11.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label11.Location = new System.Drawing.Point(0, 0);
+            this.label11.Margin = new System.Windows.Forms.Padding(10);
+            this.label11.Name = "label11";
+            this.label11.Padding = new System.Windows.Forms.Padding(10);
+            this.label11.Size = new System.Drawing.Size(95, 36);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "交易指数";
+            // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.linkLabel6.Location = new System.Drawing.Point(494, 0);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Padding = new System.Windows.Forms.Padding(10);
+            this.linkLabel6.Size = new System.Drawing.Size(49, 32);
+            this.linkLabel6.TabIndex = 2;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "删除";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label16.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label16.Location = new System.Drawing.Point(0, 0);
+            this.label16.Margin = new System.Windows.Forms.Padding(10);
+            this.label16.Name = "label16";
+            this.label16.Padding = new System.Windows.Forms.Padding(10);
+            this.label16.Size = new System.Drawing.Size(95, 36);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "交易金额";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(0, 36);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(345, 552);
+            this.textBox2.TabIndex = 3;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox5.Location = new System.Drawing.Point(0, 36);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(494, 552);
+            this.textBox5.TabIndex = 5;
+            // 
+            // button19
+            // 
+            this.button19.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button19.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button19.FlatAppearance.BorderSize = 0;
+            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button19.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.button19.ForeColor = System.Drawing.Color.White;
+            this.button19.Location = new System.Drawing.Point(351, 264);
+            this.button19.Margin = new System.Windows.Forms.Padding(100, 0, 0, 0);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(109, 35);
+            this.button19.TabIndex = 13;
+            this.button19.Text = "点击转换";
+            this.button19.UseVisualStyleBackColor = false;
+            // 
+            // linkLabel7
+            // 
+            this.linkLabel7.AutoSize = true;
+            this.linkLabel7.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel7.ForeColor = System.Drawing.Color.Black;
+            this.linkLabel7.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel7.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel7.Location = new System.Drawing.Point(3, 18);
+            this.linkLabel7.Name = "linkLabel7";
+            this.linkLabel7.Size = new System.Drawing.Size(71, 16);
+            this.linkLabel7.TabIndex = 0;
+            this.linkLabel7.TabStop = true;
+            this.linkLabel7.Text = "交易指数";
+            // 
+            // linkLabel8
+            // 
+            this.linkLabel8.AutoSize = true;
+            this.linkLabel8.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel8.ForeColor = System.Drawing.Color.Black;
+            this.linkLabel8.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel8.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel8.Location = new System.Drawing.Point(85, 18);
+            this.linkLabel8.Name = "linkLabel8";
+            this.linkLabel8.Size = new System.Drawing.Size(71, 16);
+            this.linkLabel8.TabIndex = 1;
+            this.linkLabel8.TabStop = true;
+            this.linkLabel8.Text = "搜索指数";
+            // 
+            // linkLabel9
+            // 
+            this.linkLabel9.AutoSize = true;
+            this.linkLabel9.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel9.ForeColor = System.Drawing.Color.Black;
+            this.linkLabel9.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel9.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel9.Location = new System.Drawing.Point(167, 18);
+            this.linkLabel9.Name = "linkLabel9";
+            this.linkLabel9.Size = new System.Drawing.Size(87, 16);
+            this.linkLabel9.TabIndex = 2;
+            this.linkLabel9.TabStop = true;
+            this.linkLabel9.Text = "供应商指数";
+            // 
+            // linkLabel10
+            // 
+            this.linkLabel10.AutoSize = true;
+            this.linkLabel10.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel10.ForeColor = System.Drawing.Color.Black;
+            this.linkLabel10.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel10.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel10.Location = new System.Drawing.Point(265, 18);
+            this.linkLabel10.Name = "linkLabel10";
+            this.linkLabel10.Size = new System.Drawing.Size(71, 16);
+            this.linkLabel10.TabIndex = 3;
+            this.linkLabel10.TabStop = true;
+            this.linkLabel10.Text = "商品指数";
+            // 
+            // linkLabel11
+            // 
+            this.linkLabel11.AutoSize = true;
+            this.linkLabel11.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel11.ForeColor = System.Drawing.Color.Black;
+            this.linkLabel11.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel11.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel11.Location = new System.Drawing.Point(347, 18);
+            this.linkLabel11.Name = "linkLabel11";
+            this.linkLabel11.Size = new System.Drawing.Size(119, 16);
+            this.linkLabel11.TabIndex = 4;
+            this.linkLabel11.TabStop = true;
+            this.linkLabel11.Text = "支付转化率指数";
             // 
             // 基鹿工具箱
             // 
@@ -1400,11 +1536,6 @@
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -1413,6 +1544,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage10.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.tabPage11.ResumeLayout(false);
@@ -1420,9 +1554,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.tabPage13.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1459,8 +1599,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.LinkLabel linkLabel5;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.TextBox good_txtbox;
         private System.Windows.Forms.Button button10;
@@ -1480,8 +1618,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.LinkLabel linkLabel6;
-        private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
@@ -1495,16 +1631,12 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.LinkLabel linkLabel7;
-        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.TextBox itemidtxt;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.LinkLabel linkLabel8;
-        private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button button27;
@@ -1528,5 +1660,23 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.LinkLabel linkLabel5;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.LinkLabel linkLabel6;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.LinkLabel linkLabel11;
+        private System.Windows.Forms.LinkLabel linkLabel10;
+        private System.Windows.Forms.LinkLabel linkLabel9;
+        private System.Windows.Forms.LinkLabel linkLabel8;
+        private System.Windows.Forms.LinkLabel linkLabel7;
     }
 }

@@ -365,6 +365,7 @@ namespace main._2019_9
                 textBox3.Text = IniReadValue("values", "a3");
                 textBox4.Text = IniReadValue("values", "a4");
                 textBox5.Text = IniReadValue("values", "a5");
+                textBox6.Text = IniReadValue("values", "a6");
 
             }
         }
@@ -377,7 +378,7 @@ namespace main._2019_9
             IniWriteValue("values", "a3", textBox3.Text.Trim());
             IniWriteValue("values", "a4", textBox4.Text.Trim());
             IniWriteValue("values", "a5", textBox5.Text.Trim());
-
+            IniWriteValue("values", "a6", textBox6.Text.Trim());
 
             button1.Enabled = false;
 
@@ -399,7 +400,8 @@ namespace main._2019_9
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            method.DataTableToExcel2(method.listViewToDataTable(this.listView1), "Sheet1", true, Path.GetFileNameWithoutExtension(textBox1.Text));
+            string path = textBox6.Text;
+            method.DataTableToExcel2(path, listViewToDataTable(this.listView1), "Sheet1", true, Path.GetFileNameWithoutExtension(textBox1.Text));
         }
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -424,12 +426,66 @@ namespace main._2019_9
                 e.Cancel=true;
             }
         }
+        #region listview转datable
+        /// <summary>
+        /// listview转datable
+        /// </summary>
+        /// <param name="lv"></param>
+        /// <returns></returns>
+        public static DataTable listViewToDataTable(ListView lv)
+        {
+            int i, j;
+            DataTable dt = new DataTable();
+            DataRow dr;
+            dt.Clear();
+            dt.Columns.Clear();
+            //生成DataTable列头
+            for (i = 1; i < lv.Columns.Count; i++)
+            {
+                dt.Columns.Add(lv.Columns[i].Text.Trim(), typeof(String));
+            }
+            //每行内容
+            for (i = 1; i < lv.Items.Count; i++)
+            {
 
+                if (lv.Items[i].SubItems[4].Text == "符合条件")
+                {
+                    dr = dt.NewRow();
+                    for (j = 1; j < lv.Columns.Count; j++)
+                    {
+
+                        dr[j-1] = lv.Items[i].SubItems[j].Text.Trim();
+
+                    }
+                    dt.Rows.Add(dr);
+                }
+
+
+
+            }
+
+            return dt;
+        }
+        #endregion
         private void 复制标题ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clipboard.SetDataObject(this.listView1.SelectedItems[0].SubItems[1].Text);
         }
 
-    
+        private void button6_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.Description = "请选择所在文件夹";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                {
+                    MessageBox.Show(this, "文件夹路径不能为空", "提示");
+                    return;
+                }
+
+                textBox6.Text = dialog.SelectedPath;
+            }
+        }
     }
 }

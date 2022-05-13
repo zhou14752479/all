@@ -567,10 +567,10 @@ namespace main
         #endregion
 
                #region NPOI自动导出导出表格
-        public static int DataTableToExcel2(DataTable data, string sheetName, bool isColumnWritten,string title)
+        public static int DataTableToExcel2(string path,DataTable data, string sheetName, bool isColumnWritten,string title)
         {
      
-            string path = AppDomain.CurrentDomain.BaseDirectory;
+          
             //string time = DateTime.Now.ToString("F").Replace(" ", "").Replace(":","");
             int i = 0;
             int j = 0;
@@ -579,7 +579,7 @@ namespace main
             IWorkbook workbook = null;
             FileStream fs = null;
 
-            string fileName = path + title + "符合条件.xls";
+            string fileName = path +"//" +title + "符合条件.xls";
             // string fileName = path + title+time + "符合条件.xls";
 
             fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);

@@ -57,7 +57,7 @@ namespace 三个人才网
             }
 
             #endregion
-            dateTimePicker1.Value = DateTime.Now.AddDays(-30);
+           // dateTimePicker1.Value = DateTime.Now.AddDays(-30);
         }
 
 
@@ -169,7 +169,7 @@ namespace 三个人才网
                 request.Referer = "https://www.yiwucaige.com/information-id-129763.html";
                 request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
                 request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh-CN,zh;q=0.9");
-                request.Headers.Set(HttpRequestHeader.Cookie, @"PHPSESSID=88hknnsjsnqrp5aq5mh2fjjek6; awfn__s_uid=wx165089173375; awfn__s_pwd=BAZRVANVUg9XAAEEVgNVCFsBAlYAAAdRWlNQVFBcVlk%3Db64e64106f");
+                request.Headers.Set(HttpRequestHeader.Cookie, @"awfn__s_uid=17606117606; awfn__s_pwd=BAZRVANVUg9XAAEEVgNVCFsBAlYAAAdRWlNQVFBcVlk%3Db64e64106f");
 
                 response = (HttpWebResponse)request.GetResponse();
                 if (response.Headers["Content-Encoding"] == "gzip")
@@ -201,84 +201,7 @@ namespace 三个人才网
             return html;
         }
 
-        #region 和众人才网
-        public void hezhong()
-        {
-
-
-
-            for (int page = 1; page < 9999; page++)
-            {
-
-                string url = "https://www.0579work.com/api/wxapp/index.php?m=job&c=list";
-                string postdata = "page="+page+"&limit=100&joblist=1&webid=11327&provider=weixin&systemInfo=%7B%22model%22%3A%22iPhone%2013%3CiPhone14%2C5%3E%22%2C%22system%22%3A%22iOS%2015.4.1%22%2C%22platform%22%3A%22ios%22%7D&source=13";
-                string html =PostUrlDefault(url,postdata,"");
-
-                MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
-                MatchCollection lastupdate_dates = Regex.Matches(html, @"""lastupdate_date"":""([\s\S]*?)""");
-                if (ids.Count == 0)
-                {
-                    break;
-                }
-                for (int a = 0; a < ids.Count; a++)
-                {
-                    try
-                    {
-                        string date = lastupdate_dates[a].Groups[1].Value;
-                        if (!lastupdate_dates[a].Groups[1].Value.Contains("-"))
-                        {
-                            date = DateTime.Now.ToString("yyyy-MM-dd");
-                        }
-                        if (lastupdate_dates[a].Groups[1].Value=="昨天")
-                        {
-                            date = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-                        }
-
-                        if (Convert.ToDateTime(date) >= dateTimePicker1.Value && Convert.ToDateTime(date) <= dateTimePicker2.Value)
-                        {
-                            string aurl = "https://www.0579work.com/api/wxapp/index.php?m=job&c=jobShowOther";
-                            string apostdata = "id=" + ids[a].Groups[1].Value + "&webid=11327&provider=weixin&systemInfo=%7B%22model%22%3A%22iPhone%2013%3CiPhone14%2C5%3E%22%2C%22system%22%3A%22iOS%2015.4.1%22%2C%22platform%22%3A%22ios%22%7D&source=13&uid=8427&token=4f01cbb645601d6780727ab88b9d4a3a";
-                            string ahtml = PostUrlDefault(aurl, apostdata, "");
-
-
-
-
-                            string tel = Regex.Match(ahtml, @"linktel"":""([\s\S]*?)""").Groups[1].Value;
-
-                            if (!lists.Contains(tel))
-                            {
-                                lists.Add(tel);
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-
-
-                                lv1.SubItems.Add(tel.Trim());
-
-
-                                Thread.Sleep(1000);
-                                while (this.zanting == false)
-                                {
-                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                        continue;
-                    }
-
-                }
-
-
-
-
-            }
-
-
-        }
-
-        #endregion
+        
 
 
         private string Request_www_vyuan8_com(string zid)
@@ -294,7 +217,7 @@ namespace 三个人才网
                 request.Accept = "application/json, text/javascript, */*; q=0.01";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat(0x63060012)";
                 request.Headers.Add("X-Requested-With", @"XMLHttpRequest");
-                request.Headers.Set(HttpRequestHeader.Cookie, @"logintime=1651544180; r8t7_2132_saltkey=sefOF5na; r8t7_2132_lastvisit=1651539227; PHPSESSID=bn4nqiv2ed3o6s0skaf0smuvu1; r8t7_2132_open_pid=113324; r8t7_2132_zhaopin_openid=oxP46xGaK1TUqVkIyF5LYtBf_-HI; r8t7_2132_openid=oxP46xGaK1TUqVkIyF5LYtBf_-HI; r8t7_2132_referer_url=https%3A%2F%2Fwww.vyuan8.com%2Fhr%2Fplugin.php%3Fid%3Dvyuan_zhaopin%26model%3Dview%26pid%3D113324%26zid%3D993446; r8t7_2132_zhaopin_openid_request=1; r8t7_2132_sid=DFzQ68; r8t7_2132_lastact=1651544182%09plugin.php%09; Hm_lvt_188b90c06165ede59725450aee2d2bdc=1651544183; Hm_lpvt_188b90c06165ede59725450aee2d2bdc=1651544183");
+                request.Headers.Set(HttpRequestHeader.Cookie, @"logintime=1652256950; searchTime=1652198400; r8t7_2132_saltkey=u90jij05; r8t7_2132_lastvisit=1652253311; PHPSESSID=10o4or5ulur1quoqqrm97f2355; r8t7_2132_open_pid=113324; r8t7_2132_zhaopin_openid=oxP46xGaK1TUqVkIyF5LYtBf_-HI; r8t7_2132_openid=oxP46xGaK1TUqVkIyF5LYtBf_-HI; r8t7_2132_referer_url=https%3A%2F%2Fwww.vyuan8.com%2Fhr%2Fplugin.php%3Fid%3Dvyuan_zhaopin%26pid%3D113324%26model%3Dsearch; r8t7_2132_zhaopin_openid_request=1; Hm_lvt_188b90c06165ede59725450aee2d2bdc=1652256916; Hm_lpvt_188b90c06165ede59725450aee2d2bdc=1652256975; r8t7_2132_sid=B50eBc; r8t7_2132_lastact=1652256974%09plugin.php%09");
                 request.Headers.Add("Sec-Fetch-Site", @"same-origin");
                 request.Headers.Add("Sec-Fetch-Mode", @"cors");
                 request.Headers.Add("Sec-Fetch-Dest", @"empty");
@@ -337,6 +260,91 @@ namespace 三个人才网
             DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
             return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
         }
+
+        #region 和众人才网
+        public void hezhong()
+        {
+
+
+
+            for (int page = 1; page < 9999; page++)
+            {
+
+                string url = "https://www.0579work.com/api/wxapp/index.php?m=job&c=list";
+                string postdata = "page=" + page + "&limit=100&joblist=1&webid=11327&provider=weixin&systemInfo=%7B%22model%22%3A%22iPhone%2013%3CiPhone14%2C5%3E%22%2C%22system%22%3A%22iOS%2015.4.1%22%2C%22platform%22%3A%22ios%22%7D&source=13";
+                string html = PostUrlDefault(url, postdata, "");
+                //textBox1.Text = html;
+                MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
+                MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
+                MatchCollection lastupdate_dates = Regex.Matches(html, @"""lastupdate_date"":""([\s\S]*?)""");
+                if (ids.Count == 0)
+                {
+                    break;
+                }
+                for (int a = 0; a < ids.Count; a++)
+                {
+                    try
+                    {
+                        string date = lastupdate_dates[a].Groups[1].Value;
+                        if (!lastupdate_dates[a].Groups[1].Value.Contains("-"))
+                        {
+                            date = DateTime.Now.ToString("yyyy-MM-dd");
+                        }
+                        if (lastupdate_dates[a].Groups[1].Value == "昨天")
+                        {
+                            date = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                        }
+
+                      
+                       
+                        if (Convert.ToDateTime(date) >= Convert.ToDateTime(dateTimePicker1.Value.ToShortDateString()) && Convert.ToDateTime(date) <= Convert.ToDateTime(dateTimePicker2.Value.ToShortDateString()))
+                        {
+                            string aurl = "https://www.0579work.com/api/wxapp/index.php?m=job&c=jobShowOther";
+                            string apostdata = "id=" + ids[a].Groups[1].Value + "&webid=11327&provider=weixin&systemInfo=%7B%22model%22%3A%22iPhone%2013%3CiPhone14%2C5%3E%22%2C%22system%22%3A%22iOS%2015.4.1%22%2C%22platform%22%3A%22ios%22%7D&source=13&uid=8427&token=4f01cbb645601d6780727ab88b9d4a3a";
+                            string ahtml = PostUrlDefault(aurl, apostdata, "");
+
+
+
+
+                            string tel = Regex.Match(ahtml, @"linktel"":""([\s\S]*?)""").Groups[1].Value;
+
+                            if (!lists.Contains(tel))
+                            {
+                                lists.Add(tel);
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+
+
+                                lv1.SubItems.Add(tel.Trim());
+                                lv1.SubItems.Add(method.Unicode2String(names[a].Groups[1].Value).Trim());
+
+                                Thread.Sleep(1000);
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+                                if (status == false)
+                                    return;
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+
+                }
+
+
+
+
+            }
+
+
+        }
+
+        #endregion
+
         #region 领航人才网
         public void linghang()
         {
@@ -348,12 +356,14 @@ namespace 三个人才网
 
                 string url = "https://www.vyuan8.com/hr/plugin.php?id=vyuan_zhaopin&model=search&pid=113324&ajax=ajax&page="+page+"&area=&salaryint=&edu=&industry=&searchField=&time=0&type=&label=";
             
-                string html = method.GetUrl(url,"utf-8");
-
+                string html = method.GetUrl(url,"gb2312");
+                MatchCollection titles = Regex.Matches(html, @"""z_name"":""([\s\S]*?)""");
                 MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
                 MatchCollection lastupdate_dates = Regex.Matches(html, @"""z_top_endDate"":""([\s\S]*?)""");
+                //textBox1.Text = html;
                 if (ids.Count == 0)
                 {
+                    label1.Text = "无符合数据页码："+page;
                     break;
                 }
                 for (int a = 0; a < ids.Count; a++)
@@ -370,7 +380,7 @@ namespace 三个人才网
                             date = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
                         }
 
-                        if (Convert.ToDateTime(date) >= dateTimePicker1.Value && Convert.ToDateTime(date) <= dateTimePicker2.Value)
+                        if (Convert.ToDateTime(date) >= Convert.ToDateTime(dateTimePicker1.Value.ToShortDateString()) && Convert.ToDateTime(date) <= Convert.ToDateTime(dateTimePicker2.Value.ToShortDateString()))
                         {
                             string ahtml = Request_www_vyuan8_com(ids[a].Groups[1].Value);
                           
@@ -380,16 +390,16 @@ namespace 三个人才网
                             {
                                 lists.Add(tel);
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-
-
                                 lv1.SubItems.Add(tel.Trim());
-
+                                lv1.SubItems.Add(titles[a].Groups[1].Value.Trim());
 
                                 Thread.Sleep(1000);
                                 while (this.zanting == false)
                                 {
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
+                                if (status == false)
+                                    return;
                             }
                         }
                     }
@@ -412,7 +422,6 @@ namespace 三个人才网
         #endregion
 
 
-
         #region 才哥人才网
         public void caige()
         {
@@ -426,9 +435,10 @@ namespace 三个人才网
          
                 string html = method.GetUrl(url, "utf-8");
 
+                MatchCollection titles = Regex.Matches(html, @"bold;"">([\s\S]*?)</a>");
                 MatchCollection ids = Regex.Matches(html, @"<a href=""https://www.yiwucaige.com/information-id-([\s\S]*?)\.");
                 MatchCollection lastupdate_dates = Regex.Matches(html, @"pull-right'>([\s\S]*?)<");
-              
+               
                 if (ids.Count == 0)
                 {
                     break;
@@ -468,7 +478,7 @@ namespace 三个人才网
                         {
                             date = DateTime.Now.AddDays(-6).ToString("yyyy-MM-dd");
                         }
-                        if (Convert.ToDateTime(date) >= dateTimePicker1.Value && Convert.ToDateTime(date) <= dateTimePicker2.Value)
+                        if (Convert.ToDateTime(date) >= Convert.ToDateTime(dateTimePicker1.Value.ToShortDateString()) && Convert.ToDateTime(date) <= Convert.ToDateTime(dateTimePicker2.Value.ToShortDateString()))
                         {
                             string aurl = "https://www.yiwucaige.com/box.php?part=seecontact_tel&infoid="+ ids[a].Groups[1].Value;
 
@@ -484,13 +494,15 @@ namespace 三个人才网
 
 
                                 lv1.SubItems.Add(tel.Trim());
-
+                                lv1.SubItems.Add(titles[a].Groups[1].Value.Trim());
 
                                 Thread.Sleep(1000);
                                 while (this.zanting == false)
                                 {
                                     Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
                                 }
+                                if (status == false)
+                                    return;
                             }
                         }
                     }
@@ -517,31 +529,23 @@ namespace 三个人才网
             status = true;
             if (checkBox1.Checked == true)
             {
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(hezhong);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
+                Thread thread = new Thread(hezhong);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+
             }
             if (checkBox2.Checked == true)
             {
 
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(linghang);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
+                Thread thread = new Thread(linghang);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
             if (checkBox3.Checked == true)
             {
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(caige);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
+                Thread thread = new Thread(caige);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
 
@@ -570,6 +574,20 @@ namespace 三个人才网
             else
             {
                 zanting = false;
+            }
+        }
+
+        private void 人才网提取_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
             }
         }
     }

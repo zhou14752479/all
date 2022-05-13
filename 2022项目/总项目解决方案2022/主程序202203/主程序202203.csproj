@@ -61,6 +61,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TXT提取.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TXT提取.Designer.cs">
+      <DependentUpon>TXT提取.cs</DependentUpon>
+    </Compile>
     <Compile Include="天眼查发票.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TXT提取.resx">
+      <DependentUpon>TXT提取.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="天眼查发票.resx">
       <DependentUpon>天眼查发票.cs</DependentUpon>
     </EmbeddedResource>

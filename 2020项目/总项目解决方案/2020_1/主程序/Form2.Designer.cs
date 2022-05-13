@@ -53,8 +53,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
@@ -65,6 +64,10 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listView4 = new System.Windows.Forms.ListView();
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -78,7 +81,7 @@
             this.linkLabel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.linkLabel2.Location = new System.Drawing.Point(868, 81);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(40, 16);
+            this.linkLabel2.Size = new System.Drawing.Size(39, 16);
             this.linkLabel2.TabIndex = 42;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "大小";
@@ -98,7 +101,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Fuchsia;
             this.button1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(813, 188);
+            this.button1.Location = new System.Drawing.Point(812, 200);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 30);
             this.button1.TabIndex = 32;
@@ -156,7 +159,7 @@
             this.linkLabel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.linkLabel1.Location = new System.Drawing.Point(822, 81);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(40, 16);
+            this.linkLabel1.Size = new System.Drawing.Size(39, 16);
             this.linkLabel1.TabIndex = 41;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "单双";
@@ -290,6 +293,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.linkLabel2);
             this.groupBox1.Controls.Add(this.linkLabel1);
@@ -317,21 +323,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "输入数据";
             // 
-            // textBox4
+            // button3
             // 
-            this.textBox4.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox4.Location = new System.Drawing.Point(48, 147);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(185, 24);
-            this.textBox4.TabIndex = 7;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox3.Location = new System.Drawing.Point(48, 108);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(185, 24);
-            this.textBox3.TabIndex = 5;
+            this.button3.Location = new System.Drawing.Point(363, 120);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 45;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // tabControl1
             // 
@@ -440,6 +441,44 @@
             this.columnHeader8.Text = "预测结果";
             this.columnHeader8.Width = 300;
             // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox4.Location = new System.Drawing.Point(48, 147);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(185, 24);
+            this.textBox4.TabIndex = 7;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox3.Location = new System.Drawing.Point(48, 108);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(185, 24);
+            this.textBox3.TabIndex = 5;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(814, 150);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(53, 16);
+            this.radioButton1.TabIndex = 46;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "接口1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(813, 178);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(53, 16);
+            this.radioButton2.TabIndex = 47;
+            this.radioButton2.Text = "接口2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -500,5 +539,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ListView listView4;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

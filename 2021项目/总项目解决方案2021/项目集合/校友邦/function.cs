@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using myDLL;
 
 namespace 校友邦
@@ -117,11 +118,39 @@ namespace 校友邦
             return adcode;
         }
 
-        public string shangchuanma(string cookie)
+       //public Dictionary<string, string> mymadic = new Dictionary<string, string>();
+        public string getmyma(string cookie, string traineeId)
+        {
+            string pic = "https://ss0.xybsyw.com/temp/20220506/school/14563/epidemicsituation/4547945/1651818859152.jpg";
+
+            string url = "https://xcx.xybsyw.com/student/clock/PunchIn!historyList.action";
+            string postdata = "traineeId="+traineeId+"&months=2022-05";
+         
+            string html = PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+           
+            MatchCollection healthCodeImg = Regex.Matches(html, @"""healthCodeImg"":""([\s\S]*?)""");
+            for (int i = 0; i < healthCodeImg.Count; i++)
+            {
+             
+                if (Path.GetFileNameWithoutExtension(healthCodeImg[i].Groups[1].Value)!="1651818859152"&& Path.GetFileNameWithoutExtension(healthCodeImg[i].Groups[1].Value) != "1646013660242")
+                {
+                   
+                    pic = healthCodeImg[i].Groups[1].Value;
+                    return pic;
+                }
+
+            }
+            
+            return pic;
+        }
+
+       
+
+        public string shangchuanma(string cookie,string myma)
         {
             string url = "https://xcx.xybsyw.com/student/clock/saveEpidemicSituation.action";
             //string postdata = "planId="+planid;
-            string postdata = "healthCodeStatus=0&locationRiskLevel=0&healthCodeImg=https%3A%2F%2Fss0.xybsyw.com%2Ftemp%2F20220228%2Fschool%2F12960%2Fepidemicsituation%2F4238913%2F1646013660242.png";
+            string postdata = "healthCodeStatus=0&locationRiskLevel=0&healthCodeImg="+ myma;
             string html = PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
 
             string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;

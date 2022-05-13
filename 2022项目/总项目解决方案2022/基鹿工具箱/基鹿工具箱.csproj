@@ -80,17 +80,35 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="后台主界面.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="后台主界面.Designer.cs">
+      <DependentUpon>后台主界面.cs</DependentUpon>
+    </Compile>
     <Compile Include="后台数据导入.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="后台数据导入.Designer.cs">
       <DependentUpon>后台数据导入.cs</DependentUpon>
     </Compile>
+    <Compile Include="图标设置.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="图标设置.Designer.cs">
+      <DependentUpon>图标设置.cs</DependentUpon>
+    </Compile>
     <Compile Include="基鹿工具箱.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="基鹿工具箱.Designer.cs">
       <DependentUpon>基鹿工具箱.cs</DependentUpon>
+    </Compile>
+    <Compile Include="生意参谋指数导入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="生意参谋指数导入.Designer.cs">
+      <DependentUpon>生意参谋指数导入.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="erweima.resx">
       <DependentUpon>erweima.cs</DependentUpon>
@@ -108,8 +126,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="后台主界面.resx">
+      <DependentUpon>后台主界面.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="后台数据导入.resx">
       <DependentUpon>后台数据导入.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="图标设置.resx">
+      <DependentUpon>图标设置.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="基鹿工具箱.resx">
       <DependentUpon>基鹿工具箱.cs</DependentUpon>

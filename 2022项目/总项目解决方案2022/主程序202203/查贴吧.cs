@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -79,6 +81,15 @@ namespace 主程序202203
                                 lv1.SubItems.Add(Regex.Replace(a1[(3 * j) + 1].Groups[1].Value, "<[^>]+>", ""));
                                 lv1.SubItems.Add(Regex.Replace(a1[(3 * j) + 2].Groups[1].Value, "<[^>]+>", ""));
 
+
+                                FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\"+DateTime.Now.ToString("yyyyMMdd")+".txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                                sw.WriteLine(a1[3 * j].Groups[1].Value);
+                                sw.Close();
+                                fs1.Close();
+                                sw.Dispose();
+
+
                             }
 
 
@@ -143,6 +154,9 @@ namespace 主程序202203
             listView1.Items.Clear();
         }
 
+        
+
+        
         private void button1_Click(object sender, EventArgs e)
         {
             #region 通用检测

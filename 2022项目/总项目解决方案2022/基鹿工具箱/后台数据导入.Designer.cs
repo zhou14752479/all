@@ -53,7 +53,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(940, 86);
+            this.panel1.Size = new System.Drawing.Size(918, 86);
             this.panel1.TabIndex = 3;
             // 
             // label2
@@ -74,7 +74,7 @@
             this.清空数据ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(940, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(918, 25);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -91,14 +91,14 @@
             // 选择表格ToolStripMenuItem
             // 
             this.选择表格ToolStripMenuItem.Name = "选择表格ToolStripMenuItem";
-            this.选择表格ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.选择表格ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.选择表格ToolStripMenuItem.Text = "选择表格";
             this.选择表格ToolStripMenuItem.Click += new System.EventHandler(this.选择表格ToolStripMenuItem_Click);
             // 
             // 开始导入ToolStripMenuItem
             // 
             this.开始导入ToolStripMenuItem.Name = "开始导入ToolStripMenuItem";
-            this.开始导入ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.开始导入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.开始导入ToolStripMenuItem.Text = "开始导入";
             this.开始导入ToolStripMenuItem.Click += new System.EventHandler(this.开始导入ToolStripMenuItem_Click);
             // 
@@ -124,16 +124,16 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 86);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(940, 459);
+            this.dataGridView1.Size = new System.Drawing.Size(918, 507);
             this.dataGridView1.TabIndex = 4;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 523);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 571);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(940, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(918, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -147,7 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 545);
+            this.ClientSize = new System.Drawing.Size(918, 593);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -155,7 +155,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "后台数据导入";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "后台数据导入";
+            this.Text = "标题数据导入";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.后台数据导入_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

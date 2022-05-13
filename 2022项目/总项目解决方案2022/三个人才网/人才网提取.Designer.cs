@@ -41,8 +41,10 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // columnHeader3
@@ -81,7 +83,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(89, 32);
             this.button4.TabIndex = 226;
-            this.button4.Text = "导出";
+            this.button4.Text = "导出号码";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -109,7 +111,8 @@
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader2});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 10F);
             this.listView1.FullRowSelect = true;
@@ -138,8 +141,6 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Font = new System.Drawing.Font("宋体", 10F);
             this.checkBox2.Location = new System.Drawing.Point(135, 28);
             this.checkBox2.Name = "checkBox2";
@@ -151,8 +152,6 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox3.Font = new System.Drawing.Font("宋体", 10F);
             this.checkBox3.Location = new System.Drawing.Point(237, 28);
             this.checkBox3.Name = "checkBox3";
@@ -179,14 +178,6 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(119, 23);
             this.dateTimePicker2.TabIndex = 234;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("宋体", 10F);
-            this.dateTimePicker1.Location = new System.Drawing.Point(112, 62);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(119, 23);
-            this.dateTimePicker1.TabIndex = 233;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -197,14 +188,37 @@
             this.label3.TabIndex = 232;
             this.label3.Text = "设置时间：";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("宋体", 10F);
+            this.dateTimePicker1.Location = new System.Drawing.Point(112, 62);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(119, 23);
+            this.dateTimePicker1.TabIndex = 236;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "标题";
+            this.columnHeader2.Width = 300;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(33, 140);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(11, 12);
+            this.label1.TabIndex = 238;
+            this.label1.Text = "0";
+            // 
             // 人才网提取
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 571);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
@@ -218,6 +232,7 @@
             this.Name = "人才网提取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "人才网提取";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.人才网提取_FormClosing);
             this.Load += new System.EventHandler(this.人才网提取_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -239,7 +254,9 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label label1;
     }
 }

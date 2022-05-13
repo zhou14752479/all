@@ -104,7 +104,7 @@ namespace 校友邦
         List<string> pics = new List<string>();
 
 
-        
+       
 
         private void 校友邦_定时签到_Load(object sender, EventArgs e)
         {
@@ -293,8 +293,9 @@ namespace 校友邦
                         {
                             if (pics.Contains(username))
                             {
-                                
-                                shangchuanmamsg = fc.shangchuanma(cookie);
+                                string myma = fc.getmyma(cookie, traineeid);
+                                //MessageBox.Show(myma);
+                                shangchuanmamsg = fc.shangchuanma(cookie,myma);
                             }
 
 
@@ -310,7 +311,10 @@ namespace 校友邦
                         {
                             if (pics.Contains(username))
                             {
-                                shangchuanmamsg = fc.shangchuanma(cookie);
+                              
+                                string myma = fc.getmyma(cookie,traineeid);
+                                //MessageBox.Show(myma);
+                                shangchuanmamsg = fc.shangchuanma(cookie, myma);
                             }
 
                             string msg = qiandao(cookie, address, traineeid);
@@ -320,7 +324,7 @@ namespace 校友邦
                             //}
                             listView1.Items[i].SubItems[8].Text = shangchuanmamsg + "  " + msg;
                         }
-
+                       
                     }
 
                    

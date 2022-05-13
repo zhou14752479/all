@@ -90,7 +90,7 @@ namespace win007
         #endregion
 
         function fc = new function();
-        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6,Label l1, Label l2, Label l3,ComboBox comb1,DataGridView dgv1)
+        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6,Label l1, Label l2, Label l3,ComboBox comb1,DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t12, TextBox t11, TextBox t10)
         {
             int zhusheng_bifen_count = 0;
             int heju_bifen_count = 0;
@@ -98,11 +98,11 @@ namespace win007
 
             try
             {
-                if(t1.Text=="" &&t2.Text=="" && t3.Text=="")
-                {
-                    MessageBox.Show("请输入数值");
-                    return;
-                }
+                //if(t1.Text=="" &&t2.Text=="" && t3.Text=="")
+                //{
+                //    MessageBox.Show("请输入数值");
+                //    return;
+                //}
 
 
 
@@ -122,13 +122,50 @@ namespace win007
                     sql = sql + (" data3 like '" + t3.Text.Trim() + "' and");
                 }
 
+
+
+
+                if (t9.Text != "")
+                {
+                    sql = sql + (" data4 like '" + t9.Text.Trim() + "' and");
+                }
+                if (t8.Text != "")
+                {
+                    sql = sql + (" data5 like '" + t8.Text.Trim() + "' and");
+                }
+                if (t7.Text != "")
+                {
+                    sql = sql + (" data6 like '" + t7.Text.Trim() + "' and");
+                }
+
+
+
+                if (t12.Text != "")
+                {
+                    sql = sql + (" data7 like '" + t12.Text.Trim() + "' and");
+                }
+                if (t11.Text != "")
+                {
+                    sql = sql + (" data8 like '" + t11.Text.Trim() + "' and");
+                }
+                if (t10.Text != "")
+                {
+                    sql = sql + (" data9 like '" + t10.Text.Trim() + "' and");
+                }
+
+
+
+
+
+
+
                 if (t5.Text != "")
                 {
-                    sql = sql + (" rangqiu like '" + t5.Text.Trim() + "' and");
+                    sql = sql + (" rangqiudaxiaoqiu like '" + t5.Text.Trim() + "%' and");
                 }
                 if (t6.Text != "")
                 {
-                    sql = sql + (" daxiaoqiu like '" + t6.Text.Trim() + "' and");
+                    sql = sql + (" rangqiudaxiaoqiu like '%" + t6.Text.Trim() + "' and");
                 }
 
 
@@ -142,6 +179,7 @@ namespace win007
                     sql = sql.Substring(0, sql.Length - 3);
                 }
 
+                //textBox4.Text = sql;
                 DataTable dt = fc.chaxundata(sql);
                 dgv1.DataSource = dt;
                 dgv1.Columns["matchname"].HeaderText = "比赛名";
@@ -174,7 +212,7 @@ namespace win007
                 dgv1.Columns["ke_yingkuizs"].HeaderText = "客队赢亏指数";
 
               
-                dgv1.Columns["rangqiu_daxiaoqiu"].HeaderText = "让球大小球";
+                dgv1.Columns["rangqiudaxiaoqiu"].HeaderText = "让球大小球";
              
 
                 dgv1.Columns[7].HeaderCell.Style.BackColor = Color.Red;
@@ -460,8 +498,17 @@ namespace win007
                         try
                         {
                             string value = dgv1.Rows[i].Cells[16].Value.ToString();
-                           
-                            if (!value.Contains(t4.Text.Trim()))
+
+                            string sjpshaixuan = t4.Text;
+                             if (textBox13.Text!="")
+                            {
+                                sjpshaixuan = sjpshaixuan + textBox13.Text.Trim();
+                            }
+                            if (textBox14.Text != "") 
+                            {
+                                sjpshaixuan = sjpshaixuan + textBox14.Text.Trim();
+                            }
+                            if (!value.Contains(sjpshaixuan)) 
                             {
                                 DataGridViewRow row = dgv1.Rows[i];
                                  dgv1.Rows.Remove(row);
@@ -791,7 +838,7 @@ namespace win007
         {
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 50;
-            chaxun(textBox1,textBox2,textBox3,textBox4,textBox5,textBox6,zhusheng_banfenbi_label,heju_banfenbi_label,kesheng_banfenbi_label,comboBox1,dataGridView1);
+            chaxun(textBox1,textBox2,textBox3,textBox4,textBox5,textBox6,zhusheng_banfenbi_label,heju_banfenbi_label,kesheng_banfenbi_label,comboBox1,dataGridView1,textBox9,textBox8,textBox7,textBox12,textBox11,textBox10);
 
 
         }
@@ -835,7 +882,7 @@ namespace win007
         private void button4_Click(object sender, EventArgs e)
         {
             //startdate = Convert.ToDateTime("2018-07-01").ToString("yyyy-MM-dd");
-            startdate = Convert.ToDateTime("2019-11-24").ToString("yyyy-MM-dd");
+            startdate = Convert.ToDateTime("2021-02-28").ToString("yyyy-MM-dd");
             enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)
@@ -897,32 +944,119 @@ namespace win007
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        //private void button3_Click(object sender, EventArgs e)
+        //{
+        //    dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+        //    dataGridView2.ColumnHeadersHeight = 50;
+        //    chaxun(textBox12, textBox11, textBox10, textBox9, textBox7, textBox8, label15, label14, label3, comboBox2, dataGridView2);
+        //}
+
+        //private void button6_Click(object sender, EventArgs e)
+        //{
+        //    dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+        //    dataGridView3.ColumnHeadersHeight = 50;
+        //    chaxun(textBox18, textBox17, textBox16, textBox15, textBox13, textBox14, label28, label27, label26, comboBox3, dataGridView3);
+        //}
+
+        //private void button7_Click(object sender, EventArgs e)
+        //{
+        //    dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+        //    dataGridView4.ColumnHeadersHeight = 50;
+        //    chaxun(textBox24, textBox23, textBox22, textBox21, textBox19, textBox20, label41, label40, label39, comboBox4, dataGridView4);
+        //}
+
+        //private void button8_Click(object sender, EventArgs e)
+        //{
+        //    dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+        //    dataGridView5.ColumnHeadersHeight = 50;
+        //    chaxun(textBox30, textBox29, textBox28, textBox27, textBox25, textBox26, label54, label53, label52, comboBox5, dataGridView5);
+        //}
+
+        private void button9_Click(object sender, EventArgs e)
         {
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridView2.ColumnHeadersHeight = 50;
-            chaxun(textBox12, textBox11, textBox10, textBox9, textBox7, textBox8, label15, label14, label3, comboBox2, dataGridView2);
+            DataTable dt = new DataTable();
+
+            for (int count = 0; count < dataGridView1.Columns.Count; count++)
+            {
+                DataColumn dc = new DataColumn(dataGridView1.Columns[count].Name.ToString());
+                dt.Columns.Add(dc);
+            }
+            for (int count = 0; count < dataGridView1.Rows.Count; count++)
+            {
+                DataRow dr = dt.NewRow();
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    dr[i] = Convert.ToString(dataGridView1.Rows[count].Cells[i].Value);
+                }
+                dt.Rows.Add(dr);
+            }
+
+
+
+            dataGridView6.DataSource = dt;
+
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridView3.ColumnHeadersHeight = 50;
-            chaxun(textBox18, textBox17, textBox16, textBox15, textBox13, textBox14, label28, label27, label26, comboBox3, dataGridView3);
+            textBox4.Text += "升";
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridView4.ColumnHeadersHeight = 50;
-            chaxun(textBox24, textBox23, textBox22, textBox21, textBox19, textBox20, label41, label40, label39, comboBox4, dataGridView4);
+            textBox4.Text += "降";
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridView5.ColumnHeadersHeight = 50;
-            chaxun(textBox30, textBox29, textBox28, textBox27, textBox25, textBox26, label54, label53, label52, comboBox5, dataGridView5);
+            textBox4.Text += "平";
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox4.Text= "";
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox13.Text += "升";
+
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox13.Text += "降";
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox13.Text += "平";
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox13.Text = "";
+        }
+
+        private void linkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox14.Text += "升";
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox14.Text += "降";
+        }
+
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox14.Text += "平";
+        }
+
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox14.Text = "";
+
         }
     }
 }

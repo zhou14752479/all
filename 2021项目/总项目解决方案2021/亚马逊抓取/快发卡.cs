@@ -58,8 +58,10 @@ namespace 亚马逊抓取
 
 
         string dingdanhao = "";
+
         public void run()
         {
+            int count = 0;
             label1.Text = "正在查询";
             try
             {
@@ -71,6 +73,12 @@ namespace 亚马逊抓取
                 sr.Dispose();   //销毁流内存
                 for (int i = 0; i < text.Length; i++)
                 {
+                    count = count + 1;
+                    if(count==10)
+                    {
+                        count = 0;
+                        Thread.Sleep(180000);
+                    }
                     if (status == false)
                         return;
                     while (this.zanting == false)

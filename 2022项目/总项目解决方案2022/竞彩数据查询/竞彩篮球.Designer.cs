@@ -46,6 +46,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -57,10 +59,10 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 258);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 268);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1136, 373);
+            this.dataGridView1.Size = new System.Drawing.Size(1136, 363);
             this.dataGridView1.TabIndex = 382;
             // 
             // button4
@@ -100,9 +102,9 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 142);
+            this.panel2.Location = new System.Drawing.Point(0, 182);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1136, 116);
+            this.panel2.Size = new System.Drawing.Size(1136, 86);
             this.panel2.TabIndex = 381;
             // 
             // label4
@@ -122,7 +124,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(443, 27);
+            this.button1.Location = new System.Drawing.Point(532, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 38);
             this.button1.TabIndex = 66;
@@ -156,7 +158,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(574, 27);
+            this.button2.Location = new System.Drawing.Point(663, 27);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(103, 38);
             this.button2.TabIndex = 67;
@@ -166,6 +168,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.radioButton1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox4);
@@ -182,7 +186,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1136, 142);
+            this.panel1.Size = new System.Drawing.Size(1136, 182);
             this.panel1.TabIndex = 380;
             // 
             // label6
@@ -243,12 +247,34 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(734, 47);
+            this.label1.Location = new System.Drawing.Point(530, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 76;
             this.label1.Text = "label1";
             this.label1.Visible = false;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(310, 29);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(47, 16);
+            this.radioButton1.TabIndex = 83;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "主队";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(363, 29);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(47, 16);
+            this.radioButton2.TabIndex = 84;
+            this.radioButton2.Text = "客队";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // 竞彩篮球
             // 
@@ -292,5 +318,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

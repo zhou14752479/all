@@ -557,6 +557,8 @@ namespace myDLL
         #region GET请求获取Set-cookie
         public static string getSetCookie(string url)
         {
+
+            //可用于网站第一次验证ocokie，不需要用webbrowser获取参考项目【邮箱地址确认】
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
             request.Timeout = 10000;
@@ -568,7 +570,25 @@ namespace myDLL
             string content = response.GetResponseHeader("Set-Cookie"); ;
             return content;
 
+            //string charset = "utf-8";
+            //string html = "";
+            //if (response.Headers["Content-Encoding"] == "gzip")
+            //{
 
+            //    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+            //    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+            //    html = reader.ReadToEnd();
+            //    reader.Close();
+            //}
+            //else
+            //{
+            //    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+            //    html = reader.ReadToEnd();
+            //    reader.Close();
+            //}
+
+            //tokenId = Regex.Match(html, @"tokenId = '([\s\S]*?)'").Groups[1].Value;
+            //token = Regex.Match(html, @"token = '([\s\S]*?)'").Groups[1].Value;
         }
         #endregion
 
@@ -1685,5 +1705,49 @@ namespace myDLL
         }
 
         #endregion
+
+        #region 图片URL转image
+        /// <summary>
+        /// 通过NET获取网络图片
+        /// </summary>
+        /// <param name="url">要访问的图片所在网址</param>
+        /// <param name="requestAction">对于WebRequest需要进行的一些处理，比如代理、密码之类</param>
+        /// <param name="responseFunc">如何从WebResponse中获取到图片</param>
+        /// <returns></returns>
+        public static Image GetImage(string url)
+        {
+            Image img;
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+
+                using (WebResponse response = request.GetResponse())
+                {
+                    if (response.ContentType.IndexOf("text") != -1)
+                    {
+                        System.IO.Stream responseStream = response.GetResponseStream();
+                        System.IO.StreamReader reader = new System.IO.StreamReader(responseStream, Encoding.UTF8);
+                        string srcString = reader.ReadToEnd();
+                        return null;
+                    }
+                    else
+                    {
+                        img = System.Drawing.Image.FromStream(response.GetResponseStream());
+                    }
+                }
+                return img;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return null;
+            }
+        }
+
+        #endregion
+
+
+
+
     }
 }

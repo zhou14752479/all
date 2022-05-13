@@ -29,11 +29,24 @@ namespace 基鹿工具箱
 
         private void button2_Click(object sender, EventArgs e)
         {
+            listView2.Items.Clear();
+            imageList1.Images.Clear();  
             tabControl1.SelectedIndex = 1;
+            List<string> icons = util.geticons();
+            for (int i = 0; i < icons.Count; i++)
+            {
+
+                imageList1.Images.Add(util.GetImage(icons[i].ToString()));
+                listView2.Items.Add(System.IO.Path.GetFileNameWithoutExtension(icons[i].ToString()), i);
+                listView2.Items[i].ImageIndex = i;
+                listView2.Items[i].Name = icons[i].ToString();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+           
+           
             tabControl1.SelectedIndex = 2;
         }
 
@@ -56,81 +69,9 @@ namespace 基鹿工具箱
         {
             tabControl1.SelectedIndex = 6;
         }
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-            if (Util.expiretime != "")
-            {
-                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
-                {
-                    tabControl1.SelectedIndex = 9;
-                }
-                else
-                {
-                    MessageBox.Show("请购买套餐");
-                }
-            }
-            else
-            {
-                MessageBox.Show("请购买套餐");
-            }
-        }
 
-        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (Util.expiretime != "")
-            {
-                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
-                {
-                    tabControl1.SelectedIndex =9;
-                }
-                else
-                {
-                    MessageBox.Show("请购买套餐");
-                }
-            }
-            else
-            {
-                MessageBox.Show("请购买套餐");
-            }
-        }
 
-        private void pictureBox8_Click(object sender, EventArgs e)
-        {
-            if (Util.expiretime != ""&&Util.expiretime != "非会员")
-            {
-                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
-                {
-                    tabControl1.SelectedIndex = 10;
-                }
-                else
-                {
-                    MessageBox.Show("请购买套餐");
-                }
-            }
-            else
-            {
-                MessageBox.Show("请购买套餐");
-            }
-        }
-
-        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (Util.expiretime != "")
-            {
-                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
-                {
-                    tabControl1.SelectedIndex = 10;
-                }
-                else
-                {
-                    MessageBox.Show("请购买套餐");
-                }
-            }
-            else
-            {
-                MessageBox.Show("请购买套餐");
-            }
-        }
+      
 
 
         private Point mPoint = new Point();
@@ -234,44 +175,9 @@ namespace 基鹿工具箱
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (Util.expiretime != "")
-            {
-                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
-                {
-                    tabControl1.SelectedIndex = 7;
-                }
-                else
-                {
-                    MessageBox.Show("请购买套餐");
-                }
-            }
-            else
-            {
-                MessageBox.Show("请购买套餐");
-            }
+       
 
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            if (Util.expiretime != "")
-            {
-                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
-                {
-                    tabControl1.SelectedIndex = 7;
-                }
-                else
-                {
-                    MessageBox.Show("请购买套餐");
-                }
-            }
-            else
-            {
-                MessageBox.Show("请购买套餐");
-            }
-        }
+       
 
         Thread thread;
         private void button12_Click(object sender, EventArgs e)
@@ -431,43 +337,7 @@ namespace 基鹿工具箱
             System.Diagnostics.Process.Start("http://www.asinlu.com/index/service_show.html?id=71");
         }
 
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            if (Util.expiretime != "")
-            {
-                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
-                {
-                    tabControl1.SelectedIndex = 8;
-                }
-                else
-                {
-                    MessageBox.Show("请购买套餐");
-                }
-            }
-            else
-            {
-                MessageBox.Show("请购买套餐");
-            }
-        }
-
-        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (Util.expiretime != "")
-            {
-                if (Convert.ToDateTime(Util.expiretime) > DateTime.Now)
-                {
-                    tabControl1.SelectedIndex = 8;
-                }
-                else
-                {
-                    MessageBox.Show("请购买套餐");
-                }
-            }
-            else
-            {
-                MessageBox.Show("请购买套餐");
-            }
-        }
+      
 
 
         
@@ -810,5 +680,59 @@ namespace 基鹿工具箱
         {
             chart1.ChartAreas[0].AxisX.Maximum = dateTimePicker1.Value.ToOADate();
         }
+
+        private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.listView2.SelectedItems.Count == 0)
+                return;
+            if (Util.expiretime == "")
+            {
+
+                MessageBox.Show("请购买套餐");
+                return;
+            }
+            else
+            {
+                if (Convert.ToDateTime(Util.expiretime) < DateTime.Now)
+                {
+                    MessageBox.Show("请购买套餐");
+                    return;
+                }
+            }
+            if (listView2.SelectedItems[0].Name.Contains("关键词排名查询"))
+            {
+                tabControl1.SelectedIndex = 7;
+            }
+           else if (listView2.SelectedItems[0].Name.Contains("标题自动生成"))
+            {
+                tabControl1.SelectedIndex = 8;
+            }
+            else if (listView2.SelectedItems[0].Name.Contains("竞品SKU销量分析"))
+            {
+                tabControl1.SelectedIndex = 9;
+            }
+            else if (listView2.SelectedItems[0].Name.Contains("竞品SKU占比分析"))
+            {
+                tabControl1.SelectedIndex = 10;
+            }
+            else if (listView2.SelectedItems[0].Name.Contains("生意参谋指数"))
+            {
+                tabControl1.SelectedIndex = 12;
+            }
+            else
+            {
+                string url = util.GeticonUrl(Path.GetFileName(listView2.SelectedItems[0].Name));
+                System.Diagnostics.Process.Start(url);
+                //System.Diagnostics.Process.Start(listView2.SelectedItems[0].Name);
+            }
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //http://47.96.189.55/jilusoft/icon/%E5%85%B3%E9%94%AE%E8%AF%8D%E6%8E%92%E5%90%8D%E6%9F%A5%E8%AF%A2.png
     }
 }

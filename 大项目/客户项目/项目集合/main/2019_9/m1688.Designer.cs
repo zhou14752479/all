@@ -59,6 +59,9 @@
             this.复制标题ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +79,9 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button6);
+            this.splitContainer1.Panel1.Controls.Add(this.label9);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox6);
             this.splitContainer1.Panel1.Controls.Add(this.textBox4);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.label8);
@@ -367,6 +373,33 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(12, 79);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 13);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "保存路径：";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(95, 74);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(312, 21);
+            this.textBox6.TabIndex = 32;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(413, 74);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(84, 23);
+            this.button6.TabIndex = 34;
+            this.button6.Text = "浏览...";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // m1688
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -421,5 +454,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }

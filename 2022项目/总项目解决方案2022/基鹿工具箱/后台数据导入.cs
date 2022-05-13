@@ -116,16 +116,7 @@ namespace 基鹿工具箱
 
         private void 后台数据导入_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dr == DialogResult.OK)
-            {
-                // Environment.Exit(0);
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
-            else
-            {
-                e.Cancel = true;//点取消的代码 
-            }
+           
         }
 
         private void 导入数据ToolStripMenuItem_Click(object sender, EventArgs e)

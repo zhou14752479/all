@@ -6,6 +6,7 @@ using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace 基鹿工具箱
 {
     class Util
     {
+        string ipdomain = "47.96.189.55";
        static string COOKIE = "cna=IEEVGmxNb3QCAXnisujqtGPv; taklid=38e78512859846e58e75c42be1833a02; hng=CN%7Czh-CN%7CCNY%7C156; lid=zkg852266010; ali_ab=121.226.159.98.1645245827623.1; ali_apache_track=c_mid=b2b-1052347548|c_lid=zkg852266010|c_ms=1|c_mt=2; _m_h5_tk=3e9666f327a4af69b19b6d7adbb23eb8_1649325439454; _m_h5_tk_enc=d7732f7b2298a8cd29d69f807bcbeccf; xlly_s=1; cookie2=2a6f52413f2e48cd63a5da6bc8191e9e; sgcookie=E100kZBFanIDZNPfcot4VcewKkmUiR9sB7C4rpdjYQP6x25S3n2aTZ8486eH618tvfau6C2Z38RJvIPMt%2BGbTm3%2FCPvaFgnZmBQxYX9X74V0BPEAcMJWWZxMsEutNsxXs7Q5; t=bb42afa080af1dca98fb8d6a52dc1684; _tb_token_=e6859ebee1b17; uc4=nk4=0%40GwrkntVPltPB9cR46GncAmsyVe%2Fk0gQ%3D&id4=0%40UOnlZ%2FcoxCrIUsehK6jr4tbgfrWs; __cn_logon__=false; alicnweb=touch_tb_at%3D1649316804592%7Clastlogonid%3Dzkg852266010%7Cshow_inter_tips%3Dfalse; keywordsHistory=%E9%92%A2%E7%AD%8B%E9%92%A9; _csrf_token=1649319453013; tfstk=c8cRB2aZUnxubUUx7Ypm8uykH_M5aWxLcaZh9Xh0ACwwxaCdOs2isfQ5oLaQbuLA.; l=eBNaJtqgg-gKy7-ABO5ZKurza7791IOfGsPzaNbMiInca6tGXnutLNC3TKQwpdtj_tfjEeKrTan6EdE2SJ438x125OM8ARjSH6v6-; isg=BCgooAfp3oWAkvHrPLKOYWNs-RY6UYxbHQ9mG-JYFKMEPcyni2JB6oc7Nd3NDUQz";
       public  static string mobile= "";
         public static string logintoken = "";
@@ -444,6 +446,26 @@ namespace 基鹿工具箱
             return sb.ToString().ToLower();
         }
 
+
+        public List<string> geticons()
+        {
+            List<string> icons = new List<string>();
+            string url = "http://" + ipdomain + "/jilusoft/geticon.php";
+            string html = GetUrl(url,"utf-8");
+            MatchCollection pics = Regex.Matches(html, @"<div>([\s\S]*?)</div>");
+            foreach (Match m in pics)
+            {
+               if(m.Groups[1].Value.Contains("png") || m.Groups[1].Value.Contains("jpg") || m.Groups[1].Value.Contains("jpeg"))
+                {
+                    icons.Add("http://"+ipdomain+"/jilusoft"+m.Groups[1].Value.Replace("./", "/"));
+                }
+
+            }
+
+            return icons;
+        }
+
+
         /// <summary>
         /// 基于Sha1的自定义加密字符串方法：输入一个字符串，返回一个由40个字符组成的十六进制的哈希散列（字符串）。
         /// </summary>
@@ -546,7 +568,45 @@ namespace 基鹿工具箱
         }
         #endregion
 
-        
+        #region 图片URL转image
+        /// <summary>
+        /// 通过NET获取网络图片
+        /// </summary>
+        /// <param name="url">要访问的图片所在网址</param>
+        /// <param name="requestAction">对于WebRequest需要进行的一些处理，比如代理、密码之类</param>
+        /// <param name="responseFunc">如何从WebResponse中获取到图片</param>
+        /// <returns></returns>
+        public  Image GetImage(string url)
+        {
+            Image img;
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+
+                using (WebResponse response = request.GetResponse())
+                {
+                    if (response.ContentType.IndexOf("text") != -1)
+                    {
+                        System.IO.Stream responseStream = response.GetResponseStream();
+                        System.IO.StreamReader reader = new System.IO.StreamReader(responseStream, Encoding.UTF8);
+                        string srcString = reader.ReadToEnd();
+                        return null;
+                    }
+                    else
+                    {
+                        img = System.Drawing.Image.FromStream(response.GetResponseStream());
+                    }
+                }
+                return img;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return null;
+            }
+        }
+
+        #endregion
 
         #region NPOI读取表格导入datatable 
         /// <summary>  
@@ -730,7 +790,36 @@ namespace 基鹿工具箱
 
         #endregion
 
+        public string GeticonUrl(string name)
+        {
 
+            try
+            {
+
+                MySqlConnection mycon = new MySqlConnection(conn);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select url from icon where name='" + name + "'  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                reader.Read();
+
+                string url = reader["url"].ToString().Trim();
+                mycon.Close();
+                reader.Close();
+                return url;
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+
+
+        }
         public static bool SQL(string sql)
         {
             try

@@ -5,7 +5,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -21,23 +24,95 @@ namespace 主程序
         {
             InitializeComponent();
         }
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
+        {
+            string html = "";
+            string COOKIE = "";
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                //request.Proxy = null;//防止代理抓包
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = Url;
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+            }
+
+
+
+        }
+        #endregion
+
         public void getnew()
 
+
         {
-            
+
+            string url = "";
+            //string url = "https://www.1686100.com/api/LotteryPlan/getPksPlanList.do?lotCode=10012&rows=20&date=" + DateTime.Now.ToString("yyyy-MM-dd");
+
+            if (radioButton1.Checked==true)
+            {
+                url = "https://www.1686100.com/api/pks/getPksHistoryList.do?lotCode=10012";
+            }
+
+            if (radioButton2.Checked == true)
+            {
+               url = "https://www.1686100.com/api/pks/getPksHistoryList.do?date="+ DateTime.Now.ToString("yyyy-MM-dd") + "&lotCode=10012";
+            }
 
 
-            string url = "https://api.api861861.com/pks/getPksHistoryList.do?lotCode=10012&date=" + DateTime.Now.ToString("yyyy-MM-dd");
-
-           
-
-            string html = method.GetUrl(url, "utf-8");
+            string html = GetUrl(url, "utf-8");
 
             MatchCollection qishus = Regex.Matches(html, @"""preDrawIssue"":([\s\S]*?),");
             
             MatchCollection times = Regex.Matches(html, @"""preDrawTime"":""([\s\S]*?)""");
             MatchCollection results = Regex.Matches(html, @"""preDrawCode"":""([\s\S]*?)""");
 
+            //MessageBox.Show(qishus.Count.ToString());
             for (int j = 0; j < qishus.Count; j++)
             {
                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
@@ -52,10 +127,10 @@ namespace 主程序
             if (qishus.Count > 3)
 
             {
-                textBox2.Text = results[0].Groups[1].Value.Replace("01","1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
-                textBox3.Text = results[1].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
-                textBox4.Text = results[2].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
-                textBox5.Text = results[3].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
+                textBox2.Text = results[1].Groups[1].Value.Replace("01","1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
+                textBox3.Text = results[2].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
+                textBox4.Text = results[3].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
+                textBox5.Text = results[4].Groups[1].Value.Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9");
             }
 
 
@@ -106,51 +181,60 @@ namespace 主程序
         }
         public int getxiangsi(string s, string y)
         {
-            string[] shuru = s.Split(new string[] { "," }, StringSplitOptions.None);
-            string[] yuan = y.Split(new string[] { "," }, StringSplitOptions.None);
-
             int geshu = 0;
+            try
+            {
+                string[] shuru = s.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] yuan = y.Split(new string[] { "," }, StringSplitOptions.None);
 
-            if (shuru[0] == yuan[0])
-            {
-                geshu = geshu + 1;
-            }
 
-            if (shuru[1] == yuan[1])
-            {
-                geshu = geshu + 1;
+                //MessageBox.Show(shuru[0], yuan[0]);
+                if (shuru[0] == yuan[0])
+                {
+                    geshu = geshu + 1;
+                }
+
+                if (shuru[1] == yuan[1])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[2] == yuan[2])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[3] == yuan[3])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[4] == yuan[4])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[5] == yuan[5])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[6] == yuan[6])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[7] == yuan[7])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[8] == yuan[8])
+                {
+                    geshu = geshu + 1;
+                }
+                if (shuru[9] == yuan[9])
+                {
+                    geshu = geshu + 1;
+                }
             }
-            if (shuru[2] == yuan[2])
+            catch (Exception)
             {
-                geshu = geshu + 1;
-            }
-            if (shuru[3] == yuan[3])
-            {
-                geshu = geshu + 1;
-            }
-            if (shuru[4] == yuan[4])
-            {
-                geshu = geshu + 1;
-            }
-            if (shuru[5] == yuan[5])
-            {
-                geshu = geshu + 1;
-            }
-            if (shuru[6] == yuan[6])
-            {
-                geshu = geshu + 1;
-            }
-            if (shuru[7] == yuan[7])
-            {
-                geshu = geshu + 1;
-            }
-            if (shuru[8] == yuan[8])
-            {
-                geshu = geshu + 1;
-            }
-            if (shuru[9] == yuan[9])
-            {
-                geshu = geshu + 1;
+
+              
             }
 
             return geshu;
@@ -181,7 +265,9 @@ namespace 主程序
 
             for (int i = 0; i < resultList.Count; i++)
             {
-                int value = getxiangsi(shuru, resultList[i].ToString());
+
+                //.Replace("01","1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9")
+                int value = getxiangsi(shuru, resultList[i].ToString().Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
 
                 label6.Text = "正在分析" + resultList[i];
                 label7.Text = "正在分析" + resultList[i];
@@ -191,7 +277,7 @@ namespace 主程序
                 if (value > 5 && shuru != resultList[i].ToString())
                 {
                     //textBox6.Text += resultList[i].ToString() + "\r\n";
-                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 10, 10));
+                    ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 9, 9));
                     ListViewItem lv3 = listView3.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 6, 6));
                     ListViewItem lv4 = listView4.Items.Add((listView2.Items.Count + 1).ToString() + ":" + resultList[i - 1].ToString().Remove(resultList[i - 1].ToString().Length - 2, 2));
                     button2.Enabled = true;
@@ -222,7 +308,7 @@ namespace 主程序
         {
             timer1.Start();
 
-            button2.Enabled = false;
+            //button2.Enabled = false;
             status = true;
             getdata();
 
@@ -379,6 +465,93 @@ namespace 主程序
         private void Form2_Load(object sender, EventArgs e)
         {
 
+        }
+        /// <summary>
+        /// 插入数据库
+        /// </summary>
+        public void insertdata(string sql)
+        {
+            try
+            {
+
+                string path = System.Environment.CurrentDirectory; //获取当前程序运行文件夹
+
+                SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path + "\\data.db");
+                mycon.Open();
+
+                SQLiteCommand cmd = new SQLiteCommand(sql, mycon);
+
+                cmd.ExecuteNonQuery();  //执行sql语句
+                mycon.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+            }
+
+        }
+
+        
+
+
+        string startdate = "2021-01-01";
+        string enddate = "2022-01-06";
+        public void inserdata2()
+        {
+
+
+
+
+            for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate); dt = dt.AddDays(1))
+            {
+                try
+                {
+                    string url = "https://www.1686100.com/api//LotteryPlan/getBetInfoList.do?date="+ dt.ToString("yyyy-MM-dd") + "&lotCode=10012";
+                    label6.Text = dt.ToString("yyyy-MM-dd");
+
+                    string html = GetUrl(url, "utf-8");
+                
+                    MatchCollection times = Regex.Matches(html, @"""preDrawTime"":""([\s\S]*?)""");
+                    MatchCollection preDrawIssues = Regex.Matches(html, @"""preDrawIssue"":([\s\S]*?),");
+                    MatchCollection preDrawCodes = Regex.Matches(html, @"""preDrawCode"":""([\s\S]*?)""");
+
+                   
+
+                    for (int i = 0; i < preDrawCodes.Count; i++)
+                    {
+                        string sql = "INSERT INTO datas(time,code,result)VALUES('" + times[i].Groups[1].Value + "','" + preDrawIssues[i].Groups[1].Value + "','" + preDrawCodes[i].Groups[1].Value + "')";
+
+                        insertdata(sql);
+
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    //MessageBox.Show(ex.ToString());
+                }
+            }
+
+            MessageBox.Show("完成");
+        }
+
+        Thread thread;
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            startdate = Convert.ToDateTime("2021-05-10").ToString("yyyy-MM-dd");
+            enddate = DateTime.Now.ToString("yyyy-MM-dd");
+            status = true;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(inserdata2);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
     }
 }

@@ -251,7 +251,14 @@ namespace 竞彩数据查询
                 }
                 if (textBox3.Text != "")
                 {
-                    sql = sql + (" zhu like '" + textBox3.Text.Trim() + "' and");
+                    if(radioButton1.Checked==true)
+                    {
+                        sql = sql + (" zhu like '" + textBox3.Text.Trim() + "' and");
+                    }
+                    if (radioButton2.Checked == true)
+                    {
+                        sql = sql + (" ke like '" + textBox3.Text.Trim() + "' and");
+                    }
                 }
                 if (sql.Substring(sql.Length - 3, 3) == "and")
                 {
@@ -268,7 +275,15 @@ namespace 竞彩数据查询
                 }
                 if (textBox4.Text != "")
                 {
-                    sql2 = sql2 + (" zhu like '" + textBox4.Text.Trim() + "' and");
+                    if (radioButton1.Checked == true)
+                    {
+                        sql2 = sql2 + (" zhu like '" + textBox4.Text.Trim() + "' and");
+                    }
+                    if (radioButton2.Checked == true)
+                    {
+                        sql2 = sql2 + (" ke like '" + textBox4.Text.Trim() + "' and");
+                    }
+
                 }
                 if (sql2.Substring(sql2.Length - 3, 3) == "and")
                 {
@@ -357,17 +372,25 @@ namespace 竞彩数据查询
                     string ke = dataGridView1.Rows[i].Cells[7].Value.ToString();
 
 
-                    if (Convert.ToInt32(zhu)>Convert.ToInt32(ke))
+                    try
                     {
-                        shengcount = shengcount + 1;
+                        if (Convert.ToInt32(zhu) > Convert.ToInt32(ke))
+                        {
+                            shengcount = shengcount + 1;
+                        }
+                        if (Convert.ToInt32(zhu) == Convert.ToInt32(ke))
+                        {
+                            pingcount = pingcount + 1;
+                        }
+                        if (Convert.ToInt32(zhu) < Convert.ToInt32(ke))
+                        {
+                            fucount = fucount + 1;
+                        }
                     }
-                    if (Convert.ToInt32(zhu) == Convert.ToInt32(ke))
+                    catch (Exception)
                     {
-                        pingcount = pingcount + 1;
-                    }
-                    if (Convert.ToInt32(zhu) < Convert.ToInt32(ke))
-                    {
-                        fucount = fucount + 1;
+
+                       
                     }
 
 
