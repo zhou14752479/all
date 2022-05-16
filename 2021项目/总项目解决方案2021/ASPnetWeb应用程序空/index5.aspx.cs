@@ -93,29 +93,8 @@ namespace ASPnetWeb应用程序空
                 //如果picturebox1本身有内容，就先画到image上
                 device.DrawImage(image_changci, 383, 83); //用你想要的位置画小图
 
-
-                if (value != "宝石")
-                {
-                    device.DrawImage(image_month, 145, 75);
-                    device.DrawImage(image_month2, 160, 75);
-
-                    device.DrawImage(image_day, 205, 75);
-                    device.DrawImage(image_day2, 220, 75);
-
-
-
-                    device.DrawImage(image_yue, 125, 46);
-                    device.DrawImage(image_ri, 195, 46);
-                }
-
-
-
-
-
-
-
                 //宝石图片单独做
-                else
+                if (value == "宝石" || value == "大鹅")
                 {
                     device.DrawImage(image_month, 135, 75);
                     device.DrawImage(image_month2, 150, 75);
@@ -127,6 +106,23 @@ namespace ASPnetWeb应用程序空
 
                     device.DrawImage(image_yue, 95, 36);
                     device.DrawImage(image_ri, 165, 36);
+                }
+
+ 
+               
+                else
+                {
+                    device.DrawImage(image_month, 145, 75);
+                    device.DrawImage(image_month2, 160, 75);
+
+                    device.DrawImage(image_day, 205, 75);
+                    device.DrawImage(image_day2, 220, 75);
+
+
+
+                    device.DrawImage(image_yue, 125, 46);
+                    device.DrawImage(image_ri, 195, 46);
+                   
                 }
 
                 bitmap.Save(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "/image5/" + changci + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);

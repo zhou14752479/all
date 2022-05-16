@@ -29,7 +29,7 @@ namespace 客户文档下载
         /// <param name="URLAddress">图片地址</param>
         /// <param name="subPath">图片所在文件夹</param>
         /// <param name="name">图片名称</param>
-        public static void downloadFile(string URLAddress, string subPath, string name, string COOKIE)
+        public  void downloadFile(string URLAddress, string subPath, string name, string COOKIE)
         {
             try
             {
@@ -38,7 +38,9 @@ namespace 客户文档下载
                 WebClient client = new WebClient();
                 client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
                 client.Headers.Add("Cookie", COOKIE);
-                client.Headers.Add("Referer", "https://m.mm131.net/chemo/89_5.html");
+               // client.Headers.Add("Referer", "https://m.mm131.net/chemo/89_5.html");
+               // client.Headers.Add("authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Il9DSkFPdHlzWVZtNXhjMVlvSzBvUTdxeUJDUSJ9.eyJhdWQiOiI3MjY0MzcwNC1iMmU3LTRiMjYtYjg4MS1iZDU4NjVlN2E3YTUiLCJpc3MiOiJodHRwczovL2xvZ2luLnBhcnRuZXIubWljcm9zb2Z0b25saW5lLmNuLzQ4MDdlOWNmLTg3YjgtNDE3NC1hYTViLWU3NjQ5N2Q3MzkyYi92Mi4wIiwiaWF0IjoxNjUyNDMwMDY2LCJuYmYiOjE2NTI0MzAwNjYsImV4cCI6MTY1MjQzMzk2NiwiYWlvIjoiNDJKZ1lKakw2L3BMOUhlOGM3V0cwcGJpdTE5ekFBPT0iLCJhenAiOiJjNzMxN2Y4OC03Y2VhLTRlNDgtYWM1Ny1hMTYwNzFmN2I4ODQiLCJhenBhY3IiOiIxIiwib2lkIjoiZDQ5YmI3ODItNmRjMi00OTM5LTg2NzgtZDMzYzI2NzE5YmY5IiwicmgiOiIwLkFBQUF6LWtIU0xpSGRFR3FXLWRrbDljNUt3UTNaSExuc2laTHVJRzlXR1hucDZVQkFBQS4iLCJyb2xlcyI6WyJJRVMiXSwic3ViIjoiZDQ5YmI3ODItNmRjMi00OTM5LTg2NzgtZDMzYzI2NzE5YmY5IiwidGlkIjoiNDgwN2U5Y2YtODdiOC00MTc0LWFhNWItZTc2NDk3ZDczOTJiIiwidXRpIjoieHBMOV9kc05IRWlvZVNfX2MwY1pBQSIsInZlciI6IjIuMCJ9.G19BChYBWDHu7uoiwpZdWVSBrjEL7DkIUWlr5Z5HcQxPd2Y1F2zXw69RkZSrTtiSNg79lhASxzkwhN7HzX_sq_pRk9GR1odRBNtRctZRX9BTa-Jvsrz5e2bmUOuyEjmeHQhh8jw3IuVXIiHnWm2kqEy_yJDLmERa8IAbeBjryaBpolPogRJeIBwz-S1nqdqrTQn75VMfqPfDiJIq2OcKJIFc6YOlP8thb-hbbLbkwF4iNJUx_H-RUyG1Nbc3-jzPYbiVKYee3223OZRyZH4qF3RhG8DQCBjl5N8q6e4VpCn_zsqqcLgNDzNR4PAwtCWLEtAxpaz8XELS3x7zQnkryQ");
+               // client.Headers.Add("x-auth-authtoken: eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ3d3cudGVhbW1vZGVsLmNuIiwic3ViIjoiMTY0MDc2NjUxMyIsImF6cCI6ImNkcm1ieCIsImV4cCI6IjE2NTI0MzM5NjciLCJuYW1lIjoi6b6Z5am3IiwicGljdHVyZSI6bnVsbCwicm9sZXMiOlsidGVhY2hlciJdLCJwZXJtaXNzaW9ucyI6W10sInN0YW5kYXJkIjoic3RhbmRhcmQ0Iiwic2NvcGUiOiJ0ZWFjaGVyIiwiYXJlYSI6ImYzNWUwMDMxLWE1M2YtNDVlNS1iMzA3LTFjZDM5NDQ2YTJjZiIsIndlYnNpdGUiOiJJRVMifQ.VDyM3RkGyYIwNCPIYP1dPQKaXdowxqmIR4IJsMHDybQ");
                 if (false == System.IO.Directory.Exists(subPath))
                 {
                     //创建pic文件夹
@@ -49,8 +51,8 @@ namespace 客户文档下载
             }
             catch (WebException ex)
             {
-
-                ex.ToString();
+               MessageBox.Show(ex.ToString());
+              // textBox1.Text= ex.ToString();
             }
         }
 
@@ -80,9 +82,9 @@ namespace 客户文档下载
                 request.Method = "Post";
                 request.Proxy = null;//防止代理抓包
                 //添加头部
-                //WebHeaderCollection headers = request.Headers;
-                //headers.Add("sec-fetch-mode:navigate");
-                //headers.Add("sec-fetch-site:same-origin");
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Il9DSkFPdHlzWVZtNXhjMVlvSzBvUTdxeUJDUSJ9.eyJhdWQiOiI3MjY0MzcwNC1iMmU3LTRiMjYtYjg4MS1iZDU4NjVlN2E3YTUiLCJpc3MiOiJodHRwczovL2xvZ2luLnBhcnRuZXIubWljcm9zb2Z0b25saW5lLmNuLzQ4MDdlOWNmLTg3YjgtNDE3NC1hYTViLWU3NjQ5N2Q3MzkyYi92Mi4wIiwiaWF0IjoxNjUyNDk4MDI2LCJuYmYiOjE2NTI0OTgwMjYsImV4cCI6MTY1MjUwMTkyNiwiYWlvIjoiNDJKZ1lQajM5WSsveG9ZcTV2L3FiTE5iTnBwVkFBQT0iLCJhenAiOiJjNzMxN2Y4OC03Y2VhLTRlNDgtYWM1Ny1hMTYwNzFmN2I4ODQiLCJhenBhY3IiOiIxIiwib2lkIjoiZDQ5YmI3ODItNmRjMi00OTM5LTg2NzgtZDMzYzI2NzE5YmY5IiwicmgiOiIwLkFBQUF6LWtIU0xpSGRFR3FXLWRrbDljNUt3UTNaSExuc2laTHVJRzlXR1hucDZVQkFBQS4iLCJyb2xlcyI6WyJJRVMiXSwic3ViIjoiZDQ5YmI3ODItNmRjMi00OTM5LTg2NzgtZDMzYzI2NzE5YmY5IiwidGlkIjoiNDgwN2U5Y2YtODdiOC00MTc0LWFhNWItZTc2NDk3ZDczOTJiIiwidXRpIjoiRmNuQkEyVzEyVWVoVUQtQWVoY3NBUSIsInZlciI6IjIuMCJ9.O-vWr0CJ6hikeIMsdZxYi5R3gQ0fEAB3zydfI7a3x_FIk9oDnTqb-Um8mg9t442Al2vAzccqNiAf8FCUzF0NUlxUIH5qsccdVM0MRZ3UeiVMfEkL61r4SzGO1Nd0TWn7USeySxsVXINXkqKYFMNZ_8Jjf0bBhgrtyRXreGA4JeqTz3TruYs07BKk0NIiYvHH7ayw-aabueIfqvHCrUgINMUOO9pZ17qygQF4IVOtvEESjGzAXqhnJsx1hz1JQLzWfXbSNpkiRBoh5J6M98efbod1aWlcvgc8xG8O-9t6QO_Q_g9k0YvhfGKBBjuumNVhI3fj8T3bNXaQ6CT12O1VkA");
+                headers.Add("x-auth-authtoken: eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ3d3cudGVhbW1vZGVsLmNuIiwic3ViIjoiMTY0MDc2NjUxMyIsImF6cCI6ImNkcm1ieCIsImV4cCI6IjE2NTI1MDE5MjgiLCJuYW1lIjoi6b6Z5am3IiwicGljdHVyZSI6bnVsbCwicm9sZXMiOlsidGVhY2hlciJdLCJwZXJtaXNzaW9ucyI6W10sInN0YW5kYXJkIjoic3RhbmRhcmQ0Iiwic2NvcGUiOiJ0ZWFjaGVyIiwiYXJlYSI6ImYzNWUwMDMxLWE1M2YtNDVlNS1iMzA3LTFjZDM5NDQ2YTJjZiIsIndlYnNpdGUiOiJJRVMifQ.1lpYA6IlTUctQLinzq9xGQ-aDBtJH4Uk7QmIkJ6nQ8o");
                 //headers.Add("sec-fetch-user:?1");
                 //headers.Add("upgrade-insecure-requests: 1");
                 //添加头部
@@ -196,8 +198,100 @@ namespace 客户文档下载
         }
         #endregion
 
-      
 
+        #region  我的下载
+       
+        public void myrun()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string cookie = "JSESSIONID=4B9415B4BB423B98A96BC26650CCF4D8.tomcat301; acw_tc=2760824c16525121250592996eaad974e82e66c51fd5c9a58a8d4941615884; Hm_lvt_b049ea6874eee4b0ae0f7df4b5f89f28=1652056551,1652424614,1652433746,1652512129; uid=NP_qGKMGMQZudoH4971PE9Cvrnw87cWQohW1crMgXE5OzC--Bhy7eHQ_PPym-bDNm9wg6UcCFzmcizLfl0FyLH_fcenH9-JJtSIpNrpahOTmMRkDJsIgk9nKdGUNXWKji5YSOGvpkf6MYyJwzxGb0IaLxogRE58I78t1u34j36XktMVb5IJokymXlB3rXksmbNFHA3bOFtjnM79eFLMC_QqDAwKSulIhhPV2zwK9ZpI.; userId=2c914c0a7f97335b017fb120deba34d7; userName=%E7%94%B0%E6%B5%B7%E8%89%B3; manageAuth=false; Hm_lpvt_b049ea6874eee4b0ae0f7df4b5f89f28=1652512195; SERVERID=bfce41231016639a2a7b2734dc682776|1652512215|1652512125";
+
+            try
+            {
+                StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\page.txt",Encoding.Default);
+                //一次性读取完 
+                string lastpage = sr.ReadToEnd();
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+
+                for (int page = Convert.ToInt32(lastpage); page < 19107; page++)
+                {
+                    FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\page.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                    sw.WriteLine(page);
+                    sw.Close();
+                    fs1.Close();
+                    sw.Dispose();
+
+                    string url = "http://www.bcvet.cn/admin/rest/resource/resourceList/dataList";
+                    string postdata = "{\"pageNo\":"+page+",\"title\":\"\",\"sortBy\":\"create_time\",\"sortDesc\":\"desc\",\"typeList\":[{\"value\":\"all\",\"typeId\":\"resource_type\"},{\"value\":\"\",\"typeId\":\"STUDYSUBJ\"},{\"value\":\"\",\"typeId\":\"STUDYGRADE\"},{\"value\":\"\",\"typeId\":\"region\"}],\"ifGood\":0}";
+                    string html = PostUrlDefault(url, postdata, cookie, "application/json");
+                    textBox1.Text = "正在下载：页码：  " + page;
+                    MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
+                   
+                    for (int i = 0; i < ids.Count; i++)
+                    {
+      
+                     
+                        string sPath = path  + "//我的文档//";
+                        if (!Directory.Exists(sPath))
+                        {
+                            Directory.CreateDirectory(sPath); //创建文件夹
+                        }
+
+                        string aurl = "http://www.bcvet.cn/admin/rest/resource/info/view?id="+ids[i].Groups[1].Value+"&_=1652512165493";
+
+                        string ahtml = GetUrlWithCookie(aurl,cookie,"utf-8");
+
+                        string downurl =  Regex.Match(ahtml, @"""fastdfsPath"":""([\s\S]*?)""").Groups[1].Value ;
+                        string title = Regex.Match(ahtml, @"""title"":""([\s\S]*?)""").Groups[1].Value.ToLower();
+                        string filesize = Regex.Match(ahtml, @"""fileSize"":""([\s\S]*?)""").Groups[1].Value.ToLower();
+
+
+                        textBox1.Text = "正在下载：页码：  " + page + "------ " + title ;
+                        if (downurl == "")
+                        {
+                            MessageBox.Show("下载地址为空");
+                            return;
+                        }
+
+                        if (filesize!="")
+                        {
+                            //超过30MB不下载
+                            if(Convert.ToDouble(filesize)>30720)
+                            {
+                                textBox1.Text = title + "文件超过30MB";
+                                continue;
+                            }
+                          
+                        }
+
+                        if (title.Contains("png")|| title.Contains("jpg")|| title.Contains("jpeg")|| title.Contains("mp4") || title.Contains("mp3"))
+                        {
+                            textBox1.Text = title + "格式不符合";
+                            continue;
+                        }
+                        downloadFile("http://www.bcvet.cn/" + downurl, sPath, title, cookie);
+                        
+                    }
+
+                }
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+            MessageBox.Show("完成");
+
+        }
+
+        #endregion
 
         #region  福建幼儿园
         //福建幼儿园
@@ -478,6 +572,81 @@ namespace 客户文档下载
 
         #endregion
 
+
+        #region 四川金牛区
+      
+        public void scedu_jinniuqu()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "//四川金牛区//";
+
+            try
+            {
+                string[] abilityIds = { "12846dff-02e0-4261-b076-9f76484f03e3", "f97356dd-22e5-490d-9353-353764eda51d", "beb7fc73-a562-4aea-9d2f-0b712a5941a8" };
+                for (int i = 0; i < abilityIds.Length; i++)
+                {
+                    string mainpath = "A1";
+                    if(i==0)
+                    {
+                        mainpath = "A1技术支持的学情分析";
+                    }
+                    if (i == 1)
+                    {
+                        mainpath = "A3演示文稿设计与制作";
+                    }
+                    if (i == 2)
+                    {
+                        mainpath = "B6技术支持的展示交流";
+                    }
+                    string url = "https://jinniu.teammodel.cn/research/ability/get-same-subs";
+                    string postdata = "{\"tmdid\":\"1640766513\",\"school\":\"cdrmbx\",\"abilityId\":\""+ abilityIds[i] + "\"}";
+                    string html = PostUrlDefault(url, postdata,"", "application/json");
+
+                    MatchCollection ahtmls = Regex.Matches(html, @"sub"":{([\s\S]*?)self""");
+                    MatchCollection subUserNames = Regex.Matches(html, @"""nickname"":""([\s\S]*?)""");
+                
+                    for (int j= 0; j< ahtmls.Count; j++)
+                    {
+                       
+                        string author = Regex.Replace(subUserNames[j].Groups[1].Value, "<[^>]+>", "").Trim();
+                        textBox1.Text += "正在下载：" + mainpath+ "\r\n";
+
+                        string sPath = path + mainpath + "//" + author;
+                        if (!Directory.Exists(sPath))
+                        {
+                            Directory.CreateDirectory(sPath); //创建文件夹
+                        }
+                       
+                        string ahtml = ahtmls[j].Groups[1].Value;
+
+                        MatchCollection fileNames = Regex.Matches(ahtml, @"""name"":""([\s\S]*?)""");
+                        MatchCollection fileUrls = Regex.Matches(ahtml, @"""url"":""([\s\S]*?)""");
+
+                        for (int a = 0; a < fileNames.Count; a++)
+                        {
+                            string downurl = fileUrls[a].Groups[1].Value.Trim()+ "?sv=2021-04-10&st=2022-05-13T08%3A11%3A07Z&se=2022-05-14T08%3A41%3A07Z&sr=c&sp=rwl&sig=pI%2FrKYGkRouuv5MWmIEO1%2FeqUWHHn0DCI7AJrGq0e6k%3D&timestamp=1652432953074";
+                            string filename = fileNames[a].Groups[1].Value.Trim();
+                           
+                            downloadFile(downurl.Trim(), sPath, filename, "ARRAffinity=626144c37b560762f9f3f964c3d77bfad8f40bb755dd4b516be824fd798e6774; ARRAffinitySameSite=626144c37b560762f9f3f964c3d77bfad8f40bb755dd4b516be824fd798e6774");
+                        }
+                    }
+
+
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+            MessageBox.Show("完成");
+
+        }
+
+        #endregion
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
@@ -517,6 +686,17 @@ namespace 客户文档下载
                     Control.CheckForIllegalCrossThreadCalls = false;
                 }
             }
+
+            if (radioButton4.Checked == true)
+            {
+                //四川金牛区
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(scedu_jinniuqu);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
         }
 
         private void 客户文档下载_FormClosing(object sender, FormClosingEventArgs e)
@@ -547,6 +727,17 @@ namespace 客户文档下载
             }
 
             #endregion
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(myrun);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
         }
     }
 }

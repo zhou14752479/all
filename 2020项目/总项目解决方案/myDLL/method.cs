@@ -990,7 +990,14 @@ namespace myDLL
         }
         #endregion
 
-        
+        #region 时间戳转时间10位
+       public static DateTime ConvertStringToDateTime(string timeStamp)
+        {
+
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            return dtStart.AddSeconds(Convert.ToDouble(timeStamp));
+        }
+        #endregion
 
         #region 修改注册表信息使WebBrowser使用指定版本IE内核 传入11000是IE11
         public static void SetFeatures(UInt32 ieMode)

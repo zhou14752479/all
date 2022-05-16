@@ -53,6 +53,15 @@ namespace 孔夫子淘宝低价
             return fee;
 
         }
+
+        public string getShippingFee2(string sb)
+        {
+            string url = "https://shop.kongfz.com/book/shopsearch/getShippingFee?callback=jQuery111202310343450011496_1652665962548&params=%7B%22params%22%3A%5B"+sb+"%5D%2C%22area%22%3A%221006000000%22%7D&_=1652665962549";
+            string html = method.GetUrl(url, "utf-8");
+          
+            return html;
+
+        }
         public void run()
         {
 
@@ -79,6 +88,7 @@ namespace 孔夫子淘宝低价
 
                     string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
                     string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+                    
                     string html = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded", "");
                   
                     MatchCollection itemIds = Regex.Matches(html, @"""itemId"":([\s\S]*?),");
@@ -298,6 +308,166 @@ namespace 孔夫子淘宝低价
             }
         }
 
+
+
+
+
+        public void run_20220516()
+        {
+            listView1.Columns.Clear();
+            try
+            {
+                listView1.Columns.Add("序号", 60, HorizontalAlignment.Center);
+
+                listView1.Columns.Add("ISBN", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("最低售价", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("运费1", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("实付款1", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("店铺名称1", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("成交率1", 80, HorizontalAlignment.Center);
+
+
+                listView1.Columns.Add("次低售价", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("运费2", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("实付款2", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("店铺名称2", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("成交率2", 80, HorizontalAlignment.Center);
+
+
+                listView1.Columns.Add("第三低售价", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("运费3", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("实付款3", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("店铺名称3", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("成交率3", 80, HorizontalAlignment.Center);
+
+
+                listView1.Columns.Add("第四售价", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("运费4", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("实付款4", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("店铺名称4", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("成交率4", 80, HorizontalAlignment.Center);
+
+                listView1.Columns.Add("第五低售价", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("运费5", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("实付款5", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("店铺名称5", 80, HorizontalAlignment.Center);
+                listView1.Columns.Add("成交率5", 80, HorizontalAlignment.Center);
+
+                listView1.Columns.Add("书名", 80, HorizontalAlignment.Center);
+
+                if (textBox2.Text == "")
+                {
+                    MessageBox.Show("请导入账号");
+                    return;
+                }
+                DataTable dt = method.ExcelToDataTable(textBox2.Text, true);
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    try
+                    {
+                        DataRow dr = dt.Rows[i];
+                        string isbn = dr[0].ToString();
+
+                        if (isbn.Trim() == "")
+                            break;
+                        string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
+                        string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+
+                        string html = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded", "");
+                        html = method.Unicode2String(html);
+                        MatchCollection itemIds = Regex.Matches(html, @"""itemId"":([\s\S]*?),");
+
+
+                        MatchCollection itemNames = Regex.Matches(html, @"""itemName"":""([\s\S]*?)""");
+                        MatchCollection userIds = Regex.Matches(html, @"""userId"":([\s\S]*?),");
+                        MatchCollection shopnames = Regex.Matches(html, @"""shopName"":""([\s\S]*?)""");
+                        MatchCollection prices = Regex.Matches(html, @"""price"":([\s\S]*?),");
+                        MatchCollection cjls = Regex.Matches(html, @"成交率([\s\S]*?)""");
+
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+
+                        StringBuilder sb = new StringBuilder();
+
+                        int count = 5;
+                        if (itemIds.Count < 5)
+                        {
+                            count = itemIds.Count;
+                        }
+
+                        StringBuilder sb2 = new StringBuilder();
+                        for (int j = 0; j < count; j++)
+                        {
+                            sb2.Append("%7B%22userId%22%3A%22" + userIds[j].Groups[1].Value + "%22%2C%22itemId%22%3A%22" + itemIds[j].Groups[1].Value + "%22%7D%2C");
+
+                        }
+
+                        Dictionary<string, string> feedic = new Dictionary<string, string>();
+                        if (sb2.ToString().Length > 10)
+                        {
+
+                            string feehtml = getShippingFee2(sb2.ToString().Remove(sb2.ToString().Length - 3, 3));
+
+                            MatchCollection feeitemIds = Regex.Matches(feehtml, @"""itemId"":""([\s\S]*?)""");
+                            MatchCollection feeinhtml = Regex.Matches(feehtml, @"{""fee""([\s\S]*?)\]");
+
+                      
+                            for (int j = 0; j < count; j++)
+                            {
+                                string fee= Regex.Match(feeinhtml[j].Groups[1].Value, @"""totalFee"":([\s\S]*?),").Groups[1].Value;
+                                if(fee=="")
+                                {
+                                    fee = "0";
+                                }    
+                                feedic.Add(feeitemIds[j].Groups[1].Value, fee.Replace("\"",""));
+                            }
+                        }
+
+                        lv1.SubItems.Add(isbn);
+                        for (int a = 0; a < count; a++)
+                        {
+                            double totalprice = Convert.ToDouble(prices[a].Groups[1].Value) + Convert.ToDouble(feedic[itemIds[a].Groups[1].Value]);
+                            lv1.SubItems.Add(prices[a].Groups[1].Value);
+                            lv1.SubItems.Add(feedic[itemIds[a].Groups[1].Value]);
+                            lv1.SubItems.Add(totalprice.ToString());
+                            lv1.SubItems.Add(method.Unicode2String(shopnames[a].Groups[1].Value));
+                            lv1.SubItems.Add(cjls[a].Groups[1].Value);
+                        }
+
+                        lv1.SubItems.Add(itemNames[count-1].Groups[1].Value);
+
+
+
+                        if (listView1.Items.Count > 2)
+                        {
+                            this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                        }
+                        while (this.zanting == false)
+                        {
+                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                        }
+                        if (status == false)
+                            return;
+                        label1.Text = "正在查询：" + isbn;
+                        Thread.Sleep(1000);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                label1.Text = ("查询结束");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
         public string getHtml(string url)
         {
             Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -372,7 +542,7 @@ namespace 孔夫子淘宝低价
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run_20220516);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

@@ -284,7 +284,12 @@ namespace win007
                         string sjp2 = "平";
                         string sjp3 = "平";
 
-                      if(cha1>0)
+
+                        string sjp4 = "平";
+                        string sjp5 = "平";
+                        string sjp6 = "平";
+
+                        if (cha1>0)
                         {
                             sjp1 = "升";
                         }
@@ -313,30 +318,44 @@ namespace win007
 
                         if(cha4>0)
                         {
+                            sjp4 = "升";
                             dgv1.Rows[i].Cells[10].Style.BackColor = Color.Green;
                         }
                         if (cha5 > 0)
                         {
+                            sjp5 = "升";
                             dgv1.Rows[i].Cells[11].Style.BackColor = Color.Green;
                         }
                         if (cha6 > 0)
                         {
+                            sjp6= "升";
                             dgv1.Rows[i].Cells[12].Style.BackColor = Color.Green;
                         }
                         if (cha4 < 0)
                         {
+                            sjp4 = "降";
                             dgv1.Rows[i].Cells[10].Style.BackColor = Color.Red;
                         }
                         if (cha5 < 0)
                         {
+                            sjp5= "降";
                             dgv1.Rows[i].Cells[11].Style.BackColor = Color.Red;
                         }
                         if (cha6 < 0)
                         {
+                            sjp6= "降";
                             dgv1.Rows[i].Cells[12].Style.BackColor = Color.Red;
                         }
 
-                         dgv1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3+" "+ dgv1.Rows[i].Cells[6].Value;
+
+                        if(textBox1.Text!="")
+                        {
+                            dgv1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3 + " " + dgv1.Rows[i].Cells[6].Value;
+                        }
+                         else if(textBox9.Text!="")
+                        {
+                            dgv1.Rows[i].Cells[16].Value = sjp4 + sjp5 + sjp6 + " " + dgv1.Rows[i].Cells[6].Value;
+                        }
 
 
                         //差值红绿色
@@ -491,8 +510,7 @@ namespace win007
               
               
 
-                if (t4.Text != "")
-                {
+              
                     for (int i = 0; i < dgv1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                     {
                         try
@@ -502,11 +520,11 @@ namespace win007
                             string sjpshaixuan = t4.Text;
                              if (textBox13.Text!="")
                             {
-                                sjpshaixuan = sjpshaixuan + textBox13.Text.Trim();
+                                sjpshaixuan =  textBox13.Text.Trim();
                             }
                             if (textBox14.Text != "") 
                             {
-                                sjpshaixuan = sjpshaixuan + textBox14.Text.Trim();
+                                sjpshaixuan = textBox14.Text.Trim();
                             }
                             if (!value.Contains(sjpshaixuan)) 
                             {
@@ -521,8 +539,7 @@ namespace win007
                             throw;
                         }
                     }
-                }
-
+               
                 //计算比分百分比
                 for (int i = 0; i < dgv1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {

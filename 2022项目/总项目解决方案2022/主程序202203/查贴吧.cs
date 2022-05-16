@@ -30,7 +30,7 @@ namespace 主程序202203
         bool zanting = true;
         Thread thread;
 
-
+        
         private void button4_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)

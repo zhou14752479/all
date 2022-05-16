@@ -33,7 +33,7 @@ namespace 亚马逊抓取
             ChromeOptions options = new ChromeOptions();
             options.BinaryLocation = "Chrome/Application/chrome.exe";
             //禁用图片
-            options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+           // options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
             if (headless)
             {
                 //options.AddArgument("window-size=1920,1080");
