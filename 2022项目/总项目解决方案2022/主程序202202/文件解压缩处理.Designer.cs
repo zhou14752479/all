@@ -31,6 +31,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -45,14 +46,14 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label3 = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(14, 388);
+            this.button1.Location = new System.Drawing.Point(20, 404);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(78, 31);
             this.button1.TabIndex = 0;
@@ -62,7 +63,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(110, 388);
+            this.button2.Location = new System.Drawing.Point(116, 404);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(78, 31);
             this.button2.TabIndex = 1;
@@ -71,6 +72,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.linkLabel2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.numericUpDown1);
             this.groupBox1.Controls.Add(this.label2);
@@ -83,21 +85,25 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.Location = new System.Drawing.Point(600, 0);
+            this.groupBox1.Location = new System.Drawing.Point(705, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 450);
+            this.groupBox1.Size = new System.Drawing.Size(200, 591);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 370);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "未启动";
+            // 
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(78, 325);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -124,7 +130,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(17, 174);
+            this.checkBox1.Location = new System.Drawing.Point(17, 223);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(144, 16);
             this.checkBox1.TabIndex = 7;
@@ -134,7 +140,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(124, 97);
+            this.linkLabel1.Location = new System.Drawing.Point(128, 127);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 12);
             this.linkLabel1.TabIndex = 6;
@@ -156,14 +162,14 @@
             this.textBox1.Location = new System.Drawing.Point(17, 39);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 51);
+            this.textBox1.Size = new System.Drawing.Size(164, 85);
             this.textBox1.TabIndex = 4;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton2.Location = new System.Drawing.Point(100, 136);
+            this.radioButton2.Location = new System.Drawing.Point(100, 185);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(81, 18);
             this.radioButton2.TabIndex = 3;
@@ -175,7 +181,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton1.Location = new System.Drawing.Point(17, 136);
+            this.radioButton1.Location = new System.Drawing.Point(17, 185);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(67, 18);
             this.radioButton1.TabIndex = 2;
@@ -198,7 +204,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(600, 450);
+            this.listView1.Size = new System.Drawing.Size(705, 591);
             this.listView1.TabIndex = 48;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -213,7 +219,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "文件名";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Width = 300;
             // 
             // columnHeader3
             // 
@@ -230,20 +236,23 @@
             this.columnHeader5.Text = "状态";
             this.columnHeader5.Width = 100;
             // 
-            // label3
+            // linkLabel2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 370);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "未启动";
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("宋体", 12F);
+            this.linkLabel2.Location = new System.Drawing.Point(14, 557);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(71, 16);
+            this.linkLabel2.TabIndex = 12;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "清除列表";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // 文件解压缩处理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(905, 591);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -279,5 +288,6 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }

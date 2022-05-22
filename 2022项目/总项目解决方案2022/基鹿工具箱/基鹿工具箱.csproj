@@ -138,6 +138,9 @@
     <EmbeddedResource Include="基鹿工具箱.resx">
       <DependentUpon>基鹿工具箱.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="生意参谋指数导入.resx">
+      <DependentUpon>生意参谋指数导入.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

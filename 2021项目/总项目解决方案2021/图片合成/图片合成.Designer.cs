@@ -41,6 +41,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -48,6 +51,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -171,6 +177,35 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(135, 323);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(85, 30);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "生成";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("宋体", 13F);
+            this.textBox4.Location = new System.Drawing.Point(29, 323);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 27);
+            this.textBox4.TabIndex = 10;
+            this.textBox4.Text = "鸡";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 13F);
+            this.label4.Location = new System.Drawing.Point(27, 285);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 18);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "第四场：";
+            // 
             // 图片合成
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -206,5 +241,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label4;
     }
 }

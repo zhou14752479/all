@@ -16,7 +16,7 @@ namespace helper
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new cookieBrowser("https://esearch.ipd.gov.hk/nis-pos-view/#/"));
+            Application.Run(new cookieBrowser("https://10.4.188.1/portal/"));
            
             //Application.Run(new 手动点击抓取());
             //Application.Run(new cookieBrowser("https://perbank.abchina.com/EbankSite/startup.do?r=B56ACA045A1F695E&token=WS93UzdEb2VqdFE4aVI5TjNKd0NMcHZwakhYZTRMSVF4U29BcXFZUlpVczBmWnF6M2RmTEllVnBBeFVKOTVOQ0FRSzZoU1ExL3NSbEx5RlQ5ZnRtYmZFTWxRV1ZacWFDVTRleWZJaWJPRS82YUJmSjJBSGdvQ2pORXRwTzdTb21IVVZhMGVOc2h6ZGY5MmJ1SGdFcHFXTG5qNUo5RGFnekh4WVd2TXplaHBzPQ%3d%3d"));

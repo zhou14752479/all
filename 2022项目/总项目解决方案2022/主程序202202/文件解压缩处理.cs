@@ -93,49 +93,171 @@ namespace 主程序202202
                 {
                     finishes.Add(i.ToString());
 
-                    DateTime dt1=DateTime.Now;
-                    string tarFilePath = listView1.Items[i].SubItems[1].Text;
-                    String directoryPath = textBox1.Text + "//" + Path.GetFileNameWithoutExtension(tarFilePath) + "//";
-                    if (!Directory.Exists(directoryPath))
+                    try
                     {
-                        Directory.CreateDirectory(directoryPath); //创建文件夹
-                    }
-                    SharpCompress.Common.ArchiveEncoding.Default = Encoding.UTF7;
+                        DateTime dt1 = DateTime.Now;
+                        string tarFilePath = listView1.Items[i].SubItems[1].Text;
+                       
 
-                    using (Stream stream = File.OpenRead(tarFilePath))
-                    {
-                        var reader = ReaderFactory.Open(stream);
+                        String directoryPath = AppDomain.CurrentDomain.BaseDirectory + "临时" + "//" + Path.GetFileNameWithoutExtension(tarFilePath) + "//";
 
-                        while (reader.MoveToNextEntry())
+                        if (!Directory.Exists(directoryPath))
                         {
-                            if (!reader.Entry.IsDirectory)
-                                reader.WriteEntryToDirectory(directoryPath,
-                                   ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+                            Directory.CreateDirectory(directoryPath); //创建文件夹
+                        }
+                        SharpCompress.Common.ArchiveEncoding.Default = Encoding.UTF7;
 
+                        using (Stream stream = File.OpenRead(tarFilePath))
+                        {
+                            var reader = ReaderFactory.Open(stream);
+
+                            while (reader.MoveToNextEntry())
+                            {
+                                if (!reader.Entry.IsDirectory)
+                                    reader.WriteEntryToDirectory(directoryPath,
+                                       ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+
+                            }
+                        }
+                        DateTime dt2 = DateTime.Now;
+                        TimeSpan span = dt2 - dt1;
+                        listView1.Items[i].SubItems[3].Text = span.TotalSeconds.ToString() + "秒";
+                        listView1.Items[i].SubItems[4].Text = "完成";
+
+                        shaixaunfile(directoryPath, Path.GetFileNameWithoutExtension(tarFilePath));
+
+                        if (checkBox1.Checked == true)
+                        {
+                            File.Delete(tarFilePath);
                         }
                     }
-                    DateTime dt2 = DateTime.Now;
-                   TimeSpan span= dt2-dt1;
-                    listView1.Items[i].SubItems[3].Text =span.TotalSeconds.ToString()+"秒";
-                    listView1.Items[i].SubItems[4].Text = "完成";
+                    catch (Exception)
+                    {
+                       
+                        listView1.Items[i].SubItems[4].Text = "格式错误";
+                    }
                 }
             }
         }
-       public void readcookie(string path1,string path2)
+
+
+        public void shaixaunfile(string dir,string  zipname)
         {
-            using (FileStream stream = File.OpenRead(path1))
+            try
             {
-                byte[] content = new byte[stream.Length];
 
-                for (int i = 0; i < content.Length; i++)
+                string newpath = AppDomain.CurrentDomain.BaseDirectory + "临时" + "//" + zipname + "\\var\\mobile\\Media\\ZORRO";
+                DirectoryInfo dd1 = new DirectoryInfo(newpath);
+                DirectoryInfo[] directs1 = dd1.GetDirectories();
+                newpath = directs1[0].Name;
+             
+
+                string lastpath = textBox1.Text + newpath + "//";
+                DirectoryInfo d = new DirectoryInfo(dir);
+                FileInfo[] files = d.GetFiles();//文件
+                DirectoryInfo[] directs = d.GetDirectories();//文件夹
+                foreach (FileInfo f in files)
                 {
-                    content[i] = (byte)stream.ReadByte();
-                    
+
+                    if (f.Name == "record_enc.plist")
+                    {
+
+                        if (!Directory.Exists(lastpath))
+                        {
+                            Directory.CreateDirectory(lastpath); //创建文件夹
+                        }
+
+                        if (!File.Exists(lastpath + Path.GetFileName(f.FullName)))
+                        {
+                            File.Copy(f.FullName, lastpath + Path.GetFileName(f.FullName));
+                        }
+                    }
+
+
+                    if (f.Name == "JDLoginInfo.plist")
+                    {
+                        string path1 = lastpath + "com.360buy.jdmobile\\Documents\\";
+                        if (!Directory.Exists(path1))
+                        {
+                            Directory.CreateDirectory(path1); //创建文件夹
+                        }
+                        if (!File.Exists(path1 + Path.GetFileName(f.FullName)))
+                        {
+                            File.Copy(f.FullName, path1 + Path.GetFileName(f.FullName));
+                        }
+                    }
+
+
+                    if (f.Name == "Cookies.binarycookies")
+                    {
+                        string path1 = lastpath + "com.360buy.jdmobile\\Library\\Cookies\\";
+                        if (!Directory.Exists(path1))
+                        {
+                            Directory.CreateDirectory(path1); //创建文件夹
+                        }
+                        if (!File.Exists(path1 + Path.GetFileName(f.FullName)))
+                        {
+                            File.Copy(f.FullName, path1 + Path.GetFileName(f.FullName));
+                        }
+                    }
+                    if (f.Name == "group.jdmobile.p")
+                    {
+                        string path1 = lastpath + "com.360buy.jdmobile\\Library\\JDUserDefaults\\";
+                        if (!Directory.Exists(path1))
+                        {
+                            Directory.CreateDirectory(path1); //创建文件夹
+                        }
+                        if (!File.Exists(path1 + Path.GetFileName(f.FullName)))
+                        {
+                            File.Copy(f.FullName, path1 + Path.GetFileName(f.FullName));
+                        }
+                    }
+
+
+                    if (f.Name.Contains("enc.igri"))
+                    {
+                        string path1 = textBox1.Text;
+                        if (!Directory.Exists(path1))
+                        {
+                            Directory.CreateDirectory(path1); //创建文件夹
+                        }
+                        if (!File.Exists(path1 + Path.GetFileName(f.FullName)))
+                        {
+                            File.Copy(f.FullName, path1 + Path.GetFileName(f.FullName));
+                        }
+                    }
+
                 }
-                MessageBox.Show(Encoding.Default.GetString(content));
+                //获取子文件夹内的文件列表，递归遍历  
+                foreach (DirectoryInfo dd in directs)
+                {
+                    shaixaunfile(dd.FullName, zipname);
+                }
 
             }
+            catch (Exception ex)
+            {
+
+                //MessageBox.Show(ex.ToString()) ;
+            }
         }
+
+
+        //public void readcookie(string path1,string path2)
+        //{
+        //    using (FileStream stream = File.OpenRead(path1))
+        //    {
+        //        byte[] content = new byte[stream.Length];
+
+        //        for (int i = 0; i < content.Length; i++)
+        //        {
+        //            content[i] = (byte)stream.ReadByte();
+                    
+        //        }
+        //        MessageBox.Show(Encoding.Default.GetString(content));
+
+        //    }
+        //}
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -166,14 +288,41 @@ namespace 主程序202202
             button1.Enabled = true;
         }
 
+
+       
+
+
+        public void Director(string dir)
+        {
+            try
+            {
+                DirectoryInfo d = new DirectoryInfo(dir);
+                FileInfo[] files = d.GetFiles();//文件
+                DirectoryInfo[] directs = d.GetDirectories();//文件夹
+                foreach (FileInfo f in files)
+                {
+                    ListViewItem item2 = listView1.Items.Add(new ListViewItem(new string[] { (listView1.Items.Count + 1).ToString(), dir+"\\"+f.Name, "", "", "未启动" }));
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+               MessageBox.Show("请拖入文件夹");
+            }
+            
+        }
         private void listView1_DragDrop(object sender, DragEventArgs e)
         {
-            Array filePath = ((Array)e.Data.GetData(DataFormats.FileDrop));
+            //Array filePath = ((Array)e.Data.GetData(DataFormats.FileDrop));
 
-            foreach (var item in filePath)
-            {
-                ListViewItem item2 = listView1.Items.Add(new ListViewItem(new string[] { (listView1.Items.Count + 1).ToString(), item.ToString(), "","","未启动" }));
-            }
+            //foreach (var item in filePath)
+            //{
+            //    ListViewItem item2 = listView1.Items.Add(new ListViewItem(new string[] { (listView1.Items.Count + 1).ToString(), item.ToString(), "", "", "未启动" }));
+            //}
+            Array filePath = ((Array)e.Data.GetData(DataFormats.FileDrop));
+            Director(filePath.GetValue(0).ToString());
 
         }
 
@@ -199,7 +348,7 @@ namespace 主程序202202
             }
 
             #endregion
-            textBox1.Text = AppDomain.CurrentDomain.BaseDirectory;
+            textBox1.Text = AppDomain.CurrentDomain.BaseDirectory+ "ZORRO\\";
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -216,6 +365,11 @@ namespace 主程序202202
 
                 textBox1.Text = dialog.SelectedPath;
             }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace 基鹿工具箱
        static string COOKIE = "cna=IEEVGmxNb3QCAXnisujqtGPv; taklid=38e78512859846e58e75c42be1833a02; hng=CN%7Czh-CN%7CCNY%7C156; lid=zkg852266010; ali_ab=121.226.159.98.1645245827623.1; ali_apache_track=c_mid=b2b-1052347548|c_lid=zkg852266010|c_ms=1|c_mt=2; _m_h5_tk=3e9666f327a4af69b19b6d7adbb23eb8_1649325439454; _m_h5_tk_enc=d7732f7b2298a8cd29d69f807bcbeccf; xlly_s=1; cookie2=2a6f52413f2e48cd63a5da6bc8191e9e; sgcookie=E100kZBFanIDZNPfcot4VcewKkmUiR9sB7C4rpdjYQP6x25S3n2aTZ8486eH618tvfau6C2Z38RJvIPMt%2BGbTm3%2FCPvaFgnZmBQxYX9X74V0BPEAcMJWWZxMsEutNsxXs7Q5; t=bb42afa080af1dca98fb8d6a52dc1684; _tb_token_=e6859ebee1b17; uc4=nk4=0%40GwrkntVPltPB9cR46GncAmsyVe%2Fk0gQ%3D&id4=0%40UOnlZ%2FcoxCrIUsehK6jr4tbgfrWs; __cn_logon__=false; alicnweb=touch_tb_at%3D1649316804592%7Clastlogonid%3Dzkg852266010%7Cshow_inter_tips%3Dfalse; keywordsHistory=%E9%92%A2%E7%AD%8B%E9%92%A9; _csrf_token=1649319453013; tfstk=c8cRB2aZUnxubUUx7Ypm8uykH_M5aWxLcaZh9Xh0ACwwxaCdOs2isfQ5oLaQbuLA.; l=eBNaJtqgg-gKy7-ABO5ZKurza7791IOfGsPzaNbMiInca6tGXnutLNC3TKQwpdtj_tfjEeKrTan6EdE2SJ438x125OM8ARjSH6v6-; isg=BCgooAfp3oWAkvHrPLKOYWNs-RY6UYxbHQ9mG-JYFKMEPcyni2JB6oc7Nd3NDUQz";
       public  static string mobile= "";
         public static string logintoken = "";
-
+        static string conn = "Host =47.96.189.55;Database=titledb;Username=root;Password=root;";
         #region NPOI导出表格
         public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
         {
@@ -407,6 +407,49 @@ namespace 基鹿工具箱
 
         #endregion
 
+
+        
+
+        public static void BCP_Mysql(string filename,string tablename)
+        {
+            //数据的存放路径
+            //string bcpFilePath = Path.Combine(Environment.CurrentDirectory, "test.txt");
+            string bcpFilePath = filename;
+            //数据库连接字符串
+            string strConnectionString = $"data source=47.96.189.55;database=titledb;user id=root;password=root;pooling=false;charset=utf8;port=3306";
+            //BULK INSERT语句（jyzs是我的数据库表的名称，TERMINATED代表文本中数据列是以逗号隔开的，TERMINATED代表文本中每一行对应数据库表的每一行
+            string strSqlCmd = $"LOAD DATA LOCAL INFILE '{bcpFilePath}' INTO TABLE "+tablename+" FIELDS TERMINATED BY ','  OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n'";
+            strSqlCmd = strSqlCmd.Replace(@"\", @"/");
+            IDbConnection Connection = new MySqlConnection();
+            Connection.ConnectionString = strConnectionString;
+            IDbCommand Command = new MySqlCommand();
+            Command.Connection = Connection;
+            Command.CommandText = strSqlCmd;
+            Command.CommandType = CommandType.Text;
+            Command.CommandTimeout = 0;
+            if (Connection.State != ConnectionState.Open)
+            {
+                try
+                {
+                    Connection.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return;
+                }
+            }
+            try
+            {
+                Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
         #region GET请求获取Set-cookie
         public static string getSetCookie(string url)
         {
@@ -774,7 +817,7 @@ namespace 基鹿工具箱
         }
 
         #endregion
-        static string conn = "Host =47.96.189.55;Database=titledb;Username=root;Password=root";
+       
         #region 绑定数据
         public static DataTable getdata(string sql)
         {
@@ -818,6 +861,44 @@ namespace 基鹿工具箱
                 return ex.ToString();
             }
 
+        }
+
+        public static string GetZs(string dbname,string a_zs)
+        {
+
+            try
+            {
+
+                MySqlConnection mycon = new MySqlConnection(conn);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select b_zs from "+dbname+" where a_zs=" + a_zs + "  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+                if(reader.Read())
+                {
+                    string b_zs = reader["b_zs"].ToString().Trim();
+                    mycon.Close();
+                    reader.Close();
+                    return b_zs;
+                }
+                else
+                {
+                   
+                    mycon.Close();
+                    reader.Close();
+                    return "转换失败，未匹配对应指数！";
+                }
+               
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
 
         }
         public static bool SQL(string sql)

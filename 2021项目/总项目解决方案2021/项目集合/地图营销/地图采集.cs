@@ -74,23 +74,30 @@ namespace 地图营销
                         for (int page = 1; page < 100; page++)
                         {
 
-                            string url = "https://api.map.baidu.com/?qt=s&c="+ System.Web.HttpUtility.UrlEncode(city) + "&wd="  + System.Web.HttpUtility.UrlEncode(keyword) + "&rn=120&pn=" + page + "&ie=utf-8&oue=1&fromproduct=jsapi&res=api&ak=nXZgaSQxzlRapagrvbD5CyfWETZ2tsIm";
+                            string url = "https://api.map.baidu.com/?qt=s&c="+ System.Web.HttpUtility.UrlEncode(city) + "&wd="  + System.Web.HttpUtility.UrlEncode(keyword) + "&rn=120&pn=" + page + "&ie=utf-8&oue=1&fromproduct=jsapi&res=api&ak=Z7c71cbcemsLaELpImdlmbMPLOnn3MPO";
                             string html = method.GetUrl(url,"utf-8");
 
-                            MatchCollection ahtmls = Regex.Matches(html, @"acc_flag([\s\S]*?)view_type");
-
-                            if (ahtmls.Count == 0)
+                            //MatchCollection ahtmls = Regex.Matches(html, @"acc_flag([\s\S]*?)father_son");
+                            string[] ahtmls = html.Split(new string[] { "acc_flag" }, StringSplitOptions.None);
+                            MessageBox.Show(ahtmls.Length.ToString());
+                            if (ahtmls.Length == 0)
                                 break;
 
-                            for (int i = 0; i < ahtmls.Count; i++)
+                            for (int i = 0; i < ahtmls.Length; i++)
                             {
-                                string name = Regex.Match(ahtmls[i].Groups[1].Value, @"geo_type([\s\S]*?)name"":""([\s\S]*?)""").Groups[2].Value;
-                                string phone = Regex.Match(ahtmls[i].Groups[1].Value, @"""tel"":""([\s\S]*?)""").Groups[1].Value;
-                                string addres = Regex.Match(ahtmls[i].Groups[1].Value, @"""addr"":""([\s\S]*?)""").Groups[1].Value;
-                                string cityname = Regex.Match(ahtmls[i].Groups[1].Value, @"""city_name"":""([\s\S]*?)""").Groups[1].Value;
-                                string location = Regex.Match(ahtmls[i].Groups[1].Value, @"diPointX"":([\s\S]*?),").Groups[1].Value;
-                                if (shaixuan(phone)!="")
+                                string name = Regex.Match(ahtmls[i], @"std_tag_id([\s\S]*?)""name"":""([\s\S]*?)""").Groups[2].Value;
+                                string phone = Regex.Match(ahtmls[i], @"""phone"":""([\s\S]*?)""").Groups[1].Value;
+                                string addres = Regex.Match(ahtmls[i], @"""addr"":""([\s\S]*?)""").Groups[1].Value;
+                                string cityname = Regex.Match(ahtmls[i], @"""city_name"":""([\s\S]*?)""").Groups[1].Value;
+                                string location = Regex.Match(ahtmls[i], @"diPointX"":([\s\S]*?),").Groups[1].Value;
+
+                                if(phone.Trim()=="")
                                 {
+                                    phone = Regex.Match(ahtmls[i], @"""tel"":""([\s\S]*?)""").Groups[1].Value;
+                                }
+
+                                //if (shaixuan(phone)!="")
+                                //{
                                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
                                     lv1.SubItems.Add(Unicode2String(name));
@@ -115,7 +122,7 @@ namespace 地图营销
 
                                     count = count + 1;
                                     infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
-                                }
+                               // }
                             }
 
                             Thread.Sleep(1000);
@@ -328,6 +335,9 @@ namespace 地图营销
             {
                 foreach (string city in cityss)
                 {
+                    try
+                    {
+
                     foreach (string keyword in keywords)
                     {
                  
@@ -349,43 +359,59 @@ namespace 地图营销
                                 string newphone = shaixuan(phones[i].Groups[1].Value.Replace("\"", "").Replace("[", "").Replace("]", ""));
                                 if (newphone!="")
                                 {
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-
-                                    lv1.SubItems.Add(names[i].Groups[1].Value);
-                                  
-                                    if (md.jihuo == false)
+                                    try
                                     {
-                                        if (newphone.Length > 4)
+                                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+
+                                        lv1.SubItems.Add(names[i].Groups[1].Value);
+
+                                        if (md.jihuo == false)
                                         {
-                                            lv1.SubItems.Add(newphone.Substring(0, 4) + "*******");
+                                            if (newphone.Length > 4)
+                                            {
+                                                lv1.SubItems.Add(newphone.Substring(0, 4) + "*******");
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            lv1.SubItems.Add(newphone);
                                         }
 
-                                    }
-                                    else
-                                    {
-                                        lv1.SubItems.Add(newphone);
-                                    }
-                                   
-                                    lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
-                                    lv1.SubItems.Add(citys[i].Groups[1].Value.Replace("\"", ""));
-                                    lv1.SubItems.Add(keyword);
-                                    lv1.SubItems.Add(locations[i].Groups[1].Value.Replace("\"", ""));
-                                    if (status == false)
-                                        return;
-                                    while (this.zanting == false)
-                                    {
-                                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                                    }
+                                        lv1.SubItems.Add(address[i].Groups[1].Value.Replace("\"", ""));
+                                        lv1.SubItems.Add(citys[i].Groups[1].Value.Replace("\"", ""));
+                                        lv1.SubItems.Add(keyword);
+                                        lv1.SubItems.Add(locations[i].Groups[1].Value.Replace("\"", ""));
+                                        if (status == false)
+                                            return;
+                                        while (this.zanting == false)
+                                        {
+                                            Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                        }
 
-                                    count = count + 1;
-                                    infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                        count = count + 1;
+                                        infolabel.Text = DateTime.Now.ToShortTimeString() + "： 采集总数-->" + count.ToString();
+                                    }
+                                    catch (Exception)
+                                    {
+
+                                       continue;
+                                    }
                                 }
                             }
 
                             Thread.Sleep(1000);
                             }
                         }
+
+
                     }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+                }
                 
             }
             catch (Exception e)

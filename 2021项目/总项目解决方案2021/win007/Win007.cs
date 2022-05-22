@@ -272,9 +272,9 @@ namespace win007
                         double cha33 = Convert.ToDouble(value6) - Convert.ToDouble(value3);
 
 
-                        double cha4 = Convert.ToDouble(value7) - Convert.ToDouble(value4);
-                        double cha5 = Convert.ToDouble(value8) - Convert.ToDouble(value5);
-                        double cha6 = Convert.ToDouble(value9) - Convert.ToDouble(value6);
+                        double cha4 = Convert.ToDouble(value4) - Convert.ToDouble(value7);
+                        double cha5 = Convert.ToDouble(value5) - Convert.ToDouble(value8);
+                        double cha6 = Convert.ToDouble(value6) - Convert.ToDouble(value9);
 
 
 
@@ -319,32 +319,32 @@ namespace win007
                         if(cha4>0)
                         {
                             sjp4 = "升";
-                            dgv1.Rows[i].Cells[10].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[10].Style.BackColor = Color.Red;
                         }
                         if (cha5 > 0)
                         {
                             sjp5 = "升";
-                            dgv1.Rows[i].Cells[11].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[11].Style.BackColor = Color.Red;
                         }
                         if (cha6 > 0)
                         {
                             sjp6= "升";
-                            dgv1.Rows[i].Cells[12].Style.BackColor = Color.Green;
+                            dgv1.Rows[i].Cells[12].Style.BackColor = Color.Red;
                         }
                         if (cha4 < 0)
                         {
                             sjp4 = "降";
-                            dgv1.Rows[i].Cells[10].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[10].Style.BackColor = Color.Green;
                         }
                         if (cha5 < 0)
                         {
                             sjp5= "降";
-                            dgv1.Rows[i].Cells[11].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[11].Style.BackColor = Color.Green;
                         }
                         if (cha6 < 0)
                         {
                             sjp6= "降";
-                            dgv1.Rows[i].Cells[12].Style.BackColor = Color.Red;
+                            dgv1.Rows[i].Cells[12].Style.BackColor = Color.Green;
                         }
 
 
@@ -851,14 +851,7 @@ namespace win007
             MessageBox.Show("完成");
         }
         Thread thread;
-        private void button1_Click(object sender, EventArgs e)
-        {
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridView1.ColumnHeadersHeight = 50;
-            chaxun(textBox1,textBox2,textBox3,textBox4,textBox5,textBox6,zhusheng_banfenbi_label,heju_banfenbi_label,kesheng_banfenbi_label,comboBox1,dataGridView1,textBox9,textBox8,textBox7,textBox12,textBox11,textBox10);
-
-
-        }
+       
 
         private void 清空查询数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1074,6 +1067,27 @@ namespace win007
         {
             textBox14.Text = "";
 
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView1.ColumnHeadersHeight = 50;
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10);
+
+
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView2.ColumnHeadersHeight = 50;
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView3.ColumnHeadersHeight = 50;
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10);
         }
     }
 }

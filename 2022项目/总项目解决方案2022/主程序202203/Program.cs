@@ -16,7 +16,7 @@ namespace 主程序202203
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TXT提取());
+            Application.Run(new Gm报备系统());
         }
     }
 }

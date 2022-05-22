@@ -273,6 +273,7 @@ namespace 三个人才网
                 string url = "https://www.0579work.com/api/wxapp/index.php?m=job&c=list";
                 string postdata = "page=" + page + "&limit=100&joblist=1&webid=11327&provider=weixin&systemInfo=%7B%22model%22%3A%22iPhone%2013%3CiPhone14%2C5%3E%22%2C%22system%22%3A%22iOS%2015.4.1%22%2C%22platform%22%3A%22ios%22%7D&source=13";
                 string html = PostUrlDefault(url, postdata, "");
+                html = method.Unicode2String(html);
                 //textBox1.Text = html;
                 MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
                 MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
@@ -286,7 +287,7 @@ namespace 三个人才网
                     try
                     {
                         string date = lastupdate_dates[a].Groups[1].Value;
-                        if (!lastupdate_dates[a].Groups[1].Value.Contains("-"))
+                        if (lastupdate_dates[a].Groups[1].Value.Contains(":"))  //当天的时间
                         {
                             date = DateTime.Now.ToString("yyyy-MM-dd");
                         }
@@ -297,7 +298,7 @@ namespace 三个人才网
 
                       
                        
-                        if (Convert.ToDateTime(date) >= Convert.ToDateTime(dateTimePicker1.Value.ToShortDateString()) && Convert.ToDateTime(date) <= Convert.ToDateTime(dateTimePicker2.Value.ToShortDateString()))
+                        if (Convert.ToDateTime(date) > Convert.ToDateTime(dateTimePicker1.Value.AddDays(-1)) && Convert.ToDateTime(date) < Convert.ToDateTime(dateTimePicker2.Value.AddDays(1)))
                         {
                             string aurl = "https://www.0579work.com/api/wxapp/index.php?m=job&c=jobShowOther";
                             string apostdata = "id=" + ids[a].Groups[1].Value + "&webid=11327&provider=weixin&systemInfo=%7B%22model%22%3A%22iPhone%2013%3CiPhone14%2C5%3E%22%2C%22system%22%3A%22iOS%2015.4.1%22%2C%22platform%22%3A%22ios%22%7D&source=13&uid=8427&token=4f01cbb645601d6780727ab88b9d4a3a";
@@ -310,7 +311,11 @@ namespace 三个人才网
 
                             if (!lists.Contains(tel))
                             {
-                                lists.Add(tel);
+                                if(checkBox4.Checked==true)
+                                {
+                                    lists.Add(tel);
+                                }    
+                               
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
 
 
@@ -325,6 +330,10 @@ namespace 三个人才网
                                 if (status == false)
                                     return;
                             }
+                        }
+                        else
+                        {
+                            label1.Text = "时间不符合跳过";
                         }
                     }
                     catch (Exception)
@@ -357,10 +366,11 @@ namespace 三个人才网
                 string url = "https://www.vyuan8.com/hr/plugin.php?id=vyuan_zhaopin&model=search&pid=113324&ajax=ajax&page="+page+"&area=&salaryint=&edu=&industry=&searchField=&time=0&type=&label=";
             
                 string html = method.GetUrl(url,"gb2312");
+               
                 MatchCollection titles = Regex.Matches(html, @"""z_name"":""([\s\S]*?)""");
                 MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
-                MatchCollection lastupdate_dates = Regex.Matches(html, @"""z_top_endDate"":""([\s\S]*?)""");
-                //textBox1.Text = html;
+                MatchCollection lastupdate_dates = Regex.Matches(html, @"""z_addtime"":""([\s\S]*?)""");
+               // textBox1.Text = html;
                 if (ids.Count == 0)
                 {
                     label1.Text = "无符合数据页码："+page;
@@ -370,17 +380,9 @@ namespace 三个人才网
                 {
                     try
                     {
-                        string date = method.Unicode2String(lastupdate_dates[a].Groups[1].Value);
-                        if (!lastupdate_dates[a].Groups[1].Value.Contains("-"))
-                        {
-                            date = DateTime.Now.ToString("yyyy-MM-dd");
-                        }
-                        if (lastupdate_dates[a].Groups[1].Value == "昨天")
-                        {
-                            date = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-                        }
-
-                        if (Convert.ToDateTime(date) >= Convert.ToDateTime(dateTimePicker1.Value.ToShortDateString()) && Convert.ToDateTime(date) <= Convert.ToDateTime(dateTimePicker2.Value.ToShortDateString()))
+                        string date ="2022-"+lastupdate_dates[a].Groups[1].Value.Replace("&#x6708;", "-").Replace("&#x65E5;", "");
+                       
+                        if (Convert.ToDateTime(date) >= Convert.ToDateTime(dateTimePicker1.Value.AddDays(-1)) && Convert.ToDateTime(date) <= Convert.ToDateTime(dateTimePicker2.Value.AddDays(1)))
                         {
                             string ahtml = Request_www_vyuan8_com(ids[a].Groups[1].Value);
                           
@@ -388,7 +390,10 @@ namespace 三个人才网
 
                             if (!lists.Contains(tel))
                             {
-                                lists.Add(tel);
+                                if (checkBox4.Checked == true)
+                                {
+                                    lists.Add(tel);
+                                }
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                                 lv1.SubItems.Add(tel.Trim());
                                 lv1.SubItems.Add(titles[a].Groups[1].Value.Trim());
@@ -478,7 +483,7 @@ namespace 三个人才网
                         {
                             date = DateTime.Now.AddDays(-6).ToString("yyyy-MM-dd");
                         }
-                        if (Convert.ToDateTime(date) >= Convert.ToDateTime(dateTimePicker1.Value.ToShortDateString()) && Convert.ToDateTime(date) <= Convert.ToDateTime(dateTimePicker2.Value.ToShortDateString()))
+                        if (Convert.ToDateTime(date) >= Convert.ToDateTime(dateTimePicker1.Value.AddDays(-1)) && Convert.ToDateTime(date) <= Convert.ToDateTime(dateTimePicker2.Value.AddDays(1)))
                         {
                             string aurl = "https://www.yiwucaige.com/box.php?part=seecontact_tel&infoid="+ ids[a].Groups[1].Value;
 
@@ -489,7 +494,10 @@ namespace 三个人才网
 
                             if (!lists.Contains(tel))
                             {
-                                lists.Add(tel);
+                                if (checkBox4.Checked == true)
+                                {
+                                    lists.Add(tel);
+                                }
                                 ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
 
 
@@ -526,7 +534,8 @@ namespace 三个人才网
 
         private void button1_Click(object sender, EventArgs e)
         {
-            status = true;
+            lists.Clear();
+           status = true;
             if (checkBox1.Checked == true)
             {
                 Thread thread = new Thread(hezhong);

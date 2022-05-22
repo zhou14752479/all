@@ -83,6 +83,7 @@ namespace 基鹿工具箱
                 Util.mobile = textBox1.Text;
                 Util.logintoken = token;
                 Util.expiretime = paytime.ToString();
+
                 基鹿工具箱 main = new 基鹿工具箱();
                 main.Show();
                 this.Hide();

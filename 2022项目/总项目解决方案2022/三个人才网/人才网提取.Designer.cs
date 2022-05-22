@@ -36,6 +36,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -43,8 +44,8 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // columnHeader3
@@ -125,6 +126,11 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "标题";
+            this.columnHeader2.Width = 300;
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -196,11 +202,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(119, 23);
             this.dateTimePicker1.TabIndex = 236;
             // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "标题";
-            this.columnHeader2.Width = 300;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -210,11 +211,22 @@
             this.label1.TabIndex = 238;
             this.label1.Text = "0";
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(535, 30);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(72, 16);
+            this.checkBox4.TabIndex = 239;
+            this.checkBox4.Text = "去除重复";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
             // 人才网提取
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 571);
+            this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label7);
@@ -258,5 +270,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }

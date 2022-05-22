@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(基鹿工具箱));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button9 = new System.Windows.Forms.Button();
@@ -134,6 +134,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
@@ -141,9 +144,6 @@
             this.linkLabel8 = new System.Windows.Forms.LinkLabel();
             this.linkLabel7 = new System.Windows.Forms.LinkLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -950,21 +950,21 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea17.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea17);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend9.Name = "Legend1";
+            this.chart1.Legends.Add(legend9);
             this.chart1.Location = new System.Drawing.Point(0, 45);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.IsValueShownAsLabel = true;
-            series1.Legend = "Legend1";
-            series1.Name = "SKU销量趋势";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series1.YValuesPerPoint = 2;
-            this.chart1.Series.Add(series1);
+            series17.ChartArea = "ChartArea1";
+            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series17.IsValueShownAsLabel = true;
+            series17.Legend = "Legend1";
+            series17.Name = "SKU销量趋势";
+            series17.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series17.YValuesPerPoint = 2;
+            this.chart1.Series.Add(series17);
             this.chart1.Size = new System.Drawing.Size(1016, 543);
             this.chart1.TabIndex = 6;
             // 
@@ -1212,16 +1212,16 @@
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
+            chartArea18.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea18);
             this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart2.Location = new System.Drawing.Point(3, 60);
             this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.IsValueShownAsLabel = true;
-            series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
+            series18.ChartArea = "ChartArea1";
+            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series18.IsValueShownAsLabel = true;
+            series18.Name = "Series1";
+            this.chart2.Series.Add(series18);
             this.chart2.Size = new System.Drawing.Size(1016, 588);
             this.chart2.TabIndex = 2;
             // 
@@ -1354,12 +1354,14 @@
             this.button19.TabIndex = 13;
             this.button19.Text = "点击转换";
             this.button19.UseVisualStyleBackColor = false;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.Location = new System.Drawing.Point(0, 36);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -1392,6 +1394,45 @@
             this.linkLabel5.TabIndex = 1;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "🗑";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox5.Location = new System.Drawing.Point(0, 36);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(495, 552);
+            this.textBox5.TabIndex = 5;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label16.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label16.Location = new System.Drawing.Point(0, 0);
+            this.label16.Margin = new System.Windows.Forms.Padding(10);
+            this.label16.Name = "label16";
+            this.label16.Padding = new System.Windows.Forms.Padding(10);
+            this.label16.Size = new System.Drawing.Size(95, 36);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "交易金额";
+            // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.linkLabel6.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.linkLabel6.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel6.Location = new System.Drawing.Point(495, 0);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Padding = new System.Windows.Forms.Padding(10);
+            this.linkLabel6.Size = new System.Drawing.Size(48, 40);
+            this.linkLabel6.TabIndex = 2;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "🗑";
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
             // panel8
             // 
@@ -1419,6 +1460,7 @@
             this.linkLabel11.TabIndex = 4;
             this.linkLabel11.TabStop = true;
             this.linkLabel11.Text = "支付转化率指数";
+            this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel11_LinkClicked);
             // 
             // linkLabel10
             // 
@@ -1433,6 +1475,7 @@
             this.linkLabel10.TabIndex = 3;
             this.linkLabel10.TabStop = true;
             this.linkLabel10.Text = "商品指数";
+            this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel10_LinkClicked);
             // 
             // linkLabel9
             // 
@@ -1447,6 +1490,7 @@
             this.linkLabel9.TabIndex = 2;
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "供应商指数";
+            this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
             // linkLabel8
             // 
@@ -1461,6 +1505,7 @@
             this.linkLabel8.TabIndex = 1;
             this.linkLabel8.TabStop = true;
             this.linkLabel8.Text = "搜索指数";
+            this.linkLabel8.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel8_LinkClicked);
             // 
             // linkLabel7
             // 
@@ -1468,53 +1513,18 @@
             this.linkLabel7.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.linkLabel7.ForeColor = System.Drawing.Color.Black;
             this.linkLabel7.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLabel7.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel7.LinkColor = System.Drawing.Color.Red;
             this.linkLabel7.Location = new System.Drawing.Point(3, 18);
             this.linkLabel7.Name = "linkLabel7";
             this.linkLabel7.Size = new System.Drawing.Size(71, 16);
             this.linkLabel7.TabIndex = 0;
             this.linkLabel7.TabStop = true;
             this.linkLabel7.Text = "交易指数";
+            this.linkLabel7.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel7_LinkClicked);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label16.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label16.Location = new System.Drawing.Point(0, 0);
-            this.label16.Margin = new System.Windows.Forms.Padding(10);
-            this.label16.Name = "label16";
-            this.label16.Padding = new System.Windows.Forms.Padding(10);
-            this.label16.Size = new System.Drawing.Size(95, 36);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "交易金额";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(0, 36);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(495, 552);
-            this.textBox5.TabIndex = 5;
-            // 
-            // linkLabel6
-            // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.linkLabel6.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.linkLabel6.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel6.Location = new System.Drawing.Point(495, 0);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Padding = new System.Windows.Forms.Padding(10);
-            this.linkLabel6.Size = new System.Drawing.Size(48, 40);
-            this.linkLabel6.TabIndex = 2;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "🗑";
             // 
             // 基鹿工具箱
             // 

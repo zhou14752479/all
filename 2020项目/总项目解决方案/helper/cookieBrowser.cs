@@ -72,7 +72,7 @@ namespace helper
             InitializeComponent();
             webUrl = url;
             method.SetFeatures(11000);
-           webBrowser1.ScriptErrorsSuppressed = true;
+          // webBrowser1.ScriptErrorsSuppressed = true;
 
             //webBrowser1.Url = new Uri(webUrl);
              webBrowser1.Navigate(webUrl);
@@ -113,36 +113,35 @@ namespace helper
 
 
             //string cookie = method.GetCookies("https://enjoy.abchina.com/jf-pcweb/transPay/getPayInfo");
-            string cookie = method.GetCookies("https://dian.ysbang.cn/#/indexContent");
+            string cookie = method.GetCookies("https://10.4.188.1/portal/");
             textBox1.Text = cookie;
             
-            //写入config.ini配置文件
-
+         
             //IniWriteValue("values", "cookie", cookie);
 
-            FileStream fs1 = new FileStream(path + "cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-            StreamWriter sw = new StreamWriter(fs1);
-            sw.WriteLine("&cookie=" + cookie + "&");
-            sw.Close();
-            fs1.Close();
-            sw.Dispose();
+            //FileStream fs1 = new FileStream(path + "cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+            //StreamWriter sw = new StreamWriter(fs1);
+            //sw.WriteLine("&cookie=" + cookie + "&");
+            //sw.Close();
+            //fs1.Close();
+            //sw.Dispose();
            // this.Hide();
 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            webBrowser1.Refresh();
-            cookie = method.GetCookies(webUrl);
+            //webBrowser1.Refresh();
+           // cookie = method.GetCookies(webUrl);
         }
 
         private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
         {
-            //防止弹窗；
-            e.Cancel = true;
-            string url = this.webBrowser1.StatusText;
-            this.webBrowser1.Url = new Uri(url);
-            textBox2.Text = url;
+            ////防止弹窗；
+            //e.Cancel = true;
+            //string url = this.webBrowser1.StatusText;
+            //this.webBrowser1.Url = new Uri(url);
+            //textBox2.Text = url;
             
         }
 
@@ -158,21 +157,7 @@ namespace helper
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
-            //if条件检测按下的是不是Enter键
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (textBox1.Text.Contains("http://"))
-                {
-                    webBrowser1.Navigate(textBox2.Text);
-                }
-
-                else
-                {
-                   
-                    webBrowser1.Navigate("http://"+textBox2.Text);
-                }
-                
-            }
+           
 
         }
 
@@ -187,15 +172,20 @@ namespace helper
         private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
 
-            if (webBrowser1.Url != null)
-            {
-                textBox2.Text = webBrowser1.Url.ToString();
-            }
+            //if (webBrowser1.Url != null)
+            //{
+            //    textBox2.Text = webBrowser1.Url.ToString();
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             webBrowser1.GoBack();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate(textBox2.Text);
         }
     }
 }

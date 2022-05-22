@@ -1470,6 +1470,7 @@ namespace myDLL
             {
                 byte[] arr = Convert.FromBase64String(strbase64);
                 MemoryStream ms = new MemoryStream(arr);
+                //   System.Drawing.Image mImage = System.Drawing.Image.FromStream(ms); 转image
                 Bitmap bmp = new Bitmap(ms);
                 ms.Close();
 

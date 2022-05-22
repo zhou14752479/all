@@ -48,7 +48,7 @@ namespace 主程序202203
      
 
         Thread thread;
-        string domail = "www..com/shangxueba2";
+        string domail = "www.acaiji.com/shangxueba2";
         public void gettoken()
         {
             string ahtml = method.GetUrl("http://" + domail + "/shangxueba.php?method=getcookie", "utf-8");
@@ -115,7 +115,7 @@ namespace 主程序202203
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("version:TYC-XCX-WX");
-                headers.Add("X-AUTH-TOKEN: " + token);
+                headers.Add("X-AUTH-TOKEN:" + token);
                 //  headers.Add("X-AUTH-TOKEN:eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzMzMDc5NjE4NyIsImlhdCI6MTYzOTk5MDgwOSwiZXhwIjoxNjQyNTgyODA5fQ.b_79_YOoEI-gATwz6gYXVWPmZw8fuwtG6DavohbodPRd-Lxoua6CcqeWPrmMsAM-YHZEVj2raqRYdfnktOwfdg");
                 //添加头部
                 //request.ContentType = "application/x-www-form-urlencoded";
@@ -175,8 +175,8 @@ namespace 主程序202203
         {
 
             status = true;
-            //gettoken();
-
+            gettoken();
+           
             StringBuilder sb = new StringBuilder();
 
             string areacode = "";
@@ -416,7 +416,7 @@ namespace 主程序202203
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show("企业大数据：异常");
+                        MessageBox.Show("企业大数据：异常" + ex.ToString());
                     }
 
                 }
@@ -428,7 +428,7 @@ namespace 主程序202203
             catch (Exception ex)
             {
 
-                MessageBox.Show("企业大数据：异常");
+                MessageBox.Show("企业大数据：异常"+ ex.ToString());
             }
         }
 

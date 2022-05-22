@@ -693,8 +693,17 @@ namespace 基鹿工具箱
             }
             else
             {
-                if (Convert.ToDateTime(Util.expiretime) < DateTime.Now)
+                try
                 {
+                    if (Convert.ToDateTime(Util.expiretime) < DateTime.Now)
+                    {
+                        MessageBox.Show("请购买套餐");
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+
                     MessageBox.Show("请购买套餐");
                     return;
                 }
@@ -730,6 +739,94 @@ namespace 基鹿工具箱
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
+        }
+        public void zszhuanhua()
+        {
+            string[] text = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            foreach (var item in text)
+            {
+                if(item!="")
+                {
+                    textBox5.Text += Util.GetZs(zs, item) + "\r\n" ;
+                }
+
+            }
+            button19.Enabled = true;
+            button19.Text = "点击转换";
+        }
+        private void button19_Click(object sender, EventArgs e)
+        {
+            button19.Text = "正在转换...";
+            button19.Enabled = false;
+            textBox5.Text = "";
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(zszhuanhua);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        public string zs = "jyzs";
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel7.LinkColor=Color.Red;
+            linkLabel8.LinkColor = Color.Black;
+            linkLabel9.LinkColor = Color.Black;
+            linkLabel10.LinkColor = Color.Black;
+            linkLabel11.LinkColor = Color.Black;
+            zs = "jyzs";
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel7.LinkColor = Color.Black;
+            linkLabel8.LinkColor = Color.Red;
+            linkLabel9.LinkColor = Color.Black;
+            linkLabel10.LinkColor = Color.Black;
+            linkLabel11.LinkColor = Color.Black;
+            zs = "sszs";
+        }
+
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel7.LinkColor = Color.Black;
+            linkLabel8.LinkColor = Color.Black;
+            linkLabel9.LinkColor = Color.Red;
+            linkLabel10.LinkColor = Color.Black;
+            linkLabel11.LinkColor = Color.Black;
+            zs = "gyszs";
+        }
+
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel7.LinkColor = Color.Black;
+            linkLabel8.LinkColor = Color.Black;
+            linkLabel9.LinkColor = Color.Black;
+            linkLabel10.LinkColor = Color.Red;
+            linkLabel11.LinkColor = Color.Black;
+            zs = "spzs";
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel7.LinkColor = Color.Black;
+            linkLabel8.LinkColor = Color.Black;
+            linkLabel9.LinkColor = Color.Black;
+            linkLabel10.LinkColor = Color.Black;
+            linkLabel11.LinkColor = Color.Red;
+            zs = "zfzhzs";
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox2.Text = "";
+            
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            textBox5.Text = "";
         }
 
 

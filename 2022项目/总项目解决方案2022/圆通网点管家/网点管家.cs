@@ -23,13 +23,15 @@ namespace 圆通网点管家
             InitializeComponent();
         }
 
+        string accesstoken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6eyJ1c2VyQ29kZSI6IjAxOTU5MDM5IiwidXNlck5hbWUiOiLmnajmnJ3kvJ8ifSwiZ3JhbnRfdHlwZSI6Inl0b190Z2MiLCJ1c2VyX25hbWUiOiIwMTk1OTAzOSIsInNjb3BlIjpbInNlcnZlciJdLCJhdGkiOiJkNDY2MWVjNC1mZWNiLTQyNDctYjgxOC03Yjg1MDE2OWRhYjciLCJleHAiOjE2NTM0Nzg3NDgsImp0aSI6IjUzYjgxYjhhLTFkY2QtNGM4Yy04MjhlLWZiZmFkYTIwNGM0ZCIsImNsaWVudF9pZCI6IlBDLVdER0oifQ.VlAbBmEcY6i7EQcsaGv5xMghSG2Rj1GUNj9sk_HsCckG7OF8m_AuM6YZxNeSW4DaRzKQp0PZClJ2K-FZdiqw1I9H4SwPo6tC9Ud_1N-u4MqQWOBjOlhYFE14MsIcYs1d4psGdoL0k2wqwuoPanschXplWMIRl_mE0tS5dtf-Q04";
+        string token = "d4661ec4-fecb-4247-b818-7b850169dab7";
         #region GET请求
         /// <summary>
         /// GET请求
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        public  string GetUrl(string Url, string charset)
         {
             string html = "";
             string COOKIE = "";
@@ -44,8 +46,7 @@ namespace 圆通网点管家
                 request.Referer = Url;
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("jwt-token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAI2SwU7bMBzG38VXCrKTJk1z2zo0QBNDUGmHeQe3-ZN6OHZmO6yo6oG9wS4TEkW7TjtM48akTXuZtrwGadKmIvTALf_f9332Z8cjBMMUhcT3nBZpethtIJP1UIhGFKVanfMI9CFLgKKQondR_LGrzkAeMW3gaClT1KDIqEz3l65Xrw8KlhnQcpXFpO21sduulI6KNihKx5XQ8lqE4AJbkEza_ajgBRFMxutJKwEmH99_yIco08xyJfO5GeAcsMwOlOaWrz2QpEJdACyXfNRhpVXnnt_8mE9upn-_ryp2L9JSeXn84rCzt8JVYPbn__Rucj-5nP67nt3ezu6-zL_9nv26uv_5tfD2QCgZv9181krctEslPnsvwYx9o2Iuu3yZcLDjbGNvm_hd4oUOCZvujovdLRyEuKzQByHSgZKlnwSe7wdtP2gG5f0MbdV7RClFXB4Dj8ziMzxlwkCjpCcDpqFGF_9iX56qApfpJK55zsFYHteTfSZEDSWqx0Xdl4Ax7En6U7ZYNH8Uj3H--pW2T5pbyF9zWudSdUQGu8N0Y42TgfpcEyyP1mQ8pmiMxg-g8P-3cgMAAA.tbNGASL3pjO2U1Xnqqur3TvTlDjdYL8freDADIKEaFBeYXNprnnGnevQEesfjeV6Zd38IGjU-XSCk6I9xKiGZg");
-                request.Headers.Add("Cookie", COOKIE);
+                headers.Add("jwt-token:" + accesstoken);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.KeepAlive = true;
                 request.Accept = "*/*";
@@ -95,7 +96,7 @@ namespace 圆通网点管家
         /// <param name="COOKIE">cookie</param>
         /// <param name="charset">编码格式</param>
         /// <returns></returns>
-        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        public string PostUrlDefault(string url, string postData, string COOKIE)
         {
             try
             {
@@ -115,7 +116,7 @@ namespace 圆通网点管家
                                      //headers.Add("upgrade-insecure-requests: 1");
                                      //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("jwt-token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAI2SwU7bMBzG38VXCrKTJk1z2zo0QBNDUGmHeQe3-ZN6OHZmO6yo6oG9wS4TEkW7TjtM48akTXuZtrwGadKmIvTALf_f9332Z8cjBMMUhcT3nBZpethtIJP1UIhGFKVanfMI9CFLgKKQondR_LGrzkAeMW3gaClT1KDIqEz3l65Xrw8KlhnQcpXFpO21sduulI6KNihKx5XQ8lqE4AJbkEza_ajgBRFMxutJKwEmH99_yIco08xyJfO5GeAcsMwOlOaWrz2QpEJdACyXfNRhpVXnnt_8mE9upn-_ryp2L9JSeXn84rCzt8JVYPbn__Rucj-5nP67nt3ezu6-zL_9nv26uv_5tfD2QCgZv9181krctEslPnsvwYx9o2Iuu3yZcLDjbGNvm_hd4oUOCZvujovdLRyEuKzQByHSgZKlnwSe7wdtP2gG5f0MbdV7RClFXB4Dj8ziMzxlwkCjpCcDpqFGF_9iX56qApfpJK55zsFYHteTfSZEDSWqx0Xdl4Ax7En6U7ZYNH8Uj3H--pW2T5pbyF9zWudSdUQGu8N0Y42TgfpcEyyP1mQ8pmiMxg-g8P-3cgMAAA.tbNGASL3pjO2U1Xnqqur3TvTlDjdYL8freDADIKEaFBeYXNprnnGnevQEesfjeV6Zd38IGjU-XSCk6I9xKiGZg");
+                headers.Add("jwt-token:" + accesstoken);
                 request.Headers.Add("Cookie", COOKIE);
                 //request.ContentType = "application/x-www-form-urlencoded";
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
@@ -165,6 +166,7 @@ namespace 圆通网点管家
         }
 
         #endregion
+
         private void button4_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -203,7 +205,7 @@ namespace 圆通网点管家
                     }
 
                     label1.Text = "正在查询："+text[i];
-                    string url = "http://track.yto.net.cn/webapi/compre/trackV2?token=4fa7acc7-28a0-402b-956d-5fb75e53d719";
+                    string url = "http://track.yto.net.cn/webapi/compre/trackV2?token="+token;
                     string postdata = "{\"display\":0,\"weightFlag\":1,\"waybillNos\":[\""+text[i]+"\"],\"exceptionTrace\":0,\"issueOrg\":0}";
                     
                     string html = PostUrlDefault(url,postdata,"");
@@ -222,15 +224,15 @@ namespace 圆通网点管家
                     lv1.SubItems.Add(receiverAdrress);
 
 
-                    string html3 = GetUrl("http://track.yto.net.cn/webapi/compre/threeSegment?waybillNo="+text[i]+"&token=4fa7acc7-28a0-402b-956d-5fb75e53d719", "utf-8");
-                    string searchThreeCode = Regex.Match(html3, @"searchThreeCode"":""([\s\S]*?)""").Groups[1].Value;
-
+                    string html3 = GetUrl("http://track.yto.net.cn/webapi/compre/threeSegment?waybillNo="+text[i]+"&token="+token, "utf-8");
+                    string printThreeCode = Regex.Match(html3, @"printThreeCode"":""([\s\S]*?)""").Groups[1].Value;
+                   // MessageBox.Show(html3);
                     if (listView1.Items.Count > 2)
                     {
                         this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
                     }
 
-                    lv1.SubItems.Add(searchThreeCode);
+                    lv1.SubItems.Add(printThreeCode);
                     Thread.Sleep(500);
                 }
             }
@@ -282,6 +284,11 @@ namespace 圆通网点管家
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void 网点管家_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

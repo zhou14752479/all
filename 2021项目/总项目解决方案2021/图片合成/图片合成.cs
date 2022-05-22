@@ -156,6 +156,55 @@ namespace 图片合成
 
          
         }
+
+
+        /// <summary>
+        /// 上下合成图片
+        /// </summary>
+        static private void CombinImage4()
+        {
+            Image img1 = Image.FromFile(Application.StartupPath + "/image/1.jpg");
+            Bitmap map1 = new Bitmap(img1);
+            Image img2 = Image.FromFile(Application.StartupPath + "/image/2.jpg");
+            Bitmap map2 = new Bitmap(img2);
+            Image img3 = Image.FromFile(Application.StartupPath + "/image/3.jpg");
+            Bitmap map3 = new Bitmap(img3);
+
+            Image img4 = Image.FromFile(Application.StartupPath + "/image/4.jpg");
+            Bitmap map4 = new Bitmap(img4);
+
+
+            var width = Math.Max(img1.Width, img2.Width);
+            var height = img1.Height + img2.Height + img3.Height + img4.Height + 10;
+            // 初始化画布(最终的拼图画布)并设置宽高
+            Bitmap bitMap = new Bitmap(width, height);
+            // 初始化画板
+            Graphics g1 = Graphics.FromImage(bitMap);
+            // 将画布涂为白色(底部颜色可自行设置)
+            g1.FillRectangle(Brushes.White, new Rectangle(0, 0, width, height));
+            //在x=0，y=0处画上图一
+            g1.DrawImage(map1, 0, 0, img1.Width, img1.Height);
+            //在x=0，y在图一往下10像素处画上图二
+            g1.DrawImage(map2, 0, img1.Height, img2.Width, img2.Height);
+            g1.DrawImage(map3, 0, img1.Height + img2.Height, img3.Width, img3.Height);
+            g1.DrawImage(map4, 0, img1.Height + img2.Height+img3.Height, img4.Width, img4.Height);
+
+            map1.Dispose();
+            map2.Dispose();
+            map3.Dispose();
+            map4.Dispose();
+            img1.Dispose();
+            img2.Dispose();
+            img3.Dispose();
+            img4.Dispose();
+
+            Image img = bitMap;
+            //保存
+            img.Save(Path.Combine(Application.StartupPath + "/image/result.jpg"));
+            img.Dispose();
+
+
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -404,8 +453,41 @@ namespace 图片合成
             }
         }
 
-       
+        private void button4_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image.Dispose();
+            try
+            {
+                run("1", textBox1.Text.Trim());
 
-       
+                run("2", textBox2.Text.Trim());
+
+                run("3", textBox3.Text.Trim());
+
+                run("4", textBox4.Text.Trim());
+                if (File.Exists(Application.StartupPath + "/image/1.jpg") && File.Exists(Application.StartupPath + "/image/2.jpg") && File.Exists(Application.StartupPath + "/image/3.jpg") && File.Exists(Application.StartupPath + "/image/4.jpg"))
+                {
+                    CombinImage4();
+                    pictureBox1.Image = Image.FromFile(Application.StartupPath + "/image/result.jpg");
+                }
+                else
+                {
+                    MessageBox.Show("图片不存在");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                //MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+
+
+
+
+
+
     }
 }

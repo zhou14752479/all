@@ -32,10 +32,11 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -79,6 +80,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
@@ -90,6 +92,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(1187, 762);
             this.splitContainer1.SplitterDistance = 120;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(12, 30);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "后退";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox2
             // 
@@ -114,15 +126,15 @@
             this.timer1.Interval = 600000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button2
+            // button3
             // 
-            this.button2.Location = new System.Drawing.Point(12, 30);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "后退";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button3.Location = new System.Drawing.Point(93, 30);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "前往";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // cookieBrowser
             // 
@@ -153,5 +165,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CookieHelper.cs" />
     <Compile Include="method.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

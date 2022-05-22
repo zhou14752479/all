@@ -16,7 +16,7 @@ namespace 主程序202202
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new POSTGET测试());
+            Application.Run(new 文件解压缩处理());
         }
     }
 }

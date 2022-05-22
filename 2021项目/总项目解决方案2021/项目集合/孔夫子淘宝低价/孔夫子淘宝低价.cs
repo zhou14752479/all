@@ -361,7 +361,7 @@ namespace 孔夫子淘宝低价
                     return;
                 }
                 DataTable dt = method.ExcelToDataTable(textBox2.Text, true);
-
+                string q1 = "100h"; //全新
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
@@ -373,8 +373,8 @@ namespace 孔夫子淘宝低价
                         if (isbn.Trim() == "")
                             break;
                         string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
-                        string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
-
+                        string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22"+ q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+                        
                         string html = method.PostUrl(url, postdata, "", "utf-8", "application/x-www-form-urlencoded", "");
                         html = method.Unicode2String(html);
                         MatchCollection itemIds = Regex.Matches(html, @"""itemId"":([\s\S]*?),");
@@ -395,7 +395,7 @@ namespace 孔夫子淘宝低价
                         {
                             count = itemIds.Count;
                         }
-
+                        
                         StringBuilder sb2 = new StringBuilder();
                         for (int j = 0; j < count; j++)
                         {
@@ -435,8 +435,11 @@ namespace 孔夫子淘宝低价
                             lv1.SubItems.Add(cjls[a].Groups[1].Value);
                         }
 
-                        lv1.SubItems.Add(itemNames[count-1].Groups[1].Value);
-
+                        if (count > 1)
+                        {
+                            string bookname = itemNames[count - 1].Groups[1].Value;
+                            lv1.SubItems.Add(bookname);
+                        }
 
 
                         if (listView1.Items.Count > 2)
@@ -455,7 +458,8 @@ namespace 孔夫子淘宝低价
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show(ex.ToString());
+                        continue;
+                        //MessageBox.Show(ex.ToString());
                     }
                 }
                 label1.Text = ("查询结束");
@@ -463,7 +467,7 @@ namespace 孔夫子淘宝低价
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
             }
         }
 

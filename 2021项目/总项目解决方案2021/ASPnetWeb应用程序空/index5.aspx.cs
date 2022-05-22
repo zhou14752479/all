@@ -94,7 +94,7 @@ namespace ASPnetWeb应用程序空
                 device.DrawImage(image_changci, 383, 83); //用你想要的位置画小图
 
                 //宝石图片单独做
-                if (value == "宝石" || value == "大鹅")
+                if (value == "宝石" || value == "大鹅" || value == "白鱼" || value == "羊")
                 {
                     device.DrawImage(image_month, 135, 75);
                     device.DrawImage(image_month2, 150, 75);

@@ -207,6 +207,7 @@
             this.Name = "网点管家";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "网点管家";
+            this.Load += new System.EventHandler(this.网点管家_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
