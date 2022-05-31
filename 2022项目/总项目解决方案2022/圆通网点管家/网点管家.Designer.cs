@@ -109,7 +109,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 11F);
-            this.label1.Location = new System.Drawing.Point(95, 128);
+            this.label1.Location = new System.Drawing.Point(28, 131);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(15, 15);
             this.label1.TabIndex = 1;
@@ -138,7 +138,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(892, 160);
+            this.panel1.Size = new System.Drawing.Size(951, 173);
             this.panel1.TabIndex = 206;
             // 
             // openFileDialog1
@@ -160,9 +160,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 160);
+            this.listView1.Location = new System.Drawing.Point(0, 173);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(892, 501);
+            this.listView1.Size = new System.Drawing.Size(951, 507);
             this.listView1.TabIndex = 208;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -201,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 661);
+            this.ClientSize = new System.Drawing.Size(951, 680);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Name = "网点管家";

@@ -18,6 +18,7 @@ using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Net;
 using System.IO.Compression;
+using System.Text.RegularExpressions;
 
 namespace 驾校一点通
 {
@@ -81,8 +82,8 @@ namespace 驾校一点通
         string link = "";
         private void button1_Click(object sender, EventArgs e)
         {
-            cookie = GetCookies("https://mnks.jxedt.com/ckm1/sxlx/");
-
+            //cookie = GetCookies("https://mnks.jxedt.com/ckm1/sxlx/");
+            cookie = "id58=CpQB22KQOGJXX9SQcMJTAg==; Hm_lvt_e43feb296c32a4add052b7249ed6bf2b=1653618787; local_city=%E5%8C%97%E4%BA%AC%E5%B8%82; local_city_pingying=%2Fbj%2F; Hm_lpvt_e43feb296c32a4add052b7249ed6bf2b=1653624193";
             status = true;
             if (textBox1.Text=="")
             {
@@ -173,29 +174,18 @@ namespace 驾校一点通
                 httpItem.Allowautoredirect = true;
                 HttpResult html = httpHelper.GetHtml(httpItem);
                 string text = html.Html;
-                text = Strings.Split(text, "var sectionList = ", -1, CompareMethod.Binary)[1];
-                text = Strings.Split(text, ";", -1, CompareMethod.Binary)[0];
-                text = text.Trim().Trim(new char[]
+                MatchCollection ids = Regex.Matches(html.Html, @"data-id=""([\s\S]*?)""");
+
+
+                for (int num4 = 0; num4 < ids.Count; num4++)
                 {
-                    ';'
-                });
-                JArray jarray = JArray.Parse(text);
-                int num4 = 1;
-                int num5 = jarray.Count - 1;
-                for (int k = 0; k <= num5; k++)
-                {
+
                     if (status == false)
                         return;
                     try
                     {
-                     
-                        JArray jarray2 = JArray.Parse(jarray[k].ToString());
-                        int num8 = (int)jarray2[0];
-                        int num9= (int)jarray2[1];
-                      
-                        for (int l = num8; l <= num9; l++)
-                        {
-                            url = "http://mnks.jxedt.com/get_question?r=" + (new Random().NextDouble()).ToString() + "&index=" + l;
+                  
+                            url = "http://mnks.jxedt.com/get_question?r=" + (new Random().NextDouble()).ToString() + "&index=" + ids[num4].Groups[1].Value;
                             httpItem.URL = url;
                             html = httpHelper.GetHtml(httpItem);
                             string json = html.Html.Replace("\\这", "\\\\这");
@@ -261,7 +251,7 @@ namespace 驾校一点通
                                 '-'
                                 });
                             }
-                            cells[num4, 0].PutValue(l);
+                            cells[num4, 0].PutValue(ids[num4].Groups[1].Value);
                             cells[num4, 0].SetStyle(st);
                             cells[num4, 1].PutValue(jobject["Type"].ToString().ToString().Replace("1", "判断").Replace("2", "单选").Replace("3", "多选"));
                             cells[num4, 1].SetStyle(st);
@@ -278,13 +268,13 @@ namespace 驾校一点通
                             cells[num4, 7].PutValue(jobject["sinaimg"].ToString());
                             cells[num4, 7].SetStyle(st);
                             cells.SetRowHeight(num4, 20.0);
-                            num4++;
-                        }
+                            //num4++;
+                        
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
 
-                        continue;
+                        MessageBox.Show(ex.ToString());
                     }
                 }
 
@@ -340,30 +330,20 @@ namespace 驾校一点通
                 }
                 httpItem.Allowautoredirect = true;
                 HttpResult html = httpHelper.GetHtml(httpItem);
-                string text = html.Html;
-                text = Strings.Split(text, "var sectionList = ", -1, CompareMethod.Binary)[1];
-                text = Strings.Split(text, ";", -1, CompareMethod.Binary)[0];
-                text = text.Trim().Trim(new char[]
+                MatchCollection ids = Regex.Matches(html.Html, @"data-id=""([\s\S]*?)""");
+
+
+                for (int num4 = 0; num4 < ids.Count; num4++)
                 {
-                    ';'
-                });
-                JArray jarray = JArray.Parse(text);
-                int num4 = 1;
-                int num5 = jarray.Count - 1;
-                for (int k = 0; k <= num5; k++)
-                {
+                   
                     if (status == false)
                         return;
                     try
                     {
                        
-                        JArray jarray2 = JArray.Parse(jarray[k].ToString());
-                        int num8 = (int)jarray2[0];
-                        int num9 = (int)jarray2[1];
-
-                        for (int l = num8; l <= num9; l++)
-                        {
-                            url = "http://mnks.jxedt.com/get_question?r=" + (new Random().NextDouble()).ToString() + "&index=" + l;
+                     
+                  
+                            url = "http://mnks.jxedt.com/get_question?r=" + (new Random().NextDouble()).ToString() + "&index=" + ids[num4].Groups[1].Value;
                             httpItem.URL = url;
                             html = httpHelper.GetHtml(httpItem);
                             string json = html.Html.Replace("\\这", "\\\\这");
@@ -443,7 +423,7 @@ namespace 驾校一点通
                                 '-'
                                 });
                             }
-                            cells[num4, 0].PutValue(l);
+                            cells[num4, 0].PutValue(ids[num4].Groups[1].Value);
                             cells[num4, 0].SetStyle(st);
                             cells[num4, 1].PutValue(jobject["Type"].ToString().ToString().Replace("1", "判断").Replace("2", "单选").Replace("3", "多选"));
                             cells[num4, 1].SetStyle(st);
@@ -470,8 +450,8 @@ namespace 驾校一点通
                             cells[num4, 10].PutValue(jobject["sinaimg"].ToString());
                             cells[num4, 10].SetStyle(st);
                             cells.SetRowHeight(num4, 20.0);
-                            num4++;
-                        }
+                            //num4++;
+                        
                     }
                     catch (Exception)
                     {

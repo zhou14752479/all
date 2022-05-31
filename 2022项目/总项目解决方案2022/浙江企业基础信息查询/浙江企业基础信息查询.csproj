@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>浙江企业基础信息查询</RootNamespace>
     <AssemblyName>传奇游戏挂机脚本</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -110,6 +110,12 @@
     <Compile Include="查询1.Designer.cs">
       <DependentUpon>查询1.cs</DependentUpon>
     </Compile>
+    <Compile Include="查询7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查询7.Designer.cs">
+      <DependentUpon>查询7.cs</DependentUpon>
+    </Compile>
     <Compile Include="激活.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="查询1.resx">
       <DependentUpon>查询1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询7.resx">
+      <DependentUpon>查询7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="激活.resx">
       <DependentUpon>激活.cs</DependentUpon>

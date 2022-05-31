@@ -22,6 +22,7 @@ namespace 联通号码提取
         {
             InitializeComponent();
         }
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -30,26 +31,29 @@ namespace 联通号码提取
         /// <returns></returns>
         public static string GetUrl(string Url)
         {
-            string charset = "utf-8";
             string html = "";
             string COOKIE = "";
+            string charset = "utf-8";
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                //request.Proxy = null;//防止代理抓包
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = Url;
+                //添加头部
                 //WebHeaderCollection headers = request.Headers;
-                //headers.Add("appid:orders");
+                //headers.Add("sec-fetch-mode:navigate");
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.KeepAlive = true;
                 request.Accept = "*/*";
-                request.Timeout = 100000;
+                request.Timeout = 5000;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
-
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {
 
@@ -82,6 +86,64 @@ namespace 联通号码提取
         }
         #endregion
 
+
+        #region GET使用代理IP请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlwithIP(string Url, string ip)
+        {
+            string html = "";
+            string charset = "utf-8";
+            string COOKIE = "";
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36";
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
+                request.Referer = Url;
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                //request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+
+                return ex.ToString();
+
+            }
+        }
+        #endregion
         #region  程序关闭删除自身
         public static void TestForKillMyself()
         {
@@ -113,6 +175,7 @@ namespace 联通号码提取
 
             #endregion
             textBox2.Text = AppDomain.CurrentDomain.BaseDirectory;
+            getcitycode();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -162,6 +225,7 @@ namespace 联通号码提取
 
                     citynamedic.Add(city[i].Groups[1].Value, city[i].Groups[2].Value);
                     cityprodic.Add(city[i].Groups[1].Value, prodic[city[i].Groups[3].Value]);
+                    comboBox1.Items.Add(city[i].Groups[1].Value);
                 }
                 catch (Exception ex)
                 {
@@ -175,14 +239,23 @@ namespace 联通号码提取
         }
 
 
+        public string getip()
+        {
+            string url = textBox3.Text.Trim();
+            return GetUrl(url).Trim();
+        }
+
         bool status = true;
         public void run()
         {
+            string ip = getip();
             try
             {
-                getcitycode();
-                foreach (string cityname in citynamedic.Keys)
-                {
+
+                //foreach (string cityname in citynamedic.Keys)
+                //{
+
+                string cityname = comboBox1.Text;
                     List<string> lists = new List<string>();
                     int count = 0;
                     string citycode = citynamedic[cityname];
@@ -194,7 +267,22 @@ namespace 联通号码提取
                             return;
                         int chongfucount = 0;
                         string url = "https://msgo.10010.com/NumApp/NumberCenter/qryNum?callback=jsonp_queryMoreNums&provinceCode=" + procode + "&cityCode=" + citycode + "&monthFeeLimit=0&goodsId=511610241535&searchCategory=3&net=01&amounts=200&codeTypeCode=&searchValue=&exn=51068003&qryType=02&goodsNet=4&channel=msg-xsg&_=1653109443961";
-                        string html = GetUrl(url);
+                    string html = "";
+                    if (ip=="")
+                    {
+                        html = GetUrl(url);
+                    }
+                    else
+                    {
+                        html = GetUrlwithIP(url, ip);
+                    }
+                     
+                    if(html.Contains("code\":\"M9"))
+                    {
+                       
+                        ip= getip();
+                    }
+
                         //textBox1.Text = "";
                         MatchCollection tels = Regex.Matches(html, @"\d{11}");
                         for (int i = 0; i < tels.Count; i++)
@@ -226,7 +314,7 @@ namespace 联通号码提取
                         Thread.Sleep(1000);
                     }
                     //MessageBox.Show(tels.Count.ToString());
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -251,6 +339,18 @@ namespace 联通号码提取
             }
 
             #endregion
+
+            if(comboBox1.Text=="")
+            {
+                MessageBox.Show("请选择城市");
+                return;
+            }
+            if (textBox3.Text == "")
+            {
+                MessageBox.Show("请输入代理IP链接");
+                return;
+            }
+
 
             status = true;
             if (thread == null || !thread.IsAlive)

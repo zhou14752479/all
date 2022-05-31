@@ -6,6 +6,7 @@ using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -26,6 +27,7 @@ namespace 基鹿工具箱
       public  static string mobile= "";
         public static string logintoken = "";
         static string conn = "Host =47.96.189.55;Database=titledb;Username=root;Password=root;";
+      public static string path = AppDomain.CurrentDomain.BaseDirectory;
         #region NPOI导出表格
         public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
         {
@@ -109,6 +111,106 @@ namespace 基鹿工具箱
 
         #endregion
 
+
+        //#region NPOI表格转换文本
+
+        //public static void exceltotxt(string excelname)
+        //{
+        //    List<string> elist = new List<string>();
+        //    using (FileStream fs = new FileStream(excelname, FileMode.Open, FileAccess.Read))
+        //    {
+        //        //从文件柄创建对象
+        //        HSSFWorkbook workbook = new HSSFWorkbook(fs);
+        //        //通过名称查找sheet
+        //        HSSFSheet hsheet = (HSSFSheet)workbook.GetSheet("sheet1");
+        //        //格式对象，用来格式化cell内容，一律返回字符串
+        //        DataFormatter df = new DataFormatter();
+
+        //        //遍历放入list
+        //        for (int i = 0; i < hsheet.LastRowNum; i++)
+        //        {
+        //            //FormatCellValue（）格式化cell内容，返回其字符串
+        //            elist.Add($"题目{i} " + df.FormatCellValue(hsheet.GetRow(i).GetCell(1)));
+        //            elist.Add("A " + df.FormatCellValue(hsheet.GetRow(i).GetCell(3)));
+        //            elist.Add("B " + df.FormatCellValue(hsheet.GetRow(i).GetCell(4)));
+        //            //判断题排除c d空选项
+        //            if (!string.IsNullOrEmpty(df.FormatCellValue(hsheet.GetRow(i).GetCell(5))))
+        //            {
+        //                elist.Add("C " + df.FormatCellValue(hsheet.GetRow(i).GetCell(5)));
+        //            }
+        //            if (!string.IsNullOrEmpty(df.FormatCellValue(hsheet.GetRow(i).GetCell(6))))
+        //            {
+        //                elist.Add("D  " + df.FormatCellValue(hsheet.GetRow(i).GetCell(6)));
+        //            }
+
+        //            elist.Add("答案 " + df.FormatCellValue(hsheet.GetRow(i).GetCell(2)));
+
+
+        //        }
+
+
+        //    }
+
+        //    //每个list元素占一行
+        //    File.WriteAllLines(excelname.Replace("xlsx","txt"), elist.ToArray());
+        //}
+
+        //#endregion
+
+
+
+        #region 下载文件带进图条
+        /// <summary>        
+        /// c#,.net 下载文件        
+        /// </summary>        
+        /// <param name="URL">下载文件地址</param>       
+        /// 
+        /// <param name="Filename">下载后的存放地址</param>        
+        /// <param name="Prog">用于显示的进度条</param>        
+        /// 
+        public static void DownloadFile(string URL, string filename, System.Windows.Forms.ProgressBar prog, System.Windows.Forms.Label label1)
+        {
+            float percent = 0;
+            try
+            {
+                System.Net.HttpWebRequest Myrq = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(URL);
+                System.Net.HttpWebResponse myrp = (System.Net.HttpWebResponse)Myrq.GetResponse();
+                long totalBytes = myrp.ContentLength;
+                if (prog != null)
+                {
+                    prog.Maximum = (int)totalBytes;
+                }
+                System.IO.Stream st = myrp.GetResponseStream();
+                System.IO.Stream so = new System.IO.FileStream(filename, System.IO.FileMode.Create);
+                long totalDownloadedByte = 0;
+                byte[] by = new byte[1024];
+                int osize = st.Read(by, 0, (int)by.Length);
+                while (osize > 0)
+                {
+                    totalDownloadedByte = osize + totalDownloadedByte;
+                    System.Windows.Forms.Application.DoEvents();
+                    so.Write(by, 0, osize);
+                    if (prog != null)
+                    {
+                        prog.Value = (int)totalDownloadedByte;
+                    }
+                    osize = st.Read(by, 0, (int)by.Length);
+
+                    percent = (float)totalDownloadedByte / (float)totalBytes * 100;
+                    label1.Text = "当前补丁下载进度" + percent.ToString() + "%";
+                    System.Windows.Forms.Application.DoEvents(); //必须加注这句代码，否则label1将因为循环执行太快而来不及显示信息
+                }
+                so.Close();
+                st.Close();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
         #region GET请求
         /// <summary>
         /// GET请求
@@ -169,6 +271,9 @@ namespace 基鹿工具箱
 
         }
         #endregion
+
+
+        
 
         #region GET请求带COOKIE
         /// <summary>
@@ -341,7 +446,7 @@ namespace 基鹿工具箱
             try
             {
                 string time = DateTime.Now.ToString("yyyyMMddHHmmss");
-                string sign = Sha1(Md5(key+time));
+                string sign = Sha1(Md5(key + time));
                 string charset = "utf-8";
                 string html = "";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
@@ -351,8 +456,8 @@ namespace 基鹿工具箱
                 request.Proxy = null;//防止代理抓包
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("ASINLU-TIME:"+time);
-                headers.Add("ASINLU-SIGN:"+sign);
+                headers.Add("ASINLU-TIME:" + time);
+                headers.Add("ASINLU-SIGN:" + sign);
                 //headers.Add("sec-fetch-user:?1");
                 //headers.Add("upgrade-insecure-requests: 1");
                 //添加头部
@@ -407,7 +512,7 @@ namespace 基鹿工具箱
 
         #endregion
 
-
+        
         
 
         public static void BCP_Mysql(string filename,string tablename)
@@ -432,6 +537,8 @@ namespace 基鹿工具箱
                 try
                 {
                     Connection.Open();
+
+                    
                 }
                 catch (Exception ex)
                 {

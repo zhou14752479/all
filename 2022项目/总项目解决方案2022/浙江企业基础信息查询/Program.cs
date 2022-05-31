@@ -67,14 +67,14 @@ namespace 浙江企业基础信息查询
 
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new 查询5());
+                    Application.Run(new 查询7());
 
                 }
                 else
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new 激活());
+                    Application.Run(new 查询7());
                 }
 
             }

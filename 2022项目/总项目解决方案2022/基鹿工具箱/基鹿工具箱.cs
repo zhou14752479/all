@@ -97,7 +97,9 @@ namespace 基鹿工具箱
             try
             {
                 string html = Util.getuser(Util.mobile, Util.logintoken);
+               
                 //MessageBox.Show(html);
+                //textBox6.Text = Util.mobile+Util.logintoken+ html;
                 string paytime = Regex.Match(html, @"""pay_time"":""([\s\S]*?)""").Groups[1].Value;
                 if (paytime != "")
                 {
@@ -654,21 +656,21 @@ namespace 基鹿工具箱
 
         private void button20_Click(object sender, EventArgs e)
         {
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add("SKU", typeof(string));
-            //dt.Columns.Add("销量", typeof(string));
+            DataTable dt = new DataTable();
+            dt.Columns.Add("时间", typeof(string));
+            dt.Columns.Add("销量", typeof(string));
 
 
-            //foreach (string key in util.reviewtimedic.Keys)
-            //{
-            //    DataRow dr = dt.NewRow();
-            //    dr[0] = key;
-            //    dr[1] = util.reviewtimedic[key];
-            //    dt.Rows.Add(dr);
-            //}
+            foreach (DateTime key in util.reviewtimedic.Keys)
+            {
+                DataRow dr = dt.NewRow();
+                dr[0] = key;
+                dr[1] = util.reviewtimedic[key];
+                dt.Rows.Add(dr);
+            }
 
 
-            //Util.DataTableToExcel(dt, "sheet1", true);
+            Util.DataTableToExcel(dt, "sheet1", true);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -775,7 +777,7 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Black;
             linkLabel10.LinkColor = Color.Black;
             linkLabel11.LinkColor = Color.Black;
-            zs = "jyzs";
+            //zs = "jyzs";
         }
 
         private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -785,7 +787,7 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Black;
             linkLabel10.LinkColor = Color.Black;
             linkLabel11.LinkColor = Color.Black;
-            zs = "sszs";
+           // zs = "sszs";
         }
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -795,7 +797,7 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Red;
             linkLabel10.LinkColor = Color.Black;
             linkLabel11.LinkColor = Color.Black;
-            zs = "gyszs";
+            //zs = "gyszs";
         }
 
         private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -805,7 +807,7 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Black;
             linkLabel10.LinkColor = Color.Red;
             linkLabel11.LinkColor = Color.Black;
-            zs = "spzs";
+           // zs = "spzs";
         }
 
         private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

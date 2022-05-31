@@ -102,6 +102,7 @@ namespace 主程序202202
       
         public void run()
         {
+            textBox1.Text = "";
             string[] uids = textBox2.Text.Split(new string[] { "," }, StringSplitOptions.None);
             try
             {
@@ -112,7 +113,7 @@ namespace 主程序202202
                         string date = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
                         string url = "https://entry-reg.libsp.com/inlib/user/orderInlib";
                         string postdata = "{\"allowedDtos\":null,\"uid\":\"" + uid + "\",\"fid\":\"8155\",\"orderDate\":\"" + date + " 08:50\"}";
-                        textBox1.Text = DateTime.Now.ToString() + "：" + uid + " " + PostUrlDefault(url, postdata, "") + "\r\n" + "\r\n";
+                        textBox1.Text += DateTime.Now.ToString() + "：" + uid + " " + PostUrlDefault(url, postdata, "") + "\r\n" + "\r\n";
                     }
                 }
               

@@ -497,17 +497,17 @@ namespace 抖音账号功能检测
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
-            lv1.SubItems.Add("");
-            lv1.SubItems.Add("亲爱的555");
-            lv1.SubItems.Add("true");
-            lv1.SubItems.Add("");
-            lv1.SubItems.Add("");
-            lv1.SubItems.Add("");
-            lv1.SubItems.Add("");
-            lv1.SubItems.Add("");
-            lv1.SubItems.Add("");
-            lv1.SubItems.Add("");
+            //ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+            //lv1.SubItems.Add("");
+            //lv1.SubItems.Add("亲爱的555");
+            //lv1.SubItems.Add("true");
+            //lv1.SubItems.Add("");
+            //lv1.SubItems.Add("");
+            //lv1.SubItems.Add("");
+            //lv1.SubItems.Add("");
+            //lv1.SubItems.Add("");
+            //lv1.SubItems.Add("");
+            //lv1.SubItems.Add("");
             ListviewToTxt2(listView1, 1);
         }
 

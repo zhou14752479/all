@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -54,11 +55,51 @@ namespace 基鹿工具箱
             return File.Exists(inipath);
         }
 
+        public void update()
+        {
+            string banbenhao= IniReadValue("values", "banben");
+            string url = "http://47.96.189.55/jilusoft/update.php";
+            string appName = Util.path + "update.exe";
+            string html = Util.GetUrl(url, "utf-8");
+            if (html==banbenhao)
+            {
+
+            }
+            else
+            {
+                DialogResult dr = MessageBox.Show("发现新版本，是否要更新？", "更新", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dr == DialogResult.OK)
+                {
+                    IniWriteValue("values", "banben", html.Trim());
+                    //更新文件
+                    try
+                    {
+                        Process proc = Process.Start(appName);
+
+
+                        System.Diagnostics.Process.GetCurrentProcess().Kill();
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+
+                }
+                else
+                {
+                  
+                }
+                
+            }
+        }
 
 
         public login()
         {
             InitializeComponent();
+            update();
         }
         Util ut = new Util();
         Thread thread;
@@ -67,9 +108,9 @@ namespace 基鹿工具箱
             string html = Util.login(textBox1.Text.Trim(),textBox2.Text.Trim());
             //textBox1.Text = html;
             string code = Regex.Match(html, @"code"":([\s\S]*?),").Groups[1].Value;
-            string token = Regex.Match(html, @"token"":""([\s\S]*?) ").Groups[1].Value;
-            string paytime = Regex.Match(html, @"pay_time"":""([\s\S]*?) ").Groups[1].Value;
-            string service_type = Regex.Match(html, @"service_type"":""([\s\S]*?)""").Groups[1].Value;
+            string token = Regex.Match(html, @"token"":""([\s\S]*?)""").Groups[1].Value;
+            //string paytime = Regex.Match(html, @"pay_time"":""([\s\S]*?) ").Groups[1].Value;
+            //string service_type = Regex.Match(html, @"service_type"":""([\s\S]*?)""").Groups[1].Value;
           
             if (code=="0")
             {
@@ -80,9 +121,10 @@ namespace 基鹿工具箱
 
                 }
 
+              
                 Util.mobile = textBox1.Text;
                 Util.logintoken = token;
-                Util.expiretime = paytime.ToString();
+               // Util.expiretime = paytime.ToString();
 
                 基鹿工具箱 main = new 基鹿工具箱();
                 main.Show();

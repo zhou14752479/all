@@ -46,7 +46,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(128, 71);
+            this.button6.Location = new System.Drawing.Point(128, 50);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(96, 33);
             this.button6.TabIndex = 7;
@@ -56,7 +56,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(331, 71);
+            this.button5.Location = new System.Drawing.Point(331, 50);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(96, 33);
             this.button5.TabIndex = 6;
@@ -83,7 +83,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(229, 71);
+            this.button3.Location = new System.Drawing.Point(229, 50);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 33);
             this.button3.TabIndex = 3;
@@ -93,7 +93,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(26, 71);
+            this.button1.Location = new System.Drawing.Point(26, 50);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 33);
             this.button1.TabIndex = 0;
@@ -113,13 +113,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(746, 166);
+            this.panel1.Size = new System.Drawing.Size(808, 210);
             this.panel1.TabIndex = 206;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 130);
+            this.label1.Location = new System.Drawing.Point(24, 179);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 8;
@@ -141,9 +141,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 166);
+            this.listView1.Location = new System.Drawing.Point(0, 210);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(746, 400);
+            this.listView1.Size = new System.Drawing.Size(808, 462);
             this.listView1.TabIndex = 208;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -167,7 +167,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 566);
+            this.ClientSize = new System.Drawing.Size(808, 672);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";

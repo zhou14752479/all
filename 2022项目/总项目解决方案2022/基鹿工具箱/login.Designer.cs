@@ -122,6 +122,7 @@
             this.label5.Size = new System.Drawing.Size(251, 19);
             this.label5.TabIndex = 5;
             this.label5.Text = "绍兴励得网络科技有限公司 版权所有@";
+            this.label5.Visible = false;
             // 
             // button1
             // 

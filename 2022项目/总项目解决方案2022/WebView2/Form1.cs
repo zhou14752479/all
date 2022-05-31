@@ -17,14 +17,13 @@ namespace WebView2
         public Form1()
         {
             InitializeComponent();
-            webView21.NavigationStarting += EnsureHttps;
-           
+         
         }
        
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            webView21.Source = new System.Uri("https://www.baidu.com/", System.UriKind.Absolute);
+            //webView21.Source = new System.Uri("https://www.baidu.com/", System.UriKind.Absolute);
             
         }
 
@@ -41,8 +40,7 @@ namespace WebView2
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
+           WebView2.Form1 form = new WebView2.Form1();  
            
 
         }
@@ -51,24 +49,13 @@ namespace WebView2
         //获取网页加载完成的源代码
         //private async void webView21_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         //{
-        //    //object obj = await webView21.CoreWebView2.ExecuteScriptAsync("document.body.outerHTML");//第一次获取没法获取后端的数据
-        //    //textBox1.Text = obj.ToString();
+        //    object obj = await webView21.CoreWebView2.ExecuteScriptAsync("document.body.outerHTML");//第一次获取没法获取后端的数据
+        //    textBox1.Text = obj.ToString();
 
 
         //}
 
-        private void webView21_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
-        {
-            Task<List<CoreWebView2Cookie>> cookiesTask = webView21.CoreWebView2.CookieManager.GetCookiesAsync(null);
-            List<CoreWebView2Cookie> cookies = cookiesTask.Result;
-           
-            cookies.ForEach(cookie =>
-            {
-               textBox1.Text+=cookie.ToString();
-            });
 
-
-        }
 
     }
 }

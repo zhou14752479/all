@@ -239,15 +239,24 @@ namespace 足球数据比较
         public string getuids()
         {
             StringBuilder sb = new StringBuilder();
-            string url = "http://wxpusher.zjiecode.com/api/fun/wxuser/v2?appToken=AT_dRxL3cOuSXIEiCzjUCPsWAcH5RDfpITK&page=1";
-
-            string html = GetUrl(url, "utf-8");
-
-            MatchCollection uids = Regex.Matches(html, @"""uid"":""([\s\S]*?)""");
-            foreach (Match item in uids)
+            try
             {
-                sb.Append("\"" + item.Groups[1].Value + "\"" + ",");
+                string url = "http://wxpusher.zjiecode.com/api/fun/wxuser/v2?appToken=AT_dRxL3cOuSXIEiCzjUCPsWAcH5RDfpITK&page=1";
 
+                string html = GetUrl(url, "utf-8");
+
+                MatchCollection uids = Regex.Matches(html, @"""uid"":""([\s\S]*?)""");
+                foreach (Match item in uids)
+                {
+                    sb.Append("\"" + item.Groups[1].Value + "\"" + ",");
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+               
             }
 
             return sb.ToString().Remove(sb.ToString().Length - 1, 1);

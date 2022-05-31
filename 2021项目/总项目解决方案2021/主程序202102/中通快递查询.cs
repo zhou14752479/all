@@ -203,6 +203,8 @@ namespace 主程序202102
                     lv1.SubItems.Add(Regex.Replace(a3.Groups[1].Value, "<[^>]+>", ""));
                     lv1.SubItems.Add(Regex.Replace(guijis[guijis.Count-1].Groups[2].Value, "<[^>]+>", ""));
                     lv1.SubItems.Add("202"+date);
+                    string sx = getsx(item);
+                    lv1.SubItems.Add(sx);
                 }
                     catch (Exception)
                     {
@@ -288,7 +290,19 @@ namespace 主程序202102
 
         #endregion
 
-
+        public string getsx(string code)
+        {
+            string url = "https://newbill.zt-express.com/lazy/prescription?type=vip&url=%2Flazy%2Fprescription&billCode="+code;
+          string html=  GetUrlWithCookie(url, cookie, "utf-8", "");
+            if(html.Contains("SX"))
+            {
+                return "SX";
+            }
+            else
+            {
+                return "";
+            }
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             #region 通用检测

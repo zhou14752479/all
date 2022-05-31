@@ -157,7 +157,7 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
         public void baiduwenku()
         {    //浏览器初始化
             ChromeOptions options = new ChromeOptions();
-           
+            options.BinaryLocation = "Chrome/Application/chrome.exe";
             IWebDriver driver = new ChromeDriver(options);
             
             driver.Manage().Window.Maximize();
@@ -172,12 +172,12 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
                     string usercookie = listView2.Items[a].SubItems[1].Text.Replace(" ", "").Trim();
 
 
-                    driver.Navigate().GoToUrl("https://wenku.baidu.com/");
+                    driver.Navigate().GoToUrl("https://live.douyin.com/238196153600");
                    
-                    Cookie cookie = new Cookie("BDUSS", usercookie, "", DateTime.Now.AddDays(9999));
+                    Cookie cookie = new Cookie("sessionid", "84c0f14b8721ba77e8994a599267ab35", "", DateTime.Now.AddDays(9999));
                     driver.Manage().Cookies.AddCookie(cookie);
                     Thread.Sleep(200);
-                    driver.Navigate().GoToUrl("https://wenku.baidu.com/shopmis#/commodityManage/documentation");
+                    driver.Navigate().GoToUrl("https://live.douyin.com/238196153600");
                     //浏览器初始化
                     Thread.Sleep(500);
 
@@ -487,17 +487,9 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
                 }
             }
 
-            ListViewItem lv1 = listView2.Items.Add("13295270680");
-            lv1.SubItems.Add("zBYRXVHOUtPd3EzZ1BLRkZOeTNJNWxTS2k2RlJZOXY1T3FkYVZudXY1V0Jhek5nSVFBQUFBJCQAAAAAAAAAAAEAAABVvFgjztK0-MnPzqjSuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIHeC2CB3gtgT");
-            ListViewItem lv2 = listView2.Items.Add("zhou14752479");
-            lv2.SubItems.Add("mVJcn45RjVPcUVqV2RLSmN4c2ItWm4zMDFsZnd0MWJ2MlpxYXk0eU1YT3JDWEJmSVFBQUFBJCQAAAAAAQAAAAEAAABio5cbemhvdTE0NzUyNDc5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKt8SF-rfEhfU");
-            ListViewItem lv3 = listView2.Items.Add("q852266010");
-            lv3.SubItems.Add("DJJcDIxTXk4WnBPR0xISlpuVWhsRUtOem82c0t0SmNkUFQ4b2pqN1hxfndFaGxnSVFBQUFBJCQAAAAAAAAAAAEAAACys-e7cTg1MjI2NjAxMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCF8V~whfFfZ");
-            ListViewItem lv4 = listView2.Items.Add("zhou14752478");
-            lv4.SubItems.Add("d-UkFjZVllSnNvd3lTTnZFbk5ZRFpFQWNHakRMYmFzdmRXbWdDSldKenlYMlZmSVFBQUFBJCQAAAAAAQAAAAEAAACbWKEeemhvdTE0NzUyNDc4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPLSPV~y0j1fbX");
-
-            // ListViewItem lv5 = listView2.Items.Add("zhoukaige6668");
-            //lv5.SubItems.Add("k5oODdzc05tZm5tcEpBVW5hbUlKSFJ5MFhUcWltUEFWcGhHd2ttU0h1WnMzRkpnSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxPK2BsTytgb");
+            ListViewItem lv1 = listView2.Items.Add("zhoukaige6668");
+            lv1.SubItems.Add("DZyV08zNU51cE5WSVdzMWExOWVyb3gwcjFzdERlQ1BkVWkzRHZDN1oxQ2t0TEZpSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKQnimKkJ4piW");
+          
 
         }
 

@@ -184,6 +184,16 @@ namespace 圆通网点管家
 
         public void run()
         {
+            StreamReader sr2 = new StreamReader(@"D:\yto.txt", method.EncodingType.GetTxtType("D:\\yto.txt"));
+            //一次性读取完 
+            string texts2 = sr2.ReadToEnd();
+           
+            sr2.Close();  //只关闭流
+            sr2.Dispose();   //销毁流内存
+
+
+            token = Regex.Match(texts2, @"accessToken:([\s\S]*?)checkSum").Groups[1].Value.Trim();
+            accesstoken = Regex.Match(texts2, @"jwt-token:([\s\S]*?)nonce").Groups[1].Value.Trim();
             label1.Text = "正在查询";
             try
             {
@@ -226,13 +236,19 @@ namespace 圆通网点管家
 
                     string html3 = GetUrl("http://track.yto.net.cn/webapi/compre/threeSegment?waybillNo="+text[i]+"&token="+token, "utf-8");
                     string printThreeCode = Regex.Match(html3, @"printThreeCode"":""([\s\S]*?)""").Groups[1].Value;
-                   // MessageBox.Show(html3);
+                    string searchThreeCode = Regex.Match(html3, @"searchThreeCode"":""([\s\S]*?)""").Groups[1].Value;
+
+                    if(searchThreeCode=="")
+                    {
+                        searchThreeCode = printThreeCode;
+                    }
+                    // MessageBox.Show(html3);
                     if (listView1.Items.Count > 2)
                     {
                         this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
                     }
 
-                    lv1.SubItems.Add(printThreeCode);
+                    lv1.SubItems.Add(searchThreeCode);
                     Thread.Sleep(500);
                 }
             }

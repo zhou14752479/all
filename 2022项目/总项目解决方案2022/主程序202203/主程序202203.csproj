@@ -85,6 +85,12 @@
     <Compile Include="微信找回.Designer.cs">
       <DependentUpon>微信找回.cs</DependentUpon>
     </Compile>
+    <Compile Include="搜狐作者文章链接.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="搜狐作者文章链接.Designer.cs">
+      <DependentUpon>搜狐作者文章链接.cs</DependentUpon>
+    </Compile>
     <Compile Include="数字处理.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="微信找回.resx">
       <DependentUpon>微信找回.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="搜狐作者文章链接.resx">
+      <DependentUpon>搜狐作者文章链接.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="数字处理.resx">
       <DependentUpon>数字处理.cs</DependentUpon>

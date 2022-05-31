@@ -16,7 +16,7 @@ namespace 主程序selenium
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 获取COOKIE());
+            Application.Run(new 搜狐文章链接());
         }
     }
 }

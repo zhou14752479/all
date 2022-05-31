@@ -21,7 +21,7 @@ namespace CEF主程序
             InitializeComponent();
         }
 
-
+        string cookies = "";
         ChromiumWebBrowser browser;
 
         #region   cefsharp在自己窗口打开链接
@@ -105,14 +105,14 @@ namespace CEF主程序
             //browser = new ChromiumWebBrowser("https://esearch.ipd.gov.hk/nis-pos-view/#/");
             //browser = new ChromiumWebBrowser("https://passport.vip.com/login?src=https%3A%2F%2Fdetail.vip.com%2Fdetail-1711548730-6919483919008310362.html");
             //browser = new ChromiumWebBrowser("https://ascendex.com/zh-cn/basic/cashtrade-spottrading/usdt/cns");
-            browser = new ChromiumWebBrowser("https://mygiftcard.jd.com/giftcard/myGiftCardInit.action");
+            browser = new ChromiumWebBrowser("https://www.taobao.com");
             Control.CheckForIllegalCrossThreadCalls = false;
       splitContainer1.Panel2.Controls.Add(browser);
 
             browser.Dock = DockStyle.Fill;
            browser.FrameLoadEnd += Browser_FrameLoadEnd; //调用加载事件
             browser.LifeSpanHandler = new OpenPageSelf();
-
+            browser.RequestHandler = new ExampleRequestHandler();
 
         }
 
@@ -145,22 +145,24 @@ namespace CEF主程序
 
             #region cefsharp获取cookie
             //browser.FrameLoadEnd += Browser_FrameLoadEnd;调用加载事件
-            string cookies = "";
+           
         private void visitor_SendCookie(CefSharp.Cookie obj)
         {
             //obj.Domain.TrimStart('.') + "^" +
             cookies += obj.Name + "=" + obj.Value + ";";
 
 
-            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
-            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-            sw.WriteLine(cookies);
-            sw.Close();
-            fs1.Close();
-            sw.Dispose();
+            //FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\cookie.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+            //StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+            //sw.WriteLine(cookies);
+            //sw.Close();
+            //fs1.Close();
+            //sw.Dispose();
 
 
         }
+
+
 
 
         public class CookieVisitor : CefSharp.ICookieVisitor
@@ -193,7 +195,7 @@ namespace CEF主程序
         {
              //dianji();
 
-            if (!cookies.Contains("thor"))
+            if (!cookies.Contains("session"))
             {
 
                 MessageBox.Show("未登录");
@@ -201,27 +203,53 @@ namespace CEF主程序
             }
             else
             {
-                string thor = Regex.Match(cookies, @"thor=([\s\S]*?);").Groups[1].Value;
-                thor = "thor=" + thor + ";";
-                京东E卡查询.cookie = thor;
-               
+                //string thor = Regex.Match(cookies, @"thor=([\s\S]*?);").Groups[1].Value;
+                //thor = "thor=" + thor + ";";
+                //京东E卡查询.cookie = thor;
+
+                textBox2.Text = cookies;
             }
 
-            //if (!cookies.Contains("XSRF-TOKEN"))
-            //{
+            textBox2.Text = cookies;
 
-            //    MessageBox.Show("未登录");
-            //    return;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("获取COOKIE成功");
-            //}
-
-
-            //this.Hide();
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+            browser.Load(textBox1.Text);
+        }
+
+
+
+        
+        public class ExampleRequestHandler : RequestHandler
+        {
+            protected override bool OnCertificateError(IWebBrowser chromiumWebBrowser, IBrowser browser, CefErrorCode errorCode, string requestUrl, ISslInfo sslInfo, IRequestCallback callback)
+            {
+                Task.Run(() =>
+                {
+                    if (!callback.IsDisposed)
+                    {
+                        using (callback)
+                        {
+                            //地址包含报表成分 跳过ssl验证
+                            if (requestUrl.Contains("reportSystem"))
+                            {
+                                callback.Continue(true);//重点部分
+                            }
+                            else
+                            {
+                                callback.Continue(false);
+                            }
+                        }
+                    }
+                });
+                return true;
+            }
+        }
+
 
 
 

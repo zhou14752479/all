@@ -11,7 +11,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>地图营销</RootNamespace>
     <AssemblyName>地图营销</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>

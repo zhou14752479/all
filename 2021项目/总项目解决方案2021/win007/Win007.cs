@@ -90,7 +90,7 @@ namespace win007
         #endregion
 
         function fc = new function();
-        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6,Label l1, Label l2, Label l3,ComboBox comb1,DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t12, TextBox t11, TextBox t10)
+        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6,Label l1, Label l2, Label l3,ComboBox comb1,DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t12, TextBox t11, TextBox t10,TextBox t13,TextBox t14)
         {
             int zhusheng_bifen_count = 0;
             int heju_bifen_count = 0;
@@ -348,11 +348,11 @@ namespace win007
                         }
 
 
-                        if(textBox1.Text!="")
+                        if(t1.Text!="")
                         {
                             dgv1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3 + " " + dgv1.Rows[i].Cells[6].Value;
                         }
-                         else if(textBox9.Text!="")
+                         else if(t9.Text!="")
                         {
                             dgv1.Rows[i].Cells[16].Value = sjp4 + sjp5 + sjp6 + " " + dgv1.Rows[i].Cells[6].Value;
                         }
@@ -518,13 +518,13 @@ namespace win007
                             string value = dgv1.Rows[i].Cells[16].Value.ToString();
 
                             string sjpshaixuan = t4.Text;
-                             if (textBox13.Text!="")
+                             if (t13.Text!="")
                             {
-                                sjpshaixuan =  textBox13.Text.Trim();
+                                sjpshaixuan =  t13.Text.Trim();
                             }
-                            if (textBox14.Text != "") 
+                            if (t14.Text != "") 
                             {
-                                sjpshaixuan = textBox14.Text.Trim();
+                                sjpshaixuan = t14.Text.Trim();
                             }
                             if (!value.Contains(sjpshaixuan)) 
                             {
@@ -982,30 +982,7 @@ namespace win007
         //    chaxun(textBox30, textBox29, textBox28, textBox27, textBox25, textBox26, label54, label53, label52, comboBox5, dataGridView5);
         //}
 
-        private void button9_Click(object sender, EventArgs e)
-        {
-            DataTable dt = new DataTable();
-
-            for (int count = 0; count < dataGridView1.Columns.Count; count++)
-            {
-                DataColumn dc = new DataColumn(dataGridView1.Columns[count].Name.ToString());
-                dt.Columns.Add(dc);
-            }
-            for (int count = 0; count < dataGridView1.Rows.Count; count++)
-            {
-                DataRow dr = dt.NewRow();
-                for (int i = 0; i < dataGridView1.Columns.Count; i++)
-                {
-                    dr[i] = Convert.ToString(dataGridView1.Rows[count].Cells[i].Value);
-                }
-                dt.Rows.Add(dr);
-            }
-
-
-
-            dataGridView6.DataSource = dt;
-
-        }
+      
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -1072,22 +1049,44 @@ namespace win007
         {
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10);
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10,textBox13,textBox14);
 
 
         }
+       
+
+       
+
+      
+     
         private void button3_Click(object sender, EventArgs e)
         {
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView2.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10);
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView3.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10);
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView4.ColumnHeadersHeight = 50;
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label29, label28, label27, comboBox1, dataGridView4, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView5.ColumnHeadersHeight = 50;
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label29, label28, label27, comboBox1, dataGridView5, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
         }
     }
 }

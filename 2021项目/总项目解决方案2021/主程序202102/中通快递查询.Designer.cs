@@ -38,11 +38,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,6 +56,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,8 +64,7 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -177,8 +178,32 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1107, 145);
+            this.panel1.Size = new System.Drawing.Size(1224, 145);
             this.panel1.TabIndex = 203;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton2.Location = new System.Drawing.Point(761, 41);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(95, 18);
+            this.radioButton2.TabIndex = 217;
+            this.radioButton2.Text = "查询包内件";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton1.Location = new System.Drawing.Point(762, 13);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(95, 18);
+            this.radioButton1.TabIndex = 216;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "查询运单号";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -202,7 +227,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 145);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1107, 384);
+            this.tabControl1.Size = new System.Drawing.Size(1224, 474);
             this.tabControl1.TabIndex = 204;
             // 
             // tabPage1
@@ -211,21 +236,10 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1099, 358);
+            this.tabPage1.Size = new System.Drawing.Size(1216, 448);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "     查询运单号     ";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.listView2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1099, 358);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "     查询包内件     ";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // listView1
             // 
@@ -240,14 +254,15 @@
             this.columnHeader7,
             this.columnHeader9,
             this.columnHeader8,
-            this.columnHeader10});
+            this.columnHeader10,
+            this.columnHeader18});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1093, 352);
+            this.listView1.Size = new System.Drawing.Size(1210, 442);
             this.listView1.TabIndex = 205;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -304,6 +319,17 @@
             this.columnHeader10.Text = "时间";
             this.columnHeader10.Width = 100;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.listView2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1216, 448);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "     查询包内件     ";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // listView2
             // 
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -319,7 +345,7 @@
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(3, 3);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(1093, 352);
+            this.listView2.Size = new System.Drawing.Size(1210, 442);
             this.listView2.TabIndex = 206;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -354,35 +380,15 @@
             this.columnHeader17.Text = "重量";
             this.columnHeader17.Width = 100;
             // 
-            // radioButton1
+            // columnHeader18
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton1.Location = new System.Drawing.Point(762, 13);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(95, 18);
-            this.radioButton1.TabIndex = 216;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "查询运单号";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("宋体", 10F);
-            this.radioButton2.Location = new System.Drawing.Point(761, 41);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(95, 18);
-            this.radioButton2.TabIndex = 217;
-            this.radioButton2.Text = "查询包内件";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.columnHeader18.Text = "SX";
             // 
             // 中通快递查询
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1107, 529);
+            this.ClientSize = new System.Drawing.Size(1224, 619);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Name = "中通快递查询";
@@ -436,5 +442,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader17;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
     }
 }

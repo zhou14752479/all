@@ -16,7 +16,7 @@ namespace 主程序202102
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 韵达问题件());
+            Application.Run(new 中通快递查询());
         }
     }
 }

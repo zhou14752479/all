@@ -227,9 +227,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 20);
+            this.label1.Size = new System.Drawing.Size(107, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "思忆地图软件";
+            this.label1.Text = "掌微采集地图版";
             // 
             // statusStrip1
             // 
@@ -292,7 +292,7 @@
             this.label10.Font = new System.Drawing.Font("宋体", 12F);
             this.label10.Location = new System.Drawing.Point(398, 118);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 16);
+            this.label10.Size = new System.Drawing.Size(71, 16);
             this.label10.TabIndex = 5;
             this.label10.Text = "手机号：";
             // 
@@ -302,7 +302,7 @@
             this.label11.Font = new System.Drawing.Font("宋体", 12F);
             this.label11.Location = new System.Drawing.Point(414, 154);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 16);
+            this.label11.Size = new System.Drawing.Size(55, 16);
             this.label11.TabIndex = 7;
             this.label11.Text = "密码：";
             // 
