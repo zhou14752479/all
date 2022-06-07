@@ -294,8 +294,15 @@ namespace 校友邦
                             if (pics.Contains(username))
                             {
                                 string myma = fc.getmyma(cookie, traineeid);
-                                //MessageBox.Show(myma);
-                                shangchuanmamsg = fc.shangchuanma(cookie,myma);
+                                
+                                if (listView1.Items[i].SubItems[0].Text.Contains("集中实习"))
+                                {
+                                    shangchuanmamsg = fc.shangchuanmaandtravelCodeImg(cookie, myma);
+                                }
+                                else
+                                {
+                                    shangchuanmamsg = fc.shangchuanma(cookie, myma);
+                                }
                             }
 
 
@@ -313,8 +320,18 @@ namespace 校友邦
                             {
                               
                                 string myma = fc.getmyma(cookie,traineeid);
-                                //MessageBox.Show(myma);
-                                shangchuanmamsg = fc.shangchuanma(cookie, myma);
+                               
+
+                                if (listView1.Items[i].SubItems[0].Text.Contains("集中实习"))
+                                {
+                                    shangchuanmamsg = fc.shangchuanmaandtravelCodeImg(cookie, myma);
+                                }
+                                else
+                                {
+                                    shangchuanmamsg = fc.shangchuanma(cookie, myma);
+                                }
+
+                                
                             }
 
                             string msg = qiandao(cookie, address, traineeid);

@@ -495,13 +495,14 @@ namespace qccxcx
 
                        string html=Regex.Match(html2, @"companyList([\s\S]*?)brandAndAgencyList").Groups[1].Value;
                         MatchCollection names = Regex.Matches(html, @"{""id"":([\s\S]*?),""name"":""([\s\S]*?)""");
-                      
+                        //textBox2.Text = html;
                         MatchCollection legalPerson = Regex.Matches(html, @"""legalPersonName"":""([\s\S]*?)""");
                         MatchCollection regCap = Regex.Matches(html, @"""regCapital"":""([\s\S]*?)""");
                         MatchCollection StartDate = Regex.Matches(html, @"""estiblishTime"":""([\s\S]*?)""");
                         MatchCollection Address = Regex.Matches(html, @"""regLocation"":""([\s\S]*?)""");
                         MatchCollection businessScope = Regex.Matches(html, @"""businessScope"":""([\s\S]*?)""");
                         MatchCollection tel = Regex.Matches(html, @"phoneList([\s\S]*?)phoneInfoList");
+                        MatchCollection emails = Regex.Matches(html, @"emails"":""([\s\S]*?)""");
                         if (names.Count == 0)
                         {
                             Thread.Sleep(1000);
@@ -552,7 +553,12 @@ namespace qccxcx
                                     }
 
                                 }
+
+                                string email = emails[j].Groups[1].Value.Replace("\\t","");
+
+
                                 lv1.SubItems.Add(tel2);
+                                lv1.SubItems.Add(email);
 
                                 while (this.zanting == false)
                                 {

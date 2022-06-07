@@ -83,7 +83,7 @@ namespace 驾校一点通
         private void button1_Click(object sender, EventArgs e)
         {
             //cookie = GetCookies("https://mnks.jxedt.com/ckm1/sxlx/");
-            cookie = "id58=CpQB22KQOGJXX9SQcMJTAg==; Hm_lvt_e43feb296c32a4add052b7249ed6bf2b=1653618787; local_city=%E5%8C%97%E4%BA%AC%E5%B8%82; local_city_pingying=%2Fbj%2F; Hm_lpvt_e43feb296c32a4add052b7249ed6bf2b=1653624193";
+            cookie = "id58=CpQB22KQOGJXX9SQcMJTAg==; 58tj_uuid=28fbeee4-e2d3-4c03-a623-c876b3895812; new_uv=1; als=0; local_city=%E7%8E%89%E6%9E%97%E5%B8%82; local_city_pingying=%2Fgxyl%2F; Hm_lvt_e43feb296c32a4add052b7249ed6bf2b=1653618787,1653627221,1654428468; Hm_lpvt_e43feb296c32a4add052b7249ed6bf2b=1654428473";
             status = true;
             if (textBox1.Text=="")
             {
@@ -274,7 +274,7 @@ namespace 驾校一点通
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show(ex.ToString());
+                       // MessageBox.Show(ex.ToString());
                     }
                 }
 

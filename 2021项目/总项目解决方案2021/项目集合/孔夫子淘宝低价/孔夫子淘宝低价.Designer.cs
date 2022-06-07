@@ -49,6 +49,8 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -63,7 +65,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(465, 43);
+            this.button4.Location = new System.Drawing.Point(462, 63);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(83, 28);
             this.button4.TabIndex = 388;
@@ -73,7 +75,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(200, 43);
+            this.button2.Location = new System.Drawing.Point(197, 63);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(83, 28);
             this.button2.TabIndex = 387;
@@ -85,7 +87,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.Location = new System.Drawing.Point(30, 9);
+            this.label2.Location = new System.Drawing.Point(27, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 14);
             this.label2.TabIndex = 385;
@@ -93,14 +95,14 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(113, 7);
+            this.textBox2.Location = new System.Drawing.Point(110, 27);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(252, 21);
             this.textBox2.TabIndex = 386;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(111, 43);
+            this.button1.Location = new System.Drawing.Point(108, 63);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 28);
             this.button1.TabIndex = 382;
@@ -110,7 +112,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(371, 7);
+            this.button6.Location = new System.Drawing.Point(368, 27);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(91, 21);
             this.button6.TabIndex = 381;
@@ -120,7 +122,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(289, 43);
+            this.button3.Location = new System.Drawing.Point(286, 63);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(83, 28);
             this.button3.TabIndex = 384;
@@ -130,7 +132,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(378, 43);
+            this.button5.Location = new System.Drawing.Point(375, 63);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(81, 28);
             this.button5.TabIndex = 383;
@@ -219,11 +221,29 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(531, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 12);
+            this.label3.TabIndex = 391;
+            this.label3.Text = "代理IP接口：";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(614, 29);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(152, 21);
+            this.textBox1.TabIndex = 392;
+            // 
             // 孔夫子淘宝低价
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1098, 644);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button4);
@@ -265,5 +285,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

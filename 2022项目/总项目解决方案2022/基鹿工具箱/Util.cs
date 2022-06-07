@@ -979,7 +979,7 @@ namespace 基鹿工具箱
                 MySqlConnection mycon = new MySqlConnection(conn);
                 mycon.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select b_zs from "+dbname+" where a_zs=" + a_zs + "  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("select b_zs from "+dbname+" where a_zs=" + a_zs + " limit 1  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
 
 
                 MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源

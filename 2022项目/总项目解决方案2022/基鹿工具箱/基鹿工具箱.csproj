@@ -116,6 +116,12 @@
     <Compile Include="生意参谋指数导入.Designer.cs">
       <DependentUpon>生意参谋指数导入.cs</DependentUpon>
     </Compile>
+    <Compile Include="表格处理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="表格处理.Designer.cs">
+      <DependentUpon>表格处理.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="erweima.resx">
       <DependentUpon>erweima.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="生意参谋指数导入.resx">
       <DependentUpon>生意参谋指数导入.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="表格处理.resx">
+      <DependentUpon>表格处理.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

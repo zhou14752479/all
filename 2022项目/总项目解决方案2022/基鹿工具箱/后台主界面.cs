@@ -65,5 +65,12 @@ namespace 基鹿工具箱
             title.Name = title.GetType().FullName;
             OpenChildForm(title);
         }
+
+        private void 表格处理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            表格处理 title = new 表格处理();
+            title.Name = title.GetType().FullName;
+            OpenChildForm(title);
+        }
     }
 }

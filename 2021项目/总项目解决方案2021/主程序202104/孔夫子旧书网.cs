@@ -107,9 +107,70 @@ namespace 主程序202104
             return price;
         }
 
+        #region GET使用代理IP请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlwithIP(string Url, string ip, string COOKIE, string charset)
+        {
+            string html = "";
+
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36";
+
+                if (ip != "")
+                {
+                    WebProxy proxy = new WebProxy(ip);
+                    request.Proxy = proxy;
+                }
+               
+              
+                request.Referer = Url;
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                //request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
 
-      
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+
+                return ex.ToString();
+
+            }
+        }
+        #endregion
+
+
 
         string shopname = "";
         /// <summary>
@@ -141,13 +202,19 @@ namespace 主程序202104
                 {
                     try
                     {
+                        string ip = "";
+
+                       if(textBox2.Text!="")
+                        {
+                            ip = method.GetUrl(textBox2.Text,"");
+                        }
                         label2.Text = "正在抓取第：" + page + "页";
 
                         string shopid = Regex.Match(text[i], @"\d{4,}").Groups[0].Value;
 
                         string url = "http://shop.kongfz.com/" + shopid + "/all/0_50_0_0_" + page + "_sort_desc_0_0/";
 
-                        string html = method.GetUrl(url, "utf-8");
+                        string html = GetUrlwithIP(url, ip,"","utf-8");
                         shopname= Regex.Match(html, @"<div class=""shop_top_text"">([\s\S]*?)</div>").Groups[1].Value;
                         MatchCollection itemids = Regex.Matches(html, @"<div class=""item-row clearfix""([\s\S]*?)itemid=""([\s\S]*?)""");
                         MatchCollection userids = Regex.Matches(html, @"<div class=""item-row clearfix""([\s\S]*?)userid=""([\s\S]*?)""");
@@ -171,9 +238,9 @@ namespace 主程序202104
                         }
                         
                         string aurl = "https://shop.kongfz.com/book/shopsearch/getShippingFee?callback=jQuery111208550195114156878_1633577971044&params=%7B%22params%22%3A%5B"+sb.ToString().Remove(sb.ToString().Length-3,3)+"%5D%2C%22area%22%3A%221006000000%22%7D&_=1633577971050";
-                        textBox1.Text = aurl;
-                        string ahtml = method.GetUrl(aurl, "utf-8");
-                     
+                        //textBox1.Text = aurl;
+                        string ahtml = GetUrlwithIP(aurl, ip, "", "utf-8");
+
                         MatchCollection fees = Regex.Matches(ahtml, @"""totalFee"":""([\s\S]*?)""");
 
 
@@ -278,10 +345,7 @@ namespace 主程序202104
                 MessageBox.Show("请输入店铺网址");
                 return;
             }
-            if(DateTime.Now>Convert.ToDateTime("2022-02-20"))
-            {
-                MessageBox.Show("余额不足");
-            }
+           
 
             if (thread == null || !thread.IsAlive)
             {

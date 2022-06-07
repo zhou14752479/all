@@ -44,6 +44,9 @@ namespace 主程序selenium
         }
         private void 获取COOKIE_Load(object sender, EventArgs e)
         {
+
+          
+
             KillProcess("chromedriver");
         }
 

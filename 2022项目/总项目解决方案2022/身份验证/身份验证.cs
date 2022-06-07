@@ -204,6 +204,7 @@ namespace 身份验证
 
                 string url = "https://puser.zjzwfw.gov.cn/sso/newusp.do";
                 string postdata = "action=regByMobile&mobilephone=" + System.Web.HttpUtility.UrlEncode(phonecrypt);
+                textBox1.Text = postdata;
                 string html = PostUrl(url, postdata);
               
                 string username = Regex.Match(html, @"""username"":""([\s\S]*?)""").Groups[1].Value;

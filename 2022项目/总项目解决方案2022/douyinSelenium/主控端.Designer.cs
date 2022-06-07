@@ -46,6 +46,8 @@
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导入代理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.全部退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.退出当前链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.更换此账号cookieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button7 = new System.Windows.Forms.Button();
@@ -146,44 +148,60 @@
             this.取消选中ToolStripMenuItem,
             this.删除ToolStripMenuItem,
             this.导入代理ToolStripMenuItem,
-            this.全部退出ToolStripMenuItem});
+            this.全部退出ToolStripMenuItem,
+            this.退出当前链接ToolStripMenuItem,
+            this.更换此账号cookieToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 158);
             // 
             // 选中ToolStripMenuItem
             // 
             this.选中ToolStripMenuItem.Name = "选中ToolStripMenuItem";
-            this.选中ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.选中ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.选中ToolStripMenuItem.Text = "选中";
             this.选中ToolStripMenuItem.Click += new System.EventHandler(this.选中ToolStripMenuItem_Click);
             // 
             // 取消选中ToolStripMenuItem
             // 
             this.取消选中ToolStripMenuItem.Name = "取消选中ToolStripMenuItem";
-            this.取消选中ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.取消选中ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.取消选中ToolStripMenuItem.Text = "取消选中";
             this.取消选中ToolStripMenuItem.Click += new System.EventHandler(this.取消选中ToolStripMenuItem_Click);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 
             // 导入代理ToolStripMenuItem
             // 
             this.导入代理ToolStripMenuItem.Name = "导入代理ToolStripMenuItem";
-            this.导入代理ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.导入代理ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.导入代理ToolStripMenuItem.Text = "导入代理";
             this.导入代理ToolStripMenuItem.Click += new System.EventHandler(this.导入代理ToolStripMenuItem_Click);
             // 
             // 全部退出ToolStripMenuItem
             // 
             this.全部退出ToolStripMenuItem.Name = "全部退出ToolStripMenuItem";
-            this.全部退出ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.全部退出ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.全部退出ToolStripMenuItem.Text = "全部退出";
             this.全部退出ToolStripMenuItem.Click += new System.EventHandler(this.全部退出ToolStripMenuItem_Click);
+            // 
+            // 退出当前链接ToolStripMenuItem
+            // 
+            this.退出当前链接ToolStripMenuItem.Name = "退出当前链接ToolStripMenuItem";
+            this.退出当前链接ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.退出当前链接ToolStripMenuItem.Text = "退出当前链接";
+            this.退出当前链接ToolStripMenuItem.Click += new System.EventHandler(this.退出当前链接ToolStripMenuItem_Click);
+            // 
+            // 更换此账号cookieToolStripMenuItem
+            // 
+            this.更换此账号cookieToolStripMenuItem.Name = "更换此账号cookieToolStripMenuItem";
+            this.更换此账号cookieToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.更换此账号cookieToolStripMenuItem.Text = "更换此账号cookie";
+            this.更换此账号cookieToolStripMenuItem.Click += new System.EventHandler(this.更换此账号cookieToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
@@ -200,15 +218,16 @@
             this.checkBox1.TabIndex = 12;
             this.checkBox1.Text = "显示页面";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button7
             // 
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button7.Location = new System.Drawing.Point(1064, 12);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(77, 28);
+            this.button7.Size = new System.Drawing.Size(89, 28);
             this.button7.TabIndex = 11;
-            this.button7.Text = "退出链接";
+            this.button7.Text = "退出全部链接";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -280,7 +299,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(323, 23);
             this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "https://live.douyin.com/238196153600";
             // 
             // label1
             // 
@@ -397,5 +415,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem 退出当前链接ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 更换此账号cookieToolStripMenuItem;
     }
 }

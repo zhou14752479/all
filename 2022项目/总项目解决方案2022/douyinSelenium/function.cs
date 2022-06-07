@@ -27,7 +27,7 @@ namespace douyinSelenium
 
 
         ChromeOptions options = new ChromeOptions();
-            options.PageLoadStrategy = PageLoadStrategy.None;
+            options.PageLoadStrategy = PageLoadStrategy.Eager;
             options.AddArguments(ip);
             bool isproxysetting = true;
             isproxysetting = Rebuild_Extension_Proxy(user, pass);

@@ -16,7 +16,7 @@ namespace 主程序202203
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 搜狐作者文章链接());
+            Application.Run(new 题目格式());
         }
     }
 }

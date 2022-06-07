@@ -36,6 +36,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -105,7 +106,8 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader8,
-            this.columnHeader7});
+            this.columnHeader7,
+            this.columnHeader3});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -121,6 +123,11 @@
             // 
             this.columnHeader7.Text = "号码";
             this.columnHeader7.Width = 200;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "邮箱";
+            this.columnHeader3.Width = 200;
             // 
             // button6
             // 
@@ -525,7 +532,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "企查查";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "羿辰企业管理企业大数据软件";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.企查查_FormClosing);
             this.Load += new System.EventHandler(this.企查查_Load);
             this.groupBox1.ResumeLayout(false);
@@ -577,5 +583,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

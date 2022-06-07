@@ -32,6 +32,7 @@
             this.标题导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生意参谋指数导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.图标设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.表格处理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +57,8 @@
             // 
             // 生意参谋指数导入ToolStripMenuItem
             // 
+            this.生意参谋指数导入ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.表格处理ToolStripMenuItem});
             this.生意参谋指数导入ToolStripMenuItem.Name = "生意参谋指数导入ToolStripMenuItem";
             this.生意参谋指数导入ToolStripMenuItem.Size = new System.Drawing.Size(116, 21);
             this.生意参谋指数导入ToolStripMenuItem.Text = "生意参谋指数导入";
@@ -67,6 +70,14 @@
             this.图标设置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.图标设置ToolStripMenuItem.Text = "图标设置";
             this.图标设置ToolStripMenuItem.Click += new System.EventHandler(this.图标设置ToolStripMenuItem_Click);
+            // 
+            // 表格处理ToolStripMenuItem
+            // 
+            this.表格处理ToolStripMenuItem.Name = "表格处理ToolStripMenuItem";
+            this.表格处理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.表格处理ToolStripMenuItem.Text = "表格处理";
+            this.表格处理ToolStripMenuItem.Visible = false;
+            this.表格处理ToolStripMenuItem.Click += new System.EventHandler(this.表格处理ToolStripMenuItem_Click);
             // 
             // 后台主界面
             // 
@@ -91,5 +102,6 @@
         private System.Windows.Forms.ToolStripMenuItem 标题导入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 生意参谋指数导入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 图标设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 表格处理ToolStripMenuItem;
     }
 }

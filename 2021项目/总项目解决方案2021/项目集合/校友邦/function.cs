@@ -157,6 +157,19 @@ namespace 校友邦
             return msg;
         }
 
+        public string shangchuanmaandtravelCodeImg(string cookie, string myma)
+        {
+            string url = "https://xcx.xybsyw.com/student/clock/saveEpidemicSituation.action";
+            //string postdata = "planId="+planid;
+            string postdata = "healthCodeStatus=0&locationRiskLevel=0&healthCodeImg=" + myma + "&travelCodeImg=https%3A%2F%2Fss0.xybsyw.com%2Ftemp%2F20220602%2Fschool%2F13777%2Fepidemicsituation%2F4892071%2F1654135097325.jpg";
+            string html = PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
+
+            string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
+            return msg;
+        }
+
+
+
         public string qiandao(string cookie, string addr, string traineeId)
         {
 

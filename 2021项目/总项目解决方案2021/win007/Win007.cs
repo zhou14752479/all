@@ -213,7 +213,16 @@ namespace win007
 
               
                 dgv1.Columns["rangqiudaxiaoqiu"].HeaderText = "让球大小球";
-             
+                dgv1.Columns[7].Width = 50;
+                dgv1.Columns[8].Width = 50;
+                dgv1.Columns[9].Width = 50;
+                dgv1.Columns[10].Width = 50;
+                dgv1.Columns[11].Width = 50;
+                dgv1.Columns[12].Width = 50;
+                dgv1.Columns[13].Width = 50;
+                dgv1.Columns[14].Width = 50;
+                dgv1.Columns[15].Width = 50;
+
 
                 dgv1.Columns[7].HeaderCell.Style.BackColor = Color.Red;
                 dgv1.Columns[8].HeaderCell.Style.BackColor = Color.CornflowerBlue;
@@ -237,7 +246,7 @@ namespace win007
 
                 dgv1.Columns[16].Width = 100;
                 dgv1.Columns[17].Width =100;
-                dgv1.Columns[18].Width = 50;
+                dgv1.Columns[18].Width = 100;
 
                 dgv1.Columns[21].Width = 1;
                 dgv1.Columns[22].Width = 1;
@@ -1055,9 +1064,7 @@ namespace win007
         }
        
 
-       
-
-      
+     
      
         private void button3_Click(object sender, EventArgs e)
         {
@@ -1079,14 +1086,21 @@ namespace win007
         {
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView4.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label29, label28, label27, comboBox1, dataGridView4, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label35, label34, label33, comboBox1, dataGridView4, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView5.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label29, label28, label27, comboBox1, dataGridView5, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label41, label40, label39, comboBox1, dataGridView5, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView1.ColumnHeadersHeight = 50;
+            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label45, label46, label47, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
         }
     }
 }

@@ -172,12 +172,12 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
                     string usercookie = listView2.Items[a].SubItems[1].Text.Replace(" ", "").Trim();
 
 
-                    driver.Navigate().GoToUrl("https://live.douyin.com/238196153600");
+                    driver.Navigate().GoToUrl("https://wenku.baidu.com/nduc/browse/uc?_page=home&_redirect=1#/home");
                    
-                    Cookie cookie = new Cookie("sessionid", "84c0f14b8721ba77e8994a599267ab35", "", DateTime.Now.AddDays(9999));
+                    Cookie cookie = new Cookie("BDUSS", "1KbDRKTmhOLTcwRk1IdFluOVk3ZlpjWFBNZTlnTUk3dHpNbHFjTzM4U0dEc0JpSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIaBmGKGgZhiSE", "", DateTime.Now.AddDays(9999));
                     driver.Manage().Cookies.AddCookie(cookie);
                     Thread.Sleep(200);
-                    driver.Navigate().GoToUrl("https://live.douyin.com/238196153600");
+                    driver.Navigate().GoToUrl("https://wenku.baidu.com/nduc/browse/uc?_page=home&_redirect=1#/home");
                     //浏览器初始化
                     Thread.Sleep(500);
 
@@ -488,7 +488,7 @@ ReadOnlyCollection<IWebElement> elements = webDriver.FindElements(By.CssSelector
             }
 
             ListViewItem lv1 = listView2.Items.Add("zhoukaige6668");
-            lv1.SubItems.Add("DZyV08zNU51cE5WSVdzMWExOWVyb3gwcjFzdERlQ1BkVWkzRHZDN1oxQ2t0TEZpSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKQnimKkJ4piW");
+            lv1.SubItems.Add("1KbDRKTmhOLTcwRk1IdFluOVk3ZlpjWFBNZTlnTUk3dHpNbHFjTzM4U0dEc0JpSVFBQUFBJCQAAAAAAQAAAAEAAABwsQkdemhvdWthaWdlNjY2OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIaBmGKGgZhiSE");
           
 
         }

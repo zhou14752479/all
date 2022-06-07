@@ -37,6 +37,8 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -48,13 +50,9 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,6 +118,15 @@
             // 
             this.columnHeader8.Text = "上书时间";
             this.columnHeader8.Width = 100;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "定价";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "状态";
+            this.columnHeader10.Width = 100;
             // 
             // button3
             // 
@@ -224,35 +231,23 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "定价";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "状态";
-            this.columnHeader10.Width = 100;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(820, 21);
+            this.groupBox1.Location = new System.Drawing.Point(661, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(226, 99);
+            this.groupBox1.Size = new System.Drawing.Size(385, 74);
             this.groupBox1.TabIndex = 320;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "代理账密";
+            this.groupBox1.Text = "代理IP";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(68, 20);
+            this.textBox2.Location = new System.Drawing.Point(9, 40);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(139, 21);
+            this.textBox2.Size = new System.Drawing.Size(357, 21);
             this.textBox2.TabIndex = 311;
-            this.textBox2.Text = "17606117606";
             // 
             // label3
             // 
@@ -260,28 +255,9 @@
             this.label3.Font = new System.Drawing.Font("宋体", 10F);
             this.label3.Location = new System.Drawing.Point(6, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 14);
+            this.label3.Size = new System.Drawing.Size(91, 14);
             this.label3.TabIndex = 310;
-            this.label3.Text = "账 号：";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(68, 47);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(139, 21);
-            this.textBox3.TabIndex = 313;
-            this.textBox3.Text = "zhoukaige00";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 10F);
-            this.label4.Location = new System.Drawing.Point(6, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 14);
-            this.label4.TabIndex = 312;
-            this.label4.Text = "密 码：";
+            this.label3.Text = "代理IP地址：";
             // 
             // 孔夫子旧书网
             // 
@@ -336,8 +312,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
     }

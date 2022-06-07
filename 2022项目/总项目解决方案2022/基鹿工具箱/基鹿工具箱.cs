@@ -777,7 +777,9 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Black;
             linkLabel10.LinkColor = Color.Black;
             linkLabel11.LinkColor = Color.Black;
-            //zs = "jyzs";
+            label11.Text = "交易指数";
+            label16.Text = "交易金额";
+            zs = "jyzs";
         }
 
         private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -787,7 +789,10 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Black;
             linkLabel10.LinkColor = Color.Black;
             linkLabel11.LinkColor = Color.Black;
-           // zs = "sszs";
+            label11.Text = "搜索指数";
+            label16.Text = "搜索人数";
+            zs = "jyzs";
+            // zs = "sszs";
         }
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -797,6 +802,9 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Red;
             linkLabel10.LinkColor = Color.Black;
             linkLabel11.LinkColor = Color.Black;
+            label11.Text = "供应商指数";
+            label16.Text = "商家数";
+            zs = "jyzs";
             //zs = "gyszs";
         }
 
@@ -807,7 +815,10 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Black;
             linkLabel10.LinkColor = Color.Red;
             linkLabel11.LinkColor = Color.Black;
-           // zs = "spzs";
+            label11.Text = "商品指数";
+            label16.Text = "在线商品数";
+            zs = "jyzs";
+            // zs = "spzs";
         }
 
         private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -817,6 +828,8 @@ namespace 基鹿工具箱
             linkLabel9.LinkColor = Color.Black;
             linkLabel10.LinkColor = Color.Black;
             linkLabel11.LinkColor = Color.Red;
+            label11.Text = "支付转化率指数";
+            label16.Text = "支付转化率";
             zs = "zfzhzs";
         }
 

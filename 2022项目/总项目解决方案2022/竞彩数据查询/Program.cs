@@ -16,7 +16,7 @@ namespace 竞彩数据查询
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 竞彩篮球());
+            Application.Run(new 竞彩数据查询());
         }
     }
 }
