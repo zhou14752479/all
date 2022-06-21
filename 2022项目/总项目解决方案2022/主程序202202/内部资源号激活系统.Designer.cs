@@ -36,6 +36,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,11 +121,36 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "贰拾个大哥号激活截止";
             // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Yellow;
+            this.label4.Location = new System.Drawing.Point(763, 274);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(382, 369);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "上线就是激情  让你清清楚楚打装备 明明白白玩好服\n超变群K 坐地吸怪 无限连招 全屏乱炸 激情无敌 \n无敌+8888亿  定制BT.0  无影刀 无敌零血不死 " +
+    " 切割8888888888  光速捡物回收";
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Segoe Print", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Yellow;
+            this.label5.Location = new System.Drawing.Point(25, 56);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(261, 567);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "上线激活无限麻痹 无限隐身 刀刀切割神器 时装起步就是鞭尸 连爆功能单挑BOSS";
+            // 
             // 内部资源号激活系统
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1145, 652);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
@@ -150,5 +177,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

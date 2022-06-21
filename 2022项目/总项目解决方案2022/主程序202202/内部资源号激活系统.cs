@@ -21,6 +21,8 @@ namespace 主程序202202
             label1.Parent = pictureBox1;
             label2.Parent = pictureBox1;
             label3.Parent = pictureBox1;
+            label4.Parent = pictureBox1;
+            label5.Parent = pictureBox1;
         }
 
         private void button1_Click(object sender, EventArgs e)

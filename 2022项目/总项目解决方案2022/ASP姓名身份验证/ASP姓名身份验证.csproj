@@ -93,8 +93,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\" />
-    <Folder Include="js\" />
     <Folder Include="static\" />
   </ItemGroup>
   <PropertyGroup>

@@ -48,6 +48,8 @@
             this.全部退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出当前链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.更换此账号cookieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.隐藏窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.显示窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button7 = new System.Windows.Forms.Button();
@@ -150,9 +152,11 @@
             this.导入代理ToolStripMenuItem,
             this.全部退出ToolStripMenuItem,
             this.退出当前链接ToolStripMenuItem,
-            this.更换此账号cookieToolStripMenuItem});
+            this.更换此账号cookieToolStripMenuItem,
+            this.隐藏窗口ToolStripMenuItem,
+            this.显示窗口ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 202);
             // 
             // 选中ToolStripMenuItem
             // 
@@ -202,6 +206,19 @@
             this.更换此账号cookieToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.更换此账号cookieToolStripMenuItem.Text = "更换此账号cookie";
             this.更换此账号cookieToolStripMenuItem.Click += new System.EventHandler(this.更换此账号cookieToolStripMenuItem_Click);
+            // 
+            // 隐藏窗口ToolStripMenuItem
+            // 
+            this.隐藏窗口ToolStripMenuItem.Name = "隐藏窗口ToolStripMenuItem";
+            this.隐藏窗口ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.隐藏窗口ToolStripMenuItem.Text = "隐藏窗口";
+            this.隐藏窗口ToolStripMenuItem.Click += new System.EventHandler(this.隐藏窗口ToolStripMenuItem_Click);
+            // 
+            // 显示窗口ToolStripMenuItem
+            // 
+            this.显示窗口ToolStripMenuItem.Name = "显示窗口ToolStripMenuItem";
+            this.显示窗口ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.显示窗口ToolStripMenuItem.Text = "显示窗口";
             // 
             // openFileDialog1
             // 
@@ -299,6 +316,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(323, 23);
             this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "https://www.douyin.com/?enter=guide";
             // 
             // label1
             // 
@@ -374,6 +392,7 @@
             this.Name = "主控端";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "主控端";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.主控端_FormClosing);
             this.Load += new System.EventHandler(this.主控端_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -417,5 +436,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem 退出当前链接ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 更换此账号cookieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 隐藏窗口ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 显示窗口ToolStripMenuItem;
     }
 }

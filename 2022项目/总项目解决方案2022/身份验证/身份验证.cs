@@ -171,8 +171,8 @@ namespace 身份验证
 
         public void run()
         {
-           
 
+            string nowname = "";
             if (DateTime.Now > Convert.ToDateTime("2023-05-26"))
             {
                 return;
@@ -188,16 +188,23 @@ namespace 身份验证
                         System.Diagnostics.Process.GetCurrentProcess().Kill();
                     }
                 }
-               
 
-                Thread.Sleep(500);
+
+              
+
+
+
                 DataRow dr = dt.Rows[a];
                 string name= dr[0].ToString();
                 string card = dr[1].ToString();
                 string phone = dr[2].ToString();
 
-                label3.Text = "正在查询："+name;
-
+                if (nowname ==name)
+                {
+                    continue;
+                }
+                    label3.Text = "正在查询："+name;
+                Thread.Sleep(500);
                 Encrypt aa = new Encrypt(encrypt);
                 IAsyncResult iar = BeginInvoke(aa, new object[] { phone });
                 string phonecrypt = EndInvoke(iar).ToString();
@@ -217,18 +224,20 @@ namespace 身份验证
                 {
                     try
                     {
-                        if ( name.Substring(name.Length - 1, 1) == username.Substring(username.Length - 1, 1))
+                        if ( name.Substring(name.Length - 1, 1) == username.Substring(username.Length - 1, 1) && username.Length == name.Length)
                         {
 
                             if(username.Substring(username.Length - 2, 1)!="*" && username.Substring(username.Length - 2, 1)== name.Substring(name.Length - 2, 1))
                             {
                                 lv1.SubItems.Add("true");
+                                nowname = name;
                             }
                             else
                             {
-                                if(username.Substring(username.Length - 2, 1) == "*")
+                                if(username.Substring(username.Length - 2, 1) == "*" )
                                 {
                                     lv1.SubItems.Add("true");
+                                    nowname = name;
                                 }
                                 else
                                 {

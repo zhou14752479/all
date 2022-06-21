@@ -16,7 +16,7 @@ namespace 主程序202202
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 图书馆预约());
+            Application.Run(new 内部资源号激活系统());
         }
     }
 }

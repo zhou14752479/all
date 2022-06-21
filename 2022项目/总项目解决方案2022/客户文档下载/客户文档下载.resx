@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>uid=NP_qGKMGMQZudoH4971PE9Cvrnw87cWQohW1crMgXE5OzC--Bhy7eHQ_PPym-bDNm9wg6UcCFzmcizLfl0FyLH_fcenH9-JJtSIpNrpahOTmMRkDJsIgk9nKdGUNXWKji5YSOGvpkf6MYyJwzxGb0IaLxogRE58I78t1u34j36XktMVb5IJokymXlB3rXksmbNFHA3bOFtjnM79eFLMC_QqDAwKSulIhhPV2zwK9ZpI.; userId=2c914c0a7f97335b017fb120deba34d7; userName=%E7%94%B0%E6%B5%B7%E8%89%B3; manageAuth=false; acw_tc=2760823b16548462532645757e80e80cab4e3267337e825392b7c7f3b2cf17; Hm_lvt_b049ea6874eee4b0ae0f7df4b5f89f28=1652433746,1652512129,1652519504,1654846265; Hm_lpvt_b049ea6874eee4b0ae0f7df4b5f89f28=1654846265; SERVERID=1dffc5ed781efd4e0fd14a6b55eb8e69|1654846269|1654846253</value>
+  </data>
 </root>

@@ -66,7 +66,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(284, 21);
             this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "yun.xjrsjxjy.com";
+            this.textBox2.Text = "mcs.us.tiktok.com";
             // 
             // tabControl1
             // 

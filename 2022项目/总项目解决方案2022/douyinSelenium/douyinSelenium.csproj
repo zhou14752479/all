@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,18 @@
     <Compile Include="主控端.Designer.cs">
       <DependentUpon>主控端.cs</DependentUpon>
     </Compile>
+    <Compile Include="卡密.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="卡密.Designer.cs">
+      <DependentUpon>卡密.cs</DependentUpon>
+    </Compile>
+    <Compile Include="卡密后台.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="卡密后台.Designer.cs">
+      <DependentUpon>卡密后台.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +88,12 @@
     </Compile>
     <EmbeddedResource Include="主控端.resx">
       <DependentUpon>主控端.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="卡密.resx">
+      <DependentUpon>卡密.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="卡密后台.resx">
+      <DependentUpon>卡密后台.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -204,7 +204,7 @@ namespace 客户文档下载
         public void myrun()
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            string cookie = "JSESSIONID=4B9415B4BB423B98A96BC26650CCF4D8.tomcat301; acw_tc=2760824c16525121250592996eaad974e82e66c51fd5c9a58a8d4941615884; Hm_lvt_b049ea6874eee4b0ae0f7df4b5f89f28=1652056551,1652424614,1652433746,1652512129; uid=NP_qGKMGMQZudoH4971PE9Cvrnw87cWQohW1crMgXE5OzC--Bhy7eHQ_PPym-bDNm9wg6UcCFzmcizLfl0FyLH_fcenH9-JJtSIpNrpahOTmMRkDJsIgk9nKdGUNXWKji5YSOGvpkf6MYyJwzxGb0IaLxogRE58I78t1u34j36XktMVb5IJokymXlB3rXksmbNFHA3bOFtjnM79eFLMC_QqDAwKSulIhhPV2zwK9ZpI.; userId=2c914c0a7f97335b017fb120deba34d7; userName=%E7%94%B0%E6%B5%B7%E8%89%B3; manageAuth=false; Hm_lpvt_b049ea6874eee4b0ae0f7df4b5f89f28=1652512195; SERVERID=bfce41231016639a2a7b2734dc682776|1652512215|1652512125";
+            string cookie = textBox2.Text.Trim();
 
             try
             {
@@ -226,7 +226,7 @@ namespace 客户文档下载
                     string url = "http://www.bcvet.cn/admin/rest/resource/resourceList/dataList";
                     string postdata = "{\"pageNo\":"+page+",\"title\":\"\",\"sortBy\":\"create_time\",\"sortDesc\":\"desc\",\"typeList\":[{\"value\":\"all\",\"typeId\":\"resource_type\"},{\"value\":\"\",\"typeId\":\"STUDYSUBJ\"},{\"value\":\"\",\"typeId\":\"STUDYGRADE\"},{\"value\":\"\",\"typeId\":\"region\"}],\"ifGood\":0}";
                     string html = PostUrlDefault(url, postdata, cookie, "application/json");
-                    textBox1.Text = "正在下载：页码：  " + page;
+                  
                     MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
                    
                     for (int i = 0; i < ids.Count; i++)
@@ -248,11 +248,12 @@ namespace 客户文档下载
                         string filesize = Regex.Match(ahtml, @"""fileSize"":""([\s\S]*?)""").Groups[1].Value.ToLower();
 
 
-                        textBox1.Text = "正在下载：页码：  " + page + "------ " + title ;
+                        textBox1.Text += "正在下载：页码：  " + page + "------ " + title+"\r\n" ;
                         if (downurl == "")
                         {
-                            MessageBox.Show("下载地址为空");
-                            return;
+                           // MessageBox.Show("下载地址为空");
+                            
+                            continue;
                         }
 
                         if (filesize!="")
@@ -260,15 +261,15 @@ namespace 客户文档下载
                             //超过30MB不下载
                             if(Convert.ToDouble(filesize)>30720)
                             {
-                                textBox1.Text = title + "文件超过30MB";
+                                textBox1.Text += title + "文件超过30MB" + "\r\n";
                                 continue;
                             }
                           
                         }
 
-                        if (title.Contains("png")|| title.Contains("jpg")|| title.Contains("jpeg")|| title.Contains("mp4") || title.Contains("mp3"))
+                        if (title.Contains("png")|| title.Contains("jpg")|| title.Contains("jpeg")|| title.Contains("mp4") || title.Contains("mp3") || title.Contains("zip") || title.Contains("rar"))
                         {
-                            textBox1.Text = title + "格式不符合";
+                            textBox1.Text += title + "格式不符合" + "\r\n";
                             continue;
                         }
                         downloadFile("http://www.bcvet.cn/" + downurl, sPath, title, cookie);

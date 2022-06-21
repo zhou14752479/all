@@ -349,6 +349,8 @@ namespace 主程序202203
 
                         string url = "https://capi.tianyancha.com/cloud-tempest/app/searchCompany";
                         string postdata = "{\"sortType\":0,\"pageSize\":100,\"pageNum\":" + i + ",\"word\":\"" + textBox1.Text.Trim() + "\",\"allowModifyQuery\":1" + sb.ToString() + "}";
+                        textBox1.Text = postdata;
+                        
                         string html2 = PostUrlDefault(url, postdata, "");
 
                         if (html2.Contains("登录后可查看更多公司的数据") || html2.Contains("开通VIP"))
@@ -616,6 +618,11 @@ namespace 主程序202203
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
         }
     }
 }

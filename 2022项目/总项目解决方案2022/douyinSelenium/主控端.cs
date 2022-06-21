@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -20,11 +22,6 @@ namespace douyinSelenium
     public partial class 主控端 : Form
     {
        
-
-
-
-
-
 
 
 
@@ -78,7 +75,7 @@ namespace douyinSelenium
 
 
                 }
-                Thread.Sleep(200);
+                //Thread.Sleep(200);
                 driver.Navigate().GoToUrl(textBox1.Text);
                 foreach (var item in cookieall)
                 {
@@ -124,50 +121,31 @@ namespace douyinSelenium
             Control.CheckForIllegalCrossThreadCalls = false;
             try
             {
-                //Task.Run(() =>
-                //{
-                //    for (int i = 0; i < listView1.CheckedItems.Count; i++)
-                //    {
-                //        if (status == false)
-                //            return;
-                //        listView1.CheckedItems[i].SubItems[5].Text = "正在进入链接...";
-
-                //        string xuhao = listView1.CheckedItems[i].SubItems[0].Text;
-                //        string cookie = listView1.CheckedItems[i].SubItems[4].Text;
-
-                //        string ip = listView1.CheckedItems[i].SubItems[6].Text;
-                //        string user = listView1.CheckedItems[i].SubItems[7].Text;
-                //        string pass = listView1.CheckedItems[i].SubItems[8].Text;
-
-
-                //        // this.BeginInvoke(updateTxt, cookie, ip, user, pass);
-                //        UpdateTxtMethod(xuhao, cookie,ip,user,pass);
-                //        //Thread.Sleep(Convert.ToInt32(textBox2.Text) * 1000);
-
-
-                //        listView1.CheckedItems[i].SubItems[5].Text = zhibojianname;
-                //    }
-                //});
-
-              
+                Task.Run(() =>
+                {
                     for (int i = 0; i < listView1.CheckedItems.Count; i++)
                     {
                         if (status == false)
                             return;
-                  
-                            listView1.CheckedItems[i].SubItems[5].Text = "正在进入链接...";
+                        listView1.CheckedItems[i].SubItems[5].Text = "正在进入链接...";
 
-                            string xuhao = listView1.CheckedItems[i].SubItems[0].Text;
-                            string cookie = listView1.CheckedItems[i].SubItems[4].Text;
+                        string xuhao = listView1.CheckedItems[i].SubItems[0].Text;
+                        string cookie = listView1.CheckedItems[i].SubItems[4].Text;
 
-                            string ip = listView1.CheckedItems[i].SubItems[6].Text;
-                            string user = listView1.CheckedItems[i].SubItems[7].Text;
-                            string pass = listView1.CheckedItems[i].SubItems[8].Text;
+                        string ip = listView1.CheckedItems[i].SubItems[6].Text;
+                        string user = listView1.CheckedItems[i].SubItems[7].Text;
+                        string pass = listView1.CheckedItems[i].SubItems[8].Text;
 
-                    UpdateTxtMethod(xuhao, cookie, ip, user, pass);
-                    listView1.CheckedItems[i].SubItems[5].Text = zhibojianname;
-                   
+
+                        // this.BeginInvoke(updateTxt, cookie, ip, user, pass);
+                        UpdateTxtMethod(xuhao, cookie, ip, user, pass);
+                        
+                        listView1.CheckedItems[i].SubItems[5].Text = zhibojianname;
                     }
+                });
+
+
+               
                
 
             }
@@ -190,8 +168,12 @@ namespace douyinSelenium
         {
             status = false; 
             function.KillProcess("chromedriver");
-            function.KillProcess("chrome"); 
-            
+            function.KillProcess("chrome");
+            for (int i = 0; i < listView1.CheckedItems.Count; i++)
+            {
+                listView1.CheckedItems[i].SubItems[5].Text = "已退出链接";
+
+            }
 
         }
 
@@ -279,20 +261,23 @@ namespace douyinSelenium
         Dictionary<int, string> browserDict=new Dictionary<int, string>();
         private void button4_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text=="")
-            {
-                MessageBox.Show("请输入链接");
-                return;
-            }
 
-
-            status = true;
             foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
             {
                 currentPid.Add(p.Id);
-                
+
             }
-            addweb();
+            //addweb();
+
+            if (thread1 == null || !thread1.IsAlive)
+            {
+                thread1 = new Thread(main);
+                thread1.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+
+
         }
 
         private void listView1_DragDrop(object sender, DragEventArgs e)
@@ -301,7 +286,14 @@ namespace douyinSelenium
             StreamReader sr = new StreamReader(filePath, Encoding.GetEncoding("utf-8"));
             string html = sr.ReadToEnd();
             string[] text = html.Split(new string[] { "sid_guard=" }, StringSplitOptions.None);
-            for (int i = 0; i < text.Length; i++)
+
+
+            int count = text.Length;
+            if(count>201)
+            {
+                count = 200;
+            }
+            for (int i = 0; i < count; i++)
             {
                 if (text[i].Trim() != "")
                 {
@@ -329,32 +321,71 @@ namespace douyinSelenium
                 e.Effect = DragDropEffects.None;
         }
 
+
+
+        public void main()
+        {
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("请输入链接");
+                return;
+            }
+            
+
+            status = true;
+
+
+            threadcount = 0;
+
+            for (int i = 0; i < listView1.CheckedItems.Count; i++)
+            {
+                if (status == false)
+                    return;
+                listView1.CheckedItems[i].SubItems[5].Text = "正在进入链接...";
+
+                string xuhao = listView1.CheckedItems[i].SubItems[0].Text;
+                string cookies = listView1.CheckedItems[i].SubItems[4].Text;
+
+                string ip = listView1.CheckedItems[i].SubItems[6].Text;
+                string user = listView1.CheckedItems[i].SubItems[7].Text;
+                string pass = listView1.CheckedItems[i].SubItems[8].Text;
+
+
+                var t1 = new Thread(() => test(textBox1.Text, cookies, ip, user, pass,xuhao));
+
+                t1.Start();
+                threadcount++;
+                Thread.Sleep(100);
+                while (threadcount >9)
+                {
+                    Application.DoEvents();
+                }
+
+            }
+
+        }
+
+        Thread thread1;
         private void button6_Click(object sender, EventArgs e)
         {
+            foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
+            {
+                currentPid.Add(p.Id);
+
+            }
+
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(login);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
-
-
-
-            //进入链接
-            if (textBox1.Text == "")
+            if (thread1 == null || !thread1.IsAlive)
             {
-                MessageBox.Show("请输入链接");
-                return;
+                thread1 = new Thread(main);
+                thread1.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
-
-
-            status = true;
-            foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
-            {
-                currentPid.Add(p.Id);
-
-            }
-            addweb();
         }
 
         public void login()
@@ -403,11 +434,221 @@ namespace douyinSelenium
             }
         }
 
-      
+        Dictionary<string,string> exitdic= new Dictionary<string,string>();
+        Dictionary<string, string> handledic = new Dictionary<string, string>();
+        void test(string url,string cookies,string ip,string user,string pass,string xuhao)
+        {
+            int time = 0;
+            try
+            {
+                Control.CheckForIllegalCrossThreadCalls = false;
+                IWebDriver driver = GetChromeBrowser(ip,user,pass);
+                string[] cookieall = cookies.Split(new string[] { ";" }, StringSplitOptions.None);
+                if (textBox1.Text.Contains("live.douyin"))
+                {
+                    driver.Navigate().GoToUrl("https://www.douyin.com/");
+                }
+                else
+                {
+                    driver.Navigate().GoToUrl("https://live.douyin.com/");
+                }
+                
+                foreach (var item in cookieall)
+                {
+                    string[] cookie = item.Split(new string[] { "=" }, StringSplitOptions.None);
+                    if (cookie.Length > 1)
+                    {
+                        Cookie cook = new Cookie(cookie[0].Trim(), cookie[1].Trim(), "", DateTime.Now.AddDays(1));
+                        driver.Manage().Cookies.AddCookie(cook);
+                    }
 
-        private void button1_Click(object sender, EventArgs e)
+
+                }
+
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Minimize();
+               
+                foreach (var item in cookieall)
+                {
+                    string[] cookie = item.Split(new string[] { "=" }, StringSplitOptions.None);
+                    if (cookie.Length > 1)
+                    {
+                        Cookie cook = new Cookie(cookie[0].Trim(), cookie[1].Trim(), "", DateTime.Now.AddDays(1));
+                        driver.Manage().Cookies.AddCookie(cook);
+                    }
+
+
+                }
+                driver.Navigate().GoToUrl(url);
+
+                foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcessesByName("chrome"))
+                {
+
+                    if (!currentPid.Contains(p.Id))
+                    {
+                        currentPid.Add(p.Id);
+
+                        browserDict.Add(p.Id, xuhao);
+                        //MessageBox.Show(p.Id.ToString() + "  " + xuhao);
+                    }
+
+                }
+
+             
+
+                if (exitdic.ContainsKey(xuhao))
+                {
+                    exitdic[xuhao]="0";
+                   
+                }
+                else
+                {
+                   
+                   exitdic.Add(xuhao, "0");
+                }
+
+                if (!handledic.ContainsKey(xuhao))
+                {
+                    handledic.Add(xuhao, driver.CurrentWindowHandle);
+                }
+
+                
+              
+               
+
+            
+
+
+
+                string html = driver.PageSource;
+                zhibojianname = Regex.Match(html, @"<h1 class=""([\s\S]*?)>([\s\S]*?)</h1>").Groups[2].Value;
+                threadcount = threadcount - 1;
+                if (zhibojianname == "")
+                {
+                    zhibojianname = "进入链接成功";
+                }
+
+                for (int i = 0; i < listView1.CheckedItems.Count; i++)
+                {
+                    if (listView1.CheckedItems[i].SubItems[5].Text == "正在进入链接...")
+                    {
+                        listView1.CheckedItems[i].SubItems[5].Text = zhibojianname;
+                    }
+                }
+
+                //var g = Guid.NewGuid();
+                //IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                //js.ExecuteScript($"document.title = '{g}'");
+                //心跳包定时刷新
+                while (true)
+                {
+                    if (time == 300)
+                    {
+                        driver.Navigate().Refresh();
+                        time = 0;
+                    }
+                    time = time + 1;
+
+                    if (exitdic[xuhao] == "1")
+                    {
+                        driver.Manage().Window.Minimize();
+                        driver.Quit();
+                    }
+                    if (exitdic[xuhao] == "2")
+                    {
+
+                        driver.Close();
+                    }
+                    Thread.Sleep(1000);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+               //MessageBox.Show(ex.ToString()) ;
+            }
+        }
+        public static string Ex_Proxy_Name = "proxy.zip";
+
+     
+        public static IWebDriver GetChromeBrowser(string ip,string user,string pass)
         {
             
+
+            var options = new ChromeOptions();
+           // options.AddArguments("--disable-notifications");
+           //options.AddArguments("--no-sandbox");
+           // options.AddArguments("--disable-dev-shm-usage");
+           // options.UnhandledPromptBehavior = UnhandledPromptBehavior.Dismiss;
+           // //chromeoptions.AddArguments("--remote-debugging-port=9222");
+           options.BinaryLocation = "Chrome/Application/chrome.exe";
+            var chromeDriverService = ChromeDriverService.CreateDefaultService(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            chromeDriverService.HideCommandPromptWindow = true;
+
+
+
+            
+              ChromeDriver browser = null;
+
+
+            //设置IP
+            
+            options.AddArguments(ip);
+            bool isproxysetting = true;
+            isproxysetting = function.Rebuild_Extension_Proxy(user, pass);
+            if (isproxysetting)
+            {
+                options = new ChromeOptions();
+                options.Proxy = null;
+                options.AddArguments("--proxy-server=" + ip);
+                options.AddExtension(Ex_Proxy_Name);
+
+                options.AddArguments("--disable-notifications");
+                options.AddArguments("--no-sandbox");
+                options.AddArguments("--disable-dev-shm-usage");
+                options.UnhandledPromptBehavior = UnhandledPromptBehavior.Dismiss;
+                //chromeoptions.AddArguments("--remote-debugging-port=9222");
+                options.BinaryLocation = "Chrome/Application/chrome.exe";
+                browser = new ChromeDriver(chromeDriverService, options);
+
+            }
+            else
+            {
+                browser = new ChromeDriver(chromeDriverService, options);
+            }
+
+
+
+            //int nCount = 0;
+            //while (browser == null && nCount < 5)
+            //{
+
+            //    try
+            //    {
+            //        browser = new ChromeDriver(chromeDriverService, options, TimeSpan.FromSeconds(180));
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine("Error initializing chrome browser: " + ex.Message);
+            //    }
+            //    nCount++;
+            //}
+
+
+
+
+          
+            return browser;
+        }
+
+
+
+      static  int threadcount = 0;
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
 
             for (int i = 0; i < listView1.Items.Count; i++)
             {
@@ -448,22 +689,24 @@ namespace douyinSelenium
             {
                 if (listView1.SelectedItems[i].Checked == true)
                 {
-                   string xuhao=listView1.SelectedItems[i].SubItems[0].Text;
-                
-                    foreach (int pid in browserDict.Keys)
-                    {
-                        if(browserDict[pid]==xuhao)
-                        {
-                           
-                            KillProcExec(pid);
-                        }
-                    }
+                    string xuhao = listView1.SelectedItems[i].SubItems[0].Text;
 
+                    //foreach (int pid in browserDict.Keys)
+                    //{
+                    //    if (browserDict[pid] == xuhao)
+                    //    {
 
+                    //        KillProcExec(pid);
+                    //    }
+                    //}
+
+                    exitdic[xuhao] = "1";
 
                     listView1.SelectedItems[i].SubItems[5].Text = "已退出";
                 }
             }
+
+           
         }
 
         public bool KillProcExec(int procId)
@@ -532,7 +775,7 @@ namespace douyinSelenium
         List<int> hwndlist=new List<int>(); 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            
+
             if (checkBox1.Checked == true)
             {
                 foreach (int item in hwndlist)
@@ -551,7 +794,7 @@ namespace douyinSelenium
                 {
                     if (pr.ProcessName == "chrome.exe" || pr.ProcessName == "chrome")
                     {
-                        
+
                         hWnd = pr.MainWindowHandle.ToInt32();
                         hwndlist.Add(hWnd);
                         ShowWindow(hWnd, SW_HIDE);
@@ -559,6 +802,43 @@ namespace douyinSelenium
                 }
 
             }
+        }
+
+        private void 主控端_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+        }
+
+       
+        private void 隐藏窗口ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+            for (int i = 0; i < listView1.SelectedItems.Count; i++)
+            {
+                if (listView1.SelectedItems[i].Checked == true)
+                {
+                    string xuhao = listView1.SelectedItems[i].SubItems[0].Text;
+
+
+                    exitdic[xuhao] = "2";
+
+                   
+                }
+            }
+
+
+
+
         }
     }
 }

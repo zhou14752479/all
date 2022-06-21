@@ -418,6 +418,8 @@ namespace 抖音账号功能检测
 
         List<string> list = new List<string>();
 
+
+        Dictionary<string, string> dic = new Dictionary<string, string>();
         private void listView1_DragDrop(object sender, DragEventArgs e)
         {
             string filePath = ((Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
@@ -425,10 +427,17 @@ namespace 抖音账号功能检测
             StreamReader sr = new StreamReader(filePath, Encoding.GetEncoding("utf-8"));
             //一次性读取完 
             string html = sr.ReadToEnd();
+           
             ahtml = html;
+
             MatchCollection sessionid = Regex.Matches(html, @"sessionid=([\s\S]*?);");
+            MatchCollection cookies = Regex.Matches(html+ "sid_guard=", @"sid_guard=([\s\S]*?)ssid_ucp_sso_v1=([\s\S]*?);");
+
             sr.Close();  //只关闭流
             sr.Dispose();   //销毁流内存
+
+           // MessageBox.Show(cookies.Count.ToString());
+            //MessageBox.Show(sessionid.Count.ToString());
             if (sessionid.Count > 0)
             {
                 for (int i = 0; i < sessionid.Count; i++)
@@ -436,6 +445,7 @@ namespace 抖音账号功能检测
                     if (!list.Contains(sessionid[i].Groups[1].Value))
                     {
                         list.Add(sessionid[i].Groups[1].Value);
+                        dic.Add(sessionid[i].Groups[1].Value, "sid_guard="+cookies[i].Groups[1].Value+ "ssid_ucp_sso_v1=" + cookies[i].Groups[2].Value);
                         ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
                         lv1.SubItems.Add(sessionid[i].Groups[1].Value);
                         lv1.SubItems.Add("");
@@ -530,18 +540,13 @@ namespace 抖音账号功能检测
             for (int i = 0; i < listView1.Items.Count; i++)
             {
                
-                string nickname = listView1.Items[i].SubItems[2].Text;
-                if(nickname=="")
-                {
-                    MessageBox.Show("请先更新账号信息");
-                    return;
-                }
+                string token = listView1.Items[i].SubItems[1].Text;
                 try
                 {
                    
-                    if(!nicklist.Contains(nickname))
+                    if(!nicklist.Contains(token))
                     {
-                        nicklist.Add(nickname);
+                        nicklist.Add(token);
                     }
                     else
                     {
@@ -572,15 +577,54 @@ namespace 抖音账号功能检测
 
         private void button7_Click(object sender, EventArgs e)
         {
-          
-            string[] text = ahtml.Split(new string[] { "sid_guard=" }, StringSplitOptions.None);
-           
             string path = AppDomain.CurrentDomain.BaseDirectory + DateTime.Now.ToString("yyyy年MM月dd日HH时mm分ss秒") + ".txt";
-         
-            System.IO.File.WriteAllText(path,ahtml, Encoding.UTF8);
-            MessageBox.Show("文件导出成功!数量" + (text.Length-1).ToString() + " 文件地址:" + path);
+            int c = 0;
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+
+                string token = listView1.Items[i].SubItems[1].Text;
+                string nickname = listView1.Items[i].SubItems[2].Text;
+                try
+                {
+                    if (nickname!="已掉线")
+                    {
+                        c = c + 1;
+                        FileStream fs1 = new FileStream(path, FileMode.Append, FileAccess.Write);//创建写入文件 
+                        StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                        sw.WriteLine(dic[token]);
+                        sw.Close();
+                        fs1.Close();
+                        sw.Dispose();
+                    }
 
 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString()); ;
+                }
+
+            }
+            
+           
+       
+            MessageBox.Show("文件导出成功!数量" + c.ToString() + " 文件地址:" + path);
+
+
+        }
+
+        private void 抖音账号功能检测_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace douyinSelenium
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 主控端());
+            Application.Run(new 卡密());
         }
     }
 }

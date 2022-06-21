@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using SharpCompress.Common;
 using System.Threading;
 using System.Net;
+using SharpCompress.Writer;
 
 namespace 主程序202202
 {
@@ -21,6 +22,19 @@ namespace 主程序202202
         public 文件解压缩处理()
         {
             InitializeComponent();
+        }
+
+        public static void ZipCompress(string filesPath, string tarFile)
+        {
+ 
+            using (var zip = File.OpenWrite(tarFile))
+            using (var zipWriter = WriterFactory.Open(zip, ArchiveType.Tar, CompressionType.GZip))
+            {
+                //foreach (var filePath in filesList)
+                //{
+                zipWriter.WriteAll(filesPath, "*", SearchOption.AllDirectories);
+                //}
+            }
         }
 
 
@@ -82,6 +96,9 @@ namespace 主程序202202
         }
         #endregion
 
+   
+
+
 
         List<string> finishes = new List<string>();
       
@@ -126,9 +143,16 @@ namespace 主程序202202
 
                         shaixaunfile(directoryPath, Path.GetFileNameWithoutExtension(tarFilePath));
 
+
+
                         if (checkBox1.Checked == true)
                         {
                             File.Delete(tarFilePath);
+                        }
+                       // MessageBox.Show(Path.GetFileNameWithoutExtension(tarFilePath));
+                        if(checkBox2.Checked==true)
+                        {
+                            ZipCompress(AppDomain.CurrentDomain.BaseDirectory+ "ZORRO//"+ Path.GetFileNameWithoutExtension(tarFilePath), AppDomain.CurrentDomain.BaseDirectory+ Path.GetFileNameWithoutExtension(tarFilePath)+".tar");
                         }
                     }
                     catch (Exception)
@@ -363,13 +387,18 @@ namespace 主程序202202
                     return;
                 }
 
-                textBox1.Text = dialog.SelectedPath;
+                textBox1.Text = dialog.SelectedPath+"\\";
             }
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+          //  ZipCompress(textBox1.Text,"F://a.tar");
         }
     }
 }

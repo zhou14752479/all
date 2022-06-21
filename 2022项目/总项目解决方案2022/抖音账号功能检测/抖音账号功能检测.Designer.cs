@@ -214,6 +214,7 @@
             this.Name = "抖音账号功能检测";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "抖音账号功能检测";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.抖音账号功能检测_FormClosing);
             this.Load += new System.EventHandler(this.抖音账号功能检测_Load);
             this.ResumeLayout(false);
 
