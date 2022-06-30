@@ -88,5 +88,15 @@ namespace 基鹿工具箱
            
            
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count == 0)
+                return;
+           
+          string html=  util.delicon(listView1.SelectedItems[0].Text);
+            MessageBox.Show(html);
+            button3.PerformClick();
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace 主程序202206
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 文本关键词替换());
+            Application.Run(new 代理IP提取());
         }
     }
 }

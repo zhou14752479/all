@@ -63,13 +63,11 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("宋体", 10F);
             this.radioButton1.Location = new System.Drawing.Point(12, 12);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(221, 18);
             this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "福建幼儿园350628198908185048";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -87,12 +85,14 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
             this.radioButton3.Font = new System.Drawing.Font("宋体", 10F);
             this.radioButton3.Location = new System.Drawing.Point(12, 89);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(249, 18);
             this.radioButton3.TabIndex = 4;
-            this.radioButton3.Text = "xiaoben365福建352124197908201612";
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "xiaoben365陕西61272519960129422X";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
@@ -125,6 +125,7 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "我的下载";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox2
@@ -135,6 +136,7 @@
             this.textBox2.Size = new System.Drawing.Size(232, 101);
             this.textBox2.TabIndex = 8;
             this.textBox2.Text = resources.GetString("textBox2.Text");
+            this.textBox2.Visible = false;
             // 
             // 客户文档下载
             // 

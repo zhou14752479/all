@@ -24,6 +24,7 @@ namespace 基鹿工具箱
 
         private void button1_Click(object sender, EventArgs e)
         {
+           
             tabControl1.SelectedIndex = 0;
         }
 
@@ -114,6 +115,8 @@ namespace 基鹿工具箱
                 {
                     Util.expiretime = "非会员";
                 }
+
+                //Util.expiretime = "2023-01-01";
                 label4.Text = "有效期至:" + Util.expiretime;
             }
             catch (Exception ex)
@@ -399,11 +402,11 @@ namespace 基鹿工具箱
                 dataGridView1.RowsDefaultCellStyle.Font = new Font
                     ("宋体", 11, FontStyle.Regular);
                 dataGridView1.DataSource = dt;
-                dataGridView1.Columns["ci"].HeaderText = "相关搜索词";
-                dataGridView1.Columns["ss_zs"].HeaderText = "搜索指数";
-                dataGridView1.Columns["fd"].HeaderText = "搜索增长幅度";
-                dataGridView1.Columns["good_zs"].HeaderText = "商品指数";
-                dataGridView1.Columns["gx_zs"].HeaderText = "供需指数";
+                dataGridView1.Columns["ci"].HeaderText = "关键词";
+                dataGridView1.Columns["ss_zs"].HeaderText = "AI搜索值";
+                dataGridView1.Columns["fd"].HeaderText = "AI搜索变化率";
+                dataGridView1.Columns["good_zs"].HeaderText = "AI商品值";
+                dataGridView1.Columns["gx_zs"].HeaderText = "机会指数";
                 dataGridView1.Columns["pp"].HeaderText = "是否匹配";
                 dataGridView1.Columns["copy"].HeaderText = "复制关键词";
 
@@ -494,40 +497,16 @@ namespace 基鹿工具箱
             textBox3.Text = str;
         }
 
-        private void button24_Click(object sender, EventArgs e)
-        {
-            button23.BackColor = Color.White;
-            button24.BackColor = Color.DodgerBlue;
-            button25.BackColor = Color.White;
-
-            button23.ForeColor = Color.Black;
-            button24.ForeColor = Color.White;
-            button25.ForeColor = Color.Black;
-        }
+      
 
         private void button23_Click(object sender, EventArgs e)
         {
             chart1.ChartAreas[0].AxisX.Minimum = DateTime.Now.AddDays(-30).ToOADate();
             
-            button23.BackColor = Color.DodgerBlue;
-            button24.BackColor = Color.White;
-            button25.BackColor = Color.White;
-
-            button23.ForeColor = Color.White;
-            button24.ForeColor = Color.Black;
-            button25.ForeColor = Color.Black;
+          
         }
 
-        private void button25_Click(object sender, EventArgs e)
-        {
-            button23.BackColor = Color.White;
-            button24.BackColor = Color.White;
-            button25.BackColor = Color.DodgerBlue;
-
-            button23.ForeColor = Color.Black;
-            button24.ForeColor = Color.Black;
-            button25.ForeColor = Color.White;
-        }
+       
 
 
 
@@ -660,27 +639,41 @@ namespace 基鹿工具箱
             dt.Columns.Add("时间", typeof(string));
             dt.Columns.Add("销量", typeof(string));
 
+            Dictionary<DateTime, int> dic1Asc = util.reviewtimedic.OrderBy(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
 
-            foreach (DateTime key in util.reviewtimedic.Keys)
+            foreach (DateTime key in dic1Asc.Keys)
             {
                 DataRow dr = dt.NewRow();
-                dr[0] = key;
-                dr[1] = util.reviewtimedic[key];
+                dr[0] = key.ToString("yyyy-MM-dd");
+                dr[1] = util.reviewtimedic[key].ToString();
                 dt.Rows.Add(dr);
             }
 
-
+          
             Util.DataTableToExcel(dt, "sheet1", true);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+
+            if(dateTimePicker1.Value>dateTimePicker2.Value)
+            {
+                MessageBox.Show("错误：起始时间大于结束时间");
+                return;
+            }
+
             chart1.ChartAreas[0].AxisX.Minimum = dateTimePicker1.Value.ToOADate();
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            chart1.ChartAreas[0].AxisX.Maximum = dateTimePicker1.Value.ToOADate();
+            if (dateTimePicker1.Value > dateTimePicker2.Value)
+            {
+                MessageBox.Show("错误：起始时间大于结束时间");
+                return;
+            }
+            chart1.ChartAreas[0].AxisX.Maximum = dateTimePicker2.Value.ToOADate();
+
         }
 
         private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -729,6 +722,8 @@ namespace 基鹿工具箱
             else if (listView2.SelectedItems[0].Name.Contains("生意参谋指数"))
             {
                 tabControl1.SelectedIndex = 12;
+               
+                
             }
             else
             {
@@ -742,14 +737,34 @@ namespace 基鹿工具箱
         {
 
         }
+
+
+       public static string gs = "";
         public void zszhuanhua()
         {
+            if (gs == "")
+            {
+                gs = Util.GetZs(zs);
+            }
+            string formula = gs;
             string[] text = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             foreach (var item in text)
             {
                 if(item!="")
                 {
-                    textBox5.Text += Util.GetZs(zs, item) + "\r\n" ;
+                    try
+                    {
+                        // string formula = "(2.118*10)*x+4.03x+(2.207*10)";
+
+                        formula = formula.Replace("x", item);
+                        var result = new System.Data.DataTable().Compute(formula, "");
+                        textBox5.Text += Convert.ToDouble(result).ToString("0.00") + "\r\n";
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
                 }
 
             }
@@ -758,6 +773,7 @@ namespace 基鹿工具箱
         }
         private void button19_Click(object sender, EventArgs e)
         {
+
             button19.Text = "正在转换...";
             button19.Enabled = false;
             textBox5.Text = "";
@@ -780,6 +796,7 @@ namespace 基鹿工具箱
             label11.Text = "交易指数";
             label16.Text = "交易金额";
             zs = "jyzs";
+            gs = Util.GetZs(zs);
         }
 
         private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -792,7 +809,7 @@ namespace 基鹿工具箱
             label11.Text = "搜索指数";
             label16.Text = "搜索人数";
             zs = "jyzs";
-            // zs = "sszs";
+            gs = Util.GetZs(zs);
         }
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -805,7 +822,7 @@ namespace 基鹿工具箱
             label11.Text = "供应商指数";
             label16.Text = "商家数";
             zs = "jyzs";
-            //zs = "gyszs";
+            gs = Util.GetZs(zs);
         }
 
         private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -818,7 +835,7 @@ namespace 基鹿工具箱
             label11.Text = "商品指数";
             label16.Text = "在线商品数";
             zs = "jyzs";
-            // zs = "spzs";
+            gs = Util.GetZs(zs);
         }
 
         private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -830,7 +847,8 @@ namespace 基鹿工具箱
             linkLabel11.LinkColor = Color.Red;
             label11.Text = "支付转化率指数";
             label16.Text = "支付转化率";
-            zs = "zfzhzs";
+            zs = "zfzs";
+            gs = Util.GetZs(zs);
         }
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

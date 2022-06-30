@@ -349,9 +349,9 @@ namespace 主程序202203
 
                         string url = "https://capi.tianyancha.com/cloud-tempest/app/searchCompany";
                         string postdata = "{\"sortType\":0,\"pageSize\":100,\"pageNum\":" + i + ",\"word\":\"" + textBox1.Text.Trim() + "\",\"allowModifyQuery\":1" + sb.ToString() + "}";
-                        textBox1.Text = postdata;
-                        
+                      
                         string html2 = PostUrlDefault(url, postdata, "");
+                        //textBox3.Text = html2;
 
                         if (html2.Contains("登录后可查看更多公司的数据") || html2.Contains("开通VIP"))
                         {
@@ -367,6 +367,26 @@ namespace 主程序202203
 
                         string html = Regex.Match(html2, @"companyList([\s\S]*?)brandAndAgencyList").Groups[1].Value;
                         MatchCollection names = Regex.Matches(html, @"{""id"":([\s\S]*?),""name"":""([\s\S]*?)""");
+
+                        string totalPage = Regex.Match(html2, @"""companyTotalPage"":([\s\S]*?),").Groups[1].Value;
+
+
+                        //搜索结果
+                        try
+                        {
+                            label9.Text = "搜索结果：" + Convert.ToInt32(totalPage) * 100;
+                            if (names.Count < 100 && names.Count > 0)
+                            {
+                                label9.Text = "搜索结果：" + (Convert.ToInt32(totalPage) - 1) * 100 + names.Count;
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            
+                        }
+
+
 
                         if (names.Count == 0)
                         {
@@ -385,8 +405,22 @@ namespace 主程序202203
                             string bank = Regex.Match(ahtml, @"""bank"":""([\s\S]*?)""").Groups[1].Value;
                             string bankAccount = Regex.Match(ahtml, @"""bankAccount"":""([\s\S]*?)""").Groups[1].Value;
                             textBox2.Text = "正在获取：" + name;
-                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
 
+
+                            //筛选电话
+                            if (radioButton1.Checked==true && phone.Trim()=="")
+                            {
+                                textBox2.Text =  name+"：号码为空跳过....";
+                                continue;
+                            }
+                            if (radioButton2.Checked == true && phone.Trim() != "")
+                            {
+                                textBox2.Text = name + "：号码不为空跳过....";
+                                continue;
+                            }
+
+
+                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(name);
                             lv1.SubItems.Add(taxnum);
                             lv1.SubItems.Add(address);
@@ -394,9 +428,44 @@ namespace 主程序202203
                             lv1.SubItems.Add(bank);
                             lv1.SubItems.Add(bankAccount);
 
-                            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+
+
+                            //筛选关键词导出文本
+                            string filename = "data";
+                            if (checkBox2.Checked == true)
+                            {
+                                if (bank.Contains("建设") || bank.Contains("建行"))
+                                {
+                                    filename = "建行";
+                                }
+                                else if (bank.Contains("浦发") || bank.Contains("浦东") || bank.Contains("浦行"))
+                                {
+                                    filename = "浦发";
+                                }
+                                else if (bank.Contains("招商") || bank.Contains("招行"))
+                                {
+                                    filename = "招商";
+
+                                }
+                                else
+                                {
+                                    filename = "其他";
+                                }
+                            }
+                            Thread.Sleep(2000);
+                            if (bank=="")
+                            {
+                                continue;
+                            }
+
+                            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\"+filename+".txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                             StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-                            sw.WriteLine(name + "-" + taxnum + "-" + address + "-" + phone + "-" + bank + "-" + bankAccount);
+
+                            //旧
+                            //sw.WriteLine(name + "-" + taxnum + "-" + address + "-" + phone + "-" + bank + "-" + bankAccount);
+                            //新
+
+                            sw.WriteLine(name + "----" + bank + "----" + bankAccount);
                             sw.Close();
                             fs1.Close();
                             sw.Dispose();
@@ -412,7 +481,7 @@ namespace 主程序202203
                         }
 
 
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
 
                     }
                     catch (Exception ex)

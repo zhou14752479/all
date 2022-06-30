@@ -221,6 +221,13 @@ namespace 圆通网点管家
                     string html = PostUrlDefault(url,postdata,"");
                     //MatchCollection opOrgName = Regex.Matches(html, @"""opOrgName"":""([\s\S]*?)""");
                     //MessageBox.Show(html);
+
+
+                    string biaoshi = "M";
+                    if(html.Contains("ytoRecipientSecret"))
+                    {
+                        biaoshi = "隐";
+                    }
                     MatchCollection opTime = Regex.Matches(html, @"""opTime"":""([\s\S]*?)""");
                     MatchCollection opEmpName = Regex.Matches(html, @"""opEmpName"":""([\s\S]*?)""");
 
@@ -249,6 +256,7 @@ namespace 圆通网点管家
                     }
 
                     lv1.SubItems.Add(searchThreeCode);
+                    lv1.SubItems.Add(biaoshi);
                     Thread.Sleep(500);
                 }
             }

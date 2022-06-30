@@ -227,9 +227,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
+            this.label1.Size = new System.Drawing.Size(93, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "掌微采集地图版";
+            this.label1.Text = "思忆地图采集";
             // 
             // statusStrip1
             // 

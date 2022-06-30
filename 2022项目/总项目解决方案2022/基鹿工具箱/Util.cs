@@ -616,6 +616,15 @@ namespace 基鹿工具箱
         }
 
 
+        public string delicon(string filename)
+        {
+           
+            string url = "http://" + ipdomain + "/jilusoft/delicon.php?filename="+ System.Web.HttpUtility.UrlEncode(filename);
+            string html = GetUrl(url, "utf-8");
+           
+            return html;
+        }
+
         /// <summary>
         /// 基于Sha1的自定义加密字符串方法：输入一个字符串，返回一个由40个字符组成的十六进制的哈希散列（字符串）。
         /// </summary>
@@ -970,33 +979,33 @@ namespace 基鹿工具箱
 
         }
 
-        public static string GetZs(string dbname,string a_zs)
+        public static string GetZs(string gongshi)
         {
 
             try
             {
-
+               
                 MySqlConnection mycon = new MySqlConnection(conn);
                 mycon.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select b_zs from "+dbname+" where a_zs=" + a_zs + " limit 1  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+                MySqlCommand cmd = new MySqlCommand("select * from gs  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
 
 
                 MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
 
                 if(reader.Read())
                 {
-                    string b_zs = reader["b_zs"].ToString().Trim();
+                    string gs_v = reader[gongshi].ToString().Trim();
                     mycon.Close();
                     reader.Close();
-                    return b_zs;
+                    return gs_v;
                 }
                 else
                 {
                    
                     mycon.Close();
                     reader.Close();
-                    return "转换失败，未匹配对应指数！";
+                    return "获取公式失败！";
                 }
                
 
@@ -1163,53 +1172,58 @@ namespace 基鹿工具箱
                         break;
                     for (int i = 0; i < skunames.Count; i++)
                     {
-                        
-                        string skuname="";
-                        DateTime skutime =Convert.ToDateTime( Convert.ToDateTime(times[i].Groups[1].Value).ToShortDateString());
-                        int quantity = Convert.ToInt32(quantitys[i].Groups[1].Value.Replace(".0",""));
 
-                        saledCount2 = saledCount2 + 1;
-                        if (!reviewtimedic.ContainsKey(skutime))
+                        try
                         {
-                            reviewtimedic.Add(skutime, 1);
-                        }
-                        else
-                        {
-                            reviewtimedic[skutime] = reviewtimedic[skutime] + 1;
-                        }
+                            string skuname = "";
+                            DateTime skutime = Convert.ToDateTime(Convert.ToDateTime(times[i].Groups[1].Value).ToShortDateString());
+                            int quantity = Convert.ToInt32(quantitys[i].Groups[1].Value.Replace(".0", ""));
 
-
-                        if (!skunames[i].Groups[1].Value.Contains("7C"))
-                        {
-                          
-                            saledCount = saledCount + quantity;
-                         
-
-
-                            string[] skus = skunames[i].Groups[1].Value.Split(new string[] { "#" }, StringSplitOptions.None);
-                            for (int a = 0; a < skus.Length; a++)
+                            saledCount2 = saledCount2 + 1;
+                            if (!reviewtimedic.ContainsKey(skutime))
                             {
-                                if (skus[a].Contains("3B"))
-                                {
-                                    skuname = skuname + skus[a].Replace("3B","");
-                                   
-                                }
-
-                            }
-
-
-                            if (!reviewcountdic.ContainsKey(skuname))
-                            {
-                                reviewcountdic.Add(skuname, quantity);
+                                reviewtimedic.Add(skutime, 1);
                             }
                             else
                             {
-                                reviewcountdic[skuname] = reviewcountdic[skuname] + quantity;
+                                reviewtimedic[skutime] = reviewtimedic[skutime] + 1;
                             }
 
-                            
+
+                            if (!skunames[i].Groups[1].Value.Contains("7C"))
+                            {
+
+                                saledCount = saledCount + quantity;
 
 
+
+                                string[] skus = skunames[i].Groups[1].Value.Split(new string[] { "#" }, StringSplitOptions.None);
+                                for (int a = 0; a < skus.Length; a++)
+                                {
+                                    if (skus[a].Contains("3B"))
+                                    {
+                                        skuname = skuname + skus[a].Replace("3B", "");
+
+                                    }
+
+                                }
+
+
+                                if (!reviewcountdic.ContainsKey(skuname))
+                                {
+                                    reviewcountdic.Add(skuname, quantity);
+                                }
+                                else
+                                {
+                                    reviewcountdic[skuname] = reviewcountdic[skuname] + quantity;
+                                }
+
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                           continue;
                         }
 
 
@@ -1224,7 +1238,7 @@ namespace 基鹿工具箱
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+               // MessageBox.Show(ex.ToString());
             }
             
         }

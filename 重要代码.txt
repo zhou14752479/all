@@ -470,3 +470,78 @@ if(listView1.Items.Count>2)
             string text2 = text1 + text[0];
             label8.Text = text2;
         }
+
+
+
+【jS滑块测试】
+function slide (id) {
+    var slider    = document.getElementById(id),
+        container = slider.parentNode;
+ 
+    var rect = slider.getBoundingClientRect(),
+        x0          = rect.x || rect.left,
+        y0          = rect.y || rect.top,
+        w           = container.getBoundingClientRect().width,
+        x1          = x0 + w,
+        y1          = y0;
+ 
+    var mousedown = document.createEvent("MouseEvents");
+    mousedown.initMouseEvent("mousedown", true, true, window, 0,
+        x0, y0, x0, y0, false, false, false, false, 0, null);
+    slider.dispatchEvent(mousedown);
+ 
+    var mousemove = document.createEvent("MouseEvents");
+    mousemove.initMouseEvent("mousemove", true, true, window, 0,
+        x1, y1, x1, y1, false, false, false, false, 0, null);
+    slider.dispatchEvent(mousemove);
+ 
+    /*var mouseup = document.createEvent("MouseEvents");
+    mouseup.initMouseEvent("mouseup", true, true, window, 0,
+        x1, y1, x1, y1, false, false, false, false, 0, null);
+    slider.dispatchEvent(mouseup);*/
+}
+slide('nc_1_n1z');
+
+nc_1_n1z是滑动按钮的ID  可以参考蓝奏登录
+
+【txt文本数据快速导入数据库】
+ public static void BCP_Mysql(string filename,string tablename)
+        {
+            //数据的存放路径
+            //string bcpFilePath = Path.Combine(Environment.CurrentDirectory, "test.txt");
+            string bcpFilePath = filename;
+            //数据库连接字符串
+            string strConnectionString = $"data source=47.96.189.55;database=titledb;user id=root;password=root;pooling=false;charset=utf8;port=3306";
+            //BULK INSERT语句（jyzs是我的数据库表的名称，TERMINATED代表文本中数据列是以逗号隔开的，TERMINATED代表文本中每一行对应数据库表的每一行
+            string strSqlCmd = $"LOAD DATA LOCAL INFILE '{bcpFilePath}' INTO TABLE "+tablename+" FIELDS TERMINATED BY ','  OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n'";
+            strSqlCmd = strSqlCmd.Replace(@"\", @"/");
+            IDbConnection Connection = new MySqlConnection();
+            Connection.ConnectionString = strConnectionString;
+            IDbCommand Command = new MySqlCommand();
+            Command.Connection = Connection;
+            Command.CommandText = strSqlCmd;
+            Command.CommandType = CommandType.Text;
+            Command.CommandTimeout = 0;
+            if (Connection.State != ConnectionState.Open)
+            {
+                try
+                {
+                    Connection.Open();
+
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return;
+                }
+            }
+            try
+            {
+                Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }

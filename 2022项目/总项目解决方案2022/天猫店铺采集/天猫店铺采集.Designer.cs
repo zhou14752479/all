@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,13 +52,19 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button8 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.button3);
@@ -70,7 +77,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(969, 134);
+            this.panel1.Size = new System.Drawing.Size(969, 165);
             this.panel1.TabIndex = 0;
             // 
             // label3
@@ -84,6 +91,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.label1);
@@ -94,6 +102,16 @@
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "筛选";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(264, 34);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(96, 25);
+            this.button7.TabIndex = 39;
+            this.button7.Text = "登录淘宝";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // textBox2
             // 
@@ -135,7 +153,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(181, 80);
+            this.button3.Location = new System.Drawing.Point(181, 114);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 29);
             this.button3.TabIndex = 34;
@@ -145,7 +163,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(337, 80);
+            this.button5.Location = new System.Drawing.Point(337, 114);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 29);
             this.button5.TabIndex = 33;
@@ -155,7 +173,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(259, 80);
+            this.button4.Location = new System.Drawing.Point(259, 114);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 29);
             this.button4.TabIndex = 32;
@@ -165,7 +183,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(103, 80);
+            this.button2.Location = new System.Drawing.Point(103, 114);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 29);
             this.button2.TabIndex = 31;
@@ -175,7 +193,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(25, 80);
+            this.button6.Location = new System.Drawing.Point(25, 114);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 29);
             this.button6.TabIndex = 30;
@@ -204,7 +222,7 @@
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.Info;
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox4.Location = new System.Drawing.Point(0, 546);
+            this.textBox4.Location = new System.Drawing.Point(0, 646);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(969, 97);
@@ -218,15 +236,17 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader7});
+            this.columnHeader7,
+            this.columnHeader6,
+            this.columnHeader8});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("宋体", 10F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 134);
+            this.listView1.Location = new System.Drawing.Point(0, 165);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(969, 412);
+            this.listView1.Size = new System.Drawing.Size(969, 481);
             this.listView1.TabIndex = 221;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -261,15 +281,41 @@
             this.columnHeader7.Text = "店铺销量";
             this.columnHeader7.Width = 100;
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "最后评论时间";
+            this.columnHeader6.Width = 110;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "是否新宝贝";
+            this.columnHeader8.Width = 100;
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(337, 70);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 42;
+            this.button8.Text = "导入店铺表";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(20, 70);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(311, 21);
+            this.textBox5.TabIndex = 41;
             // 
             // 天猫店铺采集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 643);
+            this.ClientSize = new System.Drawing.Size(969, 743);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.panel1);
@@ -313,5 +359,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

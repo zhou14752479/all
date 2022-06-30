@@ -1258,7 +1258,7 @@ namespace 美团
 
                
                 string macmd5 = method.GetMD5(method.GetMacAddress());
-                long expiretime = Convert.ToInt64(method.GetTimeStamp()) + 365 * 24 * 3600;
+                //long expiretime = Convert.ToInt64(method.GetTimeStamp()) + 365 * 24 * 3600;
                 if (ExistINIFile())
                 {
                     string key = IniReadValue("values", "key");
@@ -1291,12 +1291,12 @@ namespace 美团
                             str = method.Base64Decode(Encoding.Default, str);
                             string index = str.Remove(str.Length - 16, 16);
                             string time = str.Substring(str.Length - 10, 10);
-                            if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
+                            if (Convert.ToInt64(method.GetTimeStamp()) < Convert.ToInt64(time))
                             {
                                 if (index == "yi" || index == "san")//美团一年
                                 {
 
-                                    IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
+                                    IniWriteValue("values", "key", macmd5 + "asd147" + time);
 
                                     MessageBox.Show("激活成功");
                                     jihuo = true;
@@ -1323,7 +1323,7 @@ namespace 美团
                 else
                 {
                     string str = Interaction.InputBox("请购买激活码,使用正式版软件！\r\n\r\n无激活码点击确定免费试用", "激活软件", "", -1, -1);
-                    string fullstr = str;
+                    string fullstr = str.Trim();
                     if (login(fullstr))
                     {
                         jihuo = false;
@@ -1338,11 +1338,11 @@ namespace 美团
                         str = method.Base64Decode(Encoding.Default, str);
                         string index = str.Remove(str.Length - 16, 16);
                         string time = str.Substring(str.Length - 10, 10);
-                        if (Convert.ToInt64(method.GetTimeStamp()) - Convert.ToInt64(time) < 99999999)  //200秒内有效
+                        if (Convert.ToInt64(method.GetTimeStamp()) < Convert.ToInt64(time))
                         {
                             if (index == "yi" || index == "san")//美团一年
                             {
-                                IniWriteValue("values", "key", macmd5 + "asd147" + expiretime);
+                                IniWriteValue("values", "key", macmd5 + "asd147" + time);
 
                                 MessageBox.Show("激活成功");
                                 

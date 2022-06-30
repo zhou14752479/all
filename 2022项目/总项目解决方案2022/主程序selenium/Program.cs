@@ -16,7 +16,7 @@ namespace 主程序selenium
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 搜狐文章链接());
+            Application.Run(new 淘宝市场洞察搜索分析());
         }
     }
 }

@@ -183,7 +183,12 @@ namespace 主程序202104
                 MessageBox.Show("请导入店铺网址txt");
                 return;
             }
+            string ip = "";
 
+            if (textBox2.Text != "")
+            {
+                ip = method.GetUrl(textBox2.Text, "utf-8");
+            }
 
             StreamReader sr = new StreamReader(textBox1.Text, method.EncodingType.GetTxtType(textBox1.Text));
             //一次性读取完 
@@ -202,12 +207,8 @@ namespace 主程序202104
                 {
                     try
                     {
-                        string ip = "";
-
-                       if(textBox2.Text!="")
-                        {
-                            ip = method.GetUrl(textBox2.Text,"");
-                        }
+                      
+                       // MessageBox.Show(ip);
                         label2.Text = "正在抓取第：" + page + "页";
 
                         string shopid = Regex.Match(text[i], @"\d{4,}").Groups[0].Value;
@@ -223,12 +224,23 @@ namespace 主程序202104
                         MatchCollection prices = Regex.Matches(html, @"<div class=""row-price"">([\s\S]*?)</div>");
                         MatchCollection pinxiangs = Regex.Matches(html, @"<div class=""row-quality"">([\s\S]*?)</div>");
                         MatchCollection times = Regex.Matches(html, @"<div class=""add-time-box"">([\s\S]*?)</div>");
-                        if (names.Count == 0)
+
+                        //if (names.Count == 0)
+                        //{
+                        //    label2.Text = "采集结束";
+                        //    break;
+                        //}
+
+                        if (html.Contains("没有找到符合条件的商品"))
                         {
                             label2.Text = "采集结束";
                             break;
                         }
-
+                        //else if (names.Count == 0)
+                        //{
+                        //    page = page - 1;
+                        //    continue;
+                        //}
 
 
                         StringBuilder sb = new StringBuilder();
@@ -267,28 +279,28 @@ namespace 主程序202104
                             lv1.SubItems.Add(Regex.Replace(fees[j].Groups[1].Value.Trim(), "<[^>]+>", ""));
                             lv1.SubItems.Add(shopname);
                             lv1.SubItems.Add(Regex.Replace(times[j].Groups[1].Value.Trim(), "<[^>]+>", "").Replace("上书","").Trim());
-                            Thread t = new Thread(() =>
-                            {
-                                try
-                                {
+                            //Thread t = new Thread(() =>
+                            //{
+                            //    try
+                            //    {
 
-                                    string bhtml = PostUrl("https://app.kongfz.com/invokeBook/app/api/getItemInfo", "itemId=" + itemids[j].Groups[2].Value + "&shopId=" + shopid, "utf-8");
-                                    bhtml = method.Unicode2String(bhtml);
-                                    string dingjia = Regex.Match(bhtml, @"定价""([\s\S]*?)c"":""([\s\S]*?)""").Groups[2].Value.Trim().Replace("元", "");
-                                    string kucun = Regex.Match(bhtml, @"""stock"":""([\s\S]*?)""").Groups[1].Value.Trim();
-                                    lv1.SubItems.Add(dingjia);
-                                    lv1.SubItems.Add(kucun);
+                            //        string bhtml = PostUrl("https://app.kongfz.com/invokeBook/app/api/getItemInfo", "itemId=" + itemids[j].Groups[2].Value + "&shopId=" + shopid, "utf-8");
+                            //        bhtml = method.Unicode2String(bhtml);
+                            //        string dingjia = Regex.Match(bhtml, @"定价""([\s\S]*?)c"":""([\s\S]*?)""").Groups[2].Value.Trim().Replace("元", "");
+                            //        string kucun = Regex.Match(bhtml, @"""stock"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                            //        lv1.SubItems.Add(dingjia);
+                            //        lv1.SubItems.Add(kucun);
 
-                                }
-                                catch (Exception ex)
-                                {
-                                    lv1.SubItems.Add("");
-                                    lv1.SubItems.Add("");
-                                }
+                            //    }
+                            //    catch (Exception ex)
+                            //    {
+                            //        lv1.SubItems.Add("");
+                            //        lv1.SubItems.Add("");
+                            //    }
 
-                            });
-                            t.Start();
-
+                            //});
+                            //t.Start();
+                            //Thread.Sleep(100);
                             if (listView1.Items.Count > 2)
                             {
                                 this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
@@ -299,7 +311,7 @@ namespace 主程序202104
                             }
                             if (status == false)
                                 return;
-                            Thread.Sleep(100);
+                           
 
                         }
                         Thread.Sleep(1000);

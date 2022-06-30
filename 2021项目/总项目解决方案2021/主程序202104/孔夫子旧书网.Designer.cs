@@ -37,8 +37,6 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -86,9 +84,7 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
+            this.columnHeader8});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
@@ -118,15 +114,6 @@
             // 
             this.columnHeader8.Text = "上书时间";
             this.columnHeader8.Width = 100;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "定价";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "状态";
-            this.columnHeader10.Width = 100;
             // 
             // button3
             // 
@@ -248,6 +235,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(357, 21);
             this.textBox2.TabIndex = 311;
+            this.textBox2.Text = "http://dps.kdlapi.com/api/getdps/?orderid=985570729718884&num=1&signature=dhadaxd" +
+    "yyc4qvy8v6iq76mt2h39t8mu7&pt=1&sep=1";
             // 
             // label3
             // 
@@ -309,8 +298,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;

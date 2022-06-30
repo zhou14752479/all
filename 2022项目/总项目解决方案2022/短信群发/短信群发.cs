@@ -215,7 +215,7 @@ namespace 短信群发
 
         #endregion
 
-        public static string countvalue = "0";
+        public static string countvalue = "100";
         public static string user = "";
         // string username = "17331826223";
         string username = System.Web.HttpUtility.UrlEncode("景澜软件");

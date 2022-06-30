@@ -77,6 +77,8 @@
     <Content Include="index3_admin.aspx" />
     <Content Include="index5.aspx" />
     <Content Include="index6.aspx" />
+    <Content Include="index627.aspx" />
+    <Content Include="index627_admin.aspx" />
     <Content Include="index7.aspx" />
     <Content Include="index8.aspx" />
     <Content Include="index8_admin.aspx" />
@@ -136,6 +138,20 @@
     </Compile>
     <Compile Include="index6.aspx.designer.cs">
       <DependentUpon>index6.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index627.aspx.cs">
+      <DependentUpon>index627.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index627.aspx.designer.cs">
+      <DependentUpon>index627.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index627_admin.aspx.cs">
+      <DependentUpon>index627_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index627_admin.aspx.designer.cs">
+      <DependentUpon>index627_admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="index7.aspx.cs">
       <DependentUpon>index7.aspx</DependentUpon>

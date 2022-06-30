@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using System.Net;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
+using Microsoft.Web.WebView2.Core;
 
 namespace 驾校一点通
 {
@@ -82,8 +83,9 @@ namespace 驾校一点通
         string link = "";
         private void button1_Click(object sender, EventArgs e)
         {
-            //cookie = GetCookies("https://mnks.jxedt.com/ckm1/sxlx/");
-            cookie = "id58=CpQB22KQOGJXX9SQcMJTAg==; 58tj_uuid=28fbeee4-e2d3-4c03-a623-c876b3895812; new_uv=1; als=0; local_city=%E7%8E%89%E6%9E%97%E5%B8%82; local_city_pingying=%2Fgxyl%2F; Hm_lvt_e43feb296c32a4add052b7249ed6bf2b=1653618787,1653627221,1654428468; Hm_lpvt_e43feb296c32a4add052b7249ed6bf2b=1654428473";
+            
+            getcookies();
+           
             status = true;
             if (textBox1.Text=="")
             {
@@ -464,7 +466,7 @@ namespace 驾校一点通
             }
         }
 
-        private void 驾校一点通_Load(object sender, EventArgs e)
+        private  void 驾校一点通_Load(object sender, EventArgs e)
         {
             #region 通用检测
 
@@ -478,11 +480,16 @@ namespace 驾校一点通
             }
 
             #endregion
-            SetFeatures(11000);
-            webBrowser1.ScriptErrorsSuppressed = true;
-            webBrowser1.Navigate("https://mnks.jxedt.com/");
+
+            //await webView21.EnsureCoreWebView2Async();
+            //this.webView21.CoreWebView2.Navigate("https://www.baidu.com");
+
             Control.CheckForIllegalCrossThreadCalls = false;
+            webView21.Source = new System.Uri("https://mnks.jxedt.com/", System.UriKind.Absolute);
+           
         }
+
+        
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -502,6 +509,8 @@ namespace 驾校一点通
 
         private void button3_Click(object sender, EventArgs e)
         {
+           
+           
             textBox2.Text = "";
         }
         #region GET请求
@@ -579,21 +588,47 @@ namespace 驾校一点通
             }
         }
 
-        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+        private void webView21_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
-            e.Cancel = true;
-            string url = this.webBrowser1.StatusText;
-            this.webBrowser1.Url = new Uri(url);
-            textBox1.Text = url;
+           textBox1.Text= webView21.Source.ToString();
         }
 
-        private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        Task<String> GetMathResultTask()
         {
-
-            if (webBrowser1.Url != null)
-            {
-                textBox1.Text = webBrowser1.Url.ToString();
-            }
+            return webView21.ExecuteScriptAsync("Math.sin(Math.PI/2)");
         }
+
+
+        String GetMathResult()
+        {
+            // a) Application freezes
+            var result = webView21.ExecuteScriptAsync("Math.sin(Math.PI/2)").GetAwaiter().GetResult();
+            return result;
+
+            // b) return null
+            //String result = null;
+            //Task task = new Task(async () => { result = await webView21.ExecuteScriptAsync("Math.sin(Math.PI/2)"); });
+            //task.RunSynchronously();
+            //return result;
+
+            // c) Excepion: // InvalidCastException: Das COM-Objekt des Typs "System.__ComObject" kann nicht in den Schnittstellentyp "Microsoft.Web.WebView2.Core.Raw.ICoreWebView2Controller" umgewandelt werden. Dieser Vorgang konnte nicht durchgeführt werden, da der QueryInterface-Aufruf an die COM - Komponente für die Schnittstelle mit der IID "{4D00C0D1-9434-4EB6-8078-8697A560334F}" aufgrund des folgenden Fehlers nicht durchgeführt werden konnte: Schnittstelle nicht unterstützt(Ausnahme von HRESULT: 0x80004002(E_NOINTERFACE)).
+            //String result = Task.Run(() => GetMathResultTask()).Result;
+            //return result;
+        }
+
+
+
+      async  void getcookies()
+        {
+            var result = await webView21.ExecuteScriptAsync("document.cookie");
+            this.cookie = result;
+            //MessageBox.Show(result);
+        }
+
+       
+
+
+
+
     }
 }

@@ -28,7 +28,7 @@
 
         <div class="hd">
         <div class="logo">
-        <a class="subtitle" href="">数据查询</a>
+        <a class="subtitle" href="">足球数据查询</a>
         </div>
         <div class="menu" data-name="足球胜平负"></div>
 
@@ -39,29 +39,26 @@
 </div>
 </div>
 <div class="bd">
-<ul>
-<li><a href="index.aspx">赔率</a></li>
-   <input  id="pei1" type="text" name="mobile" style="width:30%;height:25px;" placeholder="1.31">
-    <input  id="pei2" type="text" name="mobile" style="width:30%;height:25px;" placeholder="0">
-    <input  id="pei3" type="text" name="mobile" style="width:30%;height:25px;" placeholder="4.9">
+    <input  id="getdta" type="button"  onclick="getdata()" name="mobile" style="width:50%;height:30px;margin:20px; background:#2095f2;color:#fff;border:medium none" value="点击查询">
+    <div class="module mod-panel">
+    <table style="box-sizing:border-box;">
+        <thead>
+        <tr>
+        <th><strong>比赛时间</strong></th>
+        <th><strong>主队</strong></th>
+        <th><strong>客队</strong></th>
+        <th><strong>赔率</strong></th>
+        <th><strong>胜率</strong></th>
+        <th><strong>买入</strong></th>
+        </tr>
+        </thead>
+        <tbody id="tableList">
 
-    <li><a href="index.aspx">投注</a></li>
-   <input  id="tou1" type="text" name="mobile" style="width:30%;height:25px;" placeholder="180000">
-    <input  id="tou2" type="text" name="mobile" style="width:30%;height:25px;" placeholder="0.00">
-    <input  id="tou3" type="text" name="mobile" style="width:30%;height:25px;" placeholder="0.00">
 
-     <li><a href="index.aspx">返点</a></li>
-   <input  id="fan1" type="text" name="mobile" style="width:30%;height:25px;" placeholder="23400">
-    <input  id="fan2" type="text" name="mobile" style="width:30%;height:25px;" placeholder="0.00">
-    <input  id="fan3" type="text" name="mobile" style="width:30%;height:25px;" placeholder="0.00">
-
-     <li><a href="index.aspx">中奖金额</a></li>
-   <input  id="zhong1" type="text" name="mobile" style="width:30%;height:25px;" placeholder="235800">
-    <input  id="zhong2" type="text" name="mobile" style="width:30%;height:25px;" placeholder="0.00">
-    <input  id="zhong3" type="text" name="mobile" style="width:30%;height:25px;" placeholder="0.00">
-     
-    <input  id="buy11" type="button"  onclick="buy()" name="mobile" style="width:80%;height:30px;margin:20px; background:#2095f2;color:#fff;border:medium none" value="确定">
-</ul>
+        </tbody>
+        </table>
+      
+        </div>
 </div>
 
 
@@ -92,7 +89,7 @@
         <thead>
         <tr>
         <th><strong>序号</strong></th>
-        <th><strong>比赛ID</strong></th>
+        <th><strong>比赛时间</strong></th>
         <th><strong>主队</strong></th>
         <th><strong>客队</strong></th>
         <th><strong>操作</strong></th>
@@ -118,11 +115,18 @@
 <div style="border:1px solid #000;padding:10px;text-align:center">
             
                 <form method="post" runat="server" id="saveReportForm" >
-   赔率&nbsp;<input  id="peilv1" type="text" name="peilv1" style="width:25%;height:25px;" placeholder="胜" value=<%=sheng%>>&nbsp;
-    <input  id="peilv2" type="text" name="peilv2" style="width:25%;height:25px;" placeholder="平" value=<%=ping%>>&nbsp;
-    <input  id="peilv3" type="text" name="peilv3" style="width:25%;height:25px;" placeholder="负" value=<%=fu%>>
+                    <div><span id="time"><%=matchtime%></span></div>
+                    <div><span id="zhu"><%=zhu%></span>&nbsp;VS&nbsp;<span id="ke"><%=ke%></span></div>
+   赔率&nbsp;<input  id="peilv1" type="text" name="peilv1" style="width:25%;height:25px;" placeholder="胜" value=<%=sheng%> >&nbsp;
+    <input  id="peilv2" type="text" name="peilv2" style="width:25%;height:25px;" placeholder="平" value=<%=ping%> >&nbsp;
+    <input  id="peilv3" type="text" name="peilv3" style="width:25%;height:25px;" placeholder="负" value=<%=fu%> >
+   <br />
+   初始胜率&nbsp;<input  id="chushenglv1" type="text" name="mobile" style="width:25%;height:25px;" placeholder="胜" value=<%=chusheng_bili%>>&nbsp;
+    <input  id="chushenglv2" type="text" name="mobile" style="width:25%;height:25px;" placeholder="平" value=<%=chuping_bili%>>&nbsp;
+    <input  id="chushenglv3" type="text" name="mobile" style="width:25%;height:25px;" placeholder="负" value=<%=chufu_bili%>>
+
                 <br />
-   胜率&nbsp;<input  id="shenglv1" type="text" name="mobile" style="width:25%;height:25px;" placeholder="胜" value=<%=sheng_bili%>>&nbsp;
+   变化胜率&nbsp;<input  id="shenglv1" type="text" name="mobile" style="width:25%;height:25px;" placeholder="胜" value=<%=sheng_bili%>>&nbsp;
     <input  id="shenglv2" type="text" name="mobile" style="width:25%;height:25px;" placeholder="平" value=<%=ping_bili%>>&nbsp;
     <input  id="shenglv3" type="text" name="mobile" style="width:25%;height:25px;" placeholder="负" value=<%=fu_bili%>>
                 <br />
@@ -206,10 +210,14 @@
                 var bar = document.getElementsByClassName("nav-bar")[0];
                 bar.onclick = function () {
                     var aa = document.getElementsByClassName("mod-head")[0];
+                    var bb = document.getElementsByClassName("bd")[0];
                     if (aa.className == "mod-head mod-head-hide") {
+                        bb.style.width = '100%';
+                        
                         aa.className = "mod-head mod-head-hide mod-head-show";
                     }
                     else {
+                        bb.style.width = '200px';
                         aa.className = "mod-head mod-head-hide";
                     }
                     
@@ -217,6 +225,12 @@
                 
               
                 function buy() {
+
+                    var time = document.getElementById("time").innerText;
+                    var zhu = document.getElementById("zhu").innerText;
+                    var ke = document.getElementById("ke").innerText;
+
+
                     var peilv1 = document.getElementById("peilv1").value;
                     var peilv2 = document.getElementById("peilv2").value;
                     var peilv3 = document.getElementById("peilv3").value;
@@ -231,13 +245,78 @@
 
                     $.ajax({
                         url: "savedata.aspx?type=savedata",
-                          type: "post",
-                          dataType: "json",
-                        data: { "peilv1": peilv1, "peilv2": peilv2, "peilv3": peilv3, "shenglv1": shenglv1, "shenglv2": shenglv2, "shenglv3": shenglv3, "mai1": mai1, "mai2": mai2, "mai3": mai3},
+                        type: "post",
+                        dataType: "json",
+                        data: { "time": time, "zhu": zhu, "ke": ke, "peilv1": peilv1, "peilv2": peilv2, "peilv3": peilv3, "shenglv1": shenglv1, "shenglv2": shenglv2, "shenglv3": shenglv3, "mai1": mai1, "mai2": mai2, "mai3": mai3 },
                         success: function (data) {
                             alert("保存成功");
-                          }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                            // 状态码
+
+                            console.log(XMLHttpRequest.status);
+
+                            // 状态
+
+                            console.log(XMLHttpRequest.readyState);
+
+                            // 错误信息
+
+                            console.log(textStatus);
+                        }
+
                         })
+                }
+
+
+                function getdata() {
+
+
+                    $.ajax({
+                        url: "savedata.aspx?type=getdata",
+                        type: "post",
+                        dataType: "json",
+                        data: {  },
+                        success: function (data) {
+                            var content = data.data;
+                            
+                            if (!content)
+                                return;
+                            var datas = "";
+                            
+                            for (var i = 0; i < content.length; i++) {
+                                var obj = content[i];
+                               
+                                datas = datas + "<td><span>" + obj["time"] + "</span></td>";
+                                datas = datas + "<td><span>" + obj["zhu"] + "</span></td>";
+                                datas = datas + "<td><span>" + obj["ke"] + "</span></td>";
+                                datas = datas + "<td><span>" + obj["peilv1"] + "<br/>" + obj["peilv2"] + "<br/>" + obj["peilv3"] + "<br/>" + "</span></td>";
+                                datas = datas + "<td><span>" + obj["shenglv1"] + "<br/>" + obj["shenglv2"] + "<br/>" + obj["shenglv3"] + "<br/>"+ "</span></td>";
+                                datas = datas + "<td><span>" + obj["mai1"] + "<br/>" + obj["mai2"] + "<br/>" + obj["mai3"] + "<br/>" + "</span></td>";
+                              
+                                datas = "<tr>" + datas + "</tr>";
+                            }
+                            
+                            //console.log(datas);
+                            $("#tableList").html(datas);
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                            // 状态码
+
+                            console.log(XMLHttpRequest.status);
+
+                            // 状态
+
+                            console.log(XMLHttpRequest.readyState);
+
+                            // 错误信息
+
+                            console.log(textStatus);
+                        }
+
+                    })
                 }
 
 

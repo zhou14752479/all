@@ -34,33 +34,32 @@ namespace 亚马逊星级评论统计
            HttpWebResponse response = null;
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.amazon.com/-/zh/product-reviews/"+asin+"/ref=cm_cr_arp_d_viewopt_sr?ie=UTF8&reviewerType=all_reviews&filterByStar="+star+"&pageNumber=1");
 
-                request.KeepAlive = true;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.amazon.com/-/zh/product-reviews/B082P77FS5/ref=cm_cr_arp_d_viewopt_sr?ie=UTF8&reviewerType=all_reviews&filterByStar=five_star&pageNumber=1");
+
+                request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
+                request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
+                request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh-CN,zh;q=0.9");
                 request.Headers.Set(HttpRequestHeader.CacheControl, "max-age=0");
+                request.Headers.Set(HttpRequestHeader.Cookie, @"session-id=139-2757510-5594321; session-id-time=2082787201l; i18n-prefs=USD; lc-main=zh_CN; ubid-main=133-3327139-8296540; x-amz-captcha-1=1653576419949154; x-amz-captcha-2=h6Ge36C/y4maBfrquJ6CcA==; sp-cdn=""L5Z9:KR""; session-token=dLgbonxkqc6GkKd8fkLPq1AxtdNh38wWD7cPz2VnQeDbaLk0kVWLIjkoqijPr8j1ft9eCPJIUP7Gvrr5rvJ1Qsda4J4+gswj3oDbbBQBqQIu/Vor3NBs6AINUGhmWFY9hPgIgJCrkc4fGO4axPk3jTs8oxG4TPg1eHlstol+wbZqOvYXcxRtrw9G56sK/YZXq7Zix37uKWlcPni1IX+A4Q==; csm-hit=adb:adblk_no&t:1656332488208&tb:RTWNZHQWAR6D156H8SMN+sa-1EG6H4PSNGK7DQBMKJGQ-NEEMH42KRQS9D3YPC51M|1656332488208");
                 request.Headers.Add("device-memory", @"8");
-                request.Headers.Add("sec-ch-device-memory", @"8");
+                request.Headers.Add("downlink", @"0.65");
                 request.Headers.Add("dpr", @"1");
-                request.Headers.Add("sec-ch-dpr", @"1");
-                request.Headers.Add("viewport-width", @"2560");
-                request.Headers.Add("sec-ch-viewport-width", @"2560");
-                request.Headers.Add("rtt", @"200");
-                request.Headers.Add("downlink", @"2.5");
                 request.Headers.Add("ect", @"4g");
+                request.Headers.Add("rtt", @"100");
+                request.Headers.Add("sec-ch-device-memory", @"8");
+                request.Headers.Add("sec-ch-dpr", @"1");
                 request.Headers.Add("sec-ch-ua", @""" Not A;Brand"";v=""99"", ""Chromium"";v=""100"", ""Google Chrome"";v=""100""");
                 request.Headers.Add("sec-ch-ua-mobile", @"?0");
                 request.Headers.Add("sec-ch-ua-platform", @"""Windows""");
-                request.Headers.Add("Upgrade-Insecure-Requests", @"1");
+                request.Headers.Add("sec-ch-viewport-width", @"2560");
+                request.Headers.Add("sec-fetch-dest", @"document");
+                request.Headers.Add("sec-fetch-mode", @"navigate");
+                request.Headers.Add("sec-fetch-site", @"same-origin");
+                request.Headers.Add("sec-fetch-user", @"?1");
+                request.Headers.Add("upgrade-insecure-requests", @"1");
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36";
-                request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
-                request.Headers.Add("Sec-Fetch-Site", @"same-origin");
-                request.Headers.Add("Sec-Fetch-Mode", @"navigate");
-                request.Headers.Add("Sec-Fetch-User", @"?1");
-                request.Headers.Add("Sec-Fetch-Dest", @"document");
-                request.Referer = "https://www.amazon.com/-/zh/product-reviews/B082P77FS5/ref=cm_cr_arp_d_viewopt_sr?ie=UTF8&reviewerType=all_reviews&filterByStar=three_star&pageNumber=1";
-                request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
-                request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh-CN,zh;q=0.9");
-                request.Headers.Set(HttpRequestHeader.Cookie, @"session-id=139-2757510-5594321; session-id-time=2082787201l; i18n-prefs=USD; lc-main=zh_CN; sp-cdn=""L5Z9:CN""; ubid-main=133-3327139-8296540; skin=noskin; session-token=""Kkr0pR8S2OXN1CIH3pdLi48USySvZQPsxbkfUS+s05ahW8CbS8PSUiJI1oF1LdY+S2ut1MXeXaet1gEU0jM2gCKHDov/1lGIP26A6YaIZt7UoxivXtW82TWLn5Bp+BaaE0rrlhPBsIT/UPGzOnJoXe3hTEBu1P/6Pg2gx8YIlk18gd4BQTOl2aRsN09Q5PV4svyuNTBgZvMMEUXFjQvDCQ==""; x-amz-captcha-1=1653576419949154; x-amz-captcha-2=h6Ge36C/y4maBfrquJ6CcA==; csm-hit=adb:adblk_no&t:1653569221831&tb:s-B5EWKXCXJZCM1322PYAP|1653569221749");
+                request.Headers.Add("viewport-width", @"2560");
 
                 response = (HttpWebResponse)request.GetResponse();
 
@@ -119,7 +118,7 @@ namespace 亚马逊星级评论统计
                        
                         string asin = listView1.Items[i].SubItems[2].Text;
                         string html = Request_www_amazon_com(asin,stars[j]);
-                        //textBox2.Text = html;
+                       textBox2.Text = html;
                         label2.Text = "正在查询："+ asin;
                         string values = Regex.Match(html, @"a-spacing-base a-size-base\\"">([\s\S]*?)</div>").Groups[1].Value.Replace("\\n", "").Trim();
                         if(values=="")
@@ -130,7 +129,9 @@ namespace 亚马逊星级评论统计
                         values = values.Replace("total","").Replace("ratings", "#").Replace("with", "").Replace("reviews", "").Replace(" ", "").Replace(",", "").Replace("review", "").Replace("rating", "#").Trim();
                         //中文下
                         values = values.Replace("total", "").Replace("|", "").Replace("全局评级", "#").Replace("全局评论", "").Replace("<span>", "").Replace("</span>", "").Trim();
-                       
+
+                        values = values.Replace("total", "").Replace("|", "").Replace("总评分", "#").Replace("带评论", "").Replace("<span>", "").Replace("</span>", "").Trim();
+
                         string[] text = values.Split(new string[] { "#" }, StringSplitOptions.None);
                         if (text.Length < 1)
                         {

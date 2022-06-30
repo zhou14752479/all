@@ -52,6 +52,7 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -243,11 +244,20 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(219, 181);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(550, 255);
+            this.textBox2.TabIndex = 82;
+            // 
             // 亚马逊星级评论统计
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 575);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Name = "亚马逊星级评论统计";
@@ -257,6 +267,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -286,5 +297,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

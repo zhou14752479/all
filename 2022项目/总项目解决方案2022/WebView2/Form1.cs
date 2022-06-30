@@ -19,11 +19,33 @@ namespace WebView2
             InitializeComponent();
          
         }
-       
+
+
+        //WebView2.exe.WebView2文件夹为缓存可以删除，每次自动会创建
+        //runtimes文件夹不可以删除
+        /*
+         * 
+         * 获取打开的网址
+          private void webView21_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+           textBox1.Text= webView21.Source.ToString();
+        }
+
+        //获取cookie
+        async  void getcookies()
+        {
+            var result = await webView21.ExecuteScriptAsync("document.cookie");
+            this.cookie = result;
+            //MessageBox.Show(result);
+        }
+
+
+        */
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            //webView21.Source = new System.Uri("https://www.baidu.com/", System.UriKind.Absolute);
+            webView21.Source = new System.Uri("https://mnks.jxedt.com/", System.UriKind.Absolute);
             
         }
 

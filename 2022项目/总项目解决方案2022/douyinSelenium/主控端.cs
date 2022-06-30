@@ -114,48 +114,7 @@ namespace douyinSelenium
 
         string zhibojianname = "";
         bool status = true;
-        public void addweb()
-        {
-
-
-            Control.CheckForIllegalCrossThreadCalls = false;
-            try
-            {
-                Task.Run(() =>
-                {
-                    for (int i = 0; i < listView1.CheckedItems.Count; i++)
-                    {
-                        if (status == false)
-                            return;
-                        listView1.CheckedItems[i].SubItems[5].Text = "正在进入链接...";
-
-                        string xuhao = listView1.CheckedItems[i].SubItems[0].Text;
-                        string cookie = listView1.CheckedItems[i].SubItems[4].Text;
-
-                        string ip = listView1.CheckedItems[i].SubItems[6].Text;
-                        string user = listView1.CheckedItems[i].SubItems[7].Text;
-                        string pass = listView1.CheckedItems[i].SubItems[8].Text;
-
-
-                        // this.BeginInvoke(updateTxt, cookie, ip, user, pass);
-                        UpdateTxtMethod(xuhao, cookie, ip, user, pass);
-                        
-                        listView1.CheckedItems[i].SubItems[5].Text = zhibojianname;
-                    }
-                });
-
-
-               
-               
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-            
-        }
+   
 
         private void 主控端_Load(object sender, EventArgs e)
         {
@@ -194,6 +153,12 @@ namespace douyinSelenium
         {
             if (listView1.SelectedItems.Count > 0)
                 listView1.SelectedItems[0].Remove();
+
+
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].SubItems[0].Text = (i + 1).ToString();
+            }
         }
 
         private void 导入代理ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -262,21 +227,30 @@ namespace douyinSelenium
         private void button4_Click(object sender, EventArgs e)
         {
 
-            foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
+            //foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
+            //{
+            //    currentPid.Add(p.Id);
+
+            //}
+            //if (thread1 == null || !thread1.IsAlive)
+            //{
+            //    thread1 = new Thread(main);
+            //    thread1.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+
+            for (int i = 0; i < listView1.CheckedItems.Count; i++)
             {
-                currentPid.Add(p.Id);
+                if (listView1.CheckedItems[i].Checked == true)
+                {
+                    string xuhao = listView1.CheckedItems[i].SubItems[0].Text;
 
+
+                    exitdic[xuhao] = "newlink";
+
+
+                }
             }
-            //addweb();
-
-            if (thread1 == null || !thread1.IsAlive)
-            {
-                thread1 = new Thread(main);
-                thread1.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
-
-
 
         }
 
@@ -536,29 +510,54 @@ namespace douyinSelenium
                     }
                 }
 
+               
+               
+
                 //var g = Guid.NewGuid();
                 //IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 //js.ExecuteScript($"document.title = '{g}'");
                 //心跳包定时刷新
                 while (true)
                 {
-                    if (time == 300)
+                    if (checkBox2.Checked == true)
                     {
-                        driver.Navigate().Refresh();
-                        time = 0;
+                        if (time == 10)
+                        {
+                            for (int i = 0; i < driver.WindowHandles.Count; i++)
+                            {
+                                driver.SwitchTo().Window(driver.WindowHandles[i]);
+                                driver.Navigate().Refresh();
+                                Thread.Sleep(10);
+                            }
+                            
+                            time = 0;
+                        }
+
+                        time = time + 1;
                     }
-                    time = time + 1;
 
                     if (exitdic[xuhao] == "1")
                     {
-                        driver.Manage().Window.Minimize();
-                        driver.Quit();
+                        //driver.Manage().Window.Minimize();
+                        //driver.Quit();
+                       
+                      
+                        driver.SwitchTo().Window(driver.WindowHandles.Last());
+                        driver.Close();
+                        exitdic[xuhao] = "0";
                     }
                     if (exitdic[xuhao] == "2")
                     {
-
                         driver.Close();
                     }
+
+                    if (exitdic[xuhao] == "newlink")
+                    {
+                        IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                        js.ExecuteScript($"window.open('{textBox1.Text}');");
+                        exitdic[xuhao] = "0";
+                    }
+
                     Thread.Sleep(1000);
 
                 }
@@ -674,12 +673,19 @@ namespace douyinSelenium
 
         private void button3_Click(object sender, EventArgs e)
         {
+
+
             for (int i = 0; i < listView1.Items.Count; i++)
             {
                 if (listView1.Items[i].Checked == true)
                 {
                     listView1.Items[i].Remove();
                 }
+            }
+
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].SubItems[0].Text=(i+1).ToString();
             }
         }
 
@@ -840,5 +846,9 @@ namespace douyinSelenium
 
 
         }
+
+      
+
+
     }
 }

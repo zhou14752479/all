@@ -16,7 +16,7 @@ namespace 短信群发
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 短信账户后台充值());
+            Application.Run(new 短信群发());
         }
     }
 }

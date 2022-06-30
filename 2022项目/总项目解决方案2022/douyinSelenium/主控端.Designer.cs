@@ -65,6 +65,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -362,6 +363,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.button4);
@@ -380,6 +382,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1165, 99);
             this.panel1.TabIndex = 229;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(108, 56);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(84, 16);
+            this.checkBox2.TabIndex = 13;
+            this.checkBox2.Text = "开启心跳包";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // 主控端
             // 
@@ -438,5 +452,6 @@
         private System.Windows.Forms.ToolStripMenuItem 更换此账号cookieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 隐藏窗口ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 显示窗口ToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
