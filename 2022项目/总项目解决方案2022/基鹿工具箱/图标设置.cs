@@ -75,7 +75,7 @@ namespace 基鹿工具箱
             for (int i = 0; i < icons.Count; i++)
             {
                
-                imageList1.Images.Add(util.GetImage(icons[i].ToString()));
+                imageList1.Images.Add(Util.GetImage(icons[i].ToString()));
                 listView1.Items.Add(System.IO.Path.GetFileName(icons[i].ToString()), i);
                 listView1.Items[i].ImageIndex = i;
                 listView1.Items[i].Name = icons[i].ToString();
@@ -97,6 +97,35 @@ namespace 基鹿工具箱
           string html=  util.delicon(listView1.SelectedItems[0].Text);
             MessageBox.Show(html);
             button3.PerformClick();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string url = "http://47.96.189.55/jilusoft/gethaibao.php";
+                string picpath = textBox1.Text.Trim();
+                WebClient client = new WebClient();
+                client.Credentials = CredentialCache.DefaultCredentials;
+                client.Headers.Add("Content-Type", "application/form-data");//注意头部必须是form-data
+                string filename = System.IO.Path.GetFileName(picpath);
+                client.QueryString["file_name"] = filename;
+                byte[] fileb = client.UploadFile(new Uri(url), "POST", picpath);
+                string res = Encoding.UTF8.GetString(fileb);
+                if (res == "1")
+                {
+                    MessageBox.Show("上传成功");
+                }
+
+                string openurl = textBox2.Text;
+                string sort = "1";
+                string sql = "INSERT INTO icon(name,url,sort) VALUES('" + filename + " ', '" + openurl + " ', '" + sort + " ') ON DUPLICATE KEY UPDATE name = '" + filename + " ',url= '" + openurl + " ',sort= '" + sort + " '";
+                Util.SQL(sql);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

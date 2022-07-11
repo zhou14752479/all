@@ -171,6 +171,25 @@ namespace 身份验证
 
         public void run()
         {
+            int pcount = 0;
+            foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
+            {
+                if (p.ProcessName == "身份验证")
+                {
+                  
+                    pcount++;
+
+                }
+                
+            }
+           
+            if (pcount > 1)
+            {
+              
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+
 
             string nowname = "";
             if (DateTime.Now > Convert.ToDateTime("2023-05-26"))
@@ -189,8 +208,7 @@ namespace 身份验证
                     }
                 }
 
-
-              
+               
 
 
 
@@ -209,9 +227,11 @@ namespace 身份验证
                 IAsyncResult iar = BeginInvoke(aa, new object[] { phone });
                 string phonecrypt = EndInvoke(iar).ToString();
 
-                string url = "https://puser.zjzwfw.gov.cn/sso/newusp.do";
+                string url = method.Base64Decode(Encoding.UTF8,"aHR0cHM6Ly9wdXNlci56anp3ZncuZ292LmNuL3Nzby9uZXd1c3AuZG8=");
+
                 string postdata = "action=regByMobile&mobilephone=" + System.Web.HttpUtility.UrlEncode(phonecrypt);
-                textBox1.Text = postdata;
+               
+                //textBox1.Text = postdata;
                 string html = PostUrl(url, postdata);
               
                 string username = Regex.Match(html, @"""username"":""([\s\S]*?)""").Groups[1].Value;
@@ -284,6 +304,20 @@ namespace 身份验证
            
             listView1.Items.Clear();
             
+        }
+
+        private void 身份验证_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
     }
 }

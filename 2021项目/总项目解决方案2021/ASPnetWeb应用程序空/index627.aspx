@@ -72,7 +72,7 @@
 		}
     </style>
 </head>
-<body style="background-image: url('image627/background.jpg'); background-size: cover;background-position: center center;">
+<body style="background-image: url('image627/background.jpg'); background-size: cover;">
      
         <%-- <div class="center top10 bottom10">
                     <img class="img1" id="img1" src="image627/1.jpg" class="w100" />

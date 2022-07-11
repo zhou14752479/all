@@ -37,10 +37,11 @@ namespace 基鹿工具箱
             for (int i = 0; i < icons.Count; i++)
             {
 
-                imageList1.Images.Add(util.GetImage(icons[i].ToString()));
+                imageList1.Images.Add(Util.GetImage(icons[i].ToString()));
                 listView2.Items.Add(System.IO.Path.GetFileNameWithoutExtension(icons[i].ToString()), i);
                 listView2.Items[i].ImageIndex = i;
                 listView2.Items[i].Name = icons[i].ToString();
+
             }
         }
 
@@ -97,6 +98,9 @@ namespace 基鹿工具箱
 
             try
             {
+                Image image = Util.GetImage("http://47.96.189.55/jilusoft/haibao/%E6%B5%B7%E6%8A%A5.jpg");
+                //tabPage1.BackgroundImage = image;
+                pictureBox4.Image = image;  
                 string html = Util.getuser(Util.mobile, Util.logintoken);
                
                 //MessageBox.Show(html);
@@ -305,6 +309,7 @@ namespace 基鹿工具箱
             //}
             this.Hide();
             login lg=new login();
+            lg.autologin2 = false;
             lg.Show();
         }
 
@@ -404,7 +409,7 @@ namespace 基鹿工具箱
                 dataGridView1.DataSource = dt;
                 dataGridView1.Columns["ci"].HeaderText = "关键词";
                 dataGridView1.Columns["ss_zs"].HeaderText = "AI搜索值";
-                dataGridView1.Columns["fd"].HeaderText = "AI搜索变化率";
+                dataGridView1.Columns["fd"].HeaderText = "AI搜索变化率(%)";
                 dataGridView1.Columns["good_zs"].HeaderText = "AI商品值";
                 dataGridView1.Columns["gx_zs"].HeaderText = "机会指数";
                 dataGridView1.Columns["pp"].HeaderText = "是否匹配";
@@ -412,6 +417,7 @@ namespace 基鹿工具箱
 
                 for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
+                  
                     dataGridView1.Rows[i].Cells[6].Value = "点击复制";
                     //比分
                     string key = dataGridView1.Rows[i].Cells[0].Value.ToString();
@@ -567,7 +573,7 @@ namespace 基鹿工具箱
             util.stop = false;
             util.reviewcountdic.Clear();
             util.reviewtimedic.Clear();
-
+            chart2.Legends.Clear();
 
             Thread thread = new Thread(new ParameterizedThreadStart(util.getreview));
             string o = itemidtxt2.Text.Trim();
@@ -860,6 +866,13 @@ namespace 基鹿工具箱
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             textBox5.Text = "";
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            string url = util.GeticonUrl("海报.jpg");
+           
+            System.Diagnostics.Process.Start(url);
         }
 
 

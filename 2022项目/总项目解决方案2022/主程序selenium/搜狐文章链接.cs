@@ -151,6 +151,9 @@ namespace 主程序selenium
             }
 
             #endregion
+
+            driver = function.getdriver(false, false);
+            driver.Navigate().GoToUrl("https://www.amazon.com/-/zh/product-reviews/B082P77FS5/ref=cm_cr_arp_d_viewopt_sr?ie=UTF8&reviewerType=all_reviews&filterByStar=three_star&pageNumber=1");
         }
     }
 }

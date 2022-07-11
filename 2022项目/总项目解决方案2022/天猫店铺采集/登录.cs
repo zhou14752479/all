@@ -29,8 +29,9 @@ namespace 天猫店铺采集
 
         private void button1_Click(object sender, EventArgs e)
         {
-          cookie = method.GetCookies("https://rate.taobao.com/user-rate-UvCIWvmxuMmkWvFcYMWTT.htm?spm=a1z10.1-b-s.1997427721.d4918097.99af3bfc4UkOrm");
-            天猫店铺采集.cookielist.Add(cookie);
+            webBrowser1.Refresh();
+            cookie = method.GetCookies("https://rate.taobao.com/user-rate-UvCIWvmxuMmkWvFcYMWTT.htm?spm=a1z10.1-b-s.1997427721.d4918097.99af3bfc4UkOrm");
+          
            // this.Hide();
         }
 

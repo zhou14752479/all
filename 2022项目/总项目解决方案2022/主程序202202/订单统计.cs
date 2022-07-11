@@ -111,12 +111,21 @@ namespace 主程序202202
         
         public void run()
         {
+            string goodid = "42589";
+            if(radioButton1.Checked==true)
+            {
+                goodid = "42589";
+            }
+            else if (radioButton2.Checked == true)
+            {
+                goodid = "42587";
+            }
             for (int i = 1; i <999999; i++)
             {
                 label12.Text = "正在计算第"+i+"页";
                 // string url = "http://110.40.186.121/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id=42589&_=1646289301606";
-                //string url = "http://124.223.45.26/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id=21&_=1647847450033";
-                string url = "http://110.40.186.121/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id=42587&_=1647914786043";
+     
+                string url = "http://"+yuming+"/jiuwuxiaohun.php?m=Admin&c=Orders&a=adminGoodsList&goods_id="+ goodid + "&_=1647914786043";
                 string postdata = "pageSize=1000&pageCurrent="+i+"&orderField=%24%7Bparam.orderField%7D&orderDirection=%24%7Bparam.orderDirection%7D&orderstate=3&ksid=&zpid=&OrderId=&CardId=&username=&cardno=&start_time="+dateTimePicker1.Value.ToString("yyyy-MM-dd")+ "&end_time=" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "&last_start_time=&last_end_time=&total=";
                 string html = PostUrlDefault(url,postdata,cookie);
 
@@ -160,6 +169,9 @@ namespace 主程序202202
                     label9.Text = dingdancount.ToString();
                     label10.Text = xiadancount.ToString();
                     label11.Text = zongjine.ToString("F2");
+
+                    if (status == false)
+                        return;
                 }
             }
         }
@@ -182,8 +194,8 @@ namespace 主程序202202
         }
         #endregion
 
-        public static string yuming = "110.40.186.121";
-        //public static string yuming = "124.223.45.26";
+        public static string yuming = "42.192.148.180";
+       
         private void 订单统计_Load(object sender, EventArgs e)
         {
             
@@ -208,7 +220,7 @@ namespace 主程序202202
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            status = true;
 
             if (thread == null || !thread.IsAlive)
             {
@@ -282,7 +294,7 @@ namespace 主程序202202
             string url = "http://"+yuming+"/jiuwuxiaohun.php/Publics/ajax_login";
             string postdata = "username=yinlong&passwordhash=9b6e513292f758bc67e429eee4964d0413511a57e154450e5310fce52a399d9a&code=" + textBox3.Text + "&sms_code=&wx_code=";
             string  oldcookie = PostUrlDefault_getcookie(url,postdata,"");
-            MessageBox.Show(oldcookie);
+            //MessageBox.Show(oldcookie);
             string php = Regex.Match(oldcookie, @"PHPSESSID=([\s\S]*?);").Groups[1].Value;
             cookie = "PHPSESSID=" + php + ";username=yinlong;userid=5577;"; 
 
@@ -307,8 +319,28 @@ namespace 主程序202202
 
         private void button3_Click(object sender, EventArgs e)
         {
+            yuming = textBox5.Text;
             登录 login = new 登录();
             login.Show();
+        }
+
+        private void 订单统计_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+        }
+        bool status = true;
+        private void button4_Click(object sender, EventArgs e)
+        {
+            status = false;
         }
     }
 }

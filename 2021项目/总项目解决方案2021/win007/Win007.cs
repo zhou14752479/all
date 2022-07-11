@@ -356,17 +356,19 @@ namespace win007
                             dgv1.Rows[i].Cells[12].Style.BackColor = Color.Green;
                         }
 
-
-                        if(t1.Text!="")
-                        {
-                            dgv1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3 + " " + dgv1.Rows[i].Cells[6].Value;
-                        }
-                         else if(t9.Text!="")
-                        {
-                            dgv1.Rows[i].Cells[16].Value = sjp4 + sjp5 + sjp6 + " " + dgv1.Rows[i].Cells[6].Value;
-                        }
-
-
+                        //升降平
+                        //if(t1.Text!="")
+                        //{
+                        //    dgv1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3 + " " + dgv1.Rows[i].Cells[6].Value;
+                        //}
+                        // else if(t9.Text!="")
+                        //{
+                        //    dgv1.Rows[i].Cells[27].Value = sjp4 + sjp5 + sjp6 + " " + dgv1.Rows[i].Cells[6].Value;
+                        //}
+                        dgv1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3 + " " + dgv1.Rows[i].Cells[6].Value;
+                        dgv1.Rows[i].Cells[27].Value = sjp4 + sjp5 + sjp6 + " " + dgv1.Rows[i].Cells[6].Value;
+                       
+                        
                         //差值红绿色
                         if (cha1 > 0)
                         {
@@ -524,24 +526,19 @@ namespace win007
                     {
                         try
                         {
-                            string value = dgv1.Rows[i].Cells[16].Value.ToString();
+                            string sjp1 = dgv1.Rows[i].Cells[16].Value.ToString();
+                        string sjp2= dgv1.Rows[i].Cells[27].Value.ToString();
 
-                            string sjpshaixuan = t4.Text;
-                             if (t13.Text!="")
-                            {
-                                sjpshaixuan =  t13.Text.Trim();
-                            }
-                            if (t14.Text != "") 
-                            {
-                                sjpshaixuan = t14.Text.Trim();
-                            }
-                            if (!value.Contains(sjpshaixuan)) 
+                        string sjpshaixuan1 = t4.Text;
+                        string sjpshaixuan2 = t13.Text;
+                        if (!sjp1.Contains(sjpshaixuan1) || !sjp2.Contains(sjpshaixuan2)) 
                             {
                                 DataGridViewRow row = dgv1.Rows[i];
                                  dgv1.Rows.Remove(row);
                                   i--; //这句是关键。。
                             }
-                        }
+                       
+                    }
                         catch (Exception)
                         {
 

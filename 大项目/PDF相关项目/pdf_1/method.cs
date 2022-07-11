@@ -13,6 +13,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using org.pdfbox.pdmodel;
+using org.pdfbox.util;
 
 
 namespace pdf_1
@@ -132,6 +134,8 @@ namespace pdf_1
         public static void pdfTotxt(FileInfo pdffile, FileInfo txtfile)
 
         {
+           
+
             PDDocument doc = PDDocument.load(pdffile.FullName);
             PDFTextStripper pdfStripper = new PDFTextStripper();
             string text = pdfStripper.getText(doc);

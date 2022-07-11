@@ -616,6 +616,48 @@ namespace 基鹿工具箱
         }
 
 
+        #region 图片URL转image
+        /// <summary>
+        /// 通过NET获取网络图片
+        /// </summary>
+        /// <param name="url">要访问的图片所在网址</param>
+        /// <param name="requestAction">对于WebRequest需要进行的一些处理，比如代理、密码之类</param>
+        /// <param name="responseFunc">如何从WebResponse中获取到图片</param>
+        /// <returns></returns>
+        public static Image GetImage(string url)
+        {
+            Image img;
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+
+                using (WebResponse response = request.GetResponse())
+                {
+                    if (response.ContentType.IndexOf("text") != -1)
+                    {
+                        System.IO.Stream responseStream = response.GetResponseStream();
+                        System.IO.StreamReader reader = new System.IO.StreamReader(responseStream, Encoding.UTF8);
+                        string srcString = reader.ReadToEnd();
+                        return null;
+                    }
+                    else
+                    {
+                        img = System.Drawing.Image.FromStream(response.GetResponseStream());
+                    }
+                }
+                return img;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return null;
+            }
+        }
+
+        #endregion
+
+
+
         public string delicon(string filename)
         {
            
@@ -727,45 +769,7 @@ namespace 基鹿工具箱
         }
         #endregion
 
-        #region 图片URL转image
-        /// <summary>
-        /// 通过NET获取网络图片
-        /// </summary>
-        /// <param name="url">要访问的图片所在网址</param>
-        /// <param name="requestAction">对于WebRequest需要进行的一些处理，比如代理、密码之类</param>
-        /// <param name="responseFunc">如何从WebResponse中获取到图片</param>
-        /// <returns></returns>
-        public  Image GetImage(string url)
-        {
-            Image img;
-            try
-            {
-                WebRequest request = WebRequest.Create(url);
-
-                using (WebResponse response = request.GetResponse())
-                {
-                    if (response.ContentType.IndexOf("text") != -1)
-                    {
-                        System.IO.Stream responseStream = response.GetResponseStream();
-                        System.IO.StreamReader reader = new System.IO.StreamReader(responseStream, Encoding.UTF8);
-                        string srcString = reader.ReadToEnd();
-                        return null;
-                    }
-                    else
-                    {
-                        img = System.Drawing.Image.FromStream(response.GetResponseStream());
-                    }
-                }
-                return img;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return null;
-            }
-        }
-
-        #endregion
+        
 
         #region NPOI读取表格导入datatable 
         /// <summary>  
@@ -1163,7 +1167,7 @@ namespace 基鹿工具箱
                         continue;
                         
                     }
-        
+                   // MessageBox.Show(html);
                     MatchCollection skunames = Regex.Matches(html, @"""specInfo"":""([\s\S]*?)""");
                     MatchCollection times = Regex.Matches(html, @"""gmtCreate"":""([\s\S]*?)""");
                     MatchCollection quantitys = Regex.Matches(html, @"""quantity"":""([\s\S]*?)""");

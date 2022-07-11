@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(天猫店铺采集));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
@@ -55,14 +58,14 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button8);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.label3);
@@ -77,8 +80,36 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(969, 165);
+            this.panel1.Size = new System.Drawing.Size(995, 165);
             this.panel1.TabIndex = 0;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.button9.Location = new System.Drawing.Point(418, 115);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(79, 28);
+            this.button9.TabIndex = 43;
+            this.button9.Text = "查询店铺";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(337, 70);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 42;
+            this.button8.Text = "导入店铺表";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(20, 70);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(311, 21);
+            this.textBox5.TabIndex = 41;
             // 
             // label3
             // 
@@ -225,7 +256,7 @@
             this.textBox4.Location = new System.Drawing.Point(0, 646);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(969, 97);
+            this.textBox4.Size = new System.Drawing.Size(995, 97);
             this.textBox4.TabIndex = 219;
             // 
             // listView1
@@ -238,7 +269,8 @@
             this.columnHeader5,
             this.columnHeader7,
             this.columnHeader6,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader9});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("宋体", 10F);
             this.listView1.FullRowSelect = true;
@@ -246,7 +278,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 165);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(969, 481);
+            this.listView1.Size = new System.Drawing.Size(995, 481);
             this.listView1.TabIndex = 221;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -295,27 +327,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button8
+            // columnHeader9
             // 
-            this.button8.Location = new System.Drawing.Point(337, 70);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 42;
-            this.button8.Text = "导入店铺表";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(20, 70);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(311, 21);
-            this.textBox5.TabIndex = 41;
+            this.columnHeader9.Text = "保证金";
+            this.columnHeader9.Width = 100;
             // 
             // 天猫店铺采集
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 743);
+            this.ClientSize = new System.Drawing.Size(995, 743);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.panel1);
@@ -364,5 +385,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }

@@ -39,11 +39,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(233, 6);
+            this.button1.Location = new System.Drawing.Point(238, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -53,18 +55,18 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 35);
+            this.textBox1.Location = new System.Drawing.Point(20, 59);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(293, 21);
             this.textBox1.TabIndex = 1;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(351, 54);
+            this.button2.Location = new System.Drawing.Point(350, 51);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(105, 35);
             this.button2.TabIndex = 2;
-            this.button2.Text = "点击上传";
+            this.button2.Text = "点击上传图标";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -72,7 +74,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(18, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(173, 12);
             this.label1.TabIndex = 3;
@@ -80,7 +82,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(477, 54);
+            this.button3.Location = new System.Drawing.Point(476, 51);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(115, 35);
             this.button3.TabIndex = 4;
@@ -93,9 +95,9 @@
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.HideSelection = false;
             this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(0, 129);
+            this.listView1.Location = new System.Drawing.Point(0, 153);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(800, 321);
+            this.listView1.Size = new System.Drawing.Size(800, 416);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
@@ -110,7 +112,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(13, 65);
+            this.label2.Location = new System.Drawing.Point(18, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 7;
@@ -119,7 +121,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("宋体", 10F);
-            this.textBox2.Location = new System.Drawing.Point(15, 89);
+            this.textBox2.Location = new System.Drawing.Point(20, 113);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(296, 23);
             this.textBox2.TabIndex = 6;
@@ -127,7 +129,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(619, 54);
+            this.button4.Location = new System.Drawing.Point(618, 51);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(103, 35);
             this.button4.TabIndex = 8;
@@ -135,11 +137,33 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(350, 101);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(105, 35);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "点击上传海报";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Blue;
+            this.label3.Location = new System.Drawing.Point(18, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(137, 12);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "【海报图片命名为海报】";
+            // 
             // 图标设置
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 569);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
@@ -168,5 +192,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label3;
     }
 }

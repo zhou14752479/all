@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -39,6 +41,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -52,6 +55,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -59,6 +63,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.button1);
@@ -75,6 +82,29 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "登录";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(63, 336);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(47, 16);
+            this.radioButton2.TabIndex = 10;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Like";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(15, 336);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(35, 16);
+            this.radioButton1.TabIndex = 9;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "BO";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -164,6 +194,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.textBox4);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label11);
@@ -184,6 +215,16 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "数据统计";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(108, 165);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(83, 35);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "停止";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // textBox4
             // 
@@ -267,9 +308,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(34, 165);
+            this.button2.Location = new System.Drawing.Point(15, 165);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 35);
+            this.button2.Size = new System.Drawing.Size(83, 35);
             this.button2.TabIndex = 7;
             this.button2.Text = "点击查询";
             this.button2.UseVisualStyleBackColor = true;
@@ -313,6 +354,15 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "开始";
             // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox5.Location = new System.Drawing.Point(15, 375);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(133, 23);
+            this.textBox5.TabIndex = 12;
+            this.textBox5.Text = "42.192.148.180";
+            // 
             // 订单统计
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -322,7 +372,8 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "订单统计";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "订单统计（http://110.40.186.121/     like）";
+            this.Text = "订单统计（http://42.192.148.180/jiuwuxiaohun.php）";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.订单统计_FormClosing);
             this.Load += new System.EventHandler(this.订单统计_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -359,5 +410,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

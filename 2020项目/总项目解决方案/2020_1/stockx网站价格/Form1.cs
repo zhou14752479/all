@@ -75,7 +75,7 @@ namespace stockx网站价格
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Proxy = null;//防止代理抓包
+                //request.Proxy = null;//防止代理抓包
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = "https://finance.sina.com.cn/money/forex/hq/USDCNY.shtml";
@@ -281,17 +281,17 @@ namespace stockx网站价格
 
         public void gethuilv()
         {
-            //string url = "https://webapi.huilv.cc/api/exchange?num=1&chiyouhuobi=USD&duihuanhuobi=CNY&type=1&callback=jisuanjieguo&_=1645687133740";
-            //string html = GetUrl(url, "utf-8");
-            //string huilv = Regex.Match(html, @"""dangqianhuilv"":""([\s\S]*?)""").Groups[1].Value;
-            string url = "https://www.baidu.com/s?ie=UTF-8&wd=%E7%BE%8E%E5%85%83%E6%B1%87%E7%8E%87";
+            string url = "https://webapi.huilv.cc/api/exchange?num=1&chiyouhuobi=USD&duihuanhuobi=CNY&type=1&callback=jisuanjieguo&_=1645687133740";
             string html = GetUrl(url, "utf-8");
-            
-            string huilv = Regex.Match(html, @"1美元=([\s\S]*?)人民币").Groups[1].Value;
+            string huilv = Regex.Match(html, @"""dangqianhuilv"":""([\s\S]*?)""").Groups[1].Value;
+            //string url = "https://www.baidu.com/s?ie=UTF-8&wd=%E7%BE%8E%E5%85%83%E6%B1%87%E7%8E%87";
+            //string html = GetUrl(url, "utf-8");
+            //string huilv = Regex.Match(html, @"1美元=([\s\S]*?)人民币").Groups[1].Value;
             textBox2.Text = huilv;
         }
 
-        string cookie = "stockx_device_id=ff6f9452-7f4f-4452-9f7b-bfb12dc3cb3c; stockx_session=02790187-19cc-4998-8db5-2dc30a568068; language_code=zh; stockx_selected_region=CN; __cf_bm=igBBR8.fscBbiGTLm2nzkvbwN6ZZ0MP7LgIWcAexuKo-1653712710-0-AZ4ZL8/G/QP6hweAR35svJrKF80/xNltr7611eym28z9OqC9twhU/Hvwe16DmZIjuiQ4wSo0MFs8Q+kqLU0R+Yc=; pxcts=07622d2f-de40-11ec-9714-7478474d6a78; _pxvid=07622260-de40-11ec-9714-7478474d6a78; _ga=undefined; _ga=GA1.2.740994899.1653712714; _gid=GA1.2.1390716735.1653712714; _gat=1; _gcl_au=1.1.1784340517.1653712714; ajs_anonymous_id=622f471c-5002-413e-92d0-abf1487d1f75; _clck=1o7sq3y|1|f1u|0; OptanonAlertBoxClosed=2022-05-28T04:38:35.985Z; rbuid=rbos-91d6f6ad-d0df-4d7a-9a83-a0d11bff902f; _clsk=1g62lv6|1653712717831|1|0|b.clarity.ms/collect; _uetsid=0ad90340de4011ec9f668d1126ce8bfc; _uetvid=0ad91060de4011ec84e59d1f015ea970; __pdst=0382741d92b0453192dddbef6ea81ee8; _scid=45792cf2-448e-4f73-a263-70ddde97c614; IR_gbd=stockx.com; IR_9060=1653712718931%7C0%7C1653712718931%7C%7C; IR_PI=0b3c7f76-de40-11ec-ad83-91c0181bdbe9%7C1653799118931; QuantumMetricSessionID=3c8d5fae5f92aed99e86eace8cd28096; QuantumMetricUserID=fec1a1e143ab7207f7d35401b120bda6; OptanonConsent=isGpcEnabled=0&datestamp=Sat+May+28+2022+12%3A38%3A47+GMT%2B0800+(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)&version=6.32.0&isIABGlobal=false&hosts=&consentId=79af6906-812d-46e7-9171-489767328125&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0005%3A1%2CC0004%3A1%2CC0003%3A1&geolocation=CN%3BJS&AwaitingReconsent=false; forterToken=6e9184c22e9f463f89626910eced4461_1653712728363__UDF43_13ck; _px3=ff398fc54058bff812bdf3ceddf9cd5dbdd69681f7b0c9abba826e42430140cd:v5GUnRoL9WDVlvaWi+4/NgNf2VCcEY0tsdi6+B0xYyHqMQD7SLLp8Hm5rdwBYJYovmN2Avfez16CYxiBktrSCw==:1000:K2jSEcmqmqzCn5MPjng4Zi0vP1w9brVLaaTa0YqL6llxWznJychPyQvlsZoMCeHTrvvGzN2ZItZwgQgEV0BA0my2Xb+IXstrF1XXUbr9CafVugdbDWcVZKvpllx13gUM2omrNRv/6UvG1vGqSVi9mIH6CCkHkiww2x2bA/zGmPd8RaigBfk25xTZjZ+kQMbdNJwY8reYBFjRSp3Vu6PF7Q==; _pxde=60612a253a9fb8ab2ce6ef653fef53c0e359296f41fe883e72fd27079b650e68:eyJ0aW1lc3RhbXAiOjE2NTM3MTI3Mjg0ODUsImZfa2IiOjB9; _dd_s=rum=0&expire=1653713628249";
+        string cookie = "stockx_device_id=ff6f9452-7f4f-4452-9f7b-bfb12dc3cb3c; _pxvid=07622260-de40-11ec-9714-7478474d6a78; _ga=undefined; _ga=GA1.2.740994899.1653712714; _gcl_au=1.1.1784340517.1653712714; ajs_anonymous_id=622f471c-5002-413e-92d0-abf1487d1f75; _clck=1o7sq3y|1|f1u|0; OptanonAlertBoxClosed=2022-05-28T04:38:35.985Z; __pdst=0382741d92b0453192dddbef6ea81ee8; _scid=45792cf2-448e-4f73-a263-70ddde97c614; QuantumMetricUserID=fec1a1e143ab7207f7d35401b120bda6; OptanonConsent=isGpcEnabled=0&datestamp=Sat+May+28+2022+12%3A38%3A47+GMT%2B0800+(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)&version=6.32.0&isIABGlobal=false&hosts=&consentId=79af6906-812d-46e7-9171-489767328125&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0005%3A1%2CC0004%3A1%2CC0003%3A1&geolocation=CN%3BJS&AwaitingReconsent=false; IR_PI=0b3c7f76-de40-11ec-ad83-91c0181bdbe9%7C1653799132859; _uetvid=0ad91060de4011ec84e59d1f015ea970; __ssid=ff5cb0cbc2acad520ae246194608288; lastRskxRun=1653712761877; rskxRunCookie=0; rCookie=09lz87f286xvtpxog43ktv8l3pdvpjq; pxcts=72bfe7b1-fd30-11ec-8495-6646674c4a70; _pxff_rf=1; _pxff_fp=1; _pxff_idp_c=1,s; __pxvid=738c6be7-fd30-11ec-b666-0242ac120002; _px3=3239e0ed1941541ad928ba0df10f4d4e9618a0d350c5222b2b2d6c53fdd55d4a:+1MecJTqoR/Z6bRn9PBs46Qngy0WikoYb9rxDX416lGyugnNEpTP3JJEhG9tmZrSYtdDMR7k89ocNhCFKJpMzA==:1000:oPWQKmxc5o7Sithe0jXnCQdVwD5AfRkVxVTXgp3j1yjxZPMWQR70cAxPJ0cRtg69OgXTFQaAR/Lc8eEa3bZgACs4TSacUTz6O1F9S6QRrP0w+rY162ikEMPrfjMmQXMAmBrSVlhtDEWdANt++eg7SaVxxD8Gnhutkyp5DQlaoWbQ6O+prg5sthS4l5YTGmcSvwvCOCwZoAepDaP8k+HvSg==; stockx_session=cf3dbdf1-6580-4a6c-81c1-bd67cace761d; language_code=en; stockx_selected_region=CN; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2022-07-06T13%3A36%3A07.219Z; stockx_dismiss_modal_expiration=2022-07-13T13%3A36%3A07.219Z; forterToken=6e9184c22e9f463f89626910eced4461_1657114565537__UDF43_13ck; stockx_preferred_market_activity=sales; _pxde=6f57240f1823f5596153aaa30b351a95705f051d14f6863d902a7fe1b2e27bbc:eyJ0aW1lc3RhbXAiOjE2NTcxMTQ1Njk2NjQsImZfa2IiOjB9; stockx_homepage=sneakers; stockx_default_sneakers_size=All; stockx_product_visits=1; __cf_bm=DibcyAwBubg2VsWaHWggVscPOp_GFYAhHRjvrGq6KTw-1657114573-0-AY+o+Ef+oo7SaTzeb91e4xsT4HkQ3RjmmWadfmMikOjRvGS3ZIzEUuzWPKCh37CiwzYRBE7a85VSewK/EhxaoxY=; _dd_s=rum=0&expire=1657115470450";
+        
         public void run()
         {
 

@@ -252,7 +252,7 @@
             // button4
             // 
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(981, 12);
+            this.button4.Location = new System.Drawing.Point(887, 12);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(77, 28);
             this.button4.TabIndex = 10;
@@ -263,11 +263,11 @@
             // button5
             // 
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button5.Location = new System.Drawing.Point(887, 12);
+            this.button5.Location = new System.Drawing.Point(970, 12);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(88, 28);
             this.button5.TabIndex = 9;
-            this.button5.Text = "重登录刷新CK";
+            this.button5.Text = "退出当前链接";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 

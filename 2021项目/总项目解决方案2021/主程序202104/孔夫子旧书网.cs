@@ -216,6 +216,8 @@ namespace 主程序202104
                         string url = "http://shop.kongfz.com/" + shopid + "/all/0_50_0_0_" + page + "_sort_desc_0_0/";
 
                         string html = GetUrlwithIP(url, ip,"","utf-8");
+
+                        textBox3.Text = html;   
                         shopname= Regex.Match(html, @"<div class=""shop_top_text"">([\s\S]*?)</div>").Groups[1].Value;
                         MatchCollection itemids = Regex.Matches(html, @"<div class=""item-row clearfix""([\s\S]*?)itemid=""([\s\S]*?)""");
                         MatchCollection userids = Regex.Matches(html, @"<div class=""item-row clearfix""([\s\S]*?)userid=""([\s\S]*?)""");
@@ -357,7 +359,7 @@ namespace 主程序202104
                 MessageBox.Show("请输入店铺网址");
                 return;
             }
-           
+            status = false;
 
             if (thread == null || !thread.IsAlive)
             {

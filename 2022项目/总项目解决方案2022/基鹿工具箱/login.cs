@@ -241,6 +241,8 @@ namespace 基鹿工具箱
             }
         }
 
+
+        public  bool autologin2 = true;
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (ExistINIFile())
@@ -249,7 +251,7 @@ namespace 基鹿工具箱
                 textBox1.Text = IniReadValue("values", "user");
                 textBox2.Text = IniReadValue("values", "pass");
                 string autologin = IniReadValue("values", "autologin");
-                if (autologin == "true")
+                if (autologin == "true" && autologin2==true)
                 {
                     dologin();
                 }

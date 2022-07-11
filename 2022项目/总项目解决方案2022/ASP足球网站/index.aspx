@@ -121,12 +121,12 @@
     <input  id="peilv2" type="text" name="peilv2" style="width:25%;height:25px;" placeholder="平" value=<%=ping%> >&nbsp;
     <input  id="peilv3" type="text" name="peilv3" style="width:25%;height:25px;" placeholder="负" value=<%=fu%> >
    <br />
-   初始胜率&nbsp;<input  id="chushenglv1" type="text" name="mobile" style="width:25%;height:25px;" placeholder="胜" value=<%=chusheng_bili%>>&nbsp;
+   初始&nbsp;<input  id="chushenglv1" type="text" name="mobile" style="width:25%;height:25px;" placeholder="胜" value=<%=chusheng_bili%>>&nbsp;
     <input  id="chushenglv2" type="text" name="mobile" style="width:25%;height:25px;" placeholder="平" value=<%=chuping_bili%>>&nbsp;
     <input  id="chushenglv3" type="text" name="mobile" style="width:25%;height:25px;" placeholder="负" value=<%=chufu_bili%>>
 
                 <br />
-   变化胜率&nbsp;<input  id="shenglv1" type="text" name="mobile" style="width:25%;height:25px;" placeholder="胜" value=<%=sheng_bili%>>&nbsp;
+   变化&nbsp;<input  id="shenglv1" type="text" name="mobile" style="width:25%;height:25px;" placeholder="胜" value=<%=sheng_bili%>>&nbsp;
     <input  id="shenglv2" type="text" name="mobile" style="width:25%;height:25px;" placeholder="平" value=<%=ping_bili%>>&nbsp;
     <input  id="shenglv3" type="text" name="mobile" style="width:25%;height:25px;" placeholder="负" value=<%=fu_bili%>>
                 <br />

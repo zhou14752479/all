@@ -118,7 +118,33 @@ namespace douyinSelenium
 
         private void 主控端_Load(object sender, EventArgs e)
         {
-
+            this.TopMost = true;
+           
+                StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", function.EncodingType.GetTxtType(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < text.Length; i++)
+                {
+                string[] text2 = text[i].Split(new string[] { "," }, StringSplitOptions.None);
+                if(text2.Length>5)
+                {
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                 
+                    lv1.SubItems.Add(text2[1]);
+                    lv1.SubItems.Add(text2[2]);
+                    lv1.SubItems.Add(text2[3]);
+                    lv1.SubItems.Add(text2[4]);
+                    lv1.SubItems.Add("");
+                    lv1.SubItems.Add(text2[6]);
+                    lv1.SubItems.Add(text2[7]);
+                    lv1.SubItems.Add(text2[8]);
+                }
+               
+                }
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+            
         }
 
      
@@ -400,12 +426,18 @@ namespace douyinSelenium
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (thread == null || !thread.IsAlive)
+            for (int i = 0; i < listView1.CheckedItems.Count; i++)
             {
-                thread = new Thread(login);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                if (listView1.CheckedItems[i].Checked == true)
+                {
+                    string xuhao = listView1.CheckedItems[i].SubItems[0].Text;
+
+                    exitdic[xuhao] = "1";
+
+                    listView1.CheckedItems[i].SubItems[5].Text = "已退出";
+                }
             }
+
         }
 
         Dictionary<string,string> exitdic= new Dictionary<string,string>();
@@ -510,9 +542,9 @@ namespace douyinSelenium
                     }
                 }
 
-               
-               
 
+
+              
                 //var g = Guid.NewGuid();
                 //IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 //js.ExecuteScript($"document.title = '{g}'");
@@ -521,7 +553,7 @@ namespace douyinSelenium
                 {
                     if (checkBox2.Checked == true)
                     {
-                        if (time == 10)
+                        if (time == 180)
                         {
                             for (int i = 0; i < driver.WindowHandles.Count; i++)
                             {
@@ -553,6 +585,7 @@ namespace douyinSelenium
 
                     if (exitdic[xuhao] == "newlink")
                     {
+                        driver.SwitchTo().Window(driver.WindowHandles[0]);
                         IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                         js.ExecuteScript($"window.open('{textBox1.Text}');");
                         exitdic[xuhao] = "0";
@@ -763,12 +796,16 @@ namespace douyinSelenium
 
         private void 更换此账号cookieToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.TopMost = false;
+
             if (listView1.SelectedItems.Count > 0)
             {
                 string str = Interaction.InputBox("输入新cookie", "标题", "", -1, -1);
                 listView1.SelectedItems[0].SubItems[4].Text = str;
             }
-                
+
+            this.TopMost = true;
+
         }
 
         private const int SW_HIDE = 0;
@@ -816,6 +853,30 @@ namespace douyinSelenium
             if (dr == DialogResult.OK)
             {
                 // Environment.Exit(0);
+
+                StringBuilder sb = new StringBuilder(); 
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    for (int j = 0; j < listView1.Columns.Count; j++)
+                    {
+                        if(j<listView1.Columns.Count-1)
+                        {
+                            sb.Append(listView1.Items[i].SubItems[j].Text.Trim()+",");
+                        }
+                        else
+                        {
+                            sb.AppendLine(listView1.Items[i].SubItems[j].Text.Trim());
+                        }
+                        
+                    }
+                }
+
+                FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                sw.WriteLine(sb.ToString());
+                sw.Close();
+                fs1.Close();
+                sw.Dispose();
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
             else

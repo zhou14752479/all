@@ -319,7 +319,11 @@ namespace 主程序202206
 
         private void button3_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Clipboard.SetText(textBox2.Text); //复制
+            //System.Windows.Forms.Clipboard.SetText(textBox2.Text); //复制
+
+           
+
         }
+
     }
 }
