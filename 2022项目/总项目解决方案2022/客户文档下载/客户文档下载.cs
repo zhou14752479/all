@@ -510,7 +510,7 @@ namespace 客户文档下载
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + "//校本陕西//";
 
-            string cookie = "c=HMImeFhN-1652066429893-801118a5032cf-840509130; _fmdata=bTnVzj%2Bv7r4zVfiJTkoApAy9wdA%2BS7njfavhwr96e2V5UDxYTy7t6UZ5hRFgYDNMU%2BI0A6iXB2HYlmXm%2BB%2FTXoODVghpRI2vBm6L4YFHbmI%3D; username=61272519960129422X; Hm_lvt_65c62952e8f76079dda87ee4803828bd=1656583323,1656661137,1657010258,1657247364; looyu_id=25aa1338d9095719b2593741bd425ac0_20003318%3A9; looyu_20003318=v%3Ad220efdd4b95d96faf9829c35c03e6a9%2Cref%3A%2Cr%3A%2Cmon%3A//m6815.talk99.cn/monitor%2Cp0%3Ahttps%253A//www.xiaoben365.com/; _xid=Jgj0eXwnQyvtqq3Y7%2BCpf6xTGg%2Bdf5K8Wx2G15gHSvpihU2n3RS%2FPoqq2GJsx6XCmkv60EqR19WziVLBvCWIag%3D%3D; SchoolBasic=eyJ0b2tlbiI6IkZCMjFFOTdBRDA4QjlFNDY0MDMzMDJBNTNGMjcxNTBFNkQ3NzE5ODE0MDVGNDNCQjcxMTg3OTcxMDQ0NDgzQzRDMTBERUQ1QzI3MkJDNzY5MTYxODUzNkY1MERDODA1MUVGNDlBNEJGOTdFNjk0RjI0MTRBMUI1NTQyQ0UzMDlCOUNBRDI0RENEMjhFQ0MyQzMxQTYyMjAxMTQyOTYzMzMxNjRGRDk5MENFQkE4MURENDZCNERFREE2OTQzQzc3MTgzQjJDQjRDRDY5ODEwQTU2RkI1QUY4RDE1MzlDMjdCQjM1N0NCQjJCQTE5MTBFMkRCNTRFQ0QyOUQ4MEE4NjNGQjhDMzhEM0FFRTdCRkE0ODU4Njc2Mjg4Q0VDOEM0QkI3MEI5MzAwQjIwMzdEQTY0M0VBNTlDMzg4NUNGQzE3RDQ5MjlFMjBDMjdCNDhBNERFRENEQUVBOTU3ODMxNkIwODMwNTY0MkVGQTk0QzU3QUZCMTRCRDZDRkVCQURCNzhDQTFGODg5QTJGNzY3NEM2Q0QxRTU2MTI2OTM5NEU1RjNDNEZBRTMzM0VFRkE0OUNCMkFGNDdDQjAyOUM0NTIwOUM3MEM3NDAzNUMwNjhDMzY1NDI5RUE4ODFCMDYzRUQyMjkwRjI0RjhGOTNGOTI5Mjg2MURGRjFFRTc3RTU5NzVGRUFGOTI5ODRDN0JENTlDRDBDQUZCOEI2ODlFQ0ZCMTU4M0U0OEY1NzA4QzQwMkUxRTU1OEM4MEUyNTQxNjIwM0Q4NURBNjMwNDA2QjZFNzBFNDYzQzYzQjU4NTk5MEY4QUNGRUQ3QUExMTYxMjUxRkI0RURERkE3MDFFQTM5NTIxRUVCNkRENkRDRjYyMzc2NTQyMUM2RjE2MjYyQUJGNTg2OTI1QjgzOUYyOTFBODQ4REEzODRFNjJERUMzNEE4ODM1OURCRTU2Njc2OEQ3M0M0NzQ4OEM5MDNCRUU0Rjk0MzAwQTVEQjQ2QkY5OUQxQkE4MzRDRUFBNTNBMThDM0FDQTA0OTg2QTBCQzQwQzdCRjY2N0RCMzMwOEIzRTY5ODExNUJGNDJDODJFQ0U5MjUyRTUyNDFCRjEzQzkzOUFGRDlBQjgwMUJBRUU1QTM0OUMwN0JGOUZGNTI4OTAyODRDRjU1MDgwRkI5QzJCQUE4MjIyQ0JFRDAxM0MwQkRFNzFEMEQ2RTM3RjZENEZFOTg4NTc2N0E5ODZBNjMxMUZERTJBRjZBRUQ0ODE4NDZBMzg3NTkxRjNCMEJEMjZDQjJEMEIyNTYxRjBCNjUxMDREQzA0NTYwMDk5OEVBRTQ0NkRBNzQxQTAwNDUyQjI1RUI1NzlFQUU4RDQ2RjBGNjQwRTA3NUI0N0YwODQ4ODAxNDY0RjExNDU2MEM0MjRGN0JCNTc0QjgxMzM3MTBDNzM2QzE3NEIxNDdBRkYxRTRCNDI4NjBERDM2QTdGNzcyMjRBNEFDQkQ5NEU4NzBEMkU1N0ZDNzMzRjQ3QjgyOTgzNjNENkU4MjYzRDE4QTNFQUExQkJDMTJDMUIwQjQxNTI4NTdBNkRBMEM1QUZCQUI0RjRENTFFMEFBMTVDMDU5NzgyNjZGQUY3MkM5NkMzOTY0MDFDNUQ3ODFENUZCNEY1Mjk1NTYzNUNFMjFCOEREREJDRTdFRUIwNzQ0Rjc2Qzc2NDlFNTU1OUU0QUU2QTI2RTU4QjcyRkU5REM1M0Q5QzkxNDM3NjY4NjA1N0NCNjA3ODZCMkFERDZGNTJBQzRENDU1MTFBMkNBRjE2MENBNUI3QzE5RDM4RDY0OUY3NTBCNTRBNkFGOTQ4OUJDNDlDMzVCNEM4QTgyNEIwQjc0RUExQ0E5MEU3NDk0MDVGNTJGNDM1QkExMzdFNUE2NTI1QTBFMUFGRDg4NkM2REFBNzlGM0Y1OTZFN0YzOEZDRjk0NzkxRUJFQkI1OUE5MkEyQzdGMDNEQUZFNTlGNEE2MTlBODY1RUNDRkJGNkUxMTk1ODYzMTFCOTlBMEQ3NTBCNDk3NjRDQzU1QzYzMjE4MkY4MDEwMERCN0QyRDlERjdGOTU3QjMyMjA1MTE3MDUyQjU0RkU0OEU2OTgxMTk0NTVENEY0QzU4NUFDRjQ1NzkyMTI3NDUxNzFBNzlBMzIzNjU5NEE2NkY2RDMyMzFBQjQxMTg4NDVDNjEyNjIxODI3RjIyRDVGODVBODk3In0%3D; connect.sid=s%3A6zApWvnnFZkAL32EusovJ46Mr3fBKq7H.rScrHtsEhiMwWP3jYTwqvzy3MhtF1vDiUms5Jo7JqTM; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2286530ce8-69bc-4394-ad73-28b0c617b4f7%22%2C%22first_id%22%3A%22180a6d52a1d775-0c5fbbac1aad0e-6b3e555b-3686400-180a6d52a1edc7%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22180a6d52a1d775-0c5fbbac1aad0e-6b3e555b-3686400-180a6d52a1edc7%22%7D; Hm_lpvt_65c62952e8f76079dda87ee4803828bd=1657248401";
+            string cookie = "connect.sid=s%3AM4HiV2Gb2s3UCdMNuciwucNKxFaSQxZE.ixURW%2BnifPbmII%2Bfm%2FYrPILygoJt80%2BYoCSKXdfx%2F1Y; looyu_id=9d5ce2f4dbcb69fdc98733a568d252e2_20003318%3A1; looyu_20003318=v%3A9d5ce2f4dbcb69fdc98733a568d252e2%2Cref%3A%2Cr%3A%2Cmon%3A//m6817.talk99.cn/monitor%2Cp0%3Ahttps%253A//www.xiaoben365.com/; sajssdk_2015_cross_new_user=1; c=mlmnZnJo-1657589536258-d63e06acd0f87284399625; _fmdata=bTnVzj%2Bv7r4zVfiJTkoApAy9wdA%2BS7njfavhwr96e2V5UDxYTy7t6UZ5hRFgYDNMW0xromJU3J14RZByf4lnBZy6t0%2BYZp8%2BFxK%2BLQ1FpQA%3D; _xid=Jgj0eXwnQyvtqq3Y7%2BCpf6xTGg%2Bdf5K8Wx2G15gHSvpczyWrvv7ZgDqnswIE9y87H6Q9iZjl%2BfeDq919cXjaKA%3D%3D; SchoolBasic=eyJ0b2tlbiI6Ijg4NkM4N0QyOTVCRkNDQjIxMUM3REU5OTgzMTRDMjBBQkVBMEFDMjVFQkRDNzcyRTg2OEI4RjJFQTExMERDNzJENTg0NERGNEI3NDgyRUE3NDFENTM0REUzM0UxNjA4MTZCQzg5MjQ0OTg5MjQyMUNCNkE0MTgyMThFODI3MDc2NjQ3RDA3NDM4OTkxMkQyOTBGREQ1MEE5NkIxMDQ1NDBDNkE0QUZDM0E1NENDOTgyREM0QjcwREZCMjE1RDYwRjc2ODA1RTdEQTI3MEMwNjczOTQwMkM5NDQzNzJEMkEzNTMzMTM1MThBQjU4NzNCRDQ2RTk0NThGQ0RBRjUwNjFGNDQyQkYyQTczMkFCMTU3RURCMUQ5QTkzMkIwODVDNUEyOTk5RDlDREU2M0UyM0NDMzMyODI0NTYxREY4REYxMTBGMUQxRDY4RTVDNTdDQzMxQ0VBQUE5MjM1ODFFNzRGMTI2OUQzMURFRUUyM0Y2NDNEMDNGNzRDOTNFN0ZFRjc1NUYyQTA2NkU1QTNFM0U2MTYyNkRCQzVEMTIyRjlCREZGMjNFNkMwNkVFQUZBMkM0ODhGNzNFNEU3NDdEMTNFQTAyOTI1Qjc3RjM5NTQ2RDg3OUYwNUFBM0I3Q0RDRjlEOTZEOTc5Q0NGMDNCNTEwMTE2ODQ0QjNGOTI4QUYyREI4M0M3MzUyMzA3NDI5Qzg0RjhFM0FEMkIwNTAyOEUxODQ2RDM4MUFEMTFDQ0ZGODJCRjc4MjM3Qzk5OTlERUNCRTIwNjREOTc1NzZCNDY4MUVCNkQwMTk5N0QzNEE1MDZCODVFMDQyRTk3MDIwQTIzNEMzMEJGRDY0RkU4RTQ0RjY2NTY0NEFBMzNENjMwOEEzQzA2OTNBOTgzNzZBODcxRUVERkJDNzMzODI2OUEwRTA1NDA1ODAwRDFGNDMzRjc2QjI1MzM1NDM4MzA4NjJBMDdGODE1NEZGMUM5OUVGMEZDMkI1RjYzRENERTFERTA1QThGN0U5MjBGMEZFRkZDMDEyNUE4QUQ0QTYwNDgxM0Q0N0I0NjRBMDdFNzA4QjA5NEUyQUQzNjVGMkUwRkUyRDAwOEZGMUNGNDM2QzlDQTdFMTQ5REU4MzMwMUU5Qjg0RDU4QTkyMDUwODFBMEQ1MDEwOTIxM0IyREVCQzQzNkJCMkExMTlGMTA0NzdBQzMzMTFGRTdFN0UzOEIyRTZGNTJBQjQxRkM4MzVGMjhCNTI0NjYxMkJEQUIyNkNBMDg3RTg0QkUwQ0FGNTJENUJBQzI2QTg1QTkzRDI5ODRFMEQyMTEzMzU0QjM1RjRCMDNDOTU5QUI3RkVCMDlBMzZDMTE3MzVCQTkyN0U2RUM3QzI3MjFDQjc1REJCNDc4OTI0QUZDQzU1NTZCQTJFOTI0RDA4QjA3NDVFNUVFMEM0MTgwNzk3NUFGMEJERTBCQkVBN0YxRUU2QjZBRkM5MzE5RjYwQkNGMjQ0RkI1RUQzMDlERkI1QTVERjY3M0YxQkFFMjIyMjJBQ0ZGREM1MjEwRjZDODdFNjNCNkI2NzU5NDhBRTA1NzhCMTlENzQyRDc4RUE3REI0MkFGREU3OTA1RTgyRjgwQjNBMTcwRDE1MjI3QzdFN0MwQjAwODBDQ0Y1NUVBQUZGRkY2Q0Q3MTgxQzI4OEFFMTYwMDg3QjVFOUFFMEYzRjlDQzBBMUFCRTFEQkZCQTA1RjVEQUM3Q0Q0MjcxNzQ0NTZDRTNENTYwN0ZENEVCMkYxOUEwRjJCRDY0RTFGQTlFODUxODIxQ0RCRkQ1RDU0MDZBNzU2RjlDMTM0RUU0QzkzN0Y5Njc1RDM3ODIzRTU4MkZBQ0M4RTlGNzY4NkVDQ0Q3NzgxQTIyQjQ5OEU4NTNDODAyQkI3ODcxMjI5MTVFQ0VBREE4ODhCMDA1MzAyMEZGQjI2OTEzNjcwOEE0OTFBRTE4Q0QwN0M5QjFERjc4NkI4ODRGQjIyRDVFOERBNDM0MkFDMkYzNzQ2QjMxNDM4Mjg0MjQ0OEJFRDJDQzI4MjNBRjRBQTk5N0M0MThCQThDNjA5NUJFQUUzRjVFNzE2ODFEMTAyNjFDQURBMjBDQUYwNkVGNTY0OEFBNDEyQkM3RThGNTRERjUyQTUyNDQ3MEVFN0NFQzgyODdGMTA0OTdGMzQ3MjU4QjFDRkE3QUNDQzA5MDYzNTQ4MzlFNzE1MkJDNzQ3In0%3D; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2286530ce8-69bc-4394-ad73-28b0c617b4f7%22%2C%22first_id%22%3A%22181f657853fd5e-0bb7208fd6d037-26021a51-3686400-181f6578540c15%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22181f657853fd5e-0bb7208fd6d037-26021a51-3686400-181f6578540c15%22%7D; Hm_lvt_65c62952e8f76079dda87ee4803828bd=1657589557,1657695349; Hm_lpvt_65c62952e8f76079dda87ee4803828bd=1657695356";
             try
             {
 
@@ -653,6 +653,98 @@ namespace 客户文档下载
         }
 
         #endregion
+
+
+        #region 陕西师范
+      
+        public void shanxishifan()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "//陕西师范//";
+
+            string cookie = "client_id=96294450; JSESSIONID=C7CC1A8D7B04D1D348D60E321851DE56; uniqueVisitorId=4e8976f8-b3c6-3eb4-43d1-c5c87286e59b; JSESSION_ID=TLFK8Z-0352HCPQ8JULBCO0F0UI2-Z9TKRK5L-918; _const_cas_assertion_id_=11807601; _const_cas_assertion_=612501198207020021; tmp_uc0=eNpVzsEKgkAYBGCKgijEeoXOCv%2Bvqau3UiPT0tQl8rJIbhAUhnYoondPT%2BFt5rvMbMbUZrTmFfOKESIBQwcUXYeya83qd82q8sZ7ILQSN5Gl7wfvq4qQuEnihXu2Cx03gOPnWljzNFj7JJNB1ZSNHR3IlgYrO4Q1UE%2BRMzP1Y18LZBPJXDo%2FLdQ1wyAGAJqIUn7%2Bg6YuQLq%2FLPhOO7vNx4FKdJy1Gt3y56Ws7swuCz5MUuqcxI57RQ8nrSwrnjftlf0AaNRE0g%3D%3D; lastlogin=\"2022-07-13 14:58\"; looyu_id=d234ed86102d38b31a80c3e9377937b5_20003718%3A2; looyu_20003718=v%3Ae07c3319cad9503acc1eed3ef0c6abdd%2Cref%3A%2Cr%3A%2Cmon%3A//m6817.talk99.cn/monitor%2Cp0%3Ahttp%253A//cas.sxsd.01601.cn/; CAS_SID=74bb84b4-08c9-450b-b28e-2e6704a565f9:1657787017269; tmp_pc0=eNp1Uc1u00AQTkNaR5X4LU9QiVti7SZOvI5yATtVnZjE%2BEeQXBZnd0pcOXZkbyAFceENjLhzoycOHOEJ4A24IMSh6kMgIWykIC7MafTNfDPfzHd829apk0RAvbMVUKWDFayoO%2Fh6AfsZpNROk1Nq8v7w41V34LrmZEzvT4yBhR6%2BCHnv0LOORmTWRO1O61i3H5Chb93TJ%2BgI%2BWarOdO8kTPqWE0Nk8MGEz3c7agqUREiaps0AvYXwGpLRY3lpode3swWyTOaxFEYw90nEDPYwQeFmlUpxHcHDjUNOoKzacX4wa7ZzmRIDVP3vKk9cJ%2Fr6A6LZQEBW0AKfC1nTOYhEzJPlkEYy0aRi%2BLQt3t8HgdLqIa8nq2iUBQDayzhUCvRWpwI2I3gKURX4vVyLxOBWGdSWSr7siQVu%2FNAsIXE52bMYVMvd1hhJiTYCDM%2BSR5LENES7E%2B%2FWZXKQfOnwbQbvuvgbpsomqJg0tZI9eLDq8tP5%2BM3Xx7ltSCFIB8X8Q%2F3%2B3%2B4Cm5VL96%2FuzzPx%2Fnnr7mUreenwMTrkr6%2Fdc7kdYwJUrsI72%2F%2F98fIW1vLTb41vP9Lmv0G%2FXerGA%3D%3D";
+            try
+            {
+
+                for (int page = 1; page < 300; page++)
+                {
+                    string url = "http://sxsd.01601.cn/proj/studentwork/activity/yx_detial_user_data.htm?dictLevelId1=2347063&dictLevelId2=-1&dictLevelId3=&dictLevelId4=&realName=&usrDictId2=-1&markAll=1&st=undefined&ptcode=40199&id=154157&state=&isRecommend=&checkLevel=&actStatus=0&actNeedmark=1&pageSize=10&curPage="+page+"&_=1657696201530";
+                    string html = GetUrlWithCookie(url,cookie,"utf-8") ;
+                   
+                    MatchCollection ids = Regex.Matches(html, @"<li class=""sx_boxTj"">([\s\S]*?)mark\('([\s\S]*?)','([\s\S]*?)'");
+                  
+                    MatchCollection subUserNames = Regex.Matches(html, @"title=""([\s\S]*?)""");
+                    MatchCollection hege = Regex.Matches(html, @"onclick=""mark\(([\s\S]*?)<li class=""sx_boxTx"">([\s\S]*?)</li>");
+
+                 
+                    for (int i = 0; i < ids.Count; i++)
+                    {
+                       
+                        if (hege[i].Groups[2].Value != "合格" && hege[i].Groups[2].Value != "优秀")
+                        {
+                            continue;
+                        }
+                        string author = Regex.Replace(subUserNames[i].Groups[1].Value, "<[^>]+>", "").Trim();
+
+
+                        string aurl = "http://sxsd.01601.cn/proj/studentwork/activity/markNew?markAll=1&ptcode=40199&activityId=" + ids[i].Groups[3].Value + "&userId=" + ids[i].Groups[2].Value+"&isMark=true&ptcode=40199&tabId=&type=huping&stageId=0";
+
+                        string ahtml = GetUrlWithCookie(aurl, cookie, "utf-8");
+
+                        string title=Regex.Match(ahtml, @"<h1 class=""py_bt"" title=""([\s\S]*?)""").Groups[1].Value;
+                      
+
+                        textBox1.Text += "正在下载：" + title+ "\r\n";
+
+                        string sPath = path + title + "//" + author;
+                        if (!Directory.Exists(sPath))
+                        {
+                            Directory.CreateDirectory(sPath); //创建文件夹
+                        }
+                        else
+                        {
+                            //存在文件夹表示已经下载了 跳过
+                            continue;
+                        }
+
+
+                        MatchCollection stepIds = Regex.Matches(ahtml, @"stepId"" value=""([\s\S]*?)""");
+
+
+
+                     
+
+                        for (int a = 0; a < stepIds.Count; a++)
+                        {
+                            string burl = "http://sxsd.01601.cn/proj/studentwork/activity/swapAjax/replyList.json";
+                            string bdata = "activityId=" + ids[i].Groups[3].Value + "&stepId="+stepIds[a].Groups[1].Value+"&userId=" + ids[i].Groups[2].Value + "&bianlunfang=&isParentIdNull=false&ptcode=40199";
+                            string bhtml = PostUrlDefault(burl,bdata,cookie, "application/x-www-form-urlencoded");
+                            string content= Regex.Match(bhtml, @"""context"":""([\s\S]*?)""").Groups[1].Value;
+                            string[] text = content.Split(new string[] { "&&&" }, StringSplitOptions.None);
+                            if(text.Length>1)
+                            {
+                                downloadFile(text[1], sPath, text[0], cookie);
+                            }
+                        }
+
+                    }
+
+
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+            MessageBox.Show("完成");
+
+        }
+
+        #endregion
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
@@ -688,6 +780,17 @@ namespace 客户文档下载
                 if (thread == null || !thread.IsAlive)
                 {
                     thread = new Thread(run_xiaoben_fujian);
+                    thread.Start();
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
+
+            if (radioButton6.Checked == true)
+            {
+              
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(shanxishifan);
                     thread.Start();
                     Control.CheckForIllegalCrossThreadCalls = false;
                 }

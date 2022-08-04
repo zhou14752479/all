@@ -124,7 +124,7 @@ namespace 校友邦
             string pic = "https://ss0.xybsyw.com/temp/20220506/school/14563/epidemicsituation/4547945/1651818859152.jpg";
 
             string url = "https://xcx.xybsyw.com/student/clock/PunchIn!historyList.action";
-            string postdata = "traineeId="+traineeId+"&months=2022-05";
+            string postdata = "traineeId="+traineeId+"&months=2022-07";
          
             string html = PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
            

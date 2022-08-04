@@ -74,8 +74,8 @@
         <a class="next" href="javascript:;" rel="nofollow"></a>
         <ul>
         <li><a href="/index.aspx?type=1">足球胜平负</a></li>
-        <li><a href="/index.aspx?type=2">篮球让分</a></li>
-        <li><a href="/index.aspx?type=3">篮球大小分</a></li>
+        <li><a href="/lanqiu.aspx?type=2">篮球让分</a></li>
+        <li><a href="/lanqiu.aspx?type=3">篮球大小分</a></li>
         </ul>
         </div>
         </div>

@@ -38,8 +38,8 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,9 +109,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 151);
+            this.listView1.Location = new System.Drawing.Point(0, 125);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(745, 452);
+            this.listView1.Size = new System.Drawing.Size(745, 478);
             this.listView1.TabIndex = 219;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -135,19 +135,9 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(745, 151);
+            this.groupBox1.Size = new System.Drawing.Size(745, 125);
             this.groupBox1.TabIndex = 218;
             this.groupBox1.TabStop = false;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(502, 20);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 23);
-            this.button4.TabIndex = 37;
-            this.button4.Text = "导入文本地址";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button6
             // 
@@ -159,6 +149,16 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(502, 20);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(95, 23);
+            this.button4.TabIndex = 37;
+            this.button4.Text = "导入文本地址";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // 谷歌地图经纬度获取
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -167,8 +167,10 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox1);
             this.Name = "谷歌地图经纬度获取";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "谷歌地图经纬度获取";
+            this.Text = "环球客谷歌地图经纬度解析系统";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.谷歌地图经纬度获取_FormClosing);
             this.Load += new System.EventHandler(this.谷歌地图经纬度获取_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -573,10 +573,10 @@ namespace 美团
                         foreach (string keyword in keywords)
 
                         {
-                            for (int i = 0; i < 1000; i = i + 8)
+                            for (int i = 0; i < 40; i = i + 8)
 
                             {
-
+                                toolStripStatusLabel1.Text = DateTime.Now.ToString() + "正在采集：" +city+areaid+keyword+i;
 
                                 string Url = "https://i.meituan.com/api/vc/mtshoplist/client/easylife?cateId=&cityid="+cityid+"&start="+i+"&limit=20&tabKeyWord="+keyword+"&tagName=%E5%85%A8%E9%83%A8&clienttype=200&dpid=&areaId=" + areaid;
 
@@ -630,27 +630,30 @@ namespace 美团
 
                                 for (int a = 0; a < names.Count; a++)
                                 {
+                                    
                                     if (!finishes.Contains(tels[a].Groups[1].Value))
                                     {
                                         string newphone = shaixuan(tels[a].Groups[1].Value);
                                         if (newphone != "")
                                         {
-
-                                            
-                                            //菜品 
-                                           
-                                            string curl = "https://meishi.meituan.com/i/api/dish/poi";
-                                            string cpostdata = "{\"uuid\":\"0b031290-9ded-41ce-8018-e551f34e1001\",\"version\":\"8.2.0\",\"platform\":11,\"app\":\"\",\"partner\":126,\"riskLevel\":1,\"optimusCode\":10,\"originUrl\":\"http://meishi.meituan.com/i/poi/1952674346\",\"poiId\":"+ mtids[a].Groups[1].Value+ "}";
-                                            string chtml = method.PostUrl(curl,cpostdata,"","utf-8", "application/json", curl);
-                                            //MessageBox.Show(chtml);
-                                            MatchCollection cainames = Regex.Matches(chtml, @"""id"":([\s\S]*?),""name"":""([\s\S]*?)"",""price"":([\s\S]*?),""recCount"":([\s\S]*?),");
-
                                             finishes.Add(tels[a].Groups[1].Value);
-                                            StringBuilder cpsb = new StringBuilder();
-                                            for (int b = 0; b < cainames.Count; b++)
-                                            {
-                                                cpsb.Append(cainames[b].Groups[2].Value+" "+ cainames[b].Groups[3].Value.Replace("00", "")+"元 "+ cainames[b].Groups[4].Value+",");
-                                            }
+
+                                            //菜品 
+
+                                            //string curl = "https://meishi.meituan.com/i/api/dish/poi";
+                                            //string cpostdata = "{\"uuid\":\"0b031290-9ded-41ce-8018-e551f34e1001\",\"version\":\"8.2.0\",\"platform\":11,\"app\":\"\",\"partner\":126,\"riskLevel\":1,\"optimusCode\":10,\"originUrl\":\"http://meishi.meituan.com/i/poi/1952674346\",\"poiId\":"+ mtids[a].Groups[1].Value+ "}";
+                                            //string chtml = method.PostUrl(curl,cpostdata,"","utf-8", "application/json", curl);
+                                            ////MessageBox.Show(chtml);
+
+
+                                            //MatchCollection cainames = Regex.Matches(chtml, @"""id"":([\s\S]*?),""name"":""([\s\S]*?)"",""price"":([\s\S]*?),""recCount"":([\s\S]*?),");
+
+
+                                            //StringBuilder cpsb = new StringBuilder();
+                                            //for (int b = 0; b < cainames.Count; b++)
+                                            //{
+                                            //    cpsb.Append(cainames[b].Groups[2].Value+" "+ cainames[b].Groups[3].Value.Replace("00", "")+"元 "+ cainames[b].Groups[4].Value+",");
+                                            //}
 
                                             ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
                                             listViewItem.SubItems.Add(names[a].Groups[1].Value);
@@ -671,7 +674,7 @@ namespace 美团
                                             listViewItem.SubItems.Add(keyword);
                                             listViewItem.SubItems.Add(city);
                                             listViewItem.SubItems.Add(pingfen_dic[mtids[a].Groups[1].Value]);
-                                            listViewItem.SubItems.Add(cpsb.ToString());
+                                            //listViewItem.SubItems.Add(cpsb.ToString());
                                          
                                             while (this.zanting == false)
                                             {
@@ -681,6 +684,8 @@ namespace 美团
                                                 return;
                                            //Thread.Sleep(500);
                                         }
+
+                                       
                                     }
                                    
                                 }

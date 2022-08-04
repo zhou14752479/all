@@ -58,7 +58,7 @@ namespace 主程序202104
             textBox2.Text = md5 +"asd147"+ guoqi;
 
 
-            textBox2.Text = method.GetMD5(textBox1.Text).ToUpper();
+            //textBox2.Text = method.GetMD5(textBox1.Text).ToUpper();
         }
 
         private void MD5加密_Load(object sender, EventArgs e)

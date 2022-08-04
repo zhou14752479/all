@@ -155,7 +155,7 @@ namespace 域名信息更新
             catch (WebException ex)
             {
 
-                return ex.ToString();
+                return ex.Message;
             }
 
 
@@ -170,7 +170,7 @@ namespace 域名信息更新
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl_ym(string Url)
+        public static string GetUrl_ym(string Url,string ip)
         {
             string html = "";
            
@@ -178,7 +178,8 @@ namespace 域名信息更新
             {
                 string charset = "utf-8";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
-
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
                 request.KeepAlive = true;
                 request.Headers.Add("sec-ch-ua", @""" Not A;Brand"";v=""99"", ""Chromium"";v=""100"", ""Google Chrome"";v=""100""");
                 request.Accept = "application/json, text/javascript, */*; q=0.01";
@@ -241,6 +242,7 @@ namespace 域名信息更新
             try
             {
                 string html = GetUrl(textBox1.Text,"utf-8");
+                textBox4.Text = DateTime.Now.ToString() + "：请求域名接口..."+"\r\n" + textBox4.Text;
                 string data = Regex.Match(html, @"data"":\[([\s\S]*?)\]").Groups[1].Value;
                 return data;
             }
@@ -252,12 +254,42 @@ namespace 域名信息更新
         }
 
 
+        public string getip()
+        {
+            try
+            {
+                string html = GetUrl(textBox3.Text, "utf-8");
+             
+              if(html.Contains(".") && html.Contains(":"))
+                {
+                    textBox4.Text = DateTime.Now.ToString() + "：获取IP成功" + "\r\n"+ textBox4.Text;
+                    return html;
+                }
+              else
+                {
+                    textBox4.Text = DateTime.Now.ToString() + "：获取IP失败" +html+ "\r\n"+ textBox4.Text;
+                    return html;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+               
+                return "";
+            }
+        }
+
+      
         public void run(object ym)
         {
-           
-
+            string ip = getip();
+            if (textBox4.Text.Length>5000)
+            {
+                textBox4.Text = "";
+            }
+          
                 string url = "https://whois.west.cn/?domain=" + ym.ToString() + "&server=&refresh=1";
-                string html = GetUrl_ym(url);
+                string html = GetUrl_ym(url,ip);
 
                 string regdate = Regex.Match(html, @"""regdate"":""([\s\S]*?)""").Groups[1].Value;
                 string expdate = Regex.Match(html, @"""expdate"":""([\s\S]*?)""").Groups[1].Value;
@@ -273,23 +305,39 @@ namespace 域名信息更新
                 string registrer = Regex.Match(html, @"""registrer"":""([\s\S]*?)""").Groups[1].Value;
 
 
-
+            string is_can_register = "";
+            if(expdate.Contains("1970"))
+            {
+                is_can_register = "1";
+            }
                 string datastatus = "获取成功";
                 string msg = "成功";
-                if (regdate == "")
+                if (expdate == "" && regdate=="")
                 {
+               
                     datastatus = "获取失败";
                     msg = "未提交";
                 }
 
-               
+            if (checkBox1.Checked == true)
+            {
                 if (datastatus == "获取成功")
                 {
                     string tjurl = textBox2.Text + ym;
-                    string postdata = "register_at=" + regdate + "&expire_at=" + expdate + "&remove_at=&is_beian=&is_expire=" + status + "&is_can_register=&registrar=" + registrer;
+                    string postdata = "register_at=" + regdate + "&expire_at=" + expdate + "&remove_at=&is_beian=&is_expire=" + status + "&is_can_register="+ is_can_register + "&registrar=" + registrer;
                     string tjhtml = PostUrlDefault(tjurl, postdata, "");
+                    textBox4.Text = DateTime.Now.ToString() + "：请求更新接口..." + "\r\n" + textBox4.Text;
                     msg = Regex.Match(tjhtml, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
+                    if(msg=="")
+                    {
+                        msg = tjhtml;
+                    }
                 }
+            }
+            else
+            {
+                msg = "未提交";
+            }
 
 
                 ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString());
@@ -298,17 +346,20 @@ namespace 域名信息更新
                 lv1.SubItems.Add(Unicode2String(msg));
                 lv1.SubItems.Add(regdate + "-" + expdate + "-" + status + "-" + registrer);
 
-              
-            
+            count = count - 1;
+
+
 
         }
 
-
+        int count = 0;
         public void main()
         {
+            Control.CheckForIllegalCrossThreadCalls = false;
             for (int i = 0; i < 9999999; i++)
             {
                 string ym = getym();
+               
                 while (zanting == false)
                 {
                     Application.DoEvents();//等待本次加载完毕才执行下次循环.
@@ -317,28 +368,37 @@ namespace 域名信息更新
                     return;
                 string[] text = ym.Split(new string[] { "," }, StringSplitOptions.None);
 
-                foreach (var item in text)
+                for (int a = 0; a< text.Length; a++)
                 {
+                    //textBox4.Text += "线程"+(a+1)+"："+ text[a]+"\r\n";
+
                     Thread thread = new Thread(new ParameterizedThreadStart(run));
-                    string o = item.Replace("\"", "").Trim();
+                    string o = text[a].Replace("\"", "").Trim();
                     thread.Start((object)o);
-                    Control.CheckForIllegalCrossThreadCalls = false;
+                  
+                 
+                    count = count + 1;
+                    Thread.Sleep(100);
+
+                    while (count >= numericUpDown1.Value)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+
                 }
 
-                Thread.Sleep(2000);
+
+               
+               
             }
         }
 
-        Thread thread;
+       
         private void button1_Click(object sender, EventArgs e)
         {
+         
             astatus = true;
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(main);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            main();
 
 
 

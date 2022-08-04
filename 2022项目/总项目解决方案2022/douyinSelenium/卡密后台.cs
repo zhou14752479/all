@@ -154,7 +154,7 @@ namespace douyinSelenium
 
             string kami = GetMD5(Guid.NewGuid().GetHashCode() + "56146svsfs"+DateTime.Now.ToString()).ToUpper();
             textBox1.Text = kami;
-            string url = "http://43.154.221.28/kami.php";
+            string url = "http://43.135.12.65/kami.php";
             string postdata = "type=set&kami="+kami+"&time=" + time.Trim();
             string html = PostUrlDefault(url, postdata, "");
             string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
@@ -163,6 +163,11 @@ namespace douyinSelenium
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Windows.Forms.Clipboard.SetText(textBox1.Text); //复制
+        }
+
+        private void 卡密后台_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

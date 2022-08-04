@@ -176,7 +176,7 @@ namespace douyinSelenium
         public static string login(string kami)
         {
             string jiqima = GetMD5(GetMacAddress()).ToUpper();
-            string url = "http://43.154.221.28/kami.php";
+            string url = "http://43.135.12.65/kami.php";
             string postdata = "type=yz&kami="+kami.Trim()+"&jiqima="+jiqima;
            string html= PostUrlDefault(url, postdata, "");
             string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;

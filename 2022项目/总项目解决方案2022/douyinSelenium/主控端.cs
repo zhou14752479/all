@@ -450,14 +450,27 @@ namespace douyinSelenium
                 Control.CheckForIllegalCrossThreadCalls = false;
                 IWebDriver driver = GetChromeBrowser(ip,user,pass);
                 string[] cookieall = cookies.Split(new string[] { ";" }, StringSplitOptions.None);
-                if (textBox1.Text.Contains("live.douyin"))
+
+                if (checkBox3.Checked == true)
                 {
-                    driver.Navigate().GoToUrl("https://www.douyin.com/");
+                    driver.Navigate().GoToUrl("https://creator.douyin.com/");
+
                 }
                 else
                 {
-                    driver.Navigate().GoToUrl("https://live.douyin.com/");
+
+                    if (textBox1.Text.Contains("live.douyin"))
+                    {
+                        driver.Navigate().GoToUrl("https://www.douyin.com/");
+                    }
+                    else
+                    {
+                        driver.Navigate().GoToUrl("https://live.douyin.com/");
+                    }
                 }
+                
+
+
                 
                 foreach (var item in cookieall)
                 {
@@ -485,6 +498,9 @@ namespace douyinSelenium
 
 
                 }
+
+
+
                 driver.Navigate().GoToUrl(url);
 
                 foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcessesByName("chrome"))
@@ -907,9 +923,5 @@ namespace douyinSelenium
 
 
         }
-
-      
-
-
     }
 }

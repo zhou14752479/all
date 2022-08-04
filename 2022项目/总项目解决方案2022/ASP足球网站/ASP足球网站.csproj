@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.aspx" />
+    <Content Include="lanqiu.aspx" />
     <Content Include="login.html" />
     <Content Include="savedata.aspx" />
     <Content Include="tongji.html" />
@@ -89,6 +90,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lanqiu.aspx.cs">
+      <DependentUpon>lanqiu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lanqiu.aspx.designer.cs">
+      <DependentUpon>lanqiu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="savedata.aspx.cs">

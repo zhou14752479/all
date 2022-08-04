@@ -87,8 +87,8 @@ namespace 主程序202102
                 request.Headers.Add("Accept-Encoding", "gzip");
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("_token:"+ticket);
-                headers.Add("_type: A014");
+                headers.Add("X-Bill-Token:" + ticket);
+                headers.Add("X-Bill-Type: A014");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 request.KeepAlive = true;
                 request.Accept = "*/*";

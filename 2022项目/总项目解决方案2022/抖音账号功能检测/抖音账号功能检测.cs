@@ -539,14 +539,15 @@ namespace 抖音账号功能检测
             nicklist.Clear();
             for (int i = 0; i < listView1.Items.Count; i++)
             {
-               
-                string token = listView1.Items[i].SubItems[1].Text;
+
+                // string token = listView1.Items[i].SubItems[1].Text;
+                string nickname = listView1.Items[i].SubItems[2].Text;
                 try
                 {
                    
-                    if(!nicklist.Contains(token))
+                    if(!nicklist.Contains(nickname))
                     {
-                        nicklist.Add(token);
+                        nicklist.Add(nickname);
                     }
                     else
                     {
@@ -586,7 +587,7 @@ namespace 抖音账号功能检测
                 string nickname = listView1.Items[i].SubItems[2].Text;
                 try
                 {
-                    if (nickname!="已掉线")
+                    if (nickname!="已掉线" && nickname!="")
                     {
                         c = c + 1;
                         FileStream fs1 = new FileStream(path, FileMode.Append, FileAccess.Write);//创建写入文件 

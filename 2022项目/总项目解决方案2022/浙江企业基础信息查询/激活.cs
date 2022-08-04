@@ -62,7 +62,7 @@ namespace 浙江企业基础信息查询
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            string jihuoma = method.GetMD5(textBox1.Text.Trim()).ToUpper();
+            string jihuoma = method.GetMD5(textBox1.Text.Trim()+ "siyiruanjian").ToUpper();
             if (textBox2.Text.Length > 32)
             {
 

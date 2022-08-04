@@ -138,10 +138,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(738, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(223, 20);
+            this.label4.Size = new System.Drawing.Size(227, 20);
             this.label4.TabIndex = 14;
-            this.label4.Text = "获取客源请加微信：16216444441";
-            this.label4.Visible = false;
+            this.label4.Text = "获取客源请加微信： 19933028007";
             // 
             // linkLabel3
             // 
@@ -227,9 +226,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 20);
+            this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "思忆地图采集";
+            this.label1.Text = "帮企小秘书   ";
             // 
             // statusStrip1
             // 

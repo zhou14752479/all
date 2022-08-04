@@ -38,6 +38,7 @@
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // button1
@@ -85,13 +86,11 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
             this.radioButton3.Font = new System.Drawing.Font("宋体", 10F);
             this.radioButton3.Location = new System.Drawing.Point(12, 89);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(249, 18);
             this.radioButton3.TabIndex = 4;
-            this.radioButton3.TabStop = true;
             this.radioButton3.Text = "xiaoben365陕西61272519960129422X";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
@@ -138,11 +137,25 @@
             this.textBox2.Text = resources.GetString("textBox2.Text");
             this.textBox2.Visible = false;
             // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Checked = true;
+            this.radioButton6.Font = new System.Drawing.Font("宋体", 10F);
+            this.radioButton6.Location = new System.Drawing.Point(12, 193);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(109, 18);
+            this.radioButton6.TabIndex = 9;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "陕西师范大学";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
             // 客户文档下载
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 539);
+            this.Controls.Add(this.radioButton6);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.radioButton5);
@@ -173,5 +186,6 @@
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.RadioButton radioButton6;
     }
 }

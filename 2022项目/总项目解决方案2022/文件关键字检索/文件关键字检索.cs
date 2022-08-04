@@ -123,7 +123,7 @@ namespace 文件关键字检索
             //    System.Diagnostics.Process.GetCurrentProcess().Kill();
             //}
 
-            if (DateTime.Now>Convert.ToDateTime("2022-08-08"))
+            if (DateTime.Now>Convert.ToDateTime("2022-09-08"))
             {
                 TestForKillMyself();
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
@@ -428,11 +428,20 @@ namespace 文件关键字检索
             }
         }
 
-        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+
+        Thread thread;
+         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(run);
-            thread.Start();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            MessageBox.Show("开始执行");
+            toolStripMenuItem4.Enabled = false;
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+            toolStripMenuItem4.Enabled=true;    
         }
 
         private void 文件关键字检索_FormClosing(object sender, FormClosingEventArgs e)
@@ -447,6 +456,12 @@ namespace 文件关键字检索
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            关于 about = new 关于();
+            about.ShowDialog();
         }
     }
 }

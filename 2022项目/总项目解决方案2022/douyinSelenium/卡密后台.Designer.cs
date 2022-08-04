@@ -215,6 +215,7 @@
             this.Name = "卡密后台";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "卡密后台";
+            this.Load += new System.EventHandler(this.卡密后台_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

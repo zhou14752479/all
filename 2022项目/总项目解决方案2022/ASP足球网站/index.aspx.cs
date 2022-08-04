@@ -46,7 +46,7 @@ namespace ASP足球网站
                 }
                else if (Request.QueryString["type"] == "2")
                 {
-                    lanqiurangfen();
+                   
                 }
                 else
                 {
@@ -383,63 +383,7 @@ namespace ASP足球网站
         #endregion
 
 
-        #region  篮球让分
-        public void lanqiurangfen()
-        {
-            string value1 = "2.3";
-            string value2 = "2.5";
-            string value3 = "";
-            #region 查询1
-            string sql = "select date,updatetime,match,zhu,ke,bifen,sheng,ping,fu,type,result from datas where";
-
-            if (value1 != "")
-            {
-                sql = sql + (" sheng like '" + value1 + "' and");
-            }
-            if (value2 != "")
-            {
-                sql = sql + (" ping like '" + value2 + "' and");
-            }
-            if (value3 != "")
-            {
-                sql = sql + (" fu like '" + value3 + "' and");
-            }
-
-            if (sql.Substring(sql.Length - 3, 3) == "and")
-            {
-                sql = sql.Substring(0, sql.Length - 3);
-            }
-
-            #endregion
-
-
-            DataTable dt = fc.chaxundata(sql);
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                string date = dt.Rows[i][1].ToString().Trim();
-                string match = dt.Rows[i][2].ToString().Trim();
-                string zhu = dt.Rows[i][3].ToString().Trim();
-                string ke = dt.Rows[i][4].ToString().Trim();
-                string bifen = dt.Rows[i][5].ToString().Trim();
-                string sheng = dt.Rows[i][6].ToString().Trim();
-                string ping = dt.Rows[i][7].ToString().Trim();
-                string fu = dt.Rows[i][8].ToString().Trim();
-
-                sb.Append("<tr>");
-                sb.Append("<td><span>" + date + "</span></td>");
-                sb.Append("<td><span>" + match + "</span></td>");
-                sb.Append("<td><span>" + zhu + "</span></td>");
-                sb.Append("<td><span>" + ke + "</span></td>");
-                sb.Append("<td><span>" + bifen + "</span></td>");
-                sb.Append("<td><span>" + sheng + "</span></td>");
-                sb.Append("<td><span>" + ping + "</span></td>");
-                sb.Append("<td><span>" + fu + "</span></td>");
-                sb.Append("</tr>");
-            }
-            result = sb.ToString();
-        }
-        #endregion
+        
 
 
 

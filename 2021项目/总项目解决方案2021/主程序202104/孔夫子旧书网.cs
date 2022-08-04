@@ -341,25 +341,13 @@ namespace 主程序202104
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            ////string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            ////if (!html.Contains(@"OaO6Wx"))
-            ////{
-
-            ////    return;
-            ////}
-
-
-
-            #endregion
+           
             if (textBox1.Text == "")
             {
                 MessageBox.Show("请输入店铺网址");
                 return;
             }
-            status = false;
+            status = true;
 
             if (thread == null || !thread.IsAlive)
             {

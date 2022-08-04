@@ -150,7 +150,19 @@ namespace 浙江企业基础信息查询
                 for (int a = 0; a < dt.Rows.Count; a++)
                 {
                     total = total + 1;
-                    if (DateTime.Now > Convert.ToDateTime("2022-05-10"))
+                    //if (DateTime.Now > Convert.ToDateTime("2022-05-10"))
+                    //{
+                    //    MessageBox.Show("{\"msg\":\"非法请求\"}");
+                    //    return;
+                    //}
+
+                    string gregegedrgerheh = gdsgdgdgdgdstgfeewrwerw3r23r32rvxsvdsv.rgebgdgdvsdfsdvsdfsdvdsbgdsrt435b515sdfsdf("shebao", "");
+                    string sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[0];
+                    string ggsjpt_sign = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[1];
+
+                    string expiretime = gregegedrgerheh.Split(new string[] { "," }, StringSplitOptions.None)[2];
+
+                    if (DateTime.Now > Convert.ToDateTime(expiretime))
                     {
                         MessageBox.Show("{\"msg\":\"非法请求\"}");
                         return;

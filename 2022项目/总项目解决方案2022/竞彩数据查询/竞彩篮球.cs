@@ -297,7 +297,7 @@ namespace 竞彩数据查询
                 DataTable dt = fc.chaxundata(sql);
                 DataTable dt2 = fc.chaxundata(sql2);
                 dt.Merge(dt2);
-                DataTable dt3 = DeleteSameRow(dt,"time");
+               // DataTable dt3 = DeleteSameRow(dt,"time");
 
                 //DataTable newdt = dt.Clone();
 

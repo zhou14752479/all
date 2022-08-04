@@ -144,6 +144,7 @@ namespace 抖音扫码获取cookie
            string html = reader.ReadToEnd();
             string status = Regex.Match(html, @"""status"":""([\s\S]*?)""").Groups[1].Value;
             string redirect_url = Regex.Match(html, @"""redirect_url"":""([\s\S]*?)""").Groups[1].Value;
+            textBox1.Text=(html);
             if (status=="1")
             {
                 label1.Text = "未扫码..";
@@ -152,6 +153,7 @@ namespace 抖音扫码获取cookie
             {
                 label1.Text = "已扫码..";
             }
+           
             else if(redirect_url!="")
             {
                 timer1.Stop();

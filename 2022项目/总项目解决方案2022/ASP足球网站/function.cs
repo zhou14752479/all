@@ -15,7 +15,7 @@ namespace ASP足球网站
     {
         string path = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "\\jingcaidata.db"; //获取当前程序运行文件夹
 
-        //string path = System.Environment.CurrentDirectory + "\\lanqiudata.db"; //获取当前程序运行文件夹
+        string path2 = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "\\lanqiudata.db"; //获取当前程序运行文件夹
         /// <summary>
         /// 查询数据库
         /// </summary>
@@ -37,7 +37,36 @@ namespace ASP足球网站
             }
             catch (SQLiteException ex)
             {
-                
+               
+                return null;
+
+
+            }
+
+        }
+
+        /// <summary>
+        /// 查询数据库
+        /// </summary>
+        public DataTable chaxundata2(string sql)
+        {
+            try
+            {
+
+
+                SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path2);
+                mycon.Open();
+
+                SQLiteDataAdapter mAdapter = new SQLiteDataAdapter(sql, mycon);
+                DataTable dt = new DataTable();
+                mAdapter.Fill(dt);
+                mycon.Close();
+                return dt;
+
+            }
+            catch (SQLiteException ex)
+            {
+
                 return null;
 
 
