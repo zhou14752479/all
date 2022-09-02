@@ -20,7 +20,9 @@ namespace 主程序202010
         {
             InitializeComponent();
         }
-        public void run()
+
+        //旧
+        public void run_old()
         {
             if (textBox1.Text == "")
             {
@@ -46,7 +48,7 @@ namespace 主程序202010
                                 string url = "http://www.wangdailin.com/bzppph.php?ppcont=" + value[1].Trim() + "&yn=undefined&sex=3";
 
                                 string html = method.GetUrl(url, "utf-8");
-
+                                
                                 MatchCollection a1s = Regex.Matches(html, @"<tr style=""text-align:center;font-size:23px""><td></td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td>");
                                 Match a2 = Regex.Match(html, @"<font color=""#D9111B""><B>([\s\S]*?)</B>");
                                 MatchCollection a3s = Regex.Matches(html, @"<font color=""#D9111B"">([\s\S]*?)</font>");
@@ -79,20 +81,71 @@ namespace 主程序202010
 
         }
 
-        Thread thread;
-        private void button6_Click(object sender, EventArgs e)
+
+        public void run()
         {
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"8zi"))
+            if (textBox1.Text == "")
             {
-                MessageBox.Show("验证失败");
+                MessageBox.Show("请输入日期");
                 return;
             }
 
-            #endregion
+
+            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] != "")
+                {
+                    string t = Regex.Replace(text[i], @"\s+", " ");
+                    string[] value = t.Split(new string[] { " " }, StringSplitOptions.None);
+                    if (value.Length > 1)
+                    {
+                        if (value[1] != "")
+                        {
+                            try
+                            {
+                                string url = "http://www.wangdailin.com/bzppph.php?ppcont=" + value[1].Trim() + "&yn=undefined&sex=3";
+
+                                string html = method.GetUrl(url, "utf-8");
+
+                                MatchCollection a1s = Regex.Matches(html, @"<tr class=""bazi""><td></td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td><td>([\s\S]*?)</td>");
+                               
+                                
+                                Match a2 = Regex.Match(html, @"程：([\s\S]*?)<td><span>([\s\S]*?)</span>");
+                                MatchCollection a3s = Regex.Matches(html, @"<span style=""color:#D9111B"">([\s\S]*?)</span>");
+
+                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(value[0].Trim());
+                                lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[1].Value, "<[^>]+>", "") + Regex.Replace(a1s[1].Groups[1].Value, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[2].Value, "<[^>]+>", "") + Regex.Replace(a1s[1].Groups[2].Value, "<[^>]+>", ""));
+                                lv1.SubItems.Add(Regex.Replace(a1s[0].Groups[3].Value, "<[^>]+>", "") + Regex.Replace(a1s[1].Groups[3].Value, "<[^>]+>", ""));
+
+                                lv1.SubItems.Add(Regex.Replace(a2.Groups[2].Value, "<[^>]+>", ""));
+                                lv1.SubItems.Add(a3s[a3s.Count - 1].Groups[1].Value);
+
+
+                                Thread.Sleep(1000);
+                            }
+                            catch (Exception)
+                            {
+
+                                continue;
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+        }
+        Thread thread;
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -109,6 +162,21 @@ namespace 主程序202010
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void 八字排盘读取_Load(object sender, EventArgs e)
+        {
+            #region 通用检测
+
+            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+
+            if (!html.Contains(@"8ZiY"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+               
+            }
+
+            #endregion
         }
     }
 }

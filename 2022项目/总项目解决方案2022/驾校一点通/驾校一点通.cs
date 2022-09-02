@@ -200,7 +200,7 @@ namespace 驾校一点通
                             "题：题目：",
                             jobject["question"].ToString()+"\r\n"
                             }));
-                            bool flag2 = jobject["Type"].ToString().Equals("1");
+                            bool flag2 = jobject["type"].ToString().Equals("1");
                             if (flag2)
                             {
                                 text2 = "√-×";
@@ -221,7 +221,7 @@ namespace 驾校一点通
 
                             string text3 = jobject["ta"].ToString();
                             string text4 = "";
-                            bool flag3 = jobject["Type"].ToString().Equals("1");
+                            bool flag3 = jobject["type"].ToString().Equals("1");
                             if (flag3)
                             {
                                 text4 = Convert.ToDouble(text3) == 1.0 ? "√" : "×";
@@ -255,7 +255,7 @@ namespace 驾校一点通
                             }
                             cells[num4, 0].PutValue(ids[num4].Groups[1].Value);
                             cells[num4, 0].SetStyle(st);
-                            cells[num4, 1].PutValue(jobject["Type"].ToString().ToString().Replace("1", "判断").Replace("2", "单选").Replace("3", "多选"));
+                            cells[num4, 1].PutValue(jobject["type"].ToString().ToString().Replace("1", "判断").Replace("2", "单选").Replace("3", "多选"));
                             cells[num4, 1].SetStyle(st);
                             cells[num4, 2].PutValue(jobject["question"].ToString());
                             cells[num4, 2].SetStyle(st);
@@ -267,7 +267,7 @@ namespace 驾校一点通
                             cells[num4, 5].SetStyle(st);
                             cells[num4, 6].PutValue(jobject["imageurl"].ToString());
                             cells[num4, 6].SetStyle(st);
-                            cells[num4, 7].PutValue(jobject["sinaimg"].ToString());
+                            //cells[num4, 7].PutValue(jobject["sinaimg"].ToString());
                             cells[num4, 7].SetStyle(st);
                             cells.SetRowHeight(num4, 20.0);
                             //num4++;
@@ -359,7 +359,7 @@ namespace 驾校一点通
                             "题：题目：",
                             jobject["question"].ToString()+"\r\n"
                             }));
-                            bool flag2 = jobject["Type"].ToString().Equals("1");
+                            bool flag2 = jobject["type"].ToString().Equals("1");
                             string xuangxiang1 = "";
                             string xuangxiang2 = "";
                             string xuangxiang3 = "";
@@ -393,7 +393,7 @@ namespace 驾校一点通
 
                             string text3 = jobject["ta"].ToString();
                             string text4 = "";
-                            bool flag3 = jobject["Type"].ToString().Equals("1");
+                            bool flag3 = jobject["type"].ToString().Equals("1");
                             if (flag3)
                             {
                                 text4 = Convert.ToDouble(text3) == 1.0 ? "√" : "×";
@@ -427,7 +427,7 @@ namespace 驾校一点通
                             }
                             cells[num4, 0].PutValue(ids[num4].Groups[1].Value);
                             cells[num4, 0].SetStyle(st);
-                            cells[num4, 1].PutValue(jobject["Type"].ToString().ToString().Replace("1", "判断").Replace("2", "单选").Replace("3", "多选"));
+                            cells[num4, 1].PutValue(jobject["type"].ToString().ToString().Replace("1", "判断").Replace("2", "单选").Replace("3", "多选"));
                             cells[num4, 1].SetStyle(st);
                             cells[num4, 2].PutValue(jobject["question"].ToString());
                             cells[num4, 2].SetStyle(st);
@@ -449,7 +449,7 @@ namespace 驾校一点通
                             cells[num4, 8].SetStyle(st);
                             cells[num4, 9].PutValue(jobject["imageurl"].ToString());
                             cells[num4, 9].SetStyle(st);
-                            cells[num4, 10].PutValue(jobject["sinaimg"].ToString());
+                            //cells[num4, 10].PutValue(jobject["sinaimg"].ToString());
                             cells[num4, 10].SetStyle(st);
                             cells.SetRowHeight(num4, 20.0);
                             //num4++;

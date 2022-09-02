@@ -16,7 +16,7 @@ namespace 孔夫子APP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 孔夫子APP());
+            Application.Run(new 孔夫子APP带定价());
         }
     }
 }

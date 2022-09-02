@@ -72,7 +72,8 @@ namespace 浙江企业基础信息查询
                     string postdata = "param={\"from\":\"1\",\"key\":\"de95ac616f4d4d069545fe8587faa7b2\",\"requestTime\":\"" + timestr + "\",\"sign\":\"" + sign + "\",\"zj_ggsjpt_app_key\":\"ada72850-2b2e-11e7-985b-008cfaeb3d74\",\"zj_ggsjpt_sign\":\"" + zj_ggsjpt_sign + "\",\"zj_ggsjpt_time\":\"" + timestr + "\",\"AAB004\":\"" + uid + "\",\"AAE140\":\"110\",\"additional\":\"\"}";
                     
                     string html = 查询2.PostUrlDefault(url, postdata, "");
-                   // textBox2.Text = html;
+                    MessageBox.Show(html);
+                    // textBox2.Text = html;
                     label3.Text = "正在查询：" + uid;
                     MatchCollection bAB010s = Regex.Matches(html, @"""bAB010"":""([\s\S]*?)""");
                     MatchCollection bAZ159s = Regex.Matches(html, @"""bAZ159"":""([\s\S]*?)""");

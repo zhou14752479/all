@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -22,8 +24,10 @@ namespace 百佳网上超市
             InitializeComponent();
         }
         bool zanting = true;
-        #region  主程序
-        public void run()
+
+
+        #region  主程序(旧)
+        public void run_old()
         {
             if (textBox3.Text == "")
 
@@ -35,15 +39,15 @@ namespace 百佳网上超市
             {
                 textBox2.Text += "已启动正在采集......" + "\r\n";
 
-
+                //https://www.parknshop.com/zh-hk/biscuits-snacks-confectionery/other-snacks/c/030500
                 for (int i = 1; i < 100; i = i + 1)
                 {
 
-                    string url = textBox3.Text+"?q=:igcBestSeller&page=" + i + "&resultsForPage=35&text=&sort=&category2nd=1&category3rd=0&minSel=9.0&maxSel=178.0&minSlider=9.0&maxSlider=178.0&_=1569719729085";
+                    string url = textBox3.Text + "?q=:igcBestSeller&page=" + i + "&resultsForPage=35&text=&sort=&category2nd=1&category3rd=0&minSel=9.0&maxSel=178.0&minSlider=9.0&maxSlider=178.0&_=1569719729085";
                     string html = method.GetUrl(url, "utf-8");
-                   
+
                     MatchCollection ids = Regex.Matches(html, @"<div class=""name"">([\s\S]*?)<a href=""([\s\S]*?)""");
-                  
+
                     if (ids.Count == 0)
                         break;
                     for (int j = 0; j < ids.Count; j++)
@@ -89,7 +93,7 @@ namespace 百佳网上超市
 
                             string downUrl = "https://www.parknshop.com" + ids[j].Groups[2].Value + "/showGalleryImages?&codeVarSel=" + shuzi.Groups[0].Value;
 
-                            
+
                             getimage(removeValid(Regex.Replace(mingzi.Groups[1].Value, "<[^>]+>", "")), downUrl);
                             while (this.zanting == false)
                             {
@@ -97,6 +101,195 @@ namespace 百佳网上超市
                             }
 
                             Thread.Sleep(100);
+
+
+
+                        }
+
+                    }
+
+
+
+                }
+                textBox2.Text += "抓取结束";
+
+            }
+
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        #endregion
+
+
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
+        {
+            string html = "";
+            string COOKIE = "_gid=GA1.2.286400592.1661908721; __BWfp=c1661908722884xe20572fa4; _cls_v=04373673-cbf3-4551-a313-83fdb7b85230; gaUserId=572b8ed8-918a-4fa8-8496-cfa2d1f1b3d1; _hjSessionUser_149189=eyJpZCI6IjY1ZTQ3Y2NlLWVjNmQtNWQ5ZC1iYjkwLTM2ZjlmNzIyNjZjYiIsImNyZWF0ZWQiOjE2NjE5MDg3MjM3NjEsImV4aXN0aW5nIjp0cnVlfQ==; ROUTE=.jsapps-84cfd8c67f-ltst4; dtCookie=v_4_srv_37_sn_3D66B8E20E7EBD49AE9E38567CADE338_perc_100000_ol_0_mul_1_app-3A83bcd02d49cd1bb3_0; _abck=16BF2FE39B03C58C22EE580DABD23733~0~YAAQl2gDF/K7z82CAQAAiYBv9gidY2FsVVQd4A+bxN1l6zBbuEA2cj6rcSgJJQaS5baPnmKQwv890BOK1PGQ97GGPBKPf9Ua60QAZ8MYYeCM1cgIOT1PWM+ddFEwNp6nNbFfUSvQv6KhV5crgU6u8+jg3a9D2SSTbnK1JNav3qc7zooRxGz6jaPVCXxU9mFzA9wVeX+0XRWKuTAByx318lYGimqYGIQobTlW5Y5U7V8a0fGtO/N0O21jUfK9M94G3JoMglGFMWTS7Vsi4FX1ofqE/cOiW8vkDoFeR5jQyPu2ZZraaiK36ReIWTSTUQVibT/HYO2SZiqbRXPJMMeNi+yCiY3sX2am862y/miNewUUssyqr9ZTTqvURwABQvPUQCU4miPI5ZjXdVZaDvY3HXxFKpp8n9KCrOjW~-1~-1~-1; bm_sz=EB5B14E4CEC5E6DE9DEECE9E32F897DB~YAAQl2gDF/W7z82CAQAAiYBv9hCcFb0kppfyxlfdWRH9ghJNVACEpm9sxmHM9n398P8Bg5kiIgS1qSlbTKeY8fpEfCrNmO/2Gsd6RDa4zdbQaQIVOWvrTF3tGj6k5Wt8yjLN5e8CYKTlkkMSdr9Mq2CsC8LwfwamSkBK8P5EPbG8KbIL3Xz1A2+C9cmxAKpo2tx24rlvS5kYmkz/K9ZvvpHLStQsK5s4mEE+5eOcptPnBxyQUpfY+6dp5ze1T1DUHXz4aUudOLsUI6mfYvGKq4hsJtA/qiRMkS6o0ukrGXlW2R3WvWY=~3686966~4534835; bm_mi=6E6250CB16FAAE80B9C2C4D52A1E6AF7~YAAQl2gDFyW8z82CAQAA24Fv9hBb3EA2wVshiWGSmAJeoBgLXh+HZrVmteCM9URgrocOaF9FEiG0w4KG2mk9ETe3Uj0rplzoJr8WUaUax6hCLlQkKjjWo/lOJyjGe8Zm7DMEqcaXvr8gk98RSpCG1yRJoq8fhPO0pBfvXzBemMCHPqnNcxwJC7KZGMwupQ5wvDQtYmKn441+MEY2ywOnYhSrOW0qDz+MYucO5tsW7oGLfhnWo9robg9znGro7JKhf8xek/GLb5KupW1YWiJ42/SctRWd97AYs3vgZOW3C4mGAYRhMZI9W8EVZroZaqVCzINzl7Sim3ByvQQ=~1; AKA_A2=A; rxVisitor=16619918816876UG4ID20UG2T2TU99506PH2J7J9S4QSJ; ak_bmsc=6C8092CF0DF201267D4CB7F645585DF0~000000000000000000000000000000~YAAQl2gDFzG+z82CAQAABptv9hCrFDhFdSW4RyyjCJR6MiHBaEkI1dddLUU8AF3ZuD/NCv1GWZaV2HW1qBE9W9UwPAD+7+IAh9Yh5/kHynkIw8KYUl/lDqNMPwHDEdMst+zMvDWM9Lll7f2iAZM2mXzypmSedGY1uPat2b7ABW6ugxMMc7EHSaNdx4A9UgRR+2/qCSxT0JcNL6zziAE+X62VZFdkiyuGkg3EoL8nzqHfFzMPO2t6y1x5s5b0tZT7p2fbNBAHcdn4LcPvSMJZUMUtlmGOLVm3ABIX9hz8274Fq9VdMqL2VvxISaV8yn5O7o8b2tSueAQKuZ9qJ7VznrdLGdfCY1y8hH6QagLmJ4iVE9B9u7uCHNzmPYx8/qB+DhqgRmkLvyGQtiGaUBvGW50VbBWpk8G7g8392Nh/KOK3Hktug15WiWmdxQ==; _cls_s=ec45688c-48ac-4de5-82d7-6a218f080fba:1; _hjIncludedInSessionSample=1; _hjIncludedInPageviewSample=1; _clck=o7iley|1|f4i|0; dtSa=-; e2-language=en_HK; dtLatC=1; RT=\"z = 1 & dm = parknshop.com & si = 0zxrewuatb9k & ss = l7gxq1qw & sl = 0 & tt = 0\"; _uetsid=d9db374028ca11ed857909a814f4eb1f; _uetvid=d9db3d7028ca11ed9ccde73ab6b3ce9b; _hjSession_149189=eyJpZCI6IjFiZjExNGFjLTAxOWQtNDYxNi1iOGE1LTg4MDcyNGM2NzBlYyIsImNyZWF0ZWQiOjE2NjE5OTUzMTY0MDEsImluU2FtcGxlIjp0cnVlfQ==; _hjAbsoluteSessionInProgress=0; _hjShownFeedbackMessage=true; cto_bundle=8dhHAF9Wa3lweFkzZGFxR0xGWTgyUXgxRDNMRjlNcVpKUlBXWDJTSEJidVFselZWJTJCeFBZUDh6MW9QWFZuWFp5SGhRNG1KYyUyRmFNY25oTDlQakFnUTdZTGhmd0xEWDdoYmZVdXRLeTZRWDNiRlFmTlB5elZ0MkM2RllWUktvTSUyRktyJTJCak9FeEU2c1J0RU9pVFd1RVZDSzBTWXl1USUzRCUzRA; _ga=GA1.2.678332562.1661908720; _ga_2EZF4T7L2L=GS1.1.1661995314.6.1.1661995317.0.0.0; _clsk=1buuvbm|1661995318423|3|1|m.clarity.ms/collect; rxvt=1661997119304|1661994156179; dtPC=37$595314204_754h-vHUHHUMWMHPCRUAMWQIAHAURMCIWOEICP-0e0; bm_sv=38438ED46D676B9FDF66BAFCE1F8EC62~YAAQtIFtaN6TKcyCAQAABzCl9hDZ7xK23PBddn4PD4RYtRBf40uYbyRFPKV06woIr4a3QgHbHnNmVcwdtqy80XXwvhqZmQwABBaTb912fYaDz9FRgjlMCYZSDs8nTea/xhdWl1kOSHZMvlL6BS+5sk4J99BiD6aT2ldeLFegP78eR46327AyvFM9RoQMRfT35rlIKs2LWpf1/Hfy0VN4O6+AeDShagQIQJHxNAAm9aVYzhN0nk9HybSo5FABMXwbLxfRUyk=~1If - None - Match: W / \"41ef5-rqVuUkEh3XtE35bgbumceQtL+4U:dtagent10245220704125537ixQ7:dtagent10245220704125537ixQ7-gzip:dtagent10245220704125537ixQ7\"";
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.Proxy = null;//防止代理抓包
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = Url;
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("sec-fetch-mode:navigate");
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+            }
+
+
+
+        }
+        #endregion
+
+        #region  主程序
+        public void run()
+        {
+            if (textBox3.Text == "")
+
+            {
+                MessageBox.Show("请输入分类网址");
+                return;
+            }
+            try
+            {
+                textBox2.Text += "已启动正在采集......" + "\r\n";
+
+
+                string cateid = Regex.Match(textBox3.Text, @"\d{6,9}").Groups[0].Value;
+                for (int i = 0; i < 101; i = i + 1)
+                {
+
+
+                    string url = "https://api.parknshop.com/api/v2/pnshk/products/search?fields=FULL&query=%3AbestSeller%3Acategory%3A"+cateid+"&pageSize=18&currentPage="+i+"&sort=bestSeller&lang=zh_HK&curr=HKD";
+                    string html = GetUrl(url, "utf-8");
+
+
+                 
+                  
+                    MatchCollection ids = Regex.Matches(html, @"""topPromotion""([\s\S]*?)""url"" : ""([\s\S]*?)""");
+                  if(ids.Count==0)
+                    {
+                        ids = Regex.Matches(html, @"</topPromotion>([\s\S]*?)<url>([\s\S]*?)</url>");
+                    }
+
+                    if (ids.Count == 0)
+                        break;
+                    for (int j = 0; j < ids.Count; j++)
+                    {
+                        string URL = "https://www.parknshop.com/zh-hk" + ids[j].Groups[2].Value;
+                      
+
+
+
+                      
+                        
+                        textBox2.Text = "正在采集......" + URL + "\r\n";
+                        if (!URL.Contains("-:"))
+                        {
+                            string strhtml = GetUrl(URL, "utf-8");  //中文源码
+                            string enhtml = GetUrl(URL.Replace("zh-hk", "en"), "utf-8");  //中文源码
+
+                          
+                            string name = Regex.Match(strhtml, @"<title>([\s\S]*?)\|").Groups[1].Value.Replace(" ","").Trim();
+                            string guige = Regex.Match(strhtml, @"<div class=""product-unit"">([\s\S]*?)</div>").Groups[1].Value.Trim();
+                            name = name + guige;
+
+
+                            string price = Regex.Match(strhtml, @"currentPrice"">([\s\S]*?)</span>").Groups[1].Value;
+                            string description = Regex.Match(strhtml, @"描述</span></div>([\s\S]*?)<div class=""description-banner"">").Groups[1].Value;
+
+
+
+                            string name_en = Regex.Match(enhtml, @"<title>([\s\S]*?)\|").Groups[1].Value.Replace(" ", "").Trim();
+
+                            name_en = name_en + guige;
+                            string description_en= Regex.Match(enhtml, @"Description</span></div>([\s\S]*?)<div class=""description-banner"">").Groups[1].Value;
+
+
+
+
+
+                            ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                            listViewItem.SubItems.Add(Regex.Replace(name, "<[^>]+>", ""));
+                            listViewItem.SubItems.Add(Regex.Replace(price, "<[^>]+>", ""));
+                            listViewItem.SubItems.Add(Regex.Replace(description, "<[^>]+>", ""));
+                            listViewItem.SubItems.Add(Regex.Replace(name_en, "<[^>]+>", ""));
+                            listViewItem.SubItems.Add(Regex.Replace(description_en, "<[^>]+>", ""));
+
+                            //下载图片
+
+                            string pichtml = Regex.Match(strhtml, @"<div class=""swiper-wrapper"">([\s\S]*?)<div class=""swiper-wrapper"">").Groups[1].Value;
+                            MatchCollection picurls = Regex.Matches(pichtml, @"is-loading""><img src=""([\s\S]*?)""");
+
+
+                            for (int a = 0; a < picurls.Count; a++)
+                            {
+                                string sPath = textBox1.Text + "\\" + removeValid(name) + "\\";
+                                if (!Directory.Exists(sPath))
+                                {
+                                    Directory.CreateDirectory(sPath); //创建文件夹
+                                }
+
+                                method.downloadFile(picurls[a].Groups[1].Value, sPath,name_en+"_"+ a + ".jpg", "");
+
+                            }
+                           
+                            
+                          
+                            while (this.zanting == false)
+                            {
+                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                            }
+
+                            Thread.Sleep(1000);
 
 
 
@@ -158,7 +351,7 @@ namespace 百佳网上超市
             for (int i = 0; i < images.Count; i++)
             {
                 string imageUrl = "https://www.parknshop.com"+images[i].Groups[1].Value;
-                method.downloadFile(imageUrl,sPath,i+".jpg");
+                method.downloadFile(imageUrl,sPath,i+".jpg",cookie);
 
             }
         }

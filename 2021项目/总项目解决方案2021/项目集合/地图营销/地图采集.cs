@@ -79,7 +79,7 @@ namespace 地图营销
 
                             //MatchCollection ahtmls = Regex.Matches(html, @"acc_flag([\s\S]*?)father_son");
                             string[] ahtmls = html.Split(new string[] { "acc_flag" }, StringSplitOptions.None);
-                            MessageBox.Show(ahtmls.Length.ToString());
+                            //MessageBox.Show(ahtmls.Length.ToString());
                             if (ahtmls.Length == 0)
                                 break;
 

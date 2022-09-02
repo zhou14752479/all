@@ -585,7 +585,11 @@ namespace win007
 
         private void Win007_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            label48.Text = "";
+            
+            webBrowser1.Navigate("https://live.titan007.com/oldIndexall.aspx");
+            
+           // this.WindowState = FormWindowState.Maximized;
             #region 通用检测
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
@@ -599,6 +603,15 @@ namespace win007
             #endregion
             dateTimePicker1.Value = DateTime.Now.AddDays(-1);
             dateTimePicker2.Value = DateTime.Now;
+
+
+
+
+
+
+
+
+
         }
 
 
@@ -611,13 +624,11 @@ namespace win007
         {
 
 
-
-
             for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate);dt=dt.AddDays(1))
             {
                 try
                 {
-                    string url = "http://bf.win007.com/football/Over_" + dt.ToString("yyyyMMdd") + ".htm";
+                    string url = "http://bf.titan007.com/football/Over_" + dt.ToString("yyyyMMdd") + ".htm";
                     label7.Text = dt.ToString("yyyyMMdd");
 
                     string html = method.GetUrl(url, "gb2312");
@@ -641,13 +652,13 @@ namespace win007
                         }
                         string bifen_zhu= Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
                         string bifen_ke = Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)-<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
-                        string datajsurl = "http://1x2d.win007.com/" + id+ ".js?r=007132848760362108507";
+                        string datajsurl = "http://1x2d.titan007.com/" + id+ ".js?r=007132848760362108507";
                         string datajs = method.GetUrl(datajsurl, "gb2312");
                         string datajsjs = Regex.Match(datajs, @"game=([\s\S]*?);").Groups[1].Value;
 
                       
                         //获取成交比例
-                        string cjurl = "http://vip.win007.com/betfa/single.aspx?id="+id+"&l=0";
+                        string cjurl = "http://vip.titan007.com/betfa/single.aspx?id="+id+"&l=0";
                         //string datacj = method.GetUrlwithIP(cjurl, "tps682.kdlapi.com:15818", "", "utf-8");
                         string datacj = GetUrl(cjurl, "utf-8");
                         
@@ -859,6 +870,8 @@ namespace win007
         Thread thread;
        
 
+        
+
         private void 清空查询数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -874,6 +887,8 @@ namespace win007
 
                
             }
+
+            
         }
 
         private void 导出查询数据ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1099,5 +1114,51 @@ namespace win007
             dataGridView1.ColumnHeadersHeight = 50;
             chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label45, label46, label47, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
         }
+
+        private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+            string url = this.webBrowser1.StatusText;
+            比赛ToolStripMenuItem.Text = "点击填入数据：" + url;
+        }
+
+        private void 比赛ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                label48.Text = "";
+                string id = Regex.Match(比赛ToolStripMenuItem.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
+
+                string data = function.getshishidata(id, comboBox1.Text.Trim());
+
+                string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
+                if (text.Length > 6)
+                {
+                    textBox1.Text = text[1];
+                    textBox2.Text = text[2];
+                    textBox3.Text = text[3];
+                    textBox9.Text = text[4];
+                    textBox8.Text = text[5];
+                    textBox7.Text = text[6];
+
+                    if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
+                    {
+                        label48.Text = "特殊数据";
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        
+           
+        }
+
+
+
     }
 }

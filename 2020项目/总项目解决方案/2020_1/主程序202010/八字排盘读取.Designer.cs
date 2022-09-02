@@ -37,11 +37,11 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,6 +118,18 @@
             this.columnHeader1.Text = "序号";
             this.columnHeader1.Width = 50;
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "3";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "4";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "5";
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 17);
@@ -143,18 +155,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "姓名     日期";
             // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "3";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "4";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "5";
-            // 
             // 八字排盘读取
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -166,6 +166,7 @@
             this.Name = "八字排盘读取";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "八字排盘读取";
+            this.Load += new System.EventHandler(this.八字排盘读取_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

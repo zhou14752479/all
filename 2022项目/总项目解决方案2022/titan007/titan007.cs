@@ -27,12 +27,12 @@ namespace titan007
         bool zanting = true;
         bool status = true;
 
-        #region 订单信息
+        #region 让球/进球数
         public void run()
         {
 
 
-           
+
 
 
             string html = method.GetUrl("http://live.titan007.com/vbsxml/bfdata_ut.js?r=0071657803475000", "utf-8");
@@ -44,14 +44,10 @@ namespace titan007
 
             foreach (Match id in ids)
             {
-                string a18_1 = "";
-                string a18_2 = "";
-                string a18_3 = "";
-                string a18_4 = "";
-                string a18_5 = "";
-                string a18_6 = "";
-                string a18_7 = "";
-                string a18_8 = "";
+                string data365 = "";
+                string databetathome = "";
+                string dataWilliamHill = "";
+                string dataLadbrokes = "";
 
 
                 try
@@ -59,81 +55,105 @@ namespace titan007
                     string aurl = "https://vip.titan007.com/AsianOdds_n.aspx?id=" + id.Groups[2].Value;
                     string ahtml = method.GetUrl(aurl, "utf-8");
                     MatchCollection teams = Regex.Matches(ahtml, @"alt=""([\s\S]*?)""");
-                    Match match= Regex.Match(ahtml, @"class=""LName"">([\s\S]*?)</a>([\s\S]*?)&nbsp");
+                    Match match = Regex.Match(ahtml, @"class=""LName"">([\s\S]*?)</a>([\s\S]*?)&nbsp");
 
                     MatchCollection dataa = Regex.Matches(ahtml, @"<tr bgcolor=""#FFFFFF""  >([\s\S]*?)</tr>");
                     MatchCollection datab = Regex.Matches(ahtml, @"<tr bgcolor=""#E8F2FF""  >([\s\S]*?)</tr>");
 
+
+                    //数据部分1 匹配
                     for (int i = 0; i < dataa.Count; i++)
                     {
 
                         string gongsi = Regex.Match(dataa[i].Groups[1].Value, @"<td height=""25"">([\s\S]*?)<").Groups[1].Value;
                         MatchCollection a = Regex.Matches(dataa[i].Groups[1].Value, @"<td title=""([\s\S]*?)>([\s\S]*?)</td>");
+                        ////随机顺序
+                        //if (gongsi.Contains("澳") || gongsi.Contains("Crow") || gongsi.Contains("易") || gongsi.Contains("10") || gongsi.Contains("盈"))
+                        //{
 
-                        if (gongsi.Contains("澳") || gongsi.Contains("Crow") || gongsi.Contains("易") || gongsi.Contains("10") || gongsi.Contains("盈") )
+                        //    if (a.Count > 2)
+                        //    {
+                        //        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        //        lv1.SubItems.Add(match.Groups[1].Value.Trim());
+                        //        lv1.SubItems.Add(teams[0].Groups[1].Value.Trim().Replace(" ", ""));
+                        //        lv1.SubItems.Add(teams[1].Groups[1].Value.Trim());
+                        //        lv1.SubItems.Add(match.Groups[2].Value.Trim());
+                        //        lv1.SubItems.Add(gongsi.Replace("18*", "18bet").Replace("10*", "10bet").Replace("澳*", "澳门").Replace("Crow*", "Crown").Replace("易*", "易胜博").Replace("盈*", "盈和"));
+                        //        lv1.SubItems.Add(a[0].Groups[2].Value);
+                        //        lv1.SubItems.Add(a[1].Groups[2].Value);
+                        //        lv1.SubItems.Add(a[2].Groups[2].Value);
+                        //    }
+
+                        //}
+
+                        if (gongsi.Contains("36*"))
                         {
-
-                            if (a.Count > 2)
-                            {
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                                lv1.SubItems.Add(match.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(teams[0].Groups[1].Value.Trim().Replace(" ", ""));
-                                lv1.SubItems.Add(teams[1].Groups[1].Value.Trim());
-                                lv1.SubItems.Add(match.Groups[2].Value.Trim());
-                                lv1.SubItems.Add(gongsi.Replace("18*", "18bet").Replace("10*", "10bet").Replace("澳*", "澳门").Replace("Crow*", "Crown").Replace("易*", "易胜博").Replace("盈*", "盈和"));
-                                lv1.SubItems.Add(a[0].Groups[2].Value);
-                                lv1.SubItems.Add(a[1].Groups[2].Value);
-                                lv1.SubItems.Add(a[2].Groups[2].Value);
-                            }
+                            data365 = match.Groups[1].Value.Trim() + "#" + teams[0].Groups[1].Value.Trim().Replace(" ", "") + "#" + teams[1].Groups[1].Value.Trim() + "#" + match.Groups[2].Value.Trim() + "#" + gongsi.Replace("18*", "18bet") + "#" + a[0].Groups[2].Value + "#" + a[1].Groups[2].Value + "#" + a[2].Groups[2].Value;
 
                         }
-
-                        if(gongsi.Contains("18*"))
+                        if (gongsi.Contains("bet-at"))
                         {
-                            a18_1 = match.Groups[1].Value.Trim();
-                            a18_2 = teams[0].Groups[1].Value.Trim().Replace(" ", "");
-                            a18_3 = teams[1].Groups[1].Value.Trim();
-                            a18_4 = match.Groups[2].Value.Trim();
-                            a18_5 = gongsi.Replace("18*", "18bet");
-                            a18_6 = a[0].Groups[2].Value;
-                            a18_7 = a[1].Groups[2].Value;
-                            a18_8 = a[2].Groups[2].Value;
+                            databetathome = match.Groups[1].Value.Trim() + "#" + teams[0].Groups[1].Value.Trim().Replace(" ", "") + "#" + teams[1].Groups[1].Value.Trim() + "#" + match.Groups[2].Value.Trim() + "#" + gongsi.Replace("18*", "18bet") + "#" + a[0].Groups[2].Value + "#" + a[1].Groups[2].Value + "#" + a[2].Groups[2].Value;
+
+                        }
+                        if (gongsi.Contains("威廉希"))
+                        {
+                            dataWilliamHill = match.Groups[1].Value.Trim() + "#" + teams[0].Groups[1].Value.Trim().Replace(" ", "") + "#" + teams[1].Groups[1].Value.Trim() + "#" + match.Groups[2].Value.Trim() + "#" + gongsi.Replace("18*", "18bet") + "#" + a[0].Groups[2].Value + "#" + a[1].Groups[2].Value + "#" + a[2].Groups[2].Value;
+
+                        }
+                        if (gongsi.Contains("立*"))
+                        {
+                            dataLadbrokes = match.Groups[1].Value.Trim() + "#" + teams[0].Groups[1].Value.Trim().Replace(" ", "") + "#" + teams[1].Groups[1].Value.Trim() + "#" + match.Groups[2].Value.Trim() + "#" + gongsi.Replace("18*", "18bet") + "#" + a[0].Groups[2].Value + "#" + a[1].Groups[2].Value + "#" + a[2].Groups[2].Value;
+
                         }
                     }
 
+
+                    //数据部分2 匹配
                     for (int i = 0; i < datab.Count; i++)
                     {
 
                         string gongsi = Regex.Match(datab[i].Groups[1].Value, @"<td height=""25"">([\s\S]*?)<").Groups[1].Value;
                         MatchCollection a = Regex.Matches(datab[i].Groups[1].Value, @"<td title=""([\s\S]*?)>([\s\S]*?)</td>");
 
-                        if (gongsi.Contains("澳") || gongsi.Contains("Crow") || gongsi.Contains("易") || gongsi.Contains("10") || gongsi.Contains("盈") )
+
+                        ////随机顺序
+                        //if (gongsi.Contains("澳") || gongsi.Contains("Crow") || gongsi.Contains("易") || gongsi.Contains("10") || gongsi.Contains("盈") )
+                        //{
+                        //    if (a.Count > 2)
+                        //    {
+                        //        ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                        //        lv1.SubItems.Add(match.Groups[1].Value.Trim());
+                        //        lv1.SubItems.Add(teams[0].Groups[1].Value.Trim().Replace(" ", ""));
+                        //        lv1.SubItems.Add(teams[1].Groups[1].Value.Trim());
+                        //        lv1.SubItems.Add(match.Groups[2].Value.Trim());
+                        //        lv1.SubItems.Add(gongsi.Replace("18*", "18bet").Replace("10*", "10bet").Replace("澳*", "澳门").Replace("Crow*", "Crown").Replace("易*", "易胜博").Replace("盈*", "盈和"));
+                        //        lv1.SubItems.Add(a[0].Groups[2].Value);
+                        //        lv1.SubItems.Add(a[1].Groups[2].Value);
+                        //        lv1.SubItems.Add(a[2].Groups[2].Value);
+                        //    }
+
+                        //}
+
+                        if (gongsi.Contains("36*"))
                         {
-                            if (a.Count > 2)
-                            {
-                                ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
-                                lv1.SubItems.Add(match.Groups[1].Value.Trim());
-                                lv1.SubItems.Add(teams[0].Groups[1].Value.Trim().Replace(" ", ""));
-                                lv1.SubItems.Add(teams[1].Groups[1].Value.Trim());
-                                lv1.SubItems.Add(match.Groups[2].Value.Trim());
-                                lv1.SubItems.Add(gongsi.Replace("18*", "18bet").Replace("10*", "10bet").Replace("澳*", "澳门").Replace("Crow*", "Crown").Replace("易*", "易胜博").Replace("盈*", "盈和"));
-                                lv1.SubItems.Add(a[0].Groups[2].Value);
-                                lv1.SubItems.Add(a[1].Groups[2].Value);
-                                lv1.SubItems.Add(a[2].Groups[2].Value);
-                            }
+                            data365 = match.Groups[1].Value.Trim() + "#" + teams[0].Groups[1].Value.Trim().Replace(" ", "") + "#" + teams[1].Groups[1].Value.Trim() + "#" + match.Groups[2].Value.Trim() + "#" + gongsi.Replace("18*", "18bet") + "#" + a[0].Groups[2].Value + "#" + a[1].Groups[2].Value + "#" + a[2].Groups[2].Value;
 
                         }
-
-                        if (gongsi.Contains("18*"))
+                        if (gongsi.Contains("bet-at"))
                         {
-                            a18_1 = match.Groups[1].Value.Trim();
-                            a18_2 = teams[0].Groups[1].Value.Trim().Replace(" ", "");
-                            a18_3 = teams[1].Groups[1].Value.Trim();
-                            a18_4 = match.Groups[2].Value.Trim();
-                            a18_5 = gongsi.Replace("18*", "18bet");
-                            a18_6 = a[0].Groups[2].Value;
-                            a18_7 = a[1].Groups[2].Value;
-                            a18_8 = a[2].Groups[2].Value;
+                            databetathome = match.Groups[1].Value.Trim() + "#" + teams[0].Groups[1].Value.Trim().Replace(" ", "") + "#" + teams[1].Groups[1].Value.Trim() + "#" + match.Groups[2].Value.Trim() + "#" + gongsi.Replace("18*", "18bet") + "#" + a[0].Groups[2].Value + "#" + a[1].Groups[2].Value + "#" + a[2].Groups[2].Value;
+
+                        }
+                        if (gongsi.Contains("威廉希"))
+                        {
+                            dataWilliamHill = match.Groups[1].Value.Trim() + "#" + teams[0].Groups[1].Value.Trim().Replace(" ", "") + "#" + teams[1].Groups[1].Value.Trim() + "#" + match.Groups[2].Value.Trim() + "#" + gongsi.Replace("18*", "18bet") + "#" + a[0].Groups[2].Value + "#" + a[1].Groups[2].Value + "#" + a[2].Groups[2].Value;
+
+                        }
+                        if (gongsi.Contains("立*"))
+                        {
+                            dataLadbrokes = match.Groups[1].Value.Trim() + "#" + teams[0].Groups[1].Value.Trim().Replace(" ", "") + "#" + teams[1].Groups[1].Value.Trim() + "#" + match.Groups[2].Value.Trim() + "#" + gongsi.Replace("18*", "18bet") + "#" + a[0].Groups[2].Value + "#" + a[1].Groups[2].Value + "#" + a[2].Groups[2].Value;
+
                         }
 
                     }
@@ -143,19 +163,50 @@ namespace titan007
 
 
 
-                    if (a18_1!="")
+                    if (data365.Length > 20)
                     {
                         ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
-                        lv.SubItems.Add(a18_1);
-                        lv.SubItems.Add(a18_2);
-                        lv.SubItems.Add(a18_3);
-                        lv.SubItems.Add(a18_4);
-                        lv.SubItems.Add(a18_5);
-                        lv.SubItems.Add(a18_6);
-                        lv.SubItems.Add(a18_7);
-                        lv.SubItems.Add(a18_8);
+                        string[] text = data365.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
                     }
 
+
+                    if (databetathome.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = databetathome.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+                    if (dataWilliamHill.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = dataWilliamHill.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+                    if (dataLadbrokes.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = dataLadbrokes.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
 
 
 
@@ -177,7 +228,7 @@ namespace titan007
                 catch (Exception ex)
                 {
                     //MessageBox.Show(ex.Message);
-                   
+
 
                 }
 
@@ -195,6 +246,7 @@ namespace titan007
         }
 
         #endregion
+
         #region  程序关闭删除自身
         public static void TestForKillMyself()
         {
@@ -213,8 +265,275 @@ namespace titan007
 
 
         #endregion
+
+
+        #region 胜平负
+        public void run2()
+        {
+
+
+            try
+            {
+                string html = method.GetUrl("http://live.titan007.com/vbsxml/bfdata_ut.js?r=0071661759322000", "utf-8");
+
+
+
+                MatchCollection ids = Regex.Matches(html, @"\]=""2([\s\S]*?)\^");
+
+                for (int x = 1; x < ids.Count; x++)
+                {
+                    string data365 = "";
+                    string databetathome = "";
+                    string dataWilliamHill = "";
+                    string dataLadbrokes = "";
+
+                    string aid = "2" + ids[x].Groups[1].Value;
+                    string datajsurl = "http://1x2d.titan007.com/" + aid + ".js?r=007133062314590247588";
+                    string datajs = method.GetUrl(datajsurl, "gb2312");
+
+
+                    string matchname_cn = Regex.Match(datajs, @"matchname_cn=""([\s\S]*?)""").Groups[1].Value;
+                    string hometeam_cn = Regex.Match(datajs, @"hometeam_cn=""([\s\S]*?)""").Groups[1].Value;
+                    string guestteam_cn = Regex.Match(datajs, @"guestteam_cn=""([\s\S]*?)""").Groups[1].Value;
+                    string MatchTime = Regex.Match(datajs, @"MatchTime=""([\s\S]*?)""").Groups[1].Value;
+
+
+
+
+
+
+                    //添加动态公司对应ID
+                    MatchCollection gongsis = Regex.Matches(datajs, @"\d{1,5}\|\d{8,10}\|([\s\S]*?)\|");
+                    for (int a = 0; a < gongsis.Count; a++)
+                    {
+                        string cid = Regex.Match(gongsis[a].ToString(), @"\d{8,10}").Groups[0].Value;
+                        string cname = gongsis[a].Groups[1].ToString();
+
+                        if (!gongsi_dics.ContainsKey(cid))
+                        {
+                            switch (cname)
+                            {
+
+                                case "Bet 365":
+
+                                    gongsi_dics.Add(cid, "Bet 365");
+                                    break;
+                                case "LeonBets":
+                                    gongsi_dics.Add(cid, "LeonBets");
+                                    break;
+                                case "William Hill":
+                                    gongsi_dics.Add(cid, "William Hill");
+                                    break;
+                                case "Bet-at-home":
+                                    gongsi_dics.Add(cid, "Bet-at-home");
+                                    break;
+
+
+                            }
+                        }
+
+                    }
+                    //添加动态公司对应ID结束
+
+
+
+
+                    string datas = Regex.Match(datajs, @"gameDetail=Array\(([\s\S]*?)\)").Groups[1].Value;
+
+                    string[] datastext = datas.Split(new string[] { "\",\"" }, StringSplitOptions.None);
+
+
+
+                    for (int j = 0; j < datastext.Length; j++)
+                    {
+
+                        string cid = Regex.Match(datastext[j], @"\d{8,10}").Groups[0].Value.Trim();
+
+                        //MessageBox.Show(cid);
+                        if (gongsi_dics.ContainsKey(cid))
+                        {
+                            string gongsi_name = gongsi_dics[cid];
+
+                            try
+                            {
+
+                                //MessageBox.Show(datastext[j]);
+
+                                string[] datasresult = datastext[j].Split(new string[] { ";" }, StringSplitOptions.None);
+
+                                string data1 = "";
+                                string data2 = "";
+                                string data3 = "";
+                                //string data4 = "";
+                                //string data5 = "";
+                                //string data6 = "";
+                                //string data7 = "";
+                                //string data8 = "";
+                                //string data9 = "";
+                                try
+                                {
+                                    string[] data_a = datasresult[0].Split(new string[] { "|" }, StringSplitOptions.None);
+                                    data1 = data_a[0].Replace(cid, "").Replace("^", "");
+                                    data2 = data_a[1];
+                                    data3 = data_a[2];
+
+
+                                    //string[] data_b = datasresult[1].Split(new string[] { "|" }, StringSplitOptions.None);
+                                    //data4 = data_b[0];
+                                    //data5 = data_b[1];
+                                    //data6 = data_b[2];
+
+
+                                    //string[] data_c = datasresult[2].Split(new string[] { "|" }, StringSplitOptions.None);
+                                    //data7 = data_c[0];
+                                    //data8 = data_c[1];
+                                    //data9 = data_c[2];
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.ToString());
+
+                                }
+
+                                if (status == false)
+                                    return;
+
+
+
+
+
+
+
+
+
+
+
+                                if (gongsi_name== "Bet 365")
+                                {
+                                    data365 = matchname_cn + "#" +hometeam_cn + "#" + guestteam_cn+ "#" + MatchTime + "#" + gongsi_name+ "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+                                if (gongsi_name == "Bet-at-home")
+                                {
+                                    databetathome = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+                                if (gongsi_name == "William Hill")
+                                {
+                                    dataWilliamHill = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+                                if (gongsi_name == "LeonBets")
+                                {
+                                    dataLadbrokes = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+
+
+
+
+
+
+                              
+
+
+                               
+                            }
+                            catch (Exception ex)
+                            {
+                                //  MessageBox.Show(ex.ToString());
+                                continue;
+                            }
+                        }
+                    }
+
+
+
+
+
+
+                    if (data365.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = data365.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+
+                    if (databetathome.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = databetathome.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+                    if (dataWilliamHill.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = dataWilliamHill.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+                    if (dataLadbrokes.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = dataLadbrokes.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+
+
+                    if (data365.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        lv.SubItems.Add("------------");
+                        lv.SubItems.Add("------------------------");
+                        lv.SubItems.Add("------------------------");
+                        lv.SubItems.Add("------------------------");
+                        lv.SubItems.Add("------------");
+                        lv.SubItems.Add("------------");
+                        lv.SubItems.Add("------------");
+                        lv.SubItems.Add("------------");
+                    }
+                    Thread.Sleep(1000);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+
+            MessageBox.Show("完成");
+        }
+
+        #endregion
+
+        Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
+
         private void titan007_Load(object sender, EventArgs e)
         {
+
+
+
             #region 通用检测
 
 
@@ -234,7 +553,7 @@ namespace titan007
         {
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run);
+                thread = new Thread(run2);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

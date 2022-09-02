@@ -107,7 +107,7 @@ namespace 圆通网点管家
                 //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.Proxy = null;//防止代理抓包
+                //request.Proxy = null;//防止代理抓包
                                      //添加头部
                                      //WebHeaderCollection headers = request.Headers;
                                      //headers.Add("sec-fetch-mode:navigate");
@@ -195,6 +195,7 @@ namespace 圆通网点管家
             token = Regex.Match(texts2, @"accessToken:([\s\S]*?)checkSum").Groups[1].Value.Trim();
             accesstoken = Regex.Match(texts2, @"jwt-token:([\s\S]*?)nonce").Groups[1].Value.Trim();
             label1.Text = "正在查询";
+
             try
             {
                 StreamReader sr = new StreamReader(openFileDialog1.FileName, method.EncodingType.GetTxtType(textBox1.Text));
@@ -215,12 +216,12 @@ namespace 圆通网点管家
                     }
 
                     label1.Text = "正在查询："+text[i];
-                    string url = "http://track.yto.net.cn/webapi/compre/trackV2?token="+token;
+                    string url = "http://track.yto.net.cn/webapi/compre/trackV2?token="+token+ "&terminal=PC";
                     string postdata = "{\"display\":0,\"weightFlag\":1,\"waybillNos\":[\""+text[i]+"\"],\"exceptionTrace\":0,\"issueOrg\":0}";
                     
                     string html = PostUrlDefault(url,postdata,"");
                     //MatchCollection opOrgName = Regex.Matches(html, @"""opOrgName"":""([\s\S]*?)""");
-                    //MessageBox.Show(html);
+                    MessageBox.Show(html);
 
 
                     string biaoshi = "M";

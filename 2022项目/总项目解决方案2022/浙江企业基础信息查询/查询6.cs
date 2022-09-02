@@ -74,7 +74,7 @@ namespace 浙江企业基础信息查询
                 //url = url.Replace("%22:", "%22%3A");
 
                 string html = 查询2.GetUrl(url, "utf-8");
-              
+                MessageBox.Show(html);
                 string com = Regex.Match(html, @"""companyName"":""([\s\S]*?)""").Groups[1].Value;
 
                 string aa = Regex.Match(html, @"""personelNo"":""([\s\S]*?)""").Groups[1].Value;

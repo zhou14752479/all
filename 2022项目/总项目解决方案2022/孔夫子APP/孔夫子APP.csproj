@@ -72,6 +72,12 @@
     <Compile Include="孔夫子APP.Designer.cs">
       <DependentUpon>孔夫子APP.cs</DependentUpon>
     </Compile>
+    <Compile Include="孔夫子APP带定价.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="孔夫子APP带定价.Designer.cs">
+      <DependentUpon>孔夫子APP带定价.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -83,6 +89,9 @@
     </Compile>
     <EmbeddedResource Include="孔夫子APP.resx">
       <DependentUpon>孔夫子APP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="孔夫子APP带定价.resx">
+      <DependentUpon>孔夫子APP带定价.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

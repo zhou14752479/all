@@ -90,7 +90,7 @@ namespace 软件工具箱
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("添加微信：19933028007");
+            MessageBox.Show("添加微信：18128619687");
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

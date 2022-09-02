@@ -217,12 +217,20 @@ namespace 身份验证
                 string card = dr[1].ToString();
                 string phone = dr[2].ToString();
 
+                if(name.Trim()=="")
+                {
+                    continue;
+                }
+
                 if (nowname ==name)
                 {
                     continue;
                 }
+
                     label3.Text = "正在查询："+name;
-                Thread.Sleep(500);
+                Thread.Sleep(400);
+                //Thread.Sleep(500); //tbapi
+
                 Encrypt aa = new Encrypt(encrypt);
                 IAsyncResult iar = BeginInvoke(aa, new object[] { phone });
                 string phonecrypt = EndInvoke(iar).ToString();
@@ -236,7 +244,7 @@ namespace 身份验证
               
                 string username = Regex.Match(html, @"""username"":""([\s\S]*?)""").Groups[1].Value;
                 string mobilephone = Regex.Match(html, @"""idcard"":""([\s\S]*?)""").Groups[1].Value;
-                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString());
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count+1).ToString());
                 lv1.SubItems.Add(name);
                 lv1.SubItems.Add(card);
                 lv1.SubItems.Add(phone);
@@ -276,16 +284,17 @@ namespace 身份验证
                     }
                     catch (Exception)
                     {
-                        lv1.SubItems.Add("验证失败2");
+                        //lv1.SubItems.Add("验证失败2");  //tbapi
+                        lv1.SubItems.Add("false");
                         continue;
                     }
                 }
                 else
                 {
-
-                    lv1.SubItems.Add("验证失败1");
+                    lv1.SubItems.Add("false");
+                    // lv1.SubItems.Add("验证失败1"); ////tbapi
                 }
-               
+
 
                 while (zanting == false)
                 {

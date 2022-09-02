@@ -85,8 +85,18 @@ namespace 主程序202206
         }
         #endregion
 
+        int allcount = 0;
         public void run()
         {
+            allcount = 0;
+
+
+            bool json1 = false;
+            bool json2 = false;
+            bool json3= false;
+            bool json4 = false;
+            bool json5 = false;
+           
             try
             {
                 textBox2.Text = "";
@@ -98,9 +108,9 @@ namespace 主程序202206
                 
                 string user = "|"+textBox3.Text.Trim()+","+textBox4.Text.Trim();
                
-                if(checkBox1.Checked==true)
+                if(radioButton1.Checked==true)
                 {
-                    //url = textBox1.Text.Trim();
+                  
                     list.Add(textBox1.Text.Trim());
                     user = "|" + textBox3.Text.Trim() + "," + textBox4.Text.Trim();
                     if (textBox3.Text.Trim() == "" || textBox4.Text.Trim() == "")
@@ -110,9 +120,9 @@ namespace 主程序202206
                     }
                 }
 
-                if (checkBox2.Checked == true)
+                if (radioButton2.Checked == true)
                 {
-                    //url = textBox7.Text.Trim();
+                  
                     list.Add(textBox7.Text.Trim());
                     user = "|" + textBox6.Text.Trim() + "," + textBox5.Text.Trim();
                     if (textBox6.Text.Trim() == "" || textBox5.Text.Trim() == "")
@@ -122,9 +132,9 @@ namespace 主程序202206
                     }
                 }
 
-                if (checkBox3.Checked == true)
+                if (radioButton3.Checked == true)
                 {
-                    //url = textBox10.Text.Trim();
+                   
                     list.Add(textBox10.Text.Trim());
                     user = "|" + textBox9.Text.Trim() + "," + textBox8.Text.Trim();
                     if (textBox9.Text.Trim() == "" || textBox8.Text.Trim() == "")
@@ -133,37 +143,223 @@ namespace 主程序202206
 
                     }
                 }
+                if (radioButton4.Checked == true)
+                {
 
+                    list.Add(textBox26.Text.Trim());
+                    user = "|" + textBox25.Text.Trim() + "," + textBox24.Text.Trim();
+                    if (textBox25.Text.Trim() == "" || textBox24.Text.Trim() == "")
+                    {
+                        user = "";
+
+                    }
+                }
+                if (radioButton5.Checked == true)
+                {
+
+                    list.Add(textBox29.Text.Trim());
+                    user = "|" + textBox28.Text.Trim() + "," + textBox27.Text.Trim();
+                    if (textBox28.Text.Trim() == "" || textBox27.Text.Trim() == "")
+                    {
+                        user = "";
+
+                    }
+                }
+
+                if (radioButton6.Checked == true)
+                {
+
+                    list.Add(textBox61.Text.Trim());
+                    user = "|" + textBox60.Text.Trim() + "," + textBox59.Text.Trim();
+                    if (textBox60.Text.Trim() == "" || textBox59.Text.Trim() == "")
+                    {
+                        user = "";
+
+                    }
+                }
+
+                if (radioButton7.Checked == true)
+                {
+
+                    list.Add(textBox65.Text.Trim());
+                    user = "|" + textBox64.Text.Trim() + "," + textBox63.Text.Trim();
+                    if (textBox64.Text.Trim() == "" || textBox63.Text.Trim() == "")
+                    {
+                        user = "";
+
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+                if (radioButton8.Checked == true)
+                {
+                    list.Add(textBox11.Text.Trim());
+                    json1 = true;
+                }
+
+                if (radioButton9.Checked == true)
+                {
+                    list.Add(textBox12.Text.Trim());
+                    json2 = true;
+                }
+
+                if (radioButton10.Checked == true)
+                {
+                    list.Add(textBox41.Text.Trim());
+                    json3 = true;
+                }
+
+                if (radioButton11.Checked == true)
+                {
+                    list.Add(textBox40.Text.Trim());
+                    json4 = true;
+                }
+
+                if (radioButton12.Checked == true)
+                {
+                    list.Add(textBox47.Text.Trim());
+                    json5 = true;
+                }
 
 
                 StringBuilder sb = new StringBuilder();
+
+           
+
 
                 for (int a = 0; a < list.Count; a++)
                 {
                     string url=list[a].ToString();
                     for (int i = 0; i < numericUpDown1.Value; i++)
                     {
-
+                        int count = 0;
                         string html = GetUrl(url, "utf-8");
-                        string[] text = html.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                        foreach (var item in text)
+
+
+
+                        if(json1==true)
                         {
-                            if (item != "")
+                           
+                            MatchCollection servers = Regex.Matches(html, "\""+textBox14.Text.Trim()+"\":\"([\\s\\S]*?)\"");
+                            MatchCollection ports = Regex.Matches(html, "\"" + textBox15.Text.Trim() + "\":([\\s\\S]*?),");
+                            MatchCollection users = Regex.Matches(html, "\"" + textBox16.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection pws = Regex.Matches(html, "\"" + textBox17.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+
+                            for (int j= 0;j< servers.Count;j++)
+                            {
+                                
+                                    count++;
+                                    allcount++;
+                                    sb.Append(servers[j].Groups[1].Value+":"+ports[j].Groups[1].Value+ "|" + users[j].Groups[1].Value+","+pws[j].Groups[1].Value + "\r\n");
+                            }
+                        }
+                       else if (json2 == true)
+                        {
+
+                            MatchCollection servers = Regex.Matches(html, "\"" + textBox19.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection ports = Regex.Matches(html, "\"" + textBox20.Text.Trim() + "\":([\\s\\S]*?),");
+                            MatchCollection users = Regex.Matches(html, "\"" + textBox21.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection pws = Regex.Matches(html, "\"" + textBox22.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            for (int j = 0; j < servers.Count; j++)
                             {
 
-                                sb.Append(item + user + "\r\n");
-
-
+                                count++;
+                                allcount++;
+                                sb.Append(servers[j].Groups[1].Value + ":" + ports[j].Groups[1].Value + "|" + users[j].Groups[1].Value + "," + pws[j].Groups[1].Value + "\r\n");
                             }
-
                         }
 
-                        Thread.Sleep(1000);
+
+                        else if (json3== true)
+                        {
+
+                            MatchCollection servers = Regex.Matches(html, "\"" + textBox38.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection ports = Regex.Matches(html, "\"" + textBox37.Text.Trim() + "\":([\\s\\S]*?),");
+                            MatchCollection users = Regex.Matches(html, "\"" + textBox36.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection pws = Regex.Matches(html, "\"" + textBox35.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            for (int j = 0; j < servers.Count; j++)
+                            {
+
+                                count++;
+                                allcount++;
+                                sb.Append(servers[j].Groups[1].Value + ":" + ports[j].Groups[1].Value + "|" + users[j].Groups[1].Value + "," + pws[j].Groups[1].Value + "\r\n");
+                            }
+                        }
+                        else if (json4 == true)
+                        {
+
+                            MatchCollection servers = Regex.Matches(html, "\"" + textBox31.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection ports = Regex.Matches(html, "\"" + textBox32.Text.Trim() + "\":([\\s\\S]*?),");
+                            MatchCollection users = Regex.Matches(html, "\"" + textBox33.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection pws = Regex.Matches(html, "\"" + textBox34.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            for (int j = 0; j < servers.Count; j++)
+                            {
+
+                                count++;
+                                allcount++;
+                                sb.Append(servers[j].Groups[1].Value + ":" + ports[j].Groups[1].Value + "|" + users[j].Groups[1].Value + "," + pws[j].Groups[1].Value + "\r\n");
+                            }
+                        }
+
+                        else if (json5 == true)
+                        {
+
+                            MatchCollection servers = Regex.Matches(html, "\"" + textBox43.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection ports = Regex.Matches(html, "\"" + textBox44.Text.Trim() + "\":([\\s\\S]*?),");
+                            MatchCollection users = Regex.Matches(html, "\"" + textBox45.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            MatchCollection pws = Regex.Matches(html, "\"" + textBox46.Text.Trim() + "\":\"([\\s\\S]*?)\"");
+                            for (int j = 0; j < servers.Count; j++)
+                            {
+
+                                count++;
+                                allcount++;
+                                sb.Append(servers[j].Groups[1].Value + ":" + ports[j].Groups[1].Value + "|" + users[j].Groups[1].Value + "," + pws[j].Groups[1].Value + "\r\n");
+                            }
+                        }
+
+                        else
+                        {
+                            string[] text = html.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                            foreach (var item in text)
+                            {
+                                if (item != "")
+                                {
+
+                                    count++;
+                                    allcount++;
+
+                                    sb.Append(item + user + "\r\n");
+
+
+
+                                }
+
+                            }
+                        }
+                        
+
+
+
+
+
+                        label19.Text = "本次提取："+count+"共提取："+allcount;
+                        Thread.Sleep(Convert.ToInt32(textBox23.Text));
                     }
                 }
+
                 textBox2.Text = sb.ToString();
+
                 MessageBox.Show("完成");
-                //System.Windows.Forms.Clipboard.SetText(textBox2.Text); //复制
+                System.Windows.Forms.Clipboard.SetText(textBox2.Text); //复制
                 //textBox2.Text = html;
 
             }
@@ -223,12 +419,12 @@ namespace 主程序202206
                         StreamReader sr = new StreamReader(path + ctr.Name + ".txt", Encoding.GetEncoding("utf-8"));
                         //一次性读取完 
                         string texts = sr.ReadToEnd();
-                        ctr.Text = texts;
+                        ctr.Text = texts.Trim();
                         sr.Close();
                     }
                 }
 
-                if (ctr is CheckBox)
+                if (ctr is RadioButton)
                 {
                     string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
                     if (File.Exists(path + ctr.Name + ".txt"))
@@ -239,7 +435,7 @@ namespace 主程序202206
                         string texts = sr.ReadToEnd();
                         if(texts.Trim()== "True")
                         {
-                            ((CheckBox)ctr).Checked = true;
+                            ((RadioButton)ctr).Checked = true;
                         }
                         
                         sr.Close();
@@ -251,24 +447,20 @@ namespace 主程序202206
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(checkBox1.Checked==false &&checkBox2.Checked==false &&checkBox3.Checked==false)
-            {
-                MessageBox.Show("请选择一个链接");
-                return;
-            }
 
 
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
-            //run();
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(run);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
+            run();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            allcount = 0;
             textBox2.Text = "";
         }
 
@@ -293,13 +485,13 @@ namespace 主程序202206
                         fs1.Close();
 
                     }
-                    if(ctr is CheckBox)
+                    if(ctr is RadioButton)
                     {
                         
                         string path = AppDomain.CurrentDomain.BaseDirectory + "value\\";
                         FileStream fs1 = new FileStream(path + ctr.Name + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                         StreamWriter sw = new StreamWriter(fs1);
-                        sw.WriteLine(((CheckBox)ctr).Checked.ToString());
+                        sw.WriteLine(((RadioButton)ctr).Checked.ToString());
                         sw.Close();
                         fs1.Close();
                     }
@@ -319,7 +511,7 @@ namespace 主程序202206
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //System.Windows.Forms.Clipboard.SetText(textBox2.Text); //复制
+            System.Windows.Forms.Clipboard.SetText(textBox2.Text); //复制
 
            
 

@@ -297,6 +297,7 @@ namespace 校友邦
                                 
                                 if (listView1.Items[i].SubItems[0].Text.Contains("集中实习"))
                                 {
+                                   // MessageBox.Show("1");签到没成功可能是图片文件夹没有用户名图片，然后调用了不上传的签到
                                     shangchuanmamsg = fc.shangchuanmaandtravelCodeImg(cookie, myma);
                                 }
                                 else
@@ -324,6 +325,7 @@ namespace 校友邦
 
                                 if (listView1.Items[i].SubItems[0].Text.Contains("集中实习"))
                                 {
+                                   // MessageBox.Show("2");
                                     shangchuanmamsg = fc.shangchuanmaandtravelCodeImg(cookie, myma);
                                 }
                                 else

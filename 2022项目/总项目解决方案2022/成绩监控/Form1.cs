@@ -41,6 +41,7 @@ namespace 成绩监控
             else if(title!=newtitle && newtitle!="")
             {
                 Beep(800, 2000);
+                title = newtitle;
                 MessageBox.Show(newtitle);
             }
 
@@ -72,6 +73,11 @@ namespace 成绩监控
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

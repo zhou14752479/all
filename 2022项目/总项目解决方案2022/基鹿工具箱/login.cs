@@ -107,7 +107,7 @@ namespace 基鹿工具箱
         {
             string html = Util.login(textBox1.Text.Trim(),textBox2.Text.Trim());
             //textBox1.Text = html;
-            string code = Regex.Match(html, @"code"":([\s\S]*?),").Groups[1].Value;
+            string code = Regex.Match(html, @"code"":([\s\S]*?),").Groups[1].Value.Trim();
             string token = Regex.Match(html, @"token"":""([\s\S]*?)""").Groups[1].Value;
             //string paytime = Regex.Match(html, @"pay_time"":""([\s\S]*?) ").Groups[1].Value;
             //string service_type = Regex.Match(html, @"service_type"":""([\s\S]*?)""").Groups[1].Value;

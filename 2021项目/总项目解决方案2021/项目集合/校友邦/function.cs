@@ -110,6 +110,7 @@ namespace 校友邦
             return traineeId;
         }
 
+        string travelCodeImg = "https://ss0.xybsyw.com/permanent/school/13777/epidemicsituation/4892034/1659911276720.jpg";
         public string getadcode(string lng, string lat)
         {
             string url = "https://restapi.amap.com/v3/geocode/regeo?key=c222383ff12d31b556c3ad6145bb95f4&location=" + lng + "%2C" + lat + "&extensions=all&s=rsx&platform=WXJS&appname=c222383ff12d31b556c3ad6145bb95f4&sdkversion=1.2.0&logversion=2.0";
@@ -124,11 +125,13 @@ namespace 校友邦
             string pic = "https://ss0.xybsyw.com/temp/20220506/school/14563/epidemicsituation/4547945/1651818859152.jpg";
 
             string url = "https://xcx.xybsyw.com/student/clock/PunchIn!historyList.action";
-            string postdata = "traineeId="+traineeId+"&months=2022-07";
+            string postdata = "traineeId="+traineeId+"&months=2022-08";
          
             string html = PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
            
             MatchCollection healthCodeImg = Regex.Matches(html, @"""healthCodeImg"":""([\s\S]*?)""");
+            MatchCollection travelCodeImgs = Regex.Matches(html, @"""healthCodeImg"":""([\s\S]*?)""");
+
             for (int i = 0; i < healthCodeImg.Count; i++)
             {
              
@@ -140,6 +143,13 @@ namespace 校友邦
                 }
 
             }
+
+            if(travelCodeImgs.Count!=0)
+            {
+                travelCodeImg = travelCodeImgs[0].Groups[1].Value;
+            }
+
+
             
             return pic;
         }
@@ -161,7 +171,7 @@ namespace 校友邦
         {
             string url = "https://xcx.xybsyw.com/student/clock/saveEpidemicSituation.action";
             //string postdata = "planId="+planid;
-            string postdata = "healthCodeStatus=0&locationRiskLevel=0&healthCodeImg=" + myma + "&travelCodeImg=https%3A%2F%2Fss0.xybsyw.com%2Ftemp%2F20220602%2Fschool%2F13777%2Fepidemicsituation%2F4892071%2F1654135097325.jpg";
+            string postdata = "healthCodeStatus=0&locationRiskLevel=0&healthCodeImg=" + myma + "&travelCodeImg="+ travelCodeImg;
             string html = PostUrl(url, postdata, cookie, "utf-8", "application/x-www-form-urlencoded", "");
 
             string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;

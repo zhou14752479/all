@@ -88,8 +88,9 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(779, 24);
             this.textBox3.TabIndex = 21;
-            this.textBox3.Text = "https://www.parknshop.com/zh-hk/biscuits-snacks-confectionery/other-snacks/c/0305" +
-    "00";
+            this.textBox3.Text = "https://www.parknshop.com/zh-hk/%E9%A3%9F%E5%93%81%E5%8F%8A%E9%A3%B2%E5%93%81/%E5" +
+    "%8D%B3%E9%A3%B2%E8%8C%B6%E9%A1%9E%E3%80%81%E5%92%96%E5%95%A1%E3%80%81%E5%A5%B6%E" +
+    "8%8C%B6/c/04010300";
             // 
             // label2
             // 

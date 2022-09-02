@@ -17,7 +17,7 @@ namespace 主程序202010
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 聚享游());
+            Application.Run(new 八字排盘读取());
 
 
         }

@@ -356,7 +356,115 @@ namespace 临时数据抓取
         }
 
 
+        #region mevotech
 
+        public void mevotech(object o)
+        {
+            int index = 2;
+            Dictionary<string, string> dics = new Dictionary<string, string>();
+
+
+
+            for (int i = 0; i < richTextBox1.Lines.Length; i++)
+            {
+                label1.Text = richTextBox1.Lines[i].ToString();
+                try
+                {
+
+                    string uid = richTextBox1.Lines[i].ToString();
+                    //if(richTextBox1.Lines[i].Substring(0,1)=="M")
+                    //{
+                    //    uid = "C"+ richTextBox1.Lines[i];
+                    //}
+
+
+                    string url = "https://www.mevotech.com/part/"+ uid + "/";
+
+                    string html = method.GetUrl(url, "utf-8");
+
+                    string pichtml = Regex.Match(html, @"<div class=""atwm-part-gallery-slider-wrapper"">([\s\S]*?)atwm-part-gallery-thumbs").Groups[1].Value;
+                   MatchCollection picurls = Regex.Matches(pichtml, @"<img src=""([\s\S]*?)""");
+                 
+                    
+                    string datahtml = Regex.Match(html, @"<h2>Product Specifications</h2>([\s\S]*?)</ul>").Groups[1].Value;
+
+                    MatchCollection values = Regex.Matches(datahtml, @"<li><span>([\s\S]*?)</span><span>([\s\S]*?)</span></li>");
+
+
+                    for (int j = 0; j < values.Count; j++)
+                    {
+                        if(!dics.ContainsKey(values[j].Groups[1].Value.Trim()))
+                        {
+                            dics.Add(values[j].Groups[1].Value.Trim(), index.ToString());
+                            index++;
+                           
+                            listView1.Columns.Add(values[j].Groups[1].Value.Trim(), 100, HorizontalAlignment.Center);
+                        }
+
+                    }
+
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString());
+                    lv1.SubItems.Add(richTextBox1.Lines[i]);
+                    for (int a = 0; a < listView1.Columns.Count; a++)
+                    {
+                        lv1.SubItems.Add("");
+                    }
+
+
+                    for (int j = 0; j < values.Count; j++)
+                    {
+                        int key=Convert.ToInt32(dics[values[j].Groups[1].Value]);
+                        listView1.Items[listView1.Items.Count-1].SubItems[key].Text = values[j].Groups[2].Value;
+
+                    }
+
+                    string path = AppDomain.CurrentDomain.BaseDirectory;
+
+                    for (int j = 0; j < picurls.Count; j++)
+                    {
+                        if(j==0)
+                        {
+                            method.downloadFile(picurls[j].Groups[1].Value, path+"首图/",uid+ ".jpg","");
+                        }
+                        else
+                        {
+                            method.downloadFile(picurls[j].Groups[1].Value, path + "其他图/", uid +"_"+j+ ".jpg", "");
+                        }
+                        
+                    }
+
+                    //ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    //lv1.SubItems.Add(name);
+                    //lv1.SubItems.Add(card);
+                    //lv1.SubItems.Add(phone);
+                    //lv1.SubItems.Add(i.ToString());
+                    //lv1.SubItems.Add(nickname);
+                    //lv1.SubItems.Add(html);
+
+
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    continue;
+                }
+
+
+            }
+
+
+
+        }
+
+        #endregion
 
         Thread thread;
         bool status = true;
@@ -386,6 +494,8 @@ namespace 临时数据抓取
 
         private void button6_Click(object sender, EventArgs e)
         {
+
+           
             status = false;
         }
 
@@ -398,7 +508,7 @@ namespace 临时数据抓取
         {
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(yanxiu);
+                thread = new Thread(mevotech);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

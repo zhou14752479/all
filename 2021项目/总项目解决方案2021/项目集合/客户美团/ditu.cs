@@ -764,16 +764,16 @@ namespace 客户美团
         /// </summary>
         /// <param name="city"></param>
         /// <returns></returns>
-        public ArrayList getarea(string city)
+        public ArrayList getarea_old(string city)
         {
             dics.Clear();
             comboBox3.Items.Clear();
                ArrayList areas = new ArrayList();
             string url = "http://www.jsons.cn/lngcode/?keyword=" + System.Web.HttpUtility.UrlEncode(city.Replace("市", "")) + "&txtflag=0";
             string html = GetUrl(url);
-
+            
             Match ahtml = Regex.Match(html, @"<table class=""table table-bordered table-hover"">([\s\S]*?)</table>");
-
+         
             MatchCollection values = Regex.Matches(ahtml.Groups[1].Value, @"<td>([\s\S]*?)</td>");
 
             for (int i = 0; i < values.Count; i++)
@@ -801,6 +801,62 @@ namespace 客户美团
 
 
 
+        /// <summary>
+        /// 获取地区新新新新新
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
+        public ArrayList getarea(string city)
+        {
+            dics.Clear();
+            comboBox3.Items.Clear();
+            ArrayList areas = new ArrayList();
+            string url = "https://jingwei.supfree.net/";
+            string html = method.GetUrl(url, "gb2312");
+
+            MatchCollection values = Regex.Matches(html, @"<a href=""kongzi.asp\?id=([\s\S]*?)"">([\s\S]*?)</a>");
+
+         
+
+            for (int i = 0; i < values.Count; i++)
+            {
+               
+                if (values[i].Groups[2].Value.Trim()==city)
+                {
+                   
+                    string aurl = "https://jingwei.supfree.net/kongzi.asp?id=" + values[i].Groups[1].Value.Trim();
+                    string ahtml = method.GetUrl(aurl,"gb2312");
+                   
+                    MatchCollection avalues = Regex.Matches(ahtml, @"<li><a href=""mengzi.asp\?id=([\s\S]*?)"" title=""([\s\S]*?)经纬度"">");
+                    //MessageBox.Show(avalues.Count.ToString());
+                    for (int j= 0; j <avalues.Count; j++)
+                    {
+                       
+                        if (!comboBox3.Items.Contains(avalues[j].Groups[2].Value.Trim()))
+                        {
+                            string burl = "https://jingwei.supfree.net/mengzi.asp?id=" + avalues[j].Groups[1].Value.Trim();
+                            string bhtml = method.GetUrl(burl, "gb2312");
+                            string lng= Regex.Match(bhtml, @"经度：<span class=""bred botitle18"">([\s\S]*?)</span>").Groups[1].Value.Trim();
+                            string lat = Regex.Match(bhtml, @"纬度：<span class=""bred botitle18"">([\s\S]*?)</span>").Groups[1].Value.Trim();
+
+                            comboBox3.Items.Add(avalues[j].Groups[2].Value.Trim());
+                            dics.Add(avalues[j].Groups[2].Value.Trim(), lng+ "%2C"+lat);
+
+                        }
+                    }
+
+
+                    break;
+                }
+
+            }
+
+
+
+
+            return areas;
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -814,6 +870,7 @@ namespace 客户美团
 
         private void button4_Click(object sender, EventArgs e)
         {
+      
             listView1.Items.Clear();
         }
 

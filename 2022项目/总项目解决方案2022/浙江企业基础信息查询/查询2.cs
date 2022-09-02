@@ -204,7 +204,7 @@ namespace 浙江企业基础信息查询
                     label3.Text = "正在查询：" + uid;
                     //textBox3.Text = url;
                     string html = GetUrl(url,"utf-8");
-                    //MessageBox.Show(html);
+                    MessageBox.Show(html);
                     //textBox2.Text = html;
                     MatchCollection dwxxmc = Regex.Matches(html, @"""dwxxmc"":""([\s\S]*?)""");
                     MatchCollection xywcqk = Regex.Matches(html, @"""xywcqk"":""([\s\S]*?)""");

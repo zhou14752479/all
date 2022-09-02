@@ -733,7 +733,9 @@ namespace 基鹿工具箱
             }
             else
             {
+              
                 string url = util.GeticonUrl(Path.GetFileName(listView2.SelectedItems[0].Name));
+               
                 System.Diagnostics.Process.Start(url);
                 //System.Diagnostics.Process.Start(listView2.SelectedItems[0].Name);
             }
@@ -761,9 +763,9 @@ namespace 基鹿工具箱
                     try
                     {
                         // string formula = "(2.118*10)*x+4.03x+(2.207*10)";
-
-                        formula = formula.Replace("x", item);
-                        var result = new System.Data.DataTable().Compute(formula, "");
+                        
+                       string formula2 = formula.Replace("x", item);
+                        var result = new System.Data.DataTable().Compute(formula2, "");
                         textBox5.Text += Convert.ToDouble(result).ToString("0.00") + "\r\n";
                     }
                     catch (Exception)
