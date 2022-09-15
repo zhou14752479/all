@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace 百度贴吧ID采集
@@ -16,7 +15,7 @@ namespace 百度贴吧ID采集
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 登录());
+            Application.Run(new 百度贴吧ID采集());
         }
     }
 }

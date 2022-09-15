@@ -66,6 +66,7 @@
     <Compile Include="CookieHelper.cs" />
     <Compile Include="method.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="yzm_ttshitu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

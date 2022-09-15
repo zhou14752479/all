@@ -80,7 +80,8 @@ namespace 身份验证
                     System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
             }
-            webBrowser1.Navigate("http://www.acaiji.com/sfrz/jsencrypt.html"); //按照姓名找回 执行加密RSA JS方法
+             webBrowser1.Navigate("http://www.acaiji.com/sfrz/jsencrypt.html");
+          //  webBrowser1.Navigate("http://www.acaiji.com/sfrz/jsencrypt_zfb.html"); //按照姓名找回 执行加密RSA JS方法
         }
 
         private void button1_Click(object sender, EventArgs e)

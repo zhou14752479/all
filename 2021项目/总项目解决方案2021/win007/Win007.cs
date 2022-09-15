@@ -90,7 +90,7 @@ namespace win007
         #endregion
 
         function fc = new function();
-        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6,Label l1, Label l2, Label l3,ComboBox comb1,DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t12, TextBox t11, TextBox t10,TextBox t13,TextBox t14)
+        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, Label l1, Label l2, Label l3,ComboBox comb1,DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t13)
         {
             int zhusheng_bifen_count = 0;
             int heju_bifen_count = 0;
@@ -140,18 +140,18 @@ namespace win007
 
 
 
-                if (t12.Text != "")
-                {
-                    sql = sql + (" data7 like '" + t12.Text.Trim() + "' and");
-                }
-                if (t11.Text != "")
-                {
-                    sql = sql + (" data8 like '" + t11.Text.Trim() + "' and");
-                }
-                if (t10.Text != "")
-                {
-                    sql = sql + (" data9 like '" + t10.Text.Trim() + "' and");
-                }
+                //if (t12.Text != "")
+                //{
+                //    sql = sql + (" data7 like '" + t12.Text.Trim() + "' and");
+                //}
+                //if (t11.Text != "")
+                //{
+                //    sql = sql + (" data8 like '" + t11.Text.Trim() + "' and");
+                //}
+                //if (t10.Text != "")
+                //{
+                //    sql = sql + (" data9 like '" + t10.Text.Trim() + "' and");
+                //}
 
 
 
@@ -163,10 +163,10 @@ namespace win007
                 {
                     sql = sql + (" rangqiudaxiaoqiu like '" + t5.Text.Trim() + "%' and");
                 }
-                if (t6.Text != "")
-                {
-                    sql = sql + (" rangqiudaxiaoqiu like '%" + t6.Text.Trim() + "' and");
-                }
+                //if (t6.Text != "")
+                //{
+                //    sql = sql + (" rangqiudaxiaoqiu like '%" + t6.Text.Trim() + "' and");
+                //}
 
 
                 if (comb1.Text != "")
@@ -396,46 +396,6 @@ namespace win007
                         }
 
 
-                        ////成交比例颜色黄橙红
-                        //if (cha1 > 0.1&& cha1 <= 0.15)
-                        //{
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
-                        //}
-                        //if (cha1 > 0.15 && cha1 <= 0.2)
-                        //{
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
-                        //}
-                        //if (cha1 > 0.2)
-                        //{
-                           
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Red;
-                        //}
-                        //if (cha2> 0.1 && cha1 <= 0.15)
-                        //{
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
-                        //}
-                        //if (cha2 > 0.15 && cha1 <= 0.2)
-                        //{
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
-                        //}
-                        //if (cha2 > 0.2)
-                        //{
-                            
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Red;
-                        //}
-                        //if (cha3 > 0.1 && cha1 <= 0.15)
-                        //{
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
-                        //}
-                        //if (cha3 > 0.15 && cha1 <= 0.2)
-                        //{
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
-                        //}
-                        //if (cha3 > 0.2)
-                        //{
-                            
-                        //    dgv1.Rows[i].Cells[16].Style.BackColor = Color.Red;
-                        //}
 
                         if (cha33 > 0.09 && cha33 <= 0.15)
                         {
@@ -585,7 +545,7 @@ namespace win007
 
         private void Win007_Load(object sender, EventArgs e)
         {
-            label48.Text = "";
+            
             
             webBrowser1.Navigate("https://live.titan007.com/oldIndexall.aspx");
             
@@ -1046,31 +1006,30 @@ namespace win007
             textBox13.Text = "";
         }
 
-        private void linkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            textBox14.Text += "升";
-        }
-
-        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            textBox14.Text += "降";
-        }
-
-        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            textBox14.Text += "平";
-        }
-
-        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            textBox14.Text = "";
-
-        }
+       
         private void button1_Click(object sender, EventArgs e)
         {
+
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10,textBox13,textBox14);
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox13);
+           
+            
+            TextBox t=new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(1, 2) == textBox1.Text.Trim())
+            {
+                chaxun(textBox1, t, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+            }
+            if (getminmaxvalue(1, 2) == textBox2.Text.Trim())
+            {
+                chaxun(t, textBox2, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+            }
+            if (getminmaxvalue(1, 2) == textBox3.Text.Trim())
+            {
+                chaxun(t, t, textBox3, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+            }
 
 
         }
@@ -1082,15 +1041,47 @@ namespace win007
         {
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView2.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7,  textBox13);
 
+
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, t, t, textBox7, textBox13);
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView3.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5,  label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7,  textBox13);
+
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, t, t, textBox7, textBox13);
+            }
 
         }
 
@@ -1098,22 +1089,70 @@ namespace win007
         {
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView4.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label35, label34, label33, comboBox1, dataGridView4, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5,  label35, label34, label33, comboBox1, dataGridView4, textBox9, textBox8, textBox7,  textBox13 );
+
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, t, t, textBox7, textBox13);
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView5.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label41, label40, label39, comboBox1, dataGridView5, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, textBox9, textBox8, textBox7, textBox13);
+
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, t, t, textBox7, textBox13);
+            }
         }
+
 
         private void button9_Click(object sender, EventArgs e)
         {
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridView1.ColumnHeadersHeight = 50;
-            chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, label45, label46, label47, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox12, textBox11, textBox10, textBox13, textBox14);
+            dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView6.ColumnHeadersHeight = 50;
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, t, t, textBox7, textBox13);
+            }
         }
+
 
         private void webBrowser1_NewWindow(object sender, CancelEventArgs e)
         {
@@ -1128,9 +1167,9 @@ namespace win007
             {
                 label48.Text = "";
                 string id = Regex.Match(比赛ToolStripMenuItem.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
-
+                
                 string data = function.getshishidata(id, comboBox1.Text.Trim());
-
+               
                 string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
                 if (text.Length > 6)
                 {
@@ -1159,6 +1198,119 @@ namespace win007
         }
 
 
+        public void teshujiance()
+        {
+            string id = Regex.Match(比赛ToolStripMenuItem.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
+            for (int i = 0; i < comboBox1.Items.Count; i++)
+            {
+               
+                string data = function.getshishidata(id, comboBox1.Items[i].ToString());
 
+                string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
+                if (text.Length > 6)
+                {
+                    textBox1.Text = text[1];
+                    textBox2.Text = text[2];
+                    textBox3.Text = text[3];
+                    textBox9.Text = text[4];
+                    textBox8.Text = text[5];
+                    textBox7.Text = text[6];
+
+                    if (Convert.ToDouble(text[2]) - Convert.ToDouble(text[1]) == 0)
+                    {
+                        label48.Text += comboBox1.Items[i].ToString()+",";
+
+                    }
+                   else if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
+                    {
+                        label48.Text += comboBox1.Items[i].ToString() + ",";
+
+                    }
+
+                }
+
+            }
+            MessageBox.Show("检测完成");
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            teshujiance();
+        }
+
+
+
+        public string getminmaxvalue(int hang,int sort)
+        {
+            double a = Convert.ToDouble(textBox1.Text);
+            double b = Convert.ToDouble(textBox2.Text);
+            double c = Convert.ToDouble(textBox3.Text);
+            if (hang==1)
+            {
+                
+
+            }
+            if(hang==2)
+            {
+                a = Convert.ToDouble(textBox9.Text);
+                b = Convert.ToDouble(textBox8.Text);
+                c = Convert.ToDouble(textBox7.Text);
+            }
+
+            double min, max,mid;
+
+
+            if (a < b)
+            {
+                min = a;
+                max = b;
+               
+            }
+            else
+            {
+                min = b;
+                max = a;
+            }
+
+            if (min > c)
+            {
+                min = c;
+            }
+
+            if (max < c)
+            {
+                max = c;
+            }
+
+            if(a!=min&&a!=max)
+            {
+                mid = a;
+            }
+            else if (b!= min && b != max)
+            {
+                mid = b;
+            }
+            else
+            {
+                mid = c;
+            }
+
+            if(sort==1)
+            {
+                return min.ToString();
+            }
+            if (sort == 2)
+            {
+                return mid.ToString();
+            }
+            if (sort == 3)
+            {
+                return max.ToString();
+            }
+
+            return "";
+        }
+
+      
     }
 }

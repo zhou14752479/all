@@ -136,24 +136,24 @@ namespace 百佳网上超市
         public static string GetUrl(string Url, string charset)
         {
             string html = "";
-            string COOKIE = "_gid=GA1.2.286400592.1661908721; __BWfp=c1661908722884xe20572fa4; _cls_v=04373673-cbf3-4551-a313-83fdb7b85230; gaUserId=572b8ed8-918a-4fa8-8496-cfa2d1f1b3d1; _hjSessionUser_149189=eyJpZCI6IjY1ZTQ3Y2NlLWVjNmQtNWQ5ZC1iYjkwLTM2ZjlmNzIyNjZjYiIsImNyZWF0ZWQiOjE2NjE5MDg3MjM3NjEsImV4aXN0aW5nIjp0cnVlfQ==; ROUTE=.jsapps-84cfd8c67f-ltst4; dtCookie=v_4_srv_37_sn_3D66B8E20E7EBD49AE9E38567CADE338_perc_100000_ol_0_mul_1_app-3A83bcd02d49cd1bb3_0; _abck=16BF2FE39B03C58C22EE580DABD23733~0~YAAQl2gDF/K7z82CAQAAiYBv9gidY2FsVVQd4A+bxN1l6zBbuEA2cj6rcSgJJQaS5baPnmKQwv890BOK1PGQ97GGPBKPf9Ua60QAZ8MYYeCM1cgIOT1PWM+ddFEwNp6nNbFfUSvQv6KhV5crgU6u8+jg3a9D2SSTbnK1JNav3qc7zooRxGz6jaPVCXxU9mFzA9wVeX+0XRWKuTAByx318lYGimqYGIQobTlW5Y5U7V8a0fGtO/N0O21jUfK9M94G3JoMglGFMWTS7Vsi4FX1ofqE/cOiW8vkDoFeR5jQyPu2ZZraaiK36ReIWTSTUQVibT/HYO2SZiqbRXPJMMeNi+yCiY3sX2am862y/miNewUUssyqr9ZTTqvURwABQvPUQCU4miPI5ZjXdVZaDvY3HXxFKpp8n9KCrOjW~-1~-1~-1; bm_sz=EB5B14E4CEC5E6DE9DEECE9E32F897DB~YAAQl2gDF/W7z82CAQAAiYBv9hCcFb0kppfyxlfdWRH9ghJNVACEpm9sxmHM9n398P8Bg5kiIgS1qSlbTKeY8fpEfCrNmO/2Gsd6RDa4zdbQaQIVOWvrTF3tGj6k5Wt8yjLN5e8CYKTlkkMSdr9Mq2CsC8LwfwamSkBK8P5EPbG8KbIL3Xz1A2+C9cmxAKpo2tx24rlvS5kYmkz/K9ZvvpHLStQsK5s4mEE+5eOcptPnBxyQUpfY+6dp5ze1T1DUHXz4aUudOLsUI6mfYvGKq4hsJtA/qiRMkS6o0ukrGXlW2R3WvWY=~3686966~4534835; bm_mi=6E6250CB16FAAE80B9C2C4D52A1E6AF7~YAAQl2gDFyW8z82CAQAA24Fv9hBb3EA2wVshiWGSmAJeoBgLXh+HZrVmteCM9URgrocOaF9FEiG0w4KG2mk9ETe3Uj0rplzoJr8WUaUax6hCLlQkKjjWo/lOJyjGe8Zm7DMEqcaXvr8gk98RSpCG1yRJoq8fhPO0pBfvXzBemMCHPqnNcxwJC7KZGMwupQ5wvDQtYmKn441+MEY2ywOnYhSrOW0qDz+MYucO5tsW7oGLfhnWo9robg9znGro7JKhf8xek/GLb5KupW1YWiJ42/SctRWd97AYs3vgZOW3C4mGAYRhMZI9W8EVZroZaqVCzINzl7Sim3ByvQQ=~1; AKA_A2=A; rxVisitor=16619918816876UG4ID20UG2T2TU99506PH2J7J9S4QSJ; ak_bmsc=6C8092CF0DF201267D4CB7F645585DF0~000000000000000000000000000000~YAAQl2gDFzG+z82CAQAABptv9hCrFDhFdSW4RyyjCJR6MiHBaEkI1dddLUU8AF3ZuD/NCv1GWZaV2HW1qBE9W9UwPAD+7+IAh9Yh5/kHynkIw8KYUl/lDqNMPwHDEdMst+zMvDWM9Lll7f2iAZM2mXzypmSedGY1uPat2b7ABW6ugxMMc7EHSaNdx4A9UgRR+2/qCSxT0JcNL6zziAE+X62VZFdkiyuGkg3EoL8nzqHfFzMPO2t6y1x5s5b0tZT7p2fbNBAHcdn4LcPvSMJZUMUtlmGOLVm3ABIX9hz8274Fq9VdMqL2VvxISaV8yn5O7o8b2tSueAQKuZ9qJ7VznrdLGdfCY1y8hH6QagLmJ4iVE9B9u7uCHNzmPYx8/qB+DhqgRmkLvyGQtiGaUBvGW50VbBWpk8G7g8392Nh/KOK3Hktug15WiWmdxQ==; _cls_s=ec45688c-48ac-4de5-82d7-6a218f080fba:1; _hjIncludedInSessionSample=1; _hjIncludedInPageviewSample=1; _clck=o7iley|1|f4i|0; dtSa=-; e2-language=en_HK; dtLatC=1; RT=\"z = 1 & dm = parknshop.com & si = 0zxrewuatb9k & ss = l7gxq1qw & sl = 0 & tt = 0\"; _uetsid=d9db374028ca11ed857909a814f4eb1f; _uetvid=d9db3d7028ca11ed9ccde73ab6b3ce9b; _hjSession_149189=eyJpZCI6IjFiZjExNGFjLTAxOWQtNDYxNi1iOGE1LTg4MDcyNGM2NzBlYyIsImNyZWF0ZWQiOjE2NjE5OTUzMTY0MDEsImluU2FtcGxlIjp0cnVlfQ==; _hjAbsoluteSessionInProgress=0; _hjShownFeedbackMessage=true; cto_bundle=8dhHAF9Wa3lweFkzZGFxR0xGWTgyUXgxRDNMRjlNcVpKUlBXWDJTSEJidVFselZWJTJCeFBZUDh6MW9QWFZuWFp5SGhRNG1KYyUyRmFNY25oTDlQakFnUTdZTGhmd0xEWDdoYmZVdXRLeTZRWDNiRlFmTlB5elZ0MkM2RllWUktvTSUyRktyJTJCak9FeEU2c1J0RU9pVFd1RVZDSzBTWXl1USUzRCUzRA; _ga=GA1.2.678332562.1661908720; _ga_2EZF4T7L2L=GS1.1.1661995314.6.1.1661995317.0.0.0; _clsk=1buuvbm|1661995318423|3|1|m.clarity.ms/collect; rxvt=1661997119304|1661994156179; dtPC=37$595314204_754h-vHUHHUMWMHPCRUAMWQIAHAURMCIWOEICP-0e0; bm_sv=38438ED46D676B9FDF66BAFCE1F8EC62~YAAQtIFtaN6TKcyCAQAABzCl9hDZ7xK23PBddn4PD4RYtRBf40uYbyRFPKV06woIr4a3QgHbHnNmVcwdtqy80XXwvhqZmQwABBaTb912fYaDz9FRgjlMCYZSDs8nTea/xhdWl1kOSHZMvlL6BS+5sk4J99BiD6aT2ldeLFegP78eR46327AyvFM9RoQMRfT35rlIKs2LWpf1/Hfy0VN4O6+AeDShagQIQJHxNAAm9aVYzhN0nk9HybSo5FABMXwbLxfRUyk=~1If - None - Match: W / \"41ef5-rqVuUkEh3XtE35bgbumceQtL+4U:dtagent10245220704125537ixQ7:dtagent10245220704125537ixQ7-gzip:dtagent10245220704125537ixQ7\"";
+            string COOKIE = "";
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-                request.Proxy = null;//防止代理抓包
-                request.AllowAutoRedirect = true;
+                //request.Proxy = null;//防止代理抓包
+                //request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
-                request.Referer = Url;
+                //request.Referer = Url;
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("sec-fetch-mode:navigate");
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
-                request.KeepAlive = true;
+                //request.KeepAlive = true;
                 request.Accept = "*/*";
-                request.Timeout = 5000;
+                //request.Timeout = 5000;
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
@@ -204,6 +204,8 @@ namespace 百佳网上超市
 
 
                 string cateid = Regex.Match(textBox3.Text, @"\d{6,9}").Groups[0].Value;
+
+               
                 for (int i = 0; i < 101; i = i + 1)
                 {
 
@@ -212,10 +214,11 @@ namespace 百佳网上超市
                     string html = GetUrl(url, "utf-8");
 
 
-                 
+                
                   
                     MatchCollection ids = Regex.Matches(html, @"""topPromotion""([\s\S]*?)""url"" : ""([\s\S]*?)""");
-                  if(ids.Count==0)
+                   // MessageBox.Show(ids.Count.ToString());
+                    if(ids.Count==0)
                     {
                         ids = Regex.Matches(html, @"</topPromotion>([\s\S]*?)<url>([\s\S]*?)</url>");
                     }
@@ -360,7 +363,7 @@ namespace 百佳网上超市
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            textBox1.Text= AppDomain.CurrentDomain.BaseDirectory;
         }
 
         private void Button1_Click(object sender, EventArgs e)

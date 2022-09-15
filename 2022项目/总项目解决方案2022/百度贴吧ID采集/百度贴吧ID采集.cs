@@ -11,7 +11,6 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace 百度贴吧ID采集
@@ -35,7 +34,7 @@ namespace 百度贴吧ID采集
 
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
                 //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.Proxy = null;//防止代理抓包
@@ -108,16 +107,35 @@ namespace 百度贴吧ID采集
 
                         MatchCollection ids = Regex.Matches(html, @"kz=([\s\S]*?)&");
                         MatchCollection huis = Regex.Matches(html, @"<p>点([\s\S]*?)回([\s\S]*?)&");
-                        for (int i = 0; i < ids.Count; i++)
+
+                        MatchCollection ding = Regex.Matches(html, @"<span class=""light"">顶([\s\S]*?)>");
+                        
+                        if(checkBox2.Checked==false)
+                        {
+                            ding = Regex.Matches(html, @"<span class=""light"">顶111111([\s\S]*?)>");
+                        }
+
+
+                        for (int i = ding.Count; i < ids.Count; i++)
                         {
                             count++;
                             if (count > Convert.ToInt32(textBox5.Text))
                                 break;
 
-                          
+                            int hui = 1;
 
-                           int hui=Convert.ToInt32(huis[i].Groups[2].Value);
-                            textBox3.Text += DateTime.Now.ToString("HH:mm:ss") + " 在【" + item.Trim() + "】贴吧 第" + count + "贴里共回复" + hui + "\r\n";
+                            try
+                            {
+                                hui = Convert.ToInt32(huis[i].Groups[2].Value);
+                            }
+                            catch (Exception)
+                            {
+                                continue;
+                               
+                            }
+                          
+                            
+                            textBox3.Text += DateTime.Now.ToString("HH:mm:ss") + " 在【" + item.Trim() + "】贴吧 第" + count + "贴里共回复" + hui +" 共发帖1"+"\r\n";
 
 
                             for (int page = 0; page <= hui; page=page+30)
@@ -130,9 +148,13 @@ namespace 百度贴吧ID采集
                                 for (int a = 0; a < aids.Count; a++)
                                 {
                                     string uid = Regex.Replace(aids[a].Groups[1].Value, "<[^>]+>", "");
-                                    if (!list.Contains(uid))
+                                    if (!list.Contains(uid) && !uid.Contains("贴吧用户_") && !uid.Contains("."))
                                     {
-                                        list.Add(uid);
+                                        if(checkBox3.Checked==true)
+                                        {
+                                            list.Add(uid);
+                                        }
+
                                         textBox1.Text += uid + "\r\n";
 
                                        if(checkBox1.Checked==true)
@@ -157,6 +179,8 @@ namespace 百度贴吧ID采集
                                 if (count > Convert.ToInt32(textBox5.Text))
                                     break;
                             }
+
+
 
                         }
 
@@ -195,7 +219,7 @@ namespace 百度贴吧ID采集
             #region 通用检测
 
 
-            if (!GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"9KtQz"))
+            if (!GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"9KQzh"))
             {
                 TestForKillMyself();
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
@@ -243,6 +267,11 @@ namespace 百度贴吧ID采集
         {
             textBox1.Text = "";
             textBox3.Text = "";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            status = false;
         }
     }
 }

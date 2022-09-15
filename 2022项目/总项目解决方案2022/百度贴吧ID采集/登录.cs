@@ -6,10 +6,11 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Management;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace 百度贴吧ID采集
@@ -34,7 +35,7 @@ namespace 百度贴吧ID采集
             string COOKIE = "";
             try
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+               // System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
@@ -117,19 +118,67 @@ namespace 百度贴吧ID采集
         }
         #endregion
 
+        #region  获取32位MD5加密
+        public string GetMD5(string txt)
+        {
+            using (MD5 mi = MD5.Create())
+            {
+                byte[] buffer = Encoding.Default.GetBytes(txt);
+                //开始加密
+                byte[] newBuffer = mi.ComputeHash(buffer);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < newBuffer.Length; i++)
+                {
+                    sb.Append(newBuffer[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+        }
 
+        #endregion
+        #region 获取Mac地址
+        /// <summary>
+        /// 获取Mac地址
+        /// </summary>
+        /// <returns></returns>
+        public static string GetMacAddress()
+        {
+            try
+            {
+                string strMac = string.Empty;
+                ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+                ManagementObjectCollection moc = mc.GetInstances();
+                foreach (ManagementObject mo in moc)
+                {
+                    if ((bool)mo["IPEnabled"] == true)
+                    {
+                        strMac = mo["MacAddress"].ToString();
+                    }
+                }
+                moc = null;
+                mc = null;
+                return strMac;
+            }
+            catch
+            {
+                return "unknown";
+            }
+        }
+
+        #endregion
         public void zhuce()
         {
             try
             {
                 string jihuoma = textBox5.Text.Trim().Remove(textBox5.Text.Trim().Length-10,10).Remove(0, 10);
 
-               
+                string macmd5 = GetMD5(GetMacAddress());
+
                 jihuoma = Base64Decode(Encoding.GetEncoding("utf-8"),jihuoma + "==");
                string time=jihuoma.Substring(6,10);  
                 if(Convert.ToInt32(time)>Convert.ToInt32(GetTimeStamp()))
                 {
-                    string url = "http://www.lizhihui.love/do.php?method=register&username=" + textBox3.Text.Trim()+"&password="+ textBox4.Text.Trim();
+                    string url = "http://www.lizhihui.love/xx/do.php?method=register&username=" + textBox3.Text.Trim()+"&password="+ textBox4.Text.Trim()+"&mac="+ macmd5;
                     string html = GetUrl(url,"utf-8");
                     string msg = Regex.Match(html,@"""msg"":""([\s\S]*?)""").Groups[1].Value;
                    if(msg=="")
@@ -160,7 +209,9 @@ namespace 百度贴吧ID采集
         {
             try
             {
-                string url = "http://www.lizhihui.love/do.php?method=login&username=" + textBox1.Text.Trim() + "&password=" + textBox2.Text.Trim();
+                //www.lizhihui.love
+                string macmd5 = GetMD5(GetMacAddress());
+                string url = "http://www.lizhihui.love/xx/do.php?method=login&username=" + textBox1.Text.Trim() + "&password=" + textBox2.Text.Trim()+"&mac="+macmd5;
                 string html = GetUrl(url, "utf-8");
                 string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
                 if (msg == "登录成功")
@@ -201,10 +252,15 @@ namespace 百度贴吧ID采集
                 MessageBox.Show("请输入激活码");
                 return;
             }
-           
-            if (textBox3.Text.Length<6|| textBox4.Text.Length < 6|| textBox5.Text.Length < 6)
+
+            if (textBox3.Text.Length < 6)
             {
-                MessageBox.Show("至少6位字母");
+                MessageBox.Show("账号至少6位");
+                return;
+            }
+            if (textBox4.Text.Length < 6)
+            {
+                MessageBox.Show("密码至少6位");
                 return;
             }
             button2.Enabled = false;
@@ -227,14 +283,24 @@ namespace 百度贴吧ID采集
             }
           
 
-            if (textBox1.Text.Length < 6 || textBox2.Text.Length < 6 )
+            if (textBox1.Text.Length < 6 )
             {
-                MessageBox.Show("至少6位字母");
+                MessageBox.Show("账号至少6位");
+                return;
+            }
+            if (textBox2.Text.Length < 6)
+            {
+                MessageBox.Show("密码至少6位");
                 return;
             }
             button1.Enabled = false;
             login();
             button1.Enabled = true;
+        }
+
+        private void 登录_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

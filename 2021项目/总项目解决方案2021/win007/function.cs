@@ -260,9 +260,9 @@ namespace win007
         public static string getshishidata(string id,string com)
         {
 
-          
+           Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
 
-            string datajsurl = "http://1x2d.titan007.com/" + id + ".js?r=007132848760362108507";
+        string datajsurl = "http://1x2d.titan007.com/" + id + ".js?r=007132848760362108507";
             string datajs = method.GetUrl(datajsurl, "gb2312");
 
 
@@ -335,7 +335,7 @@ namespace win007
 
 
             string datas = Regex.Match(datajs, @"gameDetail=Array\(([\s\S]*?)\)").Groups[1].Value;
-
+           
             string[] datastext = datas.Split(new string[] { "\",\"" }, StringSplitOptions.None);
 
             StringBuilder sb=new StringBuilder();   
@@ -345,7 +345,7 @@ namespace win007
 
                 string cid = Regex.Match(datastext[j], @"\d{8,10}").Groups[0].Value.Trim();
                 string[] datasresult = datastext[j].Split(new string[] { ";" }, StringSplitOptions.None);
-
+               
                 string data1 = "";
                 string data2 = "";
                 string data3 = "";
@@ -360,6 +360,7 @@ namespace win007
 
                     if (cid == gongsi_dics[com])
                     {
+                      
                         string[] data_a = datasresult[0].Split(new string[] { "|" }, StringSplitOptions.None);
                         data1 = data_a[0].Replace(cid, "").Replace("^", "");
                         data2 = data_a[1];
@@ -380,10 +381,9 @@ namespace win007
                         sb.Append(cid+","+data1 + "," + data2 + "," + data3 + "," + data4 + "," + data5 + "," + data6);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-
+                    
                 }
 
 
@@ -396,7 +396,7 @@ namespace win007
         #endregion
 
 
-        public static Dictionary<string,string> gongsi_dics = new Dictionary<string,string>();
+       
         
 
 

@@ -72,7 +72,7 @@ namespace helper
             InitializeComponent();
             webUrl = url;
             method.SetFeatures(11000);
-          // webBrowser1.ScriptErrorsSuppressed = true;
+           webBrowser1.ScriptErrorsSuppressed = true;
 
             //webBrowser1.Url = new Uri(webUrl);
              webBrowser1.Navigate(webUrl);
