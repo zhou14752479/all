@@ -380,6 +380,67 @@ namespace 足球数据比较
 
                             if (pk0 == pk1)
                             {
+
+
+                                //新添加功能大球加小球大于值
+                                if (Convert.ToDouble(xia0) + Convert.ToDouble(shang1) > Convert.ToDouble(textBox2.Text) || Convert.ToDouble(xia1) + Convert.ToDouble(shang0) > Convert.ToDouble(textBox2.Text))
+                                {
+                                    lv1.BackColor = Color.Red;
+                                    if (xieru == 0)
+                                    {
+
+                                        if (!tishi.Contains(team[0].Groups[2].Value + team[1].Groups[2].Value + pk0))
+                                        {
+                                            MessageBoxTimeoutA((IntPtr)0, sb.ToString(), "消息框", 0, 0, 3000);
+                                            tishi.Add(team[0].Groups[2].Value + team[1].Groups[2].Value + pk0);
+                                            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                                            sw.WriteLine(sb.ToString());
+                                            sw.Close();
+                                            fs1.Close();
+                                            sw.Dispose();
+
+
+                                            if (checkBox2.Checked == true)
+                                            {
+
+                                                sendmsg("足球数据提醒" + DateTime.Now.ToString(), sb.ToString(), uids);
+                                            }
+
+                                            if (checkBox1.Checked == true)
+                                            {
+                                                send(textBox1.Text, "足球数据对比提醒：" + liansai + "-" + team[0].Groups[2].Value + "-" + team[1].Groups[2].Value, sb.ToString());
+                                            }
+
+                                            xieru = 1;
+                                        }
+                                    }
+
+                                }
+                                //新添加功能大球加小球大于值
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 double v1 = Convert.ToDouble(shang0) - Convert.ToDouble(shang1);
                                 double v2 = Convert.ToDouble(xia0) - Convert.ToDouble(xia1);
                                 if (v1 > 0.1 || v1 < -0.1)
@@ -390,43 +451,64 @@ namespace 足球数据比较
                                         if (gongsilist.Count > 2)
                                         {
 
-                                            if (Convert.ToDouble(xia0) - Convert.ToDouble(shang0) > 0 && Convert.ToDouble(xia1) - Convert.ToDouble(shang1) > 0 && Convert.ToDouble(xia2) - Convert.ToDouble(shang2) > 0)
-                                            {
-                                                lv1.BackColor = Color.Red;
-                                                if (xieru == 0)
-                                                {
+                                            //if (Convert.ToDouble(xia0) - Convert.ToDouble(shang0) > 0 && Convert.ToDouble(xia1) - Convert.ToDouble(shang1) > 0 && Convert.ToDouble(xia2) - Convert.ToDouble(shang2) > 0)
+                                            //{
+                                            //    lv1.BackColor = Color.Red;
+                                            //    if (xieru == 0)
+                                            //    {
 
-                                                    if (!tishi.Contains(team[0].Groups[2].Value + team[1].Groups[2].Value + pk0))
-                                                    {
-                                                        MessageBoxTimeoutA((IntPtr)0, sb.ToString(), "消息框", 0, 0, 3000);
-                                                        tishi.Add(team[0].Groups[2].Value + team[1].Groups[2].Value + pk0);
-                                                        FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
-                                                        StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-                                                        sw.WriteLine(sb.ToString());
-                                                        sw.Close();
-                                                        fs1.Close();
-                                                        sw.Dispose();
-
-
-                                                        if (checkBox2.Checked == true)
-                                                        {
-
-                                                            sendmsg("足球数据提醒" + DateTime.Now.ToString(), sb.ToString(), uids);
-                                                        }
-
-                                                        if (checkBox1.Checked == true)
-                                                        {
-                                                            send(textBox1.Text, "足球数据对比提醒：" + liansai + "-" + team[0].Groups[2].Value + "-" + team[1].Groups[2].Value, sb.ToString());
-                                                        }
-
-                                                        xieru = 1;
-                                                    }
-                                                }
+                                            //        if (!tishi.Contains(team[0].Groups[2].Value + team[1].Groups[2].Value + pk0))
+                                            //        {
+                                            //            MessageBoxTimeoutA((IntPtr)0, sb.ToString(), "消息框", 0, 0, 3000);
+                                            //            tishi.Add(team[0].Groups[2].Value + team[1].Groups[2].Value + pk0);
+                                            //            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                            //            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                                            //            sw.WriteLine(sb.ToString());
+                                            //            sw.Close();
+                                            //            fs1.Close();
+                                            //            sw.Dispose();
 
 
+                                            //            if (checkBox2.Checked == true)
+                                            //            {
+
+                                            //                sendmsg("足球数据提醒" + DateTime.Now.ToString(), sb.ToString(), uids);
+                                            //            }
+
+                                            //            if (checkBox1.Checked == true)
+                                            //            {
+                                            //                send(textBox1.Text, "足球数据对比提醒：" + liansai + "-" + team[0].Groups[2].Value + "-" + team[1].Groups[2].Value, sb.ToString());
+                                            //            }
+
+                                            //            xieru = 1;
+                                            //        }
+                                            //    }
+
+                                            //}
 
 
-                                            }
+
+                                          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         }
 
 
@@ -459,12 +541,6 @@ namespace 足球数据比较
 
                                             if (Convert.ToDouble(xia0) - Convert.ToDouble(shang0) > 0 && Convert.ToDouble(xia1) - Convert.ToDouble(shang1) > 0 && Convert.ToDouble(xia2) - Convert.ToDouble(shang2) > 0)
                                             {
-
-
-
-
-
-
 
 
 
@@ -574,7 +650,7 @@ namespace 足球数据比较
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            send("852266010@qq.com","测试","测试");
             // textBox2.Text= webBrowser1.Document.Body.OuterHtml;
             timer1.Stop();
         }
@@ -586,7 +662,7 @@ namespace 足球数据比较
                 //实例化一个发送邮件类。
                 MailMessage mailMessage = new MailMessage();
                 //发件人邮箱地址，方法重载不同，可以根据需求自行选择。
-                mailMessage.From = new MailAddress("1073689549@qq.com");
+                mailMessage.From = new MailAddress("a852266010@126.com");
                 //收件人邮箱地址。
                 mailMessage.To.Add(new MailAddress(address));
                 //邮件标题。
@@ -597,13 +673,13 @@ namespace 足球数据比较
                 //实例化一个SmtpClient类。
                 SmtpClient client = new SmtpClient();
                 //在这里我使用的是qq邮箱，所以是smtp.qq.com，如果你使用的是126邮箱，那么就是smtp.126.com。
-                client.Host = "smtp.qq.com";
+                client.Host = "smtp.126.com";
                 //使用安全加密连接。
                 client.EnableSsl = true;
                 //不和请求一块发送。
                 client.UseDefaultCredentials = false;
                 //验证发件人身份(发件人的邮箱，邮箱里的生成授权码);
-                client.Credentials = new NetworkCredential("1073689549@qq.com", "wejpipordsdmbdfc");   //这里的密码用授权码
+                client.Credentials = new NetworkCredential("a852266010@126.com", "SAWQWAEMPDKLHFLD");   //这里的密码用授权码
                                                                                                        //发送
                 client.Send(mailMessage);
                 // MessageBox.Show("发送成功");

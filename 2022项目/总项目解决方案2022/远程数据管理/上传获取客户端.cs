@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -63,6 +65,71 @@ namespace 远程数据管理
 
 
 
+        private void cbx_startup()
+        {
+            // 要设置软件名称，有唯一性要求，最好起特别一些
+            string SoftWare = "SunnyNetEaseCloud";
+
+            // 注意this.uiCheckBox1.Checked时针对Winfom程序的，如果是命令行程序要另外设置一个触发值
+            if (checkBox1.Checked)
+            {
+
+                Console.WriteLine("设置开机自启动，需要修改注册表", "提示");
+                string path = Application.ExecutablePath;
+                RegistryKey rk = Registry.CurrentUser; //
+                                                       // 添加到 当前登陆用户的 注册表启动项     
+                try
+                {
+                    //  
+                    //SetValue:存储值的名称   
+                    RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+
+                    // 检测是否之前有设置自启动了，如果设置了，就看值是否一样
+                    string old_path = (string)rk2.GetValue(SoftWare);
+                    Console.WriteLine("\r\n注册表值: {0}", old_path);
+
+                    if (old_path == null || !path.Equals(old_path))
+                    {
+                        rk2.SetValue(SoftWare, path);
+                       //MessageBox.Show("添加开启启动成功");
+                    }
+
+                    rk2.Close();
+                    rk.Close();
+
+                }
+                catch (Exception ee)
+                {
+                   // MessageBox.Show("开机自启动设置失败");
+
+                }
+            }
+            else
+            {
+                // 取消开机自启动
+                //MessageBox.Show("取消开机自启动，需要修改注册表", "提示");
+                string path = Application.ExecutablePath;
+                RegistryKey rk = Registry.CurrentUser;
+                try
+                {
+                    // SetValue: 存储值的名称
+                    RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+
+                    string old_path = (string)rk2.GetValue(SoftWare);
+                    Console.WriteLine("\r\n注册表值: {0}", old_path);
+
+                    rk2.DeleteValue(SoftWare, false);
+                    MessageBox.Show("取消开启启动成功");
+                    rk2.Close();
+                    rk.Close();
+                }
+                catch (Exception ee)
+                {
+                    //MessageBox.Show(ee.Message.ToString(), "提 示", MessageBoxButtons.OK, MessageBoxIcon.Error);  // 提示
+                    MessageBox.Show("取消开机自启动失败");
+                }
+            }
+        }
 
 
 
@@ -126,9 +193,106 @@ namespace 远程数据管理
 
         }
 
+
+
         #endregion
+        #region GET请求
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrl(string Url, string charset)
+        {
+            string html = "";
+            string COOKIE = "";
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = Url;
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("appid:orders");
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Timeout = 100000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+
+            }
+
+
+
+        }
+        #endregion
+        public string getip()
+            {
+
+            try
+            {
+                string hostName = Dns.GetHostName();
+                IPHostEntry iPHostEntry = Dns.GetHostEntry(hostName);
+                var addressV = iPHostEntry.AddressList.FirstOrDefault(q => q.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);//ip4地址
+                if (addressV != null)
+                    return addressV.ToString();
+                return "127.0.0.1";
+            }
+            catch (Exception ex)
+            {
+                return "127.0.0.1";
+            }
+        }
+
+        public string getwaiIP()
+        {
+            try
+            {
+                string url = "https://ip.cn/api/index?ip=&type=0";
+                string html = GetUrl(url,"utf-8");
+                string ip = Regex.Match(html, @"""ip"":""([\s\S]*?)""").Groups[1].Value;
+                return ip;
+            }
+            catch (Exception)
+            {
+
+                return "";
+            }
+        }
         private void 上传获取客户端_Load(object sender, EventArgs e)
         {
+
+            checkBox1.Checked = true;
+            textBox1.Text = getwaiIP();
+            quanjuser();
             //#region 通用检测
 
             //string html = PostUrl("http://www.acaiji.com/index/index/vip.html","","", "utf-8");
@@ -141,54 +305,38 @@ namespace 远程数据管理
 
             //#endregion
 
-            userControl1.groupBox1.Text = "A1";
-            userControl2.groupBox1.Text = "A2";
-            userControl3.groupBox1.Text = "A3";
-            userControl4.groupBox1.Text = "A4";
-            userControl5.groupBox1.Text = "A5";
-            userControl6.groupBox1.Text = "A6";
-            userControl7.groupBox1.Text = "A7";
-            userControl8.groupBox1.Text = "A8";
-            userControl9.groupBox1.Text = "A9";
-            userControl10.groupBox1.Text = "A10";
-            userControl11.groupBox1.Text = "B1";
-            userControl12.groupBox1.Text = "B2";
-            userControl13.groupBox1.Text = "B3";
-            userControl14.groupBox1.Text = "B4";
-            userControl15.groupBox1.Text = "B5";
-            userControl16.groupBox1.Text = "B6";
-            userControl17.groupBox1.Text = "B7";
-            userControl18.groupBox1.Text = "B8";
-            userControl19.groupBox1.Text = "B9";
-            userControl20.groupBox1.Text = "B10";
+          
+
+           
             //读取config.ini
             if (ExistINIFile())
             {
+                textBox2.Text = "Q";
 
                 //读取
-              
-                userControl1.textBox1.Text = IniReadValue("values", "a1");
-                userControl2.textBox1.Text = IniReadValue("values", "a2");
-                userControl3.textBox1.Text = IniReadValue("values", "a3");
-                userControl4.textBox1.Text = IniReadValue("values", "a4");
-                userControl5.textBox1.Text = IniReadValue("values", "a5");
-                userControl6.textBox1.Text = IniReadValue("values", "a6");
-                userControl7.textBox1.Text = IniReadValue("values", "a7");
-                userControl8.textBox1.Text = IniReadValue("values", "a8");
-                userControl9.textBox1.Text = IniReadValue("values", "a9");
-                userControl10.textBox1.Text = IniReadValue("values", "a10");
+
+                //getTextBox1.Text = IniReadValue("values", "a1");
+                //getTextBox2.Text = IniReadValue("values", "a2");
+                //getTextBox3.Text = IniReadValue("values", "a3");
+                //getTextBox4.Text = IniReadValue("values", "a4");
+                //getTextBox5.Text = IniReadValue("values", "a5");
+                //getTextBox6.Text = IniReadValue("values", "a6");
+                //getTextBox7.Text = IniReadValue("values", "a7");
+                //getTextBox8.Text = IniReadValue("values", "a8");
+                //getTextBox9.Text = IniReadValue("values", "a9");
+                //getTextBox10.Text = IniReadValue("values", "a10");
 
 
-                getdic.Add("a1", userControl1.textBox1.Text);
-                getdic.Add("a2", userControl2.textBox1.Text);
-                getdic.Add("a3", userControl3.textBox1.Text);
-                getdic.Add("a4", userControl4.textBox1.Text);
-                getdic.Add("a5", userControl5.textBox1.Text);
-                getdic.Add("a6", userControl6.textBox1.Text);
-                getdic.Add("a7", userControl7.textBox1.Text);
-                getdic.Add("a8", userControl8.textBox1.Text);
-                getdic.Add("a9", userControl9.textBox1.Text);
-                getdic.Add("a10", userControl10.textBox1.Text);
+                getdic.Add("a1", getTextBox1.Text);
+                getdic.Add("a2", getTextBox2.Text);
+                getdic.Add("a3", getTextBox3.Text);
+                getdic.Add("a4", getTextBox4.Text);
+                getdic.Add("a5", getTextBox5.Text);
+                getdic.Add("a6", getTextBox6.Text);
+                getdic.Add("a7", getTextBox7.Text);
+                getdic.Add("a8", getTextBox8.Text);
+                getdic.Add("a9", getTextBox9.Text);
+                getdic.Add("a10", getTextBox10.Text);
 
 
 
@@ -201,29 +349,29 @@ namespace 远程数据管理
                 //上传
 
 
-              
-                userControl11.textBox1.Text = IniReadValue("values2", "a1");
-                userControl12.textBox1.Text = IniReadValue("values2", "a2");
-                userControl13.textBox1.Text = IniReadValue("values2", "a3");
-                userControl14.textBox1.Text = IniReadValue("values2", "a4");
-                userControl15.textBox1.Text = IniReadValue("values2", "a5");
-                userControl16.textBox1.Text = IniReadValue("values2", "a6");
-                userControl17.textBox1.Text = IniReadValue("values2", "a7");
-                userControl18.textBox1.Text = IniReadValue("values2", "a8");
-                userControl19.textBox1.Text = IniReadValue("values2", "a9");
-                userControl20.textBox1.Text = IniReadValue("values2", "a10");
+
+                //uploadTextBox1.Text = IniReadValue("values2", "a1");
+                //uploadTextBox2.Text = IniReadValue("values2", "a2");
+                //uploadTextBox3.Text = IniReadValue("values2", "a3");
+                //uploadTextBox4.Text = IniReadValue("values2", "a4");
+                //uploadTextBox5.Text = IniReadValue("values2", "a5");
+                //uploadTextBox6.Text = IniReadValue("values2", "a6");
+                //uploadTextBox7.Text = IniReadValue("values2", "a7");
+                //uploadTextBox8.Text = IniReadValue("values2", "a8");
+                //uploadTextBox9.Text = IniReadValue("values2", "a9");
+                //uploadTextBox10.Text = IniReadValue("values2", "a10");
 
 
-                uploaddic.Add("a1", userControl11.textBox1.Text);
-                uploaddic.Add("a2", userControl12.textBox1.Text);
-                uploaddic.Add("a3", userControl13.textBox1.Text);
-                uploaddic.Add("a4", userControl14.textBox1.Text);
-                uploaddic.Add("a5", userControl15.textBox1.Text);
-                uploaddic.Add("a6", userControl16.textBox1.Text);
-                uploaddic.Add("a7", userControl17.textBox1.Text);
-                uploaddic.Add("a8", userControl18.textBox1.Text);
-                uploaddic.Add("a9", userControl19.textBox1.Text);
-                uploaddic.Add("a10", userControl20.textBox1.Text);
+                uploaddic.Add("a1", uploadTextBox1.Text);
+                uploaddic.Add("a2", uploadTextBox2.Text);
+                uploaddic.Add("a3", uploadTextBox3.Text);
+                uploaddic.Add("a4", uploadTextBox4.Text);
+                uploaddic.Add("a5", uploadTextBox5.Text);
+                uploaddic.Add("a6", uploadTextBox6.Text);
+                uploaddic.Add("a7", uploadTextBox7.Text);
+                uploaddic.Add("a8", uploadTextBox8.Text);
+                uploaddic.Add("a9", uploadTextBox9.Text);
+                uploaddic.Add("a10", uploadTextBox10.Text);
 
 
 
@@ -245,6 +393,8 @@ namespace 远程数据管理
             string url = "http://www.acaiji.com/yuancheng/yuancheng.php?method=update";
             string postData = "ip="+ip+"&key="+key+"&value="+value;
             string html = PostUrl(url,postData,"","utf-8");
+            //MessageBox.Show(postData);
+            //MessageBox.Show(html);
             return html;
         }
 
@@ -287,45 +437,29 @@ namespace 远程数据管理
         {
            getdic.Clear();
             //写入config.ini配置文件
-            IniWriteValue("values", "a1", userControl1.key);
-            IniWriteValue("values", "a2", userControl2.key);
-            IniWriteValue("values", "a3", userControl3.key);
-            IniWriteValue("values", "a4", userControl4.key);
-            IniWriteValue("values", "a5", userControl5.key);
-            IniWriteValue("values", "a6", userControl6.key);
-            IniWriteValue("values", "a7", userControl7.key);
-            IniWriteValue("values", "a8", userControl8.key);
-            IniWriteValue("values", "a9", userControl9.key);
-            IniWriteValue("values", "a10", userControl10.key);
+            IniWriteValue("values", "a1", getTextBox1.Text);
+            IniWriteValue("values", "a2", getTextBox2.Text);
+            IniWriteValue("values", "a3", getTextBox3.Text);
+            IniWriteValue("values", "a4", getTextBox4.Text);
+            IniWriteValue("values", "a5", getTextBox5.Text);
+            IniWriteValue("values", "a6", getTextBox6.Text);
+            IniWriteValue("values", "a7", getTextBox7.Text);
+            IniWriteValue("values", "a8", getTextBox8.Text);
+            IniWriteValue("values", "a9", getTextBox9.Text);
+            IniWriteValue("values", "a10", getTextBox10.Text);
 
-            getdic.Add("a1",userControl1.key);
-            getdic.Add("a2", userControl2.key);
-            getdic.Add("a3", userControl3.key);
-            getdic.Add("a4", userControl4.key);
-            getdic.Add("a5", userControl5.key);
-            getdic.Add("a6", userControl6.key);
-            getdic.Add("a7", userControl7.key);
-            getdic.Add("a8", userControl8.key);
-            getdic.Add("a9", userControl9.key);
-            getdic.Add("a10", userControl10.key);
+            getdic.Add("a1",getTextBox1.Text);
+            getdic.Add("a2", getTextBox2.Text);
+            getdic.Add("a3", getTextBox3.Text);
+            getdic.Add("a4", getTextBox4.Text);
+            getdic.Add("a5", getTextBox5.Text);
+            getdic.Add("a6", getTextBox6.Text);
+            getdic.Add("a7", getTextBox7.Text);
+            getdic.Add("a8", getTextBox8.Text);
+            getdic.Add("a9", getTextBox9.Text);
+            getdic.Add("a10", getTextBox10.Text);
         }
 
-        private void 上传获取客户端_KeyDown(object sender, KeyEventArgs e)
-        {
-            //switch (e.KeyCode)
-            //{
-            //    case Keys.F1:
-            //        MessageBox.Show("F1");
-            //        break;
-            //    case Keys.F2:
-            //        MessageBox.Show("F2");
-            //        break;
-            //}
-
-          
-
-
-        }
 
         private void 上传获取客户端_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -347,7 +481,7 @@ namespace 远程数据管理
                 if (e.KeyChar.ToString().ToLower() == uploaddic[item])
                 {
                     string html = upload(item, textBox4.Text.Trim());
-                    //MessageBox.Show(html);
+                   
                     if(html.Contains("更新成功"))
                     {
                         textBox3.Text = item + "：值上传成功" ;
@@ -365,29 +499,33 @@ namespace 远程数据管理
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+           
+
+
             uploaddic.Clear();
             //写入config.ini配置文件
-            IniWriteValue("values2", "a1", userControl11.key);
-            IniWriteValue("values2", "a2", userControl12.key);
-            IniWriteValue("values2", "a3", userControl13.key);
-            IniWriteValue("values2", "a4", userControl14.key);
-            IniWriteValue("values2", "a5", userControl15.key);
-            IniWriteValue("values2", "a6", userControl16.key);
-            IniWriteValue("values2", "a7", userControl17.key);
-            IniWriteValue("values2", "a8", userControl18.key);
-            IniWriteValue("values2", "a9", userControl19.key);
-            IniWriteValue("values2", "a10", userControl20.key);
+            IniWriteValue("values2", "a1", uploadTextBox1.Text);
+            IniWriteValue("values2", "a2", uploadTextBox2.Text);
+            IniWriteValue("values2", "a3", uploadTextBox3.Text);
+            IniWriteValue("values2", "a4", uploadTextBox4.Text);
+            IniWriteValue("values2", "a5", uploadTextBox5.Text);
+            IniWriteValue("values2", "a6", uploadTextBox6.Text);
+            IniWriteValue("values2", "a7", uploadTextBox7.Text);
+            IniWriteValue("values2", "a8", uploadTextBox8.Text);
+            IniWriteValue("values2", "a9", uploadTextBox9.Text);
+            IniWriteValue("values2", "a10", uploadTextBox10.Text);
 
-            uploaddic.Add("a1", userControl11.key);
-            uploaddic.Add("a2", userControl12.key);
-            uploaddic.Add("a3", userControl13.key);
-            uploaddic.Add("a4", userControl14.key);
-            uploaddic.Add("a5", userControl15.key);
-            uploaddic.Add("a6", userControl16.key);
-            uploaddic.Add("a7", userControl17.key);
-            uploaddic.Add("a8", userControl18.key);
-            uploaddic.Add("a9", userControl19.key);
-            uploaddic.Add("a10", userControl20.key);
+            uploaddic.Add("a1", uploadTextBox1.Text);
+            uploaddic.Add("a2", uploadTextBox2.Text);
+            uploaddic.Add("a3", uploadTextBox3.Text);
+            uploaddic.Add("a4", uploadTextBox4.Text);
+            uploaddic.Add("a5", uploadTextBox5.Text);
+            uploaddic.Add("a6", uploadTextBox6.Text);
+            uploaddic.Add("a7", uploadTextBox7.Text);
+            uploaddic.Add("a8", uploadTextBox8.Text);
+            uploaddic.Add("a9", uploadTextBox9.Text);
+            uploaddic.Add("a10", uploadTextBox10.Text);
         }
 
 
@@ -395,7 +533,28 @@ namespace 远程数据管理
         #region  全局快捷键
 
         public delegate void HotkeyEventHandler(int HotKeyID);
-        private int Hotkey1;
+        private int Hotkeya1;
+        private int Hotkeya2;
+        private int Hotkeya3;
+        private int Hotkeya4;
+        private int Hotkeya5;
+        private int Hotkeya6;
+        private int Hotkeya7;
+        private int Hotkeya8;
+        private int Hotkeya9;
+        private int Hotkeya10;
+
+
+        private int Hotkeyb1;
+        private int Hotkeyb2;
+        private int Hotkeyb3;
+        private int Hotkeyb4;
+        private int Hotkeyb5;
+        private int Hotkeyb6;
+        private int Hotkeyb7;
+        private int Hotkeyb8;
+        private int Hotkeyb9;
+        private int Hotkeyb10;
         public class Hotkey : System.Windows.Forms.IMessageFilter
         {
             Hashtable keyIDs = new Hashtable();
@@ -468,30 +627,328 @@ namespace 远程数据管理
 
         public void OnHotkey(int HotkeyID) //Ctrl+F2隐藏窗体，再按显示窗体。
         {
-            if (HotkeyID == Hotkey1)
+            string value = "";
+
+            if (HotkeyID == Hotkeya1)
             {
-                MessageBox.Show("1");
+                 value = getall("a1");
+                textBox2.Text = "a1值为：" + value;
+               if(value!=null&&value!="")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+               else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+               
             }
-            else
+            if (HotkeyID == Hotkeya2)
             {
-                MessageBox.Show("2");
+                 value = getall("a2");
+                textBox2.Text = "a2值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
             }
+            if (HotkeyID == Hotkeya3)
+            {
+                value = getall("a3");
+                textBox2.Text = "a3值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+            }
+            if (HotkeyID == Hotkeya4)
+            {
+                 value = getall("a4");
+                textBox2.Text = "a4值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+            }
+            if (HotkeyID == Hotkeya5)
+            {
+                 value = getall("a5");
+                textBox2.Text = "a5值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+            }
+            if (HotkeyID == Hotkeya6)
+            {
+                 value = getall("a6");
+                textBox2.Text = "a6值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+            }
+            if (HotkeyID == Hotkeya7)
+            {
+                 value = getall("a7");
+                textBox2.Text = "a7值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+            }
+            if (HotkeyID == Hotkeya8)
+            {
+                 value = getall("a8");
+                textBox2.Text = "a8值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+            }
+            if (HotkeyID == Hotkeya9)
+            {
+                 value = getall("a9");
+                textBox2.Text = "a9值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+            }
+            if (HotkeyID == Hotkeya10)
+            {
+                 value = getall("a10");
+                textBox2.Text = "a10值为：" + value;
+                if (value != null && value != "")
+                {
+                    System.Windows.Forms.Clipboard.SetText(value); //复制
+                }
+                else
+                {
+                    MessageBox.Show("获取值为空");
+                }
+            }
+
+
+
+            if (HotkeyID == Hotkeyb1)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a1", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a1：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb2)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a2", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a2：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb3)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a3", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a3：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb4)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a4", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a4：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb5)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a5", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a5：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb6)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a6", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a6：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb7)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a7", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a7：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb8)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a8", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a8：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb9)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a9", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a9：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+            if (HotkeyID == Hotkeyb10)
+            {
+                textBox4.Text = (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
+                string html = upload("a10", textBox4.Text.Trim());
+
+                if (html.Contains("成功"))
+                {
+                    textBox3.Text = "a10：值上传成功";
+                }
+                else
+                {
+                    textBox3.Text = "数据上传或数据未改变";
+                }
+            }
+
         }
 
 
         #endregion
 
 
-        private void button3_Click(object sender, EventArgs e)
+    
+
+
+        public void quanjuser()
         {
             Hotkey hotkey;
             hotkey = new Hotkey(this.Handle);
 
             //Hotkey1 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.F2, Hotkey.KeyFlags.MOD_CONTROL); //定义快键(Ctrl + F2)
-            Hotkey1 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.W, Hotkey.KeyFlags.MOD_CONTROL); //定义快键(Ctrl + F2)
+            Hotkeya1 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D1, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya2 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D2, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya3 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D3, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya4 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D4, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya5 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D5, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya6 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D6, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya7 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D7, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya8 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D8, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya9 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D9, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeya10 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D0, Hotkey.KeyFlags.MOD_CONTROL);
+
+
+            Hotkeyb1 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.A, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb2 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.S, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb3 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.D, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb4 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.F, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb5 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.G, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb6 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.H, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb7 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.J, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb8 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.K, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb9 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.L, Hotkey.KeyFlags.MOD_CONTROL);
+            Hotkeyb10 = hotkey.RegisterHotkey(System.Windows.Forms.Keys.Z, Hotkey.KeyFlags.MOD_CONTROL);
+
 
             hotkey.OnHotkey += new HotkeyEventHandler(OnHotkey);
+        }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            cbx_startup();
         }
     }
 }

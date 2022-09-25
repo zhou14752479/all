@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序selenium
+namespace 广东发票查询
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序selenium
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 淘宝市场洞察搜索分析());
+            Application.Run(new 广东发票查询());
         }
     }
 }

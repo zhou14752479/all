@@ -317,8 +317,10 @@ namespace win007
                         case "Betsson":
                             gongsi_dics.Add("Betsson", cid);
                             break;
+                        case "TopSport":
+                            gongsi_dics.Add("TopSport", cid);
+                            break;
 
-                      
 
                     }
                 }

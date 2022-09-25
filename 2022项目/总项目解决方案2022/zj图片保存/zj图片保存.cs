@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -17,6 +18,13 @@ namespace zj图片保存
 {
     public partial class zj图片保存 : Form
     {
+       
+
+
+
+
+
+
         public zj图片保存()
         {
             InitializeComponent();
@@ -223,8 +231,8 @@ namespace zj图片保存
         /// <returns></returns>
         public string getmobile()
         {
-
-            string url = "http://api.lx967.com:9090/sms/api/getPhone?token=" + token + "&sid=17517&haoduan=167";
+            //167号段
+            string url = "http://api.lx967.com:9090/sms/api/getPhone?token=" + token + "&sid=17517&haoduan=";
             string html = method.GetUrl(url, "utf-8");
 
             string mobileNo = Regex.Match(html, @"phone"":""([\s\S]*?)""").Groups[1].Value;
@@ -292,7 +300,7 @@ namespace zj图片保存
             }
             else
             {
-              
+                updatecookie();
                 logtxtBox.Text += "发送手机短信验证码失败" + html + "\r\n";
                 fasongmsg = html;
                 return false;
@@ -416,6 +424,7 @@ namespace zj图片保存
                 }
                 catch (Exception ex)
                 {
+                  
                     logtxtBox.Text = ex.ToString();
                     continue;
                 }
@@ -430,20 +439,61 @@ namespace zj图片保存
         #endregion
 
 
+        #region GET请求获取Set-cookie
+        public  string getSetCookie(string url)
+        {
+
+            //可用于网站第一次验证ocokie，不需要用webbrowser获取参考项目【邮箱地址确认】
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
+            request.Timeout = 10000;
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+            request.AllowAutoRedirect = false;
+            request.Headers.Add("Cookie", cookiewithnotsession);
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+            string content = response.GetResponseHeader("Set-Cookie"); ;
+            return content;
+
+          
+        }
+        #endregion
 
 
+        string cookiewithnotsession = "cna=nHxyG3AA8QwCAf////+GB2NJ; zjzwfwloginhx=13262305; ZJZWFWSESSIONID=cf9a722f-400c-408b-af88-4f18ea373e92;  ssxmod_itna=QqAhBKY54moh8DzrD2eEDk0eDQqtxDt1hqrQIWDlroxA5D8D6DQeGTrR+CvCQNC41iPiTV00hphm5Tb220ml7ex0aDbqGkqA/Q4GGjxBYDQxAYDGDDPkDj4ibDYSZHDjG96CSAPqAQDKx0kDY5Dwc5sDiPD7hKPCDe821cGZaYDn=iCWix8D75Dux0HNY35AxDCwF35yPvIC4i3fYFGx40OD0K+XpahDBR8g=yH2z4xf0DxrQaYrlDdqirYdB2KrQi4WYRx7e45Fe4q3GxP57hPlmtDi2DafdD==; ssxmod_itna2=QqAhBKY54moh8DzrD2eEDk0eDQqtxDt1hqrQqD6pSC0D0y2xx03WQhCn607NnD8xx6qX0e3Yhe9Kl+RAGWKQ0F2Px1OwuLiWF4lrt8N0BWFW3cAWQqbGonp2OpGkf8ldKfLsEqBGqjEQV7GhMldi/YnK3zxYCF+4EfhhO8CrXSdAsABx5EYox1ldEUqY3lLWgzQatdbYftPwfbxG294GcDiQteD=;";
 
+        public void updatecookie()
+        {
 
+            try
+            {
+                string session = getSetCookie("https://uuser.zjzwfw.gov.cn/captcha/doReadKaptcha.do");
+                if (session != "")
+                {
+                    cookie = cookiewithnotsession + session;
+                }
+                else
+                {
+                    logtxtBox.Text = DateTime.Now.ToString() + "cookie更新失败";
+                }
 
+            }
+            catch (Exception ex)
+            {
 
+                logtxtBox.Text = (ex.Message);
+            }
+        }
 
+        
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cookie = textBox8.Text.Trim();
-            appcookie = textBox10.Text.Trim();
+            updatecookie();
+           // appcookie = textBox10.Text.Trim();
 
+            
 
 
             

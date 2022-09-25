@@ -1018,15 +1018,16 @@ namespace win007
             TextBox t=new TextBox();
             t.Text = "";
 
-            if (getminmaxvalue(1, 2) == textBox1.Text.Trim())
+            
+            if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
             {
                 chaxun(textBox1, t, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
             }
-            if (getminmaxvalue(1, 2) == textBox2.Text.Trim())
+            if (getminmaxvalue(1, 1) == textBox2.Text.Trim())
             {
                 chaxun(t, textBox2, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
             }
-            if (getminmaxvalue(1, 2) == textBox3.Text.Trim())
+            if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
             {
                 chaxun(t, t, textBox3, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
             }
@@ -1311,6 +1312,141 @@ namespace win007
             return "";
         }
 
-      
+        private void button16_Click(object sender, EventArgs e)
+        {
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView1.ColumnHeadersHeight = 50;
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox13);
+
+
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(1, 2) == textBox1.Text.Trim())
+            {
+                chaxun(textBox1, t, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+            }
+            if (getminmaxvalue(1, 2) == textBox2.Text.Trim())
+            {
+                chaxun(t, textBox2, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+            }
+            if (getminmaxvalue(1, 2) == textBox3.Text.Trim())
+            {
+                chaxun(t, t, textBox3, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView2.ColumnHeadersHeight = 50;
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7,  textBox13);
+
+
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, t, t, textBox7, textBox13);
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView3.ColumnHeadersHeight = 50;
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5,  label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7,  textBox13);
+
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, t, t, textBox7, textBox13);
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView4.ColumnHeadersHeight = 50;
+            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5,  label35, label34, label33, comboBox1, dataGridView4, textBox9, textBox8, textBox7,  textBox13 );
+
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, t, t, textBox7, textBox13);
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView5.ColumnHeadersHeight = 50;
+          
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, t, t, textBox7, textBox13);
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView6.ColumnHeadersHeight = 50;
+            TextBox t = new TextBox();
+            t.Text = "";
+
+            if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, textBox9, t, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, t, textBox8, t, textBox13);
+            }
+            if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
+            {
+                chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, t, t, textBox7, textBox13);
+            }
+        }
     }
 }
