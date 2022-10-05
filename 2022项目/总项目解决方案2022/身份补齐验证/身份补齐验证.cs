@@ -300,9 +300,9 @@ namespace 身份补齐验证
             }
             
             starttime=DateTime.Now;
-            
-            cookie = method.GetCookies("http://www.iy6.cn/?c=Public&action=verify");
 
+            cookie = method.GetCookies("http://www.iy6.cn/?c=Public&action=verify");
+            //cookie = "acw_tc=707c9f9d16646768871584250e7fbe58eda609de475c16c5ec256a3e828a27; PHPSESSID=q5o931oop3fh99r9uq6tcp1145";
             yzm_ttshitu.cookie = cookie;
             yzm=( yzm_ttshitu.shibie("2030017712","123q123q", "http://www.iy6.cn/?c=Public&action=verify"));
 
@@ -486,9 +486,10 @@ namespace 身份补齐验证
         #endregion
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(CheckIDCard18("321321199303012258").ToString());
-            MessageBox.Show(CheckIDCard18("321321199303022258").ToString());
-            MessageBox.Show(CheckIDCard18("321321199303032258").ToString());
+            
+            //MessageBox.Show(CheckIDCard18("321321199303012258").ToString());
+            //MessageBox.Show(CheckIDCard18("321321199303022258").ToString());
+            //MessageBox.Show(CheckIDCard18("321321199303032258").ToString());
         }
     }
 }

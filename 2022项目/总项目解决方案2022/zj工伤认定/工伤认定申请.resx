@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>cna=nHxyG3AA8QwCAf////+GB2NJ; _bl_uid=8OlL372dvz4pp99mauqLmdb6ztbh; zjzwfwloginhx=13394581; zh_choose_undefined=s; ariawapChangeViewPort=false; ZJZWFWSESSIONID=84cb77ad-8942-4852-b9b2-f54ea0f8a420; amlbcookie=05; PROXY_URL="https://esso.zjzwfw.gov.cn/opensso/oauth2c/OAuthProxy.jsp"; ORIG_URL="https://esso.zjzwfw.gov.cn/opensso/UI/Login?goto=https://esso.zjzwfw.gov.cn/opensso/spsaehandler/metaAlias/sp?spappurl="; URL_FOR_REG=https%3A%2F%2Fesso.zjzwfw.gov.cn%2Fopensso%2FUI%2FLogin%3Fgoto%3Dhttps%3A%2F%2Fesso.zjzwfw.gov.cn%2Fopensso%2Fspsaehandler%2FmetaAlias%2Fsp%3Fspappurl%3D; iPlanetDirectoryPro=AQIC5wM2LY4SfczQxbJQKIq79BMwxCFm8AuTYGVIjWYLxIw.*AAJTSQACMDIAAlNLABM0MzA4MTA5MTQ4ODU3MTk4MzY4AAJTMQACMDU.*; ssxmod_itna=eqUxRDu7iteWwxBPGIrCDjxNvtyGxxD5r3LxD/KC+DnqD=GFDK40EABorD7+Q9=B7vY4Ae+0vqQMW2hO0pf7WmONFDU4i8DCT2PoD4fKGwD0eG+DD4DWfx03DoxGYBGx0bSyuLvzQGRD0YDzqDgD7QVSqDfDDLnK75hbTUjYnNqxGtemkGxbqDMD7tD/Rhryo=DGwWTyxNg9jTDbxp2eWiDtqD9beU6QeDH7TNSDTFsIDPqIY+zQAe5WxhxeOho9xh=+DhPKi540G5de2D4FDw4tg+cyxDAUUgdeD===; ssxmod_itna2=eqUxRDu7iteWwxBPGIrCDjxNvtyGxxD5rfxG9ts0DGxGNrFFGaIe5IHsx8xO8zHICU9OBHieuKBGY4Cx1AmDrqNxEeq2x5wFiLxGVl4PYUQsx4zlD8nKXAjW6VCv6yQyTyrD5Es+00hPCoE+07Kqzg0+SRDHQGGR0i6jFbbuI4x843ijC2h4HbegI72xiYoXQfQFAnpw0DtX9j4g9OWqZC5TpaXYq3Rc3nGrNqEnWTXxz3rkw+T1szOk64uI3TQMmFQpOaU=Nlj=qz3Cdz3h3+RTD7jHD7=DewPxD===; session=4a6af8c283a043c09febddd7cb6ceb8f; clientUserType=legal; REG_URL=https%3A%2F%2Fesso.zjzwfw.gov.cn%2Fopensso%2FUI%2FLogin%3Fgoto%3Dhttps%3A%2F%2Fesso.zjzwfw.gov.cn%2Fopensso%2Fspsaehandler%2FmetaAlias%2Fsp%3Fspappurl%3Dhttps%3A%2F%2Fportal.zjzwfw.gov.cn%2Fportal%2Flegal%2Flogin%3F1%3D1%26goto%3Dhttps%253A%252F%252Frecept.zjzwfw.gov.cn%252Fonline%252Faccept%2523%252Faccept%252Fform%253FmatterType%253DpowerDirectory%2526matterId%253D101201980%2526syncUserType%253Dtrue%2526useDetailNew%253Dtrue%2526endpoint%253Donline%2526sequenceNo%253Db8f7ddfe6dab4ca08fc99a49fff38f93%2526viewId%253DForm%2526config%253D%25257B%252522viewId%252522%25253A%252522Form%252522%25257D; SAEORGURL=""; SAEORGPOSTPARAMS=""; C_zj_gsid=f1f49beeb7c8475a9a2333f3fe9d9ce4-gsid-; C_zj_platform=h5; C_zj_accountType=legal; SERVERID=cb1635e562b1a42b87c46750fd7ed2b5|1664455158|1664455145</value>
+  </data>
+</root>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序202206
+namespace zj工伤认定
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序202206
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 号码网址信息分类());
+            Application.Run(new 工伤认定申请());
         }
     }
 }

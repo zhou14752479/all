@@ -386,5 +386,10 @@ namespace 浙江企业基础信息查询
                 jiami = false;
             }
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

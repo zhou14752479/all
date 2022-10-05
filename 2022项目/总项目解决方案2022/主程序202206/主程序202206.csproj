@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -62,6 +63,12 @@
     <Compile Include="号码查询.Designer.cs">
       <DependentUpon>号码查询.cs</DependentUpon>
     </Compile>
+    <Compile Include="号码网址信息分类.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="号码网址信息分类.Designer.cs">
+      <DependentUpon>号码网址信息分类.cs</DependentUpon>
+    </Compile>
     <Compile Include="文件筛选移动.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="号码查询.resx">
       <DependentUpon>号码查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="号码网址信息分类.resx">
+      <DependentUpon>号码网址信息分类.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="文件筛选移动.resx">
       <DependentUpon>文件筛选移动.cs</DependentUpon>

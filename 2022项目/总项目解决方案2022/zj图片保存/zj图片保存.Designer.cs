@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(zj图片保存));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,7 +45,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -54,8 +52,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -78,7 +76,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(110, 21);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "api-KoHQBQtq";
+            this.textBox1.Text = "api-XJY17L7E";
             // 
             // button3
             // 
@@ -224,11 +222,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "用户名";
             // 
-            // timer2
-            // 
-            this.timer2.Enabled = true;
-            this.timer2.Interval = 300000;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(100, 296);
@@ -243,7 +236,6 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(53, 47);
             this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(110, 21);
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "123q123Q";
@@ -300,10 +292,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "密码";
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -312,6 +300,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.linkLabel1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox7);
             this.splitContainer1.Panel1.Controls.Add(this.label6);
             this.splitContainer1.Panel1.Controls.Add(this.textBox6);
@@ -333,6 +322,17 @@
             this.splitContainer1.Size = new System.Drawing.Size(894, 707);
             this.splitContainer1.SplitterDistance = 296;
             this.splitContainer1.TabIndex = 8;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(12, 271);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel1.TabIndex = 14;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "手动更新";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // textBox7
             // 
@@ -437,13 +437,11 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox9;
@@ -457,5 +455,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

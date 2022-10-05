@@ -291,8 +291,9 @@ namespace zj图片保存
 
             string url = "https://uuser.zjzwfw.gov.cn/uuuser/getVerifyCodeByPhone.do";
             string postdata = "phone=" + mobile + "&imgCode=" + imgcode + "&codeType=5";
+           // MessageBox.Show(postdata);
             string html = PostUrl(url, postdata);
-            //MessageBox.Show(html);
+           // MessageBox.Show(html);
             if (html.Contains("true"))
             {
                 logtxtBox.Text += "发送手机短信验证码成功" + "\r\n";
@@ -300,7 +301,7 @@ namespace zj图片保存
             }
             else
             {
-                updatecookie();
+               // updatecookie();
                 logtxtBox.Text += "发送手机短信验证码失败" + html + "\r\n";
                 fasongmsg = html;
                 return false;
@@ -323,7 +324,7 @@ namespace zj图片保存
         #region 主程序
         public void run()
         {
-
+            
             DataTable dt = method.ExcelToDataTable(textBox5.Text, true);
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -370,6 +371,8 @@ namespace zj图片保存
                     bool fasongstatus = sendmobile(mobile, shibie());
                     while (!fasongstatus)
                     {
+                       
+
                         Thread.Sleep(5000);
                         if (status == false)
                         {
@@ -381,8 +384,12 @@ namespace zj图片保存
                             logtxtBox.Text += "触发发送验证码频繁正在等待120秒.." + "\r\n";
                             Thread.Sleep(120000);
                         }
+                       
                         fasongstatus = sendmobile(mobile, shibie());
+                       
                     }
+
+                  
                     string mobilecode = getduanxinma(mobile);
                     while (true)
                     {
@@ -395,6 +402,8 @@ namespace zj图片保存
                         {
                             dengdaiduanxinmaseconds = 0;
                             mobile = getmobile();
+
+                          
                             sendmobile(mobile, shibie());
                         }
                         if (mobilecode != "")
@@ -470,7 +479,10 @@ namespace zj图片保存
                 string session = getSetCookie("https://uuser.zjzwfw.gov.cn/captcha/doReadKaptcha.do");
                 if (session != "")
                 {
+                    logtxtBox.Text += DateTime.Now.ToString() + "cookie更新成功：" + "\r\n";
                     cookie = cookiewithnotsession + session;
+
+                   // logtxtBox.Text = cookie;
                 }
                 else
                 {
@@ -653,6 +665,8 @@ namespace zj图片保存
         {
             string path = AppDomain.CurrentDomain.BaseDirectory+"\\image\\";
 
+
+            //https://recept.zjzwfw.gov.cn/matter/reception?t=1664094582404&t=1664094582404&config=%7B%22viewId%22%3A%22Material%22%7D&endpoint=online&matterId=101100129&sequenceNo=b3269a1a272c4dc6990b78a972458a1c&useDetailNew=true&viewId=Material
             string url = "https://recept.zjzwfw.gov.cn/matter/reception?matterType=powerDirectory&matterId=101101907&syncUserType=true&endpoint=app&sequenceNo="+seqno+"&config=%7B%22viewId%22%3A%22Material%22%7D&viewId=Material&useDetailNew=true";
 
            
@@ -708,6 +722,13 @@ namespace zj图片保存
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+      
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            updatecookie();
         }
     }
 }

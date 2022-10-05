@@ -34,7 +34,6 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -82,24 +81,18 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6,
             this.columnHeader7});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 142);
+            this.listView1.Location = new System.Drawing.Point(0, 114);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1002, 463);
+            this.listView1.Size = new System.Drawing.Size(886, 483);
             this.listView1.TabIndex = 316;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "商家名称";
-            this.columnHeader6.Width = 150;
             // 
             // columnHeader7
             // 
@@ -108,7 +101,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(282, 82);
+            this.button3.Location = new System.Drawing.Point(282, 66);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(83, 29);
             this.button3.TabIndex = 315;
@@ -118,7 +111,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(460, 82);
+            this.button5.Location = new System.Drawing.Point(460, 66);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(83, 29);
             this.button5.TabIndex = 314;
@@ -128,7 +121,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(371, 82);
+            this.button4.Location = new System.Drawing.Point(371, 66);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(83, 29);
             this.button4.TabIndex = 313;
@@ -138,7 +131,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(193, 82);
+            this.button1.Location = new System.Drawing.Point(193, 66);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 29);
             this.button1.TabIndex = 312;
@@ -148,7 +141,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(104, 82);
+            this.button6.Location = new System.Drawing.Point(104, 66);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(83, 28);
             this.button6.TabIndex = 311;
@@ -159,9 +152,11 @@
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox2.Location = new System.Drawing.Point(0, 605);
+            this.textBox2.Font = new System.Drawing.Font("宋体", 13F);
+            this.textBox2.Location = new System.Drawing.Point(0, 597);
+            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(1002, 21);
+            this.textBox2.Size = new System.Drawing.Size(886, 29);
             this.textBox2.TabIndex = 310;
             // 
             // textBox1
@@ -170,6 +165,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(431, 21);
             this.textBox1.TabIndex = 309;
+            this.textBox1.Visible = false;
             // 
             // button2
             // 
@@ -180,6 +176,7 @@
             this.button2.TabIndex = 308;
             this.button2.Text = "选择文件";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
@@ -191,6 +188,7 @@
             this.label1.Size = new System.Drawing.Size(77, 14);
             this.label1.TabIndex = 307;
             this.label1.Text = "导入表格：";
+            this.label1.Visible = false;
             // 
             // radioButton1
             // 
@@ -204,6 +202,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "自动抓取";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Visible = false;
             // 
             // radioButton2
             // 
@@ -215,12 +214,13 @@
             this.radioButton2.TabIndex = 318;
             this.radioButton2.Text = "导入国药准字抓取";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Visible = false;
             // 
             // 药房网
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1002, 626);
+            this.ClientSize = new System.Drawing.Size(886, 626);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.listView1);
@@ -236,6 +236,7 @@
             this.Name = "药房网";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "药房网";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.药房网_FormClosing);
             this.Load += new System.EventHandler(this.药房网_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -249,7 +250,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
