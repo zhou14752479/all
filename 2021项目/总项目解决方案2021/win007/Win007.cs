@@ -1012,26 +1012,43 @@ namespace win007
 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 50;
-            //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, textBox6, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, textBox9, textBox8, textBox7, textBox13);
            
             
             TextBox t=new TextBox();
             t.Text = "";
 
+           
+
+
             
             if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
             {
                 chaxun(textBox1, t, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+                chaxun(textBox1, t, t, textBox4, textBox5, label43, label42, label37, comboBox2, dataGridView1, t, t, t, textBox13);
+                chaxun(textBox1, t, t, textBox4, textBox5, label46, label49, label53, comboBox3, dataGridView1, t, t, t, textBox13);
+                chaxun(textBox1, t, t, textBox4, textBox5, label65, label67, label71, comboBox4, dataGridView1, t, t, t, textBox13);
+                chaxun(textBox1, t, t, textBox4, textBox5, label83, label85, label89, comboBox5, dataGridView1, t, t, t, textBox13);
             }
             if (getminmaxvalue(1, 1) == textBox2.Text.Trim())
             {
                 chaxun(t, textBox2, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+                chaxun(t, textBox2, t, textBox4, textBox5, label43, label42, label37, comboBox2, dataGridView1, t, t, t, textBox13);
+                chaxun(t, textBox2, t, textBox4, textBox5, label46, label49, label53, comboBox3, dataGridView1, t, t, t, textBox13);
+                chaxun(t, textBox2, t, textBox4, textBox5, label65, label67, label71, comboBox4, dataGridView1, t, t, t, textBox13);
+                chaxun(t, textBox2, t, textBox4, textBox5, label83, label85, label89, comboBox5, dataGridView1, t, t, t, textBox13);
             }
             if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
             {
                 chaxun(t, t, textBox3, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+                chaxun(t, t, textBox3, textBox4, textBox5, label43, label42, label37, comboBox2, dataGridView1, t, t, t, textBox13);
+                chaxun(t, t, textBox3, textBox4, textBox5, label46, label49, label53, comboBox3, dataGridView1, t, t, t, textBox13);
+                chaxun(t, t, textBox3, textBox4, textBox5, label65, label67, label71, comboBox4, dataGridView1, t, t, t, textBox13);
+                chaxun(t, t, textBox3, textBox4, textBox5, label83, label85, label89, comboBox5, dataGridView1, t, t, t, textBox13);
             }
 
+
+
+          
 
         }
        
@@ -1051,14 +1068,27 @@ namespace win007
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label38, label36, label31, comboBox2, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label51, label44, label57, comboBox3, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label69, label63, label75, comboBox4, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label87, label81, label93, comboBox5, dataGridView2, textBox9, t, t, textBox13);
+
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label38, label36, label31, comboBox2, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label51, label44, label57, comboBox3, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label69, label63, label75, comboBox4, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label87, label81, label93, comboBox5, dataGridView2, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label38, label36, label31, comboBox2, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label51, label44, label57, comboBox3, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label69, label63, label75, comboBox4, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label87, label81, label93, comboBox5, dataGridView2, textBox9, t, t, textBox13);
             }
         }
 
@@ -1074,14 +1104,26 @@ namespace win007
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label32, label30, label35, comboBox2, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label55, label59, label62, comboBox3, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label73, label77, label80, comboBox4, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label91, label95, label98, comboBox5, dataGridView3, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label32, label30, label35, comboBox2, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label55, label59, label62, comboBox3, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label73, label77, label80, comboBox4, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label91, label95, label98, comboBox5, dataGridView3, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label32, label30, label35, comboBox2, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label55, label59, label62, comboBox3, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label73, label77, label80, comboBox4, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label91, label95, label98, comboBox5, dataGridView3, textBox9, t, t, textBox13);
             }
 
         }
@@ -1098,14 +1140,26 @@ namespace win007
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label26, label24, label19, comboBox2, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label61, label60, label56, comboBox3, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label79, label78, label74, comboBox4, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label97, label96, label92, comboBox5, dataGridView4, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label26, label24, label19, comboBox2, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label61, label60, label56, comboBox3, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label79, label78, label74, comboBox4, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label97, label96, label92, comboBox5, dataGridView4, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label26, label24, label19, comboBox2, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label61, label60, label56, comboBox3, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label79, label78, label74, comboBox4, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label97, label96, label92, comboBox5, dataGridView4, textBox9, t, t, textBox13);
             }
         }
 
@@ -1121,14 +1175,27 @@ namespace win007
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label20, label18, label11, comboBox2, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label58, label54, label52, comboBox3, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label76, label72, label70, comboBox4, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label94, label90, label88, comboBox5, dataGridView5, textBox9, t, t, textBox13);
+
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label20, label18, label11, comboBox2, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label58, label54, label52, comboBox3, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label76, label72, label70, comboBox4, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label94, label90, label88, comboBox5, dataGridView5, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label20, label18, label11, comboBox2, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label58, label54, label52, comboBox3, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label76, label72, label70, comboBox4, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label94, label90, label88, comboBox5, dataGridView5, textBox9, t, t, textBox13);
             }
         }
 
@@ -1143,14 +1210,26 @@ namespace win007
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label10, label9, label4, comboBox2, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label50, label47, label45, comboBox3, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label68, label66, label64, comboBox4, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label86, label84, label82, comboBox5, dataGridView6, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label10, label9, label4, comboBox2, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label50, label47, label45, comboBox3, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label68, label66, label64, comboBox4, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label86, label84, label82, comboBox5, dataGridView6, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label10, label9, label4, comboBox2, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label50, label47, label45, comboBox3, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label68, label66, label64, comboBox4, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label86, label84, label82, comboBox5, dataGridView6, textBox9, t, t, textBox13);
             }
         }
 
@@ -1170,10 +1249,20 @@ namespace win007
                 string id = Regex.Match(比赛ToolStripMenuItem.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
                 
                 string data = function.getshishidata(id, comboBox1.Text.Trim());
-               
+                MessageBox.Show(data);
                 string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
                 if (text.Length > 6)
                 {
+                    string s1 = "平";
+                    string j1 = "平";
+                    string p1 = "平";
+
+                    string s2 = "平";
+                    string j2= "平";
+                    string p2 = "平";
+
+
+
                     textBox1.Text = text[1];
                     textBox2.Text = text[2];
                     textBox3.Text = text[3];
@@ -1181,12 +1270,41 @@ namespace win007
                     textBox8.Text = text[5];
                     textBox7.Text = text[6];
 
+
+
+                    s1 = Convert.ToDouble(text[1]) - Convert.ToDouble(text[4]) < 0 ? "降" : "升";
+                    j1= Convert.ToDouble(text[2]) - Convert.ToDouble(text[5]) < 0 ? "降" : "升";
+                    p1 = Convert.ToDouble(text[3]) - Convert.ToDouble(text[6]) < 0 ? "降" : "升";
+
+                    s1 = Convert.ToDouble(text[1]) - Convert.ToDouble(text[4]) == 0 ? "平" : s1;
+                    j1 = Convert.ToDouble(text[2]) - Convert.ToDouble(text[5]) == 0 ? "平" : j1;
+                    p1 = Convert.ToDouble(text[3]) - Convert.ToDouble(text[6]) == 0 ? "平" : p1;
+
+
+
+
+
+                    s2 = Convert.ToDouble(text[4]) - Convert.ToDouble(text[7]) < 0 ? "降" : "升";
+                    j2 = Convert.ToDouble(text[5]) - Convert.ToDouble(text[8]) < 0 ? "降" : "升";
+                    p2 = Convert.ToDouble(text[6]) - Convert.ToDouble(text[9]) < 0 ? "降" : "升";
+
+                    s2 = Convert.ToDouble(text[4]) - Convert.ToDouble(text[7]) == 0 ? "平" : s2;
+                    j2 = Convert.ToDouble(text[5]) - Convert.ToDouble(text[8]) == 0 ? "平" : j2;
+                    p2 = Convert.ToDouble(text[6]) - Convert.ToDouble(text[9]) == 0 ? "平" : p2;
+
+
+
+
                     if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
                     {
                         label48.Text = "特殊数据";
 
                     }
 
+
+
+                    textBox4.Text = s1+j1+p1;
+                    textBox13.Text = s2 + j2+ p2;
                 }
             }
             catch (Exception ex)
@@ -1325,14 +1443,27 @@ namespace win007
             if (getminmaxvalue(1, 2) == textBox1.Text.Trim())
             {
                 chaxun(textBox1, t, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+                chaxun(textBox1, t, t, textBox4, textBox5, label43, label42, label37, comboBox2, dataGridView1, t, t, t, textBox13);
+                chaxun(textBox1, t, t, textBox4, textBox5, label46, label49, label53, comboBox3, dataGridView1, t, t, t, textBox13);
+                chaxun(textBox1, t, t, textBox4, textBox5, label65, label67, label71, comboBox4, dataGridView1, t, t, t, textBox13);
+                chaxun(textBox1, t, t, textBox4, textBox5, label83, label85, label89, comboBox5, dataGridView1, t, t, t, textBox13);
+
             }
             if (getminmaxvalue(1, 2) == textBox2.Text.Trim())
             {
                 chaxun(t, textBox2, t, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+                chaxun(t, textBox2, t, textBox4, textBox5, label43, label42, label37, comboBox2, dataGridView1, t, t, t, textBox13);
+                chaxun(t, textBox2, t, textBox4, textBox5, label46, label49, label53, comboBox3, dataGridView1, t, t, t, textBox13);
+                chaxun(t, textBox2, t, textBox4, textBox5, label65, label67, label71, comboBox4, dataGridView1, t, t, t, textBox13);
+                chaxun(t, textBox2, t, textBox4, textBox5, label83, label85, label89, comboBox5, dataGridView1, t, t, t, textBox13);
             }
             if (getminmaxvalue(1, 2) == textBox3.Text.Trim())
             {
                 chaxun(t, t, textBox3, textBox4, textBox5, zhusheng_banfenbi_label, heju_banfenbi_label, kesheng_banfenbi_label, comboBox1, dataGridView1, t, t, t, textBox13);
+                chaxun(t, t, textBox3, textBox4, textBox5, label43, label42, label37, comboBox2, dataGridView1, t, t, t, textBox13);
+                chaxun(t, t, textBox3, textBox4, textBox5, label46, label49, label53, comboBox3, dataGridView1, t, t, t, textBox13);
+                chaxun(t, t, textBox3, textBox4, textBox5, label65, label67, label71, comboBox4, dataGridView1, t, t, t, textBox13);
+                chaxun(t, t, textBox3, textBox4, textBox5, label83, label85, label89, comboBox5, dataGridView1, t, t, t, textBox13);
             }
         }
 
@@ -1349,14 +1480,27 @@ namespace win007
             if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label38, label36, label31, comboBox2, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label51, label44, label57, comboBox3, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label69, label63, label75, comboBox4, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label87, label81, label93, comboBox5, dataGridView2, textBox9, t, t, textBox13);
+
             }
             if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label38, label36, label31, comboBox2, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label51, label44, label57, comboBox3, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label69, label63, label75, comboBox4, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label87, label81, label93, comboBox5, dataGridView2, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label38, label36, label31, comboBox2, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label51, label44, label57, comboBox3, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label69, label63, label75, comboBox4, dataGridView2, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label87, label81, label93, comboBox5, dataGridView2, textBox9, t, t, textBox13);
             }
         }
 
@@ -1372,14 +1516,26 @@ namespace win007
             if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label32, label30, label35, comboBox2, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label55, label59, label62, comboBox3, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label73, label77, label80, comboBox4, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label91, label95, label98, comboBox5, dataGridView3, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label32, label30, label35, comboBox2, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label55, label59, label62, comboBox3, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label73, label77, label80, comboBox4, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label91, label95, label98, comboBox5, dataGridView3, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label29, label28, label27, comboBox1, dataGridView3, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label32, label30, label35, comboBox2, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label55, label59, label62, comboBox3, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label73, label77, label80, comboBox4, dataGridView3, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label91, label95, label98, comboBox5, dataGridView3, textBox9, t, t, textBox13);
             }
         }
 
@@ -1395,14 +1551,26 @@ namespace win007
             if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label26, label24, label19, comboBox2, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label61, label60, label56, comboBox3, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label79, label78, label74, comboBox4, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label97, label96, label92, comboBox5, dataGridView4, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label26, label24, label19, comboBox2, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label61, label60, label56, comboBox3, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label79, label78, label74, comboBox4, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label97, label96, label92, comboBox5, dataGridView4, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label35, label34, label33, comboBox1, dataGridView4, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label26, label24, label19, comboBox2, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label61, label60, label56, comboBox3, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label79, label78, label74, comboBox4, dataGridView4, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label97, label96, label92, comboBox5, dataGridView4, textBox9, t, t, textBox13);
             }
         }
 
@@ -1417,14 +1585,26 @@ namespace win007
             if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label20, label18, label11, comboBox2, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label58, label54, label52, comboBox3, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label76, label72, label70, comboBox4, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label94, label90, label88, comboBox5, dataGridView5, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label20, label18, label11, comboBox2, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label58, label54, label52, comboBox3, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label76, label72, label70, comboBox4, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label94, label90, label88, comboBox5, dataGridView5, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label20, label18, label11, comboBox2, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label58, label54, label52, comboBox3, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label76, label72, label70, comboBox4, dataGridView5, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label94, label90, label88, comboBox5, dataGridView5, textBox9, t, t, textBox13);
             }
         }
 
@@ -1438,15 +1618,32 @@ namespace win007
             if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label10, label9, label4, comboBox2, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label50, label47, label45, comboBox3, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label68, label66, label64, comboBox4, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label86, label84, label82, comboBox5, dataGridView6, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, t, textBox8, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label10, label9, label4, comboBox2, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label50, label47, label45, comboBox3, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label68, label66, label64, comboBox4, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label86, label84, label82, comboBox5, dataGridView6, textBox9, t, t, textBox13);
             }
             if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
             {
                 chaxun(t, t, t, textBox4, textBox5, label17, label16, label12, comboBox1, dataGridView6, t, t, textBox7, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label10, label9, label4, comboBox2, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label50, label47, label45, comboBox3, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label68, label66, label64, comboBox4, dataGridView6, textBox9, t, t, textBox13);
+                chaxun(t, t, t, textBox4, textBox5, label86, label84, label82, comboBox5, dataGridView6, textBox9, t, t, textBox13);
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

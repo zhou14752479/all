@@ -37,16 +37,22 @@ namespace 基鹿工具箱
                 string fd = dt.Rows[i][2].ToString().Trim();
                 string good_zs = dt.Rows[i][3].ToString().Trim();
                 string gx_zs = dt.Rows[i][4].ToString().Trim();
-                bool status= Util.insert(ci,ss_zs,fd,good_zs,gx_zs);
-                if(status==true)
-                {
-                    toolStripStatusLabel1 .Text = "导入数据："+ci+" 成功";
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "导入数据：" + ci + " 失败";
-                    break;
-                }
+                //bool status= Util.insert(ci,ss_zs,fd,good_zs,gx_zs);
+                //if(status==true)
+                //{
+                //    toolStripStatusLabel1 .Text = "导入数据："+ci+" 成功";
+                //}
+                //else
+                //{
+                //    toolStripStatusLabel1.Text = "导入数据：" + ci + " 失败";
+                //    break;
+                //}
+
+
+                string url = "http://43.136.67.39/do.php?method=insert";
+                string postdata = "a=" + ci + "&b=" + ss_zs + "&c=" + fd + "&d=" + good_zs + "&e=" + gx_zs;
+                string html = Util.PostUrl(url, postdata, "");
+                label2.Text = DateTime.Now.ToString()+ html;
             }
             MessageBox.Show("完成");
         }

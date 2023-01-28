@@ -386,5 +386,20 @@ namespace 主程序202206
         {
             expotTxt(listView1,1);
         }
+
+        private void 复制号码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.listView1.SelectedItems.Count == 0)
+                    return;
+                System.Windows.Forms.Clipboard.SetText(listView1.SelectedItems[0].SubItems[1].Text); //复制
+            }
+            catch (Exception)
+            {
+
+                
+            }
+        }
     }
 }

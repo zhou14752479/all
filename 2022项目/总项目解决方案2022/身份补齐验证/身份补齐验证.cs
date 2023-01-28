@@ -134,7 +134,7 @@ namespace 身份补齐验证
                             continue;
                         }
 
-
+                     
 
                         //MessageBox.Show(card);
                         string zimu = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
@@ -369,7 +369,7 @@ namespace 身份补齐验证
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        private static bool CheckIDCard18(string Id)
+        public static bool CheckIDCard18(string Id)
         {
             long n = 0;
             if (long.TryParse(Id.Remove(17), out n) == false || n < Math.Pow(10, 16) || long.TryParse(Id.Replace('x', '0').Replace('X', '0'), out n) == false)
@@ -490,6 +490,11 @@ namespace 身份补齐验证
             //MessageBox.Show(CheckIDCard18("321321199303012258").ToString());
             //MessageBox.Show(CheckIDCard18("321321199303022258").ToString());
             //MessageBox.Show(CheckIDCard18("321321199303032258").ToString());
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

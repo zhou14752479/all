@@ -389,19 +389,64 @@ namespace 基鹿工具箱
 
                 StringBuilder sb = new StringBuilder();
                 string[] text = textBox4.Text.Trim().Split(new string[] { "," }, StringSplitOptions.None);
+                //foreach (var item in text)
+                //{
+                //    sb.Append(" ci like '%" + item + "%' or");
+                //}
+
+                //string sql2 = sb.ToString();
+                //if (sb.ToString().Substring(sb.ToString().Length - 2, 2) == "or")
+                //{
+                //    sql2 = sb.ToString().Remove(sb.ToString().Length - 2, 2);
+                //}
+                //string sql = "Select ci,ss_zs,fd,good_zs,gx_zs,pp,copy From datas where  " + sql2+ "order by ss_zs";
+
+                //DataTable dt = Util.getdata(sql);
+
+
+                DataTable dt=new DataTable();
+                DataColumn ci = new DataColumn("ci", typeof(string));   //数据类型为 
+                DataColumn ss_zs = new DataColumn("ss_zs", typeof(string));   //数据类型为 
+                DataColumn fd = new DataColumn("fd", typeof(string));   //数据类型为 
+                DataColumn good_zs = new DataColumn("good_zs", typeof(string));   //数据类型为 
+                DataColumn gx_zs = new DataColumn("gx_zs", typeof(string));   //数据类型为 
+                DataColumn pp = new DataColumn("pp", typeof(string));   //数据类型为 
+                DataColumn copy = new DataColumn("copy", typeof(string));   //数据类型为 
+                dt.Columns.Add(ci);
+                dt.Columns.Add(ss_zs);
+                dt.Columns.Add(fd);
+                dt.Columns.Add(good_zs);
+                dt.Columns.Add(gx_zs);
+                dt.Columns.Add(pp);
+                dt.Columns.Add(copy);
+
                 foreach (var item in text)
                 {
-                    sb.Append(" ci like '%" + item + "%' or");
-                }
+                    string url = "http://43.136.67.39/do.php?method=chaxun";
+                    string postdata = "ci=" + item;
+                    string html = Util.PostUrl(url, postdata, "");
+                    html = Util.Unicode2String(html);
+                    MatchCollection cis = Regex.Matches(html,@"ci"":""([\s\S]*?)""");
+                    MatchCollection ss_zss = Regex.Matches(html, @"ss_zs"":""([\s\S]*?)""");
+                    MatchCollection fds = Regex.Matches(html, @"fd"":""([\s\S]*?)""");
+                    MatchCollection good_zss = Regex.Matches(html, @"good_zs"":""([\s\S]*?)""");
+                    MatchCollection gx_zss = Regex.Matches(html, @"gx_zs"":""([\s\S]*?)""");
 
-                string sql2 = sb.ToString();
-                if (sb.ToString().Substring(sb.ToString().Length - 2, 2) == "or")
-                {
-                    sql2 = sb.ToString().Remove(sb.ToString().Length - 2, 2);
+                    for (int i = 0; i < cis.Count; i++)
+                    {
+                        DataRow dr2 = dt.NewRow();
+                        dr2[0] = cis[i].Groups[1].Value;
+                        dr2[1] = ss_zss[i].Groups[1].Value;
+                        dr2[2] = fds[i].Groups[1].Value;
+                        dr2[3] = good_zss[i].Groups[1].Value;
+                        dr2[4] = gx_zss[i].Groups[1].Value;
+                        dr2[5] = "";
+                        dr2[6] = "";
+                        dt.Rows.Add(dr2);
+                    }
                 }
-                string sql = "Select ci,ss_zs,fd,good_zs,gx_zs,pp,copy From datas where  " + sql2+ "order by ss_zs";
-
-                DataTable dt = Util.getdata(sql);
+              
+                dataGridView1.DataSource = dt;  
                 dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font
                     ("宋体", 13, FontStyle.Regular);
                 dataGridView1.RowsDefaultCellStyle.Font = new Font
@@ -753,7 +798,10 @@ namespace 基鹿工具箱
             if (gs == "")
             {
                 gs = Util.GetZs(zs);
+
             }
+          
+
             string formula = gs;
             string[] text = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             foreach (var item in text)
@@ -768,9 +816,9 @@ namespace 基鹿工具箱
                         var result = new System.Data.DataTable().Compute(formula2, "");
                         textBox5.Text += Convert.ToDouble(result).ToString("0.00") + "\r\n";
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        //MessageBox.Show(ex.ToString());
                         continue;
                     }
                 }

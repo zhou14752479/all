@@ -57,6 +57,12 @@
     <Compile Include="titan007.Designer.cs">
       <DependentUpon>titan007.cs</DependentUpon>
     </Compile>
+    <Compile Include="平均值.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="平均值.Designer.cs">
+      <DependentUpon>平均值.cs</DependentUpon>
+    </Compile>
     <Compile Include="进球数.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     </Compile>
     <EmbeddedResource Include="titan007.resx">
       <DependentUpon>titan007.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="平均值.resx">
+      <DependentUpon>平均值.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="进球数.resx">
       <DependentUpon>进球数.cs</DependentUpon>

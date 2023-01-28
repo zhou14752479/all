@@ -111,7 +111,7 @@ namespace 基鹿工具箱
 
         #endregion
 
-
+        
         //#region NPOI表格转换文本
 
         //public static void exceltotxt(string excelname)
@@ -512,8 +512,79 @@ namespace 基鹿工具箱
 
         #endregion
 
-        
-        
+
+        #region POST请求
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">发送的数据包</param>
+        /// <param name="COOKIE">cookie</param>
+        /// <param name="charset">编码格式</param>
+        /// <returns></returns>
+        public static string PostUrl(string url, string postData, string COOKIE)
+        {
+            try
+            {
+              
+                string charset = "utf-8";
+                string html = "";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
+                //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                request.Proxy = null;//防止代理抓包
+             
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
+              
+                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
+                // request.ContentLength = postData.Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+
+                request.Referer = url;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                response.GetResponseHeader("Set-Cookie");
+
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+
+                response.Close();
+                //return key+"   "+time+"   "+ Md5(key + time)+"   "+sign+"   "+html;
+                return html;
+            }
+            catch (WebException ex)
+            {
+
+                return ex.ToString();
+            }
+
+
+        }
+
+        #endregion
 
         public static void BCP_Mysql(string filename,string tablename)
         {
@@ -985,42 +1056,69 @@ namespace 基鹿工具箱
 
         public static string GetZs(string gongshi)
         {
-
             try
             {
+                string url = "http://43.136.67.39/do.php?method=getgs";
+                string postdata = "";
+                string html = Util.PostUrl(url, postdata, "");
+                string gs = Regex.Match(html, @"""jyzs"":""([\s\S]*?)""").Groups[1].Value;
                
-                MySqlConnection mycon = new MySqlConnection(conn);
-                mycon.Open();
-
-                MySqlCommand cmd = new MySqlCommand("select * from gs  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
-
-
-                MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
-
-                if(reader.Read())
+                if (gongshi=="zfzs")
                 {
-                    string gs_v = reader[gongshi].ToString().Trim();
-                    mycon.Close();
-                    reader.Close();
-                    return gs_v;
+                    gs = Regex.Match(html, @"""zfzs"":""([\s\S]*?)""").Groups[1].Value;
                 }
-                else
-                {
-                   
-                    mycon.Close();
-                    reader.Close();
-                    return "获取公式失败！";
-                }
-               
+              
 
-
+                return gs; 
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
-                return ex.ToString();
-            }
 
+                return "获取公式失败";
+            }
         }
+
+        //public static string GetZs(string gongshi)
+        //{
+          
+        //    try
+        //    {
+
+        //        MySqlConnection mycon = new MySqlConnection(conn);
+        //        mycon.Open();
+
+        //        MySqlCommand cmd = new MySqlCommand("select * from gs  ", mycon);         //SQL语句读取textbox的值'"+textBox1.Text+"'
+
+
+        //        MySqlDataReader reader = cmd.ExecuteReader();  //读取数据库数据信息，这个方法不需要绑定资源
+
+        //        if (reader.Read())
+        //        {
+        //            string gs_v = reader[gongshi].ToString().Trim();
+        //            mycon.Close();
+        //            reader.Close();
+        //            return gs_v;
+        //        }
+        //        else
+        //        {
+
+        //            mycon.Close();
+        //            reader.Close();
+        //            return "获取公式失败！";
+        //        }
+
+
+
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        return ex.ToString();
+        //    }
+
+        //}
+
+
+
         public static bool SQL(string sql)
         {
             try
@@ -1278,7 +1376,6 @@ namespace 基鹿工具箱
                 sign = Md5_utf8(str);
 
                 aurl = "https://h5api.m.1688.com/h5/mtop.taobao.widgetservice.getjsoncomponent/1.0/?jsv=2.4.8&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.taobao.widgetService.getJsonComponent&v=1.0&type=jsonp&isSec=0&timeout=20000&dataType=jsonp&callback=mtopjsonp9&data=%7B%22cid%22%3A%22offerdetailGetShopInfo%3AofferdetailGetShopInfo%22%2C%22methodName%22%3A%22execute%22%2C%22params%22%3A%22%7B%5C%22offerId%5C%22%3A" + itemid + "%2C%5C%22businessType%5C%22%3A%5C%22default%5C%22%7D%22%7D";
-
                
                 html = GetUrlWithCookie(aurl, reviewcookie, "utf-8");
             }

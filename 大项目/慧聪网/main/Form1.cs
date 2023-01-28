@@ -91,7 +91,7 @@ namespace main
                         string Url = "https://esapi.org.hc360.com/interface/getinfos.html?pnum="+i+"&psize=100&kwd="+keyword+"&z="+city+"&index=companyinfo&collapsef=providerid";
                        
                         string strhtml = method.GetUrl(Url,"utf-8");  //定义的GetRul方法 返回 reader.ReadToEnd()
-
+                        MessageBox.Show(strhtml);
 
                         Info jsonParser = JsonConvert.DeserializeObject<Info>(strhtml);
 
@@ -705,11 +705,11 @@ namespace main
         {
             button2.Enabled = false;
             status = true;
-            if (denglu == false)
-            {
-                MessageBox.Show("请先登录您的账号！");
-                return;
-            }
+            //if (denglu == false)
+            //{
+            //    MessageBox.Show("请先登录您的账号！");
+            //    return;
+            //}
             Thread thread = new Thread(new ThreadStart(huicong));
             thread.Start();
 

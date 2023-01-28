@@ -54,6 +54,9 @@ namespace 主程序selenium
             }
 
             #endregion
+
+            driver = function.getdriver(false, false);
+            driver.Navigate().GoToUrl("https://www.amazon.com/-/zh/product-reviews/B082P77FS5/ref=cm_cr_arp_d_viewopt_sr?ie=UTF8&reviewerType=all_reviews&filterByStar=three_star&pageNumber=1");
         }
       
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -107,7 +110,7 @@ namespace 主程序selenium
         {
 
 
-            driver = function.getdriver(false,true);
+            
             StreamReader sr = new StreamReader(textBox1.Text, method.EncodingType.GetTxtType(textBox1.Text));
             //一次性读取完 
             string texts = sr.ReadToEnd();

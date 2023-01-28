@@ -405,10 +405,15 @@ namespace 孔夫子APP
                                         dingjia = Regex.Match(bhtml, @"""oriPrice"":""([\s\S]*?)""").Groups[1].Value.Trim();
                                     }
 
-
-                                    string kucun = Regex.Match(bhtml, @"""stock"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                                    string kucun = Regex.Match(bhtml, @"""stockNum"":([\s\S]*?),").Groups[1].Value.Trim();
+                                    if(kucun=="")
+                                    {
+                                        kucun = Regex.Match(bhtml, @"""stock"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                                    }
+                                  
+                                    
                                     lv1.SubItems.Add(dingjia);
-                                   // lv1.SubItems.Add(kucun);
+                                    lv1.SubItems.Add(kucun);
                                     Thread.Sleep(100);
                                 }
                                 catch (Exception ex)

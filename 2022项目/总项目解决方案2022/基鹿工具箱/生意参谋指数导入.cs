@@ -48,9 +48,13 @@ namespace 基鹿工具箱
             fs1.Close();
             sw.Dispose();
 
-            string sql = "update gs set jyzs= '" + jyzs + " ',zfzs='" + zfzs + " '";
-            Util.SQL(sql);
-            MessageBox.Show("导入成功");
+            //string sql = "update gs set jyzs= '" + jyzs + " ',zfzs='" + zfzs + " '";
+            //Util.SQL(sql);
+
+            string url = "http://43.136.67.39/do.php?method=updategs";
+            string postdata = "jyzs="+jyzs+"&zfzs="+zfzs;
+            string html = Util.PostUrl(url,postdata,"");
+            MessageBox.Show(html);
 
         }
 

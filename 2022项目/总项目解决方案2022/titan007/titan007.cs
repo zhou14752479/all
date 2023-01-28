@@ -267,7 +267,7 @@ namespace titan007
         #endregion
 
 
-        #region 胜平负
+        #region 胜平负即时盘
         public void run2()
         {
 
@@ -297,9 +297,12 @@ namespace titan007
                     string guestteam_cn = Regex.Match(datajs, @"guestteam_cn=""([\s\S]*?)""").Groups[1].Value;
                     string MatchTime = Regex.Match(datajs, @"MatchTime=""([\s\S]*?)""").Groups[1].Value;
 
-
-
-
+                    if (MatchTime != "")
+                    {
+                        //MatchTime = MatchTime.Replace("-1,","-").Replace(",", "-").Replace(" ","");
+                        MatchTime = MatchTime.Substring(0, 4) + "-" + MatchTime.Substring(5, 2) + "-" + MatchTime.Substring(10, 2)+" "+ MatchTime.Substring(13, 2)+":"+ MatchTime.Substring(16, 2)+":"+ MatchTime.Substring(19, 2);
+                         MatchTime =Convert.ToDateTime(MatchTime).AddHours(8).ToString();    
+                    }
 
 
                     //添加动态公司对应ID
@@ -314,20 +317,22 @@ namespace titan007
                             switch (cname)
                             {
 
-                                case "Bet 365":
+                                //case "Bet 365":
 
-                                    gongsi_dics.Add(cid, "Bet 365");
-                                    break;
-                                case "LeonBets":
-                                    gongsi_dics.Add(cid, "LeonBets");
-                                    break;
+                                //    gongsi_dics.Add(cid, "Bet 365");
+                                //    break;
+                                //case "Vcbet":
+                                //    gongsi_dics.Add(cid, "Vcbet");
+                                //    break;
                                 case "William Hill":
                                     gongsi_dics.Add(cid, "William Hill");
                                     break;
-                                case "Bet-at-home":
-                                    gongsi_dics.Add(cid, "Bet-at-home");
+                                //case "Interwetten":
+                                //    gongsi_dics.Add(cid, "Interwetten");
+                                //    break;
+                                case "18Bet":
+                                    gongsi_dics.Add(cid, "18Bet");
                                     break;
-
 
                             }
                         }
@@ -391,7 +396,8 @@ namespace titan007
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show(ex.ToString());
+                                    continue;
+                                   
 
                                 }
 
@@ -408,22 +414,28 @@ namespace titan007
 
 
 
-                                if (gongsi_name== "Bet 365")
-                                {
-                                    data365 = matchname_cn + "#" +hometeam_cn + "#" + guestteam_cn+ "#" + MatchTime + "#" + gongsi_name+ "#" + data1 + "#" + data2 + "#" + data3;
+                                //if (gongsi_name== "Bet 365")
+                                //{
+                                //    data365 = matchname_cn + "#" +hometeam_cn + "#" + guestteam_cn+ "#" + MatchTime + "#" + gongsi_name+ "#" + data1 + "#" + data2 + "#" + data3;
 
-                                }
-                                if (gongsi_name == "Bet-at-home")
-                                {
-                                    databetathome = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+                                //}
+                                //if (gongsi_name == "Vcbet")
+                                //{
+                                //    databetathome = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + "伟德" + "#" + data1 + "#" + data2 + "#" + data3;
 
-                                }
+                                //}
                                 if (gongsi_name == "William Hill")
                                 {
-                                    dataWilliamHill = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+                                    dataWilliamHill = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + "威廉希尔" + "#" + data1 + "#" + data2 + "#" + data3;
 
                                 }
-                                if (gongsi_name == "LeonBets")
+                                //if (gongsi_name == "Interwetten")
+                                //{
+                                //    dataLadbrokes = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                //}
+
+                                if (gongsi_name == "18Bet")
                                 {
                                     dataLadbrokes = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
 
@@ -434,10 +446,8 @@ namespace titan007
 
 
 
-                              
 
 
-                               
                             }
                             catch (Exception ex)
                             {
@@ -452,28 +462,28 @@ namespace titan007
 
 
 
-                    if (data365.Length > 20)
-                    {
-                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
-                        string[] text = data365.Split(new string[] { "#" }, StringSplitOptions.None);
+                    //if (data365.Length > 20)
+                    //{
+                    //    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                    //    string[] text = data365.Split(new string[] { "#" }, StringSplitOptions.None);
 
-                        for (int i = 0; i < text.Length; i++)
-                        {
-                            lv.SubItems.Add(text[i]);
-                        }
-                    }
+                    //    for (int i = 0; i < text.Length; i++)
+                    //    {
+                    //        lv.SubItems.Add(text[i]);
+                    //    }
+                    //}
 
 
-                    if (databetathome.Length > 20)
-                    {
-                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
-                        string[] text = databetathome.Split(new string[] { "#" }, StringSplitOptions.None);
+                    //if (databetathome.Length > 20)
+                    //{
+                    //    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                    //    string[] text = databetathome.Split(new string[] { "#" }, StringSplitOptions.None);
 
-                        for (int i = 0; i < text.Length; i++)
-                        {
-                            lv.SubItems.Add(text[i]);
-                        }
-                    }
+                    //    for (int i = 0; i < text.Length; i++)
+                    //    {
+                    //        lv.SubItems.Add(text[i]);
+                    //    }
+                    //}
 
                     if (dataWilliamHill.Length > 20)
                     {
@@ -527,6 +537,277 @@ namespace titan007
 
         #endregion
 
+
+
+        #region 胜平负初盘
+        public void run3()
+        {
+
+
+            try
+            {
+                string html = method.GetUrl("http://live.titan007.com/vbsxml/bfdata_ut.js?r=0071661759322000", "utf-8");
+
+
+
+                MatchCollection ids = Regex.Matches(html, @"\]=""2([\s\S]*?)\^");
+
+                for (int x = 1; x < ids.Count; x++)
+                {
+                    string data365 = "";
+                    string databetathome = "";
+                    string dataWilliamHill = "";
+                    string dataLadbrokes = "";
+
+                    string aid = "2" + ids[x].Groups[1].Value;
+                    string datajsurl = "http://1x2d.titan007.com/" + aid + ".js?r=007133062314590247588";
+                    string datajs = method.GetUrl(datajsurl, "gb2312");
+
+
+                    string matchname_cn = Regex.Match(datajs, @"matchname_cn=""([\s\S]*?)""").Groups[1].Value;
+                    string hometeam_cn = Regex.Match(datajs, @"hometeam_cn=""([\s\S]*?)""").Groups[1].Value;
+                    string guestteam_cn = Regex.Match(datajs, @"guestteam_cn=""([\s\S]*?)""").Groups[1].Value;
+                    string MatchTime = Regex.Match(datajs, @"MatchTime=""([\s\S]*?)""").Groups[1].Value;
+
+                    if (MatchTime != "")
+                    {
+                        //MatchTime = MatchTime.Replace("-1,","-").Replace(",", "-").Replace(" ","");
+                        MatchTime = MatchTime.Substring(0, 4) + "-" + MatchTime.Substring(5, 2) + "-" + MatchTime.Substring(10, 2) + " " + MatchTime.Substring(13, 2) + ":" + MatchTime.Substring(16, 2) + ":" + MatchTime.Substring(19, 2);
+                        MatchTime = Convert.ToDateTime(MatchTime).AddHours(8).ToString();
+                    }
+
+
+                    //添加动态公司对应ID
+                    MatchCollection gongsis = Regex.Matches(datajs, @"\d{1,5}\|\d{8,10}\|([\s\S]*?)\|");
+                    for (int a = 0; a < gongsis.Count; a++)
+                    {
+                        string cid = Regex.Match(gongsis[a].ToString(), @"\d{8,10}").Groups[0].Value;
+                        string cname = gongsis[a].Groups[1].ToString();
+
+                        if (!gongsi_dics.ContainsKey(cid))
+                        {
+                            switch (cname)
+                            {
+
+                                //case "Bet 365":
+
+                                //    gongsi_dics.Add(cid, "Bet 365");
+                                //    break;
+                                //case "Vcbet":
+                                //    gongsi_dics.Add(cid, "Vcbet");
+                                //    break;
+                                case "William Hill":
+                                    gongsi_dics.Add(cid, "William Hill");
+                                    break;
+                                //case "Interwetten":
+                                //    gongsi_dics.Add(cid, "Interwetten");
+                                //    break;
+                                case "18Bet":
+                                    gongsi_dics.Add(cid, "18Bet");
+                                    break;
+
+                            }
+                        }
+
+                    }
+                    //添加动态公司对应ID结束
+
+
+
+
+                    string datas = Regex.Match(datajs, @"game=Array([\s\S]*?)gameDetail=Array").Groups[1].Value;
+
+                    string[] datastext = datas.Split(new string[] { "\",\"" }, StringSplitOptions.None);
+
+
+
+                    for (int j = 0; j < datastext.Length; j++)
+                    {
+
+                        string cid = Regex.Match(datastext[j], @"\d{8,10}").Groups[0].Value.Trim();
+
+                        //MessageBox.Show(cid);
+                        if (gongsi_dics.ContainsKey(cid))
+                        {
+                            string gongsi_name = gongsi_dics[cid];
+
+                            try
+                            {
+
+                                //MessageBox.Show(datastext[j]);
+
+                                string[] datasresult = datastext[j].Split(new string[] { ";" }, StringSplitOptions.None);
+
+                                string data1 = "";
+                                string data2 = "";
+                                string data3 = "";
+                                //string data4 = "";
+                                //string data5 = "";
+                                //string data6 = "";
+                                //string data7 = "";
+                                //string data8 = "";
+                                //string data9 = "";
+                                try
+                                {
+                                    string[] data_a = datasresult[0].Split(new string[] { "|" }, StringSplitOptions.None);
+                                    data1 = data_a[3].Replace(cid, "").Replace("^", "");
+                                    data2 = data_a[4];
+                                    data3 = data_a[5];
+
+
+                                    //string[] data_b = datasresult[1].Split(new string[] { "|" }, StringSplitOptions.None);
+                                    //data4 = data_b[0];
+                                    //data5 = data_b[1];
+                                    //data6 = data_b[2];
+
+
+                                    //string[] data_c = datasresult[2].Split(new string[] { "|" }, StringSplitOptions.None);
+                                    //data7 = data_c[0];
+                                    //data8 = data_c[1];
+                                    //data9 = data_c[2];
+                                }
+                                catch (Exception ex)
+                                {
+                                    continue;
+
+
+                                }
+
+                                if (status == false)
+                                    return;
+
+
+
+
+
+
+
+
+
+
+
+                                //if (gongsi_name== "Bet 365")
+                                //{
+                                //    data365 = matchname_cn + "#" +hometeam_cn + "#" + guestteam_cn+ "#" + MatchTime + "#" + gongsi_name+ "#" + data1 + "#" + data2 + "#" + data3;
+
+                                //}
+                                //if (gongsi_name == "Vcbet")
+                                //{
+                                //    databetathome = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + "伟德" + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                //}
+                                if (gongsi_name == "William Hill")
+                                {
+                                    dataWilliamHill = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + "威廉希尔" + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+                                //if (gongsi_name == "Interwetten")
+                                //{
+                                //    dataLadbrokes = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                //}
+
+                                if (gongsi_name == "18Bet")
+                                {
+                                    dataLadbrokes = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+
+
+
+
+
+
+
+
+                            }
+                            catch (Exception ex)
+                            {
+                                //  MessageBox.Show(ex.ToString());
+                                continue;
+                            }
+                        }
+                    }
+
+
+
+
+
+
+                    //if (data365.Length > 20)
+                    //{
+                    //    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                    //    string[] text = data365.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                    //    for (int i = 0; i < text.Length; i++)
+                    //    {
+                    //        lv.SubItems.Add(text[i]);
+                    //    }
+                    //}
+
+
+                    //if (databetathome.Length > 20)
+                    //{
+                    //    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                    //    string[] text = databetathome.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                    //    for (int i = 0; i < text.Length; i++)
+                    //    {
+                    //        lv.SubItems.Add(text[i]);
+                    //    }
+                    //}
+
+                    if (dataWilliamHill.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = dataWilliamHill.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+                    if (dataLadbrokes.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = dataLadbrokes.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+
+
+                    if (data365.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        lv.SubItems.Add("------------");
+                        lv.SubItems.Add("------------------------");
+                        lv.SubItems.Add("------------------------");
+                        lv.SubItems.Add("------------------------");
+                        lv.SubItems.Add("------------");
+                        lv.SubItems.Add("------------");
+                        lv.SubItems.Add("------------");
+                        lv.SubItems.Add("------------");
+                    }
+                    Thread.Sleep(1000);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+
+            MessageBox.Show("完成");
+        }
+
+        #endregion
         Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
 
         private void titan007_Load(object sender, EventArgs e)
@@ -553,7 +834,7 @@ namespace titan007
         {
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run2);
+                thread = new Thread(run3);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

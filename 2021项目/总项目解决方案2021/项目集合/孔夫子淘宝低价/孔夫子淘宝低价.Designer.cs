@@ -51,6 +51,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -237,11 +238,22 @@
             this.textBox1.Size = new System.Drawing.Size(152, 21);
             this.textBox1.TabIndex = 392;
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(614, 63);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(79, 28);
+            this.button7.TabIndex = 393;
+            this.button7.Text = "点击统计";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
+            // 
             // 孔夫子淘宝低价
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1098, 644);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listView1);
@@ -257,6 +269,7 @@
             this.Name = "孔夫子淘宝低价";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "孔夫子淘宝低价";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.孔夫子淘宝低价_FormClosing);
             this.Load += new System.EventHandler(this.孔夫子淘宝低价_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -287,5 +300,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button7;
     }
 }

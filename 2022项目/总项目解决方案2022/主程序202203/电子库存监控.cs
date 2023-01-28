@@ -38,8 +38,8 @@ namespace 主程序202203
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
                 //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
                 request.Referer = Url;
-                WebProxy proxy = new WebProxy(ip);
-                request.Proxy = proxy;
+                //WebProxy proxy = new WebProxy(ip);
+                //request.Proxy = proxy;
                 request.KeepAlive = false;
                 request.Accept = "*/*";
                 request.Timeout = 5000;
@@ -256,14 +256,14 @@ namespace 主程序202203
         public void run()
         {
             listView1.Items.Clear();
-            getip();
-            if (textBox2.Text == "")
-            {
+            //getip();
+            //if (textBox2.Text == "")
+            //{
 
-                MessageBox.Show("请导入代理IP");
-                return;
+            //    MessageBox.Show("请导入代理IP");
+            //    return;
 
-            }
+            //}
 
             for (int i = 0; i < uids.Count; i++)
             {
@@ -300,7 +300,7 @@ namespace 主程序202203
             }
         }
 
-        public void StartDown(int StartNum =20)
+        public void StartDown(int StartNum =1)
         {
           
             for (int i2 = 0; i2 < StartNum; i2++)

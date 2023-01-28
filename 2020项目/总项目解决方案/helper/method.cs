@@ -425,10 +425,10 @@ namespace helper
                 //request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
-
+                request.Accept = "*/*";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
-                
+                request.Headers.Add("Accept-Encoding", "gzip");
                 request.Referer = "https://web.duanmatong.cn/";
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);

@@ -29,8 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(号码网址信息分类));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,18 +46,8 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.添加备注ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.移除到单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.移除到废ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.移除到限制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.刷新获取信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.复制号码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -96,6 +93,66 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作界面";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(746, 39);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(84, 34);
+            this.button7.TabIndex = 23;
+            this.button7.Text = "导出数据";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(529, 39);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(84, 34);
+            this.button6.TabIndex = 22;
+            this.button6.Text = "移除到限制";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(439, 39);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(84, 34);
+            this.button4.TabIndex = 21;
+            this.button4.Text = "移除到废";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(347, 39);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(84, 34);
+            this.button5.TabIndex = 20;
+            this.button5.Text = "移除到单";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(257, 39);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(84, 34);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "刷新信息";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(164, 39);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 34);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "添加备注";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -157,112 +214,20 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.添加备注ToolStripMenuItem,
-            this.移除到单ToolStripMenuItem,
-            this.移除到废ToolStripMenuItem,
-            this.移除到限制ToolStripMenuItem,
-            this.刷新获取信息ToolStripMenuItem});
+            this.复制号码ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 114);
-            // 
-            // 添加备注ToolStripMenuItem
-            // 
-            this.添加备注ToolStripMenuItem.Name = "添加备注ToolStripMenuItem";
-            this.添加备注ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.添加备注ToolStripMenuItem.Text = "添加备注";
-            this.添加备注ToolStripMenuItem.Click += new System.EventHandler(this.添加备注ToolStripMenuItem_Click);
-            // 
-            // 移除到单ToolStripMenuItem
-            // 
-            this.移除到单ToolStripMenuItem.Name = "移除到单ToolStripMenuItem";
-            this.移除到单ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.移除到单ToolStripMenuItem.Text = "移除到单";
-            this.移除到单ToolStripMenuItem.Click += new System.EventHandler(this.移除到单ToolStripMenuItem_Click);
-            // 
-            // 移除到废ToolStripMenuItem
-            // 
-            this.移除到废ToolStripMenuItem.Name = "移除到废ToolStripMenuItem";
-            this.移除到废ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.移除到废ToolStripMenuItem.Text = "移除到废";
-            this.移除到废ToolStripMenuItem.Click += new System.EventHandler(this.移除到废ToolStripMenuItem_Click);
-            // 
-            // 移除到限制ToolStripMenuItem
-            // 
-            this.移除到限制ToolStripMenuItem.Name = "移除到限制ToolStripMenuItem";
-            this.移除到限制ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.移除到限制ToolStripMenuItem.Text = "移除到限制";
-            this.移除到限制ToolStripMenuItem.Click += new System.EventHandler(this.移除到限制ToolStripMenuItem_Click);
-            // 
-            // 刷新获取信息ToolStripMenuItem
-            // 
-            this.刷新获取信息ToolStripMenuItem.Name = "刷新获取信息ToolStripMenuItem";
-            this.刷新获取信息ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.刷新获取信息ToolStripMenuItem.Text = "刷新获取信息";
-            this.刷新获取信息ToolStripMenuItem.Click += new System.EventHandler(this.刷新获取信息ToolStripMenuItem_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button2
+            // 复制号码ToolStripMenuItem
             // 
-            this.button2.Location = new System.Drawing.Point(164, 39);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 34);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "添加备注";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(257, 39);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(84, 34);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "刷新信息";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(439, 39);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(84, 34);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "移除到废";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(347, 39);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(84, 34);
-            this.button5.TabIndex = 20;
-            this.button5.Text = "移除到单";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(529, 39);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(84, 34);
-            this.button6.TabIndex = 22;
-            this.button6.Text = "移除到限制";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(746, 39);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(84, 34);
-            this.button7.TabIndex = 23;
-            this.button7.Text = "导出数据";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.复制号码ToolStripMenuItem.Name = "复制号码ToolStripMenuItem";
+            this.复制号码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制号码ToolStripMenuItem.Text = "复制号码";
+            this.复制号码ToolStripMenuItem.Click += new System.EventHandler(this.复制号码ToolStripMenuItem_Click);
             // 
             // 号码网址信息分类
             // 
@@ -270,6 +235,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 685);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "号码网址信息分类";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "号码网址信息分类";
@@ -297,16 +263,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 添加备注ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 移除到单ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 移除到废ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 移除到限制ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 刷新获取信息ToolStripMenuItem;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ToolStripMenuItem 复制号码ToolStripMenuItem;
     }
 }

@@ -45,8 +45,8 @@ namespace WebView2
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            webView21.Source = new System.Uri("https://mnks.jxedt.com/", System.UriKind.Absolute);
-            
+            // webView21.Source = new System.Uri("https://mnks.jxedt.com/", System.UriKind.Absolute);
+            webView21.Source = new System.Uri("http://www.iy6.cn/?c=Public&action=verify");
         }
 
 

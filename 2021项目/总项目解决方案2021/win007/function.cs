@@ -380,7 +380,7 @@ namespace win007
                         data8 = data_c[1];
                         data9 = data_c[2];
 
-                        sb.Append(cid+","+data1 + "," + data2 + "," + data3 + "," + data4 + "," + data5 + "," + data6);
+                        sb.Append(cid+","+data1 + "," + data2 + "," + data3 + "," + data4 + "," + data5 + "," + data6 + "," + data7+ "," + data8 + "," + data9);
                     }
                 }
                 catch (Exception ex)

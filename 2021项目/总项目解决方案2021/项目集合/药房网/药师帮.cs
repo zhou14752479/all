@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
@@ -23,7 +24,7 @@ namespace 药房网
         bool status = true;
         Thread thread;
 
-
+        string[] cates = { };
         public void run_xcx()
         {
             try
@@ -35,7 +36,7 @@ namespace 药房网
                     {
 
                         string aurl = "https://pub.yaofangwang.com/4000/4000/0/guest.medicine.getMedicines?conditions={\"categoryid\":" + cate + ",\"sort\":\"\",\"sorttype\":\"\"}&pageIndex=" + page + "&pageSize=100&version=8.0.28&__client=app_wx&app_version=4.9.22&osVersion=miniapp&deviceName=iPhone 13<iPhone14,5>&os=ios&market=iPhone&networkType=true&lat=33.94001092793934&lng=118.25325794385365&user_city_name=宿迁市&user_region_id=1739&idfa=wx_091GxYZv3F5uiZ2R3W2w3vMJsz3GxYZK&deviceNo=wx_091GxYZv3F5uiZ2R3W2w3vMJsz3GxYZK";
-                        string ahtml = GetUrl(aurl, "utf-8");
+                        string ahtml = method.GetUrl(aurl, "utf-8");
 
                         MatchCollection names = Regex.Matches(ahtml, @"""namecn"":""([\s\S]*?)""");
                         MatchCollection standards = Regex.Matches(ahtml, @"""standard"":""([\s\S]*?)""");

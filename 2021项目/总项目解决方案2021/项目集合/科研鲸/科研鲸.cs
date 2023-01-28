@@ -100,6 +100,7 @@ namespace 科研鲸
         bool status = true;
         private void 科研鲸_Load(object sender, EventArgs e)
         {
+            dics.Add("计算机", "2c9fe5fa7ba61fa2017c217d3568767c");
             dics.Add("文科", "337e879af366e3439cbec78191808f71");
             dics.Add("理科", "b285103610fe46fa8703401cac395b48");
             dics.Add("工科", "b4d8af343694e3a9c0e96d227738090f");

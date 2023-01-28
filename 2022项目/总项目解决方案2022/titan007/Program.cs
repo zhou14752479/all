@@ -16,7 +16,7 @@ namespace titan007
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new titan007());
+            Application.Run(new 平均值());
         }
     }
 }

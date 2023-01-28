@@ -46,9 +46,10 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button3
@@ -193,7 +194,8 @@
             this.columnHeader5,
             this.columnHeader8,
             this.columnHeader7,
-            this.columnHeader9});
+            this.columnHeader9,
+            this.columnHeader10});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F);
             this.listView1.FullRowSelect = true;
@@ -206,6 +208,10 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "定价";
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(94, 8);
@@ -217,9 +223,9 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // columnHeader9
+            // columnHeader10
             // 
-            this.columnHeader9.Text = "定价";
+            this.columnHeader10.Text = "库存";
             // 
             // 孔夫子APP带定价
             // 
@@ -270,5 +276,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }

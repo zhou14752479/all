@@ -95,7 +95,7 @@ namespace 客户美团
             return true;
         }
         #region  主程序
-        public void run()
+        public void run1()
         {
             int count = 0;
 
@@ -382,7 +382,7 @@ namespace 客户美团
                 //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11";
                 request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4(0x1800042c) NetType/4G Language/zh_CN";
                 WebHeaderCollection headers = request.Headers;
-                //headers.Add("uuid: E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
+                headers.Add("uuid: E82ADB4FE4B6D0984D5B1BEA4EE9DE13A16B4B25F8A306260A976B724DF44576");
                 headers.Add("mtgsig: {\"a1\":\"1.1\",\"a2\":1634620588257,\"a3\":\"35y5z0zvw6yx5z4418uyu2uyvwx65w0782x076xu37688988u426z26y\",\"a4\":\"bc19900376f1b535039019bc35b5f176e250e32ad7e5125c\",\"a5\":\"JAa73Rfx72tnXVeYw8MDLxPZTTTerl4Af4me1ULhxiBetB6AXdLwp2+LjByyFY4HvTVzwiTHo+Vs58iZE6nq4BmhF0KabSOZyOlt6Xc0hYGOghvfxeOmtWIibqgvO9QIKazOwEWESNgYcAcAsgCYccIJ0ilyWJqgc+qG5RPNTQAx8j2vzKgSEcAhtM/xXMqw4IjqrBHST/WVB9/VV7KQ4vJj1ox1p6Dt\",\"a6\":\"w1.00tlrgKaQ8nF6hTsiCnWypNRjsnhPgjiZt1klOT118rN8SWnNfMJ4xKgbXs6lejv0g1y1GwSzNFDnVx0kOF2VQu5Ki7qmfklvvTwvNHxM3oVmA0pjXjMGAP1+0Fn59TSCPUyqbs9iBKzi/lP75X+7fQ368GCr6dk9ubOsKNE+l1A8OTEBFEovMQxgHRLctnAIjrJKrB9+xNS6v6D77d28saJDOUx5NjRu7ojTyv+06R8IpZcZDIphyvQdruyN2m3UEO8iGKbUxkAB9HWk2hnq5yMM3kim+Ai/OV/raiKcm05hgl+dCoHbvrB3zky80QUHO2gyiTQwSGLHw0DFUANPKhsCFgVmK9sYG0MlOafqQj0fyuNcK/MNjwNGtuOb/8gQBNJ8O0hbV1yS+VUktM8WJqMvg+DSmFX4zUU0RVS6wSZEscUjJ8MroYbdkHET6yqeP5HN44eA2F9ZHa2FkRa6apP+XGoAg7XoaQj518PQjgCDwbHD0RwskPolSnJ31BdoOWlSLDXB3BVxlOvzpQtKnuqt077PyOmXS4mXCJkxOURnd9elQz7RTL1aTP14KvP5RaZmvU3PaGEwhB1DfLvP6CfAwurTGMSXEJ+zMSfc5KXl+CIlqPSZYGhoj9rKg/XJB89nMlNmgIqKwK8cFJ7J4hEC7AEtoRBB6ll3Zh8OBDqZ+CbuTFadF3U4ABbsmjQQfqgof3dGTZJQVpBwL593Zx8PzHDveZm9erO0okGu1Sg=\",\"a7\":\"wxde8ac0a21135c07d\",\"x0\":3,\"d1\":\"a202f030aa475f308799f76cefc1ad7b\"}");
                 headers.Add("openIdCipher: AwQAAABJAgAAAAEAAAAyAAAAPLgC95WH3MyqngAoyM/hf1hEoKrGdo0pJ5DI44e1wGF9AT3PH7Wes03actC2n/GVnwfURonD78PewMUppAAAADhq+X5+N+Cjq/cZyyWQkbVlw1zTBRltsV8Tsu1RC6Eq82jKTGdFzlq8MpEWZIJ53XNCHlmCUGib7Q==");
                 // headers.Add("openId: oJVP50IRqKIIshugSqrvYE3OHJKQ");
@@ -602,7 +602,161 @@ namespace 客户美团
             ProvinceCity.ProvinceCity.BindCity(comboBox1, comboBox2);
         }
 
-       
+        #region  主程序
+        public void run()
+        {
+            int count = 0;
+
+            try
+            {
+                toolStripStatusLabel1.Text = "正在采集....";
+
+                if (textBox1.Text.Trim() == "")
+                {
+                    MessageBox.Show("请输入城市！");
+                    return;
+                }
+                string[] keywords = textBox2.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string[] citys = textBox1.Text.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                foreach (string city in citys)
+                {
+                    if (city == "")
+                    {
+                        continue;
+                    }
+                    string cityid = GetcityId(city.Replace("市", ""));
+
+                    string citypinyin = Getpinyin(city.Replace("市", ""));
+
+                    getareas2(cityid);
+
+                    foreach (string areaid in areadics.Values)
+                    {
+
+                        foreach (string keyword in keywords)
+
+                        {
+                            for (int i = 0; i < 1000; i = i + 8)
+
+                            {
+
+
+                                string Url = "https://i.meituan.com/api/vc/mtshoplist/client/easylife?cateId=&cityid=" + cityid + "&start=" + i + "&limit=20&tabKeyWord=" + keyword + "&tagName=%E5%85%A8%E9%83%A8&clienttype=200&dpid=&areaId=" + areaid;
+
+                                string html = meituan_GetUrl(Url); ;  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                                //textBox2.Text = Url;
+                                MatchCollection uids = Regex.Matches(html, @"""shopId"":""([\s\S]*?)""");
+                                MatchCollection picurls = Regex.Matches(html, @"picUrls"":\[([\s\S]*?)\@");
+                                MatchCollection shopPowers = Regex.Matches(html, @"shopPower"":([\s\S]*?),");
+                                if (html.Trim() == "")
+                                {
+                                    MessageBox.Show("ip被屏蔽");
+                                    continue;
+                                }
+
+                                if (uids.Count == 0)  //当前页没有网址数据跳过之后的网址采集，进行下个foreach采集
+                                {
+
+                                    //break;
+                                    Thread.Sleep(2000);
+                                    continue;
+
+                                }
+
+
+                                for (int j = 0; j < uids.Count; j++)
+                                {
+
+                                    string aurl = "https://i.meituan.com/wrapapi/allpoiinfo?riskLevel=71&optimusCode=10&poiId=" + uids[j].Groups[1].Value + "&isDaoZong=false";
+
+                                    string strhtml = meituan_GetUrl(aurl);  //定义的GetRul方法 返回 reader.ReadToEnd()
+
+                                    // MessageBox.Show(strhtml);
+                                    string name = Regex.Match(strhtml, @"name"":""([\s\S]*?)""").Groups[1].Value;
+                                    string tels = Regex.Match(strhtml, @"phone"":""([\s\S]*?)""").Groups[1].Value;
+                                    string addr = Regex.Match(strhtml, @"address"":""([\s\S]*?)""").Groups[1].Value;
+
+
+
+                                    if (!finishes.Contains(tels))
+                                    {
+                                        string[] tel = tels.Split(new string[] { "/" }, StringSplitOptions.None);
+
+                                        string phone = "";
+                                        string guhua = "";
+                                        if (tel.Length == 1)
+                                        {
+                                            if (tel[0].Contains("-"))
+                                            {
+
+                                                guhua = tel[0];
+                                            }
+                                            else
+                                            {
+                                                phone = tel[0];
+
+                                            }
+                                        }
+                                        if (tel.Length > 1)
+                                        {
+                                            if (tel[0].Contains("-"))
+                                            {
+                                                phone = tel[1];
+                                                guhua = tel[0];
+                                            }
+                                            if (tel[1].Contains("-"))
+                                            {
+                                                phone = tel[0];
+                                                guhua = tel[1];
+                                            }
+                                        }
+
+                                        finishes.Add(tels);
+                                        StringBuilder cpsb = new StringBuilder();
+
+                                        count = count + 1;
+                                        label4.Text = count.ToString();
+                                        ListViewItem listViewItem = this.listView1.Items.Add((listView1.Items.Count + 1).ToString());
+                                        listViewItem.SubItems.Add(name);
+                                        listViewItem.SubItems.Add(guhua);
+                                        listViewItem.SubItems.Add(phone);
+                                        listViewItem.SubItems.Add(addr);
+                                        listViewItem.SubItems.Add(city);
+
+
+                                        if (status == false)
+                                            return;
+                                        Thread.Sleep(2000);
+
+                                    }
+                                }
+
+
+
+
+                                Thread.Sleep(2000);
+                            }
+
+                        }
+
+
+                    }
+                }
+            }
+
+
+
+
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            toolStripStatusLabel1.Text = "完成";
+        }
+
+        #endregion
 
 
         bool status = true;
@@ -647,7 +801,7 @@ namespace 客户美团
             if (thread == null || !thread.IsAlive)
             {
               
-                thread = new Thread(run_shendeng);
+                thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

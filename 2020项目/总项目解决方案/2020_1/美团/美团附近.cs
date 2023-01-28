@@ -1007,15 +1007,20 @@ namespace 美团
            
             status = true;
 
-
-          
-
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run_shendeng);
+                thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+
+
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(run_shendeng);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
 
             //if (thread == null || !thread.IsAlive)
             //{

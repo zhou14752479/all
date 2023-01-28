@@ -16,7 +16,7 @@ namespace 身份补齐验证
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 身份补齐验证());
+            Application.Run(new 县区加月份());
         }
     }
 }

@@ -97,6 +97,7 @@
             this.radioButton3.TabIndex = 182;
             this.radioButton3.Text = "315药房";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Visible = false;
             // 
             // button5
             // 
