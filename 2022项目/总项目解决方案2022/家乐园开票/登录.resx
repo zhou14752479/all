@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox7.Text" xml:space="preserve">
-    <value>https://fapiao.subuy.com/bg/wechatInvoiceController.do?readEwm=&amp;s=1&amp;dkzbid=null&amp;hbdjbh=null&amp;delhbdj=null&amp;p=11010-11010-23010380044-2100&amp;userInfo=eyJzdWJzY3JpYmUiOjEsIm9wZW5pZCI6Im84NExwanVVcHhRMEQ4aGVyUGlvQXgxVXotV28iLCJuaWNrbmFtZSI6IiIsInNleCI6MCwibGFuZ3VhZ2UiOiJ6aF9DTiIsImNpdHkiOiIiLCJwcm92aW5jZSI6IiIsImNvdW50cnkiOiIiLCJoZWFkaW1ndXJsIjoiIiwic3Vic2NyaWJlX3RpbWUiOjE2NzM4MzM1MDMsInVuaW9uaWQiOiJvZEJWNjBTMjN4YTF1UVZhNEFvc1d4VTRBZ2s0IiwicmVtYXJrIjoiIiwiZ3JvdXBpZCI6MCwidGFnaWRfbGlzdCI6W10sInN1YnNjcmliZV9zY2VuZSI6IkFERF9TQ0VORV9PVEhFUlMiLCJxcl9zY2VuZSI6MCwicXJfc2NlbmVfc3RyIjoiIn0=</value>
-  </data>
 </root>
