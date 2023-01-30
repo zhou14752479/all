@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +27,25 @@ namespace lava项目
         {
             InitializeComponent();
         }
+
+        #region 修改注册表信息使WebBrowser使用指定版本IE内核 传入11000是IE11
+        public static void SetFeatures(UInt32 ieMode)
+        {
+            //传入11000是IE11, 9000是IE9, 只不过当试着传入6000时, 理应是IE6, 可实际却是Edge, 这时进一步测试, 当传入除IE现有版本以外的一些数值时WebBrowser都使用Edge内核
+            if (LicenseManager.UsageMode != LicenseUsageMode.Runtime)
+            {
+                throw new ApplicationException();
+            }
+            //获取程序及名称
+            string appName = System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            string featureControlRegKey = "HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\";
+            //设置浏览器对应用程序(appName)以什么模式(ieMode)运行
+            Registry.SetValue(featureControlRegKey + "FEATURE_BROWSER_EMULATION", appName, ieMode, RegistryValueKind.DWord);
+            //不晓得设置有什么用
+            Registry.SetValue(featureControlRegKey + "FEATURE_ENABLE_CLIPCHILDREN_OPTIMIZATION", appName, 1, RegistryValueKind.DWord);
+        }
+        #endregion
+
         #region POST请求
         /// <summary>
         /// POST请求
@@ -182,6 +202,7 @@ namespace lava项目
 
         private void lava_Load(object sender, EventArgs e)
         {
+            SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate("https://www.3mtech.cn/lava");
         }

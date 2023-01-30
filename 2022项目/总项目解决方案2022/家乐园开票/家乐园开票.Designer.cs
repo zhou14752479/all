@@ -127,7 +127,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 21);
             this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "8";
+            this.textBox2.Text = "51";
             // 
             // label2
             // 
@@ -171,8 +171,10 @@
             this.logtxt.Location = new System.Drawing.Point(0, 324);
             this.logtxt.Multiline = true;
             this.logtxt.Name = "logtxt";
+            this.logtxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.logtxt.Size = new System.Drawing.Size(800, 126);
             this.logtxt.TabIndex = 2;
+            this.logtxt.TextChanged += new System.EventHandler(this.logtxt_TextChanged);
             // 
             // button2
             // 
@@ -191,8 +193,6 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(354, 59);
             this.textBox6.TabIndex = 5;
-            this.textBox6.Text = "JSESSIONID=2B05D0842507D440BA3F3AB44556397A; 99692f13925b47cb8a1a7be1e9d04a16=WyI" +
-    "0MTAyMDc2NjE5Il0";
             // 
             // label6
             // 
