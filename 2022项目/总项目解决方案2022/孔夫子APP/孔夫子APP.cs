@@ -367,7 +367,13 @@ namespace 孔夫子APP
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            if (!html.Contains(@"r0LSU"))
+            //if (!html.Contains(@"r0LSU"))
+            //{
+            //    System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //    return;
+            //}
+
+            if (!html.Contains(@"WPFko"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return;
