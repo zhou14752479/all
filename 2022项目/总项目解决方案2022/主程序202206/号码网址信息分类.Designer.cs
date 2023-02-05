@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(号码网址信息分类));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -46,8 +47,16 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.复制号码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.复制验证码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.标记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,13 +78,15 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.listView2);
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(906, 685);
-            this.splitContainer1.SplitterDistance = 118;
+            this.splitContainer1.Size = new System.Drawing.Size(1162, 809);
+            this.splitContainer1.SplitterDistance = 139;
             this.splitContainer1.TabIndex = 6;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.linkLabel1);
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.button4);
@@ -88,11 +99,23 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(906, 118);
+            this.groupBox1.Size = new System.Drawing.Size(1162, 139);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作界面";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("宋体", 11F);
+            this.linkLabel1.Location = new System.Drawing.Point(162, 91);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(83, 15);
+            this.linkLabel1.TabIndex = 24;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "添加（1-）";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // button7
             // 
@@ -174,13 +197,13 @@
             this.columnHeader5});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Font = new System.Drawing.Font("宋体", 11F);
+            this.listView1.Font = new System.Drawing.Font("微软雅黑", 15F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(906, 563);
+            this.listView1.Size = new System.Drawing.Size(1162, 666);
             this.listView1.TabIndex = 47;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -188,13 +211,13 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "序号";
+            this.columnHeader1.Text = "ID";
             this.columnHeader1.Width = 50;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "号码";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 170;
             // 
             // columnHeader3
             // 
@@ -204,7 +227,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "信息";
-            this.columnHeader4.Width = 300;
+            this.columnHeader4.Width = 500;
             // 
             // columnHeader5
             // 
@@ -214,26 +237,88 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.复制号码ToolStripMenuItem});
+            this.复制号码ToolStripMenuItem,
+            this.复制验证码ToolStripMenuItem,
+            this.标记ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 70);
+            // 
+            // 复制号码ToolStripMenuItem
+            // 
+            this.复制号码ToolStripMenuItem.Name = "复制号码ToolStripMenuItem";
+            this.复制号码ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.复制号码ToolStripMenuItem.Text = "复制号码";
+            this.复制号码ToolStripMenuItem.Click += new System.EventHandler(this.复制号码ToolStripMenuItem_Click);
+            // 
+            // 复制验证码ToolStripMenuItem
+            // 
+            this.复制验证码ToolStripMenuItem.Name = "复制验证码ToolStripMenuItem";
+            this.复制验证码ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.复制验证码ToolStripMenuItem.Text = "复制验证码";
+            this.复制验证码ToolStripMenuItem.Click += new System.EventHandler(this.复制验证码ToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // 复制号码ToolStripMenuItem
+            // 标记ToolStripMenuItem
             // 
-            this.复制号码ToolStripMenuItem.Name = "复制号码ToolStripMenuItem";
-            this.复制号码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.复制号码ToolStripMenuItem.Text = "复制号码";
-            this.复制号码ToolStripMenuItem.Click += new System.EventHandler(this.复制号码ToolStripMenuItem_Click);
+            this.标记ToolStripMenuItem.Name = "标记ToolStripMenuItem";
+            this.标记ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.标记ToolStripMenuItem.Text = "标记";
+            this.标记ToolStripMenuItem.Click += new System.EventHandler(this.标记ToolStripMenuItem_Click);
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listView2.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView2.Font = new System.Drawing.Font("微软雅黑", 15F);
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(0, 0);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(1162, 666);
+            this.listView2.TabIndex = 48;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "ID";
+            this.columnHeader6.Width = 50;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "号码";
+            this.columnHeader7.Width = 170;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "网址";
+            this.columnHeader8.Width = 300;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "信息";
+            this.columnHeader9.Width = 500;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "备注";
+            this.columnHeader10.Width = 150;
             // 
             // 号码网址信息分类
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(906, 685);
+            this.ClientSize = new System.Drawing.Size(1162, 809);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "号码网址信息分类";
@@ -245,6 +330,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -270,5 +356,14 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ToolStripMenuItem 复制号码ToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ToolStripMenuItem 复制验证码ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 标记ToolStripMenuItem;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }

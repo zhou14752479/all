@@ -60,6 +60,18 @@
     <Compile Include="网站监控.Designer.cs">
       <DependentUpon>网站监控.cs</DependentUpon>
     </Compile>
+    <Compile Include="设置.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="设置.Designer.cs">
+      <DependentUpon>设置.cs</DependentUpon>
+    </Compile>
+    <Compile Include="通知管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="通知管理.Designer.cs">
+      <DependentUpon>通知管理.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -74,6 +86,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="网站监控.resx">
       <DependentUpon>网站监控.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="设置.resx">
+      <DependentUpon>设置.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="通知管理.resx">
+      <DependentUpon>通知管理.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

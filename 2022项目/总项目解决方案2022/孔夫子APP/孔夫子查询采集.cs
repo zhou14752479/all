@@ -290,6 +290,12 @@ namespace 孔夫子APP
 
         private void 孔夫子查询采集_Load(object sender, EventArgs e)
         {
+            
+            if(DateTime.Now> Convert.ToDateTime("2023-02-06"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                return;
+            }
             #region 通用检测
 
 

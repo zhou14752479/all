@@ -9,6 +9,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -197,7 +198,7 @@ namespace 主程序202206
                         List<string> list = new List<string>();
 
                         string temp1 = item.SubItems[i].Text+"----"+ item.SubItems[i+1].Text+"----"+ item.SubItems[i+3].Text;
-
+                        
                         list.Add(temp1);
                         foreach (string tel in list)
                         {
@@ -245,7 +246,7 @@ namespace 主程序202206
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 for (int i = 0; i < text.Length; i++)
                 {
-
+                   
                     string[] values= text[i].Split(new string[] { "----" }, StringSplitOptions.None);
                    if(values.Length>1)
                     {
@@ -254,6 +255,11 @@ namespace 主程序202206
                         lv1.SubItems.Add(values[1]);
                         lv1.SubItems.Add("");
                         lv1.SubItems.Add("");
+                        
+                        if (i % 2 == 0)
+                        {
+                            lv1.BackColor = Color.LightGray;
+                        }
                     }
                    
                 }
@@ -362,7 +368,15 @@ namespace 主程序202206
         {
             if (this.listView1.SelectedItems.Count == 0)
                 return;
-            export("单", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text + "----" + listView1.SelectedItems[0].SubItems[4].Text);
+
+            if (listView1.SelectedItems[0].SubItems[4].Text =="")
+            {
+                export("单", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text);
+            }
+            else
+            {
+                export("单", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text + "----" + listView1.SelectedItems[0].SubItems[4].Text);
+            }
             listView1.Items.Remove(listView1.SelectedItems[0]);
         }
 
@@ -370,7 +384,16 @@ namespace 主程序202206
         {
             if (this.listView1.SelectedItems.Count == 0)
                 return;
-            export("废", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text + "----" + listView1.SelectedItems[0].SubItems[4].Text);
+
+            if (listView1.SelectedItems[0].SubItems[4].Text == "")
+            {
+                export("废", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text);
+            }
+            else
+            {
+                export("废", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text + "----" + listView1.SelectedItems[0].SubItems[4].Text);
+            }
+
             listView1.Items.Remove(listView1.SelectedItems[0]);
         }
 
@@ -378,7 +401,14 @@ namespace 主程序202206
         {
             if (this.listView1.SelectedItems.Count == 0)
                 return;
-            export("限制", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text + "----" + listView1.SelectedItems[0].SubItems[4].Text);
+            if (listView1.SelectedItems[0].SubItems[4].Text == "")
+            {
+                export("限制", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text);
+            }
+            else
+            {
+                export("限制", listView1.SelectedItems[0].SubItems[1].Text + "----" + listView1.SelectedItems[0].SubItems[2].Text + "----" + listView1.SelectedItems[0].SubItems[4].Text);
+            }
             listView1.Items.Remove(listView1.SelectedItems[0]);
         }
 
@@ -400,6 +430,38 @@ namespace 主程序202206
 
                 
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].SubItems[1].Text = "1-" + listView1.Items[i].SubItems[1].Text;
+            }
+        }
+
+        private void 复制验证码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.listView1.SelectedItems.Count == 0)
+                    return;
+
+                Match d = Regex.Match(listView1.SelectedItems[0].SubItems[3].Text,@"\d{6,}");
+                System.Windows.Forms.Clipboard.SetText(d.Groups[0].Value); //复制
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        private void 标记ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count == 0)
+                return;
+            listView1.SelectedItems[0].ForeColor = Color.Blue;
         }
     }
 }

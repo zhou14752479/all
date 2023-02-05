@@ -16,7 +16,7 @@ namespace 主程序202206
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 表格排版软件());
+            Application.Run(new 号码网址信息分类());
         }
     }
 }

@@ -130,7 +130,7 @@ namespace 宿网办公助手
         {
             try
             {
-                label2.Text = DateTime.Now.ToString("HH:mm:ss") + "：监控了宿迁零距离。";
+                //label2.Text = DateTime.Now.ToString("HH:mm:ss") + "：监控了宿迁零距离。";
                 this.Text = "上次监控：" + DateTime.Now.ToString("HH:mm:ss");
                 string url = "https://www.suqian360.com/forum.php?mod=forumdisplay&fid=96&filter=author&orderby=dateline";
                 string html = GetUrl(url, "gb2312");
@@ -139,7 +139,7 @@ namespace 宿网办公助手
                 MatchCollection times = Regex.Matches(html, @"<em><span([\s\S]*?)title=""([\s\S]*?)</span>");
                 MatchCollection urls = Regex.Matches(html, @"<td class=""num""><a href=""([\s\S]*?)""");
 
-                for (int a = 0; a < 5; a++)
+                for (int a = 0; a < tiaoshu; a++)
                 {
                     try
                     {
@@ -152,20 +152,21 @@ namespace 宿网办公助手
                             lv1.SubItems.Add(titles[a].Groups[1].Value);
                             lv1.SubItems.Add(time) ;
                             lv1.SubItems.Add(aurl);
-
+                   
                         if (a == 0)
                         {
+                           
                             lv1.ForeColor = Color.Red;
                         }
                      
-                        if (checkBox3.Checked == true)
-                        {
+                        //if (checkBox3.Checked == true)
+                        //{
                             if (!sendlist.Contains(urls[a].Groups[1].Value))
                             {
                                 sendlist.Add(urls[a].Groups[1].Value);
                                 if (sendlist.Count > 10)
                                 {
-                                    send(textBox1.Text, titles[a].Groups[1].Value, titles[a].Groups[1].Value+ "-宿迁零距离" + urls[a].Groups[1].Value);
+                                    //send(textBox1.Text, titles[a].Groups[1].Value, titles[a].Groups[1].Value+ "-宿迁零距离" + urls[a].Groups[1].Value);
 
                                     FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\宿迁零距离.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                                     StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
@@ -175,12 +176,12 @@ namespace 宿网办公助手
                                     sw.Dispose();
                                 }
                             }
-                        }
+                       
 
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        MessageBox.Show(ex.ToString());
                         continue;
                     }
                 }
@@ -200,7 +201,7 @@ namespace 宿网办公助手
             try
             {
 
-                label2.Text = DateTime.Now.ToString("HH:mm:ss") + "：监控了宿迁论坛。";
+                //label2.Text = DateTime.Now.ToString("HH:mm:ss") + "：监控了宿迁论坛。";
                 this.Text = "上次监控：" + DateTime.Now.ToString("HH:mm:ss"); ;
 
                 string url = "http://www.sqee.cn/forum.php?mod=forumdisplay&fid=24&filter=author&orderby=dateline";
@@ -210,7 +211,7 @@ namespace 宿网办公助手
                 MatchCollection times = Regex.Matches(html, @"<em><span([\s\S]*?)title=""([\s\S]*?)</span>");
                 MatchCollection urls = Regex.Matches(html, @"<td class=""num""><a href=""([\s\S]*?)""");
 
-                for (int a = 0; a < 5; a++)
+                for (int a = 0; a < tiaoshu; a++)
                 {
                     try
                     {
@@ -222,19 +223,20 @@ namespace 宿网办公助手
                             lv1.SubItems.Add(titles[a].Groups[1].Value);
                             lv1.SubItems.Add(time);
                             lv1.SubItems.Add(aurl);
+                     
                         if (a == 0)
                         {
                             lv1.ForeColor = Color.Red;
                         }
 
-                        if (checkBox3.Checked == true)
-                        {
+                        //if (checkBox3.Checked == true)
+                        //{
                             if (!sendlist.Contains(urls[a].Groups[1].Value))
                             {
                                 sendlist.Add(urls[a].Groups[1].Value);
                                 if (sendlist.Count > 10)
                                 {
-                                    send(textBox1.Text, titles[a].Groups[1].Value, titles[a].Groups[1].Value +"-宿迁论坛"+ urls[a].Groups[1].Value);
+                                   // send(textBox1.Text, titles[a].Groups[1].Value, titles[a].Groups[1].Value +"-宿迁论坛"+ urls[a].Groups[1].Value);
 
                                     FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\宿迁论坛.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                                     StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
@@ -244,7 +246,7 @@ namespace 宿网办公助手
                                     sw.Dispose();
                                 }
                             }
-                        }
+                        
                        
 
                     }
@@ -265,28 +267,11 @@ namespace 宿网办公助手
         }
         Thread thread;
         Thread thread2;
-        private void button1_Click(object sender, EventArgs e)
-        {
-            timer1.Start();
-            timer1.Interval = Convert.ToInt32(numericUpDown1.Value) * 1000 * 60;
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run_sq360);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
-            if (thread2 == null || !thread2.IsAlive)
-            {
-                thread2 = new Thread(run_sqluntan);
-                thread2.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
-        }
-
+       
         private void timer1_Tick(object sender, EventArgs e)
         {
             listView1.Items.Clear();
-            timer1.Interval = Convert.ToInt32(numericUpDown1.Value) * 1000 * 60;
+            timer1.Interval = Convert.ToInt32(time_refresh) * 1000 * 60;
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run_sq360);
@@ -301,15 +286,10 @@ namespace 宿网办公助手
             }
 
 
-            IniWriteValue("values", "mail", textBox1.Text.Trim());
+            IniWriteValue("values", "mail", time_refresh.ToString());
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-            //send("852266010@qq.com","测试","测试");
-            timer1.Stop();
-        }
+      
 
         private void 网站监控_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -362,12 +342,28 @@ namespace 宿网办公助手
 
         }
         #endregion
+
+        public static string mail;
+        public static int time_refresh;
+        public static int tiaoshu;
         private void 网站监控_Load(object sender, EventArgs e)
         {
-            if (ExistINIFile())
+            try
             {
-              
-                textBox1.Text = IniReadValue("values", "mail");
+                if (ExistINIFile())
+                {
+                    time_refresh = Convert.ToInt32(IniReadValue("values", "time_refresh"));
+                    mail = IniReadValue("values", "mail");
+                    tiaoshu = Convert.ToInt32(IniReadValue("values", "tiaoshu"));
+                }
+            }
+            catch (Exception)
+            {
+
+                time_refresh = 1;
+                mail = "852266010@qq.com";
+                tiaoshu = 5;
+
             }
         }
 
@@ -396,10 +392,66 @@ namespace 宿网办公助手
             }
         }
 
-        private void 街道查询ToolStripMenuItem_Click(object sender, EventArgs e)
+     
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            宿城地址查询街道 sc=new   宿城地址查询街道(); 
+            timer1.Start();
+            //timer1.Interval = Convert.ToInt32(numericUpDown1.Value) * 1000 * 60;
+
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run_sq360);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+            if (thread2 == null || !thread2.IsAlive)
+            {
+                thread2 = new Thread(run_sqluntan);
+                thread2.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            //send("852266010@qq.com","测试","测试");
+            timer1.Stop();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run_sq360);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+            if (thread2 == null || !thread2.IsAlive)
+            {
+                thread2 = new Thread(run_sqluntan);
+                thread2.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            通知管理 tz=new 通知管理();
+            tz.Show();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            设置 sz = new 设置();
+            sz.Show();
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            宿城地址查询街道 sc = new 宿城地址查询街道();
             sc.Show();
+
         }
     }
     }
