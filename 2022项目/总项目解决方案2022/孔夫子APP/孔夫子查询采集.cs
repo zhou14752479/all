@@ -291,7 +291,7 @@ namespace 孔夫子APP
         private void 孔夫子查询采集_Load(object sender, EventArgs e)
         {
             
-            if(DateTime.Now> Convert.ToDateTime("2023-02-06"))
+            if(DateTime.Now> Convert.ToDateTime("2023-02-10"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return;
