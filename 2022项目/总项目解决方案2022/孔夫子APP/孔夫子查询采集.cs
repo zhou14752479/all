@@ -137,7 +137,10 @@ namespace 孔夫子APP
                         if (isbn.Trim() == "")
                             break;
                         string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
-                        string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+
+                        // string jiagepaixu = "100"; //总价从低达高
+                        string jiagepaixu = "1";
+                        string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22"+jiagepaixu+"%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
 
                         string html = PostUrlDefault(url, postdata, "");
                         html = method.Unicode2String(html);
