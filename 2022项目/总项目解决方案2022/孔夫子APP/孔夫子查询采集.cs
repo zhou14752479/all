@@ -138,8 +138,8 @@ namespace 孔夫子APP
                             break;
                         string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
 
-                        // string jiagepaixu = "100"; //总价从低达高
-                        string jiagepaixu = "1";
+                         string jiagepaixu = "100"; //总价从低达高
+                        //string jiagepaixu = "1";  //价格从低到高
                         string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22"+jiagepaixu+"%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
 
                         string html = PostUrlDefault(url, postdata, "");
@@ -294,7 +294,7 @@ namespace 孔夫子APP
         private void 孔夫子查询采集_Load(object sender, EventArgs e)
         {
             
-            if(DateTime.Now> Convert.ToDateTime("2023-02-10"))
+            if(DateTime.Now> Convert.ToDateTime("2023-06-10"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return;

@@ -54,6 +54,7 @@ namespace 宿网办公助手
             IniWriteValue("values", "time_refresh",numericUpDown1.Value.ToString());
             IniWriteValue("values", "tiaoshu", numericUpDown2.Value.ToString());
             MessageBox.Show("保存成功");
+            this.Hide();
         }
 
         private void 设置_Load(object sender, EventArgs e)

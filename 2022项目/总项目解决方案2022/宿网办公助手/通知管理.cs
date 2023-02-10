@@ -51,6 +51,7 @@ namespace 宿网办公助手
         {
             IniWriteValue("values", "mail", textBox1.Text.Trim());
             MessageBox.Show("保存成功");
+            this.Hide();
         }
     }
 }
