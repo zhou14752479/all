@@ -162,6 +162,10 @@ namespace 药房网
                                 }
                                 if (status == false)
                                     return;
+                                if (listView1.Items.Count > 2)
+                                {
+                                    this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                }
                             }
 
 
@@ -235,6 +239,10 @@ namespace 药房网
                             }
                             if (status == false)
                                 return;
+                            if (listView1.Items.Count > 2)
+                            {
+                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                            }
                         }
 
 
@@ -259,7 +267,7 @@ namespace 药房网
         Thread thread;
 
         string[] cates = { "10","15","12", "29", "206", "30", "11", "17", "14", "19", "16", "20" };
-        public void run_xcx()
+        public void run_xcx2222()
         {
             try
             {
@@ -272,7 +280,7 @@ namespace 药房网
                         string aurl = "https://dian.ysbang.cn/wholesale-drug/sales/getWholesaleList/v4270";
                         string postdata = "";
                         string ahtml = method.PostUrl(aurl,postdata,"", "utf-8", "application/json", "");
-
+                        MessageBox.Show(ahtml);
                         MatchCollection names = Regex.Matches(ahtml, @"""namecn"":""([\s\S]*?)""");
                         MatchCollection standards = Regex.Matches(ahtml, @"""standard"":""([\s\S]*?)""");
                         MatchCollection mill_title = Regex.Matches(ahtml, @"""mill_title"":""([\s\S]*?)""");
@@ -326,6 +334,78 @@ namespace 药房网
 
         }
 
+
+        public void run_xcx()
+        {
+            try
+            {
+                foreach (string cate in this.cates)
+                {
+                    for (int page = 1; page < 999; page++)
+                    {
+                        string aurl = string.Concat(new string[]
+                        {
+                            "https://pub.yaofangwang.com/4000/4000/0/guest.medicine.getMedicines?conditions={\"categoryid\":",
+                            cate,
+                            ",\"sort\":\"\",\"sorttype\":\"\"}&pageIndex=",
+                            page.ToString(),
+                            "&pageSize=100&version=8.0.28&__client=app_wx&app_version=4.9.22&osVersion=miniapp&deviceName=iPhone 13<iPhone14,5>&os=ios&market=iPhone&networkType=true&lat=33.94001092793934&lng=118.25325794385365&user_city_name=宿迁市&user_region_id=1739&idfa=wx_091GxYZv3F5uiZ2R3W2w3vMJsz3GxYZK&deviceNo=wx_091GxYZv3F5uiZ2R3W2w3vMJsz3GxYZK"
+                        });
+                        string ahtml = 药房网.GetUrl(aurl, "utf-8");
+                        MatchCollection names = Regex.Matches(ahtml, "\"namecn\":\"([\\s\\S]*?)\"");
+                        MatchCollection standards = Regex.Matches(ahtml, "\"standard\":\"([\\s\\S]*?)\"");
+                        MatchCollection mill_title = Regex.Matches(ahtml, "\"mill_title\":\"([\\s\\S]*?)\"");
+                        MatchCollection authorized_code = Regex.Matches(ahtml, "\"authorized_code\":\"([\\s\\S]*?)\"");
+                        MatchCollection min_price = Regex.Matches(ahtml, "\"min_price\":([\\s\\S]*?),");
+                        bool flag = names.Count == 0;
+                        if (flag)
+                        {
+                            break;
+                        }
+                        int a = 0;
+                        while (a < names.Count)
+                        {
+                            try
+                            {
+                                this.textBox2.Text = "正在读取：" + names[a].Groups[1].Value;
+                                ListViewItem lv = this.listView1.Items.Add((this.listView1.Items.Count + 1).ToString());
+                                lv.SubItems.Add(names[a].Groups[1].Value);
+                                lv.SubItems.Add(standards[a].Groups[1].Value);
+                                lv.SubItems.Add(mill_title[a].Groups[1].Value);
+                                lv.SubItems.Add(authorized_code[a].Groups[1].Value);
+                                lv.SubItems.Add(min_price[a].Groups[1].Value);
+                                bool flag2 = this.listView1.Items.Count > 2;
+                                if (flag2)
+                                {
+                                    this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                }
+                                while (!this.zanting)
+                                {
+                                    Application.DoEvents();
+                                }
+                                bool flag3 = !this.status;
+                                if (flag3)
+                                {
+                                    return;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                            }
+                            IL_253:
+                            a++;
+                            continue;
+                            goto IL_253;
+                        }
+                        Thread.Sleep(1000);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.textBox2.Text = ex.ToString();
+            }
+        }
         private void button6_Click(object sender, EventArgs e)
         {
             #region 通用检测
@@ -343,12 +423,12 @@ namespace 药房网
             #endregion
             //if (radioButton1.Checked == true)
             //{
-            //    if (thread == null || !thread.IsAlive)
-            //    {
-            //        thread = new Thread(run1);
-            //        thread.Start();
-            //        Control.CheckForIllegalCrossThreadCalls = false;
-            //    }
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(run1);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
 
             //}
             //if (radioButton2.Checked == true)
@@ -411,6 +491,16 @@ namespace 药房网
             else
             {
                 e.Cancel = true;//点取消的代码 
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run1);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
     }

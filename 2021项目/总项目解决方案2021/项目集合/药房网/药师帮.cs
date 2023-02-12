@@ -24,7 +24,7 @@ namespace 药房网
         bool status = true;
         Thread thread;
 
-        string[] cates = { };
+        string[] cates = { "10", "15", "12", "29", "206", "30", "11", "17", "14", "19", "16", "20" };
         public void run_xcx()
         {
             try
