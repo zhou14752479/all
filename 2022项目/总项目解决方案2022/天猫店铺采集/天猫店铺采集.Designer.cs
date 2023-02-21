@@ -48,6 +48,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -57,7 +58,6 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -253,11 +253,16 @@
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.Info;
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox4.Location = new System.Drawing.Point(0, 646);
+            this.textBox4.Location = new System.Drawing.Point(0, 608);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(995, 97);
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox4.Size = new System.Drawing.Size(995, 135);
             this.textBox4.TabIndex = 219;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // listView1
             // 
@@ -278,8 +283,8 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 165);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(995, 481);
-            this.listView1.TabIndex = 221;
+            this.listView1.Size = new System.Drawing.Size(995, 443);
+            this.listView1.TabIndex = 222;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
@@ -322,10 +327,6 @@
             // 
             this.columnHeader8.Text = "是否新宝贝";
             this.columnHeader8.Width = 100;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // columnHeader9
             // 
@@ -372,6 +373,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -379,13 +385,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }

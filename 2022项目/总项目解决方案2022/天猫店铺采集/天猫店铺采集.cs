@@ -254,6 +254,8 @@ namespace 天猫店铺采集
         string reviewcookie = "_m_h5_tk=8670f2963029d7a3428dcd2088460b4c_1655798664120; _m_h5_tk_enc=9d48ffd7ff59d279bcec5ff84cb85e95;";
 
 
+        List<string> list = new List<string>();
+
         /// <summary>
         /// 搜索宝贝
         /// </summary>
@@ -275,9 +277,15 @@ namespace 天猫店铺采集
                 sr.Dispose();   //销毁流内存
                 for (int a = 0; a < text.Length; a++)
                 {
+
+
                     if (text[a].Trim() == "")
                         continue;
-                    for (int i = 1; i < 201; i++)
+
+
+                  
+
+                        for (int i = 1; i < 201; i++)
                     {
 
 
@@ -287,6 +295,7 @@ namespace 天猫店铺采集
                         string time = function.GetTimeStamp();
                         string keyword = text[a].Trim();
 
+                        
 
                         //搜索店铺
                         //string str = token+"&"+time+"&12574478&{\"appId\":\"30486\",\"params\":\"{\\\"chituGroupAlias\\\":\\\"zhouzhou_liantiao_final\\\",\\\"_viewlogs\\\":\\\"true\\\",\\\"viewlogs\\\":\\\"true\\\",\\\"debug_\\\":\\\"true\\\",\\\"solutionDebug\\\":\\\"true\\\",\\\"_debug\\\":\\\"true\\\",\\\"dcEnable\\\":\\\"true\\\",\\\"_switchers\\\":\\\"true\\\",\\\"_blendInfos\\\":\\\"true\\\",\\\"routerDebug\\\":\\\"true\\\",\\\"_DEBUG\\\":\\\"true\\\",\\\"debug\\\":\\\"true\\\",\\\"debug_rerankNewOpenCard\\\":\\\"false\\\",\\\"DEBUG\\\":\\\"true\\\",\\\"DEBUG_\\\":\\\"true\\\",\\\"viewlogs_\\\":\\\"true\\\",\\\"pvFeature\\\":\\\"654083998634;644832834668;668084343069;662334090942;665339768743;664390297378;664047381602\\\",\\\"tab\\\":\\\"shop\\\",\\\"grayHair\\\":\\\"false\\\",\\\"sversion\\\":\\\"13.7\\\",\\\"from\\\":\\\"input\\\",\\\"isBeta\\\":\\\"false\\\",\\\"brand\\\":\\\"HUAWEI\\\",\\\"info\\\":\\\"wifi\\\",\\\"client_for_bts\\\":\\\"client_android_view_preload:1000001\\\",\\\"ttid\\\":\\\"600000@taobao_android_10.8.0\\\",\\\"rainbow\\\":\\\"\\\",\\\"areaCode\\\":\\\"CN\\\",\\\"vm\\\":\\\"nw\\\",\\\"elderHome\\\":\\\"false\\\",\\\"style\\\":\\\"list\\\",\\\"page\\\":"+i+",\\\"device\\\":\\\"HMA-AL00\\\",\\\"editionCode\\\":\\\"CN\\\",\\\"cityCode\\\":\\\"110100\\\",\\\"countryNum\\\":\\\"156\\\",\\\"newSearch\\\":\\\"false\\\",\\\"chituBiz\\\":\\\"TaobaoPhoneSearch\\\",\\\"utd_id\\\":\\\"XYDZLfLy3ZQDAKmnYOhvIwW4\\\",\\\"network\\\":\\\"wifi\\\",\\\"hasPreposeFilter\\\":\\\"false\\\",\\\"client_os\\\":\\\"Android\\\",\\\"gpsEnabled\\\":\\\"true\\\",\\\"apptimestamp\\\":\\\"1655714609\\\",\\\"canP4pVideoPlay\\\":\\\"true\\\",\\\"homePageVersion\\\":\\\"v7\\\",\\\"searchElderHomeOpen\\\":\\\"false\\\",\\\"n\\\":\\\"10\\\",\\\"search_action\\\":\\\"initiative\\\",\\\"q\\\":\\\""+keyword+"\\\",\\\"tagSearchKeyword\\\":null,\\\"sort\\\":\\\"sale-asc\\\",\\\"filterTag\\\":\\\"mall\\\",\\\"prop\\\":\\\"\\\"}\"}"; ;
@@ -387,6 +396,7 @@ namespace 天猫店铺采集
                                                 lv1.SubItems.Add(aaa[0]);
                                                 lv1.SubItems.Add(commenttime);
                                                 lv1.SubItems.Add(aaa[1]);
+                                               
                                             }
                                         }
                                         else
@@ -399,7 +409,7 @@ namespace 天猫店铺采集
                                 }
                                 else
                                 {
-                                    if (textBox4.Text.Length > 600)
+                                    if (textBox4.Text.Length > 500)
                                     {
                                         textBox4.Text = "";
                                     }
@@ -468,6 +478,8 @@ namespace 天猫店铺采集
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
