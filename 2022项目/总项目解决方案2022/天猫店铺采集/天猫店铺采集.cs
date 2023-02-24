@@ -41,13 +41,15 @@ namespace 天猫店铺采集
 
       public static List<string> cookielist = new List<string>();
 
+
+        public string filename = "";
         private void 天猫店铺采集_Load(object sender, EventArgs e)
         {
             #region 通用检测
 
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+           
 
-            if (!html.Contains(@"106.89.165.23"))
+            if (Convert.ToDateTime("2023-05-20")<DateTime.Now)
             {
                 TestForKillMyself();
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
@@ -55,6 +57,17 @@ namespace 天猫店铺采集
 
 
             #endregion
+
+            status = true;
+
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
+
+
         }
 
         /// <summary>
@@ -256,20 +269,30 @@ namespace 天猫店铺采集
 
         List<string> list = new List<string>();
 
+
+
+
+
+
+
         /// <summary>
         /// 搜索宝贝
         /// </summary>
         public void run()
         {
+            string value=function.chulitxt();
             List<string> list = new List<string>();
             dics.Clear();
-           
+
+            filename= AppDomain.CurrentDomain.BaseDirectory+value + ".txt";
+            textBox1.Text = filename;
+
             string token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
 
 
             try
             {
-                StreamReader sr = new StreamReader(textBox1.Text, method.EncodingType.GetTxtType(textBox1.Text));
+                StreamReader sr = new StreamReader(filename, method.EncodingType.GetTxtType(textBox1.Text));
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
@@ -466,11 +489,11 @@ namespace 天猫店铺采集
             //    return;
             //}
 
-            if(textBox1.Text=="")
-            {
-                MessageBox.Show("请导入关键词");
-                return;
-            }
+            //if(textBox1.Text=="")
+            //{
+            //    MessageBox.Show("请导入关键词");
+            //    return;
+            //}
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -664,16 +687,7 @@ namespace 天猫店铺采集
 
         private void 天猫店铺采集_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dr == DialogResult.OK)
-            {
-                // Environment.Exit(0);
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
-            else
-            {
-                e.Cancel = true;//点取消的代码 
-            }
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
 
         private void button7_Click(object sender, EventArgs e)

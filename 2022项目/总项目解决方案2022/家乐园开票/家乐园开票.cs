@@ -234,5 +234,10 @@ namespace 家乐园开票
             this.logtxt.SelectionLength = 0;
             this.logtxt.ScrollToCaret();
         }
+
+        private void 家乐园开票_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

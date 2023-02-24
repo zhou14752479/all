@@ -249,6 +249,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "家乐园开票";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.家乐园开票_FormClosing);
+            this.Load += new System.EventHandler(this.家乐园开票_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

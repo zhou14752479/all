@@ -8,6 +8,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using myDLL;
 
 namespace 天猫店铺采集
 {
@@ -31,6 +32,39 @@ namespace 天猫店铺采集
 
 
         #endregion
+
+
+        public static string chulitxt()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            StreamReader sr = new StreamReader(path+"duokai.txt", method.EncodingType.GetTxtType(path + "duokai.txt"));
+            //一次性读取完 
+            string texts = sr.ReadToEnd().Trim();
+           
+            sr.Close();  //只关闭流
+            sr.Dispose();   //销毁流内存
+
+
+            int next=Convert.ToInt32(texts)+1;
+
+            FileStream fs1 = new FileStream(path + "duokai.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+            sw.WriteLine(next);
+            sw.Close();
+            fs1.Close();
+            sw.Dispose();
+
+            return texts;
+
+        }
+
+
+
+
+
+
+
+
 
 
 
