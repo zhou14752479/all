@@ -50,7 +50,7 @@ namespace 天猫店铺采集
 
             for (int i = 0; i <numericUpDown1.Value; i++)
             {
-                string appName = "天猫店铺采集1.exe";
+                string appName = "天猫店铺采集.exe";
                 Process.Start(appName);
                 Thread.Sleep(1000);
             }
@@ -111,7 +111,7 @@ namespace 天猫店铺采集
                     MessageBox.Show("生成完成");
                     return;
                 }
-                MessageBox.Show("生成完成");
+                
             }
         }
 
