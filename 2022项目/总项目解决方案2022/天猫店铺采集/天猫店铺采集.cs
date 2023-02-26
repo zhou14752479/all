@@ -45,9 +45,10 @@ namespace 天猫店铺采集
         public string filename = "";
         private void 天猫店铺采集_Load(object sender, EventArgs e)
         {
+            
             #region 通用检测
 
-           
+
 
             if (Convert.ToDateTime("2023-05-20")<DateTime.Now)
             {
@@ -60,12 +61,12 @@ namespace 天猫店铺采集
 
             status = true;
 
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(run);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
 
 
         }
@@ -284,9 +285,9 @@ namespace 天猫店铺采集
             List<string> list = new List<string>();
             dics.Clear();
 
-            filename= AppDomain.CurrentDomain.BaseDirectory+value + ".txt";
-            textBox1.Text = filename;
-
+            //filename= AppDomain.CurrentDomain.BaseDirectory+value + ".txt";
+            //textBox1.Text = filename;
+            filename = textBox1.Text;
             string token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
 
 
@@ -494,6 +495,18 @@ namespace 天猫店铺采集
             //    MessageBox.Show("请导入关键词");
             //    return;
             //}
+            #region 通用检测
+
+
+            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"shucaiwang"))
+            {
+                TestForKillMyself();
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+
+                return;
+            }
+
+            #endregion
             status = true;
             if (thread == null || !thread.IsAlive)
             {

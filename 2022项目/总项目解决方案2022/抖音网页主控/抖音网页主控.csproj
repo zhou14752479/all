@@ -11,7 +11,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>抖音网页主控</RootNamespace>
     <AssemblyName>抖音网页主控</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
