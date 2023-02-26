@@ -265,8 +265,8 @@ namespace 天猫店铺采集
 
         Dictionary<string, string> dics = new Dictionary<string, string>();
 
-        string reviewcookie = "_m_h5_tk=8670f2963029d7a3428dcd2088460b4c_1655798664120; _m_h5_tk_enc=9d48ffd7ff59d279bcec5ff84cb85e95;";
-
+        //string reviewcookie = "_m_h5_tk=8670f2963029d7a3428dcd2088460b4c_1655798664120; _m_h5_tk_enc=9d48ffd7ff59d279bcec5ff84cb85e95;";
+        string reviewcookie = "_m_h5_tk=fdadbea0f9f7d75212b16535ae78b84b_1677409105656; _m_h5_tk_enc=917bdf7966753906e7a4a33cd551b025;";
 
         List<string> list = new List<string>();
 
@@ -281,7 +281,7 @@ namespace 天猫店铺采集
         /// </summary>
         public void run()
         {
-            string value=function.chulitxt();
+            //string value=function.chulitxt();
             List<string> list = new List<string>();
             dics.Clear();
 
@@ -360,6 +360,7 @@ namespace 天猫店铺采集
                         MatchCollection x_object_id = Regex.Matches(html, @"""x_object_id"":""([\s\S]*?)""");
                         MatchCollection sold = Regex.Matches(html, @"""sold"":""([\s\S]*?)""");
 
+                       
                         if(title.Count==0)
                         {
                            break;

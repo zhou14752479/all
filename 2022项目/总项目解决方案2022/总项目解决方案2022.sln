@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "竞彩数据查询", "竞�
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "安装项目", "安装项目\安装项目.vdproj", "{9023E669-9468-42AB-92D2-43F8F07124DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序selenium", "主程序selenium\主程序selenium.csproj", "{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView2", "WebView2\WebView2.csproj", "{E97C35F4-5E9F-4A81-9452-0CE897D2306D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "抖音扫码获取cookie", "抖音扫码获取cookie\抖音扫码获取cookie.csproj", "{29C4A01A-E2EC-49E8-9BD2-0AF1F5055C28}"
@@ -199,18 +197,6 @@ Global
 		{9023E669-9468-42AB-92D2-43F8F07124DE}.Release|x64.ActiveCfg = Release
 		{9023E669-9468-42AB-92D2-43F8F07124DE}.Release|x64.Build.0 = Release
 		{9023E669-9468-42AB-92D2-43F8F07124DE}.Release|x86.ActiveCfg = Release
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Debug|x64.Build.0 = Debug|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Debug|x86.Build.0 = Debug|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Release|x64.ActiveCfg = Release|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Release|x64.Build.0 = Release|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Release|x86.ActiveCfg = Release|Any CPU
-		{46916FEE-40EC-4AE9-8AE0-D6B67265E00C}.Release|x86.Build.0 = Release|Any CPU
 		{E97C35F4-5E9F-4A81-9452-0CE897D2306D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E97C35F4-5E9F-4A81-9452-0CE897D2306D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E97C35F4-5E9F-4A81-9452-0CE897D2306D}.Debug|x64.ActiveCfg = Debug|Any CPU

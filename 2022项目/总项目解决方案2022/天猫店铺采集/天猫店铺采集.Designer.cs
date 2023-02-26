@@ -80,7 +80,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(691, 165);
+            this.panel1.Size = new System.Drawing.Size(986, 165);
             this.panel1.TabIndex = 0;
             // 
             // button9
@@ -129,14 +129,14 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(478, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(192, 119);
+            this.groupBox1.Size = new System.Drawing.Size(443, 90);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "筛选";
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(30, 88);
+            this.button7.Location = new System.Drawing.Point(328, 23);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(96, 25);
             this.button7.TabIndex = 39;
@@ -160,7 +160,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(51, 23);
             this.textBox3.TabIndex = 38;
-            this.textBox3.Text = "1";
+            this.textBox3.Text = "2";
             // 
             // label1
             // 
@@ -253,11 +253,11 @@
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.Info;
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox4.Location = new System.Drawing.Point(0, 403);
+            this.textBox4.Location = new System.Drawing.Point(0, 614);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(691, 135);
+            this.textBox4.Size = new System.Drawing.Size(986, 135);
             this.textBox4.TabIndex = 219;
             // 
             // openFileDialog1
@@ -283,7 +283,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 165);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(691, 238);
+            this.listView1.Size = new System.Drawing.Size(986, 449);
             this.listView1.TabIndex = 222;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -337,14 +337,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 538);
+            this.ClientSize = new System.Drawing.Size(986, 749);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "天猫店铺采集";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "天猫店铺采集";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "店铺采集";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.天猫店铺采集_FormClosing);
             this.Load += new System.EventHandler(this.天猫店铺采集_Load);
             this.panel1.ResumeLayout(false);

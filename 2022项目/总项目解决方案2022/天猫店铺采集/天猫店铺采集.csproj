@@ -7,7 +7,7 @@
     <ProjectGuid>{EB760F34-8882-4368-868A-119A6A569BDE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>天猫店铺采集</RootNamespace>
-    <AssemblyName>天猫店铺采集</AssemblyName>
+    <AssemblyName>店铺采集</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
