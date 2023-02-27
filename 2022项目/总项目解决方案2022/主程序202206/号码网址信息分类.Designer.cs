@@ -40,23 +40,23 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.复制号码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.复制验证码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.标记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.复制号码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.复制验证码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.标记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -187,6 +187,82 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listView2.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView2.Font = new System.Drawing.Font("微软雅黑", 15F);
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(0, 0);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(1162, 666);
+            this.listView2.TabIndex = 48;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "ID";
+            this.columnHeader6.Width = 50;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "号码";
+            this.columnHeader7.Width = 170;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "网址";
+            this.columnHeader8.Width = 300;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "信息";
+            this.columnHeader9.Width = 500;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "备注";
+            this.columnHeader10.Width = 150;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.复制号码ToolStripMenuItem,
+            this.复制验证码ToolStripMenuItem,
+            this.标记ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 70);
+            // 
+            // 复制号码ToolStripMenuItem
+            // 
+            this.复制号码ToolStripMenuItem.Name = "复制号码ToolStripMenuItem";
+            this.复制号码ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.复制号码ToolStripMenuItem.Text = "复制号码";
+            this.复制号码ToolStripMenuItem.Click += new System.EventHandler(this.复制号码ToolStripMenuItem_Click);
+            // 
+            // 复制验证码ToolStripMenuItem
+            // 
+            this.复制验证码ToolStripMenuItem.Name = "复制验证码ToolStripMenuItem";
+            this.复制验证码ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.复制验证码ToolStripMenuItem.Text = "复制验证码";
+            this.复制验证码ToolStripMenuItem.Click += new System.EventHandler(this.复制验证码ToolStripMenuItem_Click);
+            // 
+            // 标记ToolStripMenuItem
+            // 
+            this.标记ToolStripMenuItem.Name = "标记ToolStripMenuItem";
+            this.标记ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.标记ToolStripMenuItem.Text = "标记";
+            this.标记ToolStripMenuItem.Click += new System.EventHandler(this.标记ToolStripMenuItem_Click);
+            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -234,85 +310,9 @@
             this.columnHeader5.Text = "备注";
             this.columnHeader5.Width = 150;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.复制号码ToolStripMenuItem,
-            this.复制验证码ToolStripMenuItem,
-            this.标记ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 70);
-            // 
-            // 复制号码ToolStripMenuItem
-            // 
-            this.复制号码ToolStripMenuItem.Name = "复制号码ToolStripMenuItem";
-            this.复制号码ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.复制号码ToolStripMenuItem.Text = "复制号码";
-            this.复制号码ToolStripMenuItem.Click += new System.EventHandler(this.复制号码ToolStripMenuItem_Click);
-            // 
-            // 复制验证码ToolStripMenuItem
-            // 
-            this.复制验证码ToolStripMenuItem.Name = "复制验证码ToolStripMenuItem";
-            this.复制验证码ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.复制验证码ToolStripMenuItem.Text = "复制验证码";
-            this.复制验证码ToolStripMenuItem.Click += new System.EventHandler(this.复制验证码ToolStripMenuItem_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // 标记ToolStripMenuItem
-            // 
-            this.标记ToolStripMenuItem.Name = "标记ToolStripMenuItem";
-            this.标记ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.标记ToolStripMenuItem.Text = "标记";
-            this.标记ToolStripMenuItem.Click += new System.EventHandler(this.标记ToolStripMenuItem_Click);
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
-            this.listView2.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.Font = new System.Drawing.Font("微软雅黑", 15F);
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(0, 0);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(1162, 666);
-            this.listView2.TabIndex = 48;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "ID";
-            this.columnHeader6.Width = 50;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "号码";
-            this.columnHeader7.Width = 170;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "网址";
-            this.columnHeader8.Width = 300;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "信息";
-            this.columnHeader9.Width = 500;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "备注";
-            this.columnHeader10.Width = 150;
             // 
             // 号码网址信息分类
             // 
@@ -323,7 +323,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "号码网址信息分类";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "号码网址信息分类";
+            this.Text = "网址信息分类";
             this.Load += new System.EventHandler(this.号码网址信息分类_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

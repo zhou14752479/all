@@ -197,7 +197,13 @@ namespace 主程序202206
                     {
                         List<string> list = new List<string>();
 
-                        string temp1 = item.SubItems[i].Text+"----"+ item.SubItems[i+1].Text+"----"+ item.SubItems[i+3].Text;
+                        string temp1 = item.SubItems[i].Text + "----" + item.SubItems[i + 1].Text + "----" + item.SubItems[i + 3].Text;
+                        if (item.SubItems[i + 3].Text=="")
+                        {
+                            temp1 = item.SubItems[i].Text + "----" + item.SubItems[i + 1].Text ;
+                        }
+                        
+                        
                         
                         list.Add(temp1);
                         foreach (string tel in list)
