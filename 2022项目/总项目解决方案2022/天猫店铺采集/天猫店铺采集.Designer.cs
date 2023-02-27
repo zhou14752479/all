@@ -344,7 +344,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "天猫店铺采集";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "店铺采集";
+            this.Text = "仅供学习交流，如作他用所承受的法律责任一概与作者无关(使用即代表你同意上述观点)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.天猫店铺采集_FormClosing);
             this.Load += new System.EventHandler(this.天猫店铺采集_Load);
             this.panel1.ResumeLayout(false);

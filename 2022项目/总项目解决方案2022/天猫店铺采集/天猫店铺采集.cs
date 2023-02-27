@@ -314,7 +314,7 @@ namespace 天猫店铺采集
 
 
                       
-                        Thread.Sleep(1000);
+                        Thread.Sleep(2000);
                        
                         string time = function.GetTimeStamp();
                         string keyword = text[a].Trim();
@@ -361,10 +361,10 @@ namespace 天猫店铺采集
                         MatchCollection sold = Regex.Matches(html, @"""sold"":""([\s\S]*?)""");
 
                        
-                        if(title.Count==0)
-                        {
-                           break;
-                        }
+                        //if(title.Count==0)
+                        //{
+                        //   break;
+                        //}
 
                         for (int j = 0; j < title.Count; j++)
                         {
@@ -456,6 +456,9 @@ namespace 天猫店铺采集
                                 MessageBox.Show(ex.ToString());
                             }
                         }
+
+
+
 
 
                     }
@@ -701,7 +704,16 @@ namespace 天猫店铺采集
 
         private void 天猫店铺采集_FormClosing(object sender, FormClosingEventArgs e)
         {
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
