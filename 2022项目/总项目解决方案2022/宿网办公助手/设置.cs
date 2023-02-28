@@ -51,6 +51,10 @@ namespace 宿网办公助手
 
         private void button1_Click(object sender, EventArgs e)
         {
+            网站监控.time_refresh = Convert.ToInt32(numericUpDown1.Value);
+            网站监控.tiaoshu = Convert.ToInt32(numericUpDown2.Value);
+            
+            
             IniWriteValue("values", "time_refresh",numericUpDown1.Value.ToString());
             IniWriteValue("values", "tiaoshu", numericUpDown2.Value.ToString());
             MessageBox.Show("保存成功");

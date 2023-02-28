@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -201,6 +202,9 @@ namespace 宿网办公助手
         }
 
         #endregion
+
+
+      
         List<string> sendlist = new List<string>();
         List<string> list = new List<string>();
         public void run_sq360()
@@ -243,9 +247,20 @@ namespace 宿网办公助手
                                 sendlist.Add(urls[a].Groups[1].Value);
                                 if (sendlist.Count > 10)
                                 {
-                                    //send(textBox1.Text, titles[a].Groups[1].Value, titles[a].Groups[1].Value+ "-宿迁零距离" + urls[a].Groups[1].Value);
 
-                                    FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\宿迁零距离.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                this.Text = titles[a].Groups[1].Value;
+                                send(mail, titles[a].Groups[1].Value, titles[a].Groups[1].Value+ "-宿迁零距离" + urls[a].Groups[1].Value);
+                                if (shengyin == "True")
+                                {
+                                    SpeechSynthesizer hello = new SpeechSynthesizer();
+                                    string str = "宿迁零距离出现新帖子";
+                                    hello.Speak(str);
+                                }
+                                if (tanchuang == "True")
+                                {
+                                    MessageBox.Show(titles[a].Groups[1].Value);
+                                }
+                                FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\宿迁零距离.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                                     StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
                                     sw.WriteLine(titles[a].Groups[1].Value, titles[a].Groups[1].Value + "-宿迁零距离" + urls[a].Groups[1].Value);
                                     sw.Close();
@@ -313,9 +328,22 @@ namespace 宿网办公助手
                                 sendlist.Add(urls[a].Groups[1].Value);
                                 if (sendlist.Count > 10)
                                 {
-                                   // send(textBox1.Text, titles[a].Groups[1].Value, titles[a].Groups[1].Value +"-宿迁论坛"+ urls[a].Groups[1].Value);
 
-                                    FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\宿迁论坛.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                                 send(mail, titles[a].Groups[1].Value, titles[a].Groups[1].Value +"-宿迁论坛"+ urls[a].Groups[1].Value);
+
+                                this.Text = titles[a].Groups[1].Value;
+                                if (shengyin=="True")
+                                {
+                                    SpeechSynthesizer hello = new SpeechSynthesizer();
+                                    string str = "宿迁论坛出现新帖子";
+                                    hello.Speak(str);
+                                }
+                                if (tanchuang == "True")
+                                {
+                                    MessageBox.Show(titles[a].Groups[1].Value);
+                                }
+
+                                FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\宿迁论坛.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
                                     StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
                                     sw.WriteLine(titles[a].Groups[1].Value, titles[a].Groups[1].Value + "-宿迁论坛" + urls[a].Groups[1].Value);
                                     sw.Close();
@@ -458,6 +486,8 @@ namespace 宿网办公助手
         public static int tiaoshu=5;
         public static string wxid = "";
 
+        public static string shengyin = "True";
+        public static string tanchuang = "True";
 
         private void 网站监控_Load(object sender, EventArgs e)
         {
@@ -474,6 +504,8 @@ namespace 宿网办公助手
                     IniWriteValue("values", "time_refresh", "1");
                     IniWriteValue("values", "tiaoshu", "5");
                     IniWriteValue("values", "mail", "852266010@qq.com");
+                    IniWriteValue("values", "shengyin", "true");
+                    IniWriteValue("values", "tanchuang", "true");
                 }
             }
             catch (Exception)
@@ -515,6 +547,7 @@ namespace 宿网办公助手
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            listView1.Items.Clear();
             timer1.Start();
             //timer1.Interval = Convert.ToInt32(numericUpDown1.Value) * 1000 * 60;
 
@@ -572,6 +605,11 @@ namespace 宿网办公助手
             宿城地址查询街道 sc = new 宿城地址查询街道();
             sc.Show();
 
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+           
         }
     }
     }

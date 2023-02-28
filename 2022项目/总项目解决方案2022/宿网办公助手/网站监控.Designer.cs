@@ -40,6 +40,7 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,7 +48,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +73,7 @@
             this.toolStripButton7});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1064, 34);
+            this.toolStrip2.Size = new System.Drawing.Size(901, 34);
             this.toolStrip2.TabIndex = 49;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -143,13 +143,23 @@
             this.toolStripButton6.Text = "属地查询";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.Font = new System.Drawing.Font("Microsoft YaHei UI", 15F);
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(72, 31);
+            this.toolStripButton7.Text = "日志";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.panel1.Location = new System.Drawing.Point(0, 34);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1064, 100);
+            this.panel1.Size = new System.Drawing.Size(901, 100);
             this.panel1.TabIndex = 50;
             // 
             // listView1
@@ -161,13 +171,13 @@
             this.columnHeader5,
             this.columnHeader6});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Font = new System.Drawing.Font("微软雅黑", 15F);
+            this.listView1.Font = new System.Drawing.Font("微软雅黑", 13F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 134);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1064, 701);
+            this.listView1.Size = new System.Drawing.Size(901, 507);
             this.listView1.TabIndex = 51;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -176,17 +186,17 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "序号";
-            this.columnHeader1.Width = 80;
+            this.columnHeader1.Width = 50;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "网站";
-            this.columnHeader2.Width = 150;
+            this.columnHeader2.Width = 120;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "标题";
-            this.columnHeader4.Width = 600;
+            this.columnHeader4.Width = 500;
             // 
             // columnHeader5
             // 
@@ -198,21 +208,12 @@
             this.columnHeader6.Text = "网址";
             this.columnHeader6.Width = 100;
             // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.Font = new System.Drawing.Font("Microsoft YaHei UI", 15F);
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(72, 31);
-            this.toolStripButton7.Text = "日志";
-            // 
             // 网站监控
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1064, 835);
+            this.ClientSize = new System.Drawing.Size(901, 641);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip2);

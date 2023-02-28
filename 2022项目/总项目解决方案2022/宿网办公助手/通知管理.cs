@@ -49,9 +49,44 @@ namespace 宿网办公助手
 
         private void button1_Click(object sender, EventArgs e)
         {
+            网站监控.mail = textBox1.Text.Trim();
+            网站监控.shengyin = checkBox1.Checked.ToString();
+            网站监控.tanchuang = checkBox2.Checked.ToString();
+
             IniWriteValue("values", "mail", textBox1.Text.Trim());
+
+
+            IniWriteValue("values", "shengyin", checkBox1.Checked.ToString());
+            IniWriteValue("values", "tanchuang", checkBox2.Checked.ToString());
             MessageBox.Show("保存成功");
             this.Hide();
+        }
+
+        private void 通知管理_Load(object sender, EventArgs e)
+        {
+           string shengyin= IniReadValue("values", "shengyin");
+           string tanchuang= IniReadValue("values", "tanchuang");
+
+            if(shengyin=="True")
+            {
+                checkBox1.Checked = true;
+            }
+            else
+            {
+                checkBox1.Checked = false;
+            }
+
+
+            if (tanchuang == "True")
+            {
+                checkBox2.Checked = true;
+            }
+            else
+            {
+                checkBox2.Checked = false;
+            }
+
+
         }
     }
 }
