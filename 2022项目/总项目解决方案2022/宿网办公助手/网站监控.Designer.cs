@@ -73,7 +73,7 @@
             this.toolStripButton7});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(901, 34);
+            this.toolStrip2.Size = new System.Drawing.Size(835, 34);
             this.toolStrip2.TabIndex = 49;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -159,7 +159,7 @@
             this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.panel1.Location = new System.Drawing.Point(0, 34);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(901, 100);
+            this.panel1.Size = new System.Drawing.Size(835, 100);
             this.panel1.TabIndex = 50;
             // 
             // listView1
@@ -177,7 +177,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 134);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(901, 507);
+            this.listView1.Size = new System.Drawing.Size(835, 470);
             this.listView1.TabIndex = 51;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -213,7 +213,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(901, 641);
+            this.ClientSize = new System.Drawing.Size(835, 604);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip2);
