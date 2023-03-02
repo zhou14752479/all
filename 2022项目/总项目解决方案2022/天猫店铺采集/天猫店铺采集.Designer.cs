@@ -82,6 +82,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(986, 165);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button9
             // 
@@ -160,7 +161,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(51, 23);
             this.textBox3.TabIndex = 38;
-            this.textBox3.Text = "2";
+            this.textBox3.Text = "1";
             // 
             // label1
             // 

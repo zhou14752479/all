@@ -40,12 +40,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复制号码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.复制验证码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +72,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.listView2);
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
             this.splitContainer1.Size = new System.Drawing.Size(1162, 809);
             this.splitContainer1.SplitterDistance = 139;
@@ -186,52 +179,6 @@
             this.button1.Text = "导入数据";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
-            this.listView2.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.Font = new System.Drawing.Font("微软雅黑", 15F);
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(0, 0);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(1162, 666);
-            this.listView2.TabIndex = 48;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "ID";
-            this.columnHeader6.Width = 50;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "号码";
-            this.columnHeader7.Width = 170;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "网址";
-            this.columnHeader8.Width = 300;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "信息";
-            this.columnHeader9.Width = 500;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "备注";
-            this.columnHeader10.Width = 150;
             // 
             // contextMenuStrip1
             // 
@@ -359,11 +306,5 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.ToolStripMenuItem 复制验证码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 标记ToolStripMenuItem;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }

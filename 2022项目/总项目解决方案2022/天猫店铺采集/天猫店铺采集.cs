@@ -756,5 +756,10 @@ namespace 天猫店铺采集
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

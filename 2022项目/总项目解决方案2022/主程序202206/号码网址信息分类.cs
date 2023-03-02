@@ -250,11 +250,13 @@ namespace 主程序202206
                 //一次性读取完 
                 string texts = sr.ReadToEnd();
                 string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+               
                 for (int i = 0; i < text.Length; i++)
                 {
                    
                     string[] values= text[i].Split(new string[] { "----" }, StringSplitOptions.None);
-                   if(values.Length>1)
+                    
+                    if(values.Length>1)
                     {
                         ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(values[0]);
