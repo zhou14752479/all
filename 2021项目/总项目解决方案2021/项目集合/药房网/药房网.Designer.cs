@@ -53,12 +53,12 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -297,24 +297,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据库信息";
             // 
-            // textBox5
+            // textBox7
             // 
-            this.textBox5.Font = new System.Drawing.Font("宋体", 10F);
-            this.textBox5.Location = new System.Drawing.Point(121, 77);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(135, 23);
-            this.textBox5.TabIndex = 325;
-            this.textBox5.Text = "datas";
+            this.textBox7.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox7.Location = new System.Drawing.Point(121, 135);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.PasswordChar = '*';
+            this.textBox7.Size = new System.Drawing.Size(135, 23);
+            this.textBox7.TabIndex = 329;
+            this.textBox7.Text = "root";
             // 
-            // label5
+            // label7
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("宋体", 10F);
-            this.label5.Location = new System.Drawing.Point(24, 80);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 14);
-            this.label5.TabIndex = 324;
-            this.label5.Text = "数据库名：";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 10F);
+            this.label7.Location = new System.Drawing.Point(24, 138);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 14);
+            this.label7.TabIndex = 328;
+            this.label7.Text = "密码：";
             // 
             // textBox6
             // 
@@ -335,25 +336,24 @@
             this.label6.TabIndex = 326;
             this.label6.Text = "账号：";
             // 
-            // textBox7
+            // textBox5
             // 
-            this.textBox7.Font = new System.Drawing.Font("宋体", 10F);
-            this.textBox7.Location = new System.Drawing.Point(121, 135);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.PasswordChar = '*';
-            this.textBox7.Size = new System.Drawing.Size(135, 23);
-            this.textBox7.TabIndex = 329;
-            this.textBox7.Text = "root";
+            this.textBox5.Font = new System.Drawing.Font("宋体", 10F);
+            this.textBox5.Location = new System.Drawing.Point(121, 77);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(135, 23);
+            this.textBox5.TabIndex = 325;
+            this.textBox5.Text = "datas";
             // 
-            // label7
+            // label5
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("宋体", 10F);
-            this.label7.Location = new System.Drawing.Point(24, 138);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 14);
-            this.label7.TabIndex = 328;
-            this.label7.Text = "密码：";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("宋体", 10F);
+            this.label5.Location = new System.Drawing.Point(24, 80);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 14);
+            this.label5.TabIndex = 324;
+            this.label5.Text = "数据库名：";
             // 
             // timer1
             // 
@@ -384,7 +384,7 @@
             this.Controls.Add(this.label1);
             this.Name = "药房网";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "药房网";
+            this.Text = "仅供学习交流，如作他用所承受的法律责任一概与作者无关(使用即代表你同意上述观点)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.药房网_FormClosing);
             this.Load += new System.EventHandler(this.药房网_Load);
             this.groupBox1.ResumeLayout(false);

@@ -72,8 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resources" />
-    <EmbeddedResource Include="校友邦.resources" />
-    <EmbeddedResource Include="校友邦_定时签到.resources" />
+    <EmbeddedResource Include="校友邦.resx">
+      <DependentUpon>校友邦.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="校友邦_定时签到.resx">
+      <DependentUpon>校友邦_定时签到.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

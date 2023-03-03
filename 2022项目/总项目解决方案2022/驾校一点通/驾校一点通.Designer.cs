@@ -196,7 +196,6 @@
             this.webView21.Size = new System.Drawing.Size(998, 587);
             this.webView21.TabIndex = 0;
             this.webView21.ZoomFactor = 1D;
-     
             this.webView21.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.webView21_NavigationCompleted);
             // 
             // 驾校一点通
@@ -210,7 +209,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "驾校一点通";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "驾校一点通";
+            this.Text = "仅供学习交流，如作他用所承受的法律责任一概与作者无关(使用即代表你同意上述观点)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.驾校一点通_FormClosing);
             this.Load += new System.EventHandler(this.驾校一点通_Load);
             this.groupBox1.ResumeLayout(false);
