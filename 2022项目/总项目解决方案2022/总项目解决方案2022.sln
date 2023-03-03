@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "天猫店铺采集", "天�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "驾校一点通", "驾校一点通\驾校一点通.csproj", "{14CE93D1-65E7-4372-B9AF-0EFA25C5E1F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "校友邦", "校友邦\校友邦.csproj", "{66737CBD-B149-48BA-9402-3564F71D2025}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -293,6 +295,18 @@ Global
 		{14CE93D1-65E7-4372-B9AF-0EFA25C5E1F2}.Release|x64.Build.0 = Release|Any CPU
 		{14CE93D1-65E7-4372-B9AF-0EFA25C5E1F2}.Release|x86.ActiveCfg = Release|Any CPU
 		{14CE93D1-65E7-4372-B9AF-0EFA25C5E1F2}.Release|x86.Build.0 = Release|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Debug|x64.Build.0 = Debug|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Debug|x86.Build.0 = Debug|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|x64.ActiveCfg = Release|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|x64.Build.0 = Release|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|x86.ActiveCfg = Release|Any CPU
+		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
