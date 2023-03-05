@@ -71,85 +71,7 @@ namespace 天猫店铺采集
 
         }
 
-        /// <summary>
-        /// 在宝贝栏搜 店铺名称
-        /// </summary>
-        public void run_shop()
-        {
-
-            List<string> list = new List<string>();
-            dics.Clear();
-
-          
-
-            try
-            {
-                DataTable dt = method.ExcelToDataTable(textBox5.Text, true);
-                for (int a = 0; a < dt.Rows.Count; a++)
-                {
-                    string keyword = dt.Rows[a][1].ToString().Trim();
-                    if (keyword.Trim() == "")
-                        continue;
-                  
-                        Thread.Sleep(1000);
-
-                    string token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
-                    int i = 1;
-
-                    string time = function.GetTimeStamp();
-                 
-                    //搜索宝贝
-                    string str = token + "&" + time + "&12574478&{\"appId\":\"29859\",\"params\":\"{\\\"isBeta\\\":\\\"false\\\",\\\"grayHair\\\":\\\"false\\\",\\\"appId\\\":\\\"29859\\\",\\\"from\\\":\\\"nt_history\\\",\\\"brand\\\":\\\"HUAWEI\\\",\\\"info\\\":\\\"wifi\\\",\\\"index\\\":\\\"4\\\",\\\"ttid\\\":\\\"600000@taobao_android_10.7.0\\\",\\\"needTabs\\\":\\\"true\\\",\\\"rainbow\\\":\\\"\\\",\\\"areaCode\\\":\\\"CN\\\",\\\"vm\\\":\\\"nw\\\",\\\"schemaType\\\":\\\"auction\\\",\\\"elderHome\\\":\\\"false\\\",\\\"device\\\":\\\"HMA-AL00\\\",\\\"isEnterSrpSearch\\\":\\\"true\\\",\\\"newSearch\\\":\\\"false\\\",\\\"network\\\":\\\"wifi\\\",\\\"subtype\\\":\\\"\\\",\\\"hasPreposeFilter\\\":\\\"false\\\",\\\"client_os\\\":\\\"Android\\\",\\\"gpsEnabled\\\":\\\"false\\\",\\\"searchDoorFrom\\\":\\\"srp\\\",\\\"debug_rerankNewOpenCard\\\":\\\"false\\\",\\\"homePageVersion\\\":\\\"v7\\\",\\\"searchElderHomeOpen\\\":\\\"false\\\",\\\"style\\\":\\\"wf\\\",\\\"page\\\":" + i + ",\\\"n\\\":\\\"10\\\",\\\"q\\\":\\\"" + keyword + "\\\",\\\"search_action\\\":\\\"initiative\\\",\\\"sugg\\\":\\\"_4_1\\\",\\\"m\\\":\\\"h5\\\",\\\"sversion\\\":\\\"13.6\\\",\\\"prepositionVersion\\\":\\\"v2\\\",\\\"tab\\\":\\\"all\\\",\\\"channelSrp\\\":\\\"newh5\\\",\\\"loc\\\":\\\"\\\",\\\"service\\\":\\\"mall\\\",\\\"prop\\\":\\\"\\\",\\\"end_price\\\":\\\"\\\",\\\"start_price\\\":\\\"\\\",\\\"catmap\\\":\\\"\\\",\\\"tagSearchKeyword\\\":null,\\\"sort\\\":\\\"_sale\\\",\\\"filterTag\\\":\\\"mall\\\",\\\"itemIds\\\":\\\"648262858563,661494105219,664878907879,665062689992,662935881512,662255029960,646495195222,660860368122,670443949890,660007612626\\\",\\\"itemS\\\":70}\"}";
-                    string sign = function.Md5_utf8(str);
-
-                    string url = "https://h5api.m.taobao.com/h5/mtop.relationrecommend.wirelessrecommend.recommend/2.0/?jsv=2.6.2&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.relationrecommend.WirelessRecommend.recommend&v=2.0&type=jsonp&dataType=jsonp&callback=mtopjsonp18&data=%7B%22appId%22%3A%2229859%22%2C%22params%22%3A%22%7B%5C%22isBeta%5C%22%3A%5C%22false%5C%22%2C%5C%22grayHair%5C%22%3A%5C%22false%5C%22%2C%5C%22appId%5C%22%3A%5C%2229859%5C%22%2C%5C%22from%5C%22%3A%5C%22nt_history%5C%22%2C%5C%22brand%5C%22%3A%5C%22HUAWEI%5C%22%2C%5C%22info%5C%22%3A%5C%22wifi%5C%22%2C%5C%22index%5C%22%3A%5C%224%5C%22%2C%5C%22ttid%5C%22%3A%5C%22600000%40taobao_android_10.7.0%5C%22%2C%5C%22needTabs%5C%22%3A%5C%22true%5C%22%2C%5C%22rainbow%5C%22%3A%5C%22%5C%22%2C%5C%22areaCode%5C%22%3A%5C%22CN%5C%22%2C%5C%22vm%5C%22%3A%5C%22nw%5C%22%2C%5C%22schemaType%5C%22%3A%5C%22auction%5C%22%2C%5C%22elderHome%5C%22%3A%5C%22false%5C%22%2C%5C%22device%5C%22%3A%5C%22HMA-AL00%5C%22%2C%5C%22isEnterSrpSearch%5C%22%3A%5C%22true%5C%22%2C%5C%22newSearch%5C%22%3A%5C%22false%5C%22%2C%5C%22network%5C%22%3A%5C%22wifi%5C%22%2C%5C%22subtype%5C%22%3A%5C%22%5C%22%2C%5C%22hasPreposeFilter%5C%22%3A%5C%22false%5C%22%2C%5C%22client_os%5C%22%3A%5C%22Android%5C%22%2C%5C%22gpsEnabled%5C%22%3A%5C%22false%5C%22%2C%5C%22searchDoorFrom%5C%22%3A%5C%22srp%5C%22%2C%5C%22debug_rerankNewOpenCard%5C%22%3A%5C%22false%5C%22%2C%5C%22homePageVersion%5C%22%3A%5C%22v7%5C%22%2C%5C%22searchElderHomeOpen%5C%22%3A%5C%22false%5C%22%2C%5C%22style%5C%22%3A%5C%22wf%5C%22%2C%5C%22page%5C%22%3A" + i + "%2C%5C%22n%5C%22%3A%5C%2210%5C%22%2C%5C%22q%5C%22%3A%5C%22" + System.Web.HttpUtility.UrlEncode(keyword) + "%5C%22%2C%5C%22search_action%5C%22%3A%5C%22initiative%5C%22%2C%5C%22sugg%5C%22%3A%5C%22_4_1%5C%22%2C%5C%22m%5C%22%3A%5C%22h5%5C%22%2C%5C%22sversion%5C%22%3A%5C%2213.6%5C%22%2C%5C%22prepositionVersion%5C%22%3A%5C%22v2%5C%22%2C%5C%22tab%5C%22%3A%5C%22all%5C%22%2C%5C%22channelSrp%5C%22%3A%5C%22newh5%5C%22%2C%5C%22loc%5C%22%3A%5C%22%5C%22%2C%5C%22service%5C%22%3A%5C%22mall%5C%22%2C%5C%22prop%5C%22%3A%5C%22%5C%22%2C%5C%22end_price%5C%22%3A%5C%22%5C%22%2C%5C%22start_price%5C%22%3A%5C%22%5C%22%2C%5C%22catmap%5C%22%3A%5C%22%5C%22%2C%5C%22tagSearchKeyword%5C%22%3Anull%2C%5C%22sort%5C%22%3A%5C%22_sale%5C%22%2C%5C%22filterTag%5C%22%3A%5C%22mall%5C%22%2C%5C%22itemIds%5C%22%3A%5C%22648262858563%2C661494105219%2C664878907879%2C665062689992%2C662935881512%2C662255029960%2C646495195222%2C660860368122%2C670443949890%2C660007612626%5C%22%2C%5C%22itemS%5C%22%3A70%7D%22%7D";
-
-                    string html = function.GetUrlWithCookie(url, reviewcookie, "utf-8");
-
-                    if (html.Contains("令牌过期"))
-                    {
-                        string cookiestr = function.getSetCookie(url);
-                        string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
-                        string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
-                        reviewcookie = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-                        token = Regex.Match(reviewcookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
-                        html = function.GetUrlWithCookie(url, reviewcookie, "utf-8");
-                    }
-                    html = Regex.Match(html, @"itemsArray"":\[([\s\S]*?)调用成功").Groups[1].Value;
-                    string sold = Regex.Match(html, @"""sold"":""([\s\S]*?)""").Groups[1].Value;
-                    string xinpin = "";
-                    if (html.Contains("新品"))
-                    {
-                        xinpin = "新品";
-                    }
-                   string userId = Regex.Match(html, @"""userId"":""([\s\S]*?)""").Groups[1].Value;
-                   string x_object_id = Regex.Match(html, @"""x_object_id"":""([\s\S]*?)""").Groups[1].Value;
-
-                    string commenttime = getcommenttime(userId,true);
-
-                    string[] commenttime2 = commenttime.Split(new string[] { "#" }, StringSplitOptions.None);
-
-                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
-                    lv1.SubItems.Add(keyword);
-
-                    lv1.SubItems.Add("https://detail.tmall.com/item.htm?id=" + x_object_id);
-                    lv1.SubItems.Add(dt.Rows[a][3].ToString());
-                    lv1.SubItems.Add(dt.Rows[a][4].ToString());
-                    lv1.SubItems.Add(sold);
-                    lv1.SubItems.Add(commenttime2[0]);
-                    lv1.SubItems.Add(xinpin);
-                    lv1.SubItems.Add(commenttime2[1]);
-                }
-
-                MessageBox.Show("完成");
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
+       
 
 
 
@@ -309,35 +231,47 @@ namespace 天猫店铺采集
 
                   
 
-                        for (int i = 1; i < 201; i++)
+                        for (int i = 10; i < 201; i++)
                     {
 
 
                       
-                        Thread.Sleep(2000);
+                        //Thread.Sleep(2000);
                        
                         string time = function.GetTimeStamp();
                         string keyword = text[a].Trim();
 
-                        
+
 
                         //搜索店铺
                         //string str = token+"&"+time+"&12574478&{\"appId\":\"30486\",\"params\":\"{\\\"chituGroupAlias\\\":\\\"zhouzhou_liantiao_final\\\",\\\"_viewlogs\\\":\\\"true\\\",\\\"viewlogs\\\":\\\"true\\\",\\\"debug_\\\":\\\"true\\\",\\\"solutionDebug\\\":\\\"true\\\",\\\"_debug\\\":\\\"true\\\",\\\"dcEnable\\\":\\\"true\\\",\\\"_switchers\\\":\\\"true\\\",\\\"_blendInfos\\\":\\\"true\\\",\\\"routerDebug\\\":\\\"true\\\",\\\"_DEBUG\\\":\\\"true\\\",\\\"debug\\\":\\\"true\\\",\\\"debug_rerankNewOpenCard\\\":\\\"false\\\",\\\"DEBUG\\\":\\\"true\\\",\\\"DEBUG_\\\":\\\"true\\\",\\\"viewlogs_\\\":\\\"true\\\",\\\"pvFeature\\\":\\\"654083998634;644832834668;668084343069;662334090942;665339768743;664390297378;664047381602\\\",\\\"tab\\\":\\\"shop\\\",\\\"grayHair\\\":\\\"false\\\",\\\"sversion\\\":\\\"13.7\\\",\\\"from\\\":\\\"input\\\",\\\"isBeta\\\":\\\"false\\\",\\\"brand\\\":\\\"HUAWEI\\\",\\\"info\\\":\\\"wifi\\\",\\\"client_for_bts\\\":\\\"client_android_view_preload:1000001\\\",\\\"ttid\\\":\\\"600000@taobao_android_10.8.0\\\",\\\"rainbow\\\":\\\"\\\",\\\"areaCode\\\":\\\"CN\\\",\\\"vm\\\":\\\"nw\\\",\\\"elderHome\\\":\\\"false\\\",\\\"style\\\":\\\"list\\\",\\\"page\\\":"+i+",\\\"device\\\":\\\"HMA-AL00\\\",\\\"editionCode\\\":\\\"CN\\\",\\\"cityCode\\\":\\\"110100\\\",\\\"countryNum\\\":\\\"156\\\",\\\"newSearch\\\":\\\"false\\\",\\\"chituBiz\\\":\\\"TaobaoPhoneSearch\\\",\\\"utd_id\\\":\\\"XYDZLfLy3ZQDAKmnYOhvIwW4\\\",\\\"network\\\":\\\"wifi\\\",\\\"hasPreposeFilter\\\":\\\"false\\\",\\\"client_os\\\":\\\"Android\\\",\\\"gpsEnabled\\\":\\\"true\\\",\\\"apptimestamp\\\":\\\"1655714609\\\",\\\"canP4pVideoPlay\\\":\\\"true\\\",\\\"homePageVersion\\\":\\\"v7\\\",\\\"searchElderHomeOpen\\\":\\\"false\\\",\\\"n\\\":\\\"10\\\",\\\"search_action\\\":\\\"initiative\\\",\\\"q\\\":\\\""+keyword+"\\\",\\\"tagSearchKeyword\\\":null,\\\"sort\\\":\\\"sale-asc\\\",\\\"filterTag\\\":\\\"mall\\\",\\\"prop\\\":\\\"\\\"}\"}"; ;
 
-                        //搜索宝贝
-                        string str = token + "&" + time + "&12574478&{\"appId\":\"29859\",\"params\":\"{\\\"isBeta\\\":\\\"false\\\",\\\"grayHair\\\":\\\"false\\\",\\\"appId\\\":\\\"29859\\\",\\\"from\\\":\\\"nt_history\\\",\\\"brand\\\":\\\"HUAWEI\\\",\\\"info\\\":\\\"wifi\\\",\\\"index\\\":\\\"4\\\",\\\"ttid\\\":\\\"600000@taobao_android_10.7.0\\\",\\\"needTabs\\\":\\\"true\\\",\\\"rainbow\\\":\\\"\\\",\\\"areaCode\\\":\\\"CN\\\",\\\"vm\\\":\\\"nw\\\",\\\"schemaType\\\":\\\"auction\\\",\\\"elderHome\\\":\\\"false\\\",\\\"device\\\":\\\"HMA-AL00\\\",\\\"isEnterSrpSearch\\\":\\\"true\\\",\\\"newSearch\\\":\\\"false\\\",\\\"network\\\":\\\"wifi\\\",\\\"subtype\\\":\\\"\\\",\\\"hasPreposeFilter\\\":\\\"false\\\",\\\"client_os\\\":\\\"Android\\\",\\\"gpsEnabled\\\":\\\"false\\\",\\\"searchDoorFrom\\\":\\\"srp\\\",\\\"debug_rerankNewOpenCard\\\":\\\"false\\\",\\\"homePageVersion\\\":\\\"v7\\\",\\\"searchElderHomeOpen\\\":\\\"false\\\",\\\"style\\\":\\\"wf\\\",\\\"page\\\":" + i + ",\\\"n\\\":\\\"10\\\",\\\"q\\\":\\\"" + keyword + "\\\",\\\"search_action\\\":\\\"initiative\\\",\\\"sugg\\\":\\\"_4_1\\\",\\\"m\\\":\\\"h5\\\",\\\"sversion\\\":\\\"13.6\\\",\\\"prepositionVersion\\\":\\\"v2\\\",\\\"tab\\\":\\\"all\\\",\\\"channelSrp\\\":\\\"newh5\\\",\\\"loc\\\":\\\"\\\",\\\"service\\\":\\\"mall\\\",\\\"prop\\\":\\\"\\\",\\\"end_price\\\":\\\"\\\",\\\"start_price\\\":\\\"\\\",\\\"catmap\\\":\\\"\\\",\\\"tagSearchKeyword\\\":null,\\\"sort\\\":\\\"_sale\\\",\\\"filterTag\\\":\\\"mall\\\",\\\"itemIds\\\":\\\"648262858563,661494105219,664878907879,665062689992,662935881512,662255029960,646495195222,660860368122,670443949890,660007612626\\\",\\\"itemS\\\":70}\"}";
+
+
+
+                        //搜索宝贝旧
+                        string str = token + "&" + time + "&12574478&{\"appId\":\"29859\",\"params\":\"{\\\"isBeta\\\":\\\"false\\\",\\\"grayHair\\\":\\\"false\\\",\\\"appId\\\":\\\"29859\\\",\\\"from\\\":\\\"nt_history\\\",\\\"brand\\\":\\\"HUAWEI\\\",\\\"info\\\":\\\"wifi\\\",\\\"index\\\":\\\"4\\\",\\\"ttid\\\":\\\"600000@taobao_android_10.7.0\\\",\\\"needTabs\\\":\\\"true\\\",\\\"rainbow\\\":\\\"\\\",\\\"areaCode\\\":\\\"CN\\\",\\\"vm\\\":\\\"nw\\\",\\\"schemaType\\\":\\\"auction\\\",\\\"elderHome\\\":\\\"false\\\",\\\"device\\\":\\\"HMA-AL00\\\",\\\"isEnterSrpSearch\\\":\\\"true\\\",\\\"newSearch\\\":\\\"false\\\",\\\"network\\\":\\\"wifi\\\",\\\"subtype\\\":\\\"\\\",\\\"hasPreposeFilter\\\":\\\"false\\\",\\\"client_os\\\":\\\"Android\\\",\\\"gpsEnabled\\\":\\\"false\\\",\\\"searchDoorFrom\\\":\\\"srp\\\",\\\"debug_rerankNewOpenCard\\\":\\\"false\\\",\\\"homePageVersion\\\":\\\"v7\\\",\\\"searchElderHomeOpen\\\":\\\"false\\\",\\\"style\\\":\\\"wf\\\",\\\"page\\\":" + i + ",\\\"n\\\":\\\"10\\\",\\\"q\\\":\\\"" + keyword + "\\\",\\\"search_action\\\":\\\"initiative\\\",\\\"sugg\\\":\\\"_4_1\\\",\\\"m\\\":\\\"h5\\\",\\\"sversion\\\":\\\"13.6\\\",\\\"prepositionVersion\\\":\\\"v2\\\",\\\"tab\\\":\\\"all\\\",\\\"channelSrp\\\":\\\"newh5\\\",\\\"loc\\\":\\\"\\\",\\\"service\\\":\\\"mall\\\",\\\"prop\\\":\\\"\\\",\\\"end_price\\\":\\\"\\\",\\\"start_price\\\":\\\"\\\",\\\"catmap\\\":\\\"\\\",\\\"tagSearchKeyword\\\":null,\\\"sort\\\":\\\"bid\\\",\\\"filterTag\\\":\\\"mall\\\",\\\"itemIds\\\":\\\"648262858563,661494105219,664878907879,665062689992,662935881512,662255029960,646495195222,660860368122,670443949890,660007612626\\\",\\\"itemS\\\":70}\"}";
+
+
+
+
+
+                        //bid _sale
                         string sign = function.Md5_utf8(str);
-
-
+                        
                         //搜索店铺
                         //string url = "https://h5api.m.taobao.com/h5/mtop.relationrecommend.wirelessrecommend.recommend/2.0/?jsv=2.6.2&appKey=12574478&t="+time+"&sign="+sign+"&api=mtop.relationrecommend.WirelessRecommend.recommend&v=2.0&type=jsonp&dataType=jsonp&callback=mtopjsonp4&data=%7B%22appId%22%3A%2230486%22%2C%22params%22%3A%22%7B%5C%22chituGroupAlias%5C%22%3A%5C%22zhouzhou_liantiao_final%5C%22%2C%5C%22_viewlogs%5C%22%3A%5C%22true%5C%22%2C%5C%22viewlogs%5C%22%3A%5C%22true%5C%22%2C%5C%22debug_%5C%22%3A%5C%22true%5C%22%2C%5C%22solutionDebug%5C%22%3A%5C%22true%5C%22%2C%5C%22_debug%5C%22%3A%5C%22true%5C%22%2C%5C%22dcEnable%5C%22%3A%5C%22true%5C%22%2C%5C%22_switchers%5C%22%3A%5C%22true%5C%22%2C%5C%22_blendInfos%5C%22%3A%5C%22true%5C%22%2C%5C%22routerDebug%5C%22%3A%5C%22true%5C%22%2C%5C%22_DEBUG%5C%22%3A%5C%22true%5C%22%2C%5C%22debug%5C%22%3A%5C%22true%5C%22%2C%5C%22debug_rerankNewOpenCard%5C%22%3A%5C%22false%5C%22%2C%5C%22DEBUG%5C%22%3A%5C%22true%5C%22%2C%5C%22DEBUG_%5C%22%3A%5C%22true%5C%22%2C%5C%22viewlogs_%5C%22%3A%5C%22true%5C%22%2C%5C%22pvFeature%5C%22%3A%5C%22654083998634%3B644832834668%3B668084343069%3B662334090942%3B665339768743%3B664390297378%3B664047381602%5C%22%2C%5C%22tab%5C%22%3A%5C%22shop%5C%22%2C%5C%22grayHair%5C%22%3A%5C%22false%5C%22%2C%5C%22sversion%5C%22%3A%5C%2213.7%5C%22%2C%5C%22from%5C%22%3A%5C%22input%5C%22%2C%5C%22isBeta%5C%22%3A%5C%22false%5C%22%2C%5C%22brand%5C%22%3A%5C%22HUAWEI%5C%22%2C%5C%22info%5C%22%3A%5C%22wifi%5C%22%2C%5C%22client_for_bts%5C%22%3A%5C%22client_android_view_preload%3A1000001%5C%22%2C%5C%22ttid%5C%22%3A%5C%22600000%40taobao_android_10.8.0%5C%22%2C%5C%22rainbow%5C%22%3A%5C%22%5C%22%2C%5C%22areaCode%5C%22%3A%5C%22CN%5C%22%2C%5C%22vm%5C%22%3A%5C%22nw%5C%22%2C%5C%22elderHome%5C%22%3A%5C%22false%5C%22%2C%5C%22style%5C%22%3A%5C%22list%5C%22%2C%5C%22page%5C%22%3A"+i+"%2C%5C%22device%5C%22%3A%5C%22HMA-AL00%5C%22%2C%5C%22editionCode%5C%22%3A%5C%22CN%5C%22%2C%5C%22cityCode%5C%22%3A%5C%22110100%5C%22%2C%5C%22countryNum%5C%22%3A%5C%22156%5C%22%2C%5C%22newSearch%5C%22%3A%5C%22false%5C%22%2C%5C%22chituBiz%5C%22%3A%5C%22TaobaoPhoneSearch%5C%22%2C%5C%22utd_id%5C%22%3A%5C%22XYDZLfLy3ZQDAKmnYOhvIwW4%5C%22%2C%5C%22network%5C%22%3A%5C%22wifi%5C%22%2C%5C%22hasPreposeFilter%5C%22%3A%5C%22false%5C%22%2C%5C%22client_os%5C%22%3A%5C%22Android%5C%22%2C%5C%22gpsEnabled%5C%22%3A%5C%22true%5C%22%2C%5C%22apptimestamp%5C%22%3A%5C%221655714609%5C%22%2C%5C%22canP4pVideoPlay%5C%22%3A%5C%22true%5C%22%2C%5C%22homePageVersion%5C%22%3A%5C%22v7%5C%22%2C%5C%22searchElderHomeOpen%5C%22%3A%5C%22false%5C%22%2C%5C%22n%5C%22%3A%5C%2210%5C%22%2C%5C%22search_action%5C%22%3A%5C%22initiative%5C%22%2C%5C%22q%5C%22%3A%5C%22"+ System.Web.HttpUtility.UrlEncode(keyword) + "%5C%22%2C%5C%22tagSearchKeyword%5C%22%3Anull%2C%5C%22sort%5C%22%3A%5C%22sale-asc%5C%22%2C%5C%22filterTag%5C%22%3A%5C%22mall%5C%22%2C%5C%22prop%5C%22%3A%5C%22%5C%22%7D%22%7D";
 
-                        string url = "https://h5api.m.taobao.com/h5/mtop.relationrecommend.wirelessrecommend.recommend/2.0/?jsv=2.6.2&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.relationrecommend.WirelessRecommend.recommend&v=2.0&type=jsonp&dataType=jsonp&callback=mtopjsonp18&data=%7B%22appId%22%3A%2229859%22%2C%22params%22%3A%22%7B%5C%22isBeta%5C%22%3A%5C%22false%5C%22%2C%5C%22grayHair%5C%22%3A%5C%22false%5C%22%2C%5C%22appId%5C%22%3A%5C%2229859%5C%22%2C%5C%22from%5C%22%3A%5C%22nt_history%5C%22%2C%5C%22brand%5C%22%3A%5C%22HUAWEI%5C%22%2C%5C%22info%5C%22%3A%5C%22wifi%5C%22%2C%5C%22index%5C%22%3A%5C%224%5C%22%2C%5C%22ttid%5C%22%3A%5C%22600000%40taobao_android_10.7.0%5C%22%2C%5C%22needTabs%5C%22%3A%5C%22true%5C%22%2C%5C%22rainbow%5C%22%3A%5C%22%5C%22%2C%5C%22areaCode%5C%22%3A%5C%22CN%5C%22%2C%5C%22vm%5C%22%3A%5C%22nw%5C%22%2C%5C%22schemaType%5C%22%3A%5C%22auction%5C%22%2C%5C%22elderHome%5C%22%3A%5C%22false%5C%22%2C%5C%22device%5C%22%3A%5C%22HMA-AL00%5C%22%2C%5C%22isEnterSrpSearch%5C%22%3A%5C%22true%5C%22%2C%5C%22newSearch%5C%22%3A%5C%22false%5C%22%2C%5C%22network%5C%22%3A%5C%22wifi%5C%22%2C%5C%22subtype%5C%22%3A%5C%22%5C%22%2C%5C%22hasPreposeFilter%5C%22%3A%5C%22false%5C%22%2C%5C%22client_os%5C%22%3A%5C%22Android%5C%22%2C%5C%22gpsEnabled%5C%22%3A%5C%22false%5C%22%2C%5C%22searchDoorFrom%5C%22%3A%5C%22srp%5C%22%2C%5C%22debug_rerankNewOpenCard%5C%22%3A%5C%22false%5C%22%2C%5C%22homePageVersion%5C%22%3A%5C%22v7%5C%22%2C%5C%22searchElderHomeOpen%5C%22%3A%5C%22false%5C%22%2C%5C%22style%5C%22%3A%5C%22wf%5C%22%2C%5C%22page%5C%22%3A" + i + "%2C%5C%22n%5C%22%3A%5C%2210%5C%22%2C%5C%22q%5C%22%3A%5C%22" + System.Web.HttpUtility.UrlEncode(keyword) + "%5C%22%2C%5C%22search_action%5C%22%3A%5C%22initiative%5C%22%2C%5C%22sugg%5C%22%3A%5C%22_4_1%5C%22%2C%5C%22m%5C%22%3A%5C%22h5%5C%22%2C%5C%22sversion%5C%22%3A%5C%2213.6%5C%22%2C%5C%22prepositionVersion%5C%22%3A%5C%22v2%5C%22%2C%5C%22tab%5C%22%3A%5C%22all%5C%22%2C%5C%22channelSrp%5C%22%3A%5C%22newh5%5C%22%2C%5C%22loc%5C%22%3A%5C%22%5C%22%2C%5C%22service%5C%22%3A%5C%22mall%5C%22%2C%5C%22prop%5C%22%3A%5C%22%5C%22%2C%5C%22end_price%5C%22%3A%5C%22%5C%22%2C%5C%22start_price%5C%22%3A%5C%22%5C%22%2C%5C%22catmap%5C%22%3A%5C%22%5C%22%2C%5C%22tagSearchKeyword%5C%22%3Anull%2C%5C%22sort%5C%22%3A%5C%22_sale%5C%22%2C%5C%22filterTag%5C%22%3A%5C%22mall%5C%22%2C%5C%22itemIds%5C%22%3A%5C%22648262858563%2C661494105219%2C664878907879%2C665062689992%2C662935881512%2C662255029960%2C646495195222%2C660860368122%2C670443949890%2C660007612626%5C%22%2C%5C%22itemS%5C%22%3A70%7D%22%7D";
+
+                        //搜索宝贝旧
+
+                        string url = "https://h5api.m.taobao.com/h5/mtop.relationrecommend.wirelessrecommend.recommend/2.0/?jsv=2.6.2&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.relationrecommend.WirelessRecommend.recommend&v=2.0&type=jsonp&dataType=jsonp&callback=mtopjsonp18&data=%7B%22appId%22%3A%2229859%22%2C%22params%22%3A%22%7B%5C%22isBeta%5C%22%3A%5C%22false%5C%22%2C%5C%22grayHair%5C%22%3A%5C%22false%5C%22%2C%5C%22appId%5C%22%3A%5C%2229859%5C%22%2C%5C%22from%5C%22%3A%5C%22nt_history%5C%22%2C%5C%22brand%5C%22%3A%5C%22HUAWEI%5C%22%2C%5C%22info%5C%22%3A%5C%22wifi%5C%22%2C%5C%22index%5C%22%3A%5C%224%5C%22%2C%5C%22ttid%5C%22%3A%5C%22600000%40taobao_android_10.7.0%5C%22%2C%5C%22needTabs%5C%22%3A%5C%22true%5C%22%2C%5C%22rainbow%5C%22%3A%5C%22%5C%22%2C%5C%22areaCode%5C%22%3A%5C%22CN%5C%22%2C%5C%22vm%5C%22%3A%5C%22nw%5C%22%2C%5C%22schemaType%5C%22%3A%5C%22auction%5C%22%2C%5C%22elderHome%5C%22%3A%5C%22false%5C%22%2C%5C%22device%5C%22%3A%5C%22HMA-AL00%5C%22%2C%5C%22isEnterSrpSearch%5C%22%3A%5C%22true%5C%22%2C%5C%22newSearch%5C%22%3A%5C%22false%5C%22%2C%5C%22network%5C%22%3A%5C%22wifi%5C%22%2C%5C%22subtype%5C%22%3A%5C%22%5C%22%2C%5C%22hasPreposeFilter%5C%22%3A%5C%22false%5C%22%2C%5C%22client_os%5C%22%3A%5C%22Android%5C%22%2C%5C%22gpsEnabled%5C%22%3A%5C%22false%5C%22%2C%5C%22searchDoorFrom%5C%22%3A%5C%22srp%5C%22%2C%5C%22debug_rerankNewOpenCard%5C%22%3A%5C%22false%5C%22%2C%5C%22homePageVersion%5C%22%3A%5C%22v7%5C%22%2C%5C%22searchElderHomeOpen%5C%22%3A%5C%22false%5C%22%2C%5C%22style%5C%22%3A%5C%22wf%5C%22%2C%5C%22page%5C%22%3A" + i + "%2C%5C%22n%5C%22%3A%5C%2210%5C%22%2C%5C%22q%5C%22%3A%5C%22" + System.Web.HttpUtility.UrlEncode(keyword) + "%5C%22%2C%5C%22search_action%5C%22%3A%5C%22initiative%5C%22%2C%5C%22sugg%5C%22%3A%5C%22_4_1%5C%22%2C%5C%22m%5C%22%3A%5C%22h5%5C%22%2C%5C%22sversion%5C%22%3A%5C%2213.6%5C%22%2C%5C%22prepositionVersion%5C%22%3A%5C%22v2%5C%22%2C%5C%22tab%5C%22%3A%5C%22all%5C%22%2C%5C%22channelSrp%5C%22%3A%5C%22newh5%5C%22%2C%5C%22loc%5C%22%3A%5C%22%5C%22%2C%5C%22service%5C%22%3A%5C%22mall%5C%22%2C%5C%22prop%5C%22%3A%5C%22%5C%22%2C%5C%22end_price%5C%22%3A%5C%22%5C%22%2C%5C%22start_price%5C%22%3A%5C%22%5C%22%2C%5C%22catmap%5C%22%3A%5C%22%5C%22%2C%5C%22tagSearchKeyword%5C%22%3Anull%2C%5C%22sort%5C%22%3A%5C%22bid%5C%22%2C%5C%22filterTag%5C%22%3A%5C%22mall%5C%22%2C%5C%22itemIds%5C%22%3A%5C%22648262858563%2C661494105219%2C664878907879%2C665062689992%2C662935881512%2C662255029960%2C646495195222%2C660860368122%2C670443949890%2C660007612626%5C%22%2C%5C%22itemS%5C%22%3A70%7D%22%7D";
 
 
 
                         string html = function.GetUrlWithCookie(url, reviewcookie, "utf-8");
-                        //textBox4.Text = html;
+                       
+                      
                         if (html.Contains("令牌过期"))
                         {
                             string cookiestr = function.getSetCookie(url);
@@ -360,11 +294,12 @@ namespace 天猫店铺采集
                         MatchCollection x_object_id = Regex.Matches(html, @"""x_object_id"":""([\s\S]*?)""");
                         MatchCollection sold = Regex.Matches(html, @"""sold"":""([\s\S]*?)""");
 
-                       
-                        //if(title.Count==0)
-                        //{
-                        //   break;
-                        //}
+
+                        if (title.Count == 0)
+                        {
+                            Thread.Sleep(5000);
+                            break;
+                        }
 
                         for (int j = 0; j < title.Count; j++)
                         {
@@ -394,8 +329,8 @@ namespace 天猫店铺采集
                                     if (sold1 != "")
                                     {
                                         string[] aaa = sold1.Split(new string[] { "," }, StringSplitOptions.None);
-
-                                        if(aaa[0].Trim()=="")
+                                       
+                                        if (aaa[0].Trim()=="")
                                         {
                                             continue;
                                         }
@@ -405,7 +340,7 @@ namespace 天猫店铺采集
                                         {
                                             if (!list.Contains(shopname))
                                             {
-                                                commenttime = getcommenttime(userid,false);
+                                               // commenttime = getcommenttime(userid,false);
 
 
                                                
@@ -424,9 +359,25 @@ namespace 天猫店铺采集
                                                
                                             }
                                         }
+
+                                        
+                                        //店铺销量小于10的加上去
+                                        else if(Convert.ToInt32(aaa[0])<=10)
+                                        {
+                                            list.Add(shopname);
+                                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
+                                            lv1.SubItems.Add(shopname);
+                                            //lv1.SubItems.Add("https://shop.m.taobao.com/shop/shop_index.htm?user_id=" + userId[j].Groups[1].Value);
+                                            lv1.SubItems.Add("https://detail.tmall.com/item.htm?id=" + x_object_id[j].Groups[1].Value);
+                                            lv1.SubItems.Add(goodsold);
+                                            lv1.SubItems.Add(keyword);
+                                            lv1.SubItems.Add("0");
+                                            lv1.SubItems.Add(commenttime);
+                                            lv1.SubItems.Add(aaa[1]);
+                                        }
                                         else
                                         {
-                                            textBox4.Text += DateTime.Now.ToString("HH:mm:dd") + "->" + keyword + " " + shopname + " 店铺销量：" + sold1 + " 不符合要求跳过..." + "\r\n";
+                                            textBox4.Text += DateTime.Now.ToString("HH:mm:dd") + "->页码" + i + "  " + keyword + " " + shopname + " 店铺销量：" + sold1 + " 不符合要求跳过..." + "\r\n";
                                         }
 
                                     }
@@ -438,7 +389,7 @@ namespace 天猫店铺采集
                                     {
                                         textBox4.Text = "";
                                     }
-                                    textBox4.Text += DateTime.Now.ToString("HH:mm:dd") + "->" +keyword+" "+ shopname + " 商品销量：" + goodsold + " 不符合要求跳过..." + "\r\n";
+                                    textBox4.Text += DateTime.Now.ToString("HH:mm:dd") + "->页码"+ i+"  "+keyword+" "+ shopname + " 商品销量：" + goodsold + " 不符合要求跳过..." + "\r\n";
                                 }
 
 
