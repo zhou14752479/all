@@ -174,12 +174,14 @@ namespace 校友邦
 									goto IL_90C;
 								}
 							}
-							bool flag7 = array[4] == "true";
-							if (flag7)
-							{
-								bool flag8 = array[5] == "dan";
-								if (flag8)
-								{
+
+                            //if (array[4] == "true") //周末是否签到
+                            if (array[4] == "1") //周末是否签到
+                            {
+
+                                //if (array[5] == "dan")  //单双周签到
+                                if (array[5] == "1")
+                                {
 									bool flag9 = Convert.ToInt32(DateTime.Now.DayOfWeek) == 2 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 4 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 6 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 0;
 									if (flag9)
 									{
@@ -187,9 +189,10 @@ namespace 校友邦
 										goto IL_90C;
 									}
 								}
-								bool flag10 = array[5] == "shuang";
-								if (flag10)
-								{
+
+                                //if (array[5] == "shuang")
+                                if (array[5] == "2")
+                                {
 									bool flag11 = Convert.ToInt32(DateTime.Now.DayOfWeek) == 1 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 3 || Convert.ToInt32(DateTime.Now.DayOfWeek) == 5;
 									if (flag11)
 									{
@@ -292,6 +295,7 @@ namespace 校友邦
 										}
 									}
 									string str3 = this.qiandao(text10, text3, traineeId);
+									
 									this.listView1.Items[i].SubItems[8].Text = str + "  " + str3;
 								}
 							}

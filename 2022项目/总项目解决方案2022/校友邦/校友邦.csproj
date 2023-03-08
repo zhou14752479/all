@@ -6,12 +6,13 @@
     <ProjectGuid>{66737CBD-B149-48BA-9402-3564F71D2025}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>校友邦</RootNamespace>
-    <AssemblyName>校友邦</AssemblyName>
+    <RootNamespace>校友聚会</RootNamespace>
+    <AssemblyName>校友聚会</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <StartupObject>校友邦.Program</StartupObject>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

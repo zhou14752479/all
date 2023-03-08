@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202106", "..\..\20
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView2", "WebView2\WebView2.csproj", "{E97C35F4-5E9F-4A81-9452-0CE897D2306D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "地图营销", "..\..\2021项目\总项目解决方案2021\项目集合\地图营销\地图营销.csproj", "{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEF主程序", "..\..\2021项目\总项目解决方案2021\CEF主程序\CEF主程序.csproj", "{0CE507C1-D9F1-417F-B6CE-4C596FE31256}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "客户美团", "..\..\2021项目\总项目解决方案2021\项目集合\客户美团\客户美团.csproj", "{8CEFDCD2-D773-45BA-822D-096ABB6DFE3C}"
@@ -44,6 +42,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "驾校一点通", "驾校一点通\驾校一点通.csproj", "{14CE93D1-65E7-4372-B9AF-0EFA25C5E1F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "校友邦", "校友邦\校友邦.csproj", "{66737CBD-B149-48BA-9402-3564F71D2025}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "地图营销", "..\..\2021项目\总项目解决方案2021\项目集合\地图营销\地图营销.csproj", "{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,18 +127,6 @@ Global
 		{E97C35F4-5E9F-4A81-9452-0CE897D2306D}.Release|x64.Build.0 = Release|Any CPU
 		{E97C35F4-5E9F-4A81-9452-0CE897D2306D}.Release|x86.ActiveCfg = Release|Any CPU
 		{E97C35F4-5E9F-4A81-9452-0CE897D2306D}.Release|x86.Build.0 = Release|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Debug|x64.Build.0 = Debug|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Debug|x86.Build.0 = Debug|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Release|x64.ActiveCfg = Release|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Release|x64.Build.0 = Release|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Release|x86.ActiveCfg = Release|Any CPU
-		{D926D2C7-4AC0-4BF6-AEF3-5C35D0C38057}.Release|x86.Build.0 = Release|Any CPU
 		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CE507C1-D9F1-417F-B6CE-4C596FE31256}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -307,6 +295,18 @@ Global
 		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|x64.Build.0 = Release|Any CPU
 		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|x86.ActiveCfg = Release|Any CPU
 		{66737CBD-B149-48BA-9402-3564F71D2025}.Release|x86.Build.0 = Release|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Debug|x64.Build.0 = Debug|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Debug|x86.Build.0 = Debug|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|x64.ActiveCfg = Release|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|x64.Build.0 = Release|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|x86.ActiveCfg = Release|Any CPU
+		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

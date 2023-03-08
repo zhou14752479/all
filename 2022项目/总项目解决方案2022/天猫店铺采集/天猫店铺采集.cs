@@ -361,20 +361,20 @@ namespace 天猫店铺采集
                                         }
 
                                         
-                                        //店铺销量小于10的加上去
-                                        else if(Convert.ToInt32(aaa[0])<=10)
-                                        {
-                                            list.Add(shopname);
-                                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
-                                            lv1.SubItems.Add(shopname);
-                                            //lv1.SubItems.Add("https://shop.m.taobao.com/shop/shop_index.htm?user_id=" + userId[j].Groups[1].Value);
-                                            lv1.SubItems.Add("https://detail.tmall.com/item.htm?id=" + x_object_id[j].Groups[1].Value);
-                                            lv1.SubItems.Add(goodsold);
-                                            lv1.SubItems.Add(keyword);
-                                            lv1.SubItems.Add("0");
-                                            lv1.SubItems.Add(commenttime);
-                                            lv1.SubItems.Add(aaa[1]);
-                                        }
+                                        ////店铺销量小于10的加上去
+                                        //else if(Convert.ToInt32(aaa[0])<=10)
+                                        //{
+                                        //    list.Add(shopname);
+                                        //    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
+                                        //    lv1.SubItems.Add(shopname);
+                                        //    //lv1.SubItems.Add("https://shop.m.taobao.com/shop/shop_index.htm?user_id=" + userId[j].Groups[1].Value);
+                                        //    lv1.SubItems.Add("https://detail.tmall.com/item.htm?id=" + x_object_id[j].Groups[1].Value);
+                                        //    lv1.SubItems.Add(goodsold);
+                                        //    lv1.SubItems.Add(keyword);
+                                        //    lv1.SubItems.Add("0");
+                                        //    lv1.SubItems.Add(commenttime);
+                                        //    lv1.SubItems.Add(aaa[1]);
+                                        //}
                                         else
                                         {
                                             textBox4.Text += DateTime.Now.ToString("HH:mm:dd") + "->页码" + i + "  " + keyword + " " + shopname + " 店铺销量：" + sold1 + " 不符合要求跳过..." + "\r\n";

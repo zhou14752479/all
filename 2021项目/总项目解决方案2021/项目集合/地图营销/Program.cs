@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace 地图营销
 {
-    static class Program
-    {
-        /// <summary>
-        /// 应用程序的主入口点。
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 地图采集());
-        }
-    }
+	// Token: 0x02000004 RID: 4
+	internal static class Program
+	{
+		// Token: 0x0600002D RID: 45 RVA: 0x000070A8 File Offset: 0x000052A8
+		[STAThread]
+		private static void Main()
+		{
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new 地图采集());
+		}
+	}
 }
