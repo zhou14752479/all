@@ -231,7 +231,7 @@ namespace 天猫店铺采集
 
                   
 
-                        for (int i = 10; i < 201; i++)
+                        for (int i = 1; i < 201; i++)
                     {
 
 
