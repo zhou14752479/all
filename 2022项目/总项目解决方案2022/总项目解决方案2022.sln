@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "校友邦", "校友邦\校�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "地图营销", "..\..\2021项目\总项目解决方案2021\项目集合\地图营销\地图营销.csproj", "{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "快递超市", "..\..\2021项目\总项目解决方案2021\项目集合\快递超市\快递超市.csproj", "{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -307,6 +309,18 @@ Global
 		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|x64.Build.0 = Release|Any CPU
 		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|x86.ActiveCfg = Release|Any CPU
 		{4BFAC2D9-AED2-4CF5-A31F-D109290D063C}.Release|x86.Build.0 = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|x64.Build.0 = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Debug|x86.Build.0 = Debug|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|x64.Build.0 = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|x86.ActiveCfg = Release|Any CPU
+		{2D8F3BCD-F268-48B5-BA62-B8AFBAFB51D6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

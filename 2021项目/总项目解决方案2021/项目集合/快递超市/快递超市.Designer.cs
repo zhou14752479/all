@@ -39,6 +39,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -64,7 +65,6 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -202,6 +202,16 @@
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "业务记录---数据抓取";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(400, 93);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(69, 72);
+            this.button4.TabIndex = 70;
+            this.button4.Text = "获取全号出库管理";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label5
             // 
@@ -401,16 +411,6 @@
             this.columnHeader9.Text = "出库时间";
             this.columnHeader9.Width = 100;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(400, 93);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(69, 72);
-            this.button4.TabIndex = 70;
-            this.button4.Text = "获取全号出库管理";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // 快递超市
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -420,7 +420,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "快递超市";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "快递超市";
+            this.Text = "kdcs 仅供学习交流，如作他用所承受的法律责任一概与作者无关(使用即代表你同意上述观点)";
             this.Load += new System.EventHandler(this.快递超市_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
