@@ -403,8 +403,8 @@ namespace 天猫店铺采集
                             }
                             catch (Exception ex)
                             {
-
-                                MessageBox.Show(ex.ToString());
+                                continue;
+                                //MessageBox.Show(ex.ToString());
                             }
                         }
 
@@ -422,7 +422,7 @@ namespace 天猫店铺采集
             }
             catch (Exception ex)
             {
-
+                
                 MessageBox.Show(ex.ToString());
             }
 
