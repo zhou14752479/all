@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.Logging;
 using myDLL;
 
 namespace 校友邦
@@ -247,6 +248,7 @@ namespace 校友邦
 								}
 							}
 							string text10 = this.fc.login(text, text2);
+							
 							bool flag19 = text10 == "";
 							if (flag19)
 							{
@@ -275,28 +277,30 @@ namespace 校友邦
 										}
 									}
 									string str2 = this.qiandao(text10, text3, traineeId);
+
+									
 									this.listView1.Items[i].SubItems[7].Text = str + "  " + str2;
 								}
 								bool flag23 = this.fc.status == "1" && !text8.Contains("success");
 								if (flag23)
 								{
-									bool flag24 = this.pics.Contains(text);
-									if (flag24)
-									{
-										string myma2 = this.fc.getmyma(text10, traineeId);
-										bool flag25 = this.listView1.Items[i].SubItems[0].Text.Contains("集中实习");
-										if (flag25)
-										{
-											str = this.fc.shangchuanmaandtravelCodeImg(text10, myma2);
-										}
-										else
-										{
-											str = this.fc.shangchuanma(text10, myma2);
-										}
-									}
+									//bool flag24 = this.pics.Contains(text);
+									//if (flag24)
+									//{
+									//	string myma2 = this.fc.getmyma(text10, traineeId);
+									//	bool flag25 = this.listView1.Items[i].SubItems[0].Text.Contains("集中实习");
+									//	if (flag25)
+									//	{
+									//		str = this.fc.shangchuanmaandtravelCodeImg(text10, myma2);
+									//	}
+									//	else
+									//	{
+									//		str = this.fc.shangchuanma(text10, myma2);
+									//	}
+									//}
 									string str3 = this.qiandao(text10, text3, traineeId);
-									
-									this.listView1.Items[i].SubItems[8].Text = str + "  " + str3;
+                                    
+                                    this.listView1.Items[i].SubItems[8].Text = str + "  " + str3;
 								}
 							}
 						}
@@ -423,34 +427,43 @@ namespace 校友邦
 				string postData = "traineeId=" + traineeId;
 				string input = function.PostUrl(url, postData, cookie, "utf-8", "application/x-www-form-urlencoded", "");
 				string text = Regex.Match(input, "\"address\":\"([\\s\\S]*?)\"").Groups[1].Value.Trim();
-				string text2 = Regex.Match(input, "\"lat\":([\\s\\S]*?),").Groups[1].Value.Trim();
-				string text3 = Regex.Match(input, "\"lng\":([\\s\\S]*?),").Groups[1].Value.Trim();
+				string lat = Regex.Match(input, "\"lat\":([\\s\\S]*?),").Groups[1].Value.Trim();
+				string lng = Regex.Match(input, "\"lng\":([\\s\\S]*?),").Groups[1].Value.Trim();
 				bool flag = text.Trim() == "";
 				if (flag)
 				{
 					text = HttpUtility.UrlEncode(addr);
 					string url2 = "https://api.map.baidu.com/geocoding/v3/?address=" + text + "&output=json&ak=9DemeyQjUrIX14Fz8uEwVpGyKErUP4Sb&callback=showLocation";
 					string url3 = myDLL.method.GetUrl(url2, "utf-8");
-					text2 = Regex.Match(url3, "lat\":([\\s\\S]*?)}").Groups[1].Value.Trim();
-					text3 = Regex.Match(url3, "lng\":([\\s\\S]*?),").Groups[1].Value.Trim();
+                    lat = Regex.Match(url3, "lat\":([\\s\\S]*?)}").Groups[1].Value.Trim();
+                    lng = Regex.Match(url3, "lng\":([\\s\\S]*?),").Groups[1].Value.Trim();
 				}
-				string text4 = this.fc.getadcode(text3, text2);
+				string adcode = this.fc.getadcode(lng, lat);
 				string url4 = "https://xcx.xybsyw.com/student/clock/PostNew.action";
+
+				if(adcode == ""&& lat == "" && lng == "")
+				{
+                    adcode = "130110";
+                    lat = "38.159145 ";
+                    lng = "114.33003";
+                }
 				string postData2 = string.Concat(new string[]
 				{
-					"model=microsoft&brand=microsoft&platform=windows&traineeId=",
+                    "model=iPhone%2013%3CiPhone14%2C5%3E&brand=iPhone&platform=ios&system=iOS%2016.1&traineeId=",
 					traineeId,
-					"&adcode=",
-					text4,
+                    
+                    "&adcode=",
+                    adcode,
 					"&lat=",
-					text2,
+                    lat,
 					"&lng=",
-					text3,
+                    lng,
 					"&address=",
 					text,
-					"&deviceName=microsoft&punchInStatus=1&clockStatus=",
+                    "&deviceName=iPhone%2013%3CiPhone14%2C5%3E&punchInStatus=1&clockStatus=",
 					this.fc.status
 				});
+				//MessageBox.Show(postData2);
 				bool flag2 = text.Contains("%");
 				if (flag2)
 				{
@@ -460,9 +473,9 @@ namespace 校友邦
 				IAsyncResult asyncResult = base.BeginInvoke(method, new object[]
 				{
 					traineeId,
-					text4,
-					text2,
-					text3,
+                    adcode,
+                    lat,
+                    lng,
 					text,
 					this.fc.status
 				});
