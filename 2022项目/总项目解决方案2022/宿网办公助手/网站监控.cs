@@ -486,8 +486,8 @@ namespace 宿网办公助手
         public static int tiaoshu=5;
         public static string wxid = "";
 
-        public static string shengyin = "True";
-        public static string tanchuang = "True";
+        public static string shengyin = "False";
+        public static string tanchuang = "False";
 
         private void 网站监控_Load(object sender, EventArgs e)
         {
@@ -504,8 +504,8 @@ namespace 宿网办公助手
                     IniWriteValue("values", "time_refresh", "1");
                     IniWriteValue("values", "tiaoshu", "5");
                     IniWriteValue("values", "mail", "852266010@qq.com");
-                    IniWriteValue("values", "shengyin", "true");
-                    IniWriteValue("values", "tanchuang", "true");
+                    IniWriteValue("values", "shengyin", "False");
+                    IniWriteValue("values", "tanchuang", "False");
                 }
             }
             catch (Exception)
