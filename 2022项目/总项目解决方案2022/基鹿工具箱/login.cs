@@ -99,7 +99,7 @@ namespace 基鹿工具箱
         public login()
         {
             InitializeComponent();
-            update();
+            //update();
         }
         Util ut = new Util();
         Thread thread;
