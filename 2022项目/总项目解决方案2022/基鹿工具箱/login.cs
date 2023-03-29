@@ -58,7 +58,8 @@ namespace 基鹿工具箱
         public void update()
         {
             string banbenhao= IniReadValue("values", "banben");
-            string url = "http://47.96.189.55/jilusoft/update.php";
+            //string url = "http://47.96.189.55/jilusoft/update.php";
+            string url = "http://43.136.67.39/jilusoft/update.php";
             string appName = Util.path + "update.exe";
             string html = Util.GetUrl(url, "utf-8");
             if (html==banbenhao)
