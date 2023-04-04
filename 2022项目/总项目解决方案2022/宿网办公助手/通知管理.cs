@@ -88,5 +88,10 @@ namespace 宿网办公助手
 
 
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+           网站监控.send(textBox1.Text.Trim(), "测试发送", "测试内容");
+        }
     }
 }
