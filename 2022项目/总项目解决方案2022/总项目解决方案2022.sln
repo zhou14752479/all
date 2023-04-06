@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "京东价格对比", "..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "基鹿工具箱", "基鹿工具箱\基鹿工具箱.csproj", "{BC695ABB-06FF-401F-94A3-51E8A19B1997}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "启动程序", "启动程序\启动程序.csproj", "{60F55CEC-47FD-414F-BC06-9570237B9774}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -377,6 +379,18 @@ Global
 		{BC695ABB-06FF-401F-94A3-51E8A19B1997}.Release|x64.Build.0 = Release|Any CPU
 		{BC695ABB-06FF-401F-94A3-51E8A19B1997}.Release|x86.ActiveCfg = Release|Any CPU
 		{BC695ABB-06FF-401F-94A3-51E8A19B1997}.Release|x86.Build.0 = Release|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Debug|x64.Build.0 = Debug|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Debug|x86.Build.0 = Debug|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Release|x64.ActiveCfg = Release|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Release|x64.Build.0 = Release|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Release|x86.ActiveCfg = Release|Any CPU
+		{60F55CEC-47FD-414F-BC06-9570237B9774}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
