@@ -230,6 +230,9 @@ namespace 点评套餐获取
 
             try
             {
+                string cookie = "_lxsdk_cuid=18707ea02eec8-06f0754ef9902c-26021051-1fa400-18707ea02eec8; _lxsdk=18707ea02eec8-06f0754ef9902c-26021051-1fa400-18707ea02eec8; _hc.v=85fc219a-62ad-75e6-aa93-0c2990bffd05.1679464990; WEBDFPID=9u5zw7z2yy9z553xz04531861vw14w8x81292vz91uz979584z203z91-1994824990286-1679464989508GKGQKKQfd79fef3d01d5e9aadc18ccd4d0c95072150; cy=100; cye=suqian; s_ViewType=10; dper=7adfe518dad1f2ab11ca219563f537ff20b627710656745d2e0565c3765d8f219b578be09f717036fb451e472ec094fd0ebefad40c9b91569acf82ac2973b1b6; qruuid=78256cf7-5d68-4016-9575-9a28a547e9bd; ll=7fd06e815b796be3df069dec7836c3df; _lxsdk_s=18769e6a4e3-357-fca-2ea%7C%7C15; Hm_lvt_602b80cf8079ae6591966cc70a3940e7=1679465011,1681108969; Hm_lpvt_602b80cf8079ae6591966cc70a3940e7=1681108969";
+                html = method.GetUrlWithCookie(textBox1.Text,cookie,"utf-8");
+
                 string ahtml = Regex.Match(html, @"精选商品</a>([\s\S]*?)<a class=""unfold").Groups[1].Value.Trim();
                 string shopid = Regex.Match(html, @"shopid=([\s\S]*?)""").Groups[1].Value.Trim();
                 string shopname = Regex.Match(html, @"<h1 class=""shop-name"">([\s\S]*?)<").Groups[1].Value.Trim();
@@ -306,17 +309,7 @@ namespace 点评套餐获取
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
-
-            if (!html.Contains(@"OaO6W"))
-            {
-                MessageBox.Show("");
-                return;
-            }
-
-            #endregion
+            
             if (t == null || !t.IsAlive)
             {
                 t = new Thread(run);
