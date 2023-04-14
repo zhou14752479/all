@@ -98,7 +98,7 @@ namespace 基鹿工具箱
 
             try
             {
-                Image image = Util.GetImage("http://47.96.189.55/jilusoft/haibao/%E6%B5%B7%E6%8A%A5.jpg");
+                Image image = Util.GetImage("http://43.136.67.39/jilusoft/haibao/%E6%B5%B7%E6%8A%A5.jpg");
                 //tabPage1.BackgroundImage = image;
                 pictureBox4.Image = image;  
                 string html = Util.getuser(Util.mobile, Util.logintoken);

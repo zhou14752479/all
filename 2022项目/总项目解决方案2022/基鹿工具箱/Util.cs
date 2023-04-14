@@ -22,11 +22,11 @@ namespace 基鹿工具箱
 {
     class Util
     {
-        string ipdomain = "47.96.189.55";
+        string ipdomain = "43.136.67.39";
        static string COOKIE = "cna=IEEVGmxNb3QCAXnisujqtGPv; taklid=38e78512859846e58e75c42be1833a02; hng=CN%7Czh-CN%7CCNY%7C156; lid=zkg852266010; ali_ab=121.226.159.98.1645245827623.1; ali_apache_track=c_mid=b2b-1052347548|c_lid=zkg852266010|c_ms=1|c_mt=2; _m_h5_tk=3e9666f327a4af69b19b6d7adbb23eb8_1649325439454; _m_h5_tk_enc=d7732f7b2298a8cd29d69f807bcbeccf; xlly_s=1; cookie2=2a6f52413f2e48cd63a5da6bc8191e9e; sgcookie=E100kZBFanIDZNPfcot4VcewKkmUiR9sB7C4rpdjYQP6x25S3n2aTZ8486eH618tvfau6C2Z38RJvIPMt%2BGbTm3%2FCPvaFgnZmBQxYX9X74V0BPEAcMJWWZxMsEutNsxXs7Q5; t=bb42afa080af1dca98fb8d6a52dc1684; _tb_token_=e6859ebee1b17; uc4=nk4=0%40GwrkntVPltPB9cR46GncAmsyVe%2Fk0gQ%3D&id4=0%40UOnlZ%2FcoxCrIUsehK6jr4tbgfrWs; __cn_logon__=false; alicnweb=touch_tb_at%3D1649316804592%7Clastlogonid%3Dzkg852266010%7Cshow_inter_tips%3Dfalse; keywordsHistory=%E9%92%A2%E7%AD%8B%E9%92%A9; _csrf_token=1649319453013; tfstk=c8cRB2aZUnxubUUx7Ypm8uykH_M5aWxLcaZh9Xh0ACwwxaCdOs2isfQ5oLaQbuLA.; l=eBNaJtqgg-gKy7-ABO5ZKurza7791IOfGsPzaNbMiInca6tGXnutLNC3TKQwpdtj_tfjEeKrTan6EdE2SJ438x125OM8ARjSH6v6-; isg=BCgooAfp3oWAkvHrPLKOYWNs-RY6UYxbHQ9mG-JYFKMEPcyni2JB6oc7Nd3NDUQz";
       public  static string mobile= "";
         public static string logintoken = "";
-        static string conn = "Host =47.96.189.55;Database=titledb;Username=root;Password=root;";
+        static string conn = "Host =43.136.67.39;Database=titledb;Username=root;Password=root;";
       public static string path = AppDomain.CurrentDomain.BaseDirectory;
         #region NPOI导出表格
         public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
