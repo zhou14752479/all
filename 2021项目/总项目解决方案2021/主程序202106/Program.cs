@@ -16,7 +16,7 @@ namespace 主程序202106
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new  孔夫子旧书网比价());
+            Application.Run(new  美团酒店());
         }
     }
 }
