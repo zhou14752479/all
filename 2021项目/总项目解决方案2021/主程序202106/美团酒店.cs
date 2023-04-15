@@ -233,7 +233,7 @@ namespace 主程序202106
         public string  gettel(string city, string name)
         {
             string url = "https://m.ctrip.com/restapi/soa2/26872/search";
-            string postdata = "action=online&source=globalonline&keyword=" + System.Web.HttpUtility.UrlEncode(name);
+            string postdata = "action=online&source=globalonline&keyword=" + System.Web.HttpUtility.UrlEncode(city+name);
             string html = method.PostUrlDefault(url,postdata,cookie);
            
             string aurl= Regex.Match(html, @"""resultPageUrl"":""([\s\S]*?)""").Groups[1].Value;
