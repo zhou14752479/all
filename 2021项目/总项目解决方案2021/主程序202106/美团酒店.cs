@@ -131,7 +131,7 @@ namespace 主程序202106
             string html = method.GetUrl(Url,"utf-8");
           
             MatchCollection areas = Regex.Matches(html, @"""name"":""([\s\S]*?)"",""id"":([\s\S]*?),");
-
+            
            
             for (int i = 0; i < areas.Count; i++)
             {
@@ -223,7 +223,7 @@ namespace 主程序202106
         }
         #endregion
 
-        string cookie = "ci=184; cityname=%E5%AE%BF%E8%BF%81; i_extend=C085021465567978133866654328195751632659_g1E129793523704877745831744257526160635882_c0_e1803825002331044728_anull_o1_dhotelpoitagb_k1002_f41795978Gempty__xhotelhomepage__yselect__zday; ndr=i.meituan.com; oops=AgH1IiCU8AvX8PQ6Fs-pSGkdPEKCFy8JLEKaE1tm-VBydcY4Gbib7265dvdAHlTTrHxr2pn9JqWs_QAAAADjFwAAZ0B3V1ndoiC-VgbIV27k2SKRzvnwmD5TbCeoKlH-rRrfoXNxZ47NKCF7UiAYShAz; u=875973616; IJSESSIONID=node0w4yf8tra55zsyxgvbgnea87m10554324; isid=AgH1IiCU8AvX8PQ6Fs-pSGkdPEKCFy8JLEKaE1tm-VBydcY4Gbib7265dvdAHlTTrHxr2pn9JqWs_QAAAADjFwAAZ0B3V1ndoiC-VgbIV27k2SKRzvnwmD5TbCeoKlH-rRrfoXNxZ47NKCF7UiAYShAz; mt_c_token=AgH1IiCU8AvX8PQ6Fs-pSGkdPEKCFy8JLEKaE1tm-VBydcY4Gbib7265dvdAHlTTrHxr2pn9JqWs_QAAAADjFwAAZ0B3V1ndoiC-VgbIV27k2SKRzvnwmD5TbCeoKlH-rRrfoXNxZ47NKCF7UiAYShAz; userId=875973616; ";
+        string cookie = "ci=184; cityname=%E5%AE%BF%E8%BF%81; i_extend=C085021465567978133866654328195751632659_g1E129793523704877745831744257526160635882_c0_e1803825002331044728_anull_o1_dhotelpoitagb_k1002_f41795978Gempty__xhotelhomepage__yselect__zday; isid=AgH1IiCU8AvX8PQ6Fs-pSGkdPEKCFy8JLEKaE1tm-VBydcY4Gbib7265dvdAHlTTrHxr2pn9JqWs_QAAAADjFwAAZ0B3V1ndoiC-VgbIV27k2SKRzvnwmD5TbCeoKlH-rRrfoXNxZ47NKCF7UiAYShAz; mt_c_token=AgH1IiCU8AvX8PQ6Fs-pSGkdPEKCFy8JLEKaE1tm-VBydcY4Gbib7265dvdAHlTTrHxr2pn9JqWs_QAAAADjFwAAZ0B3V1ndoiC-VgbIV27k2SKRzvnwmD5TbCeoKlH-rRrfoXNxZ47NKCF7UiAYShAz; userId=875973616;  ";
 
         string pccookie = "_lxsdk_cuid=182ca747cffc8-0a3cbbc1e88c3-26021a51-384000-182ca747cffc8; uuid=2e860293968b4878a7ee.1681535926.1.0.0; WEBDFPID=7u498x04w6785v56y66wx45150x7w4yw812164z956797958v9xu3y9z-1996895928928-1681535928609IWACIOWfd79fef3d01d5e9aadc18ccd4d0c95071377; JSESSIONID=node0hdytv6x9q6n41j9sbh78m8a37215798.node0; IJSESSIONID=node0hdytv6x9q6n41j9sbh78m8a37215798; iuuid=0A259ACAAC178C65CAE584A0A82A7C1890C8F5199417179483B306F17BC8F769; _lxsdk=0A259ACAAC178C65CAE584A0A82A7C1890C8F5199417179483B306F17BC8F769; mtcdn=K; userTicket=ldiXmFTMeKrVtdaVsJagdPGcHysgSSvyfSTgEYHO; _yoda_verify_resp=MUTQ%2BUhVbsjk94yv2hZBXFzkYW30FMTj0T8KZVLvSuzWGAvY%2F7xNBC1DQHX0hwB60WIKJrfUePqhk3ISLnVOKmrTqOEkWrSbnfgZqxojndvsTfi5rcdvlZVe5pP%2Blb%2FNvJNSvI0dorVByHTuvKdNM7oO5uCAqBdKrI50YWPrPIveL7g%2B8t9Abun0%2BAM9wBTxUwgqDHlZgXANgVOvkTutwoA4Wg9WPB4QXYW0DimL2MZtVkFZ%2BhBsKcDAjwA0C7mpbfL095DSpfUYCDJUDzxlW9l1c2F1a6h0eHW5ZYFjbZ0W5lBv4E6wy1KDpg7Ok%2Bd6zesLYx%2BXbBv2Vu8MWCUydSlMniaYSdIKHBG82X3mUtezdooza572eIbnOqBiExkq; _yoda_verify_rid=16dbb3c80f024046; u=875973616; n=Ffv936639060; lt=AgHSJRmKTBhhG3PrAN7_uaNHPEEw1p74oeQa-vhxzwI0OUe-Byrbol-4xT6VBVMbTav8mHRy-tCk6QAAAADjFwAAjk5R4uR0VGFzTJZpsPbSIbl-eib7lRzwX0U7vmTt2hGuwxxCbgS3gJHX9eLt4BgU; mt_c_token=AgHSJRmKTBhhG3PrAN7_uaNHPEEw1p74oeQa-vhxzwI0OUe-Byrbol-4xT6VBVMbTav8mHRy-tCk6QAAAADjFwAAjk5R4uR0VGFzTJZpsPbSIbl-eib7lRzwX0U7vmTt2hGuwxxCbgS3gJHX9eLt4BgU; token=AgHSJRmKTBhhG3PrAN7_uaNHPEEw1p74oeQa-vhxzwI0OUe-Byrbol-4xT6VBVMbTav8mHRy-tCk6QAAAADjFwAAjk5R4uR0VGFzTJZpsPbSIbl-eib7lRzwX0U7vmTt2hGuwxxCbgS3gJHX9eLt4BgU; token2=AgHSJRmKTBhhG3PrAN7_uaNHPEEw1p74oeQa-vhxzwI0OUe-Byrbol-4xT6VBVMbTav8mHRy-tCk6QAAAADjFwAAjk5R4uR0VGFzTJZpsPbSIbl-eib7lRzwX0U7vmTt2hGuwxxCbgS3gJHX9eLt4BgU; isid=AgHSJRmKTBhhG3PrAN7_uaNHPEEw1p74oeQa-vhxzwI0OUe-Byrbol-4xT6VBVMbTav8mHRy-tCk6QAAAADjFwAAjk5R4uR0VGFzTJZpsPbSIbl-eib7lRzwX0U7vmTt2hGuwxxCbgS3gJHX9eLt4BgU; oops=AgHSJRmKTBhhG3PrAN7_uaNHPEEw1p74oeQa-vhxzwI0OUe-Byrbol-4xT6VBVMbTav8mHRy-tCk6QAAAADjFwAAjk5R4uR0VGFzTJZpsPbSIbl-eib7lRzwX0U7vmTt2hGuwxxCbgS3gJHX9eLt4BgU; logintype=normal; ci=1; rvct=1; firstTime=1681536077868; unc=Ffv936639060; cityname=%E5%8C%97%E4%BA%AC; _lxsdk_s=187835a07f7-f33-b6e-700%7C%7C24";
         
@@ -238,7 +238,7 @@ namespace 主程序202106
            
             string aurl= Regex.Match(html, @"""resultPageUrl"":""([\s\S]*?)""").Groups[1].Value;
             string ahtml=method.GetUrlWithCookie(aurl, "SECKEY_ABVK=lK2zXq5qE7tBp5pjIqSiUJiUl60x12OpVY6ZvFFXqmc%3D; BMAP_SECKEY=lK2zXq5qE7tBp5pjIqSiUAFeFjLBBTkcffBfZ5g2r2RmnbXi_OVkRLQRmgGcLOS0smKmE5P8PEQce4lBdPpid2tDPsSIeoErKvhDMtt0QrfpwBYQXWO18aC7EwLgrIx2MVb5vMDR0_XvWgG4wn1ruR1Sbij-lLhPbBy-w1Xjru5DFtYiVVGaKNHVmTlrjG1_; QN1=0000a380306c4f85df20901f; QN300=s%3Dbaidu; QN99=4896; QunarGlobal=10.67.200.16_22579bf7_187834b6c84_-60e0|1681536485018; qunar-assist={%22version%22:%2220211215173359.925%22%2C%22show%22:false%2C%22audio%22:false%2C%22speed%22:%22middle%22%2C%22zomm%22:1%2C%22cursor%22:false%2C%22pointer%22:false%2C%22bigtext%22:false%2C%22overead%22:false%2C%22readscreen%22:false%2C%22theme%22:%22default%22}; QN205=s%3Dbaidu; QN277=s%3Dbaidu; csrfToken=gJ8gaYAHNDPAnaEr2RtMu6CH73iVv3pT; QN601=8fd47e2d976fb0f18e164e8d5507ec9a; QN48=00008d002f104f85df28acba; QN163=0; QN269=4C54C7B1DB4E11EDBA87FA163E028184; _i=VInJOmWb60YqCV-qYzkYfSOPaGxq; fid=1690477f-bf38-498e-9bbd-30902c2686f9; HN1=v176a9a8e264442deee187f1447f252702; HN2=quuqszqnnusqn; ctt_june=1654604625968##iK3wWSPOaUPwawPwa%3DXmasaAaRoTERkTW%3DfTEKjNEKWhXSgAa%3DGhWKiDaPiRiK3siK3saKjmaKPsWSPsaRX%3DVuPwaUvt; _vi=aN5hcn_EVeZmigckyMyC522qzLeFL4GrqXlWLvKVlELSP1dIb9Y8x_eI-MDJVujjWjgIcc8cOnoO2ooH36NKX1jSi5WyKYoP6NSx4YVE7m-Jzsx7lDqlb2TrjypkbiMOClExzR8G7jYO5_bbHFb3YQN6ZWd_sZ3Tlvr9XT6eBpAa; QN267=1278839183b22753fc; QN25=302675d3-1962-4c00-aea1-5bb71be0e56d-9f992f90; ctf_june=1654604625968##iK3waKtAauPwawPwasa%3DaSXAXsoDWRXNWs2%2Ba%3D3wWStwXsawEPanWKj8XK0hiK3siK3saKjmaKPsWstwVRvwaUPwaUvt; ariaDefaultTheme=undefined; cs_june=22eef72cd875acd234069f84e073a13d2c16bd6af4cd05506a0c558a33bc095af9a1f66e9926451c91843f4a1d4f158f4a83f9ad5f68ffa5cbeba30a2eac7b82b17c80df7eee7c02a9c1a6a5b97c1179a0528e2c65e4d228c2371a47a776dac65a737ae180251ef5be23400b098dd8ca; QN271=220dde0d-e579-4611-9797-da90461b2ca8; __qt=v1%7CVTJGc2RHVmtYMTl2KzZMNnFKcStCN280dDI3UDFpa3FCak0rOGtCNWZDcElBQndnNW83dTVPVmMrOGV0cEJWNjM3dmVWVEwxZkFrMXRPc09DbFlpMFdDZ3lqdWEvNitCMSt1Vmp6aVNKSjJrN3ZKMHlZMHJTRjJ1Tm50R051UFhDYnl2TjZZRGxuOEt6WlJiTXNFZWhMbyszbGd6TUdra01UNWU1VndIeXFJPQ%3D%3D%7C1681537851211%7CVTJGc2RHVmtYMStVYWV0bE4xUHVGWkl5Rys2UGp2d25VQSsyRkxWcnVGLytkS0hMUHAxd1BvbDAvSUpZY2dScFEzVEFwcHJIU3hJcnBGZEpCMGFEK0E9PQ%3D%3D%7CVTJGc2RHVmtYMTg0QjFnalBvT3dOQ29aaTl3ZVE4blNxUUl4RHhVRGkyRk5IRlNiWlpuL1NsLytpV1hlV0NRWml6TnlscVZwYzlxeGVRckNhM0E1U0MxVm5ES0JZVlBnTGUycTVuVHR2WHF0QkdMUkxnbGhyZ2ZkdFJ2VFBma1BRTS9EK3JINm1YY2ZaZ2cyaDhpWWVTdXZ1dUxUaTUrWUR3OGUrVWFIMVQ3Wlp5TE52c0NmcEl3RjNzczh3Q2JJVDlGTlR5bmZLZlRnT1VGMURvaW9qby90ZEZxVWdReFIrT0Qwa21xWnIxTzJRMnRuYTJnbTBFSitXamQzRGYzNUQ2TzU5Umo1cTBWR0ZZakFiOFZaOHZmRWtjVlltUS8weC9CaFhJTDFKTVd6M0t1RUI3NEVBbGFESW1qM2g4ZVZOVnhHMk1GRmlJV216a3d2NFB3YUIwVCswUTUxZXhwb1p0YW5yZDlYOHl6WFF3Z3E5ZFBZNFdxQ2NBZTFvMzllbitHRkk2UjZROStOZldFQVAvTWZQd3M5djQ4cFJrVWp5NCthVkJGcENSZTZRZVlCVXlxZGw1aTVlRHlWUTcxTUJIdlhScmd6NytNUTBBMGlrZS92eG9GWDd2b2tvUXhSalNQZGt2QU9neStDVkl0YjBqWk5YMnRPWUx5Z3pDak9OT3oyWTBHWHVWUCtmaU8xOXpKZ25KZCtUZVFjbFNHdzBxRTJ1cTVTUUtpUXJsUzAxbzF1UE9MTU0wNU9yWGpnbTgrRGJSbzdRUThFS3h6dFpaOXhBL0dZbldDRjk1cDZOSGVmVFp4Q21KeTFVdGFaN3R6bHRsRkhBY2ZGVTByYkJYemg4VjZzUWNuSWpOTFA4dlZGeGg4a1N1cCt6UW8vWkJMUkZoYnpCSmM9", "utf-8");
-            textBox1.Text = aurl;
+           // textBox1.Text = aurl;
             string tel = Regex.Match(ahtml, @"联系方式：([\s\S]*?)""").Groups[1].Value;
             return tel;
         }
@@ -376,20 +376,15 @@ namespace 主程序202106
                 foreach (var item in text)
                 {
                     string cityid = GetcityId(item.Replace("市", ""));
-                    ArrayList areaIds = getareas2(cityid);
+                   
 
-                    foreach (string areaId in areaIds)
-                    {
-
-
-                        for (int i = 0; i < 1001; i = i + 20)
+                        for (int i = 0; i < 501; i = i + 20)
                         {
-                            string url = "https://ihotel.meituan.com/hbsearch/HotelSearch?utm_medium=pc&version_name=999.9&cateId=20&attr_28=129&cityId=" + cityid + "&areaId=" + areaId + "&offset=" + i + "&limit=20&startDay=" + DateTime.Now.ToString("yyyyMMdd") + "&endDay=" + DateTime.Now.ToString("yyyyMMdd") + "&q=&sort=defaults";
-
+                            //string url = "https://ihotel.meituan.com/hbsearch/HotelSearch?utm_medium=pc&version_name=999.9&cateId=20&attr_28=129&cityId=" + cityid + "&areaId=" + areaId + "&offset=" + i + "&limit=20&startDay=" + DateTime.Now.ToString("yyyyMMdd") + "&endDay=" + DateTime.Now.ToString("yyyyMMdd") + "&q=&sort=defaults";
+                            string url = "https://ihotel.meituan.com/hbsearch/HotelSearch?utm_medium=touch&version_name=999.9&platformid=1&cateId=20&newcate=1&limit=100&offset="+i+"&cityId="+cityid+"&ci="+cityid+"&startendday="+ DateTime.Now.ToString("yyyyMMdd") + "~" + DateTime.Now.ToString("yyyyMMdd") + "&startDay=" + DateTime.Now.ToString("yyyyMMdd") + "&endDay=" + DateTime.Now.ToString("yyyyMMdd") + "&attr_28=129&sort=defaults&userid=875973616&uuid=45232915CCB472C4CC11CB7147D6EB0E9578DFBE34DD8DCCAD71E58D27C73E37";
 
                             string html = method.GetUrlWithCookie(url, cookie, "utf-8");
-
-
+                           
                             MatchCollection cityNames = Regex.Matches(html, @"""cityName"":""([\s\S]*?)""");
                             MatchCollection prices = Regex.Matches(html, @"""lowestPrice"":([\s\S]*?)""");
                             MatchCollection names = Regex.Matches(html, @"hourRoomSpan([\s\S]*?)""name"":""([\s\S]*?)""");
@@ -411,23 +406,32 @@ namespace 主程序202106
 
                                 string tel = gettel(cityNames[j].Groups[1].Value, names[j].Groups[2].Value);
                                 lv1.SubItems.Add(tel);
+                            if (this.status == false)
+
+                            {
+                                return;
+
                             }
 
                             if (listView1.Items.Count - 1 > 1)
-                                {
-                                    listView1.EnsureVisible(listView1.Items.Count - 1);
-                                }
-                                if (this.status == false)
+                            {
+                                listView1.EnsureVisible(listView1.Items.Count - 1);
+                            }
 
-                                {
-                                    return;
-                                }
+                            while (zanting == false)
+                            {
+                                Application.DoEvents();//等待本次加载完毕才执行下次循环.
+                            }
+                        }
+
+                          
+                              
 
                             Thread.Sleep(1000);
                             }
                         }
 
-                    }
+                    
                 
             }
 
@@ -441,6 +445,7 @@ namespace 主程序202106
         #endregion
         private void button1_Click(object sender, EventArgs e)
         {
+            status = true;
             #region 通用检测
 
             if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"xlD23Y"))

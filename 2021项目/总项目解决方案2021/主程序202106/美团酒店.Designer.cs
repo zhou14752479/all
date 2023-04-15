@@ -35,6 +35,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -51,7 +52,6 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,6 +105,11 @@
             // 
             this.columnHeader10.Text = "城市";
             this.columnHeader10.Width = 80;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "电话";
+            this.columnHeader2.Width = 150;
             // 
             // button1
             // 
@@ -288,11 +293,6 @@
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(90, 86);
             this.textBox2.TabIndex = 128;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "电话";
-            this.columnHeader2.Width = 150;
             // 
             // 美团酒店
             // 
