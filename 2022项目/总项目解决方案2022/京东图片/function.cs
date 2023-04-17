@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,12 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace 京东图片
 {
     class function
     {
         string path = AppDomain.CurrentDomain.BaseDirectory;
+
+
         public void getcates1(ComboBox cob)
         {
             StreamReader sr = new StreamReader(path + "//cates.txt", method.EncodingType.GetTxtType(path + "//cates.txt"));
@@ -240,5 +246,84 @@ namespace 京东图片
             return "";
         }
         #endregion
+
+
+        public static int DataTableToExcel(DataTable data, string fileName)
+        {
+            IWorkbook workbook = null;
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "xlsx|*.xls|xlsx|*.xlsx";
+            //sfd.Title = "Excel文件导出";
+            //bool flag = sfd.ShowDialog() == DialogResult.OK;
+            int result;
+
+            bool isColumnWritten = true;
+                FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                bool flag2 = fileName.IndexOf(".xlsx") > 0;
+                if (flag2)
+                {
+                    workbook = new XSSFWorkbook();
+                }
+                else
+                {
+                    bool flag3 = fileName.IndexOf(".xls") > 0;
+                    if (flag3)
+                    {
+                        workbook = new HSSFWorkbook();
+                    }
+                }
+                try
+                {
+                    bool flag4 = workbook != null;
+                    if (flag4)
+                    {
+                        ISheet sheet = workbook.CreateSheet("Sheet1");
+                        ICellStyle style = workbook.CreateCellStyle();
+                        style.FillPattern = FillPattern.SolidForeground;
+                        int count;
+                        if (isColumnWritten)
+                        {
+                            IRow row = sheet.CreateRow(0);
+                            for (int i = 0; i < data.Columns.Count; i++)
+                            {
+                                row.CreateCell(i).SetCellValue(data.Columns[i].ColumnName);
+                            }
+                            count = 1;
+                        }
+                        else
+                        {
+                            count = 0;
+                        }
+                        for (int j = 0; j < data.Rows.Count; j++)
+                        {
+                            IRow row2 = sheet.CreateRow(count);
+                            for (int i = 0; i < data.Columns.Count; i++)
+                            {
+                                row2.CreateCell(i).SetCellValue(data.Rows[j][i].ToString());
+                            }
+                            count++;
+                        }
+                        workbook.Write(fs);
+                        workbook.Close();
+                        fs.Close();
+                        Process[] Proc = Process.GetProcessesByName("");
+                        //MessageBox.Show("数据导出完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        result = 0;
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception: " + ex.Message);
+                    result = -1;
+                }
+            return result;
+        }
+            
+           
+        
     }
 }

@@ -161,6 +161,8 @@
             this.Name = "京东图片";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "京东图片";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.京东图片_FormClosing);
+            this.Load += new System.EventHandler(this.京东图片_Load);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
