@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>主程序202103</RootNamespace>
     <AssemblyName>主程序202103</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>

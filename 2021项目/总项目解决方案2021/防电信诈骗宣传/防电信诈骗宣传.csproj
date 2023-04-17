@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>防电信诈骗宣传</RootNamespace>
     <AssemblyName>防电信诈骗宣传</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>

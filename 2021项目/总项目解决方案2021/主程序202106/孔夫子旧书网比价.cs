@@ -291,7 +291,7 @@ namespace 主程序202106
         {
             try
             {
-                string COOKIE = "acw_tc=276077b916348708697031531eb91d818f67aa283756366df8dba1bd81399a";
+                string COOKIE = "Hm_lvt_33be6c04e0febc7531a1315c9594b136=1681722675; Hm_lvt_bca7840de7b518b3c5e6c6d73ca2662c=1681722675; kfz_trace=51AF83E2DF004296B46750EE4142DE68|16134930|25d779d6950d2456|102002001000; kfz_uuid=51AF83E2DF004296B46750EE4142DE68; shoppingCartSessionId=d59bcc36a03c4e4e6fd4d7eb8eed4fa4; utm_source=102002001000; mpDialog=true; PHPSESSID=40rov8apgcfrnbitaodb8lg56jf42s01; acw_tc=2760828d16817226717025190ed5e3f83b2de9217167a48faff1b35cc8d629";
                 string charset = "utf-8";
                 string html = "";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
@@ -301,8 +301,18 @@ namespace 主程序202106
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("X-Tingyun-Id:lLmhN035-8Y;c=2;r=1510130765;u=b62bf55b6da98676c7af69e7063790e6::85C1D76CAE16FFDC");
-                headers.Add("ssid: 1634870855000744763");
+                headers.Add("ssid:1681723846000257004");
                 headers.Add("refUrl:KFZDynamicHomePageViewController");
+
+
+                headers.Add("uuid:51AF83E2DF004296B46750EE4142DE68");
+                headers.Add("accessToken:734dbc2b-faff-4381-aec5-d99f710ea572");
+                headers.Add("access-token:734dbc2b-faff-4381-aec5-d99f710ea572");
+                headers.Add("token:734dbc2b-faff-4381-aec5-d99f710ea572");
+                headers.Add("ssid: 1634870855000744763");
+
+
+
                 //headers.Add("upgrade-insecure-requests: 1");
                 //添加头部
                 request.ContentType = "application/x-www-form-urlencoded";

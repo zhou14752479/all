@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>文字转语音</RootNamespace>
     <AssemblyName>文字转语音</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
