@@ -552,7 +552,7 @@ namespace win007
            // this.WindowState = FormWindowState.Maximized;
             #region 通用检测
 
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+            string html =  method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
             if (!html.Contains(@"hGRLg"))
             {
@@ -1644,6 +1644,66 @@ namespace win007
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            button1.PerformClick();
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            button3.PerformClick();
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            button6.PerformClick();
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            button7.PerformClick();
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            button8.PerformClick();
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            button9.PerformClick();
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            button16.PerformClick();
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            button15.PerformClick();
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            button14.PerformClick();
+        }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            button13.PerformClick();
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            button12.PerformClick();
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            button11.PerformClick();
         }
     }
 }
