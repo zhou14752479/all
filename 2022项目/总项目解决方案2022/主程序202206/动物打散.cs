@@ -45,16 +45,43 @@ namespace 主程序202206
             try
             {
                 string input=  Regex.Replace(textBox1.Text.Replace("各", ""), @"\d{1,}", "");
+                string v = Regex.Match(textBox1.Text, @"\d{1,}").Groups[0].Value;
                 string[] arr= input.Split(new string[] { "，" }, StringSplitOptions.None);
 
 
-                string v = Regex.Match(textBox1.Text, @"\d{1,}").Groups[0].Value;
+                int sum = arr.Length * Convert.ToInt32(v);
+
+
+
+               // int all = 0;
                 List<string> lists = new List<string>();
-                foreach (string s in arr)
+                for (int i = 0; i < arr.Length; i++)
                 {
+
                     Random random = new Random(Guid.NewGuid().GetHashCode());
-                    int value = random.Next(0, Convert.ToInt32(v));
-                    lists.Add(s + value);
+                    int value = random.Next(10, Convert.ToInt32(v) +5);
+
+
+                    if (i == arr.Length - 1)
+                    {
+                        value = 20;
+                    }
+                    else if(i == arr.Length - 2)
+                    {
+                        value = sum-20;
+                    }
+                    else
+                    {
+                        sum = sum - value;
+                    }
+
+
+                    lists.Add(arr[i] + value);
+
+
+                    //all = all + value;
+                    //textBox1.Text = all.ToString();
+
                 }
                 List<string> resultlist = ListRandom(lists);
 
@@ -77,8 +104,8 @@ namespace 主程序202206
             }
             catch (Exception ex)
             {
-
-                textBox2.Text="输入错误";
+                //textBox2.Text == "输入错误";
+                textBox2.Text= ex.ToString();
             }
         }
 

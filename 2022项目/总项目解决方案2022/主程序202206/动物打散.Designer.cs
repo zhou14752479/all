@@ -51,6 +51,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(536, 170);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "羊，白鱼，老鼠，蛇，牛，孔雀，蜘蛛，飞龙， 青蛙，鸽子，燕子，猴子，大鹅，猪，金鱼，鳝鱼，宝石，大象，马鹿，蚯蚓20";
             // 
             // textBox2
             // 
