@@ -49,34 +49,37 @@ namespace 主程序202206
                 string[] arr= input.Split(new string[] { "，" }, StringSplitOptions.None);
 
 
-                int sum = arr.Length * Convert.ToInt32(v);
+              
 
-
-
-               // int all = 0;
+             
                 List<string> lists = new List<string>();
                 for (int i = 0; i < arr.Length; i++)
                 {
+                    int sum = Convert.ToInt32(v);
 
-                    Random random = new Random(Guid.NewGuid().GetHashCode());
-                    int value = random.Next(10, Convert.ToInt32(v) +5);
-
-
-                    if (i == arr.Length - 1)
+                    for (int j= 0; j < 4; j++)
                     {
-                        value = 20;
-                    }
-                    else if(i == arr.Length - 2)
-                    {
-                        value = sum-20;
-                    }
-                    else
-                    {
+                        Random random = new Random(Guid.NewGuid().GetHashCode());
+                        int value = random.Next(1, Convert.ToInt32(v));
+                       
+                        if(j==3)
+                        {
+                            value = sum;
+                        }
                         sum = sum - value;
+                        if (sum>0)
+                        {
+                            lists.Add(arr[i] + value);
+                           
+                        }
+                        
+                        if(sum<=0)
+                        {
+                            sum = sum + value;
+                            lists.Add(arr[i] + sum);
+                            break;
+                        }
                     }
-
-
-                    lists.Add(arr[i] + value);
 
 
                     //all = all + value;
