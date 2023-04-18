@@ -16,7 +16,7 @@ namespace titan007
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 易胜博());
+            Application.Run(new 欧赔初陪初盘平均值());
         }
     }
 }

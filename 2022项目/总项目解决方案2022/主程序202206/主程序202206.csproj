@@ -78,6 +78,12 @@
     <Compile Include="代理IP提取.Designer.cs">
       <DependentUpon>代理IP提取.cs</DependentUpon>
     </Compile>
+    <Compile Include="动物打散.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="动物打散.Designer.cs">
+      <DependentUpon>动物打散.cs</DependentUpon>
+    </Compile>
     <Compile Include="号码查询.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </Compile>
     <EmbeddedResource Include="代理IP提取.resx">
       <DependentUpon>代理IP提取.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="动物打散.resx">
+      <DependentUpon>动物打散.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="号码查询.resx">
       <DependentUpon>号码查询.cs</DependentUpon>

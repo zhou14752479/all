@@ -69,6 +69,12 @@
     <Compile Include="易胜博.Designer.cs">
       <DependentUpon>易胜博.cs</DependentUpon>
     </Compile>
+    <Compile Include="欧赔初陪初盘平均值.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="欧赔初陪初盘平均值.Designer.cs">
+      <DependentUpon>欧赔初陪初盘平均值.cs</DependentUpon>
+    </Compile>
     <Compile Include="进球数.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="易胜博.resx">
       <DependentUpon>易胜博.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="欧赔初陪初盘平均值.resx">
+      <DependentUpon>欧赔初陪初盘平均值.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="进球数.resx">
       <DependentUpon>进球数.cs</DependentUpon>
