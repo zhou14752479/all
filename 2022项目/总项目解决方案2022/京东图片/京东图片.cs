@@ -107,7 +107,7 @@ namespace 京东图片
                         string[] cates = cate.Split(new string[] { "," }, StringSplitOptions.None);
                         string[] zhupics = zhupic_a.Split(new string[] { "," }, StringSplitOptions.None);
 
-
+                       
                         StringBuilder zhupic = new StringBuilder();
                         for (int a = 0; a < zhupics.Length; a++)
                         {
@@ -135,7 +135,16 @@ namespace 京东图片
 
                             if (xqpics[a] != "")
                             {
-                                method.downloadFile(xqpics[a], path + itemid, "详情图" + a + ".jpg", "");
+                                //MessageBox.Show(xqpics[a]);
+                                try
+                                {
+                                    method.downloadFile(xqpics[a].Replace("////","//"), path + itemid, "详情图" + a + ".jpg", "");
+                                }
+                                catch (Exception)
+                                {
+
+                                    continue;
+                                }
                             }
 
 
@@ -165,7 +174,7 @@ namespace 京东图片
                     }
                     catch (Exception ex)
                     {
-                        //MessageBox.Show(ex.ToString());
+                        MessageBox.Show(ex.ToString());
                         continue;
                     }
 
