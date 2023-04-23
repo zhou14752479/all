@@ -60,8 +60,12 @@ namespace 主程序202206
                     for (int j= 0; j < 4; j++)
                     {
                         Random random = new Random(Guid.NewGuid().GetHashCode());
-                        int value = random.Next(1, Convert.ToInt32(v));
-                       
+                        // int value = random.Next(1, Convert.ToInt32(v));
+
+                        int[] zzs = { 5, 20, 15, 20 };
+                        int va= random.Next(0, 4);
+                        int value = zzs[va];
+                        
                         if(j==3)
                         {
                             value = sum;
