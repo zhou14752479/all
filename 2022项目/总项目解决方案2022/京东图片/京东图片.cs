@@ -44,7 +44,8 @@ namespace 京东图片
         {
             //method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
 
-            function.DataTableToExcel(method.DgvToTable(dataGridView1), "京东报备商品信息采集列表.xlsx");
+            method.DataTableToExcel(method.DgvToTable(dataGridView1), "Sheet1", true);
+           // function.DataTableToExcel(method.DgvToTable(dataGridView1), "京东报备商品信息采集列表.xlsx");
         }
 
 
@@ -113,9 +114,9 @@ namespace 京东图片
                         {
 
 
-                          //  string picurl = "https://img14.360buyimg.com/n1/" + zhupics[a];  //小图不带码
-                            string picurl = "https://img14.360buyimg.com/n0/"+ zhupics[a];  //大图带码
-
+                            //  string picurl = "https://img14.360buyimg.com/n1/" + zhupics[a];  //小图不带码
+                            //string picurl = "https://img14.360buyimg.com/n0/"+ zhupics[a];  //大图带码
+                            string picurl = "https://img14.360buyimg.com/imgzone/" + zhupics[a];  //大图不带码
                             if (Directory.Exists(path + itemid))
                             {
                                 Directory.CreateDirectory(path + itemid);
