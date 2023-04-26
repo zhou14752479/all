@@ -385,7 +385,7 @@ namespace win007
                 }
                 catch (Exception ex)
                 {
-                    
+                    MessageBox.Show(ex.ToString());
                 }
 
 
