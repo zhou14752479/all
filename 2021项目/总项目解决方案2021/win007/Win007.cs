@@ -533,7 +533,7 @@ namespace win007
                 string l2= Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
                 string l3 = Convert.ToDouble(Convert.ToDouble(kesheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
 
-                xianshi.Text = xianshi.Text+l1 + " " + l2 + " " + l3 + "    ； ";
+                xianshi.Text = xianshi.Text+l1 + " " + l2 + " " + l3 + "   ";
 
 
 
@@ -1374,18 +1374,18 @@ namespace win007
             dataGridView1.ColumnHeadersHeight = 40;
             TextBox t = new TextBox();
             t.Text = "";
-            if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
+            if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
             {
-                sancirun(textBox1, t, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
+                sancirun(textBox1, t, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox_2);
             }
-            if (getminmaxvalue(1, 1) == textBox2.Text.Trim())
+            if (getminmaxvalue(1, 3) == textBox2.Text.Trim())
             {
-                sancirun(t, textBox2, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
+                sancirun(t, textBox2, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox_2);
 
             }
-            if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
+            if (getminmaxvalue(1, 3) == textBox3.Text.Trim())
             {
-                sancirun(t, t, textBox3, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
+                sancirun(t, t, textBox3, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox_2);
 
             }
         }
@@ -1400,17 +1400,17 @@ namespace win007
             TextBox t = new TextBox();
             t.Text = "";
 
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView2, textBox9, t, t, textBox13, rule2_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView2, textBox9, t, t, textBox13, rule2_txtbox_2);
             }
-            if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox8.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView2, t, textBox8, t, textBox13, rule2_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView2, t, textBox8, t, textBox13, rule2_txtbox_2);
             }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView2, t, t, textBox7, textBox13, rule2_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView2, t, t, textBox7, textBox13, rule2_txtbox_2);
             }
         }
 
@@ -1421,19 +1421,19 @@ namespace win007
             TextBox t = new TextBox();
             t.Text = "";
 
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView3, textBox9, t, t, textBox13, rule3_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView3, textBox9, t, t, textBox13, rule3_txtbox_2);
 
             }
-            if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox8.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, textBox8, t, textBox13, rule3_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, textBox8, t, textBox13, rule3_txtbox_2);
 
             }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, t, textBox7, textBox13, rule3_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, t, textBox7, textBox13, rule3_txtbox_2);
             }
         }
 
@@ -1446,18 +1446,18 @@ namespace win007
             TextBox t = new TextBox();
             t.Text = "";
 
-            if (getminmaxvalue(1, 2) == textBox1.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox1.Text.Trim())
             {
-                sancirun(textBox1, t, t, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox);
+                sancirun(textBox1, t, t, t, textBox5, dataGridView4, t, t, t, t, rule4_txtbox_2);
 
             }
-            if (getminmaxvalue(1, 2) == textBox2.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox2.Text.Trim())
             {
-                sancirun(t, textBox2, t, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox);
+                sancirun(t, textBox2, t, t, textBox5, dataGridView4, t, t, t, t, rule4_txtbox_2);
             }
-            if (getminmaxvalue(1, 2) == textBox3.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox3.Text.Trim())
             {
-                sancirun(t, t, textBox3, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox);
+                sancirun(t, t, textBox3, t, textBox5, dataGridView4, t, t, t, t, rule4_txtbox_2);
             }
         }
 
@@ -1470,19 +1470,19 @@ namespace win007
             TextBox t = new TextBox();
             t.Text = "";
 
-            if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView5, textBox9, t, t, textBox13, rule5_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView5, textBox9, t, t, t, rule5_txtbox_2);
 
 
             }
-            if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox8.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView5, t, textBox8, t, textBox13, rule5_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView5, t, textBox8, t, t, rule5_txtbox_2);
             }
-            if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
+            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView5, t, t, textBox7, textBox13, rule5_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView5, t, t, textBox7, t, rule5_txtbox_2);
             }
         }
 
@@ -1497,16 +1497,16 @@ namespace win007
 
             if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView6, textBox9, t, t, textBox13, rule6_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView6, textBox9, t, t, t, rule6_txtbox_2);
 
             }
             if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView6, t, textBox8, t, textBox13, rule6_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView6, t, textBox8, t, t, rule6_txtbox_2);
             }
             if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView6, t, t, textBox7, textBox13, rule6_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView6, t, t, textBox7, t, rule6_txtbox_2);
             }
         }
 
@@ -1523,16 +1523,16 @@ namespace win007
             t.Text = "";
             if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
             {
-                sancirun(textBox1, t, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
+                sancirun(textBox1, textBox2, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox_3);
             }
             if (getminmaxvalue(1, 1) == textBox2.Text.Trim())
             {
-                sancirun(t, textBox2, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
+                sancirun(textBox1, textBox2, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox_3);
 
             }
             if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
             {
-                sancirun(t, t, textBox3, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
+                sancirun(textBox1, t, textBox3, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox_3);
 
             }
         }
@@ -1549,15 +1549,15 @@ namespace win007
 
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView2, textBox9, t, t, textBox13, rule2_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView2, textBox9, t, t, textBox13, rule2_txtbox_3);
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView2, t, textBox8, t, textBox13, rule2_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView2, t, textBox8, t, textBox13, rule2_txtbox_3);
             }
             if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView2, t, t, textBox7, textBox13, rule2_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView2, t, t, textBox7, textBox13, rule2_txtbox_3);
             }
         }
 
@@ -1570,17 +1570,17 @@ namespace win007
 
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView3, textBox9, t, t, textBox13, rule3_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView3, textBox9, t, t, textBox13, rule3_txtbox_3);
 
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, textBox8, t, textBox13, rule3_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, textBox8, t, textBox13, rule3_txtbox_3);
 
             }
             if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, t, textBox7, textBox13, rule3_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, t, textBox7, textBox13, rule3_txtbox_3);
             }
         }
 
@@ -1595,16 +1595,16 @@ namespace win007
 
             if (getminmaxvalue(1, 2) == textBox1.Text.Trim())
             {
-                sancirun(textBox1, t, t, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox);
+                sancirun(textBox1, t, t, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox_3);
 
             }
             if (getminmaxvalue(1, 2) == textBox2.Text.Trim())
             {
-                sancirun(t, textBox2, t, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox);
+                sancirun(t, textBox2, t, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox_3);
             }
             if (getminmaxvalue(1, 2) == textBox3.Text.Trim())
             {
-                sancirun(t, t, textBox3, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox);
+                sancirun(t, t, textBox3, textBox4, textBox5, dataGridView4, t, t, t, t, rule4_txtbox_3);
             }
         }
 
@@ -1619,17 +1619,17 @@ namespace win007
 
             if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView5, textBox9, t, t, textBox13, rule5_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView5, textBox9, t, t, textBox13, rule5_txtbox_3);
 
 
             }
             if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView5, t, textBox8, t, textBox13, rule5_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView5, t, textBox8, t, textBox13, rule5_txtbox_3);
             }
             if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5, dataGridView5, t, t, textBox7, textBox13, rule5_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView5, t, t, textBox7, textBox13, rule5_txtbox_3);
             }
         }
 
@@ -1644,19 +1644,22 @@ namespace win007
 
             if (getminmaxvalue(2, 2) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView6, textBox9, t, t, textBox13, rule6_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView6, textBox9, t, t, textBox13, rule6_txtbox_3);
 
             }
             if (getminmaxvalue(2, 2) == textBox8.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView6, t, textBox8, t, textBox13, rule6_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView6, t, textBox8, t, textBox13, rule6_txtbox_3);
             }
             if (getminmaxvalue(2, 2) == textBox7.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView6, t, t, textBox7, textBox13, rule6_txtbox);
+                sancirun(t, t, t, textBox4, textBox5, dataGridView6, t, t, textBox7, textBox13, rule6_txtbox_3);
             }
         }
 
-       
+        private void button26_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("https://live.titan007.com/oldIndexall.aspx");
+        }
     }
 }
