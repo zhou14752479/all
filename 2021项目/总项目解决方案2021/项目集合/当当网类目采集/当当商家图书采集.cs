@@ -137,7 +137,7 @@ namespace 当当网类目采集
                                 string aurl = "https://mapi.dangdang.com/index.php?action=get_product&user_client=iphone&client_version=11.7.3&union_id=537-50&permanent_id=20210730095015646129326676251121154&udid=CDD236322B97916364381C974957D10C&time_code=55F960825DDED6D818694D99AAC0C61A&timestamp=1627609894&lunbo_img_size=h&abtest=1&page_action=1&pid=" + uid + "&img_size=h&global_province_id=111&person_on=1";
                                 string ahtml = method.GetUrl(aurl, "utf-8");
 
-
+                              
                                 //获取运费
                                 if(fee=="0")
                                 {
@@ -238,18 +238,20 @@ namespace 当当网类目采集
 
                                 //if (Convert.ToDouble(shiprice) < 49.0)
                                 //{
-                                    
+
                                 //    fee = "0";
 
                                 //}
-
+                                //textBox5.Text = method.Unicode2String(ahtml);
                                 //包邮新品标签开始
                                 MatchCollection tags = Regex.Matches(method.Unicode2String(ahtml), @"item_trace([\s\S]*?)\]");
                                 for (int a = 0; a < tags.Count; a++)
                                 {
+                                   
                                     if (tags[a].Groups[1].Value.Contains(uid))
                                     {
-                                        if (tags[a].Groups[1].Value.Contains("包邮"))
+
+                                        if (tags[a].Groups[1].Value.Contains("包邮") || tags[a].Groups[1].Value.Contains("免运费"))
                                         {
                                             fee = "0";
                                         }
@@ -267,6 +269,12 @@ namespace 当当网类目采集
                                 }
 
                                 //包邮新品标签结束
+
+                                //个别运费获取为空实际是0
+                                if(fee=="")
+                                {
+                                    fee = "0";  
+                                }
 
                                 shiprice = shiprice + Convert.ToDouble(fee);
 
@@ -304,7 +312,7 @@ namespace 当当网类目采集
                             }
                             catch (Exception e)
                             {
-                               // MessageBox.Show(e.ToString());
+                                MessageBox.Show(e.ToString());
                                 continue;
                             }
 

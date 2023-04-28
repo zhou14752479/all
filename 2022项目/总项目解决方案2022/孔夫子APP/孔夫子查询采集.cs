@@ -34,7 +34,7 @@ namespace 孔夫子APP
         Thread thread;
         bool zanting = true;
         bool status = true;
-        #region POST默认请求
+        #region POST请求
         /// <summary>
         /// POST请求
         /// </summary>
@@ -43,25 +43,34 @@ namespace 孔夫子APP
         /// <param name="COOKIE">cookie</param>
         /// <param name="charset">编码格式</param>
         /// <returns></returns>
-        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        public static string PostUrlDefault(string url, string postData)
         {
             try
             {
-
+                string COOKIE = "Hm_lvt_33be6c04e0febc7531a1315c9594b136=1681722675; Hm_lvt_bca7840de7b518b3c5e6c6d73ca2662c=1681722675; kfz_trace=51AF83E2DF004296B46750EE4142DE68|16134930|25d779d6950d2456|102002001000; kfz_uuid=51AF83E2DF004296B46750EE4142DE68; shoppingCartSessionId=d59bcc36a03c4e4e6fd4d7eb8eed4fa4; utm_source=102002001000; mpDialog=true; PHPSESSID=40rov8apgcfrnbitaodb8lg56jf42s01; acw_tc=2760828d16817226717025190ed5e3f83b2de9217167a48faff1b35cc8d629";
                 string charset = "utf-8";
                 string html = "";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
-                                                                                              //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.Proxy = null;//防止代理抓包
-                                     //添加头部
-                                     //WebHeaderCollection headers = request.Headers;
-                                     //headers.Add("sec-fetch-mode:navigate");
-                                     //headers.Add("sec-fetch-site:same-origin");
-                                     //headers.Add("sec-fetch-user:?1");
-                                     //headers.Add("upgrade-insecure-requests: 1");
-                                     //添加头部
+                //request.Proxy = null;//防止代理抓包
+                //添加头部
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("X-Tingyun-Id:lLmhN035-8Y;c=2;r=1510130765;u=b62bf55b6da98676c7af69e7063790e6::85C1D76CAE16FFDC");
+                headers.Add("ssid:1681723846000257004");
+                headers.Add("refUrl:KFZDynamicHomePageViewController");
+
+
+                headers.Add("uuid:51AF83E2DF004296B46750EE4142DE68");
+                headers.Add("accessToken:734dbc2b-faff-4381-aec5-d99f710ea572");
+                headers.Add("access-token:734dbc2b-faff-4381-aec5-d99f710ea572");
+                headers.Add("token:734dbc2b-faff-4381-aec5-d99f710ea572");
+                headers.Add("ssid: 1634870855000744763");
+
+
+
+                //headers.Add("upgrade-insecure-requests: 1");
+                //添加头部
                 request.ContentType = "application/x-www-form-urlencoded";
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
                 //request.ContentType = "application/json";
@@ -71,7 +80,7 @@ namespace 孔夫子APP
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
 
-                request.UserAgent = "IOS_KFZ_COM_3.15.0_iPhone14,5_15.4.1 #App Store,6FB137584B08435A8842DEF8F4E8D38E";
+                request.UserAgent = "IOS_KFZ_COM_3.9.2_iPhone 7 Plus_13.6.1 #App Store,8DF24B435A97462BBF3BC977E86CE5FB";
                 request.Headers.Add("Cookie", COOKIE);
 
                 request.Referer = url;
@@ -142,7 +151,8 @@ namespace 孔夫子APP
                         //string jiagepaixu = "1";  //价格从低到高
                         string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22"+jiagepaixu+"%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
 
-                        string html = PostUrlDefault(url, postdata, "");
+                      
+                        string html = PostUrlDefault(url, postdata);
                         html = method.Unicode2String(html);
                         MatchCollection itemIds = Regex.Matches(html, @"""itemId"":([\s\S]*?),");
                        // MessageBox.Show(html);
@@ -294,7 +304,7 @@ namespace 孔夫子APP
         private void 孔夫子查询采集_Load(object sender, EventArgs e)
         {
             
-            if(DateTime.Now> Convert.ToDateTime("2023-06-10"))
+            if(DateTime.Now> Convert.ToDateTime("2023-08-10"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return;

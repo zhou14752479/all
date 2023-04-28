@@ -89,7 +89,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(812, 21);
             this.textBox1.TabIndex = 406;
-            this.textBox1.Text = "http://shop.dangdang.com/10817/";
+            this.textBox1.Text = "http://shop.dangdang.com/12244/";
             // 
             // button4
             // 
