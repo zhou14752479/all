@@ -117,6 +117,11 @@ namespace 京东图片
                         string xinghao = Regex.Match(html, @"data-value=""([\s\S]*?)""").Groups[1].Value.Trim();
 
                         string zhupic_a = Regex.Match(html, @"imageList: \[([\s\S]*?)\]").Groups[1].Value.Trim().Replace("\"", "");
+                        string zhupic_gs = "jpg";
+                        if(zhupic_a.Contains("png"))
+                        {
+                            zhupic_gs = "png";
+                        }
 
                         string[] cates = cate.Split(new string[] { "," }, StringSplitOptions.None);
                         string[] zhupics = zhupic_a.Split(new string[] { "," }, StringSplitOptions.None);
@@ -163,7 +168,7 @@ namespace 京东图片
                                 Directory.CreateDirectory(path + itemid);
                             }
 
-                            method.downloadFile(picurl, path + itemid, "主图" + a + ".jpg", "");
+                            method.downloadFile(picurl, path + itemid, "主图" + a + "."+zhupic_gs, "");
                         }
 
 
