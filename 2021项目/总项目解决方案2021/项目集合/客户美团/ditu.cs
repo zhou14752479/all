@@ -876,7 +876,13 @@ namespace 客户美团
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-           getarea(comboBox2.SelectedItem.ToString());
+            if (textBox1.Text.Contains(comboBox2.Text))
+            {
+                MessageBox.Show(comboBox2.Text + "：请勿重复添加", "重复添加错误");
+                return;
+            }
+            textBox1.Text += comboBox2.Text + "\r\n";
+            getarea(comboBox2.SelectedItem.ToString());
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -918,7 +924,13 @@ namespace 客户美团
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            textBox1.Text += comboBox2.Text + "\r\n";
+            for (int i = 0; i < comboBox2.Items.Count; i++)
+            {
+                if (!textBox1.Text.Contains(comboBox2.Items[i].ToString()))
+                {
+                    textBox1.Text += comboBox2.Items[i].ToString() + "\r\n";
+                }
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

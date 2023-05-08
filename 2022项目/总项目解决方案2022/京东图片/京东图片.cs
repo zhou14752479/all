@@ -65,13 +65,26 @@ namespace 京东图片
                 sb.Append("https:" + item.Groups[1].Value + "\r\n");
             }
             if (pics.Count==0)
-
-             pics = Regex.Matches(html, @"http://([\s\S]*?)\\");
-            foreach (Match item in pics)
             {
-               
-                sb.Append("http://" + item.Groups[1].Value + "\r\n");
+                pics = Regex.Matches(html, @"http([\s\S]*?)\\");
+                foreach (Match item in pics)
+                {
+
+                    sb.Append("http" + item.Groups[1].Value + "\r\n");
+                }
             }
+
+            if (pics.Count == 0)
+            {
+                pics = Regex.Matches(html, @"lazyload=\\""([\s\S]*?)\\");
+                foreach (Match item in pics)
+                {
+
+                    sb.Append("https://" + item.Groups[1].Value + "\r\n");
+                }
+            }
+
+            //MessageBox.Show(sb.ToString());
             return sb.ToString();
         }
 
@@ -108,7 +121,35 @@ namespace 京东图片
                         string[] cates = cate.Split(new string[] { "," }, StringSplitOptions.None);
                         string[] zhupics = zhupic_a.Split(new string[] { "," }, StringSplitOptions.None);
 
+
+
+
+
+                        string cate_1= Regex.Match(html, @"mbNav-1"">([\s\S]*?)</a>").Groups[1].Value.Trim();
+                        string cate_2 = Regex.Match(html, @"mbNav-2"">([\s\S]*?)</a>").Groups[1].Value.Trim();
+                        string cate_3 = Regex.Match(html, @"mbNav-3"">([\s\S]*?)</a>").Groups[1].Value.Trim();
+                      
+
+                        //类目识别不到情况
+                        if (cate!="")
+                        {
+                             cate_1 = cates[0];
+                             cate_2 = cates[1];
+                             cate_3 = cates[2];
+                        }
+                        if(pinpai=="")
+                        {
+                            pinpai = Regex.Match(html, @"mbNav-4"">([\s\S]*?)</a>").Groups[1].Value.Trim();
+                        }
+                        
                        
+
+
+
+
+
+
+
                         StringBuilder zhupic = new StringBuilder();
                         for (int a = 0; a < zhupics.Length; a++)
                         {
@@ -150,23 +191,12 @@ namespace 京东图片
 
 
                         }
-                        //ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                        //lv1.SubItems.Add(url);
-                        //lv1.SubItems.Add(title);
-                        //lv1.SubItems.Add(cates[0]);
-                        //lv1.SubItems.Add(cates[1]);
-                        //lv1.SubItems.Add(cates[2]);
-                        //lv1.SubItems.Add(pinpai);
-                        //lv1.SubItems.Add(xinghao);
-
-                        // lv1.SubItems.Add(zhupic.ToString());
-
-                        // lv1.SubItems.Add(xqpic.ToString());
+                      
                         dataGridView1.SelectedRows[i].Cells[0].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         dataGridView1.SelectedRows[i].Cells[32].Value = title;
-                        dataGridView1.SelectedRows[i].Cells[33].Value = cates[0];
-                        dataGridView1.SelectedRows[i].Cells[34].Value = cates[1];
-                        dataGridView1.SelectedRows[i].Cells[35].Value = cates[2];
+                        dataGridView1.SelectedRows[i].Cells[33].Value = cate_1;
+                        dataGridView1.SelectedRows[i].Cells[34].Value = cate_2;
+                        dataGridView1.SelectedRows[i].Cells[35].Value = cate_3;
                         dataGridView1.SelectedRows[i].Cells[36].Value = pinpai;
                         dataGridView1.SelectedRows[i].Cells[37].Value = xinghao;
                         dataGridView1.SelectedRows[i].Cells[38].Value = itemid;
