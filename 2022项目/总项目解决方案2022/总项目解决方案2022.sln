@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202106", "..\..\20
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "当当网类目采集", "..\..\2021项目\总项目解决方案2021\项目集合\当当网类目采集\当当网类目采集.csproj", "{FDEEC9C9-4412-4797-96DC-A1E6D1E88BC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202305", "主程序202305\主程序202305.csproj", "{7EE5F484-DF20-4C32-953D-10BE64A37B40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -391,6 +393,18 @@ Global
 		{FDEEC9C9-4412-4797-96DC-A1E6D1E88BC4}.Release|x64.Build.0 = Release|Any CPU
 		{FDEEC9C9-4412-4797-96DC-A1E6D1E88BC4}.Release|x86.ActiveCfg = Release|Any CPU
 		{FDEEC9C9-4412-4797-96DC-A1E6D1E88BC4}.Release|x86.Build.0 = Release|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Debug|x64.Build.0 = Debug|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Debug|x86.Build.0 = Debug|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Release|x64.ActiveCfg = Release|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Release|x64.Build.0 = Release|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Release|x86.ActiveCfg = Release|Any CPU
+		{7EE5F484-DF20-4C32-953D-10BE64A37B40}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
