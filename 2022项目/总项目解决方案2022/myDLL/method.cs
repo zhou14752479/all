@@ -65,6 +65,8 @@ namespace myDLL
 				request.AllowAutoRedirect = true;
 				request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
 				request.Referer = Url;
+				//WebHeaderCollection headers = request.Headers;
+				//headers.Add("version:TYC-XCX-WX");
 				request.Headers.Add("Cookie", COOKIE);
 				request.Headers.Add("Accept-Encoding", "gzip");
 				request.KeepAlive = true;
@@ -119,6 +121,8 @@ namespace myDLL
 				request.AllowAutoRedirect = true;
 				request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36";
 				request.Referer = Url;
+				//WebHeaderCollection headers = request.Headers;
+				//headers.Add("version:TYC-XCX-WX");
 				request.Headers.Add("Cookie", COOKIE);
 				request.Headers.Add("Accept-Encoding", "gzip");
 				request.KeepAlive = true;
@@ -202,6 +206,11 @@ namespace myDLL
 				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 				HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 				request.Method = "Post";
+				//添加头部
+				//WebHeaderCollection headers = request.Headers;
+				//headers.Add("version:TYC-XCX-WX");
+				
+				//添加头部
 				request.ContentType = contentType;
 				request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
 				request.Headers.Add("Accept-Encoding", "gzip");
@@ -252,6 +261,7 @@ namespace myDLL
 				request.Method = "Post";
 				request.Proxy = null;
 				request.ContentType = "application/x-www-form-urlencoded";
+				// request.ContentType = "application/json";
 				request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
 				request.Headers.Add("Accept-Encoding", "gzip");
 				request.AllowAutoRedirect = false;
