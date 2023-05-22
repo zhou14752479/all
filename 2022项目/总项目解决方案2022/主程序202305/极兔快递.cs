@@ -29,25 +29,25 @@ namespace 主程序202305
         string cookie = "";
         private void button3_Click(object sender, EventArgs e)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory;
+            //string path = AppDomain.CurrentDomain.BaseDirectory;
 
-            try
-            {
-                StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
+            //try
+            //{
+            //    StreamReader sr = new StreamReader(path + "cookie.txt", method.EncodingType.GetTxtType(path + "cookie.txt"));
+            //    //一次性读取完 
+            //    string texts = sr.ReadToEnd();
 
-                cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
-                textBox2.Text = cookie;
-                sr.Close();  //只关闭流
-                sr.Dispose();   //销毁流内存
+            //    cookie = Regex.Match(texts, @"cookie=([\s\S]*?)&").Groups[1].Value;
+            //    textBox2.Text = cookie;
+            //    sr.Close();  //只关闭流
+            //    sr.Dispose();   //销毁流内存
 
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-                MessageBox.Show(ex.ToString());
-            }
+            //    MessageBox.Show(ex.ToString());
+            //}
 
 
 
@@ -107,7 +107,7 @@ namespace 主程序202305
             return result;
         }
 
-        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        public  string PostUrlDefault(string url, string postData, string COOKIE)
         {
             string result;
             try
@@ -118,7 +118,7 @@ namespace 主程序202305
                 request.Method = "Post";
                 request.Proxy = null;
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("Authtoken:f801017874ae403c888fd8983b462a6d");
+                headers.Add("Authtoken:"+textBox2.Text.Trim());
                 headers.Add("Routename:trackingExpress");
                 //request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentType = "application/json";
@@ -251,7 +251,7 @@ namespace 主程序202305
 
         private void button5_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+           listView1.Items.Clear(); 
         }
 
         private void 极兔快递_FormClosing(object sender, FormClosingEventArgs e)
@@ -265,6 +265,32 @@ namespace 主程序202305
             else
             {
                 e.Cancel = true;//点取消的代码 
+            }
+        }
+
+        private void 极兔快递_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader sr = new StreamReader( "D:/token.txt", method.EncodingType.GetTxtType("D:/token.txt"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+
+            
+                textBox2.Text = texts.Trim();
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
             }
         }
     }

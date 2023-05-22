@@ -46,12 +46,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,19 +69,21 @@
             // 
             this.button1.Location = new System.Drawing.Point(697, 9);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(58, 85);
+            this.button1.Size = new System.Drawing.Size(85, 37);
             this.button1.TabIndex = 215;
-            this.button1.Text = "登录";
+            this.button1.Text = "获取token";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(295, 11);
-            this.textBox2.Multiline = true;
+            this.textBox2.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox2.Location = new System.Drawing.Point(313, 11);
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(395, 83);
+            this.textBox2.Size = new System.Drawing.Size(377, 24);
             this.textBox2.TabIndex = 214;
+            this.textBox2.Text = "31df74e3023b440bb0cf2288f765693e";
             // 
             // label2
             // 
@@ -89,14 +91,14 @@
             this.label2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(228, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 14);
+            this.label2.Size = new System.Drawing.Size(79, 14);
             this.label2.TabIndex = 212;
-            this.label2.Text = "COOKIE：";
+            this.label2.Text = "Authtoken";
             // 
             // button3
             // 
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.button3.Location = new System.Drawing.Point(295, 98);
+            this.button3.Location = new System.Drawing.Point(253, 74);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(122, 32);
             this.button3.TabIndex = 211;
@@ -127,7 +129,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(535, 98);
+            this.button6.Location = new System.Drawing.Point(493, 74);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(107, 32);
             this.button6.TabIndex = 208;
@@ -155,7 +157,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(761, 100);
+            this.button5.Location = new System.Drawing.Point(719, 76);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(106, 30);
             this.button5.TabIndex = 207;
@@ -165,7 +167,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(648, 100);
+            this.button4.Location = new System.Drawing.Point(606, 76);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(107, 30);
             this.button4.TabIndex = 206;
@@ -175,7 +177,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(423, 98);
+            this.button2.Location = new System.Drawing.Point(381, 74);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 32);
             this.button2.TabIndex = 205;
@@ -213,6 +215,23 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "长宽高";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "体积重";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "结算方式";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "三段码";
+            this.columnHeader11.Width = 100;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.button1);
@@ -235,23 +254,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "长宽高";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "体积重";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "结算方式";
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "三段码";
-            this.columnHeader11.Width = 100;
-            // 
             // 极兔快递
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -263,6 +265,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "极兔快递【仅供学习交流，如作他用所承受的法律责任一概与作者无关(使用即代表你同意上述观点)】";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.极兔快递_FormClosing);
+            this.Load += new System.EventHandler(this.极兔快递_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

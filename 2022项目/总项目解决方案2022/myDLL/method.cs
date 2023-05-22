@@ -44,16 +44,10 @@ namespace myDLL
 			return true;
 		}
 
-		
-		public void clearIeCookie(WebBrowser webBrowser1)
-		{
-			HtmlDocument document = webBrowser1.Document;
-			document.ExecCommand("ClearAuthenticationCache", false, null);
-			webBrowser1.Refresh();
-		}
+        
 
-		
-		public static string GetUrl(string Url, string charset)
+        #region GET请求
+        public static string GetUrl(string Url, string charset)
 		{
 			string COOKIE = "";
 			string result;
@@ -97,20 +91,10 @@ namespace myDLL
 			}
 			return result;
 		}
+        #endregion
 
-		
-		public string removeValid(string illegal)
-		{
-			string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
-			string text = invalid;
-			for (int i = 0; i < text.Length; i++)
-			{
-				illegal = illegal.Replace(text[i].ToString(), "");
-			}
-			return illegal;
-		}
-
-		
+      
+		#region GET请求带COOKIE
 		public static string GetUrlWithCookie(string Url, string COOKIE, string charset)
 		{
 			string result;
@@ -153,8 +137,9 @@ namespace myDLL
 			}
 			return result;
 		}
+#endregion
 
-		// Token: 0x06000008 RID: 8 RVA: 0x00002394 File Offset: 0x00000594
+		#region GET请求带IP
 		public static string GetUrlwithIP(string Url, string ip, string COOKIE, string charset)
 		{
 			string result;
@@ -196,9 +181,10 @@ namespace myDLL
 			}
 			return result;
 		}
+        #endregion
 
-		// Token: 0x06000009 RID: 9 RVA: 0x000024E8 File Offset: 0x000006E8
-		public static string PostUrl(string url, string postData, string COOKIE, string charset, string contentType, string refer)
+        #region post请求全参
+        public static string PostUrl(string url, string postData, string COOKIE, string charset, string contentType, string refer)
 		{
 			string result;
 			try
@@ -248,9 +234,10 @@ namespace myDLL
 			}
 			return result;
 		}
+        #endregion
 
-		// Token: 0x0600000A RID: 10 RVA: 0x0000266C File Offset: 0x0000086C
-		public static string PostUrlDefault(string url, string postData, string COOKIE)
+        #region datatable转excel
+        public static string PostUrlDefault(string url, string postData, string COOKIE)
 		{
 			string result;
 			try
@@ -298,9 +285,10 @@ namespace myDLL
 			}
 			return result;
 		}
+        #endregion
 
-		// Token: 0x0600000B RID: 11 RVA: 0x00002808 File Offset: 0x00000A08
-		public static DataTable listViewToDataTable(ListView lv)
+		#region listview转datatable
+        public static DataTable listViewToDataTable(ListView lv)
 		{
 			DataTable dt = new DataTable();
 			dt.Clear();
@@ -332,8 +320,10 @@ namespace myDLL
 			return dt;
 		}
 
-		// Token: 0x0600000C RID: 12 RVA: 0x00002914 File Offset: 0x00000B14
-		public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
+#endregion
+
+        #region datatable转excel
+        public static int DataTableToExcel(DataTable data, string sheetName, bool isColumnWritten)
 		{
 			IWorkbook workbook = null;
 			SaveFileDialog sfd = new SaveFileDialog();
@@ -413,8 +403,9 @@ namespace myDLL
 			}
 			return result;
 		}
+#endregion
 
-		// Token: 0x0600000D RID: 13 RVA: 0x00002B38 File Offset: 0x00000D38
+		#region 获取iE的cookie
 		public static string GetCookies(string url)
 		{
 			uint datasize = 256U;
@@ -437,7 +428,9 @@ namespace myDLL
 			return cookieData.ToString();
 		}
 
-		// Token: 0x0600000E RID: 14 RVA: 0x00002BB4 File Offset: 0x00000DB4
+		#endregion
+
+		#region 获取set-cookie
 		public static string getSetCookie(string url)
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -448,8 +441,9 @@ namespace myDLL
 			HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 			return response.GetResponseHeader("Set-Cookie");
 		}
+		#endregion
 
-		// Token: 0x0600000F RID: 15 RVA: 0x00002C18 File Offset: 0x00000E18
+		#region Excel转datatable
 		public static DataTable ExcelToDataTable(string filePath, bool isColumnName)
 		{
 			DataTable dataTable = null;
@@ -632,8 +626,9 @@ namespace myDLL
 			}
 			return result;
 		}
+		#endregion
 
-		// Token: 0x06000010 RID: 16 RVA: 0x00003084 File Offset: 0x00001284
+		#region 在ListView展示数据
 		public static void ShowDataInListView(DataTable dt, ListView lst)
 		{
 			lst.Clear();
@@ -664,8 +659,9 @@ namespace myDLL
 				}
 			}
 		}
+		#endregion
 
-		// Token: 0x06000011 RID: 17 RVA: 0x000031B8 File Offset: 0x000013B8
+		#region  DataGridView转datatable
 		public static DataTable DgvToTable(DataGridView dgv)
 		{
 			DataTable dt = new DataTable();
@@ -685,14 +681,16 @@ namespace myDLL
 			}
 			return dt;
 		}
+		#endregion
 
-		// Token: 0x06000012 RID: 18 RVA: 0x000032A4 File Offset: 0x000014A4
+		#region  Unicode转字符串
 		public static string Unicode2String(string source)
 		{
 			return new Regex("\\\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(source, (Match x) => string.Empty + Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)).ToString());
 		}
+		#endregion
 
-		// Token: 0x06000013 RID: 19 RVA: 0x000032E8 File Offset: 0x000014E8
+		#region  MD5加密
 		public static string GetMD5(string txt)
 		{
 			string result;
@@ -709,8 +707,9 @@ namespace myDLL
 			}
 			return result;
 		}
+		#endregion
 
-		// Token: 0x06000014 RID: 20 RVA: 0x00003374 File Offset: 0x00001574
+		#region  获取mac地址
 		public static string GetMacAddress()
 		{
 			string result;
@@ -736,20 +735,23 @@ namespace myDLL
 			}
 			return result;
 		}
+		#endregion
 
-		// Token: 0x06000015 RID: 21 RVA: 0x00003428 File Offset: 0x00001628
+		#region  获取时间戳
 		public static string GetTimeStamp()
 		{
 			return Convert.ToInt64((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds).ToString();
 		}
+		#endregion
 
-		// Token: 0x06000016 RID: 22 RVA: 0x0000346C File Offset: 0x0000166C
+		#region  时间戳转时间
 		public static DateTime ConvertStringToDateTime(string timeStamp)
 		{
 			return TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddSeconds(Convert.ToDouble(timeStamp));
 		}
+		#endregion
 
-		// Token: 0x06000017 RID: 23 RVA: 0x000034A4 File Offset: 0x000016A4
+		#region  ie浏览器设置
 		public static void SetFeatures(uint ieMode)
 		{
 			bool flag = LicenseManager.UsageMode > LicenseUsageMode.Runtime;
@@ -762,8 +764,9 @@ namespace myDLL
 			Registry.SetValue(featureControlRegKey + "FEATURE_BROWSER_EMULATION", appName, ieMode, RegistryValueKind.DWord);
 			Registry.SetValue(featureControlRegKey + "FEATURE_ENABLE_CLIPCHILDREN_OPTIMIZATION", appName, 1, RegistryValueKind.DWord);
 		}
+		#endregion
 
-		// Token: 0x06000018 RID: 24 RVA: 0x00003514 File Offset: 0x00001714
+		#region  DataTable导出表格带文件名
 		public static int DataTableToExcelName(DataTable data, string fileName, bool isColumnWritten)
 		{
 			IWorkbook workbook = null;
@@ -830,9 +833,10 @@ namespace myDLL
 				result = -1;
 			}
 			return result;
-		}
+		}	
+		#endregion
 
-		// Token: 0x06000019 RID: 25 RVA: 0x000036D8 File Offset: 0x000018D8
+		#region  DataTable导出表格
 		public static int DataTableToExcelTime(DataTable data, bool isColumnWritten)
 		{
 			IWorkbook workbook = null;
@@ -901,7 +905,10 @@ namespace myDLL
 			}
 			return result;
 		}
+		#endregion
 
+
+		#region  ListView导出csv
 		// Token: 0x0600001A RID: 26 RVA: 0x000038C0 File Offset: 0x00001AC0
 		//public static void ListViewToCSV(ListView listView, bool includeHidden)
 		//{
@@ -916,7 +923,7 @@ namespace myDLL
 		//	method.WriteCSVRow(result, listView.Columns.Count, (int i) => includeHidden || listView.Columns[i].Width > 0, (int i) => listView.Columns[i].Text);
 		//	using (IEnumerator enumerator = listView.Items.GetEnumerator())
 		//	{
-				
+
 		//		while (enumerator.MoveNext())
 		//		{
 		//			ListViewItem listItem = (ListViewItem)enumerator.Current;
@@ -965,8 +972,9 @@ namespace myDLL
 			}
 			result.AppendLine();
 		}
+		#endregion
 
-		// Token: 0x0600001C RID: 28 RVA: 0x00003A8C File Offset: 0x00001C8C
+		#region  设置IE类型
 		public static void SetWebBrowserFeatures(method.IeVersion ieVersion)
 		{
 			bool flag = LicenseManager.UsageMode > LicenseUsageMode.Runtime;
@@ -984,7 +992,7 @@ namespace myDLL
 			}
 		}
 
-		// Token: 0x0600001D RID: 29 RVA: 0x00003B64 File Offset: 0x00001D64
+		
 		private static uint GeoEmulationModee(int browserVersion)
 		{
 			uint mode = 11000U;
@@ -1008,8 +1016,9 @@ namespace myDLL
 			}
 			return mode;
 		}
+		#endregion
 
-		// Token: 0x0600001E RID: 30 RVA: 0x00003BC8 File Offset: 0x00001DC8
+		#region  Listview导出文本
 		public static void ListviewToTxt(ListView listview, int i)
 		{
 			List<string> list = new List<string>();
@@ -1037,8 +1046,9 @@ namespace myDLL
 			File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
 			MessageBox.Show("文件导出成功!文件地址:" + path);
 		}
+		#endregion
 
-		// Token: 0x0600001F RID: 31 RVA: 0x00003D0C File Offset: 0x00001F0C
+		#region 下载文件带cookie
 		public static void downloadFile(string URLAddress, string subPath, string name, string COOKIE)
 		{
 			try
@@ -1060,8 +1070,9 @@ namespace myDLL
 				ex.ToString();
 			}
 		}
+		#endregion
 
-		// Token: 0x06000020 RID: 32 RVA: 0x00003DB0 File Offset: 0x00001FB0
+		#region Base64编码
 		public static string Base64Encode(Encoding encodeType, string source)
 		{
 			string encode = string.Empty;
@@ -1076,8 +1087,9 @@ namespace myDLL
 			}
 			return encode;
 		}
+		#endregion
 
-		// Token: 0x06000021 RID: 33 RVA: 0x00003DF4 File Offset: 0x00001FF4
+		#region Base64解码
 		public static string Base64Decode(Encoding encodeType, string result)
 		{
 			string decode = string.Empty;
@@ -1092,8 +1104,9 @@ namespace myDLL
 			}
 			return decode;
 		}
+		#endregion
 
-		// Token: 0x06000022 RID: 34 RVA: 0x00003E38 File Offset: 0x00002038
+		#region ImageToBase64
 		public string ImageToBase64(Image image)
 		{
 			string result;
@@ -1114,8 +1127,9 @@ namespace myDLL
 			}
 			return result;
 		}
+		#endregion
 
-		// Token: 0x06000023 RID: 35 RVA: 0x00003EB0 File Offset: 0x000020B0
+		#region Base64ToImage
 		public void Base64ToImage(string strbase64, string filename)
 		{
 			try
@@ -1134,8 +1148,9 @@ namespace myDLL
 				MessageBox.Show(ex.ToString());
 			}
 		}
+		#endregion
 
-		// Token: 0x06000024 RID: 36 RVA: 0x00003F20 File Offset: 0x00002120
+		#region 发送邮箱邮件
 		public static void send(string address, string subject, string body)
 		{
 			MailMessage mailMessage = new MailMessage();
@@ -1152,8 +1167,9 @@ namespace myDLL
 				Credentials = new NetworkCredential("1073689549@qq.com", "nlubektsumvmbbdd")
 			}.Send(mailMessage);
 		}
+		#endregion
 
-		// Token: 0x06000025 RID: 37 RVA: 0x00003FB0 File Offset: 0x000021B0
+		#region 获取重定向网址
 		public static string GetRedirectUrl(string url)
 		{
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
@@ -1167,8 +1183,9 @@ namespace myDLL
 			}
 			return url;
 		}
+		#endregion
 
-		// Token: 0x06000026 RID: 38 RVA: 0x00004010 File Offset: 0x00002210
+		#region excel转datatable
 		public static DataTable ReadExcelToTable(string path)
 		{
 			DataTable result;
@@ -1202,7 +1219,7 @@ namespace myDLL
 			return result;
 		}
 
-		// Token: 0x06000027 RID: 39 RVA: 0x000040E8 File Offset: 0x000022E8
+		
 		public DataSet SplitDataTable(DataTable orgTable, int rowsNum)
 		{
 			DataSet ds = new DataSet();
@@ -1249,8 +1266,9 @@ namespace myDLL
 			}
 			return result;
 		}
+		#endregion
 
-		// Token: 0x06000028 RID: 40 RVA: 0x0000420C File Offset: 0x0000240C
+		#region 生成xml文件
 		public void CreateXmlFile()
 		{
 			XmlDocument xmlDoc = new XmlDocument();
@@ -1270,16 +1288,18 @@ namespace myDLL
 				Console.WriteLine(e.Message);
 			}
 		}
+		#endregion
 
-
+		#region 生成xmlnode
 		public void CreateNode(XmlDocument xmlDoc, XmlNode parentNode, string name, string value)
 		{
 			XmlNode node = xmlDoc.CreateNode(XmlNodeType.Element, name, null);
 			node.InnerText = value;
 			parentNode.AppendChild(node);
 		}
+		#endregion
 
-
+		#region 关闭程序自身
 		public static void TestForKillMyself()
 		{
 			string bat = "@echo off\r\n                           :tryagain\r\n                           del %1\r\n                           if exist %1 goto tryagain\r\n                           del %0";
@@ -1291,8 +1311,9 @@ namespace myDLL
 				WindowStyle = ProcessWindowStyle.Hidden
 			});
 		}
+		#endregion
 
-	
+		#region wxpush消息UID
 		public string getuids()
 		{
 			StringBuilder sb = new StringBuilder();
@@ -1306,8 +1327,9 @@ namespace myDLL
 			}
 			return sb.ToString().Remove(sb.ToString().Length - 1, 1);
 		}
+		#endregion
 
-		
+		#region 发送wxpush消息
 		public void sendmsg(string title, string neirong)
 		{
 			bool flag = title.Trim() != "";
@@ -1327,8 +1349,9 @@ namespace myDLL
 				string html = method.PostUrlDefault(url, postdata, "");
 			}
 		}
+		#endregion
 
-		
+		#region 网址转图片
 		public static Image GetImage(string url)
 		{
 			Image result;
@@ -1357,8 +1380,9 @@ namespace myDLL
 			}
 			return result;
 		}
+		#endregion
 
-		
+		#region 获取编码类型
 		public class EncodingType
 		{
 			// Token: 0x0600003D RID: 61 RVA: 0x00004D18 File Offset: 0x00002F18
@@ -1503,19 +1527,65 @@ namespace myDLL
 
         }
 
-		// Token: 0x02000007 RID: 7
-		public enum IeVersion
+		#endregion
+
+		#region  网络图片转Bitmap
+		public Bitmap UrlToBitmap(string url, string cookie)
 		{
-			// Token: 0x04000006 RID: 6
+			
+			WebClient mywebclient = new WebClient();
+			mywebclient.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
+			mywebclient.Headers.Add("Cookie", cookie);
+			byte[] Bytes = mywebclient.DownloadData(url);
+
+			using (MemoryStream ms = new MemoryStream(Bytes))
+			{
+				Image outputImg = Image.FromStream(ms);
+
+				Bitmap map = new Bitmap(outputImg);
+				return map;
+			}
+		}
+        #endregion
+
+		#region 判断浏览器
+        public enum IeVersion
+		{
+			
 			IE7 = 7,
-			// Token: 0x04000007 RID: 7
+			
 			IE8,
-			// Token: 0x04000008 RID: 8
+			
 			IE9,
-			// Token: 0x04000009 RID: 9
+			
 			IE10,
-			// Token: 0x0400000A RID: 10
+			
 			IE11
 		}
+
+		#endregion
+
+		#region 移除文件非法字符
+		public string removeValid(string illegal)
+		{
+			string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+			string text = invalid;
+			for (int i = 0; i < text.Length; i++)
+			{
+				illegal = illegal.Replace(text[i].ToString(), "");
+			}
+			return illegal;
+		}
+		#endregion
+
+
+		#region 清空ie的COOKIE
+		public void clearIeCookie(WebBrowser webBrowser1)
+		{
+			HtmlDocument document = webBrowser1.Document;
+			document.ExecCommand("ClearAuthenticationCache", false, null);
+			webBrowser1.Refresh();
+		}
+		#endregion
 	}
 }

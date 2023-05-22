@@ -69,8 +69,8 @@ namespace CEF外部登录
 
         private void 淘宝1688_Load(object sender, EventArgs e)
         {
-            browser = new ChromiumWebBrowser("https://uuser.zjzwfw.gov.cn/uuuser/doLoginSuccess.do");
-         
+            //browser = new ChromiumWebBrowser("https://uuser.zjzwfw.gov.cn/uuuser/doLoginSuccess.do");
+            browser = new ChromiumWebBrowser("https://jms.jtexpress.com.cn/login");
             Control.CheckForIllegalCrossThreadCalls = false;
             panel1.Controls.Add(browser);
 

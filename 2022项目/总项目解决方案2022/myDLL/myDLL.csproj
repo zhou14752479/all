@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="method.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StupidOcr.cs" />
     <Compile Include="yzm_ttshitu.cs" />
     <Compile Include="抖音扫码获取cookie\CookieHelper.cs" />
   </ItemGroup>

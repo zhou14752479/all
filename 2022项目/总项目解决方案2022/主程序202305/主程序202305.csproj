@@ -39,7 +39,7 @@
     </Reference>
     <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\2021项目\总项目解决方案2021\win007\bin\Debug\myDLL.dll</HintPath>
+      <HintPath>..\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,6 +73,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="发票51.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="发票51.Designer.cs">
+      <DependentUpon>发票51.cs</DependentUpon>
+    </Compile>
     <Compile Include="极兔快递.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +94,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="发票51.resx">
+      <DependentUpon>发票51.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="极兔快递.resx">
       <DependentUpon>极兔快递.cs</DependentUpon>
     </EmbeddedResource>

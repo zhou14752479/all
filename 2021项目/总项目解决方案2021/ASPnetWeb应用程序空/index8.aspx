@@ -75,27 +75,27 @@
 </head>
 <body style="background-image: url('image8/background.jpg'); background-size: cover;background-position: center center;">
      
-         <div class="center top10 bottom10">
-                    <img class="img1" id="img1" src="image8/1.jpg" class="w100" />
-                </div>       
+       
 
        <form id="form1"  action="index8_admin.aspx">     
         <div id="wenzi" class="center body">
           
 			
-						<p style="margin-top: 100px;">博 乐 字 花</p>
+						<p style="margin-top: 100px;">克 伦 邦 字 花</p>
             <p class="top-20"><%=DateTime.Now.ToString("yyyy年MM月dd日")%></p>
             <p class="font-18 top-10"><%=Application["changname"]%></p>
             <p class="font-18 top-5"><span id="weikai"><%=Application["a2"]%></span></p>
             <p class="top-5"><%=Application["a3"]%></p>
             <p><%=Application["a4"]%></p>
             <p><%=Application["a5"]%></p>
-            <p class="font-18" style="margin-bottom: 100px;">提示：<%=Application["a6"]%></p>
+            <p class="font-18" style="margin-bottom: 100px;">题目译文：<%=Application["a6"]%></p>
            
 
         </div>
 
-
+             <div class="center top10 bottom10">
+                    <img class="img1" id="img1" src="image8/1.jpg" class="w100" />
+                </div>       
 
 
         <div class="flex-around bottom">
