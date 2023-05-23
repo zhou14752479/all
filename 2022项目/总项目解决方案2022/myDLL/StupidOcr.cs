@@ -66,7 +66,7 @@ namespace myDLL
             return result;
         }
         #region  网络图片转Bitmap
-        public static Bitmap UrlToBitmap(string url, string cookie)
+        public static Image UrlToBitmap(string url, string cookie)
         {
 
             WebClient mywebclient = new WebClient();
@@ -81,6 +81,21 @@ namespace myDLL
                 Bitmap map = new Bitmap(outputImg);
                 return map;
             }
+
+
+            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
+            //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+            //request.Referer = url;
+
+            //request.Headers.Add("Cookie", cookie);
+
+            //request.KeepAlive = true;
+
+            //HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+            //Stream stream = response.GetResponseStream();
+            //return Image.FromStream(stream);
+
         }
         #endregion
         public static string ImageToBase64(Image image)
@@ -88,9 +103,9 @@ namespace myDLL
             string result;
             try
             {
-                Bitmap bmp = new Bitmap(image);
+                
                 MemoryStream ms = new MemoryStream();
-                bmp.Save(ms, ImageFormat.Jpeg);
+                image.Save(ms, ImageFormat.Jpeg);
                 byte[] arr = new byte[ms.Length];
                 ms.Position = 0L;
                 ms.Read(arr, 0, (int)ms.Length);

@@ -257,5 +257,16 @@ namespace 京东图片
                 e.Cancel = true;//点取消的代码 
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string url = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=100057663881";
+           textBox2.Text=(function.GetUrl(url));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

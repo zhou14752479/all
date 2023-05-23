@@ -84,6 +84,7 @@ namespace 主程序202305
         }
         private void button3_Click(object sender, EventArgs e)
         {
+
             #region 通用检测
 
 
@@ -96,7 +97,11 @@ namespace 主程序202305
             }
 
             #endregion
-            cookie = method.getSetCookie("https://www.51fapiao.cn/serverapi/webServer/webapi/gencode?tmp=988");
+
+
+            Random random = new Random();
+            int suiji=random.Next(100, 999);   
+            cookie = method.getSetCookie("https://www.51fapiao.cn/serverapi/webServer/webapi/gencode?tmp=" + random);
 
             if (thread == null || !thread.IsAlive)
             {
@@ -109,7 +114,9 @@ namespace 主程序202305
 
         public string getocr()
         {
-            string imgurl = "https://www.51fapiao.cn/serverapi/webServer/webapi/gencode?tmp=988";
+            Random random = new Random();
+            int suiji = random.Next(100, 999);
+            string imgurl = "https://www.51fapiao.cn/serverapi/webServer/webapi/gencode?tmp="+random;
           string html =  StupidOcr.OCR(imgurl,cookie);
            
             return html;   
@@ -123,6 +130,12 @@ namespace 主程序202305
         public void run()
         {
 
+            string spath = path + "\\发票\\"+DateTime.Now.ToString("yyyyMMdd")+"\\";
+            if (!Directory.Exists(spath))
+            {
+                Directory.CreateDirectory(spath); //创建文件夹
+            }
+
             int fp1 = Convert.ToInt32(textBox2.Text);
             int fp2= Convert.ToInt32(textBox4.Text);
 
@@ -135,29 +148,30 @@ namespace 主程序202305
             {
 
 
-                for (double j = je1; j < je2; j=j+0.1)
+                for (double j = je1; j < je2; j=j+0.01)
                 {
 
                     try
                     {
-
                         //if(lists.Contains(i.ToString("D8") + j))
                         //{
                         //    continue;
                         //}
 
                         //lists.Add(i.ToString("D8") + j);
+                      
+                      
                         string code = getocr();
-
+                       
                         string url = "https://www.51fapiao.cn/serverapi/webServer/webapi/queryInv";
                         string postdata = "fpdm="+textBox1.Text+"&fphm=" + i.ToString("D8") + "&kprq=" + textBox6.Text.Trim() + "&kphjje=" + j.ToString() + "&yzm=" + code + "&uuid=&flag=1&skip=0&jeflag=1";
 
                         string html = PostUrlDefault(url, postdata, cookie, "application/x-www-form-urlencoded");
                         html = System.Web.HttpUtility.UrlDecode(html);
-
+                        
                         if (html.Contains("验证码错误"))
                         {
-                            j = j - 0.1;
+                            j = j - 0.01;
                             continue;
                         }
                         //MessageBox.Show(html);
@@ -171,7 +185,7 @@ namespace 主程序202305
                             //MessageBox.Show(cxKey);
                             xzMsg = "成功";
                             string fileurl = "https://www.51fapiao.cn/serverapi/webServer/webapi/getPdfImg/" + cxKey + "/0.png";
-                            downloadFile(fileurl, path + "\\发票\\", i.ToString("D8") + ".jpg", cookie);
+                            downloadFile(fileurl, spath, i.ToString("D8") + ".jpg", cookie);
 
                         }
 
