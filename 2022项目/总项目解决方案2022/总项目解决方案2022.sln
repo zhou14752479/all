@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "stock
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "京东价格对比", "..\..\2021项目\总项目解决方案2021\项目集合\京东价格对比\京东价格对比.csproj", "{CAC3088F-469A-43CB-B1EB-A0D15802A1D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "臻品定制", "臻品定制\臻品定制.csproj", "{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -419,6 +421,18 @@ Global
 		{CAC3088F-469A-43CB-B1EB-A0D15802A1D0}.Release|x64.Build.0 = Release|Any CPU
 		{CAC3088F-469A-43CB-B1EB-A0D15802A1D0}.Release|x86.ActiveCfg = Release|Any CPU
 		{CAC3088F-469A-43CB-B1EB-A0D15802A1D0}.Release|x86.Build.0 = Release|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Debug|x64.Build.0 = Debug|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Debug|x86.Build.0 = Debug|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Release|x64.ActiveCfg = Release|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Release|x64.Build.0 = Release|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Release|x86.ActiveCfg = Release|Any CPU
+		{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

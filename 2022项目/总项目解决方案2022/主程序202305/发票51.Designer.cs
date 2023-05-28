@@ -161,7 +161,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(158, 23);
             this.textBox1.TabIndex = 210;
-            this.textBox1.Text = "014002300111";
+            this.textBox1.Text = "037022200211";
             // 
             // label1
             // 
@@ -244,7 +244,7 @@
             this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox5.Size = new System.Drawing.Size(82, 23);
             this.textBox5.TabIndex = 218;
-            this.textBox5.Text = "346";
+            this.textBox5.Text = "500";
             // 
             // label5
             // 
@@ -264,7 +264,7 @@
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox4.Size = new System.Drawing.Size(82, 23);
             this.textBox4.TabIndex = 216;
-            this.textBox4.Text = "07092099";
+            this.textBox4.Text = "23259000";
             // 
             // label4
             // 
@@ -284,7 +284,7 @@
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox3.Size = new System.Drawing.Size(82, 23);
             this.textBox3.TabIndex = 214;
-            this.textBox3.Text = "344";
+            this.textBox3.Text = "50";
             // 
             // label3
             // 
@@ -304,7 +304,7 @@
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(82, 23);
             this.textBox2.TabIndex = 212;
-            this.textBox2.Text = "07092093";
+            this.textBox2.Text = "23250000";
             // 
             // label2
             // 

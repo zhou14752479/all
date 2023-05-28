@@ -38,7 +38,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,7 +55,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1009, 101);
+            this.tabPage1.Size = new System.Drawing.Size(1178, 101);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "图片获取";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -141,7 +140,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1017, 127);
+            this.tabControl1.Size = new System.Drawing.Size(1186, 127);
             this.tabControl1.TabIndex = 42;
             // 
             // dataGridView1
@@ -151,23 +150,14 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 127);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1017, 468);
+            this.dataGridView1.Size = new System.Drawing.Size(1186, 616);
             this.dataGridView1.TabIndex = 43;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(181, 186);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(627, 307);
-            this.textBox2.TabIndex = 44;
             // 
             // 京东图片
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1017, 595);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(1186, 743);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tabControl1);
             this.Name = "京东图片";
@@ -180,7 +170,6 @@
             this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -195,6 +184,5 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox2;
     }
 }

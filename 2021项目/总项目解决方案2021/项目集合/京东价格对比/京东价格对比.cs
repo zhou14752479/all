@@ -239,7 +239,10 @@ namespace 京东价格对比
                     if (oldxinghao == "")
                     {
                         string url = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=" + jdskuid;
+                       
                         string html = function.GetUrl(url);
+
+                      
 
                         string xinghao = Regex.Match(html, @"""skuName"":""([\s\S]*?)""").Groups[1].Value;
                         string guige = Regex.Match(html, @"""skuName"":""([\s\S]*?)""").Groups[1].Value;
@@ -249,6 +252,8 @@ namespace 京东价格对比
                         }guige = text[text.Length-1];
                         string danwei = "件";
                         string price = Regex.Match(html, @"""price"":""([\s\S]*?)""").Groups[1].Value;
+
+                       // MessageBox.Show(price);
                         if (price != "")
                         {
                             if (radioButton2.Checked == true)

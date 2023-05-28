@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F077ECCD-6210-4D05-8AB8-D17113A8A3C1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Background</RootNamespace>
+    <AssemblyName>臻品定制</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>臻品定制.ico</ApplicationIcon>
+    <StartupObject>Background.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common">
+      <HintPath>C:\Users\Administrator\Desktop\激活码\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="MUWEN">
+      <HintPath>C:\Users\Administrator\Desktop\激活码\MUWEN.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ForActive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForActive.Designer.cs">
+      <DependentUpon>ForActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForAnimal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForAnimal.Designer.cs">
+      <DependentUpon>ForAnimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForChangCi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForChangCi.Designer.cs">
+      <DependentUpon>ForChangCi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForChangCiManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForChangCiManager.Designer.cs">
+      <DependentUpon>ForChangCiManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForDaiLi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForDaiLi.Designer.cs">
+      <DependentUpon>ForDaiLi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForExtractData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForExtractData.Designer.cs">
+      <DependentUpon>ForExtractData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForExtractDataJianJie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForExtractDataJianJie.Designer.cs">
+      <DependentUpon>ForExtractDataJianJie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForKaiBao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForKaiBao.Designer.cs">
+      <DependentUpon>ForKaiBao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForLenBao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForLenBao.Designer.cs">
+      <DependentUpon>ForLenBao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForMain.Designer.cs">
+      <DependentUpon>ForMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForMySetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForMySetting.Designer.cs">
+      <DependentUpon>ForMySetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForShuYing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForShuYing.Designer.cs">
+      <DependentUpon>ForShuYing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UseAnimal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseChangCi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseKaiBao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseLenBao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseShuYing.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="激活码生成.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="激活码生成.Designer.cs">
+      <DependentUpon>激活码生成.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ForActive.resources" />
+    <EmbeddedResource Include="ForAnimal.resources" />
+    <EmbeddedResource Include="ForChangCi.resources" />
+    <EmbeddedResource Include="ForChangCiManager.resources" />
+    <EmbeddedResource Include="ForDaiLi.resources" />
+    <EmbeddedResource Include="ForExtractData.resources" />
+    <EmbeddedResource Include="ForExtractDataJianJie.resources" />
+    <EmbeddedResource Include="ForKaiBao.resources" />
+    <EmbeddedResource Include="ForLenBao.resources" />
+    <EmbeddedResource Include="ForMain.resources" />
+    <EmbeddedResource Include="ForMySetting.resources" />
+    <EmbeddedResource Include="ForShuYing.resources" />
+    <EmbeddedResource Include="Properties\Resources.resources" />
+    <EmbeddedResource Include="UseAnimal.resources" />
+    <EmbeddedResource Include="UseChangCi.resources" />
+    <EmbeddedResource Include="UseKaiBao.resources" />
+    <EmbeddedResource Include="UseLenBao.resources" />
+    <EmbeddedResource Include="UseShuYing.resources" />
+    <EmbeddedResource Include="激活码生成.resx">
+      <DependentUpon>激活码生成.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

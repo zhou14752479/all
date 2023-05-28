@@ -105,10 +105,16 @@ namespace 京东图片
 
                     try
                     {
+
+                      
                         string itemid = Regex.Match(dataGridView1.SelectedRows[i].Cells[21].Value.ToString().Trim(), @"\d{7,20}").Groups[0].Value;
                         label1.Text = DateTime.Now.ToString() + "正在获取：" + itemid;
 
                         string url = "https://item.jd.com/" + itemid + ".html";
+
+
+                       
+
 
                         string html = method.GetUrl(url, "utf-8");
                         string cate = Regex.Match(html, @"catName: \[([\s\S]*?)\]").Groups[1].Value.Trim().Replace("\"", "");
@@ -196,7 +202,9 @@ namespace 京东图片
 
 
                         }
-                      
+
+                        string price = getprice(title,itemid);
+
                         dataGridView1.SelectedRows[i].Cells[0].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         dataGridView1.SelectedRows[i].Cells[32].Value = title;
                         dataGridView1.SelectedRows[i].Cells[33].Value = cate_1;
@@ -204,9 +212,12 @@ namespace 京东图片
                         dataGridView1.SelectedRows[i].Cells[35].Value = cate_3;
                         dataGridView1.SelectedRows[i].Cells[36].Value = pinpai;
                         dataGridView1.SelectedRows[i].Cells[37].Value = xinghao;
-                        dataGridView1.SelectedRows[i].Cells[38].Value = itemid;
+
+                        dataGridView1.SelectedRows[i].Cells[38].Value = price;
+                        dataGridView1.SelectedRows[i].Cells[39].Value = itemid;
                         function.DataTableToExcel(method.DgvToTable(dataGridView1), "京东报备商品信息采集列表.xlsx");
 
+                       
                     }
                     catch (Exception ex)
                     {
@@ -225,7 +236,7 @@ namespace 京东图片
             }
         }
 
-
+       
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
@@ -242,6 +253,10 @@ namespace 京东图片
             string path = AppDomain.CurrentDomain.BaseDirectory;
             DataTable dt = method.ExcelToDataTable(path+ "京东报备商品信息采集列表.xlsx", true);
             dataGridView1.DataSource = dt;
+
+            method.SetFeatures(11000);
+            //webBrowser1.ScriptErrorsSuppressed = true;
+            //webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(WB_DocumentCompleted);
         }
 
         private void 京东图片_FormClosing(object sender, FormClosingEventArgs e)
@@ -258,15 +273,50 @@ namespace 京东图片
             }
         }
 
+        /// <summary>
+        /// 通过搜索标题并比对itemid获取商品价格
+        /// </summary>
+        /// <returns></returns>
+        public string getprice(string title,string itemid)
+        {
+            string url = "https://so.m.jd.com/ware/search.action?keyword="+ System.Web.HttpUtility.UrlEncode(title)+"&searchFrom=search&sf=11&as=1";
+
+            string html = method.GetUrl(url, "utf-8");
+
+           
+            MatchCollection prices = Regex.Matches(html, @"tourl=""https:\/\/item\.m\.jd\.com\/product\/([\s\S]*?)\.html\?_fd=jdm&price=([\s\S]*?)&");
+
+            //MessageBox.Show(prices.Count.ToString());
+
+            for (int i = 0; i < prices.Count; i++)
+            {
+                if(prices[i].Groups[1].Value==itemid)
+                {
+                    return prices[i].Groups[2].Value;    
+                }
+
+            }
+
+            return "";
+        }
         private void button4_Click(object sender, EventArgs e)
         {
-            string url = "https://wxa.jd.com/wqitem.jd.com/itemv3/wxadraw?sku=100057663881";
-           textBox2.Text=(function.GetUrl(url));
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
 
         }
+
+
+
+
+
+
+     
+
+
+
     }
 }

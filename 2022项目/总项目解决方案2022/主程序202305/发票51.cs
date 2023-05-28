@@ -98,7 +98,7 @@ namespace 主程序202305
 
             #endregion
 
-
+            status = true;
             Random random = new Random();
             int suiji=random.Next(100, 999);   
             cookie = method.getSetCookie("https://www.51fapiao.cn/serverapi/webServer/webapi/gencode?tmp=" + random);
@@ -164,7 +164,7 @@ namespace 主程序202305
                         string code = getocr();
                        
                         string url = "https://www.51fapiao.cn/serverapi/webServer/webapi/queryInv";
-                        string postdata = "fpdm="+textBox1.Text+"&fphm=" + i.ToString("D8") + "&kprq=" + textBox6.Text.Trim() + "&kphjje=" + j.ToString() + "&yzm=" + code + "&uuid=&flag=1&skip=0&jeflag=1";
+                        string postdata = "fpdm="+textBox1.Text+"&fphm=" + i.ToString("D8") + "&kprq=" + textBox6.Text.Trim() + "&kphjje=" + j.ToString("f2") + "&yzm=" + code + "&uuid=&flag=1&skip=0&jeflag=1";
 
                         string html = PostUrlDefault(url, postdata, cookie, "application/x-www-form-urlencoded");
                         html = System.Web.HttpUtility.UrlDecode(html);
@@ -193,7 +193,7 @@ namespace 主程序202305
                         ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
                         lv1.SubItems.Add(textBox1.Text);
                         lv1.SubItems.Add(i.ToString("D8"));
-                        lv1.SubItems.Add(j.ToString());
+                        lv1.SubItems.Add(j.ToString("f2"));
                         lv1.SubItems.Add(textBox6.Text);
                         lv1.SubItems.Add(xzMsg);
                         if (listView1.Items.Count > 2)
