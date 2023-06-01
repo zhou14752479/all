@@ -144,11 +144,11 @@ namespace 主程序202305
 
 
 
-            for (int i = fp1; i <fp2; i++)
+            for (int i = fp1; i <=fp2; i++)
             {
 
 
-                for (double j = je1; j < je2; j=j+0.01)
+                for (double j = je1; j <= je2; j=j+0.01)
                 {
 
                     try
@@ -177,6 +177,8 @@ namespace 主程序202305
                         //MessageBox.Show(html);
 
 
+                       
+
                         string xzMsg = Regex.Match(html, @"""xzMsg"":""([\s\S]*?)""").Groups[1].Value;
                         string cxKey = Regex.Match(html, @"""cxKey"":""([\s\S]*?)""").Groups[1].Value;
 
@@ -196,12 +198,27 @@ namespace 主程序202305
                         lv1.SubItems.Add(j.ToString("f2"));
                         lv1.SubItems.Add(textBox6.Text);
                         lv1.SubItems.Add(xzMsg);
+
+
+                        if (html.Contains("日期校验失败"))
+                        {
+                           run_jiaoyandate(i.ToString("D8"), j.ToString("f2"));
+                        }
+
+
                         if (listView1.Items.Count > 2)
                         {
                             this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
                         }
                         if (html.Contains("太快了"))
                             break;
+
+                        if (cxKey != "")
+                        {
+                            //成功后跳过金额筛选，查下一个发票号码
+                            break;
+                        }
+
 
                         while (this.zanting == false)
                         {
@@ -215,10 +232,11 @@ namespace 主程序202305
 
                         MessageBox.Show(ex.ToString());
                     }
+                    
                 }
 
             }
-
+            MessageBox.Show("查询结束");
         }
 
         #endregion
@@ -246,6 +264,76 @@ namespace 主程序202305
             }
         }
         #endregion
+
+
+
+
+        public void run_jiaoyandate(string haoma,string jine)
+        {
+            string spath = path + "\\发票\\" + DateTime.Now.ToString("yyyyMMdd") + "\\";
+            DateTime dt1=Convert.ToDateTime(textBox6.Text.Trim());
+            DateTime dt2 = Convert.ToDateTime(textBox7.Text.Trim());
+
+            for (DateTime dt= dt1; dt < dt2; dt=dt.AddDays(1))
+            {
+                try
+                {
+                 
+
+
+                    string code = getocr();
+
+                    string url = "https://www.51fapiao.cn/serverapi/webServer/webapi/queryInv";
+                    string postdata = "fpdm=" + textBox1.Text + "&fphm=" +haoma + "&kprq=" + dt.ToString("yyyy-MM-dd") + "&kphjje=" + jine+ "&yzm=" + code + "&uuid=&flag=1&skip=0&jeflag=1";
+
+                    string html = PostUrlDefault(url, postdata, cookie, "application/x-www-form-urlencoded");
+                    html = System.Web.HttpUtility.UrlDecode(html);
+
+                    if (html.Contains("验证码错误"))
+                    {
+                       dt= dt.AddDays(-1);
+                        continue;
+                    }
+
+
+                    string xzMsg = Regex.Match(html, @"""xzMsg"":""([\s\S]*?)""").Groups[1].Value;
+                    string cxKey = Regex.Match(html, @"""cxKey"":""([\s\S]*?)""").Groups[1].Value;
+
+                    if (cxKey != "")
+                    {
+                        //MessageBox.Show(cxKey);
+                        xzMsg = "成功";
+                        string fileurl = "https://www.51fapiao.cn/serverapi/webServer/webapi/getPdfImg/" + cxKey + "/0.png";
+                        downloadFile(fileurl, spath, haoma + ".jpg", cookie);
+
+                    }
+
+
+                    ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                    lv1.SubItems.Add(textBox1.Text);
+                    lv1.SubItems.Add(haoma);
+                    lv1.SubItems.Add(jine);
+                    lv1.SubItems.Add(dt.ToString("yyyy-MM-dd"));
+                    lv1.SubItems.Add(xzMsg);
+
+                    if (cxKey != "")
+                    {
+
+                        return;
+                    }
+                    if (html.Contains("太快了"))
+                        return;
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+
+           
+        }
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();

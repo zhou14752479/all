@@ -55,6 +55,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -161,7 +163,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(158, 23);
             this.textBox1.TabIndex = 210;
-            this.textBox1.Text = "037022200211";
+            this.textBox1.Text = "014002300111";
             // 
             // label1
             // 
@@ -199,6 +201,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.textBox6);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBox5);
@@ -224,7 +228,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 21);
             this.textBox6.TabIndex = 220;
-            this.textBox6.Text = "2023-04-25";
+            this.textBox6.Text = "2023-04-24";
             // 
             // label6
             // 
@@ -244,7 +248,7 @@
             this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox5.Size = new System.Drawing.Size(82, 23);
             this.textBox5.TabIndex = 218;
-            this.textBox5.Text = "500";
+            this.textBox5.Text = "58";
             // 
             // label5
             // 
@@ -264,7 +268,7 @@
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox4.Size = new System.Drawing.Size(82, 23);
             this.textBox4.TabIndex = 216;
-            this.textBox4.Text = "23259000";
+            this.textBox4.Text = "07307150";
             // 
             // label4
             // 
@@ -284,7 +288,7 @@
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox3.Size = new System.Drawing.Size(82, 23);
             this.textBox3.TabIndex = 214;
-            this.textBox3.Text = "50";
+            this.textBox3.Text = "53";
             // 
             // label3
             // 
@@ -304,7 +308,7 @@
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(82, 23);
             this.textBox2.TabIndex = 212;
-            this.textBox2.Text = "23250000";
+            this.textBox2.Text = "07307107";
             // 
             // label2
             // 
@@ -315,6 +319,24 @@
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 211;
             this.label2.Text = "发票号码";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(193, 152);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(15, 13);
+            this.label7.TabIndex = 221;
+            this.label7.Text = "-";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(214, 150);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(100, 21);
+            this.textBox7.TabIndex = 222;
+            this.textBox7.Text = "2023-05-26";
             // 
             // 发票51
             // 
@@ -364,5 +386,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label7;
     }
 }
