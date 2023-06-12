@@ -176,7 +176,7 @@ namespace 客户美团
                         //MessageBox.Show(html);
                         MatchCollection aids = Regex.Matches(html, @"<p class=""carBT""><a href=""([\s\S]*?)""");
 
-                         //MessageBox.Show(aids.Count.ToString());
+                        // MessageBox.Show(aids.Count.ToString());
                         if (aids.Count == 0)
                             break;
 
@@ -259,28 +259,16 @@ namespace 客户美团
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
+
             #region 通用检测
 
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
+            //string ahtml =method.GetUrl("http://124.222.26.180","utf-8");
 
-            if (!html.Contains(@"YVoWQ"))
-            {
-                MessageBox.Show("");
-                return;
-            }
+            //if (!ahtml.Contains(@"siyisoft"))
+            //{
 
-
-
-            #endregion
-            #region 通用检测
-
-            string ahtml = method.GetUrl("http://139.129.92.113/", "utf-8");
-
-            if (!ahtml.Contains(@"siyisoft"))
-            {
-
-                return;
-            }
+            //    return;
+            //}
 
 
 

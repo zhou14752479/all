@@ -5,7 +5,9 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -22,6 +24,59 @@ namespace titan007
         {
             InitializeComponent();
         }
+
+        #region POST默认请求
+        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        {
+            string result;
+            try
+            {
+                string charset = "utf-8";
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+              
+                request.ContentType = "application/x-www-form-urlencoded";
+                // request.ContentType = "application/json";
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("Authorization: bearer a1a0adb5-5c5e-457b-b802-edd81213450f");
+                request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF XWEB/6939";
+                request.Headers.Add("Cookie", COOKIE);
+                request.Referer = "https://servicewechat.com/wx3d65f6c97795bc65/208/page-frame.html";
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.GetResponseHeader("Set-Cookie");
+                bool flag = response.Headers["Content-Encoding"] == "gzip";
+                string html;
+                if (flag)
+                {
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                    html = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                response.Close();
+                result = html;
+            }
+            catch (WebException ex)
+            {
+                result = ex.ToString();
+            }
+            return result;
+        }
+        #endregion
 
         private void 易胜博_Load(object sender, EventArgs e)
         {

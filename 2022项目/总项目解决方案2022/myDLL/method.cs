@@ -131,9 +131,14 @@ namespace myDLL
 				response.Close();
 				result = html;
 			}
-			catch (Exception ex)
+			catch (WebException ex)
 			{
-				result = ex.ToString();
+				//result = ex.ToString();
+				//400错误也返回内容
+				using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+				{
+					result = reader.ReadToEnd();
+				}
 			}
 			return result;
 		}
@@ -175,15 +180,20 @@ namespace myDLL
 				response.Close();
 				result = html;
 			}
-			catch (Exception ex)
+			catch (WebException ex)
 			{
-				result = ex.ToString();
+				//result = ex.ToString();
+				//400错误也返回内容
+				using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+				{
+					result = reader.ReadToEnd();
+				}
 			}
 			return result;
 		}
         #endregion
 
-        #region post请求全参
+        #region POST请求全参
         public static string PostUrl(string url, string postData, string COOKIE, string charset, string contentType, string refer)
 		{
 			string result;
@@ -230,14 +240,21 @@ namespace myDLL
 			}
 			catch (WebException ex)
 			{
-				result = ex.ToString();
+				//result = ex.ToString();
+				//400错误也返回内容
+				using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+				{
+					result = reader.ReadToEnd();
+				}
 			}
 			return result;
 		}
-        #endregion
+		#endregion
 
-        #region datatable转excel
-        public static string PostUrlDefault(string url, string postData, string COOKIE)
+		
+
+		#region POST默认请求
+		public static string PostUrlDefault(string url, string postData, string COOKIE)
 		{
 			string result;
 			try
@@ -247,6 +264,8 @@ namespace myDLL
 				HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 				request.Method = "Post";
 				request.Proxy = null;
+				//WebHeaderCollection headers = request.Headers;
+				//headers.Add("version:TYC-XCX-WX");
 				request.ContentType = "application/x-www-form-urlencoded";
 				// request.ContentType = "application/json";
 				request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
@@ -281,7 +300,12 @@ namespace myDLL
 			}
 			catch (WebException ex)
 			{
-				result = ex.ToString();
+				//result = ex.ToString();
+				//400错误也返回内容
+				using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+				{
+					result = reader.ReadToEnd();
+				}
 			}
 			return result;
 		}

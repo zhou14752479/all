@@ -107,7 +107,7 @@ namespace 京东图片
                     {
 
                       
-                        string itemid = Regex.Match(dataGridView1.SelectedRows[i].Cells[21].Value.ToString().Trim(), @"\d{7,20}").Groups[0].Value;
+                        string itemid = Regex.Match(dataGridView1.SelectedRows[i].Cells[21].Value.ToString().Trim(), @"\d{6,20}").Groups[0].Value;
                         label1.Text = DateTime.Now.ToString() + "正在获取：" + itemid;
 
                         string url = "https://item.jd.com/" + itemid + ".html";
@@ -203,7 +203,12 @@ namespace 京东图片
 
                         }
 
-                        string price = getprice(title,itemid);
+                        string price = getprice2(title, itemid);
+                       
+                        if(price.Trim()=="")
+                        {
+                            price = getprice(itemid);
+                        }
 
                         dataGridView1.SelectedRows[i].Cells[0].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         dataGridView1.SelectedRows[i].Cells[32].Value = title;
@@ -232,7 +237,7 @@ namespace 京东图片
             catch (Exception ex)
             {
 
-               // MessageBox.Show(ex.ToString());
+               //MessageBox.Show(ex.ToString());
             }
         }
 
@@ -277,7 +282,7 @@ namespace 京东图片
         /// 通过搜索标题并比对itemid获取商品价格
         /// </summary>
         /// <returns></returns>
-        public string getprice(string title,string itemid)
+        public string getprice2(string title,string itemid)
         {
             string url = "https://so.m.jd.com/ware/search.action?keyword="+ System.Web.HttpUtility.UrlEncode(title)+"&searchFrom=search&sf=11&as=1";
 
@@ -299,6 +304,32 @@ namespace 京东图片
 
             return "";
         }
+
+
+
+
+        #region  京东接口获取商品价格
+
+
+        public string getprice(string uid)
+        {
+
+            //可以同时获取多个uid的商品价格，此处为了方便每次只提取一个
+            //https://api.m.jd.com/api?functionId=jxdetail_ass_promo&appid=jd-cphdeveloper-m&body={%22callback%22:%22promoCb%22,%22skuid%22:%2248968519836,100030992296,100032750356,100018533456,100015447287,100047138614,1940309,100028314656,100017231971,100030992274,100006382348,100003919059,100035432738%22,%22debug%22:false,%22externalLoginType%22:1}&loginType=2
+           
+            
+            string url = "https://api.m.jd.com/api?functionId=jxdetail_ass_promo&appid=jd-cphdeveloper-m&body={%22callback%22:%22promoCb%22,%22skuid%22:%22"+uid+"%22,%22debug%22:false,%22externalLoginType%22:1}&loginType=2";
+            string html = function.GetUrl(url);
+
+
+            // MatchCollection prices = Regex.Matches(html, @"tourl=""https:\/\/item\.m\.jd\.com\/product\/([\s\S]*?)\.html\?_fd=jdm&price=([\s\S]*?)&");
+
+            string price = Regex.Match(html, @"\\""p\\"":\\""([\s\S]*?)\\""").Groups[1].Value;
+
+            return price;
+        }
+
+        #endregion
         private void button4_Click(object sender, EventArgs e)
         {
             

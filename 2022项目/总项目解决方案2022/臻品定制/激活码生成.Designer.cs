@@ -82,7 +82,7 @@
             this.Controls.Add(this.label1);
             this.Name = "激活码生成";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "激活码生成（仅供学习）";
+            this.Text = "(仅供学习交流，如作他用所承受的法律责任一概与作者无关(使用即代表你同意上述观点))";
             this.Load += new System.EventHandler(this.激活码生成_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace titan007
+namespace 小谷吖
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace titan007
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 亚盘初大小球初());
+            Application.Run(new 小谷吖());
         }
     }
 }

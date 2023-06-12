@@ -34,11 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common">
-      <HintPath>C:\Users\Administrator\Desktop\激活码\Common.dll</HintPath>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Common.dll</HintPath>
     </Reference>
-    <Reference Include="MUWEN">
-      <HintPath>C:\Users\Administrator\Desktop\激活码\MUWEN.dll</HintPath>
+    <Reference Include="MUWEN, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MUWEN.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

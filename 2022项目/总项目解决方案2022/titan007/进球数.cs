@@ -271,7 +271,9 @@ namespace titan007
             #endregion
         }
 
+        private void 进球数_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
-
+        }
     }
 }
